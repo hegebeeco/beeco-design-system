@@ -3,7 +3,7 @@
 //  15 termék: mosogatógép-tabletta, tönkölyliszt, füzet, papírtörlő, tonhalkonzerv, kézkrém, szemeteszsák,
 //  fürdőszoba-tisztító, kávékapszula, sampon, ásványvíz, póló, mosogatószer, vágódeszka, tisztítókendő.
 //  Valódi méretekből (cm) vetítve (ART.geo.camera), 4 éles tónus, 3/4-es nézet, tömör olíva árnyék.
-//  Bolti termékek a kártyákhoz; a többi csoport: art-gw-b.js, art-gw-c.js, art-gw-d.js
+//  Bolti termékek a kártyákhoz; a többi csoport: art-gw-b.js, art-gw-c.js, art-gw-d.js, art-gw-e.js
 //  A kártyán csak a TERMÉK látszik – felirat, betű, szám, márkajel nincs (azt a HTML teszi rá).
 //  Render: node tools/art-render.js 2d <ez a fájl> ki.png
 // ============================================================

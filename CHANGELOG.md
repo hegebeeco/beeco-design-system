@@ -15,6 +15,9 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.11.0 – 2026-09-29
+* **Új matricák (B szint):** 19 Hűtő-mester étel (`art-huto-b.js`: főtt rizs, füstölt lazac, tiramisu, pulykamell, hamburgerhús, pácolt csirke, paprika, szőlő, csemegekukorica, spenót, cukkini, majonéz, savanyúság, salátaöntet, liszt, sütőtök, batáta, éretlen avokádó, görögdinnye + `f_konzerv`) és 8 Greenwashing-tárgy (`art-gw-e.js`: halrudacska, kerti pad, vízforraló, ágynemű, polárpulóver, hajbalzsam, papírtányér, autógumi); bemutató: `kit.html`, `arculat.html`; `docs/rajzolas.md` frissítve.
+
 ## 1.10.1 – 2026-09-29
 * **Javítás:** `arculat.html` – a rács oszlopa nem lehet szélesebb a helynél (`minmax(min(var(--min), 100%), 1fr)`); 320 px-en a Mozgás rész 36 px-t kilógott (minőségkapu P1).
 

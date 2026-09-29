@@ -21,9 +21,9 @@
 | Beépítve | **2075** mind a 77 repülő matricája (`art-nature-b.js`, `art-things-b.js`, `art-food.js`, `art-extra.js`, `art-office.js`, `art-home.js` + a korábbi B készülékek) |
 | Beépítve | **Ökos-rejtély** matricái: a 20 készülék (`art-devices.js`) és 17 háztartási tárgy (`art-home.js`: izzó, tv, zuhany, kád, wc, csap, sál, ablak, zseblámpa, kulcs, papírtekercs · `art-nature.js`: hőmérő, elem, villásdugó · `art-office.js`: füzet, kódzár, számla) |
 | Beépítve | **Mi van mögötte? termékei** (`art-imp.js` + a Greenwashing készletéből – mind a 12 termék) |
-| Beépítve | **Greenwashing-vadász termékei** (`art-gw.js`, `art-gw-b.js`, `art-gw-c.js`, `art-gw-d.js`: ~59 bolti termék) és az **öko-pecsét keretek** (`art-pecset.js`, 12 féle – a kitalált márkák pecsétje és az engedélyköteles hivatalos jelek helykitöltője) |
+| Beépítve | **Greenwashing-vadász termékei** (`art-gw.js`, `art-gw-b.js`, `art-gw-c.js`, `art-gw-d.js`, `art-gw-e.js`: ~67 bolti termék) és az **öko-pecsét keretek** (`art-pecset.js`, 12 féle – a kitalált márkák pecsétje és az engedélyköteles hivatalos jelek helykitöltője) |
 | Beépítve | **Szelektálj! mind a 60 kódmatricája** (`art-waste.js` papír, műanyag-fém, üveg · `art-waste-b.js` kommunális, bio, olaj · `art-waste-special.js` elem, textil, veszélyes · `art-waste-special-b.js` e-hulladék, gyógyszer, zöldhulladék); a beeco saját képei (66 hulladék) változatlanok |
-| Beépítve | **Hűtő-mester mind a 33 étele** (`web/js/art/art-huto.js`: hűtős ételek + sajt, `art-huto-kamra.js`: zöldség, gyümölcs, kamra) – a `check-art` a döntést (`tilt`) és a nagyítást (`scale`) is figyelembe veszi a kilógás-ellenőrzésnél |
+| Beépítve | **Hűtő-mester mind az 53 étele** (`web/js/art/art-huto.js`: hűtős ételek + sajt, `art-huto-kamra.js`: zöldség, gyümölcs, kamra, `art-huto-b.js`: a 2026-09-29-es +20 étel – a konzerv a `konzerv` matrica másolata) – a `check-art` a döntést (`tilt`) és a nagyítást (`scale`) is figyelembe veszi a kilógás-ellenőrzésnél |
 
 Nem B szint (csak külön kérésre): **A – Tiszta ikon** (4–8 alakzat, szemből) kifejezetten 24–32 px-es lista-ikonhoz; **C – Gazdag**
 (20–45 alakzat, lapokra tört felületek) egy-egy nagy, „hős” képhez.
