@@ -15,6 +15,9 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.10.1 – 2026-09-29
+* **Javítás:** `arculat.html` – a rács oszlopa nem lehet szélesebb a helynél (`minmax(min(var(--min), 100%), 1fr)`); 320 px-en a Mozgás rész 36 px-t kilógott (minőségkapu P1).
+
 ## 1.10.0 – 2026-09-29
 * **Mozgás 2.0 (Emil Kowalski + taste-design + Impeccable DS-review):** új tokenek `--ease-out`, `--ease-in-out`, `--ease-drawer`, `--t-press`; nyomás-visszajelzés minden gombon, hover csak egérrel, alsó lap javítások (visszaugrás, pöccintés, súrlódás, második ujj); színes oldalcsík helyett színminta; kontraszt a méz felületen; eredménypanel: látható mérőszám-feliratok, csendes app-banner, `nextLabel`.
 * **Új: játékérzet-modul** `web/js/ds-juice.js` – `DS.motion.stagger` (sorban érkezés), `.chain` (láncreakció emelkedő hanggal, Promise), `.swipe` (döntés-kártya kirepül), `.meter` (`.ds-meter` animált váltása + változás-jel), `.celebrate` (nagy pillanat); hangok `dsSound('swipe' | 'whoosh' | 'chain')`; `ds-anim-swipe` a `ds-motion.css`-ben. Betöltés a `ds-ext.js` után. Bemutató: `arculat.html` → Mozgás. Mind megáll a „Kevesebb mozgás” mellett.
