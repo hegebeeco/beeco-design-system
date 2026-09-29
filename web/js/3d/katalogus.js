@@ -6,13 +6,13 @@
 //  • call  = a másolható hívás, pontosan így írd a játékba (a teszt ellenőrzi, hogy ugyanazt építi, mint a build)
 //  • build = () => modell, vagy RÉSZEK objektuma ({ body, heat, … }) – a részeket a galéria külön kapcsolja
 //  Új modell: a builder a 3d/ (vagy vilag/) fájlba, ide egy tétel – a galéria és a teszt magától felveszi.
-//  Kell hozzá: js/art/model-kit.js + a 3d/*-modellek.js fájlok (+ 3d/elokert-allatok.js, 3d/varos-poszmeh.js, 3d/varos-kozpont.js) + vilag/vilag-modellek.js (Node-ban a teszt tölti be őket).
+//  Kell hozzá: js/art/model-kit.js + a 3d/*-modellek.js fájlok (+ 3d/elokert-allatok.js, 3d/varos-poszmeh.js, 3d/varos-kozpont.js, 3d/varos-tanosveny.js, 3d/varos-csillagvizsgalo.js) + vilag/vilag-modellek.js (Node-ban a teszt tölti be őket).
 // ============================================================
 (function(root){
   const g = n => root[n];                                              // a builder-globálisok (böngészőben window, Node-ban globalThis)
   const hex = c => g('MODEL').hexOf(c);                                // tartalom-szín a palettából (pl. a kuka színe)
   const v = (label, call, build) => ({ label, call, build });
-  const GROUPS = ['Szelektálj!', 'Hűtő-mester', 'Ökos-rejtély ház', 'Fenntartható otthon', 'Közös növényzet és kert', 'Égbolt és sziget', 'Élő kert', 'Méhesd'];
+  const GROUPS = ['Szelektálj!', 'Hűtő-mester', 'Ökos-rejtély ház', 'Matricaház', 'Közös növényzet és kert', 'Égbolt és sziget', 'Élő kert', 'Méhesd'];
 
   const SZ = () => g('SZ_MODELS'), HU = () => g('HUTO_MODELS'), RZ = () => g('RZ_MODELS'), OT = () => g('OT_MODELS'), VM = () => g('VILAG_MODELS'), EK = () => g('EK_MODELS'), VA = () => g('VAROS_MODELS'), K = () => g('MODEL');
   const LIST = [
@@ -54,12 +54,12 @@
     { id:'rz-barrel', group:'Ökos-rejtély ház', name:'Esővízgyűjtő hordó', desc:'Öblös hordó abroncsokkal, fedéllel, csappal.', variants:[ v('Alap', 'RZ_MODELS.barrel(MODEL, 0.9, 1.1)', () => RZ().barrel(K(), 0.9, 1.1)) ] },
     { id:'rz-hose', group:'Ökos-rejtély ház', name:'Tömlődob', desc:'Zöld tömlő a dobon, oldaltárcsák, hajtókar.', variants:[ v('Alap', 'RZ_MODELS.hosereel(MODEL)', () => RZ().hosereel(K())) ] },
     { id:'rz-water', group:'Ökos-rejtély ház', name:'Vízóra', desc:'Kék ház, számlapüveg, két csőcsonk (az aknában).', variants:[ v('Alap', 'RZ_MODELS.watermeter(MODEL)', () => RZ().watermeter(K())) ] },
-    // ---------------- Fenntartható otthon ----------------
-    { id:'ot-wall', group:'Fenntartható otthon', name:'Hatszög-ház fala', desc:'Lambéria, 3 polc konzollal, felső gerenda, zöldtető-perem (méretek: OT).', variants:[ v('Alap', 'OT_MODELS.wall(MODEL)', () => OT().wall(K())) ] },
-    { id:'ot-frame', group:'Fenntartható otthon', name:'Váz és padló', desc:'Sarokoszlopok, tetőgerendák, méhsejt-zárókő, hatszög padló szőnyeggel.', variants:[ v('Alap', 'OT_MODELS.frame(MODEL)', () => OT().frame(K())) ] },
-    { id:'ot-table', group:'Fenntartható otthon', name:'Kerek asztal', desc:'A jelvények asztala.', variants:[ v('Alap', 'OT_MODELS.table(MODEL)', () => OT().table(K())) ] },
-    { id:'ot-board', group:'Fenntartható otthon', name:'Tábla-állvány', desc:'Állvány a napi küldetés táblájának.', variants:[ v('Alap', 'OT_MODELS.board(MODEL)', () => OT().board(K())) ] },
-    { id:'ot-medal', group:'Fenntartható otthon', name:'Jelvény-érme', desc:'Arany, ha megszerezted; acél, ha még nem.',
+    // ---------------- Matricaház (album-ház) ----------------
+    { id:'ot-wall', group:'Matricaház', name:'Hatszög-ház fala', desc:'Lambéria, 3 polc konzollal, felső gerenda, zöldtető-perem (méretek: OT).', variants:[ v('Alap', 'OT_MODELS.wall(MODEL)', () => OT().wall(K())) ] },
+    { id:'ot-frame', group:'Matricaház', name:'Váz és padló', desc:'Sarokoszlopok, tetőgerendák, méhsejt-zárókő, hatszög padló szőnyeggel.', variants:[ v('Alap', 'OT_MODELS.frame(MODEL)', () => OT().frame(K())) ] },
+    { id:'ot-table', group:'Matricaház', name:'Kerek asztal', desc:'A jelvények asztala.', variants:[ v('Alap', 'OT_MODELS.table(MODEL)', () => OT().table(K())) ] },
+    { id:'ot-board', group:'Matricaház', name:'Tábla-állvány', desc:'Állvány a napi küldetés táblájának.', variants:[ v('Alap', 'OT_MODELS.board(MODEL)', () => OT().board(K())) ] },
+    { id:'ot-medal', group:'Matricaház', name:'Jelvény-érme', desc:'Arany, ha megszerezted; acél, ha még nem.',
       variants:[ v('Megszerzett', 'OT_MODELS.medal(MODEL, true)', () => OT().medal(K(), true)), v('Még nincs', 'OT_MODELS.medal(MODEL, false)', () => OT().medal(K(), false)) ] },
     // ---------------- Közös növényzet és kert ----------------
     { id:'nv-tree', group:'Közös növényzet és kert', name:'Almafa', desc:'Gyökeres törzs, négy lombcsomó, almák.', variants:[ v('Alap', 'SZ_MODELS.tree(MODEL)', () => SZ().tree(K())) ] },
@@ -153,6 +153,8 @@
     { id:'va-solar', group:'Méhesd', name:'Napelem-mező', desc:'Panelsorok 25°-ban +Z felé döntve, világos kerettel, lábakon; w × d, talp y = 0 (a játék emeli a tetőre).', variants:[ v('0,8 × 0,5', 'VAROS_MODELS.solarRoof(MODEL, { w:0.8, d:0.5 })', () => VA().solarRoof(K(), { w:0.8, d:0.5 })) ] },
     { id:'va-bikelane', group:'Méhesd', name:'Kerékpársáv (szakasz)', desc:'Az X mentén, len hosszal, 0,12 széles zöld sáv sárga szélvonallal, ~1 egységenként festett kerékpár-jel.', variants:[ v('4 egység', 'VAROS_MODELS.bikeLane(MODEL, { len:4 })', () => VA().bikeLane(K(), { len:4 })) ] },
     { id:'va-turbine', group:'Méhesd', name:'Szélkerék', desc:'Részek: body + blades (+ hub = forgáspont [0, 1.3, 0.11]); a lapátok a helyükön, a Z tengely körül forognak. Torony 1,3, csúcs ≈ 1,84.', variants:[ v('Alap', 'VAROS_MODELS.windTurbine(MODEL)', () => VA().windTurbine(K())) ] },
+    { id:'va-trail', group:'Méhesd', name:'Tanösvény', desc:'Füves telek kanyargó murvás úttal, korláttal, kaszálatlan virágos rétfolttal, fedett (üres) ismertető táblával, rovarhotellel és paddal. 1,4 × 1,0, max. ≈ 0,54.', variants:[ v('Alap', 'VAROS_MODELS.natureTrail(MODEL)', () => VA().natureTrail(K())) ] },
+    { id:'va-observatory', group:'Méhesd', name:'Csillagvizsgáló', desc:'Hatszögletű mézsárga lábazaton kerek krémszínű torony kerek ablakokkal és íves ajtóval, ezüstszürke kupola sötét réssel és kinyúló távcsővel; előtte kőút, földgömb-szobor és pad. 1,2 × 1,0, max. ≈ 0,77.', variants:[ v('Alap', 'VAROS_MODELS.observatory(MODEL)', () => VA().observatory(K())) ] },
   ];
 
   // segéd: modell vagy részek → [[részNév, modell], …]

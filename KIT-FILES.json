@@ -65,6 +65,7 @@
   "tests/check-mech.js",
   "web/css/ds-ext.css",
   "web/js/ds-ext.js",
+  "web/js/ds-juice.js",
   "web/js/aramlas.js",
   "web/css/aramlas.css",
   "web/js/hatter2d/",

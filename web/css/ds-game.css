@@ -39,6 +39,8 @@
 .ds-result-score{ font:400 var(--fs-3xl)/1 var(--display); font-variant-numeric:tabular-nums; }
 .ds-result-score small{ display:block; font:600 var(--fs-xs)/1.2 var(--body); color:var(--ink-soft); }
 .ds-result-stats{ display:flex; flex-wrap:wrap; gap:var(--sp-2); justify-content:center; }
+/* a mérőszám felirata látható (nem csak rámutatásra – érintőképernyőn a title nem jelenik meg) */
+.ds-result-stat b{ font-weight:inherit; } .ds-result-stat small{ font:600 var(--fs-xs)/1.2 var(--body); color:inherit; opacity:.85; margin-left:2px; }
 .ds-result-actions{ display:flex; flex-direction:column; gap:var(--sp-2); width:100%; }
 .ds-result-actions .ds-row{ display:flex; flex-wrap:wrap; gap:var(--sp-2); justify-content:center; }
 .ds-result-lb{ width:100%; display:grid; grid-template-columns:minmax(0, 1fr); gap:var(--sp-2); text-align:left; }

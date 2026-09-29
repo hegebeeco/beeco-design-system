@@ -56,7 +56,11 @@
 @keyframes dsPiece{ 0%{ transform:translate(0,0) scale(.6) rotate(0); opacity:1; }
   100%{ transform:translate(var(--dx), var(--dy)) scale(1) rotate(var(--rot)); opacity:0; } }
 
-/* ---- 7. „Kevesebb mozgás" (beállítás vagy rendszerszintű kérés): minden áll --------------------- */
+/* ---- 7. Döntés-kártya kirepül (DS.motion.swipe – web/js/ds-juice.js): --swipe-x = ±120%, --swipe-rot = ±12deg ---- */
+@keyframes dsSwipe{ to{ transform:translateX(var(--swipe-x, 120%)) rotate(var(--swipe-rot, 12deg)); opacity:0; } }
+.ds-anim-swipe{ animation:dsSwipe var(--t-base) var(--ease-out) forwards; }
+
+/* ---- 8. „Kevesebb mozgás" (beállítás vagy rendszerszintű kérés): minden áll --------------------- */
 @media (prefers-reduced-motion: reduce){
   [class*="ds-anim-"], .ds-piece{ animation:none !important; }
   .ds-anim-sweep::after{ animation:none !important; display:none; }

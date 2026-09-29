@@ -80,7 +80,7 @@
 .ds-coach{ position:fixed; inset:0; z-index:var(--z-scene); }
 .ds-coach-ring{ position:fixed; border-radius:var(--r-m); border:var(--line-w) solid var(--accent); pointer-events:none;
   box-shadow:0 0 0 3px var(--line), 0 0 0 200vmax var(--scrim); animation:dsCoachRing 1.6s var(--ease) infinite;
-  transition:left var(--t-base) var(--ease), top var(--t-base) var(--ease), width var(--t-base) var(--ease), height var(--t-base) var(--ease); }
+  transition:left var(--t-base) var(--ease-in-out), top var(--t-base) var(--ease-in-out), width var(--t-base) var(--ease-in-out), height var(--t-base) var(--ease-in-out); }
 @keyframes dsCoachRing{ 0%,100%{ outline:0 solid var(--glow); } 50%{ outline:8px solid var(--glow-0); } }
 .ds-coach-say{ position:fixed; width:min(340px, calc(100vw - 24px)); animation:dsFadeUp var(--t-base) var(--ease) both; }
 .ds-coach-say .ds-bubble{ max-width:none; flex:1; font-size:var(--fs-m); box-shadow:var(--soft); }
@@ -151,7 +151,7 @@
 .ds-sheet-scrim{ z-index:var(--z-popup); align-items:center; animation:dsSheetFade var(--t-base) var(--ease) both; }
 .ds-sheet{ position:relative; margin:auto; width:min(560px, 100%); max-height:min(86dvh, 760px); display:flex; flex-direction:column;
   background:var(--bg); color:var(--ink); border:var(--line-w) solid var(--line); border-radius:var(--r-xl); box-shadow:var(--soft);
-  animation:dsIn var(--t-base) ease-out; outline:none; }
+  animation:dsIn var(--t-base) var(--ease-out); outline:none; }
 .ds-sheet-handle{ display:none; }
 .ds-sheet-head{ display:flex; align-items:center; gap:var(--sp-3); padding:var(--sp-4) var(--sp-4) var(--sp-2) var(--sp-5); }
 .ds-sheet-title{ flex:1; margin:0; font:400 var(--fs-xl)/1.05 var(--display); text-wrap:balance; }
@@ -167,8 +167,10 @@
 @media (max-width: 699px){
   .ds-sheet-scrim{ padding:0; align-items:flex-end; }
   .ds-sheet{ margin:0; width:100%; max-height:88dvh; border-radius:var(--r-xl) var(--r-xl) 0 0; border-bottom:0;
-    padding-bottom:env(safe-area-inset-bottom); animation:dsSheetUp var(--t-slow) var(--ease) both; }
-  .ds-sheet.is-closing{ animation:dsSheetDown var(--t-base) var(--ease) both; }
+    padding-bottom:env(safe-area-inset-bottom); animation:dsSheetUp var(--t-slow) var(--ease-drawer) both;
+    transition:transform var(--t-base) var(--ease-drawer); }
+  .ds-sheet.is-in{ animation:none; }   /* beúszás után: a visszaugrás átmenettel, nem újrajátszott animációval */
+  .ds-sheet.is-closing{ animation:dsSheetDown var(--t-base) var(--ease-out) both; }
   .ds-sheet.is-dragging{ animation:none; transition:none; }
   .ds-sheet-handle{ display:grid; place-items:center; height:28px; margin-bottom:-10px; cursor:grab; touch-action:none; }
   .ds-sheet-handle::before{ content:""; width:48px; height:6px; border-radius:var(--r-pill); background:var(--sage); border:2px solid var(--line); }

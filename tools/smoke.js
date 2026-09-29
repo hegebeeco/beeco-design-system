@@ -72,7 +72,8 @@ srv.listen(0, '127.0.0.1', async () => {
 
   // ---------- DevTools-kapcsolat ----------
   let targets;
-  for(let i = 0; i < 100; i++){ try{ targets = await (await fetch(`http://127.0.0.1:${dbg}/json`)).json(); if(targets.find(t => t.type === 'page')) break; }catch(e){} await sleep(100); }
+  // a CI-gép néha lassan indítja a Chrome-ot („a Chrome nem indult el”): legfeljebb 30 mp-ig várunk rá
+  for(let i = 0; i < 300; i++){ try{ targets = await (await fetch(`http://127.0.0.1:${dbg}/json`)).json(); if(targets.find(t => t.type === 'page')) break; }catch(e){} await sleep(100); }
   if(!targets){ console.error('HIBA: a Chrome nem indult el.'); finish(1); }
   const ws = new WebSocket(targets.find(t => t.type === 'page').webSocketDebuggerUrl);
   await new Promise((r, j) => { ws.onopen = r; ws.onerror = j; });

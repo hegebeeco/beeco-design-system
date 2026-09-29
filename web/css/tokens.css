@@ -108,3 +108,12 @@
 html.nagy-betuk {
   --fs-xs:14px; --fs-s:16px; --fs-m:19px; --fs-l:23px; --fs-xl:30px; --fs-2xl:38px; --fs-3xl:50px;
 }
+
+/* ---- Mozgás 2.0 (2026-09-28, Emil Kowalski-féle review): erős, egyedi görbék a beépített CSS-görbék helyett ----
+   --ease-out: be- és kiúszás, nyomás-visszajelzés (azonnal indul, lágyan áll meg – „hallotta a koppintást”)
+   --ease-in-out: képernyőn belüli mozgás (csúszka, kapcsoló, fül-jelző) · --ease-drawer: alsó lap, fiók (iOS-szerű)
+   --t-press: gombnyomás visszajelzése (100–160 ms közé kell esnie). ease-in UI-n tilos: lassan indul, tunyának érződik. */
+:root{
+  --ease-out:cubic-bezier(.23,1,.32,1); --ease-in-out:cubic-bezier(.77,0,.175,1); --ease-drawer:cubic-bezier(.32,.72,0,1);
+  --t-press:.12s;
+}

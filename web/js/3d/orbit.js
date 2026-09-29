@@ -5,6 +5,7 @@
 //  a képkocka-ciklusban: orb.update(dt)
 //  Egér / ujj: húzás = forgatás · görgő / két ujj = közelítés · nyilak és +/− a billentyűzeten (fókuszban a vászon).
 //  Az automatikus forgás elengedés után 3 mp-cel visszajön (orb.auto = false kikapcsolja).
+//  o.forgK(dist): a húzás érzékenységének szorzója (pl. a glóbusz közelről lassabban forog); alapból 1.
 // ============================================================
 function beecoOrbit(THREE, camera, dom, o){
   o = Object.assign({ target:[0, 1, 0], dist:6, az:35, el:20, auto:true, minDist:1, maxDist:120, minEl:-5, maxEl:85, speed:12 }, o || {});
@@ -21,7 +22,8 @@ function beecoOrbit(THREE, camera, dom, o){
     const s0 = start.get(e.pointerId);
     if(s0 && !s0[2]){ if(Math.hypot(e.clientX - s0[0], e.clientY - s0[1]) < (e.pointerType === 'mouse' ? 4 : 10)) return; s0[2] = true; return; }
     if(ptr.size === 1){ const k = e.pointerType === 'mouse' ? 1 : Math.max(0.5, Math.min(1, 600 / Math.max(1, innerWidth)));   // nagy kijelzőn lassabban forog
-      st.az -= (e.clientX - px) * 0.35 * k; st.el += (e.clientY - py) * 0.3 * k; }
+      const f = o.forgK ? o.forgK(st.dist) : 1;
+      st.az -= (e.clientX - px) * 0.35 * k * f; st.el += (e.clientY - py) * 0.3 * k * f; }
     else if(ptr.size === 2){ const [a, b] = [...ptr.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]);
       if(pinch) st.dist *= pinch / d; pinch = d; }
     clamp();
@@ -33,7 +35,7 @@ function beecoOrbit(THREE, camera, dom, o){
     const k = { ArrowLeft:[-8, 0, 1], ArrowRight:[8, 0, 1], ArrowUp:[0, 6, 1], ArrowDown:[0, -6, 1], '+':[0, 0, 0.9], '-':[0, 0, 1.1] }[e.key];
     if(!k) return; e.preventDefault(); st.az += k[0]; st.el += k[1]; st.dist *= k[2]; st.idle = 0; clamp(); });
   const api = {
-    target, get auto(){ return o.auto; }, set auto(v){ o.auto = !!v; },
+    target, get auto(){ return o.auto; }, set auto(v){ o.auto = !!v; }, get dist(){ return st.dist; },
     set(v){ if(v.target) target.set(...v.target); for(const k of ['az', 'el', 'dist']) if(v[k] != null) st[k] = v[k];
       if(v.minDist != null) o.minDist = v.minDist; if(v.maxDist != null) o.maxDist = v.maxDist; clamp(); api.update(0); },
     update(dt){

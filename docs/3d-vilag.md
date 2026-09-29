@@ -1,6 +1,6 @@
 # 3D készlet és világ – modellek + háttér bármelyik beeco-játékhoz
 
-> Mi ez? A Szelektálj!, a Hűtő-mester, az Ökos-rejtély és a Fenntartható otthon **kódból épített 3D tárgyai** (B szint),
+> Mi ez? A Szelektálj!, a Hűtő-mester, az Ökos-rejtély és a Matricaház **kódból épített 3D tárgyai** (B szint),
 > plusz a játék **C szintű háttere** (ég, felhők, lebegő szigetek, fű, rét) önálló, paraméterezhető modulként.
 > Nincs GLB-fájl és nincs betöltő: minden tárgy néhány sor JavaScript, ami a böngészőben épül fel – kicsi, gyors, és
 > a színei a design systemből jönnek.

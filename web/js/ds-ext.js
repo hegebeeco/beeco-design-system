@@ -350,13 +350,18 @@
       document.body.appendChild(scrim);
       scrim.addEventListener('click', e => { if(e.target === scrim || e.target.closest('[data-ds-close]')) DS.sheet.close(); });
       // lehúzás (telefonon): a fülön vagy a fejlécen
-      let y0 = null, dy = 0, t0 = 0;
-      const down = (e) => { if(e.target.closest('button') || innerWidth >= 700) return; y0 = e.clientY; dy = 0; t0 = performance.now();
-        sheet.classList.add('is-dragging'); e.currentTarget.setPointerCapture && e.currentTarget.setPointerCapture(e.pointerId); };
-      const move = (e) => { if(y0 == null) return; dy = Math.max(0, e.clientY - y0); sheet.style.transform = `translateY(${dy}px)`; };
-      const up = () => { if(y0 == null) return; const fast = dy / Math.max(1, performance.now() - t0) > 0.6; y0 = null;
+      // A belépő animáció után a lap „nyugalmi” állapotba kerül (is-in): így a visszaugrás átmenettel megy, és nem
+      // indul újra a beúszás. Felfelé húzva súrlódással enged (nem kemény fal); gyors pöccintésre a táv mindegy (Emil Kowalski).
+      sheet.addEventListener('animationend', () => sheet.classList.add('is-in'), { once:true });
+      let y0 = null, dy = 0, t0 = 0, pid = null;
+      const down = (e) => { if(y0 != null || e.target.closest('button') || innerWidth >= 700) return;   // második ujj: nem vesszük át
+        y0 = e.clientY; dy = 0; t0 = performance.now(); pid = e.pointerId; sheet.classList.add('is-in', 'is-dragging');
+        e.currentTarget.setPointerCapture && e.currentTarget.setPointerCapture(e.pointerId); };
+      const move = (e) => { if(y0 == null || e.pointerId !== pid) return; const d = e.clientY - y0; dy = Math.max(0, d);
+        sheet.style.transform = `translateY(${d >= 0 ? d : -Math.pow(-d, 0.6)}px)`; };
+      const up = (e) => { if(y0 == null || (e && e.pointerId !== pid)) return; const fast = dy / Math.max(1, performance.now() - t0) > 0.11; y0 = null;
         sheet.classList.remove('is-dragging');
-        if(dy > Math.min(120, sheet.offsetHeight * 0.3) || (fast && dy > 30)) DS.sheet.close(); else sheet.style.transform = ''; };
+        if(dy > Math.min(120, sheet.offsetHeight * 0.3) || (fast && dy > 12)) DS.sheet.close(); else sheet.style.transform = ''; };
       sheet.querySelectorAll('.ds-sheet-handle, .ds-sheet-head').forEach(h => { h.addEventListener('pointerdown', down);
         h.addEventListener('pointermove', move); h.addEventListener('pointerup', up); h.addEventListener('pointercancel', up); });
       sheetCur = { scrim, sheet, back, onClose:o.onClose };
@@ -367,7 +372,7 @@
       const c = sheetCur; if(!c) return; sheetCur = null;
       const done = () => { c.scrim.remove(); if(c.back && c.back.isConnected && c.back.focus) c.back.focus({ preventScroll:true }); c.onClose && c.onClose(); };
       if(now === true || still()){ done(); return; }
-      c.sheet.style.transform = ''; c.sheet.classList.add('is-closing'); c.scrim.classList.add('is-closing');
+      c.sheet.classList.add('is-closing'); c.scrim.classList.add('is-closing');   // lehúzás után onnan csúszik tovább, ahol az ujj elengedte
       setTimeout(done, 200);
     },
     isOpen:() => !!sheetCur,

@@ -15,6 +15,12 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.10.0 – 2026-09-29
+* **Mozgás 2.0 (Emil Kowalski + taste-design + Impeccable DS-review):** új tokenek `--ease-out`, `--ease-in-out`, `--ease-drawer`, `--t-press`; nyomás-visszajelzés minden gombon, hover csak egérrel, alsó lap javítások (visszaugrás, pöccintés, súrlódás, második ujj); színes oldalcsík helyett színminta; kontraszt a méz felületen; eredménypanel: látható mérőszám-feliratok, csendes app-banner, `nextLabel`.
+* **Új: játékérzet-modul** `web/js/ds-juice.js` – `DS.motion.stagger` (sorban érkezés), `.chain` (láncreakció emelkedő hanggal, Promise), `.swipe` (döntés-kártya kirepül), `.meter` (`.ds-meter` animált váltása + változás-jel), `.celebrate` (nagy pillanat); hangok `dsSound('swipe' | 'whoosh' | 'chain')`; `ds-anim-swipe` a `ds-motion.css`-ben. Betöltés a `ds-ext.js` után. Bemutató: `arculat.html` → Mozgás. Mind megáll a „Kevesebb mozgás” mellett.
+* **Matricák és 3D:** Élő lánc (4 élőhely), A mi bolygónk (+2050 képeslapok), Digitális rendelő matricái; Tanösvény és Csillagvizsgáló 3D épület; `katalogus.js`, `orbit.js` frissítés.
+* A beeco-szelektalj játékvilágban használva: 6 játék játékérzet-átdolgozása, Méhesd-kör, nehézség-kapcsoló (játék-szintű, nem kit).
+
 ## 1.9.1 – 2026-09-23
 * **Javítás (fontos):** a `tokens.css`-ben a „Nagyobb betűk” blokk tévedésből a `:root` közepére került, és kiütötte a sarok-, térköz- és árnyék-tokeneket – emiatt minden doboz szögletes lett. A blokk a fájl végére került, és a `check-arculat` mostantól ellenőrzi, hogy a lényeges tokenek a `:root`-ban vannak.
 * **Betöltés:** az offline mód service workere a betöltés után **8 másodperccel** regisztrál (`offline.js`), így a ~6 MB-os előtöltés nem veszi el a sávot az első játéktól. A `sw-lista.js` kihagyja a Three.js helyi tartalékát (csak akkor kell, ha a CDN tiltva van – használatkor kerül a tárba).

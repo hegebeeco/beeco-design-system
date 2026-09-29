@@ -182,13 +182,19 @@
         document.body.appendChild(el); setTimeout(() => el.remove(), 900); }
     },
     // számláló felfutása (pontszám, forint, kWh): DS.motion.countUp(el, 1240)
+    // Minden futás kap egy jegyet. Ha közben ÚJ érték érkezik (vagy a countStop leállítja), a régi
+    // animáció kilép – különben a befejezése visszaírná az elavult számot a friss érték fölé.
     countUp(el, to, dur = 700, fmt = v => String(v)){ if(!el) return;
       const from = parseFloat(String(el.textContent).replace(/[^0-9.-]/g, '')) || 0;
+      const jegy = el.dsCount = (el.dsCount || 0) + 1;
       if(stillSite() || !root.requestAnimationFrame){ el.textContent = fmt(to); return; }
       const t0 = performance.now();
-      (function step(t){ const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      (function step(t){ if(el.dsCount !== jegy) return;
+        const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
         el.textContent = fmt(Math.round(from + (to - from) * e)); if(k < 1) requestAnimationFrame(step); })(t0);
     },
+    // Futó számláló leállítása – ha a szöveget ANIMÁCIÓ NÉLKÜL írod felül (pl. csúszka húzása közben).
+    countStop(el){ if(el) el.dsCount = (el.dsCount || 0) + 1; },
   };
   DS.motion = motion; root.dsBurst = motion.burst; root.dsRise = motion.rise;
   // tartalom-ikon egy helyen: piktogram-név → pic() · emoji vagy matrica-név → illusztráció (js/art) · egyébként a szöveg marad
@@ -204,7 +210,7 @@
       ${o.stars != null ? root.dsStarsHTML(o.stars, o.maxStars || 3, true) : ''}
       ${o.score != null ? `<div class="ds-result-score"><span class="ds-result-num">${escT(o.score)}</span>${o.scoreLabel ? `<small>${escT(o.scoreLabel)}</small>` : ''}</div>` : ''}
       ${o.lead ? `<p class="ds-result-lead">${escT(o.lead)}</p>` : ''}
-      ${(o.stats || []).length ? `<div class="ds-result-stats">${o.stats.map(st => `<span class="ds-chip ${st.tone || ''}" title="${escT(st.label)}">${P(st.icon)}${escT(st.value)}</span>`).join('')}</div>` : ''}
+      ${(o.stats || []).length ? `<div class="ds-result-stats">${o.stats.map(st => `<span class="ds-chip ds-result-stat ${st.tone || ''}">${P(st.icon)}<b>${escT(st.value)}</b>${st.label ? `<small>${escT(st.label)}</small>` : ''}</span>`).join('')}</div>` : ''}
       ${o.extra || ''}
       ${o.actions ? `<div class="ds-result-actions">${o.actions}</div>` : ''}
     </div>`;

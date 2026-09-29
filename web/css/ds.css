@@ -21,7 +21,7 @@
 .ds-btn, .btn{ display:inline-flex; align-items:center; justify-content:center; gap:var(--sp-2); min-height:var(--tap);
   background:var(--accent); color:var(--on-accent); border:var(--line-w) solid var(--line); border-radius:var(--r-pill);
   padding:12px 30px 9px; font:400 21px/1.1 var(--display); letter-spacing:.2px; cursor:pointer; text-decoration:none;
-  box-shadow:var(--press); transition:transform .08s, box-shadow .08s; }
+  box-shadow:var(--press); transition:transform var(--t-press) var(--ease-out), box-shadow var(--t-press) var(--ease-out); }
 .ds-btn:active, .btn:active{ transform:translateY(3px); box-shadow:0 1px 0 var(--line); }
 .ds-btn.is-secondary{ background:var(--surface); color:var(--ink); }
 .ds-btn.is-small{ font-size:17px; padding:8px 18px 5px; }
@@ -30,7 +30,8 @@
 
 /* ---- Kis gomb: másodlagos választás (szint, beállítás, „Mégse") ---- */
 .ds-btn-sm, .mnBtn{ display:inline-block; min-height:36px; font:700 var(--fs-s)/1.25 var(--body); cursor:pointer; color:var(--ink);
-  background:var(--surface); border:var(--line-w) solid var(--line); border-radius:var(--r-pill); padding:8px 16px; box-shadow:var(--soft-sm); }
+  background:var(--surface); border:var(--line-w) solid var(--line); border-radius:var(--r-pill); padding:8px 16px; box-shadow:var(--soft-sm);
+  transition:transform var(--t-press) var(--ease-out), box-shadow var(--t-press) var(--ease-out), background-color var(--t-fast) ease; }
 .ds-btn-sm.is-primary, .mnBtn.primary{ background:var(--accent); color:var(--on-accent); }
 .ds-btn-sm:active, .mnBtn:active{ transform:translateY(2px); box-shadow:0 1px 0 rgba(47,55,30,.18); }
 .ds-btn-sm small, .mnBtn small{ display:block; font-weight:400; font-size:11.5px; color:var(--ink-soft); }
@@ -41,6 +42,9 @@
   background:var(--surface); border:var(--line-w) solid var(--line); box-shadow:var(--soft-sm); color:var(--ink); }
 .ds-icon-btn .pic{ width:22px; height:22px; }
 .ds-icon-btn.is-accent{ background:var(--accent); color:var(--on-accent); }
+/* nyomás-visszajelzés minden koppintható elemen: enyhe összehúzódás, gyors visszarugózás (Emil: 0.95–0.98, 100–160 ms) */
+.ds-icon-btn, .ds-tab, .ds-seg button{ transition:transform var(--t-press) var(--ease-out), background-color var(--t-fast) ease, color var(--t-fast) ease; }
+.ds-icon-btn:active{ transform:scale(.94); } .ds-tab:active, .ds-seg button:active{ transform:scale(.96); }
 
 /* ---- Csipesz: szám + piktogram (pont, sorozat, élet, rekord) ---- */
 .ds-chip{ display:inline-flex; align-items:center; gap:6px; background:var(--surface); color:var(--ink);
@@ -56,8 +60,9 @@
 .ds-card{ background:var(--surface); color:var(--ink); border:var(--line-w) solid var(--line); border-radius:var(--r-l);
   box-shadow:var(--soft); padding:var(--sp-4); }
 .ds-card.is-flat{ box-shadow:none; }
-.ds-card.is-interactive{ cursor:pointer; transition:transform var(--t-fast) ease, box-shadow var(--t-fast) ease; }
-.ds-card.is-interactive:hover{ transform:translateY(-3px); }
+.ds-card.is-interactive{ cursor:pointer; transition:transform var(--t-fast) var(--ease-out), box-shadow var(--t-fast) var(--ease-out); }
+/* hover csak valódi egérnél: érintőképernyőn (tablet, kioszk) a koppintás után „beragadna” a megemelt állapot */
+@media (hover:hover) and (pointer:fine){ .ds-card.is-interactive:hover{ transform:translateY(-3px); } }
 .ds-card.is-interactive:active{ transform:translateY(2px); box-shadow:var(--soft-sm); }
 
 /* ---- Felugró panel + sötétítés ---- */
@@ -65,7 +70,7 @@
   padding:max(14px, env(safe-area-inset-top)) 12px max(14px, env(safe-area-inset-bottom)); }
 .ds-panel, .overlay .box{ position:relative; background:var(--bg); color:var(--ink); border:var(--line-w) solid var(--line);
   border-radius:var(--r-xl); box-shadow:var(--soft); }
-.ds-panel{ margin:auto; width:min(620px, 100%); padding:22px 22px 18px; animation:dsIn var(--t-base) ease-out; }
+.ds-panel{ margin:auto; width:min(620px, 100%); padding:22px 22px 18px; animation:dsIn var(--t-base) var(--ease-out); }
 @keyframes dsIn{ from{ transform:translateY(14px) scale(.98); opacity:0; } to{ transform:none; opacity:1; } }
 
 /* ---- Hatszög: játék-, szerep- és jelvényikon (háttérszín: --acc) ---- */
@@ -94,9 +99,9 @@ img.art{ display:inline-block; width:1.35em; height:1.35em; object-fit:contain; 
 .ds-switch, .mnSwitch{ position:relative; flex:0 0 auto; width:58px; height:32px; border-radius:20px; border:var(--line-w) solid var(--line);
   background:var(--sage); cursor:pointer; padding:0; }
 .ds-switch::after, .mnSwitch::after{ content:""; position:absolute; top:2px; left:2px; width:22px; height:22px; border-radius:50%;
-  background:var(--surface); border:2px solid var(--line); transition:left .15s; }
+  background:var(--surface); border:2px solid var(--line); transition:transform var(--t-fast) var(--ease-in-out); }
 .ds-switch[aria-checked="true"], .mnSwitch[aria-checked="true"]{ background:var(--good); }
-.ds-switch[aria-checked="true"]::after, .mnSwitch[aria-checked="true"]::after{ left:28px; background:var(--accent); }
+.ds-switch[aria-checked="true"]::after, .mnSwitch[aria-checked="true"]::after{ transform:translateX(26px); background:var(--accent); }
 .ds-switch[disabled], .mnSwitch[disabled]{ opacity:.4; cursor:not-allowed; }
 
 /* ---- Fülek (pirula-sáv) ---- */
@@ -105,6 +110,8 @@ img.art{ display:inline-block; width:1.35em; height:1.35em; object-fit:contain; 
   border-radius:var(--r-pill); padding:8px 14px; background:none; color:var(--ink); }
 .ds-tab .pic{ width:22px; height:22px; }
 .ds-tab.on, .ds-tab[aria-selected="true"]{ background:var(--accent); color:var(--on-accent); }
+/* méz felületen a kiegészítő szöveg (darabszám, alcím) is teljes kontrasztú – a halvány olíva a mézen csak 3.96:1 */
+.ds-tab.on small, .ds-tab[aria-selected="true"] small, .ds-seg button.on small, .ds-btn-sm.is-primary small, .mnBtn.primary small{ color:var(--on-accent); }
 
 /* ---- Szegmens-választó (egy a több közül, pl. Könnyű / Normál / Nyomozó) – role="radiogroup" ---- */
 .ds-seg{ display:flex; gap:4px; background:var(--surface); border:var(--line-w) solid var(--line); border-radius:var(--r-s); padding:3px; flex:0 0 auto; }
