@@ -19,3 +19,8 @@ export { Calendar } from './pickers/Calendar';
 export { formatHuDate, parseHuDate, localToUtcIso, utcToLocal, todayIso } from './pickers/date';
 export { FormSection, FormActions } from './form/FormSection';
 export { cx } from './cx';
+
+// 02 – Adat és grafikon · 03 – Rétegek és navigáció · 04 – Média és speciális (jóváhagyva 2026-10-01)
+export * from './adat';
+export * from './reteg';
+export * from './media';

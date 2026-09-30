@@ -4,7 +4,7 @@
 /* Táblázat: <div class="bc-table-wrap"><table class="bc-table">… – a burok keskeny képernyőn vízszintesen görget */
 .bc-table-wrap { overflow-x: auto; background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); }
 .bc-table { width: 100%; border-collapse: collapse; font-size: var(--bc-fs-s); font-variant-numeric: tabular-nums; }
-.bc-table th { position: sticky; top: 0; z-index: 1; text-align: left; white-space: nowrap; padding: var(--bc-sp-3); font-weight: var(--bc-fw-bold);
+.bc-table th { position: sticky; top: 0; z-index: var(--bc-z-sticky); text-align: left; white-space: nowrap; padding: var(--bc-sp-3); font-weight: var(--bc-fw-bold);
   color: var(--bc-on-accent); background: var(--bc-accent); border-bottom: var(--bc-bw-base) solid var(--bc-line); }
 .bc-table td { padding: var(--bc-sp-3); vertical-align: middle; border-bottom: var(--bc-bw-hair) solid var(--bc-line-soft); }
 .bc-table tbody tr:last-child td { border-bottom: 0; }

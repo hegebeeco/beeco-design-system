@@ -1,6 +1,6 @@
 # Javaslat 04 – Média és speciális elemek
 
-*Állapot: **javaslat** · készítette: Claude · dátum: 2026-10-01*
+*Állapot: **jóváhagyva (2026-10-01)** · készítette: Claude · dátum: 2026-10-01*
 Vizuális javaslatlap (makettekkel): `javaslatok/04-media.html` – GitHub Pages: https://hegebeeco.github.io/beeco-design-system/javaslatok/04-media.html
 
 ## Igény
@@ -43,7 +43,7 @@ Külső csomag marad: `react-easy-crop` (MIT) a DS `ImageCropper` mögött; Leaf
 - 5: kap-e a backend próbaimportot (dry-run)? – fejlesztési idő.
 - 8: kell-e két sáv (ebédszünet) és éjfél utáni zárás? – backend + app módosul.
 
-## Döntés (Kristóf tölti ki)
-- Dátum: …
-- Választott változatok: …
-- Megjegyzés / módosítás: …
+## Döntés (Kristóf)
+- Dátum: 2026-10-01
+- Választott változatok: **minden pontban Claude javaslata** („A javaslatokat elfogadom … a te javaslatod elfogadom mindenhol”).
+- Megjegyzés: a javaslatlapon felvetett nyitott kérdések a javaslat szerint döntve; ami backendet/appot érint (Excel-előnézet végpont, két nyitvatartási sáv, képsorrend az appban), az addig a javasolt átmeneti változatban épül.

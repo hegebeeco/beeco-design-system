@@ -23,7 +23,7 @@
 .bc-chip.is-more { padding: 0 var(--bc-sp-2); background: var(--bc-surface); cursor: pointer; font: inherit; font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); }
 
 /* Lista */
-.bc-listbox { z-index: 70; width: var(--radix-popover-trigger-width); max-width: calc(100vw - 2 * var(--bc-sp-4)); max-height: min(320px, var(--radix-popover-content-available-height, 320px));
+.bc-listbox { z-index: var(--bc-z-popover); width: var(--radix-popover-trigger-width); max-width: calc(100vw - 2 * var(--bc-sp-4)); max-height: min(320px, var(--radix-popover-content-available-height, 320px));
   overflow-y: auto; padding: var(--bc-sp-1); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m);
   animation: bc-pop-in var(--bc-t-fast) var(--bc-ease-out); }
 .bc-option { display: flex; align-items: center; gap: var(--bc-sp-2); min-height: 40px; padding: var(--bc-sp-1) var(--bc-sp-2); font-size: var(--bc-fs-s); border-radius: var(--bc-r-s); cursor: pointer; }

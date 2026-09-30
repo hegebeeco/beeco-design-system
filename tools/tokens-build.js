@@ -56,6 +56,7 @@ function buildCss() {
   for (const [n, v] of Object.entries(core.duration)) L.push(`  --bc-t-${n}: ${ms(v)};`);
   for (const [n, v] of Object.entries(core.easing)) L.push(`  --bc-ease-${n}: ${v};`);
   L.push(`  --bc-tap: ${px(core.tap)};`);
+  for (const [n, v] of Object.entries(core.z)) if (!n.startsWith('_')) L.push(`  --bc-z-${n}: ${v};`);
   L.push('', '  /* Adatskálák (grafikon, térkép) */');
   ['seq', 'div', 'seq-cb', 'div-cb'].forEach(k => core.data[k].forEach((v, i) => L.push(`  --bc-data-${k}-${i + 1}: ${v};`)));
   categorical.forEach((v, i) => L.push(`  --bc-data-cat-${i + 1}: ${v};`));
@@ -110,6 +111,7 @@ function buildScss() {
   map('bw', termek.border, k => `var(--bc-bw-${k})`);
   map('shadow', termek.shadow, k => `var(--bc-shadow-${k})`);
   map('t', core.duration, k => `var(--bc-t-${k})`);
+  map('z', core.z, k => `var(--bc-z-${k})`);
   map('ease', core.easing, k => `var(--bc-ease-${k})`);
   L.push('', '@function fs($k) { @return map-get($bc-fs, "#{$k}"); }', '@function sp($k) { @return map-get($bc-sp, "#{$k}"); }',
     '@function r($k) { @return map-get($bc-r, "#{$k}"); }', '@function shadow($k) { @return map-get($bc-shadow, "#{$k}"); }',
@@ -138,6 +140,7 @@ function buildTailwind() {
       extend: {
         spacing: { tap: 'var(--bc-tap)' },
         minHeight: { tap: 'var(--bc-tap)' }, minWidth: { tap: 'var(--bc-tap)' },
+        zIndex: obj(core.z, k => `var(--bc-z-${k})`),
         transitionDuration: obj(core.duration, k => `var(--bc-t-${k})`),
         transitionTimingFunction: obj(core.easing, k => `var(--bc-ease-${k})`),
       },

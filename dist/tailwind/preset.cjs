@@ -175,6 +175,16 @@ module.exports = {
       "minWidth": {
         "tap": "var(--bc-tap)"
       },
+      "zIndex": {
+        "sticky": "var(--bc-z-sticky)",
+        "header": "var(--bc-z-header)",
+        "drawer": "var(--bc-z-drawer)",
+        "overlay": "var(--bc-z-overlay)",
+        "modal": "var(--bc-z-modal)",
+        "popover": "var(--bc-z-popover)",
+        "toast": "var(--bc-z-toast)",
+        "tooltip": "var(--bc-z-tooltip)"
+      },
       "transitionDuration": {
         "fast": "var(--bc-t-fast)",
         "base": "var(--bc-t-base)",

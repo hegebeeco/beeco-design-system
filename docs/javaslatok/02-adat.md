@@ -1,6 +1,6 @@
 # Javaslat 02 – Adat és grafikon
 
-*Állapot: **javaslat** · készítette: Claude · dátum: 2026-10-01*
+*Állapot: **jóváhagyva (2026-10-01)** · készítette: Claude · dátum: 2026-10-01*
 Vizuális javaslatlap (makettekkel, minden szám mintaadat): `javaslatok/02-adat.html` – GitHub Pages: https://hegebeeco.github.io/beeco-design-system/javaslatok/02-adat.html
 
 ## Igény
@@ -42,7 +42,7 @@ Minden adatjel (oszlop, vonal, pont) `line` színű kontúrt kap. Ettől lesz me
 - Grafikonok: saját SVG, `--bc-data-cat-*` / `--bc-data-seq-*` és a színtévesztő-barát párjuk (`data-cb`).
 - Forrás: `react/src/`, kimenet: `dist/react/`.
 
-## Döntés (Kristóf tölti ki)
-- Dátum: …
-- Választott változatok: …
-- Megjegyzés / módosítás: …
+## Döntés (Kristóf)
+- Dátum: 2026-10-01
+- Választott változatok: **minden pontban Claude javaslata** („A javaslatokat elfogadom … a te javaslatod elfogadom mindenhol”).
+- Megjegyzés: a javaslatlapon felvetett nyitott kérdések a javaslat szerint döntve; ami backendet/appot érint (Excel-előnézet végpont, két nyitvatartási sáv, képsorrend az appban), az addig a javasolt átmeneti változatban épül.

@@ -140,5 +140,16 @@
       "rust"
     ]
   },
-  "_fontWeight": "Webes Open Sans: változó betű 400–700 (web/assets/fonts). 800 nincs – az app w800-as szövegei a bold (700) szerepre állnak át."
+  "_fontWeight": "Webes Open Sans: változó betű 400–700 (web/assets/fonts). 800 nincs – az app w800-as szövegei a bold (700) szerepre állnak át.",
+  "z": {
+    "_readme": "Rétegsorrend (Javaslat 03, jóváhagyva 2026-10-01): mi kerül mi fölé. Nyers z-index szám helyett ezt használd.",
+    "sticky": 10,
+    "header": 20,
+    "drawer": 40,
+    "overlay": 50,
+    "modal": 55,
+    "popover": 70,
+    "toast": 80,
+    "tooltip": 90
+  }
 }

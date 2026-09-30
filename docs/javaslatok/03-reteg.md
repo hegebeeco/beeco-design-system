@@ -1,6 +1,6 @@
 # Javaslat 03 – Rétegek és navigáció
 
-*Állapot: **javaslat** · készítette: Claude · dátum: 2026-10-01*
+*Állapot: **jóváhagyva (2026-10-01)** · készítette: Claude · dátum: 2026-10-01*
 Vizuális javaslatlap (makettekkel): `javaslatok/03-reteg.html` – GitHub Pages: https://hegebeeco.github.io/beeco-design-system/javaslatok/03-reteg.html
 
 ## Igény
@@ -40,7 +40,7 @@ a `Header.tsx` cím-logikáját; a `react-toastify` DS-burok mögé kerül.
 - 9: kell-e tablet fekvőn összecsukható ikonsáv?
 - 8: maradjon a `react-toastify`, vagy később Sonner (MIT)? Javaslat: marad, a burok miatt később is cserélhető.
 
-## Döntés (Kristóf tölti ki)
-- Dátum: …
-- Választott változatok: …
-- Megjegyzés / módosítás: …
+## Döntés (Kristóf)
+- Dátum: 2026-10-01
+- Választott változatok: **minden pontban Claude javaslata** („A javaslatokat elfogadom … a te javaslatod elfogadom mindenhol”).
+- Megjegyzés: a javaslatlapon felvetett nyitott kérdések a javaslat szerint döntve; ami backendet/appot érint (Excel-előnézet végpont, két nyitvatartási sáv, képsorrend az appban), az addig a javasolt átmeneti változatban épül.

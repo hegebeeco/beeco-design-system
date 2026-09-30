@@ -17,7 +17,7 @@
 @media (hover: hover) and (pointer: fine) { .bc-help-btn:hover::before { background: var(--bc-surface-accent); } }
 
 /* Lebegő réteg (súgó, legördülő lista, naptár) – Radix Popover tartalma */
-.bc-pop { z-index: 70; max-width: min(360px, calc(100vw - 2 * var(--bc-sp-4)));
+.bc-pop { z-index: var(--bc-z-popover); max-width: min(360px, calc(100vw - 2 * var(--bc-sp-4)));
   /* Kevés helynél se lógjon ki: a látható területen belül marad, görgethetően */
   max-height: var(--radix-popover-content-available-height, 80vh); overflow: auto; padding: var(--bc-sp-3) var(--bc-sp-4);
   font-size: var(--bc-fs-s); line-height: var(--bc-lh-normal); color: var(--bc-ink); background: var(--bc-surface);

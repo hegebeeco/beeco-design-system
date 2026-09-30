@@ -104,7 +104,7 @@ Minden adatbeviteli mező (szöveg, szám, dátum, választó, címke, feltölt�
 | **Hiba** | a mező alatt, szövegesen, a következő lépéssel | „Legalább 3 karakter kell – most 2.” |
 
 - A súgó kötelező (a React-komponensben kötelező `help` prop – nélküle nem fordul).
-- **Kivételek (Claude javaslata, 2026-10-01 – Kristóf jóváhagyására vár):** a **keresőmező** (SearchBox) címkéje csak képernyőolvasónak szól, súgója nincs – a nagyító és a „Partner keresése” helykitöltő egyértelmű; a **nézetváltó** (SegmentedControl) nem adatbevitel, nincs súgója; a **listaszűrők** (FilterBar, Javaslat 02) súgója nem kötelező. A `check-komponensek` a keresőmezőt eszerint kihagyja. A súgó szövegét a projekt adja; a DS csak a gombot és a buborékot.
+- **Kivételek (Claude javaslata, **jóváhagyva 2026-10-01**):** a **keresőmező** (SearchBox) címkéje csak képernyőolvasónak szól, súgója nincs – a nagyító és a „Partner keresése” helykitöltő egyértelmű; a **nézetváltó** (SegmentedControl) nem adatbevitel, nincs súgója; a **listaszűrők** (FilterBar, Javaslat 02) súgója nem kötelező. A `check-komponensek` a keresőmezőt eszerint kihagyja. A súgó szövegét a projekt adja; a DS csak a gombot és a buborékot.
 - A számláló a határ közelében (90%) figyelmeztető színre vált, a határon hibaszínre – **nem csak színnel**: a szöveg is jelzi.
 - **Helytelen érték letiltva / levágva:**
   - szöveg: a max. hossznál a gépelés megáll; hosszabb beillesztés levágva + jelzés („A beillesztett szöveg végét levágtam: 255 karakter a határ.”);
@@ -128,6 +128,7 @@ Egy mezei látogatónak is értenie kell, mit lát. Ezért a ChartCard organizmu
 | **Üres / töltés / hiba** | „Ebben az időszakban nincs adat” + teendő |
 
 Szám csak valós adatból vagy forrással; becsült vagy vitatott érték jelölve.
+- **Adatjelek kontúrja** (jóváhagyva 2026-10-01): minden oszlop, vonal és pont `line` színű kontúrt kap – így a méz és a rózsa adatszín is elválik a háttértől (3:1), világosban és sötétben.
 
 ## 3/C. Mit tesztel Claude MINDEN munka végén, és mit jelez (Kristóf, 2026-10-01)
 

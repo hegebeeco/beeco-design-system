@@ -29,7 +29,7 @@ a.bc-card, button.bc-card { display: block; width: 100%; text-align: left; font:
   color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-l); box-shadow: var(--bc-shadow-l); }
 .bc-modal.is-wide { width: min(880px, calc(100vw - 2 * var(--bc-sp-4))); }
 .bc-modal::backdrop, .bc-scrim { background: rgb(var(--bc-scrim-rgb) / var(--bc-scrim-opacity)); }
-.bc-scrim { position: fixed; inset: 0; display: grid; place-items: center; padding: var(--bc-sp-4); z-index: 50; }
+.bc-scrim { position: fixed; inset: 0; display: grid; place-items: center; padding: var(--bc-sp-4); z-index: var(--bc-z-overlay); }
 .bc-scrim > .bc-modal { position: relative; }
 .bc-modal-head { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-3); padding: var(--bc-sp-4) var(--bc-sp-5); border-bottom: var(--bc-bw-hair) solid var(--bc-line-soft); }
 .bc-modal-head h2 { margin: 0; font-size: var(--bc-fs-xl); }

@@ -66,6 +66,7 @@ for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.css'))) {
   for (const m of src.matchAll(/#[0-9a-fA-F]{3,8}\b/g)) hiba(`${hol(m.index)}: nyers szín ${m[0]} – szerep-tokent használj`);
   for (const m of src.matchAll(/\b(rgba?|hsla?)\(\s*\d/g)) hiba(`${hol(m.index)}: nyers ${m[1]}() – szerep-tokent használj`);
   for (const m of src.matchAll(/var\((--[a-z0-9-]+)/g)) if (m[1].startsWith('--bc-') && !letezo.has(m[1])) hiba(`${hol(m.index)}: nem létező token ${m[1]}`);
+  for (const m of src.matchAll(/z-index\s*:\s*-?\d+/g)) hiba(`${hol(m.index)}: nyers z-index – a --bc-z-* skálát használd`);
   for (const m of src.matchAll(/\bease-in\b(?!-out)/g)) hiba(`${hol(m.index)}: ease-in tilos (lassan indul, késésnek érződik)`);
   for (const m of src.matchAll(/font-size\s*:\s*(\d+(?:\.\d+)?)px/g)) hiba(`${hol(m.index)}: nyers betűméret ${m[1]}px – a --bc-fs-* skálát használd`);
   // Méz háttér → a szöveg on-accent (sötét módban az ink krém, a mézen olvashatatlan lenne)

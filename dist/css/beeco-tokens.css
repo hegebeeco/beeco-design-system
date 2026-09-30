@@ -76,6 +76,14 @@
   --bc-ease-drawer: cubic-bezier(.32,.72,0,1);
   --bc-ease-bounce: cubic-bezier(.34,1.56,.64,1);
   --bc-tap: 44px;
+  --bc-z-sticky: 10;
+  --bc-z-header: 20;
+  --bc-z-drawer: 40;
+  --bc-z-overlay: 50;
+  --bc-z-modal: 55;
+  --bc-z-popover: 70;
+  --bc-z-toast: 80;
+  --bc-z-tooltip: 90;
 
   /* Adatskálák (grafikon, térkép) */
   --bc-data-seq-1: #EEF3DE;
