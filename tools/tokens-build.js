@@ -87,8 +87,19 @@ function buildScss() {
   roles.forEach(r => L.push(`$bc-${r}: var(--bc-${r});`));
   L.push('', '// Primitívek – csak adatvizualizációhoz és kivételhez');
   Object.keys(core.color).forEach(n => L.push(`$bc-c-${n}: var(--bc-${n});`));
+  // Hex-értékek: csak SCSS színfüggvényhez (rgba($x, .3), color.adjust) és régi kód áthidalásához –
+  // sötét módban NEM váltanak, ezért új kódban a var()-os szerep a helyes
+  L.push('', '// Hex (fordítási idejű) – csak színfüggvényhez és régi kód áthidalásához; sötét módban nem vált!');
+  Object.entries(core.color).forEach(([n, v]) => L.push(`$bc-hex-${n}: ${v};`));
+  Object.entries(termek.color.light).forEach(([r, p]) => L.push(`$bc-hex-role-${r}: ${hex(p)};`));
   L.push('', `$bc-font-display: var(--bc-font-display);`, `$bc-font-body: var(--bc-font-body);`);
-  const map = (name, obj, fn) => L.push(`$bc-${name}: (${Object.keys(obj).filter(k => !k.startsWith('_')).map(k => `"${k}": ${fn(k)}`).join(', ')});`);
+  // Minden skálaelem egyenként is (pl. $bc-fw-bold, $bc-bw-hair, $bc-lh-normal), és mapként is (a függvényekhez)
+  const map = (name, obj, fn) => {
+    const keys = Object.keys(obj).filter(k => !k.startsWith('_'));
+    keys.forEach(k => L.push(`$bc-${name}-${k}: ${fn(k)};`));
+    L.push(`$bc-${name}: (${keys.map(k => `"${k}": ${fn(k)}`).join(', ')});`);
+  };
+  map('lh', core.lineHeight, k => `var(--bc-lh-${k})`);
   map('fs', core.fontSize, k => `var(--bc-fs-${k})`);
   map('fw', core.fontWeight, k => `var(--bc-fw-${k})`);
   map('sp', core.space, k => `var(--bc-sp-${k})`);
@@ -98,7 +109,8 @@ function buildScss() {
   map('t', core.duration, k => `var(--bc-t-${k})`);
   map('ease', core.easing, k => `var(--bc-ease-${k})`);
   L.push('', '@function fs($k) { @return map-get($bc-fs, "#{$k}"); }', '@function sp($k) { @return map-get($bc-sp, "#{$k}"); }',
-    '@function r($k) { @return map-get($bc-r, "#{$k}"); }', '@function shadow($k) { @return map-get($bc-shadow, "#{$k}"); }', '');
+    '@function r($k) { @return map-get($bc-r, "#{$k}"); }', '@function shadow($k) { @return map-get($bc-shadow, "#{$k}"); }',
+    '@function fw($k) { @return map-get($bc-fw, "#{$k}"); }', '@function bw($k) { @return map-get($bc-bw, "#{$k}"); }', '');
   return L.join('\n');
 }
 

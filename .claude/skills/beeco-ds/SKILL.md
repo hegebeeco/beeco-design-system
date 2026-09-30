@@ -42,7 +42,7 @@ A DS-repó: `~/CLAUDE/beeco-jatek-kit` (GitHub: `hegebeeco/beeco-design-system`)
 
 ## 5. Beépítés egy projektbe
 ```bash
-npm install github:hegebeeco/beeco-design-system#v1.12.0
+npm install github:hegebeeco/beeco-design-system#v1.13.0
 npx beeco-ds-lint --init        # racsni: a mostani állapot felírva
 ```
 CSS: `import '@beeco/design-system/termek.css'` · SCSS: `@use '@beeco/design-system/dist/scss/beeco' as bc;` ·

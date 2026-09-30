@@ -15,6 +15,10 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.13.0 – 2026-10-01 – SCSS-kimenet bővítése (az admin átállásából)
+* `dist/scss/_beeco.scss`: minden skálaelem egyedi változóként is (`$bc-fw-bold`, `$bc-bw-hair`, `$bc-lh-normal`, `$bc-sp-4`, `$bc-shadow-m` …), új függvények: `fw()`, `bw()`.
+* `$bc-hex-<primitív>` és `$bc-hex-role-<szerep>`: fordítási idejű hex-értékek **csak** SCSS-színfüggvényhez (`rgba($x, .3)`) és régi kód áthidalásához – sötét módban nem váltanak, új kódban a `var()`-os szerep a helyes.
+
 ## 1.12.0 – 2026-10-01 – egységes beeco design system
 A kit a **teljes beeco-márka design systeme** lett (repó: `hegebeeco/beeco-design-system`). Kristóf döntései: közös atomok + két bőr
 (a termékek az app neo-brutalista vonalát követik fekete tintával, a játékok maradnak a Méhsejt-dioramánál), egy forrás → generált

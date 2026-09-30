@@ -1,4 +1,4 @@
-// beeco design system 1.12.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js
+// beeco design system 1.13.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js
 // A változók a CSS-változókra mutatnak (így a sötét mód magától működik). Előbb töltsd be a beeco-tokens.css-t.
 
 $bc-bg: var(--bc-bg);
@@ -70,18 +70,128 @@ $bc-c-night: var(--bc-night);
 $bc-c-night-surface: var(--bc-night-surface);
 $bc-c-night-line: var(--bc-night-line);
 
+// Hex (fordítási idejű) – csak színfüggvényhez és régi kód áthidalásához; sötét módban nem vált!
+$bc-hex-honey: #FECF39;
+$bc-hex-honey-deep: #D8A500;
+$bc-hex-butter: #FEEEBB;
+$bc-hex-cream: #FFF8E7;
+$bc-hex-paper: #FFFDF6;
+$bc-hex-white: #FFFFFF;
+$bc-hex-olive: #2F371E;
+$bc-hex-olive-strong: #48542D;
+$bc-hex-olive-soft: #596B39;
+$bc-hex-forest: #3D4E27;
+$bc-hex-leaf: #6E8947;
+$bc-hex-lime: #CDEC82;
+$bc-hex-sage: #D3DDBB;
+$bc-hex-sage-bg: #E3ECCD;
+$bc-hex-sprout: #F0F3EC;
+$bc-hex-blossom: #F5B4C7;
+$bc-hex-blossom-bg: #FDE2E8;
+$bc-hex-berry: #7A2E3F;
+$bc-hex-red: #DB3A34;
+$bc-hex-crimson: #B3261E;
+$bc-hex-blush: #FDEEE6;
+$bc-hex-ember: #EA580C;
+$bc-hex-rust: #824217;
+$bc-hex-sky: #B1DEFF;
+$bc-hex-sky-bg: #D6E8F7;
+$bc-hex-ice: #D3ECFF;
+$bc-hex-water: #0083E4;
+$bc-hex-navy: #003E74;
+$bc-hex-focus: #2656D9;
+$bc-hex-black: #000000;
+$bc-hex-coal: #1E1E1E;
+$bc-hex-graphite: #505050;
+$bc-hex-slate: #676767;
+$bc-hex-silver: #C6C6C6;
+$bc-hex-mist: #E6E6E6;
+$bc-hex-night: #1F2615;
+$bc-hex-night-surface: #353F25;
+$bc-hex-night-line: #B6C4A3;
+$bc-hex-role-bg: #FFF8E7;
+$bc-hex-role-surface: #FFFFFF;
+$bc-hex-role-surface-2: #F0F3EC;
+$bc-hex-role-surface-accent: #FEEEBB;
+$bc-hex-role-ink: #000000;
+$bc-hex-role-ink-soft: #505050;
+$bc-hex-role-ink-muted: #676767;
+$bc-hex-role-line: #000000;
+$bc-hex-role-line-soft: #C6C6C6;
+$bc-hex-role-accent: #FECF39;
+$bc-hex-role-accent-press: #D8A500;
+$bc-hex-role-on-accent: #000000;
+$bc-hex-role-shadow: #000000;
+$bc-hex-role-focus: #2656D9;
+$bc-hex-role-success: #6E8947;
+$bc-hex-role-success-bg: #E3ECCD;
+$bc-hex-role-success-ink: #3D4E27;
+$bc-hex-role-danger: #DB3A34;
+$bc-hex-role-danger-bg: #FDEEE6;
+$bc-hex-role-danger-ink: #B3261E;
+$bc-hex-role-warning: #EA580C;
+$bc-hex-role-warning-bg: #FEEEBB;
+$bc-hex-role-warning-ink: #824217;
+$bc-hex-role-info: #0083E4;
+$bc-hex-role-info-bg: #D3ECFF;
+$bc-hex-role-info-ink: #003E74;
+$bc-hex-role-highlight: #F5B4C7;
+$bc-hex-role-scrim: #000000;
+
 $bc-font-display: var(--bc-font-display);
 $bc-font-body: var(--bc-font-body);
+$bc-lh-tight: var(--bc-lh-tight);
+$bc-lh-snug: var(--bc-lh-snug);
+$bc-lh-normal: var(--bc-lh-normal);
+$bc-lh: ("tight": var(--bc-lh-tight), "snug": var(--bc-lh-snug), "normal": var(--bc-lh-normal));
+$bc-fs-xs: var(--bc-fs-xs);
+$bc-fs-s: var(--bc-fs-s);
+$bc-fs-m: var(--bc-fs-m);
+$bc-fs-l: var(--bc-fs-l);
+$bc-fs-xl: var(--bc-fs-xl);
+$bc-fs-2xl: var(--bc-fs-2xl);
+$bc-fs-3xl: var(--bc-fs-3xl);
 $bc-fs: ("xs": var(--bc-fs-xs), "s": var(--bc-fs-s), "m": var(--bc-fs-m), "l": var(--bc-fs-l), "xl": var(--bc-fs-xl), "2xl": var(--bc-fs-2xl), "3xl": var(--bc-fs-3xl));
+$bc-fw-regular: var(--bc-fw-regular);
+$bc-fw-semibold: var(--bc-fw-semibold);
+$bc-fw-bold: var(--bc-fw-bold);
 $bc-fw: ("regular": var(--bc-fw-regular), "semibold": var(--bc-fw-semibold), "bold": var(--bc-fw-bold));
+$bc-sp-1: var(--bc-sp-1);
+$bc-sp-2: var(--bc-sp-2);
+$bc-sp-3: var(--bc-sp-3);
+$bc-sp-4: var(--bc-sp-4);
+$bc-sp-5: var(--bc-sp-5);
+$bc-sp-6: var(--bc-sp-6);
+$bc-sp-7: var(--bc-sp-7);
+$bc-sp-8: var(--bc-sp-8);
 $bc-sp: ("1": var(--bc-sp-1), "2": var(--bc-sp-2), "3": var(--bc-sp-3), "4": var(--bc-sp-4), "5": var(--bc-sp-5), "6": var(--bc-sp-6), "7": var(--bc-sp-7), "8": var(--bc-sp-8));
+$bc-r-xs: var(--bc-r-xs);
+$bc-r-s: var(--bc-r-s);
+$bc-r-m: var(--bc-r-m);
+$bc-r-l: var(--bc-r-l);
+$bc-r-pill: var(--bc-r-pill);
 $bc-r: ("xs": var(--bc-r-xs), "s": var(--bc-r-s), "m": var(--bc-r-m), "l": var(--bc-r-l), "pill": var(--bc-r-pill));
+$bc-bw-hair: var(--bc-bw-hair);
+$bc-bw-base: var(--bc-bw-base);
 $bc-bw: ("hair": var(--bc-bw-hair), "base": var(--bc-bw-base));
+$bc-shadow-s: var(--bc-shadow-s);
+$bc-shadow-m: var(--bc-shadow-m);
+$bc-shadow-l: var(--bc-shadow-l);
 $bc-shadow: ("s": var(--bc-shadow-s), "m": var(--bc-shadow-m), "l": var(--bc-shadow-l));
+$bc-t-fast: var(--bc-t-fast);
+$bc-t-base: var(--bc-t-base);
+$bc-t-slow: var(--bc-t-slow);
+$bc-t-press: var(--bc-t-press);
 $bc-t: ("fast": var(--bc-t-fast), "base": var(--bc-t-base), "slow": var(--bc-t-slow), "press": var(--bc-t-press));
+$bc-ease-out: var(--bc-ease-out);
+$bc-ease-in-out: var(--bc-ease-in-out);
+$bc-ease-drawer: var(--bc-ease-drawer);
+$bc-ease-bounce: var(--bc-ease-bounce);
 $bc-ease: ("out": var(--bc-ease-out), "in-out": var(--bc-ease-in-out), "drawer": var(--bc-ease-drawer), "bounce": var(--bc-ease-bounce));
 
 @function fs($k) { @return map-get($bc-fs, "#{$k}"); }
 @function sp($k) { @return map-get($bc-sp, "#{$k}"); }
 @function r($k) { @return map-get($bc-r, "#{$k}"); }
 @function shadow($k) { @return map-get($bc-shadow, "#{$k}"); }
+@function fw($k) { @return map-get($bc-fw, "#{$k}"); }
+@function bw($k) { @return map-get($bc-bw, "#{$k}"); }
