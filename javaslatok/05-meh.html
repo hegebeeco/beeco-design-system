@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="hu" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Javaslat 05 – méhecske</title>
+<meta name="description" content="beeco design system – 5. csomag: mozgás, méhecske-karakterek funkcióval és érzelemmel, méhes szóviccek a szövegekben. Kristóf jóváhagyására.">
+<link rel="icon" href="../web/assets/brand/ikon-32.png">
+<link rel="stylesheet" href="../termek/css/bc-all.css">
+<style>
+  .wrap { max-width: 1120px; margin: 0 auto; padding: var(--bc-sp-5) var(--bc-sp-4) var(--bc-sp-8); }
+  .prop { margin-top: var(--bc-sp-7); }
+  .prop > header { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2) var(--bc-sp-4); align-items: baseline; justify-content: space-between; padding-bottom: var(--bc-sp-2); border-bottom: var(--bc-bw-base) solid var(--bc-line); margin-bottom: var(--bc-sp-4); }
+  .prop > header h2 { margin: 0; }
+  .meta { display: grid; gap: var(--bc-sp-1); font-size: var(--bc-fs-s); color: var(--bc-ink-soft); margin-bottom: var(--bc-sp-4); }
+  .meta strong { color: var(--bc-ink); }
+  .variants { display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+  .var .bc-card { height: 100%; display: flex; flex-direction: column; gap: var(--bc-sp-3); }
+  .var.is-rec .bc-card { background: var(--bc-surface-accent); }
+  .var h3 { margin: 0; }
+  .var ul, .rules { margin: 0; padding-left: 1.2em; font-size: var(--bc-fs-s); }
+  .cast { display: grid; gap: var(--bc-sp-3); grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); }
+  .bee { display: grid; grid-template-columns: 72px 1fr; gap: var(--bc-sp-3); align-items: center; padding: var(--bc-sp-3); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-m); }
+  .bee img { width: 72px; height: 72px; object-fit: contain; }
+  .bee strong { display: block; font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-l); }
+  .bee p { margin: 0; font-size: var(--bc-fs-s); }
+  .bee .when { color: var(--bc-ink-soft); font-size: var(--bc-fs-xs); }
+  .bee.is-banned { background: var(--bc-danger-bg); }
+  .moment { display: grid; justify-items: center; gap: var(--bc-sp-2); padding: var(--bc-sp-5) var(--bc-sp-4); text-align: center; background: var(--bc-bg); border: var(--bc-bw-hair) dashed var(--bc-line-soft); border-radius: var(--bc-r-m); }
+  .moment img { width: 88px; height: 88px; object-fit: contain; }
+  .moment b { font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-xl); }
+  .moment p { margin: 0; color: var(--bc-ink-soft); font-size: var(--bc-fs-s); max-width: 36ch; }
+  .pun td:first-child { white-space: nowrap; font-weight: var(--bc-fw-semibold); }
+  .demo { display: grid; gap: var(--bc-sp-3); grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
+  .demo .bc-card { display: grid; gap: var(--bc-sp-2); align-content: start; }
+  .stage { display: grid; place-items: center; min-height: 110px; overflow: hidden; background: var(--bc-bg); border: var(--bc-bw-hair) dashed var(--bc-line-soft); border-radius: var(--bc-r-m); }
+  .stage img { width: 64px; height: 64px; object-fit: contain; }
+  /* Mozgás-minták: csak lejátszáskor futnak, csökkentett mozgásnál azonnaliak (bc-base) */
+  .play .m-buzz { animation: m-buzz 180ms var(--bc-ease-out) 3; }
+  @keyframes m-buzz { 25% { transform: rotate(-4deg) translateY(-1px); } 75% { transform: rotate(4deg) translateY(1px); } }
+  .play .m-fly { animation: m-fly 1.2s var(--bc-ease-in-out) 2; }
+  @keyframes m-fly { 0%, 100% { transform: translate(-60px, 6px) rotate(-6deg); } 50% { transform: translate(60px, -6px) rotate(6deg); } }
+  .play .m-cheer { animation: m-cheer 400ms var(--bc-ease-bounce) 1; }
+  @keyframes m-cheer { 0% { transform: scale(.6) translateY(12px); opacity: 0; } 60% { transform: scale(1.08) translateY(-4px); opacity: 1; } }
+  .play .m-rise > * { animation: m-rise var(--bc-t-base) var(--bc-ease-out) both; }
+  .play .m-rise > :nth-child(2) { animation-delay: 30ms; } .play .m-rise > :nth-child(3) { animation-delay: 60ms; } .play .m-rise > :nth-child(4) { animation-delay: 90ms; }
+  @keyframes m-rise { from { opacity: 0; transform: translateY(8px); } }
+  .m-rise { display: grid; gap: var(--bc-sp-1); width: 80%; }
+  .m-rise span { height: 14px; background: var(--bc-surface-2); border: var(--bc-bw-hair) solid var(--bc-line-soft); border-radius: var(--bc-r-s); }
+  .m-count { font-family: var(--bc-font-display); font-size: var(--bc-fs-2xl); font-variant-numeric: tabular-nums; }
+  .play .m-tick { animation: m-tick 400ms var(--bc-ease-bounce) 1; }
+  @keyframes m-tick { 0% { transform: scale(.4) rotate(-18deg); opacity: 0; } 60% { transform: scale(1.15) rotate(4deg); opacity: 1; } }
+  .m-tick { display: inline-grid; place-items: center; width: 48px; height: 48px; font-size: var(--bc-fs-xl); color: var(--bc-on-accent); background: var(--bc-success); border: var(--bc-bw-base) solid var(--bc-line); border-radius: 50%; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="bc-page-header">
+    <div>
+      <p class="bc-muted" style="margin:0">beeco design system · javaslat 05 · 2026-10-01</p>
+      <h1>Méhecske, mozgás, szóvicc</h1>
+      <p>A méhecske <strong>szereplő</strong> lesz: mindig ugyanabban a helyzetben jön, ugyanazzal az érzelemmel, és segít. A mozgás visszajelez, nem díszít. A szóvicc fűszer: kevés, jó helyen, és mindig mellette a sima jelentés.</p>
+    </div>
+    <span class="bc-badge is-warning">Jóváhagyásra vár</span>
+  </header>
+
+  <div class="bc-alert is-info" role="note"><p><strong>Meglévőből:</strong> a 24 meglévő méhecske-képet használom (<code>web/assets/brand/</code>), újat nem rajzolok. A beeco méhecskét nem rajzoljuk újra (<code>docs/meh-szerepek.md</code>). A mérges méhecske továbbra is <strong>soha</strong>.</p></div>
+
+  <!-- 1. SZEREPOSZTÁS -->
+  <section class="prop" aria-labelledby="p1">
+    <header><h2 id="p1">1. Szereposztás – melyik méhecske, mikor, milyen érzelemmel</h2><span class="bc-badge">atom: Bee · molekula: BeeMoment</span></header>
+    <div class="cast">
+      <div class="bee"><img src="../web/assets/brand/bee-happy.webp" alt=""><div><strong>Házigazda</strong><p>Köszönt, bemutat. <em>Barátságos.</em></p><span class="when">belépés, első használat, üdvözlő kártya</span></div></div>
+      <div class="bee"><img src="../web/assets/brand/moods/help.webp" alt=""><div><strong>Kalauz</strong><p>Tippet ad, eligazít. <em>Segítőkész.</em></p><span class="when">súgó-buborék fejléce, „Hogyan olvasd?”, bevezető túra</span></div></div>
+      <div class="bee"><img src="../web/assets/brand/bee-super.webp" alt=""><div><strong>Futár</strong><p>Úton van, dolgozik. <em>Lendületes.</em></p><span class="when">hosszabb töltés (&gt; 1 mp), feltöltés, import, export</span></div></div>
+      <div class="bee"><img src="../web/assets/brand/bee-cheer.webp" alt=""><div><strong>Szurkoló</strong><p>Örül veled. <em>Lelkes.</em></p><span class="when">sikeres mentés után a lap tetején, első kupon, első partner</span></div></div>
+      <div class="bee"><img src="../web/assets/brand/moods/rank.webp" alt=""><div><strong>Bajnok</strong><p>Ünnepel. <em>Büszke.</em></p><span class="when">mérföldkő (100. partner), sorsolás nyertese – ritkán!</span></div></div>
+      <div class="bee"><img src="../web/assets/brand/moods/rest.webp" alt=""><div><strong>Pihenő</strong><p>Még nincs itt semmi. <em>Nyugodt.</em></p><span class="when">üres lista, nincs teendő, lejárt munkamenet</span></div></div>
+      <div class="bee"><img src="../web/assets/brand/moods/think.webp" alt=""><div><strong>Gondolkodó</strong><p>Megakadtunk – kitaláljuk. <em>Kíváncsi, nem szid.</em></p><span class="when">nincs találat, hibás adat, sikertelen művelet</span></div></div>
+      <div class="bee"><img src="../web/assets/brand/bee-phone.webp" alt=""><div><strong>Hírvivő</strong><p>Üzenetet hoz. <em>Figyelmes.</em></p><span class="when">értesítések, üzenet-előnézet, e-mail-küldés</span></div></div>
+      <div class="bee"><img src="../web/assets/brand/moods/love.webp" alt=""><div><strong>Hálás</strong><p>Megköszöni. <em>Meleg.</em></p><span class="when">jóváhagyás, visszajelzés beküldése, partner aktiválása</span></div></div>
+      <div class="bee"><img src="../web/assets/brand/roles/kacsint.webp" alt=""><div><strong>Kacsintó</strong><p>Cinkos poén. <em>Játékos.</em></p><span class="when">visszavonás, apró meglepetés, 404-oldal</span></div></div>
+      <div class="bee is-banned"><img src="../web/assets/brand/bee-angry.webp" alt=""><div><strong>Mérges – SOHA</strong><p>Nem szidunk senkit.</p><span class="when">a DS-teszt tiltja a termékbőrben</span></div></div>
+      <div class="bee is-banned"><img src="../web/assets/brand/bee-sad.webp" alt=""><div><strong>Szomorú – csak a mi hibánk</strong><p>Szerverhiba, leállás: „ez a mi hibánk”.</p><span class="when">soha a felhasználó hibájára</span></div></div>
+    </div>
+    <p class="bc-help" style="margin-top:var(--bc-sp-3)">A témás szerepes méhek (Beporzó, Élő kert, Körforgó, Polgármester…) az adott admin-szekció <strong>üres állapotában</strong> jelenhetnek meg, pl. Rajok → Beporzó.</p>
+  </section>
+
+  <!-- 2. MENNYI MÉH -->
+  <section class="prop" aria-labelledby="p2">
+    <header><h2 id="p2">2. Mennyi méhecske legyen a felületen?</h2><span class="bc-badge">szabály</span></header>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card"><div class="bc-row is-between"><h3>A – „pillanatokban”</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="moment" aria-hidden="true"><img src="../web/assets/brand/moods/rest.webp" alt=""><b>Itt még nem zümmög semmi</b><p>Még nincs kupon. Az elsővel a partner rögtön megjelenik az appban.</p><span class="bc-badge is-accent">gomb: Kupon létrehozása</span></div>
+        <ul><li>Csak ezekben: üres állapot, siker, hosszabb töltés, hiba, első használat, mérföldkő, 404.</li><li>Képernyőnként legfeljebb egy méhecske.</li><li>Munka közben (táblázat, űrlap) nincs méh – nem zavar.</li></ul></div></div>
+      <div class="var"><div class="bc-card"><h3>B – „mindig jelen”</h3>
+        <div class="moment" aria-hidden="true"><img src="../web/assets/brand/bee-happy.webp" alt="" style="width:48px;height:48px"><p>Egy kis méh a fejlécben, ami rámutatásra reagál, és minden mentésnél tapsol.</p></div>
+        <ul><li>Élőbb, játékosabb.</li><li>Adminban hamar sok lesz: napi 100 mentésnél a taps zavaró, és helyet vesz el.</li></ul></div></div>
+    </div>
+  </section>
+
+  <!-- 3. MOZGÁS -->
+  <section class="prop" aria-labelledby="p3">
+    <header><h2 id="p3">3. Mozgás – mi mozog, mennyi ideig</h2><span class="bc-badge">token + CSS + React</span></header>
+    <div class="meta"><span><strong>Meglévőből:</strong> a termékbőr időzítései (120 / 200 ms, ease-out), a játékok mozgás-készlete (<code>ds-motion.css</code>: drop, tick, rise, buzz) – termékre visszafogva.</span><span><strong>Szabály marad:</strong> UI-mozgás ≤ 300 ms; ünnepi pillanat legfeljebb 600 ms, egyszer; <strong>végtelen mozgás nincs</strong> (a töltő-méh 10 mp után megáll és kiírja, mi tart ennyi ideig); csökkentett mozgásnál minden azonnali.</span></div>
+    <div class="demo" id="demo">
+      <div class="bc-card"><strong>Megjelenés + zümmögés</strong><div class="stage"><img class="m-buzz" src="../web/assets/brand/bee-happy.webp" alt=""></div><span class="bc-help">3 × 180 ms, amikor a méh megjelenik – aztán nyugton van.</span></div>
+      <div class="bc-card"><strong>Futár (töltés)</strong><div class="stage"><img class="m-fly" src="../web/assets/brand/bee-super.webp" alt=""></div><span class="bc-help">Csak 1 mp-nél hosszabb töltésnél; 10 mp után megáll: „Még dolgozunk rajta…”.</span></div>
+      <div class="bc-card"><strong>Szurkoló (siker)</strong><div class="stage"><img class="m-cheer" src="../web/assets/brand/bee-cheer.webp" alt=""></div><span class="bc-help">400 ms rugózás, egyszer.</span></div>
+      <div class="bc-card"><strong>Lista beúszás</strong><div class="stage"><div class="m-rise"><span></span><span></span><span></span><span></span></div></div><span class="bc-help">200 ms, soronként 30 ms késés, legfeljebb 6 sorig; szűrésnél nem.</span></div>
+      <div class="bc-card"><strong>Szám felpörgés</strong><div class="stage"><span class="m-count" id="cnt">128</span></div><span class="bc-help">Statisztikánál, első megjelenéskor 600 ms; frissítésnél nem.</span></div>
+      <div class="bc-card"><strong>Mentve-pipa</strong><div class="stage"><span class="m-tick" aria-hidden="true">✓</span></div><span class="bc-help">A gomb: folyamatban → pipa (400 ms) → vissza.</span></div>
+    </div>
+    <div class="bc-row" style="margin-top:var(--bc-sp-3)"><button class="bc-btn is-secondary" type="button" id="play">Minták lejátszása</button><span class="bc-help">Ha a rendszeredben be van kapcsolva a „csökkentett mozgás”, itt sem mozog semmi – ez a helyes.</span></div>
+    <p class="bc-help" style="margin-top:var(--bc-sp-2)">Továbbiak (változat nélkül): oldalváltás (200 ms áttűnés + 8 px), ablak és oldalpanel (már megvan), törölt sor kicsúszása 200 ms + „Visszavonás”, húzott elem megemelkedik (árnyék 2 → 6 px), grafikon oszlopai egyszer felnőnek (400 ms).</p>
+  </section>
+
+  <!-- 4. SZÓVICCEK -->
+  <section class="prop" aria-labelledby="p4">
+    <header><h2 id="p4">4. Méhes szóviccek a szövegekben</h2><span class="bc-badge">szövegkészlet (DS-token)</span></header>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card"><div class="bc-row is-between"><h3>A – „fűszer”</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <ul><li>Csak a méhes pillanatokban (2A) – képernyőnként legfeljebb egy.</li><li><strong>Mindig mellette a sima jelentés</strong>: „Bekaptároztuk – mentve.”</li><li><strong>Soha:</strong> gombfeliratban, hibaüzenet teendő-részében, törlés-megerősítésben, jogi és adatkezelési szövegben, számok mellett.</li><li>Pillanatonként 3–5 változat, forgóban (ne legyen unalmas), a teszt fix változatot kér.</li></ul></div></div>
+      <div class="var"><div class="bc-card"><h3>B – „bátran”</h3>
+        <ul><li>Gombokban és címekben is: „Bezümmögöm” (mentés), „Kirepítem” (törlés).</li><li>Mulatságos, de lassítja a megértést, és a törlésnél félreérthető – nem javaslom.</li></ul></div></div>
+    </div>
+    <div class="bc-table-wrap" style="margin-top:var(--bc-sp-4)">
+      <table class="bc-table pun">
+        <thead><tr><th>Pillanat</th><th>Méh</th><th>Szöveg (a szóvicc + a sima jelentés)</th></tr></thead>
+        <tbody>
+          <tr><td>Mentés sikerült</td><td>Szurkoló</td><td>„Bekaptároztuk – mentve.” · „Zümm, megvan!” · „Mézbe mártva – elmentettük.”</td></tr>
+          <tr><td>Nagy siker, mérföldkő</td><td>Bajnok</td><td>„Ez igazi <strong>méhtett</strong>! 100 partner a rajban.”</td></tr>
+          <tr><td>Üres lista</td><td>Pihenő / szekció-méh</td><td>„Itt még nem zümmög semmi.” · „Még egy kupon se röppent ki.”</td></tr>
+          <tr><td>Nincs találat</td><td>Gondolkodó</td><td>„Zümm… erre nincs találat. Próbáld rövidebben, vagy ékezet nélkül!”</td></tr>
+          <tr><td>Hosszabb töltés</td><td>Futár</td><td>„Gyűjtjük a nektárt… (töltjük az adatokat)” · 10 mp után: „Még dolgozunk rajta – nagy a kaptár.”</td></tr>
+          <tr><td>Visszavonható törlés</td><td>Kacsintó</td><td>„Kirepült. Meggondoltad? <u>Visszavonás</u>”</td></tr>
+          <tr><td>Szerverhiba (a mi hibánk)</td><td>Szomorú</td><td>„Hoppá, elrepült a kapcsolat – ez a mi hibánk. Próbáld újra egy perc múlva.”</td></tr>
+          <tr><td>Lejárt munkamenet</td><td>Pihenő</td><td>„Elszundítottál? Lépj be újra – ott folytatod, ahol abbahagytad.”</td></tr>
+          <tr><td>Nincs hálózat</td><td>Gondolkodó</td><td>„Nincs térerő a kaptárban. Amint visszajön, mentjük.”</td></tr>
+          <tr><td>404</td><td>Kacsintó</td><td>„Ez az oldal kirepült. Irány a <u>kezdőlap</u>!”</td></tr>
+          <tr><td>Első belépés</td><td>Házigazda</td><td>„Üdv a kaptárban!” (a belépés gombja már most: „Belépés a kaptárba”)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="bc-help" style="margin-top:var(--bc-sp-2)">A szövegek egy helyen, a DS-ben élnek (<code>tokens/hangnem.json</code>, magyarul, később angolul is), így az admin, a partner és a web ugyanazt mondja.</p>
+  </section>
+
+  <!-- 5. MI KERÜL A DS-BE -->
+  <section class="prop" aria-labelledby="p5">
+    <header><h2 id="p5">5. Mi kerül a DS-be (jóváhagyás után)</h2><span class="bc-badge">változat nélkül</span></header>
+    <ul class="rules">
+      <li><strong>Bee</strong> (atom): <code>&lt;Bee role="szurkolo" /&gt;</code> – szerep szerint a kép; alapból díszítő (<code>alt=""</code>, a mondat mondja el), méretek; megjelenéskor zümmögés.</li>
+      <li><strong>BeeMoment</strong> (molekula): méh + cím (szóvicc) + sima mondat + egy teendő – az üres, siker, töltés, hiba és 404 állapotok egységes kerete (a 02 EmptyState ezt használja).</li>
+      <li><strong>Szövegkészlet</strong>: <code>tokens/hangnem.json</code> + <code>say('mentve')</code> – pillanatonként változatok, a szabályok gépi ellenőrzéssel.</li>
+      <li><strong>Mozgás</strong>: <code>bc-motion.css</code> (beúszás, pipa, zümmögés, futár, felpörgés) + <code>useCountUp</code>, <code>&lt;Stagger&gt;</code>, a Button „mentve-pipa” állapota.</li>
+      <li><strong>Ellenőrzés</strong>: a termékbőrben mérges méh nincs; szóvicc nincs hibában, gombban, törlés-megerősítésben; képernyőnként ≤ 1 méh és ≤ 1 szóvicc; végtelen mozgás nincs.</li>
+      <li><strong>Csomagolás</strong>: a méhecske-képek bekerülnek az npm-csomagba (most csak a betűk vannak benne).</li>
+    </ul>
+  </section>
+
+  <section class="prop" aria-labelledby="dd">
+    <h2 id="dd">Döntés</h2>
+    <p>Például: <strong>„05: 2A, 4A, szereposztás jó – jóváhagyva”</strong>, vagy írd meg, melyik méhecske kapjon más szerepet, és melyik szóvicc ne legyen (vagy milyen legyen még).</p>
+  </section>
+</main>
+<script>
+  // Minták lejátszása: a .play osztály újraindítja az animációkat
+  const demo = document.getElementById('demo');
+  document.getElementById('play').addEventListener('click', () => {
+    demo.classList.remove('play'); void demo.offsetWidth; demo.classList.add('play');
+    const el = document.getElementById('cnt'); const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { el.textContent = '128'; return; }
+    const t0 = performance.now(); const step = (t) => { const k = Math.min(1, (t - t0) / 600); el.textContent = String(Math.round(128 * (1 - Math.pow(1 - k, 3)))); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  });
+</script>
+</body>
+</html>
