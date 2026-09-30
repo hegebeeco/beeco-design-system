@@ -38,7 +38,7 @@ Ha egy feladathoz új elem kellene, **állj meg és javasolj** (5. fejezet) – 
 
 ## 3. Öntesztek – KÖTELEZŐ minden beviteli mezőre és grafikonra (és minden DS-komponensre)
 
-Minden komponenshez tartozik egy **tesztlap** (`termek/tesztlapok/<komponens>.html`): az összes állapot és a szélső esetek
+Minden komponenshez tartozik egy **tesztlap** (forrás: `react/tesztlapok/<név>.tsx`, lap: `termek/tesztlapok/<név>.html`) és egy **forgatókönyv** (`termek/tesztlapok/<név>.test.mjs`: valódi gépelés, beillesztés, kattintás, billentyűzet): az összes állapot és a szélső esetek
 egy oldalon, valódi viselkedéssel. A `tests/check-komponensek.js` (Playwright, fej nélküli Chromium) minden tesztlapot lefuttat,
 **a CI-ben is**. Egy komponens addig nem kerül be (és nem kap verziót), amíg ez zöld.
 
@@ -91,8 +91,66 @@ nagyon sok kategória · hosszú címkék · egyenlő értékek · színtéveszt
 
 **Minden elemnél:** szerverhiba · időtúllépés · dupla kattintás/beküldés · jogosultság hiánya · sötét mód · nagy betűk.
 
+## 3/A. Beviteli mezők – kötelező részek (Kristóf, 2026-10-01)
+
+Minden adatbeviteli mező (szöveg, szám, dátum, választó, címke, feltöltés) **ugyanazt a keretet** kapja (Field molekula):
+
+| Rész | Mi | Példa |
+|---|---|---|
+| **Címke** | mindig látható, a helykitöltő nem címke | „Kupon neve” |
+| **Súgó gomb (ⓘ)** | a címke mellett; megnyitva elmondja **mit** és **miért** kell megadni, és ha van, egy példát | „Így jelenik meg az appban a kupon kártyáján. Rövid, cselekvésre hívó név jó, pl. »10% kedvezmény kávéra«.” |
+| **Érvényes tartomány** | a mező alatt, mindig látható | „3–60 karakter” · „0–100 %” · „2026. 10. 01. után” · „legfeljebb 5 címke” |
+| **Aktuális állapot** | élő számláló, a tartomány mellett | „213/255” · „2/5 címke” · „1,2/5 MB” |
+| **Hiba** | a mező alatt, szövegesen, a következő lépéssel | „Legalább 3 karakter kell – most 2.” |
+
+- A súgó kötelező (a React-komponensben kötelező `help` prop – nélküle nem fordul).
+- **Kivételek (Claude javaslata, 2026-10-01 – Kristóf jóváhagyására vár):** a **keresőmező** (SearchBox) címkéje csak képernyőolvasónak szól, súgója nincs – a nagyító és a „Partner keresése” helykitöltő egyértelmű; a **nézetváltó** (SegmentedControl) nem adatbevitel, nincs súgója; a **listaszűrők** (FilterBar, Javaslat 02) súgója nem kötelező. A `check-komponensek` a keresőmezőt eszerint kihagyja. A súgó szövegét a projekt adja; a DS csak a gombot és a buborékot.
+- A számláló a határ közelében (90%) figyelmeztető színre vált, a határon hibaszínre – **nem csak színnel**: a szöveg is jelzi.
+- **Helytelen érték letiltva / levágva:**
+  - szöveg: a max. hossznál a gépelés megáll; hosszabb beillesztés levágva + jelzés („A beillesztett szöveg végét levágtam: 255 karakter a határ.”);
+  - szám: betű, második tizedesjel, felesleges előjel **nem írható be**; a tartományon kívüli értéket a mezőből kilépéskor a határra igazítja + jelzés („100-ra állítottam – legfeljebb 100 lehet.”) – *gépelés közben nem vág, mert a „150” begépelése közben a „15” még jó* (Claude javaslata, 2026-10-01; ha gépelés közbeni vágás kell: `clamp="input"`);
+  - dátum: a tartományon kívüli nap nem választható (halvány, áthúzott), gépelésnél kilépéskor igazít + jelzés;
+  - választó: a tiltott elem nem választható; a max. darabszám után a többi opció tiltott, a számláló jelzi.
+
+## 3/B. Grafikonok – kötelező részek (Kristóf, 2026-10-01)
+
+Egy mezei látogatónak is értenie kell, mit lát. Ezért a ChartCard organizmus nélkülük nem jelenik meg:
+
+| Rész | Mi |
+|---|---|
+| **Cím** | mit mutat, egyszerű nyelven („Beváltott kuponok hetente”) |
+| **Alcím / egység és időszak** | „db, 2026. 07–09.” |
+| **Tengelyfeliratok, mezőnevek** | mindkét tengely és minden kategória neve kiírva, rövidítés csak magyarázattal |
+| **Jelmagyarázat** | minden szín/minta jelentése; a vonalak végén közvetlen címke is lehet |
+| **Súgó (ⓘ)** | honnan jön az adat, hogyan számoljuk (pl. „egy felhasználó naponta egyszer számít”) |
+| **„Hogyan olvasd?”** | lenyitható értelmezési segédlet 2–4 mondatban: mit jelent a magas/alacsony érték, mire figyelj, mi NEM következik belőle |
+| **Adattábla** | ugyanazok a számok táblázatban (képernyőolvasónak és ellenőrzésnek) |
+| **Üres / töltés / hiba** | „Ebben az időszakban nincs adat” + teendő |
+
+Szám csak valós adatból vagy forrással; becsült vagy vitatott érték jelölve.
+
+## 3/C. Mit tesztel Claude MINDEN munka végén, és mit jelez (Kristóf, 2026-10-01)
+
+Claude **maga futtatja** az ellenőrzést (tesztlapok, `check-komponensek`, `ds-lint`, `minosegkapu`), és a jelentésben **külön
+listában megnevezi, ami nem jó** – akkor is, ha nem az ő munkája rontotta el. Minden tételhez: hol, mi a baj, mi a javítás. Kategóriák:
+
+| Kategória | Mit néz |
+|---|---|
+| **Hozzáférhetőség** | billentyűzet, fókusz, képernyőolvasó (szerep, név, állapot), kontraszt, 44 px, címke, súgó elérhető-e billentyűzettel |
+| **Állapotok** | alap, rámutatás, fókusz, lenyomva, tiltott, csak olvasható, töltés, üres, hiba, siker – **hiányzó állapot = hiba** |
+| **Animáció** | van-e visszajelzés (nyomás, nyitás, zárás, töltés); ≤ 300 ms, ease-out; csökkentett mozgásnál azonnali; **hiányzó visszajelzés = hiba** |
+| **Méretezés** | 8 nézet, 200% nagyítás, hosszú szöveg, nincs kilógás és takarás, tördelés |
+| **Színezés** | csak szerep-token, világos és sötét mód, jelentés nem csak színnel, színtévesztő-barát adat |
+| **Teljesítmény** | első megjelenés, hosszú feladat (> 50 ms), 1000+ elemes lista görgetése, animáció képkockasebessége, fölösleges újrarajzolás |
+| **Adat és szélső esetek** | 3.4 szerint; tartomány, számláló, levágás működik-e |
+| **Szöveg** | tegeződő, rövid, a hiba megmondja a következő lépést, súgó megvan |
+
+Súlyosság: **P0** (nem használható) · **P1** (akadály, javítani kell) · **P2** (javítandó) · **P3** (finomítás). „Nem gond, de javítani kell” = P2/P3 – ezek is a listára kerülnek.
+
 ### 3.5 Kész, ha (Definition of Done)
 - [ ] a tesztlap minden állapotot és a releváns szélső eseteket mutatja;
+- [ ] mezőnél: címke, súgó (ⓘ), tartomány, számláló, tiltás/levágás (3/A); grafikonnál: cím, egység, tengelyek, jelmagyarázat, súgó, „Hogyan olvasd?”, adattábla (3/B);
+- [ ] a 3/C jelentés elkészült, a nem jó tételek megnevezve;
 - [ ] `npm test` zöld (benne a `check-komponensek`: 8 nézet × világos/sötét, konzolhiba, kilógás, 44 px, kontraszt, billentyűzet);
 - [ ] a képeket (legalább telefon + asztal, világos + sötét) ember is megnézte;
 - [ ] a bemutatóban (`termek/bemutato.html`) szerepel, használati példával;

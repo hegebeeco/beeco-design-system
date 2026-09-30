@@ -1,0 +1,65 @@
+/* ============================================================
+   beeco TERMÉKBŐR – keresős legördülő (1A) és dátumválasztó (2A)
+   ============================================================ */
+/* Combobox mező: címkék a mezőben, „+N” túlcsordulás */
+.bc-combo { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-1); min-height: var(--bc-tap); padding: 0 var(--bc-sp-1) 0 var(--bc-sp-2);
+  background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-s); cursor: text;
+  transition: box-shadow var(--bc-t-fast) var(--bc-ease-out); }
+.bc-combo:focus-within { box-shadow: var(--bc-shadow-s); }
+.bc-combo.is-invalid { border-color: var(--bc-danger-ink); background: var(--bc-danger-bg); }
+.bc-combo.is-disabled { background: var(--bc-surface-2); border-color: var(--bc-line-soft); cursor: not-allowed; }
+.bc-combo > input { flex: 1 1 80px; min-width: 60px; min-height: calc(var(--bc-tap) - 2 * var(--bc-bw-hair)); padding: 0 var(--bc-sp-1); font: inherit; font-size: var(--bc-fs-m); color: var(--bc-ink); background: transparent; border: 0; outline: 0; margin: 0; }
+.bc-combo > input::placeholder { color: var(--bc-ink-muted); opacity: 1; }
+.bc-combo:has(> input:focus-visible) { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-combo-toggle { display: inline-grid; place-items: center; width: 36px; height: 36px; margin-left: auto; padding: 0; color: var(--bc-ink); background: transparent; border: 0; border-radius: var(--bc-r-s); cursor: pointer; }
+.bc-combo-toggle svg { width: 16px; height: 16px; transition: transform var(--bc-t-fast) var(--bc-ease-out); }
+.bc-combo-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.bc-chip { display: inline-flex; align-items: center; gap: 2px; max-width: 100%; min-height: 32px; padding: 0 2px 0 var(--bc-sp-2);
+  font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); color: var(--bc-ink); background: var(--bc-surface-accent);
+  border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); }
+.bc-chip > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 24ch; }
+.bc-chip > button { display: inline-grid; place-items: center; width: 28px; height: 28px; padding: 0; font: inherit; font-weight: var(--bc-fw-bold); color: inherit; background: transparent; border: 0; border-radius: 50%; cursor: pointer; }
+@media (hover: hover) and (pointer: fine) { .bc-chip > button:hover { background: var(--bc-accent); color: var(--bc-on-accent); } }
+.bc-chip.is-more { padding: 0 var(--bc-sp-2); background: var(--bc-surface); cursor: pointer; font: inherit; font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); }
+
+/* Lista */
+.bc-listbox { z-index: 70; width: var(--radix-popover-trigger-width); max-width: calc(100vw - 2 * var(--bc-sp-4)); max-height: min(320px, var(--radix-popover-content-available-height, 320px));
+  overflow-y: auto; padding: var(--bc-sp-1); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m);
+  animation: bc-pop-in var(--bc-t-fast) var(--bc-ease-out); }
+.bc-option { display: flex; align-items: center; gap: var(--bc-sp-2); min-height: 40px; padding: var(--bc-sp-1) var(--bc-sp-2); font-size: var(--bc-fs-s); border-radius: var(--bc-r-s); cursor: pointer; }
+.bc-option[data-active="true"] { background: var(--bc-surface-2); outline: var(--bc-bw-hair) solid var(--bc-line); }
+.bc-option[aria-disabled="true"] { color: var(--bc-ink-muted); cursor: not-allowed; }
+.bc-option mark { background: var(--bc-accent); color: var(--bc-on-accent); }
+.bc-option .bc-ck { flex: none; display: inline-grid; place-items: center; width: 18px; height: 18px; font-size: var(--bc-fs-xs); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-xs); }
+.bc-option[aria-selected="true"] .bc-ck { background: var(--bc-accent); color: var(--bc-on-accent); }
+.bc-option.is-create { margin-top: var(--bc-sp-1); border-top: var(--bc-bw-hair) solid var(--bc-line-soft); border-radius: 0 0 var(--bc-r-s) var(--bc-r-s); font-weight: var(--bc-fw-bold); }
+.bc-list-note { padding: var(--bc-sp-3) var(--bc-sp-2); font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+@media (pointer: coarse) {
+  .bc-option { min-height: var(--bc-tap); }
+  /* Érintésnél a címke és a „×” is 44 px (a szabályunk; a WCAG AA 24 px-et kér) */
+  .bc-chip, .bc-chip.is-more { min-height: var(--bc-tap); margin: 2px 0; }
+  .bc-chip > button { width: var(--bc-tap); height: var(--bc-tap); }
+  .bc-chip.is-more { min-width: var(--bc-tap); }
+}
+
+/* Dátumválasztó (2A): mező + lenyíló naptár; hét első napja hétfő */
+.bc-date { display: flex; gap: var(--bc-sp-2); }
+.bc-date > .bc-date-input { position: relative; flex: 1 1 160px; min-width: 0; }
+.bc-date > .bc-date-input > .bc-input { padding-right: var(--bc-tap); }
+.bc-date > .bc-date-input > .bc-icon-btn { position: absolute; right: 0; top: 50%; transform: translateY(-50%); }
+.bc-date > .bc-time { flex: 0 0 104px; }
+.bc-cal { width: 304px; max-width: calc(100vw - 2 * var(--bc-sp-4)); padding: var(--bc-sp-3); }
+.bc-cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--bc-sp-2); }
+.bc-cal-head strong { font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-l); }
+.bc-cal-grid { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.bc-cal-grid th { padding: 0 0 var(--bc-sp-1); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink-soft); text-align: center; }
+.bc-cal-grid td { padding: 1px; text-align: center; }
+.bc-day { width: 100%; aspect-ratio: 1; max-height: 40px; padding: 0; font: inherit; font-size: var(--bc-fs-s); color: var(--bc-ink); background: transparent; border: var(--bc-bw-hair) solid transparent; border-radius: var(--bc-r-s); cursor: pointer; }
+.bc-day.is-outside { color: var(--bc-ink-muted); }
+.bc-day.is-today { border-color: var(--bc-line); }
+.bc-day.is-in-range { background: var(--bc-surface-accent); border-radius: 0; }
+.bc-day[aria-selected="true"] { color: var(--bc-on-accent); background: var(--bc-accent); border-color: var(--bc-line); font-weight: var(--bc-fw-bold); }
+.bc-day:disabled { color: var(--bc-ink-muted); text-decoration: line-through; cursor: not-allowed; opacity: .6; }
+.bc-day:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 1px; }
+@media (hover: hover) and (pointer: fine) { .bc-day:hover:not(:disabled, [aria-selected="true"]) { background: var(--bc-surface-2); } }
+.bc-cal-foot { display: flex; justify-content: space-between; gap: var(--bc-sp-2); margin-top: var(--bc-sp-2); }

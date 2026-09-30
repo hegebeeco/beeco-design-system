@@ -13,7 +13,7 @@ Egy forrás, generált kimenetek (CSS, SCSS, Tailwind, Dart), gépi ellenőrzés
 | **Ellenőrzések** – DS-őr (CI) és projekt-lint racsnival | `tests/check-tokens.js`, `tools/ds-lint.js` (`npx beeco-ds-lint`) |
 | **Claude-skill** a termékekhez | `.claude/skills/beeco-ds` (játékhoz: `beeco-arculat`) |
 
-Termék-projektbe: `npm install github:hegebeeco/beeco-design-system#v1.13.0`, majd `npx beeco-ds-lint --init`.
+Termék-projektbe: `npm install github:hegebeeco/beeco-design-system#v1.14.0`, majd `npx beeco-ds-lint --init`.
 
 ---
 

@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="hu" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Javaslat 04 – média</title>
+<meta name="description" content="beeco design system – 4. komponenscsomag (média és speciális): képfeltöltő, galéria és nagyító, képvágó, videó- és Excel-feltöltés, térkép, havi naptár, nyitvatartás, avatar, címke – változatok Kristóf jóváhagyására.">
+<link rel="icon" href="../web/assets/brand/ikon-32.png">
+<link rel="stylesheet" href="../termek/css/bc-all.css">
+<style>
+  /* A javaslatlap saját elrendezése – csak tokenek (ugyanaz, mint a 01-es lapon) */
+  .wrap { max-width: 1120px; margin: 0 auto; padding: var(--bc-sp-5) var(--bc-sp-4) var(--bc-sp-8); }
+  .prop { margin-top: var(--bc-sp-7); }
+  .prop > header { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2) var(--bc-sp-4); align-items: baseline; justify-content: space-between; padding-bottom: var(--bc-sp-2); border-bottom: var(--bc-bw-base) solid var(--bc-line); margin-bottom: var(--bc-sp-4); }
+  .prop > header h2 { margin: 0; }
+  .meta { display: grid; gap: var(--bc-sp-1); font-size: var(--bc-fs-s); color: var(--bc-ink-soft); margin-bottom: var(--bc-sp-4); }
+  .meta strong { color: var(--bc-ink); }
+  .meta code, .details code { overflow-wrap: anywhere; }
+  .variants { display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+  .var { display: flex; flex-direction: column; gap: var(--bc-sp-3); min-width: 0; }
+  .var .bc-card { flex: 1; display: flex; flex-direction: column; gap: var(--bc-sp-3); min-width: 0; }
+  .var.is-rec .bc-card { background: var(--bc-surface-accent); }
+  .var h3 { margin: 0; }
+  .var ul { margin: 0; padding-left: 1.2em; font-size: var(--bc-fs-s); }
+  .mock { padding: var(--bc-sp-4); background: var(--bc-bg); border: var(--bc-bw-hair) dashed var(--bc-line-soft); border-radius: var(--bc-r-m); min-width: 0; }
+  .details { margin-top: var(--bc-sp-4); display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); font-size: var(--bc-fs-s); }
+  .details ul { margin: var(--bc-sp-2) 0 0; padding-left: 1.2em; }
+  .decide { margin-top: var(--bc-sp-7); }
+  .note { margin-top: var(--bc-sp-3); }
+
+  /* ---- Makettek (csak a javaslatlapon; állóképek, nem kattinthatók) ---- */
+  .m-lbl { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-1); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); }
+  .m-help { display: inline-grid; place-items: center; width: 22px; height: 22px; font-family: var(--bc-font-display); font-size: var(--bc-fs-s); line-height: 1; color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: 50%; }
+  .m-b { display: inline-grid; place-items: center; min-height: 32px; padding: 0 var(--bc-sp-3); font-family: var(--bc-font-display); font-size: var(--bc-fs-m); line-height: 1; white-space: nowrap; color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+  .m-b.pri { background: var(--bc-accent); color: var(--bc-on-accent); }
+  .m-b.gho { border-color: transparent; box-shadow: none; background: transparent; }
+  .m-ic { display: inline-grid; place-items: center; width: 28px; height: 28px; flex: none; font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); color: var(--bc-ink); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-s); background: var(--bc-surface); }
+  .m-err { display: flex; gap: var(--bc-sp-2); align-items: flex-start; margin: 0; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-danger-ink); }
+  .m-err b { flex: none; }
+  .m-stack { display: grid; gap: var(--bc-sp-2); }
+  /* Kép helyettesítője: tokenekből kevert színátmenet (nincs valódi kép) */
+  .m-img { background: linear-gradient(135deg, var(--bc-data-seq-2), var(--bc-data-seq-4) 60%, var(--bc-data-seq-5)); }
+  .m-img.v2 { background: linear-gradient(160deg, var(--bc-info-bg), var(--bc-data-seq-3)); }
+  .m-img.v3 { background: linear-gradient(200deg, var(--bc-surface-accent), var(--bc-accent)); }
+  /* Feltöltő és galéria */
+  .m-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: var(--bc-sp-2); margin-top: var(--bc-sp-2); }
+  .m-tile { position: relative; aspect-ratio: 1; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); overflow: hidden; }
+  .m-tile .cov { position: absolute; left: 4px; top: 4px; }
+  .m-tile .dots { position: absolute; right: 4px; top: 4px; width: 22px; height: 22px; font-size: var(--bc-fs-xs); }
+  .m-tile.add { display: grid; place-items: center; align-content: center; gap: 2px; text-align: center; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-ink); background: var(--bc-surface); border-style: dashed; }
+  .m-tile.add b { font-family: var(--bc-font-display); font-size: var(--bc-fs-xl); font-weight: 400; line-height: 1; }
+  .m-tile.up { display: grid; align-content: end; background: var(--bc-surface-2); }
+  .m-tile.up span { display: block; padding: 2px 4px; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-ink); background: var(--bc-surface); }
+  .m-bar { display: block; height: 6px; background: var(--bc-surface-2); border-top: var(--bc-bw-hair) solid var(--bc-line); }
+  .m-bar i { display: block; height: 100%; width: var(--p, 40%); background: var(--bc-accent); }
+  .m-drop { display: grid; justify-items: center; gap: var(--bc-sp-1); padding: var(--bc-sp-5) var(--bc-sp-3); text-align: center; font-size: var(--bc-fs-s); color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-base) dashed var(--bc-line); border-radius: var(--bc-r-m); }
+  .m-drop strong { font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-l); }
+  .m-drop.is-over { background: var(--bc-surface-accent); border-style: solid; }
+  /* Nagyító (lightbox) */
+  .m-lightbox { position: relative; display: grid; grid-template-rows: auto 1fr auto; gap: var(--bc-sp-2); height: 230px; padding: var(--bc-sp-2) var(--bc-sp-3); background: rgb(var(--bc-scrim-rgb) / .88); border-radius: var(--bc-r-m); }
+  .m-lightbox .top, .m-lightbox .cap { display: flex; justify-content: space-between; align-items: center; gap: var(--bc-sp-2); }
+  .m-lightbox .pill { padding: 2px var(--bc-sp-2); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); }
+  .m-lightbox .mid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--bc-sp-2); min-height: 0; }
+  .m-lightbox .pic { height: 100%; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-s); }
+  /* Képvágó */
+  .m-crop { position: relative; height: 170px; overflow: hidden; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
+  .m-crop .frame { position: absolute; left: 12%; right: 12%; top: 50%; aspect-ratio: 16 / 9; transform: translateY(-50%); border: var(--bc-bw-base) solid var(--bc-surface); outline: var(--bc-bw-hair) solid var(--bc-line); box-shadow: 0 0 0 999px rgb(var(--bc-scrim-rgb) / .5); background-image: linear-gradient(var(--bc-surface) 0 0), linear-gradient(var(--bc-surface) 0 0), linear-gradient(var(--bc-surface) 0 0), linear-gradient(var(--bc-surface) 0 0); background-size: 1px 100%, 1px 100%, 100% 1px, 100% 1px; background-position: 33.3% 0, 66.6% 0, 0 33.3%, 0 66.6%; background-repeat: no-repeat; opacity: .95; }
+  .m-range { position: relative; height: 24px; margin-top: var(--bc-sp-1); }
+  .m-range::before { content: ""; position: absolute; left: 0; right: 0; top: 10px; height: 4px; background: var(--bc-surface-2); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); }
+  .m-range i { position: absolute; top: 2px; left: var(--p, 30%); width: 20px; height: 20px; margin-left: -10px; background: var(--bc-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: 50%; box-shadow: var(--bc-shadow-s); }
+  .m-seg { display: inline-flex; max-width: 100%; overflow-x: auto; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); background: var(--bc-surface); }
+  .m-seg span { flex: none; display: grid; place-items: center; min-height: 32px; padding: 0 var(--bc-sp-3); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); }
+  .m-seg span + span { border-left: var(--bc-bw-base) solid var(--bc-line); }
+  .m-seg span.on { background: var(--bc-accent); color: var(--bc-on-accent); }
+  /* Folyamat-lépések (videó, import) */
+  .m-steps { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2); margin: 0; padding: 0; list-style: none; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); }
+  .m-steps li { display: flex; align-items: center; gap: var(--bc-sp-1); padding: 2px var(--bc-sp-2) 2px 2px; color: var(--bc-ink-soft); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line-soft); border-radius: var(--bc-r-pill); }
+  .m-steps li b { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; color: var(--bc-ink); background: var(--bc-surface-2); }
+  .m-steps li.on { color: var(--bc-ink); border-color: var(--bc-line); }
+  .m-steps li.on b { background: var(--bc-accent); color: var(--bc-on-accent); }
+  .m-steps li.done b { background: var(--bc-success-bg); color: var(--bc-success-ink); }
+  .m-file { display: grid; gap: var(--bc-sp-1); padding: var(--bc-sp-3); font-size: var(--bc-fs-s); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+  .m-file .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--bc-sp-1) var(--bc-sp-3); }
+  .m-file .m-bar { height: 8px; border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); overflow: hidden; }
+  .m-mini { width: 100%; border-collapse: collapse; font-size: var(--bc-fs-xs); }
+  .m-mini th, .m-mini td { padding: var(--bc-sp-1) var(--bc-sp-2); text-align: left; border-bottom: var(--bc-bw-hair) solid var(--bc-line-soft); }
+  .m-mini th { font-weight: var(--bc-fw-bold); color: var(--bc-on-accent); background: var(--bc-accent); }
+  .m-mini td { background: var(--bc-surface); }
+  .m-mini tr.bad td { background: var(--bc-danger-bg); color: var(--bc-danger-ink); }
+  .m-mini tr.warn td { background: var(--bc-warning-bg); color: var(--bc-warning-ink); }
+  .m-scroll { overflow-x: auto; }
+  /* Térkép */
+  .m-map { position: relative; height: 240px; overflow: hidden; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m);
+    background:
+      linear-gradient(115deg, transparent 46%, var(--bc-surface) 46% 49%, transparent 49%),
+      linear-gradient(20deg, transparent 60%, var(--bc-surface) 60% 62%, transparent 62%),
+      radial-gradient(circle at 80% 85%, var(--bc-info-bg) 0 18%, transparent 18.5%),
+      var(--bc-surface-2); }
+  .m-pin { position: absolute; width: 30px; height: 30px; margin: -30px 0 0 -15px; display: grid; place-items: center; background: var(--c, var(--bc-surface)); border: var(--bc-bw-base) solid var(--bc-line); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); box-shadow: var(--bc-shadow-s); }
+  .m-pin > span { transform: rotate(45deg); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink); }
+  .m-pin.is-sel { width: 38px; height: 38px; margin: -38px 0 0 -19px; --c: var(--bc-accent); }
+  .m-pin.is-sel > span { color: var(--bc-on-accent); }
+  .m-dot { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; background: var(--c, var(--bc-surface)); border: var(--bc-bw-base) solid var(--bc-line); border-radius: 50%; }
+  .m-clu { position: absolute; display: grid; place-items: center; width: var(--s, 36px); height: var(--s, 36px); margin: calc(var(--s, 36px) / -2) 0 0 calc(var(--s, 36px) / -2); font-family: var(--bc-font-display); font-size: var(--bc-fs-m); line-height: 1; color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: 50%; box-shadow: 0 0 0 4px rgb(var(--bc-surface-rgb) / .6), var(--bc-shadow-s); }
+  .m-ctrl { position: absolute; right: 8px; top: 8px; display: grid; background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); overflow: hidden; }
+  .m-ctrl span { display: grid; place-items: center; width: 32px; height: 32px; font-weight: var(--bc-fw-bold); color: var(--bc-ink); }
+  .m-ctrl span + span { border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }
+  .m-legend { position: absolute; left: 8px; bottom: 8px; display: grid; gap: 2px; padding: var(--bc-sp-1) var(--bc-sp-2); font-size: var(--bc-fs-xs); color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+  .m-legend span { display: flex; align-items: center; gap: var(--bc-sp-1); }
+  .m-legend i { display: inline-grid; place-items: center; width: 14px; height: 14px; font-style: normal; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); background: var(--c); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: 50%; }
+  .m-seq { display: flex; height: 10px; width: 120px; border: var(--bc-bw-hair) solid var(--bc-line); }
+  .m-seq i { flex: 1; }
+  .m-seq i:nth-child(1) { background: var(--bc-data-seq-1); } .m-seq i:nth-child(2) { background: var(--bc-data-seq-2); } .m-seq i:nth-child(3) { background: var(--bc-data-seq-3); } .m-seq i:nth-child(4) { background: var(--bc-data-seq-4); } .m-seq i:nth-child(5) { background: var(--bc-data-seq-5); }
+  .m-rainbow { display: block; height: 10px; width: 120px; border: var(--bc-bw-hair) solid var(--bc-line); background: linear-gradient(90deg, var(--bc-info), var(--bc-accent), var(--bc-warning), var(--bc-danger)); }
+  /* Havi naptár */
+  .m-cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px; font-size: var(--bc-fs-xs); }
+  .m-cal .h { padding: var(--bc-sp-1); font-weight: var(--bc-fw-bold); color: var(--bc-ink-soft); text-align: center; }
+  .m-cal .d { display: grid; align-content: start; gap: 2px; min-height: 76px; padding: 2px; background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line-soft); border-radius: var(--bc-r-s); }
+  .m-cal .d.o { background: var(--bc-bg); color: var(--bc-ink-muted); }
+  .m-cal .d.t { border: var(--bc-bw-base) solid var(--bc-line); }
+  .m-cal .d > b { font-weight: var(--bc-fw-bold); }
+  .m-cal .d.t > b { display: inline-grid; place-items: center; width: 20px; height: 20px; background: var(--bc-accent); color: var(--bc-on-accent); border-radius: 50%; }
+  .m-ev { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 1px 3px; border-left: 3px solid var(--bc-line); border-radius: 2px; font-weight: var(--bc-fw-semibold); }
+  .m-ev.e { background: var(--bc-info-bg); color: var(--bc-info-ink); border-left-color: var(--bc-info); }
+  .m-ev.s { background: var(--bc-warning-bg); color: var(--bc-warning-ink); border-left-color: var(--bc-warning); }
+  .m-ev.k { background: var(--bc-success-bg); color: var(--bc-success-ink); border-left-color: var(--bc-success); }
+  .m-more { font-weight: var(--bc-fw-bold); color: var(--bc-ink); text-decoration: underline; text-underline-offset: 2px; }
+  .m-callegend { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2); margin-bottom: var(--bc-sp-2); font-size: var(--bc-fs-xs); }
+  .m-callegend .m-ev { display: inline-block; }
+  .m-dotcal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px; text-align: center; font-size: var(--bc-fs-xs); }
+  .m-dotcal span { display: grid; justify-items: center; align-content: center; gap: 2px; min-height: 36px; border-radius: var(--bc-r-s); }
+  .m-dotcal .h { min-height: 20px; font-weight: var(--bc-fw-bold); color: var(--bc-ink-soft); }
+  .m-dotcal .sel { background: var(--bc-accent); color: var(--bc-on-accent); border: var(--bc-bw-hair) solid var(--bc-line); font-weight: var(--bc-fw-bold); }
+  .m-dotcal em { display: flex; gap: 2px; font-style: normal; }
+  .m-dotcal em i { width: 6px; height: 6px; border-radius: 50%; border: 1px solid var(--bc-line); }
+  .m-dotcal em i.e { background: var(--bc-info); } .m-dotcal em i.s { background: var(--bc-warning); } .m-dotcal em i.k { background: var(--bc-success); }
+  .m-agenda { display: grid; gap: var(--bc-sp-1); font-size: var(--bc-fs-xs); }
+  .m-agenda .day { font-weight: var(--bc-fw-bold); margin-top: var(--bc-sp-2); }
+  .m-agenda .m-ev { padding: var(--bc-sp-1) var(--bc-sp-2); white-space: normal; }
+  .m-agenda .empty { color: var(--bc-ink-soft); font-style: italic; }
+  /* Nyitvatartás */
+  .m-oh { display: grid; gap: 0; font-size: var(--bc-fs-s); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); overflow: hidden; }
+  .m-oh .r { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-1) var(--bc-sp-2); min-height: 44px; padding: var(--bc-sp-1) var(--bc-sp-3); border-bottom: var(--bc-bw-hair) solid var(--bc-line-soft); }
+  .m-oh .r:last-child { border-bottom: 0; }
+  .m-oh .dn { width: 76px; font-weight: var(--bc-fw-semibold); }
+  .m-oh .closed { color: var(--bc-ink-soft); }
+  .m-sw { position: relative; display: inline-block; width: 36px; height: 20px; flex: none; background: var(--bc-surface-2); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); }
+  .m-sw::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: 50%; }
+  .m-sw.on { background: var(--bc-accent); }
+  .m-sw.on::after { left: 18px; }
+  .m-time { display: inline-grid; place-items: center; min-height: 30px; padding: 0 var(--bc-sp-2); font-variant-numeric: tabular-nums; background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-s); }
+  .m-link { font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); text-decoration: underline; text-underline-offset: 2px; }
+  .m-chips { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2); }
+  .m-chip { display: inline-flex; align-items: center; min-height: 32px; padding: 0 var(--bc-sp-3); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); }
+  .m-chip.on { background: var(--bc-accent); color: var(--bc-on-accent); }
+  /* Avatar */
+  .m-avs { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-3); }
+  .m-av { display: inline-grid; place-items: center; flex: none; width: var(--s, 40px); height: var(--s, 40px); font-family: var(--bc-font-display); font-size: calc(var(--s, 40px) * .42); line-height: 1; color: var(--bc-ink); background: var(--bc-surface-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: 50%; overflow: hidden; }
+  .m-av.img { background: linear-gradient(135deg, var(--bc-data-seq-2), var(--bc-data-seq-5)); }
+  .m-av.sq { border-radius: var(--bc-r-m); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="bc-page-header">
+    <div>
+      <p class="bc-muted" style="margin:0">beeco design system · javaslat 04 · 2026-10-01</p>
+      <h1>Média és speciális elemek</h1>
+      <p>A negyedik komponenscsomag: képek, videó és fájlok feltöltése, galéria, térkép, havi naptár, nyitvatartás, avatar, címke. Minden feltöltő a 3/A szabályt követi: <strong>súgó (ⓘ), engedett típusok és méret, aktuális állapot</strong>, és a hibás fájl meg sem kezd feltöltődni. Ahol valóban dönteni kell, 2 változatot mutatok.</p>
+    </div>
+    <span class="bc-badge is-warning">Jóváhagyásra vár</span>
+  </header>
+
+  <div class="bc-alert is-info" role="note"><p><strong>Hogyan olvasd:</strong> a <span class="bc-badge is-accent">Javaslat</span> jelű változatot ajánlom. A makettek állóképek, a képek helyén színátmenet van, a nevek, számok és határok <strong>mintaadatok</strong> (a valódi határokat a projekt adja). A lap a rendszered világos/sötét módját követi.</p></div>
+
+  <!-- 1. KÉPFELTÖLTŐ -->
+  <section class="prop" aria-labelledby="p1">
+    <header><h2 id="p1">1. Képfeltöltő (ImageUpload) – ejtőzóna</h2><span class="bc-badge">organizmus</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> <code>EntityImageUploadDropzone</code> (16 fájl használja), <code>ImageUploadDropzone</code> (1), <code>ImageUploader</code> (0 használó – halott kód). Ma: <code>accept="image/*"</code>, de a felirat „JPG, PNG, GIF” – bármilyen képtípus átmegy (pl. HEIC, SVG); a méretet (5 MB) és a típust <strong>értesítésben</strong> jelzi, nem a mezőnél; darabszám-határ és számláló nincs.</span>
+      <span><strong>Épül:</strong> Field (címke + ⓘ + tartomány + számláló – 01-es csomag) + natív <code>&lt;input type="file"&gt;</code> egy <code>&lt;label&gt;</code>-ben (billentyűzettel is) + húzás-ejtés + haladásjelző; utána opcionálisan 3. Képvágó.</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – a galéria-rácsba épül („+ Kép” csempe)</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <span class="m-lbl">Képek <span class="m-help">i</span></span>
+          <div class="m-grid">
+            <div class="m-tile m-img"><span class="bc-badge is-accent cov">Borító</span></div>
+            <div class="m-tile m-img v2"></div>
+            <div class="m-tile m-img v3"></div>
+            <div class="m-tile up"><span>2,1/5 MB</span><span class="m-bar" style="--p:62%"><i></i></span></div>
+            <div class="m-tile add"><b>+</b>Kép</div>
+          </div>
+          <div class="bc-meta" style="margin-top:var(--bc-sp-2)"><span>JPG, PNG, WebP · legfeljebb 5 MB/kép · legfeljebb 10 kép</span><span class="bc-count">4/10 kép</span></div>
+          <div class="m-stack" style="margin-top:var(--bc-sp-2)">
+            <p class="m-err"><b>✕</b><span>etlap.heic – ezt a formátumot nem tudjuk megjeleníteni. Mentsd el JPG-ként, és töltsd fel újra.</span></p>
+            <p class="m-err"><b>✕</b><span>terasz.jpg – 7,8 MB, a határ 5 MB. Kicsinyítsd le, pl. 2000 px szélesre.</span></p>
+          </div>
+        </div>
+        <ul><li>Egy helyen látod, mi van fent, mi tölt, és mennyi fér még (a 16 feltöltő ma mind galériával párban él).</li><li>Az egész rácsra rá lehet húzni a fájlokat; a „+ Kép” csempe billentyűzettel is elérhető.</li><li>A hibás fájl <strong>el sem indul</strong>; az oka és a teendő a mező alatt marad, amíg be nem zárod.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – külön nagy ejtőzóna a galéria fölött</h3>
+        <div class="mock" aria-hidden="true">
+          <span class="m-lbl">Képek <span class="m-help">i</span></span>
+          <div class="m-drop is-over" style="margin-top:var(--bc-sp-2)"><strong>Engedd el itt a képeket</strong><span>vagy válaszd ki a gépedről</span></div>
+          <div class="bc-meta" style="margin-top:var(--bc-sp-1)"><span>JPG, PNG, WebP · max. 5 MB/kép · max. 10 kép</span><span class="bc-count">3/10 kép</span></div>
+          <div class="m-grid"><div class="m-tile m-img"></div><div class="m-tile m-img v2"></div><div class="m-tile m-img v3"></div></div>
+        </div>
+        <ul><li>Nagy, egyértelmű cél – első feltöltésnél barátságos.</li><li>Sok helyet foglal akkor is, ha már van 10 kép; a feltöltő és az eredmény két helyen van.</li></ul>
+      </div></div>
+    </div>
+    <div class="details">
+      <div><strong>Állapotok:</strong> üres (nagy „+ Kép” csempe + egy mondat) · ráhúzás (a rács mézes kerete) · feltöltés (csempénként %, MB, Megszakítás) · feldolgozás · kész · hiba (Újrapróbálás) · tele (a „+ Kép” tiltott, „10/10 kép – törölj egyet, ha újat tennél fel”) · tiltott · csak olvasható.</div>
+      <div><strong>Szélső esetek (3.4):</strong><ul><li>túl nagy fájl · rossz típus (a <em>tartalmat</em> nézzük, nem a kiterjesztést) · 12 fájl egyszerre, amikor 6 fér → az első 6 indul, a többiről üzenet</li><li>megszakadt feltöltés, lassú hálózat · ugyanaz a fájl kétszer</li><li>nagyon széles/magas kép · átlátszó PNG (sakktábla-háttér) · 0 bájtos fájl</li><li>a súgó szövegét a projekt adja (mire kell a kép, hol jelenik meg az appban)</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 2. GALÉRIA + NAGYÍTÓ -->
+  <section class="prop" aria-labelledby="p2">
+    <header><h2 id="p2">2. Képgaléria és nagyító (Gallery, Lightbox)</h2><span class="bc-badge">organizmus</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> <code>EntityImageGallery</code> (20 használó; ma: rács + törlés, a képleírás a fájlnév), <code>PartnerImageGallery</code> (2), <code>ImageLightbox</code> (1; nyilak és Esc van, fókuszcsapda nincs).</span>
+      <span><strong>Épül:</strong> CSS-rács + 3. csomag: DropdownMenu (⋯), Modal (nagyító), Confirmation; a feltöltő (1A) ebbe a rácsba épül.</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – borítókép + sorrend (húzással és menüből)</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-grid">
+            <div class="m-tile m-img"><span class="bc-badge is-accent cov">Borító</span><span class="m-ic dots">⋯</span></div>
+            <div class="m-tile m-img v2"><span class="m-ic dots">⋯</span></div>
+            <div class="m-tile m-img v3"><span class="m-ic dots">⋯</span></div>
+          </div>
+          <div class="bc-pop" style="margin-top:var(--bc-sp-2);max-width:220px;font-size:var(--bc-fs-xs)"><p><strong>Kép menüje:</strong> Megnyitás · Legyen a borító · Előre · Hátra · Leírás (alt) · Törlés…</p></div>
+        </div>
+        <ul><li>Az első kép a borító – ha az app is így használja, itt látszik, mi lesz a kártyán.</li><li>Sorrend húzással <strong>és</strong> „Előre/Hátra” menüponttal (billentyűzet, érintés).</li><li>Leírás (alt) szerkeszthető – ma a fájlnév a képleírás.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – egyszerű rács, csak törlés (mint ma)</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-grid"><div class="m-tile m-img"><span class="m-ic dots">✕</span></div><div class="m-tile m-img v2"><span class="m-ic dots">✕</span></div><div class="m-tile m-img v3"><span class="m-ic dots">✕</span></div></div>
+        </div>
+        <ul><li>Nincs mit megtanulni.</li><li>A kuka a kép sarkában: egy félrekoppintás és törölve; a sorrend a feltöltés sorrendje.</li></ul>
+      </div></div>
+    </div>
+    <div class="details">
+      <div><strong>Kérdés Bencének / neked:</strong> az app a képek sorrendjét (első = borító) használja? Ha nem, az A-ból csak a menü és az alt marad, a borító nem kell.<br><br><strong>Nagyító – változat nélkül:</strong> sötét háttér, „2/7” számláló, nyilak (billentyű ← →, telefonon húzás), Esc, fókuszcsapda, alul a leírás; a fókusz visszaáll a megnyitott képre.</div>
+      <div class="mock" aria-hidden="true">
+        <div class="m-lightbox">
+          <div class="top"><span class="pill">2/7</span><span class="m-ic">✕</span></div>
+          <div class="mid"><span class="m-ic">‹</span><div class="pic m-img v2"></div><span class="m-ic">›</span></div>
+          <div class="cap"><span class="pill">Terasz nyáron (mintaadat)</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. KÉPVÁGÓ -->
+  <section class="prop" aria-labelledby="p3">
+    <header><h2 id="p3">3. Képvágó (ImageCropper)</h2><span class="bc-badge">organizmus</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> <code>ImageCropperModal</code> (a két feltöltő hívja; <code>react-easy-crop</code> 5.x, rögzített képarány, görgős nagyítás, max. 8×).</span>
+      <span><strong>Épül:</strong> 03/1 Modal + Field (nagyítás csúszka ⓘ-vel, tartománnyal) + Button. A kérdés: a vágó motorja.</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – react-easy-crop marad, DS-burokban</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-crop m-img"><div class="frame"></div></div>
+          <div class="bc-row is-between" style="margin-top:var(--bc-sp-2)"><span class="m-lbl">Képarány <span class="m-help">i</span></span><span class="m-seg"><span class="on">16:9</span><span>1:1</span></span></div>
+          <span class="m-lbl" style="margin-top:var(--bc-sp-2)">Nagyítás <span class="m-help">i</span></span>
+          <div class="m-range" style="--p:12%"><i></i></div>
+          <div class="bc-meta"><span>1–8×</span><span class="bc-count">1,6×</span></div>
+        </div>
+        <ul><li>Már bent van, bevált (MIT licenc) – érintés, csípés, görgő kész.</li><li>A projekt csak a DS <code>ImageCropper</code>-t látja; ha egyszer cserélni kell, egy helyen.</li><li>A DS adja rá: csúszka + ⓘ, billentyűzet (nyilak mozgatnak, +/− nagyít), „Alaphelyzet”, magyar feliratok.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – saját vágó, függőség nélkül</h3>
+        <div class="mock" aria-hidden="true"><div class="m-crop m-img v2"><div class="frame"></div></div></div>
+        <ul><li>Eggyel kevesebb csomag.</li><li>Érintés, csípés, tehetetlenség, Safari-sajátosságok: napokban mérhető munka és hibalehetőség – ugyanazért, ami ma működik.</li></ul>
+      </div></div>
+    </div>
+    <div class="details"><div><strong>Esetek:</strong> nagyon kicsi kép (kisebb, mint a kimenet → figyelmeztetés: „a kép homályos lehet”) · nagyon széles/magas · átlátszó PNG · EXIF-elforgatás (telefonfotó) · a képarányt a projekt rögzíti, ilyenkor a választó nem látszik · Mégse = az eredeti fájl nem töltődik fel.</div></div>
+  </section>
+
+  <!-- 4. VIDEÓFELTÖLTÉS -->
+  <section class="prop" aria-labelledby="p4">
+    <header><h2 id="p4">4. Videófeltöltés – változat nélkül</h2><span class="bc-badge">organizmus</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> <code>VideoUploadModal</code> (1 használó, ContentVideos): csak <code>video/mp4</code>, legfeljebb 25 MB, megszakítható, utána „feldolgozás és regisztráció”. Jó alap – a DS ugyanezt a folyamatot adja egységes kinézettel.</span>
+      <span><strong>Épül:</strong> 1. feltöltő-mag (típus, méret, haladás) + 03/1 Modal + lépésjelző.</span>
+    </div>
+    <div class="mock" aria-hidden="true" style="max-width:520px">
+      <ol class="m-steps"><li class="done"><b>✓</b>Fájl</li><li class="on"><b>2</b>Feltöltés</li><li><b>3</b>Feldolgozás</li><li><b>4</b>Kész</li></ol>
+      <div class="m-file" style="margin-top:var(--bc-sp-3)">
+        <div class="row"><strong>tavaszi-kert.mp4</strong><span>14,2/25 MB</span></div>
+        <span class="m-bar" style="--p:57%"><i></i></span>
+        <div class="row"><span class="bc-muted">57% · kb. 20 mp van hátra</span><span class="m-b gho">Megszakítás</span></div>
+      </div>
+      <div class="bc-meta" style="margin-top:var(--bc-sp-2)"><span>MP4 · legfeljebb 25 MB · 1 videó</span><span class="bc-count">1/1</span></div>
+    </div>
+    <div class="details"><div><strong>Esetek:</strong> rossz típus (.mov) → „Csak MP4 tölthető fel. Telefonon: Megosztás → Mentés MP4-ként.” · 25 MB fölött → a határ és a teendő · megszakítás közben bezárás · a feldolgozás hibázik (a feltöltés megmarad, „Újrapróbálás”) · lassú hálózat · a lap elhagyása feltöltés közben (figyelmeztetés).</div></div>
+  </section>
+
+  <!-- 5. FÁJLIMPORT (EXCEL) -->
+  <section class="prop" aria-labelledby="p5">
+    <header><h2 id="p5">5. Fájlimport (Excel)</h2><span class="bc-badge">organizmus</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> <code>ExcelUploadPage</code> + <code>ResultModal</code> (pages/Excel): sablon letöltése → fájl kiválasztása → feltöltés → az eredményablak csak a hibás/figyelmeztető <strong>sorszámokat</strong> listázza, a hiba okát nem. Rossz fájlt értesítésben jelez.</span>
+      <span><strong>Épül:</strong> 1. feltöltő-mag (.xlsx, .xls) + lépésjelző + <code>bc-table</code> + <code>bc-alert</code>.</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – 3 lépés: fájl → ellenőrzés → import</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <ol class="m-steps"><li class="done"><b>✓</b>Fájl</li><li class="on"><b>2</b>Ellenőrzés</li><li><b>3</b>Import</li></ol>
+          <p style="margin:var(--bc-sp-2) 0;font-size:var(--bc-fs-s)"><strong>128 sor:</strong> 124 rendben, 1 figyelmeztetés, 3 hiba (mintaadat)</p>
+          <div class="m-scroll"><table class="m-mini" style="min-width:300px">
+            <thead><tr><th>Sor</th><th>Oszlop</th><th>Mi a baj, mit tegyél</th></tr></thead>
+            <tbody>
+              <tr class="bad"><td>14</td><td>Irányítószám</td><td>„11O5” – betű van benne: 1105?</td></tr>
+              <tr class="bad"><td>27</td><td>Név</td><td>Üres – kötelező.</td></tr>
+              <tr class="warn"><td>61</td><td>Nyitvatartás</td><td>Nem értelmezhető, üresen marad.</td></tr>
+            </tbody>
+          </table></div>
+          <div class="bc-row is-end" style="margin-top:var(--bc-sp-2)"><span class="m-b gho">Hibalista letöltése</span><span class="m-b pri">124 sor importálása</span></div>
+        </div>
+        <ul><li>Még az import <strong>előtt</strong> látod, mi lesz – és miért nem.</li><li>Sor + oszlop + ok + teendő: a hibát az Excelben rögtön megtalálod.</li><li><strong>Kell hozzá</strong> egy „próbaimport” (dry-run) a backendben – ez fejlesztési idő, döntés kell.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – egy lépés, jobb eredménylista (backend-változás nélkül)</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="bc-alert is-warning" style="font-size:var(--bc-fs-s)"><p><strong>121 sor feltöltve, 3 sor kimaradt.</strong> A kimaradt sorok: 14, 27, 61.</p></div>
+          <div class="bc-row" style="margin-top:var(--bc-sp-2)"><span class="m-b gho">Kimaradt sorok letöltése</span></div>
+        </div>
+        <ul><li>Ma is megvalósítható.</li><li>Utólag derül ki, és ha a backend nem mondja meg az okot, csak sorszámot tudunk mutatni.</li></ul>
+      </div></div>
+    </div>
+    <div class="details"><div><strong>Esetek:</strong> rossz típus (.csv, .numbers) a mező alatt, nem értesítésben · üres fájl · csak fejléc · 10 000+ sor (haladás, a lista görgethető) · ismeretlen oszlop / hiányzó kötelező oszlop · régi sablon (verzió) · ugyanaz a fájl kétszer (duplikáció-figyelmeztetés).</div></div>
+  </section>
+
+  <!-- 6. TÉRKÉP -->
+  <section class="prop" aria-labelledby="p6">
+    <header><h2 id="p6">6. Térkép – jelölő, csoport, jelmagyarázat, vezérlők</h2><span class="bc-badge">organizmus</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja / öltözteti:</strong> Leaflet 1.9 – <code>PoiMap</code> (<code>L.icon</code> + <code>divIcon</code> + <code>leaflet.heat</code> + saját jelmagyarázat), <code>HiveMap</code> (<code>leaflet.markercluster</code> a <strong>saját alapszíneivel</strong>), <code>PartnerContentMap</code> (<code>divIcon</code>), <code>AnalyticsHeatMap</code> (hőtérkép nyers színekkel: kék→sárga→narancs→piros), <code>MapsCoordinateHelper</code>; közös stílus: <code>src/styles/_leaflet.scss</code> (37 sor).</span>
+      <span><strong>Épül:</strong> Leaflet marad (nem cseréljük); a DS ad: <code>bc-map</code> CSS (vezérlők, felugró buborék, csoport), <code>mapMarker({ kind, selected })</code> divIcon-gyár, <code>MapLegend</code>, és a hőtérkép színeit a <code>data-seq</code> tokenekből olvassa. Térkép/lista váltó: 01/3A szegmentált kapcsoló. A hőtérkép grafikon, ezért a 3/B is érvényes rá (cím, egység, „Hogyan olvasd?”, adattábla).</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – tű alakú jelölő ikonnal, számozott csoport</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-map">
+            <span class="m-pin" style="left:22%;top:40%;--c:var(--bc-success-bg)"><span>P</span></span>
+            <span class="m-pin is-sel" style="left:48%;top:52%"><span>K</span></span>
+            <span class="m-pin" style="left:34%;top:26%;--c:var(--bc-info-bg)"><span>E</span></span>
+            <span class="m-clu" style="left:74%;top:30%;--s:40px">24</span>
+            <span class="m-clu" style="left:62%;top:74%;--s:32px">7</span>
+            <span class="m-ctrl"><span>+</span><span>−</span><span>◎</span></span>
+            <span class="m-legend"><span><i style="--c:var(--bc-success-bg)">P</i>Partner</span><span><i style="--c:var(--bc-info-bg)">E</i>Esemény</span><span><i style="--c:var(--bc-accent)">K</i>Kijelölt</span></span>
+          </div>
+        </div>
+        <ul><li>A típust <strong>betű/ikon és szín</strong> együtt jelzi (színtévesztőnek is), a kijelölt mézes és nagyobb.</li><li>Csoport: fehér kör, fekete keret, Lalezar szám; 3 méretfokozat – a mostani zöld/sárga/narancs alapszínek helyett.</li><li>Vezérlők 44 px-esek érintésen; jelmagyarázat telefonon lenyitható.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – kis pötty jelölő (sűrű térképhez)</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-map">
+            <span class="m-dot" style="left:20%;top:40%;--c:var(--bc-success)"></span><span class="m-dot" style="left:28%;top:46%;--c:var(--bc-success)"></span><span class="m-dot" style="left:48%;top:52%;--c:var(--bc-accent)"></span><span class="m-dot" style="left:36%;top:78%;--c:var(--bc-info)"></span><span class="m-dot" style="left:70%;top:30%;--c:var(--bc-success)"></span><span class="m-dot" style="left:76%;top:34%;--c:var(--bc-info)"></span><span class="m-dot" style="left:62%;top:74%;--c:var(--bc-success)"></span>
+            <span class="m-ctrl"><span>+</span><span>−</span><span>◎</span></span>
+          </div>
+        </div>
+        <ul><li>Sok pont is áttekinthető, csoport nélkül.</li><li>Csak szín különbözteti meg; nehéz rákoppintani (14 px).</li></ul>
+      </div></div>
+    </div>
+    <div class="details">
+      <div><strong>Hőtérkép-skála:</strong> ma szivárvány (kék→piros), ami a sötét módban és színtévesztőnek félrevezető. Javaslat: egyszínű sorozat a <code>data-seq</code> tokenekből, két végén felirattal és egységgel.
+        <div class="bc-row" aria-hidden="true" style="margin-top:var(--bc-sp-2);gap:var(--bc-sp-2)"><span class="bc-muted">ma</span><span class="m-rainbow"></span><span class="bc-muted">javaslat</span><span class="m-seq"><i></i><i></i><i></i><i></i><i></i></span></div>
+        <p class="bc-help" style="margin-top:var(--bc-sp-1)">Kiegészítés: a B pötty lehet az A „kis nagyítású” formája (távolról pötty, közelről tű) – ha kéred, így építem.</p>
+      </div>
+      <div><strong>Esetek:</strong><ul><li>0 pont („Ezen a területen nincs találat” + nagyítás ki) · 1 pont · 10 000+ pont (csoport kötelező)</li><li>azonos koordinátájú pontok (csoport szétnyílik)</li><li>a csempék nem töltenek be (offline) · hely-engedély megtagadva</li><li>billentyűzet: a jelölők Tab-bal bejárhatók, Enter nyitja a buborékot; lista-nézet mindig elérhető</li><li>sötét mód (a csempe világos marad, a DS-rétegek sötétek)</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 7. HAVI NAPTÁR -->
+  <section class="prop" aria-labelledby="p7">
+    <header><h2 id="p7">7. Havi naptár (MonthCalendar)</h2><span class="bc-badge">organizmus</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> <code>pages/Calendar/AdminCalendar.tsx</code> (536 sor: hónapváltó, 3 szűrő, rács, saját <code>CalendarDialog</code>) és <code>PartnerContentCalendar</code>. A három tartalomfajta színe ma nyers hex (<code>#d9ecfb</code> esemény, <code>#fde5ed</code> speciális nap, <code>#e7efd7</code> oktatás), sötét módban nem vált.</span>
+      <span><strong>Épül:</strong> DS rács (a 01/2 dátumválasztó hét- és hónaplogikája: hétfő, magyar nevek) + szerepszínek: esemény = <code>info</code>, speciális nap = <code>warning</code>, oktatás = <code>success</code>, mindegyik bal csíkkal és jelmagyarázattal; napra kattintva 3. csomag Oldalpanel.</span>
+    </div>
+    <div class="mock" aria-hidden="true">
+      <div class="m-callegend"><span class="m-ev e">Esemény</span><span class="m-ev s">Speciális nap</span><span class="m-ev k">Oktatás</span></div>
+      <div class="m-scroll"><div class="m-cal" style="min-width:560px">
+        <span class="h">H</span><span class="h">K</span><span class="h">Sze</span><span class="h">Cs</span><span class="h">P</span><span class="h">Szo</span><span class="h">V</span>
+        <div class="d o"><b>28</b></div><div class="d o"><b>29</b></div><div class="d o"><b>30</b></div>
+        <div class="d t"><b>1</b><span class="m-ev s">Zene világnapja</span><span class="m-ev k">Mi az a lábnyom?</span></div>
+        <div class="d"><b>2</b><span class="m-ev e">Kertnyitó (mintaadat)</span></div>
+        <div class="d"><b>3</b></div>
+        <div class="d"><b>4</b><span class="m-ev s">Állatok világnapja</span><span class="m-ev e">Méhész-nap</span><span class="m-more">+2 további</span></div>
+      </div></div>
+      <p class="bc-help" style="margin:var(--bc-sp-1) 0 0">Asztali nézet (a rács 560 px alatt vízszintesen görgethető lenne – ezért a telefonra külön döntés kell, lent).</p>
+    </div>
+    <div class="variants" style="margin-top:var(--bc-sp-4)">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – telefonon: pöttyös hónap + a kiválasztott nap listája</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-dotcal">
+            <span class="h">H</span><span class="h">K</span><span class="h">Sze</span><span class="h">Cs</span><span class="h">P</span><span class="h">Szo</span><span class="h">V</span>
+            <span>29</span><span>30</span><span class="sel">1<em><i class="s"></i><i class="k"></i></em></span><span>2<em><i class="e"></i></em></span><span>3</span><span>4<em><i class="s"></i><i class="e"></i></em></span><span>5</span>
+          </div>
+          <div class="m-agenda"><span class="day">Október 1., szerda</span><span class="m-ev s">Zene világnapja</span><span class="m-ev k">Mi az a lábnyom?</span></div>
+        </div>
+        <ul><li>A hónap <strong>alakja</strong> megmarad: egy pillantás, hol van üres nap – a „Tartalmi áttekintés” pont erről szól.</li><li>A napok neve teljes hosszában olvasható a listában.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – telefonon: napló-lista (csak a napok, amiken van valami)</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-agenda"><span class="day">Október 1., szerda</span><span class="m-ev s">Zene világnapja</span><span class="m-ev k">Mi az a lábnyom?</span><span class="day">Október 2., csütörtök</span><span class="m-ev e">Kertnyitó (mintaadat)</span><span class="day">Október 3., péntek</span><span class="empty">Nincs tartalom</span></div>
+        </div>
+        <ul><li>Egyszerű, sokat mutat görgetve.</li><li>A hónap egészét nem látod; üres napok csak jelölve, ha külön kérjük.</li></ul>
+      </div></div>
+    </div>
+    <div class="details"><div><strong>Esetek:</strong> 0 tartalom a hónapban · nagyon sok egy napon (+N további → panel) · hosszú cím (levágva, teljes címe a panelben) · ismétlődő (évenkénti) speciális nap · szűrő mindent kikapcsol · hónap határán átnyúló esemény · töltés/hiba (Újrapróbálás) · ma kiemelve (nem csak színnel: kör + „ma” a képernyőolvasónak).</div></div>
+  </section>
+
+  <!-- 8. NYITVATARTÁS -->
+  <section class="prop" aria-labelledby="p8">
+    <header><h2 id="p8">8. Nyitvatartás-szerkesztő (OpeningHours)</h2><span class="bc-badge">organizmus</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> <code>components/OpeningHours</code> (68 sor, 2 használó): napi egy sáv, zárva/nyitva egy lakat/pipa ikongomb nyers színnel és <code>aria-pressed</code> nélkül, két natív időmező; nincs ellenőrzés (a zárás lehet a nyitás előtt), nincs „másold a többi napra”.</span>
+      <span><strong>Épül:</strong> Field (ⓘ, tartomány) + Switch + időmező (01/2A idő része) + Button.</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – soronként egy nap: kapcsoló + idősáv + gyors másolás</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <span class="m-lbl">Nyitvatartás <span class="m-help">i</span></span>
+          <div class="m-oh" style="margin-top:var(--bc-sp-2)">
+            <div class="r"><span class="dn">Hétfő</span><span class="m-sw on"></span><span class="m-time">08:00</span>–<span class="m-time">18:00</span></div>
+            <div class="r"><span class="dn">Kedd</span><span class="m-sw on"></span><span class="m-time">08:00</span>–<span class="m-time">18:00</span></div>
+            <div class="r"><span class="dn">Szombat</span><span class="m-sw on"></span><span class="m-time">09:00</span>–<span class="m-time">13:00</span></div>
+            <div class="r"><span class="dn">Vasárnap</span><span class="m-sw"></span><span class="closed">Zárva</span></div>
+          </div>
+          <div class="bc-row" style="margin-top:var(--bc-sp-2);gap:var(--bc-sp-3)"><span class="m-link">Hétfő másolása a hétköznapokra</span></div>
+          <p class="m-err" style="margin-top:var(--bc-sp-2)"><b>✕</b><span>Kedd: a zárás (07:00) a nyitás előtt van. Éjfél utáni záráshoz írd: 02:00, és jelöld „másnap”.</span></p>
+        </div>
+        <ul><li>Egy pillantásra olvasható, mint egy kirakati tábla.</li><li>A kapcsoló egyértelmű (nyitva/zárva), képernyőolvasónak is.</li><li>Leggyakoribb eset (H–P ugyanaz) egy koppintás.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – sablon + kivételek</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-chips"><span class="m-chip on">H–P 8–18, Szo 9–13</span><span class="m-chip">Minden nap 0–24</span><span class="m-chip">Egyéni</span></div>
+          <p style="margin:var(--bc-sp-2) 0 0;font-size:var(--bc-fs-s)">Kivétel: <strong>Szerda 10–18</strong></p>
+        </div>
+        <ul><li>Nagyon gyors a tipikus boltnál.</li><li>A tényleges heti rend „fejben összerakandó”; az egyedi eseteknél úgyis az A-hoz jutunk.</li></ul>
+      </div></div>
+    </div>
+    <div class="details">
+      <div><strong>Döntés kell (adatmodell):</strong> ma napi <strong>egy</strong> sáv fér el (<code>start</code>, <code>end</code>, <code>is_closed</code>). Ebédszünethez (két sáv) és éjfél utáni záráshoz a backend és az app (Bence) is módosul. Javaslat: a DS-komponens tudja, de csak akkor kapcsoljuk be, ha a modell is.</div>
+      <div><strong>Esetek:</strong><ul><li>0–24 (egész nap) · éjfél utáni zárás (22:00–02:00) · két sáv</li><li>zárás = nyitás · üres idő nyitott napon</li><li>ünnepnap / szezonális nyitvatartás (külön elem, most nem része)</li><li>12 órás beírás („6pm”) → 18:00</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 9–10. VÁLTOZAT NÉLKÜL -->
+  <section class="prop" aria-labelledby="p9">
+    <header><h2 id="p9">9. Avatar és címke – változat nélkül</h2><span class="bc-badge">atom</span></header>
+    <div class="bc-table-wrap">
+      <table class="bc-table">
+        <thead><tr><th>Elem</th><th>Szint</th><th>Mire épül</th><th>Kiváltja az adminban</th></tr></thead>
+        <tbody>
+          <tr><td>Avatar (kép vagy monogram; 24 / 32 / 40 / 64 px; kör vagy lekerekített négyzet cégnek)</td><td>atom</td><td>tokenek: <code>surface-accent</code>, <code>line</code>, Lalezar monogram</td><td>a fejléc <strong>mindenkinél ugyanazt</strong> a beégetett képet mutatja (<code>/images/Hege.png</code>, <code>alt="avatar"</code>); a HiveMap saját avatar-spanjai</td></tr>
+          <tr><td>Címke / állapotjelvény (Badge, Tag)</td><td>atom</td><td><code>bc-badge</code> (+ állapotok), eltávolítható címke: <code>bc-tag</code> (01/4A)</td><td><code>BeecoTag</code> (1), a 6 fájl saját <code>*-badge</code>/<code>*-pill</code> osztálya</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mock m-avs" aria-hidden="true" style="margin-top:var(--bc-sp-4)">
+      <span class="m-av" style="--s:24px">K</span><span class="m-av" style="--s:32px">K</span><span class="m-av">KÁ</span><span class="m-av img" style="--s:64px"></span><span class="m-av sq" style="--s:40px">ZS</span>
+      <span class="bc-badge is-success">Aktív</span><span class="bc-badge is-warning">Ellenőrzésre vár</span><span class="bc-badge is-danger">Lejárt</span><span class="bc-badge is-muted">Piszkozat</span>
+    </div>
+    <p class="bc-help" style="margin-top:var(--bc-sp-2)">Avatar: ha nincs kép vagy nem tölt be, a név kezdőbetűi (ékezettel: „Á”); a kép <code>alt</code>-ja a név, díszítő helyen üres. Monogramok: mintaadat.</p>
+  </section>
+
+  <section class="decide" aria-labelledby="dd">
+    <h2 id="dd">Döntés</h2>
+    <p>Írd meg a chatben, például: <strong>„1A, 2A (ha az app használja a sorrendet), 3A, 4, 5A vagy 5B, 6A (+ pötty távolról: igen/nem), 7A, 8A (két sáv: most nem), 9 – jóváhagyva”</strong>, vagy azt, amit másképp szeretnél. Az 5A és a 8-as két sáv backend-munkát kér – ezekről Bencével is egyeztetni kell. Ez kerül a <code>docs/javaslatok/04-media.md</code> Döntés részébe.</p>
+  </section>
+</main>
+</body>
+</html>

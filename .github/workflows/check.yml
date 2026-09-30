@@ -10,5 +10,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Tesztek (dist friss, kontraszt, párosság, elemek, játékbőr)
+          cache: npm
+      - name: Függőségek
+        run: npm ci
+      - name: Chromium a komponens-önteszthez
+        run: npx playwright install --with-deps chromium
+      - name: Tesztek (dist friss, React-kimenet friss, kontraszt, párosság, elemek, komponens-önteszt, játékbőr)
         run: npm test

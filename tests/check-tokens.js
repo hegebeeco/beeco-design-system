@@ -56,6 +56,8 @@ if (seq.join() !== core.data.seq.join()) hiba('párosság: a --scale-1..5 és a 
 
 // 4. A termékbőr elemei
 const gen = rd('dist/css/beeco-tokens.css');
+// Önhivatkozó változó (--x: var(--x)) érvénytelen → a böngésző eldobja (így tűnt el egyszer a fókuszkeret)
+for (const m of gen.matchAll(/(--bc-[a-z0-9-]+)\s*:\s*var\((--bc-[a-z0-9-]+)\)/g)) if (m[1] === m[2]) hiba(`dist/css/beeco-tokens.css: önhivatkozó változó ${m[1]}`);
 const letezo = new Set([...gen.matchAll(/(--bc-[a-z0-9-]+)\s*:/g)].map(m => m[1]));
 const dir = path.join(ROOT, 'termek/css');
 for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.css'))) {

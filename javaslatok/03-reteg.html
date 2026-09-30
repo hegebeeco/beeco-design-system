@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="hu" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Javaslat 03 – rétegek</title>
+<meta name="description" content="beeco design system – 3. komponenscsomag (rétegek és navigáció): felugró ablak, oldalpanel, súgó, menü, fülek, oldalfej, értesítés, mobil navigáció – változatok Kristóf jóváhagyására.">
+<link rel="icon" href="../web/assets/brand/ikon-32.png">
+<link rel="stylesheet" href="../termek/css/bc-all.css">
+<style>
+  /* A javaslatlap saját elrendezése – csak tokenek (ugyanaz, mint a 01-es lapon) */
+  .wrap { max-width: 1120px; margin: 0 auto; padding: var(--bc-sp-5) var(--bc-sp-4) var(--bc-sp-8); }
+  .prop { margin-top: var(--bc-sp-7); }
+  .prop > header { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2) var(--bc-sp-4); align-items: baseline; justify-content: space-between; padding-bottom: var(--bc-sp-2); border-bottom: var(--bc-bw-base) solid var(--bc-line); margin-bottom: var(--bc-sp-4); }
+  .prop > header h2 { margin: 0; }
+  .meta { display: grid; gap: var(--bc-sp-1); font-size: var(--bc-fs-s); color: var(--bc-ink-soft); margin-bottom: var(--bc-sp-4); }
+  .meta strong { color: var(--bc-ink); }
+  .meta code, .details code { overflow-wrap: anywhere; }
+  .variants { display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+  .var { display: flex; flex-direction: column; gap: var(--bc-sp-3); min-width: 0; }
+  .var .bc-card { flex: 1; display: flex; flex-direction: column; gap: var(--bc-sp-3); min-width: 0; }
+  .var.is-rec .bc-card { background: var(--bc-surface-accent); }
+  .var h3 { margin: 0; }
+  .var ul { margin: 0; padding-left: 1.2em; font-size: var(--bc-fs-s); }
+  .mock { padding: var(--bc-sp-4); background: var(--bc-bg); border: var(--bc-bw-hair) dashed var(--bc-line-soft); border-radius: var(--bc-r-m); min-width: 0; }
+  .details { margin-top: var(--bc-sp-4); display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); font-size: var(--bc-fs-s); }
+  .details ul { margin: var(--bc-sp-2) 0 0; padding-left: 1.2em; }
+  .decide { margin-top: var(--bc-sp-7); }
+  .note { margin-top: var(--bc-sp-3); }
+
+  /* ---- Makettek (csak a javaslatlapon; állóképek, nem kattinthatók) ---- */
+  /* Mini képernyő: benne réteg, háttér, lista */
+  .m-screen { position: relative; overflow: hidden; height: 240px; background: var(--bc-bg); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
+  .m-screen.is-tall { height: 290px; }
+  .m-screen .m-rows { display: grid; gap: var(--bc-sp-2); padding: var(--bc-sp-3); }
+  .m-line { display: block; height: 12px; border-radius: var(--bc-r-s); background: var(--bc-surface-2); }
+  .m-line.w40 { width: 40%; } .m-line.w60 { width: 60%; } .m-line.w80 { width: 80%; }
+  .m-scrim { position: absolute; inset: 0; display: grid; place-items: center; padding: var(--bc-sp-3); background: rgb(var(--bc-scrim-rgb) / var(--bc-scrim-opacity)); }
+  .m-dialog { width: min(100%, 300px); display: grid; gap: var(--bc-sp-2); padding: var(--bc-sp-3) var(--bc-sp-4); font-size: var(--bc-fs-s); color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-l); box-shadow: var(--bc-shadow-l); }
+  .m-dialog strong.t { font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-l); line-height: var(--bc-lh-tight); }
+  .m-dialog p { margin: 0; }
+  .m-acts { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--bc-sp-2); }
+  /* Gombnak látszó állókép – szándékosan NEM bc-btn, és nincs mutató-kurzor */
+  .m-b { display: inline-grid; place-items: center; min-height: 32px; padding: 0 var(--bc-sp-3); font-family: var(--bc-font-display); font-size: var(--bc-fs-m); line-height: 1; white-space: nowrap; color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+  .m-b.pri { background: var(--bc-accent); color: var(--bc-on-accent); }
+  .m-b.dan { background: var(--bc-danger-bg); color: var(--bc-danger-ink); }
+  .m-b.gho { border-color: transparent; box-shadow: none; background: transparent; }
+  .m-b.off { background: var(--bc-surface-2); color: var(--bc-ink-muted); border-color: var(--bc-line-soft); box-shadow: none; }
+  .m-typed { display: flex; align-items: center; min-height: 36px; padding: 0 var(--bc-sp-2); font-size: var(--bc-fs-s); color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-s); }
+  .m-typed.is-ok { border-color: var(--bc-success); }
+  /* Sor egy listában (tábla-szerű) */
+  .m-tr { display: flex; align-items: center; gap: var(--bc-sp-2); min-height: 40px; padding: 0 var(--bc-sp-3); font-size: var(--bc-fs-s); color: var(--bc-ink); background: var(--bc-surface); border-bottom: var(--bc-bw-hair) solid var(--bc-line-soft); }
+  .m-tr.is-sel { background: var(--bc-surface-accent); }
+  .m-tr .grow { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .m-tr.is-confirm { background: var(--bc-danger-bg); color: var(--bc-danger-ink); font-weight: var(--bc-fw-semibold); }
+  .m-ic { display: inline-grid; place-items: center; width: 28px; height: 28px; flex: none; font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); color: var(--bc-ink); border: var(--bc-bw-hair) solid var(--bc-line-soft); border-radius: var(--bc-r-s); background: var(--bc-surface); }
+  .m-ic.is-on { background: var(--bc-accent); color: var(--bc-on-accent); border-color: var(--bc-line); }
+  /* Oldalpanel (fiók) */
+  .m-drawer { position: absolute; top: 0; right: 0; bottom: 0; width: 62%; display: flex; flex-direction: column; background: var(--bc-surface); border-left: var(--bc-bw-base) solid var(--bc-line); box-shadow: var(--bc-shadow-l); }
+  .m-drawer .hd { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-2); padding: var(--bc-sp-2) var(--bc-sp-3); border-bottom: var(--bc-bw-hair) solid var(--bc-line-soft); font-family: var(--bc-font-display); font-size: var(--bc-fs-m); }
+  .m-drawer .bd { flex: 1; display: grid; align-content: start; gap: var(--bc-sp-2); padding: var(--bc-sp-3); font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+  .m-drawer .ft { display: flex; justify-content: flex-end; gap: var(--bc-sp-2); padding: var(--bc-sp-2) var(--bc-sp-3); border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }
+  .m-shade { position: absolute; top: 0; left: 0; bottom: 0; width: 38%; background: rgb(var(--bc-scrim-rgb) / .12); }
+  /* Mező-fej a súgógombbal */
+  .m-lbl { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-1); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); }
+  .m-help { display: inline-grid; place-items: center; width: 22px; height: 22px; font-family: var(--bc-font-display); font-size: var(--bc-fs-s); line-height: 1; color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: 50%; }
+  .m-help.is-open { background: var(--bc-accent); color: var(--bc-on-accent); }
+  .m-field { display: flex; align-items: center; min-height: 40px; margin-top: var(--bc-sp-1); padding: 0 var(--bc-sp-2); font-size: var(--bc-fs-m); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-s); box-shadow: var(--bc-shadow-s); }
+  .m-pop { position: relative; margin-top: var(--bc-sp-2); max-width: 300px; }
+  .m-pop::before { content: ""; position: absolute; top: -7px; left: 44px; width: 12px; height: 12px; background: var(--bc-surface); border-left: var(--bc-bw-base) solid var(--bc-line); border-top: var(--bc-bw-base) solid var(--bc-line); transform: rotate(45deg); }
+  .m-tip { display: inline-block; padding: var(--bc-sp-1) var(--bc-sp-2); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-bg); background: var(--bc-ink); border-radius: var(--bc-r-s); }
+  /* Menü */
+  .m-menu { display: grid; min-width: 180px; max-width: 240px; margin-left: auto; padding: var(--bc-sp-1); font-size: var(--bc-fs-s); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); }
+  .m-mi { display: flex; align-items: center; gap: var(--bc-sp-2); min-height: 36px; padding: 0 var(--bc-sp-2); border-radius: var(--bc-r-s); color: var(--bc-ink); }
+  .m-mi.is-active { background: var(--bc-surface-2); }
+  .m-mi.is-dan { color: var(--bc-danger-ink); }
+  .m-mi kbd { margin-left: auto; font: inherit; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+  .m-sep { height: 1px; margin: var(--bc-sp-1) 0; background: var(--bc-line-soft); }
+  /* Fülek (állókép: span, nem bc-tab gomb) */
+  .m-tabs { display: flex; gap: var(--bc-sp-1); overflow-x: auto; border-bottom: var(--bc-bw-base) solid var(--bc-line); scrollbar-width: none; }
+  .m-tabs span { flex: none; display: grid; place-items: center; min-height: 40px; padding: 0 var(--bc-sp-3); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); border: var(--bc-bw-base) solid transparent; border-bottom: 0; border-radius: var(--bc-r-m) var(--bc-r-m) 0 0; margin-bottom: calc(-1 * var(--bc-bw-base)); }
+  .m-tabs span.on { color: var(--bc-on-accent); background: var(--bc-accent); border-color: var(--bc-line); }
+  .m-tabs-fade { position: relative; }
+  .m-tabs-fade::after { content: ""; position: absolute; top: 0; right: 0; bottom: 2px; width: 40px; background: linear-gradient(90deg, transparent, var(--bc-bg)); pointer-events: none; }
+  .m-select { display: flex; align-items: center; justify-content: space-between; min-height: 40px; padding: 0 var(--bc-sp-3); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-s); }
+  .m-narrow { max-width: 300px; }
+  /* Oldalfej és morzsamenü */
+  .m-crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-1); margin: 0 0 var(--bc-sp-1); padding: 0; list-style: none; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+  .m-crumbs li + li::before { content: "›"; margin-right: var(--bc-sp-1); color: var(--bc-ink-muted); }
+  .m-crumbs .u { text-decoration: underline; text-underline-offset: 2px; color: var(--bc-ink); }
+  .m-ph { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--bc-sp-2); }
+  .m-ph .h { font-family: var(--bc-font-display); font-size: var(--bc-fs-xl); line-height: var(--bc-lh-tight); }
+  .m-topbar { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-2); min-height: 44px; padding: 0 var(--bc-sp-3); background: var(--bc-bg); border-bottom: var(--bc-bw-base) solid var(--bc-line); font-size: var(--bc-fs-s); }
+  .m-topbar .h { font-family: var(--bc-font-display); font-size: var(--bc-fs-l); }
+  .m-av { display: inline-grid; place-items: center; width: 28px; height: 28px; flex: none; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink); background: var(--bc-surface-accent); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: 50%; }
+  /* Értesítés elhelyezése */
+  .m-toast-area { display: grid; padding: var(--bc-sp-2); }
+  .m-toast-area.tr { justify-items: end; align-content: start; }
+  .m-toast-area.bc { justify-items: center; align-content: end; height: 100%; }
+  .m-toast-area .bc-toast { min-width: 0; width: min(100%, 250px); font-size: var(--bc-fs-xs); }
+  .m-toast-area .bc-toast p { margin: 0; }
+  .m-toast-area .bc-toast .u { margin-left: auto; font-weight: var(--bc-fw-bold); text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
+  .m-pos { position: absolute; inset: 0; }
+  /* Mobil navigáció */
+  .m-phone { position: relative; overflow: hidden; width: min(100%, 260px); height: 300px; margin: 0 auto; background: var(--bc-bg); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-l); }
+  .m-nav { position: absolute; top: 0; left: 0; bottom: 0; width: 78%; display: grid; align-content: start; gap: 2px; padding: var(--bc-sp-2); background: var(--bc-surface); border-right: var(--bc-bw-base) solid var(--bc-line); box-shadow: var(--bc-shadow-l); font-size: var(--bc-fs-s); }
+  .m-nav .brand { font-family: var(--bc-font-display); font-size: var(--bc-fs-l); padding: var(--bc-sp-1) var(--bc-sp-2) var(--bc-sp-2); }
+  .m-nav .grp { margin: var(--bc-sp-2) var(--bc-sp-2) 0; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink-soft); text-transform: uppercase; letter-spacing: .06em; }
+  .m-nav .it { display: flex; align-items: center; min-height: 36px; padding: 0 var(--bc-sp-2); font-weight: var(--bc-fw-semibold); border: var(--bc-bw-base) solid transparent; border-radius: var(--bc-r-m); }
+  .m-nav .it.on { background: var(--bc-accent); color: var(--bc-on-accent); border-color: var(--bc-line); box-shadow: var(--bc-shadow-s); }
+  .m-tabbar { position: absolute; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(5, 1fr); background: var(--bc-surface); border-top: var(--bc-bw-base) solid var(--bc-line); }
+  .m-tabbar span { display: grid; justify-items: center; gap: 2px; padding: var(--bc-sp-1) 0; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-ink); }
+  .m-tabbar span i { display: block; width: 18px; height: 18px; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-s); }
+  .m-tabbar span.on i { background: var(--bc-accent); }
+  /* Lenyitható (makett) */
+  .m-acc { border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); background: var(--bc-surface); overflow: hidden; font-size: var(--bc-fs-s); }
+  .m-acc > div { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-2); min-height: 40px; padding: 0 var(--bc-sp-3); font-weight: var(--bc-fw-semibold); }
+  .m-acc > div + div, .m-acc > p { border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }
+  .m-acc > p { margin: 0; padding: var(--bc-sp-2) var(--bc-sp-3); color: var(--bc-ink-soft); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="bc-page-header">
+    <div>
+      <p class="bc-muted" style="margin:0">beeco design system · javaslat 03 · 2026-10-01</p>
+      <h1>Rétegek és navigáció</h1>
+      <p>A harmadik komponenscsomag az adminhoz (és a partnerhez): minden, ami a tartalom <strong>fölé</strong> nyílik (ablak, oldalpanel, súgó, menü, értesítés), és ami az oldalak <strong>között</strong> vezet (fülek, oldalfej, morzsamenü, oldalsáv telefonon). Ahol valóban dönteni kell, 2 változatot mutatok.</p>
+    </div>
+    <span class="bc-badge is-warning">Jóváhagyásra vár</span>
+  </header>
+
+  <div class="bc-alert is-info" role="note"><p><strong>Hogyan olvasd:</strong> a <span class="bc-badge is-accent">Javaslat</span> jelű változatot ajánlom. A makettek állóképek (nem kattinthatók), a bennük lévő nevek és számok <strong>mintaadatok</strong>. A valódi komponens a jóváhagyás után készül el, billentyűzettel, képernyőolvasóval és tesztlappal. A lap a rendszered világos/sötét módját követi.</p></div>
+
+  <div class="bc-alert is-warning note" role="note"><p><strong>Amit az adminban találtam:</strong> ~19 fájl rajzol saját ablakot (saját háttér, saját bezárás), ebből csak <strong>3</strong> tartja bent a fókuszt (ConfirmationModal, AdminCalendar, PoiBulkImagesModal), és egyik sem portálban nyílik. A fejléc címe 18 ágú <code>if/else</code>, ami az 56 útvonalból kb. 21-et fed le – a Naptár, Analitika, Rajok, Nyereményjáték, Üzenetek oldalon üres. Az adminnak nincs telefonos elrendezése.</p></div>
+
+  <!-- 1. FELUGRÓ ABLAK + MEGERŐSÍTÉS -->
+  <section class="prop" aria-labelledby="p1">
+    <header><h2 id="p1">1. Felugró ablak (Modal) és megerősítés</h2><span class="bc-badge">organizmus</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> <code>ConfirmationModal</code> (13 fájl használja), <code>ResultModal</code>, <code>TagCreateModal</code> (7), <code>PoiUnknownTagsModal</code>, <code>PoiBulkEdit/Images/DeleteModal</code>, <code>VideoUploadModal</code>, <code>ImageCropperModal</code>, <code>MapsCoordinateHelper</code>, az AdminCalendar saját <code>CalendarDialog</code>-ja, <code>PrizeDrawOverlay</code>, a TagsManagement, PoiDuplicates és Hives oldal saját ablakai; <code>window.confirm</code> (AddInAppMessage).</span>
+      <span><strong>Épül:</strong> Radix Dialog / AlertDialog (fókuszcsapda, Esc, fókusz vissza a nyitó gombra, portál) + a meglévő <code>bc-modal</code>, <code>bc-scrim</code>, Button. Méretek: alap 560 px, <code>is-wide</code> 880 px, telefonon teljes szélesség.</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – középre nyíló megerősítő ablak</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-screen">
+            <div class="m-rows"><span class="m-line w80"></span><span class="m-line w60"></span><span class="m-line w80"></span><span class="m-line w40"></span><span class="m-line w60"></span></div>
+            <div class="m-scrim"><div class="m-dialog">
+              <strong class="t">Törlöd a kupon-sablont?</strong>
+              <p>„Nyári kávé 10%” (mintaadat) – a hozzá tartozó 3 időzítés is törlődik.</p>
+              <div class="m-acts"><span class="m-b">Mégse</span><span class="m-b dan">Törlés</span></div>
+            </div></div>
+          </div>
+        </div>
+        <ul><li>Megállít: a következményt (mi törlődik még) ki lehet írni.</li><li>A fókusz a <strong>Mégse</strong> gombon indul – véletlen Enter nem töröl.</li><li>A gomb felirata az ige („Törlés”), nem „Igen/OK”.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – helyben megerősítés (a sorban)</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-screen" style="height:auto">
+            <div class="m-tr"><span class="grow">Zöld Sarok Bolt (mintaadat)</span><span class="m-ic">✎</span><span class="m-ic">⋯</span></div>
+            <div class="m-tr is-confirm"><span class="grow">Biztosan törlöd?</span><span class="m-b">Mégse</span><span class="m-b dan">Törlés</span></div>
+            <div class="m-tr"><span class="grow">Méhes Kávézó (mintaadat)</span><span class="m-ic">✎</span><span class="m-ic">⋯</span></div>
+          </div>
+        </div>
+        <ul><li>Gyors, nem takar ki semmit.</li><li>Nincs hely kiírni a következményt; telefonon szűk.</li><li>Visszavonható műveletnél (pl. elrejtés) jó lehet – de ott <strong>nem kell megerősítés</strong>, elég a „Visszavonás” az értesítésben.</li></ul>
+      </div></div>
+    </div>
+    <div class="details">
+      <div><strong>Szabály:</strong> megerősítés csak <strong>visszafordíthatatlan</strong> vagy másokat érintő műveletnél (törlés, közzététel, küldés). Visszafordíthatónál azonnal végrehajtjuk, és az értesítésben „Visszavonás” van (7.).
+        <ul><li>Állapotok: nyitás · töltés (a gomb pörög, a Mégse is tiltott, Esc nem zár) · hiba az ablakon belül (<code>bc-alert</code>, az ablak nyitva marad) · siker → zár + értesítés.</li></ul></div>
+      <div><strong>Szélső esetek a tesztlapon:</strong><ul><li>nagyon hosszú tartalom → a fej és a gombsor áll, a közepe görög</li><li>ablak az ablakban (pl. képvágó a szerkesztőben) – legfeljebb 2 szint</li><li>dupla kattintás a Törlésen · szerverhiba · lejárt munkamenet</li><li>telefon fekvő (844×390): a gombsor látszik billentyűzettel is</li><li>el nem mentett változás → „Elveted a módosításokat?”</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 2. VESZÉLYES TÖMEGES MŰVELET -->
+  <section class="prop" aria-labelledby="p2">
+    <header><h2 id="p2">2. Veszélyes tömeges művelet (végleges törlés)</h2><span class="bc-badge">organizmus</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> <code>PoiBulkDeleteModal</code> (ma: hatásvizsgálat + egy „Törlés” gomb; nincs második lépés), a jövőbeli tömeges műveletek (partnerek, kuponok).</span>
+      <span><strong>Épül:</strong> 1. Modal (AlertDialog) + TextInput + <code>bc-alert is-danger</code> + a hatáslista (<code>dl</code>).</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – be kell gépelni a darabszámot</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-dialog" style="width:100%;max-width:none">
+            <strong class="t">Végleges törlés: 42 POI</strong>
+            <p>Vele törlődik: 118 kép, 6 nyitott hibajelzés, 240 értékelés (mintaadat). Nem vonható vissza.</p>
+            <span class="m-lbl">Írd be a törlendő POI-k számát: 42</span>
+            <span class="m-typed is-ok">42</span>
+            <div class="m-acts"><span class="m-b">Mégse</span><span class="m-b dan">42 POI végleges törlése</span></div>
+          </div>
+        </div>
+        <ul><li>A szám begépelése kényszerít, hogy <strong>elolvasd</strong>, mennyit törölsz – a név tömegesen értelmetlen.</li><li>Egyetlen elem végleges törlésénél a <strong>nevét</strong> kell beírni (ékezet- és kisbetű-érzéketlenül).</li><li>A gomb addig tiltott, amíg nem egyezik.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – jelölőnégyzet: „Értem, nem vonható vissza”</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-dialog" style="width:100%;max-width:none">
+            <strong class="t">Végleges törlés: 42 POI</strong>
+            <p>Vele törlődik: 118 kép, 6 nyitott hibajelzés, 240 értékelés (mintaadat).</p>
+            <span class="m-lbl"><span class="m-ic is-on">✓</span> Értem, a törlés nem vonható vissza.</span>
+            <div class="m-acts"><span class="m-b">Mégse</span><span class="m-b dan">Törlés</span></div>
+          </div>
+        </div>
+        <ul><li>Gyorsabb.</li><li>Rutinból kipipálható – ugyanaz a mozdulat, mint bármely jelölő.</li></ul>
+      </div></div>
+    </div>
+    <div class="details"><div><strong>Mikor kell?</strong> 10-nél több elem végleges törlése, vagy bármi, ami másokat is érint (pl. partner törlése a hozzá tartozó kuponokkal). Egy elem sima törlésére az 1A elég. Szélső eset: a hatásvizsgálat nem tölt be → a gomb tiltott, „Újrapróbálás”.</div></div>
+  </section>
+
+  <!-- 3. OLDALPANEL -->
+  <section class="prop" aria-labelledby="p3">
+    <header><h2 id="p3">3. Oldalpanel (Drawer) – részletek és gyors szerkesztés a listából</h2><span class="bc-badge">organizmus</span></header>
+    <div class="meta">
+      <span><strong>Ma:</strong> a listából minden részlet és szerkesztés <strong>új oldal</strong> (pl. Partners.tsx: <code>navigate(`/partners/edit/…${location.search}`)</code> – a szűrőt az URL-ben viszi, a görgetési helyet nem). Oldalpanel ma nincs az adminban.</span>
+      <span><strong>Épül:</strong> Radix Dialog (jobbról csúszik be, 400 ms <code>ease-drawer</code>, a mobil oldalsáv mozgása) + FormSection. Szélesség 480 px; 600 px alatt teljes képernyős lap.</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – oldalpanel rövid műveletekhez, oldal a hosszú űrlaphoz</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-screen is-tall">
+            <div class="m-tr"><span class="grow">Zöld Sarok Bolt</span></div>
+            <div class="m-tr is-sel"><span class="grow">Méhes Kávézó</span></div>
+            <div class="m-tr"><span class="grow">Kerti Javító</span></div>
+            <div class="m-tr"><span class="grow">Bio Piac</span></div>
+            <div class="m-shade"></div>
+            <div class="m-drawer">
+              <div class="hd"><span>Méhes Kávézó</span><span>✕</span></div>
+              <div class="bd"><span>Állapot</span><span class="bc-badge is-success">Aktív</span><span>Címkék</span><span class="m-line w80"></span><span class="m-line w60"></span></div>
+              <div class="ft"><span class="m-b gho">Teljes oldal</span><span class="m-b pri">Mentés</span></div>
+            </div>
+          </div>
+        </div>
+        <ul><li>A lista a helyén marad (szűrő, görgetés, kijelölés) – gyors egymás utáni ellenőrzéshez (POI-minőségsor, partner-állapot).</li><li>Saját URL-je van (<code>?reszlet=123</code>), a Vissza gomb bezárja.</li><li>A hosszú Add/Edit űrlap marad külön oldal – a panel alján „Teljes oldal”.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – maradjon minden külön oldal (mint ma)</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-screen is-tall"><div class="m-rows">
+            <span class="bc-muted" style="font-size:var(--bc-fs-xs)">‹ Partnerek</span>
+            <span class="m-ph"><span class="h">Méhes Kávézó</span></span>
+            <span class="m-line w80"></span><span class="m-line w60"></span><span class="m-line w80"></span><span class="m-line w40"></span>
+          </div></div>
+        </div>
+        <ul><li>Nincs új minta, egyszerű.</li><li>Minden ellenőrzés = oda-vissza navigálás, a lista újratölt, a görgetés elvész.</li></ul>
+      </div></div>
+    </div>
+    <div class="details">
+      <div><strong>Panel vagy ablak?</strong> Ablak: egy kérdés, egy döntés (megerősítés, címke létrehozása). Panel: egy <em>elem</em> megnézése/rövid javítása a lista mellett. Oldal: hosszú űrlap, mély hivatkozás.</div>
+      <div><strong>Szélső esetek:</strong><ul><li>el nem mentett változás + a panel bezárása vagy másik sor választása</li><li>a sor közben törlődött (más admin)</li><li>telefon: teljes képernyő, a fejléc ragad</li><li>panelből nyíló ablak (pl. képvágó)</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 4. SÚGÓ ⓘ ÉS TOOLTIP -->
+  <section class="prop" aria-labelledby="p4">
+    <header><h2 id="p4">4. Súgó (ⓘ, Popover) és gomb-felirat (Tooltip)</h2><span class="bc-badge">atom / molekula</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> 114 <code>title=</code> attribútum (érintésen nem jelenik meg), a Partners saját <code>partner-success-tooltip</code>-je, a Table/FilterTable és a feltöltők súgói; a 3/A szabály kötelező súgó gombja (a 01-es csomagban már van: <code>bc-help-btn</code> + <code>bc-pop</code>).</span>
+      <span><strong>Épül:</strong> Radix Popover (súgó) és Radix Tooltip (ikongomb felirata). A grafikonok adat-buborékja külön, a 02-es csomagban.</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – a ⓘ koppintásra nyíló buborék</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <span class="m-lbl">Kupon neve <span class="m-help is-open">i</span></span>
+          <div class="bc-pop m-pop"><span class="bc-pop-title">Mit írj ide?</span><p>Így jelenik meg az appban a kupon kártyáján. Rövid, cselekvésre hívó név jó, pl. „10% kedvezmény kávéra”.</p></div>
+          <div class="m-field">10% kedvezmény kávéra</div>
+          <div class="bc-meta" style="margin-top:var(--bc-sp-1)"><span>3–60 karakter</span><span class="bc-count">22/60</span></div>
+        </div>
+        <ul><li>Telefonon és tableten is működik (rámutatás nincs).</li><li>Lehet benne példa, sőt link is – nyitva marad, amíg el nem olvasod.</li><li>Esc és kívül koppintás zár; a fókusz visszaáll a ⓘ-re.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – rámutatásra nyíló felirat mindenhol</h3>
+        <div class="mock" aria-hidden="true">
+          <span class="m-lbl">Kupon neve <span class="m-help">i</span></span>
+          <span class="m-tip" style="margin-top:var(--bc-sp-2)">Így jelenik meg az appban.</span>
+          <div class="m-field">10% kedvezmény kávéra</div>
+        </div>
+        <ul><li>Kevesebb kattintás egérrel.</li><li>Érintésen nem jön elő; eltűnik, mielőtt végigolvasnád; példa nem fér bele.</li></ul>
+      </div></div>
+    </div>
+    <div class="details">
+      <div><strong>Tooltip (gomb-felirat) – változat nélkül:</strong> csak ikongombra, a látható <code>aria-label</code> ismétlése (pl. „Szerkesztés”); 500 ms késleltetés, billentyűfókuszra is; soha nem hordoz egyedi információt. <span class="m-tip" aria-hidden="true">Szerkesztés</span></div>
+      <div><strong>Szélső esetek:</strong><ul><li>a ⓘ a képernyő szélén → a buborék befordul (Radix <code>collision</code>)</li><li>nagyon hosszú súgó → max. 360 px, görgethető</li><li>200% nagyítás, sötét mód</li><li>súgó egy ablakon belül (réteg-sorrend)</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 5. LEGÖRDÜLŐ MENÜ -->
+  <section class="prop" aria-labelledby="p5">
+    <header><h2 id="p5">5. Legördülő menü (DropdownMenu) – profil és sor-műveletek</h2><span class="bc-badge">molekula</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> a fejléc profil-menüje (<code>Header.tsx</code> + 12 soros <code>Dropdown</code> + <code>MenuItems</code>: nincs Esc, nyilak, kívül-kattintás), a listák sorvégi ikonsorai (ceruza/kuka ikon 4 fájlban).</span>
+      <span><strong>Épül:</strong> Radix DropdownMenu (nyilak, kezdőbetűs ugrás, Esc) + <code>bc-pop</code> keret; veszélyes elem piros és elválasztva, alul.</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – fő művelet látszik, a többi a „⋯” menüben</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-tr"><span class="grow">Méhes Kávézó (mintaadat)</span><span class="m-ic">✎</span><span class="m-ic is-on">⋯</span></div>
+          <div class="m-menu" style="margin-top:var(--bc-sp-1)">
+            <span class="m-mi is-active">Megnyitás oldalpanelben</span>
+            <span class="m-mi">Másolat készítése</span>
+            <span class="m-mi">Archiválás</span>
+            <span class="m-sep"></span>
+            <span class="m-mi is-dan">Törlés…</span>
+          </div>
+        </div>
+        <ul><li>A sor nyugodt; a leggyakoribb (Szerkesztés) egy koppintás.</li><li>A törlés nem a ceruza mellett van – nehezebb félrekattintani.</li><li>A „…” a felirat végén jelzi: ablak jön.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – minden művelet ikonként a sorban</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-tr"><span class="grow">Méhes Kávézó (mintaadat)</span><span class="m-ic">✎</span><span class="m-ic">⧉</span><span class="m-ic">▣</span><span class="m-ic">✕</span></div>
+        </div>
+        <ul><li>Minden egy koppintás.</li><li>3-nál több ikon kitalálósdi; telefonon nem fér el; a kuka a keze ügyében van.</li></ul>
+      </div></div>
+    </div>
+    <div class="details"><div><strong>Szabály:</strong> ≤ 2 művelet → ikongombok a sorban (felirattal, Tooltip-pel); 3+ → A. A profil-menü is ez: név + szerep, „Kijelentkezés” alul. <strong>Esetek:</strong> tiltott menüpont (jogosultság) indoklással · menü a képernyő alján (felfelé nyílik) · hosszú felirat · érintés: 44 px sorok.</div></div>
+  </section>
+
+  <!-- 6. FÜLEK -->
+  <section class="prop" aria-labelledby="p6">
+    <header><h2 id="p6">6. Fülek (Tabs) – panelváltó és oldal-navigáció</h2><span class="bc-badge">molekula</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> <code>AdminAnalytics</code> 7 füle (<code>?tab=</code> az URL-ben – ez jó), <code>CalendarSectionLayout</code> 4 fő + 2–3 másodlagos füle, a Rajok nézetváltója.</span>
+      <span><strong>Épül:</strong> a meglévő <code>bc-tabs</code>. Két komponens, egy kinézet: <strong>Tabs</strong> (Radix Tabs, <code>role="tab"</code>, ugyanazon az oldalon vált panelt) és <strong>NavTabs</strong> (linkek, <code>aria-current="page"</code>, útvonalat vált).</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – telefonon görgethető sor, halványuló széllel</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-narrow m-tabs-fade"><div class="m-tabs"><span class="on">Áttekintés</span><span>Felhasználók</span><span>Lábnyom</span><span>Öntözés</span><span>Kaptárak</span></div></div>
+        </div>
+        <ul><li>Ugyanaz a minta minden méreten; a kijelölt fül magától a látható részbe gördül.</li><li>A halvány szél jelzi: van még.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – telefonon legördülővé alakul</h3>
+        <div class="mock" aria-hidden="true"><div class="m-narrow m-select"><span>Áttekintés</span><span>▼</span></div></div>
+        <ul><li>Sok fülnél (7+) rendezettebb.</li><li>Elrejti a többi lehetőséget; két minta ugyanarra.</li></ul>
+      </div></div>
+    </div>
+    <div class="details"><div><strong>Javítás a Naptárnál:</strong> a másodlagos sor (<em>Eseménylista · Keresés · Új esemény</em>) keveri a nézetet és a műveletet. Javaslat: „Új esemény” gomb az oldalfejbe (7.), a „Keresés” a lista keresőmezője – így egy fülsor marad. <strong>Esetek:</strong> 2 és 10 fül · hosszú fülnév · számláló a fülön („Hibák 3”) · tiltott fül.</div></div>
+  </section>
+
+  <!-- 7. OLDALFEJ + MORZSAMENÜ -->
+  <section class="prop" aria-labelledby="p7">
+    <header><h2 id="p7">7. Oldalfej (PageHeader) és morzsamenü (Breadcrumbs)</h2><span class="bc-badge">organizmus</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> <code>Header.tsx</code> 18 ágú <code>if/else</code>-e a <code>pathname</code>-re (új oldalnál mindig elfelejtődik – ma kb. 35 útvonalon üres a cím), az oldalak saját <code>h1</code>-jei és fejlécei (pl. AdminCalendar „Tartalmi áttekintés”).</span>
+      <span><strong>Épül:</strong> a meglévő <code>bc-page-header</code> + új Breadcrumbs. A cím és a morzsa az <strong>útvonal leírásából</strong> jön (<code>{ path, title, crumb }</code> egy helyen, a react-router <code>handle</code>-jével); részletoldalon a cím az elem neve („Méhes Kávézó”), betöltés közben csontváz. A böngészőfül címe (<code>document.title</code>) ugyanebből.</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – cím a tartalom tetején, felette morzsa; a fejléc vékony</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-screen" style="height:auto">
+            <div class="m-topbar"><span>☰</span><span class="bc-row" style="gap:var(--bc-sp-2)">Kata <span class="m-av">K</span></span></div>
+            <div class="m-rows">
+              <ol class="m-crumbs"><li><span class="u">Kuponok</span></li><li><span class="u">Sablonok</span></li><li>Nyári kávé 10%</li></ol>
+              <div class="m-ph"><span class="h">Nyári kávé 10%</span><span class="bc-row" style="gap:var(--bc-sp-2)"><span class="m-b">Szerkesztés</span><span class="m-b pri">Új időzítés</span></span></div>
+              <span class="m-line w80"></span><span class="m-line w60"></span>
+            </div>
+          </div>
+        </div>
+        <ul><li>A cím, a hely és az oldal fő művelete egy blokkban – az ember itt keresi.</li><li>Telefonon a morzsából csak a szülő marad: „‹ Sablonok”.</li><li>A fejlécben csak menü, (később keresés) és profil.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – cím a fejlécben (mint ma), morzsa alatta</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-screen" style="height:auto">
+            <div class="m-topbar"><span class="h">Kupon sablon részletei</span><span class="m-av">K</span></div>
+            <div class="m-rows"><ol class="m-crumbs"><li><span class="u">Kuponok</span></li><li>Nyári kávé 10%</li></ol><span class="m-line w80"></span><span class="m-line w60"></span></div>
+          </div>
+        </div>
+        <ul><li>Mindig látszik görgetés közben is.</li><li>A cím általános („részletei”), a művelet-gombok külön sorba szorulnak; telefonon a fejléc tele van.</li></ul>
+      </div></div>
+    </div>
+    <div class="details"><div><strong>Esetek:</strong> nagyon hosszú elemnév (két sorra tör, a morzsában levágva, teljes név <code>title</code>-ben) · 4+ szint (a középső „…”) · betöltés és „nem található” · jogosultság nélküli szülő (nem link) · 3+ művelet → a harmadiktól „⋯” menü (5A).</div></div>
+  </section>
+
+  <!-- 8. ÉRTESÍTÉS -->
+  <section class="prop" aria-labelledby="p8">
+    <header><h2 id="p8">8. Értesítés (Toast)</h2><span class="bc-badge">molekula</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja / öltözteti:</strong> <code>react-toastify</code> – 243 hívás (139 hiba, 75 siker, 26 info, 3 figyelmeztetés), egy <code>&lt;ToastContainer /&gt;</code> az <code>App.tsx</code>-ben alapbeállítással (jobb fent, 5 mp); a kinézetet a <code>_toast.scss</code> már a <code>bc-toast</code>-hoz igazítja.</span>
+      <span><strong>Épül:</strong> DS-burok: <code>notify.success/error/info/warning(szöveg, { action })</code> – a projekt nem hívja közvetlenül a könyvtárat, így később cserélhető. A <code>react-toastify</code> marad (MIT, már bent van); alternatíva a Sonner (MIT, kisebb) – csere csak külön döntéssel.</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – asztalon jobb fent, telefonon lent középen</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-screen" style="height:170px">
+            <div class="m-rows"><span class="m-line w60"></span><span class="m-line w80"></span><span class="m-line w40"></span></div>
+            <div class="m-pos m-toast-area tr">
+              <div class="bc-toast is-success"><p>Kupon mentve.</p><span class="u">Visszavonás</span></div>
+            </div>
+          </div>
+        </div>
+        <ul><li>Asztalon nem takarja a mentés gombot (az lent/jobbra van) és a táblázatot.</li><li>Telefonon a hüvelykujj elérésében, a billentyűzet fölött.</li><li>Ez a könyvtár egy beállítása – a hívásokhoz nem kell nyúlni.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – mindig lent középen</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-screen" style="height:170px">
+            <div class="m-rows"><span class="m-line w60"></span><span class="m-line w80"></span><span class="m-line w40"></span></div>
+            <div class="m-pos m-toast-area bc">
+              <div class="bc-toast is-danger"><p>Nem sikerült menteni. Próbáld újra.</p></div>
+            </div>
+          </div>
+        </div>
+        <ul><li>Egy hely minden méreten.</li><li>Asztalon az űrlap-gombsort és a lapozót takarja.</li></ul>
+      </div></div>
+    </div>
+    <div class="details">
+      <div><strong>Szabályok:</strong><ul><li>Hiba <strong>nem tűnik el magától</strong> (bezárás gombbal), siker/info 5 mp, rámutatásra/fókuszra megáll.</li><li>Mezőhiba (pl. „érvénytelen Excel-fájl”, „túl nagy kép”) a mező alá kerül, <strong>nem</strong> értesítésbe – a 139 hibaértesítés egy része ilyen.</li><li>Egyszerre legfeljebb 3; az azonos üzenet nem halmozódik.</li><li>Képernyőolvasó: siker <code>role="status"</code>, hiba <code>role="alert"</code>.</li></ul></div>
+      <div><strong>Szélső esetek:</strong><ul><li>nagyon hosszú szöveg (3 sor után levágva, „Részletek”)</li><li>10 értesítés 1 mp alatt (tömeges művelet → egy összesítő)</li><li>nyitott ablak fölött (réteg-sorrend)</li><li>csökkentett mozgás</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 9. OLDALSÁV TELEFONON -->
+  <section class="prop" aria-labelledby="p9">
+    <header><h2 id="p9">9. Oldalsáv és navigáció telefonon/tableten</h2><span class="bc-badge">sablon</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> <code>ProtectedLayout</code> + <code>Navbar</code> (187 sor, <code>ExpandableMenuItem</code> csoportokkal) + <code>Header</code>. Ma egyik sem vált elrendezést keskeny képernyőn (a <code>Navbar.scss</code>-ben csak rámutatás-szabály van) – telefonon az oldalsáv elveszi a helyet.</span>
+      <span><strong>Épül:</strong> a meglévő <code>bc-shell</code> / <code>bc-sidebar</code> / <code>bc-topbar</code> (900 px alatt már fiók, a JS-t kell hozzá megírni) + Radix Dialog a fiókhoz (fókusz, Esc, háttér). Ugrólink: „Ugrás a tartalomhoz”.</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – 900 px alatt behúzható fiók (☰)</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-phone">
+            <div class="m-topbar"><span>☰</span><span class="m-av">K</span></div>
+            <div class="m-scrim" style="place-items:start"></div>
+            <div class="m-nav">
+              <span class="brand">beeco admin</span>
+              <span class="grp">Tartalom</span>
+              <span class="it on">Partnerek</span><span class="it">POI-k</span><span class="it">Kuponok</span>
+              <span class="grp">Naptár</span>
+              <span class="it">Naptár nézet</span><span class="it">Események</span>
+            </div>
+          </div>
+        </div>
+        <ul><li>Mind a ~12 menüpont és a csoportok megmaradnak – ugyanaz a térkép, mint asztalon.</li><li>A DS-ben már kész a CSS; oldalváltáskor bezár, a fókusz visszaáll a ☰-re.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – alsó fülsor (4 fő + „Több”)</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-phone">
+            <div class="m-topbar"><span class="bc-display" style="margin:0;font-size:var(--bc-fs-l)">Partnerek</span><span class="m-av">K</span></div>
+            <div class="m-rows"><span class="m-line w80"></span><span class="m-line w60"></span><span class="m-line w80"></span></div>
+            <div class="m-tabbar"><span class="on"><i></i>Partner</span><span><i></i>POI</span><span><i></i>Kupon</span><span><i></i>Naptár</span><span><i></i>Több</span></div>
+          </div>
+        </div>
+        <ul><li>Appszerű, egy koppintás a fő helyekre.</li><li>Az admin 12+ helyéből 8 a „Több” mögé kerül; két navigációs minta.</li></ul>
+      </div></div>
+    </div>
+    <div class="details"><div><strong>Kiegészítő javaslat (döntsd el):</strong> 900–1200 px között (tablet fekvő) az oldalsáv összecsukható <em>ikonsávvá</em> (64 px, feliratok Tooltip-ben) – több hely a táblázatnak. <strong>Esetek:</strong> hosszú menüpont · nyitott fiók + elforgatás · aktív pont egy lenyitott csoportban · 200% nagyítás.</div></div>
+  </section>
+
+  <!-- 10. VÁLTOZAT NÉLKÜL -->
+  <section class="prop" aria-labelledby="p10">
+    <header><h2 id="p10">10. A többi – változat nélkül</h2><span class="bc-badge">atom / molekula</span></header>
+    <div class="bc-table-wrap">
+      <table class="bc-table">
+        <thead><tr><th>Elem</th><th>Szint</th><th>Mire épül</th><th>Kiváltja az adminban</th></tr></thead>
+        <tbody>
+          <tr><td>Lenyitható (Accordion, Disclosure)</td><td>molekula</td><td>Radix Accordion + <code>bc-card is-flat</code></td><td><code>components/Accordion</code> (2 használó), <code>ExpandableBox</code> (2), <code>ExpandableMenuItem</code> (Navbar)</td></tr>
+          <tr><td>Lebegő réteg alap (Popover)</td><td>atom</td><td><code>bc-pop</code> (01-es csomag)</td><td>a Combobox, dátumválasztó, súgó, menü közös rétege</td></tr>
+          <tr><td>Háttér-függöny (Scrim) + portál</td><td>atom</td><td><code>bc-scrim</code></td><td>~19 saját <code>*-overlay</code>/<code>*-backdrop</code> osztály</td></tr>
+          <tr><td>Ugrólink („Ugrás a tartalomhoz”)</td><td>atom</td><td><code>bc-sr</code> + fókuszra látszik</td><td>ma nincs</td></tr>
+          <tr><td>Réteg-sorrend (z-index skála)</td><td>token</td><td>fejléc 10 · oldalsáv 60 · ablak 50 → rendezve: fejléc · fiók · ablak · lebegő · értesítés</td><td>szétszórt <code>z-index</code>-ek</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mock" aria-hidden="true" style="margin-top:var(--bc-sp-4);max-width:420px">
+      <div class="m-acc"><div><span>Kapcsolattartó</span><span>▲</span></div><p>Név, e-mail, telefon (mintaadat)…</p><div><span>Számlázási adatok</span><span>▼</span></div><div><span>Belső megjegyzés</span><span>▼</span></div></div>
+    </div>
+    <p class="bc-help" style="margin-top:var(--bc-sp-2)">Lenyitható makett. A z-index skála tokenként kerül be (<code>--bc-z-*</code>) – ez új token, ezért itt kérem hozzá a jóváhagyást.</p>
+  </section>
+
+  <section class="decide" aria-labelledby="dd">
+    <h2 id="dd">Döntés</h2>
+    <p>Írd meg a chatben, például: <strong>„1A, 2A, 3A, 4A, 5A, 6A, 7A, 8A, 9A (+ ikonsáv: igen/nem), 10 és a z-index tokenek – jóváhagyva”</strong>, vagy azt, amit másképp szeretnél. Ez kerül a <code>docs/javaslatok/03-reteg.md</code> Döntés részébe, és utána építek.</p>
+  </section>
+</main>
+</body>
+</html>

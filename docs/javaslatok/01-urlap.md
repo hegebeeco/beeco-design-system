@@ -1,6 +1,6 @@
 # Javaslat 01 – Űrlap-csomag
 
-*Állapot: **jóváhagyásra vár** · készítette: Claude · dátum: 2026-10-01*
+*Állapot: **jóváhagyva (2026-10-01)** · készítette: Claude · dátum: 2026-10-01*
 Vizuális javaslatlap (makettekkel): `javaslatok/01-urlap.html` – GitHub Pages: https://hegebeeco.github.io/beeco-design-system/javaslatok/01-urlap.html
 
 ## Igény
@@ -25,6 +25,6 @@ Radix UI (Popover, ToggleGroup, RadioGroup, Checkbox, Switch) + DS `bc-` CSS; `r
 Kiváltja az adminból: `react-select`, `primereact` (+ a szivárgó saga-blue téma), `react-datepicker`.
 
 ## Döntés (Kristóf tölti ki)
-- Dátum: …
-- Választott változatok: …
-- Megjegyzés / módosítás: …
+- Dátum: 2026-10-01
+- Választott változatok: **1A, 2A, 3A, 4A, 5A** (számmező: csak gépelős, +/− gombos változat nincs)
+- Megjegyzés / módosítás: minden mezőnél súgó gomb (mit és miért), érvényes tartomány és aktuális állapot (pl. 213/255), helytelen érték letiltva/levágva – `docs/komponensek.md` 3/A. Claude javaslata: számnál a határra igazítás kilépéskor, nem gépelés közben (indoklás ott).

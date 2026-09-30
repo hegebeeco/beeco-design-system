@@ -1,4 +1,4 @@
-/* beeco design system 1.13.1 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js */
+/* beeco design system 1.14.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js */
 
 /* 1. Primitívek (nyers színek) – felületen NE használd közvetlenül, csak a szerepeket (2.) */
 :root {
@@ -135,7 +135,6 @@
   --bc-accent-press: var(--bc-honey-deep); --bc-accent-press-rgb: var(--bc-honey-deep-rgb);
   --bc-on-accent: var(--bc-black); --bc-on-accent-rgb: var(--bc-black-rgb);
   --bc-shadow: var(--bc-black); --bc-shadow-rgb: var(--bc-black-rgb);
-  --bc-focus: var(--bc-focus); --bc-focus-rgb: var(--bc-focus-rgb);
   --bc-success: var(--bc-leaf); --bc-success-rgb: var(--bc-leaf-rgb);
   --bc-success-bg: var(--bc-sage-bg); --bc-success-bg-rgb: var(--bc-sage-bg-rgb);
   --bc-success-ink: var(--bc-forest); --bc-success-ink-rgb: var(--bc-forest-rgb);

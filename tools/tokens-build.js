@@ -34,9 +34,12 @@ const ms = n => `${n}ms`;
 const categorical = core.data.categorical.map(hex);
 
 /* ---------- 1. CSS-változók ---------- */
-function roleBlock(roles) {
-  return Object.entries(roles).map(([role, prim]) =>
-    `  --bc-${role}: var(--bc-${prim}); --bc-${role}-rgb: var(--bc-${prim}-rgb);`).join('\n');
+function roleBlock(roles, mode) {
+  // Ha a szerep és a primitív neve azonos (pl. focus → focus), világosban nincs mit írni: a primitív már az érték.
+  // (A „--bc-focus: var(--bc-focus)” önhivatkozás érvénytelen – a böngésző eldobná, és eltűnne a fókuszkeret.)
+  return Object.entries(roles).filter(([role, prim]) => !(role === prim && mode === 'light')).map(([role, prim]) =>
+    role === prim ? `  --bc-${role}: ${hex(prim)}; --bc-${role}-rgb: ${rgb(hex(prim))};`
+      : `  --bc-${role}: var(--bc-${prim}); --bc-${role}-rgb: var(--bc-${prim}-rgb);`).join('\n');
 }
 function buildCss() {
   const L = [];
@@ -65,11 +68,11 @@ function buildCss() {
   }
   L.push(`  --bc-scrim-opacity: ${termek.scrimOpacity};`);
   L.push('', '  /* 2. TERMÉKBŐR – szín-szerepek, világos */', '  color-scheme: light;');
-  L.push(roleBlock(termek.color.light), '}', '');
+  L.push(roleBlock(termek.color.light, 'light'), '}', '');
   L.push('/* Sötét mód: <html data-theme="dark"> vagy <html class="dark"> (Tailwind), rendszer szerint: data-theme="auto" */');
-  L.push(':root[data-theme="dark"], :root.dark {', '  color-scheme: dark;', roleBlock(termek.color.dark), '}');
+  L.push(':root[data-theme="dark"], :root.dark {', '  color-scheme: dark;', roleBlock(termek.color.dark, 'dark'), '}');
   L.push('@media (prefers-color-scheme: dark) {', '  :root[data-theme="auto"] {', '    color-scheme: dark;');
-  L.push(roleBlock(termek.color.dark).replace(/^/gm, '  '), '  }', '}', '');
+  L.push(roleBlock(termek.color.dark, 'dark').replace(/^/gm, '  '), '  }', '}', '');
   return L.join('\n');
 }
 

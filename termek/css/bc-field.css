@@ -1,0 +1,70 @@
+/* ============================================================
+   beeco TERMÉKBŐR – mező-keret kiegészítései (Javaslat 01, jóváhagyva 2026-10-01)
+   Minden beviteli mező: címke + súgó gomb (ⓘ) · mező · tartomány + élő számláló · hiba / jelzés
+   Szabály: docs/komponensek.md 3/A
+   ============================================================ */
+.bc-label-row { display: flex; align-items: center; gap: var(--bc-sp-1); min-height: 24px; }
+.bc-label-row .bc-label { flex: 0 1 auto; }
+
+/* Súgó gomb: látható kör 22 px, érintési felület 44 px (a negatív margó nem tolja el a sort) */
+.bc-help-btn { position: relative; display: inline-grid; place-items: center; width: var(--bc-tap); height: var(--bc-tap); margin: calc((24px - var(--bc-tap)) / 2) calc((22px - var(--bc-tap)) / 2);
+  padding: 0; color: var(--bc-ink); background: transparent; border: 0; border-radius: 50%; cursor: pointer; flex: none; }
+.bc-help-btn::before { content: ""; position: absolute; width: 22px; height: 22px; border: var(--bc-bw-hair) solid var(--bc-line); border-radius: 50%; background: var(--bc-surface);
+  transition: background-color var(--bc-t-fast) var(--bc-ease-out); }
+.bc-help-btn > span { position: relative; font-family: var(--bc-font-display); font-size: var(--bc-fs-s); line-height: 1; }
+.bc-help-btn[data-state="open"]::before { background: var(--bc-accent); color: var(--bc-on-accent); }
+.bc-help-btn[data-state="open"] > span { color: var(--bc-on-accent); }
+@media (hover: hover) and (pointer: fine) { .bc-help-btn:hover::before { background: var(--bc-surface-accent); } }
+
+/* Lebegő réteg (súgó, legördülő lista, naptár) – Radix Popover tartalma */
+.bc-pop { z-index: 70; max-width: min(360px, calc(100vw - 2 * var(--bc-sp-4)));
+  /* Kevés helynél se lógjon ki: a látható területen belül marad, görgethetően */
+  max-height: var(--radix-popover-content-available-height, 80vh); overflow: auto; padding: var(--bc-sp-3) var(--bc-sp-4);
+  font-size: var(--bc-fs-s); line-height: var(--bc-lh-normal); color: var(--bc-ink); background: var(--bc-surface);
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m);
+  transform-origin: var(--radix-popover-content-transform-origin); animation: bc-pop-in var(--bc-t-fast) var(--bc-ease-out); }
+.bc-pop:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-pop p { margin: 0 0 var(--bc-sp-2); }
+.bc-pop p:last-child { margin: 0; }
+.bc-pop .bc-pop-title { display: block; margin-bottom: var(--bc-sp-1); font-weight: var(--bc-fw-bold); }
+@keyframes bc-pop-in { from { opacity: 0; transform: scale(.97) translateY(-2px); } }
+
+/* Tartomány + számláló sor a mező alatt */
+.bc-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 var(--bc-sp-3); font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+.bc-meta .bc-count { margin-left: auto; font-variant-numeric: tabular-nums; font-weight: var(--bc-fw-semibold); }
+.bc-count.is-near { color: var(--bc-warning-ink); }
+.bc-count.is-full { color: var(--bc-danger-ink); }
+/* Jelzés (nem hiba): pl. „levágtam”, „100-ra állítottam” */
+.bc-notice { margin: 0; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-info-ink); }
+
+/* Keresőmező: nagyító balra, törlés jobbra */
+.bc-search { position: relative; }
+.bc-search > .bc-input { padding-left: 40px; padding-right: var(--bc-tap); }
+.bc-search > svg { position: absolute; left: 12px; top: 50%; width: 18px; height: 18px; transform: translateY(-50%); pointer-events: none; }
+.bc-search > .bc-icon-btn { position: absolute; right: 0; top: 50%; transform: translateY(-50%); }
+.bc-search > .bc-input::-webkit-search-cancel-button { display: none; }
+
+/* Szegmentált kapcsoló (1A: gombsor, méz kijelölés); keskeny helyen görgethető */
+.bc-seg { display: inline-flex; max-width: 100%; overflow-x: auto; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); background: var(--bc-surface); scrollbar-width: none; }
+.bc-seg-item { flex: none; display: inline-flex; align-items: center; gap: var(--bc-sp-2); min-height: 40px; padding: 0 var(--bc-sp-4);
+  font: inherit; font-weight: var(--bc-fw-semibold); color: var(--bc-ink); background: transparent; border: 0; cursor: pointer;
+  transition: background-color var(--bc-t-fast) var(--bc-ease-out); }
+.bc-seg-item + .bc-seg-item { border-left: var(--bc-bw-base) solid var(--bc-line); }
+.bc-seg-item[data-state="on"] { color: var(--bc-on-accent); background: var(--bc-accent); }
+.bc-seg-item:disabled { color: var(--bc-ink-muted); cursor: not-allowed; }
+.bc-seg-item:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: -3px; }
+@media (hover: hover) and (pointer: fine) { .bc-seg-item:hover:not([data-state="on"], :disabled) { background: var(--bc-surface-2); } }
+@media (pointer: coarse) { .bc-seg-item { min-height: var(--bc-tap); } }
+
+/* Címkefelhő (4A: ≤ 20 címkéig) */
+.bc-tagcloud { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2); }
+.bc-tag { display: inline-flex; align-items: center; gap: var(--bc-sp-1); min-height: 36px; padding: 0 var(--bc-sp-3);
+  font: inherit; font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); color: var(--bc-ink); background: var(--bc-surface);
+  border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); cursor: pointer;
+  transition: background-color var(--bc-t-fast) var(--bc-ease-out), transform var(--bc-t-press) var(--bc-ease-out); }
+.bc-tag[aria-pressed="true"] { color: var(--bc-on-accent); background: var(--bc-accent); box-shadow: var(--bc-shadow-s); }
+.bc-tag:active:not(:disabled) { transform: translate(1px, 1px); }
+.bc-tag:disabled { color: var(--bc-ink-muted); border-color: var(--bc-line-soft); cursor: not-allowed; }
+.bc-tag.is-add { border-style: dashed; }
+@media (pointer: coarse) { .bc-tag { min-height: var(--bc-tap); } }
+@media (hover: hover) and (pointer: fine) { .bc-tag:hover:not([aria-pressed="true"], :disabled) { background: var(--bc-surface-accent); } }

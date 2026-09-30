@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="hu" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Javaslat 02 – adat és grafikon</title>
+<meta name="description" content="beeco design system – 2. komponenscsomag (adat és grafikon): táblázat, szűrősáv, statisztika-csempe, grafikonkártya – változatok és javaslat Kristóf jóváhagyására.">
+<link rel="icon" href="../web/assets/brand/ikon-32.png">
+<link rel="stylesheet" href="../termek/css/bc-all.css">
+<style>
+  /* A javaslatlap saját elrendezése – csak tokenek (a 01-es lap váza) */
+  .wrap { max-width: 1120px; margin: 0 auto; padding: var(--bc-sp-5) var(--bc-sp-4) var(--bc-sp-8); }
+  .prop { margin-top: var(--bc-sp-7); }
+  .prop > header { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2) var(--bc-sp-4); align-items: baseline; justify-content: space-between; padding-bottom: var(--bc-sp-2); border-bottom: var(--bc-bw-base) solid var(--bc-line); margin-bottom: var(--bc-sp-4); }
+  .prop > header h2 { margin: 0; }
+  .prop h3.sub { margin: var(--bc-sp-6) 0 var(--bc-sp-3); }
+  .meta { display: grid; gap: var(--bc-sp-1); font-size: var(--bc-fs-s); color: var(--bc-ink-soft); margin-bottom: var(--bc-sp-4); }
+  .meta strong { color: var(--bc-ink); }
+  .variants { display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+  .var { display: flex; flex-direction: column; gap: var(--bc-sp-3); min-width: 0; }
+  .var .bc-card { flex: 1; display: flex; flex-direction: column; gap: var(--bc-sp-3); min-width: 0; }
+  .var.is-rec .bc-card { background: var(--bc-surface-accent); }
+  .var h3 { margin: 0; }
+  .var ul { margin: 0; padding-left: 1.2em; font-size: var(--bc-fs-s); }
+  .mock { padding: var(--bc-sp-4); background: var(--bc-bg); border: var(--bc-bw-hair) dashed var(--bc-line-soft); border-radius: var(--bc-r-m); min-width: 0; }
+  .mock-tag { display: flex; justify-content: flex-end; margin-bottom: var(--bc-sp-2); }
+  .details { margin-top: var(--bc-sp-4); display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); font-size: var(--bc-fs-s); }
+  .details ul { margin: var(--bc-sp-2) 0 0; padding-left: 1.2em; }
+  .decide { margin-top: var(--bc-sp-7); }
+
+  /* ——— Makettek (csak a javaslatlapon – a jóváhagyás után valódi komponens lesz belőlük) ——— */
+  /* nem kattintható „gomb” és „mező” kinézet */
+  .m-btn { display: inline-flex; align-items: center; gap: var(--bc-sp-1); min-height: 36px; padding: 0 var(--bc-sp-3); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); background: var(--bc-surface); color: var(--bc-ink); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); white-space: nowrap; }
+  .m-btn.is-accent { background: var(--bc-accent); color: var(--bc-on-accent); }
+  .m-btn.is-danger { background: var(--bc-danger-bg); color: var(--bc-danger-ink); }
+  .m-btn.is-ghost { background: none; border-color: transparent; box-shadow: none; text-decoration: underline; padding: 0 var(--bc-sp-1); }
+  .m-field { display: flex; align-items: center; gap: var(--bc-sp-1); min-height: 40px; padding: 0 var(--bc-sp-3); font-size: var(--bc-fs-s); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-s); box-shadow: var(--bc-shadow-s); white-space: nowrap; }
+  .m-field .caret { margin-left: auto; padding-left: var(--bc-sp-2); font-size: var(--bc-fs-xs); }
+  .m-field .ph { color: var(--bc-ink-soft); }
+  .m-field.is-set { background: var(--bc-surface-accent); font-weight: var(--bc-fw-semibold); }
+  .m-field.is-search { flex: 1 1 200px; }
+  .m-field svg { width: 16px; height: 16px; flex: none; }
+  .m-chip { display: inline-flex; align-items: center; gap: var(--bc-sp-1); min-height: 28px; padding: 0 var(--bc-sp-1) 0 var(--bc-sp-2); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); background: var(--bc-surface-accent); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); }
+  .m-chip b { display: inline-grid; place-items: center; width: 20px; height: 20px; }
+  .m-help { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); font-style: normal; color: var(--bc-ink); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: 50%; background: var(--bc-surface); }
+  .m-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2); }
+  .m-row.is-between { justify-content: space-between; }
+  .m-count { font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+
+  /* táblázat-makett */
+  .m-ck { display: inline-grid; place-items: center; width: 18px; height: 18px; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); background: var(--bc-surface); color: var(--bc-ink); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-xs); vertical-align: middle; }
+  .m-ck.on, .m-ck.part { background: var(--bc-accent); color: var(--bc-on-accent); }
+  .m-table .is-sel td { background: var(--bc-surface-accent); }
+  .m-table th { position: relative; }
+  .m-table th .srt { font-size: var(--bc-fs-xs); padding-left: var(--bc-sp-1); }
+  .m-table th .rsz { position: absolute; right: 0; top: 20%; bottom: 20%; width: 4px; border-radius: var(--bc-r-pill); background: var(--bc-on-accent); opacity: .5; }
+  .m-table .exp { display: inline-block; width: 1.2em; font-size: var(--bc-fs-xs); }
+  .m-table .expanded td { background: var(--bc-surface-2); font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+  .m-table .miss { color: var(--bc-ink-soft); }
+  .m-table td.trunc { max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .m-table.is-sticky th:first-child, .m-table.is-sticky td:first-child { position: sticky; left: 0; z-index: 2; background: var(--bc-surface); border-right: var(--bc-bw-base) solid var(--bc-line); }
+  .m-table.is-sticky th:first-child { background: var(--bc-accent); z-index: 3; }
+  .m-table td, .m-table th { white-space: nowrap; }
+  .m-bulk { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2); padding: var(--bc-sp-2) var(--bc-sp-3); margin-bottom: var(--bc-sp-3); background: var(--bc-surface-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); font-size: var(--bc-fs-s); }
+  .m-bulk strong { margin-right: auto; }
+  .m-phone { width: min(100%, 300px); margin: 0 auto; padding: var(--bc-sp-2); background: var(--bc-bg); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-l); }
+  .m-hint { font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); text-align: right; margin-top: var(--bc-sp-1); }
+  .m-rcard { display: grid; gap: var(--bc-sp-1); padding: var(--bc-sp-3); margin-bottom: var(--bc-sp-2); font-size: var(--bc-fs-s); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+  .m-rcard.is-sel { background: var(--bc-surface-accent); }
+  .m-rcard dl { display: grid; grid-template-columns: auto 1fr; gap: 2px var(--bc-sp-3); margin: 0; font-size: var(--bc-fs-xs); }
+  .m-rcard dt { color: var(--bc-ink-soft); }
+  .m-rcard dd { margin: 0; }
+  .m-bottombar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2); margin-top: var(--bc-sp-2); padding: var(--bc-sp-2); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); font-size: var(--bc-fs-s); }
+  .m-skel { display: grid; gap: var(--bc-sp-2); }
+  .m-skel .bc-skeleton { height: 14px; }
+
+  /* szűrősáv-makett */
+  .m-filter { display: grid; gap: var(--bc-sp-2); }
+  .m-sheet { margin-top: var(--bc-sp-2); padding: var(--bc-sp-3); display: grid; gap: var(--bc-sp-2); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-l) var(--bc-r-l) var(--bc-r-m) var(--bc-r-m); box-shadow: var(--bc-shadow-l); }
+  .m-sheet .lbl { font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink-soft); }
+  .m-badge-n { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 var(--bc-sp-1); font-size: var(--bc-fs-xs); background: var(--bc-ink); color: var(--bc-bg); border-radius: var(--bc-r-pill); }
+
+  /* statisztika-csempe makett */
+  .m-stat { align-content: start; }
+  .m-stat .top { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-2); }
+  .m-stat .unit { font-size: var(--bc-fs-m); font-family: var(--bc-font-body); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); }
+  .m-stat .per, .m-stat .src { font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+  .m-delta { display: inline-flex; align-items: center; gap: var(--bc-sp-1); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink); }
+  .m-delta.is-good { color: var(--bc-success-ink); }
+  .m-delta.is-bad { color: var(--bc-danger-ink); }
+  .m-stat .hidden-val { font-size: var(--bc-fs-l); color: var(--bc-ink-soft); }
+
+  /* grafikon (SVG) – csak adat- és szerep-tokenek */
+  .m-chartcard { display: grid; gap: var(--bc-sp-3); padding: var(--bc-sp-5); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); min-width: 0; }
+  .m-chartcard .title { margin: 0; font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-l); line-height: var(--bc-lh-tight); }
+  .m-chartcard .subt { margin: 0; font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+  .m-chartcard .foot { font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+  .m-scroll { overflow-x: auto; }
+  .m-chart { display: block; width: 100%; min-width: 440px; height: auto; font-family: var(--bc-font-body); }
+  .m-chart text { fill: var(--bc-ink-soft); font-size: 13px; }
+  .m-chart text.strong { fill: var(--bc-ink); font-weight: var(--bc-fw-bold); }
+  .m-chart .grid { stroke: var(--bc-line-soft); stroke-width: 1; }
+  .m-chart .axis { stroke: var(--bc-line); stroke-width: 2; }
+  .m-chart .gap { fill: var(--bc-surface-2); }
+  .m-chart .case { fill: none; stroke: var(--bc-line); stroke-width: 6; stroke-linejoin: round; stroke-linecap: round; }
+  .m-chart .ln { fill: none; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+  .m-chart .ln.c3 { stroke: var(--bc-data-cat-3); }
+  .m-chart .ln.c2 { stroke: var(--bc-data-cat-2); }
+  .m-chart .ln.dash { stroke-dasharray: 2 5; stroke: var(--bc-ink-soft); stroke-width: 2; }
+  .m-chart .pt { stroke: var(--bc-line); stroke-width: 1.5; }
+  .f1 { fill: var(--bc-data-cat-1); } .f2 { fill: var(--bc-data-cat-2); } .f3 { fill: var(--bc-data-cat-3); } .f4 { fill: var(--bc-data-cat-4); } .f5 { fill: var(--bc-data-cat-5); }
+  .s1 { fill: var(--bc-data-seq-1); } .s2 { fill: var(--bc-data-seq-2); } .s3 { fill: var(--bc-data-seq-3); } .s4 { fill: var(--bc-data-seq-4); } .s5 { fill: var(--bc-data-seq-5); }
+  .ol { stroke: var(--bc-line); stroke-width: 1.5; }
+  .m-legend { display: flex; flex-wrap: wrap; gap: var(--bc-sp-1) var(--bc-sp-4); font-size: var(--bc-fs-s); }
+  .m-legend span { display: inline-flex; align-items: center; gap: var(--bc-sp-2); }
+  .m-legend svg { width: 28px; height: 14px; flex: none; }
+  .m-disc { border: var(--bc-bw-hair) solid var(--bc-line-soft); border-radius: var(--bc-r-s); font-size: var(--bc-fs-s); }
+  .m-disc > .sum { display: flex; align-items: center; gap: var(--bc-sp-2); min-height: 40px; padding: 0 var(--bc-sp-3); font-weight: var(--bc-fw-bold); }
+  .m-disc > .body { padding: 0 var(--bc-sp-3) var(--bc-sp-3); }
+  .m-disc > .body p { margin: 0 0 var(--bc-sp-2); }
+  .m-disc .bc-table-wrap { box-shadow: none; }
+  .m-split { display: grid; gap: var(--bc-sp-3); grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+  .m-side { padding: var(--bc-sp-3); font-size: var(--bc-fs-xs); background: var(--bc-surface-2); border-left: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-s); }
+  .m-side p { margin: 0 0 var(--bc-sp-2); }
+
+  /* típusgaléria */
+  .gallery { display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); }
+  .gallery .bc-card { display: grid; gap: var(--bc-sp-2); align-content: start; font-size: var(--bc-fs-s); }
+  .gallery .bc-card.is-no { background: var(--bc-surface-2); }
+  .gallery h4 { margin: 0; font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-l); }
+  .thumb { display: block; width: 100%; max-width: 240px; height: auto; }
+  .thumb .grid { stroke: var(--bc-line-soft); stroke-width: 1; }
+  .thumb .axis { stroke: var(--bc-line); stroke-width: 2; }
+  .thumb .case { fill: none; stroke: var(--bc-line); stroke-width: 5; stroke-linejoin: round; stroke-linecap: round; }
+  .thumb .ln { fill: none; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+  .thumb .ln.c3 { stroke: var(--bc-data-cat-3); } .thumb .ln.c2 { stroke: var(--bc-data-cat-2); }
+  .thumb .x { stroke: var(--bc-danger); stroke-width: 4; stroke-linecap: round; }
+  .m-scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-s); overflow: hidden; }
+  .m-scale span { height: 20px; border-left: var(--bc-bw-hair) solid var(--bc-line); }
+  .m-scale span:first-child { border-left: 0; }
+  .m-scale .z { background: var(--bc-data-seq-1); } .m-scale .a { background: var(--bc-data-seq-2); } .m-scale .b { background: var(--bc-data-seq-3); } .m-scale .c { background: var(--bc-data-seq-4); } .m-scale .d { background: var(--bc-data-seq-5); }
+  .m-scale-lbl { display: grid; grid-template-columns: repeat(5, 1fr); font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); text-align: center; font-variant-numeric: tabular-nums; }
+  .m-pager { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2); font-size: var(--bc-fs-s); }
+  .m-pager .pg { display: inline-grid; place-items: center; min-width: 36px; height: 36px; border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-s); background: var(--bc-surface); font-weight: var(--bc-fw-semibold); }
+  .m-pager .pg.on { background: var(--bc-accent); color: var(--bc-on-accent); border-width: var(--bc-bw-base); }
+  .m-pager .info { margin-right: auto; color: var(--bc-ink-soft); }
+  .m-empty { padding: var(--bc-sp-5) var(--bc-sp-3); }
+  .m-empty .bee { width: 56px; height: 56px; display: grid; place-items: center; border: var(--bc-bw-base) solid var(--bc-line); border-radius: 50%; background: var(--bc-accent); color: var(--bc-on-accent); font-family: var(--bc-font-display); font-size: var(--bc-fs-xl); }
+  @media (max-width: 640px) { .m-split { grid-template-columns: 1fr; } .m-side { border-left: 0; border-top: var(--bc-bw-base) solid var(--bc-line); } }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="bc-page-header">
+    <div>
+      <p class="bc-muted" style="margin:0">beeco design system · javaslat 02 · 2026-10-01</p>
+      <h1>Adat és grafikon</h1>
+      <p>A második komponenscsomag: táblázat, szűrősáv, statisztika-csempe és grafikonkártya, az admin valódi listáira és analitikájára építve. Ahol tényleg dönteni kell, 2 változatot mutatok. Válassz, és jóváhagyás után megépítem, tesztlapokkal.</p>
+    </div>
+    <span class="bc-badge is-warning">Jóváhagyásra vár</span>
+  </header>
+
+  <div class="bc-alert is-info" role="note"><p><strong>Hogyan olvasd:</strong> a <span class="bc-badge is-accent">Javaslat</span> jelű változatot ajánlom. A makettek állóképek (nem kattinthatók). <strong>Minden szám a makettekben mintaadat</strong>, nem valódi beeco-adat. A valódi komponens a jóváhagyás után készül el, billentyűzettel, képernyőolvasóval és tesztlappal. A lap követi a rendszered világos vagy sötét módját.</p></div>
+
+  <!-- 1. ADATTÁBLÁZAT -->
+  <section class="prop" aria-labelledby="p1">
+    <header><h2 id="p1">1. Adattáblázat (DataTable)</h2><span class="bc-badge">organizmus</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> <code>components/Table/Table.tsx</code> (TanStack: rendezés, oszlopszélesség-húzás, lenyitható sor, fix 10/oldal – 8 oldal használja: Partners, Coupons, CouponSchedules, Events, SearchEvents, MonthlyCampaigns, PrizeDrawList, PoiDuplicates), <code>FilterTable.tsx</code> (szerveroldali lapozás 5–200/oldal, sorkijelölés – PoiList, SpecialDays), és további 20 fájl nyers <code>&lt;table&gt;</code>-je (pl. AdminIssues, Hives, TagsManagement, az analitika-panelek táblái).</span>
+      <span><strong>Épül:</strong> <code>@tanstack/react-table</code> (már bent van, MIT) a logikához + DS <code>bc-table</code>, <code>bc-sort</code>, <code>bc-pager</code>, <code>bc-empty</code>, <code>bc-skeleton</code>; a jelölőnégyzet a 01-es Checkbox, a tömeges gombok a Button atom.</span>
+    </div>
+
+    <div class="mock" aria-hidden="true">
+      <div class="mock-tag"><span class="bc-badge is-muted">mintaadat</span></div>
+      <div class="m-bulk"><strong>3 kijelölt POI</strong><span class="m-btn is-ghost">Kijelölés törlése</span><span class="m-btn">Tömeges módosítás</span><span class="m-btn">Képek kezelése</span><span class="m-btn is-danger">Végleges törlés</span></div>
+      <div class="bc-table-wrap">
+        <table class="bc-table m-table">
+          <thead><tr><th><span class="m-ck part">–</span></th><th>Név<span class="srt">▲</span><span class="rsz"></span></th><th>Kategória<span class="rsz"></span></th><th>Címkék</th><th>Aktív</th><th class="is-num">Módosítva</th></tr></thead>
+          <tbody>
+            <tr class="is-sel"><td><span class="m-ck on">✓</span></td><td><span class="exp">▼</span>Zöld Sarok Kávézó</td><td>Vendéglátás</td><td><span class="m-chip">bio</span></td><td><span class="bc-badge is-success">aktív</span></td><td class="is-num">2026. 09. 28.</td></tr>
+            <tr class="expanded"><td></td><td colspan="5">Cím: Méhesd, Fő utca 1. · 2 kép · nyitott adathiba: nincs · létrehozva: 2026. 03. 02.</td></tr>
+            <tr class="is-sel"><td><span class="m-ck on">✓</span></td><td><span class="exp">▶</span>Körforgó Javítóműhely</td><td>Szolgáltatás</td><td><span class="m-chip">javító</span></td><td><span class="bc-badge is-success">aktív</span></td><td class="is-num">2026. 09. 21.</td></tr>
+            <tr class="is-sel"><td><span class="m-ck on">✓</span></td><td class="trunc"><span class="exp">▶</span>Nagyon hosszú nevű csomagolásmentes bolt és közösségi tér</td><td>Kereskedelem</td><td class="miss">–</td><td><span class="bc-badge is-muted">inaktív</span></td><td class="is-num">2026. 08. 30.</td></tr>
+            <tr><td><span class="m-ck"></span></td><td><span class="exp">▶</span>Virágos Rét Tanösvény</td><td>Természet</td><td><span class="m-chip">tanösvény</span></td><td><span class="bc-badge is-success">aktív</span></td><td class="is-num">2026. 07. 14.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="m-pager" style="margin-top:var(--bc-sp-3)"><span class="info">1–25 / 312 POI</span><span class="pg">‹</span><span class="pg on">1</span><span class="pg">2</span><span class="pg">3</span><span>…</span><span class="pg">13</span><span class="pg">›</span><span class="m-field">25 / oldal<span class="caret">▼</span></span></div>
+    </div>
+    <p class="bc-help" style="margin-top:var(--bc-sp-2)">Egy komponens, kapcsolható részekkel: rendezés (fejléc-gomb, <code>aria-sort</code>), rögzített fejléc, sorkijelölés + tömeges sáv, lenyitható sor, oszlopszélesség-húzás, lapozás (kliens- vagy szerveroldali), sűrűség (kényelmes / sűrű). A nézet (lap, oldalméret, rendezés) a címsorban marad, mint most a Partnereknél.</p>
+
+    <h3 class="sub">1a. Telefonon (≤ 640 px)</h3>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – vízszintes görgetés, rögzített első oszlop</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-phone">
+            <div class="bc-table-wrap">
+              <table class="bc-table is-dense m-table is-sticky">
+                <thead><tr><th>Név</th><th>Kategória</th><th>Aktív</th><th class="is-num">Módosítva</th></tr></thead>
+                <tbody>
+                  <tr><td>Zöld Sarok</td><td>Vendéglátás</td><td>aktív</td><td class="is-num">09. 28.</td></tr>
+                  <tr><td>Körforgó</td><td>Szolgáltatás</td><td>aktív</td><td class="is-num">09. 21.</td></tr>
+                  <tr><td>Virágos Rét</td><td>Természet</td><td>aktív</td><td class="is-num">07. 14.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="m-hint">→ görgethető · 4 oszlop</p>
+          </div>
+        </div>
+        <ul><li>Ugyanaz a táblázat minden méreten: rendezés, kijelölés, oszlopok összevetése megmarad.</li><li>A név mindig látszik, a többi oszlop mellette görög; a jobb szélen jelzés, hogy van még.</li><li>Adminhoz ez a természetes: ott összehasonlítani kell, nem egyenként olvasni.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – soronként kártya</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-phone">
+            <div class="m-rcard is-sel"><div class="m-row is-between"><strong>Zöld Sarok Kávézó</strong><span class="m-ck on">✓</span></div><dl><dt>Kategória</dt><dd>Vendéglátás</dd><dt>Aktív</dt><dd>aktív</dd><dt>Módosítva</dt><dd>2026. 09. 28.</dd></dl></div>
+            <div class="m-rcard"><div class="m-row is-between"><strong>Körforgó Javítóműhely</strong><span class="m-ck"></span></div><dl><dt>Kategória</dt><dd>Szolgáltatás</dd><dt>Aktív</dt><dd>aktív</dd></dl></div>
+          </div>
+        </div>
+        <ul><li>Telefonon kényelmes olvasni, nincs vízszintes görgetés.</li><li>Oszlopok nem vethetők össze, a rendezéshez külön választó kell; sok sornál hosszú görgetés.</li><li>A partner-felület rövid listáihoz jó lehet: <code>mobile="cards"</code> kapcsolóval, nem alapként.</li></ul>
+      </div></div>
+    </div>
+
+    <h3 class="sub">1b. Tömeges műveletek sávja (kijelöléskor)</h3>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – sáv a táblázat fölött, görgetéskor odatapad</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true"><div class="m-bulk"><strong>3 kijelölt</strong><span class="m-btn is-ghost">Törlés</span><span class="m-btn">Módosítás</span><span class="m-btn is-danger">Végleges törlés</span></div><div class="m-skel"><span class="bc-skeleton" style="animation:none"></span><span class="bc-skeleton" style="animation:none;width:80%"></span></div></div>
+        <ul><li>Ahol most is van (POI-lista): a jelölőnégyzetek közelében.</li><li>Kijelöléskor a szűrősáv helyére csúszik, nem tolja le a táblázatot.</li><li>A darabszám élőben felolvasva (<code>role="status"</code>), a POI-nál a 200-as határral („200/200 – több nem jelölhető ki”).</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – lebegő sáv a képernyő alján</h3>
+        <div class="mock" aria-hidden="true"><div class="m-skel"><span class="bc-skeleton" style="animation:none"></span><span class="bc-skeleton" style="animation:none;width:80%"></span></div><div class="m-bottombar"><strong>3 kijelölt</strong><span class="m-btn">Módosítás</span><span class="m-btn is-danger">Törlés</span></div></div>
+        <ul><li>Telefonon hüvelykujjnyira van.</li><li>Asztalon messze kerül a táblázat tetejétől, és eltakarja az utolsó sorokat meg a lapozót.</li></ul>
+      </div></div>
+    </div>
+
+    <div class="details">
+      <div><strong>Állapotok:</strong> alap · sor rámutatás (csak egérrel) · sor fókusz · kijelölt sor · részben kijelölt fejléc (–) · lenyitott sor · rendezett oszlop (▲/▼) · töltés (csontváz-sorok, a fejléc marad) · frissítés (a régi adat látszik, felül vékony töltésjel) · üres (EmptyState teendővel) · szűrésre üres („Nincs találat – Szűrők törlése”) · hiba („Nem sikerült betölteni. Újrapróbálás”) · nincs jogosultság.</div>
+      <div><strong>Szélső esetek a tesztlapon:</strong><ul><li>0 / 1 / 1000+ sor (lapozás, rögzített fejléc, görgetés sebessége)</li><li>nagyon hosszú cella: levágás „…”-val, teljes szöveg rámutatásra és a lenyitott sorban</li><li>hiányzó érték „–” (nem üres cella), rendezésnél a végére kerül</li><li>egyenlő értékek rendezése (stabil sorrend)</li><li>kijelölés lapváltáskor megmarad; kijelölés határa (POI: 200)</li><li>oszlophúzás billentyűzettel is (nyilak), minimális szélesség</li><li>keskeny képernyő (320 px), 200% nagyítás</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 2. SZŰRŐSÁV -->
+  <section class="prop" aria-labelledby="p2">
+    <header><h2 id="p2">2. Szűrősáv (FilterBar)</h2><span class="bc-badge">organizmus</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> a Partnerek keresője + 3 natív „…: mindegy” választója (<code>pages/Partners/Partners.tsx</code>), a POI-szűrők (<code>pages/Poi/PoiFilters.tsx</code>: kereső, 4 többes <code>react-select</code>, „Aktív állapot”, nyitott adathibák), valamint a kereső és időszak-választók a Kupon, Rajok, Naptár és Analitika oldalakon.</span>
+      <span><strong>Épül:</strong> 01 SearchBox + 01 Combobox (többes) / Select + <code>bc-badge</code>-ből aktív-szűrő címkék + Button. A szűrők a címsorban maradnak (megosztható link), ahogy most.</span>
+    </div>
+    <div class="variants">
+      <div class="var"><div class="bc-card">
+        <h3>A – mindig soros, szükség szerint tördel</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-filter">
+            <div class="m-row"><span class="m-field is-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span class="ph">Partner keresése</span></span><span class="m-field is-set">Kupon: van<span class="caret">▼</span></span><span class="m-field">Esemény: mindegy<span class="caret">▼</span></span><span class="m-field">Edukatív anyag: mindegy<span class="caret">▼</span></span></div>
+            <div class="m-row"><span class="m-chip">Kupon: van <b>×</b></span><span class="m-chip">Címke: bio <b>×</b></span><span class="m-btn is-ghost">Szűrők törlése</span><span class="m-count">48 találat</span></div>
+          </div>
+        </div>
+        <ul><li>Egyszerű, minden szűrő egy pillantásra látszik.</li><li>A POI 7 szűrőjénél telefonon 5–6 sort foglal: a táblázat a képernyő alá csúszik.</li></ul>
+      </div></div>
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>B – széles képernyőn soros, keskenyen „Szűrők (2)” gomb + panel</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-phone">
+            <div class="m-row"><span class="m-field is-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span class="ph">Keresés</span></span><span class="m-btn">Szűrők <span class="m-badge-n">2</span></span></div>
+            <div class="m-row" style="margin-top:var(--bc-sp-2)"><span class="m-chip">Kupon: van <b>×</b></span><span class="m-chip">Címke: bio <b>×</b></span></div>
+            <div class="m-sheet">
+              <span class="lbl">Kupon</span><span class="m-field is-set">van<span class="caret">▼</span></span>
+              <span class="lbl">Esemény</span><span class="m-field">mindegy<span class="caret">▼</span></span>
+              <div class="m-row is-between"><span class="m-btn is-ghost">Szűrők törlése</span><span class="m-btn is-accent">48 találat mutatása</span></div>
+            </div>
+          </div>
+        </div>
+        <ul><li>Asztalon ugyanaz, mint az A. Telefonon a kereső és a táblázat marad elöl.</li><li>Az aktív szűrők címkeként mindig látszanak, egy koppintással törölhetők.</li><li>A panel alján a találatszám: látod, mit kapsz, mielőtt bezárod.</li></ul>
+      </div></div>
+    </div>
+    <div class="details">
+      <div><strong>Állapotok:</strong> alap (nincs aktív szűrő – nincs „Szűrők törlése”) · aktív szűrők (címkék + darabszám a gombon) · keresés gépelés közben (késleltetett frissítés, a lista nem villog) · találatszám töltés közben · 0 találat (a táblázat üres állapota a szűrők törlésével) · a szűrő opciói nem töltöttek be (hiba a választóban, 01).</div>
+      <div><strong>Szélső esetek:</strong><ul><li>0 / 1 / 7+ szűrő; többes szűrő sok kijelölt értékkel (címke: „Címke: bio +3”)</li><li>a címsorban érvénytelen érték (régi link): figyelmen kívül hagyva + jelzés</li><li>ékezet nélküli keresés („kave” → „kávé”), csak szóköz</li><li>egymástól függő szűrők (POI: kategória → alkategória): a szülő törlése a gyereket is törli</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 3. STATISZTIKA-CSEMPE -->
+  <section class="prop" aria-labelledby="p3">
+    <header><h2 id="p3">3. Statisztika-csempe (StatTile / KPI)</h2><span class="bc-badge">molekula</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> az Áttekintés mutató-kártyái (<code>OverviewPanel.tsx</code>: érték + egység, változás az előző időszakhoz, elemszám, forrás, lekérdezés ideje), a <code>MetricGrid</code> (4 helyen: Users, Watering, Hives, Footprint panel) és a Nyereményjáték-összegzők számai.</span>
+      <span><strong>Épül:</strong> <code>bc-stat</code> (bővítve: egység, időszak, súgó ⓘ, elemszám, forrás, rejtett érték) + opcionális Sparkline (4.). A súgó a 01 Field-súgójával azonos gomb és buborék.</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – a változás színe a jelentéstől függ</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="mock-tag"><span class="bc-badge is-muted">mintaadat</span></div>
+          <div class="bc-stats">
+            <div class="bc-stat m-stat"><div class="top"><span class="bc-stat-label">Beváltott kuponok</span><i class="m-help">i</i></div><span class="bc-stat-value">1 284 <span class="unit">db</span></span><span class="m-delta is-good">▲ +12% az előző 30 naphoz</span><span class="per">elemszám: 311 felhasználó</span></div>
+            <div class="bc-stat m-stat"><div class="top"><span class="bc-stat-label">Nyitott hibajegyek</span><i class="m-help">i</i></div><span class="bc-stat-value">37 <span class="unit">db</span></span><span class="m-delta is-bad">▲ +9 az előző héthez</span><span class="per">a több itt rossz irány</span></div>
+            <div class="bc-stat m-stat"><div class="top"><span class="bc-stat-label">Új rajok</span><i class="m-help">i</i></div><span class="hidden-val">rejtve</span><span class="m-delta">kevesebb mint 5 érintett</span><span class="per">adatvédelmi küszöb</span></div>
+          </div>
+        </div>
+        <ul><li>A csempe megkapja, melyik irány a jó (<code>good="up" | "down" | "none"</code>): a több hibajegy nem zöld.</li><li>A jel nem csak szín: nyíl, előjel és szöveg („az előző 30 naphoz”).</li><li>Az 1–4 érintettből álló érték „rejtve” (ahogy most az analitikában), a hiányzó „—”.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – fel = zöld, le = piros (a mostani <code>bc-stat-delta</code>)</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="mock-tag"><span class="bc-badge is-muted">mintaadat</span></div>
+          <div class="bc-stats">
+            <div class="bc-stat"><span class="bc-stat-label">Beváltott kuponok</span><span class="bc-stat-value">1 284</span><span class="bc-stat-delta is-up">▲ 12%</span></div>
+            <div class="bc-stat"><span class="bc-stat-label">Nyitott hibajegyek</span><span class="bc-stat-value">37</span><span class="bc-stat-delta is-up">▲ 9</span></div>
+          </div>
+        </div>
+        <ul><li>Egyszerűbb, egy szabály.</li><li>Félrevezet, ahol a növekedés rossz (hibajegy, CO₂, hulladék): a zöld „jó”-nak olvasódik.</li><li>Nincs benne, mihez képest és mekkora mintából.</li></ul>
+      </div></div>
+    </div>
+    <div class="details">
+      <div><strong>Részek:</strong> címke · súgó ⓘ (mit számol, honnan) · érték + egység (magyar formátum: 1 284; 12,5) · változás (előjel, nyíl, mihez képest) · időszak · elemszám (opcionális) · forrás és lekérdezés ideje (lábléc vagy súgó) · sparkline (opcionális). <strong>Állapotok:</strong> töltés (csontváz a szám helyén) · hiba · nincs adat „—” · rejtett (küszöb alatt) · nincs előző időszak (változás helyett „új”).</div>
+      <div><strong>Szélső esetek:</strong><ul><li>0 · negatív · nagyon nagy szám (1 234 567 – nem tördel, nem lóg ki) · tizedes vesszővel</li><li>előző időszak 0 → a % nem értelmezhető: „+37 (előtte 0)”</li><li>becsült érték: „~” jel + „becslés” a súgóban (a beeco adatszabálya)</li><li>hosszú címke két sorban; csempe 180 px szélesen</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 4. GRAFIKONKÁRTYA -->
+  <section class="prop" aria-labelledby="p4">
+    <header><h2 id="p4">4. Grafikonkártya (ChartCard) és grafikontípusok</h2><span class="bc-badge">organizmus</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> kézzel írt grafikonok: <code>DailyChart</code> (6 helyen: Footprint, Hives, Watering panel), <code>PeriodChart</code> (2), <code>BarList</code> (9: Users, Footprint, Watering), <code>ActivityChart</code> (PrizeDrawInsights, SVG), <code>IssueTrendChart</code> (AdminIssues), <code>FirstReadTrend</code> (InAppMessages), <code>PartnerContentTrend</code> (partner részletek); a súgó-szöveget adó <code>InfoWidget</code> (6); a töltés/hiba <code>PanelState</code> (7); az <code>AnalyticsHeatMap</code> nyers színátmenete (leaflet.heat) → DS adatskála + jelmagyarázat.</span>
+      <span><strong>Épül:</strong> saját SVG (Kristóf döntése), a DS adatskáláival (<code>--bc-data-cat-*</code>, <code>--bc-data-seq-*</code>, színtévesztő-barát párjuk), <code>bc-card</code>, <code>bc-table</code>, <code>bc-empty</code>, <code>bc-skeleton</code>, a StatTile súgógombja. A mostani jó megoldások megmaradnak: lenyitható adattábla (ActivityChart, FirstReadTrend), „a hiányzó nap nem nulla” (DailyChart).</span>
+    </div>
+
+    <div class="variants">
+      <div class="var" style="grid-column:1/-1"><div class="bc-card">
+        <h3>Egy teljes ChartCard – minden kötelező résszel (3/B)</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-chartcard">
+            <div class="m-row is-between" style="flex-wrap:nowrap;align-items:flex-start">
+              <div><p class="title">Aktivált és beváltott kuponok hetente</p><p class="subt">db / hét · 2026. 07. 06. – 09. 27. · <strong>mintaadat</strong></p></div>
+              <i class="m-help">i</i>
+            </div>
+            <div class="m-legend"><span><svg viewBox="0 0 28 14"><path class="case" d="M2 7h24" style="fill:none;stroke:var(--bc-line);stroke-width:6;stroke-linecap:round"/><path d="M2 7h24" style="fill:none;stroke:var(--bc-data-cat-2);stroke-width:3;stroke-linecap:round"/><rect x="10" y="3" width="8" height="8" class="f2 ol"/></svg>Aktivált kuponok</span><span><svg viewBox="0 0 28 14"><path d="M2 7h24" style="fill:none;stroke:var(--bc-line);stroke-width:6;stroke-linecap:round"/><path d="M2 7h24" style="fill:none;stroke:var(--bc-data-cat-3);stroke-width:3;stroke-linecap:round"/><circle cx="14" cy="7" r="4" class="f3 ol"/></svg>Beváltások</span><span><svg viewBox="0 0 28 14"><rect x="6" y="1" width="16" height="12" style="fill:var(--bc-surface-2);stroke:var(--bc-line-soft)"/></svg>rejtett hét (&lt; 5 érintett)</span></div>
+            <div class="m-scroll">
+              <svg class="m-chart" viewBox="0 0 500 262" role="presentation">
+                <!-- rács és tengely-számok (0–150, lépés 50) -->
+                <line class="grid" x1="48" y1="20" x2="410" y2="20"/><line class="grid" x1="48" y1="83.3" x2="410" y2="83.3"/><line class="grid" x1="48" y1="146.7" x2="410" y2="146.7"/>
+                <text x="40" y="24" text-anchor="end">150</text><text x="40" y="88" text-anchor="end">100</text><text x="40" y="151" text-anchor="end">50</text><text x="40" y="214" text-anchor="end">0</text>
+                <text x="4" y="12" class="strong">db</text>
+                <!-- rejtett hét: sáv, nem nulla -->
+                <rect class="gap" x="226" y="20" width="28" height="190"/>
+                <text x="240" y="115" text-anchor="middle" transform="rotate(-90 240 115)">rejtve</text>
+                <line class="axis" x1="48" y1="210" x2="410" y2="210"/>
+                <!-- aktivált (levél, négyzet) -->
+                <polyline class="case" points="48,134 80,128.9 112,118.8 144,121.3 176,102.3 208,96"/>
+                <polyline class="case" points="272,89.7 304,70.7 336,68.1 368,58 400,44.1"/>
+                <polyline class="ln c2" points="48,134 80,128.9 112,118.8 144,121.3 176,102.3 208,96"/>
+                <polyline class="ln c2" points="272,89.7 304,70.7 336,68.1 368,58 400,44.1"/>
+                <!-- beváltás (víz, kör) -->
+                <polyline class="case" points="48,156.8 80,140.3 112,132.7 144,149.2 176,121.3 208,104.9"/>
+                <polyline class="case" points="272,112.5 304,88.4 336,78.3 368,94.7 400,60.5"/>
+                <polyline class="ln c3" points="48,156.8 80,140.3 112,132.7 144,149.2 176,121.3 208,104.9"/>
+                <polyline class="ln c3" points="272,112.5 304,88.4 336,78.3 368,94.7 400,60.5"/>
+                <g class="f2 pt"><rect x="44" y="130" width="8" height="8"/><rect x="76" y="124.9" width="8" height="8"/><rect x="108" y="114.8" width="8" height="8"/><rect x="140" y="117.3" width="8" height="8"/><rect x="172" y="98.3" width="8" height="8"/><rect x="204" y="92" width="8" height="8"/><rect x="268" y="85.7" width="8" height="8"/><rect x="300" y="66.7" width="8" height="8"/><rect x="332" y="64.1" width="8" height="8"/><rect x="364" y="54" width="8" height="8"/><rect x="396" y="40.1" width="8" height="8"/></g>
+                <g class="f3 pt"><circle cx="48" cy="156.8" r="4.5"/><circle cx="80" cy="140.3" r="4.5"/><circle cx="112" cy="132.7" r="4.5"/><circle cx="144" cy="149.2" r="4.5"/><circle cx="176" cy="121.3" r="4.5"/><circle cx="208" cy="104.9" r="4.5"/><circle cx="272" cy="112.5" r="4.5"/><circle cx="304" cy="88.4" r="4.5"/><circle cx="336" cy="78.3" r="4.5"/><circle cx="368" cy="94.7" r="4.5"/><circle cx="400" cy="60.5" r="4.5"/></g>
+                <!-- közvetlen címkék a vonalak végén -->
+                <text x="412" y="42" class="strong">Aktivált 131</text>
+                <text x="412" y="68" class="strong">Beváltás 118</text>
+                <!-- x tengely: minden második hét -->
+                <text x="48" y="230" text-anchor="middle">07. 06.</text><text x="112" y="230" text-anchor="middle">07. 20.</text><text x="176" y="230" text-anchor="middle">08. 03.</text><text x="240" y="230" text-anchor="middle">08. 17.</text><text x="304" y="230" text-anchor="middle">08. 31.</text><text x="368" y="230" text-anchor="middle">09. 14.</text>
+                <text x="229" y="254" text-anchor="middle" class="strong">hét (hétfői kezdőnap)</text>
+              </svg>
+            </div>
+            <div class="m-disc"><div class="sum">▼ Hogyan olvasd?</div><div class="body"><p>Minden pont egy hét összesítése. Ha a kék vonal közelít a zöldhöz, az aktivált kuponok nagyobb részét váltják be.</p><p>A szürke sáv rejtett hét: kevesebb mint 5 felhasználó volt benne, ezért nem mutatjuk. Ez nem nulla.</p><p>Nem következik belőle, hogy a kupon miatt jöttek többen: a nyári szezon is számít.</p></div></div>
+            <div class="m-disc"><div class="sum">▶ Adattábla (12 hét)</div></div>
+            <p class="foot" style="margin:0">Forrás: beeco admin, kuponbeváltási események · lekérdezve: 2026. 10. 01. 09:12 · UTC szerinti hetek</p>
+          </div>
+        </div>
+        <ul>
+          <li><strong>Megvan mind a 3/B rész:</strong> cím · alcím egységgel és időszakkal · tengely-számok és -feliratok · jelmagyarázat + közvetlen címke · súgó ⓘ · „Hogyan olvasd?” · adattábla · forrás.</li>
+          <li><strong>Nem csak szín:</strong> a két sorozat alakja is más (■ / ●), a vonalak végén a nevük áll.</li>
+          <li><strong>Fekete kontúr minden adatjelen</strong> (a termékbőr vonala): így a méz, a rózsa és a világos skálaszínek is elérik a 3:1 kontrasztot fehéren, és a sötét módban is kiválnak. (A mostani adatszínek önmagukban erre nem elegek – lent, a Döntésnél.)</li>
+          <li>Telefonon a grafikon oldalra görgethető, és kevesebb tengelyfelirat jelenik meg; az adattábla mindig elérhető.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <h3 class="sub">4a. Jelmagyarázat helye</h3>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – közvetlen címke a vonal végén + jelmagyarázat felül</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-legend" style="margin-bottom:var(--bc-sp-2)"><span><svg viewBox="0 0 28 14"><rect x="10" y="3" width="8" height="8" class="f2 ol"/></svg>Aktivált</span><span><svg viewBox="0 0 28 14"><circle cx="14" cy="7" r="4" class="f3 ol"/></svg>Beváltás</span></div>
+          <svg class="thumb" viewBox="0 0 240 90" role="presentation" style="max-width:none"><line class="grid" x1="0" y1="10" x2="170" y2="10"/><line class="grid" x1="0" y1="45" x2="170" y2="45"/><line class="axis" x1="0" y1="80" x2="170" y2="80"/><polyline class="case" points="4,60 50,50 100,34 160,16"/><polyline class="ln c2" points="4,60 50,50 100,34 160,16"/><polyline class="case" points="4,70 50,62 100,52 160,32"/><polyline class="ln c3" points="4,70 50,62 100,52 160,32"/><text x="168" y="18" style="fill:var(--bc-ink);font-size:13px;font-weight:700">Aktivált</text><text x="168" y="38" style="fill:var(--bc-ink);font-size:13px;font-weight:700">Beváltás</text></svg>
+        </div>
+        <ul><li>A szem nem ugrál a jelmagyarázat és a vonal között.</li><li>A felső jelmagyarázat oszlopoknál, halmozásnál és a rejtett sávnál kell (ott nincs „vonalvég”).</li><li>Sok sorozatnál (&gt; 4) a közvetlen címke elmarad, csak a felső marad.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – jelmagyarázat a grafikon alatt (a mostani admin-minta)</h3>
+        <div class="mock" aria-hidden="true">
+          <svg class="thumb" viewBox="0 0 240 90" role="presentation" style="max-width:none"><line class="grid" x1="0" y1="10" x2="236" y2="10"/><line class="grid" x1="0" y1="45" x2="236" y2="45"/><line class="axis" x1="0" y1="80" x2="236" y2="80"/><polyline class="case" points="4,60 70,50 150,34 230,16"/><polyline class="ln c2" points="4,60 70,50 150,34 230,16"/><polyline class="case" points="4,70 70,62 150,52 230,32"/><polyline class="ln c3" points="4,70 70,62 150,52 230,32"/></svg>
+          <div class="m-legend" style="margin-top:var(--bc-sp-2)"><span><svg viewBox="0 0 28 14"><rect x="10" y="3" width="8" height="8" class="f2 ol"/></svg>Aktivált</span><span><svg viewBox="0 0 28 14"><circle cx="14" cy="7" r="4" class="f3 ol"/></svg>Beváltás</span></div>
+        </div>
+        <ul><li>Több hely a rajzolásnak, egyszerűbb építeni.</li><li>A jelentést a grafikon után tudod meg; telefonon a jelmagyarázat gyakran a képernyő alá kerül.</li></ul>
+      </div></div>
+    </div>
+
+    <h3 class="sub">4b. „Hogyan olvasd?” helye</h3>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – lenyitható a grafikon alatt</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-skel"><span class="bc-skeleton" style="animation:none;height:72px"></span></div>
+          <div class="m-disc" style="margin-top:var(--bc-sp-2)"><div class="sum">▼ Hogyan olvasd?</div><div class="body"><p>Minden pont egy hét. A rejtett hét nem nulla.</p></div></div>
+          <div class="m-disc" style="margin-top:var(--bc-sp-2)"><div class="sum">▶ Adattábla</div></div>
+        </div>
+        <ul><li>Minden méreten ugyanúgy működik, a grafikon teljes szélességű marad.</li><li>Az adattábla ugyanígy lenyitható – egy minta, két helyen.</li><li>Az első látogatáskor nyitva, utána az eszköz megjegyzi.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – oldalpanel a grafikon mellett</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-split"><div class="m-skel"><span class="bc-skeleton" style="animation:none;height:96px"></span></div><div class="m-side"><p><strong>Hogyan olvasd?</strong></p><p>Minden pont egy hét. A rejtett hét nem nulla.</p></div></div>
+        </div>
+        <ul><li>Asztalon mindig szem előtt van.</li><li>A grafikon harmadával keskenyebb; telefonon úgyis alá kerül.</li><li>Egy irányítópulton 6 ilyen kártya zsúfolt.</li></ul>
+      </div></div>
+    </div>
+
+    <h3 class="sub">Grafikontípusok – mit építünk, mit nem</h3>
+    <div class="gallery" aria-hidden="true">
+      <div class="bc-card"><h4>Oszlop</h4>
+        <svg class="thumb" viewBox="0 0 120 72" role="presentation"><line class="axis" x1="4" y1="66" x2="116" y2="66"/><rect class="f1 ol" x="10" y="40" width="14" height="26"/><rect class="f1 ol" x="32" y="28" width="14" height="38"/><rect class="f1 ol" x="54" y="46" width="14" height="20"/><rect class="f1 ol" x="76" y="18" width="14" height="48"/><rect class="f1 ol" x="98" y="10" width="14" height="56"/></svg>
+        <span>Időbeli darabszám (nap, hét, hónap). Kiváltja: DailyChart, PeriodChart.</span></div>
+      <div class="bc-card"><h4>Sáv (vízszintes)</h4>
+        <svg class="thumb" viewBox="0 0 120 72" role="presentation"><line class="axis" x1="30" y1="4" x2="30" y2="68"/><rect class="f2 ol" x="30" y="8" width="80" height="10"/><rect class="f2 ol" x="30" y="24" width="58" height="10"/><rect class="f2 ol" x="30" y="40" width="36" height="10"/><rect class="f2 ol" x="30" y="56" width="14" height="10"/></svg>
+        <span>Rangsor, kategóriák hosszú névvel, részarány. Kiváltja: BarList (9).</span></div>
+      <div class="bc-card"><h4>Vonal / trend</h4>
+        <svg class="thumb" viewBox="0 0 120 72" role="presentation"><line class="axis" x1="4" y1="66" x2="116" y2="66"/><polyline class="case" points="8,54 30,46 52,50 74,30 96,26 112,14"/><polyline class="ln c3" points="8,54 30,46 52,50 74,30 96,26 112,14"/></svg>
+        <span>Változás időben, 1–4 sorozat. Kiváltja: ActivityChart, FirstReadTrend, PartnerContentTrend.</span></div>
+      <div class="bc-card"><h4>Csoportosított oszlop</h4>
+        <svg class="thumb" viewBox="0 0 120 72" role="presentation"><line class="axis" x1="4" y1="66" x2="116" y2="66"/><rect class="f5 ol" x="10" y="30" width="10" height="36"/><rect class="f3 ol" x="20" y="44" width="10" height="22"/><rect class="f5 ol" x="46" y="20" width="10" height="46"/><rect class="f3 ol" x="56" y="34" width="10" height="32"/><rect class="f5 ol" x="82" y="38" width="10" height="28"/><rect class="f3 ol" x="92" y="30" width="10" height="36"/></svg>
+        <span>Két szám naponta egymás mellett. Kiváltja: IssueTrendChart (létrejött / megoldott).</span></div>
+      <div class="bc-card"><h4>Halmozott oszlop</h4>
+        <svg class="thumb" viewBox="0 0 120 72" role="presentation"><line class="axis" x1="4" y1="66" x2="116" y2="66"/><rect class="f2 ol" x="14" y="44" width="18" height="22"/><rect class="f1 ol" x="14" y="28" width="18" height="16"/><rect class="f2 ol" x="50" y="36" width="18" height="30"/><rect class="f1 ol" x="50" y="16" width="18" height="20"/><rect class="f2 ol" x="86" y="40" width="18" height="26"/><rect class="f1 ol" x="86" y="22" width="18" height="18"/></svg>
+        <span>Egész és részei időben (legfeljebb 3–4 rész). Csak ha az összeg is fontos.</span></div>
+      <div class="bc-card"><h4>Sparkline</h4>
+        <svg class="thumb" viewBox="0 0 120 36" role="presentation"><polyline class="case" points="4,28 20,24 36,26 52,16 68,18 84,10 100,12 116,6"/><polyline class="ln c2" points="4,28 20,24 36,26 52,16 68,18 84,10 100,12 116,6"/><circle cx="116" cy="6" r="3.5" class="f2 ol"/></svg>
+        <span>Irány a StatTile-ban, tengely nélkül. Mindig a csempe száma mellett, soha egyedül.</span></div>
+      <div class="bc-card"><h4>Hőtérkép-jelmagyarázat</h4>
+        <div class="m-scale"><span class="z"></span><span class="a"></span><span class="b"></span><span class="c"></span><span class="d"></span></div>
+        <div class="m-scale-lbl"><span>1–20</span><span>21–40</span><span>41–60</span><span>61–80</span><span>81+</span></div>
+        <span>A DS egyirányú skálája, határszámokkal, a színtévesztő-barát párjával. Kiváltja a térképi hőtérkép nyers kék–sárga–piros átmenetét.</span></div>
+      <div class="bc-card is-no"><h4>Fánk / torta <span class="bc-badge is-danger">nem javaslom</span></h4>
+        <svg class="thumb" viewBox="0 0 120 72" role="presentation"><circle cx="60" cy="36" r="26" style="fill:none;stroke:var(--bc-data-cat-1);stroke-width:14"/><circle cx="60" cy="36" r="26" style="fill:none;stroke:var(--bc-data-cat-2);stroke-width:14;stroke-dasharray:60 200"/><line class="x" x1="20" y1="10" x2="100" y2="62"/></svg>
+        <span>Szögeket és íveket rosszul hasonlítunk össze, 3 szelet fölött olvashatatlan, hosszú név nem fér el. Az admin most sem használja. Részarányhoz: vízszintes sáv vagy egy 100%-os sáv.</span></div>
+    </div>
+
+    <div class="details">
+      <div><strong>Állapotok:</strong> töltés (csontváz a rajz helyén, a cím és a súgó már látszik) · üres („Ebben az időszakban nincs adat” + teendő: „Válassz hosszabb időszakot”) · hiba („Nem sikerült betölteni. Újrapróbálás”) · részleges (rejtett időszakok sávval) · színtévesztő-barát mód (<code>data-cb</code>) · nyomtatás (fekete-fehéren is olvasható a kontúr és az alak miatt).</div>
+      <div><strong>Szélső esetek a tesztlapon (3.4):</strong><ul><li>nincs adat · egyetlen pont · minden érték 0 · negatív érték (a 0-vonal kiemelve)</li><li>egy óriási kiugró érték: a többi ne lapuljon el (jelzés + adattábla); oszlopnál a tengely mindig 0-tól indul</li><li>null / rejtett érték ≠ 0 (sáv, nem leeső vonal)</li><li>30 / 90 / 365 nap (felirat-sűrítés), sok kategória, hosszú kategórianév</li><li>magyar formátum (1 234,5), egység mindig kiírva, forrás a láblécben</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 5. VÁLTOZAT NÉLKÜL -->
+  <section class="prop" aria-labelledby="p5">
+    <header><h2 id="p5">5. A többi – változat nélkül</h2><span class="bc-badge">molekula / organizmus</span></header>
+    <div class="bc-table-wrap">
+      <table class="bc-table">
+        <thead><tr><th>Elem</th><th>Szint</th><th>Mire épül (meglévő)</th><th>Kiváltja az adminban</th></tr></thead>
+        <tbody>
+          <tr><td>Pagination (lapozó)</td><td>molekula</td><td><code>bc-pager</code> + Button + Select</td><td>4 külön megoldás: Table (Előző / szám / Következő), FilterTable (5–200/oldal), Partners (számozott, 10/25/100), analitika <code>PageControls</code>. Egységesen: „1–25 / 312 partner”, számozott lapok „…”-tal, oldalméret 10 / 25 / 100.</td></tr>
+          <tr><td>EmptyState (üres állapot)</td><td>molekula</td><td><code>bc-empty</code> (méhecske + egy mondat + egy teendő)</td><td>„Nincs megjeleníthető adat.”, „Még nincs megjeleníthető időszakos aktivitás.” és a teendő nélküli üres listák.</td></tr>
+          <tr><td>Skeleton rows (csontváz-sorok)</td><td>atom</td><td><code>bc-skeleton</code></td><td>„Betöltés…” és „POI-k betöltése…” szövegek; a fejléc marad, a sorok helyén 5 csontváz-sor.</td></tr>
+          <tr><td>DataState (töltés / hiba / újrapróbálás)</td><td>molekula</td><td><code>bc-alert</code> + Button + <code>bc-spinner</code></td><td><code>PanelState</code> (7), a listák <code>role="alert"</code>-es hibaszövegei.</td></tr>
+          <tr><td>SortHeader, SelectCell, ColumnResizer, ExpandToggle</td><td>atom</td><td><code>bc-sort</code>, 01 Checkbox, IconButton</td><td>a DataTable részei, külön is tesztelve (billentyűzet, <code>aria-sort</code>, <code>aria-expanded</code>).</td></tr>
+          <tr><td>DataNote (adat-megjegyzés)</td><td>molekula</td><td><code>bc-alert is-info</code></td><td><code>InfoWidget</code> (6) és a <code>analytics-scope-note</code>: az értelmezés a ChartCard „Hogyan olvasd?”-jába kerül, az oldalszintű megjegyzés ide.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="variants" style="margin-top:var(--bc-sp-4)">
+      <div class="var"><div class="bc-card"><h3>Lapozó</h3><div class="mock" aria-hidden="true"><div class="m-pager"><span class="info">1–25 / 312 partner</span><span class="pg">‹</span><span class="pg on">1</span><span class="pg">2</span><span>…</span><span class="pg">13</span><span class="pg">›</span></div><p class="m-hint" style="text-align:left">mintaadat</p></div></div></div>
+      <div class="var"><div class="bc-card"><h3>Üres állapot</h3><div class="mock bc-empty m-empty" aria-hidden="true"><span class="bee">?</span><strong>Nincs találat</strong><span>A szűrőkkel egy partner sem egyezik.</span><span class="m-btn">Szűrők törlése</span></div></div></div>
+      <div class="var"><div class="bc-card"><h3>Csontváz-sorok</h3><div class="mock m-skel" aria-hidden="true"><span class="bc-skeleton"></span><span class="bc-skeleton" style="width:90%"></span><span class="bc-skeleton" style="width:95%"></span><span class="bc-skeleton" style="width:70%"></span></div></div></div>
+    </div>
+    <p class="bc-help" style="margin-top:var(--bc-sp-3)">A térkép (MapWidget, POI-térkép) nem ebben a csomagban van; innen csak a hőtérkép-jelmagyarázat és a színskála kerül bele.</p>
+  </section>
+
+  <section class="decide" aria-labelledby="dd">
+    <h2 id="dd">Döntés</h2>
+    <p>Írd meg a chatben, például: <strong>„1a A, 1b A, 2B, 3A, 4a A, 4b A, fánk nincs – jóváhagyva”</strong>, vagy azt, amit másképp szeretnél. Ez kerül a <code>docs/javaslatok/02-adat.md</code> Döntés részébe, és utána építek.</p>
+    <div class="bc-alert is-warning" role="note" style="margin-top:var(--bc-sp-4)"><div style="min-width:0"><p><strong>Két kérdés a jóváhagyáshoz:</strong></p>
+      <ul style="margin:var(--bc-sp-2) 0 0;padding-left:1.2em">
+        <li><strong>Adatszínek sötét módban.</strong> A <code>--bc-data-*</code> színek nem váltanak sötét módban, és önmagukban nem érik el a 3:1-et: a méz fehéren 1,5:1, a levél és a víz a sötét kártyán 2,8:1. Javaslatom: minden adatjel kapjon <code>line</code> színű kontúrt (ahogy a maketten) – ez megoldja tokencsere nélkül. Ha kontúr nem kell, sötét módú adatszínek kellenek (tokenmódosítás, külön javaslat).</li>
+        <li><strong>Súgó a szűrőkön.</strong> A 3/A szerint minden beviteli mezőnek kötelező a súgó ⓘ, a tartomány és a számláló. A szűrősáv választóinál ezt túlzásnak tartom (a „Kupon: mindegy” magától érthető). Javaslat: a FilterBar mezőinél a súgó opcionális.</li>
+      </ul>
+    </div></div>
+  </section>
+</main>
+</body>
+</html>

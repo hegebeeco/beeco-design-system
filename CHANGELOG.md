@@ -15,6 +15,15 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.14.0 – 2026-10-01 – React-komponensek (Javaslat 01 – Űrlap, jóváhagyva: 1A, 2A, 3A, 4A, 5A) + gépi önteszt
+* **React-réteg** (`@beeco/design-system/react`, forrás `react/src/`, kimenet `dist/react/` – `tools/react-build.js`, esbuild): Field (címke + súgó ⓘ + tartomány + élő számláló + hiba/jelzés), HelpButton, Button, IconButton, TextField, TextArea (pl. 213/255), NumberField (magyar formátum, betű/2. tizedesjel/fölös mínusz tiltva, határra igazítás kilépéskor + jelzés; `clamp="input"`), SelectField, Checkbox, RadioGroup, Switch, SearchBox, SegmentedControl (3A), Combobox (1A: egyes/többes, új elem, ékezet nélküli keresés, 1000+ opció, „+N”, max.), TagPicker (4A: felhő ≤ 20, fölötte legördülő), DatePicker + DateRangePicker (2A: gépelhető, hétfő, tiltott napok, időpont, UTC-segédek), FormSection, FormActions. Viselkedés: Radix Popover (MIT).
+* **Új CSS:** `termek/css/bc-field.css` (súgó gomb, lebegő réteg, tartomány + számláló, kereső, nézetváltó, címkefelhő), `bc-picker.css` (legördülő, lista, naptár).
+* **Kötelező mező-részek és grafikon-részek, bővített önteszt-kör** (`docs/komponensek.md` 3/A, 3/B, 3/C – Kristóf kérése).
+* **Gépi önteszt:** `tests/check-komponensek.js` – 5 tesztlap × 8 nézet × világos/sötét: forgatókönyvek (35), konzolhiba, kilógás, 44 px, kontraszt, 3/A, látható fókusz, axe-core (WCAG 2.2 AA), csökkentett mozgás, hosszú feladatok. Eredmény: 35/35, 0 lelet. CI: Playwright Chromium.
+* **HIBAJAVÍTÁS (az 1.12–1.13-ban is!):** a `--bc-focus` szerep önmagára hivatkozott → a böngésző eldobta, **a billentyűzetes fókuszkeret sehol nem látszott**. Javítva a generátorban; a `check-tokens` mostantól megfogja az önhivatkozást. A fogyasztó projektekben (admin) verzió-emelés kell.
+* Javaslatok jóváhagyásra: **02 – Adat és grafikon**, **03 – Rétegek és navigáció**, **04 – Média és speciális** (`javaslatok/`, `docs/javaslatok/`).
+* A lenyíló rétegek a látható területen belül maradnak (görgethetően).
+
 ## 1.13.1 – 2026-10-01 – komponens-szabálykönyv, javaslatok, GitHub Pages
 * **`docs/komponensek.md`** (Kristóf kérése): meglévőből dolgozz (keresési sorrend), atomic szintek (token → atom → molekula → organizmus → sablon → oldal), **kötelező öntesztek minden beviteli mezőre és grafikonra** (működés, 8 nézet × világos/sötét, UX/UI-szabályok, szélső esetek katalógusa), Definition of Done, közös definiálás javaslatlappal és Kristóf jóváhagyásával.
 * Javaslat-sablon: `docs/javaslatok/_sablon.md`; **Javaslat 01 – Űrlap** (`docs/javaslatok/01-urlap.md`, makettek: `javaslatok/01-urlap.html`) – jóváhagyásra vár.

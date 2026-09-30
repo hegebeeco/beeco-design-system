@@ -1,0 +1,7 @@
+/* Tesztlapok saját elrendezése (nem része a termékbőrnek) – csak tokenek */
+.tl-wrap { max-width: 1200px; margin: 0 auto; padding: var(--bc-sp-5) var(--bc-sp-4) var(--bc-sp-8); }
+.tl-group { margin: var(--bc-sp-6) 0 var(--bc-sp-3); padding-bottom: var(--bc-sp-2); border-bottom: var(--bc-bw-base) solid var(--bc-line); }
+.tl-grid { display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); align-items: start; }
+.tl-case { display: flex; flex-direction: column; gap: var(--bc-sp-3); min-width: 0; padding: var(--bc-sp-4); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line-soft); border-radius: var(--bc-r-m); }
+.tl-case-title { margin: 0; font-family: var(--bc-font-body); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); letter-spacing: .04em; text-transform: uppercase; color: var(--bc-ink-soft); }
+.tl-out { margin: 0; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); overflow-wrap: anywhere; }
