@@ -1,0 +1,20 @@
+{
+  "_readme": "JÁTÉKBŐR – Méhsejt-diorama (a webjátékok, 2026-09-16 óta). A forrás itt továbbra is a kézzel írt web/css/tokens.css (a kit-sync ezt viszi a játékokba); ez a fájl a tokens.css tükre: a tests/check-tokens.js ellenőrzi, hogy a kettő és a core.json egyezik. Szabálykönyv: docs/arculat.md, skill: beeco-arculat.",
+  "color": {
+    "light": {
+      "bg": "cream", "surface": "paper", "ink": "olive", "ink-soft": "olive-soft", "line": "olive",
+      "accent": "honey", "on-accent": "olive",
+      "good-bg": "sage-bg", "good-ink": "olive", "good": "leaf",
+      "bad-bg": "blossom-bg", "bad-ink": "berry",
+      "data-before": "blossom", "data-after": "leaf"
+    }
+  },
+  "radius": { "s": 12, "m": 18, "l": 24, "xl": 32, "pill": 999 },
+  "border": { "base": 3 },
+  "shadow": {
+    "_readme": "Puha, csak függőleges árnyék. Kemény átlós árnyék a játékbőrben SOHA (a tömör olíva árnyék csak a matricáké).",
+    "soft": "0 4px 0 rgba(47,55,30,.18), 0 10px 22px rgba(47,55,30,.10)",
+    "soft-sm": "0 3px 0 rgba(47,55,30,.18)",
+    "press": "0 4px 0 var(--olive)"
+  }
+}

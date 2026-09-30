@@ -1,4 +1,23 @@
-# beeco-jatek-kit
+# beeco design system (régi neve: beeco-jatek-kit)
+
+A **teljes beeco-márka közös design systeme** (1.12.0-tól): közös atomok (`tokens/`) és két bőr –
+**termékbőr** az appnak, az adminnak, a partner-felületnek és a webnek (`termek/`, `dist/`), **játékbőr** (Méhsejt-diorama) a webjátékoknak (`web/`).
+Egy forrás, generált kimenetek (CSS, SCSS, Tailwind, Dart), gépi ellenőrzésekkel. Felépítés: **`docs/rendszer.md`** · összefoglaló: `DESIGN.md`.
+
+| Rész | Hol |
+|---|---|
+| **Közös atomok + bőrök** (egy forrás) | `tokens/core.json`, `tokens/theme-termek.json`, `tokens/theme-jatek.json` |
+| **Generált kimenetek** – CSS-változók, betűk, SCSS, Tailwind preset, Dart, JSON | `dist/` (`node tools/tokens-build.js`) |
+| **Termékbőr elemei** (`bc-` gomb, űrlap, kártya, ablak, táblázat, jelzés, váz) + élő bemutató | `termek/css/`, `termek/bemutato.html` |
+| **Szabálykönyvek** – rendszer, termékbőr, app-átállás (Bence) | `docs/rendszer.md`, `docs/termek-arculat.md`, `docs/app-atallas.md` |
+| **Ellenőrzések** – DS-őr (CI) és projekt-lint racsnival | `tests/check-tokens.js`, `tools/ds-lint.js` (`npx beeco-ds-lint`) |
+| **Claude-skill** a termékekhez | `.claude/skills/beeco-ds` (játékhoz: `beeco-arculat`) |
+
+Termék-projektbe: `npm install github:hegebeeco/beeco-design-system#v1.12.0`, majd `npx beeco-ds-lint --init`.
+
+---
+
+## Játékbőr és játék-kit
 
 A beeco webjátékainak **közös alapja** – hogy minden új játék ugyanabban a stílusban, ugyanazokkal az eszközökkel,
 ugyanazzal a minőséggel induljon, és a fejlesztések (új matrica, új piktogram, jobb eszköz) minden játékhoz eljussanak.

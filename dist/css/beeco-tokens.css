@@ -1,0 +1,219 @@
+/* beeco design system 1.12.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js */
+
+/* 1. Primitívek (nyers színek) – felületen NE használd közvetlenül, csak a szerepeket (2.) */
+:root {
+  --bc-honey: #FECF39; --bc-honey-rgb: 254 207 57;
+  --bc-honey-deep: #D8A500; --bc-honey-deep-rgb: 216 165 0;
+  --bc-butter: #FEEEBB; --bc-butter-rgb: 254 238 187;
+  --bc-cream: #FFF8E7; --bc-cream-rgb: 255 248 231;
+  --bc-paper: #FFFDF6; --bc-paper-rgb: 255 253 246;
+  --bc-white: #FFFFFF; --bc-white-rgb: 255 255 255;
+  --bc-olive: #2F371E; --bc-olive-rgb: 47 55 30;
+  --bc-olive-strong: #48542D; --bc-olive-strong-rgb: 72 84 45;
+  --bc-olive-soft: #596B39; --bc-olive-soft-rgb: 89 107 57;
+  --bc-forest: #3D4E27; --bc-forest-rgb: 61 78 39;
+  --bc-leaf: #6E8947; --bc-leaf-rgb: 110 137 71;
+  --bc-lime: #CDEC82; --bc-lime-rgb: 205 236 130;
+  --bc-sage: #D3DDBB; --bc-sage-rgb: 211 221 187;
+  --bc-sage-bg: #E3ECCD; --bc-sage-bg-rgb: 227 236 205;
+  --bc-sprout: #F0F3EC; --bc-sprout-rgb: 240 243 236;
+  --bc-blossom: #F5B4C7; --bc-blossom-rgb: 245 180 199;
+  --bc-blossom-bg: #FDE2E8; --bc-blossom-bg-rgb: 253 226 232;
+  --bc-berry: #7A2E3F; --bc-berry-rgb: 122 46 63;
+  --bc-red: #DB3A34; --bc-red-rgb: 219 58 52;
+  --bc-crimson: #B3261E; --bc-crimson-rgb: 179 38 30;
+  --bc-blush: #FDEEE6; --bc-blush-rgb: 253 238 230;
+  --bc-ember: #EA580C; --bc-ember-rgb: 234 88 12;
+  --bc-rust: #824217; --bc-rust-rgb: 130 66 23;
+  --bc-sky: #B1DEFF; --bc-sky-rgb: 177 222 255;
+  --bc-sky-bg: #D6E8F7; --bc-sky-bg-rgb: 214 232 247;
+  --bc-ice: #D3ECFF; --bc-ice-rgb: 211 236 255;
+  --bc-water: #0083E4; --bc-water-rgb: 0 131 228;
+  --bc-navy: #003E74; --bc-navy-rgb: 0 62 116;
+  --bc-focus: #2656D9; --bc-focus-rgb: 38 86 217;
+  --bc-black: #000000; --bc-black-rgb: 0 0 0;
+  --bc-coal: #1E1E1E; --bc-coal-rgb: 30 30 30;
+  --bc-graphite: #505050; --bc-graphite-rgb: 80 80 80;
+  --bc-slate: #676767; --bc-slate-rgb: 103 103 103;
+  --bc-silver: #C6C6C6; --bc-silver-rgb: 198 198 198;
+  --bc-mist: #E6E6E6; --bc-mist-rgb: 230 230 230;
+  --bc-night: #1F2615; --bc-night-rgb: 31 38 21;
+  --bc-night-surface: #353F25; --bc-night-surface-rgb: 53 63 37;
+  --bc-night-line: #B6C4A3; --bc-night-line-rgb: 182 196 163;
+
+  /* Betűk, méretek, térköz */
+  --bc-font-display: Lalezar, "Arial Rounded MT Bold", system-ui, sans-serif;
+  --bc-font-body: "Open Sans", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  --bc-fw-regular: 400;
+  --bc-fw-semibold: 600;
+  --bc-fw-bold: 700;
+  --bc-fs-xs: 12px;
+  --bc-fs-s: 14px;
+  --bc-fs-m: 16px;
+  --bc-fs-l: 20px;
+  --bc-fs-xl: 26px;
+  --bc-fs-2xl: 34px;
+  --bc-fs-3xl: 46px;
+  --bc-lh-tight: 1.15;
+  --bc-lh-snug: 1.3;
+  --bc-lh-normal: 1.5;
+  --bc-sp-1: 4px;
+  --bc-sp-2: 8px;
+  --bc-sp-3: 12px;
+  --bc-sp-4: 16px;
+  --bc-sp-5: 24px;
+  --bc-sp-6: 32px;
+  --bc-sp-7: 48px;
+  --bc-sp-8: 64px;
+
+  /* Mozgás: UI ≤ 300 ms, ease-in tilos */
+  --bc-t-fast: 120ms;
+  --bc-t-base: 200ms;
+  --bc-t-slow: 400ms;
+  --bc-t-press: 120ms;
+  --bc-ease-out: cubic-bezier(.23,1,.32,1);
+  --bc-ease-in-out: cubic-bezier(.77,0,.175,1);
+  --bc-ease-drawer: cubic-bezier(.32,.72,0,1);
+  --bc-ease-bounce: cubic-bezier(.34,1.56,.64,1);
+  --bc-tap: 44px;
+
+  /* Adatskálák (grafikon, térkép) */
+  --bc-data-seq-1: #EEF3DE;
+  --bc-data-seq-2: #D8E4BC;
+  --bc-data-seq-3: #BFD29A;
+  --bc-data-seq-4: #A6BF7B;
+  --bc-data-seq-5: #8BA863;
+  --bc-data-div-1: #E88FA6;
+  --bc-data-div-2: #F7C6D2;
+  --bc-data-div-3: #FBF3E0;
+  --bc-data-div-4: #D8E4BC;
+  --bc-data-div-5: #A6BF7B;
+  --bc-data-seq-cb-1: #E6F1FB;
+  --bc-data-seq-cb-2: #C6E0F6;
+  --bc-data-seq-cb-3: #A2CBEF;
+  --bc-data-seq-cb-4: #80B5E6;
+  --bc-data-seq-cb-5: #66A3DD;
+  --bc-data-div-cb-1: #F0A35E;
+  --bc-data-div-cb-2: #F9D1A8;
+  --bc-data-div-cb-3: #FBF3E0;
+  --bc-data-div-cb-4: #C6E0F6;
+  --bc-data-div-cb-5: #80B5E6;
+  --bc-data-cat-1: #FECF39;
+  --bc-data-cat-2: #6E8947;
+  --bc-data-cat-3: #0083E4;
+  --bc-data-cat-4: #F5B4C7;
+  --bc-data-cat-5: #EA580C;
+  --bc-data-cat-6: #596B39;
+  --bc-data-cat-7: #B1DEFF;
+  --bc-data-cat-8: #824217;
+
+  /* 2. TERMÉKBŐR – forma */
+  --bc-r-xs: 2px;
+  --bc-r-s: 4px;
+  --bc-r-m: 8px;
+  --bc-r-l: 12px;
+  --bc-r-pill: 999px;
+  --bc-bw-hair: 1px;
+  --bc-bw-base: 2px;
+  --bc-shadow-s: 2px 2px 0 var(--bc-shadow); --bc-shadow-s-x: 2px; --bc-shadow-s-y: 2px;
+  --bc-shadow-m: 4px 4px 0 var(--bc-shadow); --bc-shadow-m-x: 4px; --bc-shadow-m-y: 4px;
+  --bc-shadow-l: 6px 6px 0 var(--bc-shadow); --bc-shadow-l-x: 6px; --bc-shadow-l-y: 6px;
+  --bc-scrim-opacity: 0.45;
+
+  /* 2. TERMÉKBŐR – szín-szerepek, világos */
+  color-scheme: light;
+  --bc-bg: var(--bc-cream); --bc-bg-rgb: var(--bc-cream-rgb);
+  --bc-surface: var(--bc-white); --bc-surface-rgb: var(--bc-white-rgb);
+  --bc-surface-2: var(--bc-sprout); --bc-surface-2-rgb: var(--bc-sprout-rgb);
+  --bc-surface-accent: var(--bc-butter); --bc-surface-accent-rgb: var(--bc-butter-rgb);
+  --bc-ink: var(--bc-black); --bc-ink-rgb: var(--bc-black-rgb);
+  --bc-ink-soft: var(--bc-graphite); --bc-ink-soft-rgb: var(--bc-graphite-rgb);
+  --bc-ink-muted: var(--bc-slate); --bc-ink-muted-rgb: var(--bc-slate-rgb);
+  --bc-line: var(--bc-black); --bc-line-rgb: var(--bc-black-rgb);
+  --bc-line-soft: var(--bc-silver); --bc-line-soft-rgb: var(--bc-silver-rgb);
+  --bc-accent: var(--bc-honey); --bc-accent-rgb: var(--bc-honey-rgb);
+  --bc-accent-press: var(--bc-honey-deep); --bc-accent-press-rgb: var(--bc-honey-deep-rgb);
+  --bc-on-accent: var(--bc-black); --bc-on-accent-rgb: var(--bc-black-rgb);
+  --bc-shadow: var(--bc-black); --bc-shadow-rgb: var(--bc-black-rgb);
+  --bc-focus: var(--bc-focus); --bc-focus-rgb: var(--bc-focus-rgb);
+  --bc-success: var(--bc-leaf); --bc-success-rgb: var(--bc-leaf-rgb);
+  --bc-success-bg: var(--bc-sage-bg); --bc-success-bg-rgb: var(--bc-sage-bg-rgb);
+  --bc-success-ink: var(--bc-forest); --bc-success-ink-rgb: var(--bc-forest-rgb);
+  --bc-danger: var(--bc-red); --bc-danger-rgb: var(--bc-red-rgb);
+  --bc-danger-bg: var(--bc-blush); --bc-danger-bg-rgb: var(--bc-blush-rgb);
+  --bc-danger-ink: var(--bc-crimson); --bc-danger-ink-rgb: var(--bc-crimson-rgb);
+  --bc-warning: var(--bc-ember); --bc-warning-rgb: var(--bc-ember-rgb);
+  --bc-warning-bg: var(--bc-butter); --bc-warning-bg-rgb: var(--bc-butter-rgb);
+  --bc-warning-ink: var(--bc-rust); --bc-warning-ink-rgb: var(--bc-rust-rgb);
+  --bc-info: var(--bc-water); --bc-info-rgb: var(--bc-water-rgb);
+  --bc-info-bg: var(--bc-ice); --bc-info-bg-rgb: var(--bc-ice-rgb);
+  --bc-info-ink: var(--bc-navy); --bc-info-ink-rgb: var(--bc-navy-rgb);
+  --bc-highlight: var(--bc-blossom); --bc-highlight-rgb: var(--bc-blossom-rgb);
+  --bc-scrim: var(--bc-black); --bc-scrim-rgb: var(--bc-black-rgb);
+}
+
+/* Sötét mód: <html data-theme="dark"> vagy <html class="dark"> (Tailwind), rendszer szerint: data-theme="auto" */
+:root[data-theme="dark"], :root.dark {
+  color-scheme: dark;
+  --bc-bg: var(--bc-night); --bc-bg-rgb: var(--bc-night-rgb);
+  --bc-surface: var(--bc-night-surface); --bc-surface-rgb: var(--bc-night-surface-rgb);
+  --bc-surface-2: var(--bc-olive); --bc-surface-2-rgb: var(--bc-olive-rgb);
+  --bc-surface-accent: var(--bc-olive-strong); --bc-surface-accent-rgb: var(--bc-olive-strong-rgb);
+  --bc-ink: var(--bc-cream); --bc-ink-rgb: var(--bc-cream-rgb);
+  --bc-ink-soft: var(--bc-sage); --bc-ink-soft-rgb: var(--bc-sage-rgb);
+  --bc-ink-muted: var(--bc-night-line); --bc-ink-muted-rgb: var(--bc-night-line-rgb);
+  --bc-line: var(--bc-night-line); --bc-line-rgb: var(--bc-night-line-rgb);
+  --bc-line-soft: var(--bc-olive-soft); --bc-line-soft-rgb: var(--bc-olive-soft-rgb);
+  --bc-accent: var(--bc-honey); --bc-accent-rgb: var(--bc-honey-rgb);
+  --bc-accent-press: var(--bc-honey-deep); --bc-accent-press-rgb: var(--bc-honey-deep-rgb);
+  --bc-on-accent: var(--bc-black); --bc-on-accent-rgb: var(--bc-black-rgb);
+  --bc-shadow: var(--bc-black); --bc-shadow-rgb: var(--bc-black-rgb);
+  --bc-focus: var(--bc-sky); --bc-focus-rgb: var(--bc-sky-rgb);
+  --bc-success: var(--bc-lime); --bc-success-rgb: var(--bc-lime-rgb);
+  --bc-success-bg: var(--bc-forest); --bc-success-bg-rgb: var(--bc-forest-rgb);
+  --bc-success-ink: var(--bc-lime); --bc-success-ink-rgb: var(--bc-lime-rgb);
+  --bc-danger: var(--bc-red); --bc-danger-rgb: var(--bc-red-rgb);
+  --bc-danger-bg: var(--bc-berry); --bc-danger-bg-rgb: var(--bc-berry-rgb);
+  --bc-danger-ink: var(--bc-blossom-bg); --bc-danger-ink-rgb: var(--bc-blossom-bg-rgb);
+  --bc-warning: var(--bc-ember); --bc-warning-rgb: var(--bc-ember-rgb);
+  --bc-warning-bg: var(--bc-rust); --bc-warning-bg-rgb: var(--bc-rust-rgb);
+  --bc-warning-ink: var(--bc-butter); --bc-warning-ink-rgb: var(--bc-butter-rgb);
+  --bc-info: var(--bc-sky); --bc-info-rgb: var(--bc-sky-rgb);
+  --bc-info-bg: var(--bc-navy); --bc-info-bg-rgb: var(--bc-navy-rgb);
+  --bc-info-ink: var(--bc-ice); --bc-info-ink-rgb: var(--bc-ice-rgb);
+  --bc-highlight: var(--bc-blossom); --bc-highlight-rgb: var(--bc-blossom-rgb);
+  --bc-scrim: var(--bc-black); --bc-scrim-rgb: var(--bc-black-rgb);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] {
+    color-scheme: dark;
+    --bc-bg: var(--bc-night); --bc-bg-rgb: var(--bc-night-rgb);
+    --bc-surface: var(--bc-night-surface); --bc-surface-rgb: var(--bc-night-surface-rgb);
+    --bc-surface-2: var(--bc-olive); --bc-surface-2-rgb: var(--bc-olive-rgb);
+    --bc-surface-accent: var(--bc-olive-strong); --bc-surface-accent-rgb: var(--bc-olive-strong-rgb);
+    --bc-ink: var(--bc-cream); --bc-ink-rgb: var(--bc-cream-rgb);
+    --bc-ink-soft: var(--bc-sage); --bc-ink-soft-rgb: var(--bc-sage-rgb);
+    --bc-ink-muted: var(--bc-night-line); --bc-ink-muted-rgb: var(--bc-night-line-rgb);
+    --bc-line: var(--bc-night-line); --bc-line-rgb: var(--bc-night-line-rgb);
+    --bc-line-soft: var(--bc-olive-soft); --bc-line-soft-rgb: var(--bc-olive-soft-rgb);
+    --bc-accent: var(--bc-honey); --bc-accent-rgb: var(--bc-honey-rgb);
+    --bc-accent-press: var(--bc-honey-deep); --bc-accent-press-rgb: var(--bc-honey-deep-rgb);
+    --bc-on-accent: var(--bc-black); --bc-on-accent-rgb: var(--bc-black-rgb);
+    --bc-shadow: var(--bc-black); --bc-shadow-rgb: var(--bc-black-rgb);
+    --bc-focus: var(--bc-sky); --bc-focus-rgb: var(--bc-sky-rgb);
+    --bc-success: var(--bc-lime); --bc-success-rgb: var(--bc-lime-rgb);
+    --bc-success-bg: var(--bc-forest); --bc-success-bg-rgb: var(--bc-forest-rgb);
+    --bc-success-ink: var(--bc-lime); --bc-success-ink-rgb: var(--bc-lime-rgb);
+    --bc-danger: var(--bc-red); --bc-danger-rgb: var(--bc-red-rgb);
+    --bc-danger-bg: var(--bc-berry); --bc-danger-bg-rgb: var(--bc-berry-rgb);
+    --bc-danger-ink: var(--bc-blossom-bg); --bc-danger-ink-rgb: var(--bc-blossom-bg-rgb);
+    --bc-warning: var(--bc-ember); --bc-warning-rgb: var(--bc-ember-rgb);
+    --bc-warning-bg: var(--bc-rust); --bc-warning-bg-rgb: var(--bc-rust-rgb);
+    --bc-warning-ink: var(--bc-butter); --bc-warning-ink-rgb: var(--bc-butter-rgb);
+    --bc-info: var(--bc-sky); --bc-info-rgb: var(--bc-sky-rgb);
+    --bc-info-bg: var(--bc-navy); --bc-info-bg-rgb: var(--bc-navy-rgb);
+    --bc-info-ink: var(--bc-ice); --bc-info-ink-rgb: var(--bc-ice-rgb);
+    --bc-highlight: var(--bc-blossom); --bc-highlight-rgb: var(--bc-blossom-rgb);
+    --bc-scrim: var(--bc-black); --bc-scrim-rgb: var(--bc-black-rgb);
+  }
+}

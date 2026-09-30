@@ -1,0 +1,26 @@
+{
+  "name": "@beeco/design-system",
+  "version": "1.12.0",
+  "description": "A beeco egységes design systeme: közös atomok (tokens/), játékbőr (Méhsejt-diorama, web/) és termékbőr (app, admin, partner, web – termek/). Egy forrás, generált kimenetek (CSS, SCSS, Tailwind, Dart).",
+  "license": "UNLICENSED",
+  "private": true,
+  "repository": "github:hegebeeco/beeco-design-system",
+  "files": ["tokens/", "dist/", "termek/", "web/assets/fonts/", "tools/ds-lint.js", "tools/tokens-build.js", "docs/rendszer.md", "docs/termek-arculat.md", "DESIGN.md", "VERSION"],
+  "exports": {
+    "./css/*": "./dist/css/*",
+    "./termek.css": "./termek/css/bc-all.css",
+    "./termek/*": "./termek/css/*",
+    "./scss": "./dist/scss/_beeco.scss",
+    "./tailwind": "./dist/tailwind/preset.cjs",
+    "./tokens.json": "./dist/tokens.json",
+    "./dist/*": "./dist/*",
+    "./web/assets/fonts/*": "./web/assets/fonts/*",
+    "./package.json": "./package.json"
+  },
+  "bin": { "beeco-ds-lint": "tools/ds-lint.js" },
+  "scripts": {
+    "build": "node tools/tokens-build.js",
+    "test": "node tools/tokens-build.js --check && for t in tests/check-*.js; do node \"$t\" || exit 1; done"
+  },
+  "engines": { "node": ">=18" }
+}

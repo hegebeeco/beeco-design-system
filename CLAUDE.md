@@ -1,4 +1,12 @@
-# beeco-jatek-kit – a beeco webjátékok közös alapja
+# beeco design system – a teljes beeco-márka közös alapja (régi neve: beeco-jatek-kit)
+
+> **2026-10-01 óta** ez a repó a **teljes beeco-márka** design systeme (GitHub: `hegebeeco/beeco-design-system`, a régi
+> `beeco-jatek-kit` név átirányít). Közös atomok (`tokens/core.json`) → **termékbőr** (app, admin, partner, web: `termek/`,
+> generált `dist/`) és **játékbőr** (webjátékok: `web/`). Felépítés: `docs/rendszer.md`. Termékmunkához a `beeco-ds` skill,
+> játékhoz a `beeco-arculat`. A `dist/` generált: `node tools/tokens-build.js`; minden változás után `npm test`.
+> Fogyasztók: `~/IdeaProjects/beeco-admin(-design-uplift)`, `~/IdeaProjects/beeco-partner` (git-függőség, címkével), Flutter app (Bence, `dist/dart`).
+> **A helyi mappa neve marad `~/CLAUDE/beeco-jatek-kit`** (a játékok `kit-sync` útvonalai erre mutatnak).
+
 
 Ez a tároló a **közös** rész: design system, matricák, 3D készlet, eszközök, szabálykönyvek, skillek és az új játék sablonja.
 A játékok külön tárolókban élnek (első: `~/CLAUDE/beeco-szelektalj`, élő: https://beeco-szelektalj.netlify.app), és a
@@ -14,7 +22,7 @@ A játékok külön tárolókban élnek (első: `~/CLAUDE/beeco-szelektalj`, él
 * **A sablon** (`sablon/`) mindig futó játék legyen: változás után `node tools/uj-jatek.js /tmp/proba "Próba"` és
   `node /tmp/proba/tools/smoke.js`.
 * **Terjesztés:** commit + push után a projektekben `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ezt szólj Kristófnak / a projekt Claude-jának).
-* A skillek (`.claude/skills/`) a felhasználói szinten is telepítve vannak (`~/.claude/skills/beeco-arculat`, `beeco-jatek` →
+* A skillek (`.claude/skills/`) a felhasználói szinten is telepítve vannak (`~/.claude/skills/beeco-arculat`, `beeco-jatek`, `beeco-ds` →
   szimbolikus link ide), így minden Claude Code projekt látja őket.
 * A beeco méhecskék (`web/assets/brand/`) belső használatúak; külső partner anyagban a beeco jóváhagyása kell. A tároló privát.
 

@@ -1,0 +1,87 @@
+// beeco design system 1.12.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js
+// A változók a CSS-változókra mutatnak (így a sötét mód magától működik). Előbb töltsd be a beeco-tokens.css-t.
+
+$bc-bg: var(--bc-bg);
+$bc-surface: var(--bc-surface);
+$bc-surface-2: var(--bc-surface-2);
+$bc-surface-accent: var(--bc-surface-accent);
+$bc-ink: var(--bc-ink);
+$bc-ink-soft: var(--bc-ink-soft);
+$bc-ink-muted: var(--bc-ink-muted);
+$bc-line: var(--bc-line);
+$bc-line-soft: var(--bc-line-soft);
+$bc-accent: var(--bc-accent);
+$bc-accent-press: var(--bc-accent-press);
+$bc-on-accent: var(--bc-on-accent);
+$bc-shadow: var(--bc-shadow);
+$bc-focus: var(--bc-focus);
+$bc-success: var(--bc-success);
+$bc-success-bg: var(--bc-success-bg);
+$bc-success-ink: var(--bc-success-ink);
+$bc-danger: var(--bc-danger);
+$bc-danger-bg: var(--bc-danger-bg);
+$bc-danger-ink: var(--bc-danger-ink);
+$bc-warning: var(--bc-warning);
+$bc-warning-bg: var(--bc-warning-bg);
+$bc-warning-ink: var(--bc-warning-ink);
+$bc-info: var(--bc-info);
+$bc-info-bg: var(--bc-info-bg);
+$bc-info-ink: var(--bc-info-ink);
+$bc-highlight: var(--bc-highlight);
+$bc-scrim: var(--bc-scrim);
+
+// Primitívek – csak adatvizualizációhoz és kivételhez
+$bc-c-honey: var(--bc-honey);
+$bc-c-honey-deep: var(--bc-honey-deep);
+$bc-c-butter: var(--bc-butter);
+$bc-c-cream: var(--bc-cream);
+$bc-c-paper: var(--bc-paper);
+$bc-c-white: var(--bc-white);
+$bc-c-olive: var(--bc-olive);
+$bc-c-olive-strong: var(--bc-olive-strong);
+$bc-c-olive-soft: var(--bc-olive-soft);
+$bc-c-forest: var(--bc-forest);
+$bc-c-leaf: var(--bc-leaf);
+$bc-c-lime: var(--bc-lime);
+$bc-c-sage: var(--bc-sage);
+$bc-c-sage-bg: var(--bc-sage-bg);
+$bc-c-sprout: var(--bc-sprout);
+$bc-c-blossom: var(--bc-blossom);
+$bc-c-blossom-bg: var(--bc-blossom-bg);
+$bc-c-berry: var(--bc-berry);
+$bc-c-red: var(--bc-red);
+$bc-c-crimson: var(--bc-crimson);
+$bc-c-blush: var(--bc-blush);
+$bc-c-ember: var(--bc-ember);
+$bc-c-rust: var(--bc-rust);
+$bc-c-sky: var(--bc-sky);
+$bc-c-sky-bg: var(--bc-sky-bg);
+$bc-c-ice: var(--bc-ice);
+$bc-c-water: var(--bc-water);
+$bc-c-navy: var(--bc-navy);
+$bc-c-focus: var(--bc-focus);
+$bc-c-black: var(--bc-black);
+$bc-c-coal: var(--bc-coal);
+$bc-c-graphite: var(--bc-graphite);
+$bc-c-slate: var(--bc-slate);
+$bc-c-silver: var(--bc-silver);
+$bc-c-mist: var(--bc-mist);
+$bc-c-night: var(--bc-night);
+$bc-c-night-surface: var(--bc-night-surface);
+$bc-c-night-line: var(--bc-night-line);
+
+$bc-font-display: var(--bc-font-display);
+$bc-font-body: var(--bc-font-body);
+$bc-fs: ("xs": var(--bc-fs-xs), "s": var(--bc-fs-s), "m": var(--bc-fs-m), "l": var(--bc-fs-l), "xl": var(--bc-fs-xl), "2xl": var(--bc-fs-2xl), "3xl": var(--bc-fs-3xl));
+$bc-fw: ("regular": var(--bc-fw-regular), "semibold": var(--bc-fw-semibold), "bold": var(--bc-fw-bold));
+$bc-sp: ("1": var(--bc-sp-1), "2": var(--bc-sp-2), "3": var(--bc-sp-3), "4": var(--bc-sp-4), "5": var(--bc-sp-5), "6": var(--bc-sp-6), "7": var(--bc-sp-7), "8": var(--bc-sp-8));
+$bc-r: ("xs": var(--bc-r-xs), "s": var(--bc-r-s), "m": var(--bc-r-m), "l": var(--bc-r-l), "pill": var(--bc-r-pill));
+$bc-bw: ("hair": var(--bc-bw-hair), "base": var(--bc-bw-base));
+$bc-shadow: ("s": var(--bc-shadow-s), "m": var(--bc-shadow-m), "l": var(--bc-shadow-l));
+$bc-t: ("fast": var(--bc-t-fast), "base": var(--bc-t-base), "slow": var(--bc-t-slow), "press": var(--bc-t-press));
+$bc-ease: ("out": var(--bc-ease-out), "in-out": var(--bc-ease-in-out), "drawer": var(--bc-ease-drawer), "bounce": var(--bc-ease-bounce));
+
+@function fs($k) { @return map-get($bc-fs, "#{$k}"); }
+@function sp($k) { @return map-get($bc-sp, "#{$k}"); }
+@function r($k) { @return map-get($bc-r, "#{$k}"); }
+@function shadow($k) { @return map-get($bc-shadow, "#{$k}"); }

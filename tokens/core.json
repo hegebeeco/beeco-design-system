@@ -1,0 +1,144 @@
+{
+  "_readme": "A beeco design system KÖZÖS ATOMJAI – minden termék (app, admin, partner, web) és minden játék ebből épül. Csak nyers érték van itt (primitív); hogy mi mire való, azt a bőrök (theme-*.json) mondják meg. Szabály: név soha nem változik és nem törlődik, csak új jön (a játékok és az appok hivatkoznak rájuk). Új szín csak akkor, ha egy meglévő nem fedi le – és a CHANGELOG-ban indokolva.",
+  "color": {
+    "honey": "#FECF39",
+    "honey-deep": "#D8A500",
+    "butter": "#FEEEBB",
+    "cream": "#FFF8E7",
+    "paper": "#FFFDF6",
+    "white": "#FFFFFF",
+    "olive": "#2F371E",
+    "olive-strong": "#48542D",
+    "olive-soft": "#596B39",
+    "forest": "#3D4E27",
+    "leaf": "#6E8947",
+    "lime": "#CDEC82",
+    "sage": "#D3DDBB",
+    "sage-bg": "#E3ECCD",
+    "sprout": "#F0F3EC",
+    "blossom": "#F5B4C7",
+    "blossom-bg": "#FDE2E8",
+    "berry": "#7A2E3F",
+    "red": "#DB3A34",
+    "crimson": "#B3261E",
+    "blush": "#FDEEE6",
+    "ember": "#EA580C",
+    "rust": "#824217",
+    "sky": "#B1DEFF",
+    "sky-bg": "#D6E8F7",
+    "ice": "#D3ECFF",
+    "water": "#0083E4",
+    "navy": "#003E74",
+    "focus": "#2656D9",
+    "black": "#000000",
+    "coal": "#1E1E1E",
+    "graphite": "#505050",
+    "slate": "#676767",
+    "silver": "#C6C6C6",
+    "mist": "#E6E6E6",
+    "night": "#1F2615",
+    "night-surface": "#353F25",
+    "night-line": "#B6C4A3"
+  },
+  "font": {
+    "display": [
+      "Lalezar",
+      "Arial Rounded MT Bold",
+      "system-ui",
+      "sans-serif"
+    ],
+    "body": [
+      "Open Sans",
+      "Segoe UI",
+      "system-ui",
+      "-apple-system",
+      "Roboto",
+      "sans-serif"
+    ]
+  },
+  "fontWeight": {
+    "regular": 400,
+    "semibold": 600,
+    "bold": 700
+  },
+  "fontSize": {
+    "xs": 12,
+    "s": 14,
+    "m": 16,
+    "l": 20,
+    "xl": 26,
+    "2xl": 34,
+    "3xl": 46
+  },
+  "lineHeight": {
+    "tight": 1.15,
+    "snug": 1.3,
+    "normal": 1.5
+  },
+  "space": {
+    "1": 4,
+    "2": 8,
+    "3": 12,
+    "4": 16,
+    "5": 24,
+    "6": 32,
+    "7": 48,
+    "8": 64
+  },
+  "duration": {
+    "fast": 120,
+    "base": 200,
+    "slow": 400,
+    "press": 120
+  },
+  "easing": {
+    "out": "cubic-bezier(.23,1,.32,1)",
+    "in-out": "cubic-bezier(.77,0,.175,1)",
+    "drawer": "cubic-bezier(.32,.72,0,1)",
+    "bounce": "cubic-bezier(.34,1.56,.64,1)"
+  },
+  "tap": 44,
+  "minTextSize": 12,
+  "data": {
+    "_readme": "Adatskálák (grafikon, térkép, hőtérkép) – mindkét bőr ugyanezt használja. Részletek: docs/adatskala.md.",
+    "seq": [
+      "#EEF3DE",
+      "#D8E4BC",
+      "#BFD29A",
+      "#A6BF7B",
+      "#8BA863"
+    ],
+    "div": [
+      "#E88FA6",
+      "#F7C6D2",
+      "#FBF3E0",
+      "#D8E4BC",
+      "#A6BF7B"
+    ],
+    "seq-cb": [
+      "#E6F1FB",
+      "#C6E0F6",
+      "#A2CBEF",
+      "#80B5E6",
+      "#66A3DD"
+    ],
+    "div-cb": [
+      "#F0A35E",
+      "#F9D1A8",
+      "#FBF3E0",
+      "#C6E0F6",
+      "#80B5E6"
+    ],
+    "categorical": [
+      "honey",
+      "leaf",
+      "water",
+      "blossom",
+      "ember",
+      "olive-soft",
+      "sky",
+      "rust"
+    ]
+  },
+  "_fontWeight": "Webes Open Sans: változó betű 400–700 (web/assets/fonts). 800 nincs – az app w800-as szövegei a bold (700) szerepre állnak át."
+}

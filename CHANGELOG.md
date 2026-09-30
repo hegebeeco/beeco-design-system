@@ -15,6 +15,17 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.12.0 – 2026-10-01 – egységes beeco design system
+A kit a **teljes beeco-márka design systeme** lett (repó: `hegebeeco/beeco-design-system`). Kristóf döntései: közös atomok + két bőr
+(a termékek az app neo-brutalista vonalát követik fekete tintával, a játékok maradnak a Méhsejt-dioramánál), egy forrás → generált
+kimenetek, sötét mód tokenszinten, sorrend: DS → admin → partner. **A játékokban semmi nem változik.**
+* **Egy forrás:** `tokens/core.json` (38 primitív szín, betű, skála, térköz, mozgás, adatskálák), `tokens/theme-termek.json` (28 szín-szerep világos + sötét, sarok, keret, kemény árnyék, kötelező kontraszt-párok), `tokens/theme-jatek.json` (a `tokens.css` tükre).
+* **Generált kimenetek** (`tools/tokens-build.js` → `dist/`): `beeco-tokens.css` (`--bc-*`), `beeco-fonts.css`, `scss/_beeco.scss`, `tailwind/preset.cjs` (a Tailwind alap-palettája ki), `dart/beeco_tokens.dart`, `tokens.json`.
+* **Termékbőr elemei** (`termek/css/bc-*.css`): gomb, ikongomb, űrlap (mező, legördülő, mértékegység, jelölő, kapcsoló, rács), kártya, oldalfej, fülek, felugró ablak, címke, sáv, értesítés, töltés, üres állapot, táblázat, statisztika, lapozó, alkalmazás-váz. Élő bemutató: `termek/bemutato.html` (minőségkapu: 0 P0/P1, világos + sötét, 320–1280 px).
+* **Ellenőrzések:** `tests/check-tokens.js` (dist friss, kontraszt mindkét módban, párosság a játékokkal, `bc-` szabályok: nyers szín, nem létező token, `ease-in`, nyers betűméret, lassú átmenet, méz háttér szövegszíne) · `tools/ds-lint.js` / `npx beeco-ds-lint` a termék-projektekhez, racsnival.
+* **Szabálykönyvek:** `docs/rendszer.md`, `docs/termek-arculat.md`, `docs/app-atallas.md` (Bencének), `DESIGN.md`; skill: `beeco-ds`.
+* **Csomag:** `package.json` (`@beeco/design-system`, git-függőségként: `github:hegebeeco/beeco-design-system#v1.12.0`), CI: `.github/workflows/check.yml`.
+
 ## 1.11.0 – 2026-09-29
 * **Új matricák (B szint):** 19 Hűtő-mester étel (`art-huto-b.js`: főtt rizs, füstölt lazac, tiramisu, pulykamell, hamburgerhús, pácolt csirke, paprika, szőlő, csemegekukorica, spenót, cukkini, majonéz, savanyúság, salátaöntet, liszt, sütőtök, batáta, éretlen avokádó, görögdinnye + `f_konzerv`) és 8 Greenwashing-tárgy (`art-gw-e.js`: halrudacska, kerti pad, vízforraló, ágynemű, polárpulóver, hajbalzsam, papírtányér, autógumi); bemutató: `kit.html`, `arculat.html`; `docs/rajzolas.md` frissítve.
 

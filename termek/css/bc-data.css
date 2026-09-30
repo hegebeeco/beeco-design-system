@@ -1,0 +1,30 @@
+/* ============================================================
+   beeco TERMÉKBŐR – adat: táblázat, statisztika-csempe, lapozó
+   ============================================================ */
+/* Táblázat: <div class="bc-table-wrap"><table class="bc-table">… – a burok keskeny képernyőn vízszintesen görget */
+.bc-table-wrap { overflow-x: auto; background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); }
+.bc-table { width: 100%; border-collapse: collapse; font-size: var(--bc-fs-s); font-variant-numeric: tabular-nums; }
+.bc-table th { position: sticky; top: 0; z-index: 1; text-align: left; white-space: nowrap; padding: var(--bc-sp-3); font-weight: var(--bc-fw-bold);
+  color: var(--bc-on-accent); background: var(--bc-accent); border-bottom: var(--bc-bw-base) solid var(--bc-line); }
+.bc-table td { padding: var(--bc-sp-3); vertical-align: middle; border-bottom: var(--bc-bw-hair) solid var(--bc-line-soft); }
+.bc-table tbody tr:last-child td { border-bottom: 0; }
+.bc-table .is-num { text-align: right; }
+.bc-table.is-dense th, .bc-table.is-dense td { padding: var(--bc-sp-2) var(--bc-sp-3); }
+@media (hover: hover) and (pointer: fine) { .bc-table tbody tr:hover td { background: var(--bc-surface-2); } }
+.bc-table tbody tr[aria-selected="true"] td { background: var(--bc-surface-accent); }
+/* Rendezhető fejléc: <th aria-sort="ascending"><button class="bc-sort">Név</button></th> */
+.bc-sort { display: inline-flex; align-items: center; gap: var(--bc-sp-1); min-height: var(--bc-tap); min-width: var(--bc-tap); margin: calc(-1 * var(--bc-sp-3)) 0; padding: 0; font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+th[aria-sort="ascending"] .bc-sort::after { content: "▲"; font-size: .7em; }
+th[aria-sort="descending"] .bc-sort::after { content: "▼"; font-size: .7em; }
+
+/* Statisztika-csempe: nagy szám + címke (+ változás) */
+.bc-stat { display: grid; gap: var(--bc-sp-1); padding: var(--bc-sp-4); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+.bc-stat-label { font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); }
+.bc-stat-value { font-family: var(--bc-font-display); font-size: var(--bc-fs-2xl); line-height: 1; font-variant-numeric: tabular-nums; }
+.bc-stat-delta { font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); }
+.bc-stat-delta.is-up { color: var(--bc-success-ink); }
+.bc-stat-delta.is-down { color: var(--bc-danger-ink); }
+.bc-stats { display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); }
+
+/* Lapozó */
+.bc-pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--bc-sp-3); padding: var(--bc-sp-3) 0; font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }

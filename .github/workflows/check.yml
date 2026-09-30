@@ -1,0 +1,14 @@
+name: DS-ellenőrzés
+on:
+  push:
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Tesztek (dist friss, kontraszt, párosság, elemek, játékbőr)
+        run: npm test

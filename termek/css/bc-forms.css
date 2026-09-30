@@ -1,0 +1,58 @@
+/* ============================================================
+   beeco TERMÉKBŐR – űrlapok
+   Szerkezet:  <div class="bc-field"> <label class="bc-label"> <input class="bc-input"> <p class="bc-help"> / <p class="bc-error"> </div>
+   Hibánál az input kapja: aria-invalid="true" + aria-describedby a hibaszövegre.
+   ============================================================ */
+.bc-field { display: flex; flex-direction: column; gap: var(--bc-sp-1); min-width: 0; }
+.bc-label { font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); color: var(--bc-ink); }
+.bc-label .is-req { color: var(--bc-danger-ink); margin-left: 2px; }
+.bc-help { margin: 0; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+.bc-error { margin: 0; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-danger-ink); }
+
+.bc-input, .bc-select, .bc-textarea {
+  width: 100%; min-height: var(--bc-tap); padding: var(--bc-sp-2) var(--bc-sp-3);
+  font: inherit; font-size: var(--bc-fs-m); color: var(--bc-ink); background: var(--bc-surface);
+  border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-s);
+  transition: box-shadow var(--bc-t-fast) var(--bc-ease-out), border-color var(--bc-t-fast) var(--bc-ease-out);
+}
+.bc-textarea { min-height: 96px; resize: vertical; line-height: var(--bc-lh-normal); }
+.bc-input::placeholder, .bc-textarea::placeholder { color: var(--bc-ink-muted); opacity: 1; }
+/* Fókusz: a keret vastagodik + kemény árnyék (a márka „kattanása” az inputon is) */
+.bc-input:focus-visible, .bc-select:focus-visible, .bc-textarea:focus-visible,
+.bc-input:focus, .bc-select:focus, .bc-textarea:focus { outline: none; border-color: var(--bc-line); box-shadow: var(--bc-shadow-s), 0 0 0 1px var(--bc-line) inset; }
+.bc-input:focus-visible, .bc-select:focus-visible, .bc-textarea:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-input[aria-invalid="true"], .bc-select[aria-invalid="true"], .bc-textarea[aria-invalid="true"] { border-color: var(--bc-danger-ink); background: var(--bc-danger-bg); }
+.bc-input:disabled, .bc-select:disabled, .bc-textarea:disabled { background: var(--bc-surface-2); color: var(--bc-ink-muted); border-color: var(--bc-line-soft); cursor: not-allowed; }
+.bc-input[readonly] { background: var(--bc-surface-2); }
+
+/* Legördülő: saját nyíl, a rendszer-nyíl ki */
+.bc-select { appearance: none; padding-right: 40px; cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, var(--bc-ink) 50%), linear-gradient(135deg, var(--bc-ink) 50%, transparent 50%);
+  background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-size: 6px 6px; background-repeat: no-repeat; }
+
+/* Mértékegység / előtag az input mellett:  <div class="bc-affix"><input class="bc-input"><span>Ft</span></div> */
+.bc-affix { display: flex; align-items: stretch; }
+.bc-affix > .bc-input { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.bc-affix > span { display: grid; place-items: center; padding: 0 var(--bc-sp-3); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold);
+  background: var(--bc-surface-accent); border: var(--bc-bw-hair) solid var(--bc-line); border-left: 0; border-radius: 0 var(--bc-r-s) var(--bc-r-s) 0; }
+
+/* Jelölőnégyzet és rádió: natív elem, márkaszínnel; a címke is kattintható (44 px sor) */
+.bc-check { display: inline-flex; align-items: center; gap: var(--bc-sp-2); min-height: var(--bc-tap); font-size: var(--bc-fs-m); cursor: pointer; }
+.bc-check > input { width: 20px; height: 20px; margin: 0; accent-color: var(--bc-ink); cursor: pointer; }
+
+/* Kapcsoló: <button role="switch" aria-checked="true|false" class="bc-switch"><span class="bc-sr">…</span></button>
+   A gomb maga 56×44 px (érintési felület); a látható sín (::before) és a gomb-korong (::after) ebben ül. */
+.bc-switch { position: relative; width: 56px; height: var(--bc-tap); flex: none; padding: 0; cursor: pointer; background: transparent; border: 0; border-radius: var(--bc-r-pill); }
+.bc-switch::before { content: ""; position: absolute; left: 2px; right: 2px; top: 7px; bottom: 7px;
+  background: var(--bc-surface-2); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-pill);
+  transition: background-color var(--bc-t-base) var(--bc-ease-in-out); }
+.bc-switch::after { content: ""; position: absolute; top: 12px; left: 7px; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); transition: transform var(--bc-t-base) var(--bc-ease-in-out); }
+.bc-switch[aria-checked="true"]::before { background: var(--bc-success); }
+.bc-switch[aria-checked="true"]::after { transform: translateX(22px); }
+.bc-switch:disabled { cursor: not-allowed; opacity: .55; }
+
+/* Űrlap-rács: széles képernyőn két oszlop, telefonon egy */
+.bc-form-grid { display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.bc-form-grid > .is-wide { grid-column: 1 / -1; }
+.bc-form-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--bc-sp-3); padding-top: var(--bc-sp-4); border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }

@@ -1,0 +1,45 @@
+/* ============================================================
+   beeco TERMÉKBŐR – alap (app, admin, partner, web)
+   Előfeltétel: dist/css/beeco-tokens.css (+ beeco-fonts.css).
+   :where() = nulla specifitás, a projekt saját stílusa könnyen felülírja.
+   ============================================================ */
+:where(html) { -webkit-text-size-adjust: 100%; }
+:where(body) {
+  margin: 0; background: var(--bc-bg); color: var(--bc-ink);
+  font-family: var(--bc-font-body); font-size: var(--bc-fs-m); line-height: var(--bc-lh-normal);
+  -webkit-font-smoothing: antialiased;
+}
+/* Univerzális kijelölő: nulla specifitás; pszeudo-elem :where()-ben érvénytelen lenne */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Címek: Lalezar egyetlen vastagságban – a hierarchiát a méret adja, nem a vastagság */
+:where(h1, h2, h3, .bc-display) { font-family: var(--bc-font-display); font-weight: 400; line-height: var(--bc-lh-tight); margin: 0 0 var(--bc-sp-3); letter-spacing: .01em; }
+:where(h1) { font-size: var(--bc-fs-2xl); }
+:where(h2) { font-size: var(--bc-fs-xl); }
+:where(h3) { font-size: var(--bc-fs-l); }
+:where(h4, h5, h6) { font-family: var(--bc-font-body); font-weight: var(--bc-fw-bold); font-size: var(--bc-fs-m); margin: 0 0 var(--bc-sp-2); }
+:where(p) { margin: 0 0 var(--bc-sp-3); }
+:where(a) { color: var(--bc-ink); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+:where(a:hover) { text-decoration-color: var(--bc-accent); }
+:where(small, .bc-small) { font-size: var(--bc-fs-s); }
+.bc-muted { color: var(--bc-ink-soft); }
+.bc-num { font-family: var(--bc-font-display); font-variant-numeric: tabular-nums; }
+
+/* Fókusz: mindig látható, billentyűzetnél; kék gyűrű, hogy a mézes felületen is kilógjon */
+:where(:focus-visible) { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+:where(:focus:not(:focus-visible)) { outline: none; }
+::selection { background: var(--bc-accent); color: var(--bc-on-accent); }
+
+/* Csak képernyőolvasónak */
+.bc-sr { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Oldalváz: tartalom-szélesség és függőleges ritmus */
+.bc-stack { display: flex; flex-direction: column; gap: var(--bc-sp-4); }
+.bc-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-3); }
+.bc-row.is-end { justify-content: flex-end; }
+.bc-row.is-between { justify-content: space-between; }
+
+/* Csökkentett mozgás: minden átmenet azonnali, a végtelen animáció áll */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 1ms !important; animation-duration: 1ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}

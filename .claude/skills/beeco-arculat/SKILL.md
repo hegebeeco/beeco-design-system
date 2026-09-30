@@ -5,6 +5,8 @@ description: A beeco játékok design systemje („Méhsejt-diorama”). Haszná
 
 # beeco design system – így dolgozz
 
+> Ez a **játékbőr** (webjátékok). App, admin, partner, web → a **`beeco-ds`** skill (termékbőr). A közös atomok és a két bőr viszonya: `docs/rendszer.md`.
+
 A projekt közös arculata tokenekre, egy `ds-` elemkészletre, saját piktogramokra és egy 3D palettára épül.
 A teljes szabálykönyv: `docs/arculat.md`. Élő bemutató: `web/arculat.html`.
 

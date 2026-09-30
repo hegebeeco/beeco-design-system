@@ -1,0 +1,43 @@
+/* ============================================================
+   beeco TERMÉKBŐR – felületek: kártya, oldalfej, fülek, felugró ablak
+   ============================================================ */
+.bc-card { background: var(--bc-surface); color: var(--bc-ink); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); padding: var(--bc-sp-5); }
+.bc-card.is-flat { box-shadow: none; border-width: var(--bc-bw-hair); }
+.bc-card.is-accent { background: var(--bc-surface-accent); }
+.bc-card.is-quiet { background: var(--bc-surface-2); border-color: var(--bc-line-soft); border-width: var(--bc-bw-hair); box-shadow: none; }
+/* Kattintható kártya: <a> vagy <button> legyen (billentyűzet!) – úgy „kattan”, mint a gomb */
+a.bc-card, button.bc-card { display: block; width: 100%; text-align: left; font: inherit; color: inherit; text-decoration: none; }
+.bc-card.is-interactive { cursor: pointer; transition: transform var(--bc-t-press) var(--bc-ease-out), box-shadow var(--bc-t-press) var(--bc-ease-out); }
+.bc-card.is-interactive:active { transform: translate(var(--bc-shadow-m-x), var(--bc-shadow-m-y)); box-shadow: none; }
+.bc-card-title { font-family: var(--bc-font-display); font-size: var(--bc-fs-l); font-weight: 400; margin: 0 0 var(--bc-sp-3); }
+
+/* Oldalfej: cím + (opcionális) leírás + műveletek jobbra */
+.bc-page-header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--bc-sp-3) var(--bc-sp-5); margin-bottom: var(--bc-sp-5); }
+.bc-page-header h1 { margin: 0; font-size: var(--bc-fs-2xl); }
+.bc-page-header p { margin: var(--bc-sp-1) 0 0; color: var(--bc-ink-soft); max-width: 65ch; }
+.bc-page-header .bc-row { flex: none; }
+
+/* Fülek: <div role="tablist" class="bc-tabs"><button role="tab" aria-selected="true" class="bc-tab">… */
+.bc-tabs { display: flex; gap: var(--bc-sp-1); overflow-x: auto; border-bottom: var(--bc-bw-base) solid var(--bc-line); scrollbar-width: none; }
+.bc-tab { flex: none; min-height: var(--bc-tap); padding: 0 var(--bc-sp-4); font: inherit; font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft);
+  background: transparent; border: var(--bc-bw-base) solid transparent; border-bottom: 0; border-radius: var(--bc-r-m) var(--bc-r-m) 0 0; cursor: pointer; margin-bottom: calc(-1 * var(--bc-bw-base)); }
+.bc-tab[aria-selected="true"] { color: var(--bc-on-accent); background: var(--bc-accent); border-color: var(--bc-line); }
+@media (hover: hover) and (pointer: fine) { .bc-tab:hover:not([aria-selected="true"]) { color: var(--bc-ink); background: var(--bc-surface-2); } }
+
+/* Felugró ablak – natív <dialog class="bc-modal">: Esc-re zár, fókuszt tart. Háttér: ::backdrop */
+.bc-modal { width: min(560px, calc(100vw - 2 * var(--bc-sp-4))); max-height: calc(100dvh - 2 * var(--bc-sp-5)); padding: 0; overflow: auto;
+  color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-l); box-shadow: var(--bc-shadow-l); }
+.bc-modal.is-wide { width: min(880px, calc(100vw - 2 * var(--bc-sp-4))); }
+.bc-modal::backdrop, .bc-scrim { background: rgb(var(--bc-scrim-rgb) / var(--bc-scrim-opacity)); }
+.bc-scrim { position: fixed; inset: 0; display: grid; place-items: center; padding: var(--bc-sp-4); z-index: 50; }
+.bc-scrim > .bc-modal { position: relative; }
+.bc-modal-head { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-3); padding: var(--bc-sp-4) var(--bc-sp-5); border-bottom: var(--bc-bw-hair) solid var(--bc-line-soft); }
+.bc-modal-head h2 { margin: 0; font-size: var(--bc-fs-xl); }
+.bc-modal-body { padding: var(--bc-sp-5); }
+.bc-modal-foot { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--bc-sp-3); padding: var(--bc-sp-4) var(--bc-sp-5); border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }
+/* Megjelenés: rövid felúszás (ease-out, 200 ms); csökkentett mozgásnál a base.css kikapcsolja */
+.bc-modal[open], .bc-scrim > .bc-modal { animation: bc-rise var(--bc-t-base) var(--bc-ease-out); }
+@keyframes bc-rise { from { opacity: 0; transform: translateY(8px) scale(.98); } }
+
+/* Elválasztó */
+.bc-divider { border: 0; border-top: var(--bc-bw-hair) solid var(--bc-line-soft); margin: var(--bc-sp-4) 0; }

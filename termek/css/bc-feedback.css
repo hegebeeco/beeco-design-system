@@ -1,0 +1,43 @@
+/* ============================================================
+   beeco TERMÉKBŐR – visszajelzés: címke, figyelmeztető sáv, értesítés (toast), töltés, üres állapot
+   Hangnem: tanítunk, nem szidunk – a hiba is mondja meg, mi a következő lépés.
+   ============================================================ */
+/* Címke / állapot-jelvény: <span class="bc-badge is-success">Aktív</span> */
+.bc-badge { display: inline-flex; align-items: center; gap: var(--bc-sp-1); min-height: 24px; padding: 0 var(--bc-sp-2);
+  font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); line-height: 1; white-space: nowrap;
+  color: var(--bc-ink); background: var(--bc-surface-2); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); }
+.bc-badge.is-success { color: var(--bc-success-ink); background: var(--bc-success-bg); }
+.bc-badge.is-danger  { color: var(--bc-danger-ink);  background: var(--bc-danger-bg); }
+.bc-badge.is-warning { color: var(--bc-warning-ink); background: var(--bc-warning-bg); }
+.bc-badge.is-info    { color: var(--bc-info-ink);    background: var(--bc-info-bg); }
+.bc-badge.is-accent  { color: var(--bc-on-accent);   background: var(--bc-accent); }
+.bc-badge.is-muted   { color: var(--bc-ink-soft); border-color: var(--bc-line-soft); }
+
+/* Figyelmeztető sáv az oldalon: <div class="bc-alert is-danger" role="alert"><strong>…</strong> <p>…</p></div> */
+.bc-alert { display: flex; gap: var(--bc-sp-3); align-items: flex-start; padding: var(--bc-sp-3) var(--bc-sp-4);
+  color: var(--bc-ink); background: var(--bc-surface-2); border: var(--bc-bw-base) solid var(--bc-line); border-left-width: 8px; border-radius: var(--bc-r-m); }
+.bc-alert > svg { flex: none; width: 22px; height: 22px; margin-top: 1px; }
+.bc-alert p { margin: 0; }
+.bc-alert.is-success { background: var(--bc-success-bg); border-left-color: var(--bc-success); }
+.bc-alert.is-danger  { background: var(--bc-danger-bg);  border-left-color: var(--bc-danger); }
+.bc-alert.is-warning { background: var(--bc-warning-bg); border-left-color: var(--bc-warning); }
+.bc-alert.is-info    { background: var(--bc-info-bg);    border-left-color: var(--bc-info); }
+
+/* Értesítés (toast) – a könyvtár (react-toastify, saját) tárolóját ezzel öltöztesd */
+.bc-toast { display: flex; gap: var(--bc-sp-3); align-items: flex-start; min-width: min(360px, calc(100vw - 32px)); padding: var(--bc-sp-3) var(--bc-sp-4);
+  font-size: var(--bc-fs-s); color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); }
+.bc-toast.is-success { border-left: 8px solid var(--bc-success); }
+.bc-toast.is-danger  { border-left: 8px solid var(--bc-danger); }
+.bc-toast.is-info    { border-left: 8px solid var(--bc-info); }
+.bc-toast.is-warning { border-left: 8px solid var(--bc-warning); }
+
+/* Töltés: pörgő (rövid várakozás) és csontváz (tartalom helye, hosszabb töltés) */
+.bc-spinner { display: inline-block; width: 24px; height: 24px; border: 3px solid var(--bc-line-soft); border-top-color: var(--bc-ink); border-radius: 50%; animation: bc-spin .7s linear infinite; }
+.bc-spinner.is-lg { width: 40px; height: 40px; border-width: 4px; }
+.bc-skeleton { display: block; min-height: 1em; border-radius: var(--bc-r-s); background: linear-gradient(90deg, var(--bc-surface-2) 30%, var(--bc-surface) 50%, var(--bc-surface-2) 70%) 0 0 / 300% 100%; animation: bc-shimmer 1.4s linear infinite; }
+@keyframes bc-shimmer { to { background-position: -100% 0; } }
+
+/* Üres állapot: ikon/méhecske + egy mondat + egy teendő */
+.bc-empty { display: grid; justify-items: center; gap: var(--bc-sp-3); padding: var(--bc-sp-7) var(--bc-sp-4); text-align: center; color: var(--bc-ink-soft); }
+.bc-empty img, .bc-empty svg { width: 96px; height: auto; }
+.bc-empty strong { font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-xl); color: var(--bc-ink); }

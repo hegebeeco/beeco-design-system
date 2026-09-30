@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="hu" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>beeco termékbőr</title>
+<meta name="description" content="A beeco design system termékbőre (app, admin, partner, web): színszerepek, betűk és elemek, világos és sötét módban.">
+<link rel="icon" href="../web/assets/brand/ikon-32.png">
+<link rel="stylesheet" href="css/bc-all.css">
+<style>
+  /* Csak a bemutató saját elrendezése – minden érték token */
+  .demo-wrap { max-width: 1120px; margin: 0 auto; padding: var(--bc-sp-5) var(--bc-sp-4) var(--bc-sp-8); }
+  .demo-head { display: flex; flex-wrap: wrap; gap: var(--bc-sp-4); align-items: center; justify-content: space-between; margin-bottom: var(--bc-sp-6); }
+  .demo-head img { height: 44px; width: auto; }
+  section { margin-top: var(--bc-sp-7); }
+  section > h2 { padding-bottom: var(--bc-sp-2); border-bottom: var(--bc-bw-base) solid var(--bc-line); }
+  .swatches { display: grid; gap: var(--bc-sp-3); grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .sw { border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-m); overflow: hidden; background: var(--bc-surface); font-size: var(--bc-fs-xs); }
+  .sw i { display: block; height: 56px; border-bottom: var(--bc-bw-hair) solid var(--bc-line); }
+  .sw div { padding: var(--bc-sp-2); display: grid; gap: 2px; }
+  .sw code { color: var(--bc-ink-soft); }
+  .type-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--bc-sp-3); padding: var(--bc-sp-2) 0; border-bottom: var(--bc-bw-hair) solid var(--bc-line-soft); }
+  .type-row code { width: 90px; flex: none; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+  .grid2 { display: grid; gap: var(--bc-sp-5); grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+</style>
+</head>
+<body>
+<div class="demo-wrap">
+  <header class="demo-head">
+    <div class="bc-row">
+      <img src="../web/assets/brand/logo.webp" alt="beeco">
+      <div>
+        <h1 style="margin:0">Termékbőr</h1>
+        <p class="bc-muted" style="margin:0">App · admin · partner · web – <span id="ver"></span></p>
+      </div>
+    </div>
+    <button class="bc-btn is-secondary" id="theme" type="button" aria-pressed="false">Sötét mód</button>
+  </header>
+
+  <div class="bc-alert is-info" role="note">
+    <p><strong>Egy forrás.</strong> Minden érték a <code>tokens/*.json</code>-ból generálódik (CSS, SCSS, Tailwind, Dart). A játékok ugyanezekből az atomokból a <a href="../web/arculat.html">Méhsejt-diorama bőrt</a> kapják.</p>
+  </div>
+
+  <section aria-labelledby="h-szin">
+    <h2 id="h-szin">Szín-szerepek</h2>
+    <p class="bc-muted">A felület a szerepet használja (pl. <code>--bc-ink</code>), soha a nyers színt. Sötét módban ugyanaz a név más színre mutat.</p>
+    <div class="swatches" id="roles"></div>
+  </section>
+
+  <section aria-labelledby="h-betu">
+    <h2 id="h-betu">Betűk</h2>
+    <div id="types"></div>
+  </section>
+
+  <section aria-labelledby="h-gomb">
+    <h2 id="h-gomb">Gombok</h2>
+    <div class="bc-row">
+      <button class="bc-btn" type="button">Mentés</button>
+      <button class="bc-btn is-secondary" type="button">Mégse</button>
+      <button class="bc-btn is-ghost" type="button">Részletek</button>
+      <button class="bc-btn is-danger" type="button">Törlés</button>
+      <button class="bc-btn" type="button" disabled>Tiltott</button>
+      <button class="bc-btn" type="button" aria-busy="true">Mentés</button>
+    </div>
+    <div class="bc-row" style="margin-top:var(--bc-sp-4)">
+      <button class="bc-btn is-sm" type="button">Kicsi</button>
+      <button class="bc-btn is-lg" type="button">Nagy gomb</button>
+      <button class="bc-icon-btn" type="button" aria-label="Szerkesztés"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/></svg></button>
+      <button class="bc-icon-btn is-danger" type="button" aria-label="Törlés"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 7h14M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-urlap">
+    <h2 id="h-urlap">Űrlap</h2>
+    <form class="bc-card" onsubmit="event.preventDefault()">
+      <div class="bc-form-grid">
+        <div class="bc-field"><label class="bc-label" for="f1">Partner neve <span class="is-req" aria-hidden="true">*</span></label><input class="bc-input" id="f1" placeholder="pl. Zöld Sarok Bolt" required><p class="bc-help">Így jelenik meg az appban.</p></div>
+        <div class="bc-field"><label class="bc-label" for="f2">Kategória</label><select class="bc-select" id="f2"><option>Bolt</option><option>Kávézó</option><option>Javító</option></select></div>
+        <div class="bc-field"><label class="bc-label" for="f3">Kedvezmény</label><div class="bc-affix"><input class="bc-input" id="f3" inputmode="numeric" value="10"><span>%</span></div></div>
+        <div class="bc-field"><label class="bc-label" for="f4">Weboldal</label><input class="bc-input" id="f4" value="zoldsarok" aria-invalid="true" aria-describedby="f4e"><p class="bc-error" id="f4e">Teljes cím kell, pl. https://zoldsarok.hu</p></div>
+        <div class="bc-field is-wide"><label class="bc-label" for="f5">Leírás</label><textarea class="bc-textarea" id="f5">Csomagolásmentes bolt a belvárosban.</textarea></div>
+        <label class="bc-check"><input type="checkbox" checked> Megjelenik a térképen</label>
+        <div class="bc-row"><button type="button" class="bc-switch" role="switch" aria-checked="true" id="sw"><span class="bc-sr">Aktív</span></button><span>Aktív</span></div>
+      </div>
+      <div class="bc-form-actions"><button class="bc-btn is-secondary" type="button">Mégse</button><button class="bc-btn" type="submit">Mentés</button></div>
+    </form>
+  </section>
+
+  <section aria-labelledby="h-kartya">
+    <h2 id="h-kartya">Kártyák és számok</h2>
+    <div class="bc-stats">
+      <div class="bc-stat"><span class="bc-stat-label">Aktív partner</span><span class="bc-stat-value">128</span><span class="bc-stat-delta is-up">+6 ezen a héten</span></div>
+      <div class="bc-stat"><span class="bc-stat-label">Beváltott kupon</span><span class="bc-stat-value">1 042</span><span class="bc-stat-delta is-down">−3% az előző hónaphoz</span></div>
+      <div class="bc-stat"><span class="bc-stat-label">Új POI</span><span class="bc-stat-value">37</span><span class="bc-stat-delta">változatlan</span></div>
+    </div>
+    <p class="bc-help" style="margin-top:var(--bc-sp-2)">A számok mintaadatok a bemutatóhoz.</p>
+    <div class="grid2" style="margin-top:var(--bc-sp-5)">
+      <article class="bc-card"><h3 class="bc-card-title">Alap kártya</h3><p>2 px keret, 4 px kemény árnyék.</p></article>
+      <a class="bc-card is-accent is-interactive" href="#h-kartya"><h3 class="bc-card-title">Kattintható</h3><p>Link vagy gomb – nyomásra a helyére „kattan”.</p></a>
+      <article class="bc-card is-quiet"><h3 class="bc-card-title">Csendes</h3><p>Másodlagos tartalomhoz, árnyék nélkül.</p></article>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-tabla">
+    <h2 id="h-tabla">Táblázat és fülek</h2>
+    <div class="bc-tabs" role="tablist" aria-label="Partner-nézetek">
+      <button class="bc-tab" role="tab" aria-selected="true" type="button">Mind</button>
+      <button class="bc-tab" role="tab" aria-selected="false" type="button">Aktív</button>
+      <button class="bc-tab" role="tab" aria-selected="false" type="button">Függőben</button>
+    </div>
+    <div class="bc-table-wrap" style="margin-top:var(--bc-sp-4)">
+      <table class="bc-table">
+        <thead><tr><th aria-sort="ascending"><button class="bc-sort" type="button">Név</button></th><th>Város</th><th>Állapot</th><th class="is-num">Kupon</th><th><span class="bc-sr">Műveletek</span></th></tr></thead>
+        <tbody>
+          <tr><td>Zöld Sarok Bolt</td><td>Budapest</td><td><span class="bc-badge is-success">Aktív</span></td><td class="is-num">12</td><td><button class="bc-icon-btn" type="button" aria-label="Zöld Sarok Bolt szerkesztése"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/></svg></button></td></tr>
+          <tr aria-selected="true"><td>Javító Kávézó</td><td>Pécs</td><td><span class="bc-badge is-warning">Függőben</span></td><td class="is-num">3</td><td><button class="bc-icon-btn" type="button" aria-label="Javító Kávézó szerkesztése"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/></svg></button></td></tr>
+          <tr><td>Méhes Piac</td><td>Szeged</td><td><span class="bc-badge is-muted">Inaktív</span></td><td class="is-num">0</td><td><button class="bc-icon-btn" type="button" aria-label="Méhes Piac szerkesztése"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/></svg></button></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="bc-help" style="margin-top:var(--bc-sp-2)">Kitalált mintapartnerek.</p>
+  </section>
+
+  <section aria-labelledby="h-jelzes">
+    <h2 id="h-jelzes">Visszajelzés</h2>
+    <div class="bc-row"><span class="bc-badge">Alap</span><span class="bc-badge is-accent">Kiemelt</span><span class="bc-badge is-success">Siker</span><span class="bc-badge is-info">Infó</span><span class="bc-badge is-warning">Figyelem</span><span class="bc-badge is-danger">Hiba</span></div>
+    <div class="bc-stack" style="margin-top:var(--bc-sp-4)">
+      <div class="bc-alert is-success" role="status"><p><strong>Mentve.</strong> A partner mostantól látszik az appban.</p></div>
+      <div class="bc-alert is-warning" role="note"><p><strong>Hiányzik a nyitvatartás.</strong> Nélküle a térkép „ismeretlen”-t mutat.</p></div>
+      <div class="bc-alert is-danger" role="alert"><p><strong>Nem sikerült menteni.</strong> Ellenőrizd a weboldal címét, és próbáld újra.</p></div>
+      <div class="bc-toast is-success" role="status">Kupon létrehozva – 20 db, holnaptól érvényes.</div>
+      <div class="bc-row"><span class="bc-spinner" role="status" aria-label="Töltés"></span><span class="bc-skeleton" style="width:220px"></span></div>
+    </div>
+    <div class="bc-card is-quiet" style="margin-top:var(--bc-sp-4)">
+      <div class="bc-empty"><img src="../web/assets/brand/bee-happy.webp" alt=""><strong>Még nincs kupon</strong><p style="margin:0">Az első kuponnal a partner rögtön megjelenik az appban.</p><button class="bc-btn" type="button">Kupon létrehozása</button></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-ablak">
+    <h2 id="h-ablak">Felugró ablak</h2>
+    <button class="bc-btn is-danger" type="button" id="open">Partner törlése…</button>
+    <dialog class="bc-modal" id="dlg" aria-labelledby="dlg-t">
+      <div class="bc-modal-head"><h2 id="dlg-t">Törlöd a partnert?</h2><button class="bc-icon-btn" type="button" aria-label="Bezárás" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+      <div class="bc-modal-body"><p>A Zöld Sarok Bolt és a 12 kuponja eltűnik az appból. Ez nem vonható vissza.</p></div>
+      <div class="bc-modal-foot"><button class="bc-btn is-secondary" type="button" data-close>Mégse</button><button class="bc-btn is-danger" type="button" data-close>Törlés</button></div>
+    </dialog>
+  </section>
+</div>
+<script>
+  // A bemutató adatai a generált tokens.json-ból jönnek (egy forrás)
+  fetch('../dist/tokens.json').then(r => r.json()).then(t => {
+    document.getElementById('ver').textContent = 'v' + t.version;
+    const roles = document.getElementById('roles');
+    Object.keys(t.termek.light).forEach(r => {
+      roles.insertAdjacentHTML('beforeend', `<div class="sw"><i style="background:var(--bc-${r})"></i><div><strong>${r}</strong><code>--bc-${r}</code><code class="hx" data-r="${r}"></code></div></div>`);
+    });
+    const paint = () => { const dark = isDark(); document.querySelectorAll('.hx').forEach(el => { el.textContent = t.termek[dark ? 'dark' : 'light'][el.dataset.r]; }); };
+    paint(); window.__paint = paint;
+    const types = document.getElementById('types');
+    Object.entries(t.fontSize).reverse().forEach(([k, v]) => {
+      const disp = ['3xl', '2xl', 'xl', 'l'].includes(k);
+      types.insertAdjacentHTML('beforeend', `<div class="type-row"><code>fs-${k} · ${v}px</code><span style="font-size:var(--bc-fs-${k});${disp ? 'font-family:var(--bc-font-display)' : ''}">${disp ? 'Méhesd zöldebb lesz' : 'A beeco segít fenntarthatóbban élni – ő, ű, á.'}</span></div>`);
+    });
+  });
+  // Téma: alapból a rendszert követi (data-theme="auto"); a gomb kifejezetten világosra/sötétre vált
+  const mq = matchMedia('(prefers-color-scheme: dark)');
+  function isDark() { const t = document.documentElement.dataset.theme; return t === 'dark' || (t === 'auto' && mq.matches); }
+  const btn = document.getElementById('theme');
+  const label = () => { const d = isDark(); btn.setAttribute('aria-pressed', d); btn.textContent = d ? 'Világos mód' : 'Sötét mód'; window.__paint && window.__paint(); };
+  btn.addEventListener('click', () => { document.documentElement.dataset.theme = isDark() ? 'light' : 'dark'; label(); });
+  mq.addEventListener('change', label); label();
+  document.getElementById('sw').addEventListener('click', e => e.currentTarget.setAttribute('aria-checked', e.currentTarget.getAttribute('aria-checked') !== 'true'));
+  const dlg = document.getElementById('dlg');
+  document.getElementById('open').addEventListener('click', () => dlg.showModal());
+  dlg.addEventListener('click', e => { if (e.target.closest('[data-close]') || e.target === dlg) dlg.close(); });
+</script>
+</body>
+</html>

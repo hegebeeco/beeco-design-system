@@ -1,0 +1,106 @@
+# Termékbőr – szabálykönyv (app, admin, partner, web)
+
+*Kristóf döntése (2026-10-01): a termékek az app neo-brutalista vonalát követik, finomítva, **fekete** tintával.
+A játékok maradnak a Méhsejt-dioramánál (`docs/arculat.md`). A közös alap: `docs/rendszer.md`.*
+Élő bemutató: `termek/bemutato.html` · tokenek: `tokens/theme-termek.json` · elemek: `termek/css/bc-*.css`.
+
+## 1. Elvek
+
+1. **Egy hangsúly: a méz.** A méz (`accent`) a fő művelet és a kijelölés színe – képernyőnként egy fő gomb.
+2. **Fekete vonal, kemény árnyék.** Keret 1–2 px fekete, árnyék átlós és éles (elmosás nélkül). Ez a beeco „kattanása”:
+   lenyomáskor az elem az árnyéka helyére csúszik.
+3. **Krém alap, fehér felület.** Az oldal krém (`bg`), a kártya és az űrlap fehér (`surface`) – így a tartalom kiemelkedik.
+4. **Lalezar a hangnak, Open Sans a munkának.** Cím, szám, gomb: Lalezar (egy vastagság). Minden más: Open Sans.
+5. **Tanítunk, nem szidunk.** A hibaüzenet megmondja, mi a következő lépés. Rossz választ, hibát sosem mérges méhecske kísér.
+
+## 2. Szín-szerepek (a felület CSAK ezeket használja)
+
+| Szerep | Világos | Sötét | Mire |
+|---|---|---|---|
+| `bg` | krém `#FFF8E7` | éjszaka `#1F2615` | oldal háttere |
+| `surface` | fehér | éjszakai kártya `#353F25` | kártya, űrlap, táblázat, ablak |
+| `surface-2` | `#F0F3EC` | olíva | csendes felület, tiltott mező, sor-kiemelés |
+| `surface-accent` | vaj `#FEEEBB` | `#48542D` | kiemelt kártya, mértékegység-doboz, kijelölt sor |
+| `ink` / `ink-soft` / `ink-muted` | fekete / `#505050` / `#676767` | krém / zsálya / `#B6C4A3` | szöveg: fő / másodlagos / helykitöltő |
+| `line` / `line-soft` | fekete / `#C6C6C6` | `#B6C4A3` / `#596B39` | keret / elválasztó |
+| `accent`, `accent-press`, `on-accent` | méz, nyomott méz, **fekete** | ← | fő gomb, kijelölés; szöveg a mézen mindig `on-accent` |
+| `shadow` | fekete | fekete | kemény árnyék |
+| `focus` | kék `#2656D9` | égkék | billentyűzet-fókusz |
+| `success` · `-bg` · `-ink` | levél · zsálya · erdő | lime · erdő · lime | sikeres, aktív |
+| `danger` · `-bg` · `-ink` | `#DB3A34` · `#FDEEE6` · `#B3261E` | ← · bogyó · halvány rózsa | hiba, törlés |
+| `warning` · `-bg` · `-ink` | parázs · vaj · rozsda | ← · rozsda · vaj | figyelmeztetés |
+| `info` · `-bg` · `-ink` | víz `#0083E4` · jég · tengerkék | égkék · tengerkék · jég | tájékoztatás, víz |
+| `highlight` | rózsa | ← | játékos kiemelés (ritkán) |
+
+A kötelező kontraszt-párokat a `tokens/theme-termek.json` → `contrast` sorolja fel; a `npm test` mindkét módban ellenőrzi.
+
+## 3. Forma és mélység
+
+- **Sarok:** `r-s` 4 px (mező, kis gomb) · `r-m` 8 px (gomb, kártya, táblázat) · `r-l` 12 px (felugró ablak) · `r-pill` (címke, kapcsoló).
+- **Keret:** `bw-hair` 1 px (mező, csendes kártya) · `bw-base` 2 px (gomb, kártya, táblázat, ablak).
+- **Árnyék:** `shadow-s` 2 px (gomb, statisztika) · `shadow-m` 4 px (kártya, táblázat, értesítés) · `shadow-l` 6 px (felugró ablak).
+  Mindig a `shadow` szerep színével, elmosás nélkül. **Puha, elmosott árnyék a termékbőrben nincs.**
+- **Térköz:** 4 px rács (`sp-1` … `sp-8`). Kártya belső margó `sp-5` (24), űrlapmezők között `sp-4` (16).
+
+## 4. Betűk
+
+| Token | Méret | Betű | Mire |
+|---|---|---|---|
+| `fs-3xl` | 46 | Lalezar | nyitóoldal főcím (ritkán) |
+| `fs-2xl` | 34 | Lalezar | oldalcím, nagy szám |
+| `fs-xl` | 26 | Lalezar | szakaszcím, ablakcím |
+| `fs-l` | 20 | Lalezar | kártyacím, gomb felirata |
+| `fs-m` | 16 | Open Sans | törzsszöveg, mező |
+| `fs-s` | 14 | Open Sans | táblázat, címke, másodlagos |
+| `fs-xs` | 12 | Open Sans | segítő szöveg, jelvény – **ennél kisebb nincs** |
+
+Vastagság: 400 · 600 · 700 (a webes Open Sans 400–700 között változó; 800 nincs). A Lalezar egy vastagságú: a hierarchiát a méret adja.
+
+## 5. Mozgás
+
+- Nyomás: 120 ms, `ease-out` (`cubic-bezier(.23,1,.32,1)`); megjelenés 200 ms; fiók (mobil oldalsáv) 400 ms `ease-drawer`.
+- **UI-mozgás ≤ 300 ms**, `ease-in` tilos (lassan indul – késésnek érződik), `transition: all` kerülendő.
+- Rámutatás (hover) csak egérrel: `@media (hover: hover) and (pointer: fine)`.
+- Csökkentett mozgásnál minden azonnali (a `bc-base.css` intézi) – végtelen animáció (pörgő) is megáll.
+- Gyakori műveletet (listaszűrés, fülváltás) nem animálunk.
+
+## 6. Elemek (`termek/css`)
+
+| Elem | Osztály | Megjegyzés |
+|---|---|---|
+| Gomb | `bc-btn` + `is-secondary` / `is-ghost` / `is-danger` · `is-sm` / `is-lg` / `is-block` | folyamatban: `aria-busy="true"`; tiltva: `disabled` |
+| Ikongomb | `bc-icon-btn` (+ `is-danger`) | 44×44; **kötelező `aria-label`** |
+| Mező | `bc-field` › `bc-label` + `bc-input` / `bc-select` / `bc-textarea` + `bc-help` / `bc-error` | hibánál `aria-invalid="true"` + `aria-describedby` |
+| Mértékegység | `bc-affix` | `<input>` + `<span>Ft</span>` |
+| Jelölő, kapcsoló | `bc-check`, `bc-switch` (`role="switch"`, `aria-checked`) | |
+| Űrlap-rács | `bc-form-grid` (+ `is-wide`), `bc-form-actions` | telefonon egy oszlop |
+| Kártya | `bc-card` + `is-flat` / `is-accent` / `is-quiet` / `is-interactive`, `bc-card-title` | kattintható kártya **`<a>` vagy `<button>`** |
+| Oldalfej | `bc-page-header` | cím + leírás + műveletek |
+| Fülek | `bc-tabs` › `bc-tab` (`role="tab"`, `aria-selected`) | |
+| Felugró ablak | natív `<dialog class="bc-modal">` › `bc-modal-head/-body/-foot` | `showModal()` → Esc és fókusz magától; React-portálnál `bc-scrim` |
+| Címke | `bc-badge` + `is-success/-danger/-warning/-info/-accent/-muted` | |
+| Sáv | `bc-alert` + ugyanazok | `role="alert"` csak hibánál |
+| Értesítés | `bc-toast` + ugyanazok | a toast-könyvtár tárolóját öltözteti |
+| Töltés | `bc-spinner`, `bc-skeleton` | pörgőnek `role="status"` + `aria-label` |
+| Üres állapot | `bc-empty` | méhecske + egy mondat + egy teendő |
+| Táblázat | `bc-table-wrap` › `bc-table` (+ `is-dense`), `bc-sort`, `.is-num` | rendezés: `aria-sort` a `<th>`-n |
+| Statisztika | `bc-stats` › `bc-stat` › `-label` / `-value` / `-delta is-up/is-down` | szám csak forrásból / valós adatból |
+| Váz | `bc-shell` › `bc-sidebar` (`bc-brand`, `bc-nav-group`, `bc-nav-link`) + `bc-main` › `bc-topbar` + `bc-content` | 900 px alatt fiók |
+
+## 7. Tilos (a `ds-lint` fogja)
+
+- Nyers szín (`#…`, `rgb()`, Tailwind `[#…]`), a Tailwind saját palettája (`bg-gray-100`) – csak szerep.
+- Idegen betű (Inria, Roboto, Inter, Arial, Helvetica) és `serif` tartalék.
+- Nyers betűméret, sarok, árnyék – csak token. 12 px alatti szöveg.
+- `ease-in`; a fókusz eltüntetése (`outline: none`) `:focus-visible` pótlás nélkül.
+- Puha, elmosott árnyék; egynél több méz fő gomb egy képernyőn; mérges méhecske.
+
+## 8. Sötét mód
+
+`<html data-theme="dark">` vagy `<html class="dark">` (Tailwind), rendszer szerint: `data-theme="auto"`. Csak a szerepek
+váltanak – ha a felület csak szerepet használ, a sötét mód magától működik. A méz sötétben is méz, rajta a szöveg fekete.
+
+## 9. Méhecske és logó
+
+A logó és a méhecske-képek a `web/assets/brand/` alatt (belső használatra; külső partneranyagban beeco-jóváhagyás kell).
+Emoji-méhecske (🐝) helyett a rajzolt képeket használd – az emoji minden rendszeren másképp néz ki.

@@ -1,0 +1,51 @@
+/* ============================================================
+   beeco TERMÉKBŐR – gombok és linkgombok
+   Neo-brutalista: 2 px fekete keret, kemény átlós árnyék (elmosás nélkül).
+   Lenyomáskor a gomb az árnyék helyére csúszik, az árnyék eltűnik – „kattan”.
+   ============================================================ */
+.bc-btn {
+  --_bg: var(--bc-accent); --_ink: var(--bc-on-accent); --_sh: var(--bc-shadow-s);
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--bc-sp-2);
+  min-height: var(--bc-tap); padding: 0 var(--bc-sp-5);
+  font-family: var(--bc-font-display); font-size: var(--bc-fs-l); font-weight: 400; line-height: 1; letter-spacing: .01em;
+  color: var(--_ink); background: var(--_bg); text-decoration: none; white-space: nowrap;
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m);
+  box-shadow: var(--_sh); cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
+  transition: transform var(--bc-t-press) var(--bc-ease-out), box-shadow var(--bc-t-press) var(--bc-ease-out), background-color var(--bc-t-fast) var(--bc-ease-out);
+}
+.bc-btn > svg { width: 1.1em; height: 1.1em; flex: none; }
+@media (hover: hover) and (pointer: fine) {
+  .bc-btn:hover:not(:disabled, [aria-disabled="true"]) { background: color-mix(in srgb, var(--_bg) 88%, var(--bc-ink)); }
+}
+.bc-btn:active:not(:disabled, [aria-disabled="true"]) { transform: translate(var(--bc-shadow-s-x), var(--bc-shadow-s-y)); box-shadow: none; }
+
+/* Változatok: fő (méz) · másodlagos (fehér) · szellem (keret és árnyék nélkül) · veszély (piros) */
+.bc-btn.is-secondary { --_bg: var(--bc-surface); --_ink: var(--bc-ink); }
+.bc-btn.is-danger { --_bg: var(--bc-danger); --_ink: var(--bc-on-accent); }
+.bc-btn.is-ghost { --_bg: transparent; --_ink: var(--bc-ink); --_sh: none; border-color: transparent; }
+.bc-btn.is-ghost:active { transform: none; }
+
+/* Méretek: kicsi is legalább 44 px magas érintésnél (a látható rész kisebb lehet) */
+.bc-btn.is-sm { min-height: 36px; padding: 0 var(--bc-sp-3); font-size: var(--bc-fs-m); border-radius: var(--bc-r-s); }
+.bc-btn.is-lg { min-height: 56px; padding: 0 var(--bc-sp-6); font-size: var(--bc-fs-xl); --_sh: var(--bc-shadow-m); }
+.bc-btn.is-lg:active:not(:disabled) { transform: translate(var(--bc-shadow-m-x), var(--bc-shadow-m-y)); }
+.bc-btn.is-block { display: flex; width: 100%; }
+@media (pointer: coarse) { .bc-btn.is-sm { min-height: var(--bc-tap); } }
+
+/* Tiltott: halvány, árnyék nélkül – de a felirat olvasható marad */
+.bc-btn:disabled, .bc-btn[aria-disabled="true"] { --_bg: var(--bc-surface-2); --_ink: var(--bc-ink-muted); --_sh: none; border-color: var(--bc-line-soft); cursor: not-allowed; }
+/* Folyamatban: a felirat helyén pörgő */
+.bc-btn[aria-busy="true"] { color: transparent; position: relative; pointer-events: none; }
+.bc-btn[aria-busy="true"]::after { content: ""; position: absolute; width: 1.1em; height: 1.1em; border: 2px solid var(--_ink); border-right-color: transparent; border-radius: 50%; animation: bc-spin .7s linear infinite; }
+
+/* Ikongomb: négyzetes, 44 px */
+.bc-icon-btn {
+  display: inline-grid; place-items: center; width: var(--bc-tap); height: var(--bc-tap); padding: 0;
+  color: var(--bc-ink); background: transparent; border: var(--bc-bw-hair) solid transparent; border-radius: var(--bc-r-m); cursor: pointer;
+  transition: background-color var(--bc-t-fast) var(--bc-ease-out), border-color var(--bc-t-fast) var(--bc-ease-out);
+}
+.bc-icon-btn > svg { width: 22px; height: 22px; }
+@media (hover: hover) and (pointer: fine) { .bc-icon-btn:hover { background: var(--bc-surface-2); border-color: var(--bc-line); } }
+.bc-icon-btn.is-danger { color: var(--bc-danger-ink); }
+
+@keyframes bc-spin { to { transform: rotate(360deg); } }

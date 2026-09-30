@@ -1,0 +1,27 @@
+/* ============================================================
+   beeco TERMÉKBŐR – alkalmazás-váz (admin, partner): oldalsáv + fejléc + tartalom
+   <div class="bc-shell"><nav class="bc-sidebar">…</nav><div class="bc-main"><header class="bc-topbar">…</header><main class="bc-content">…
+   ============================================================ */
+.bc-shell { display: grid; grid-template-columns: 248px minmax(0, 1fr); min-height: 100dvh; }
+.bc-sidebar { position: sticky; top: 0; height: 100dvh; overflow-y: auto; display: flex; flex-direction: column; gap: var(--bc-sp-1);
+  padding: var(--bc-sp-4) var(--bc-sp-3); background: var(--bc-surface); border-right: var(--bc-bw-base) solid var(--bc-line); }
+.bc-brand { display: flex; align-items: center; gap: var(--bc-sp-2); padding: var(--bc-sp-2) var(--bc-sp-2) var(--bc-sp-4); font-family: var(--bc-font-display); font-size: var(--bc-fs-xl); color: var(--bc-ink); text-decoration: none; }
+.bc-brand img { height: 36px; width: auto; }
+.bc-nav-link { display: flex; align-items: center; gap: var(--bc-sp-3); min-height: var(--bc-tap); padding: 0 var(--bc-sp-3);
+  font-weight: var(--bc-fw-semibold); color: var(--bc-ink); text-decoration: none; border: var(--bc-bw-base) solid transparent; border-radius: var(--bc-r-m);
+  transition: background-color var(--bc-t-fast) var(--bc-ease-out); }
+.bc-nav-link > svg { width: 20px; height: 20px; flex: none; }
+@media (hover: hover) and (pointer: fine) { .bc-nav-link:hover { background: var(--bc-surface-2); } }
+.bc-nav-link[aria-current="page"], .bc-nav-link.active { color: var(--bc-on-accent); background: var(--bc-accent); border-color: var(--bc-line); box-shadow: var(--bc-shadow-s); }
+.bc-nav-group { margin: var(--bc-sp-4) var(--bc-sp-3) var(--bc-sp-1); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); letter-spacing: .06em; text-transform: uppercase; color: var(--bc-ink-soft); }
+.bc-main { display: flex; flex-direction: column; min-width: 0; }
+.bc-topbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-3);
+  min-height: 64px; padding: 0 var(--bc-sp-5); background: var(--bc-bg); border-bottom: var(--bc-bw-base) solid var(--bc-line); }
+.bc-content { width: 100%; max-width: 1440px; padding: var(--bc-sp-5); }
+/* Keskeny képernyő: az oldalsáv behúzható fiókká válik (a projekt JS-e kapcsolja a .is-open-t) */
+@media (max-width: 900px) {
+  .bc-shell { grid-template-columns: minmax(0, 1fr); }
+  .bc-sidebar { position: fixed; inset: 0 auto 0 0; z-index: 60; width: min(300px, 86vw); transform: translateX(-100%); transition: transform var(--bc-t-slow) var(--bc-ease-drawer); box-shadow: var(--bc-shadow-l); }
+  .bc-sidebar.is-open { transform: none; }
+  .bc-content { padding: var(--bc-sp-4); }
+}
