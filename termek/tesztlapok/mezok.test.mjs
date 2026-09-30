@@ -1,5 +1,7 @@
 // Forgatókönyv – Mezők (valódi gépelés, beillesztés, billentyűzet). Futtatja: tests/check-komponensek.js
 const ok = (c, m) => { if (!c) throw new Error(m); };
+// Vár, amíg a feltétel teljesül (legfeljebb 1 s) – a fókusz-visszaadás egy képkockával később történik
+const until = async (fn, m) => { for (let i = 0; i < 20; i++) { if (await fn()) return; await new Promise((r) => setTimeout(r, 50)); } throw new Error(m); };
 export default async function ({ page, t }) {
   const c = (id) => page.locator(`[data-case="${id}"]`);
   await t('a max. hossznál a gépelés megáll, a számláló 20/20', async () => {
@@ -20,7 +22,7 @@ export default async function ({ page, t }) {
     const b = c('text-ures').locator('.bc-help-btn'); await b.click();
     ok(await page.locator('.bc-pop').isVisible(), 'nem nyílt meg'); ok((await page.locator('.bc-pop').innerText()).includes('Zöld Sarok'), 'nincs súgószöveg');
     await page.keyboard.press('Escape'); await page.locator('.bc-pop').waitFor({ state: 'detached', timeout: 2000 }).catch(() => { throw new Error('nem zárt be'); });
-    ok(await b.evaluate((e) => e === document.activeElement), 'a fókusz nem tért vissza');
+    await until(() => b.evaluate((e) => e === document.activeElement), 'a fókusz nem tért vissza');
   });
   await t('hibás mező: aria-invalid + a hiba a mezőhöz kötve', async () => {
     const i = c('text-kotelezo').locator('input');

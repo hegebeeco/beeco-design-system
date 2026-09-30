@@ -1,4 +1,4 @@
-/* beeco design system 1.14.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.14.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -96,17 +96,25 @@ function useLengthCounter(maxLength) {
   useLayoutEffect(() => {
     if (ref.current) setLen(ref.current.value.length);
   });
+  const pasted = useRef(false);
   const onInput = useCallback((e) => {
     setLen(e.currentTarget.value.length);
+    if (pasted.current) {
+      pasted.current = false;
+      return;
+    }
     setNotice(void 0);
   }, []);
   const onPaste = useCallback((e) => {
     if (!maxLength) return;
     const el = e.currentTarget;
-    const pasted = e.clipboardData.getData("text");
+    const text = e.clipboardData.getData("text");
     const selected = (el.selectionEnd ?? 0) - (el.selectionStart ?? 0);
     const room = maxLength - (el.value.length - selected);
-    if (pasted.length > room) setTimeout(() => setNotice(`A beillesztett sz\xF6veg v\xE9g\xE9t lev\xE1gtam: legfeljebb ${maxLength} karakter lehet.`), 0);
+    if (text.length > room) {
+      pasted.current = true;
+      setNotice(`A beillesztett sz\xF6veg v\xE9g\xE9t lev\xE1gtam: legfeljebb ${maxLength} karakter lehet.`);
+    }
   }, [maxLength]);
   return { ref, len, notice, onInput, onPaste };
 }

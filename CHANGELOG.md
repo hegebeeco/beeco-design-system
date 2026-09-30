@@ -15,6 +15,10 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.14.1 – 2026-10-01
+* Javítás (a CI-önteszt fogta meg Linuxon): a túl hosszú beillesztés „levágtam” jelzését a beillesztés utáni input-esemény néha letörölte – most időzítéstől független.
+* Forgatókönyv: a súgó bezárása utáni fókusz-visszaadást megvárja (egy képkockával később történik) – 5× egymás után stabil.
+
 ## 1.14.0 – 2026-10-01 – React-komponensek (Javaslat 01 – Űrlap, jóváhagyva: 1A, 2A, 3A, 4A, 5A) + gépi önteszt
 * **React-réteg** (`@beeco/design-system/react`, forrás `react/src/`, kimenet `dist/react/` – `tools/react-build.js`, esbuild): Field (címke + súgó ⓘ + tartomány + élő számláló + hiba/jelzés), HelpButton, Button, IconButton, TextField, TextArea (pl. 213/255), NumberField (magyar formátum, betű/2. tizedesjel/fölös mínusz tiltva, határra igazítás kilépéskor + jelzés; `clamp="input"`), SelectField, Checkbox, RadioGroup, Switch, SearchBox, SegmentedControl (3A), Combobox (1A: egyes/többes, új elem, ékezet nélküli keresés, 1000+ opció, „+N”, max.), TagPicker (4A: felhő ≤ 20, fölötte legördülő), DatePicker + DateRangePicker (2A: gépelhető, hétfő, tiltott napok, időpont, UTC-segédek), FormSection, FormActions. Viselkedés: Radix Popover (MIT).
 * **Új CSS:** `termek/css/bc-field.css` (súgó gomb, lebegő réteg, tartomány + számláló, kereső, nézetváltó, címkefelhő), `bc-picker.css` (legördülő, lista, naptár).
