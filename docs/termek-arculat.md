@@ -2,7 +2,7 @@
 
 *Kristóf döntése (2026-10-01): a termékek az app neo-brutalista vonalát követik, finomítva, **fekete** tintával.
 A játékok maradnak a Méhsejt-dioramánál (`docs/arculat.md`). A közös alap: `docs/rendszer.md`.*
-Élő bemutató: `termek/bemutato.html` · tokenek: `tokens/theme-termek.json` · elemek: `termek/css/bc-*.css`.
+Komponens-szabályok és öntesztek: `docs/komponensek.md`. Élő bemutató: `termek/bemutato.html` · tokenek: `tokens/theme-termek.json` · elemek: `termek/css/bc-*.css`.
 
 ## 1. Elvek
 

@@ -83,7 +83,7 @@ npm install github:hegebeeco/beeco-design-system#v1.13.0
 3. **Csak tokenek:** szín, méret, sarok, árnyék, időzítés `var(--bc-…)` / Tailwind-osztály / `bc.$…` – nyers érték tilos.
 4. **Minden állapot:** töltés, üres, hiba, siker, tiltott – a `bc-` elemekben megvan, ne hagyd ki.
 5. **Ellenőrzés:** `npx beeco-ds-lint` zöld (vagy javult → `--update`), `minosegkapu` jelentés.
-6. **Új elem kell?** Ha legalább két projektnek kell, a DS-repóba kerül (`termek/css/`), bemutatóval és teszttel; ha csak egynek, a projektben marad, tokenekből.
+6. **Új elem kell?** Állj meg: javaslatlap (`docs/javaslatok/`) → Kristóf jóváhagyja → a DS-be kerül tesztlappal. Szabályok, öntesztek, szélső esetek: **`docs/komponensek.md`**.
 
 ## 7. Változtatás a DS-ben
 

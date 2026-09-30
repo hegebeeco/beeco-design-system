@@ -12,6 +12,7 @@ A DS-repó: `~/CLAUDE/beeco-jatek-kit` (GitHub: `hegebeeco/beeco-design-system`)
 - **Játékbőr** (webjátékok): Méhsejt-diorama → **a `beeco-arculat` skillt töltsd be**, ne ezt kövesd.
 
 ## 1. Mielőtt hozzányúlsz
+0. **Meglévőből dolgozz** (`docs/komponensek.md` 1.): DS React-komponens → `bc-` CSS-elem → projekt-komponens → tokenekből. **Új elem, változat vagy szabály csak Kristóf jóváhagyásával, javaslatlapon** (`docs/javaslatok/_sablon.md`) – ha kellene, állj meg és javasolj, ne építsd meg „ideiglenesen”.
 1. Melyik bőr? Játék → `beeco-arculat`. Minden más → ez a skill.
 2. Olvasd el a `docs/termek-arculat.md` releváns részét (2. szerepek, 6. elemek, 7. tilos).
 3. Nézd meg, van-e már rá `bc-` elem vagy projekt-komponens – **előbb a meglévőt használd**.
@@ -29,18 +30,21 @@ A DS-repó: `~/CLAUDE/beeco-jatek-kit` (GitHub: `hegebeeco/beeco-design-system`)
 - **Állapotok:** töltés, üres, hiba, siker, tiltott – mind legyen meg.
 - **Szöveg:** tegeződő, rövid; a hiba mondja meg a következő lépést; szám csak valós adatból vagy forrással.
 
-## 3. Ellenőrzés, mielőtt „kész”
+## 3. Öntesztek – kötelező minden beviteli mezőre és grafikonra
+Tesztlap (`termek/tesztlapok/<komponens>.html`) minden állapottal és a szélső esetekkel (`docs/komponensek.md` 3.4: üres, max. hossz, 0, negatív, tizedesvessző, 1000+ opció, nincs adat, kiugró érték, hiba, töltés…), gépi futtatás: `tests/check-komponensek.js` (8 nézet × világos/sötét: működés, kilógás, 44 px, kontraszt, billentyűzet, konzolhiba). Atomic szint: egy szint csak alatta lévőkből épül.
+
+## 4. Ellenőrzés, mielőtt „kész”
 - Termék-projektben: `npx beeco-ds-lint` → „nem romlott” (javult? `npx beeco-ds-lint --update`).
 - DS-repóban: `npm test` (dist friss, kontraszt világos+sötét, párosság a játékokkal, `bc-` elemek szabályai).
 - `minosegkapu`: mérés mobil + széles, világos + sötét; a képeket nézd meg.
 
-## 4. A DS bővítése
+## 5. A DS bővítése
 - Token: `tokens/*.json` → `node tools/tokens-build.js` → `npm test`. Név **soha** nem változik és nem törlődik.
 - Új elem: ha ≥ 2 projektnek kell → `termek/css/` (+ bemutató + ha kell, teszt-szabály); különben a projektben, tokenekből.
 - Kiadás: `CHANGELOG.md` + `VERSION` + `package.json` → commit + push → `git tag v1.x.y && git push --tags` → a projektekben a `#v…` emelése.
 - Értékváltozás (pl. más zöld) minden terméket érint → Kristóf döntése kell.
 
-## 5. Beépítés egy projektbe
+## 6. Beépítés egy projektbe
 ```bash
 npm install github:hegebeeco/beeco-design-system#v1.13.0
 npx beeco-ds-lint --init        # racsni: a mostani állapot felírva

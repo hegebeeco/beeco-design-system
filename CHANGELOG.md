@@ -15,6 +15,12 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.13.1 – 2026-10-01 – komponens-szabálykönyv, javaslatok, GitHub Pages
+* **`docs/komponensek.md`** (Kristóf kérése): meglévőből dolgozz (keresési sorrend), atomic szintek (token → atom → molekula → organizmus → sablon → oldal), **kötelező öntesztek minden beviteli mezőre és grafikonra** (működés, 8 nézet × világos/sötét, UX/UI-szabályok, szélső esetek katalógusa), Definition of Done, közös definiálás javaslatlappal és Kristóf jóváhagyásával.
+* Javaslat-sablon: `docs/javaslatok/_sablon.md`; **Javaslat 01 – Űrlap** (`docs/javaslatok/01-urlap.md`, makettek: `javaslatok/01-urlap.html`) – jóváhagyásra vár.
+* GitHub Pages kezdőlap (`index.html`, `.nojekyll`); a repó publikus (Kristóf döntése).
+* `beeco-ds` skill, `CLAUDE.md`, `docs/rendszer.md`, `docs/termek-arculat.md`: hivatkozás a komponens-szabályokra.
+
 ## 1.13.0 – 2026-10-01 – SCSS-kimenet bővítése (az admin átállásából)
 * `dist/scss/_beeco.scss`: minden skálaelem egyedi változóként is (`$bc-fw-bold`, `$bc-bw-hair`, `$bc-lh-normal`, `$bc-sp-4`, `$bc-shadow-m` …), új függvények: `fw()`, `bw()`.
 * `$bc-hex-<primitív>` és `$bc-hex-role-<szerep>`: fordítási idejű hex-értékek **csak** SCSS-színfüggvényhez (`rgba($x, .3)`) és régi kód áthidalásához – sötét módban nem váltanak, új kódban a `var()`-os szerep a helyes.

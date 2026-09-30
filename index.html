@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="hu" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>beeco design system</title>
+<meta name="description" content="A beeco egységes design systeme: közös atomok, termékbőr (app, admin, partner, web) és játékbőr (webjátékok).">
+<link rel="icon" href="web/assets/brand/ikon-32.png">
+<link rel="stylesheet" href="termek/css/bc-all.css">
+<style>
+  .wrap { max-width: 960px; margin: 0 auto; padding: var(--bc-sp-6) var(--bc-sp-4) var(--bc-sp-8); }
+  .hero { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-4); margin-bottom: var(--bc-sp-6); }
+  .hero img { width: 120px; height: auto; }
+  .hero h1 { margin: 0; font-size: var(--bc-fs-3xl); }
+  .grid { display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+  .grid a.bc-card { display: flex; flex-direction: column; gap: var(--bc-sp-2); }
+  .grid p { margin: 0; color: var(--bc-ink-soft); }
+  h2 { margin-top: var(--bc-sp-7); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <img src="web/assets/brand/logo.webp" alt="beeco">
+    <div><h1>Design system</h1><p class="bc-muted" style="margin:0">Egy forrás – közös atomok, két bőr. <span id="ver"></span></p></div>
+  </header>
+  <div class="grid">
+    <a class="bc-card is-interactive" href="termek/bemutato.html"><h2 class="bc-card-title" style="margin:0">Termékbőr</h2><p>App, admin, partner, web – színszerepek, betűk, elemek, világos és sötét mód.</p></a>
+    <a class="bc-card is-interactive" href="web/arculat.html"><h2 class="bc-card-title" style="margin:0">Játékbőr</h2><p>Méhsejt-diorama – a beeco webjátékok arculata.</p></a>
+    <a class="bc-card is-accent is-interactive" href="javaslatok/01-urlap.html"><h2 class="bc-card-title" style="margin:0">Javaslat 01 – Űrlap</h2><p>Jóváhagyásra vár: keresős legördülő, dátumválasztó, kapcsoló, címkék, számmező.</p></a>
+  </div>
+  <h2>Szabálykönyvek</h2>
+  <ul>
+    <li><a href="https://github.com/hegebeeco/beeco-design-system/blob/main/docs/rendszer.md">Felépítés</a> – közös atomok, két bőr, terjesztés, ellenőrzések</li>
+    <li><a href="https://github.com/hegebeeco/beeco-design-system/blob/main/docs/komponensek.md">Komponensek</a> – meglévőből dolgozz, atomic szintek, öntesztek, szélső esetek, javaslat és jóváhagyás</li>
+    <li><a href="https://github.com/hegebeeco/beeco-design-system/blob/main/docs/termek-arculat.md">Termékbőr</a> és <a href="https://github.com/hegebeeco/beeco-design-system/blob/main/docs/arculat.md">játékbőr</a> szabályai</li>
+    <li><a href="https://github.com/hegebeeco/beeco-design-system/blob/main/docs/app-atallas.md">Flutter app átállás</a> (Bencének)</li>
+  </ul>
+</main>
+<script>fetch('dist/tokens.json').then(r => r.json()).then(t => { document.getElementById('ver').textContent = 'v' + t.version; }).catch(() => {});</script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="hu" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Javaslat 01 – űrlap</title>
+<meta name="description" content="beeco design system – 1. komponenscsomag (űrlap): változatok és javaslat Kristóf jóváhagyására.">
+<link rel="icon" href="../web/assets/brand/ikon-32.png">
+<link rel="stylesheet" href="../termek/css/bc-all.css">
+<style>
+  /* A javaslatlap saját elrendezése – csak tokenek */
+  .wrap { max-width: 1120px; margin: 0 auto; padding: var(--bc-sp-5) var(--bc-sp-4) var(--bc-sp-8); }
+  .prop { margin-top: var(--bc-sp-7); }
+  .prop > header { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2) var(--bc-sp-4); align-items: baseline; justify-content: space-between; padding-bottom: var(--bc-sp-2); border-bottom: var(--bc-bw-base) solid var(--bc-line); margin-bottom: var(--bc-sp-4); }
+  .prop > header h2 { margin: 0; }
+  .meta { display: grid; gap: var(--bc-sp-1); font-size: var(--bc-fs-s); color: var(--bc-ink-soft); margin-bottom: var(--bc-sp-4); }
+  .meta strong { color: var(--bc-ink); }
+  .variants { display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+  .var { display: flex; flex-direction: column; gap: var(--bc-sp-3); }
+  .var .bc-card { flex: 1; display: flex; flex-direction: column; gap: var(--bc-sp-3); }
+  .var.is-rec .bc-card { background: var(--bc-surface-accent); }
+  .var h3 { margin: 0; }
+  .var ul { margin: 0; padding-left: 1.2em; font-size: var(--bc-fs-s); }
+  .mock { padding: var(--bc-sp-4); background: var(--bc-bg); border: var(--bc-bw-hair) dashed var(--bc-line-soft); border-radius: var(--bc-r-m); }
+  .details { margin-top: var(--bc-sp-4); display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); font-size: var(--bc-fs-s); }
+  .details ul { margin: var(--bc-sp-2) 0 0; padding-left: 1.2em; }
+  /* Makettek (csak a javaslatlapon – a jóváhagyás után valódi komponens lesz belőlük) */
+  .m-field { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-1); min-height: var(--bc-tap); padding: var(--bc-sp-1) var(--bc-sp-2); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-s); box-shadow: var(--bc-shadow-s); }
+  .m-field .caret { margin-left: auto; font-size: var(--bc-fs-xs); }
+  .m-field .typed { color: var(--bc-ink-soft); font-size: var(--bc-fs-m); padding: 0 var(--bc-sp-1); }
+  .m-chip { display: inline-flex; align-items: center; gap: var(--bc-sp-1); min-height: 28px; padding: 0 var(--bc-sp-1) 0 var(--bc-sp-2); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); background: var(--bc-surface-accent); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); }
+  .m-chip b { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; font-weight: var(--bc-fw-bold); }
+  .m-list { margin-top: var(--bc-sp-1); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); padding: var(--bc-sp-1); font-size: var(--bc-fs-s); }
+  .m-opt { display: flex; align-items: center; gap: var(--bc-sp-2); min-height: 40px; padding: 0 var(--bc-sp-2); border-radius: var(--bc-r-s); }
+  .m-opt.is-active { background: var(--bc-surface-2); }
+  .m-opt .ck { width: 18px; height: 18px; border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-xs); display: inline-grid; place-items: center; font-size: var(--bc-fs-xs); }
+  .m-opt .ck.on { background: var(--bc-accent); color: var(--bc-on-accent); }
+  .m-opt mark { background: var(--bc-accent); color: var(--bc-on-accent); padding: 0; }
+  .m-opt.is-create { border-top: var(--bc-bw-hair) solid var(--bc-line-soft); font-weight: var(--bc-fw-bold); margin-top: var(--bc-sp-1); }
+  .m-cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; font-size: var(--bc-fs-xs); }
+  .m-cal span { display: grid; place-items: center; height: 32px; border-radius: var(--bc-r-s); }
+  .m-cal .h { font-weight: var(--bc-fw-bold); color: var(--bc-ink-soft); }
+  .m-cal .o { color: var(--bc-ink-muted); }
+  .m-cal .t { outline: var(--bc-bw-hair) solid var(--bc-line); }
+  .m-cal .s { background: var(--bc-accent); color: var(--bc-on-accent); font-weight: var(--bc-fw-bold); border: var(--bc-bw-hair) solid var(--bc-line); }
+  .m-cal .r { background: var(--bc-surface-accent); border-radius: 0; }
+  .m-calhead { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--bc-sp-2); font-family: var(--bc-font-display); font-size: var(--bc-fs-l); }
+  .m-seg { display: inline-flex; max-width: 100%; overflow-x: auto; vertical-align: middle; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); overflow: hidden; box-shadow: var(--bc-shadow-s); }
+  .m-seg span { flex: none; display: grid; place-items: center; min-height: 40px; padding: 0 var(--bc-sp-4); font-weight: var(--bc-fw-semibold); background: var(--bc-surface); }
+  .m-seg span + span { border-left: var(--bc-bw-base) solid var(--bc-line); }
+  .m-seg span.on { background: var(--bc-accent); color: var(--bc-on-accent); }
+  .m-seg2 { display: inline-flex; gap: var(--bc-sp-1); padding: var(--bc-sp-1); background: var(--bc-surface-2); border-radius: var(--bc-r-l); }
+  .m-seg2 span { display: grid; place-items: center; min-height: 40px; padding: 0 var(--bc-sp-5); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); border-radius: var(--bc-r-m); }
+  .m-seg2 span.on { background: var(--bc-surface); color: var(--bc-ink); border: var(--bc-bw-hair) solid var(--bc-line-soft); }
+  .m-cloud { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2); }
+  .m-tag { display: inline-flex; align-items: center; min-height: 36px; padding: 0 var(--bc-sp-3); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); }
+  .m-tag.on { background: var(--bc-accent); color: var(--bc-on-accent); box-shadow: var(--bc-shadow-s); }
+  .m-tag.add { border-style: dashed; }
+  .m-step { display: flex; align-items: stretch; }
+  .m-step > span { display: grid; place-items: center; width: var(--bc-tap); font-family: var(--bc-font-display); font-size: var(--bc-fs-l); background: var(--bc-surface-2); border: var(--bc-bw-hair) solid var(--bc-line); }
+  .m-step > span:first-child { border-radius: var(--bc-r-s) 0 0 var(--bc-r-s); }
+  .m-step > span:last-child { border-radius: 0 var(--bc-r-s) var(--bc-r-s) 0; }
+  .m-step .bc-input { border-radius: 0; border-left: 0; border-right: 0; text-align: center; }
+  .m-search { position: relative; }
+  .m-search .bc-input { padding-left: 40px; padding-right: 44px; }
+  .m-search .ico { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; }
+  .m-search .clr { position: absolute; right: 0; top: 0; }
+  .decide { margin-top: var(--bc-sp-7); }
+  .decide table { width: 100%; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="bc-page-header">
+    <div>
+      <p class="bc-muted" style="margin:0">beeco design system · javaslat 01 · 2026-10-01</p>
+      <h1>Űrlap-csomag</h1>
+      <p>Az első komponenscsomag az adminhoz (és a partnerhez). Minden elem <strong>meglévő anyagra</strong> épül. Ahol valóban dönteni kell, 2 változatot mutatok. Válassz, és jóváhagyás után megépítem, tesztlapokkal.</p>
+    </div>
+    <span class="bc-badge is-warning">Jóváhagyásra vár</span>
+  </header>
+
+  <div class="bc-alert is-info" role="note"><p><strong>Hogyan olvasd:</strong> a <span class="bc-badge is-accent">Javaslat</span> jelű változatot ajánlom. A makettek állóképek (nem kattinthatók). A valódi komponens a jóváhagyás után készül el, billentyűzettel, képernyőolvasóval és tesztlappal. Mind támogatja a sötét módot: kapcsold át a rendszeredben, és a lap is átvált.</p></div>
+
+  <!-- 1. KERESŐS LEGÖRDÜLŐ -->
+  <section class="prop" aria-labelledby="p1">
+    <header><h2 id="p1">1. Keresős legördülő (Combobox) – egyes és többes</h2><span class="bc-badge">molekula</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> <code>react-select</code> (19 fájl, ebből 20 helyen <code>CreatableSelect isMulti</code> = címkézés), PoiSelector, PartnerSelector, UserSelector, ExternalHost/LocationSelector.</span>
+      <span><strong>Épül:</strong> Radix Popover + DS <code>bc-input</code>, <code>bc-badge</code>; a címkeválasztó (4.) is ezt használja.</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – címkék a mezőben</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="m-field"><span class="m-chip">csomagolásmentes <b>×</b></span><span class="m-chip">javító <b>×</b></span><span class="m-chip">+3</span><span class="typed">kávé|</span><span class="caret">▼</span></div>
+          <div class="m-list">
+            <div class="m-opt is-active"><span class="ck on">✓</span><mark>kávé</mark>zó</div>
+            <div class="m-opt"><span class="ck"></span>specialty <mark>kávé</mark></div>
+            <div class="m-opt is-create">+ Új címke: „kávé”</div>
+          </div>
+        </div>
+        <ul><li>Egy pillantás: mi van kiválasztva.</li><li>Sok elemnél „+3” – a mező nem nő végtelenre, kattintásra kinyílik.</li><li>Gépelve szűr, a találat kiemelve; Enter választ, Backspace töröl.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – összesítő a mezőben, címkék alatta</h3>
+        <div class="mock" aria-hidden="true">
+          <div class="m-field"><span class="typed">5 kiválasztva</span><span class="caret">▼</span></div>
+          <div class="bc-row" style="margin-top:var(--bc-sp-2);gap:var(--bc-sp-1)"><span class="m-chip">csomagolásmentes <b>×</b></span><span class="m-chip">javító <b>×</b></span><span class="m-chip">kávézó <b>×</b></span><span class="m-chip">bio <b>×</b></span><span class="m-chip">vegán <b>×</b></span></div>
+        </div>
+        <ul><li>A mező mindig egy sor – nyugodt űrlap.</li><li>Viszont a kijelölés a mezőn kívül él: hosszú űrlapon elválik a mezőtől.</li><li>Több helyet foglal.</li></ul>
+      </div></div>
+    </div>
+    <div class="details">
+      <div><strong>Állapotok:</strong> alap · fókusz · nyitva · töltés (lista) · nincs találat · hiba (lista nem töltött be – „Újrapróbálás”) · tiltott · csak olvasható · mezőhiba.</div>
+      <div><strong>Szélső esetek a tesztlapon:</strong><ul><li>0 / 1 / 1000+ opció (keresés, görgetés)</li><li>nagyon hosszú opciónév, ékezetes keresés („kave” → „kávé”)</li><li>a kiválasztott érték már nincs a listában</li><li>új elem létrehozása: üres, csak szóköz, már létező név</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 2. DÁTUM ÉS IDŐ -->
+  <section class="prop" aria-labelledby="p2">
+    <header><h2 id="p2">2. Dátum- és időválasztó (+ időszak)</h2><span class="bc-badge">molekula</span></header>
+    <div class="meta">
+      <span><strong>Kiváltja:</strong> <code>primereact/calendar</code> (2 fájl, a globálisan szivárgó „saga-blue” témával), <code>react-datepicker</code> (1), nyers <code>datetime-local</code> mezők (BeecoInput).</span>
+      <span><strong>Épül:</strong> Radix Popover + DS rács; beírni is lehet (2026. 10. 01.), hét első napja hétfő, magyar hónapnevek. Időszak: analitika-szűrőkhöz.</span>
+    </div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – mező + lenyíló naptár</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true">
+          <div class="bc-row" style="flex-wrap:nowrap"><div class="m-field" style="flex:1"><span class="typed" style="color:var(--bc-ink)">2026. 10. 01.</span><span class="caret">📅</span></div><div class="m-field" style="width:96px"><span class="typed" style="color:var(--bc-ink)">14:30</span></div></div>
+          <div class="m-list" style="padding:var(--bc-sp-3)">
+            <div class="m-calhead"><span>‹</span><span>2026. október</span><span>›</span></div>
+            <div class="m-cal"><span class="h">H</span><span class="h">K</span><span class="h">Sze</span><span class="h">Cs</span><span class="h">P</span><span class="h">Szo</span><span class="h">V</span><span class="o">28</span><span class="o">29</span><span class="o">30</span><span class="s">1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span class="t">7</span><span>8</span><span>9</span><span>10</span><span>11</span></div>
+          </div>
+        </div>
+        <ul><li>Egyforma minden böngészőben és a partnerben is.</li><li>Gépelve is működik (gyors adminnak), naptárral is (telefonon).</li><li>Időszakhoz ugyanez, két kijelölt véggel.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – a böngésző saját választója, DS-kerettel</h3>
+        <div class="mock" aria-hidden="true"><input class="bc-input" type="datetime-local" value="2026-10-01T14:30" tabindex="-1"></div>
+        <ul><li>Nincs mit megírni, telefonon kényelmes.</li><li>Böngészőnként más a kinézete és a formátuma (Chrome, Safari, Firefox), a naptár nem igazítható a márkához.</li><li>Időszakot nem tud.</li></ul>
+      </div></div>
+    </div>
+    <div class="details">
+      <div><strong>Állapotok:</strong> alap · fókusz · nyitva · tiltott napok (múlt/jövő) · hiba („a vége a kezdet előtt van”) · csak olvasható · törölhető (üres érték).</div>
+      <div><strong>Szélső esetek:</strong><ul><li>szökőnap, óraátállítás napja (okt. 25., márc. 29.)</li><li>időzóna: a szerver UTC-t kap, a mező helyi időt mutat</li><li>hibás gépelés („2026.13.40”), részleges dátum</li><li>kezdet &gt; vég, egész napos esemény</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 3. SZEGMENTÁLT KAPCSOLÓ -->
+  <section class="prop" aria-labelledby="p3">
+    <header><h2 id="p3">3. Szegmentált kapcsoló (Lista / Térkép, Lista / Csempék)</h2><span class="bc-badge">molekula</span></header>
+    <div class="meta"><span><strong>Kiváltja:</strong> Rajok és Partnerek nézetváltója, a partner-felület nézetváltói. <strong>Épül:</strong> Radix ToggleGroup + DS.</span></div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – gombsor, kijelölt méz</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock bc-row" aria-hidden="true"><div class="m-seg"><span class="on">Lista</span><span>Térkép</span></div><div class="m-seg"><span>Lista</span><span class="on">Csempék</span><span>Térkép</span></div></div>
+        <ul><li>Ugyanaz a nyelv, mint a gomb és a fül (fekete keret, méz kijelölés).</li><li>Sötét módban is erős.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – halvány sín, fehér kijelölés (a mostani admin-minta)</h3>
+        <div class="mock" aria-hidden="true"><div class="m-seg2"><span class="on">Lista</span><span>Térkép</span></div></div>
+        <ul><li>Csendesebb, ismerős az adminból.</li><li>A termékbőrből kilóg (puha, keret nélküli), gyengébb kontraszt a kijelölésnél.</li></ul>
+      </div></div>
+    </div>
+    <div class="details"><div><strong>Állapotok / esetek:</strong> 2–4 elem · hosszú felirat telefonon (tördelés helyett görgethető sor) · tiltott elem · ikon + szöveg · billentyűzet: nyilak.</div></div>
+  </section>
+
+  <!-- 4. CÍMKEVÁLASZTÓ -->
+  <section class="prop" aria-labelledby="p4">
+    <header><h2 id="p4">4. Címkeválasztó (Tagek)</h2><span class="bc-badge">molekula</span></header>
+    <div class="meta"><span><strong>Kiváltja:</strong> a címkézés <code>CreatableSelect isMulti</code>-jai (20), a partner <code>tag-picker</code>-e, BeecoTag. <strong>Épül:</strong> 1. Combobox + <code>bc-badge</code>.</span></div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – felhő rövid listánál, legördülő hosszúnál</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true"><div class="m-cloud"><span class="m-tag on">bio</span><span class="m-tag">vegán</span><span class="m-tag on">csomagolásmentes</span><span class="m-tag">javító</span><span class="m-tag">bérlés</span><span class="m-tag add">+ Új címke</span></div></div>
+        <ul><li>≤ 20 címkéig egy koppintás (kategóriák, jellemzők).</li><li>Fölötte magától az 1. Combobox „A” változata (kereséssel).</li><li>Egy komponens, egy API – két megjelenés.</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – mindig legördülő</h3>
+        <div class="mock" aria-hidden="true"><div class="m-field"><span class="m-chip">bio <b>×</b></span><span class="m-chip">csomagolásmentes <b>×</b></span><span class="typed">Címke keresése…</span><span class="caret">▼</span></div></div>
+        <ul><li>Egységes, kevés helyet foglal.</li><li>Rövid listánál felesleges a keresés, több kattintás.</li></ul>
+      </div></div>
+    </div>
+    <div class="details"><div><strong>Esetek:</strong> 0 címke · 1 · 200 címke · új címke: üres / szóköz / már létezik (kis-nagybetű, ékezet) · nagyon hosszú címke · max. darabszám.</div></div>
+  </section>
+
+  <!-- 5. SZÁMMEZŐ -->
+  <section class="prop" aria-labelledby="p5">
+    <header><h2 id="p5">5. Számmező (mértékegységgel)</h2><span class="bc-badge">molekula</span></header>
+    <div class="meta"><span><strong>Kiváltja:</strong> BeecoInput <code>type="number"</code> (a mostani „kitörli, ha kívül esik” viselkedéssel együtt – helyette szöveges hibaüzenet). <strong>Épül:</strong> <code>bc-input</code> + <code>bc-affix</code>.</span></div>
+    <div class="variants">
+      <div class="var is-rec"><div class="bc-card">
+        <div class="bc-row is-between"><h3>A – gépelős, mértékegységgel</h3><span class="bc-badge is-accent">Javaslat</span></div>
+        <div class="mock" aria-hidden="true"><div class="bc-affix"><input class="bc-input" value="12 500" tabindex="-1"><span>Ft</span></div></div>
+        <ul><li>Magyar formátum: ezres szóköz, tizedes<strong>vessző</strong> (a pontot is elfogadja).</li><li>Határon kívül nem töröl, hanem szól: „Legfeljebb 100 lehet.”</li></ul>
+      </div></div>
+      <div class="var"><div class="bc-card">
+        <h3>B – + / − gombokkal (darabszámhoz)</h3>
+        <div class="mock" aria-hidden="true"><div class="m-step"><span>−</span><input class="bc-input" value="20" tabindex="-1" style="width:90px"><span>+</span></div></div>
+        <ul><li>Kis egész számokhoz (kupon-darab, sorrend) kényelmes, érintésen is.</li><li>Nagy számhoz, pénzhez nem jó.</li></ul>
+      </div></div>
+    </div>
+    <p class="bc-help" style="margin-top:var(--bc-sp-3)">Javaslat: mindkettő legyen, egy komponens két módja (<code>stepper</code> kapcsoló) – az A az alap.</p>
+  </section>
+
+  <!-- 6. EGYSZERŰ ELEMEK – nincs választás, csak a lista -->
+  <section class="prop" aria-labelledby="p6">
+    <header><h2 id="p6">6. A többi – változat nélkül (a meglévő bc- elemek React-változata)</h2><span class="bc-badge">atom / molekula</span></header>
+    <div class="bc-table-wrap">
+      <table class="bc-table">
+        <thead><tr><th>Elem</th><th>Szint</th><th>Mire épül (meglévő)</th><th>Kiváltja az adminban</th></tr></thead>
+        <tbody>
+          <tr><td>Button, IconButton</td><td>atom</td><td><code>bc-btn</code>, <code>bc-icon-btn</code></td><td>BeecoButton, gombnak látszó BeecoLink, ~175 nyers gomb</td></tr>
+          <tr><td>TextInput, Textarea (számlálóval)</td><td>atom</td><td><code>bc-input</code>, <code>bc-textarea</code></td><td>BeecoInput, BeecoTextArea, CountedTextField</td></tr>
+          <tr><td>Select (natív, rövid listához)</td><td>atom</td><td><code>bc-select</code></td><td>BeecoSelect, BeecoControlledSelect</td></tr>
+          <tr><td>Checkbox, RadioGroup, Switch</td><td>atom</td><td><code>bc-check</code>, <code>bc-switch</code></td><td>nyers jelölők, kapcsolók</td></tr>
+          <tr><td>Field (címke + mező + segítség + hiba)</td><td>molekula</td><td><code>bc-field</code></td><td>a mezők címke- és hibakezelése (egységes <code>aria</code>)</td></tr>
+          <tr><td>SearchBox (nagyító + törlés)</td><td>molekula</td><td><code>bc-input</code> + <code>bc-icon-btn</code></td><td>a listák keresőmezői</td></tr>
+          <tr><td>FormSection, FormActions</td><td>organizmus</td><td><code>bc-card</code>, <code>bc-form-grid</code>, <code>bc-form-actions</code></td><td>az Add/Edit oldalak űrlapvázai</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="bc-row" style="margin-top:var(--bc-sp-4);gap:var(--bc-sp-5)">
+      <div class="m-search" style="width:min(100%,360px)" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input class="bc-input" value="zöld sarok" tabindex="-1"><span class="clr" style="display:grid;place-items:center;width:var(--bc-tap);height:var(--bc-tap)">×</span></div>
+      <span class="bc-help">SearchBox makett – a többi a meglévő bemutatón látható: <a href="../termek/bemutato.html">termékbőr bemutató</a>.</span>
+    </div>
+  </section>
+
+  <section class="decide" aria-labelledby="dd">
+    <h2 id="dd">Döntés</h2>
+    <p>Írd meg a chatben, például: <strong>„1A, 2A, 3A, 4A, 5 mindkettő – jóváhagyva”</strong>, vagy azt, amit másképp szeretnél. Ez kerül a <code>docs/javaslatok/01-urlap.md</code> Döntés részébe, és utána építek.</p>
+  </section>
+</main>
+</body>
+</html>

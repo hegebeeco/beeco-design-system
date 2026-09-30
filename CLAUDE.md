@@ -5,6 +5,7 @@
 > generált `dist/`) és **játékbőr** (webjátékok: `web/`). Felépítés: `docs/rendszer.md`. Termékmunkához a `beeco-ds` skill,
 > játékhoz a `beeco-arculat`. A `dist/` generált: `node tools/tokens-build.js`; minden változás után `npm test`.
 > Fogyasztók: `~/IdeaProjects/beeco-admin(-design-uplift)`, `~/IdeaProjects/beeco-partner` (git-függőség, címkével), Flutter app (Bence, `dist/dart`).
+> **Komponensek:** `docs/komponensek.md` – meglévőből dolgozz, atomic szintek, **kötelező öntesztek** (tesztlap + `check-komponensek`), szélső esetek, új elem csak Kristóf jóváhagyásával (javaslatlap: `docs/javaslatok/`).
 > **A helyi mappa neve marad `~/CLAUDE/beeco-jatek-kit`** (a játékok `kit-sync` útvonalai erre mutatnak).
 
 
@@ -24,7 +25,7 @@ A játékok külön tárolókban élnek (első: `~/CLAUDE/beeco-szelektalj`, él
 * **Terjesztés:** commit + push után a projektekben `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ezt szólj Kristófnak / a projekt Claude-jának).
 * A skillek (`.claude/skills/`) a felhasználói szinten is telepítve vannak (`~/.claude/skills/beeco-arculat`, `beeco-jatek`, `beeco-ds` →
   szimbolikus link ide), így minden Claude Code projekt látja őket.
-* A beeco méhecskék (`web/assets/brand/`) belső használatúak; külső partner anyagban a beeco jóváhagyása kell. A tároló privát.
+* A beeco méhecskék (`web/assets/brand/`) belső használatúak; külső partner anyagban a beeco jóváhagyása kell. **A tároló publikus** (Kristóf döntése, 2026-10-01) – titok, jelszó, kulcs soha ne kerüljön bele.
 
 ## Ismert játék-projektek
 * `~/CLAUDE/beeco-szelektalj` – Szelektálj!, Hűtő-mester, Greenwashing-vadász, Mi van mögötte?, 2075, Ökos-rejtély, párbaj, Fenntartható otthon.
