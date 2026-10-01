@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react';
 import { type UploadFn } from './files';
+import { type UploadCrop } from './CropDialog';
 import type { GalleryImage } from './GalleryTile';
 export type ImageUploaderProps = {
     label: string;
@@ -23,10 +24,14 @@ export type ImageUploaderProps = {
     /** Csak nézhető: nincs feltöltés, menü, húzás */
     readOnly?: boolean;
     error?: string;
+    /** Vágás feltöltés előtt, rögzített képaránnyal (Javaslat 07): minden fájlnál feljön a vágó-ablak */
+    crop?: UploadCrop;
+    /** false: a leírás (alt) nem szerkeszthető, és nincs „Leírás kell” jelzés – ha a backend nem tárolja (a projekt adja az alt-ot) */
+    altEditable?: boolean;
 };
 /**
  * ImageUploader (organizmus, Javaslat 04 – 1A): a galéria-rácsba épülő „+ Kép” csempe.
  * Húzás-ejtés az egész rácsra, fájlválasztó, billentyűzet (a csempe egy <label>, benne a natív fájlmező).
  * A hibás fájl el sem indul; az ok és a teendő a mező alatt marad, amíg be nem zárod.
  */
-export declare function ImageUploader({ label, help, images, onChange, upload, accept, maxSizeMB, maxCount, ordering, confirmDelete, altHelp, sizeHint, required, disabled, readOnly, error }: ImageUploaderProps): import("react").JSX.Element;
+export declare function ImageUploader({ label, help, images, onChange, upload, accept, maxSizeMB, maxCount, ordering, confirmDelete, altHelp, sizeHint, required, disabled, readOnly, error, crop, altEditable }: ImageUploaderProps): import("react").JSX.Element;

@@ -4,6 +4,7 @@ import { Field } from '../field/Field';
 import { FieldInput } from '../field/FieldInput';
 import { formatHu } from '../inputs/number';
 import { checkFiles, fileKey, typeNames, type Rejection, type UploadFn } from './files';
+import { CropDialog, type UploadCrop } from './CropDialog';
 import { Gallery } from './Gallery';
 import type { GalleryImage } from './GalleryTile';
 import { IcClose, IcPlus } from './icons';
@@ -32,6 +33,10 @@ export type ImageUploaderProps = {
   /** Csak nézhető: nincs feltöltés, menü, húzás */
   readOnly?: boolean;
   error?: string;
+  /** Vágás feltöltés előtt, rögzített képaránnyal (Javaslat 07): minden fájlnál feljön a vágó-ablak */
+  crop?: UploadCrop;
+  /** false: a leírás (alt) nem szerkeszthető, és nincs „Leírás kell” jelzés – ha a backend nem tárolja (a projekt adja az alt-ot) */
+  altEditable?: boolean;
 };
 
 /**
@@ -40,7 +45,7 @@ export type ImageUploaderProps = {
  * A hibás fájl el sem indul; az ok és a teendő a mező alatt marad, amíg be nem zárod.
  */
 export function ImageUploader({ label, help, images, onChange, upload, accept = ['image/jpeg', 'image/png', 'image/webp'], maxSizeMB = 5, maxCount = 10,
-  ordering, confirmDelete, altHelp, sizeHint = 'Kicsinyítsd le, pl. 2000 px szélesre, és próbáld újra.', required, disabled, readOnly, error }: ImageUploaderProps) {
+  ordering, confirmDelete, altHelp, sizeHint = 'Kicsinyítsd le, pl. 2000 px szélesre, és próbáld újra.', required, disabled, readOnly, error, crop, altEditable = true }: ImageUploaderProps) {
   const [rejected, setRejected] = useState<Rejection[]>([]);
   const [note, setNote] = useState<string>();
   const [over, setOver] = useState(false);
@@ -49,15 +54,19 @@ export function ImageUploader({ label, help, images, onChange, upload, accept = 
   const latest = useRef(images); latest.current = images;
   // Melyik kép melyik fájlból jött (ugyanaz a fájl kétszer ne kerüljön fel, amíg a képe fent van)
   const fromFile = useRef(new Map<string, string>());
+  // Vágásnál a feltöltött fájl új: az EREDETI kulcsát jegyezzük meg (ugyanaz a kép kétszer így is kiderül)
+  const origKey = useRef(new WeakMap<File, string>());
+  // A vágásra váró fájlok sora (az első van az ablakban)
+  const [queue, setQueue] = useState<{ files: File[]; total: number }>({ files: [], total: 0 });
   const up = useUploads(upload,
-    (img, file) => { fromFile.current.set(img.id, fileKey(file)); const next = [...latest.current, img]; latest.current = next; onChange(next); },
+    (img, file) => { fromFile.current.set(img.id, origKey.current.get(file) ?? fileKey(file)); const next = [...latest.current, img]; latest.current = next; onChange(next); },
     (f) => setNote(`Megszakítottad: ${f.name}. Ha mégis kell, válaszd ki újra.`));
 
-  const used = images.length + up.items.length;
+  const used = images.length + up.items.length + queue.files.length;
   const full = used >= maxCount;
   const locked = disabled || readOnly;
   const failed = up.items.filter((i) => i.status === 'error');
-  const noAlt = images.filter((i) => !i.alt).length;
+  const noAlt = altEditable ? images.filter((i) => !i.alt).length : 0;
 
   const add = async (list: FileList | null) => {
     if (!list || locked) return;
@@ -65,8 +74,13 @@ export function ImageUploader({ label, help, images, onChange, upload, accept = 
     const r = await checkFiles([...list], { accept, maxSizeMB, room: maxCount - used, max: maxCount, known: new Set([...up.keys, ...images.flatMap((i) => fromFile.current.get(i.id) ?? [])]), sizeHint, unit: 'kép',
       typeHint: `Mentsd el ${typeNames(accept).split(', ')[0]}-ként (pl. a telefonon: Megosztás → Mentés képként), és töltsd fel újra.` });
     setRejected(r.rejected);
-    if (r.ok.length) up.start(r.ok);
+    if (!r.ok.length) return;
+    if (crop) setQueue((q) => ({ files: [...q.files, ...r.ok], total: q.total + r.ok.length }));
+    else up.start(r.ok);
   };
+  const next = () => setQueue((q) => (q.files.length <= 1 ? { files: [], total: 0 } : { ...q, files: q.files.slice(1) }));
+  const cropped = (f: File) => { const o = queue.files[0]; if (o) origKey.current.set(f, fileKey(o)); up.start([f]); next(); };
+  const skipped = (f: File) => { setNote(`Kihagytad: ${f.name}. Ha mégis kell, válaszd ki újra.`); next(); };
   const fileDrag = {
     over: (e: DragEvent) => { if (locked || !e.dataTransfer.types.includes('Files')) return; e.preventDefault(); e.dataTransfer.dropEffect = full ? 'none' : 'copy'; setOver(true); },
     leave: (e: DragEvent) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setOver(false); },
@@ -80,7 +94,7 @@ export function ImageUploader({ label, help, images, onChange, upload, accept = 
         count={{ value: used, max: maxCount, unit: 'kép' }}>
         <FieldInput>
           {(f) => (
-            <Gallery images={images} onChange={readOnly || disabled ? undefined : onChange} ordering={ordering} confirmDelete={confirmDelete} altHelp={altHelp} label={label} onFileDrag={fileDrag}>
+            <Gallery images={images} onChange={readOnly || disabled ? undefined : onChange} ordering={ordering} confirmDelete={confirmDelete} altHelp={altHelp} altEditable={altEditable} label={label} onFileDrag={fileDrag}>
               {up.items.map((it) => <UploadTile key={it.id} item={it} onCancel={() => up.cancel(it.id)} onRetry={() => up.retry(it.id)} />)}
               {!readOnly && (
                 <li className={cx('bc-tile is-add', (full || disabled) && 'is-disabled', used === 0 && 'is-empty')}>
@@ -109,6 +123,8 @@ export function ImageUploader({ label, help, images, onChange, upload, accept = 
         </div>
       )}
       {note && <p className="bc-notice" role="status">{note}</p>}
+      {crop && <CropDialog file={queue.files[0] ?? null} crop={crop} position={queue.total > 1 ? `${queue.total - queue.files.length + 1}/${queue.total}` : undefined}
+        onDone={cropped} onSkip={skipped} />}
       {noAlt > 0 && !readOnly && <p className="bc-upload-alt" role="status">{noAlt} képnek még nincs leírása – a csempe ⋯ menüjében add meg („Leírás”).</p>}
     </div>
   );

@@ -11,6 +11,8 @@ export type GalleryProps = {
     confirmDelete?: (img: GalleryImage) => boolean | Promise<boolean>;
     /** A képleírás súgójának szövege (mire kell, hol jelenik meg az appban) */
     altHelp?: ReactNode;
+    /** false: a leírás (alt) csak olvasható – nincs menüpont és „Leírás kell” jelzés (ha a backend nem tárolja) */
+    altEditable?: boolean;
     /** A lista neve képernyőolvasónak, pl. „Képek” */
     label?: string;
     /** További csempék a rács végén (a feltöltő ide teszi a töltődő képeket és a „+ Kép” csempét) */
@@ -24,4 +26,4 @@ export type GalleryProps = {
     };
 };
 /** Gallery (organizmus, Javaslat 04 – 2A): rács, borító, sorrend húzással és menüből, szerkeszthető alt, törlés, nagyító. */
-export declare function Gallery({ images, onChange, ordering, confirmDelete, altHelp, label, children, className, onFileDrag }: GalleryProps): import("react").JSX.Element;
+export declare function Gallery({ images, onChange, ordering, confirmDelete, altHelp, altEditable, label, children, className, onFileDrag }: GalleryProps): import("react").JSX.Element;

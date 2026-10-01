@@ -35,6 +35,9 @@ function Oldal() {
         <Case id="kep-hiba" title="Hibával (kötelező)"><U id="hiba" start={[]} required error="Legalább egy kép kell – az app a borítót a hely kártyáján mutatja." /></Case>
         <Case id="kep-tiltott" title="Tiltott"><U id="tiltott" start={images(2)} disabled /></Case>
         <Case id="kep-olvas" title="Csak olvasható"><U id="olvas" start={images(3)} readOnly /></Case>
+        <Case id="kep-vagas" title="Vágás feltöltés előtt (1:1, Javaslat 07)"><U id="vagas" start={images(1)} maxCount={4} ordering={false}
+          crop={{ aspect: 1, aspectLabel: '1:1', why: 'A logó négyzetes keretben jelenik meg az appban.' }} /></Case>
+        <Case id="kep-altnelkul" title="Leírás nem szerkeszthető (altEditable=false)"><U id="altnelkul" start={images(3, { noAlt: [0, 1, 2] })} altEditable={false} /></Case>
       </Grid>
       <Grid title="Galéria (2A) és nagyító">
         <Case id="gal-szeles" title="Nagyon széles és magas kép, átlátszó háttér"><G id="szeles" start={images(3, { wide: true })} /></Case>

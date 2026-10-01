@@ -15,6 +15,8 @@ export type GalleryProps = {
   confirmDelete?: (img: GalleryImage) => boolean | Promise<boolean>;
   /** A képleírás súgójának szövege (mire kell, hol jelenik meg az appban) */
   altHelp?: ReactNode;
+  /** false: a leírás (alt) csak olvasható – nincs menüpont és „Leírás kell” jelzés (ha a backend nem tárolja) */
+  altEditable?: boolean;
   /** A lista neve képernyőolvasónak, pl. „Képek” */
   label?: string;
   /** További csempék a rács végén (a feltöltő ide teszi a töltődő képeket és a „+ Kép” csempét) */
@@ -27,7 +29,7 @@ export type GalleryProps = {
 const MIME = 'application/x-bc-gallery';
 
 /** Gallery (organizmus, Javaslat 04 – 2A): rács, borító, sorrend húzással és menüből, szerkeszthető alt, törlés, nagyító. */
-export function Gallery({ images, onChange, ordering = true, confirmDelete, altHelp, label = 'Képek', children, className, onFileDrag }: GalleryProps) {
+export function Gallery({ images, onChange, ordering = true, confirmDelete, altHelp, altEditable = true, label = 'Képek', children, className, onFileDrag }: GalleryProps) {
   const [zoom, setZoom] = useState<number | null>(null);
   const [altFor, setAltFor] = useState<GalleryImage | null>(null);
   const [delFor, setDelFor] = useState<GalleryImage | null>(null);
@@ -76,7 +78,7 @@ export function Gallery({ images, onChange, ordering = true, confirmDelete, altH
       onDragOver={(e) => { if (!own(e)) onFileDrag?.over(e); }} onDragLeave={(e) => onFileDrag?.leave(e)} onDrop={(e) => { if (!own(e)) onFileDrag?.drop(e); }}>
       <ul className="bc-gallery-grid" aria-label={`${label}: ${images.length} kép`}>
         {images.map((img, i) => (
-          <GalleryTile key={img.id} img={img} index={i} count={images.length} ordering={ordering} editable={editable}
+          <GalleryTile key={img.id} img={img} index={i} count={images.length} ordering={ordering} editable={editable} altEditable={altEditable}
             dragging={drag?.from === i} dropTarget={drag?.over === i && drag.from !== i} onAction={act(i)} {...tileDrag(i)} />
         ))}
         {children}

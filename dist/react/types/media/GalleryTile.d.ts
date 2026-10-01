@@ -13,6 +13,8 @@ type Props = {
     /** Borító + sorrend bekapcsolva */
     ordering: boolean;
     editable: boolean;
+    /** false: a leírás csak olvasható (nincs menüpont, nincs „Leírás kell”) */
+    altEditable?: boolean;
     dragging: boolean;
     dropTarget: boolean;
     onAction: (a: TileAction) => void;
@@ -25,5 +27,5 @@ type Props = {
  * Egy galéria-csempe: a kép gomb (nagyítót nyit), sarokban „Borító” jelvény és ⋯ menü.
  * A menü a húzás billentyűzetes és érintéses párja: Előre / Hátra / Legyen a borító.
  */
-export declare function GalleryTile({ img, index, count, ordering, editable, dragging, dropTarget, onAction, onDragStart, onDragEnd, onDragOver, onDrop }: Props): import("react").JSX.Element;
+export declare function GalleryTile({ img, index, count, ordering, editable, altEditable, dragging, dropTarget, onAction, onDragStart, onDragEnd, onDragOver, onDrop }: Props): import("react").JSX.Element;
 export {};

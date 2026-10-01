@@ -1,5 +1,6 @@
 // Javaslat 04 – Média és speciális elemek (jóváhagyva 2026-10-01). CSS: termek/css/bc-media.css
 export { ImageUploader, type ImageUploaderProps } from './ImageUploader';
+export { CropDialog, cropToFile, type UploadCrop } from './CropDialog';
 export { Gallery, type GalleryProps } from './Gallery';
 export type { GalleryImage } from './GalleryTile';
 export { Lightbox, type LightboxProps } from './Lightbox';

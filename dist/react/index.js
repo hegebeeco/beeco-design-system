@@ -1,4 +1,4 @@
-/* beeco design system 1.15.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.16.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -3151,7 +3151,7 @@ function AppShell({ brand, nav, topbar, renderLink = defaultLink, skipLabel = "U
 }
 
 // react/src/media/ImageUploader.tsx
-import { useId as useId10, useRef as useRef21, useState as useState25 } from "react";
+import { useId as useId10, useRef as useRef21, useState as useState27 } from "react";
 
 // react/src/media/files.ts
 var MB = 1024 * 1024;
@@ -3220,12 +3220,179 @@ async function checkFiles(files, o) {
 var isAbort = (e) => e instanceof DOMException && e.name === "AbortError";
 var errorText = (e) => e instanceof Error && e.message ? e.message : "Nem siker\xFClt felt\xF6lteni \u2013 ellen\u0151rizd a kapcsolatot, \xE9s pr\xF3b\xE1ld \xFAjra.";
 
+// react/src/media/CropDialog.tsx
+import { useEffect as useEffect8, useState as useState23 } from "react";
+
+// react/src/media/ImageCropper.tsx
+import { useState as useState22 } from "react";
+import Cropper from "react-easy-crop";
+import { jsx as jsx53, jsxs as jsxs48 } from "react/jsx-runtime";
+var DEFAULT_ASPECTS = [{ label: "16:9", value: 16 / 9 }, { label: "1:1", value: 1 }];
+function ImageCropper({ src, aspects = DEFAULT_ASPECTS, minZoom = 1, maxZoom = 8, onCrop, minOutputWidth, zoomHelp, aspectHelp }) {
+  const [crop, setCrop] = useState22({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState22(minZoom);
+  const [aspect, setAspect] = useState22(aspects[0]);
+  const [small, setSmall] = useState22(null);
+  const clampZoom = (z) => Math.min(maxZoom, Math.max(minZoom, Math.round(z * 10) / 10));
+  const zoomText = `${formatHu(zoom, 1)}\xD7`;
+  const onKey = (e) => {
+    if (e.target.tagName === "INPUT") return;
+    if (e.key === "+" || e.key === "=") {
+      e.preventDefault();
+      setZoom((z) => clampZoom(z + 0.2));
+    }
+    if (e.key === "-" || e.key === "_") {
+      e.preventDefault();
+      setZoom((z) => clampZoom(z - 0.2));
+    }
+  };
+  const reset = () => {
+    setZoom(minZoom);
+    setCrop({ x: 0, y: 0 });
+  };
+  return /* @__PURE__ */ jsxs48("div", { className: "bc-cropper", onKeyDown: onKey, children: [
+    aspects.length > 1 && /* @__PURE__ */ jsxs48("div", { className: "bc-cropper-row", children: [
+      /* @__PURE__ */ jsx53("span", { className: "bc-label", id: "bc-crop-aspect", children: "K\xE9par\xE1ny" }),
+      /* @__PURE__ */ jsx53(
+        SegmentedControl,
+        {
+          label: "K\xE9par\xE1ny",
+          value: aspect.label,
+          onChange: (l) => setAspect(aspects.find((a) => a.label === l) ?? aspects[0]),
+          items: aspects.map((a) => ({ value: a.label, label: a.label }))
+        }
+      ),
+      aspectHelp && /* @__PURE__ */ jsx53("span", { className: "bc-help", children: aspectHelp })
+    ] }),
+    /* @__PURE__ */ jsx53("div", { className: "bc-cropper-stage", children: /* @__PURE__ */ jsx53(
+      Cropper,
+      {
+        image: src,
+        crop,
+        zoom,
+        aspect: aspect.value,
+        minZoom,
+        maxZoom,
+        zoomSpeed: 0.5,
+        keyboardStep: 10,
+        onCropChange: setCrop,
+        onZoomChange: (z) => setZoom(clampZoom(z)),
+        objectFit: "contain",
+        showGrid: true,
+        classes: { containerClassName: "bc-cropper-box", cropAreaClassName: "bc-cropper-area" },
+        cropperProps: { "aria-label": `Kiv\xE1g\xE1s helye (${aspect.label}) \u2013 a nyilakkal mozgatod, a + \xE9s \u2212 gombbal nagy\xEDtasz`, role: "group" },
+        onCropComplete: (_, px) => {
+          setSmall(minOutputWidth && px.width < minOutputWidth ? Math.round(px.width) : null);
+          onCrop(px, { zoom, aspect });
+        }
+      }
+    ) }),
+    /* @__PURE__ */ jsx53(
+      Field,
+      {
+        label: "Nagy\xEDt\xE1s",
+        help: zoomHelp ?? "H\xFAzd a cs\xFAszk\xE1t, vagy nyomd a + \xE9s \u2212 gombot, hogy a l\xE9nyeg kit\xF6ltse a keretet. Egyes k\xE9perny\u0151k\xF6n kisebben jelenik meg a k\xE9p, ez\xE9rt ne v\xE1gd t\xFAl szorosra.",
+        range: `${formatHu(minZoom, 0)}\u2013${formatHu(maxZoom, 0)}\xD7`,
+        notice: small ? `A kiv\xE1g\xE1s csak ${small} px sz\xE9les (legal\xE1bb ${minOutputWidth} px kell) \u2013 a k\xE9p hom\xE1lyos lehet. Nagy\xEDts kev\xE9sb\xE9, vagy v\xE1lassz nagyobb k\xE9pet.` : void 0,
+        children: /* @__PURE__ */ jsx53(FieldInput, { children: (f) => /* @__PURE__ */ jsxs48("div", { className: "bc-cropper-zoom", children: [
+          /* @__PURE__ */ jsx53(
+            "input",
+            {
+              id: f.id,
+              type: "range",
+              className: "bc-range",
+              min: minZoom,
+              max: maxZoom,
+              step: 0.1,
+              value: zoom,
+              "aria-describedby": f.describedBy,
+              "aria-valuetext": zoomText,
+              onChange: (e) => setZoom(clampZoom(Number(e.target.value)))
+            }
+          ),
+          /* @__PURE__ */ jsx53("output", { htmlFor: f.id, className: "bc-cropper-out", "data-zoom": true, children: zoomText }),
+          /* @__PURE__ */ jsx53(Button, { variant: "secondary", size: "sm", onClick: reset, disabled: zoom === minZoom && crop.x === 0 && crop.y === 0, children: "Alaphelyzet" })
+        ] }) })
+      }
+    )
+  ] });
+}
+
+// react/src/media/CropDialog.tsx
+import { Fragment as Fragment14, jsx as jsx54, jsxs as jsxs49 } from "react/jsx-runtime";
+var KIMENET = { "image/png": "image/png", "image/webp": "image/webp" };
+async function cropToFile(file, src, area) {
+  const img = new Image();
+  img.src = src;
+  await img.decode();
+  const c = document.createElement("canvas");
+  c.width = Math.max(1, Math.round(area.width));
+  c.height = Math.max(1, Math.round(area.height));
+  c.getContext("2d").drawImage(img, area.x, area.y, area.width, area.height, 0, 0, c.width, c.height);
+  const type = KIMENET[file.type] ?? "image/jpeg";
+  const blob = await new Promise((ok) => c.toBlob(ok, type, 0.9));
+  if (!blob) throw new Error("A kiv\xE1g\xE1s nem siker\xFClt \u2013 pr\xF3b\xE1ld \xFAjra, vagy v\xE1lassz m\xE1sik k\xE9pet.");
+  return new File([blob], file.name, { type, lastModified: Date.now() });
+}
+function CropDialog({ file, crop, position, onDone, onSkip }) {
+  const [src, setSrc] = useState23(null);
+  const [area, setArea] = useState23(null);
+  const [busy, setBusy] = useState23(false);
+  const [err, setErr] = useState23();
+  useEffect8(() => {
+    if (!file) {
+      setSrc(null);
+      return;
+    }
+    const u = URL.createObjectURL(file);
+    setSrc(u);
+    setArea(null);
+    setErr(void 0);
+    return () => URL.revokeObjectURL(u);
+  }, [file]);
+  const kesz = async () => {
+    if (!file || !src || !area) return;
+    setBusy(true);
+    try {
+      onDone(await cropToFile(file, src, area));
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : "A kiv\xE1g\xE1s nem siker\xFClt.");
+    } finally {
+      setBusy(false);
+    }
+  };
+  return /* @__PURE__ */ jsxs49(
+    Modal,
+    {
+      open: file !== null,
+      onOpenChange: (o) => {
+        if (!o && file && !busy) onSkip(file);
+      },
+      size: "wide",
+      busy,
+      title: `K\xE9p kiv\xE1g\xE1sa (${crop.aspectLabel})${position ? ` \u2013 ${position}` : ""}`,
+      description: /* @__PURE__ */ jsxs49(Fragment14, { children: [
+        file?.name,
+        crop.why ? ` \xB7 ${crop.why}` : ""
+      ] }),
+      footer: /* @__PURE__ */ jsxs49(Fragment14, { children: [
+        /* @__PURE__ */ jsx54(Button, { variant: "secondary", onClick: () => file && onSkip(file), disabled: busy, children: "Ezt kihagyom" }),
+        /* @__PURE__ */ jsx54(Button, { onClick: () => void kesz(), busy, disabled: !area, children: "Kiv\xE1g\xE1s \xE9s felt\xF6lt\xE9s" })
+      ] }),
+      children: [
+        src && /* @__PURE__ */ jsx54(ImageCropper, { src, aspects: [{ label: crop.aspectLabel, value: crop.aspect }], minOutputWidth: crop.minOutputWidth, onCrop: (a) => setArea(a) }),
+        err && /* @__PURE__ */ jsx54("p", { className: "bc-error", role: "alert", children: err })
+      ]
+    }
+  );
+}
+
 // react/src/media/Gallery.tsx
-import { useRef as useRef19, useState as useState23 } from "react";
+import { useRef as useRef19, useState as useState25 } from "react";
 
 // react/src/media/GalleryDialogs.tsx
 import * as Dialog5 from "@radix-ui/react-dialog";
-import { useEffect as useEffect8, useState as useState22 } from "react";
+import { useEffect as useEffect9, useState as useState24 } from "react";
 
 // react/src/media/useReturnFocus.ts
 import { useLayoutEffect as useLayoutEffect3, useRef as useRef17 } from "react";
@@ -3242,23 +3409,23 @@ function useReturnFocus2(open, fallback) {
 }
 
 // react/src/media/GalleryDialogs.tsx
-import { Fragment as Fragment14, jsx as jsx53, jsxs as jsxs48 } from "react/jsx-runtime";
+import { Fragment as Fragment15, jsx as jsx55, jsxs as jsxs50 } from "react/jsx-runtime";
 function Small({ open, onClose, title, children, foot, fallback }) {
   const back = useReturnFocus2(open, fallback);
-  return /* @__PURE__ */ jsx53(Dialog5.Root, { open, onOpenChange: (o) => {
+  return /* @__PURE__ */ jsx55(Dialog5.Root, { open, onOpenChange: (o) => {
     if (!o) onClose();
-  }, children: /* @__PURE__ */ jsx53(Dialog5.Portal, { children: /* @__PURE__ */ jsx53(Dialog5.Overlay, { className: "bc-scrim", children: /* @__PURE__ */ jsxs48(Dialog5.Content, { className: "bc-modal", "aria-describedby": void 0, onCloseAutoFocus: back, children: [
-    /* @__PURE__ */ jsx53("div", { className: "bc-modal-head", children: /* @__PURE__ */ jsx53(Dialog5.Title, { children: title }) }),
-    /* @__PURE__ */ jsx53("div", { className: "bc-modal-body", children }),
-    /* @__PURE__ */ jsx53("div", { className: "bc-modal-foot", children: foot })
+  }, children: /* @__PURE__ */ jsx55(Dialog5.Portal, { children: /* @__PURE__ */ jsx55(Dialog5.Overlay, { className: "bc-scrim", children: /* @__PURE__ */ jsxs50(Dialog5.Content, { className: "bc-modal", "aria-describedby": void 0, onCloseAutoFocus: back, children: [
+    /* @__PURE__ */ jsx55("div", { className: "bc-modal-head", children: /* @__PURE__ */ jsx55(Dialog5.Title, { children: title }) }),
+    /* @__PURE__ */ jsx55("div", { className: "bc-modal-body", children }),
+    /* @__PURE__ */ jsx55("div", { className: "bc-modal-foot", children: foot })
   ] }) }) }) });
 }
 var ALT_MAX = 150;
 var ALT_HELP = "Mondd el egy mondatban, mi l\xE1tszik a k\xE9pen \u2013 ezt olvassa fel a k\xE9perny\u0151olvas\xF3, \xE9s ez jelenik meg, ha a k\xE9p nem t\xF6lt be. Pl. \u201EA k\xE1v\xE9z\xF3 terasza ny\xE1ron, vir\xE1gl\xE1d\xE1kkal\u201D. Ne a f\xE1jlnevet \xEDrd.";
 function AltDialog({ img, help = ALT_HELP, onSave, onClose, fallback }) {
-  const [text, setText] = useState22("");
-  const [err, setErr] = useState22();
-  useEffect8(() => {
+  const [text, setText] = useState24("");
+  const [err, setErr] = useState24();
+  useEffect9(() => {
     setText(img?.alt ?? "");
     setErr(void 0);
   }, [img]);
@@ -3272,20 +3439,20 @@ function AltDialog({ img, help = ALT_HELP, onSave, onClose, fallback }) {
     onSave(t);
     onClose();
   };
-  return /* @__PURE__ */ jsx53(
+  return /* @__PURE__ */ jsx55(
     Small,
     {
       open: !!img,
       onClose,
       title: "K\xE9ple\xEDr\xE1s (alt)",
       fallback,
-      foot: /* @__PURE__ */ jsxs48(Fragment14, { children: [
-        /* @__PURE__ */ jsx53(Button, { variant: "secondary", onClick: onClose, children: "M\xE9gse" }),
-        /* @__PURE__ */ jsx53(Button, { type: "submit", form: "bc-alt-form", children: "Ment\xE9s" })
+      foot: /* @__PURE__ */ jsxs50(Fragment15, { children: [
+        /* @__PURE__ */ jsx55(Button, { variant: "secondary", onClick: onClose, children: "M\xE9gse" }),
+        /* @__PURE__ */ jsx55(Button, { type: "submit", form: "bc-alt-form", children: "Ment\xE9s" })
       ] }),
-      children: /* @__PURE__ */ jsxs48("form", { id: "bc-alt-form", onSubmit: save2, noValidate: true, children: [
-        img && /* @__PURE__ */ jsx53("img", { className: "bc-alt-thumb", src: img.src, alt: "" }),
-        /* @__PURE__ */ jsx53(
+      children: /* @__PURE__ */ jsxs50("form", { id: "bc-alt-form", onSubmit: save2, noValidate: true, children: [
+        img && /* @__PURE__ */ jsx55("img", { className: "bc-alt-thumb", src: img.src, alt: "" }),
+        /* @__PURE__ */ jsx55(
           TextField,
           {
             label: "Mi l\xE1tszik a k\xE9pen?",
@@ -3307,23 +3474,23 @@ function AltDialog({ img, help = ALT_HELP, onSave, onClose, fallback }) {
   );
 }
 function DeleteDialog({ img, onConfirm, onClose, fallback }) {
-  return /* @__PURE__ */ jsxs48(
+  return /* @__PURE__ */ jsxs50(
     Small,
     {
       open: !!img,
       onClose,
       title: "T\xF6rl\xF6d ezt a k\xE9pet?",
       fallback,
-      foot: /* @__PURE__ */ jsxs48(Fragment14, { children: [
-        /* @__PURE__ */ jsx53(Button, { variant: "secondary", onClick: onClose, autoFocus: true, children: "M\xE9gse" }),
-        /* @__PURE__ */ jsx53(Button, { variant: "danger", onClick: () => {
+      foot: /* @__PURE__ */ jsxs50(Fragment15, { children: [
+        /* @__PURE__ */ jsx55(Button, { variant: "secondary", onClick: onClose, autoFocus: true, children: "M\xE9gse" }),
+        /* @__PURE__ */ jsx55(Button, { variant: "danger", onClick: () => {
           onConfirm();
           onClose();
         }, children: "T\xF6rl\xE9s" })
       ] }),
       children: [
-        img && /* @__PURE__ */ jsx53("img", { className: "bc-alt-thumb", src: img.src, alt: "" }),
-        /* @__PURE__ */ jsxs48("p", { children: [
+        img && /* @__PURE__ */ jsx55("img", { className: "bc-alt-thumb", src: img.src, alt: "" }),
+        /* @__PURE__ */ jsxs50("p", { children: [
           img?.alt ? `\u201E${img.alt}\u201D` : "A le\xEDr\xE1s n\xE9lk\xFCli k\xE9p",
           " leker\xFCl a gal\xE9ri\xE1b\xF3l. Ha kell, k\xE9s\u0151bb \xFAjra felt\xF6ltheted."
         ] })
@@ -3336,39 +3503,39 @@ function DeleteDialog({ img, onConfirm, onClose, fallback }) {
 import * as Menu from "@radix-ui/react-dropdown-menu";
 
 // react/src/media/icons.tsx
-import { jsx as jsx54, jsxs as jsxs49 } from "react/jsx-runtime";
+import { jsx as jsx56, jsxs as jsxs51 } from "react/jsx-runtime";
 var S = { viewBox: "0 0 24 24", width: 20, height: 20, fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true };
-var IcPlus = () => /* @__PURE__ */ jsx54("svg", { ...S, children: /* @__PURE__ */ jsx54("path", { d: "M12 5v14M5 12h14" }) });
-var IcClose = () => /* @__PURE__ */ jsx54("svg", { ...S, children: /* @__PURE__ */ jsx54("path", { d: "M6 6l12 12M18 6L6 18" }) });
-var IcDots = () => /* @__PURE__ */ jsxs49("svg", { ...S, children: [
-  /* @__PURE__ */ jsx54("circle", { cx: "5", cy: "12", r: "1.5" }),
-  /* @__PURE__ */ jsx54("circle", { cx: "12", cy: "12", r: "1.5" }),
-  /* @__PURE__ */ jsx54("circle", { cx: "19", cy: "12", r: "1.5" })
+var IcPlus = () => /* @__PURE__ */ jsx56("svg", { ...S, children: /* @__PURE__ */ jsx56("path", { d: "M12 5v14M5 12h14" }) });
+var IcClose = () => /* @__PURE__ */ jsx56("svg", { ...S, children: /* @__PURE__ */ jsx56("path", { d: "M6 6l12 12M18 6L6 18" }) });
+var IcDots = () => /* @__PURE__ */ jsxs51("svg", { ...S, children: [
+  /* @__PURE__ */ jsx56("circle", { cx: "5", cy: "12", r: "1.5" }),
+  /* @__PURE__ */ jsx56("circle", { cx: "12", cy: "12", r: "1.5" }),
+  /* @__PURE__ */ jsx56("circle", { cx: "19", cy: "12", r: "1.5" })
 ] });
-var IcLeft = () => /* @__PURE__ */ jsx54("svg", { ...S, children: /* @__PURE__ */ jsx54("path", { d: "M15 5l-7 7 7 7" }) });
-var IcRight = () => /* @__PURE__ */ jsx54("svg", { ...S, children: /* @__PURE__ */ jsx54("path", { d: "M9 5l7 7-7 7" }) });
-var IcRetry = () => /* @__PURE__ */ jsx54("svg", { ...S, children: /* @__PURE__ */ jsx54("path", { d: "M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4" }) });
-var IcWarn = () => /* @__PURE__ */ jsxs49("svg", { ...S, children: [
-  /* @__PURE__ */ jsx54("path", { d: "M12 4l9 16H3z" }),
-  /* @__PURE__ */ jsx54("path", { d: "M12 10v4M12 17v.5" })
+var IcLeft = () => /* @__PURE__ */ jsx56("svg", { ...S, children: /* @__PURE__ */ jsx56("path", { d: "M15 5l-7 7 7 7" }) });
+var IcRight = () => /* @__PURE__ */ jsx56("svg", { ...S, children: /* @__PURE__ */ jsx56("path", { d: "M9 5l7 7-7 7" }) });
+var IcRetry = () => /* @__PURE__ */ jsx56("svg", { ...S, children: /* @__PURE__ */ jsx56("path", { d: "M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4" }) });
+var IcWarn = () => /* @__PURE__ */ jsxs51("svg", { ...S, children: [
+  /* @__PURE__ */ jsx56("path", { d: "M12 4l9 16H3z" }),
+  /* @__PURE__ */ jsx56("path", { d: "M12 10v4M12 17v.5" })
 ] });
-var IcCheck = () => /* @__PURE__ */ jsx54("svg", { ...S, children: /* @__PURE__ */ jsx54("path", { d: "M5 12.5l4.5 4.5L19 7" }) });
-var IcCopy = () => /* @__PURE__ */ jsxs49("svg", { ...S, children: [
-  /* @__PURE__ */ jsx54("rect", { x: "8", y: "8", width: "12", height: "12", rx: "2" }),
-  /* @__PURE__ */ jsx54("path", { d: "M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" })
+var IcCheck = () => /* @__PURE__ */ jsx56("svg", { ...S, children: /* @__PURE__ */ jsx56("path", { d: "M5 12.5l4.5 4.5L19 7" }) });
+var IcCopy = () => /* @__PURE__ */ jsxs51("svg", { ...S, children: [
+  /* @__PURE__ */ jsx56("rect", { x: "8", y: "8", width: "12", height: "12", rx: "2" }),
+  /* @__PURE__ */ jsx56("path", { d: "M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" })
 ] });
-var IcDownload = () => /* @__PURE__ */ jsx54("svg", { ...S, children: /* @__PURE__ */ jsx54("path", { d: "M12 4v11M7 10l5 5 5-5M5 20h14" }) });
-var IcFile = () => /* @__PURE__ */ jsxs49("svg", { ...S, children: [
-  /* @__PURE__ */ jsx54("path", { d: "M6 3h8l4 4v14H6z" }),
-  /* @__PURE__ */ jsx54("path", { d: "M14 3v4h4" })
+var IcDownload = () => /* @__PURE__ */ jsx56("svg", { ...S, children: /* @__PURE__ */ jsx56("path", { d: "M12 4v11M7 10l5 5 5-5M5 20h14" }) });
+var IcFile = () => /* @__PURE__ */ jsxs51("svg", { ...S, children: [
+  /* @__PURE__ */ jsx56("path", { d: "M6 3h8l4 4v14H6z" }),
+  /* @__PURE__ */ jsx56("path", { d: "M14 3v4h4" })
 ] });
 
 // react/src/media/GalleryTile.tsx
-import { jsx as jsx55, jsxs as jsxs50 } from "react/jsx-runtime";
-function GalleryTile({ img, index, count, ordering, editable, dragging, dropTarget, onAction, onDragStart, onDragEnd, onDragOver, onDrop }) {
-  const name2 = img.alt || `${index + 1}. k\xE9p (nincs le\xEDr\xE1sa)`;
+import { jsx as jsx57, jsxs as jsxs52 } from "react/jsx-runtime";
+function GalleryTile({ img, index, count, ordering, editable, altEditable = true, dragging, dropTarget, onAction, onDragStart, onDragEnd, onDragOver, onDrop }) {
+  const name2 = img.alt || (altEditable ? `${index + 1}. k\xE9p (nincs le\xEDr\xE1sa)` : `${index + 1}. k\xE9p`);
   const canMove = ordering && editable;
-  return /* @__PURE__ */ jsxs50(
+  return /* @__PURE__ */ jsxs52(
     "li",
     {
       "data-tile": img.id,
@@ -3379,22 +3546,22 @@ function GalleryTile({ img, index, count, ordering, editable, dragging, dropTarg
       onDragOver,
       onDrop,
       children: [
-        /* @__PURE__ */ jsx55("button", { type: "button", className: "bc-tile-open", onClick: () => onAction("open"), "aria-label": `Nagy\xEDt\xE1s: ${name2}${ordering && index === 0 ? " (bor\xEDt\xF3)" : ""}`, children: /* @__PURE__ */ jsx55("img", { src: img.src, alt: "", draggable: false, loading: "lazy", decoding: "async" }) }),
-        ordering && index === 0 && /* @__PURE__ */ jsx55("span", { className: "bc-badge is-accent bc-tile-cover", children: "Bor\xEDt\xF3" }),
-        !img.alt && /* @__PURE__ */ jsxs50("span", { className: "bc-badge is-warning bc-tile-noalt", children: [
-          /* @__PURE__ */ jsx55(IcWarn, {}),
+        /* @__PURE__ */ jsx57("button", { type: "button", className: "bc-tile-open", onClick: () => onAction("open"), "aria-label": `Nagy\xEDt\xE1s: ${name2}${ordering && index === 0 ? " (bor\xEDt\xF3)" : ""}`, children: /* @__PURE__ */ jsx57("img", { src: img.src, alt: "", draggable: false, loading: "lazy", decoding: "async" }) }),
+        ordering && index === 0 && /* @__PURE__ */ jsx57("span", { className: "bc-badge is-accent bc-tile-cover", children: "Bor\xEDt\xF3" }),
+        !img.alt && altEditable && /* @__PURE__ */ jsxs52("span", { className: "bc-badge is-warning bc-tile-noalt", children: [
+          /* @__PURE__ */ jsx57(IcWarn, {}),
           "Le\xEDr\xE1s kell"
         ] }),
-        editable && /* @__PURE__ */ jsxs50(Menu.Root, { modal: false, children: [
-          /* @__PURE__ */ jsx55(Menu.Trigger, { className: "bc-icon-btn bc-tile-menu", "aria-label": `M\u0171veletek: ${name2}`, children: /* @__PURE__ */ jsx55(IcDots, {}) }),
-          /* @__PURE__ */ jsx55(Menu.Portal, { children: /* @__PURE__ */ jsxs50(Menu.Content, { className: "bc-gmenu", align: "end", sideOffset: 4, collisionPadding: 12, children: [
-            /* @__PURE__ */ jsx55(Menu.Item, { className: "bc-gmenu-item", onSelect: () => onAction("open"), children: "Megnyit\xE1s" }),
-            canMove && /* @__PURE__ */ jsx55(Menu.Item, { className: "bc-gmenu-item", disabled: index === 0, onSelect: () => onAction("cover"), children: "Legyen a bor\xEDt\xF3" }),
-            canMove && /* @__PURE__ */ jsx55(Menu.Item, { className: "bc-gmenu-item", disabled: index === 0, onSelect: () => onAction("back"), children: "El\u0151re (balra)" }),
-            canMove && /* @__PURE__ */ jsx55(Menu.Item, { className: "bc-gmenu-item", disabled: index === count - 1, onSelect: () => onAction("forward"), children: "H\xE1tra (jobbra)" }),
-            /* @__PURE__ */ jsx55(Menu.Item, { className: "bc-gmenu-item", onSelect: () => onAction("alt"), children: img.alt ? "Le\xEDr\xE1s (alt) szerkeszt\xE9se\u2026" : "Le\xEDr\xE1s (alt) megad\xE1sa\u2026" }),
-            /* @__PURE__ */ jsx55(Menu.Separator, { className: "bc-gmenu-sep" }),
-            /* @__PURE__ */ jsx55(Menu.Item, { className: "bc-gmenu-item is-danger", onSelect: () => onAction("delete"), children: "T\xF6rl\xE9s\u2026" })
+        editable && /* @__PURE__ */ jsxs52(Menu.Root, { modal: false, children: [
+          /* @__PURE__ */ jsx57(Menu.Trigger, { className: "bc-icon-btn bc-tile-menu", "aria-label": `M\u0171veletek: ${name2}`, children: /* @__PURE__ */ jsx57(IcDots, {}) }),
+          /* @__PURE__ */ jsx57(Menu.Portal, { children: /* @__PURE__ */ jsxs52(Menu.Content, { className: "bc-gmenu", align: "end", sideOffset: 4, collisionPadding: 12, children: [
+            /* @__PURE__ */ jsx57(Menu.Item, { className: "bc-gmenu-item", onSelect: () => onAction("open"), children: "Megnyit\xE1s" }),
+            canMove && /* @__PURE__ */ jsx57(Menu.Item, { className: "bc-gmenu-item", disabled: index === 0, onSelect: () => onAction("cover"), children: "Legyen a bor\xEDt\xF3" }),
+            canMove && /* @__PURE__ */ jsx57(Menu.Item, { className: "bc-gmenu-item", disabled: index === 0, onSelect: () => onAction("back"), children: "El\u0151re (balra)" }),
+            canMove && /* @__PURE__ */ jsx57(Menu.Item, { className: "bc-gmenu-item", disabled: index === count - 1, onSelect: () => onAction("forward"), children: "H\xE1tra (jobbra)" }),
+            altEditable && /* @__PURE__ */ jsx57(Menu.Item, { className: "bc-gmenu-item", onSelect: () => onAction("alt"), children: img.alt ? "Le\xEDr\xE1s (alt) szerkeszt\xE9se\u2026" : "Le\xEDr\xE1s (alt) megad\xE1sa\u2026" }),
+            /* @__PURE__ */ jsx57(Menu.Separator, { className: "bc-gmenu-sep" }),
+            /* @__PURE__ */ jsx57(Menu.Item, { className: "bc-gmenu-item is-danger", onSelect: () => onAction("delete"), children: "T\xF6rl\xE9s\u2026" })
           ] }) })
         ] })
       ]
@@ -3405,7 +3572,7 @@ function GalleryTile({ img, index, count, ordering, editable, dragging, dropTarg
 // react/src/media/Lightbox.tsx
 import * as Dialog6 from "@radix-ui/react-dialog";
 import { useRef as useRef18 } from "react";
-import { jsx as jsx56, jsxs as jsxs51 } from "react/jsx-runtime";
+import { jsx as jsx58, jsxs as jsxs53 } from "react/jsx-runtime";
 function Lightbox({ images, index, onIndexChange, returnFocus }) {
   const open = index !== null && images.length > 0;
   const i = Math.min(index ?? 0, Math.max(0, images.length - 1));
@@ -3433,44 +3600,44 @@ function Lightbox({ images, index, onIndexChange, returnFocus }) {
     startX.current = null;
     if (Math.abs(dx) > 40 && images.length > 1) go(dx < 0 ? 1 : -1);
   };
-  return /* @__PURE__ */ jsx56(Dialog6.Root, { open, onOpenChange: (o) => {
+  return /* @__PURE__ */ jsx58(Dialog6.Root, { open, onOpenChange: (o) => {
     if (!o) onIndexChange(null);
-  }, children: /* @__PURE__ */ jsxs51(Dialog6.Portal, { children: [
-    /* @__PURE__ */ jsx56(Dialog6.Overlay, { className: "bc-lightbox-scrim" }),
-    /* @__PURE__ */ jsxs51(Dialog6.Content, { className: "bc-lightbox", onKeyDown: onKey, "aria-describedby": void 0, onCloseAutoFocus: back, children: [
-      /* @__PURE__ */ jsxs51("div", { className: "bc-lightbox-top", children: [
-        /* @__PURE__ */ jsxs51("span", { className: "bc-lightbox-pill", "aria-live": "polite", "data-lightbox-count": true, children: [
+  }, children: /* @__PURE__ */ jsxs53(Dialog6.Portal, { children: [
+    /* @__PURE__ */ jsx58(Dialog6.Overlay, { className: "bc-lightbox-scrim" }),
+    /* @__PURE__ */ jsxs53(Dialog6.Content, { className: "bc-lightbox", onKeyDown: onKey, "aria-describedby": void 0, onCloseAutoFocus: back, children: [
+      /* @__PURE__ */ jsxs53("div", { className: "bc-lightbox-top", children: [
+        /* @__PURE__ */ jsxs53("span", { className: "bc-lightbox-pill", "aria-live": "polite", "data-lightbox-count": true, children: [
           i + 1,
           "/",
           images.length
         ] }),
-        /* @__PURE__ */ jsxs51(Dialog6.Title, { className: "bc-sr", children: [
+        /* @__PURE__ */ jsxs53(Dialog6.Title, { className: "bc-sr", children: [
           "K\xE9p nagy\xEDtva: ",
           img?.alt || "nincs le\xEDr\xE1sa"
         ] }),
-        /* @__PURE__ */ jsx56(Dialog6.Close, { className: "bc-icon-btn bc-lightbox-btn", "aria-label": "Bez\xE1r\xE1s (Esc)", children: /* @__PURE__ */ jsx56(IcClose, {}) })
+        /* @__PURE__ */ jsx58(Dialog6.Close, { className: "bc-icon-btn bc-lightbox-btn", "aria-label": "Bez\xE1r\xE1s (Esc)", children: /* @__PURE__ */ jsx58(IcClose, {}) })
       ] }),
-      /* @__PURE__ */ jsxs51("div", { className: "bc-lightbox-mid", children: [
-        images.length > 1 && /* @__PURE__ */ jsx56("button", { type: "button", className: "bc-icon-btn bc-lightbox-btn", "aria-label": "El\u0151z\u0151 k\xE9p (\u2190)", onClick: () => go(-1), children: /* @__PURE__ */ jsx56(IcLeft, {}) }),
-        /* @__PURE__ */ jsx56("div", { className: "bc-lightbox-stage", onPointerDown: onDown, onPointerUp: onUp, onPointerCancel: () => {
+      /* @__PURE__ */ jsxs53("div", { className: "bc-lightbox-mid", children: [
+        images.length > 1 && /* @__PURE__ */ jsx58("button", { type: "button", className: "bc-icon-btn bc-lightbox-btn", "aria-label": "El\u0151z\u0151 k\xE9p (\u2190)", onClick: () => go(-1), children: /* @__PURE__ */ jsx58(IcLeft, {}) }),
+        /* @__PURE__ */ jsx58("div", { className: "bc-lightbox-stage", onPointerDown: onDown, onPointerUp: onUp, onPointerCancel: () => {
           startX.current = null;
-        }, children: img && /* @__PURE__ */ jsx56("img", { src: img.src, alt: img.alt, draggable: false }, img.id) }),
-        images.length > 1 && /* @__PURE__ */ jsx56("button", { type: "button", className: "bc-icon-btn bc-lightbox-btn", "aria-label": "K\xF6vetkez\u0151 k\xE9p (\u2192)", onClick: () => go(1), children: /* @__PURE__ */ jsx56(IcRight, {}) })
+        }, children: img && /* @__PURE__ */ jsx58("img", { src: img.src, alt: img.alt, draggable: false }, img.id) }),
+        images.length > 1 && /* @__PURE__ */ jsx58("button", { type: "button", className: "bc-icon-btn bc-lightbox-btn", "aria-label": "K\xF6vetkez\u0151 k\xE9p (\u2192)", onClick: () => go(1), children: /* @__PURE__ */ jsx58(IcRight, {}) })
       ] }),
-      /* @__PURE__ */ jsx56("p", { className: "bc-lightbox-cap", children: img?.alt || /* @__PURE__ */ jsx56("em", { children: "Ennek a k\xE9pnek m\xE9g nincs le\xEDr\xE1sa." }) })
+      /* @__PURE__ */ jsx58("p", { className: "bc-lightbox-cap", children: img?.alt || /* @__PURE__ */ jsx58("em", { children: "Ennek a k\xE9pnek m\xE9g nincs le\xEDr\xE1sa." }) })
     ] })
   ] }) });
 }
 
 // react/src/media/Gallery.tsx
-import { jsx as jsx57, jsxs as jsxs52 } from "react/jsx-runtime";
+import { jsx as jsx59, jsxs as jsxs54 } from "react/jsx-runtime";
 var MIME = "application/x-bc-gallery";
-function Gallery({ images, onChange, ordering = true, confirmDelete, altHelp, label = "K\xE9pek", children, className, onFileDrag }) {
-  const [zoom, setZoom] = useState23(null);
-  const [altFor, setAltFor] = useState23(null);
-  const [delFor, setDelFor] = useState23(null);
-  const [drag, setDrag] = useState23(null);
-  const [said, setSaid] = useState23("");
+function Gallery({ images, onChange, ordering = true, confirmDelete, altHelp, altEditable = true, label = "K\xE9pek", children, className, onFileDrag }) {
+  const [zoom, setZoom] = useState25(null);
+  const [altFor, setAltFor] = useState25(null);
+  const [delFor, setDelFor] = useState25(null);
+  const [drag, setDrag] = useState25(null);
+  const [said, setSaid] = useState25("");
   const editable = Boolean(onChange);
   const root = useRef19(null);
   const opener = useRef19(null);
@@ -3523,7 +3690,7 @@ function Gallery({ images, onChange, ordering = true, confirmDelete, altHelp, la
       setDrag(null);
     }
   });
-  return /* @__PURE__ */ jsxs52(
+  return /* @__PURE__ */ jsxs54(
     "div",
     {
       ref: root,
@@ -3536,8 +3703,8 @@ function Gallery({ images, onChange, ordering = true, confirmDelete, altHelp, la
         if (!own(e)) onFileDrag?.drop(e);
       },
       children: [
-        /* @__PURE__ */ jsxs52("ul", { className: "bc-gallery-grid", "aria-label": `${label}: ${images.length} k\xE9p`, children: [
-          images.map((img, i) => /* @__PURE__ */ jsx57(
+        /* @__PURE__ */ jsxs54("ul", { className: "bc-gallery-grid", "aria-label": `${label}: ${images.length} k\xE9p`, children: [
+          images.map((img, i) => /* @__PURE__ */ jsx59(
             GalleryTile,
             {
               img,
@@ -3545,6 +3712,7 @@ function Gallery({ images, onChange, ordering = true, confirmDelete, altHelp, la
               count: images.length,
               ordering,
               editable,
+              altEditable,
               dragging: drag?.from === i,
               dropTarget: drag?.over === i && drag.from !== i,
               onAction: act(i),
@@ -3554,10 +3722,10 @@ function Gallery({ images, onChange, ordering = true, confirmDelete, altHelp, la
           )),
           children
         ] }),
-        images.length === 0 && !children && /* @__PURE__ */ jsx57("p", { className: "bc-gallery-empty", children: "M\xE9g nincs k\xE9p ebben a gal\xE9ri\xE1ban." }),
-        /* @__PURE__ */ jsx57("p", { className: "bc-sr", role: "status", "aria-live": "polite", children: said }),
-        /* @__PURE__ */ jsx57(Lightbox, { images, index: zoom, onIndexChange: setZoom, returnFocus: trigger }),
-        /* @__PURE__ */ jsx57(
+        images.length === 0 && !children && /* @__PURE__ */ jsx59("p", { className: "bc-gallery-empty", children: "M\xE9g nincs k\xE9p ebben a gal\xE9ri\xE1ban." }),
+        /* @__PURE__ */ jsx59("p", { className: "bc-sr", role: "status", "aria-live": "polite", children: said }),
+        /* @__PURE__ */ jsx59(Lightbox, { images, index: zoom, onIndexChange: setZoom, returnFocus: trigger }),
+        /* @__PURE__ */ jsx59(
           AltDialog,
           {
             fallback: trigger,
@@ -3572,7 +3740,7 @@ function Gallery({ images, onChange, ordering = true, confirmDelete, altHelp, la
             }
           }
         ),
-        /* @__PURE__ */ jsx57(DeleteDialog, { fallback: trigger, img: delFor, onClose: () => setDelFor(null), onConfirm: () => {
+        /* @__PURE__ */ jsx59(DeleteDialog, { fallback: trigger, img: delFor, onClose: () => setDelFor(null), onConfirm: () => {
           if (delFor) void remove(delFor);
         } })
       ]
@@ -3581,13 +3749,13 @@ function Gallery({ images, onChange, ordering = true, confirmDelete, altHelp, la
 }
 
 // react/src/media/Stepper.tsx
-import { jsx as jsx58, jsxs as jsxs53 } from "react/jsx-runtime";
+import { jsx as jsx60, jsxs as jsxs55 } from "react/jsx-runtime";
 var STATE_TEXT = { todo: "m\xE9g h\xE1travan", current: "folyamatban", done: "k\xE9sz", error: "hiba" };
 function Stepper({ label, steps, className }) {
-  return /* @__PURE__ */ jsx58("ol", { className: cx("bc-steps", className), "aria-label": label, children: steps.map((s, i) => /* @__PURE__ */ jsxs53("li", { className: `is-${s.state}`, "aria-current": s.state === "current" ? "step" : void 0, children: [
-    /* @__PURE__ */ jsx58("b", { "aria-hidden": "true", children: s.state === "done" ? /* @__PURE__ */ jsx58(IcCheck, {}) : s.state === "error" ? /* @__PURE__ */ jsx58(IcClose, {}) : i + 1 }),
-    /* @__PURE__ */ jsx58("span", { children: s.label }),
-    /* @__PURE__ */ jsxs53("span", { className: "bc-sr", children: [
+  return /* @__PURE__ */ jsx60("ol", { className: cx("bc-steps", className), "aria-label": label, children: steps.map((s, i) => /* @__PURE__ */ jsxs55("li", { className: `is-${s.state}`, "aria-current": s.state === "current" ? "step" : void 0, children: [
+    /* @__PURE__ */ jsx60("b", { "aria-hidden": "true", children: s.state === "done" ? /* @__PURE__ */ jsx60(IcCheck, {}) : s.state === "error" ? /* @__PURE__ */ jsx60(IcClose, {}) : i + 1 }),
+    /* @__PURE__ */ jsx60("span", { children: s.label }),
+    /* @__PURE__ */ jsxs55("span", { className: "bc-sr", children: [
       " \u2013 ",
       STATE_TEXT[s.state]
     ] })
@@ -3598,40 +3766,40 @@ function stepsFrom(labels, current, failed = false) {
 }
 function Progress({ value, max, label, valueText, className }) {
   const pct = max > 0 ? Math.min(100, Math.round(value / max * 100)) : 0;
-  return /* @__PURE__ */ jsx58("span", { className: cx("bc-upbar", className), role: "progressbar", "aria-label": label, "aria-valuemin": 0, "aria-valuemax": 100, "aria-valuenow": pct, "aria-valuetext": valueText ?? `${pct}%`, children: /* @__PURE__ */ jsx58("i", { style: { width: `${pct}%` } }) });
+  return /* @__PURE__ */ jsx60("span", { className: cx("bc-upbar", className), role: "progressbar", "aria-label": label, "aria-valuemin": 0, "aria-valuemax": 100, "aria-valuenow": pct, "aria-valuetext": valueText ?? `${pct}%`, children: /* @__PURE__ */ jsx60("i", { style: { width: `${pct}%` } }) });
 }
 
 // react/src/media/UploadTile.tsx
-import { Fragment as Fragment15, jsx as jsx59, jsxs as jsxs54 } from "react/jsx-runtime";
+import { Fragment as Fragment16, jsx as jsx61, jsxs as jsxs56 } from "react/jsx-runtime";
 function UploadTile({ item, onCancel, onRetry }) {
   const { file, loaded, status } = item;
   const failed = status === "error";
   const sizeText = sizePair(loaded, file.size);
-  return /* @__PURE__ */ jsxs54("li", { className: failed ? "bc-tile is-upload is-failed" : "bc-tile is-upload", "data-upload": file.name, children: [
-    /* @__PURE__ */ jsx59("img", { src: item.preview, alt: "" }),
-    /* @__PURE__ */ jsx59("div", { className: "bc-tile-status", children: failed ? /* @__PURE__ */ jsxs54(Fragment15, { children: [
-      /* @__PURE__ */ jsxs54("span", { className: "bc-tile-err", children: [
-        /* @__PURE__ */ jsx59(IcWarn, {}),
+  return /* @__PURE__ */ jsxs56("li", { className: failed ? "bc-tile is-upload is-failed" : "bc-tile is-upload", "data-upload": file.name, children: [
+    /* @__PURE__ */ jsx61("img", { src: item.preview, alt: "" }),
+    /* @__PURE__ */ jsx61("div", { className: "bc-tile-status", children: failed ? /* @__PURE__ */ jsxs56(Fragment16, { children: [
+      /* @__PURE__ */ jsxs56("span", { className: "bc-tile-err", children: [
+        /* @__PURE__ */ jsx61(IcWarn, {}),
         "Nem siker\xFClt"
       ] }),
-      /* @__PURE__ */ jsxs54("span", { className: "bc-tile-actions", children: [
-        /* @__PURE__ */ jsx59("button", { type: "button", className: "bc-icon-btn", onClick: onRetry, "aria-label": `\xDAjrapr\xF3b\xE1l\xE1s: ${file.name}`, children: /* @__PURE__ */ jsx59(IcRetry, {}) }),
-        /* @__PURE__ */ jsx59("button", { type: "button", className: "bc-icon-btn", onClick: onCancel, "aria-label": `Elt\xE1vol\xEDt\xE1s: ${file.name}`, children: /* @__PURE__ */ jsx59(IcClose, {}) })
+      /* @__PURE__ */ jsxs56("span", { className: "bc-tile-actions", children: [
+        /* @__PURE__ */ jsx61("button", { type: "button", className: "bc-icon-btn", onClick: onRetry, "aria-label": `\xDAjrapr\xF3b\xE1l\xE1s: ${file.name}`, children: /* @__PURE__ */ jsx61(IcRetry, {}) }),
+        /* @__PURE__ */ jsx61("button", { type: "button", className: "bc-icon-btn", onClick: onCancel, "aria-label": `Elt\xE1vol\xEDt\xE1s: ${file.name}`, children: /* @__PURE__ */ jsx61(IcClose, {}) })
       ] })
-    ] }) : /* @__PURE__ */ jsxs54(Fragment15, { children: [
-      /* @__PURE__ */ jsx59("span", { className: "bc-tile-size", children: sizeText }),
-      /* @__PURE__ */ jsx59("button", { type: "button", className: "bc-icon-btn", onClick: onCancel, "aria-label": `Felt\xF6lt\xE9s megszak\xEDt\xE1sa: ${file.name}`, children: /* @__PURE__ */ jsx59(IcClose, {}) })
+    ] }) : /* @__PURE__ */ jsxs56(Fragment16, { children: [
+      /* @__PURE__ */ jsx61("span", { className: "bc-tile-size", children: sizeText }),
+      /* @__PURE__ */ jsx61("button", { type: "button", className: "bc-icon-btn", onClick: onCancel, "aria-label": `Felt\xF6lt\xE9s megszak\xEDt\xE1sa: ${file.name}`, children: /* @__PURE__ */ jsx61(IcClose, {}) })
     ] }) }),
-    !failed && /* @__PURE__ */ jsx59(Progress, { value: loaded, max: file.size, label: `${file.name} felt\xF6lt\xE9se`, valueText: sizeText }),
-    failed && item.error && /* @__PURE__ */ jsx59("span", { className: "bc-sr", children: item.error })
+    !failed && /* @__PURE__ */ jsx61(Progress, { value: loaded, max: file.size, label: `${file.name} felt\xF6lt\xE9se`, valueText: sizeText }),
+    failed && item.error && /* @__PURE__ */ jsx61("span", { className: "bc-sr", children: item.error })
   ] });
 }
 
 // react/src/media/useUploads.ts
-import { useCallback as useCallback3, useEffect as useEffect9, useRef as useRef20, useState as useState24 } from "react";
+import { useCallback as useCallback3, useEffect as useEffect10, useRef as useRef20, useState as useState26 } from "react";
 var seq2 = 0;
 function useUploads(upload, onDone, onCancel) {
-  const [items, setItems] = useState24([]);
+  const [items, setItems] = useState26([]);
   const ctrls = useRef20(/* @__PURE__ */ new Map());
   const done = useRef20(onDone);
   done.current = onDone;
@@ -3686,13 +3854,13 @@ function useUploads(upload, onDone, onCancel) {
     drop(id);
     if (it) cancelCb.current?.(it.file);
   }, [items]);
-  useEffect9(() => () => ctrls.current.forEach((c) => c.abort()), []);
+  useEffect10(() => () => ctrls.current.forEach((c) => c.abort()), []);
   const keys = new Set(items.map((i) => fileKey(i.file)));
   return { items, start, retry, cancel, keys, busy: items.some((i) => i.status === "uploading") };
 }
 
 // react/src/media/ImageUploader.tsx
-import { jsx as jsx60, jsxs as jsxs55 } from "react/jsx-runtime";
+import { jsx as jsx62, jsxs as jsxs57 } from "react/jsx-runtime";
 function ImageUploader({
   label,
   help,
@@ -3709,31 +3877,35 @@ function ImageUploader({
   required,
   disabled,
   readOnly,
-  error
+  error,
+  crop,
+  altEditable = true
 }) {
-  const [rejected, setRejected] = useState25([]);
-  const [note, setNote] = useState25();
-  const [over, setOver] = useState25(false);
+  const [rejected, setRejected] = useState27([]);
+  const [note, setNote] = useState27();
+  const [over, setOver] = useState27(false);
   const input = useRef21(null);
   const rejId = useId10();
   const latest = useRef21(images);
   latest.current = images;
   const fromFile = useRef21(/* @__PURE__ */ new Map());
+  const origKey = useRef21(/* @__PURE__ */ new WeakMap());
+  const [queue, setQueue] = useState27({ files: [], total: 0 });
   const up = useUploads(
     upload,
     (img, file) => {
-      fromFile.current.set(img.id, fileKey(file));
-      const next = [...latest.current, img];
-      latest.current = next;
-      onChange(next);
+      fromFile.current.set(img.id, origKey.current.get(file) ?? fileKey(file));
+      const next2 = [...latest.current, img];
+      latest.current = next2;
+      onChange(next2);
     },
     (f) => setNote(`Megszak\xEDtottad: ${f.name}. Ha m\xE9gis kell, v\xE1laszd ki \xFAjra.`)
   );
-  const used = images.length + up.items.length;
+  const used = images.length + up.items.length + queue.files.length;
   const full = used >= maxCount;
   const locked = disabled || readOnly;
   const failed = up.items.filter((i) => i.status === "error");
-  const noAlt = images.filter((i) => !i.alt).length;
+  const noAlt = altEditable ? images.filter((i) => !i.alt).length : 0;
   const add = async (list2) => {
     if (!list2 || locked) return;
     setNote(void 0);
@@ -3748,7 +3920,20 @@ function ImageUploader({
       typeHint: `Mentsd el ${typeNames(accept).split(", ")[0]}-k\xE9nt (pl. a telefonon: Megoszt\xE1s \u2192 Ment\xE9s k\xE9pk\xE9nt), \xE9s t\xF6ltsd fel \xFAjra.`
     });
     setRejected(r.rejected);
-    if (r.ok.length) up.start(r.ok);
+    if (!r.ok.length) return;
+    if (crop) setQueue((q) => ({ files: [...q.files, ...r.ok], total: q.total + r.ok.length }));
+    else up.start(r.ok);
+  };
+  const next = () => setQueue((q) => q.files.length <= 1 ? { files: [], total: 0 } : { ...q, files: q.files.slice(1) });
+  const cropped = (f) => {
+    const o = queue.files[0];
+    if (o) origKey.current.set(f, fileKey(o));
+    up.start([f]);
+    next();
+  };
+  const skipped = (f) => {
+    setNote(`Kihagytad: ${f.name}. Ha m\xE9gis kell, v\xE1laszd ki \xFAjra.`);
+    next();
   };
   const fileDrag = {
     over: (e) => {
@@ -3767,8 +3952,8 @@ function ImageUploader({
       void add(e.dataTransfer.files);
     }
   };
-  return /* @__PURE__ */ jsxs55("div", { className: cx("bc-upload", over && "is-over", locked && "is-locked"), children: [
-    /* @__PURE__ */ jsx60(
+  return /* @__PURE__ */ jsxs57("div", { className: cx("bc-upload", over && "is-over", locked && "is-locked"), children: [
+    /* @__PURE__ */ jsx62(
       Field,
       {
         label,
@@ -3778,10 +3963,10 @@ function ImageUploader({
         error,
         range: `${typeNames(accept)} \xB7 legfeljebb ${formatHu(maxSizeMB, 1)} MB/k\xE9p \xB7 legfeljebb ${maxCount} k\xE9p`,
         count: { value: used, max: maxCount, unit: "k\xE9p" },
-        children: /* @__PURE__ */ jsx60(FieldInput, { children: (f) => /* @__PURE__ */ jsxs55(Gallery, { images, onChange: readOnly || disabled ? void 0 : onChange, ordering, confirmDelete, altHelp, label, onFileDrag: fileDrag, children: [
-          up.items.map((it) => /* @__PURE__ */ jsx60(UploadTile, { item: it, onCancel: () => up.cancel(it.id), onRetry: () => up.retry(it.id) }, it.id)),
-          !readOnly && /* @__PURE__ */ jsx60("li", { className: cx("bc-tile is-add", (full || disabled) && "is-disabled", used === 0 && "is-empty"), children: /* @__PURE__ */ jsxs55("label", { children: [
-            /* @__PURE__ */ jsx60(
+        children: /* @__PURE__ */ jsx62(FieldInput, { children: (f) => /* @__PURE__ */ jsxs57(Gallery, { images, onChange: readOnly || disabled ? void 0 : onChange, ordering, confirmDelete, altHelp, altEditable, label, onFileDrag: fileDrag, children: [
+          up.items.map((it) => /* @__PURE__ */ jsx62(UploadTile, { item: it, onCancel: () => up.cancel(it.id), onRetry: () => up.retry(it.id) }, it.id)),
+          !readOnly && /* @__PURE__ */ jsx62("li", { className: cx("bc-tile is-add", (full || disabled) && "is-disabled", used === 0 && "is-empty"), children: /* @__PURE__ */ jsxs57("label", { children: [
+            /* @__PURE__ */ jsx62(
               "input",
               {
                 ref: input,
@@ -3800,148 +3985,63 @@ function ImageUploader({
                 }
               }
             ),
-            /* @__PURE__ */ jsx60(IcPlus, {}),
-            /* @__PURE__ */ jsx60("span", { className: "bc-tile-add-t", children: full ? "Tele" : "K\xE9p" }),
-            /* @__PURE__ */ jsx60("span", { className: "bc-tile-add-s", children: full ? `${maxCount}/${maxCount} \u2013 t\xF6r\xF6lj egyet, ha \xFAjat tenn\xE9l fel` : used === 0 ? "H\xFAzd ide a k\xE9peket, vagy koppints" : "h\xFAzd ide vagy v\xE1laszd ki" })
+            /* @__PURE__ */ jsx62(IcPlus, {}),
+            /* @__PURE__ */ jsx62("span", { className: "bc-tile-add-t", children: full ? "Tele" : "K\xE9p" }),
+            /* @__PURE__ */ jsx62("span", { className: "bc-tile-add-s", children: full ? `${maxCount}/${maxCount} \u2013 t\xF6r\xF6lj egyet, ha \xFAjat tenn\xE9l fel` : used === 0 ? "H\xFAzd ide a k\xE9peket, vagy koppints" : "h\xFAzd ide vagy v\xE1laszd ki" })
           ] }) })
         ] }) })
       }
     ),
-    (rejected.length > 0 || failed.length > 0) && /* @__PURE__ */ jsxs55("div", { className: "bc-upload-errors", id: rejId, children: [
-      /* @__PURE__ */ jsxs55("ul", { role: "alert", children: [
-        rejected.map((r, i) => /* @__PURE__ */ jsxs55("li", { children: [
-          /* @__PURE__ */ jsx60("b", { children: r.file }),
+    (rejected.length > 0 || failed.length > 0) && /* @__PURE__ */ jsxs57("div", { className: "bc-upload-errors", id: rejId, children: [
+      /* @__PURE__ */ jsxs57("ul", { role: "alert", children: [
+        rejected.map((r, i) => /* @__PURE__ */ jsxs57("li", { children: [
+          /* @__PURE__ */ jsx62("b", { children: r.file }),
           " \u2013 ",
           r.reason,
           ". ",
           r.next
         ] }, `r${i}`)),
-        failed.map((it) => /* @__PURE__ */ jsxs55("li", { children: [
-          /* @__PURE__ */ jsx60("b", { children: it.file.name }),
+        failed.map((it) => /* @__PURE__ */ jsxs57("li", { children: [
+          /* @__PURE__ */ jsx62("b", { children: it.file.name }),
           " \u2013 ",
           it.error,
           " A csemp\xE9n az \u201E\xDAjra\u201D gombbal folytathatod."
         ] }, it.id))
       ] }),
-      rejected.length > 0 && /* @__PURE__ */ jsx60("button", { type: "button", className: "bc-icon-btn", "aria-label": "\xDCzenetek bez\xE1r\xE1sa", onClick: () => setRejected([]), children: /* @__PURE__ */ jsx60(IcClose, {}) })
+      rejected.length > 0 && /* @__PURE__ */ jsx62("button", { type: "button", className: "bc-icon-btn", "aria-label": "\xDCzenetek bez\xE1r\xE1sa", onClick: () => setRejected([]), children: /* @__PURE__ */ jsx62(IcClose, {}) })
     ] }),
-    note && /* @__PURE__ */ jsx60("p", { className: "bc-notice", role: "status", children: note }),
-    noAlt > 0 && !readOnly && /* @__PURE__ */ jsxs55("p", { className: "bc-upload-alt", role: "status", children: [
+    note && /* @__PURE__ */ jsx62("p", { className: "bc-notice", role: "status", children: note }),
+    crop && /* @__PURE__ */ jsx62(
+      CropDialog,
+      {
+        file: queue.files[0] ?? null,
+        crop,
+        position: queue.total > 1 ? `${queue.total - queue.files.length + 1}/${queue.total}` : void 0,
+        onDone: cropped,
+        onSkip: skipped
+      }
+    ),
+    noAlt > 0 && !readOnly && /* @__PURE__ */ jsxs57("p", { className: "bc-upload-alt", role: "status", children: [
       noAlt,
       " k\xE9pnek m\xE9g nincs le\xEDr\xE1sa \u2013 a csempe \u22EF men\xFCj\xE9ben add meg (\u201ELe\xEDr\xE1s\u201D)."
     ] })
   ] });
 }
 
-// react/src/media/ImageCropper.tsx
-import { useState as useState26 } from "react";
-import Cropper from "react-easy-crop";
-import { jsx as jsx61, jsxs as jsxs56 } from "react/jsx-runtime";
-var DEFAULT_ASPECTS = [{ label: "16:9", value: 16 / 9 }, { label: "1:1", value: 1 }];
-function ImageCropper({ src, aspects = DEFAULT_ASPECTS, minZoom = 1, maxZoom = 8, onCrop, minOutputWidth, zoomHelp, aspectHelp }) {
-  const [crop, setCrop] = useState26({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState26(minZoom);
-  const [aspect, setAspect] = useState26(aspects[0]);
-  const [small, setSmall] = useState26(null);
-  const clampZoom = (z) => Math.min(maxZoom, Math.max(minZoom, Math.round(z * 10) / 10));
-  const zoomText = `${formatHu(zoom, 1)}\xD7`;
-  const onKey = (e) => {
-    if (e.target.tagName === "INPUT") return;
-    if (e.key === "+" || e.key === "=") {
-      e.preventDefault();
-      setZoom((z) => clampZoom(z + 0.2));
-    }
-    if (e.key === "-" || e.key === "_") {
-      e.preventDefault();
-      setZoom((z) => clampZoom(z - 0.2));
-    }
-  };
-  const reset = () => {
-    setZoom(minZoom);
-    setCrop({ x: 0, y: 0 });
-  };
-  return /* @__PURE__ */ jsxs56("div", { className: "bc-cropper", onKeyDown: onKey, children: [
-    aspects.length > 1 && /* @__PURE__ */ jsxs56("div", { className: "bc-cropper-row", children: [
-      /* @__PURE__ */ jsx61("span", { className: "bc-label", id: "bc-crop-aspect", children: "K\xE9par\xE1ny" }),
-      /* @__PURE__ */ jsx61(
-        SegmentedControl,
-        {
-          label: "K\xE9par\xE1ny",
-          value: aspect.label,
-          onChange: (l) => setAspect(aspects.find((a) => a.label === l) ?? aspects[0]),
-          items: aspects.map((a) => ({ value: a.label, label: a.label }))
-        }
-      ),
-      aspectHelp && /* @__PURE__ */ jsx61("span", { className: "bc-help", children: aspectHelp })
-    ] }),
-    /* @__PURE__ */ jsx61("div", { className: "bc-cropper-stage", children: /* @__PURE__ */ jsx61(
-      Cropper,
-      {
-        image: src,
-        crop,
-        zoom,
-        aspect: aspect.value,
-        minZoom,
-        maxZoom,
-        zoomSpeed: 0.5,
-        keyboardStep: 10,
-        onCropChange: setCrop,
-        onZoomChange: (z) => setZoom(clampZoom(z)),
-        objectFit: "contain",
-        showGrid: true,
-        classes: { containerClassName: "bc-cropper-box", cropAreaClassName: "bc-cropper-area" },
-        cropperProps: { "aria-label": `Kiv\xE1g\xE1s helye (${aspect.label}) \u2013 a nyilakkal mozgatod, a + \xE9s \u2212 gombbal nagy\xEDtasz`, role: "group" },
-        onCropComplete: (_, px) => {
-          setSmall(minOutputWidth && px.width < minOutputWidth ? Math.round(px.width) : null);
-          onCrop(px, { zoom, aspect });
-        }
-      }
-    ) }),
-    /* @__PURE__ */ jsx61(
-      Field,
-      {
-        label: "Nagy\xEDt\xE1s",
-        help: zoomHelp ?? "H\xFAzd a cs\xFAszk\xE1t, vagy nyomd a + \xE9s \u2212 gombot, hogy a l\xE9nyeg kit\xF6ltse a keretet. Egyes k\xE9perny\u0151k\xF6n kisebben jelenik meg a k\xE9p, ez\xE9rt ne v\xE1gd t\xFAl szorosra.",
-        range: `${formatHu(minZoom, 0)}\u2013${formatHu(maxZoom, 0)}\xD7`,
-        notice: small ? `A kiv\xE1g\xE1s csak ${small} px sz\xE9les (legal\xE1bb ${minOutputWidth} px kell) \u2013 a k\xE9p hom\xE1lyos lehet. Nagy\xEDts kev\xE9sb\xE9, vagy v\xE1lassz nagyobb k\xE9pet.` : void 0,
-        children: /* @__PURE__ */ jsx61(FieldInput, { children: (f) => /* @__PURE__ */ jsxs56("div", { className: "bc-cropper-zoom", children: [
-          /* @__PURE__ */ jsx61(
-            "input",
-            {
-              id: f.id,
-              type: "range",
-              className: "bc-range",
-              min: minZoom,
-              max: maxZoom,
-              step: 0.1,
-              value: zoom,
-              "aria-describedby": f.describedBy,
-              "aria-valuetext": zoomText,
-              onChange: (e) => setZoom(clampZoom(Number(e.target.value)))
-            }
-          ),
-          /* @__PURE__ */ jsx61("output", { htmlFor: f.id, className: "bc-cropper-out", "data-zoom": true, children: zoomText }),
-          /* @__PURE__ */ jsx61(Button, { variant: "secondary", size: "sm", onClick: reset, disabled: zoom === minZoom && crop.x === 0 && crop.y === 0, children: "Alaphelyzet" })
-        ] }) })
-      }
-    )
-  ] });
-}
-
 // react/src/media/VideoUpload.tsx
-import { useEffect as useEffect10, useId as useId11, useRef as useRef22, useState as useState27 } from "react";
-import { Fragment as Fragment16, jsx as jsx62, jsxs as jsxs57 } from "react/jsx-runtime";
+import { useEffect as useEffect11, useId as useId11, useRef as useRef22, useState as useState28 } from "react";
+import { Fragment as Fragment17, jsx as jsx63, jsxs as jsxs58 } from "react/jsx-runtime";
 var STEPS = [{ id: "file", label: "F\xE1jl" }, { id: "up", label: "Felt\xF6lt\xE9s" }, { id: "proc", label: "Feldolgoz\xE1s" }, { id: "done", label: "K\xE9sz" }];
 function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, disabled }) {
-  const [phase, setPhase] = useState27("file");
-  const [file, setFile] = useState27(null);
-  const [loaded, setLoaded] = useState27(0);
-  const [failed, setFailed] = useState27(null);
-  const [rej, setRej] = useState27(null);
-  const [eta, setEta] = useState27();
+  const [phase, setPhase] = useState28("file");
+  const [file, setFile] = useState28(null);
+  const [loaded, setLoaded] = useState28(0);
+  const [failed, setFailed] = useState28(null);
+  const [rej, setRej] = useState28(null);
+  const [eta, setEta] = useState28();
   const ctrl = useRef22(null);
   const rejId = useId11();
-  useEffect10(() => {
+  useEffect11(() => {
     if (phase !== "up") return;
     const warn = (e) => {
       e.preventDefault();
@@ -3950,7 +4050,7 @@ function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, dis
     addEventListener("beforeunload", warn);
     return () => removeEventListener("beforeunload", warn);
   }, [phase]);
-  useEffect10(() => () => ctrl.current?.abort(), []);
+  useEffect11(() => () => ctrl.current?.abort(), []);
   const runProcess = async (f) => {
     setPhase("proc");
     setFailed(null);
@@ -4011,9 +4111,9 @@ function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, dis
   };
   const cur = { file: 0, up: 1, proc: 2, done: 3 }[phase];
   const sizeText = file ? sizePair(loaded, file.size) : "";
-  return /* @__PURE__ */ jsxs57("div", { className: "bc-video", children: [
-    /* @__PURE__ */ jsx62(Stepper, { label: "A vide\xF3felt\xF6lt\xE9s l\xE9p\xE9sei", steps: stepsFrom(STEPS, phase === "done" ? 4 : cur, Boolean(failed)) }),
-    /* @__PURE__ */ jsx62(
+  return /* @__PURE__ */ jsxs58("div", { className: "bc-video", children: [
+    /* @__PURE__ */ jsx63(Stepper, { label: "A vide\xF3felt\xF6lt\xE9s l\xE9p\xE9sei", steps: stepsFrom(STEPS, phase === "done" ? 4 : cur, Boolean(failed)) }),
+    /* @__PURE__ */ jsx63(
       Field,
       {
         label,
@@ -4021,13 +4121,13 @@ function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, dis
         disabled,
         range: `MP4 \xB7 legfeljebb ${formatHu(maxSizeMB, 1)} MB \xB7 1 vide\xF3`,
         count: { value: file && phase !== "file" ? 1 : 0, max: 1, unit: "vide\xF3" },
-        children: /* @__PURE__ */ jsx62(FieldInput, { children: (f) => phase === "file" ? /* @__PURE__ */ jsxs57("label", { className: "bc-dropzone", onDragOver: (e) => {
+        children: /* @__PURE__ */ jsx63(FieldInput, { children: (f) => phase === "file" ? /* @__PURE__ */ jsxs58("label", { className: "bc-dropzone", onDragOver: (e) => {
           if (!disabled) e.preventDefault();
         }, onDrop: (e) => {
           e.preventDefault();
           if (!disabled) void pick(e.dataTransfer.files);
         }, children: [
-          /* @__PURE__ */ jsx62(
+          /* @__PURE__ */ jsx63(
             "input",
             {
               id: f.id,
@@ -4043,31 +4143,31 @@ function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, dis
               }
             }
           ),
-          /* @__PURE__ */ jsx62(IcFile, {}),
-          /* @__PURE__ */ jsx62("strong", { children: "Vide\xF3 kiv\xE1laszt\xE1sa" }),
-          /* @__PURE__ */ jsx62("span", { children: "vagy h\xFAzd ide a f\xE1jlt" })
-        ] }) : /* @__PURE__ */ jsxs57("div", { className: "bc-filecard", "aria-busy": phase === "up" || phase === "proc", children: [
-          /* @__PURE__ */ jsxs57("div", { className: "bc-filecard-row", children: [
-            /* @__PURE__ */ jsx62("b", { children: file?.name }),
-            /* @__PURE__ */ jsx62("span", { className: "bc-filecard-size", children: sizeText })
+          /* @__PURE__ */ jsx63(IcFile, {}),
+          /* @__PURE__ */ jsx63("strong", { children: "Vide\xF3 kiv\xE1laszt\xE1sa" }),
+          /* @__PURE__ */ jsx63("span", { children: "vagy h\xFAzd ide a f\xE1jlt" })
+        ] }) : /* @__PURE__ */ jsxs58("div", { className: "bc-filecard", "aria-busy": phase === "up" || phase === "proc", children: [
+          /* @__PURE__ */ jsxs58("div", { className: "bc-filecard-row", children: [
+            /* @__PURE__ */ jsx63("b", { children: file?.name }),
+            /* @__PURE__ */ jsx63("span", { className: "bc-filecard-size", children: sizeText })
           ] }),
-          phase === "up" && /* @__PURE__ */ jsx62(Progress, { value: loaded, max: file?.size ?? 1, label: `${file?.name} felt\xF6lt\xE9se`, valueText: sizeText }),
-          /* @__PURE__ */ jsxs57("div", { className: "bc-filecard-row", role: "status", children: [
-            /* @__PURE__ */ jsx62("span", { children: failed ? /* @__PURE__ */ jsx62("span", { className: "bc-error", children: failed }) : phase === "up" ? `${Math.round(loaded / (file?.size || 1) * 100)}%${eta ? ` \xB7 ${eta}` : ""}` : phase === "proc" ? /* @__PURE__ */ jsxs57(Fragment16, { children: [
-              /* @__PURE__ */ jsx62("span", { className: "bc-spinner", "aria-hidden": "true" }),
+          phase === "up" && /* @__PURE__ */ jsx63(Progress, { value: loaded, max: file?.size ?? 1, label: `${file?.name} felt\xF6lt\xE9se`, valueText: sizeText }),
+          /* @__PURE__ */ jsxs58("div", { className: "bc-filecard-row", role: "status", children: [
+            /* @__PURE__ */ jsx63("span", { children: failed ? /* @__PURE__ */ jsx63("span", { className: "bc-error", children: failed }) : phase === "up" ? `${Math.round(loaded / (file?.size || 1) * 100)}%${eta ? ` \xB7 ${eta}` : ""}` : phase === "proc" ? /* @__PURE__ */ jsxs58(Fragment17, { children: [
+              /* @__PURE__ */ jsx63("span", { className: "bc-spinner", "aria-hidden": "true" }),
               " Feldolgoz\xE1s\u2026 ez eltarthat p\xE1r percig."
             ] }) : "K\xE9sz \u2013 a vide\xF3 fent van." }),
-            /* @__PURE__ */ jsxs57("span", { className: "bc-row", children: [
-              phase === "up" && !failed && /* @__PURE__ */ jsx62(Button, { variant: "secondary", size: "sm", onClick: () => ctrl.current?.abort(), children: "Megszak\xEDt\xE1s" }),
-              failed && /* @__PURE__ */ jsx62(Button, { variant: "secondary", size: "sm", onClick: () => file && (phase === "proc" ? void runProcess(file) : void runUpload(file)), children: "\xDAjrapr\xF3b\xE1l\xE1s" }),
-              (failed || phase === "done") && /* @__PURE__ */ jsx62(Button, { variant: "ghost", size: "sm", onClick: reset, children: phase === "done" ? "M\xE1sik vide\xF3" : "M\xE9gse" })
+            /* @__PURE__ */ jsxs58("span", { className: "bc-row", children: [
+              phase === "up" && !failed && /* @__PURE__ */ jsx63(Button, { variant: "secondary", size: "sm", onClick: () => ctrl.current?.abort(), children: "Megszak\xEDt\xE1s" }),
+              failed && /* @__PURE__ */ jsx63(Button, { variant: "secondary", size: "sm", onClick: () => file && (phase === "proc" ? void runProcess(file) : void runUpload(file)), children: "\xDAjrapr\xF3b\xE1l\xE1s" }),
+              (failed || phase === "done") && /* @__PURE__ */ jsx63(Button, { variant: "ghost", size: "sm", onClick: reset, children: phase === "done" ? "M\xE1sik vide\xF3" : "M\xE9gse" })
             ] })
           ] })
         ] }) })
       }
     ),
-    rej && /* @__PURE__ */ jsxs57("p", { className: "bc-error", id: rejId, role: "alert", children: [
-      /* @__PURE__ */ jsx62("b", { children: rej.file }),
+    rej && /* @__PURE__ */ jsxs58("p", { className: "bc-error", id: rejId, role: "alert", children: [
+      /* @__PURE__ */ jsx63("b", { children: rej.file }),
       " \u2013 ",
       rej.reason,
       ". ",
@@ -4077,17 +4177,17 @@ function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, dis
 }
 
 // react/src/media/FileImport.tsx
-import { useId as useId12, useRef as useRef23, useState as useState29 } from "react";
+import { useId as useId12, useRef as useRef23, useState as useState30 } from "react";
 
 // react/src/media/ImportResult.tsx
-import { useState as useState28 } from "react";
-import { Fragment as Fragment17, jsx as jsx63, jsxs as jsxs58 } from "react/jsx-runtime";
+import { useState as useState29 } from "react";
+import { Fragment as Fragment18, jsx as jsx64, jsxs as jsxs59 } from "react/jsx-runtime";
 var LEVEL = { error: "Hiba", warning: "Figyelmeztet\xE9s" };
 var NO_REASON = "Az okot a rendszer nem adta meg \u2013 nyisd meg a sort az Excelben, \xE9s n\xE9zd \xE1t.";
 var csvCell = (s) => `"${s.replace(/"/g, '""')}"`;
 var issuesToCsv = (issues, sep = ";") => [["Sor", "Oszlop", "Szint", "Mi a baj", "Mit tegy\xE9l"], ...issues.map((i) => [String(i.row), i.column ?? "", LEVEL[i.level], i.reason ?? NO_REASON, i.next ?? ""])].map((r) => r.map(csvCell).join(sep)).join("\r\n");
 function ImportResult({ result, fileName = "import-hibalista.csv", limit = 200 }) {
-  const [said, setSaid] = useState28("");
+  const [said, setSaid] = useState29("");
   const { total, imported, issues } = result;
   const errors = issues.filter((i) => i.level === "error").length;
   const warnings = issues.length - errors;
@@ -4110,81 +4210,81 @@ function ImportResult({ result, fileName = "import-hibalista.csv", limit = 200 }
     setTimeout(() => URL.revokeObjectURL(url), 1e3);
     setSaid(`Let\xF6ltve: ${fileName}`);
   };
-  return /* @__PURE__ */ jsxs58("section", { className: "bc-import-result", children: [
-    /* @__PURE__ */ jsx63("div", { className: `bc-alert ${kind}`, role: imported === 0 && total > 0 ? "alert" : "status", children: /* @__PURE__ */ jsx63("p", { children: total === 0 ? /* @__PURE__ */ jsxs58(Fragment17, { children: [
-      /* @__PURE__ */ jsx63("strong", { children: "A f\xE1jlban nincs adatsor." }),
+  return /* @__PURE__ */ jsxs59("section", { className: "bc-import-result", children: [
+    /* @__PURE__ */ jsx64("div", { className: `bc-alert ${kind}`, role: imported === 0 && total > 0 ? "alert" : "status", children: /* @__PURE__ */ jsx64("p", { children: total === 0 ? /* @__PURE__ */ jsxs59(Fragment18, { children: [
+      /* @__PURE__ */ jsx64("strong", { children: "A f\xE1jlban nincs adatsor." }),
       " Csak a fejl\xE9c van benne? T\xF6ltsd ki a sablont, \xE9s pr\xF3b\xE1ld \xFAjra."
-    ] }) : /* @__PURE__ */ jsxs58(Fragment17, { children: [
-      /* @__PURE__ */ jsxs58("strong", { children: [
+    ] }) : /* @__PURE__ */ jsxs59(Fragment18, { children: [
+      /* @__PURE__ */ jsxs59("strong", { children: [
         formatHu(total, 0),
         " sorb\xF3l ",
         formatHu(imported, 0),
         " beker\xFClt."
       ] }),
       " ",
-      errors > 0 && /* @__PURE__ */ jsxs58(Fragment17, { children: [
+      errors > 0 && /* @__PURE__ */ jsxs59(Fragment18, { children: [
         formatHu(errors, 0),
         " sor kimaradt (hiba). "
       ] }),
-      warnings > 0 && /* @__PURE__ */ jsxs58(Fragment17, { children: [
+      warnings > 0 && /* @__PURE__ */ jsxs59(Fragment18, { children: [
         formatHu(warnings, 0),
         " sor figyelmeztet\xE9ssel ker\xFClt be. "
       ] }),
       issues.length === 0 && "Minden sor rendben volt."
     ] }) }) }),
-    issues.length > 0 && /* @__PURE__ */ jsxs58(Fragment17, { children: [
-      /* @__PURE__ */ jsx63("div", { className: "bc-table-wrap bc-import-list", tabIndex: 0, role: "region", "aria-label": `Hibalista: ${issues.length} sor, ${imported}/${total} beker\xFClt`, children: /* @__PURE__ */ jsxs58("table", { className: "bc-table is-dense", children: [
-        /* @__PURE__ */ jsx63("thead", { children: /* @__PURE__ */ jsxs58("tr", { children: [
-          /* @__PURE__ */ jsx63("th", { scope: "col", className: "is-num", children: "Sor" }),
-          /* @__PURE__ */ jsx63("th", { scope: "col", children: "Oszlop" }),
-          /* @__PURE__ */ jsx63("th", { scope: "col", children: "Mi a baj, mit tegy\xE9l" })
+    issues.length > 0 && /* @__PURE__ */ jsxs59(Fragment18, { children: [
+      /* @__PURE__ */ jsx64("div", { className: "bc-table-wrap bc-import-list", tabIndex: 0, role: "region", "aria-label": `Hibalista: ${issues.length} sor, ${imported}/${total} beker\xFClt`, children: /* @__PURE__ */ jsxs59("table", { className: "bc-table is-dense", children: [
+        /* @__PURE__ */ jsx64("thead", { children: /* @__PURE__ */ jsxs59("tr", { children: [
+          /* @__PURE__ */ jsx64("th", { scope: "col", className: "is-num", children: "Sor" }),
+          /* @__PURE__ */ jsx64("th", { scope: "col", children: "Oszlop" }),
+          /* @__PURE__ */ jsx64("th", { scope: "col", children: "Mi a baj, mit tegy\xE9l" })
         ] }) }),
-        /* @__PURE__ */ jsx63("tbody", { children: shown.map((i, n) => /* @__PURE__ */ jsxs58("tr", { className: `is-${i.level}`, children: [
-          /* @__PURE__ */ jsxs58("td", { className: "is-num", children: [
+        /* @__PURE__ */ jsx64("tbody", { children: shown.map((i, n) => /* @__PURE__ */ jsxs59("tr", { className: `is-${i.level}`, children: [
+          /* @__PURE__ */ jsxs59("td", { className: "is-num", children: [
             i.row,
             "."
           ] }),
-          /* @__PURE__ */ jsx63("td", { children: i.column ?? "\u2013" }),
-          /* @__PURE__ */ jsxs58("td", { children: [
-            /* @__PURE__ */ jsx63("span", { className: `bc-badge ${i.level === "error" ? "is-danger" : "is-warning"}`, children: LEVEL[i.level] }),
+          /* @__PURE__ */ jsx64("td", { children: i.column ?? "\u2013" }),
+          /* @__PURE__ */ jsxs59("td", { children: [
+            /* @__PURE__ */ jsx64("span", { className: `bc-badge ${i.level === "error" ? "is-danger" : "is-warning"}`, children: LEVEL[i.level] }),
             " ",
             i.reason ?? NO_REASON,
-            i.next && /* @__PURE__ */ jsxs58(Fragment17, { children: [
+            i.next && /* @__PURE__ */ jsxs59(Fragment18, { children: [
               " ",
-              /* @__PURE__ */ jsx63("b", { children: i.next })
+              /* @__PURE__ */ jsx64("b", { children: i.next })
             ] })
           ] })
         ] }, `${i.row}-${i.column}-${n}`)) })
       ] }) }),
-      issues.length > shown.length && /* @__PURE__ */ jsxs58("p", { className: "bc-help", children: [
+      issues.length > shown.length && /* @__PURE__ */ jsxs59("p", { className: "bc-help", children: [
         "Az els\u0151 ",
         limit,
         " sort mutatom; a teljes lista (",
         formatHu(issues.length, 0),
         " sor) a let\xF6lt\xF6tt f\xE1jlban van."
       ] }),
-      /* @__PURE__ */ jsxs58("div", { className: "bc-row", children: [
-        /* @__PURE__ */ jsx63(Button, { variant: "secondary", size: "sm", icon: /* @__PURE__ */ jsx63(IcDownload, {}), onClick: download, children: "Hibalista let\xF6lt\xE9se" }),
-        /* @__PURE__ */ jsx63(Button, { variant: "ghost", size: "sm", icon: /* @__PURE__ */ jsx63(IcCopy, {}), onClick: () => void copy(), children: "M\xE1sol\xE1s" }),
-        /* @__PURE__ */ jsx63("span", { className: "bc-notice", role: "status", children: said })
+      /* @__PURE__ */ jsxs59("div", { className: "bc-row", children: [
+        /* @__PURE__ */ jsx64(Button, { variant: "secondary", size: "sm", icon: /* @__PURE__ */ jsx64(IcDownload, {}), onClick: download, children: "Hibalista let\xF6lt\xE9se" }),
+        /* @__PURE__ */ jsx64(Button, { variant: "ghost", size: "sm", icon: /* @__PURE__ */ jsx64(IcCopy, {}), onClick: () => void copy(), children: "M\xE1sol\xE1s" }),
+        /* @__PURE__ */ jsx64("span", { className: "bc-notice", role: "status", children: said })
       ] })
     ] })
   ] });
 }
 
 // react/src/media/FileImport.tsx
-import { jsx as jsx64, jsxs as jsxs59 } from "react/jsx-runtime";
+import { jsx as jsx65, jsxs as jsxs60 } from "react/jsx-runtime";
 var XLSX = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 var XLS = "application/vnd.ms-excel";
 function FileImport({ label, help, importFile, maxSizeMB = 10, allowXls = true, template, disabled }) {
-  const [file, setFile] = useState29(null);
-  const [loaded, setLoaded] = useState29(0);
-  const [result, setResult] = useState29(null);
-  const [rej, setRej] = useState29(null);
-  const [failed, setFailed] = useState29(null);
+  const [file, setFile] = useState30(null);
+  const [loaded, setLoaded] = useState30(0);
+  const [result, setResult] = useState30(null);
+  const [rej, setRej] = useState30(null);
+  const [failed, setFailed] = useState30(null);
   const ctrl = useRef23(null);
   const lastKey = useRef23(null);
-  const [dup, setDup] = useState29(null);
+  const [dup, setDup] = useState30(null);
   const rejId = useId12();
   const accept = allowXls ? [XLSX, XLS] : [XLSX];
   const busy = Boolean(file) && !result && !failed;
@@ -4233,8 +4333,8 @@ function FileImport({ label, help, importFile, maxSizeMB = 10, allowXls = true, 
     setRej(null);
   };
   const sizeText = file ? sizePair(loaded, file.size) : "";
-  return /* @__PURE__ */ jsxs59("div", { className: "bc-import", children: [
-    /* @__PURE__ */ jsx64(
+  return /* @__PURE__ */ jsxs60("div", { className: "bc-import", children: [
+    /* @__PURE__ */ jsx65(
       Field,
       {
         label,
@@ -4242,13 +4342,13 @@ function FileImport({ label, help, importFile, maxSizeMB = 10, allowXls = true, 
         disabled,
         range: `${allowXls ? ".xlsx vagy .xls" : ".xlsx"} \xB7 legfeljebb ${formatHu(maxSizeMB, 1)} MB \xB7 1 f\xE1jl`,
         count: { value: file ? 1 : 0, max: 1, unit: "f\xE1jl" },
-        children: /* @__PURE__ */ jsx64(FieldInput, { children: (f) => !file ? /* @__PURE__ */ jsxs59("label", { className: "bc-dropzone", onDragOver: (e) => {
+        children: /* @__PURE__ */ jsx65(FieldInput, { children: (f) => !file ? /* @__PURE__ */ jsxs60("label", { className: "bc-dropzone", onDragOver: (e) => {
           if (!disabled) e.preventDefault();
         }, onDrop: (e) => {
           e.preventDefault();
           if (!disabled) void pick(e.dataTransfer.files);
         }, children: [
-          /* @__PURE__ */ jsx64(
+          /* @__PURE__ */ jsx65(
             "input",
             {
               id: f.id,
@@ -4264,52 +4364,52 @@ function FileImport({ label, help, importFile, maxSizeMB = 10, allowXls = true, 
               }
             }
           ),
-          /* @__PURE__ */ jsx64(IcFile, {}),
-          /* @__PURE__ */ jsx64("strong", { children: "Excel-f\xE1jl kiv\xE1laszt\xE1sa" }),
-          /* @__PURE__ */ jsx64("span", { children: "vagy h\xFAzd ide" })
-        ] }) : /* @__PURE__ */ jsxs59("div", { className: "bc-filecard", "aria-busy": busy, children: [
-          /* @__PURE__ */ jsxs59("div", { className: "bc-filecard-row", children: [
-            /* @__PURE__ */ jsx64("b", { children: file.name }),
-            /* @__PURE__ */ jsx64("span", { className: "bc-filecard-size", children: sizeText })
+          /* @__PURE__ */ jsx65(IcFile, {}),
+          /* @__PURE__ */ jsx65("strong", { children: "Excel-f\xE1jl kiv\xE1laszt\xE1sa" }),
+          /* @__PURE__ */ jsx65("span", { children: "vagy h\xFAzd ide" })
+        ] }) : /* @__PURE__ */ jsxs60("div", { className: "bc-filecard", "aria-busy": busy, children: [
+          /* @__PURE__ */ jsxs60("div", { className: "bc-filecard-row", children: [
+            /* @__PURE__ */ jsx65("b", { children: file.name }),
+            /* @__PURE__ */ jsx65("span", { className: "bc-filecard-size", children: sizeText })
           ] }),
-          busy && /* @__PURE__ */ jsx64(Progress, { value: loaded, max: file.size, label: `${file.name} import\xE1l\xE1sa`, valueText: sizeText }),
-          /* @__PURE__ */ jsxs59("div", { className: "bc-filecard-row", role: "status", children: [
-            /* @__PURE__ */ jsx64("span", { children: failed ? /* @__PURE__ */ jsx64("span", { className: "bc-error", children: failed }) : busy ? loaded >= file.size ? "Feldolgoz\xE1s \u2013 a sorokat ellen\u0151rz\xF6m\u2026" : "Felt\xF6lt\xE9s\u2026" : "K\xE9sz." }),
-            /* @__PURE__ */ jsxs59("span", { className: "bc-row", children: [
-              busy && /* @__PURE__ */ jsx64(Button, { variant: "secondary", size: "sm", onClick: () => ctrl.current?.abort(), children: "Megszak\xEDt\xE1s" }),
-              failed && /* @__PURE__ */ jsx64(Button, { variant: "secondary", size: "sm", onClick: () => void run(file), children: "\xDAjrapr\xF3b\xE1l\xE1s" }),
-              !busy && /* @__PURE__ */ jsx64(Button, { variant: "ghost", size: "sm", onClick: reset, children: "M\xE1sik f\xE1jl" })
+          busy && /* @__PURE__ */ jsx65(Progress, { value: loaded, max: file.size, label: `${file.name} import\xE1l\xE1sa`, valueText: sizeText }),
+          /* @__PURE__ */ jsxs60("div", { className: "bc-filecard-row", role: "status", children: [
+            /* @__PURE__ */ jsx65("span", { children: failed ? /* @__PURE__ */ jsx65("span", { className: "bc-error", children: failed }) : busy ? loaded >= file.size ? "Feldolgoz\xE1s \u2013 a sorokat ellen\u0151rz\xF6m\u2026" : "Felt\xF6lt\xE9s\u2026" : "K\xE9sz." }),
+            /* @__PURE__ */ jsxs60("span", { className: "bc-row", children: [
+              busy && /* @__PURE__ */ jsx65(Button, { variant: "secondary", size: "sm", onClick: () => ctrl.current?.abort(), children: "Megszak\xEDt\xE1s" }),
+              failed && /* @__PURE__ */ jsx65(Button, { variant: "secondary", size: "sm", onClick: () => void run(file), children: "\xDAjrapr\xF3b\xE1l\xE1s" }),
+              !busy && /* @__PURE__ */ jsx65(Button, { variant: "ghost", size: "sm", onClick: reset, children: "M\xE1sik f\xE1jl" })
             ] })
           ] })
         ] }) })
       }
     ),
-    dup && /* @__PURE__ */ jsx64("div", { className: "bc-alert is-warning", role: "alert", children: /* @__PURE__ */ jsxs59("div", { children: [
-      /* @__PURE__ */ jsxs59("p", { children: [
-        /* @__PURE__ */ jsxs59("strong", { children: [
+    dup && /* @__PURE__ */ jsx65("div", { className: "bc-alert is-warning", role: "alert", children: /* @__PURE__ */ jsxs60("div", { children: [
+      /* @__PURE__ */ jsxs60("p", { children: [
+        /* @__PURE__ */ jsxs60("strong", { children: [
           "Ezt a f\xE1jlt (",
           dup.name,
           ") az im\xE9nt m\xE1r import\xE1ltad."
         ] }),
         " Ha \xFAjra bek\xFCld\xF6d, a sorok k\xE9tszer ker\xFClhetnek be."
       ] }),
-      /* @__PURE__ */ jsxs59("div", { className: "bc-row", children: [
-        /* @__PURE__ */ jsx64(Button, { variant: "secondary", size: "sm", onClick: () => void run(dup), children: "M\xE9gis import\xE1lom" }),
-        /* @__PURE__ */ jsx64(Button, { variant: "ghost", size: "sm", onClick: () => setDup(null), children: "M\xE9gse" })
+      /* @__PURE__ */ jsxs60("div", { className: "bc-row", children: [
+        /* @__PURE__ */ jsx65(Button, { variant: "secondary", size: "sm", onClick: () => void run(dup), children: "M\xE9gis import\xE1lom" }),
+        /* @__PURE__ */ jsx65(Button, { variant: "ghost", size: "sm", onClick: () => setDup(null), children: "M\xE9gse" })
       ] })
     ] }) }),
-    rej && /* @__PURE__ */ jsxs59("p", { className: "bc-error", id: rejId, role: "alert", children: [
-      /* @__PURE__ */ jsx64("b", { children: rej.file }),
+    rej && /* @__PURE__ */ jsxs60("p", { className: "bc-error", id: rejId, role: "alert", children: [
+      /* @__PURE__ */ jsx65("b", { children: rej.file }),
       " \u2013 ",
       rej.reason,
       ". ",
       rej.next
     ] }),
-    template && !file && /* @__PURE__ */ jsxs59("p", { className: "bc-help", children: [
-      /* @__PURE__ */ jsx64("a", { href: template.href, download: true, children: template.label ?? "Sablon let\xF6lt\xE9se (.xlsx)" }),
+    template && !file && /* @__PURE__ */ jsxs60("p", { className: "bc-help", children: [
+      /* @__PURE__ */ jsx65("a", { href: template.href, download: true, children: template.label ?? "Sablon let\xF6lt\xE9se (.xlsx)" }),
       " \u2013 ebbe \xEDrd az adatokat, a fejl\xE9cet ne m\xF3dos\xEDtsd."
     ] }),
-    result && /* @__PURE__ */ jsx64(ImportResult, { result, fileName: `${file?.name.replace(/\.[^.]+$/, "") ?? "import"}-hibalista.csv` })
+    result && /* @__PURE__ */ jsx65(ImportResult, { result, fileName: `${file?.name.replace(/\.[^.]+$/, "") ?? "import"}-hibalista.csv` })
   ] });
 }
 
@@ -4340,57 +4440,57 @@ function heatGradient(el = document.documentElement, colorblind = false) {
 }
 
 // react/src/media/MapLegend.tsx
-import { useState as useState30 } from "react";
-import { jsx as jsx65, jsxs as jsxs60 } from "react/jsx-runtime";
+import { useState as useState31 } from "react";
+import { jsx as jsx66, jsxs as jsxs61 } from "react/jsx-runtime";
 var wide = () => typeof window !== "undefined" && window.matchMedia("(min-width: 600px)").matches;
 function MapLegend({ items, title = "Jelmagyar\xE1zat", collapsible = true, defaultOpen, className }) {
-  const [open] = useState30(() => defaultOpen ?? wide());
-  const list2 = /* @__PURE__ */ jsx65("ul", { className: "bc-map-legend-list", children: items.map((i) => /* @__PURE__ */ jsxs60("li", { children: [
-    /* @__PURE__ */ jsx65("span", { className: `bc-map-swatch is-${i.kind}`, "aria-hidden": "true", children: i.letter }),
+  const [open] = useState31(() => defaultOpen ?? wide());
+  const list2 = /* @__PURE__ */ jsx66("ul", { className: "bc-map-legend-list", children: items.map((i) => /* @__PURE__ */ jsxs61("li", { children: [
+    /* @__PURE__ */ jsx66("span", { className: `bc-map-swatch is-${i.kind}`, "aria-hidden": "true", children: i.letter }),
     i.label
   ] }, i.label)) });
-  if (!collapsible) return /* @__PURE__ */ jsxs60("div", { className: cx("bc-map-legend", className), role: "group", "aria-label": title, children: [
-    /* @__PURE__ */ jsx65("strong", { children: title }),
+  if (!collapsible) return /* @__PURE__ */ jsxs61("div", { className: cx("bc-map-legend", className), role: "group", "aria-label": title, children: [
+    /* @__PURE__ */ jsx66("strong", { children: title }),
     list2
   ] });
-  return /* @__PURE__ */ jsxs60("details", { className: cx("bc-map-legend", className), open, children: [
-    /* @__PURE__ */ jsx65("summary", { children: title }),
+  return /* @__PURE__ */ jsxs61("details", { className: cx("bc-map-legend", className), open, children: [
+    /* @__PURE__ */ jsx66("summary", { children: title }),
     list2
   ] });
 }
 function HeatScale({ title, unit, help, ends = ["kev\xE9s", "sok"], steps, howToRead, colorblind, className }) {
-  return /* @__PURE__ */ jsxs60("figure", { className: cx("bc-heat", colorblind && "is-cb", className), "aria-label": `${title}, ${unit}`, children: [
-    /* @__PURE__ */ jsxs60("figcaption", { className: "bc-label-row", children: [
-      /* @__PURE__ */ jsx65("span", { className: "bc-label", children: title }),
-      /* @__PURE__ */ jsx65(HelpButton, { label: title, children: help })
+  return /* @__PURE__ */ jsxs61("figure", { className: cx("bc-heat", colorblind && "is-cb", className), "aria-label": `${title}, ${unit}`, children: [
+    /* @__PURE__ */ jsxs61("figcaption", { className: "bc-label-row", children: [
+      /* @__PURE__ */ jsx66("span", { className: "bc-label", children: title }),
+      /* @__PURE__ */ jsx66(HelpButton, { label: title, children: help })
     ] }),
-    /* @__PURE__ */ jsx65("p", { className: "bc-heat-unit", children: unit }),
-    /* @__PURE__ */ jsx65("div", { className: "bc-heat-bar", "aria-hidden": "true", children: [1, 2, 3, 4, 5].map((i) => /* @__PURE__ */ jsx65("i", {}, i)) }),
-    /* @__PURE__ */ jsxs60("div", { className: "bc-heat-ends", children: [
-      /* @__PURE__ */ jsx65("span", { children: ends[0] }),
-      /* @__PURE__ */ jsx65("span", { children: ends[1] })
+    /* @__PURE__ */ jsx66("p", { className: "bc-heat-unit", children: unit }),
+    /* @__PURE__ */ jsx66("div", { className: "bc-heat-bar", "aria-hidden": "true", children: [1, 2, 3, 4, 5].map((i) => /* @__PURE__ */ jsx66("i", {}, i)) }),
+    /* @__PURE__ */ jsxs61("div", { className: "bc-heat-ends", children: [
+      /* @__PURE__ */ jsx66("span", { children: ends[0] }),
+      /* @__PURE__ */ jsx66("span", { children: ends[1] })
     ] }),
-    steps && /* @__PURE__ */ jsxs60("table", { className: "bc-heat-steps", children: [
-      /* @__PURE__ */ jsxs60("caption", { className: "bc-sr", children: [
+    steps && /* @__PURE__ */ jsxs61("table", { className: "bc-heat-steps", children: [
+      /* @__PURE__ */ jsxs61("caption", { className: "bc-sr", children: [
         title,
         " \u2013 fokozatok (",
         unit,
         ")"
       ] }),
-      /* @__PURE__ */ jsx65("tbody", { children: /* @__PURE__ */ jsx65("tr", { children: steps.map((s, i) => /* @__PURE__ */ jsxs60("td", { children: [
-        /* @__PURE__ */ jsx65("i", { className: `bc-heat-sw is-${i + 1}`, "aria-hidden": "true" }),
+      /* @__PURE__ */ jsx66("tbody", { children: /* @__PURE__ */ jsx66("tr", { children: steps.map((s, i) => /* @__PURE__ */ jsxs61("td", { children: [
+        /* @__PURE__ */ jsx66("i", { className: `bc-heat-sw is-${i + 1}`, "aria-hidden": "true" }),
         s
       ] }, i)) }) })
     ] }),
-    howToRead && /* @__PURE__ */ jsxs60("details", { className: "bc-heat-how", children: [
-      /* @__PURE__ */ jsx65("summary", { children: "Hogyan olvasd?" }),
-      /* @__PURE__ */ jsx65("div", { children: howToRead })
+    howToRead && /* @__PURE__ */ jsxs61("details", { className: "bc-heat-how", children: [
+      /* @__PURE__ */ jsx66("summary", { children: "Hogyan olvasd?" }),
+      /* @__PURE__ */ jsx66("div", { children: howToRead })
     ] })
   ] });
 }
 
 // react/src/media/MonthCalendar.tsx
-import { useEffect as useEffect11, useMemo as useMemo3, useRef as useRef24, useState as useState31 } from "react";
+import { useEffect as useEffect12, useMemo as useMemo3, useRef as useRef24, useState as useState32 } from "react";
 
 // react/src/media/monthEvents.ts
 var KIND_ROLE = { event: "info", special: "warning", education: "success" };
@@ -4417,34 +4517,34 @@ var dayTitle = (iso) => {
 };
 
 // react/src/media/MonthParts.tsx
-import { jsx as jsx66, jsxs as jsxs61 } from "react/jsx-runtime";
+import { jsx as jsx67, jsxs as jsxs62 } from "react/jsx-runtime";
 var KINDS = ["event", "special", "education"];
 function MonthLegend({ names, hidden, onHiddenChange }) {
   if (!onHiddenChange) {
-    return /* @__PURE__ */ jsx66("ul", { className: "bc-mcal-legend", "aria-label": "Jelmagyar\xE1zat", children: KINDS.map((k) => /* @__PURE__ */ jsx66("li", { children: /* @__PURE__ */ jsx66("span", { className: `bc-mcal-ev is-${KIND_ROLE[k]}`, children: names[k] }) }, k)) });
+    return /* @__PURE__ */ jsx67("ul", { className: "bc-mcal-legend", "aria-label": "Jelmagyar\xE1zat", children: KINDS.map((k) => /* @__PURE__ */ jsx67("li", { children: /* @__PURE__ */ jsx67("span", { className: `bc-mcal-ev is-${KIND_ROLE[k]}`, children: names[k] }) }, k)) });
   }
   const toggle = (k) => onHiddenChange(hidden.has(k) ? [...hidden].filter((x) => x !== k) : [...hidden, k]);
-  return /* @__PURE__ */ jsx66("div", { className: "bc-mcal-legend", role: "group", "aria-label": "Jelmagyar\xE1zat \xE9s sz\u0171r\u0151 \u2013 mit mutasson a napt\xE1r", children: KINDS.map((k) => /* @__PURE__ */ jsxs61("button", { type: "button", className: `bc-tag bc-mcal-filter is-${KIND_ROLE[k]}`, "aria-pressed": !hidden.has(k), onClick: () => toggle(k), children: [
-    /* @__PURE__ */ jsx66("span", { "aria-hidden": "true", children: hidden.has(k) ? "\u25CB" : "\u2713" }),
+  return /* @__PURE__ */ jsx67("div", { className: "bc-mcal-legend", role: "group", "aria-label": "Jelmagyar\xE1zat \xE9s sz\u0171r\u0151 \u2013 mit mutasson a napt\xE1r", children: KINDS.map((k) => /* @__PURE__ */ jsxs62("button", { type: "button", className: `bc-tag bc-mcal-filter is-${KIND_ROLE[k]}`, "aria-pressed": !hidden.has(k), onClick: () => toggle(k), children: [
+    /* @__PURE__ */ jsx67("span", { "aria-hidden": "true", children: hidden.has(k) ? "\u25CB" : "\u2713" }),
     names[k]
   ] }, k)) });
 }
 function MonthAgenda({ iso, events, names }) {
-  return /* @__PURE__ */ jsxs61("section", { className: "bc-mcal-agenda", children: [
-    /* @__PURE__ */ jsx66("h3", { className: "bc-mcal-agenda-title", children: dayTitle(iso) }),
-    events.length ? /* @__PURE__ */ jsx66("ul", { children: events.map((e) => /* @__PURE__ */ jsxs61("li", { className: `bc-mcal-ev is-${KIND_ROLE[e.kind]}`, children: [
-      /* @__PURE__ */ jsx66("span", { children: e.title }),
+  return /* @__PURE__ */ jsxs62("section", { className: "bc-mcal-agenda", children: [
+    /* @__PURE__ */ jsx67("h3", { className: "bc-mcal-agenda-title", children: dayTitle(iso) }),
+    events.length ? /* @__PURE__ */ jsx67("ul", { children: events.map((e) => /* @__PURE__ */ jsxs62("li", { className: `bc-mcal-ev is-${KIND_ROLE[e.kind]}`, children: [
+      /* @__PURE__ */ jsx67("span", { children: e.title }),
       " ",
-      /* @__PURE__ */ jsx66("span", { className: "bc-mcal-kind", children: names[e.kind] })
-    ] }, e.id)) }) : /* @__PURE__ */ jsx66("p", { className: "bc-mcal-note", children: "Ezen a napon nincs tartalom." })
+      /* @__PURE__ */ jsx67("span", { className: "bc-mcal-kind", children: names[e.kind] })
+    ] }, e.id)) }) : /* @__PURE__ */ jsx67("p", { className: "bc-mcal-note", children: "Ezen a napon nincs tartalom." })
   ] });
 }
 
 // react/src/media/MonthCalendar.tsx
-import { jsx as jsx67, jsxs as jsxs62 } from "react/jsx-runtime";
+import { jsx as jsx68, jsxs as jsxs63 } from "react/jsx-runtime";
 function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPerDay = 3, loading, error, onRetry, hidden = [], onHiddenChange, labels }) {
-  const [focus, setFocus] = useState31(initialDate ?? todayIso());
-  const [selected, setSelected] = useState31(focus);
+  const [focus, setFocus] = useState32(initialDate ?? todayIso());
+  const [selected, setSelected] = useState32(focus);
   const grid = useRef24(null);
   const moved = useRef24(false);
   const f = fromIso(focus);
@@ -4457,14 +4557,14 @@ function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPer
   const title = `${f.getFullYear()}. ${MONTHS[f.getMonth()]}`;
   const monthCount = days.filter((d) => fromIso(d).getMonth() === f.getMonth()).reduce((n, d) => n + (byDay.get(d)?.length ?? 0), 0);
   const first = useRef24(true);
-  useEffect11(() => {
+  useEffect12(() => {
     if (first.current) {
       first.current = false;
       return;
     }
     onMonthChange?.(`${focus.slice(0, 7)}-01`);
   }, [monthKey]);
-  useEffect11(() => {
+  useEffect12(() => {
     if (moved.current) {
       grid.current?.querySelector(`[data-iso="${focus}"]`)?.focus({ preventScroll: true });
       moved.current = false;
@@ -4496,34 +4596,34 @@ function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPer
       go(map[e.key](), true);
     }
   };
-  return /* @__PURE__ */ jsxs62("div", { className: "bc-mcal", "aria-busy": loading || void 0, children: [
-    /* @__PURE__ */ jsxs62("div", { className: "bc-mcal-head", children: [
-      /* @__PURE__ */ jsx67(IconButton, { "aria-label": "El\u0151z\u0151 h\xF3nap", onClick: () => go(addMonths(focus, -1)), children: /* @__PURE__ */ jsx67(IcLeft, {}) }),
-      /* @__PURE__ */ jsx67("h2", { className: "bc-mcal-title", "aria-live": "polite", children: title }),
-      /* @__PURE__ */ jsx67(IconButton, { "aria-label": "K\xF6vetkez\u0151 h\xF3nap", onClick: () => go(addMonths(focus, 1)), children: /* @__PURE__ */ jsx67(IcRight, {}) }),
-      /* @__PURE__ */ jsx67(Button, { variant: "secondary", size: "sm", onClick: () => {
+  return /* @__PURE__ */ jsxs63("div", { className: "bc-mcal", "aria-busy": loading || void 0, children: [
+    /* @__PURE__ */ jsxs63("div", { className: "bc-mcal-head", children: [
+      /* @__PURE__ */ jsx68(IconButton, { "aria-label": "El\u0151z\u0151 h\xF3nap", onClick: () => go(addMonths(focus, -1)), children: /* @__PURE__ */ jsx68(IcLeft, {}) }),
+      /* @__PURE__ */ jsx68("h2", { className: "bc-mcal-title", "aria-live": "polite", children: title }),
+      /* @__PURE__ */ jsx68(IconButton, { "aria-label": "K\xF6vetkez\u0151 h\xF3nap", onClick: () => go(addMonths(focus, 1)), children: /* @__PURE__ */ jsx68(IcRight, {}) }),
+      /* @__PURE__ */ jsx68(Button, { variant: "secondary", size: "sm", onClick: () => {
         go(today);
         setSelected(today);
       }, disabled: focus.slice(0, 7) === today.slice(0, 7), children: "Ma" })
     ] }),
-    /* @__PURE__ */ jsx67(MonthLegend, { names, hidden: hid, onHiddenChange }),
-    loading && /* @__PURE__ */ jsxs62("p", { className: "bc-mcal-note", role: "status", children: [
-      /* @__PURE__ */ jsx67("span", { className: "bc-spinner", "aria-hidden": "true" }),
+    /* @__PURE__ */ jsx68(MonthLegend, { names, hidden: hid, onHiddenChange }),
+    loading && /* @__PURE__ */ jsxs63("p", { className: "bc-mcal-note", role: "status", children: [
+      /* @__PURE__ */ jsx68("span", { className: "bc-spinner", "aria-hidden": "true" }),
       " T\xF6lt\xF6m a h\xF3nap tartalm\xE1t\u2026"
     ] }),
-    error && /* @__PURE__ */ jsxs62("div", { className: "bc-alert is-danger", role: "alert", children: [
-      /* @__PURE__ */ jsx67("p", { children: error }),
-      onRetry && /* @__PURE__ */ jsx67(Button, { variant: "secondary", size: "sm", onClick: onRetry, children: "\xDAjrapr\xF3b\xE1l\xE1s" })
+    error && /* @__PURE__ */ jsxs63("div", { className: "bc-alert is-danger", role: "alert", children: [
+      /* @__PURE__ */ jsx68("p", { children: error }),
+      onRetry && /* @__PURE__ */ jsx68(Button, { variant: "secondary", size: "sm", onClick: onRetry, children: "\xDAjrapr\xF3b\xE1l\xE1s" })
     ] }),
-    !error && !loading && monthCount === 0 && /* @__PURE__ */ jsx67("p", { className: "bc-mcal-note", role: "status", children: hid.size >= 3 ? "Minden tartalomfajta ki van kapcsolva \u2013 kapcsolj be egyet a jelmagyar\xE1zatban." : `${title}: ebben a h\xF3napban m\xE9g nincs tartalom.` }),
-    /* @__PURE__ */ jsx67("div", { className: "bc-mcal-scroll", children: /* @__PURE__ */ jsxs62("table", { className: "bc-mcal-grid", role: "grid", ref: grid, onKeyDown: onKey, "aria-label": `${title} \u2013 tartalmi napt\xE1r`, children: [
-      /* @__PURE__ */ jsx67("thead", { children: /* @__PURE__ */ jsx67("tr", { children: WEEKDAYS.map((w, i) => /* @__PURE__ */ jsx67("th", { scope: "col", abbr: WEEKDAYS_LONG[i], children: w }, w)) }) }),
-      /* @__PURE__ */ jsx67("tbody", { children: Array.from({ length: 6 }, (_, w) => /* @__PURE__ */ jsx67("tr", { children: days.slice(w * 7, w * 7 + 7).map((iso) => {
+    !error && !loading && monthCount === 0 && /* @__PURE__ */ jsx68("p", { className: "bc-mcal-note", role: "status", children: hid.size >= 3 ? "Minden tartalomfajta ki van kapcsolva \u2013 kapcsolj be egyet a jelmagyar\xE1zatban." : `${title}: ebben a h\xF3napban m\xE9g nincs tartalom.` }),
+    /* @__PURE__ */ jsx68("div", { className: "bc-mcal-scroll", children: /* @__PURE__ */ jsxs63("table", { className: "bc-mcal-grid", role: "grid", ref: grid, onKeyDown: onKey, "aria-label": `${title} \u2013 tartalmi napt\xE1r`, children: [
+      /* @__PURE__ */ jsx68("thead", { children: /* @__PURE__ */ jsx68("tr", { children: WEEKDAYS.map((w, i) => /* @__PURE__ */ jsx68("th", { scope: "col", abbr: WEEKDAYS_LONG[i], children: w }, w)) }) }),
+      /* @__PURE__ */ jsx68("tbody", { children: Array.from({ length: 6 }, (_, w) => /* @__PURE__ */ jsx68("tr", { children: days.slice(w * 7, w * 7 + 7).map((iso) => {
         const list2 = byDay.get(iso) ?? [];
         const out = fromIso(iso).getMonth() !== f.getMonth();
         const more = list2.length - maxPerDay;
         const summary = list2.length ? `, ${list2.length} tartalom: ${list2.map((e) => `${e.title} (${names[e.kind]})`).join("; ")}` : ", nincs tartalom";
-        return /* @__PURE__ */ jsx67("td", { role: "gridcell", "aria-selected": iso === selected, children: /* @__PURE__ */ jsxs62(
+        return /* @__PURE__ */ jsx68("td", { role: "gridcell", "aria-selected": iso === selected, children: /* @__PURE__ */ jsxs63(
           "button",
           {
             type: "button",
@@ -4533,27 +4633,27 @@ function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPer
             className: cx("bc-mcal-day", out && "is-outside", iso === today && "is-today", iso === selected && "is-selected"),
             "aria-label": `${iso === today ? "Ma, " : ""}${dayTitle(iso)}${summary}`,
             children: [
-              /* @__PURE__ */ jsx67("b", { "aria-hidden": "true", children: fromIso(iso).getDate() }),
-              /* @__PURE__ */ jsxs62("span", { className: "bc-mcal-evs", "aria-hidden": "true", children: [
-                list2.slice(0, more > 0 ? maxPerDay - 1 : maxPerDay).map((e) => /* @__PURE__ */ jsx67("span", { className: `bc-mcal-ev is-${KIND_ROLE[e.kind]}`, children: e.title }, e.id)),
-                more > 0 && /* @__PURE__ */ jsxs62("span", { className: "bc-mcal-more", children: [
+              /* @__PURE__ */ jsx68("b", { "aria-hidden": "true", children: fromIso(iso).getDate() }),
+              /* @__PURE__ */ jsxs63("span", { className: "bc-mcal-evs", "aria-hidden": "true", children: [
+                list2.slice(0, more > 0 ? maxPerDay - 1 : maxPerDay).map((e) => /* @__PURE__ */ jsx68("span", { className: `bc-mcal-ev is-${KIND_ROLE[e.kind]}`, children: e.title }, e.id)),
+                more > 0 && /* @__PURE__ */ jsxs63("span", { className: "bc-mcal-more", children: [
                   "+",
                   more + 1,
                   " tov\xE1bbi"
                 ] })
               ] }),
-              /* @__PURE__ */ jsx67("span", { className: "bc-mcal-dots", "aria-hidden": "true", children: [...new Set(list2.map((e) => e.kind))].map((k) => /* @__PURE__ */ jsx67("i", { className: `is-${KIND_ROLE[k]}` }, k)) })
+              /* @__PURE__ */ jsx68("span", { className: "bc-mcal-dots", "aria-hidden": "true", children: [...new Set(list2.map((e) => e.kind))].map((k) => /* @__PURE__ */ jsx68("i", { className: `is-${KIND_ROLE[k]}` }, k)) })
             ]
           }
         ) }, iso);
       }) }, w)) })
     ] }) }),
-    /* @__PURE__ */ jsx67(MonthAgenda, { iso: selected, events: byDay.get(selected) ?? eventsByDay(events, [selected], hid).get(selected) ?? [], names })
+    /* @__PURE__ */ jsx68(MonthAgenda, { iso: selected, events: byDay.get(selected) ?? eventsByDay(events, [selected], hid).get(selected) ?? [], names })
   ] });
 }
 
 // react/src/media/OpeningHoursEditor.tsx
-import { useEffect as useEffect12, useId as useId13, useState as useState32 } from "react";
+import { useEffect as useEffect13, useId as useId13, useState as useState33 } from "react";
 
 // react/src/media/openingHours.ts
 var WEEK = [
@@ -4599,11 +4699,11 @@ function validateHours(v) {
 var emptyWeek = () => Object.fromEntries(WEEK.map(({ key }) => [key, { open: false, from: null, to: null }]));
 
 // react/src/media/OpeningHoursEditor.tsx
-import { jsx as jsx68, jsxs as jsxs63 } from "react/jsx-runtime";
+import { jsx as jsx69, jsxs as jsxs64 } from "react/jsx-runtime";
 function TimeInput({ value, onCommit, label, invalid, describedBy, disabled, readOnly }) {
-  const [text, setText] = useState32(value ?? "");
-  useEffect12(() => setText(value ?? ""), [value]);
-  return /* @__PURE__ */ jsx68(
+  const [text, setText] = useState33(value ?? "");
+  useEffect13(() => setText(value ?? ""), [value]);
+  return /* @__PURE__ */ jsx69(
     "input",
     {
       className: "bc-input bc-hours-time",
@@ -4627,8 +4727,8 @@ function TimeInput({ value, onCommit, label, invalid, describedBy, disabled, rea
 }
 function OpeningHoursEditor({ label = "Nyitvatart\xE1s", help, value, onChange, disabled, readOnly }) {
   const id = useId13();
-  const [bad2, setBad] = useState32({});
-  const [note, setNote] = useState32();
+  const [bad2, setBad] = useState33({});
+  const [note, setNote] = useState33();
   const errors = { ...validateHours(value), ...bad2 };
   const locked = disabled || readOnly;
   const set = (k, p) => {
@@ -4649,18 +4749,18 @@ function OpeningHoursEditor({ label = "Nyitvatart\xE1s", help, value, onChange, 
     onChange({ ...value, Tue: { ...m }, Wed: { ...m }, Thu: { ...m }, Fri: { ...m } });
     setNote(`\xC1tm\xE1soltam a keddt\u0151l p\xE9ntekig tart\xF3 napokra: ${m.open ? `${m.from ?? "\u2013"}\u2013${m.to ?? "\u2013"}` : "z\xE1rva"}.`);
   };
-  return /* @__PURE__ */ jsxs63("div", { role: "group", className: cx("bc-field bc-hours", disabled && "is-disabled"), "aria-labelledby": `${id}-l`, "aria-describedby": `${id}-meta`, children: [
-    /* @__PURE__ */ jsxs63("div", { className: "bc-label-row", children: [
-      /* @__PURE__ */ jsx68("span", { className: "bc-label", id: `${id}-l`, children: label }),
-      /* @__PURE__ */ jsx68(HelpButton, { label, children: help })
+  return /* @__PURE__ */ jsxs64("div", { role: "group", className: cx("bc-field bc-hours", disabled && "is-disabled"), "aria-labelledby": `${id}-l`, "aria-describedby": `${id}-meta`, children: [
+    /* @__PURE__ */ jsxs64("div", { className: "bc-label-row", children: [
+      /* @__PURE__ */ jsx69("span", { className: "bc-label", id: `${id}-l`, children: label }),
+      /* @__PURE__ */ jsx69(HelpButton, { label, children: help })
     ] }),
-    /* @__PURE__ */ jsx68("div", { className: "bc-hours-list", children: WEEK.map(({ key, label: day }) => {
+    /* @__PURE__ */ jsx69("div", { className: "bc-hours-list", children: WEEK.map(({ key, label: day }) => {
       const d = value[key];
       const err = errors[key];
       const errId = `${id}-${key}-err`;
-      return /* @__PURE__ */ jsxs63("div", { className: cx("bc-hours-row", err && "is-invalid"), "data-day": key, children: [
-        /* @__PURE__ */ jsx68("span", { className: "bc-hours-day", id: `${id}-${key}`, children: day }),
-        /* @__PURE__ */ jsx68(
+      return /* @__PURE__ */ jsxs64("div", { className: cx("bc-hours-row", err && "is-invalid"), "data-day": key, children: [
+        /* @__PURE__ */ jsx69("span", { className: "bc-hours-day", id: `${id}-${key}`, children: day }),
+        /* @__PURE__ */ jsx69(
           "button",
           {
             type: "button",
@@ -4672,29 +4772,29 @@ function OpeningHoursEditor({ label = "Nyitvatart\xE1s", help, value, onChange, 
             onClick: () => set(key, d.open ? { open: false } : { open: true, from: d.from ?? "08:00", to: d.to ?? "18:00" })
           }
         ),
-        d.open ? /* @__PURE__ */ jsxs63("span", { className: "bc-hours-times", role: "group", "aria-labelledby": `${id}-${key}`, children: [
-          /* @__PURE__ */ jsx68(TimeInput, { value: d.from, label: `${day}: nyit\xE1s`, invalid: Boolean(err), describedBy: err ? errId : void 0, disabled, readOnly, onCommit: (t, w) => commit(key, "from", t, w) }),
-          /* @__PURE__ */ jsx68("span", { "aria-hidden": "true", children: "\u2013" }),
-          /* @__PURE__ */ jsx68(TimeInput, { value: d.to, label: `${day}: z\xE1r\xE1s`, invalid: Boolean(err), describedBy: err ? errId : void 0, disabled, readOnly, onCommit: (t, w) => commit(key, "to", t, w) })
-        ] }) : /* @__PURE__ */ jsx68("span", { className: "bc-hours-closed", children: "Z\xE1rva" }),
-        err && /* @__PURE__ */ jsx68("p", { className: "bc-error", id: errId, role: "alert", children: err })
+        d.open ? /* @__PURE__ */ jsxs64("span", { className: "bc-hours-times", role: "group", "aria-labelledby": `${id}-${key}`, children: [
+          /* @__PURE__ */ jsx69(TimeInput, { value: d.from, label: `${day}: nyit\xE1s`, invalid: Boolean(err), describedBy: err ? errId : void 0, disabled, readOnly, onCommit: (t, w) => commit(key, "from", t, w) }),
+          /* @__PURE__ */ jsx69("span", { "aria-hidden": "true", children: "\u2013" }),
+          /* @__PURE__ */ jsx69(TimeInput, { value: d.to, label: `${day}: z\xE1r\xE1s`, invalid: Boolean(err), describedBy: err ? errId : void 0, disabled, readOnly, onCommit: (t, w) => commit(key, "to", t, w) })
+        ] }) : /* @__PURE__ */ jsx69("span", { className: "bc-hours-closed", children: "Z\xE1rva" }),
+        err && /* @__PURE__ */ jsx69("p", { className: "bc-error", id: errId, role: "alert", children: err })
       ] }, key);
     }) }),
-    /* @__PURE__ */ jsxs63("div", { className: "bc-meta", id: `${id}-meta`, children: [
-      /* @__PURE__ */ jsx68("span", { children: "naponta egy s\xE1v \xB7 00:00\u201324:00 \xB7 a z\xE1r\xE1s a nyit\xE1s ut\xE1n" }),
-      /* @__PURE__ */ jsxs63("span", { className: "bc-count", children: [
+    /* @__PURE__ */ jsxs64("div", { className: "bc-meta", id: `${id}-meta`, children: [
+      /* @__PURE__ */ jsx69("span", { children: "naponta egy s\xE1v \xB7 00:00\u201324:00 \xB7 a z\xE1r\xE1s a nyit\xE1s ut\xE1n" }),
+      /* @__PURE__ */ jsxs64("span", { className: "bc-count", children: [
         WEEK.filter((d) => value[d.key].open).length,
         "/7 nap nyitva"
       ] })
     ] }),
-    !locked && /* @__PURE__ */ jsx68("div", { className: "bc-row", children: /* @__PURE__ */ jsx68(Button, { variant: "secondary", size: "sm", onClick: copyMon, children: "H\xE9tf\u0151 m\xE1sol\xE1sa a h\xE9tk\xF6znapokra" }) }),
-    note && /* @__PURE__ */ jsx68("p", { className: "bc-notice", role: "status", children: note })
+    !locked && /* @__PURE__ */ jsx69("div", { className: "bc-row", children: /* @__PURE__ */ jsx69(Button, { variant: "secondary", size: "sm", onClick: copyMon, children: "H\xE9tf\u0151 m\xE1sol\xE1sa a h\xE9tk\xF6znapokra" }) }),
+    note && /* @__PURE__ */ jsx69("p", { className: "bc-notice", role: "status", children: note })
   ] });
 }
 
 // react/src/media/Avatar.tsx
-import { useEffect as useEffect13, useState as useState33 } from "react";
-import { jsx as jsx69 } from "react/jsx-runtime";
+import { useEffect as useEffect14, useState as useState34 } from "react";
+import { jsx as jsx70 } from "react/jsx-runtime";
 var DIGRAPH = /^(dzs|cs|dz|gy|ly|ny|sz|ty|zs)/i;
 var firstLetter = (w) => {
   const m = w.match(DIGRAPH);
@@ -4707,25 +4807,25 @@ function initials(name2) {
   return words[0].charAt(0).toUpperCase() + words[words.length - 1].charAt(0).toUpperCase();
 }
 function Avatar({ name: name2, src, size = 40, shape = "circle", decorative = false, className }) {
-  const [broken, setBroken] = useState33(false);
-  useEffect13(() => setBroken(false), [src]);
+  const [broken, setBroken] = useState34(false);
+  useEffect14(() => setBroken(false), [src]);
   const showImg = src && !broken;
-  return /* @__PURE__ */ jsx69(
+  return /* @__PURE__ */ jsx70(
     "span",
     {
       className: cx("bc-avatar", `is-${size}`, shape === "square" && "is-square", className),
       role: showImg || decorative ? void 0 : "img",
       "aria-label": showImg || decorative ? void 0 : name2,
       "aria-hidden": decorative && !showImg ? true : void 0,
-      children: showImg ? /* @__PURE__ */ jsx69("img", { src, alt: decorative ? "" : name2, onError: () => setBroken(true) }) : /* @__PURE__ */ jsx69("span", { "aria-hidden": "true", children: initials(name2) })
+      children: showImg ? /* @__PURE__ */ jsx70("img", { src, alt: decorative ? "" : name2, onError: () => setBroken(true) }) : /* @__PURE__ */ jsx70("span", { "aria-hidden": "true", children: initials(name2) })
     }
   );
 }
 
 // react/src/meh/Bee.tsx
-import { jsx as jsx70 } from "react/jsx-runtime";
+import { jsx as jsx71 } from "react/jsx-runtime";
 function Bee({ szerep, size = "m", buzz = true, label, className }) {
-  return /* @__PURE__ */ jsx70(
+  return /* @__PURE__ */ jsx71(
     "span",
     {
       "data-szerep": szerep,
@@ -4979,26 +5079,26 @@ var szerepek = hangnem_gen_default.szerepek;
 var pillanatok = Object.keys(hangnem_gen_default.pillanatok);
 
 // react/src/meh/BeeMoment.tsx
-import { jsx as jsx71, jsxs as jsxs64 } from "react/jsx-runtime";
+import { jsx as jsx72, jsxs as jsxs65 } from "react/jsx-runtime";
 function BeeMoment({ pillanat, poen, sima, szerep, action, inline, valtozat, live, className }) {
   const m = pillanat ? say(pillanat, valtozat) : null;
   const title = poen ?? m?.poen;
   const text = sima ?? m?.sima;
   const who = szerep ?? m?.meh ?? "piheno";
-  return /* @__PURE__ */ jsxs64("div", { className: cx("bc-moment", inline && "is-inline", className), role: live, "data-pillanat": pillanat, children: [
-    /* @__PURE__ */ jsx71(Bee, { szerep: who, size: inline ? "s" : "m" }),
-    title && /* @__PURE__ */ jsx71("p", { className: "bc-moment-title", children: title }),
-    text && /* @__PURE__ */ jsx71("p", { className: "bc-moment-text", children: text }),
-    action && /* @__PURE__ */ jsx71("div", { className: "bc-moment-action", children: action })
+  return /* @__PURE__ */ jsxs65("div", { className: cx("bc-moment", inline && "is-inline", className), role: live, "data-pillanat": pillanat, children: [
+    /* @__PURE__ */ jsx72(Bee, { szerep: who, size: inline ? "s" : "m" }),
+    title && /* @__PURE__ */ jsx72("p", { className: "bc-moment-title", children: title }),
+    text && /* @__PURE__ */ jsx72("p", { className: "bc-moment-text", children: text }),
+    action && /* @__PURE__ */ jsx72("div", { className: "bc-moment-action", children: action })
   ] });
 }
 
 // react/src/meh/motion.tsx
-import { Children, cloneElement, isValidElement as isValidElement2, useEffect as useEffect14, useRef as useRef25, useState as useState34 } from "react";
-import { jsx as jsx72, jsxs as jsxs65 } from "react/jsx-runtime";
+import { Children, cloneElement, isValidElement as isValidElement2, useEffect as useEffect15, useRef as useRef25, useState as useState35 } from "react";
+import { jsx as jsx73, jsxs as jsxs66 } from "react/jsx-runtime";
 function useReducedMotion() {
-  const [r, setR] = useState34(() => typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches);
-  useEffect14(() => {
+  const [r, setR] = useState35(() => typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches);
+  useEffect15(() => {
     const m = matchMedia("(prefers-reduced-motion: reduce)");
     const f = () => setR(m.matches);
     m.addEventListener("change", f);
@@ -5009,8 +5109,8 @@ function useReducedMotion() {
 function useCountUp(value, ms = 600) {
   const reduce = useReducedMotion();
   const first = useRef25(true);
-  const [anim, setAnim] = useState34(reduce ? null : 0);
-  useEffect14(() => {
+  const [anim, setAnim] = useState35(reduce ? null : 0);
+  useEffect15(() => {
     if (reduce || !first.current) {
       setAnim(null);
       return;
@@ -5032,7 +5132,7 @@ function useCountUp(value, ms = 600) {
   return anim ?? value;
 }
 function Stagger({ children, as: Tag = "div", className }) {
-  return /* @__PURE__ */ jsx72(Tag, { className: cx("bc-stagger", className), children: Children.map(children, (c, i) => isValidElement2(c) ? cloneElement(c, { style: { ...c.props.style ?? {}, ["--i"]: i } }) : c) });
+  return /* @__PURE__ */ jsx73(Tag, { className: cx("bc-stagger", className), children: Children.map(children, (c, i) => isValidElement2(c) ? cloneElement(c, { style: { ...c.props.style ?? {}, ["--i"]: i } }) : c) });
 }
 function celebrate(from) {
   if (typeof document === "undefined" || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -5061,15 +5161,15 @@ function shake(el) {
   setTimeout(() => el.classList.remove("bc-anim-shake"), 300);
 }
 function HexLoader({ label = "T\xF6lt\xF6m" }) {
-  return /* @__PURE__ */ jsxs65("span", { className: "bc-hexload", role: "status", "aria-label": label, children: [
-    /* @__PURE__ */ jsx72("i", {}),
-    /* @__PURE__ */ jsx72("i", {}),
-    /* @__PURE__ */ jsx72("i", {})
+  return /* @__PURE__ */ jsxs66("span", { className: "bc-hexload", role: "status", "aria-label": label, children: [
+    /* @__PURE__ */ jsx73("i", {}),
+    /* @__PURE__ */ jsx73("i", {}),
+    /* @__PURE__ */ jsx73("i", {})
   ] });
 }
 function ProgressBar({ value, label, moving }) {
   const v = Math.max(0, Math.min(1, value));
-  return /* @__PURE__ */ jsx72(
+  return /* @__PURE__ */ jsx73(
     "div",
     {
       className: cx("bc-progress", moving && v < 1 && "is-moving", v >= 1 && "is-done"),
@@ -5079,20 +5179,20 @@ function ProgressBar({ value, label, moving }) {
       "aria-valuemax": 100,
       "aria-valuenow": Math.round(v * 100),
       style: { ["--v"]: v },
-      children: /* @__PURE__ */ jsx72("span", {})
+      children: /* @__PURE__ */ jsx73("span", {})
     }
   );
 }
 
 // react/src/meh/BeeSprite.tsx
-import { useEffect as useEffect15, useState as useState35 } from "react";
-import { jsx as jsx73 } from "react/jsx-runtime";
+import { useEffect as useEffect16, useState as useState36 } from "react";
+import { jsx as jsx74 } from "react/jsx-runtime";
 function BeeSprite({ szereplo, size = "m", replay, label, className }) {
-  const [k, setK] = useState35(0);
-  useEffect15(() => {
+  const [k, setK] = useState36(0);
+  useEffect16(() => {
     if (replay !== void 0) setK((x) => x + 1);
   }, [replay]);
-  return /* @__PURE__ */ jsx73(
+  return /* @__PURE__ */ jsx74(
     "span",
     {
       "data-szereplo": szereplo,
@@ -5104,7 +5204,7 @@ function BeeSprite({ szereplo, size = "m", replay, label, className }) {
 }
 
 // react/src/kieg/PhoneField.tsx
-import { forwardRef as forwardRef9, useEffect as useEffect16, useLayoutEffect as useLayoutEffect4, useRef as useRef26, useState as useState36 } from "react";
+import { forwardRef as forwardRef9, useEffect as useEffect17, useLayoutEffect as useLayoutEffect4, useRef as useRef26, useState as useState37 } from "react";
 
 // react/src/kieg/phone.ts
 var MOBIL = ["20", "30", "31", "50", "70"];
@@ -5182,7 +5282,7 @@ function phoneProblem(i, want = "barmely") {
 }
 
 // react/src/kieg/PhoneField.tsx
-import { jsx as jsx74, jsxs as jsxs66 } from "react/jsx-runtime";
+import { jsx as jsx75, jsxs as jsxs67 } from "react/jsx-runtime";
 var RANGE = { barmely: "mobil: 9 sz\xE1mjegy \xB7 vezet\xE9kes: 8", mobil: "mobil: 20, 30, 31, 50, 70 + 7 sz\xE1mjegy", vezetekes: "vezet\xE9kes: 8 sz\xE1mjegy (Budapest: 1 + 7)" };
 var KIND = { mobil: "mobilsz\xE1m", vezetekes: "vezet\xE9kes sz\xE1m", ismeretlen: "" };
 var caretAfter = (text, n) => {
@@ -5193,12 +5293,12 @@ var caretAfter = (text, n) => {
 };
 var PhoneField = forwardRef9(function PhoneField2({ label, help, range, error, notice, required, disabled, className, value, onChange, kind = "barmely", onBlur, onFocus, ...rest }, ref) {
   const inner = useRef26(null);
-  const [text, setText] = useState36(() => formatNational(parsePhone(value).digits));
-  const [note, setNote] = useState36();
-  const [touched, setTouched] = useState36(false);
+  const [text, setText] = useState37(() => formatNational(parsePhone(value).digits));
+  const [note, setNote] = useState37();
+  const [touched, setTouched] = useState37(false);
   const focused = useRef26(false);
   const caret = useRef26(null);
-  useEffect16(() => {
+  useEffect17(() => {
     if (!focused.current) setText(formatNational(parsePhone(value).digits));
   }, [value]);
   useLayoutEffect4(() => {
@@ -5254,7 +5354,7 @@ var PhoneField = forwardRef9(function PhoneField2({ label, help, range, error, n
   const kindText = info.kind !== "ismeretlen" ? `${KIND[info.kind]} \xB7 ${info.need} sz\xE1mjegy` : RANGE[kind];
   return (
     // Az állapot (7/9) a tartomány-sorban: a teljes szám jó dolog, ezért nem kapja a számláló „határon” hibaszínét
-    /* @__PURE__ */ jsx74(
+    /* @__PURE__ */ jsx75(
       Field,
       {
         label,
@@ -5265,9 +5365,9 @@ var PhoneField = forwardRef9(function PhoneField2({ label, help, range, error, n
         required,
         disabled,
         className,
-        children: /* @__PURE__ */ jsx74(FieldInput, { children: (f) => /* @__PURE__ */ jsxs66("div", { className: "bc-phone", children: [
-          /* @__PURE__ */ jsx74("span", { className: "bc-phone-cc", "aria-hidden": "true", children: "+36" }),
-          /* @__PURE__ */ jsx74(
+        children: /* @__PURE__ */ jsx75(FieldInput, { children: (f) => /* @__PURE__ */ jsxs67("div", { className: "bc-phone", children: [
+          /* @__PURE__ */ jsx75("span", { className: "bc-phone-cc", "aria-hidden": "true", children: "+36" }),
+          /* @__PURE__ */ jsx75(
             "input",
             {
               ref: mergeRefs(ref, inner),
@@ -5309,25 +5409,25 @@ var PhoneField = forwardRef9(function PhoneField2({ label, help, range, error, n
 });
 
 // react/src/kieg/CopyButton.tsx
-import { useEffect as useEffect17, useRef as useRef27, useState as useState37 } from "react";
+import { useEffect as useEffect18, useRef as useRef27, useState as useState38 } from "react";
 
 // react/src/kieg/icons.tsx
-import { jsx as jsx75, jsxs as jsxs67 } from "react/jsx-runtime";
+import { jsx as jsx76, jsxs as jsxs68 } from "react/jsx-runtime";
 var P = { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true };
-var CopyIcon = () => /* @__PURE__ */ jsxs67("svg", { ...P, children: [
-  /* @__PURE__ */ jsx75("rect", { x: "9", y: "9", width: "11", height: "11", rx: "2" }),
-  /* @__PURE__ */ jsx75("path", { d: "M5 15V6a2 2 0 0 1 2-2h8" })
+var CopyIcon = () => /* @__PURE__ */ jsxs68("svg", { ...P, children: [
+  /* @__PURE__ */ jsx76("rect", { x: "9", y: "9", width: "11", height: "11", rx: "2" }),
+  /* @__PURE__ */ jsx76("path", { d: "M5 15V6a2 2 0 0 1 2-2h8" })
 ] });
-var CheckIcon = () => /* @__PURE__ */ jsx75("svg", { ...P, strokeWidth: 3, children: /* @__PURE__ */ jsx75("path", { d: "M5 12.5l4.5 4.5L19 7.5" }) });
-var DownloadIcon = () => /* @__PURE__ */ jsx75("svg", { ...P, children: /* @__PURE__ */ jsx75("path", { d: "M12 4v11M7 10.5l5 5 5-5M5 20h14" }) });
-var RetryIcon = () => /* @__PURE__ */ jsx75("svg", { ...P, children: /* @__PURE__ */ jsx75("path", { d: "M20 11a8 8 0 1 0-2.3 5.7M20 5v6h-6" }) });
-var CloseIcon2 = () => /* @__PURE__ */ jsx75("svg", { ...P, children: /* @__PURE__ */ jsx75("path", { d: "M6 6l12 12M18 6L6 18" }) });
-var PlusIcon = () => /* @__PURE__ */ jsx75("svg", { ...P, children: /* @__PURE__ */ jsx75("path", { d: "M12 5v14M5 12h14" }) });
-var ChevronIcon = ({ open }) => /* @__PURE__ */ jsx75("svg", { ...P, style: { transform: open ? "rotate(180deg)" : void 0 }, children: /* @__PURE__ */ jsx75("path", { d: "M6 9l6 6 6-6" }) });
-var UndoIcon = () => /* @__PURE__ */ jsx75("svg", { ...P, children: /* @__PURE__ */ jsx75("path", { d: "M9 14L4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3" }) });
+var CheckIcon = () => /* @__PURE__ */ jsx76("svg", { ...P, strokeWidth: 3, children: /* @__PURE__ */ jsx76("path", { d: "M5 12.5l4.5 4.5L19 7.5" }) });
+var DownloadIcon = () => /* @__PURE__ */ jsx76("svg", { ...P, children: /* @__PURE__ */ jsx76("path", { d: "M12 4v11M7 10.5l5 5 5-5M5 20h14" }) });
+var RetryIcon = () => /* @__PURE__ */ jsx76("svg", { ...P, children: /* @__PURE__ */ jsx76("path", { d: "M20 11a8 8 0 1 0-2.3 5.7M20 5v6h-6" }) });
+var CloseIcon2 = () => /* @__PURE__ */ jsx76("svg", { ...P, children: /* @__PURE__ */ jsx76("path", { d: "M6 6l12 12M18 6L6 18" }) });
+var PlusIcon = () => /* @__PURE__ */ jsx76("svg", { ...P, children: /* @__PURE__ */ jsx76("path", { d: "M12 5v14M5 12h14" }) });
+var ChevronIcon = ({ open }) => /* @__PURE__ */ jsx76("svg", { ...P, style: { transform: open ? "rotate(180deg)" : void 0 }, children: /* @__PURE__ */ jsx76("path", { d: "M6 9l6 6 6-6" }) });
+var UndoIcon = () => /* @__PURE__ */ jsx76("svg", { ...P, children: /* @__PURE__ */ jsx76("path", { d: "M9 14L4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3" }) });
 
 // react/src/kieg/CopyButton.tsx
-import { jsx as jsx76, jsxs as jsxs68 } from "react/jsx-runtime";
+import { jsx as jsx77, jsxs as jsxs69 } from "react/jsx-runtime";
 async function copyText(text) {
   try {
     if (navigator.clipboard?.writeText) {
@@ -5352,12 +5452,12 @@ async function copyText(text) {
   }
 }
 function CopyButton({ value, what, variant = "button", showValue: showValue2, disabled, className }) {
-  const [state, setState] = useState37("idle");
-  const [msg, setMsg] = useState37("");
+  const [state, setState] = useState38("idle");
+  const [msg, setMsg] = useState38("");
   const fallback = useRef27(null);
   const timer = useRef27(void 0);
-  useEffect17(() => () => window.clearTimeout(timer.current), []);
-  useEffect17(() => {
+  useEffect18(() => () => window.clearTimeout(timer.current), []);
+  useEffect18(() => {
     if (state === "failed") fallback.current?.select();
   }, [state]);
   const run = async () => {
@@ -5372,21 +5472,21 @@ function CopyButton({ value, what, variant = "button", showValue: showValue2, di
     }
   };
   const done = state === "done";
-  const icon = done ? /* @__PURE__ */ jsx76("span", { className: "bc-anim-tick bc-copy-tick", children: /* @__PURE__ */ jsx76(CheckIcon, {}) }) : /* @__PURE__ */ jsx76(CopyIcon, {});
-  return /* @__PURE__ */ jsxs68("span", { className: cx("bc-copy", className), "data-state": state, children: [
-    showValue2 && /* @__PURE__ */ jsx76("code", { className: "bc-copy-value", children: value }),
-    variant === "icon" ? /* @__PURE__ */ jsx76(IconButton, { "aria-label": done ? `M\xE1solva: ${what}` : `M\xE1sol\xE1s: ${what}`, onClick: run, disabled, children: icon }) : /* @__PURE__ */ jsx76(Button, { variant: "secondary", size: "sm", icon, onClick: run, disabled, "aria-label": `${done ? "M\xE1solva" : "M\xE1sol\xE1s"}: ${what}`, children: done ? "M\xE1solva" : "M\xE1sol\xE1s" }),
-    /* @__PURE__ */ jsx76("span", { className: "bc-sr", role: "status", children: msg }),
-    state === "failed" && /* @__PURE__ */ jsxs68("span", { className: "bc-copy-fallback", children: [
-      /* @__PURE__ */ jsx76("input", { ref: fallback, className: "bc-input", readOnly: true, value, "aria-label": `${what} \u2013 jel\xF6ld ki \xE9s m\xE1sold`, onFocus: (e) => e.currentTarget.select() }),
-      /* @__PURE__ */ jsx76("span", { className: "bc-error", children: "Nem siker\xFClt a m\xE1sol\xE1s. Jel\xF6ld ki, \xE9s m\xE1sold: Ctrl+C (Macen \u2318C), telefonon hosszan nyomva." })
+  const icon = done ? /* @__PURE__ */ jsx77("span", { className: "bc-anim-tick bc-copy-tick", children: /* @__PURE__ */ jsx77(CheckIcon, {}) }) : /* @__PURE__ */ jsx77(CopyIcon, {});
+  return /* @__PURE__ */ jsxs69("span", { className: cx("bc-copy", className), "data-state": state, children: [
+    showValue2 && /* @__PURE__ */ jsx77("code", { className: "bc-copy-value", children: value }),
+    variant === "icon" ? /* @__PURE__ */ jsx77(IconButton, { "aria-label": done ? `M\xE1solva: ${what}` : `M\xE1sol\xE1s: ${what}`, onClick: run, disabled, children: icon }) : /* @__PURE__ */ jsx77(Button, { variant: "secondary", size: "sm", icon, onClick: run, disabled, "aria-label": `${done ? "M\xE1solva" : "M\xE1sol\xE1s"}: ${what}`, children: done ? "M\xE1solva" : "M\xE1sol\xE1s" }),
+    /* @__PURE__ */ jsx77("span", { className: "bc-sr", role: "status", children: msg }),
+    state === "failed" && /* @__PURE__ */ jsxs69("span", { className: "bc-copy-fallback", children: [
+      /* @__PURE__ */ jsx77("input", { ref: fallback, className: "bc-input", readOnly: true, value, "aria-label": `${what} \u2013 jel\xF6ld ki \xE9s m\xE1sold`, onFocus: (e) => e.currentTarget.select() }),
+      /* @__PURE__ */ jsx77("span", { className: "bc-error", children: "Nem siker\xFClt a m\xE1sol\xE1s. Jel\xF6ld ki, \xE9s m\xE1sold: Ctrl+C (Macen \u2318C), telefonon hosszan nyomva." })
     ] })
   ] });
 }
 
 // react/src/kieg/DownloadButton.tsx
-import { useEffect as useEffect18, useRef as useRef28, useState as useState38 } from "react";
-import { Fragment as Fragment18, jsx as jsx77, jsxs as jsxs69 } from "react/jsx-runtime";
+import { useEffect as useEffect19, useRef as useRef28, useState as useState39 } from "react";
+import { Fragment as Fragment19, jsx as jsx78, jsxs as jsxs70 } from "react/jsx-runtime";
 function formatBytes(n) {
   if (n < 1024) return `${n} B`;
   if (n < 1024 * 1024) return `${formatHu(n / 1024, 1)} KB`;
@@ -5404,14 +5504,14 @@ function save(blob, name2) {
   setTimeout(() => URL.revokeObjectURL(url), 1e3);
 }
 function DownloadButton({ label, fileName, sizeHint, onDownload, variant = "secondary", disabled, className }) {
-  const [state, setState] = useState38("idle");
-  const [progress, setProgress] = useState38(null);
-  const [size, setSize] = useState38(null);
-  const [slow, setSlow] = useState38(false);
-  const [stopped, setStopped] = useState38(false);
+  const [state, setState] = useState39("idle");
+  const [progress, setProgress] = useState39(null);
+  const [size, setSize] = useState39(null);
+  const [slow, setSlow] = useState39(false);
+  const [stopped, setStopped] = useState39(false);
   const ctrl = useRef28(null);
-  useEffect18(() => () => ctrl.current?.abort(), []);
-  useEffect18(() => {
+  useEffect19(() => () => ctrl.current?.abort(), []);
+  useEffect19(() => {
     if (state !== "busy") return;
     const t = window.setTimeout(() => setSlow(true), 1e4);
     return () => window.clearTimeout(t);
@@ -5443,10 +5543,10 @@ function DownloadButton({ label, fileName, sizeHint, onDownload, variant = "seco
   };
   const pct = progress === null ? null : Math.round(progress * 100);
   const text = state === "busy" ? "K\xE9sz\xFCl" : state === "done" ? "Let\xF6ltve" : state === "error" ? "\xDAjra" : label;
-  const icon = state === "done" ? /* @__PURE__ */ jsx77("span", { className: "bc-anim-tick bc-copy-tick", children: /* @__PURE__ */ jsx77(CheckIcon, {}) }) : state === "error" ? /* @__PURE__ */ jsx77(RetryIcon, {}) : /* @__PURE__ */ jsx77(DownloadIcon, {});
-  return /* @__PURE__ */ jsxs69("div", { className: cx("bc-download", className), "data-state": state, children: [
-    /* @__PURE__ */ jsxs69("div", { className: "bc-row", children: [
-      /* @__PURE__ */ jsx77(
+  const icon = state === "done" ? /* @__PURE__ */ jsx78("span", { className: "bc-anim-tick bc-copy-tick", children: /* @__PURE__ */ jsx78(CheckIcon, {}) }) : state === "error" ? /* @__PURE__ */ jsx78(RetryIcon, {}) : /* @__PURE__ */ jsx78(DownloadIcon, {});
+  return /* @__PURE__ */ jsxs70("div", { className: cx("bc-download", className), "data-state": state, children: [
+    /* @__PURE__ */ jsxs70("div", { className: "bc-row", children: [
+      /* @__PURE__ */ jsx78(
         Button,
         {
           variant,
@@ -5458,29 +5558,29 @@ function DownloadButton({ label, fileName, sizeHint, onDownload, variant = "seco
           children: text
         }
       ),
-      state === "busy" && /* @__PURE__ */ jsx77(Button, { variant: "ghost", size: "sm", onClick: cancel, children: "Megszak\xEDt\xE1s" })
+      state === "busy" && /* @__PURE__ */ jsx78(Button, { variant: "ghost", size: "sm", onClick: cancel, children: "Megszak\xEDt\xE1s" })
     ] }),
-    /* @__PURE__ */ jsxs69("div", { className: "bc-download-meta", role: "status", children: [
-      state === "idle" && /* @__PURE__ */ jsxs69("span", { children: [
+    /* @__PURE__ */ jsxs70("div", { className: "bc-download-meta", role: "status", children: [
+      state === "idle" && /* @__PURE__ */ jsxs70("span", { children: [
         fileName,
         sizeHint ? ` \xB7 ${sizeHint}` : "",
         stopped ? " \xB7 megszak\xEDtottad, b\xE1rmikor \xFAjrakezdheted" : ""
       ] }),
-      state === "busy" && /* @__PURE__ */ jsxs69(Fragment18, { children: [
-        pct === null ? /* @__PURE__ */ jsx77(HexLoader, { label: `K\xE9sz\xFCl: ${fileName}` }) : /* @__PURE__ */ jsx77(ProgressBar, { value: progress ?? 0, label: `K\xE9sz\xFCl: ${fileName}`, moving: true }),
-        /* @__PURE__ */ jsxs69("span", { children: [
+      state === "busy" && /* @__PURE__ */ jsxs70(Fragment19, { children: [
+        pct === null ? /* @__PURE__ */ jsx78(HexLoader, { label: `K\xE9sz\xFCl: ${fileName}` }) : /* @__PURE__ */ jsx78(ProgressBar, { value: progress ?? 0, label: `K\xE9sz\xFCl: ${fileName}`, moving: true }),
+        /* @__PURE__ */ jsxs70("span", { children: [
           "K\xE9sz\xFCl: ",
           fileName,
           pct === null ? "\u2026" : ` \xB7 ${pct}%`
         ] }),
-        slow && /* @__PURE__ */ jsx77("span", { className: "bc-download-slow", children: say("toltes-hosszu").sima })
+        slow && /* @__PURE__ */ jsx78("span", { className: "bc-download-slow", children: say("toltes-hosszu").sima })
       ] }),
-      state === "done" && /* @__PURE__ */ jsxs69("span", { children: [
+      state === "done" && /* @__PURE__ */ jsxs70("span", { children: [
         "Let\xF6ltve: ",
         fileName,
         size !== null ? ` \xB7 ${formatBytes(size)}` : ""
       ] }),
-      state === "error" && /* @__PURE__ */ jsxs69("span", { className: "bc-error", role: "alert", children: [
+      state === "error" && /* @__PURE__ */ jsxs70("span", { className: "bc-error", role: "alert", children: [
         "Nem siker\xFClt elk\xE9sz\xEDteni a f\xE1jlt (",
         fileName,
         "). Ellen\u0151rizd a kapcsolatot, \xE9s pr\xF3b\xE1ld \xFAjra."
@@ -5528,7 +5628,7 @@ var pctOf = (v, s) => s.max > s.min ? (v - s.min) / (s.max - s.min) * 100 : 0;
 var defaultBig = (min, max, step) => Math.max(step, Math.round((max - min) / 10 / step) * step);
 
 // react/src/kieg/Slider.tsx
-import { jsx as jsx78, jsxs as jsxs70 } from "react/jsx-runtime";
+import { jsx as jsx79, jsxs as jsxs71 } from "react/jsx-runtime";
 var fmt2 = (unit, step) => (v) => `${formatHu(v, (String(step).split(".")[1] ?? "").length)}${unit ? ` ${unit}` : ""}`;
 function Track({ values, onChange, spec, labels, format, disabled, minGap, describedBy, invalid }) {
   const track = useRef29(null);
@@ -5563,7 +5663,7 @@ function Track({ values, onChange, spec, labels, format, disabled, minGap, descr
   };
   const lo = values.length === 2 ? pctOf(values[0], spec) : 0;
   const hi = pctOf(values[values.length - 1], spec);
-  return /* @__PURE__ */ jsxs70(
+  return /* @__PURE__ */ jsxs71(
     "div",
     {
       ref: track,
@@ -5578,8 +5678,8 @@ function Track({ values, onChange, spec, labels, format, disabled, minGap, descr
         drag.current = null;
       },
       children: [
-        /* @__PURE__ */ jsx78("span", { className: "bc-slider-rail", "aria-hidden": "true", children: /* @__PURE__ */ jsx78("span", { className: "bc-slider-fill", style: { left: `${lo}%`, width: `${hi - lo}%` } }) }),
-        values.map((v, i) => /* @__PURE__ */ jsx78(
+        /* @__PURE__ */ jsx79("span", { className: "bc-slider-rail", "aria-hidden": "true", children: /* @__PURE__ */ jsx79("span", { className: "bc-slider-fill", style: { left: `${lo}%`, width: `${hi - lo}%` } }) }),
+        values.map((v, i) => /* @__PURE__ */ jsx79(
           "span",
           {
             role: "slider",
@@ -5608,7 +5708,7 @@ function Frame2(p) {
   const spec = { min: p.min, max: p.max, step, bigStep: p.bigStep ?? defaultBig(p.min, p.max, step) };
   const format = p.format ?? fmt2(p.unit, step);
   const shown = p.values.map(format).join(" \u2013 ");
-  return /* @__PURE__ */ jsx78(
+  return /* @__PURE__ */ jsx79(
     Field,
     {
       label: p.label,
@@ -5620,9 +5720,9 @@ function Frame2(p) {
       disabled: p.disabled,
       className: p.className,
       labelFor: false,
-      children: /* @__PURE__ */ jsx78(FieldInput, { children: (f) => /* @__PURE__ */ jsxs70("div", { className: "bc-slider", children: [
-        /* @__PURE__ */ jsx78("output", { className: "bc-slider-out", "aria-hidden": "true", children: shown }),
-        /* @__PURE__ */ jsx78(
+      children: /* @__PURE__ */ jsx79(FieldInput, { children: (f) => /* @__PURE__ */ jsxs71("div", { className: "bc-slider", children: [
+        /* @__PURE__ */ jsx79("output", { className: "bc-slider-out", "aria-hidden": "true", children: shown }),
+        /* @__PURE__ */ jsx79(
           Track,
           {
             values: p.values,
@@ -5636,29 +5736,29 @@ function Frame2(p) {
             invalid: f.invalid
           }
         ),
-        p.name && /* @__PURE__ */ jsx78("input", { type: "hidden", name: p.name, value: p.values.join("\u2013"), "aria-labelledby": `${f.id}-label` })
+        p.name && /* @__PURE__ */ jsx79("input", { type: "hidden", name: p.name, value: p.values.join("\u2013"), "aria-labelledby": `${f.id}-label` })
       ] }) })
     }
   );
 }
 function Slider({ value, onChange, ...rest }) {
-  return /* @__PURE__ */ jsx78(Frame2, { ...rest, values: [value], onValues: (v) => onChange(v[0]), thumbLabels: (l) => [l] });
+  return /* @__PURE__ */ jsx79(Frame2, { ...rest, values: [value], onValues: (v) => onChange(v[0]), thumbLabels: (l) => [l] });
 }
 function RangeSlider({ value, onChange, minGap, ...rest }) {
-  return /* @__PURE__ */ jsx78(Frame2, { ...rest, values: value, minGap, onValues: (v) => onChange([v[0], v[1]]), thumbLabels: (l) => [`${l}: als\xF3 hat\xE1r`, `${l}: fels\u0151 hat\xE1r`] });
+  return /* @__PURE__ */ jsx79(Frame2, { ...rest, values: value, minGap, onValues: (v) => onChange([v[0], v[1]]), thumbLabels: (l) => [`${l}: als\xF3 hat\xE1r`, `${l}: fels\u0151 hat\xE1r`] });
 }
 
 // react/src/kieg/UnsavedChanges.tsx
-import { useCallback as useCallback4, useEffect as useEffect20, useRef as useRef31, useState as useState39 } from "react";
+import { useCallback as useCallback4, useEffect as useEffect21, useRef as useRef31, useState as useState40 } from "react";
 
 // react/src/kieg/KiegDialog.tsx
-import { useEffect as useEffect19, useId as useId14, useRef as useRef30 } from "react";
-import { Fragment as Fragment19, jsx as jsx79, jsxs as jsxs71 } from "react/jsx-runtime";
+import { useEffect as useEffect20, useId as useId14, useRef as useRef30 } from "react";
+import { Fragment as Fragment20, jsx as jsx80, jsxs as jsxs72 } from "react/jsx-runtime";
 function KiegDialog({ open, onCancel, title, children, actions, className }) {
   const ref = useRef30(null);
   const back = useRef30(null);
   const id = useId14();
-  useEffect19(() => {
+  useEffect20(() => {
     const d = ref.current;
     if (!d) return;
     if (open && !d.open) {
@@ -5670,10 +5770,10 @@ function KiegDialog({ open, onCancel, title, children, actions, className }) {
       back.current?.focus();
     }
   }, [open]);
-  useEffect19(() => () => {
+  useEffect20(() => () => {
     if (ref.current?.open) back.current?.focus();
   }, []);
-  return /* @__PURE__ */ jsx79(
+  return /* @__PURE__ */ jsx80(
     "dialog",
     {
       ref,
@@ -5686,21 +5786,21 @@ function KiegDialog({ open, onCancel, title, children, actions, className }) {
         e.preventDefault();
         onCancel();
       },
-      children: open && /* @__PURE__ */ jsxs71(Fragment19, { children: [
-        /* @__PURE__ */ jsx79("div", { className: "bc-modal-head", children: /* @__PURE__ */ jsx79("h2", { id: `${id}-t`, children: title }) }),
-        children && /* @__PURE__ */ jsx79("div", { className: "bc-modal-body", id: `${id}-d`, children }),
-        /* @__PURE__ */ jsx79("div", { className: "bc-modal-foot", children: actions })
+      children: open && /* @__PURE__ */ jsxs72(Fragment20, { children: [
+        /* @__PURE__ */ jsx80("div", { className: "bc-modal-head", children: /* @__PURE__ */ jsx80("h2", { id: `${id}-t`, children: title }) }),
+        children && /* @__PURE__ */ jsx80("div", { className: "bc-modal-body", id: `${id}-d`, children }),
+        /* @__PURE__ */ jsx80("div", { className: "bc-modal-foot", children: actions })
       ] })
     }
   );
 }
 
 // react/src/kieg/UnsavedChanges.tsx
-import { Fragment as Fragment20, jsx as jsx80, jsxs as jsxs72 } from "react/jsx-runtime";
+import { Fragment as Fragment21, jsx as jsx81, jsxs as jsxs73 } from "react/jsx-runtime";
 function UnsavedChangesDialog({ open, onStay, onLeave, onSave, title = "Nem mentett v\xE1ltoz\xE1said vannak", children }) {
-  const [busy, setBusy] = useState39(false);
-  const [err, setErr] = useState39();
-  useEffect20(() => {
+  const [busy, setBusy] = useState40(false);
+  const [err, setErr] = useState40();
+  useEffect21(() => {
     if (!open) {
       setBusy(false);
       setErr(void 0);
@@ -5722,7 +5822,7 @@ function UnsavedChangesDialog({ open, onStay, onLeave, onSave, title = "Nem ment
       setErr(`Nem siker\xFClt menteni${e instanceof Error && e.message ? `: ${e.message}` : ""}. Pr\xF3b\xE1ld \xFAjra, vagy maradj az oldalon.`);
     }
   };
-  return /* @__PURE__ */ jsxs72(
+  return /* @__PURE__ */ jsxs73(
     KiegDialog,
     {
       open,
@@ -5730,27 +5830,27 @@ function UnsavedChangesDialog({ open, onStay, onLeave, onSave, title = "Nem ment
         if (!busy) onStay();
       },
       title,
-      actions: /* @__PURE__ */ jsxs72(Fragment20, { children: [
-        /* @__PURE__ */ jsx80(Button, { variant: "secondary", "data-autofocus": true, disabled: busy, onClick: onStay, children: "Maradok" }),
-        /* @__PURE__ */ jsx80(Button, { variant: onSave ? "secondary" : "danger", disabled: busy, onClick: onLeave, children: "Elvet\xE9s \xE9s tov\xE1bbl\xE9p\xE9s" }),
-        onSave && /* @__PURE__ */ jsx80(Button, { busy, onClick: () => void save2(), children: "Ment\xE9s \xE9s tov\xE1bbl\xE9p\xE9s" })
+      actions: /* @__PURE__ */ jsxs73(Fragment21, { children: [
+        /* @__PURE__ */ jsx81(Button, { variant: "secondary", "data-autofocus": true, disabled: busy, onClick: onStay, children: "Maradok" }),
+        /* @__PURE__ */ jsx81(Button, { variant: onSave ? "secondary" : "danger", disabled: busy, onClick: onLeave, children: "Elvet\xE9s \xE9s tov\xE1bbl\xE9p\xE9s" }),
+        onSave && /* @__PURE__ */ jsx81(Button, { busy, onClick: () => void save2(), children: "Ment\xE9s \xE9s tov\xE1bbl\xE9p\xE9s" })
       ] }),
       children: [
-        children ?? /* @__PURE__ */ jsx80("p", { children: "Ha most tov\xE1bbl\xE9psz, a m\xF3dos\xEDt\xE1said elvesznek. Maradj, ha m\xE9g menteni szeretn\xE9d \u0151ket." }),
-        err && /* @__PURE__ */ jsx80("div", { className: "bc-alert is-danger", role: "alert", children: /* @__PURE__ */ jsx80("p", { children: err }) })
+        children ?? /* @__PURE__ */ jsx81("p", { children: "Ha most tov\xE1bbl\xE9psz, a m\xF3dos\xEDt\xE1said elvesznek. Maradj, ha m\xE9g menteni szeretn\xE9d \u0151ket." }),
+        err && /* @__PURE__ */ jsx81("div", { className: "bc-alert is-danger", role: "alert", children: /* @__PURE__ */ jsx81("p", { children: err }) })
       ]
     }
   );
 }
 function useUnsavedChanges(dirty, opts = {}) {
-  const [pending, setPending] = useState39(null);
+  const [pending, setPending] = useState40(null);
   const live = useRef31(dirty);
   const released = useRef31(false);
-  useEffect20(() => {
+  useEffect21(() => {
     live.current = dirty;
     released.current = false;
   }, [dirty]);
-  useEffect20(() => {
+  useEffect21(() => {
     if (!dirty) return;
     const h = (e) => {
       if (released.current) return;
@@ -5773,13 +5873,13 @@ function useUnsavedChanges(dirty, opts = {}) {
     setPending(null);
     p?.();
   };
-  const dialog = /* @__PURE__ */ jsx80(UnsavedChangesDialog, { open: pending !== null, onStay: () => setPending(null), onLeave: leave, onSave: opts.onSave, title: opts.title, children: opts.text });
+  const dialog = /* @__PURE__ */ jsx81(UnsavedChangesDialog, { open: pending !== null, onStay: () => setPending(null), onLeave: leave, onSave: opts.onSave, title: opts.title, children: opts.text });
   return { confirm, dialog, asking: pending !== null };
 }
 function UnsavedChangesGuard({ dirty, interceptLinks = true, ...opts }) {
   const { confirm, dialog } = useUnsavedChanges(dirty, opts);
   const bypass = useRef31(false);
-  useEffect20(() => {
+  useEffect21(() => {
     if (!dirty || !interceptLinks) return;
     const h = (e) => {
       if (bypass.current || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -5802,11 +5902,11 @@ function UnsavedChangesGuard({ dirty, interceptLinks = true, ...opts }) {
 }
 
 // react/src/kieg/OfflineBanner.tsx
-import { useEffect as useEffect21, useRef as useRef32, useState as useState40 } from "react";
-import { Fragment as Fragment21, jsx as jsx81, jsxs as jsxs73 } from "react/jsx-runtime";
+import { useEffect as useEffect22, useRef as useRef32, useState as useState41 } from "react";
+import { Fragment as Fragment22, jsx as jsx82, jsxs as jsxs74 } from "react/jsx-runtime";
 function useOnline() {
-  const [on, setOn] = useState40(() => typeof navigator === "undefined" ? true : navigator.onLine);
-  useEffect21(() => {
+  const [on, setOn] = useState41(() => typeof navigator === "undefined" ? true : navigator.onLine);
+  useEffect22(() => {
     const up = () => setOn(true), down = () => setOn(false);
     window.addEventListener("online", up);
     window.addEventListener("offline", down);
@@ -5821,9 +5921,9 @@ function useOnline() {
 function OfflineBanner({ online, pending = 0, saveText, onRetry, bee = true, backMs = 2500, className }) {
   const browser = useOnline();
   const on = online ?? browser;
-  const [back, setBack] = useState40(false);
+  const [back, setBack] = useState41(false);
   const was = useRef32(on);
-  useEffect21(() => {
+  useEffect22(() => {
     if (on && !was.current) {
       setBack(true);
       const t = window.setTimeout(() => setBack(false), backMs);
@@ -5835,23 +5935,23 @@ function OfflineBanner({ online, pending = 0, saveText, onRetry, bee = true, bac
   }, [on, backMs]);
   const sima = saveText ?? say("offline").sima;
   const waiting = pending > 0 ? `${pending} m\xF3dos\xEDt\xE1s v\xE1r ment\xE9sre.` : null;
-  return /* @__PURE__ */ jsxs73("div", { className: cx("bc-offline", className), role: "status", "data-state": on ? back ? "back" : "online" : "offline", children: [
-    !on && /* @__PURE__ */ jsxs73("div", { className: "bc-alert is-warning bc-offline-bar", children: [
-      bee ? /* @__PURE__ */ jsx81(BeeMoment, { pillanat: "offline", inline: true, sima: /* @__PURE__ */ jsxs73(Fragment21, { children: [
+  return /* @__PURE__ */ jsxs74("div", { className: cx("bc-offline", className), role: "status", "data-state": on ? back ? "back" : "online" : "offline", children: [
+    !on && /* @__PURE__ */ jsxs74("div", { className: "bc-alert is-warning bc-offline-bar", children: [
+      bee ? /* @__PURE__ */ jsx82(BeeMoment, { pillanat: "offline", inline: true, sima: /* @__PURE__ */ jsxs74(Fragment22, { children: [
         sima,
         " ",
         waiting
-      ] }) }) : /* @__PURE__ */ jsxs73("p", { children: [
-        /* @__PURE__ */ jsx81("strong", { children: "Nincs internetkapcsolat." }),
+      ] }) }) : /* @__PURE__ */ jsxs74("p", { children: [
+        /* @__PURE__ */ jsx82("strong", { children: "Nincs internetkapcsolat." }),
         " ",
         sima,
         " ",
         waiting
       ] }),
-      onRetry && /* @__PURE__ */ jsx81(Button, { variant: "secondary", size: "sm", onClick: onRetry, children: "\xDAjrapr\xF3b\xE1l\xE1s" })
+      onRetry && /* @__PURE__ */ jsx82(Button, { variant: "secondary", size: "sm", onClick: onRetry, children: "\xDAjrapr\xF3b\xE1l\xE1s" })
     ] }),
-    on && back && /* @__PURE__ */ jsx81("div", { className: "bc-alert is-success bc-offline-bar bc-anim-rise", children: /* @__PURE__ */ jsxs73("p", { children: [
-      /* @__PURE__ */ jsx81("strong", { children: "\xDAjra van kapcsolat." }),
+    on && back && /* @__PURE__ */ jsx82("div", { className: "bc-alert is-success bc-offline-bar bc-anim-rise", children: /* @__PURE__ */ jsxs74("p", { children: [
+      /* @__PURE__ */ jsx82("strong", { children: "\xDAjra van kapcsolat." }),
       " ",
       pending > 0 ? "Mentj\xFCk a v\xE1rakoz\xF3 m\xF3dos\xEDt\xE1sokat." : "Minden a hely\xE9n."
     ] }) })
@@ -5860,7 +5960,7 @@ function OfflineBanner({ online, pending = 0, saveText, onRetry, bee = true, bac
 
 // react/src/kieg/StatusPages.tsx
 import { useId as useId15 } from "react";
-import { jsx as jsx82, jsxs as jsxs74 } from "react/jsx-runtime";
+import { jsx as jsx83, jsxs as jsxs75 } from "react/jsx-runtime";
 var HEAD = {
   "szerverhiba": "Hiba t\xF6rt\xE9nt n\xE1lunk",
   "nem-talalhato": "404 \xB7 Nincs ilyen oldal",
@@ -5870,79 +5970,79 @@ var HEAD = {
 };
 function StatusPage({ kind, action, secondary, sima, extra, className }) {
   const id = useId15();
-  return /* @__PURE__ */ jsxs74("section", { className: cx("bc-status-page", className), "aria-labelledby": id, "data-kind": kind, children: [
-    /* @__PURE__ */ jsx82("h1", { id, className: "bc-status-h", children: HEAD[kind] }),
-    /* @__PURE__ */ jsx82(
+  return /* @__PURE__ */ jsxs75("section", { className: cx("bc-status-page", className), "aria-labelledby": id, "data-kind": kind, children: [
+    /* @__PURE__ */ jsx83("h1", { id, className: "bc-status-h", children: HEAD[kind] }),
+    /* @__PURE__ */ jsx83(
       BeeMoment,
       {
         pillanat: kind,
         valtozat: 0,
         sima,
         live: kind === "szerverhiba" ? "alert" : void 0,
-        action: (action || secondary) && /* @__PURE__ */ jsxs74("div", { className: "bc-row bc-status-actions", children: [
+        action: (action || secondary) && /* @__PURE__ */ jsxs75("div", { className: "bc-row bc-status-actions", children: [
           action,
           secondary
         ] })
       }
     ),
-    extra && /* @__PURE__ */ jsx82("div", { className: "bc-status-extra", children: extra })
+    extra && /* @__PURE__ */ jsx83("div", { className: "bc-status-extra", children: extra })
   ] });
 }
-var Home = ({ href, label = "Vissza a kezd\u0151lapra", primary }) => /* @__PURE__ */ jsx82("a", { className: cx("bc-btn", !primary && "is-secondary"), href, children: label });
+var Home = ({ href, label = "Vissza a kezd\u0151lapra", primary }) => /* @__PURE__ */ jsx83("a", { className: cx("bc-btn", !primary && "is-secondary"), href, children: label });
 function ErrorPage({ onRetry, retrying, homeHref = "/", errorId, action, className }) {
-  return /* @__PURE__ */ jsx82(
+  return /* @__PURE__ */ jsx83(
     StatusPage,
     {
       kind: "szerverhiba",
       className,
-      action: action ?? (onRetry ? /* @__PURE__ */ jsx82(Button, { busy: retrying, onClick: onRetry, children: "\xDAjrapr\xF3b\xE1l\xE1s" }) : /* @__PURE__ */ jsx82(Home, { href: homeHref, primary: true })),
-      secondary: onRetry && !action ? /* @__PURE__ */ jsx82(Home, { href: homeHref }) : void 0,
-      extra: errorId && /* @__PURE__ */ jsxs74("p", { className: "bc-status-code", children: [
+      action: action ?? (onRetry ? /* @__PURE__ */ jsx83(Button, { busy: retrying, onClick: onRetry, children: "\xDAjrapr\xF3b\xE1l\xE1s" }) : /* @__PURE__ */ jsx83(Home, { href: homeHref, primary: true })),
+      secondary: onRetry && !action ? /* @__PURE__ */ jsx83(Home, { href: homeHref }) : void 0,
+      extra: errorId && /* @__PURE__ */ jsxs75("p", { className: "bc-status-code", children: [
         "Hibak\xF3d: ",
-        /* @__PURE__ */ jsx82(CopyButton, { value: errorId, what: "hibak\xF3d", showValue: true }),
+        /* @__PURE__ */ jsx83(CopyButton, { value: errorId, what: "hibak\xF3d", showValue: true }),
         " \u2013 add meg, ha \xEDrsz nek\xFCnk."
       ] })
     }
   );
 }
 function NotFoundPage({ homeHref = "/", action, className }) {
-  return /* @__PURE__ */ jsx82(
+  return /* @__PURE__ */ jsx83(
     StatusPage,
     {
       kind: "nem-talalhato",
       className,
-      action: action ?? /* @__PURE__ */ jsx82(Home, { href: homeHref, primary: true, label: "Ir\xE1ny a kezd\u0151lap" }),
-      secondary: /* @__PURE__ */ jsx82(Button, { variant: "secondary", onClick: () => history.back(), children: "Vissza az el\u0151z\u0151 oldalra" })
+      action: action ?? /* @__PURE__ */ jsx83(Home, { href: homeHref, primary: true, label: "Ir\xE1ny a kezd\u0151lap" }),
+      secondary: /* @__PURE__ */ jsx83(Button, { variant: "secondary", onClick: () => history.back(), children: "Vissza az el\u0151z\u0151 oldalra" })
     }
   );
 }
 function ForbiddenPage({ homeHref = "/", onRequestAccess, requested, action, className }) {
-  return /* @__PURE__ */ jsx82(
+  return /* @__PURE__ */ jsx83(
     StatusPage,
     {
       kind: "nincs-jogosultsag",
       className,
-      action: action ?? /* @__PURE__ */ jsx82(Home, { href: homeHref, primary: !onRequestAccess }),
-      secondary: onRequestAccess && /* @__PURE__ */ jsx82(Button, { disabled: requested, onClick: onRequestAccess, children: requested ? "K\xE9r\xE9s elk\xFCldve" : "Hozz\xE1f\xE9r\xE9s k\xE9r\xE9se" })
+      action: action ?? /* @__PURE__ */ jsx83(Home, { href: homeHref, primary: !onRequestAccess }),
+      secondary: onRequestAccess && /* @__PURE__ */ jsx83(Button, { disabled: requested, onClick: onRequestAccess, children: requested ? "K\xE9r\xE9s elk\xFCldve" : "Hozz\xE1f\xE9r\xE9s k\xE9r\xE9se" })
     }
   );
 }
 function SessionExpired({ onLogin, loginHref = "/login", action, className }) {
-  return /* @__PURE__ */ jsx82(
+  return /* @__PURE__ */ jsx83(
     StatusPage,
     {
       kind: "munkamenet-lejart",
       className,
-      action: action ?? (onLogin ? /* @__PURE__ */ jsx82(Button, { onClick: onLogin, children: "Bel\xE9p\xE9s \xFAjra" }) : /* @__PURE__ */ jsx82("a", { className: "bc-btn", href: loginHref, children: "Bel\xE9p\xE9s \xFAjra" }))
+      action: action ?? (onLogin ? /* @__PURE__ */ jsx83(Button, { onClick: onLogin, children: "Bel\xE9p\xE9s \xFAjra" }) : /* @__PURE__ */ jsx83("a", { className: "bc-btn", href: loginHref, children: "Bel\xE9p\xE9s \xFAjra" }))
     }
   );
 }
 function OfflinePage({ onRetry, retrying, className }) {
-  return /* @__PURE__ */ jsx82(StatusPage, { kind: "offline", className, action: onRetry && /* @__PURE__ */ jsx82(Button, { busy: retrying, onClick: onRetry, children: "\xDAjrapr\xF3b\xE1l\xE1s" }) });
+  return /* @__PURE__ */ jsx83(StatusPage, { kind: "offline", className, action: onRetry && /* @__PURE__ */ jsx83(Button, { busy: retrying, onClick: onRetry, children: "\xDAjrapr\xF3b\xE1l\xE1s" }) });
 }
 
 // react/src/kieg/Timeline.tsx
-import { useId as useId16, useMemo as useMemo4, useState as useState41 } from "react";
+import { useId as useId16, useMemo as useMemo4, useState as useState42 } from "react";
 
 // react/src/kieg/activity.ts
 var pad2 = (n) => String(n).padStart(2, "0");
@@ -5982,71 +6082,71 @@ function groupByDay(items, now = /* @__PURE__ */ new Date()) {
 }
 
 // react/src/kieg/Timeline.tsx
-import { Fragment as Fragment22, jsx as jsx83, jsxs as jsxs75 } from "react/jsx-runtime";
-var Empty = () => /* @__PURE__ */ jsx83("span", { className: "bc-tl-empty", children: "(\xFCres)" });
+import { Fragment as Fragment23, jsx as jsx84, jsxs as jsxs76 } from "react/jsx-runtime";
+var Empty = () => /* @__PURE__ */ jsx84("span", { className: "bc-tl-empty", children: "(\xFCres)" });
 var isEmpty = (v) => v === null || v === void 0 || v === "";
 function Changes({ changes }) {
-  const [open, setOpen] = useState41(false);
+  const [open, setOpen] = useState42(false);
   const id = useId16();
-  return /* @__PURE__ */ jsxs75("div", { className: "bc-tl-changes", children: [
-    /* @__PURE__ */ jsxs75("button", { type: "button", className: "bc-tl-toggle", "aria-expanded": open, "aria-controls": id, onClick: () => setOpen(!open), children: [
-      /* @__PURE__ */ jsx83(ChevronIcon, { open }),
+  return /* @__PURE__ */ jsxs76("div", { className: "bc-tl-changes", children: [
+    /* @__PURE__ */ jsxs76("button", { type: "button", className: "bc-tl-toggle", "aria-expanded": open, "aria-controls": id, onClick: () => setOpen(!open), children: [
+      /* @__PURE__ */ jsx84(ChevronIcon, { open }),
       changes.length,
       " mez\u0151 v\xE1ltozott"
     ] }),
-    open && /* @__PURE__ */ jsx83("dl", { id, className: "bc-tl-diff bc-anim-rise", children: changes.map((c, i) => /* @__PURE__ */ jsxs75("div", { className: "bc-tl-diff-row", children: [
-      /* @__PURE__ */ jsx83("dt", { children: c.field }),
-      /* @__PURE__ */ jsxs75("dd", { children: [
-        /* @__PURE__ */ jsxs75("del", { children: [
-          /* @__PURE__ */ jsx83("span", { className: "bc-sr", children: "el\u0151tte: " }),
-          isEmpty(c.before) ? /* @__PURE__ */ jsx83(Empty, {}) : c.before
+    open && /* @__PURE__ */ jsx84("dl", { id, className: "bc-tl-diff bc-anim-rise", children: changes.map((c, i) => /* @__PURE__ */ jsxs76("div", { className: "bc-tl-diff-row", children: [
+      /* @__PURE__ */ jsx84("dt", { children: c.field }),
+      /* @__PURE__ */ jsxs76("dd", { children: [
+        /* @__PURE__ */ jsxs76("del", { children: [
+          /* @__PURE__ */ jsx84("span", { className: "bc-sr", children: "el\u0151tte: " }),
+          isEmpty(c.before) ? /* @__PURE__ */ jsx84(Empty, {}) : c.before
         ] }),
-        /* @__PURE__ */ jsx83("span", { "aria-hidden": "true", className: "bc-tl-arrow", children: "\u2192" }),
-        /* @__PURE__ */ jsxs75("ins", { children: [
-          /* @__PURE__ */ jsx83("span", { className: "bc-sr", children: ", ut\xE1na: " }),
-          isEmpty(c.after) ? /* @__PURE__ */ jsx83(Empty, {}) : c.after
+        /* @__PURE__ */ jsx84("span", { "aria-hidden": "true", className: "bc-tl-arrow", children: "\u2192" }),
+        /* @__PURE__ */ jsxs76("ins", { children: [
+          /* @__PURE__ */ jsx84("span", { className: "bc-sr", children: ", ut\xE1na: " }),
+          isEmpty(c.after) ? /* @__PURE__ */ jsx84(Empty, {}) : c.after
         ] })
       ] })
     ] }, i)) })
   ] });
 }
 function Timeline({ items, status = "ready", onRetry, pageSize = 10, onLoadMore, hasMore, loadingMore, now, empty, label = "El\u0151zm\xE9nyek", className }) {
-  const [shown, setShown] = useState41(pageSize);
+  const [shown, setShown] = useState42(pageSize);
   const visible = onLoadMore ? items : items.slice(0, shown);
   const groups = useMemo4(() => groupByDay(visible, now), [visible, now]);
   const rest = onLoadMore ? 0 : items.length - visible.length;
   const more = onLoadMore ? hasMore : rest > 0;
-  return /* @__PURE__ */ jsx83(
+  return /* @__PURE__ */ jsx84(
     DataState,
     {
       status: status === "ready" && items.length === 0 ? "empty" : status,
       what: "az el\u0151zm\xE9nyeket",
       onRetry,
-      empty: empty ?? /* @__PURE__ */ jsx83(EmptyState, { compact: true, title: "M\xE9g nincs bejegyz\xE9s", children: "Ha valaki m\xF3dos\xEDt valamit, itt l\xE1tod: ki, mit \xE9s mikor." }),
-      children: /* @__PURE__ */ jsxs75("div", { className: cx("bc-tl", className), role: "region", "aria-label": label, children: [
-        groups.map((g) => /* @__PURE__ */ jsxs75("div", { className: "bc-tl-day", children: [
-          /* @__PURE__ */ jsx83("h3", { className: "bc-tl-day-h", children: g.label }),
-          /* @__PURE__ */ jsx83("ol", { className: "bc-tl-list", children: g.items.map((it) => /* @__PURE__ */ jsxs75("li", { className: "bc-tl-item", "data-tone": it.tone, children: [
-            /* @__PURE__ */ jsx83("time", { className: "bc-tl-time", dateTime: isoOf(it.at), children: timeLabel(it.at) }),
-            /* @__PURE__ */ jsxs75("p", { className: "bc-tl-text", children: [
-              /* @__PURE__ */ jsx83("strong", { children: it.who }),
+      empty: empty ?? /* @__PURE__ */ jsx84(EmptyState, { compact: true, title: "M\xE9g nincs bejegyz\xE9s", children: "Ha valaki m\xF3dos\xEDt valamit, itt l\xE1tod: ki, mit \xE9s mikor." }),
+      children: /* @__PURE__ */ jsxs76("div", { className: cx("bc-tl", className), role: "region", "aria-label": label, children: [
+        groups.map((g) => /* @__PURE__ */ jsxs76("div", { className: "bc-tl-day", children: [
+          /* @__PURE__ */ jsx84("h3", { className: "bc-tl-day-h", children: g.label }),
+          /* @__PURE__ */ jsx84("ol", { className: "bc-tl-list", children: g.items.map((it) => /* @__PURE__ */ jsxs76("li", { className: "bc-tl-item", "data-tone": it.tone, children: [
+            /* @__PURE__ */ jsx84("time", { className: "bc-tl-time", dateTime: isoOf(it.at), children: timeLabel(it.at) }),
+            /* @__PURE__ */ jsxs76("p", { className: "bc-tl-text", children: [
+              /* @__PURE__ */ jsx84("strong", { children: it.who }),
               " ",
               it.action,
-              it.target ? /* @__PURE__ */ jsxs75(Fragment22, { children: [
+              it.target ? /* @__PURE__ */ jsxs76(Fragment23, { children: [
                 " ",
                 it.target
               ] }) : null
             ] }),
-            it.changes && it.changes.length > 0 && /* @__PURE__ */ jsx83(Changes, { changes: it.changes })
+            it.changes && it.changes.length > 0 && /* @__PURE__ */ jsx84(Changes, { changes: it.changes })
           ] }, it.id)) })
         ] }, g.key)),
-        (more || items.length > pageSize) && /* @__PURE__ */ jsxs75("div", { className: "bc-tl-more", children: [
-          /* @__PURE__ */ jsxs75("span", { className: "bc-tl-count", role: "status", children: [
+        (more || items.length > pageSize) && /* @__PURE__ */ jsxs76("div", { className: "bc-tl-more", children: [
+          /* @__PURE__ */ jsxs76("span", { className: "bc-tl-count", role: "status", children: [
             visible.length,
             onLoadMore ? "" : `/${items.length}`,
             " bejegyz\xE9s l\xE1tszik"
           ] }),
-          more && /* @__PURE__ */ jsx83(Button, { variant: "secondary", size: "sm", busy: loadingMore, onClick: () => onLoadMore ? onLoadMore() : setShown((s) => s + pageSize), children: onLoadMore ? "M\xE9g t\xF6bb bejegyz\xE9s" : `M\xE9g ${Math.min(pageSize, rest)} bejegyz\xE9s` })
+          more && /* @__PURE__ */ jsx84(Button, { variant: "secondary", size: "sm", busy: loadingMore, onClick: () => onLoadMore ? onLoadMore() : setShown((s) => s + pageSize), children: onLoadMore ? "M\xE9g t\xF6bb bejegyz\xE9s" : `M\xE9g ${Math.min(pageSize, rest)} bejegyz\xE9s` })
         ] })
       ] })
     }
@@ -6054,11 +6154,11 @@ function Timeline({ items, status = "ready", onRetry, pageSize = 10, onLoadMore,
 }
 
 // react/src/kieg/PreviewCard.tsx
-import { useCallback as useCallback5, useState as useState42 } from "react";
+import { useCallback as useCallback5, useState as useState43 } from "react";
 
 // react/src/kieg/Clamp.tsx
-import { createContext as createContext3, useContext as useContext3, useEffect as useEffect22, useLayoutEffect as useLayoutEffect5, useRef as useRef33 } from "react";
-import { jsx as jsx84 } from "react/jsx-runtime";
+import { createContext as createContext3, useContext as useContext3, useEffect as useEffect23, useLayoutEffect as useLayoutEffect5, useRef as useRef33 } from "react";
+import { jsx as jsx85 } from "react/jsx-runtime";
 var CutContext = createContext3(() => void 0);
 function Clamp({ k, label, lines, as: Tag = "p", placeholder, className, children }) {
   const ref = useRef33(null);
@@ -6083,51 +6183,51 @@ function Clamp({ k, label, lines, as: Tag = "p", placeholder, className, childre
       ro?.disconnect();
     };
   }, [children, lines, empty, k, label, report]);
-  useEffect22(() => () => report(k, label, lines, false), [k, label, lines, report]);
+  useEffect23(() => () => report(k, label, lines, false), [k, label, lines, report]);
   const style = { ["--lines"]: lines };
-  return /* @__PURE__ */ jsx84(Tag, { ref, className: cx("bc-clamp", lines === 1 && "is-one", empty && "is-placeholder", className), style, "data-clamp": k, children: empty ? placeholder : children });
+  return /* @__PURE__ */ jsx85(Tag, { ref, className: cx("bc-clamp", lines === 1 && "is-one", empty && "is-placeholder", className), style, "data-clamp": k, children: empty ? placeholder : children });
 }
 
 // react/src/kieg/PreviewCard.tsx
-import { jsx as jsx85, jsxs as jsxs76 } from "react/jsx-runtime";
-var Img = ({ src }) => src ? /* @__PURE__ */ jsx85("img", { className: "bc-pv-img", src, alt: "", loading: "lazy" }) : /* @__PURE__ */ jsx85("div", { className: "bc-pv-img is-empty", children: /* @__PURE__ */ jsx85("span", { children: "Nincs k\xE9p" }) });
+import { jsx as jsx86, jsxs as jsxs77 } from "react/jsx-runtime";
+var Img = ({ src }) => src ? /* @__PURE__ */ jsx86("img", { className: "bc-pv-img", src, alt: "", loading: "lazy" }) : /* @__PURE__ */ jsx86("div", { className: "bc-pv-img is-empty", children: /* @__PURE__ */ jsx86("span", { children: "Nincs k\xE9p" }) });
 function Partner(p) {
-  return /* @__PURE__ */ jsxs76("article", { className: "bc-pv-card", children: [
-    /* @__PURE__ */ jsx85(Img, { src: p.imageUrl }),
-    /* @__PURE__ */ jsxs76("div", { className: "bc-pv-body", children: [
-      /* @__PURE__ */ jsx85(Clamp, { k: "name", label: "A partner neve", lines: 1, as: "h3", placeholder: "Partner neve", className: "bc-pv-title", children: p.name }),
-      p.category && /* @__PURE__ */ jsx85("span", { className: "bc-badge is-accent bc-pv-badge", children: p.category }),
-      /* @__PURE__ */ jsx85(Clamp, { k: "address", label: "Az utcac\xEDm", lines: 1, placeholder: "C\xEDm helye", className: "bc-pv-meta", children: p.address }),
-      /* @__PURE__ */ jsx85(Clamp, { k: "description", label: "A le\xEDr\xE1s", lines: 3, placeholder: "R\xF6vid le\xEDr\xE1s helye", className: "bc-pv-text", children: p.description })
+  return /* @__PURE__ */ jsxs77("article", { className: "bc-pv-card", children: [
+    /* @__PURE__ */ jsx86(Img, { src: p.imageUrl }),
+    /* @__PURE__ */ jsxs77("div", { className: "bc-pv-body", children: [
+      /* @__PURE__ */ jsx86(Clamp, { k: "name", label: "A partner neve", lines: 1, as: "h3", placeholder: "Partner neve", className: "bc-pv-title", children: p.name }),
+      p.category && /* @__PURE__ */ jsx86("span", { className: "bc-badge is-accent bc-pv-badge", children: p.category }),
+      /* @__PURE__ */ jsx86(Clamp, { k: "address", label: "Az utcac\xEDm", lines: 1, placeholder: "C\xEDm helye", className: "bc-pv-meta", children: p.address }),
+      /* @__PURE__ */ jsx86(Clamp, { k: "description", label: "A le\xEDr\xE1s", lines: 3, placeholder: "R\xF6vid le\xEDr\xE1s helye", className: "bc-pv-text", children: p.description })
     ] })
   ] });
 }
 function Coupon(p) {
-  return /* @__PURE__ */ jsxs76("article", { className: "bc-pv-card", children: [
-    /* @__PURE__ */ jsxs76("div", { className: "bc-pv-media", children: [
-      /* @__PURE__ */ jsx85(Img, { src: p.imageUrl }),
-      p.discount && /* @__PURE__ */ jsx85("span", { className: "bc-pv-discount", children: p.discount })
+  return /* @__PURE__ */ jsxs77("article", { className: "bc-pv-card", children: [
+    /* @__PURE__ */ jsxs77("div", { className: "bc-pv-media", children: [
+      /* @__PURE__ */ jsx86(Img, { src: p.imageUrl }),
+      p.discount && /* @__PURE__ */ jsx86("span", { className: "bc-pv-discount", children: p.discount })
     ] }),
-    /* @__PURE__ */ jsxs76("div", { className: "bc-pv-body", children: [
-      /* @__PURE__ */ jsx85(Clamp, { k: "partner", label: "A partner neve", lines: 1, placeholder: "Partner neve", className: "bc-pv-meta", children: p.partnerName }),
-      /* @__PURE__ */ jsx85(Clamp, { k: "title", label: "A kupon neve", lines: 2, as: "h3", placeholder: "Kupon neve", className: "bc-pv-title", children: p.title }),
-      /* @__PURE__ */ jsx85(Clamp, { k: "description", label: "A felt\xE9telek", lines: 2, placeholder: "Felt\xE9telek helye", className: "bc-pv-text", children: p.description }),
-      /* @__PURE__ */ jsx85("p", { className: "bc-pv-meta", children: p.validUntil ? `\xC9rv\xE9nyes: ${p.validUntil}` : "\xC9rv\xE9nyess\xE9g helye" })
+    /* @__PURE__ */ jsxs77("div", { className: "bc-pv-body", children: [
+      /* @__PURE__ */ jsx86(Clamp, { k: "partner", label: "A partner neve", lines: 1, placeholder: "Partner neve", className: "bc-pv-meta", children: p.partnerName }),
+      /* @__PURE__ */ jsx86(Clamp, { k: "title", label: "A kupon neve", lines: 2, as: "h3", placeholder: "Kupon neve", className: "bc-pv-title", children: p.title }),
+      /* @__PURE__ */ jsx86(Clamp, { k: "description", label: "A felt\xE9telek", lines: 2, placeholder: "Felt\xE9telek helye", className: "bc-pv-text", children: p.description }),
+      /* @__PURE__ */ jsx86("p", { className: "bc-pv-meta", children: p.validUntil ? `\xC9rv\xE9nyes: ${p.validUntil}` : "\xC9rv\xE9nyess\xE9g helye" })
     ] })
   ] });
 }
 function Notification(p) {
-  return /* @__PURE__ */ jsxs76("article", { className: "bc-pv-card is-message", children: [
-    p.imageUrl !== void 0 && /* @__PURE__ */ jsx85(Img, { src: p.imageUrl || void 0 }),
-    /* @__PURE__ */ jsxs76("div", { className: "bc-pv-body", children: [
-      /* @__PURE__ */ jsx85(Clamp, { k: "title", label: "A c\xEDm", lines: 2, as: "h3", placeholder: "Az \xE9rtes\xEDt\xE9s c\xEDme", className: "bc-pv-title", children: p.title }),
-      /* @__PURE__ */ jsx85(Clamp, { k: "body", label: "Az \xFCzenet", lines: 4, placeholder: "Az \xFCzenet sz\xF6vege", className: "bc-pv-text", children: p.body }),
-      p.buttonText !== void 0 && /* @__PURE__ */ jsx85("span", { className: "bc-btn is-sm is-block bc-pv-btn", children: /* @__PURE__ */ jsx85(Clamp, { k: "button", label: "A gomb felirata", lines: 1, as: "span", placeholder: "Gomb felirata", children: p.buttonText }) })
+  return /* @__PURE__ */ jsxs77("article", { className: "bc-pv-card is-message", children: [
+    p.imageUrl !== void 0 && /* @__PURE__ */ jsx86(Img, { src: p.imageUrl || void 0 }),
+    /* @__PURE__ */ jsxs77("div", { className: "bc-pv-body", children: [
+      /* @__PURE__ */ jsx86(Clamp, { k: "title", label: "A c\xEDm", lines: 2, as: "h3", placeholder: "Az \xE9rtes\xEDt\xE9s c\xEDme", className: "bc-pv-title", children: p.title }),
+      /* @__PURE__ */ jsx86(Clamp, { k: "body", label: "Az \xFCzenet", lines: 4, placeholder: "Az \xFCzenet sz\xF6vege", className: "bc-pv-text", children: p.body }),
+      p.buttonText !== void 0 && /* @__PURE__ */ jsx86("span", { className: "bc-btn is-sm is-block bc-pv-btn", children: /* @__PURE__ */ jsx86(Clamp, { k: "button", label: "A gomb felirata", lines: 1, as: "span", placeholder: "Gomb felirata", children: p.buttonText }) })
     ] })
   ] });
 }
 function PreviewCard({ caption = "\xCDgy l\xE1tszik az appban", className, ...data }) {
-  const [cuts, setCuts] = useState42({});
+  const [cuts, setCuts] = useState43({});
   const report = useCallback5((key, label, lines, cut) => {
     setCuts((prev) => {
       if (Boolean(prev[key]) === cut) return prev;
@@ -6139,17 +6239,17 @@ function PreviewCard({ caption = "\xCDgy l\xE1tszik az appban", className, ...da
   }, []);
   const list2 = Object.entries(cuts);
   let body;
-  if (data.variant === "partner") body = /* @__PURE__ */ jsx85(Partner, { ...data });
-  else if (data.variant === "kupon") body = /* @__PURE__ */ jsx85(Coupon, { ...data });
-  else body = /* @__PURE__ */ jsx85(Notification, { ...data });
-  return /* @__PURE__ */ jsxs76("figure", { className: cx("bc-preview", className), "data-variant": data.variant, children: [
-    /* @__PURE__ */ jsxs76("div", { className: "bc-pv-phone", "aria-label": `${caption} (el\u0151n\xE9zet)`, role: "group", children: [
-      /* @__PURE__ */ jsx85("div", { className: "bc-pv-notch", "aria-hidden": "true" }),
-      /* @__PURE__ */ jsx85("div", { className: "bc-pv-screen", children: /* @__PURE__ */ jsx85(CutContext.Provider, { value: report, children: body }) })
+  if (data.variant === "partner") body = /* @__PURE__ */ jsx86(Partner, { ...data });
+  else if (data.variant === "kupon") body = /* @__PURE__ */ jsx86(Coupon, { ...data });
+  else body = /* @__PURE__ */ jsx86(Notification, { ...data });
+  return /* @__PURE__ */ jsxs77("figure", { className: cx("bc-preview", className), "data-variant": data.variant, children: [
+    /* @__PURE__ */ jsxs77("div", { className: "bc-pv-phone", "aria-label": `${caption} (el\u0151n\xE9zet)`, role: "group", children: [
+      /* @__PURE__ */ jsx86("div", { className: "bc-pv-notch", "aria-hidden": "true" }),
+      /* @__PURE__ */ jsx86("div", { className: "bc-pv-screen", children: /* @__PURE__ */ jsx86(CutContext.Provider, { value: report, children: body }) })
     ] }),
-    /* @__PURE__ */ jsxs76("figcaption", { className: "bc-pv-caption", children: [
-      /* @__PURE__ */ jsx85("span", { children: caption }),
-      /* @__PURE__ */ jsx85("span", { className: "bc-pv-notes", role: "status", children: list2.length === 0 ? /* @__PURE__ */ jsx85("span", { className: "bc-badge is-success", children: "Minden sz\xF6veg kif\xE9r" }) : list2.map(([k, c]) => /* @__PURE__ */ jsxs76("span", { className: "bc-badge is-warning", "data-cut": k, children: [
+    /* @__PURE__ */ jsxs77("figcaption", { className: "bc-pv-caption", children: [
+      /* @__PURE__ */ jsx86("span", { children: caption }),
+      /* @__PURE__ */ jsx86("span", { className: "bc-pv-notes", role: "status", children: list2.length === 0 ? /* @__PURE__ */ jsx86("span", { className: "bc-badge is-success", children: "Minden sz\xF6veg kif\xE9r" }) : list2.map(([k, c]) => /* @__PURE__ */ jsxs77("span", { className: "bc-badge is-warning", "data-cut": k, children: [
         c.label,
         " lev\xE1g\xF3dik: ",
         c.lines === 1 ? "1 sor" : `${c.lines} sor`,
@@ -6160,7 +6260,7 @@ function PreviewCard({ caption = "\xCDgy l\xE1tszik az appban", className, ...da
 }
 
 // react/src/kieg/AudienceBuilder.tsx
-import { Fragment as Fragment23, useEffect as useEffect23, useId as useId17, useRef as useRef34, useState as useState43 } from "react";
+import { Fragment as Fragment24, useEffect as useEffect24, useId as useId17, useRef as useRef34, useState as useState44 } from "react";
 
 // react/src/kieg/audience.ts
 var OPS = {
@@ -6199,14 +6299,14 @@ function describeAudience(a, fields) {
 }
 
 // react/src/kieg/AudienceRule.tsx
-import { jsx as jsx86, jsxs as jsxs77 } from "react/jsx-runtime";
+import { jsx as jsx87, jsxs as jsxs78 } from "react/jsx-runtime";
 function AudienceRuleRow({ rule, n, fields, onChange, onRemove, onBlur, error, disabled }) {
   const f = fields.find((x) => x.key === rule.field);
   const ops = f ? OPS[f.type] : [];
   const valueLabel = f ? `${f.label} \u2013 \xE9rt\xE9k` : "\xC9rt\xE9k";
-  return /* @__PURE__ */ jsxs77("li", { className: "bc-aud-rule", "data-rule": rule.id, "data-invalid": error ? true : void 0, onBlur, "aria-label": `${n}. felt\xE9tel`, children: [
-    /* @__PURE__ */ jsxs77("div", { className: "bc-aud-grid", children: [
-      /* @__PURE__ */ jsx86(
+  return /* @__PURE__ */ jsxs78("li", { className: "bc-aud-rule", "data-rule": rule.id, "data-invalid": error ? true : void 0, onBlur, "aria-label": `${n}. felt\xE9tel`, children: [
+    /* @__PURE__ */ jsxs78("div", { className: "bc-aud-grid", children: [
+      /* @__PURE__ */ jsx87(
         SelectField,
         {
           label: "Mire sz\u0171r",
@@ -6221,7 +6321,7 @@ function AudienceRuleRow({ rule, n, fields, onChange, onRemove, onBlur, error, d
           }
         }
       ),
-      /* @__PURE__ */ jsx86(
+      /* @__PURE__ */ jsx87(
         SelectField,
         {
           label: "Felt\xE9tel",
@@ -6233,7 +6333,7 @@ function AudienceRuleRow({ rule, n, fields, onChange, onRemove, onBlur, error, d
           onChange: (e) => onChange({ ...rule, op: e.target.value })
         }
       ),
-      !f || f.type === "select" ? /* @__PURE__ */ jsx86(
+      !f || f.type === "select" ? /* @__PURE__ */ jsx87(
         SelectField,
         {
           label: valueLabel,
@@ -6244,7 +6344,7 @@ function AudienceRuleRow({ rule, n, fields, onChange, onRemove, onBlur, error, d
           options: f?.options ?? [],
           onChange: (e) => onChange({ ...rule, value: e.target.value || null })
         }
-      ) : f.type === "number" ? /* @__PURE__ */ jsx86(
+      ) : f.type === "number" ? /* @__PURE__ */ jsx87(
         NumberField,
         {
           label: valueLabel,
@@ -6257,7 +6357,7 @@ function AudienceRuleRow({ rule, n, fields, onChange, onRemove, onBlur, error, d
           value: typeof rule.value === "number" ? rule.value : null,
           onChange: (v) => onChange({ ...rule, value: v })
         }
-      ) : /* @__PURE__ */ jsx86(
+      ) : /* @__PURE__ */ jsx87(
         TextField,
         {
           label: valueLabel,
@@ -6268,9 +6368,9 @@ function AudienceRuleRow({ rule, n, fields, onChange, onRemove, onBlur, error, d
           onChange: (e) => onChange({ ...rule, value: e.target.value })
         }
       ),
-      !disabled && /* @__PURE__ */ jsx86(IconButton, { className: "bc-aud-remove", "aria-label": `${n}. felt\xE9tel t\xF6rl\xE9se`, danger: true, onClick: onRemove, children: /* @__PURE__ */ jsx86(CloseIcon2, {}) })
+      !disabled && /* @__PURE__ */ jsx87(IconButton, { className: "bc-aud-remove", "aria-label": `${n}. felt\xE9tel t\xF6rl\xE9se`, danger: true, onClick: onRemove, children: /* @__PURE__ */ jsx87(CloseIcon2, {}) })
     ] }),
-    error && /* @__PURE__ */ jsxs77("p", { className: "bc-error", role: "alert", children: [
+    error && /* @__PURE__ */ jsxs78("p", { className: "bc-error", role: "alert", children: [
       n,
       ". felt\xE9tel: ",
       error
@@ -6279,7 +6379,7 @@ function AudienceRuleRow({ rule, n, fields, onChange, onRemove, onBlur, error, d
 }
 
 // react/src/kieg/AudienceBuilder.tsx
-import { jsx as jsx87, jsxs as jsxs78 } from "react/jsx-runtime";
+import { jsx as jsx88, jsxs as jsxs79 } from "react/jsx-runtime";
 function AudienceBuilder({
   fields,
   value,
@@ -6293,14 +6393,14 @@ function AudienceBuilder({
   className
 }) {
   const uid = useId17();
-  const [touched, setTouched] = useState43(() => /* @__PURE__ */ new Set());
+  const [touched, setTouched] = useState44(() => /* @__PURE__ */ new Set());
   const focusRule = useRef34(null);
   const addBtn = useRef34(null);
   const root = useRef34(null);
   const problems = audienceProblems(value, fields);
   const bad2 = Object.keys(problems).length;
   const full = value.rules.length >= maxRules;
-  useEffect23(() => {
+  useEffect24(() => {
     if (!focusRule.current) return;
     root.current?.querySelector(`[data-rule="${focusRule.current}"] select`)?.focus();
     focusRule.current = null;
@@ -6315,17 +6415,17 @@ function AudienceBuilder({
     onChange({ ...value, rules: value.rules.filter((r) => r.id !== id) });
     addBtn.current?.focus();
   };
-  return /* @__PURE__ */ jsxs78("fieldset", { ref: root, className: cx("bc-aud", className), disabled, "aria-labelledby": `${uid}-l`, children: [
-    /* @__PURE__ */ jsxs78("legend", { className: "bc-label-row bc-aud-legend", children: [
-      /* @__PURE__ */ jsx87("span", { className: "bc-label", id: `${uid}-l`, children: label }),
-      /* @__PURE__ */ jsx87(HelpButton, { label, children: help })
+  return /* @__PURE__ */ jsxs79("fieldset", { ref: root, className: cx("bc-aud", className), disabled, "aria-labelledby": `${uid}-l`, children: [
+    /* @__PURE__ */ jsxs79("legend", { className: "bc-label-row bc-aud-legend", children: [
+      /* @__PURE__ */ jsx88("span", { className: "bc-label", id: `${uid}-l`, children: label }),
+      /* @__PURE__ */ jsx88(HelpButton, { label, children: help })
     ] }),
-    value.rules.length >= 2 && /* @__PURE__ */ jsxs78("div", { className: "bc-aud-join", children: [
-      /* @__PURE__ */ jsxs78("span", { className: "bc-aud-join-label", children: [
+    value.rules.length >= 2 && /* @__PURE__ */ jsxs79("div", { className: "bc-aud-join", children: [
+      /* @__PURE__ */ jsxs79("span", { className: "bc-aud-join-label", children: [
         "Kik kapj\xE1k meg? ",
-        /* @__PURE__ */ jsx87("span", { className: "bc-muted", children: "\xC9S: akikre minden felt\xE9tel igaz \xB7 VAGY: akikre legal\xE1bb egy." })
+        /* @__PURE__ */ jsx88("span", { className: "bc-muted", children: "\xC9S: akikre minden felt\xE9tel igaz \xB7 VAGY: akikre legal\xE1bb egy." })
       ] }),
-      /* @__PURE__ */ jsx87(
+      /* @__PURE__ */ jsx88(
         SegmentedControl,
         {
           label: "A felt\xE9telek kapcsolata",
@@ -6335,12 +6435,12 @@ function AudienceBuilder({
         }
       )
     ] }),
-    value.rules.length === 0 ? /* @__PURE__ */ jsx87("div", { className: "bc-alert is-info", children: /* @__PURE__ */ jsxs78("p", { children: [
-      /* @__PURE__ */ jsx87("strong", { children: "Nincs felt\xE9tel:" }),
+    value.rules.length === 0 ? /* @__PURE__ */ jsx88("div", { className: "bc-alert is-info", children: /* @__PURE__ */ jsxs79("p", { children: [
+      /* @__PURE__ */ jsx88("strong", { children: "Nincs felt\xE9tel:" }),
       " az \xFCzenetet mindenki megkapja. Sz\u0171k\xEDt\xE9shez adj hozz\xE1 felt\xE9telt."
-    ] }) }) : /* @__PURE__ */ jsx87("ol", { className: "bc-aud-rules", children: value.rules.map((r, i) => /* @__PURE__ */ jsxs78(Fragment23, { children: [
-      i > 0 && /* @__PURE__ */ jsx87("li", { className: "bc-aud-joiner", "aria-hidden": "true", children: /* @__PURE__ */ jsx87("span", { className: "bc-badge is-muted", children: value.join === "and" ? "\xC9S" : "VAGY" }) }),
-      /* @__PURE__ */ jsx87(
+    ] }) }) : /* @__PURE__ */ jsx88("ol", { className: "bc-aud-rules", children: value.rules.map((r, i) => /* @__PURE__ */ jsxs79(Fragment24, { children: [
+      i > 0 && /* @__PURE__ */ jsx88("li", { className: "bc-aud-joiner", "aria-hidden": "true", children: /* @__PURE__ */ jsx88("span", { className: "bc-badge is-muted", children: value.join === "and" ? "\xC9S" : "VAGY" }) }),
+      /* @__PURE__ */ jsx88(
         AudienceRuleRow,
         {
           rule: r,
@@ -6354,9 +6454,9 @@ function AudienceBuilder({
         }
       )
     ] }, r.id)) }),
-    /* @__PURE__ */ jsxs78("div", { className: "bc-row bc-aud-add", children: [
-      /* @__PURE__ */ jsx87(Button, { ref: addBtn, variant: "secondary", size: "sm", icon: /* @__PURE__ */ jsx87(PlusIcon, {}), onClick: add, disabled: full || disabled, children: "Felt\xE9tel hozz\xE1ad\xE1sa" }),
-      /* @__PURE__ */ jsxs78("span", { className: cx("bc-count", full ? "is-full" : value.rules.length >= maxRules * 0.9 && "is-near"), children: [
+    /* @__PURE__ */ jsxs79("div", { className: "bc-row bc-aud-add", children: [
+      /* @__PURE__ */ jsx88(Button, { ref: addBtn, variant: "secondary", size: "sm", icon: /* @__PURE__ */ jsx88(PlusIcon, {}), onClick: add, disabled: full || disabled, children: "Felt\xE9tel hozz\xE1ad\xE1sa" }),
+      /* @__PURE__ */ jsxs79("span", { className: cx("bc-count", full ? "is-full" : value.rules.length >= maxRules * 0.9 && "is-near"), children: [
         value.rules.length,
         "/",
         maxRules,
@@ -6364,17 +6464,17 @@ function AudienceBuilder({
         full ? " \u2013 el\xE9rted a hat\xE1rt" : ""
       ] })
     ] }),
-    /* @__PURE__ */ jsxs78("div", { className: "bc-aud-estimate", role: "status", "aria-live": "polite", children: [
-      /* @__PURE__ */ jsx87("span", { className: "bc-aud-estimate-label", children: "Becs\xFClt c\xEDmzettek" }),
-      estimate?.loading ? /* @__PURE__ */ jsxs78("span", { className: "bc-row", children: [
-        /* @__PURE__ */ jsx87(HexLoader, { label: "Sz\xE1moljuk a c\xEDmzetteket" }),
+    /* @__PURE__ */ jsxs79("div", { className: "bc-aud-estimate", role: "status", "aria-live": "polite", children: [
+      /* @__PURE__ */ jsx88("span", { className: "bc-aud-estimate-label", children: "Becs\xFClt c\xEDmzettek" }),
+      estimate?.loading ? /* @__PURE__ */ jsxs79("span", { className: "bc-row", children: [
+        /* @__PURE__ */ jsx88(HexLoader, { label: "Sz\xE1moljuk a c\xEDmzetteket" }),
         " Sz\xE1moljuk\u2026"
-      ] }) : estimate?.error ? /* @__PURE__ */ jsx87("span", { className: "bc-error", children: estimate.error }) : /* @__PURE__ */ jsx87("strong", { className: "bc-num bc-aud-count", children: estimate?.count == null ? "\u2013" : `${formatHu(estimate.count, 0)} f\u0151` }),
-      /* @__PURE__ */ jsxs78("span", { className: "bc-aud-summary", children: [
+      ] }) : estimate?.error ? /* @__PURE__ */ jsx88("span", { className: "bc-error", children: estimate.error }) : /* @__PURE__ */ jsx88("strong", { className: "bc-num bc-aud-count", children: estimate?.count == null ? "\u2013" : `${formatHu(estimate.count, 0)} f\u0151` }),
+      /* @__PURE__ */ jsxs79("span", { className: "bc-aud-summary", children: [
         "Kik: ",
         describeAudience(value, fields)
       ] }),
-      bad2 > 0 && /* @__PURE__ */ jsxs78("span", { className: "bc-aud-warn", children: [
+      bad2 > 0 && /* @__PURE__ */ jsxs79("span", { className: "bc-aud-warn", children: [
         bad2,
         " hib\xE1s felt\xE9tel kimaradt a becsl\xE9sb\u0151l \u2013 jav\xEDtsd vagy t\xF6r\xF6ld."
       ] })
@@ -6383,7 +6483,7 @@ function AudienceBuilder({
 }
 
 // react/src/kieg/CompareMerge.tsx
-import { useId as useId19, useState as useState44 } from "react";
+import { useId as useId19, useState as useState45 } from "react";
 
 // react/src/kieg/MergeField.tsx
 import { useId as useId18 } from "react";
@@ -6425,11 +6525,11 @@ function mergedValues(records, fields, choices) {
 }
 
 // react/src/kieg/MergeField.tsx
-import { jsx as jsx88, jsxs as jsxs79 } from "react/jsx-runtime";
+import { jsx as jsx89, jsxs as jsxs80 } from "react/jsx-runtime";
 function MergeFieldChoice({ field, records, chosen, onChoose, error }) {
   const name2 = useId18();
   const show = field.format ?? showValue;
-  return /* @__PURE__ */ jsxs79(
+  return /* @__PURE__ */ jsxs80(
     "fieldset",
     {
       className: "bc-merge-field",
@@ -6438,35 +6538,35 @@ function MergeFieldChoice({ field, records, chosen, onChoose, error }) {
       "aria-invalid": error ? true : void 0,
       "aria-describedby": error ? `${name2}-err` : void 0,
       children: [
-        /* @__PURE__ */ jsxs79("legend", { className: "bc-merge-legend", children: [
+        /* @__PURE__ */ jsxs80("legend", { className: "bc-merge-legend", children: [
           field.label,
-          field.required && /* @__PURE__ */ jsx88("span", { className: "is-req", "aria-hidden": "true", children: "*" }),
-          /* @__PURE__ */ jsx88("span", { className: "bc-badge is-warning", children: "elt\xE9r" }),
-          !chosen && /* @__PURE__ */ jsx88("span", { className: "bc-sr", children: " \u2013 m\xE9g nem v\xE1lasztott\xE1l" })
+          field.required && /* @__PURE__ */ jsx89("span", { className: "is-req", "aria-hidden": "true", children: "*" }),
+          /* @__PURE__ */ jsx89("span", { className: "bc-badge is-warning", children: "elt\xE9r" }),
+          !chosen && /* @__PURE__ */ jsx89("span", { className: "bc-sr", children: " \u2013 m\xE9g nem v\xE1lasztott\xE1l" })
         ] }),
-        /* @__PURE__ */ jsx88("div", { className: "bc-merge-opts", children: records.map((r) => {
+        /* @__PURE__ */ jsx89("div", { className: "bc-merge-opts", children: records.map((r) => {
           const v = r.values[field.key];
           const blank = isBlank(v);
-          return /* @__PURE__ */ jsxs79("label", { className: cx("bc-merge-opt", chosen === r.id && "is-on", blank && "is-blank"), children: [
-            /* @__PURE__ */ jsx88("input", { type: "radio", name: name2, value: r.id, checked: chosen === r.id, onChange: () => onChoose(r.id) }),
-            /* @__PURE__ */ jsx88("span", { className: "bc-merge-src", children: r.label }),
-            /* @__PURE__ */ jsx88("span", { className: "bc-merge-val", children: blank ? "(\xFCres)" : show(v) })
+          return /* @__PURE__ */ jsxs80("label", { className: cx("bc-merge-opt", chosen === r.id && "is-on", blank && "is-blank"), children: [
+            /* @__PURE__ */ jsx89("input", { type: "radio", name: name2, value: r.id, checked: chosen === r.id, onChange: () => onChoose(r.id) }),
+            /* @__PURE__ */ jsx89("span", { className: "bc-merge-src", children: r.label }),
+            /* @__PURE__ */ jsx89("span", { className: "bc-merge-val", children: blank ? "(\xFCres)" : show(v) })
           ] }, r.id);
         }) }),
-        error && /* @__PURE__ */ jsx88("p", { className: "bc-error", id: `${name2}-err`, role: "alert", children: error })
+        error && /* @__PURE__ */ jsx89("p", { className: "bc-error", id: `${name2}-err`, role: "alert", children: error })
       ]
     }
   );
 }
 
 // react/src/kieg/CompareMerge.tsx
-import { Fragment as Fragment24, jsx as jsx89, jsxs as jsxs80 } from "react/jsx-runtime";
+import { Fragment as Fragment25, jsx as jsx90, jsxs as jsxs81 } from "react/jsx-runtime";
 function CompareMerge({ records, fields, choices, onChoicesChange, survivor, onSurvivorChange, onMerge, consequence, className }) {
   const uid = useId19();
-  const [showSame, setShowSame] = useState44(false);
-  const [asking, setAsking] = useState44(false);
-  const [busy, setBusy] = useState44(false);
-  const [err, setErr] = useState44();
+  const [showSame, setShowSame] = useState45(false);
+  const [asking, setAsking] = useState45(false);
+  const [busy, setBusy] = useState45(false);
+  const [err, setErr] = useState45();
   const diff = differing(records, fields);
   const diffKeys = new Set(diff.map((f) => f.key));
   const same2 = fields.filter((f) => !diffKeys.has(f.key));
@@ -6494,11 +6594,11 @@ function CompareMerge({ records, fields, choices, onChoicesChange, survivor, onS
     }
   };
   const survivorLabel = records.find((r) => r.id === survivor)?.label;
-  return /* @__PURE__ */ jsxs80("div", { className: cx("bc-merge", className), children: [
-    /* @__PURE__ */ jsxs80("div", { className: "bc-merge-head", children: [
-      /* @__PURE__ */ jsxs80("div", { className: "bc-merge-intro", children: [
-        /* @__PURE__ */ jsxs80("p", { children: [
-          /* @__PURE__ */ jsxs80("strong", { children: [
+  return /* @__PURE__ */ jsxs81("div", { className: cx("bc-merge", className), children: [
+    /* @__PURE__ */ jsxs81("div", { className: "bc-merge-head", children: [
+      /* @__PURE__ */ jsxs81("div", { className: "bc-merge-intro", children: [
+        /* @__PURE__ */ jsxs81("p", { children: [
+          /* @__PURE__ */ jsxs81("strong", { children: [
             diff.length,
             " mez\u0151 t\xE9r el"
           ] }),
@@ -6506,18 +6606,18 @@ function CompareMerge({ records, fields, choices, onChoicesChange, survivor, onS
           same2.length,
           " egyezik. Mez\u0151nk\xE9nt v\xE1laszd ki, melyik \xE9rt\xE9k maradjon."
         ] }),
-        /* @__PURE__ */ jsx89(HelpButton, { label: "\xD6sszef\xE9s\xFCl\xE9s", children: "Az egyez\u0151 mez\u0151k maradnak, ahogy vannak. Az elt\xE9r\u0151kn\xE9l te d\xF6nt\xF6d el, melyik rekord \xE9rt\xE9ke ker\xFCl az eredm\xE9nybe. A \u201EJavaslat\u201D csak ott d\xF6nt, ahol egyetlen rekordban van kit\xF6ltve az adat." })
+        /* @__PURE__ */ jsx90(HelpButton, { label: "\xD6sszef\xE9s\xFCl\xE9s", children: "Az egyez\u0151 mez\u0151k maradnak, ahogy vannak. Az elt\xE9r\u0151kn\xE9l te d\xF6nt\xF6d el, melyik rekord \xE9rt\xE9ke ker\xFCl az eredm\xE9nybe. A \u201EJavaslat\u201D csak ott d\xF6nt, ahol egyetlen rekordban van kit\xF6ltve az adat." })
       ] }),
-      /* @__PURE__ */ jsxs80("div", { className: "bc-row", children: [
-        /* @__PURE__ */ jsx89(Button, { variant: "secondary", size: "sm", onClick: () => onChoicesChange(suggest(records, fields, choices)), children: "Javaslat: a kit\xF6lt\xF6tt \xE9rt\xE9kek" }),
-        records.map((r) => /* @__PURE__ */ jsxs80(Button, { variant: "ghost", size: "sm", onClick: () => onChoicesChange(Object.fromEntries(diff.map((f) => [f.key, r.id]))), children: [
+      /* @__PURE__ */ jsxs81("div", { className: "bc-row", children: [
+        /* @__PURE__ */ jsx90(Button, { variant: "secondary", size: "sm", onClick: () => onChoicesChange(suggest(records, fields, choices)), children: "Javaslat: a kit\xF6lt\xF6tt \xE9rt\xE9kek" }),
+        records.map((r) => /* @__PURE__ */ jsxs81(Button, { variant: "ghost", size: "sm", onClick: () => onChoicesChange(Object.fromEntries(diff.map((f) => [f.key, r.id]))), children: [
           "Mind innen: ",
           r.label
         ] }, r.id))
       ] }),
-      /* @__PURE__ */ jsxs80("div", { className: "bc-merge-progress", children: [
-        /* @__PURE__ */ jsx89(ProgressBar, { value: diff.length ? decided / diff.length : 1, label: "Eld\xF6nt\xF6tt mez\u0151k" }),
-        /* @__PURE__ */ jsxs80("span", { className: "bc-count", role: "status", children: [
+      /* @__PURE__ */ jsxs81("div", { className: "bc-merge-progress", children: [
+        /* @__PURE__ */ jsx90(ProgressBar, { value: diff.length ? decided / diff.length : 1, label: "Eld\xF6nt\xF6tt mez\u0151k" }),
+        /* @__PURE__ */ jsxs81("span", { className: "bc-count", role: "status", children: [
           decided,
           "/",
           diff.length,
@@ -6525,7 +6625,7 @@ function CompareMerge({ records, fields, choices, onChoicesChange, survivor, onS
         ] })
       ] })
     ] }),
-    onSurvivorChange && /* @__PURE__ */ jsx89(
+    onSurvivorChange && /* @__PURE__ */ jsx90(
       RadioGroup,
       {
         label: "Melyik rekord maradjon meg?",
@@ -6536,8 +6636,8 @@ function CompareMerge({ records, fields, choices, onChoicesChange, survivor, onS
         options: records.map((r) => ({ value: r.id, label: r.label }))
       }
     ),
-    /* @__PURE__ */ jsxs80("div", { className: "bc-merge-fields", children: [
-      diff.map((f) => /* @__PURE__ */ jsx89(
+    /* @__PURE__ */ jsxs81("div", { className: "bc-merge-fields", children: [
+      diff.map((f) => /* @__PURE__ */ jsx90(
         MergeFieldChoice,
         {
           field: f,
@@ -6548,38 +6648,38 @@ function CompareMerge({ records, fields, choices, onChoicesChange, survivor, onS
         },
         f.key
       )),
-      diff.length === 0 && /* @__PURE__ */ jsx89("div", { className: "bc-alert is-info", children: /* @__PURE__ */ jsxs80("p", { children: [
+      diff.length === 0 && /* @__PURE__ */ jsx90("div", { className: "bc-alert is-info", children: /* @__PURE__ */ jsxs81("p", { children: [
         "Minden mez\u0151 egyezik",
         onSurvivorChange ? " \u2013 csak a megmarad\xF3 rekordot kell kiv\xE1lasztanod." : ": az \xF6sszef\xE9s\xFCl\xE9s csak a duplik\xE1tumot sz\xFCnteti meg."
       ] }) })
     ] }),
-    same2.length > 0 && /* @__PURE__ */ jsxs80("div", { className: "bc-merge-same", children: [
-      /* @__PURE__ */ jsx89(Button, { variant: "ghost", size: "sm", "aria-expanded": showSame, onClick: () => setShowSame(!showSame), children: showSame ? "Egyez\u0151 mez\u0151k elrejt\xE9se" : `Egyez\u0151 mez\u0151k mutat\xE1sa (${same2.length})` }),
-      showSame && /* @__PURE__ */ jsx89("dl", { className: "bc-merge-result", children: same2.map((f) => /* @__PURE__ */ jsxs80("div", { children: [
-        /* @__PURE__ */ jsx89("dt", { children: f.label }),
-        /* @__PURE__ */ jsxs80("dd", { children: [
+    same2.length > 0 && /* @__PURE__ */ jsxs81("div", { className: "bc-merge-same", children: [
+      /* @__PURE__ */ jsx90(Button, { variant: "ghost", size: "sm", "aria-expanded": showSame, onClick: () => setShowSame(!showSame), children: showSame ? "Egyez\u0151 mez\u0151k elrejt\xE9se" : `Egyez\u0151 mez\u0151k mutat\xE1sa (${same2.length})` }),
+      showSame && /* @__PURE__ */ jsx90("dl", { className: "bc-merge-result", children: same2.map((f) => /* @__PURE__ */ jsxs81("div", { children: [
+        /* @__PURE__ */ jsx90("dt", { children: f.label }),
+        /* @__PURE__ */ jsxs81("dd", { children: [
           isBlank(result[f.key]) ? "(\xFCres)" : (f.format ?? showValue)(result[f.key]),
           " ",
-          /* @__PURE__ */ jsx89("span", { className: "bc-badge is-muted", children: "egyezik" })
+          /* @__PURE__ */ jsx90("span", { className: "bc-badge is-muted", children: "egyezik" })
         ] })
       ] }, f.key)) })
     ] }),
-    diff.length > 0 && /* @__PURE__ */ jsxs80("div", { className: "bc-card is-flat bc-merge-preview", children: [
-      /* @__PURE__ */ jsx89("h3", { className: "bc-card-title", children: "Az eredm\xE9ny" }),
-      /* @__PURE__ */ jsx89("dl", { className: "bc-merge-result", children: diff.map((f) => /* @__PURE__ */ jsxs80("div", { "data-result": f.key, children: [
-        /* @__PURE__ */ jsx89("dt", { children: f.label }),
-        /* @__PURE__ */ jsx89("dd", { children: choices[f.key] ? isBlank(result[f.key]) ? "(\xFCres)" : (f.format ?? showValue)(result[f.key]) : /* @__PURE__ */ jsx89("em", { className: "bc-merge-todo", children: "m\xE9g nem v\xE1lasztott\xE1l" }) })
+    diff.length > 0 && /* @__PURE__ */ jsxs81("div", { className: "bc-card is-flat bc-merge-preview", children: [
+      /* @__PURE__ */ jsx90("h3", { className: "bc-card-title", children: "Az eredm\xE9ny" }),
+      /* @__PURE__ */ jsx90("dl", { className: "bc-merge-result", children: diff.map((f) => /* @__PURE__ */ jsxs81("div", { "data-result": f.key, children: [
+        /* @__PURE__ */ jsx90("dt", { children: f.label }),
+        /* @__PURE__ */ jsx90("dd", { children: choices[f.key] ? isBlank(result[f.key]) ? "(\xFCres)" : (f.format ?? showValue)(result[f.key]) : /* @__PURE__ */ jsx90("em", { className: "bc-merge-todo", children: "m\xE9g nem v\xE1lasztott\xE1l" }) })
       ] }, f.key)) })
     ] }),
-    /* @__PURE__ */ jsxs80("div", { className: "bc-form-actions bc-merge-actions", children: [
-      !ready && /* @__PURE__ */ jsxs80("span", { className: "bc-merge-missing", children: [
+    /* @__PURE__ */ jsxs81("div", { className: "bc-form-actions bc-merge-actions", children: [
+      !ready && /* @__PURE__ */ jsxs81("span", { className: "bc-merge-missing", children: [
         "Hi\xE1nyzik: ",
         missing,
         "."
       ] }),
-      /* @__PURE__ */ jsx89(Button, { disabled: !ready, onClick: () => setAsking(true), children: "\xD6sszef\xE9s\xFCl\xE9s" })
+      /* @__PURE__ */ jsx90(Button, { disabled: !ready, onClick: () => setAsking(true), children: "\xD6sszef\xE9s\xFCl\xE9s" })
     ] }),
-    /* @__PURE__ */ jsxs80(
+    /* @__PURE__ */ jsxs81(
       KiegDialog,
       {
         open: asking,
@@ -6587,13 +6687,13 @@ function CompareMerge({ records, fields, choices, onChoicesChange, survivor, onS
           if (!busy) setAsking(false);
         },
         title: "\xD6sszef\xE9s\xFCl\xF6d a rekordokat?",
-        actions: /* @__PURE__ */ jsxs80(Fragment24, { children: [
-          /* @__PURE__ */ jsx89(Button, { variant: "secondary", "data-autofocus": true, disabled: busy, onClick: () => setAsking(false), children: "M\xE9gse" }),
-          /* @__PURE__ */ jsx89(Button, { variant: "danger", busy, onClick: () => void run(), children: "V\xE9gleges \xF6sszef\xE9s\xFCl\xE9s" })
+        actions: /* @__PURE__ */ jsxs81(Fragment25, { children: [
+          /* @__PURE__ */ jsx90(Button, { variant: "secondary", "data-autofocus": true, disabled: busy, onClick: () => setAsking(false), children: "M\xE9gse" }),
+          /* @__PURE__ */ jsx90(Button, { variant: "danger", busy, onClick: () => void run(), children: "V\xE9gleges \xF6sszef\xE9s\xFCl\xE9s" })
         ] }),
         children: [
-          /* @__PURE__ */ jsx89("p", { children: consequence ?? `${survivorLabel ? `Megmarad: ${survivorLabel}. ` : ""}A t\xF6bbi rekord t\xF6rl\u0151dik, a v\xE1lasztott \xE9rt\xE9kek a megmarad\xF3ba ker\xFClnek. Ez nem vonhat\xF3 vissza.` }),
-          err && /* @__PURE__ */ jsx89("div", { className: "bc-alert is-danger", role: "alert", children: /* @__PURE__ */ jsx89("p", { children: err }) })
+          /* @__PURE__ */ jsx90("p", { children: consequence ?? `${survivorLabel ? `Megmarad: ${survivorLabel}. ` : ""}A t\xF6bbi rekord t\xF6rl\u0151dik, a v\xE1lasztott \xE9rt\xE9kek a megmarad\xF3ba ker\xFClnek. Ez nem vonhat\xF3 vissza.` }),
+          err && /* @__PURE__ */ jsx90("div", { className: "bc-alert is-danger", role: "alert", children: /* @__PURE__ */ jsx90("p", { children: err }) })
         ]
       }
     )
@@ -6601,20 +6701,20 @@ function CompareMerge({ records, fields, choices, onChoicesChange, survivor, onS
 }
 
 // react/src/kieg/ReviewQueue.tsx
-import { useEffect as useEffect25, useId as useId21, useRef as useRef36, useState as useState46 } from "react";
+import { useEffect as useEffect26, useId as useId21, useRef as useRef36, useState as useState47 } from "react";
 
 // react/src/kieg/ReviewReject.tsx
-import { useEffect as useEffect24, useId as useId20, useRef as useRef35, useState as useState45 } from "react";
-import { jsx as jsx90, jsxs as jsxs81 } from "react/jsx-runtime";
+import { useEffect as useEffect25, useId as useId20, useRef as useRef35, useState as useState46 } from "react";
+import { jsx as jsx91, jsxs as jsxs82 } from "react/jsx-runtime";
 var MIN = 10;
 var MAX = 300;
 function ReviewReject({ reasons = [], busy, onSubmit, onCancel }) {
   const uid = useId20();
-  const [preset, setPreset] = useState45();
-  const [text, setText] = useState45("");
-  const [err, setErr] = useState45();
+  const [preset, setPreset] = useState46();
+  const [text, setText] = useState46("");
+  const [err, setErr] = useState46();
   const box = useRef35(null);
-  useEffect24(() => {
+  useEffect25(() => {
     box.current?.querySelector("input[type=radio], textarea")?.focus();
   }, []);
   const submit = () => {
@@ -6627,7 +6727,7 @@ function ReviewReject({ reasons = [], busy, onSubmit, onCancel }) {
     }
     onSubmit(preset ? t ? `${preset}: ${t}` : preset : t);
   };
-  return /* @__PURE__ */ jsxs81(
+  return /* @__PURE__ */ jsxs82(
     "div",
     {
       ref: box,
@@ -6646,7 +6746,7 @@ function ReviewReject({ reasons = [], busy, onSubmit, onCancel }) {
         }
       },
       children: [
-        reasons.length > 0 && /* @__PURE__ */ jsx90(
+        reasons.length > 0 && /* @__PURE__ */ jsx91(
           RadioGroup,
           {
             label: "Mi\xE9rt utas\xEDtod el?",
@@ -6660,7 +6760,7 @@ function ReviewReject({ reasons = [], busy, onSubmit, onCancel }) {
             options: reasons.map((r) => ({ value: r, label: r }))
           }
         ),
-        /* @__PURE__ */ jsx90(
+        /* @__PURE__ */ jsx91(
           TextArea,
           {
             label: reasons.length ? "Kieg\xE9sz\xEDt\xE9s (ha egyik ok sem illik: k\xF6telez\u0151)" : "Indokl\xE1s",
@@ -6677,9 +6777,9 @@ function ReviewReject({ reasons = [], busy, onSubmit, onCancel }) {
             }
           }
         ),
-        /* @__PURE__ */ jsxs81("div", { className: "bc-row is-end", children: [
-          /* @__PURE__ */ jsx90(Button, { variant: "secondary", size: "sm", onClick: onCancel, disabled: busy, children: "M\xE9gse (Esc)" }),
-          /* @__PURE__ */ jsx90(Button, { variant: "danger", size: "sm", busy, onClick: submit, children: "Elutas\xEDt\xE1s" })
+        /* @__PURE__ */ jsxs82("div", { className: "bc-row is-end", children: [
+          /* @__PURE__ */ jsx91(Button, { variant: "secondary", size: "sm", onClick: onCancel, disabled: busy, children: "M\xE9gse (Esc)" }),
+          /* @__PURE__ */ jsx91(Button, { variant: "danger", size: "sm", busy, onClick: submit, children: "Elutas\xEDt\xE1s" })
         ] })
       ]
     }
@@ -6687,17 +6787,17 @@ function ReviewReject({ reasons = [], busy, onSubmit, onCancel }) {
 }
 
 // react/src/kieg/ReviewQueue.tsx
-import { jsx as jsx91, jsxs as jsxs82 } from "react/jsx-runtime";
+import { jsx as jsx92, jsxs as jsxs83 } from "react/jsx-runtime";
 var NAME = { approve: "J\xF3v\xE1hagyva", reject: "Elutas\xEDtva", skip: "Kihagyva" };
 var TONE = { approve: "is-success", reject: "is-danger", skip: "is-muted" };
 var typing = (t) => t instanceof HTMLElement && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
 function ReviewQueue({ items, getId, getTitle, render, onDecide, onUndo, reasons, label = "Ellen\u0151rz\xE9si sor", className }) {
-  const [at2, setAt] = useState46(0);
-  const [log, setLog] = useState46([]);
-  const [rejecting, setRejecting] = useState46(false);
-  const [busy, setBusy] = useState46(false);
-  const [err, setErr] = useState46();
-  const [say2, setSay] = useState46("");
+  const [at2, setAt] = useState47(0);
+  const [log, setLog] = useState47([]);
+  const [rejecting, setRejecting] = useState47(false);
+  const [busy, setBusy] = useState47(false);
+  const [err, setErr] = useState47();
+  const [say2, setSay] = useState47("");
   const head = useRef36(null);
   const root = useRef36(null);
   const rejectBtn = useRef36(null);
@@ -6746,13 +6846,13 @@ function ReviewQueue({ items, getId, getTitle, render, onDecide, onUndo, reasons
     }
   };
   const focusHead = useRef36(false);
-  useEffect25(() => {
+  useEffect26(() => {
     if (focusHead.current) {
       focusHead.current = false;
       head.current?.focus();
     }
   });
-  useEffect25(() => {
+  useEffect26(() => {
     const h = (e) => {
       if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || typing(e.target) || rejecting || busy || !item || document.querySelector("dialog[open]")) return;
       const a = document.activeElement, r = root.current;
@@ -6774,15 +6874,15 @@ function ReviewQueue({ items, getId, getTitle, render, onDecide, onUndo, reasons
   });
   const count = (t) => log.filter((x) => x.d.type === t).length;
   const last = log[log.length - 1];
-  return /* @__PURE__ */ jsxs82("section", { ref: root, className: cx("bc-review", className), "aria-label": label, children: [
-    /* @__PURE__ */ jsxs82("div", { className: "bc-review-top", children: [
-      /* @__PURE__ */ jsxs82("span", { className: "bc-num bc-review-pos", "aria-label": `${Math.min(at2 + 1, total)}. t\xE9tel, \xF6sszesen ${total}`, children: [
+  return /* @__PURE__ */ jsxs83("section", { ref: root, className: cx("bc-review", className), "aria-label": label, children: [
+    /* @__PURE__ */ jsxs83("div", { className: "bc-review-top", children: [
+      /* @__PURE__ */ jsxs83("span", { className: "bc-num bc-review-pos", "aria-label": `${Math.min(at2 + 1, total)}. t\xE9tel, \xF6sszesen ${total}`, children: [
         Math.min(at2 + 1, total),
         "/",
         total
       ] }),
-      /* @__PURE__ */ jsx91(ProgressBar, { value: total ? at2 / total : 1, label: "Halad\xE1s a sorban" }),
-      /* @__PURE__ */ jsxs82("span", { className: "bc-review-tally", children: [
+      /* @__PURE__ */ jsx92(ProgressBar, { value: total ? at2 / total : 1, label: "Halad\xE1s a sorban" }),
+      /* @__PURE__ */ jsxs83("span", { className: "bc-review-tally", children: [
         count("approve"),
         " j\xF3v\xE1hagyva \xB7 ",
         count("reject"),
@@ -6791,19 +6891,19 @@ function ReviewQueue({ items, getId, getTitle, render, onDecide, onUndo, reasons
         " kihagyva"
       ] })
     ] }),
-    /* @__PURE__ */ jsx91("p", { className: "bc-sr", role: "status", children: say2 }),
-    last && /* @__PURE__ */ jsxs82("div", { className: "bc-review-last", children: [
-      /* @__PURE__ */ jsx91("span", { className: cx("bc-badge bc-anim-stamp", TONE[last.d.type]), children: NAME[last.d.type] }),
-      /* @__PURE__ */ jsxs82("span", { className: "bc-review-last-title", children: [
+    /* @__PURE__ */ jsx92("p", { className: "bc-sr", role: "status", children: say2 }),
+    last && /* @__PURE__ */ jsxs83("div", { className: "bc-review-last", children: [
+      /* @__PURE__ */ jsx92("span", { className: cx("bc-badge bc-anim-stamp", TONE[last.d.type]), children: NAME[last.d.type] }),
+      /* @__PURE__ */ jsxs83("span", { className: "bc-review-last-title", children: [
         getTitle(items[last.index]),
         last.d.reason ? ` \u2013 ${last.d.reason}` : ""
       ] }),
-      onUndo && /* @__PURE__ */ jsx91(Button, { variant: "ghost", size: "sm", icon: /* @__PURE__ */ jsx91(UndoIcon, {}), disabled: busy, onClick: () => void undo(), children: "Visszavon\xE1s" })
+      onUndo && /* @__PURE__ */ jsx92(Button, { variant: "ghost", size: "sm", icon: /* @__PURE__ */ jsx92(UndoIcon, {}), disabled: busy, onClick: () => void undo(), children: "Visszavon\xE1s" })
     ] }, log.length),
-    item ? /* @__PURE__ */ jsxs82("article", { className: "bc-card bc-review-item", "aria-labelledby": titleId, children: [
-      /* @__PURE__ */ jsx91("h2", { id: titleId, ref: head, tabIndex: -1, className: "bc-review-title", children: getTitle(item) }),
+    item ? /* @__PURE__ */ jsxs83("article", { className: "bc-card bc-review-item", "aria-labelledby": titleId, children: [
+      /* @__PURE__ */ jsx92("h2", { id: titleId, ref: head, tabIndex: -1, className: "bc-review-title", children: getTitle(item) }),
       render(item)
-    ] }, getId(item)) : total === 0 ? /* @__PURE__ */ jsx91(BeeMoment, { pillanat: "ures", sima: "Nincs ellen\u0151rizend\u0151 t\xE9tel ebben a sorban." }) : /* @__PURE__ */ jsx91(
+    ] }, getId(item)) : total === 0 ? /* @__PURE__ */ jsx92(BeeMoment, { pillanat: "ures", sima: "Nincs ellen\u0151rizend\u0151 t\xE9tel ebben a sorban." }) : /* @__PURE__ */ jsx92(
       BeeMoment,
       {
         pillanat: "merfoldko",
@@ -6812,8 +6912,8 @@ function ReviewQueue({ items, getId, getTitle, render, onDecide, onUndo, reasons
         sima: `Minden t\xE9telt \xE1tn\xE9zt\xE9l: ${count("approve")} j\xF3v\xE1hagyva, ${count("reject")} elutas\xEDtva, ${count("skip")} kihagyva.`
       }
     ),
-    err && /* @__PURE__ */ jsx91("div", { className: "bc-alert is-danger", role: "alert", children: /* @__PURE__ */ jsx91("p", { children: err }) }),
-    item && /* @__PURE__ */ jsx91("div", { className: "bc-review-bar", children: rejecting ? /* @__PURE__ */ jsx91(
+    err && /* @__PURE__ */ jsx92("div", { className: "bc-alert is-danger", role: "alert", children: /* @__PURE__ */ jsx92("p", { children: err }) }),
+    item && /* @__PURE__ */ jsx92("div", { className: "bc-review-bar", children: rejecting ? /* @__PURE__ */ jsx92(
       ReviewReject,
       {
         reasons,
@@ -6824,29 +6924,29 @@ function ReviewQueue({ items, getId, getTitle, render, onDecide, onUndo, reasons
           requestAnimationFrame(() => rejectBtn.current?.focus());
         }
       }
-    ) : /* @__PURE__ */ jsxs82("div", { className: "bc-row bc-review-actions", children: [
-      /* @__PURE__ */ jsxs82(Button, { busy, onClick: () => void decide({ type: "approve" }), "aria-keyshortcuts": "J", children: [
+    ) : /* @__PURE__ */ jsxs83("div", { className: "bc-row bc-review-actions", children: [
+      /* @__PURE__ */ jsxs83(Button, { busy, onClick: () => void decide({ type: "approve" }), "aria-keyshortcuts": "J", children: [
         "J\xF3v\xE1hagy\xE1s ",
-        /* @__PURE__ */ jsx91("kbd", { className: "bc-kbd", children: "J" })
+        /* @__PURE__ */ jsx92("kbd", { className: "bc-kbd", children: "J" })
       ] }),
-      /* @__PURE__ */ jsxs82(Button, { ref: rejectBtn, variant: "danger", disabled: busy, onClick: () => setRejecting(true), "aria-keyshortcuts": "E", children: [
+      /* @__PURE__ */ jsxs83(Button, { ref: rejectBtn, variant: "danger", disabled: busy, onClick: () => setRejecting(true), "aria-keyshortcuts": "E", children: [
         "Elutas\xEDt\xE1s ",
-        /* @__PURE__ */ jsx91("kbd", { className: "bc-kbd", children: "E" })
+        /* @__PURE__ */ jsx92("kbd", { className: "bc-kbd", children: "E" })
       ] }),
-      /* @__PURE__ */ jsxs82(Button, { variant: "secondary", disabled: busy, onClick: () => void decide({ type: "skip" }), "aria-keyshortcuts": "K", children: [
+      /* @__PURE__ */ jsxs83(Button, { variant: "secondary", disabled: busy, onClick: () => void decide({ type: "skip" }), "aria-keyshortcuts": "K", children: [
         "Kihagy\xE1s ",
-        /* @__PURE__ */ jsx91("kbd", { className: "bc-kbd", children: "K" })
+        /* @__PURE__ */ jsx92("kbd", { className: "bc-kbd", children: "K" })
       ] })
     ] }) })
   ] });
 }
 
 // react/src/kieg2/LocationPicker.tsx
-import { useEffect as useEffect28, useId as useId22, useRef as useRef39, useState as useState49 } from "react";
+import { useEffect as useEffect29, useId as useId22, useRef as useRef39, useState as useState50 } from "react";
 
 // react/src/kieg2/AddressSearch.tsx
-import { useEffect as useEffect26, useMemo as useMemo5, useRef as useRef37, useState as useState47 } from "react";
-import { jsx as jsx92 } from "react/jsx-runtime";
+import { useEffect as useEffect27, useMemo as useMemo5, useRef as useRef37, useState as useState48 } from "react";
+import { jsx as jsx93 } from "react/jsx-runtime";
 function AddressSearch({
   search,
   onPick,
@@ -6856,15 +6956,15 @@ function AddressSearch({
   disabled,
   help = "\xCDrd be a c\xEDmet vagy a hely nev\xE9t (pl. \u201EAndr\xE1ssy \xFAt 12, Budapest\u201D), \xE9s v\xE1lassz a list\xE1b\xF3l \u2013 a t\u0171 \xE9s a koordin\xE1t\xE1k magukt\xF3l be\xE1llnak."
 }) {
-  const [query, setQuery] = useState47("");
-  const [hits, setHits] = useState47([]);
-  const [picked, setPicked] = useState47(null);
-  const [loading, setLoading] = useState47(false);
-  const [error, setError] = useState47();
-  const [tick, setTick] = useState47(0);
+  const [query, setQuery] = useState48("");
+  const [hits, setHits] = useState48([]);
+  const [picked, setPicked] = useState48(null);
+  const [loading, setLoading] = useState48(false);
+  const [error, setError] = useState48();
+  const [tick, setTick] = useState48(0);
   const searchRef = useRef37(search);
   searchRef.current = search;
-  useEffect26(() => {
+  useEffect27(() => {
     const q = query.trim();
     if (q.length < minChars) {
       setHits([]);
@@ -6898,7 +6998,7 @@ function AddressSearch({
     if (picked && !hits.some((h) => h.id === picked.id)) list2.unshift({ value: picked.id, label: picked.label });
     return list2;
   }, [hits, picked]);
-  return /* @__PURE__ */ jsx92("div", { className: "bc-loc-search", children: /* @__PURE__ */ jsx92(
+  return /* @__PURE__ */ jsx93("div", { className: "bc-loc-search", children: /* @__PURE__ */ jsx93(
     Combobox,
     {
       label,
@@ -6990,7 +7090,7 @@ function project(p) {
 }
 
 // react/src/kieg2/MiniMap.tsx
-import { jsx as jsx93, jsxs as jsxs83 } from "react/jsx-runtime";
+import { jsx as jsx94, jsxs as jsxs84 } from "react/jsx-runtime";
 function MiniMap({ point }) {
   const outline = HU_OUTLINE.map(([lng, lat]) => {
     const p = project({ lat, lng });
@@ -6999,20 +7099,20 @@ function MiniMap({ point }) {
   const pin = point ? project(point) : null;
   const inside = !!pin && pin.x >= 0 && pin.x <= MINI.w && pin.y >= 0 && pin.y <= MINI.h;
   const name2 = point ? `V\xE1zlatos el\u0151n\xE9zet: ${formatLatLng(point)}${inHungary(point) ? "" : inside ? " \u2013 Magyarorsz\xE1gon k\xEDv\xFCl" : " \u2013 a v\xE1zlaton k\xEDv\xFCl esik"}` : "V\xE1zlatos el\u0151n\xE9zet: m\xE9g nincs kiv\xE1lasztott pont";
-  return /* @__PURE__ */ jsxs83("figure", { className: "bc-loc-mini", children: [
-    /* @__PURE__ */ jsxs83("svg", { viewBox: `0 0 ${MINI.w} ${MINI.h}`, role: "img", "aria-label": name2, preserveAspectRatio: "xMidYMid meet", children: [
-      /* @__PURE__ */ jsx93("polygon", { className: "bc-loc-mini-land", points: outline }),
-      pin && inside && /* @__PURE__ */ jsxs83("g", { className: "bc-loc-mini-pin", transform: `translate(${pin.x.toFixed(1)} ${pin.y.toFixed(1)})`, children: [
-        /* @__PURE__ */ jsx93("path", { d: "M0 0 C -2 -4 -6 -7 -6 -11 A 6 6 0 1 1 6 -11 C 6 -7 2 -4 0 0 Z" }),
-        /* @__PURE__ */ jsx93("circle", { cy: "-11", r: "2.2" })
+  return /* @__PURE__ */ jsxs84("figure", { className: "bc-loc-mini", children: [
+    /* @__PURE__ */ jsxs84("svg", { viewBox: `0 0 ${MINI.w} ${MINI.h}`, role: "img", "aria-label": name2, preserveAspectRatio: "xMidYMid meet", children: [
+      /* @__PURE__ */ jsx94("polygon", { className: "bc-loc-mini-land", points: outline }),
+      pin && inside && /* @__PURE__ */ jsxs84("g", { className: "bc-loc-mini-pin", transform: `translate(${pin.x.toFixed(1)} ${pin.y.toFixed(1)})`, children: [
+        /* @__PURE__ */ jsx94("path", { d: "M0 0 C -2 -4 -6 -7 -6 -11 A 6 6 0 1 1 6 -11 C 6 -7 2 -4 0 0 Z" }),
+        /* @__PURE__ */ jsx94("circle", { cy: "-11", r: "2.2" })
       ] })
     ] }),
-    /* @__PURE__ */ jsx93("figcaption", { className: "bc-loc-mini-cap", children: !point ? "M\xE9g nincs pont \u2013 keress c\xEDmet, vagy \xEDrd be a koordin\xE1t\xE1kat." : !inside ? "A pont a v\xE1zlaton k\xEDv\xFCl esik." : "V\xE1zlatos el\u0151n\xE9zet \u2013 a pontos helyet a koordin\xE1t\xE1k adj\xE1k." })
+    /* @__PURE__ */ jsx94("figcaption", { className: "bc-loc-mini-cap", children: !point ? "M\xE9g nincs pont \u2013 keress c\xEDmet, vagy \xEDrd be a koordin\xE1t\xE1kat." : !inside ? "A pont a v\xE1zlaton k\xEDv\xFCl esik." : "V\xE1zlatos el\u0151n\xE9zet \u2013 a pontos helyet a koordin\xE1t\xE1k adj\xE1k." })
   ] });
 }
 
 // react/src/kieg2/useGeolocation.ts
-import { useCallback as useCallback6, useEffect as useEffect27, useRef as useRef38, useState as useState48 } from "react";
+import { useCallback as useCallback6, useEffect as useEffect28, useRef as useRef38, useState as useState49 } from "react";
 var MSG = {
   denied: "Nem engedted a helymeghat\xE1roz\xE1st. A b\xF6ng\xE9sz\u0151 c\xEDmsor\xE1ban (lakat ikon) enged\xE9lyezheted, vagy keresd meg a c\xEDmet.",
   unavailable: "Most nem tal\xE1lom a helyed (nincs GPS vagy h\xE1l\xF3zat). Pr\xF3b\xE1ld \xFAjra, vagy add meg a c\xEDmet.",
@@ -7021,9 +7121,9 @@ var MSG = {
 };
 var accuracyText = (m) => m < 1e3 ? `\xB1${formatHu(Math.round(m), 0)} m` : `\xB1${formatHu(m / 1e3, 1)} km`;
 function useGeolocation(timeoutMs = 1e4) {
-  const [state, setState] = useState48({ status: "idle" });
+  const [state, setState] = useState49({ status: "idle" });
   const alive = useRef38(true);
-  useEffect27(() => () => {
+  useEffect28(() => () => {
     alive.current = false;
   }, []);
   const locate = useCallback6((onFound) => {
@@ -7053,7 +7153,7 @@ function useGeolocation(timeoutMs = 1e4) {
 }
 
 // react/src/kieg2/LocationPicker.tsx
-import { jsx as jsx94, jsxs as jsxs84 } from "react/jsx-runtime";
+import { jsx as jsx95, jsxs as jsxs85 } from "react/jsx-runtime";
 var toDraft = (v) => ({ lat: v?.lat ?? null, lng: v?.lng ?? null });
 var SRC = { map: "t\xE9rk\xE9pr\u0151l", search: "c\xEDmkeres\xE9sb\u0151l", fields: "a mez\u0151kb\u0151l", geo: "a jelenlegi helyedb\u0151l", swap: "felcser\xE9lve" };
 function LocationPicker({
@@ -7073,12 +7173,12 @@ function LocationPicker({
   className
 }) {
   const id = useId22();
-  const [draft, setDraft] = useState49(() => toDraft(value));
-  const [said, setSaid] = useState49("");
+  const [draft, setDraft] = useState50(() => toDraft(value));
+  const [said, setSaid] = useState50("");
   const emitted = useRef39(value);
   const geo = useGeolocation();
   const locked = disabled || readOnly;
-  useEffect28(() => {
+  useEffect29(() => {
     if (!sameLatLng(value, emitted.current, decimals)) {
       emitted.current = value;
       setDraft(toDraft(value));
@@ -7105,27 +7205,27 @@ function LocationPicker({
   const outside = point && !inHungary(point);
   const swapped = point && looksSwapped(point);
   const gs = geo.state;
-  return /* @__PURE__ */ jsxs84("fieldset", { className: cx("bc-loc", className), disabled, "aria-describedby": error ? `${id}-err` : void 0, "aria-invalid": error ? true : void 0, children: [
-    /* @__PURE__ */ jsxs84("legend", { className: "bc-loc-legend", children: [
-      /* @__PURE__ */ jsxs84("span", { className: "bc-label", children: [
+  return /* @__PURE__ */ jsxs85("fieldset", { className: cx("bc-loc", className), disabled, "aria-describedby": error ? `${id}-err` : void 0, "aria-invalid": error ? true : void 0, children: [
+    /* @__PURE__ */ jsxs85("legend", { className: "bc-loc-legend", children: [
+      /* @__PURE__ */ jsxs85("span", { className: "bc-label", children: [
         label,
-        required && /* @__PURE__ */ jsx94("span", { className: "is-req", "aria-hidden": "true", children: "*" }),
-        required && /* @__PURE__ */ jsx94("span", { className: "bc-sr", children: " (k\xF6telez\u0151)" })
+        required && /* @__PURE__ */ jsx95("span", { className: "is-req", "aria-hidden": "true", children: "*" }),
+        required && /* @__PURE__ */ jsx95("span", { className: "bc-sr", children: " (k\xF6telez\u0151)" })
       ] }),
-      /* @__PURE__ */ jsx94(HelpButton, { label, children: help })
+      /* @__PURE__ */ jsx95(HelpButton, { label, children: help })
     ] }),
-    /* @__PURE__ */ jsxs84("div", { className: "bc-loc-grid", children: [
-      /* @__PURE__ */ jsx94("div", { className: "bc-loc-map", children: renderMap ? renderMap({
+    /* @__PURE__ */ jsxs85("div", { className: "bc-loc-grid", children: [
+      /* @__PURE__ */ jsx95("div", { className: "bc-loc-map", children: renderMap ? renderMap({
         center: point ?? defaultCenter,
         marker: point,
         disabled: locked,
         onPick: (p) => !locked && setPoint(p, "map"),
         markerHtml: markerHtml({ label: "", kind: "neutral", selected: true, title: "Kiv\xE1lasztott hely" })
-      }) : /* @__PURE__ */ jsx94(MiniMap, { point }) }),
-      /* @__PURE__ */ jsxs84("div", { className: "bc-loc-side", children: [
-        search && !readOnly && /* @__PURE__ */ jsx94(AddressSearch, { search, disabled, onPick: (h) => setPoint(h, "search") }),
-        /* @__PURE__ */ jsxs84("div", { className: "bc-loc-coords", children: [
-          /* @__PURE__ */ jsx94(
+      }) : /* @__PURE__ */ jsx95(MiniMap, { point }) }),
+      /* @__PURE__ */ jsxs85("div", { className: "bc-loc-side", children: [
+        search && !readOnly && /* @__PURE__ */ jsx95(AddressSearch, { search, disabled, onPick: (h) => setPoint(h, "search") }),
+        /* @__PURE__ */ jsxs85("div", { className: "bc-loc-coords", children: [
+          /* @__PURE__ */ jsx95(
             NumberField,
             {
               label: "Sz\xE9less\xE9g (lat)",
@@ -7140,7 +7240,7 @@ function LocationPicker({
               disabled
             }
           ),
-          /* @__PURE__ */ jsx94(
+          /* @__PURE__ */ jsx95(
             NumberField,
             {
               label: "Hossz\xFAs\xE1g (lng)",
@@ -7156,41 +7256,41 @@ function LocationPicker({
             }
           )
         ] }),
-        geolocation && !readOnly && /* @__PURE__ */ jsxs84("div", { className: "bc-loc-geo", children: [
-          /* @__PURE__ */ jsx94(
+        geolocation && !readOnly && /* @__PURE__ */ jsxs85("div", { className: "bc-loc-geo", children: [
+          /* @__PURE__ */ jsx95(
             Button,
             {
               variant: "secondary",
               busy: gs.status === "locating",
               disabled,
               onClick: () => geo.locate((p) => setPoint(p, "geo")),
-              icon: /* @__PURE__ */ jsxs84("svg", { viewBox: "0 0 24 24", width: "20", height: "20", fill: "none", stroke: "currentColor", strokeWidth: "2", "aria-hidden": "true", children: [
-                /* @__PURE__ */ jsx94("circle", { cx: "12", cy: "12", r: "4" }),
-                /* @__PURE__ */ jsx94("path", { d: "M12 2v4M12 18v4M2 12h4M18 12h4" })
+              icon: /* @__PURE__ */ jsxs85("svg", { viewBox: "0 0 24 24", width: "20", height: "20", fill: "none", stroke: "currentColor", strokeWidth: "2", "aria-hidden": "true", children: [
+                /* @__PURE__ */ jsx95("circle", { cx: "12", cy: "12", r: "4" }),
+                /* @__PURE__ */ jsx95("path", { d: "M12 2v4M12 18v4M2 12h4M18 12h4" })
               ] }),
               children: gs.status === "locating" ? "Keresem a helyed\u2026" : "Jelenlegi helyem"
             }
           ),
-          gs.status === "found" && /* @__PURE__ */ jsxs84("p", { className: "bc-notice", role: "status", children: [
+          gs.status === "found" && /* @__PURE__ */ jsxs85("p", { className: "bc-notice", role: "status", children: [
             "Megvan: ",
             accuracyText(gs.accuracy),
             " pontoss\xE1ggal."
           ] }),
-          (gs.status === "denied" || gs.status === "unavailable" || gs.status === "timeout") && /* @__PURE__ */ jsx94("p", { className: "bc-loc-geo-err", role: "alert", "data-geo": gs.status, children: gs.message })
+          (gs.status === "denied" || gs.status === "unavailable" || gs.status === "timeout") && /* @__PURE__ */ jsx95("p", { className: "bc-loc-geo-err", role: "alert", "data-geo": gs.status, children: gs.message })
         ] }),
-        outside && /* @__PURE__ */ jsxs84("div", { className: "bc-alert is-warning bc-loc-warn", role: "status", children: [
-          /* @__PURE__ */ jsx94("p", { children: swapped ? "Ez a pont Magyarorsz\xE1gon k\xEDv\xFCl van \u2013 lehet, hogy felcser\xE9lted a sz\xE9less\xE9get \xE9s a hossz\xFAs\xE1got." : "Ez a pont Magyarorsz\xE1gon k\xEDv\xFCl van. Ha t\xE9nyleg ott a hely, hagyd \xEDgy." }),
-          swapped && !locked && /* @__PURE__ */ jsx94(Button, { size: "sm", variant: "secondary", onClick: () => setPoint({ lat: point.lng, lng: point.lat }, "swap"), children: "Felcser\xE9lem" })
+        outside && /* @__PURE__ */ jsxs85("div", { className: "bc-alert is-warning bc-loc-warn", role: "status", children: [
+          /* @__PURE__ */ jsx95("p", { children: swapped ? "Ez a pont Magyarorsz\xE1gon k\xEDv\xFCl van \u2013 lehet, hogy felcser\xE9lted a sz\xE9less\xE9get \xE9s a hossz\xFAs\xE1got." : "Ez a pont Magyarorsz\xE1gon k\xEDv\xFCl van. Ha t\xE9nyleg ott a hely, hagyd \xEDgy." }),
+          swapped && !locked && /* @__PURE__ */ jsx95(Button, { size: "sm", variant: "secondary", onClick: () => setPoint({ lat: point.lng, lng: point.lat }, "swap"), children: "Felcser\xE9lem" })
         ] })
       ] })
     ] }),
-    error && /* @__PURE__ */ jsx94("p", { className: "bc-error", id: `${id}-err`, role: "alert", children: error }),
-    /* @__PURE__ */ jsx94("p", { className: "bc-sr", role: "status", children: said })
+    error && /* @__PURE__ */ jsx95("p", { className: "bc-error", id: `${id}-err`, role: "alert", children: error }),
+    /* @__PURE__ */ jsx95("p", { className: "bc-sr", role: "status", children: said })
   ] });
 }
 
 // react/src/kieg2/PrizeDrawReveal.tsx
-import { useEffect as useEffect29, useRef as useRef41, useState as useState51 } from "react";
+import { useEffect as useEffect30, useRef as useRef41, useState as useState52 } from "react";
 
 // react/src/kieg2/draw.ts
 var REVEAL_STEPS = [110, 150, 210, 290, 400, 540];
@@ -7216,39 +7316,39 @@ var wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // react/src/kieg2/DrawStage.tsx
 import { forwardRef as forwardRef10 } from "react";
-import { Fragment as Fragment25, jsx as jsx95, jsxs as jsxs85 } from "react/jsx-runtime";
+import { Fragment as Fragment26, jsx as jsx96, jsxs as jsxs86 } from "react/jsx-runtime";
 function DrawSpinner({ step, name: name2, waiting }) {
-  return /* @__PURE__ */ jsxs85("div", { className: "bc-draw-stage", "aria-hidden": "true", children: [
-    /* @__PURE__ */ jsx95(Bee, { szerep: "futar", size: "s", buzz: false, className: "bc-draw-runner" }),
-    /* @__PURE__ */ jsx95("div", { className: "bc-draw-comb", children: REVEAL_STEPS.map((_, i) => /* @__PURE__ */ jsx95("i", { className: cx(i <= step && "is-on") }, i)) }),
-    /* @__PURE__ */ jsx95("p", { className: "bc-draw-ticker", children: waiting ? /* @__PURE__ */ jsx95(HexLoader, { label: "M\xE9g sorsolunk" }) : name2 }, step)
+  return /* @__PURE__ */ jsxs86("div", { className: "bc-draw-stage", "aria-hidden": "true", children: [
+    /* @__PURE__ */ jsx96(Bee, { szerep: "futar", size: "s", buzz: false, className: "bc-draw-runner" }),
+    /* @__PURE__ */ jsx96("div", { className: "bc-draw-comb", children: REVEAL_STEPS.map((_, i) => /* @__PURE__ */ jsx96("i", { className: cx(i <= step && "is-on") }, i)) }),
+    /* @__PURE__ */ jsx96("p", { className: "bc-draw-ticker", children: waiting ? /* @__PURE__ */ jsx96(HexLoader, { label: "M\xE9g sorsolunk" }) : name2 }, step)
   ] });
 }
 var WinnerCard = forwardRef10(function WinnerCard2({ winner, prize, test, attempt, animate }, ref) {
-  return /* @__PURE__ */ jsxs85("div", { className: cx("bc-draw-winner", animate && "bc-anim-stamp"), "data-winner": winner.id, children: [
-    /* @__PURE__ */ jsx95(Bee, { szerep: "bajnok", size: "m", buzz: animate }),
-    /* @__PURE__ */ jsxs85("div", { className: "bc-draw-winner-body", children: [
-      /* @__PURE__ */ jsx95("p", { className: "bc-draw-kicker", children: attempt > 1 ? `\xDAj nyertes \u2013 ${attempt}. h\xFAz\xE1s` : /* @__PURE__ */ jsxs85(Fragment25, { children: [
+  return /* @__PURE__ */ jsxs86("div", { className: cx("bc-draw-winner", animate && "bc-anim-stamp"), "data-winner": winner.id, children: [
+    /* @__PURE__ */ jsx96(Bee, { szerep: "bajnok", size: "m", buzz: animate }),
+    /* @__PURE__ */ jsxs86("div", { className: "bc-draw-winner-body", children: [
+      /* @__PURE__ */ jsx96("p", { className: "bc-draw-kicker", children: attempt > 1 ? `\xDAj nyertes \u2013 ${attempt}. h\xFAz\xE1s` : /* @__PURE__ */ jsxs86(Fragment26, { children: [
         "Z\xFCmm, megvan! ",
-        /* @__PURE__ */ jsx95("span", { children: "Kisorsoltuk a nyertest." })
+        /* @__PURE__ */ jsx96("span", { children: "Kisorsoltuk a nyertest." })
       ] }) }),
-      /* @__PURE__ */ jsx95("h3", { className: "bc-draw-name", ref, tabIndex: -1, children: winner.name }),
-      winner.detail && /* @__PURE__ */ jsx95("p", { className: "bc-draw-detail", children: winner.detail }),
-      /* @__PURE__ */ jsxs85("p", { className: "bc-draw-prize", children: [
+      /* @__PURE__ */ jsx96("h3", { className: "bc-draw-name", ref, tabIndex: -1, children: winner.name }),
+      winner.detail && /* @__PURE__ */ jsx96("p", { className: "bc-draw-detail", children: winner.detail }),
+      /* @__PURE__ */ jsxs86("p", { className: "bc-draw-prize", children: [
         "Nyerem\xE9ny: ",
         prize
       ] }),
-      test && /* @__PURE__ */ jsx95("p", { className: "bc-badge is-warning bc-draw-test", children: "Teszt-sorsol\xE1s \u2013 nem \xE9les eredm\xE9ny" })
+      test && /* @__PURE__ */ jsx96("p", { className: "bc-badge is-warning bc-draw-test", children: "Teszt-sorsol\xE1s \u2013 nem \xE9les eredm\xE9ny" })
     ] })
   ] });
 });
 
 // react/src/kieg2/RerollForm.tsx
-import { useRef as useRef40, useState as useState50 } from "react";
-import { jsx as jsx96, jsxs as jsxs86 } from "react/jsx-runtime";
+import { useRef as useRef40, useState as useState51 } from "react";
+import { jsx as jsx97, jsxs as jsxs87 } from "react/jsx-runtime";
 function RerollForm({ previous, minLength, maxLength = 200, onConfirm, onCancel }) {
-  const [reason, setReason] = useState50("");
-  const [error, setError] = useState50();
+  const [reason, setReason] = useState51("");
+  const [error, setError] = useState51();
   const form = useRef40(null);
   const area = useRef40(null);
   const submit = (e) => {
@@ -7262,13 +7362,13 @@ function RerollForm({ previous, minLength, maxLength = 200, onConfirm, onCancel 
     }
     onConfirm(r);
   };
-  return /* @__PURE__ */ jsxs86("form", { ref: form, className: "bc-draw-reroll", onSubmit: submit, noValidate: true, "aria-label": "\xDAjrasorsol\xE1s", children: [
-    /* @__PURE__ */ jsxs86("p", { className: "bc-draw-reroll-q", children: [
+  return /* @__PURE__ */ jsxs87("form", { ref: form, className: "bc-draw-reroll", onSubmit: submit, noValidate: true, "aria-label": "\xDAjrasorsol\xE1s", children: [
+    /* @__PURE__ */ jsxs87("p", { className: "bc-draw-reroll-q", children: [
       "\xDAjrasorsol\xE1s \u2013 ",
       previous,
       " kimarad a k\xF6vetkez\u0151 h\xFAz\xE1sb\xF3l."
     ] }),
-    /* @__PURE__ */ jsx96(
+    /* @__PURE__ */ jsx97(
       TextArea,
       {
         ref: area,
@@ -7286,33 +7386,33 @@ function RerollForm({ previous, minLength, maxLength = 200, onConfirm, onCancel 
         }
       }
     ),
-    /* @__PURE__ */ jsxs86("div", { className: "bc-draw-actions", children: [
-      /* @__PURE__ */ jsx96(Button, { type: "submit", children: "\xDAjrasorsolom" }),
-      /* @__PURE__ */ jsx96(Button, { variant: "ghost", onClick: onCancel, children: "M\xE9gse" })
+    /* @__PURE__ */ jsxs87("div", { className: "bc-draw-actions", children: [
+      /* @__PURE__ */ jsx97(Button, { type: "submit", children: "\xDAjrasorsolom" }),
+      /* @__PURE__ */ jsx97(Button, { variant: "ghost", onClick: onCancel, children: "M\xE9gse" })
     ] })
   ] });
 }
 
 // react/src/kieg2/PrizeDrawReveal.tsx
-import { Fragment as Fragment26, jsx as jsx97, jsxs as jsxs87 } from "react/jsx-runtime";
+import { Fragment as Fragment27, jsx as jsx98, jsxs as jsxs88 } from "react/jsx-runtime";
 function PrizeDrawReveal({ prize, participants, draw, onDrawn, onReroll, excludePrevious = true, minReasonLength = 5, loading, className }) {
   const reduce = useReducedMotion();
-  const [phase, setPhase] = useState51("ready");
-  const [step, setStep] = useState51(-1);
-  const [names, setNames] = useState51([]);
-  const [log, setLog] = useState51([]);
-  const [error, setError] = useState51();
-  const [animated, setAnimated] = useState51(false);
+  const [phase, setPhase] = useState52("ready");
+  const [step, setStep] = useState52(-1);
+  const [names, setNames] = useState52([]);
+  const [log, setLog] = useState52([]);
+  const [error, setError] = useState52();
+  const [animated, setAnimated] = useState52(false);
   const alive = useRef41(true);
   const heading = useRef41(null);
-  useEffect29(() => () => {
+  useEffect30(() => () => {
     alive.current = false;
   }, []);
   const last = log[log.length - 1];
   const used = new Set(excludePrevious ? log.map((r) => r.winner.id) : []);
   const pool = participants.filter((p) => !used.has(p.id));
   const test = !draw;
-  useEffect29(() => {
+  useEffect30(() => {
     if (phase !== "won") return;
     heading.current?.focus();
     if (animated) celebrate(heading.current);
@@ -7357,28 +7457,28 @@ function PrizeDrawReveal({ prize, participants, draw, onDrawn, onReroll, exclude
     onDrawn?.(rec);
   };
   const n = participants.length;
-  return /* @__PURE__ */ jsxs87("section", { className: cx("bc-draw", className), "aria-label": `Sorsol\xE1s: ${prize}`, children: [
-    /* @__PURE__ */ jsxs87("header", { className: "bc-draw-head", children: [
-      /* @__PURE__ */ jsxs87("div", { children: [
-        /* @__PURE__ */ jsx97("p", { className: "bc-draw-prize-label", children: "Nyerem\xE9ny" }),
-        /* @__PURE__ */ jsx97("h2", { className: "bc-draw-title", children: prize })
+  return /* @__PURE__ */ jsxs88("section", { className: cx("bc-draw", className), "aria-label": `Sorsol\xE1s: ${prize}`, children: [
+    /* @__PURE__ */ jsxs88("header", { className: "bc-draw-head", children: [
+      /* @__PURE__ */ jsxs88("div", { children: [
+        /* @__PURE__ */ jsx98("p", { className: "bc-draw-prize-label", children: "Nyerem\xE9ny" }),
+        /* @__PURE__ */ jsx98("h2", { className: "bc-draw-title", children: prize })
       ] }),
-      /* @__PURE__ */ jsx97("p", { className: "bc-draw-count", "data-count": n, children: loading ? /* @__PURE__ */ jsx97(HexLoader, { label: "T\xF6lt\xF6m a r\xE9sztvev\u0151ket" }) : /* @__PURE__ */ jsxs87(Fragment26, { children: [
-        /* @__PURE__ */ jsx97("b", { children: formatHu(n, 0) }),
+      /* @__PURE__ */ jsx98("p", { className: "bc-draw-count", "data-count": n, children: loading ? /* @__PURE__ */ jsx98(HexLoader, { label: "T\xF6lt\xF6m a r\xE9sztvev\u0151ket" }) : /* @__PURE__ */ jsxs88(Fragment27, { children: [
+        /* @__PURE__ */ jsx98("b", { children: formatHu(n, 0) }),
         " r\xE9sztvev\u0151"
       ] }) })
     ] }),
-    test && /* @__PURE__ */ jsx97("p", { className: "bc-alert is-warning bc-draw-testnote", role: "note", children: /* @__PURE__ */ jsxs87("span", { children: [
-      /* @__PURE__ */ jsx97("b", { children: "Teszt-sorsol\xE1s:" }),
+    test && /* @__PURE__ */ jsx98("p", { className: "bc-alert is-warning bc-draw-testnote", role: "note", children: /* @__PURE__ */ jsxs88("span", { children: [
+      /* @__PURE__ */ jsx98("b", { children: "Teszt-sorsol\xE1s:" }),
       " nincs bek\xF6tve a sorsol\xF3, ez\xE9rt a b\xF6ng\xE9sz\u0151 v\xE9letlenje h\xFAz. \xC9les nyertest \xEDgy ne hirdess."
     ] }) }),
-    !loading && n === 0 && /* @__PURE__ */ jsx97(BeeMoment, { inline: true, szerep: "piheno", poen: "M\xE9g nem z\xFCmm\xF6g itt senki.", sima: "M\xE9g nincs r\xE9sztvev\u0151 \u2013 ha valaki jelentkezik, itt sorsolhatsz." }),
-    !loading && n === 1 && phase === "ready" && /* @__PURE__ */ jsx97("p", { className: "bc-notice bc-draw-one", role: "note", children: "Egy r\xE9sztvev\u0151 van, ez\xE9rt a sorsol\xE1s biztosan \u0151t adja (felfed\xE9s n\xE9lk\xFCl)." }),
-    phase === "spinning" && /* @__PURE__ */ jsx97(DrawSpinner, { step, name: names[Math.min(Math.max(step, 0), names.length - 1)] ?? "", waiting: step >= REVEAL_STEPS.length }),
-    (phase === "won" || phase === "reason") && last && /* @__PURE__ */ jsx97(WinnerCard, { ref: heading, winner: last.winner, prize, test: last.test, attempt: last.attempt, animate: animated }),
-    phase === "error" && /* @__PURE__ */ jsx97("p", { className: "bc-alert is-danger", role: "alert", children: /* @__PURE__ */ jsx97("span", { children: error }) }),
-    /* @__PURE__ */ jsx97("p", { className: "bc-sr", role: "status", children: phase === "spinning" ? "Sorsol\xE1s folyamatban\u2026" : phase === "won" && last ? `A nyertes: ${last.winner.name}` : "" }),
-    phase === "reason" && last && /* @__PURE__ */ jsx97(
+    !loading && n === 0 && /* @__PURE__ */ jsx98(BeeMoment, { inline: true, szerep: "piheno", poen: "M\xE9g nem z\xFCmm\xF6g itt senki.", sima: "M\xE9g nincs r\xE9sztvev\u0151 \u2013 ha valaki jelentkezik, itt sorsolhatsz." }),
+    !loading && n === 1 && phase === "ready" && /* @__PURE__ */ jsx98("p", { className: "bc-notice bc-draw-one", role: "note", children: "Egy r\xE9sztvev\u0151 van, ez\xE9rt a sorsol\xE1s biztosan \u0151t adja (felfed\xE9s n\xE9lk\xFCl)." }),
+    phase === "spinning" && /* @__PURE__ */ jsx98(DrawSpinner, { step, name: names[Math.min(Math.max(step, 0), names.length - 1)] ?? "", waiting: step >= REVEAL_STEPS.length }),
+    (phase === "won" || phase === "reason") && last && /* @__PURE__ */ jsx98(WinnerCard, { ref: heading, winner: last.winner, prize, test: last.test, attempt: last.attempt, animate: animated }),
+    phase === "error" && /* @__PURE__ */ jsx98("p", { className: "bc-alert is-danger", role: "alert", children: /* @__PURE__ */ jsx98("span", { children: error }) }),
+    /* @__PURE__ */ jsx98("p", { className: "bc-sr", role: "status", children: phase === "spinning" ? "Sorsol\xE1s folyamatban\u2026" : phase === "won" && last ? `A nyertes: ${last.winner.name}` : "" }),
+    phase === "reason" && last && /* @__PURE__ */ jsx98(
       RerollForm,
       {
         previous: last.winner.name,
@@ -7390,27 +7490,27 @@ function PrizeDrawReveal({ prize, participants, draw, onDrawn, onReroll, exclude
         }
       }
     ),
-    phase !== "reason" && /* @__PURE__ */ jsxs87("div", { className: "bc-draw-actions", children: [
-      (phase === "ready" || phase === "spinning" || phase === "error" && !last) && /* @__PURE__ */ jsx97(Button, { size: "lg", busy: phase === "spinning", disabled: loading || n === 0, onClick: () => void run(pool), children: phase === "error" ? "\xDAjrapr\xF3b\xE1l\xE1s" : "Sorsol\xE1s" }),
-      (phase === "won" || phase === "error" && last) && /* @__PURE__ */ jsx97(Button, { variant: "secondary", disabled: pool.length === 0, onClick: () => setPhase("reason"), children: "\xDAjrasorsol\xE1s" }),
-      phase === "won" && pool.length === 0 && /* @__PURE__ */ jsx97("p", { className: "bc-draw-hint", children: "Nincs t\xF6bb h\xFAzhat\xF3 r\xE9sztvev\u0151 \u2013 \xFAjrasorsolni nem lehet." }),
-      n === 0 && !loading && /* @__PURE__ */ jsx97("p", { className: "bc-draw-hint", children: "A \u201ESorsol\xE1s\u201D az els\u0151 r\xE9sztvev\u0151vel v\xE1lik el\xE9rhet\u0151v\xE9." })
+    phase !== "reason" && /* @__PURE__ */ jsxs88("div", { className: "bc-draw-actions", children: [
+      (phase === "ready" || phase === "spinning" || phase === "error" && !last) && /* @__PURE__ */ jsx98(Button, { size: "lg", busy: phase === "spinning", disabled: loading || n === 0, onClick: () => void run(pool), children: phase === "error" ? "\xDAjrapr\xF3b\xE1l\xE1s" : "Sorsol\xE1s" }),
+      (phase === "won" || phase === "error" && last) && /* @__PURE__ */ jsx98(Button, { variant: "secondary", disabled: pool.length === 0, onClick: () => setPhase("reason"), children: "\xDAjrasorsol\xE1s" }),
+      phase === "won" && pool.length === 0 && /* @__PURE__ */ jsx98("p", { className: "bc-draw-hint", children: "Nincs t\xF6bb h\xFAzhat\xF3 r\xE9sztvev\u0151 \u2013 \xFAjrasorsolni nem lehet." }),
+      n === 0 && !loading && /* @__PURE__ */ jsx98("p", { className: "bc-draw-hint", children: "A \u201ESorsol\xE1s\u201D az els\u0151 r\xE9sztvev\u0151vel v\xE1lik el\xE9rhet\u0151v\xE9." })
     ] }),
-    log.length > 0 && /* @__PURE__ */ jsxs87("details", { className: "bc-draw-log", open: log.length > 1, children: [
-      /* @__PURE__ */ jsxs87("summary", { children: [
+    log.length > 0 && /* @__PURE__ */ jsxs88("details", { className: "bc-draw-log", open: log.length > 1, children: [
+      /* @__PURE__ */ jsxs88("summary", { children: [
         "Jegyz\u0151k\xF6nyv (",
         log.length,
         " h\xFAz\xE1s)"
       ] }),
-      /* @__PURE__ */ jsx97("ol", { children: log.map((r) => /* @__PURE__ */ jsxs87("li", { children: [
-        /* @__PURE__ */ jsx97("b", { children: r.winner.name }),
+      /* @__PURE__ */ jsx98("ol", { children: log.map((r) => /* @__PURE__ */ jsxs88("li", { children: [
+        /* @__PURE__ */ jsx98("b", { children: r.winner.name }),
         " \u2013 ",
         drawTime(r.at),
         ", ",
         formatHu(r.poolSize, 0),
         " r\xE9sztvev\u0151b\u0151l",
         r.test ? " (teszt-sorsol\xE1s)" : "",
-        r.reason && /* @__PURE__ */ jsxs87(Fragment26, { children: [
+        r.reason && /* @__PURE__ */ jsxs88(Fragment27, { children: [
           " \xB7 \xFAjrasorsol\xE1s oka: \u201E",
           r.reason,
           "\u201D"
@@ -7421,8 +7521,8 @@ function PrizeDrawReveal({ prize, participants, draw, onDrawn, onReroll, exclude
 }
 
 // react/src/kieg2/VideoPlayer.tsx
-import { useRef as useRef42, useState as useState52 } from "react";
-import { Fragment as Fragment27, jsx as jsx98, jsxs as jsxs88 } from "react/jsx-runtime";
+import { useRef as useRef42, useState as useState53 } from "react";
+import { Fragment as Fragment28, jsx as jsx99, jsxs as jsxs89 } from "react/jsx-runtime";
 var ERR = {
   2: "A vide\xF3 nem t\xF6lt\u0151d\xF6tt le (h\xE1l\xF3zati hiba). Ellen\u0151rizd a kapcsolatot, \xE9s pr\xF3b\xE1ld \xFAjra.",
   3: "A vide\xF3f\xE1jl s\xE9r\xFClt, nem lehet lej\xE1tszani. T\xF6ltsd fel \xFAjra.",
@@ -7431,10 +7531,10 @@ var ERR = {
 var SEEK = 5;
 function VideoPlayer({ title, src, poster, captions = [], warnNoCaptions = true, onError, className }) {
   const video = useRef42(null);
-  const [state, setState] = useState52("loading");
-  const [code, setCode] = useState52(0);
-  const [attempt, setAttempt] = useState52(0);
-  const [said, setSaid] = useState52("");
+  const [state, setState] = useState53("loading");
+  const [code, setCode] = useState53(0);
+  const [attempt, setAttempt] = useState53(0);
+  const [said, setSaid] = useState53("");
   const onKey = (e) => {
     const v = e.currentTarget;
     const k = e.key.toLowerCase();
@@ -7451,21 +7551,21 @@ function VideoPlayer({ title, src, poster, captions = [], warnNoCaptions = true,
     e.preventDefault();
   };
   const showLoading = !src || state === "loading";
-  return /* @__PURE__ */ jsxs88("figure", { className: cx("bc-video", className), "data-state": src ? state : "loading", children: [
-    /* @__PURE__ */ jsx98("div", { className: "bc-video-frame", children: state === "error" ? /* @__PURE__ */ jsx98(
+  return /* @__PURE__ */ jsxs89("figure", { className: cx("bc-video", className), "data-state": src ? state : "loading", children: [
+    /* @__PURE__ */ jsx99("div", { className: "bc-video-frame", children: state === "error" ? /* @__PURE__ */ jsx99(
       BeeMoment,
       {
         inline: true,
         live: "alert",
         szerep: "gondolkodo",
         sima: ERR[code] ?? "A vide\xF3 nem j\xE1tszhat\xF3 le. Pr\xF3b\xE1ld \xFAjra, vagy t\xF6ltsd fel \xFAjra a f\xE1jlt.",
-        action: /* @__PURE__ */ jsx98(Button, { variant: "secondary", size: "sm", onClick: () => {
+        action: /* @__PURE__ */ jsx99(Button, { variant: "secondary", size: "sm", onClick: () => {
           setState("loading");
           setAttempt((n) => n + 1);
         }, children: "\xDAjrapr\xF3b\xE1l\xE1s" })
       }
-    ) : /* @__PURE__ */ jsxs88(Fragment27, { children: [
-      src && /* @__PURE__ */ jsx98(
+    ) : /* @__PURE__ */ jsxs89(Fragment28, { children: [
+      src && /* @__PURE__ */ jsx99(
         "video",
         {
           ref: video,
@@ -7488,26 +7588,26 @@ function VideoPlayer({ title, src, poster, captions = [], warnNoCaptions = true,
             onError?.(c);
           },
           onKeyDown: onKey,
-          children: captions.map((t) => /* @__PURE__ */ jsx98("track", { kind: "captions", src: t.src, srcLang: t.srclang, label: t.label, default: t.default }, t.src))
+          children: captions.map((t) => /* @__PURE__ */ jsx99("track", { kind: "captions", src: t.src, srcLang: t.srclang, label: t.label, default: t.default }, t.src))
         },
         `${src}#${attempt}`
       ),
-      showLoading && /* @__PURE__ */ jsxs88("div", { className: "bc-video-loading", role: "status", children: [
-        /* @__PURE__ */ jsx98(HexLoader, { label: "T\xF6lt\xF6m a vide\xF3t" }),
-        /* @__PURE__ */ jsx98("span", { children: "T\xF6lt\xF6m a vide\xF3t\u2026" })
+      showLoading && /* @__PURE__ */ jsxs89("div", { className: "bc-video-loading", role: "status", children: [
+        /* @__PURE__ */ jsx99(HexLoader, { label: "T\xF6lt\xF6m a vide\xF3t" }),
+        /* @__PURE__ */ jsx99("span", { children: "T\xF6lt\xF6m a vide\xF3t\u2026" })
       ] })
     ] }) }),
-    /* @__PURE__ */ jsxs88("figcaption", { className: "bc-video-cap", children: [
-      /* @__PURE__ */ jsx98("span", { className: "bc-video-title", children: title }),
-      src && state !== "error" && /* @__PURE__ */ jsx98("span", { className: "bc-video-keys", children: "Billenty\u0171k: Sz\xF3k\xF6z vagy K \u2013 lej\xE1tsz\xE1s/sz\xFCnet \xB7 \u2190/\u2192 \u2013 5 mp \xB7 M \u2013 n\xE9m\xEDt\xE1s" }),
-      warnNoCaptions && !captions.length && state !== "error" && /* @__PURE__ */ jsx98("span", { className: "bc-video-nocc", children: "Ehhez a vide\xF3hoz nincs felirat \u2013 t\xF6lts fel egy .vtt feliratf\xE1jlt, hogy hang n\xE9lk\xFCl is \xE9rthet\u0151 legyen." })
+    /* @__PURE__ */ jsxs89("figcaption", { className: "bc-video-cap", children: [
+      /* @__PURE__ */ jsx99("span", { className: "bc-video-title", children: title }),
+      src && state !== "error" && /* @__PURE__ */ jsx99("span", { className: "bc-video-keys", children: "Billenty\u0171k: Sz\xF3k\xF6z vagy K \u2013 lej\xE1tsz\xE1s/sz\xFCnet \xB7 \u2190/\u2192 \u2013 5 mp \xB7 M \u2013 n\xE9m\xEDt\xE1s" }),
+      warnNoCaptions && !captions.length && state !== "error" && /* @__PURE__ */ jsx99("span", { className: "bc-video-nocc", children: "Ehhez a vide\xF3hoz nincs felirat \u2013 t\xF6lts fel egy .vtt feliratf\xE1jlt, hogy hang n\xE9lk\xFCl is \xE9rthet\u0151 legyen." })
     ] }),
-    /* @__PURE__ */ jsx98("p", { className: "bc-sr", role: "status", children: said })
+    /* @__PURE__ */ jsx99("p", { className: "bc-sr", role: "status", children: said })
   ] });
 }
 
 // react/src/kieg2/VideoEmbed.tsx
-import { useEffect as useEffect30, useRef as useRef43, useState as useState53 } from "react";
+import { useEffect as useEffect31, useRef as useRef43, useState as useState54 } from "react";
 
 // react/src/kieg2/videoUrl.ts
 var FILE_EXT = /\.(mp4|m4v|webm|ogv|ogg|mov)$/i;
@@ -7562,26 +7662,26 @@ function parseVideoUrl(input) {
 }
 
 // react/src/kieg2/VideoEmbed.tsx
-import { Fragment as Fragment28, jsx as jsx99, jsxs as jsxs89 } from "react/jsx-runtime";
+import { Fragment as Fragment29, jsx as jsx100, jsxs as jsxs90 } from "react/jsx-runtime";
 function VideoEmbed({ source, title, className }) {
-  const [on, setOn] = useState53(false);
-  const [loaded, setLoaded] = useState53(false);
-  const [slow, setSlow] = useState53(false);
+  const [on, setOn] = useState54(false);
+  const [loaded, setLoaded] = useState54(false);
+  const [slow, setSlow] = useState54(false);
   const frame = useRef43(null);
-  useEffect30(() => {
+  useEffect31(() => {
     setOn(false);
     setLoaded(false);
     setSlow(false);
   }, [source.embedUrl]);
-  useEffect30(() => {
+  useEffect31(() => {
     if (!on || loaded) return;
     frame.current?.focus();
     const t = setTimeout(() => setSlow(true), 15e3);
     return () => clearTimeout(t);
   }, [on, loaded]);
-  return /* @__PURE__ */ jsxs89("figure", { className: cx("bc-video", "bc-vembed", className), "data-provider": source.kind, "data-state": on ? loaded ? "ready" : "loading" : "placeholder", children: [
-    /* @__PURE__ */ jsx99("div", { className: "bc-video-frame", children: on ? /* @__PURE__ */ jsxs89(Fragment28, { children: [
-      /* @__PURE__ */ jsx99(
+  return /* @__PURE__ */ jsxs90("figure", { className: cx("bc-video", "bc-vembed", className), "data-provider": source.kind, "data-state": on ? loaded ? "ready" : "loading" : "placeholder", children: [
+    /* @__PURE__ */ jsx100("div", { className: "bc-video-frame", children: on ? /* @__PURE__ */ jsxs90(Fragment29, { children: [
+      /* @__PURE__ */ jsx100(
         "iframe",
         {
           ref: frame,
@@ -7594,27 +7694,27 @@ function VideoEmbed({ source, title, className }) {
           referrerPolicy: "strict-origin-when-cross-origin"
         }
       ),
-      !loaded && /* @__PURE__ */ jsxs89("div", { className: "bc-video-loading", role: "status", children: [
-        /* @__PURE__ */ jsx99(HexLoader, { label: "T\xF6lt\xF6m a lej\xE1tsz\xF3t" }),
-        /* @__PURE__ */ jsx99("span", { children: slow ? "Lassan t\xF6lt a lej\xE1tsz\xF3." : `T\xF6lt\xF6m a ${source.provider} lej\xE1tsz\xF3j\xE1t\u2026` }),
-        slow && /* @__PURE__ */ jsxs89("a", { className: "bc-btn is-secondary is-sm", href: source.watchUrl, target: "_blank", rel: "noopener noreferrer", children: [
+      !loaded && /* @__PURE__ */ jsxs90("div", { className: "bc-video-loading", role: "status", children: [
+        /* @__PURE__ */ jsx100(HexLoader, { label: "T\xF6lt\xF6m a lej\xE1tsz\xF3t" }),
+        /* @__PURE__ */ jsx100("span", { children: slow ? "Lassan t\xF6lt a lej\xE1tsz\xF3." : `T\xF6lt\xF6m a ${source.provider} lej\xE1tsz\xF3j\xE1t\u2026` }),
+        slow && /* @__PURE__ */ jsxs90("a", { className: "bc-btn is-secondary is-sm", href: source.watchUrl, target: "_blank", rel: "noopener noreferrer", children: [
           "Megnyit\xE1s: ",
           source.provider
         ] })
       ] })
-    ] }) : /* @__PURE__ */ jsxs89("div", { className: "bc-vembed-ph", children: [
-      /* @__PURE__ */ jsx99("span", { className: "bc-badge is-muted", children: source.provider }),
-      /* @__PURE__ */ jsx99(
+    ] }) : /* @__PURE__ */ jsxs90("div", { className: "bc-vembed-ph", children: [
+      /* @__PURE__ */ jsx100("span", { className: "bc-badge is-muted", children: source.provider }),
+      /* @__PURE__ */ jsx100(
         Button,
         {
           size: "lg",
           onClick: () => setOn(true),
           "aria-describedby": `vembed-${source.id}`,
-          icon: /* @__PURE__ */ jsx99("svg", { viewBox: "0 0 24 24", width: "22", height: "22", "aria-hidden": "true", children: /* @__PURE__ */ jsx99("path", { d: "M8 5v14l11-7z", fill: "currentColor" }) }),
+          icon: /* @__PURE__ */ jsx100("svg", { viewBox: "0 0 24 24", width: "22", height: "22", "aria-hidden": "true", children: /* @__PURE__ */ jsx100("path", { d: "M8 5v14l11-7z", fill: "currentColor" }) }),
           children: "Vide\xF3 bet\xF6lt\xE9se"
         }
       ),
-      /* @__PURE__ */ jsxs89("p", { className: "bc-vembed-note", id: `vembed-${source.id}`, children: [
+      /* @__PURE__ */ jsxs90("p", { className: "bc-vembed-note", id: `vembed-${source.id}`, children: [
         "Kattint\xE1sra a ",
         source.provider,
         " lej\xE1tsz\xF3ja t\xF6lt\u0151dik be, \xE9s a ",
@@ -7622,35 +7722,35 @@ function VideoEmbed({ source, title, className }) {
         " ekkor adatot (pl. s\xFCtit) t\xE1rolhat a g\xE9peden."
       ] })
     ] }) }),
-    /* @__PURE__ */ jsxs89("figcaption", { className: "bc-video-cap", children: [
-      /* @__PURE__ */ jsx99("span", { className: "bc-video-title", children: title }),
-      /* @__PURE__ */ jsxs89("a", { className: "bc-video-link", href: source.watchUrl, target: "_blank", rel: "noopener noreferrer", children: [
+    /* @__PURE__ */ jsxs90("figcaption", { className: "bc-video-cap", children: [
+      /* @__PURE__ */ jsx100("span", { className: "bc-video-title", children: title }),
+      /* @__PURE__ */ jsxs90("a", { className: "bc-video-link", href: source.watchUrl, target: "_blank", rel: "noopener noreferrer", children: [
         "Megnyit\xE1s a ",
         source.provider,
         " oldal\xE1n",
-        /* @__PURE__ */ jsx99("span", { className: "bc-sr", children: " (\xFAj lapon)" })
+        /* @__PURE__ */ jsx100("span", { className: "bc-sr", children: " (\xFAj lapon)" })
       ] })
     ] })
   ] });
 }
 function VideoPreview({ url, title, poster, captions, className }) {
   const s = parseVideoUrl(url);
-  if (s.kind === "empty") return /* @__PURE__ */ jsx99("p", { className: cx("bc-video-empty", className), children: "M\xE9g nincs vide\xF3 \u2013 illeszd be a linket (YouTube, Vimeo vagy MP4/WebM)." });
-  if (s.kind === "invalid") return /* @__PURE__ */ jsx99("p", { className: cx("bc-alert is-warning", className), role: "alert", "data-reason": s.reason, children: /* @__PURE__ */ jsx99("span", { children: s.message }) });
-  if (s.kind === "file") return /* @__PURE__ */ jsx99(VideoPlayer, { title, src: s.url, poster, captions, className });
-  return /* @__PURE__ */ jsx99(VideoEmbed, { source: s, title, className });
+  if (s.kind === "empty") return /* @__PURE__ */ jsx100("p", { className: cx("bc-video-empty", className), children: "M\xE9g nincs vide\xF3 \u2013 illeszd be a linket (YouTube, Vimeo vagy MP4/WebM)." });
+  if (s.kind === "invalid") return /* @__PURE__ */ jsx100("p", { className: cx("bc-alert is-warning", className), role: "alert", "data-reason": s.reason, children: /* @__PURE__ */ jsx100("span", { children: s.message }) });
+  if (s.kind === "file") return /* @__PURE__ */ jsx100(VideoPlayer, { title, src: s.url, poster, captions, className });
+  return /* @__PURE__ */ jsx100(VideoEmbed, { source: s, title, className });
 }
 
 // react/src/sablon/Frame.tsx
 import { useId as useId23 } from "react";
-import { Fragment as Fragment29, jsx as jsx100, jsxs as jsxs90 } from "react/jsx-runtime";
+import { Fragment as Fragment30, jsx as jsx101, jsxs as jsxs91 } from "react/jsx-runtime";
 function SablonFrame({ kind, standalone, skipLabel = "Ugr\xE1s a tartalomra", className, busy, children }) {
   const id = `bc-sablon-${useId23().replace(/[^a-zA-Z0-9-]/g, "")}`;
-  const body = /* @__PURE__ */ jsx100("div", { className: cx("bc-sablon", `is-${kind}`, className), "data-sablon": kind, "aria-busy": busy || void 0, children });
+  const body = /* @__PURE__ */ jsx101("div", { className: cx("bc-sablon", `is-${kind}`, className), "data-sablon": kind, "aria-busy": busy || void 0, children });
   if (!standalone) return body;
-  return /* @__PURE__ */ jsxs90(Fragment29, { children: [
-    /* @__PURE__ */ jsx100("a", { className: "bc-skip", href: `#${id}`, children: skipLabel }),
-    /* @__PURE__ */ jsx100("main", { id, className: "bc-sablon-main", tabIndex: -1, children: body })
+  return /* @__PURE__ */ jsxs91(Fragment30, { children: [
+    /* @__PURE__ */ jsx101("a", { className: "bc-skip", href: `#${id}`, children: skipLabel }),
+    /* @__PURE__ */ jsx101("main", { id, className: "bc-sablon-main", tabIndex: -1, children: body })
   ] });
 }
 function useTemplateTitle(title, docTitle, suffix, loading) {
@@ -7660,34 +7760,34 @@ function useTemplateTitle(title, docTitle, suffix, loading) {
 
 // react/src/sablon/ListPage.tsx
 import { useCallback as useCallback7 } from "react";
-import { Fragment as Fragment30, jsx as jsx101, jsxs as jsxs91 } from "react/jsx-runtime";
+import { Fragment as Fragment31, jsx as jsx102, jsxs as jsxs92 } from "react/jsx-runtime";
 function ListPage(p) {
   const { title, description, breadcrumbs, renderLink, primaryAction, actions, filters, status = "ready", what = "a list\xE1t", detail } = p;
   useTemplateTitle(title, p.docTitle, p.docTitleSuffix);
   const showFilters = filters && status !== "empty" && status !== "forbidden";
-  const head = actions || primaryAction ? /* @__PURE__ */ jsxs91(Fragment30, { children: [
+  const head = actions || primaryAction ? /* @__PURE__ */ jsxs92(Fragment31, { children: [
     actions,
     primaryAction
   ] }) : void 0;
   let body;
   if (status === "empty") {
-    body = /* @__PURE__ */ jsx101("div", { className: "bc-card is-flat bc-sablon-state", children: /* @__PURE__ */ jsx101(BeeMoment, { pillanat: "ures", sima: p.emptyText, action: p.emptyAction }) });
+    body = /* @__PURE__ */ jsx102("div", { className: "bc-card is-flat bc-sablon-state", children: /* @__PURE__ */ jsx102(BeeMoment, { pillanat: "ures", sima: p.emptyText, action: p.emptyAction }) });
   } else if (status === "no-results") {
-    body = /* @__PURE__ */ jsx101("div", { className: "bc-card is-flat bc-sablon-state", children: /* @__PURE__ */ jsx101(
+    body = /* @__PURE__ */ jsx102("div", { className: "bc-card is-flat bc-sablon-state", children: /* @__PURE__ */ jsx102(
       BeeMoment,
       {
         pillanat: "nincs-talalat",
-        action: p.onClearFilters && /* @__PURE__ */ jsx101(Button, { variant: "secondary", onClick: p.onClearFilters, children: "Sz\u0171r\u0151k t\xF6rl\xE9se" })
+        action: p.onClearFilters && /* @__PURE__ */ jsx102(Button, { variant: "secondary", onClick: p.onClearFilters, children: "Sz\u0171r\u0151k t\xF6rl\xE9se" })
       }
     ) });
   } else {
-    body = /* @__PURE__ */ jsx101(DataState, { status, what, error: p.error, onRetry: p.onRetry, retrying: p.retrying, skeleton: p.skeleton, children: p.children });
+    body = /* @__PURE__ */ jsx102(DataState, { status, what, error: p.error, onRetry: p.onRetry, retrying: p.retrying, skeleton: p.skeleton, children: p.children });
   }
-  return /* @__PURE__ */ jsxs91(SablonFrame, { kind: "lista", standalone: p.standalone, skipLabel: p.skipLabel, className: p.className, busy: status === "loading", children: [
-    /* @__PURE__ */ jsx101(PageHeader, { title, description, breadcrumbs, renderLink, actions: head }),
-    showFilters && /* @__PURE__ */ jsx101("div", { className: "bc-sablon-filters", children: filters }),
-    /* @__PURE__ */ jsx101("div", { className: "bc-sablon-list", children: body }),
-    detail && /* @__PURE__ */ jsx101(
+  return /* @__PURE__ */ jsxs92(SablonFrame, { kind: "lista", standalone: p.standalone, skipLabel: p.skipLabel, className: p.className, busy: status === "loading", children: [
+    /* @__PURE__ */ jsx102(PageHeader, { title, description, breadcrumbs, renderLink, actions: head }),
+    showFilters && /* @__PURE__ */ jsx102("div", { className: "bc-sablon-filters", children: filters }),
+    /* @__PURE__ */ jsx102("div", { className: "bc-sablon-list", children: body }),
+    detail && /* @__PURE__ */ jsx102(
       Drawer,
       {
         open: detail.open,
@@ -7713,11 +7813,11 @@ function useDetailParam(name2 = "reszlet") {
 }
 
 // react/src/sablon/DetailActions.tsx
-import { useState as useState54 } from "react";
-import { Fragment as Fragment31, jsx as jsx102, jsxs as jsxs92 } from "react/jsx-runtime";
+import { useState as useState55 } from "react";
+import { Fragment as Fragment32, jsx as jsx103, jsxs as jsxs93 } from "react/jsx-runtime";
 function DetailActions({ actions, subject }) {
-  const [pending, setPending] = useState54(null);
-  const [open, setOpen] = useState54(false);
+  const [pending, setPending] = useState55(null);
+  const [open, setOpen] = useState55(false);
   const run = (a) => {
     if (a.confirm) {
       setPending(a);
@@ -7738,8 +7838,8 @@ function DetailActions({ actions, subject }) {
     onSelect: () => run(a)
   });
   const items = [...safe.map(entry), ...safe.length && risky.length ? ["separator"] : [], ...risky.map(entry)];
-  return /* @__PURE__ */ jsxs92(Fragment31, { children: [
-    main && /* @__PURE__ */ jsx102(
+  return /* @__PURE__ */ jsxs93(Fragment32, { children: [
+    main && /* @__PURE__ */ jsx103(
       Button,
       {
         variant: main.danger ? "danger" : "primary",
@@ -7750,15 +7850,15 @@ function DetailActions({ actions, subject }) {
         children: main.label
       }
     ),
-    items.length > 0 && /* @__PURE__ */ jsx102(
+    items.length > 0 && /* @__PURE__ */ jsx103(
       DropdownMenu,
       {
         items,
         label: `M\u0171veletek: ${subject}`,
-        trigger: /* @__PURE__ */ jsx102(IconButton, { "aria-label": `Tov\xE1bbi m\u0171veletek: ${subject}`, children: /* @__PURE__ */ jsx102(MoreIcon, {}) })
+        trigger: /* @__PURE__ */ jsx103(IconButton, { "aria-label": `Tov\xE1bbi m\u0171veletek: ${subject}`, children: /* @__PURE__ */ jsx103(MoreIcon, {}) })
       }
     ),
-    pending?.confirm && /* @__PURE__ */ jsx102(
+    pending?.confirm && /* @__PURE__ */ jsx103(
       ConfirmDialog,
       {
         open,
@@ -7774,15 +7874,15 @@ function DetailActions({ actions, subject }) {
 }
 
 // react/src/sablon/DetailPage.tsx
-import { jsx as jsx103, jsxs as jsxs93 } from "react/jsx-runtime";
+import { jsx as jsx104, jsxs as jsxs94 } from "react/jsx-runtime";
 function DetailPage(p) {
   const { title, description, breadcrumbs, renderLink, status = "ready", actions, summary, tabs, side } = p;
   const loading = status === "loading";
   useTemplateTitle(title, p.docTitle, p.docTitleSuffix, loading);
   const subject = p.subject ?? (typeof title === "string" ? title : "elem");
-  const head = status === "ready" && actions?.length ? /* @__PURE__ */ jsx103(DetailActions, { actions, subject }) : void 0;
-  return /* @__PURE__ */ jsxs93(SablonFrame, { kind: "reszletek", standalone: p.standalone, skipLabel: p.skipLabel, className: p.className, busy: loading, children: [
-    /* @__PURE__ */ jsx103(
+  const head = status === "ready" && actions?.length ? /* @__PURE__ */ jsx104(DetailActions, { actions, subject }) : void 0;
+  return /* @__PURE__ */ jsxs94(SablonFrame, { kind: "reszletek", standalone: p.standalone, skipLabel: p.skipLabel, className: p.className, busy: loading, children: [
+    /* @__PURE__ */ jsx104(
       PageHeader,
       {
         title,
@@ -7793,25 +7893,25 @@ function DetailPage(p) {
         loading
       }
     ),
-    /* @__PURE__ */ jsx103(
+    /* @__PURE__ */ jsx104(
       DataState,
       {
         status,
         what: p.what ?? "az adatokat",
         error: p.error,
         onRetry: p.onRetry,
-        skeleton: /* @__PURE__ */ jsxs93("div", { className: "bc-sablon-skel", children: [
-          /* @__PURE__ */ jsx103("span", { className: "bc-skeleton" }),
-          /* @__PURE__ */ jsx103("span", { className: "bc-skeleton" }),
-          /* @__PURE__ */ jsx103("span", { className: "bc-skeleton" })
+        skeleton: /* @__PURE__ */ jsxs94("div", { className: "bc-sablon-skel", children: [
+          /* @__PURE__ */ jsx104("span", { className: "bc-skeleton" }),
+          /* @__PURE__ */ jsx104("span", { className: "bc-skeleton" }),
+          /* @__PURE__ */ jsx104("span", { className: "bc-skeleton" })
         ] }),
-        children: /* @__PURE__ */ jsxs93("div", { className: cx("bc-sablon-cols", Boolean(side) && "has-side"), children: [
-          /* @__PURE__ */ jsxs93("div", { className: "bc-sablon-primary", children: [
-            summary && /* @__PURE__ */ jsx103("section", { className: "bc-card bc-sablon-summary-block", "aria-label": "\xD6sszegz\xE9s", children: summary }),
-            tabs && tabs.length > 0 && /* @__PURE__ */ jsx103(Tabs, { items: tabs, label: p.tabsLabel ?? `${subject} r\xE9szei`, value: p.tab, onValueChange: p.onTabChange }),
+        children: /* @__PURE__ */ jsxs94("div", { className: cx("bc-sablon-cols", Boolean(side) && "has-side"), children: [
+          /* @__PURE__ */ jsxs94("div", { className: "bc-sablon-primary", children: [
+            summary && /* @__PURE__ */ jsx104("section", { className: "bc-card bc-sablon-summary-block", "aria-label": "\xD6sszegz\xE9s", children: summary }),
+            tabs && tabs.length > 0 && /* @__PURE__ */ jsx104(Tabs, { items: tabs, label: p.tabsLabel ?? `${subject} r\xE9szei`, value: p.tab, onValueChange: p.onTabChange }),
             p.children
           ] }),
-          side && /* @__PURE__ */ jsx103("aside", { className: "bc-sablon-side", "aria-label": p.sideLabel ?? "Adatok \xE9s tev\xE9kenys\xE9g", children: side })
+          side && /* @__PURE__ */ jsx104("aside", { className: "bc-sablon-side", "aria-label": p.sideLabel ?? "Adatok \xE9s tev\xE9kenys\xE9g", children: side })
         ] })
       }
     )
@@ -7819,11 +7919,11 @@ function DetailPage(p) {
 }
 
 // react/src/sablon/EditPage.tsx
-import { useEffect as useEffect32, useId as useId25, useRef as useRef45, useState as useState55 } from "react";
+import { useEffect as useEffect33, useId as useId25, useRef as useRef45, useState as useState56 } from "react";
 
 // react/src/sablon/ErrorSummary.tsx
-import { forwardRef as forwardRef11, useEffect as useEffect31, useId as useId24, useRef as useRef44 } from "react";
-import { jsx as jsx104, jsxs as jsxs94 } from "react/jsx-runtime";
+import { forwardRef as forwardRef11, useEffect as useEffect32, useId as useId24, useRef as useRef44 } from "react";
+import { jsx as jsx105, jsxs as jsxs95 } from "react/jsx-runtime";
 function findField(form, name2) {
   if (!form) return null;
   const byName = form.querySelector(`[name="${CSS.escape(name2)}"]`);
@@ -7839,15 +7939,15 @@ var ErrorSummary = forwardRef11(function ErrorSummary2({ errors, general, form }
     el.scrollIntoView({ block: "center" });
     el.focus({ preventScroll: true });
   };
-  return /* @__PURE__ */ jsxs94("div", { ref, className: "bc-alert is-danger bc-sablon-summary", tabIndex: -1, "aria-labelledby": `${id}-t`, children: [
-    /* @__PURE__ */ jsxs94("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5", strokeLinecap: "round", "aria-hidden": "true", children: [
-      /* @__PURE__ */ jsx104("circle", { cx: "12", cy: "12", r: "10", strokeWidth: "2" }),
-      /* @__PURE__ */ jsx104("path", { d: "M12 7v6M12 16.5v.5" })
+  return /* @__PURE__ */ jsxs95("div", { ref, className: "bc-alert is-danger bc-sablon-summary", tabIndex: -1, "aria-labelledby": `${id}-t`, children: [
+    /* @__PURE__ */ jsxs95("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5", strokeLinecap: "round", "aria-hidden": "true", children: [
+      /* @__PURE__ */ jsx105("circle", { cx: "12", cy: "12", r: "10", strokeWidth: "2" }),
+      /* @__PURE__ */ jsx105("path", { d: "M12 7v6M12 16.5v.5" })
     ] }),
-    /* @__PURE__ */ jsxs94("div", { children: [
-      /* @__PURE__ */ jsx104("h2", { id: `${id}-t`, className: "bc-sablon-summary-title", children: n ? `Nem mentettem \u2013 ${n === 1 ? "egy mez\u0151t" : `${n} mez\u0151t`} jav\xEDts ki:` : "Nem siker\xFClt menteni." }),
-      general && /* @__PURE__ */ jsx104("p", { children: general }),
-      n > 0 && /* @__PURE__ */ jsx104("ul", { className: "bc-sablon-summary-list", children: errors.map((er) => /* @__PURE__ */ jsx104("li", { children: /* @__PURE__ */ jsxs94("a", { href: `#${er.name}`, onClick: (e) => jump(e, er.name), children: [
+    /* @__PURE__ */ jsxs95("div", { children: [
+      /* @__PURE__ */ jsx105("h2", { id: `${id}-t`, className: "bc-sablon-summary-title", children: n ? `Nem mentettem \u2013 ${n === 1 ? "egy mez\u0151t" : `${n} mez\u0151t`} jav\xEDts ki:` : "Nem siker\xFClt menteni." }),
+      general && /* @__PURE__ */ jsx105("p", { children: general }),
+      n > 0 && /* @__PURE__ */ jsx105("ul", { className: "bc-sablon-summary-list", children: errors.map((er) => /* @__PURE__ */ jsx105("li", { children: /* @__PURE__ */ jsxs95("a", { href: `#${er.name}`, onClick: (e) => jump(e, er.name), children: [
         er.label ? `${er.label}: ` : "",
         er.message
       ] }) }, er.name)) })
@@ -7856,7 +7956,7 @@ var ErrorSummary = forwardRef11(function ErrorSummary2({ errors, general, form }
 });
 function useLinkGuard(dirty, confirm) {
   const bypass = useRef44(false);
-  useEffect31(() => {
+  useEffect32(() => {
     if (!dirty) return;
     const h = (e) => {
       if (bypass.current || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -7878,32 +7978,32 @@ function useLinkGuard(dirty, confirm) {
 }
 
 // react/src/sablon/EditPage.tsx
-import { jsx as jsx105, jsxs as jsxs95 } from "react/jsx-runtime";
+import { jsx as jsx106, jsxs as jsxs96 } from "react/jsx-runtime";
 function EditPage(p) {
   const { title, description, breadcrumbs, renderLink = defaultLink, status = "ready", dirty, validate, preview } = p;
   useTemplateTitle(title, p.docTitle, p.docTitleSuffix, status === "loading");
   const pid = useId25();
   const form = useRef45(null);
   const summary = useRef45(null);
-  const [busy, setBusy] = useState55(false);
-  const [done, setDone] = useState55(false);
-  const [saved, setSaved] = useState55(false);
-  const [attempted, setAttempted] = useState55(false);
-  const [server, setServer] = useState55([]);
-  const [general, setGeneral] = useState55();
-  const [failed, setFailed] = useState55(0);
+  const [busy, setBusy] = useState56(false);
+  const [done, setDone] = useState56(false);
+  const [saved, setSaved] = useState56(false);
+  const [attempted, setAttempted] = useState56(false);
+  const [server, setServer] = useState56([]);
+  const [general, setGeneral] = useState56();
+  const [failed, setFailed] = useState56(0);
   const guard = useUnsavedChanges(dirty && !busy);
   useLinkGuard(dirty && !busy, guard.confirm);
-  useEffect32(() => {
+  useEffect33(() => {
     if (dirty) setSaved(false);
   }, [dirty]);
-  useEffect32(() => {
+  useEffect33(() => {
     if (failed) {
       summary.current?.focus();
       shake(summary.current);
     }
   }, [failed]);
-  useEffect32(() => {
+  useEffect33(() => {
     if (!done) return;
     const t = setTimeout(() => setDone(false), 1500);
     return () => clearTimeout(t);
@@ -7944,27 +8044,27 @@ function EditPage(p) {
     }
   };
   const cancelLabel = p.cancelLabel ?? "M\xE9gse";
-  const cancel = p.cancelHref ? renderLink({ href: p.cancelHref, className: "bc-btn is-secondary", children: cancelLabel }) : p.onCancel && /* @__PURE__ */ jsx105(Button, { variant: "secondary", disabled: busy, onClick: () => guard.confirm(p.onCancel), children: cancelLabel });
+  const cancel = p.cancelHref ? renderLink({ href: p.cancelHref, className: "bc-btn is-secondary", children: cancelLabel }) : p.onCancel && /* @__PURE__ */ jsx106(Button, { variant: "secondary", disabled: busy, onClick: () => guard.confirm(p.onCancel), children: cancelLabel });
   const showSummary = (errors.length > 0 || general) && (attempted || server.length > 0 || general);
-  return /* @__PURE__ */ jsxs95(SablonFrame, { kind: "szerkeszto", standalone: p.standalone, skipLabel: p.skipLabel, className: p.className, busy: status === "loading", children: [
-    /* @__PURE__ */ jsx105(PageHeader, { title, description, breadcrumbs, renderLink, loading: status === "loading" }),
-    /* @__PURE__ */ jsx105(DataState, { status, what: p.what ?? "az \u0171rlapot", error: p.error, onRetry: p.onRetry, children: /* @__PURE__ */ jsxs95("div", { className: cx("bc-sablon-cols", Boolean(preview) && "has-preview"), children: [
-      /* @__PURE__ */ jsxs95("form", { ref: form, className: "bc-sablon-form", noValidate: true, onSubmit: (e) => void submit(e), "aria-busy": busy || void 0, children: [
-        showSummary && /* @__PURE__ */ jsx105(ErrorSummary, { ref: summary, errors, general, form }),
+  return /* @__PURE__ */ jsxs96(SablonFrame, { kind: "szerkeszto", standalone: p.standalone, skipLabel: p.skipLabel, className: p.className, busy: status === "loading", children: [
+    /* @__PURE__ */ jsx106(PageHeader, { title, description, breadcrumbs, renderLink, loading: status === "loading" }),
+    /* @__PURE__ */ jsx106(DataState, { status, what: p.what ?? "az \u0171rlapot", error: p.error, onRetry: p.onRetry, children: /* @__PURE__ */ jsxs96("div", { className: cx("bc-sablon-cols", Boolean(preview) && "has-preview"), children: [
+      /* @__PURE__ */ jsxs96("form", { ref: form, className: "bc-sablon-form", noValidate: true, onSubmit: (e) => void submit(e), "aria-busy": busy || void 0, children: [
+        showSummary && /* @__PURE__ */ jsx106(ErrorSummary, { ref: summary, errors, general, form }),
         typeof p.children === "function" ? p.children({ errorOf, submitting: busy }) : p.children,
-        /* @__PURE__ */ jsxs95("div", { className: "bc-sablon-bar", children: [
-          /* @__PURE__ */ jsx105("div", { className: "bc-sablon-bar-note", children: saved && !dirty ? /* @__PURE__ */ jsx105(BeeMoment, { inline: true, pillanat: "mentve" }) : dirty ? /* @__PURE__ */ jsxs95("p", { className: "bc-sablon-dirty", children: [
-            /* @__PURE__ */ jsx105("span", { className: "bc-sablon-dot", "aria-hidden": "true" }),
+        /* @__PURE__ */ jsxs96("div", { className: "bc-sablon-bar", children: [
+          /* @__PURE__ */ jsx106("div", { className: "bc-sablon-bar-note", children: saved && !dirty ? /* @__PURE__ */ jsx106(BeeMoment, { inline: true, pillanat: "mentve" }) : dirty ? /* @__PURE__ */ jsxs96("p", { className: "bc-sablon-dirty", children: [
+            /* @__PURE__ */ jsx106("span", { className: "bc-sablon-dot", "aria-hidden": "true" }),
             "Nem mentett v\xE1ltoz\xE1sok"
           ] }) : null }),
-          /* @__PURE__ */ jsxs95(FormActions, { children: [
+          /* @__PURE__ */ jsxs96(FormActions, { children: [
             cancel,
-            /* @__PURE__ */ jsx105(Button, { type: "submit", busy, done, children: p.submitLabel ?? "Ment\xE9s" })
+            /* @__PURE__ */ jsx106(Button, { type: "submit", busy, done, children: p.submitLabel ?? "Ment\xE9s" })
           ] })
         ] })
       ] }),
-      preview && /* @__PURE__ */ jsxs95("aside", { className: "bc-sablon-preview", "aria-labelledby": `${pid}-pv`, children: [
-        /* @__PURE__ */ jsx105("h2", { id: `${pid}-pv`, className: "bc-sablon-aside-title", children: p.previewLabel ?? "El\u0151n\xE9zet" }),
+      preview && /* @__PURE__ */ jsxs96("aside", { className: "bc-sablon-preview", "aria-labelledby": `${pid}-pv`, children: [
+        /* @__PURE__ */ jsx106("h2", { id: `${pid}-pv`, className: "bc-sablon-aside-title", children: p.previewLabel ?? "El\u0151n\xE9zet" }),
         preview
       ] })
     ] }) }),
@@ -7974,26 +8074,26 @@ function EditPage(p) {
 
 // react/src/sablon/Dashboard.tsx
 import { useId as useId26, useRef as useRef46 } from "react";
-import { jsx as jsx106, jsxs as jsxs96 } from "react/jsx-runtime";
+import { jsx as jsx107, jsxs as jsxs97 } from "react/jsx-runtime";
 function Dashboard(p) {
   const { title, description, breadcrumbs, renderLink, status = "ready", stats, charts } = p;
   useTemplateTitle(title, p.docTitle, p.docTitleSuffix);
   const id = useId26();
-  return /* @__PURE__ */ jsxs96(SablonFrame, { kind: "iranyitopult", standalone: p.standalone, skipLabel: p.skipLabel, className: p.className, children: [
-    /* @__PURE__ */ jsx106(PageHeader, { title, description, breadcrumbs, renderLink, actions: p.actions }),
-    (p.period || p.toolbar) && status === "ready" && /* @__PURE__ */ jsxs96("div", { className: "bc-sablon-toolbar", children: [
+  return /* @__PURE__ */ jsxs97(SablonFrame, { kind: "iranyitopult", standalone: p.standalone, skipLabel: p.skipLabel, className: p.className, children: [
+    /* @__PURE__ */ jsx107(PageHeader, { title, description, breadcrumbs, renderLink, actions: p.actions }),
+    (p.period || p.toolbar) && status === "ready" && /* @__PURE__ */ jsxs97("div", { className: "bc-sablon-toolbar", children: [
       p.period,
       p.toolbar
     ] }),
-    /* @__PURE__ */ jsxs96(DataState, { status, what: p.what ?? "az ir\xE1ny\xEDt\xF3pultot", error: p.error, onRetry: p.onRetry, children: [
-      p.moment && /* @__PURE__ */ jsx106("div", { className: "bc-card is-flat bc-sablon-moment", children: /* @__PURE__ */ jsx106(BeeMoment, { inline: true, ...p.moment }) }),
-      stats && stats.length > 0 && /* @__PURE__ */ jsxs96("section", { "aria-labelledby": `${id}-s`, children: [
-        /* @__PURE__ */ jsx106("h2", { id: `${id}-s`, className: "bc-sr", children: p.statsTitle ?? "F\u0151 sz\xE1mok" }),
-        /* @__PURE__ */ jsx106(Stagger, { className: "bc-stats bc-sablon-stats", children: stats.map(({ id: key, ...s }) => /* @__PURE__ */ jsx106("div", { className: "bc-sablon-stat", children: /* @__PURE__ */ jsx106(CountedStat, { ...s }) }, key)) })
+    /* @__PURE__ */ jsxs97(DataState, { status, what: p.what ?? "az ir\xE1ny\xEDt\xF3pultot", error: p.error, onRetry: p.onRetry, children: [
+      p.moment && /* @__PURE__ */ jsx107("div", { className: "bc-card is-flat bc-sablon-moment", children: /* @__PURE__ */ jsx107(BeeMoment, { inline: true, ...p.moment }) }),
+      stats && stats.length > 0 && /* @__PURE__ */ jsxs97("section", { "aria-labelledby": `${id}-s`, children: [
+        /* @__PURE__ */ jsx107("h2", { id: `${id}-s`, className: "bc-sr", children: p.statsTitle ?? "F\u0151 sz\xE1mok" }),
+        /* @__PURE__ */ jsx107(Stagger, { className: "bc-stats bc-sablon-stats", children: stats.map(({ id: key, ...s }) => /* @__PURE__ */ jsx107("div", { className: "bc-sablon-stat", children: /* @__PURE__ */ jsx107(CountedStat, { ...s }) }, key)) })
       ] }),
-      charts && /* @__PURE__ */ jsxs96("section", { "aria-labelledby": `${id}-c`, children: [
-        /* @__PURE__ */ jsx106("h2", { id: `${id}-c`, className: "bc-sr", children: p.chartsTitle ?? "Grafikonok" }),
-        /* @__PURE__ */ jsx106("div", { className: "bc-sablon-charts", children: charts })
+      charts && /* @__PURE__ */ jsxs97("section", { "aria-labelledby": `${id}-c`, children: [
+        /* @__PURE__ */ jsx107("h2", { id: `${id}-c`, className: "bc-sr", children: p.chartsTitle ?? "Grafikonok" }),
+        /* @__PURE__ */ jsx107("div", { className: "bc-sablon-charts", children: charts })
       ] }),
       p.children
     ] })
@@ -8004,11 +8104,11 @@ function CountedStat(s) {
   const ready = !s.loading && !s.error && typeof s.value === "number";
   if (phase.current === "wait" && ready) phase.current = "count";
   else if (phase.current === "count" && !ready) phase.current = "done";
-  return phase.current === "count" ? /* @__PURE__ */ jsx106(Counting, { ...s, value: s.value }) : /* @__PURE__ */ jsx106(StatTile, { ...s });
+  return phase.current === "count" ? /* @__PURE__ */ jsx107(Counting, { ...s, value: s.value }) : /* @__PURE__ */ jsx107(StatTile, { ...s });
 }
 function Counting(s) {
   const v = useCountUp(s.value);
-  return /* @__PURE__ */ jsx106(StatTile, { ...s, value: v });
+  return /* @__PURE__ */ jsx107(StatTile, { ...s, value: v });
 }
 export {
   Accordion,
@@ -8033,6 +8133,7 @@ export {
   CompareMerge,
   ConfirmDialog,
   CopyButton,
+  CropDialog,
   Dashboard,
   DataNote,
   DataState,
@@ -8143,6 +8244,7 @@ export {
   clusterTier,
   copyText,
   createColumnHelper,
+  cropToFile,
   cryptoIndex,
   cx,
   describeAudience,

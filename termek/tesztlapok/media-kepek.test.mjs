@@ -114,4 +114,23 @@ export default async function ({ page, t }) {
     const lbl = await c('avatar').locator('.bc-avatar').allInnerTexts();
     ok(lbl.includes('KÁ') && lbl.includes('Zs') && lbl.includes('NÉ'), lbl.join(' '));
   });
+  await t('vágás: két fájl → az ablak sorban kérdez (1/2, 2/2); kihagyás szól, a kivágott feltöltődik', async () => {
+    await input('kep-vagas').setInputFiles([png('logo-a.png'), png('logo-b.png')]);
+    const dlg = page.getByRole('dialog'); await dlg.waitFor();
+    ok((await dlg.innerText()).includes('1/2'), 'nincs sorszám'); ok((await dlg.innerText()).includes('négyzetes keretben'), 'nincs „miért”');
+    ok((await c('kep-vagas').locator('.bc-count').innerText()).startsWith('3/4'), 'a várakozó nem számít bele');
+    await dlg.getByRole('button', { name: 'Ezt kihagyom' }).click();
+    await until(async () => (await dlg.innerText()).includes('2/2'), 'nem jött a következő');
+    const go = dlg.getByRole('button', { name: 'Kivágás és feltöltés' });
+    await until(async () => go.isEnabled(), 'a kivágás gomb nem lett aktív');
+    await go.click(); await dlg.waitFor({ state: 'detached' });
+    await until(async () => (await out('vagas')).split(',').length === 2, 'nem került fel a kivágott kép');
+    ok(await c('kep-vagas').getByText('Kihagytad: logo-a.png').isVisible(), 'a kihagyásról nem szól');
+  });
+  await t('altEditable=false: nincs „Leírás kell”, nincs leírás-menüpont, nincs figyelmeztetés', async () => {
+    ok(await c('kep-altnelkul').locator('.bc-tile-noalt').count() === 0, 'jelvény látszik'); ok(await c('kep-altnelkul').locator('.bc-upload-alt').count() === 0, 'figyelmeztetés látszik');
+    await tile('kep-altnelkul', 0).locator('.bc-tile-menu').click();
+    const m = page.locator('.bc-gmenu[data-state="open"]'); await m.waitFor();
+    ok(await m.getByText('Leírás').count() === 0, 'van leírás-menüpont'); await page.keyboard.press('Escape'); await m.waitFor({ state: 'detached' });
+  });
 }

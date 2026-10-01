@@ -20,7 +20,7 @@
 **Segédek:** notify
 
 ## 04 – Média és speciális
-**Komponensek:** Avatar, FileImport, Gallery, HeatScale, ImageCropper, ImageUploader, ImportResult, Lightbox, MapLegend, MonthCalendar, OpeningHoursEditor, Progress, Stepper, VideoUpload
+**Komponensek:** Avatar, CropDialog, FileImport, Gallery, HeatScale, ImageCropper, ImageUploader (`crop`, `altEditable` – Javaslat 07), ImportResult, Lightbox, MapLegend, MonthCalendar, OpeningHoursEditor, Progress, Stepper, VideoUpload
 
 **Állandók:** KIND_LABEL, MARKER_ICON, MARKER_ICON_SELECTED, WEEK
 

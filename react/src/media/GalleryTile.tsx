@@ -19,6 +19,8 @@ type Props = {
   /** Borító + sorrend bekapcsolva */
   ordering: boolean;
   editable: boolean;
+  /** false: a leírás csak olvasható (nincs menüpont, nincs „Leírás kell”) */
+  altEditable?: boolean;
   dragging: boolean;
   dropTarget: boolean;
   onAction: (a: TileAction) => void;
@@ -32,8 +34,8 @@ type Props = {
  * Egy galéria-csempe: a kép gomb (nagyítót nyit), sarokban „Borító” jelvény és ⋯ menü.
  * A menü a húzás billentyűzetes és érintéses párja: Előre / Hátra / Legyen a borító.
  */
-export function GalleryTile({ img, index, count, ordering, editable, dragging, dropTarget, onAction, onDragStart, onDragEnd, onDragOver, onDrop }: Props) {
-  const name = img.alt || `${index + 1}. kép (nincs leírása)`;
+export function GalleryTile({ img, index, count, ordering, editable, altEditable = true, dragging, dropTarget, onAction, onDragStart, onDragEnd, onDragOver, onDrop }: Props) {
+  const name = img.alt || (altEditable ? `${index + 1}. kép (nincs leírása)` : `${index + 1}. kép`);
   const canMove = ordering && editable;
   return (
     <li data-tile={img.id} className={cx('bc-tile', dragging && 'is-dragging', dropTarget && 'is-drop')} draggable={canMove}
@@ -42,7 +44,7 @@ export function GalleryTile({ img, index, count, ordering, editable, dragging, d
         <img src={img.src} alt="" draggable={false} loading="lazy" decoding="async" />
       </button>
       {ordering && index === 0 && <span className="bc-badge is-accent bc-tile-cover">Borító</span>}
-      {!img.alt && <span className="bc-badge is-warning bc-tile-noalt"><IcWarn />Leírás kell</span>}
+      {!img.alt && altEditable && <span className="bc-badge is-warning bc-tile-noalt"><IcWarn />Leírás kell</span>}
       {editable && (
         <Menu.Root modal={false}>
           <Menu.Trigger className="bc-icon-btn bc-tile-menu" aria-label={`Műveletek: ${name}`}><IcDots /></Menu.Trigger>
@@ -52,7 +54,7 @@ export function GalleryTile({ img, index, count, ordering, editable, dragging, d
               {canMove && <Menu.Item className="bc-gmenu-item" disabled={index === 0} onSelect={() => onAction('cover')}>Legyen a borító</Menu.Item>}
               {canMove && <Menu.Item className="bc-gmenu-item" disabled={index === 0} onSelect={() => onAction('back')}>Előre (balra)</Menu.Item>}
               {canMove && <Menu.Item className="bc-gmenu-item" disabled={index === count - 1} onSelect={() => onAction('forward')}>Hátra (jobbra)</Menu.Item>}
-              <Menu.Item className="bc-gmenu-item" onSelect={() => onAction('alt')}>{img.alt ? 'Leírás (alt) szerkesztése…' : 'Leírás (alt) megadása…'}</Menu.Item>
+              {altEditable && <Menu.Item className="bc-gmenu-item" onSelect={() => onAction('alt')}>{img.alt ? 'Leírás (alt) szerkesztése…' : 'Leírás (alt) megadása…'}</Menu.Item>}
               <Menu.Separator className="bc-gmenu-sep" />
               <Menu.Item className="bc-gmenu-item is-danger" onSelect={() => onAction('delete')}>Törlés…</Menu.Item>
             </Menu.Content>

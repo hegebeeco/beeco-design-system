@@ -15,6 +15,11 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.16.0 – 2026-10-01 – Javaslat 07: vágás feltöltés előtt, csak olvasható képleírás
+* **ImageUploader `crop`:** rögzített képarányú vágás minden fájlnál, feltöltés előtt (`CropDialog`, sorban: „1/2”, kihagyható). Új export: `CropDialog`, `cropToFile`, `UploadCrop`.
+* **`altEditable={false}`** (ImageUploader, Gallery): ha a backend nem tárolja a leírást, a projekt adja az alt-ot. Ilyenkor nincs menüpont és „Leírás kell” jelzés.
+* Tesztlap: `media-kepek` (+2 eset, +2 forgatókönyv). Javaslatlap: `docs/javaslatok/07-kepfeltoltes-admin.md`.
+
 ## 1.15.1 – 2026-10-01
 * **Javítás – TagPicker, Combobox:** ha az `onCreate` elutasít, nincs kezeletlen hiba. A megszakítás (`AbortError`, pl. a projekt saját ablakában Mégse) csendes, és a beírt név megmarad. Más hibánál az üzenet a mező alatt jelenik meg. Új segéd: `createError`. Tesztlap: `valaszto` (+2 forgatókönyv). Az admin partner-címkéi hozták elő.
 
