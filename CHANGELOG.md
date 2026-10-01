@@ -15,6 +15,9 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.19.1 – 2026-10-01
+* Javítás: a bejelölt jelölőnégyzet szabálya a méz háttér mellé kiírja az on-accent színt (a check-tokens szabálya).
+
 ## 1.19.0 – 2026-10-01 – jelölőnégyzet, súgó, árnyékok, tartalomszélességű szűrők (Kristóf kérése)
 * **CheckboxInput** (új atom) és márkázott jelölőnégyzet mindenhol (Checkbox, táblázat-sor): fekete keret, méz + pipa, részleges „–”, tiltott, hibás.
 * **Súgó (ⓘ):** háttér és körvonal nélkül; rámutatásra is nyílik (250 ms), a buborékon tartva nyitva marad, kattintásra rögzül.

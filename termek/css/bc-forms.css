@@ -48,7 +48,7 @@
   content: ""; width: 14px; height: 14px; background: currentColor; transform: scale(0); transition: transform var(--bc-t-fast) var(--bc-ease-out);
   -webkit-mask: var(--_jel) center / contain no-repeat; mask: var(--_jel) center / contain no-repeat;
   --_jel: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7'/%3E%3C/svg%3E"); }
-:is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):is(:checked, :indeterminate) { background: var(--bc-accent); box-shadow: var(--bc-shadow-s); }
+:is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):is(:checked, :indeterminate) { color: var(--bc-on-accent); background: var(--bc-accent); box-shadow: var(--bc-shadow-s); }
 :is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):is(:checked, :indeterminate)::after { transform: scale(1); }
 :is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):indeterminate::after {
   --_jel: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round'%3E%3Cpath d='M6 12h12'/%3E%3C/svg%3E"); }
