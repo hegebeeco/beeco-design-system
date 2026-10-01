@@ -1,4 +1,6 @@
 export { Field, type FieldProps } from './field/Field';
+export { FieldInput } from './field/FieldInput';
+export { useFieldContext, type FieldCtx } from './field/FieldContext';
 export { HelpButton } from './field/HelpButton';
 export { Button, IconButton, type ButtonProps } from './inputs/Button';
 export { IcSave, IcTrash, IcNew, IcInfo, IcEdit, IcOpen, IcX, IcOk } from './inputs/ikonok';

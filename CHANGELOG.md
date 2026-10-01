@@ -11,6 +11,9 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.24.0 – 2026-10-02
+- Új export: **FieldInput** és **useFieldContext** (+ `FieldCtx` típus) – saját mező (pl. natív fájlválasztó) bekötése a `Field` címkéjéhez, súgójához és hibájához (id, aria-describedby, aria-invalid). Eddig csak belül volt elérhető.
+
 ## 1.23.0 – 2026-10-01
 - Új: **téma-váltó** (Javaslat 09, a partner-app sötét módjából): `ThemeProvider`, `useTheme`, `ThemeToggle` (ikongomb / háromállású: Világos · Sötét · Rendszer szerint), `themeInitScript()` a villanásmentes induláshoz. A `<html>` `data-theme` + `.dark` jelzőit írja, a választást megjegyzi, a rendszer és más fül váltását követi. Tesztlap: `tema`.
 - Új: **felülírható feliratok** kétnyelvű apphoz – `AppShell labels` (menü nyitása/zárása, kinyitás/becsukás), `ShellAccount menuLabel` + `loadingLabel`, `HelpButton srLabel`. Az alapérték magyar, a meglévő fogyasztóknak nem változik semmi. Tesztlap: `reteg-vaz-felirat`.

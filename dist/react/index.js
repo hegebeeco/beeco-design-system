@@ -1,4 +1,4 @@
-/* beeco design system 1.23.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.24.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -129,6 +129,13 @@ function Field({ label, help, range, count, error, notice, required = false, dis
   ] });
 }
 
+// react/src/field/FieldInput.tsx
+function FieldInput({ children }) {
+  const f = useFieldContext();
+  if (!f) throw new Error("A mez\u0151nek Field-en bel\xFCl kell lennie (docs/komponensek.md 3/A)");
+  return children(f);
+}
+
 // react/src/inputs/Button.tsx
 import { forwardRef } from "react";
 import { jsx as jsx4, jsxs as jsxs4 } from "react/jsx-runtime";
@@ -199,13 +206,6 @@ function mergeRefs(...refs) {
       else if (r) r.current = el;
     }
   };
-}
-
-// react/src/field/FieldInput.tsx
-function FieldInput({ children }) {
-  const f = useFieldContext();
-  if (!f) throw new Error("A mez\u0151nek Field-en bel\xFCl kell lennie (docs/komponensek.md 3/A)");
-  return children(f);
 }
 
 // react/src/inputs/TextField.tsx
@@ -8472,6 +8472,7 @@ export {
   ErrorSummary,
   ExpandToggle,
   Field,
+  FieldInput,
   FileImport,
   FilterBar,
   ForbiddenPage,
@@ -8637,6 +8638,7 @@ export {
   typeNames,
   useCountUp,
   useDetailParam,
+  useFieldContext,
   useGeolocation,
   useLayerClose,
   useOnline,

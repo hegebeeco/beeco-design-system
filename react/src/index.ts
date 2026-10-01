@@ -1,6 +1,9 @@
 // beeco design system – React-komponensek (termékbőr). Szabályok: docs/komponensek.md
 // Előfeltétel a projektben: import '@beeco/design-system/termek.css'
 export { Field, type FieldProps } from './field/Field';
+// Saját mező (pl. fájlválasztó) bekötése a Field címkéjéhez, súgójához, hibájához (1.24)
+export { FieldInput } from './field/FieldInput';
+export { useFieldContext, type FieldCtx } from './field/FieldContext';
 export { HelpButton } from './field/HelpButton';
 export { Button, IconButton, type ButtonProps } from './inputs/Button';
 export { IcSave, IcTrash, IcNew, IcInfo, IcEdit, IcOpen, IcX, IcOk } from './inputs/ikonok';
