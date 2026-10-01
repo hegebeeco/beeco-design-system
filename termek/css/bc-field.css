@@ -44,7 +44,7 @@
 .bc-search > .bc-input::-webkit-search-cancel-button { display: none; }
 
 /* Szegmentált kapcsoló (1A: gombsor, méz kijelölés); keskeny helyen görgethető */
-.bc-seg { display: inline-flex; width: fit-content; max-width: 100%; align-self: flex-start; overflow-x: auto; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); background: var(--bc-surface); scrollbar-width: none; }
+.bc-seg { display: inline-flex; width: fit-content; max-width: 100%; overflow-x: auto; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); background: var(--bc-surface); scrollbar-width: none; }
 .bc-seg-item { flex: none; display: inline-flex; align-items: center; gap: var(--bc-sp-2); min-height: 40px; padding: 0 var(--bc-sp-4);
   font: inherit; font-weight: var(--bc-fw-semibold); color: var(--bc-ink); background: transparent; border: 0; cursor: pointer;
   transition: background-color var(--bc-t-fast) var(--bc-ease-out); }

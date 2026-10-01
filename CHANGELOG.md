@@ -15,6 +15,9 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.19.2 – 2026-10-01
+* Javítás: a nézetváltó (SegmentedControl) a szűrősorban is alulra igazodik (1.19.0-ban felülre került).
+
 ## 1.19.1 – 2026-10-01
 * Javítás: a bejelölt jelölőnégyzet szabálya a méz háttér mellé kiírja az on-accent színt (a check-tokens szabálya).
 
