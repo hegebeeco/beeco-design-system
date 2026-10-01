@@ -565,6 +565,7 @@ function highlight(label, query) {
   if (i < 0) return label;
   return createElement(Fragment, null, label.slice(0, i), createElement("mark", null, label.slice(i, i + q.length)), label.slice(i + q.length));
 }
+var createError = (e) => e instanceof Error && e.name === "AbortError" ? void 0 : e instanceof Error && e.message ? e.message : "Nem siker\xFClt l\xE9trehozni. Pr\xF3b\xE1ld \xFAjra.";
 
 // react/src/pickers/Combobox.tsx
 import { jsx as jsx11, jsxs as jsxs9 } from "react/jsx-runtime";
@@ -601,10 +602,15 @@ function Combobox(props) {
     else if (!full) commit([...selected, value]);
     setQuery("");
   };
+  const [createErr, setCreateErr] = useState4();
   const create = async () => {
-    if (onCreate) {
+    if (!onCreate) return;
+    try {
       const v = await onCreate(q);
+      setCreateErr(void 0);
       toggle(v);
+    } catch (e) {
+      setCreateErr(createError(e));
     }
   };
   const pick = (i) => {
@@ -635,7 +641,7 @@ function Combobox(props) {
   const singleLabel = !multi && selected[0] ? byValue.get(selected[0])?.label ?? selected[0] : "";
   const count = multi && props.max !== void 0 ? { value: selected.length, max: props.max } : void 0;
   const range = field.range ?? (multi && props.max !== void 0 ? `legfeljebb ${props.max} elem` : void 0);
-  return /* @__PURE__ */ jsx11(Field, { ...field, range, count, disabled, children: /* @__PURE__ */ jsx11(FieldInput, { children: (f) => /* @__PURE__ */ jsxs9(Popover2.Root, { open: open && !disabled, onOpenChange: setOpen, children: [
+  return /* @__PURE__ */ jsx11(Field, { ...field, error: field.error ?? createErr, range, count, disabled, children: /* @__PURE__ */ jsx11(FieldInput, { children: (f) => /* @__PURE__ */ jsxs9(Popover2.Root, { open: open && !disabled, onOpenChange: setOpen, children: [
     /* @__PURE__ */ jsx11(Popover2.Anchor, { asChild: true, children: /* @__PURE__ */ jsxs9("div", { className: cx("bc-combo", f.invalid && "is-invalid", disabled && "is-disabled"), onClick: () => !disabled && input.current?.focus(), children: [
       chips.map((v) => /* @__PURE__ */ jsxs9("span", { className: "bc-chip", children: [
         /* @__PURE__ */ jsx11("span", { children: byValue.get(v)?.label ?? v }),
@@ -789,7 +795,13 @@ function TagPicker({ options, value, onChange, max, onCreate, cloudLimit = 20, .
       setErr(`\u201E${t}\u201D m\xE1r l\xE9tezik \u2013 v\xE1laszd ki a list\xE1b\xF3l.`);
       return;
     }
-    const v = await onCreate(t);
+    let v;
+    try {
+      v = await onCreate(t);
+    } catch (e) {
+      setErr(createError(e));
+      return;
+    }
     onChange([...value, v]);
     setDraft("");
     setAdding(false);

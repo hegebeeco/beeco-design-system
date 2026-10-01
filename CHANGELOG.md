@@ -15,6 +15,9 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.15.1 – 2026-10-01
+* **Javítás – TagPicker, Combobox:** ha az `onCreate` elutasít, nincs kezeletlen hiba. A megszakítás (`AbortError`, pl. a projekt saját ablakában Mégse) csendes, és a beírt név megmarad. Más hibánál az üzenet a mező alatt jelenik meg. Új segéd: `createError`. Tesztlap: `valaszto` (+2 forgatókönyv). Az admin partner-címkéi hozták elő.
+
 ## 1.15.0 – 2026-10-01 – a teljes komponenskészlet (02–06), méhecske-szereplők, mozgás, sprite-ok
 Kristóf jóváhagyásai: 02, 03, 04 és 05 javaslat Claude javaslata szerint; „mehetnek a maradék komponensek”; a mozgás bővítése a neo-brutalista és méhecskés irányhoz; méhecske-sprite (kódból + SpriteCook a nehézre; Lottie + sprite-lap + WebP; 6 szereplő); angol szöveg csak kérésre.
 * **02 – Adat és grafikon:** DataTable (TanStack: rendezés, kijelölés + tömeges sáv, kinyitható sor, oszlopméretezés, lapozás 10/25/100, sűrűség, kártyanézet telefonon), FilterBar (keskenyen „Szűrők (N)” panel), StatTile, ChartCard (3/B: cím, egység, időszak, súgó, „Hogyan olvasd?”, adattábla, forrás) + saját SVG-grafikonok (oszlop, vonal, csoportos, halmozott, sparkline, hőskála) – minden adatjel kontúrral, színtévesztő mód.

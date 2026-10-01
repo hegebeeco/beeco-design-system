@@ -19,11 +19,15 @@ function Tobb({ id, start = [], ...p }: Omit<Extract<Parameters<typeof Combobox>
     onCreate={p.onCreate ? (l) => { const nv = `uj${++uj}`; setOpts((o) => [...o, { value: nv, label: l }]); return nv; } : undefined} />
     <p className="tl-out" data-out={id}>érték: {v.join(', ') || 'nincs'}</p></>;
 }
-function Tag({ id, options, max, start = [] }: { id: string; options: ComboOption[]; max?: number; start?: string[] }) {
+// elutasít: 'megszakit' = a felhasználó a projekt ablakában Mégse-t nyomott (AbortError, csendes), 'hiba' = a szerver hibát adott
+function Tag({ id, options, max, start = [], elutasit }: { id: string; options: ComboOption[]; max?: number; start?: string[]; elutasit?: 'megszakit' | 'hiba' }) {
   const [v, setV] = useState<string[]>(start);
   const [opts, setOpts] = useState(options);
+  const onCreate = elutasit
+    ? () => Promise.reject(elutasit === 'megszakit' ? new DOMException('Mégse', 'AbortError') : new Error('Ez a címke már létezik a szerveren – keresd meg a listában.'))
+    : (l: string) => { const nv = `uj${++uj}`; setOpts((o) => [...o, { value: nv, label: l }]); return nv; };
   return <><TagPicker label="Címkék" help="A felhasználók ezekre szűrhetnek a térképen. Csak ami tényleg igaz a partnerre." options={opts} value={v} onChange={setV} max={max}
-    onCreate={(l) => { const nv = `uj${++uj}`; setOpts((o) => [...o, { value: nv, label: l }]); return nv; }} />
+    onCreate={onCreate} />
     <p className="tl-out" data-out={id}>érték: {v.join(', ') || 'nincs'}</p></>;
 }
 
@@ -46,6 +50,8 @@ function Oldal() {
         <Case id="tag-felho" title="Felhő (8 címke), max. 3"><Tag id="felho" options={cimkek} max={3} start={['t0']} /></Case>
         <Case id="tag-sok" title="25 címke → legördülő"><Tag id="tagsok" options={huszonot} /></Case>
         <Case id="tag-ures" title="Nincs még címke"><Tag id="tagures" options={[]} /></Case>
+        <Case id="tag-megszakit" title="Új címke – a projekt ablakában Mégse"><Tag id="tagmegszakit" options={cimkek.slice(0, 3)} elutasit="megszakit" /></Case>
+        <Case id="tag-szerverhiba" title="Új címke – szerverhiba"><Tag id="tagszerverhiba" options={cimkek.slice(0, 3)} elutasit="hiba" /></Case>
       </Grid>
     </>
   );

@@ -36,5 +36,15 @@ export default async function ({ page, t }) {
     await c('tag-ures').locator('.bc-tag.is-add').click(); await page.keyboard.type('Bio'); await page.keyboard.press('Enter');
     ok((await out('tagures')).includes('uj'), 'üres listába nem vett fel');
   });
+  await t('új címke megszakítva: csendes, a beírt név megmarad, nem vesz fel', async () => {
+    await c('tag-megszakit').locator('.bc-tag.is-add').click(); await page.keyboard.type('Kert'); await page.keyboard.press('Enter');
+    await page.waitForTimeout(50);
+    ok((await out('tagmegszakit')).includes('nincs'), 'felvette'); ok(await c('tag-megszakit').locator('input').inputValue() === 'Kert', 'elveszett a név');
+    ok(await c('tag-megszakit').locator('.bc-error').count() === 0, 'hibát mutat megszakításra');
+  });
+  await t('új címke szerverhibával: a hiba a mező alatt látszik', async () => {
+    await c('tag-szerverhiba').locator('.bc-tag.is-add').click(); await page.keyboard.type('Kert'); await page.keyboard.press('Enter');
+    ok(await c('tag-szerverhiba').getByText('már létezik a szerveren').isVisible(), 'nem szól a hibáról'); ok((await out('tagszerverhiba')).includes('nincs'), 'felvette');
+  });
   await t('25 címkénél legördülő jelenik meg', async () => ok(await c('tag-sok').locator('[role=combobox]').count() === 1, 'nem legördülő'));
 }

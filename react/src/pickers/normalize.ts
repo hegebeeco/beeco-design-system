@@ -11,3 +11,7 @@ export function highlight(label: string, query: string): ReactNode {
   if (i < 0) return label;
   return createElement(Fragment, null, label.slice(0, i), createElement('mark', null, label.slice(i, i + q.length)), label.slice(i + q.length));
 }
+
+/** onCreate hibájának szövege: a megszakítás (AbortError) csendes → undefined; más hibánál az üzenet vagy egy általános teendő */
+export const createError = (e: unknown): string | undefined =>
+  e instanceof Error && e.name === 'AbortError' ? undefined : e instanceof Error && e.message ? e.message : 'Nem sikerült létrehozni. Próbáld újra.';

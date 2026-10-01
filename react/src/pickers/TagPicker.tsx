@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Field, type FieldProps } from '../field/Field';
 import { Combobox, type ComboOption } from './Combobox';
-import { norm } from './normalize';
+import { createError, norm } from './normalize';
 
 export type TagPickerProps = FieldProps & {
   options: ReadonlyArray<ComboOption>;
@@ -28,7 +28,8 @@ export function TagPicker({ options, value, onChange, max, onCreate, cloudLimit 
     const t = draft.trim();
     if (!t) { setErr('Adj nevet az új címkének.'); return; }
     if (options.some((o) => norm(o.label) === norm(t))) { setErr(`„${t}” már létezik – válaszd ki a listából.`); return; }
-    const v = await onCreate!(t);
+    let v: string;
+    try { v = await onCreate!(t); } catch (e) { setErr(createError(e)); return; } // megszakítás vagy hiba: a beírt név megmarad
     onChange([...value, v]); setDraft(''); setAdding(false); setErr(undefined);
   };
 

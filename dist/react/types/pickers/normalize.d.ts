@@ -3,3 +3,5 @@ import { type ReactNode } from 'react';
 export declare const norm: (s: string) => string;
 /** A találat kiemelése <mark>-kal (ékezet-függetlenül) */
 export declare function highlight(label: string, query: string): ReactNode;
+/** onCreate hibájának szövege: a megszakítás (AbortError) csendes → undefined; más hibánál az üzenet vagy egy általános teendő */
+export declare const createError: (e: unknown) => string | undefined;

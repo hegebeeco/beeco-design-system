@@ -3,7 +3,7 @@ import { useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 import { cx } from '../cx';
 import { Field, type FieldProps } from '../field/Field';
 import { FieldInput } from '../field/FieldInput';
-import { highlight, norm } from './normalize';
+import { createError, highlight, norm } from './normalize';
 
 export type ComboOption = { value: string; label: string; disabled?: boolean };
 type Common = FieldProps & {
@@ -60,7 +60,9 @@ export function Combobox(props: ComboboxProps) {
     else if (!full) commit([...selected, value]);
     setQuery('');
   };
-  const create = async () => { if (onCreate) { const v = await onCreate(q); toggle(v); } };
+  const [createErr, setCreateErr] = useState<string>();
+  // onCreate elutasítása: megszakításnál (AbortError) csendben marad, más hibánál a mező alatt szól
+  const create = async () => { if (!onCreate) return; try { const v = await onCreate(q); setCreateErr(undefined); toggle(v); } catch (e) { setCreateErr(createError(e)); } };
   const pick = (i: number) => {
     if (i < shown.length) { const o = shown[i]; if (!o.disabled && !(full && !selected.includes(o.value))) toggle(o.value); }
     else if (canCreate) void create();
@@ -82,7 +84,7 @@ export function Combobox(props: ComboboxProps) {
   const range = field.range ?? (multi && props.max !== undefined ? `legfeljebb ${props.max} elem` : undefined);
 
   return (
-    <Field {...field} range={range} count={count} disabled={disabled}>
+    <Field {...field} error={field.error ?? createErr} range={range} count={count} disabled={disabled}>
       <FieldInput>
         {(f) => (
           <Popover.Root open={open && !disabled} onOpenChange={setOpen}>
