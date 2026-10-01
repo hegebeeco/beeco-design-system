@@ -55,6 +55,9 @@ async function main() {
   const lista = pages.map((p) => { const src = fs.readFileSync(path.join(dir, p), 'utf8'); const m = src.match(/mount\(\s*'([^']+)'(?:,\s*'([^']*)')?/); return { nev: p.replace(/\.tsx$/, ''), cim: m ? m[1] : p, leiras: m && m[2] ? m[2] : '' }; });
   outputs.push({ path: path.join(ROOT, 'termek/tesztlapok/lista.json'), text: JSON.stringify(lista, null, 1) + '\n' });
   outputs.push({ path: path.join(ROOT, 'dist/react/index.d.ts'), text: `${banner}\nexport * from './types/index';\n` });
+  // 3. A gépi mérés böngészőben futtatható formában (projektekben is: window.bcMeres({ w, touch }) → leletek)
+  const meresFn = require(path.join(ROOT, 'tools/komp/oldal-meres.js'));
+  outputs.push({ path: path.join(ROOT, 'dist/meres/oldal-meres.js'), text: `${banner}\n/* Használat a böngészőben: const L = window.bcMeres({ w: innerWidth, touch: true }); – leletek { kat, sulyos, mi, hol } */\nwindow.bcMeres = ${meresFn.toString()};\n` });
 
   let stale = 0;
   for (const o of outputs) {

@@ -15,6 +15,9 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.18.1 – 2026-10-01
+* A gépi mérés a csomagban is: `dist/meres/oldal-meres.js` (`window.bcMeres({ w, touch })`) – a projektek (admin, partner) saját oldalain is futtatható.
+
 ## 1.18.0 – 2026-10-01 – gombok: piktogram-szabály és igazítás (Kristóf szabálya)
 * **Közös piktogramok:** `IcSave`, `IcTrash`, `IcNew`, `IcInfo`, `IcEdit`, `IcOpen`, `IcX`, `IcOk`.
 * **EditPage** mentés-gombja és a **ConfirmDialog** megerősítő gombja alapból piktogramot kap (`submitIcon`, `confirmIcon` felülírja); a „kész” pipa is piktogram.
