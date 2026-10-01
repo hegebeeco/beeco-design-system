@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Bee, BeeMoment, BeeSprite, type SpriteSzereplo, Button, celebrate, HexLoader, pillanatok, ProgressBar, shake, Stagger, szerepek, TextField, useCountUp, type Szerep } from '../src';
+import { Bee, BeeMoment, BeeSprite, type SpriteSzereplo, Button, celebrate, HexLoader, pillanatok, ProgressBar, shake, Stagger, szerepek, TextField, useCountUp, type Szerep, IcSave } from '../src';
 import { Case, Grid, mount } from './_keret';
 
 function Szamlalo() {
@@ -17,7 +17,7 @@ function Razas() {
   const [err, setErr] = useState<string>();
   return <form ref={form} data-out="razas" onSubmit={(e) => { e.preventDefault(); setErr('Add meg a partner nevét – enélkül nem menthető.'); shake(form.current); }}>
     <TextField label="Partner neve" help="Így jelenik meg az appban." maxLength={60} error={err} />
-    <Button type="submit">Mentés</Button></form>;
+    <Button type="submit" icon={<IcSave />}>Mentés</Button></form>;
 }
 function Halado() {
   const [v, setV] = useState(0.42);

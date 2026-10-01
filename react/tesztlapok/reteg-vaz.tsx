@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { StrictMode, useEffect, useState } from 'react';
-import { AppShell, Button, PageHeader, ShellAccount, Toaster, type NavGroup } from '../src';
+import { AppShell, Button, PageHeader, ShellAccount, Toaster, type NavGroup, IcNew } from '../src';
 
 // Saját keret (nem a _keret.mount): az AppShell maga az oldal – benne van a <main>
 const ic = (d: string) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d={d} /></svg>;
@@ -29,7 +29,7 @@ function Oldal() {
       account={<ShellAccount name="Kovács Katalin Erzsébet (nagyon hosszú név)" detail="admin" items={[{ label: 'Profilom' }, 'separator', { label: 'Kijelentkezés', onSelect: () => { document.title = 'kijelentkezve'; } }]} />}>
       <Toaster />
       <div data-case="vaz">
-        <PageHeader title={cim} description="Az oldal címe a tartalom tetején; asztalon nincs fejléc, a sáv becsukható (Javaslat 08)." breadcrumbs={[{ label: 'Admin', href: '#partnerek' }, { label: cim }]} actions={<Button>Új elem</Button>} />
+        <PageHeader title={cim} description="Az oldal címe a tartalom tetején; asztalon nincs fejléc, a sáv becsukható (Javaslat 08)." breadcrumbs={[{ label: 'Admin', href: '#partnerek' }, { label: cim }]} actions={<Button icon={<IcNew />}>Új elem</Button>} />
         <p data-out="oldal">oldal: {cur}</p>
         {Array.from({ length: 12 }, (_, i) => <p key={i}>Tartalom {i + 1}. sora (mintaadat) – görgess, a sáv a helyén marad.</p>)}
       </div>

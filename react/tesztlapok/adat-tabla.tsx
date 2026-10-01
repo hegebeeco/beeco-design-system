@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Button, DataNote, DataState, DataTable, EmptyState, Pagination, SkeletonRows, type PaginationState, type SortingState } from '../src';
+import { Button, DataNote, DataState, DataTable, EmptyState, Pagination, SkeletonRows, type PaginationState, type SortingState, IcNew } from '../src';
 import { pois, type Poi } from './_adat-minta';
 import { PoiReszletek, poiOszlopok } from './_adat-oszlopok';
 import { Case, Grid, mount } from './_keret';
@@ -52,7 +52,7 @@ function Ures({ szurt }: { szurt?: boolean }) {
       <DataTable data={[]} columns={poiOszlopok} caption={szurt ? 'POI-k – szűrésre üres' : 'POI-k – üres'} getRowId={ID} rowLabel={NEV} itemLabel="POI" densityToggle={false}
         empty={szurt
           ? <EmptyState compact title="Nincs találat" action={<Button variant="secondary" onClick={() => setN((x) => x + 1)}>Szűrők törlése</Button>}>A szűrőkkel egy POI sem egyezik.</EmptyState>
-          : <EmptyState compact title="Még nincs POI" action={<Button onClick={() => setN((x) => x + 1)}>Új POI felvétele</Button>}>Az első helyszínt itt veheted fel.</EmptyState>} />
+          : <EmptyState compact title="Még nincs POI" action={<Button icon={<IcNew />} onClick={() => setN((x) => x + 1)}>Új POI felvétele</Button>}>Az első helyszínt itt veheted fel.</EmptyState>} />
       <p className="tl-out" data-out={szurt ? 'szurt' : 'ures'}>teendő: {n}</p>
     </>
   );

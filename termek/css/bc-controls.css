@@ -14,6 +14,13 @@
   transition: transform var(--bc-t-press) var(--bc-ease-out), box-shadow var(--bc-t-press) var(--bc-ease-out), background-color var(--bc-t-fast) var(--bc-ease-out);
 }
 .bc-btn > svg { width: 1.1em; height: 1.1em; flex: none; }
+/* Igazítás (Kristóf, 2026-10-01): a piktogram és a betűk LÁTHATÓ közepe egy vonalban, a gomb közepén.
+   1) A piktogram blokk-elem (nem ül az alapvonalon), a burkoló is középre igazít.
+   2) A Lalezar 1-es sormagasságnál a nagybetűk közepe 0,085 em-mel a sor közepe fölött van (mért: 20 px-nél 1,7 px) –
+      a tartalmat lejjebb toljuk, a piktogramot ugyanennyivel vissza. */
+.bc-btn svg, .bc-icon-btn svg, .bc-seg-item svg { display: block; }
+.bc-btn > span:has(> svg), .bc-seg-item > span:has(> svg), .bc-icon-btn > span:has(> svg) { display: inline-flex; align-items: center; }
+.bc-btn > svg, .bc-btn > span:has(> svg) { translate: 0 -.085em; }
 @media (hover: hover) and (pointer: fine) {
   .bc-btn:hover:not(:disabled, [aria-disabled="true"]) { background: color-mix(in srgb, var(--_bg) 88%, var(--bc-ink)); }
 }
@@ -53,3 +60,6 @@
 .bc-icon-btn:disabled { color: var(--bc-ink-muted); cursor: not-allowed; }
 
 @keyframes bc-spin { to { transform: rotate(360deg); } }
+/* (a fenti igazítás része – a méretváltozatok rövidített padding-ja után kell állnia) */
+.bc-btn, .bc-btn.is-sm, .bc-btn.is-lg { padding-top: .17em; }
+.bc-btn.is-block, .bc-btn.is-wrap { padding-top: calc(var(--bc-sp-2) + .17em); }

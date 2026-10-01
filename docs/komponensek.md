@@ -150,6 +150,11 @@ listában megnevezi, ami nem jó** – akkor is, ha nem az ő munkája rontotta 
 
 Súlyosság: **P0** (nem használható) · **P1** (akadály, javítani kell) · **P2** (javítandó) · **P3** (finomítás). „Nem gond, de javítani kell” = P2/P3 – ezek is a listára kerülnek.
 
+### 3.4/b Gombok és sorok (Kristóf, 2026-10-01) – gépi mérés minden tesztlapon
+- Gombban a piktogram és a betűk látható közepe ≤ 1,5 px-re (P2); szövegmezőben egyforma felső/alsó belső margó (P2).
+- Mezőket is tartalmazó sorban a vezérlők alja ≤ 1,5 px-re (P2).
+- Mentés/törlés/új/szerkesztés/info szöveges gomb piktogrammal (P3); csak-piktogramos gombnak neve (P1) és súgó-buboréka (P3). Szabály: `docs/termek-arculat.md` 6/A.
+
 ### 3.5 Kész, ha (Definition of Done)
 - [ ] a tesztlap minden állapotot és a releváns szélső eseteket mutatja;
 - [ ] mezőnél: címke, súgó (ⓘ), tartomány, számláló, tiltás/levágás (3/A); grafikonnál: cím, egység, tengelyek, jelmagyarázat, súgó, „Hogyan olvasd?”, adattábla (3/B);

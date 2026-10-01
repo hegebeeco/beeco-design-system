@@ -1,6 +1,7 @@
 export { Field, type FieldProps } from './field/Field';
 export { HelpButton } from './field/HelpButton';
 export { Button, IconButton, type ButtonProps } from './inputs/Button';
+export { IcSave, IcTrash, IcNew, IcInfo, IcEdit, IcOpen, IcX, IcOk } from './inputs/ikonok';
 export { TextField, lengthRange } from './inputs/TextField';
 export { TextArea } from './inputs/TextArea';
 export { NumberField } from './inputs/NumberField';

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Button, ErrorPage, ForbiddenPage, NotFoundPage, OfflineBanner, OfflinePage, SessionExpired, TextField, UnsavedChangesGuard, useUnsavedChanges } from '../src';
+import { Button, ErrorPage, ForbiddenPage, NotFoundPage, OfflineBanner, OfflinePage, SessionExpired, TextField, UnsavedChangesGuard, useUnsavedChanges, IcSave } from '../src';
 import { Case, Grid, mount } from './_keret';
 
 // 06a – oldalak és őrök: állapot-oldalak (BeeMoment), offline sáv, mentetlen változások (mintaadat)
@@ -49,7 +49,7 @@ function Szerkeszto() {
         <a className="bc-btn is-ghost is-sm" href="/partnerek" onClick={go('Partnerek listája')} data-link="lista">Vissza a listához</a>
         <a className="bc-btn is-ghost is-sm" href="#szerkeszto" data-link="horgony">Horgony (nem kérdez)</a>
         <Button variant="secondary" size="sm" onClick={() => kezi.confirm(() => { setNev(saved.current); setOldal('Mégse – visszaállítva'); })}>Mégse</Button>
-        <Button size="sm" disabled={!dirty} onClick={() => void save()}>Mentés</Button>
+        <Button icon={<IcSave />} size="sm" disabled={!dirty} onClick={() => void save()}>Mentés</Button>
       </div>
     </>
   );

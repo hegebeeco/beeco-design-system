@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Breadcrumbs, Button, DropdownMenu, IconButton, MoreIcon, NavTabs, PageHeader, Tabs, usePageTitle, type RenderLink } from '../src';
+import { Breadcrumbs, Button, DropdownMenu, IconButton, MoreIcon, NavTabs, PageHeader, Tabs, usePageTitle, type RenderLink, IcEdit, IcNew } from '../src';
 import { Case, Grid, mount } from './_keret';
 
 const panel = (t: string) => <p>{t} panel tartalma (mintaadat).</p>;
@@ -38,11 +38,11 @@ function Oldal() {
         <Case id="ph-alap" title="Cím, leírás, morzsa, 2 művelet; usePageTitle" wide>
           <PageHeader title={cim} description="Kupon-sablon · 3 időzítés (mintaadat)" renderLink={hashLink}
             breadcrumbs={[{ label: 'Kuponok', href: 'kuponok' }, { label: 'Sablonok', href: 'sablonok' }, { label: cim }]}
-            actions={<><Button variant="secondary" onClick={() => setCim(cim === HOSSZU ? 'Nyári kávé 10%' : HOSSZU)}>Átnevezés</Button><Button>Új időzítés</Button></>} />
+            actions={<><Button variant="secondary" onClick={() => setCim(cim === HOSSZU ? 'Nyári kávé 10%' : HOSSZU)}>Átnevezés</Button><Button icon={<IcNew />}>Új időzítés</Button></>} />
         </Case>
         <Case id="ph-hosszu" title="Nagyon hosszú elemnév, 3+ művelet → „⋯”" wide>
           <PageHeader title={HOSSZU} renderLink={hashLink} breadcrumbsLabel="Hol vagy (2. példa)" breadcrumbs={[{ label: 'Partnerek', href: 'partnerek' }, { label: HOSSZU }]}
-            actions={<><Button variant="secondary">Szerkesztés</Button><Button>Új kupon</Button>
+            actions={<><Button variant="secondary" icon={<IcEdit />}>Szerkesztés</Button><Button icon={<IcNew />}>Új kupon</Button>
               <DropdownMenu label="További műveletek" trigger={<IconButton aria-label="További műveletek"><MoreIcon /></IconButton>}
                 items={[{ label: 'Archiválás' }, 'separator', { label: 'Törlés…', danger: true }]} /></>} />
         </Case>

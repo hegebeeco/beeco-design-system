@@ -21,6 +21,8 @@ export type EditPageProps = TemplateHeadProps & {
     onCancel?: () => void;
     cancelHref?: string;
     submitLabel?: string;
+    /** A mentés gomb piktogramja – alap: mentés; létrehozásnál pl. <IcNew /> (Kristóf szabálya: szöveges gombon is legyen piktogram) */
+    submitIcon?: ReactNode;
     cancelLabel?: string;
     /** Értesítés sikeres mentés után */
     successMessage?: string;

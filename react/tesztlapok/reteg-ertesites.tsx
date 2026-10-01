@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Modal, ModalCancel, Toaster, notify } from '../src';
+import { Button, Modal, ModalCancel, Toaster, notify, IcInfo } from '../src';
 import { Case, Grid, mount } from './_keret';
 
 const HOSSZU = 'Nem sikerült menteni a kupont, mert a szerver időtúllépéssel válaszolt. A módosításaid megvannak ebben az ablakban – ellenőrizd a hálózatot, aztán nyomd meg újra a Mentést. Ha többször nem megy, másold ki a hibajelentést a Rólunk oldalon, és küldd el nekünk.';
@@ -20,7 +20,7 @@ function Oldal() {
         <Case id="t-fajtak" title="Fajták: siker, info, figyelmeztetés (5 mp), hiba (marad)">
           <div className="bc-row">
             <Button variant="secondary" size="sm" onClick={() => notify.success('Kupon mentve.')}>Siker</Button>
-            <Button variant="secondary" size="sm" onClick={() => notify.info('Az export elkészült, a letöltés elindult.')}>Info</Button>
+            <Button icon={<IcInfo />} variant="secondary" size="sm" onClick={() => notify.info('Az export elkészült, a letöltés elindult.')}>Info</Button>
             <Button variant="secondary" size="sm" onClick={() => notify.warning('A kép kicsi – az appban homályos lehet.')}>Figyelmeztetés</Button>
             <Button variant="secondary" size="sm" onClick={() => notify.error('Nem sikerült menteni. Próbáld újra.')}>Hiba</Button>
           </div>

@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from 'react';
-import { Button, ConfirmDialog, Drawer, Modal, ModalCancel, TextField, Toaster, TypeToConfirm, notify, useQueryParam } from '../src';
+import { Button, ConfirmDialog, Drawer, Modal, ModalCancel, TextField, Toaster, TypeToConfirm, notify, useQueryParam, IcSave, IcEdit, IcOpen } from '../src';
 import { Case, Grid, mount } from './_keret';
 
 // Mintaadatok (nem valós nevek, nem valós számok)
@@ -9,7 +9,7 @@ const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 function Nyito({ id, label, children }: { id: string; label: string; children: (open: boolean, set: (o: boolean) => void) => ReactNode }) {
   const [open, setOpen] = useState(false);
-  return <><Button variant="secondary" data-open={id} onClick={() => setOpen(true)}>{label}</Button>{children(open, setOpen)}</>;
+  return <><Button variant="secondary" data-open={id} icon={label === 'Szerkesztés' ? <IcEdit /> : undefined} onClick={() => setOpen(true)}>{label}</Button>{children(open, setOpen)}</>;
 }
 
 function Oldal() {
@@ -25,7 +25,7 @@ function Oldal() {
         <Case id="modal-alap" title="Alap, rövid űrlap (fókusz az első mezőn)">
           <Nyito id="alap" label="Címke létrehozása">{(o, s) => (
             <Modal open={o} onOpenChange={s} title="Új címke" description="A partnerek és POI-k szűréséhez."
-              footer={<><ModalCancel /><Button onClick={() => { setLog(`mentve: ${nev || '(üres)'}`); s(false); notify.success('Címke mentve.'); }}>Mentés</Button></>}>
+              footer={<><ModalCancel /><Button icon={<IcSave />} onClick={() => { setLog(`mentve: ${nev || '(üres)'}`); s(false); notify.success('Címke mentve.'); }}>Mentés</Button></>}>
               <TextField label="Címke neve" help="Így jelenik meg a szűrőben. Rövid, egyértelmű név jó, pl. „javító”." maxLength={40} value={nev} onChange={(e) => setNev(e.target.value)} />
             </Modal>)}
           </Nyito>
@@ -96,11 +96,11 @@ function Oldal() {
         <Case id="drawer-url" title="Részletek saját URL-lel (?reszlet=…), a Vissza bezárja" wide>
           <ul className="bc-stack" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
             {['Zöld Sarok Bolt', 'Méhes Kávézó', 'Kerti Javító'].map((p, i) => (
-              <li key={p} className="bc-row is-between"><span>{p} (mintaadat)</span><Button variant="secondary" size="sm" data-open={`drawer-${i}`} onClick={() => setReszlet(String(i))}>Részletek</Button></li>
+              <li key={p} className="bc-row is-between"><span>{p} (mintaadat)</span><Button icon={<IcOpen />} variant="secondary" size="sm" data-open={`drawer-${i}`} onClick={() => setReszlet(String(i))}>Részletek</Button></li>
             ))}
           </ul>
           <Drawer open={reszlet !== null} onOpenChange={(o) => !o && setReszlet(null)} title={['Zöld Sarok Bolt', 'Méhes Kávézó', HOSSZU_CIM][Number(reszlet)] ?? 'Nincs ilyen elem'}
-            description="Partner · mintaadat" footer={<><a href="#teljes">Teljes oldal</a><ModalCancel>Bezárás</ModalCancel><Button>Mentés</Button></>}>
+            description="Partner · mintaadat" footer={<><a href="#teljes">Teljes oldal</a><ModalCancel>Bezárás</ModalCancel><Button icon={<IcSave />}>Mentés</Button></>}>
             <p>Állapot: <span className="bc-badge is-success">Aktív</span></p>
             {Array.from({ length: 20 }, (_, i) => bekezdes(i))}
           </Drawer>
@@ -115,7 +115,7 @@ function Mentetlen({ open, setOpen }: { open: boolean; setOpen: (o: boolean) => 
   const dirty = v !== 'Méhes Kávézó';
   return (
     <Modal open={open} onOpenChange={(o) => { setOpen(o); if (!o) setV('Méhes Kávézó'); }} dirty={dirty} title="Partner átnevezése"
-      footer={<><ModalCancel /><Button onClick={() => setOpen(false)}>Mentés</Button></>}>
+      footer={<><ModalCancel /><Button icon={<IcSave />} onClick={() => setOpen(false)}>Mentés</Button></>}>
       <TextField label="Partner neve" help="Így jelenik meg az appban a partner kártyáján." maxLength={60} value={v} onChange={(e) => setV(e.target.value)} />
     </Modal>
   );
@@ -127,7 +127,7 @@ function Folyamat({ open, setOpen }: { open: boolean; setOpen: (o: boolean) => v
   const save = async () => { setBusy(true); setErr(''); await wait(600); setBusy(false); setErr('Nem sikerült menteni: lejárt a munkamenet. Jelentkezz be újra egy új lapon, aztán próbáld újra.'); };
   return (
     <Modal open={open} onOpenChange={setOpen} busy={busy} title="Kupon mentése"
-      footer={<><ModalCancel disabled={busy} /><Button busy={busy} onClick={() => void save()}>Mentés</Button></>}>
+      footer={<><ModalCancel disabled={busy} /><Button icon={<IcSave />} busy={busy} onClick={() => void save()}>Mentés</Button></>}>
       <p>Mentés közben az Esc, a ✕ és a háttérre kattintás nem zár be.</p>
       {err && <div className="bc-alert is-danger" role="alert"><p>{err}</p></div>}
     </Modal>

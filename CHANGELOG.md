@@ -15,6 +15,13 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.18.0 – 2026-10-01 – gombok: piktogram-szabály és igazítás (Kristóf szabálya)
+* **Közös piktogramok:** `IcSave`, `IcTrash`, `IcNew`, `IcInfo`, `IcEdit`, `IcOpen`, `IcX`, `IcOk`.
+* **EditPage** mentés-gombja és a **ConfirmDialog** megerősítő gombja alapból piktogramot kap (`submitIcon`, `confirmIcon` felülírja); a „kész” pipa is piktogram.
+* **Igazítás (javítás):** a piktogram nem az alapvonalon ül (blokk-elem), a Lalezar-feliratot optikailag középre toljuk (0,085 em) – a nézetváltó piktogramja 2 px-szel, a gombfeliratok 1,7 px-szel voltak elcsúszva.
+* **Gépi mérés** minden tesztlapon (`tools/komp/oldal-meres.js`): piktogram–betű középvonal, szövegmező belső margója, mező-sorok alja egy vonalban, piktogram a mentés/törlés/új/szerkesztés/info gombokon, név és súgó-buborék a csak-piktogramos gombon.
+* Szabály: `docs/termek-arculat.md` 6/A, `docs/komponensek.md` 3.4/b. Tesztlapok gombjai a szabály szerint.
+
 ## 1.17.1 – 2026-10-01
 * **Javítás – AppShell:** hosszú márkanévnél a becsukó gomb 44 px alá zsugorodott és a feliratra csúszott; most a márka vágódik. Tesztlap: hosszú márkanév + gombméret-ellenőrzés.
 

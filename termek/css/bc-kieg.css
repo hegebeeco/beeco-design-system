@@ -61,7 +61,7 @@
   background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-pill); box-shadow: var(--bc-shadow-s); }
 .bc-status-page > .bc-moment { padding-top: var(--bc-sp-3); }
 .bc-status-actions { justify-content: center; }
-.bc-status-actions > .bc-btn { max-width: 100%; white-space: normal; text-align: center; line-height: var(--bc-lh-tight); padding-block: var(--bc-sp-2); }
+.bc-status-actions > .bc-btn { max-width: 100%; white-space: normal; text-align: center; line-height: var(--bc-lh-tight); padding-block: calc(var(--bc-sp-2) + .17em) var(--bc-sp-2); }
 .bc-status-code { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--bc-sp-2); margin: 0; font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
 
 /* ---- Előzmények (Timeline / ActivityLog) ---- */

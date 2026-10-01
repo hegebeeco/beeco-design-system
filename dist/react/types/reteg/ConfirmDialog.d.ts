@@ -8,6 +8,8 @@ export type ConfirmDialogProps = {
     children?: ReactNode;
     /** A gomb felirata az ige („Törlés”, „Közzététel”) – soha nem „Igen/OK”. */
     confirmLabel: string;
+    /** A megerősítő gomb piktogramja – alap: veszélyesnél törlés, egyébként pipa */
+    confirmIcon?: ReactNode;
     cancelLabel?: string;
     /** Veszélyes (visszafordíthatatlan) művelet: piros gomb */
     danger?: boolean;
@@ -32,4 +34,4 @@ export type ConfirmDialogProps = {
  * ConfirmDialog (organizmus, Javaslat 03 – 1A): megerősítés csak visszafordíthatatlan vagy másokat érintő műveletnél.
  * Minta: WAI-ARIA alertdialog – kívül kattintás nem zár, Esc igen (ha nem folyamatban), a fókusz a Mégse gombon indul.
  */
-export declare function ConfirmDialog({ open, onOpenChange, title, children, confirmLabel, cancelLabel, danger, onConfirm, confirmDisabled, errorText, initialFocus, extra, size, className, }: ConfirmDialogProps): import("react").JSX.Element;
+export declare function ConfirmDialog({ open, onOpenChange, title, children, confirmLabel, confirmIcon, cancelLabel, danger, onConfirm, confirmDisabled, errorText, initialFocus, extra, size, className, }: ConfirmDialogProps): import("react").JSX.Element;

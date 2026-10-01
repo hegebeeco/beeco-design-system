@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { cx } from '../cx';
 import { Button } from '../inputs/Button';
+import { IcSave } from '../inputs/ikonok';
 import { FormActions } from '../form/FormSection';
 import { DataState } from '../adat/DataState';
 import { BeeMoment } from '../meh/BeeMoment';
@@ -33,6 +34,8 @@ export type EditPageProps = TemplateHeadProps & {
   onCancel?: () => void;
   cancelHref?: string;
   submitLabel?: string;
+  /** A mentés gomb piktogramja – alap: mentés; létrehozásnál pl. <IcNew /> (Kristóf szabálya: szöveges gombon is legyen piktogram) */
+  submitIcon?: ReactNode;
   cancelLabel?: string;
   /** Értesítés sikeres mentés után */
   successMessage?: string;
@@ -119,7 +122,7 @@ export function EditPage(p: EditPageProps) {
               </div>
               <FormActions>
                 {cancel}
-                <Button type="submit" busy={busy} done={done}>{p.submitLabel ?? 'Mentés'}</Button>
+                <Button type="submit" busy={busy} done={done} icon={p.submitIcon ?? <IcSave />}>{p.submitLabel ?? 'Mentés'}</Button>
               </FormActions>
             </div>
           </form>

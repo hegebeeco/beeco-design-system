@@ -1,0 +1,8 @@
+export declare const IcSave: () => import("react").JSX.Element;
+export declare const IcTrash: () => import("react").JSX.Element;
+export declare const IcNew: () => import("react").JSX.Element;
+export declare const IcInfo: () => import("react").JSX.Element;
+export declare const IcEdit: () => import("react").JSX.Element;
+export declare const IcOpen: () => import("react").JSX.Element;
+export declare const IcX: () => import("react").JSX.Element;
+export declare const IcOk: () => import("react").JSX.Element;

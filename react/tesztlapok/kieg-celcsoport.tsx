@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { AudienceBuilder, audienceProblems, Button, type Audience, type AudienceEstimate, type AudienceField } from '../src';
+import { AudienceBuilder, audienceProblems, Button, type Audience, type AudienceEstimate, type AudienceField, IcSave } from '../src';
 import { Case, Grid, mount } from './_keret';
 
 // 06a – célcsoport-építő; a létszám-becslés mintaadat (a valóságban a szerver előnézeti hívása adja)
@@ -33,7 +33,7 @@ function Mentes() {
   const [proba, setProba] = useState(false);
   const bad = Object.keys(audienceProblems(a, FIELDS)).length;
   return <><AudienceBuilder fields={FIELDS} value={a} onChange={setA} estimate={{ count: 12480 }} showErrors={proba} />
-    <Button onClick={() => setProba(true)}>Mentés</Button><p className="tl-out" data-out="mentes">{proba ? (bad ? `nem menthető: ${bad} hibás feltétel` : 'mentve') : 'még nem próbáltad'}</p></>;
+    <Button icon={<IcSave />} onClick={() => setProba(true)}>Mentés</Button><p className="tl-out" data-out="mentes">{proba ? (bad ? `nem menthető: ${bad} hibás feltétel` : 'mentve') : 'még nem próbáltad'}</p></>;
 }
 
 const ket: Audience = { join: 'and', rules: [{ id: 'k1', field: 'varos', op: 'eq', value: 'bp' }, { id: 'k2', field: 'kor', op: 'gte', value: 18 }] };

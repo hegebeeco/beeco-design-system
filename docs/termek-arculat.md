@@ -87,6 +87,14 @@ Vastagság: 400 · 600 · 700 (a webes Open Sans 400–700 között változó; 8
 | Statisztika | `bc-stats` › `bc-stat` › `-label` / `-value` / `-delta is-up/is-down` | szám csak forrásból / valós adatból |
 | Váz | `bc-shell` › `bc-sidebar` (`bc-brand`, `bc-nav-group`, `bc-nav-link`) + `bc-main` › `bc-topbar` + `bc-content` | 900 px alatt fiók |
 
+## 6/A. Gombok: piktogram és igazítás (Kristóf, 2026-10-01)
+* **Csak piktogram – kompakt helyeken:** táblázat-sor (`RowActions`), eszközsáv, kártya-fejléc, galéria-csempe. A mentés · törlés · új · info · szerkesztés · megnyitás gomb itt szöveg nélkül áll, **mindig `TooltipIconButton`-nal** (a `label` a képernyőolvasó neve és a súgó-buborék).
+* **Szöveg + piktogram:** az oldal fő gombja (pl. „Új partner”), az űrlap Mentése, a törlés megerősítése, az üres állapot teendője. Itt a félrekattintás drága – a szöveg a biztonság.
+* **Szöveges gombon is legyen piktogram**, ha kapcsolódik hozzá (Mentés → `IcSave`, Törlés → `IcTrash`, Új … → `IcNew`, Szerkesztés → `IcEdit`, Megnyitás/Részletek → `IcOpen`, Info → `IcInfo`). A DS maga ad piktogramot: EditPage mentés-gomb, ConfirmDialog megerősítő gombja.
+* **Igazítás:** a piktogram és a betűk *látható* közepe egy vonalban, a gomb közepén (a Lalezar nagybetűi 0,085 em-mel a sor közepe fölött ülnének – a `.bc-btn` ezt korrigálja; saját `padding-block` mellé add hozzá a `.17em`-et). Szövegmezőben a szöveg függőlegesen középen.
+* **Mező-sorok alulra igazítva:** egymás mellett álló mezők, szűrők, kapcsolók alja egy vonalban, eltérő címke-magasság mellett is (`.bc-fb-row`, `.bc-row` → `align-items: flex-end`).
+* Gépi ellenőrzés: `tools/komp/oldal-meres.js` – „Igazítás” (P2) és „Piktogram” (P3) leletek.
+
 ## 7. Tilos (a `ds-lint` fogja)
 
 - Nyers szín (`#…`, `rgb()`, Tailwind `[#…]`), a Tailwind saját palettája (`bg-gray-100`) – csak szerep.

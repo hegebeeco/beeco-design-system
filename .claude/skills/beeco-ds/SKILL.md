@@ -30,6 +30,7 @@ Katalógus: `docs/komponens-katalogus.md` (űrlap, adat és grafikon, rétegek, 
 - **Mozgás:** ≤ 300 ms, `ease-out`; `ease-in` tilos; hover csak `(hover:hover) and (pointer:fine)`.
 - **Hozzáférhetőség:** 44 px érintés, látható fókusz (`:focus-visible`), ikongombon `aria-label`, ablak natív `<dialog>` vagy fókuszcsapda + Esc,
   hibánál `aria-invalid` + `aria-describedby`, kattintható elem `<a>`/`<button>` (nem `div`).
+- **Gombok (6/A):** kompakt helyen (sor, eszközsáv, kártya-fejléc, csempe) mentés/törlés/új/info/szerkesztés csak piktogram `TooltipIconButton`-nal; az oldal fő gombja, az űrlap Mentése és a törlés megerősítése szöveg + piktogram. Szöveges gombon is piktogram (`IcSave`, `IcTrash`, `IcNew`, `IcEdit`, `IcOpen`, `IcInfo`). Piktogram és betű függőlegesen középen; mező-sorok alulra igazítva.
 - **Állapotok:** töltés, üres, hiba, siker, tiltott – mind legyen meg.
 - **Szöveg:** tegeződő, rövid; a hiba mondja meg a következő lépést; szám csak valós adatból vagy forrással.
 

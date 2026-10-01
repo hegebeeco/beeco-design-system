@@ -1,9 +1,6 @@
 // Tesztlap – ListPage (06c): Partnerek lista mintaadattal; állapotok: ?allapot=toltes|ures|nincs-talalat|hiba|tiltott|hosszu
 import { useMemo, useState } from 'react';
-import {
-  Button, DataTable, DropdownMenu, FilterBar, IconButton, MoreIcon, ListPage, RowActions, createColumnHelper, formatHuDate, matchText, notify, useDetailParam,
-  type FilterDef, type FilterValues, type ListStatus,
-} from '../src';
+import { Button, DataTable, DropdownMenu, FilterBar, IconButton, MoreIcon, ListPage, RowActions, createColumnHelper, formatHuDate, matchText, notify, useDetailParam, type FilterDef, type FilterValues, type ListStatus, IcNew } from '../src';
 import { allapot, mountSablon, wait } from './_sablon-keret';
 import { partnerek, TIPUSOK, type Partner } from './_sablon-minta';
 
@@ -62,7 +59,7 @@ function Oldal() {
             items={[{ label: 'Importálás táblázatból', onSelect: () => notify.info('Mintaadat: importálás itt nincs.') }, { label: 'Oszlopok beállítása', onSelect: () => notify.info('Mintaadat.') }]} />
         )}
       </>}
-      primaryAction={<a className="bc-btn" href="sablon-szerkeszto.html">Új partner</a>}
+      primaryAction={<a className="bc-btn" href="sablon-szerkeszto.html"><IcNew /> Új partner</a>}
       filters={<FilterBar search={{ label: 'Partner keresése', value: q, onChange: setQ, placeholder: 'Partner keresése' }} filters={SZUROK} values={v} onChange={setV} resultCount={rows.length} itemLabel="partner" />}
       status={status} what="a partnereket" onRetry={() => void retry()} retrying={retrying}
       skeleton={<DataTable data={[] as Partner[]} columns={oszlopok} caption="Partnerek" getRowId={(p) => p.id} rowLabel={(p) => p.nev} status="loading" densityToggle={false} />}

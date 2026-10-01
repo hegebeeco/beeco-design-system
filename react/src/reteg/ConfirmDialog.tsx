@@ -1,6 +1,7 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { useRef, useState, type ReactNode } from 'react';
 import { Button } from '../inputs/Button';
+import { IcOk, IcTrash } from '../inputs/ikonok';
 import { cx } from '../cx';
 import { keepToasts } from './layer';
 import { useReturnFocus } from './focus';
@@ -14,6 +15,8 @@ export type ConfirmDialogProps = {
   children?: ReactNode;
   /** A gomb felirata az ige („Törlés”, „Közzététel”) – soha nem „Igen/OK”. */
   confirmLabel: string;
+  /** A megerősítő gomb piktogramja – alap: veszélyesnél törlés, egyébként pipa */
+  confirmIcon?: ReactNode;
   cancelLabel?: string;
   /** Veszélyes (visszafordíthatatlan) művelet: piros gomb */
   danger?: boolean;
@@ -42,7 +45,7 @@ const defaultError = (e: unknown) => `Nem sikerült${e instanceof Error && e.mes
  * Minta: WAI-ARIA alertdialog – kívül kattintás nem zár, Esc igen (ha nem folyamatban), a fókusz a Mégse gombon indul.
  */
 export function ConfirmDialog({
-  open, onOpenChange, title, children, confirmLabel, cancelLabel = 'Mégse', danger, onConfirm,
+  open, onOpenChange, title, children, confirmLabel, confirmIcon, cancelLabel = 'Mégse', danger, onConfirm,
   confirmDisabled, errorText = defaultError, initialFocus = 'cancel', extra, size = 'sm', className,
 }: ConfirmDialogProps) {
   const [busy, setBusy] = useState(false);
@@ -96,7 +99,7 @@ export function ConfirmDialog({
             </div>
             <div className="bc-modal-foot">
               <Button ref={cancelRef} variant="secondary" disabled={busy} onClick={() => change(false)}>{cancelLabel}</Button>
-              <Button variant={danger ? 'danger' : 'primary'} busy={busy} disabled={confirmDisabled} onClick={() => void run()}>{confirmLabel}</Button>
+              <Button variant={danger ? 'danger' : 'primary'} busy={busy} disabled={confirmDisabled} icon={confirmIcon ?? (danger ? <IcTrash /> : <IcOk />)} onClick={() => void run()}>{confirmLabel}</Button>
             </div>
           </Dialog.Content>
         </Dialog.Overlay>

@@ -1,5 +1,6 @@
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { cx } from '../cx';
+import { IcOk } from './ikonok';
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   /** primary = méz fő gomb (képernyőnként egy) · secondary · ghost · danger */
@@ -20,7 +21,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     <button ref={ref} type={type} disabled={disabled} aria-busy={busy || undefined}
       aria-disabled={busy || undefined} onClickCapture={busy ? (e) => e.preventDefault() : undefined}
       className={cx('bc-btn', variant !== 'primary' && `is-${variant}`, size !== 'md' && `is-${size}`, block && 'is-block', className)} {...rest}>
-      {done ? <span className="bc-anim-tick" aria-hidden="true">✓</span> : icon}
+      {done ? <span className="bc-anim-tick" aria-hidden="true"><IcOk /></span> : icon}
       {children}
       {done && <span className="bc-sr" role="status">Kész</span>}
     </button>
