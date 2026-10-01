@@ -15,6 +15,9 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.17.1 – 2026-10-01
+* **Javítás – AppShell:** hosszú márkanévnél a becsukó gomb 44 px alá zsugorodott és a feliratra csúszott; most a márka vágódik. Tesztlap: hosszú márkanév + gombméret-ellenőrzés.
+
 ## 1.17.0 – 2026-10-01 – Javaslat 08: becsukható oldalsáv, felhasználó a sáv alján, fejléc nélküli váz
 * **AppShell:** `collapsible` + `collapseKey` (ikon-sáv, az eszköz megjegyzi), `account` (a sáv alja, a telefonos fiókban is), `brandCompact`; `topbar` nélkül asztalon nincs fejléc.
 * **ShellAccount** (új molekula): avatar, név, szerep, menü (kijelentkezés).

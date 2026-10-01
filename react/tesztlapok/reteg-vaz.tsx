@@ -24,7 +24,7 @@ function Oldal() {
   const nav: NavGroup[] = ['Tartalom', 'Naptár', 'Elemzés'].map((g) => ({ label: g, items: LINKS.filter((l) => l[0] === g).map(([, href, label, d]) => ({ href: `#${href}`, label, icon: ic(d), current: href === cur })) }));
   const cim = LINKS.find((l) => l[1] === cur)?.[2] ?? 'Partnerek';
   return (
-    <AppShell brand={<a href="#partnerek" className="bc-brand">beeco <span className="bc-brand-text">admin</span></a>} brandCompact={<a href="#partnerek" className="bc-brand" aria-label="beeco admin – kezdőlap">b</a>}
+    <AppShell brand={<a href="#partnerek" className="bc-brand">beeco <span className="bc-brand-text">admin felület – hosszú márkanév</span></a>} brandCompact={<a href="#partnerek" className="bc-brand" aria-label="beeco admin – kezdőlap">b</a>}
       nav={nav} collapsible collapseKey="tesztlap"
       account={<ShellAccount name="Kovács Katalin Erzsébet (nagyon hosszú név)" detail="admin" items={[{ label: 'Profilom' }, 'separator', { label: 'Kijelentkezés', onSelect: () => { document.title = 'kijelentkezve'; } }]} />}>
       <Toaster />

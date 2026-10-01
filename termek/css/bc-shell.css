@@ -21,7 +21,8 @@
 .bc-content { width: 100%; max-width: 1440px; padding: var(--bc-sp-5); }
 /* Javaslat 08 – sáv fej (márka + becsukó gomb), görgethető linkek, rögzített alj (felhasználó) */
 .bc-sidebar-head { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-2); }
-.bc-sidebar-head .bc-brand { min-width: 0; padding-bottom: var(--bc-sp-2); }
+.bc-sidebar-head .bc-brand { flex: 1 1 auto; min-width: 0; overflow: hidden; padding-bottom: var(--bc-sp-2); }
+.bc-sidebar-toggle { flex: none; }
 .bc-sidebar-links { flex: 1 1 auto; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: var(--bc-sp-1); }
 .bc-sidebar-foot { padding-top: var(--bc-sp-3); border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }
 .bc-sidebar:has(.bc-sidebar-links) { overflow: hidden; }

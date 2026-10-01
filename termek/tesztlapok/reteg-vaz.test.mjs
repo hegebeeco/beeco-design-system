@@ -36,7 +36,7 @@ export default async function ({ page, t }) {
   });
   await t('a sáv becsukható: csak ikonok, a link neve megmarad, újratöltés után is csukva, kinyitható', async () => {
     try {
-      const btn = page.getByRole('button', { name: 'Menü becsukása' }); ok((await btn.getAttribute('aria-expanded')) === 'true', 'aria-expanded');
+      const btn = page.getByRole('button', { name: 'Menü becsukása' }); const bb = await btn.boundingBox(); ok(bb.width >= 44 && bb.height >= 44, `a gomb ${bb.width}×${bb.height}`); ok((await btn.getAttribute('aria-expanded')) === 'true', 'aria-expanded');
       await btn.click(); await until(async () => (await page.locator('nav.bc-sidebar').boundingBox()).width < 100, 'nem csukódott be');
       await page.waitForTimeout(300); ok((await page.locator('nav.bc-sidebar').boundingBox()).width < 100, 'széles maradt');
       ok(await page.getByRole('link', { name: 'POI-k' }).isVisible(), 'a link neve elveszett');
