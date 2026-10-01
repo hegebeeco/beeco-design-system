@@ -11,6 +11,9 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.21.0 – 2026-10-01
+- Új: **SectionSwitch** (nagyválasztó, `.bc-secsw`) – egy szakasz 2–5 fő nézete közti linkes váltó az oldal tetején középen, a cím fölött; telefonon 2 oszlopos rács. Első használat: admin Naptár (naptár · események · havi kampányok · speciális napok).
+
 ## Készül (következő verzió)
 
 *(még nincs)*

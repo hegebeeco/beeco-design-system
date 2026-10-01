@@ -9,6 +9,7 @@ export { TooltipIconButton, type TooltipIconButtonProps } from './Tooltip';
 export { DropdownMenu, type DropdownMenuProps, type MenuItem, type MenuEntry } from './DropdownMenu';
 export { RowActions, MoreIcon, type RowAction, type RowActionsProps } from './RowActions';
 export { Tabs, TabCount, type TabsProps, type TabItem } from './Tabs';
+export { SectionSwitch, type SectionSwitchProps, type SectionSwitchItem } from './SectionSwitch';
 export { NavTabs, type NavTabsProps, type NavTabItem, type RenderLink, type LinkRenderProps } from './NavTabs';
 export { Accordion, type AccordionProps, type AccordionItem } from './Accordion';
 export { Breadcrumbs, type BreadcrumbsProps, type Crumb } from './Breadcrumbs';
