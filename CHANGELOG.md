@@ -15,6 +15,9 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.20.2 – 2026-10-01
+* Javítás: az 1.20.1 „csak piktogramos gomb” szabálya a szöveges gombokra is hatott (a felirat szövegcsomópont); most csak `aria-label`-es, egyetlen svg-t tartalmazó gombra.
+
 ## 1.20.1 – 2026-10-01
 * Javítás: csak piktogramos `.bc-btn`-en nincs optikai betű-korrekció (a piktogram középen ül).
 * Mérés: a `<video>`/`<audio>`/`<canvas>` tartalék-szövegét nem vizsgálja (nem látszik).
