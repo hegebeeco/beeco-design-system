@@ -67,6 +67,7 @@ function buildCss() {
     if (n.startsWith('_')) continue;
     L.push(`  --bc-shadow-${n}: ${px(v[0])} ${px(v[1])} 0 var(--bc-shadow); --bc-shadow-${n}-x: ${px(v[0])}; --bc-shadow-${n}-y: ${px(v[1])};`);
   }
+  { const sf = termek.shadowSoft; L.push(`  --bc-shadow-soft: 0 ${px(sf.y)} ${px(sf.blur)} color-mix(in srgb, var(--bc-shadow) ${sf.alpha}%, transparent);`); }
   L.push(`  --bc-scrim-opacity: ${termek.scrimOpacity};`);
   L.push('', '  /* 2. TERMÉKBŐR – szín-szerepek, világos */', '  color-scheme: light;');
   L.push(roleBlock(termek.color.light, 'light'), '}', '');
@@ -109,7 +110,7 @@ function buildScss() {
   map('sp', core.space, k => `var(--bc-sp-${k})`);
   map('r', termek.radius, k => `var(--bc-r-${k})`);
   map('bw', termek.border, k => `var(--bc-bw-${k})`);
-  map('shadow', termek.shadow, k => `var(--bc-shadow-${k})`);
+  map('shadow', { ...termek.shadow, soft: 1 }, k => `var(--bc-shadow-${k})`);
   map('t', core.duration, k => `var(--bc-t-${k})`);
   map('z', core.z, k => `var(--bc-z-${k})`);
   map('ease', core.easing, k => `var(--bc-ease-${k})`);
@@ -136,7 +137,7 @@ function buildTailwind() {
       fontWeight: obj(core.fontWeight, k => `var(--bc-fw-${k})`),
       borderRadius: { none: '0', ...obj(termek.radius, k => `var(--bc-r-${k})`), DEFAULT: 'var(--bc-r-m)', full: '9999px' },
       borderWidth: { 0: '0', ...obj(termek.border, k => `var(--bc-bw-${k})`), DEFAULT: 'var(--bc-bw-hair)' },
-      boxShadow: { none: 'none', ...obj(termek.shadow, k => `var(--bc-shadow-${k})`) },
+      boxShadow: { none: 'none', ...obj({ ...termek.shadow, soft: 1 }, k => `var(--bc-shadow-${k})`) },
       extend: {
         spacing: { tap: 'var(--bc-tap)' },
         minHeight: { tap: 'var(--bc-tap)' }, minWidth: { tap: 'var(--bc-tap)' },

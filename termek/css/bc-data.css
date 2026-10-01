@@ -2,7 +2,7 @@
    beeco TERMÉKBŐR – adat: táblázat, statisztika-csempe, lapozó
    ============================================================ */
 /* Táblázat: <div class="bc-table-wrap"><table class="bc-table">… – a burok keskeny képernyőn vízszintesen görget */
-.bc-table-wrap { overflow-x: auto; background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); }
+.bc-table-wrap { overflow-x: auto; background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-soft); }
 .bc-table { width: 100%; border-collapse: collapse; font-size: var(--bc-fs-s); font-variant-numeric: tabular-nums; }
 .bc-table th { position: sticky; top: 0; z-index: var(--bc-z-sticky); text-align: left; white-space: nowrap; padding: var(--bc-sp-3); font-weight: var(--bc-fw-bold);
   color: var(--bc-on-accent); background: var(--bc-accent); border-bottom: var(--bc-bw-base) solid var(--bc-line); }
@@ -18,7 +18,7 @@ th[aria-sort="ascending"] .bc-sort::after { content: "▲"; font-size: .7em; }
 th[aria-sort="descending"] .bc-sort::after { content: "▼"; font-size: .7em; }
 
 /* Statisztika-csempe: nagy szám + címke (+ változás) */
-.bc-stat { display: grid; gap: var(--bc-sp-1); padding: var(--bc-sp-4); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+.bc-stat { display: grid; gap: var(--bc-sp-1); padding: var(--bc-sp-4); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-soft); }
 .bc-stat-label { font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); }
 .bc-stat-value { font-family: var(--bc-font-display); font-size: var(--bc-fs-2xl); line-height: 1; font-variant-numeric: tabular-nums; }
 .bc-stat-delta { font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); }

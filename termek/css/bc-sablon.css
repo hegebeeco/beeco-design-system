@@ -35,7 +35,7 @@
 /* Ragadós gombsor: a képernyő alján marad, amíg az űrlapban görgetsz */
 .bc-sablon-bar { position: sticky; bottom: var(--bc-sp-2); z-index: var(--bc-z-sticky); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
   gap: var(--bc-sp-2) var(--bc-sp-4); padding: var(--bc-sp-3) var(--bc-sp-4); background: var(--bc-surface);
-  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); }
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-soft); }
 .bc-sablon-bar .bc-form-actions { flex-wrap: nowrap; margin-left: auto; padding-top: 0; border-top: 0; }
 .bc-sablon-bar-note { min-width: 0; flex: 1 1 220px; }
 .bc-sablon-bar-note:empty { display: none; }

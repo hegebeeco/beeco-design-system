@@ -1,4 +1,4 @@
-/* beeco design system 1.19.2 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js */
+/* beeco design system 1.20.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js */
 
 /* 1. Primitívek (nyers színek) – felületen NE használd közvetlenül, csak a szerepeket (2.) */
 :root {
@@ -126,6 +126,7 @@
   --bc-shadow-s: 2px 2px 0 var(--bc-shadow); --bc-shadow-s-x: 2px; --bc-shadow-s-y: 2px;
   --bc-shadow-m: 4px 4px 0 var(--bc-shadow); --bc-shadow-m-x: 4px; --bc-shadow-m-y: 4px;
   --bc-shadow-l: 6px 6px 0 var(--bc-shadow); --bc-shadow-l-x: 6px; --bc-shadow-l-y: 6px;
+  --bc-shadow-soft: 0 8px 28px color-mix(in srgb, var(--bc-shadow) 9%, transparent);
   --bc-scrim-opacity: 0.45;
 
   /* 2. TERMÉKBŐR – szín-szerepek, világos */

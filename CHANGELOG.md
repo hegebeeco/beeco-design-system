@@ -15,6 +15,14 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.20.0 – 2026-10-01 – árnyék-szabály, kattintható kártya, lapozó, zöld jelölő (Kristóf kérése)
+* **Új token: `--bc-shadow-soft`** (nagy, halvány, elmosott) – a nem kattintható dobozok (kártya, statisztika, táblázat, mentés-sáv) ezt kapják; a kattinthatók maradnak kemény árnyékkal.
+* **Kattintható kártya:** `.bc-card.is-link` + `.bc-card-link` – az egész kártya kattintható, rámutatásra emelkedik, fókuszkeret a kártyán.
+* **`.bc-divided`:** csoportok közti elválasztó vonal.
+* **Lapozó:** első és utolsó lap gomb, „1. oldal / N” kiírás.
+* **Jelölőnégyzet:** bejelölve erdőzöld, fehér pipa; a pipa háttérkép (Safari/Firefox-ban nem csúszik ki).
+* **Oldalfej:** a leírás nem korlátozott 65 karakterre – kitölti a cím-sávot.
+
 ## 1.19.2 – 2026-10-01
 * Javítás: a nézetváltó (SegmentedControl) a szűrősorban is alulra igazodik (1.19.0-ban felülre került).
 

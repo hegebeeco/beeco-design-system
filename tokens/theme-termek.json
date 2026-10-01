@@ -62,20 +62,129 @@
       "scrim": "black"
     }
   },
-  "radius": { "xs": 2, "s": 4, "m": 8, "l": 12, "pill": 999 },
-  "border": { "hair": 1, "base": 2 },
+  "radius": {
+    "xs": 2,
+    "s": 4,
+    "m": 8,
+    "l": 12,
+    "pill": 999
+  },
+  "border": {
+    "hair": 1,
+    "base": 2
+  },
   "shadow": {
     "_readme": "Kemény, átlós, elmosás nélküli árnyék: [x, y] px, színe a 'shadow' szerep. Lenyomáskor az elem az árnyék irányába csúszik, az árnyék eltűnik.",
-    "s": [2, 2],
-    "m": [4, 4],
-    "l": [6, 6]
+    "s": [
+      2,
+      2
+    ],
+    "m": [
+      4,
+      4
+    ],
+    "l": [
+      6,
+      6
+    ]
   },
   "scrimOpacity": 0.45,
   "contrast": [
-    ["ink", "bg", 4.5], ["ink", "surface", 4.5], ["ink-soft", "bg", 4.5], ["ink-soft", "surface", 4.5],
-    ["ink-muted", "surface", 4.5], ["on-accent", "accent", 4.5], ["on-accent", "accent-press", 4.5],
-    ["success-ink", "success-bg", 4.5], ["danger-ink", "danger-bg", 4.5], ["danger-ink", "surface", 4.5],
-    ["warning-ink", "warning-bg", 4.5], ["info-ink", "info-bg", 4.5], ["on-accent", "danger", 4.5],
-    ["line", "surface", 3], ["focus", "bg", 3], ["focus", "surface", 3], ["ink", "surface-2", 4.5], ["ink", "surface-accent", 4.5]
-  ]
+    [
+      "ink",
+      "bg",
+      4.5
+    ],
+    [
+      "ink",
+      "surface",
+      4.5
+    ],
+    [
+      "ink-soft",
+      "bg",
+      4.5
+    ],
+    [
+      "ink-soft",
+      "surface",
+      4.5
+    ],
+    [
+      "ink-muted",
+      "surface",
+      4.5
+    ],
+    [
+      "on-accent",
+      "accent",
+      4.5
+    ],
+    [
+      "on-accent",
+      "accent-press",
+      4.5
+    ],
+    [
+      "success-ink",
+      "success-bg",
+      4.5
+    ],
+    [
+      "danger-ink",
+      "danger-bg",
+      4.5
+    ],
+    [
+      "danger-ink",
+      "surface",
+      4.5
+    ],
+    [
+      "warning-ink",
+      "warning-bg",
+      4.5
+    ],
+    [
+      "info-ink",
+      "info-bg",
+      4.5
+    ],
+    [
+      "on-accent",
+      "danger",
+      4.5
+    ],
+    [
+      "line",
+      "surface",
+      3
+    ],
+    [
+      "focus",
+      "bg",
+      3
+    ],
+    [
+      "focus",
+      "surface",
+      3
+    ],
+    [
+      "ink",
+      "surface-2",
+      4.5
+    ],
+    [
+      "ink",
+      "surface-accent",
+      4.5
+    ]
+  ],
+  "shadowSoft": {
+    "_readme": "Kristóf, 2026-10-01: a NEM kattintható dobozok (kártya, statisztika, táblázat, mentés-sáv) nagy, halvány, elmosott árnyékot kapnak; a kemény, átlós árnyék a kattintható elemeké (gomb, kattintható kártya, csempe, aktív állapotok).",
+    "y": 8,
+    "blur": 28,
+    "alpha": 9
+  }
 }

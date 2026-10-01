@@ -1,4 +1,4 @@
-/* beeco design system 1.19.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.20.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -1450,7 +1450,10 @@ var headerText = (c) => metaOf(c).label ?? (typeof c.columnDef.header === "strin
 // react/src/adat/Pagination.tsx
 import { useId as useId4 } from "react";
 import { jsx as jsx22, jsxs as jsxs20 } from "react/jsx-runtime";
-var Chevron = ({ dir }) => /* @__PURE__ */ jsx22("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5", "aria-hidden": "true", children: /* @__PURE__ */ jsx22("path", { d: dir === "l" ? "M15 6l-6 6 6 6" : "M9 6l6 6-6 6" }) });
+var Chevron = ({ dir, vegig }) => /* @__PURE__ */ jsxs20("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5", strokeLinecap: "round", "aria-hidden": "true", children: [
+  /* @__PURE__ */ jsx22("path", { d: dir === "l" ? vegig ? "M17 6l-6 6 6 6" : "M15 6l-6 6 6 6" : vegig ? "M7 6l6 6-6 6" : "M9 6l6 6-6 6" }),
+  vegig && /* @__PURE__ */ jsx22("path", { d: dir === "l" ? "M7 5v14" : "M17 5v14" })
+] });
 function Pagination({ page, pageSize, total, onPageChange, onPageSizeChange, pageSizes = [10, 25, 100], itemLabel = "elem", label = "Lapoz\xE1s", className }) {
   const sizeId = useId4();
   const pages = Math.max(1, Math.ceil(total / pageSize));
@@ -1458,8 +1461,9 @@ function Pagination({ page, pageSize, total, onPageChange, onPageSizeChange, pag
   const from = total ? p * pageSize + 1 : 0;
   const to = Math.min(total, (p + 1) * pageSize);
   return /* @__PURE__ */ jsxs20("nav", { className: cx("bc-pager", "bc-pagination", className), "aria-label": label, children: [
-    /* @__PURE__ */ jsx22("p", { className: "bc-pager-info", "aria-live": "polite", children: total ? `${fmt(from)}\u2013${fmt(to)} / ${fmt(total)} ${itemLabel}` : `0 ${itemLabel}` }),
+    /* @__PURE__ */ jsx22("p", { className: "bc-pager-info", "aria-live": "polite", children: total ? `${fmt(from)}\u2013${fmt(to)} / ${fmt(total)} ${itemLabel} \xB7 ${fmt(p + 1)}. oldal / ${fmt(pages)}` : `0 ${itemLabel}` }),
     pages > 1 && /* @__PURE__ */ jsxs20("ul", { className: "bc-pager-pages", children: [
+      /* @__PURE__ */ jsx22("li", { children: /* @__PURE__ */ jsx22(IconButton, { "aria-label": "Els\u0151 lap", disabled: p === 0, onClick: () => onPageChange(0), children: /* @__PURE__ */ jsx22(Chevron, { dir: "l", vegig: true }) }) }),
       /* @__PURE__ */ jsx22("li", { children: /* @__PURE__ */ jsx22(IconButton, { "aria-label": "El\u0151z\u0151 lap", disabled: p === 0, onClick: () => onPageChange(p - 1), children: /* @__PURE__ */ jsx22(Chevron, { dir: "l" }) }) }),
       pageList(p, pages).map((n, i) => n === null ? /* @__PURE__ */ jsx22("li", { className: "bc-pager-gap", "aria-hidden": "true", children: "\u2026" }, `gap${i}`) : /* @__PURE__ */ jsx22("li", { children: /* @__PURE__ */ jsx22(
         "button",
@@ -1472,7 +1476,8 @@ function Pagination({ page, pageSize, total, onPageChange, onPageSizeChange, pag
           children: n + 1
         }
       ) }, n)),
-      /* @__PURE__ */ jsx22("li", { children: /* @__PURE__ */ jsx22(IconButton, { "aria-label": "K\xF6vetkez\u0151 lap", disabled: p >= pages - 1, onClick: () => onPageChange(p + 1), children: /* @__PURE__ */ jsx22(Chevron, { dir: "r" }) }) })
+      /* @__PURE__ */ jsx22("li", { children: /* @__PURE__ */ jsx22(IconButton, { "aria-label": "K\xF6vetkez\u0151 lap", disabled: p >= pages - 1, onClick: () => onPageChange(p + 1), children: /* @__PURE__ */ jsx22(Chevron, { dir: "r" }) }) }),
+      /* @__PURE__ */ jsx22("li", { children: /* @__PURE__ */ jsx22(IconButton, { "aria-label": "Utols\xF3 lap", disabled: p >= pages - 1, onClick: () => onPageChange(pages - 1), children: /* @__PURE__ */ jsx22(Chevron, { dir: "r", vegig: true }) }) })
     ] }),
     onPageSizeChange && /* @__PURE__ */ jsxs20("div", { className: "bc-pager-size", children: [
       /* @__PURE__ */ jsx22("label", { htmlFor: sizeId, children: "Sor / oldal" }),

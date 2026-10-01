@@ -1,11 +1,22 @@
 /* ============================================================
    beeco TERMÉKBŐR – felületek: kártya, oldalfej, fülek, felugró ablak
    ============================================================ */
-.bc-card { background: var(--bc-surface); color: var(--bc-ink); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); padding: var(--bc-sp-5); }
+.bc-card { background: var(--bc-surface); color: var(--bc-ink); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-soft); padding: var(--bc-sp-5); }
 .bc-card.is-flat { box-shadow: none; border-width: var(--bc-bw-hair); } /* csak tudatos kivétel: árnyékos dobozba ágyazott lap (Kristóf, 2026-10-01: a felületek árnyékot kapnak) */
 .bc-card.is-accent { background: var(--bc-surface-accent); }
-.bc-card.is-quiet { background: var(--bc-surface-2); box-shadow: var(--bc-shadow-s); } /* halkabb háttér, de ugyanaz a keret és kemény árnyék */
+.bc-card.is-quiet { background: var(--bc-surface-2); } /* halkabb háttér, ugyanaz a keret és halvány árnyék */
 /* Kattintható kártya: <a> vagy <button> legyen (billentyűzet!) – úgy „kattan”, mint a gomb */
+/* Árnyék-szabály (Kristóf, 2026-10-01): a statikus doboz halvány, elmosott árnyékot kap (--bc-shadow-soft);
+   a KATTINTHATÓ kártya kemény, átlós árnyékot – ebből látszik, hogy megnyomható. */
+a.bc-card, button.bc-card, .bc-card.is-interactive, .bc-card.is-link, .bc-card.bc-lift { box-shadow: var(--bc-shadow-m); }
+/* Teljesen kattintható kártya (is-link): a benne lévő fő link (.bc-card-link) kiterjed az egész kártyára; a többi link/gomb fölötte marad */
+.bc-card.is-link { position: relative; cursor: pointer; }
+.bc-card.is-link .bc-card-link { color: inherit; text-decoration: none; }
+.bc-card.is-link .bc-card-link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.bc-card.is-link .bc-card-link:focus-visible { outline: none; }
+.bc-card.is-link:has(.bc-card-link:focus-visible) { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-card.is-link :is(a, button):not(.bc-card-link) { position: relative; } /* a kiterjesztett link UTÁN álló elemek így fölötte maradnak */
+.bc-card.is-link:active { transform: translate(var(--bc-shadow-m-x), var(--bc-shadow-m-y)); box-shadow: none; }
 a.bc-card, button.bc-card { display: block; width: 100%; text-align: left; font: inherit; color: inherit; text-decoration: none; }
 .bc-card.is-interactive { cursor: pointer; transition: transform var(--bc-t-press) var(--bc-ease-out), box-shadow var(--bc-t-press) var(--bc-ease-out); }
 .bc-card.is-interactive:active { transform: translate(var(--bc-shadow-m-x), var(--bc-shadow-m-y)); box-shadow: none; }
@@ -14,7 +25,7 @@ a.bc-card, button.bc-card { display: block; width: 100%; text-align: left; font:
 /* Oldalfej: cím + (opcionális) leírás + műveletek jobbra */
 .bc-page-header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--bc-sp-3) var(--bc-sp-5); margin-bottom: var(--bc-sp-5); }
 .bc-page-header h1 { margin: 0; font-size: var(--bc-fs-2xl); }
-.bc-page-header p { margin: var(--bc-sp-1) 0 0; color: var(--bc-ink-soft); max-width: 65ch; }
+.bc-page-header p { margin: var(--bc-sp-1) 0 0; color: var(--bc-ink-soft); }
 .bc-page-header .bc-row { flex: none; }
 
 /* Fülek: <div role="tablist" class="bc-tabs"><button role="tab" aria-selected="true" class="bc-tab">… */
@@ -41,3 +52,9 @@ a.bc-card, button.bc-card { display: block; width: 100%; text-align: left; font:
 
 /* Elválasztó */
 .bc-divider { border: 0; border-top: var(--bc-bw-hair) solid var(--bc-line-soft); margin: var(--bc-sp-4) 0; }
+
+/* Elválasztott csoportok (pl. partnerenkénti kupon-csempék): a második csoporttól vékony vonal + térköz (Kristóf, 2026-10-01) */
+.bc-divided { display: grid; gap: var(--bc-sp-5); }
+.bc-divided > * + * { padding-top: var(--bc-sp-5); border-top: var(--bc-bw-base) solid var(--bc-line-soft); }
+@media (hover: hover) and (pointer: fine) { .bc-card.is-link:hover { transform: translate(-2px, -2px); box-shadow: var(--bc-shadow-l); } }
+@media (prefers-reduced-motion: reduce) { .bc-card.is-link:hover { transform: none; } }
