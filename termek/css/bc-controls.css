@@ -63,3 +63,6 @@
 /* (a fenti igazítás része – a méretváltozatok rövidített padding-ja után kell állnia) */
 .bc-btn, .bc-btn.is-sm, .bc-btn.is-lg { padding-top: .17em; }
 .bc-btn.is-block, .bc-btn.is-wrap { padding-top: calc(var(--bc-sp-2) + .17em); }
+/* Csak piktogramos .bc-btn: nincs betű, amihez igazítani kellene – az optikai korrekció nem kell (különben a piktogram 1,7 px-szel feljebb ül) */
+.bc-btn:has(> svg:only-child), .bc-btn.is-sm:has(> svg:only-child), .bc-btn.is-lg:has(> svg:only-child) { padding-top: 0; }
+.bc-btn > svg:only-child { translate: none; }

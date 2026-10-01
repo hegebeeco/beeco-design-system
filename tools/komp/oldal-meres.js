@@ -42,7 +42,7 @@ module.exports = function meres(opts) {
   const bgOf = (el) => { for (let e = el; e; e = e.parentElement) { const s = getComputedStyle(e); if (s.backgroundImage !== 'none' && !s.backgroundImage.includes('gradient(45deg')) return null; const c = rgb(s.backgroundColor); if (c.length === 3 || c[3] > 0.95) return c; } return [255, 255, 255]; };
   const seen = new Set();
   for (const node of document.querySelectorAll('body *')) {
-    if (!visible(node) || node.closest('[disabled], [aria-disabled="true"], .bc-day:disabled')) continue;
+    if (!visible(node) || node.closest('[disabled], [aria-disabled="true"], .bc-day:disabled, video, audio, canvas, object')) continue; // a médiaelem tartalék-szövege nem látszik
     const own = [...node.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
     if (!own) continue;
     const s = getComputedStyle(node); const bg = bgOf(node); if (!bg) continue;

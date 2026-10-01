@@ -15,6 +15,10 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.20.1 – 2026-10-01
+* Javítás: csak piktogramos `.bc-btn`-en nincs optikai betű-korrekció (a piktogram középen ül).
+* Mérés: a `<video>`/`<audio>`/`<canvas>` tartalék-szövegét nem vizsgálja (nem látszik).
+
 ## 1.20.0 – 2026-10-01 – árnyék-szabály, kattintható kártya, lapozó, zöld jelölő (Kristóf kérése)
 * **Új token: `--bc-shadow-soft`** (nagy, halvány, elmosott) – a nem kattintható dobozok (kártya, statisztika, táblázat, mentés-sáv) ezt kapják; a kattinthatók maradnak kemény árnyékkal.
 * **Kattintható kártya:** `.bc-card.is-link` + `.bc-card-link` – az egész kártya kattintható, rámutatásra emelkedik, fókuszkeret a kártyán.
