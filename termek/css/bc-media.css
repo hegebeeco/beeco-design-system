@@ -7,6 +7,7 @@
 /* ---------- Galéria-rács és csempék ---------- */
 .bc-gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 112px), 1fr)); gap: var(--bc-sp-2); margin: 0; padding: 0; list-style: none; }
 .bc-tile { position: relative; aspect-ratio: 1; min-width: 0; overflow: hidden; background: var(--bc-surface-2); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m);
+  box-shadow: var(--bc-shadow-s);
   transition: transform var(--bc-t-fast) var(--bc-ease-out), box-shadow var(--bc-t-fast) var(--bc-ease-out), opacity var(--bc-t-fast) var(--bc-ease-out); }
 /* Átlátszó PNG: sakktábla-háttér a kép mögött (tokenekből) */
 .bc-tile img { display: block; width: 100%; height: 100%; object-fit: cover; background: repeating-conic-gradient(var(--bc-surface-2) 0 25%, var(--bc-surface) 0 50%) 0 0 / 16px 16px; }
@@ -22,7 +23,7 @@
 .bc-tile[draggable="true"] { cursor: grab; }
 .bc-tile.is-dragging { opacity: .45; }
 .bc-tile.is-drop { box-shadow: var(--bc-shadow-m); outline: 3px solid var(--bc-accent); outline-offset: 1px; }
-@media (hover: hover) and (pointer: fine) { .bc-tile:hover { box-shadow: var(--bc-shadow-s); } }
+@media (hover: hover) and (pointer: fine) { .bc-tile:hover { box-shadow: var(--bc-shadow-m); } }
 
 /* Töltődő csempe: előnézet halványan, alul állapot + sáv */
 .bc-tile.is-upload img { opacity: .55; }

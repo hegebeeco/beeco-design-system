@@ -44,7 +44,7 @@ export function Dashboard(p: DashboardProps) {
       <PageHeader title={title} description={description} breadcrumbs={breadcrumbs} renderLink={renderLink} actions={p.actions} />
       {(p.period || p.toolbar) && status === 'ready' && <div className="bc-sablon-toolbar">{p.period}{p.toolbar}</div>}
       <DataState status={status} what={p.what ?? 'az irányítópultot'} error={p.error} onRetry={p.onRetry}>
-        {p.moment && <div className="bc-card is-flat bc-sablon-moment"><BeeMoment inline {...p.moment} /></div>}
+        {p.moment && <div className="bc-card bc-sablon-moment"><BeeMoment inline {...p.moment} /></div>}
         {stats && stats.length > 0 && (
           <section aria-labelledby={`${id}-s`}>
             <h2 id={`${id}-s`} className="bc-sr">{p.statsTitle ?? 'Fő számok'}</h2>

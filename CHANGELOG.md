@@ -15,6 +15,13 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.19.0 – 2026-10-01 – jelölőnégyzet, súgó, árnyékok, tartalomszélességű szűrők (Kristóf kérése)
+* **CheckboxInput** (új atom) és márkázott jelölőnégyzet mindenhol (Checkbox, táblázat-sor): fekete keret, méz + pipa, részleges „–”, tiltott, hibás.
+* **Súgó (ⓘ):** háttér és körvonal nélkül; rámutatásra is nyílik (250 ms), a buborékon tartva nyitva marad, kattintásra rögzül.
+* **Árnyékok:** csendes kártya, galéria-csempe, aktív fül, aktuális lap, bejelölt jelölő kemény árnyékot kap; az üres/hibás lista-állapot és az irányítópult-értesítés kártyája nem lapos többé. Gépi „Árnyék” mérés.
+* **Szűrők és nézetváltó** tartalomszélességűek (hug).
+* Tesztlap: `mezok` (+2 forgatókönyv: jelölő-állapotok, rámutatásos súgó).
+
 ## 1.18.1 – 2026-10-01
 * A gépi mérés a csomagban is: `dist/meres/oldal-meres.js` (`window.bcMeres({ w, touch })`) – a projektek (admin, partner) saját oldalain is futtatható.
 

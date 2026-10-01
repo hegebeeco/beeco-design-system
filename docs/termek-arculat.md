@@ -93,7 +93,11 @@ Vastagság: 400 · 600 · 700 (a webes Open Sans 400–700 között változó; 8
 * **Szöveges gombon is legyen piktogram**, ha kapcsolódik hozzá (Mentés → `IcSave`, Törlés → `IcTrash`, Új … → `IcNew`, Szerkesztés → `IcEdit`, Megnyitás/Részletek → `IcOpen`, Info → `IcInfo`). A DS maga ad piktogramot: EditPage mentés-gomb, ConfirmDialog megerősítő gombja.
 * **Igazítás:** a piktogram és a betűk *látható* közepe egy vonalban, a gomb közepén (a Lalezar nagybetűi 0,085 em-mel a sor közepe fölött ülnének – a `.bc-btn` ezt korrigálja; saját `padding-block` mellé add hozzá a `.17em`-et). Szövegmezőben a szöveg függőlegesen középen.
 * **Mező-sorok alulra igazítva:** egymás mellett álló mezők, szűrők, kapcsolók alja egy vonalban, eltérő címke-magasság mellett is (`.bc-fb-row`, `.bc-row` → `align-items: flex-end`).
-* Gépi ellenőrzés: `tools/komp/oldal-meres.js` – „Igazítás” (P2) és „Piktogram” (P3) leletek.
+* **Árnyék:** minden felület és gomb kemény, átlós árnyékot kap (kártya – a csendes is –, statisztika-csempe, galéria-csempe, buborék, nézetváltó, mentés-sáv, ablak, táblázat; aktív fül, aktuális lap, bejelölt jelölőnégyzet). Árnyék nélkül csak: beviteli mező (fókuszban kap), szellem gomb, tiltott elem, lenyomott gomb (a „kattanás”), és a tudatos `is-flat` (árnyékos dobozba ágyazva).
+* **Jelölőnégyzet:** márkázott atom (`CheckboxInput`, `Checkbox`, táblázat-sor) – fekete keret, bejelölve méz + pipa + árnyék, részleges „–”; natív négyzet nem maradhat.
+* **Súgó (ⓘ):** háttér és körvonal nélküli piktogram; egérrel rámutatásra nyílik, kattintásra rögzül, érintésen koppintásra.
+* **Szűrők és nézetváltó:** tartalomszélesség (hug) – nem nyúlnak ki a sor végéig.
+* Gépi ellenőrzés: `tools/komp/oldal-meres.js` – „Igazítás” (P2), „Árnyék” (P2) és „Piktogram” (P3) leletek.
 
 ## 7. Tilos (a `ds-lint` fogja)
 

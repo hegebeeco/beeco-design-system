@@ -7,7 +7,7 @@ export { TextArea } from './inputs/TextArea';
 export { NumberField } from './inputs/NumberField';
 export { formatHu, parseHu } from './inputs/number';
 export { SelectField, type SelectOption } from './inputs/SelectField';
-export { Checkbox, RadioGroup, Switch } from './inputs/Choice';
+export { Checkbox, CheckboxInput, RadioGroup, Switch } from './inputs/Choice';
 export { SearchBox } from './inputs/SearchBox';
 export { SegmentedControl } from './inputs/SegmentedControl';
 export { Combobox, type ComboOption } from './pickers/Combobox';

@@ -62,7 +62,7 @@ function Oldal() {
         }
         tabs={tabs} tabsLabel="A POI adatai"
         side={<>
-          <section className="bc-card is-flat">
+          <section className="bc-card">
             <h2 className="bc-card-title">Adatok</h2>
             <dl className="bc-stack" style={{ margin: 0 }}>
               <div><dt className="bc-muted">Azonosító</dt><dd style={{ margin: 0 }}>poi-1042</dd></div>
@@ -70,7 +70,7 @@ function Oldal() {
               <div><dt className="bc-muted">Utoljára módosította</dt><dd style={{ margin: 0 }}>Kovács Kata, 2026. 09. 28.</dd></div>
             </dl>
           </section>
-          <section className="bc-card is-flat">
+          <section className="bc-card">
             <h2 className="bc-card-title">Tevékenység</h2>
             <ul className="bc-stack" style={{ margin: 0, paddingLeft: '1.1em' }}>
               {TEVEKENYSEG.map(([mikor, ki, mit]) => <li key={mikor}><strong>{ki}</strong> {mit}<br /><span className="bc-muted">{mikor}</span></li>)}

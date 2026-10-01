@@ -62,10 +62,10 @@ export function ListPage(p: ListPageProps) {
 
   let body: ReactNode;
   if (status === 'empty') {
-    body = <div className="bc-card is-flat bc-sablon-state"><BeeMoment pillanat="ures" sima={p.emptyText} action={p.emptyAction} /></div>;
+    body = <div className="bc-card bc-sablon-state"><BeeMoment pillanat="ures" sima={p.emptyText} action={p.emptyAction} /></div>;
   } else if (status === 'no-results') {
     body = (
-      <div className="bc-card is-flat bc-sablon-state">
+      <div className="bc-card bc-sablon-state">
         <BeeMoment pillanat="nincs-talalat"
           action={p.onClearFilters && <Button variant="secondary" onClick={p.onClearFilters}>Szűrők törlése</Button>} />
       </div>

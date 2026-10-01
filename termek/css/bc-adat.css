@@ -20,7 +20,7 @@
 .bc-pager-num { min-width: var(--bc-tap); min-height: var(--bc-tap); padding: 0 var(--bc-sp-2); font: inherit; font-weight: var(--bc-fw-bold); font-variant-numeric: tabular-nums;
   color: var(--bc-ink); background: transparent; border: var(--bc-bw-hair) solid transparent; border-radius: var(--bc-r-m); cursor: pointer;
   transition: background-color var(--bc-t-fast) var(--bc-ease-out); }
-.bc-pager-num[aria-current="page"] { color: var(--bc-on-accent); background: var(--bc-accent); border-color: var(--bc-line); }
+.bc-pager-num[aria-current="page"] { color: var(--bc-on-accent); background: var(--bc-accent); border-color: var(--bc-line); box-shadow: var(--bc-shadow-s); }
 .bc-pager-size { display: flex; align-items: center; gap: var(--bc-sp-2); white-space: nowrap; } .bc-pager-size .bc-select { width: auto; }
 @media (hover: hover) and (pointer: fine) { .bc-pager-num:hover:not([aria-current="page"]) { background: var(--bc-surface-2); border-color: var(--bc-line); } }
 
@@ -66,7 +66,6 @@
 @media (hover: hover) and (pointer: fine) { .bc-dt-resizer:hover::after { opacity: 1; } }
 /* Kijelölő cella: 44 px-es kattintható terület */
 .bc-dt-check { display: grid; place-items: center; width: var(--bc-tap); height: var(--bc-tap); margin: 0 auto; cursor: pointer; }
-.bc-dt-check > input { width: 20px; height: 20px; margin: 0; accent-color: var(--bc-ink); cursor: pointer; }
 .bc-dt-expand > svg { transition: transform var(--bc-t-fast) var(--bc-ease-out); }
 .bc-dt-expand[aria-expanded="true"] > svg { transform: rotate(90deg); }
 @media (pointer: fine) { .bc-table.is-dense .bc-dt-check, .bc-table.is-dense .bc-dt-expand { width: 36px; height: 36px; } }
@@ -103,8 +102,9 @@
 .bc-fb { display: grid; gap: var(--bc-sp-3); min-width: 0; }
 .bc-fb-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--bc-sp-3); }
 .bc-fb-search { flex: 1 1 240px; min-width: min(100%, 200px); }
-.bc-filter { display: flex; flex-direction: column; gap: var(--bc-sp-1); flex: 0 1 200px; min-width: min(100%, 160px); }
-.bc-filter.is-multi { flex: 1 1 260px; }
+.bc-filter { display: flex; flex-direction: column; gap: var(--bc-sp-1); flex: 0 0 auto; min-width: min(100%, 8rem); max-width: 100%; }
+.bc-filter .bc-select { width: auto; max-width: 100%; } /* tartalomszélesség (hug) – Kristóf, 2026-10-01 */
+.bc-filter.is-multi { flex: 0 1 15rem; }
 .bc-filter-err { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2); }
 .bc-fb.is-narrow .bc-fb-search { flex: 1 1 0; min-width: 0; }
 .bc-fb-toggle { flex: none; }

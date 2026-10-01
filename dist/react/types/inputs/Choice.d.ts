@@ -7,6 +7,13 @@ type ChoiceBase = {
 };
 /** Checkbox (atom): natív jelölő a beeco színeivel, címke + súgó; react-hook-form register-rel is. */
 export declare const Checkbox: import("react").ForwardRefExoticComponent<ChoiceBase & Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & import("react").RefAttributes<HTMLInputElement>>;
+/**
+ * CheckboxInput (atom, 2026-10-01): a márkázott jelölőnégyzet címke és súgó nélkül – ahol a környezet adja a nevet
+ * (táblázat-sor, galéria-csempe, „mind kijelölése”). Kötelező: aria-label, vagy egy <label> körülötte. `indeterminate`: részleges („–”).
+ */
+export declare const CheckboxInput: import("react").ForwardRefExoticComponent<Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
+    indeterminate?: boolean;
+} & import("react").RefAttributes<HTMLInputElement>>;
 export type RadioGroupProps = ChoiceBase & {
     name: string;
     options: ReadonlyArray<{

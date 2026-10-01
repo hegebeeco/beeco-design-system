@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Checkbox, RadioGroup, SearchBox, SelectField, Switch, TextArea, TextField } from '../src';
+import { Checkbox, CheckboxInput, RadioGroup, SearchBox, SelectField, Switch, TextArea, TextField } from '../src';
 import { Case, Grid, mount } from './_keret';
 
 // Szöveges mezők, legördülő, jelölők, kapcsoló, kereső – minden állapot és szélső eset (docs/komponensek.md 3.4)
@@ -36,6 +36,15 @@ function Oldal() {
       <Grid title="Jelölők, kapcsoló, kereső">
         <Case id="check" title="Jelölőnégyzet"><Checkbox label="Megjelenik a térképen" help="Ha kiveszed, a partner nem látszik az app térképén, de a kuponjai megmaradnak." defaultChecked /></Case>
         <Case id="check-hiba" title="Jelölő hibával"><Checkbox label="Elfogadom a partneri feltételeket" help="Enélkül nem aktiválható a partner." error="A feltételek elfogadása kötelező." /></Case>
+        <Case id="check-allapotok" title="Jelölőnégyzet-atom: üres, bejelölt, részleges, tiltott, tiltott bejelölt">
+          <div className="bc-row">
+            <label className="bc-check"><CheckboxInput aria-label="Üres" /> üres</label>
+            <label className="bc-check"><CheckboxInput aria-label="Bejelölt" defaultChecked /> bejelölt</label>
+            <label className="bc-check"><CheckboxInput aria-label="Részleges" indeterminate /> részleges</label>
+            <label className="bc-check"><CheckboxInput aria-label="Tiltott" disabled /> tiltott</label>
+            <label className="bc-check"><CheckboxInput aria-label="Tiltott bejelölt" disabled defaultChecked /> tiltott bejelölt</label>
+          </div>
+        </Case>
         <Case id="radio" title="Rádiócsoport"><RadioGroup label="Partner típusa" help="A típus határozza meg, milyen kuponokat adhat ki." name="tipus" value={radio} onChange={setRadio} options={[{ value: 'bolt', label: 'Bolt' }, { value: 'kavezo', label: 'Kávézó' }, { value: 'on', label: 'Önkormányzat', disabled: true }]} /></Case>
         <Case id="switch" title="Kapcsoló"><Switch label="Aktív" help="Kikapcsolva a partner rejtve van az appban; semmi nem törlődik." checked={sw} onChange={setSw} /></Case>
         <Case id="search" title="Kereső (Esc törli)"><SearchBox label="Partner keresése" value={q} onChange={setQ} /><p className="tl-out" data-out="search">Keresés: „{q}”</p></Case>

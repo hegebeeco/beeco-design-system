@@ -92,7 +92,7 @@ a.bc-tab { text-decoration: none; }
 .bc-tab { display: inline-flex; align-items: center; white-space: nowrap; }
 .bc-tab-text { min-width: 0; max-width: 28ch; overflow: hidden; text-overflow: ellipsis; }
 .bc-tabs .bc-tab:focus-visible { outline-offset: -4px; }
-.bc-tab[aria-current="page"] { color: var(--bc-on-accent); background: var(--bc-accent); border-color: var(--bc-line); }
+.bc-tab[aria-current="page"] { color: var(--bc-on-accent); background: var(--bc-accent); border-color: var(--bc-line); box-shadow: var(--bc-shadow-s-x) 0 0 0 var(--bc-shadow); }
 .bc-tab:disabled, .bc-tab[data-disabled] { color: var(--bc-ink-muted); cursor: not-allowed; }
 .bc-tab-count { display: inline-grid; place-items: center; min-width: 22px; height: 22px; margin-left: var(--bc-sp-2); padding: 0 var(--bc-sp-1);
   font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); }

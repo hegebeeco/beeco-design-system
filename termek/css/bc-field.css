@@ -9,12 +9,11 @@
 /* Súgó gomb: látható kör 22 px, érintési felület 44 px (a negatív margó nem tolja el a sort) */
 .bc-help-btn { position: relative; display: inline-grid; place-items: center; width: var(--bc-tap); height: var(--bc-tap); margin: calc((24px - var(--bc-tap)) / 2) calc((22px - var(--bc-tap)) / 2);
   padding: 0; color: var(--bc-ink); background: transparent; border: 0; border-radius: 50%; cursor: pointer; flex: none; }
-.bc-help-btn::before { content: ""; position: absolute; width: 22px; height: 22px; border: var(--bc-bw-hair) solid var(--bc-line); border-radius: 50%; background: var(--bc-surface);
-  transition: background-color var(--bc-t-fast) var(--bc-ease-out); }
-.bc-help-btn > span { position: relative; font-family: var(--bc-font-display); font-size: var(--bc-fs-s); line-height: 1; }
-.bc-help-btn[data-state="open"]::before { background: var(--bc-accent); color: var(--bc-on-accent); }
-.bc-help-btn[data-state="open"] > span { color: var(--bc-on-accent); }
-@media (hover: hover) and (pointer: fine) { .bc-help-btn:hover::before { background: var(--bc-surface-accent); } }
+/* Súgó (ⓘ) – Kristóf, 2026-10-01: háttér és körvonal NÉLKÜL, csak a piktogram; rámutatásra és koppintásra is nyílik.
+   A 44 px-es érintési terület megmarad (a gomb maga), a látható jel 18 px. */
+.bc-help-btn > svg { width: 18px; height: 18px; color: var(--bc-ink-soft); transition: color var(--bc-t-fast) var(--bc-ease-out); }
+.bc-help-btn[data-state="open"] > svg { color: var(--bc-ink); }
+@media (hover: hover) and (pointer: fine) { .bc-help-btn:hover > svg { color: var(--bc-ink); } }
 
 /* Lebegő réteg (súgó, legördülő lista, naptár) – Radix Popover tartalma */
 .bc-pop { z-index: var(--bc-z-popover); max-width: min(360px, calc(100vw - 2 * var(--bc-sp-4)));
@@ -45,7 +44,7 @@
 .bc-search > .bc-input::-webkit-search-cancel-button { display: none; }
 
 /* Szegmentált kapcsoló (1A: gombsor, méz kijelölés); keskeny helyen görgethető */
-.bc-seg { display: inline-flex; max-width: 100%; overflow-x: auto; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); background: var(--bc-surface); scrollbar-width: none; }
+.bc-seg { display: inline-flex; width: fit-content; max-width: 100%; align-self: flex-start; overflow-x: auto; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); background: var(--bc-surface); scrollbar-width: none; }
 .bc-seg-item { flex: none; display: inline-flex; align-items: center; gap: var(--bc-sp-2); min-height: 40px; padding: 0 var(--bc-sp-4);
   font: inherit; font-weight: var(--bc-fw-semibold); color: var(--bc-ink); background: transparent; border: 0; cursor: pointer;
   transition: background-color var(--bc-t-fast) var(--bc-ease-out); }

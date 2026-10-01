@@ -2,9 +2,9 @@
    beeco TERMÉKBŐR – felületek: kártya, oldalfej, fülek, felugró ablak
    ============================================================ */
 .bc-card { background: var(--bc-surface); color: var(--bc-ink); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); padding: var(--bc-sp-5); }
-.bc-card.is-flat { box-shadow: none; border-width: var(--bc-bw-hair); }
+.bc-card.is-flat { box-shadow: none; border-width: var(--bc-bw-hair); } /* csak tudatos kivétel: árnyékos dobozba ágyazott lap (Kristóf, 2026-10-01: a felületek árnyékot kapnak) */
 .bc-card.is-accent { background: var(--bc-surface-accent); }
-.bc-card.is-quiet { background: var(--bc-surface-2); border-color: var(--bc-line-soft); border-width: var(--bc-bw-hair); box-shadow: none; }
+.bc-card.is-quiet { background: var(--bc-surface-2); box-shadow: var(--bc-shadow-s); } /* halkabb háttér, de ugyanaz a keret és kemény árnyék */
 /* Kattintható kártya: <a> vagy <button> legyen (billentyűzet!) – úgy „kattan”, mint a gomb */
 a.bc-card, button.bc-card { display: block; width: 100%; text-align: left; font: inherit; color: inherit; text-decoration: none; }
 .bc-card.is-interactive { cursor: pointer; transition: transform var(--bc-t-press) var(--bc-ease-out), box-shadow var(--bc-t-press) var(--bc-ease-out); }
@@ -21,7 +21,7 @@ a.bc-card, button.bc-card { display: block; width: 100%; text-align: left; font:
 .bc-tabs { position: relative; display: flex; gap: var(--bc-sp-1); overflow-x: auto; border-bottom: var(--bc-bw-base) solid var(--bc-line); scrollbar-width: none; }
 .bc-tab { flex: none; min-height: var(--bc-tap); padding: 0 var(--bc-sp-4); font: inherit; font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft);
   background: transparent; border: var(--bc-bw-base) solid transparent; border-bottom: 0; border-radius: var(--bc-r-m) var(--bc-r-m) 0 0; cursor: pointer; margin-bottom: calc(-1 * var(--bc-bw-base)); }
-.bc-tab[aria-selected="true"] { color: var(--bc-on-accent); background: var(--bc-accent); border-color: var(--bc-line); }
+.bc-tab[aria-selected="true"] { color: var(--bc-on-accent); background: var(--bc-accent); border-color: var(--bc-line); box-shadow: var(--bc-shadow-s-x) 0 0 0 var(--bc-shadow); }
 @media (hover: hover) and (pointer: fine) { .bc-tab:hover:not([aria-selected="true"]) { color: var(--bc-ink); background: var(--bc-surface-2); } }
 
 /* Felugró ablak – natív <dialog class="bc-modal">: Esc-re zár, fókuszt tart. Háttér: ::backdrop */

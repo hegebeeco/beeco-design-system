@@ -1,2 +1,2 @@
-/* beeco design system 1.18.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.19.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 export * from './types/index';

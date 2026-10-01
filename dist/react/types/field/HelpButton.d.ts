@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 export type HelpButtonProps = {
     /** Mire vonatkozik (a képernyőolvasó ezt mondja: „Súgó: <label>”) */
     label: string;
@@ -6,7 +6,8 @@ export type HelpButtonProps = {
     children: ReactNode;
 };
 /**
- * Súgó gomb (ⓘ) – kattintásra/koppintásra nyíló buborék (érintésen is működik, ezért nem tooltip).
- * Esc-re és kívül kattintásra zár, a fókusz visszakerül a gombra (Radix Popover).
+ * Súgó gomb (ⓘ) – Kristóf, 2026-10-01: háttér és körvonal nélküli piktogram.
+ * Egérrel rámutatásra nyílik (a buborékon tartva nyitva marad), kattintásra/koppintásra és billentyűvel (Enter/Szóköz) is –
+ * kattintás után rögzítve marad, amíg Esc, kívül kattintás vagy újabb kattintás nem zárja. A fókusz visszakerül a gombra (Radix Popover).
  */
 export declare function HelpButton({ label, children }: HelpButtonProps): import("react").JSX.Element;

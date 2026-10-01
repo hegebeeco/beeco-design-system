@@ -38,4 +38,24 @@ export default async function ({ page, t }) {
     const s = c('switch').locator('[role=switch]'); const before = await s.getAttribute('aria-checked'); await s.focus(); await page.keyboard.press('Space');
     ok((await s.getAttribute('aria-checked')) !== before, 'nem váltott');
   });
+  await t('jelölőnégyzet: márkázott (nem natív), kattintásra bejelöl, részleges állapot, tiltott nem kattintható', async () => {
+    const c = page.locator('[data-case="check-allapotok"]');
+    const ures = c.getByLabel('Üres', { exact: true });
+    ok(await ures.evaluate((e) => getComputedStyle(e).appearance === 'none'), 'natív megjelenés');
+    await ures.click(); ok(await ures.isChecked(), 'nem jelölt be');
+    ok(await ures.evaluate((e) => getComputedStyle(e).boxShadow !== 'none'), 'bejelölve nincs árnyék');
+    ok(await c.getByLabel('Részleges').evaluate((e) => e.indeterminate), 'nincs részleges állapot');
+    ok(await c.getByLabel('Tiltott', { exact: true }).isDisabled(), 'nem tiltott');
+  });
+  await t('súgó (ⓘ): háttér és körvonal nélkül, rámutatásra nyílik, elmozdulva zár, kattintva rögzül', async () => {
+    const btn = page.locator('[data-case="check"] .bc-help-btn');
+    ok(await btn.evaluate((e) => { const s = getComputedStyle(e); return (s.backgroundColor === 'rgba(0, 0, 0, 0)' || s.backgroundColor === 'transparent') && s.borderTopStyle === 'none'; }), 'van háttere vagy kerete');
+    await btn.hover(); await page.waitForTimeout(450);
+    ok(await page.locator('.bc-pop').isVisible(), 'rámutatásra nem nyílt');
+    await page.mouse.move(5, 5); await page.waitForTimeout(450);
+    ok(await page.locator('.bc-pop').count() === 0, 'elmozdulva nem zárt');
+    await btn.hover(); await page.waitForTimeout(450); await btn.click(); await page.mouse.move(5, 5); await page.waitForTimeout(450);
+    ok(await page.locator('.bc-pop').isVisible(), 'kattintás után nem maradt nyitva');
+    await page.keyboard.press('Escape'); await page.locator('.bc-pop').waitFor({ state: 'detached' });
+  });
 }

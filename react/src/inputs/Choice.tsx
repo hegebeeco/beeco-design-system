@@ -1,4 +1,4 @@
-import { forwardRef, useId, type InputHTMLAttributes, type ReactNode } from 'react';
+import { forwardRef, useEffect, useId, useRef, type InputHTMLAttributes, type ReactNode } from 'react';
 import { cx } from '../cx';
 import { HelpButton } from '../field/HelpButton';
 
@@ -20,6 +20,17 @@ export const Checkbox = forwardRef<HTMLInputElement, ChoiceBase & Omit<InputHTML
       {error && <p className="bc-error" id={`${id}-err`} role="alert">{error}</p>}
     </div>
   );
+});
+
+/**
+ * CheckboxInput (atom, 2026-10-01): a márkázott jelölőnégyzet címke és súgó nélkül – ahol a környezet adja a nevet
+ * (táblázat-sor, galéria-csempe, „mind kijelölése”). Kötelező: aria-label, vagy egy <label> körülötte. `indeterminate`: részleges („–”).
+ */
+export const CheckboxInput = forwardRef<HTMLInputElement, Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & { indeterminate?: boolean }>(function CheckboxInput(
+  { className, indeterminate, ...rest }, ref) {
+  const sajat = useRef<HTMLInputElement | null>(null);
+  useEffect(() => { if (sajat.current) sajat.current.indeterminate = Boolean(indeterminate); }, [indeterminate]);
+  return <input ref={(el) => { sajat.current = el; if (typeof ref === 'function') ref(el); else if (ref) ref.current = el; }} type="checkbox" className={cx('bc-checkbox', className)} {...rest} />;
 });
 
 export type RadioGroupProps = ChoiceBase & {

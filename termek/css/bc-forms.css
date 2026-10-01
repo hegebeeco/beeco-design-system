@@ -38,7 +38,27 @@
 
 /* Jelölőnégyzet és rádió: natív elem, márkaszínnel; a címke is kattintható (44 px sor) */
 .bc-check { display: inline-flex; align-items: center; gap: var(--bc-sp-2); min-height: var(--bc-tap); font-size: var(--bc-fs-m); cursor: pointer; }
-.bc-check > input { width: 20px; height: 20px; margin: 0; accent-color: var(--bc-ink); cursor: pointer; }
+/* Jelölőnégyzet (atom, 2026-10-01): márkázott doboz – fekete keret, méz kitöltés + pipa bejelölve, „–” részleges állapotban.
+   Minden DS-jelölő ezt kapja (Checkbox, táblázat-sor, önálló CheckboxInput); a kattintható terület a címkesor / 44 px-es cella. */
+.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"] {
+  appearance: none; flex: none; display: inline-grid; place-content: center; width: 22px; height: 22px; margin: 0;
+  color: var(--bc-on-accent); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-s);
+  cursor: pointer; transition: background-color var(--bc-t-fast) var(--bc-ease-out), box-shadow var(--bc-t-fast) var(--bc-ease-out); }
+.bc-checkbox::after, .bc-check > input[type="checkbox"]::after, .bc-dt-check > input[type="checkbox"]::after {
+  content: ""; width: 14px; height: 14px; background: currentColor; transform: scale(0); transition: transform var(--bc-t-fast) var(--bc-ease-out);
+  -webkit-mask: var(--_jel) center / contain no-repeat; mask: var(--_jel) center / contain no-repeat;
+  --_jel: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7'/%3E%3C/svg%3E"); }
+:is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):is(:checked, :indeterminate) { background: var(--bc-accent); box-shadow: var(--bc-shadow-s); }
+:is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):is(:checked, :indeterminate)::after { transform: scale(1); }
+:is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):indeterminate::after {
+  --_jel: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round'%3E%3Cpath d='M6 12h12'/%3E%3C/svg%3E"); }
+:is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+:is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"])[aria-invalid="true"] { border-color: var(--bc-danger-ink); background: var(--bc-danger-bg); }
+:is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):disabled { background: var(--bc-surface-2); border-color: var(--bc-line-soft); box-shadow: none; cursor: not-allowed; }
+:is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):disabled:checked { color: var(--bc-ink-muted); }
+@media (hover: hover) and (pointer: fine) { :is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):not(:checked, :disabled):hover { background: var(--bc-surface-accent); } }
+@media (prefers-reduced-motion: reduce) { :is(.bc-checkbox, .bc-check > input, .bc-dt-check > input)::after { transition: none; } }
+.bc-check > input[type="radio"] { width: 20px; height: 20px; margin: 0; accent-color: var(--bc-ink); cursor: pointer; }
 
 /* Kapcsoló: <button role="switch" aria-checked="true|false" class="bc-switch"><span class="bc-sr">…</span></button>
    A gomb maga 56×44 px (érintési felület); a látható sín (::before) és a gomb-korong (::after) ebben ül. */

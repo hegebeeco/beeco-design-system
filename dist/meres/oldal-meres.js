@@ -1,4 +1,4 @@
-/* beeco design system 1.18.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.19.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 /* Használat a böngészőben: const L = window.bcMeres({ w: innerWidth, touch: true }); – leletek { kat, sulyos, mi, hol } */
 window.bcMeres = function meres(opts) {
   const L = [];
@@ -104,6 +104,13 @@ window.bcMeres = function meres(opts) {
       const aljak = g.map((x) => x.r.bottom); const d = Math.max(...aljak) - Math.min(...aljak);
       if (d > 1.5) add('Igazítás', 'P2', `egy sorban álló mezők alja ${d.toFixed(0)} px-re eltér (alulra igazítás kell)`, desc(g[aljak.indexOf(Math.min(...aljak))].c));
     }
+  }
+
+  // --- Árnyék (Kristóf, 2026-10-01): a felületek és gombok kemény árnyékot kapnak – ha valami (pl. projekt-CSS) leszedi, lelet
+  const ARNYEKOS = '.bc-card:not(.is-flat), .bc-btn:not(.is-ghost):not(:disabled):not([aria-disabled="true"]), .bc-stat, .bc-tile, .bc-pop, .bc-seg, .bc-sablon-bar, .bc-modal, .bc-dt-wrap';
+  for (const el of document.querySelectorAll(ARNYEKOS)) {
+    if (!visible(el) || el.closest('.bc-dt.is-cards')) continue;
+    if (getComputedStyle(el).boxShadow === 'none') add('Árnyék', 'P2', 'a felületről hiányzik a kemény árnyék', desc(el));
   }
 
   // --- Piktogram-szabály (Kristóf, 2026-10-01): mentés / törlés / új / szerkesztés / info szöveges gombon legyen piktogram;

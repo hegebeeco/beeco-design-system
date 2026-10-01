@@ -108,6 +108,13 @@ module.exports = function meres(opts) {
     }
   }
 
+  // --- Árnyék (Kristóf, 2026-10-01): a felületek és gombok kemény árnyékot kapnak – ha valami (pl. projekt-CSS) leszedi, lelet
+  const ARNYEKOS = '.bc-card:not(.is-flat), .bc-btn:not(.is-ghost):not(:disabled):not([aria-disabled="true"]), .bc-stat, .bc-tile, .bc-pop, .bc-seg, .bc-sablon-bar, .bc-modal, .bc-dt-wrap';
+  for (const el of document.querySelectorAll(ARNYEKOS)) {
+    if (!visible(el) || el.closest('.bc-dt.is-cards')) continue;
+    if (getComputedStyle(el).boxShadow === 'none') add('Árnyék', 'P2', 'a felületről hiányzik a kemény árnyék', desc(el));
+  }
+
   // --- Piktogram-szabály (Kristóf, 2026-10-01): mentés / törlés / új / szerkesztés / info szöveges gombon legyen piktogram;
   // a csak piktogramos gombnak legyen neve (képernyőolvasó) és súgó-buboréka (title vagy Tooltip)
   const PIKT = /^(mentés|ment |mentése|törl|új |új$|hozzáad|létrehoz|felvétel|szerkeszt|módosít|info|súgó|részletek)/i;

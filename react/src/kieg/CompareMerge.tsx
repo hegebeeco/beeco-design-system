@@ -92,7 +92,7 @@ export function CompareMerge({ records, fields, choices, onChoicesChange, surviv
         </div>
       )}
 
-      {diff.length > 0 && <div className="bc-card is-flat bc-merge-preview">
+      {diff.length > 0 && <div className="bc-card bc-merge-preview">
         <h3 className="bc-card-title">Az eredmény</h3>
         <dl className="bc-merge-result">
           {diff.map((f) => (
