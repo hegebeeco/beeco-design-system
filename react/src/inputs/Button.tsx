@@ -20,7 +20,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   return (
     <button ref={ref} type={type} disabled={disabled} aria-busy={busy || undefined}
       aria-disabled={busy || undefined} onClickCapture={busy ? (e) => e.preventDefault() : undefined}
-      className={cx('bc-btn', variant !== 'primary' && `is-${variant}`, size !== 'md' && `is-${size}`, block && 'is-block', className)} {...rest}>
+      className={cx('bc-btn', variant !== 'primary' && `is-${variant}`, size !== 'md' && `is-${size}`, block && 'is-block', !children && 'is-icon', className)} {...rest}>
       {done ? <span className="bc-anim-tick" aria-hidden="true"><IcOk /></span> : icon}
       {children}
       {done && <span className="bc-sr" role="status">Kész</span>}

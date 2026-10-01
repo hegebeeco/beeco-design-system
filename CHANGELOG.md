@@ -15,6 +15,9 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.20.3 – 2026-10-01
+* A csak piktogramos gomb jele: `.bc-btn.is-icon` (a Button felirat nélkül magától kapja) – az aria-label alapú felismerés a szöveges másológombra is hatott.
+
 ## 1.20.2 – 2026-10-01
 * Javítás: az 1.20.1 „csak piktogramos gomb” szabálya a szöveges gombokra is hatott (a felirat szövegcsomópont); most csak `aria-label`-es, egyetlen svg-t tartalmazó gombra.
 

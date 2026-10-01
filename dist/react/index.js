@@ -1,4 +1,4 @@
-/* beeco design system 1.20.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.20.3 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -142,7 +142,7 @@ var Button = forwardRef(function Button2({ variant = "primary", size = "md", blo
       "aria-busy": busy || void 0,
       "aria-disabled": busy || void 0,
       onClickCapture: busy ? (e) => e.preventDefault() : void 0,
-      className: cx("bc-btn", variant !== "primary" && `is-${variant}`, size !== "md" && `is-${size}`, block && "is-block", className),
+      className: cx("bc-btn", variant !== "primary" && `is-${variant}`, size !== "md" && `is-${size}`, block && "is-block", !children && "is-icon", className),
       ...rest,
       children: [
         done ? /* @__PURE__ */ jsx4("span", { className: "bc-anim-tick", "aria-hidden": "true", children: /* @__PURE__ */ jsx4(IcOk, {}) }) : icon,
