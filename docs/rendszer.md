@@ -56,7 +56,7 @@ térköz, időzítés), de két **bőrben** jelenik meg: a játékok játékosab
 
 **React-appok (admin, partner, web):** verziózott **git-függőség** – nincs npm-regisztráció, nincs költség:
 ```bash
-npm install github:hegebeeco/beeco-design-system#v1.14.1
+npm install github:hegebeeco/beeco-design-system#v1.15.0
 ```
 - CSS: `import '@beeco/design-system/termek.css'` (tokenek + betűk + minden elem)
 - SCSS (admin): `@use '@beeco/design-system/dist/scss/beeco' as bc;` → `bc.$bc-ink`, `bc.sp(4)`, `bc.r(m)`

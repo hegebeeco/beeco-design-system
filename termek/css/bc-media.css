@@ -1,1 +1,128 @@
-/* beeco TERMÉKBŐR – media csomag (Javaslat, jóváhagyva 2026-10-01) */
+/* ============================================================
+   beeco TERMÉKBŐR – média és speciális elemek (Javaslat 04, jóváhagyva 2026-10-01)
+   Képfeltöltő + galéria + nagyító · képvágó · lépésjelző · videó · Excel-import · térkép (Leaflet-öltöztetés) · hőskála ·
+   havi naptár · nyitvatartás · avatar. React: react/src/media · szabály: docs/komponensek.md 3/A, 3/B
+   ============================================================ */
+
+/* ---------- Galéria-rács és csempék ---------- */
+.bc-gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 112px), 1fr)); gap: var(--bc-sp-2); margin: 0; padding: 0; list-style: none; }
+.bc-tile { position: relative; aspect-ratio: 1; min-width: 0; overflow: hidden; background: var(--bc-surface-2); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m);
+  transition: transform var(--bc-t-fast) var(--bc-ease-out), box-shadow var(--bc-t-fast) var(--bc-ease-out), opacity var(--bc-t-fast) var(--bc-ease-out); }
+/* Átlátszó PNG: sakktábla-háttér a kép mögött (tokenekből) */
+.bc-tile img { display: block; width: 100%; height: 100%; object-fit: cover; background: repeating-conic-gradient(var(--bc-surface-2) 0 25%, var(--bc-surface) 0 50%) 0 0 / 16px 16px; }
+.bc-tile-open { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.bc-tile-open:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: -3px; }
+.bc-tile-cover { position: absolute; left: var(--bc-sp-1); top: var(--bc-sp-1); pointer-events: none; }
+.bc-tile-noalt { position: absolute; left: var(--bc-sp-1); bottom: var(--bc-sp-1); max-width: calc(100% - 2 * var(--bc-sp-1)); pointer-events: none; }
+.bc-tile-noalt svg { width: 14px; height: 14px; flex: none; }
+/* ⋯ menü: 44 px érintési felület, látható kör a sarokban */
+.bc-tile-menu.bc-icon-btn { position: absolute; right: 0; top: 0; }
+.bc-tile-menu.bc-icon-btn::before { content: ""; position: absolute; inset: 7px; background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: 50%; }
+.bc-tile-menu.bc-icon-btn > svg { position: relative; }
+.bc-tile[draggable="true"] { cursor: grab; }
+.bc-tile.is-dragging { opacity: .45; }
+.bc-tile.is-drop { box-shadow: var(--bc-shadow-m); outline: 3px solid var(--bc-accent); outline-offset: 1px; }
+@media (hover: hover) and (pointer: fine) { .bc-tile:hover { box-shadow: var(--bc-shadow-s); } }
+
+/* Töltődő csempe: előnézet halványan, alul állapot + sáv */
+.bc-tile.is-upload img { opacity: .55; }
+.bc-tile-status { position: absolute; left: 0; right: 0; bottom: 8px; display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-1);
+  padding-left: var(--bc-sp-2); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-ink); background: var(--bc-surface); border-top: var(--bc-bw-hair) solid var(--bc-line); }
+.bc-tile-size { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bc-tile.is-failed { border-color: var(--bc-danger-ink); }
+.bc-tile.is-failed .bc-tile-status { bottom: 0; flex-wrap: wrap; padding-top: var(--bc-sp-1); background: var(--bc-danger-bg); color: var(--bc-danger-ink); }
+.bc-tile-err { display: inline-flex; align-items: center; gap: var(--bc-sp-1); }
+.bc-tile-err svg { width: 14px; height: 14px; }
+.bc-tile-actions { display: flex; margin-left: auto; }
+.bc-tile .bc-upbar { position: absolute; left: 0; right: 0; bottom: 0; border-radius: 0; border-width: var(--bc-bw-hair) 0 0; }
+
+/* „+ Kép” csempe: a natív fájlmező a <label>-ben, a fókusz a csempén látszik */
+.bc-tile.is-add { border-style: dashed; background: var(--bc-surface); }
+.bc-tile.is-add label { display: grid; place-items: center; align-content: center; gap: 2px; height: 100%; padding: var(--bc-sp-2); text-align: center; color: var(--bc-ink); cursor: pointer; }
+.bc-tile.is-add svg { width: 26px; height: 26px; }
+.bc-tile-add-t { font-family: var(--bc-font-display); font-size: var(--bc-fs-l); line-height: 1; }
+.bc-tile-add-s { font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+.bc-tile.is-add:has(input:focus-visible) { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-tile.is-add.is-empty { grid-column: 1 / -1; aspect-ratio: auto; min-height: 140px; }
+.bc-tile.is-add.is-disabled { background: var(--bc-surface-2); border-color: var(--bc-line-soft); }
+.bc-tile.is-add.is-disabled label { cursor: not-allowed; color: var(--bc-ink-soft); }
+@media (hover: hover) and (pointer: fine) { .bc-tile.is-add:not(.is-disabled):hover { background: var(--bc-surface-accent); } }
+.bc-upload-input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.bc-upload-input:disabled { cursor: not-allowed; }
+/* Ráhúzás: az egész rács mézes kerete */
+.bc-upload.is-over .bc-gallery-grid { outline: 3px dashed var(--bc-accent); outline-offset: 4px; border-radius: var(--bc-r-m); background: var(--bc-surface-accent); }
+.bc-upload { display: grid; gap: var(--bc-sp-2); }
+.bc-upload-errors { display: flex; align-items: flex-start; gap: var(--bc-sp-2); padding-left: var(--bc-sp-3); color: var(--bc-danger-ink); background: var(--bc-danger-bg); border-left: 4px solid var(--bc-danger); border-radius: var(--bc-r-s); }
+.bc-upload-errors ul { flex: 1; margin: 0; padding: var(--bc-sp-2) 0; list-style: none; display: grid; gap: var(--bc-sp-1); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); overflow-wrap: anywhere; }
+.bc-upload-errors .bc-icon-btn { color: var(--bc-danger-ink); }
+.bc-upload-alt { margin: 0; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-warning-ink); }
+.bc-gallery-empty { margin: 0; color: var(--bc-ink-soft); font-size: var(--bc-fs-s); }
+
+/* Haladásjelző sáv */
+.bc-upbar { display: block; height: 8px; overflow: hidden; background: var(--bc-surface-2); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); }
+.bc-upbar > i { display: block; height: 100%; color: var(--bc-on-accent); background: var(--bc-accent); transition: width var(--bc-t-base) var(--bc-ease-out); }
+
+/* Galéria-menü (Radix DropdownMenu) */
+.bc-gmenu { z-index: var(--bc-z-popover); min-width: 220px; padding: var(--bc-sp-1); background: var(--bc-surface); color: var(--bc-ink); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); animation: bc-pop-in var(--bc-t-fast) var(--bc-ease-out); }
+.bc-gmenu-item { display: flex; align-items: center; min-height: 40px; padding: 0 var(--bc-sp-3); font-size: var(--bc-fs-s); border-radius: var(--bc-r-s); cursor: pointer; outline: none; }
+.bc-gmenu-item[data-highlighted] { background: var(--bc-surface-2); box-shadow: inset 0 0 0 var(--bc-bw-hair) var(--bc-line); }
+.bc-gmenu-item[data-disabled] { color: var(--bc-ink-muted); cursor: not-allowed; }
+.bc-gmenu-item.is-danger { color: var(--bc-danger-ink); font-weight: var(--bc-fw-semibold); }
+.bc-gmenu-sep { height: var(--bc-bw-hair); margin: var(--bc-sp-1) 0; background: var(--bc-line-soft); }
+@media (pointer: coarse) { .bc-gmenu-item { min-height: var(--bc-tap); } }
+.bc-alt-thumb { display: block; width: 96px; height: 96px; margin-bottom: var(--bc-sp-3); object-fit: cover; border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-s); }
+
+/* ---------- Nagyító ---------- */
+.bc-lightbox-scrim { position: fixed; inset: 0; z-index: var(--bc-z-modal); background: rgb(var(--bc-scrim-rgb) / .9); }
+.bc-lightbox { position: fixed; inset: 0; z-index: var(--bc-z-modal); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: var(--bc-sp-2); padding: var(--bc-sp-3); outline: none; animation: bc-pop-in var(--bc-t-base) var(--bc-ease-out); }
+.bc-lightbox-top { display: flex; justify-content: space-between; align-items: center; }
+.bc-lightbox-pill, .bc-lightbox-cap { padding: var(--bc-sp-1) var(--bc-sp-3); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); font-variant-numeric: tabular-nums; }
+.bc-lightbox-cap { justify-self: center; max-width: min(720px, 100%); margin: 0; border-radius: var(--bc-r-m); text-align: center; overflow-wrap: anywhere; }
+.bc-lightbox-btn.bc-icon-btn { color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); }
+.bc-lightbox-mid { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--bc-sp-2); min-height: 0; }
+.bc-lightbox-stage { display: grid; place-items: center; height: 100%; min-height: 0; touch-action: pan-y; }
+.bc-lightbox-stage img { max-width: 100%; max-height: 100%; object-fit: contain; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-s); background: var(--bc-surface); }
+@media (max-width: 520px) { .bc-lightbox-mid { grid-template-columns: minmax(0, 1fr); } .bc-lightbox-mid > .bc-icon-btn { display: none; } }
+
+/* ---------- Képvágó (react-easy-crop a DS-burokban) ---------- */
+.bc-cropper { display: grid; gap: var(--bc-sp-3); }
+.bc-cropper-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2) var(--bc-sp-3); }
+.bc-cropper-stage { position: relative; height: clamp(200px, 50vh, 420px); overflow: hidden; background: var(--bc-surface-2); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
+.bc-cropper .bc-cropper-area { border: var(--bc-bw-base) solid var(--bc-surface); color: rgb(var(--bc-scrim-rgb) / .55); outline-offset: -6px; }
+.bc-cropper .bc-cropper-area::before, .bc-cropper .bc-cropper-area::after { border-color: rgb(var(--bc-surface-rgb) / .7); }
+.bc-cropper .bc-cropper-area:focus-visible { outline: 3px solid var(--bc-focus); }
+.bc-cropper-zoom { display: flex; align-items: center; gap: var(--bc-sp-3); }
+.bc-range { flex: 1; min-width: 0; min-height: var(--bc-tap); margin: 0; accent-color: var(--bc-ink); cursor: pointer; }
+.bc-cropper-out { min-width: 3.5em; font-family: var(--bc-font-display); font-size: var(--bc-fs-l); font-variant-numeric: tabular-nums; }
+
+/* ---------- Lépésjelző ---------- */
+.bc-steps { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2); margin: 0; padding: 0; list-style: none; font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); }
+.bc-steps li { display: flex; align-items: center; gap: var(--bc-sp-2); padding: 2px var(--bc-sp-3) 2px 2px; color: var(--bc-ink-soft); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line-soft); border-radius: var(--bc-r-pill); }
+.bc-steps b { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; color: var(--bc-ink); background: var(--bc-surface-2); border: var(--bc-bw-hair) solid var(--bc-line); }
+.bc-steps b svg { width: 16px; height: 16px; }
+.bc-steps .is-current { color: var(--bc-ink); border-color: var(--bc-line); }
+.bc-steps .is-current b { color: var(--bc-on-accent); background: var(--bc-accent); }
+.bc-steps .is-done b { color: var(--bc-success-ink); background: var(--bc-success-bg); }
+.bc-steps .is-error { color: var(--bc-danger-ink); border-color: var(--bc-danger-ink); }
+.bc-steps .is-error b { color: var(--bc-danger-ink); background: var(--bc-danger-bg); }
+
+/* ---------- Ejtőzóna + fájlkártya (videó, import) ---------- */
+.bc-video, .bc-import { display: grid; gap: var(--bc-sp-3); }
+.bc-dropzone { position: relative; display: grid; justify-items: center; gap: var(--bc-sp-1); padding: var(--bc-sp-5) var(--bc-sp-3); text-align: center; font-size: var(--bc-fs-s); color: var(--bc-ink-soft); background: var(--bc-surface);
+  border: var(--bc-bw-base) dashed var(--bc-line); border-radius: var(--bc-r-m); cursor: pointer; transition: background-color var(--bc-t-fast) var(--bc-ease-out); }
+.bc-dropzone strong { font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-l); color: var(--bc-ink); }
+.bc-dropzone svg { width: 28px; height: 28px; color: var(--bc-ink); }
+.bc-dropzone:has(input:focus-visible) { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-dropzone:has(input:disabled) { background: var(--bc-surface-2); cursor: not-allowed; }
+@media (hover: hover) and (pointer: fine) { .bc-dropzone:not(:has(input:disabled)):hover { background: var(--bc-surface-accent); } }
+.bc-filecard { display: grid; gap: var(--bc-sp-2); padding: var(--bc-sp-3); font-size: var(--bc-fs-s); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+.bc-filecard-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--bc-sp-1) var(--bc-sp-3); }
+.bc-filecard-row > b { overflow-wrap: anywhere; }
+.bc-filecard-size { font-variant-numeric: tabular-nums; font-weight: var(--bc-fw-semibold); }
+.bc-import-result { display: grid; gap: var(--bc-sp-3); }
+.bc-import-list { max-height: 360px; overflow: auto; }
+.bc-import-list tr.is-error td { background: var(--bc-danger-bg); color: var(--bc-danger-ink); }
+.bc-import-list tr.is-warning td { background: var(--bc-warning-bg); color: var(--bc-warning-ink); }
+.bc-import-list td { overflow-wrap: anywhere; }
+.bc-import-list td:nth-child(2) { min-width: 8em; overflow-wrap: normal; hyphens: auto; }
+.bc-import-list td:nth-child(3) { min-width: 14em; }

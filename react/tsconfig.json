@@ -10,7 +10,13 @@
     "outDir": "../dist/react/types",
     "rootDir": "src",
     "skipLibCheck": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"]
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ]
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }

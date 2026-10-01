@@ -18,6 +18,9 @@ A DS-repó: `~/CLAUDE/beeco-jatek-kit` (GitHub: `hegebeeco/beeco-design-system`)
 3. Nézd meg, van-e már rá `bc-` elem vagy projekt-komponens – **előbb a meglévőt használd**.
 4. `minosegkapu` skill a munka elején (szabályok) és a végén (kapu).
 
+## 1/b. Mi van készen
+Katalógus: `docs/komponens-katalogus.md` (űrlap, adat és grafikon, rétegek, média, méhecske és mozgás, kiegészítők, oldalsablonok). Méhecske-szereplők, szóviccek: `tokens/hangnem.json` + `docs/javaslatok/05-meh.md`; sprite-ok: `docs/meh-sprite.md`. Szöveg csak magyarul (angol csak kérésre).
+
 ## 2. Szabályok (nem alkudható)
 - **Csak tokenek / szerepek:** CSS `var(--bc-ink)`, SCSS `bc.$bc-ink` / `bc.sp(4)`, Tailwind `text-ink bg-accent shadow-m rounded-m`,
   Dart `BeecoRoles.light.ink`. Nyers szín, nyers px betűméret/sarok/árnyék: tilos. A Tailwind alap-palettája (`gray-100`) nem létezik.
@@ -46,7 +49,7 @@ Tesztlap (`termek/tesztlapok/<komponens>.html`) minden állapottal és a széls�
 
 ## 6. Beépítés egy projektbe
 ```bash
-npm install github:hegebeeco/beeco-design-system#v1.14.1
+npm install github:hegebeeco/beeco-design-system#v1.15.0
 npx beeco-ds-lint --init        # racsni: a mostani állapot felírva
 ```
 CSS: `import '@beeco/design-system/termek.css'` · SCSS: `@use '@beeco/design-system/dist/scss/beeco' as bc;` ·

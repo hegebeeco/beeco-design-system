@@ -17,6 +17,12 @@ type Common = FieldProps & {
   onRetry?: () => void;
   /** Ennyi címke látszik a mezőben, a többi „+N” (1A) */
   maxChips?: number;
+  /** false: a lista már a szerver találata, helyben nem szűrünk újra (szerveroldali keresés) */
+  filter?: boolean;
+  /** A beírt keresőszöveg minden változáskor (szerveroldali kereséshez) */
+  onQueryChange?: (q: string) => void;
+  /** Ennyi karakter alatt nem keres: „Írj még legalább N betűt.” (nem „Nincs találat”) */
+  minChars?: number;
 };
 export type ComboboxProps =
   | (Common & { multiple?: false; value: string | null; onChange: (v: string | null) => void; max?: never })
@@ -26,7 +32,7 @@ const RENDER_LIMIT = 100; // 1000+ opciónál sem lassul: egyszerre legfeljebb e
 
 /** Combobox (molekula, Javaslat 01 – 1A): keresős legördülő, egyes/többes, új elem létrehozással, címkék a mezőben. */
 export function Combobox(props: ComboboxProps) {
-  const { options, placeholder, onCreate, loading, loadError, onRetry, maxChips = 3, disabled, ...field } = props;
+  const { options, placeholder, onCreate, loading, loadError, onRetry, maxChips = 3, filter = true, onQueryChange, minChars = 0, disabled, ...field } = props;
   const multi = props.multiple === true;
   const selected: string[] = multi ? props.value : props.value ? [props.value] : [];
   const [open, setOpen] = useState(false);
@@ -40,8 +46,8 @@ export function Combobox(props: ComboboxProps) {
 
   const filtered = useMemo(() => {
     const q = norm(query.trim());
-    return q ? options.filter((o) => norm(o.label).includes(q)) : options;
-  }, [options, query]);
+    return q && filter ? options.filter((o) => norm(o.label).includes(q)) : options;
+  }, [options, query, filter]);
   const shown = filtered.slice(0, RENDER_LIMIT);
   const q = query.trim();
   const canCreate = Boolean(onCreate) && q.length > 0 && !full && !options.some((o) => norm(o.label) === norm(q));
@@ -96,7 +102,7 @@ export function Combobox(props: ComboboxProps) {
                   disabled={disabled} autoComplete="off"
                   placeholder={loading ? 'Töltöm a listát…' : loadError ? 'A lista nem töltött be – nyisd le az újrapróbáláshoz' : selected.length && multi ? '' : placeholder}
                   value={open || multi ? query : singleLabel}
-                  onChange={(e) => { setQuery(e.target.value); setActive(0); setOpen(true); }}
+                  onChange={(e) => { setQuery(e.target.value); setActive(0); setOpen(true); onQueryChange?.(e.target.value); }}
                   onFocus={() => setQuery('')} onKeyDown={onKey} />
                 {loading && <span className="bc-spinner" role="status" aria-label="Töltöm a listát" style={{ width: 18, height: 18, borderWidth: 2 }} />}
                 <button type="button" className="bc-combo-toggle" tabIndex={-1} aria-hidden="true" aria-expanded={open} disabled={disabled} onClick={(e) => { e.stopPropagation(); setOpen(!open); input.current?.focus(); }}>
@@ -127,7 +133,8 @@ export function Combobox(props: ComboboxProps) {
                       + Új: „{q}”
                     </div>
                   )}
-                  {!loading && !loadError && !rows && <div className="bc-list-note">Nincs találat{q ? ` erre: „${q}”` : ''}.</div>}
+                  {!loading && !loadError && q.length < minChars && <div className="bc-list-note">Írj még legalább {minChars - q.length} betűt.</div>}
+                  {!loading && !loadError && !rows && q.length >= minChars && <div className="bc-list-note">Nincs találat{q ? ` erre: „${q}”` : ''}.</div>}
                   {filtered.length > RENDER_LIMIT && <div className="bc-list-note">Még {filtered.length - RENDER_LIMIT} találat – szűkítsd a keresést.</div>}
                   {full && <div className="bc-list-note">Elérted a legfeljebb {props.max} elemet – előbb vegyél ki egyet.</div>}
                 </div>

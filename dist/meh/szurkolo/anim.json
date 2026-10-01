@@ -1,0 +1,14 @@
+{
+ "szereplo": "szurkolo",
+ "mozgas": "ujjong",
+ "kepkockak": 16,
+ "fps": 24,
+ "ismetles": 1,
+ "hossz_ms": 667,
+ "meretek": {
+  "1x": 128,
+  "2x": 256,
+  "3x": 384
+ },
+ "forras": "bee-cheer.webp"
+}

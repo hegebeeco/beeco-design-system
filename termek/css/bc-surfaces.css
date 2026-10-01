@@ -18,7 +18,7 @@ a.bc-card, button.bc-card { display: block; width: 100%; text-align: left; font:
 .bc-page-header .bc-row { flex: none; }
 
 /* Fülek: <div role="tablist" class="bc-tabs"><button role="tab" aria-selected="true" class="bc-tab">… */
-.bc-tabs { display: flex; gap: var(--bc-sp-1); overflow-x: auto; border-bottom: var(--bc-bw-base) solid var(--bc-line); scrollbar-width: none; }
+.bc-tabs { position: relative; display: flex; gap: var(--bc-sp-1); overflow-x: auto; border-bottom: var(--bc-bw-base) solid var(--bc-line); scrollbar-width: none; }
 .bc-tab { flex: none; min-height: var(--bc-tap); padding: 0 var(--bc-sp-4); font: inherit; font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft);
   background: transparent; border: var(--bc-bw-base) solid transparent; border-bottom: 0; border-radius: var(--bc-r-m) var(--bc-r-m) 0 0; cursor: pointer; margin-bottom: calc(-1 * var(--bc-bw-base)); }
 .bc-tab[aria-selected="true"] { color: var(--bc-on-accent); background: var(--bc-accent); border-color: var(--bc-line); }

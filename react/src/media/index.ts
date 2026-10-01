@@ -1,2 +1,18 @@
-// Javaslat media csomag – exportok (a csomag gazdája tölti ki)
-export {};
+// Javaslat 04 – Média és speciális elemek (jóváhagyva 2026-10-01). CSS: termek/css/bc-media.css
+export { ImageUploader, type ImageUploaderProps } from './ImageUploader';
+export { Gallery, type GalleryProps } from './Gallery';
+export type { GalleryImage } from './GalleryTile';
+export { Lightbox, type LightboxProps } from './Lightbox';
+export { ImageCropper, type ImageCropperProps, type CropArea, type AspectPreset } from './ImageCropper';
+export { Stepper, stepsFrom, Progress, type Step, type StepState, type StepperProps } from './Stepper';
+export { VideoUpload, type VideoUploadProps } from './VideoUpload';
+export { FileImport, type FileImportProps } from './FileImport';
+export { ImportResult, issuesToCsv, type ImportIssue, type ImportSummary, type ImportResultProps } from './ImportResult';
+export { checkFiles, sniffType, typeNames, mbText, sizePair, fileKey, type UploadFn, type Rejection } from './files';
+export { markerHtml, clusterHtml, clusterIcon, clusterTier, heatGradient, MARKER_ICON, MARKER_ICON_SELECTED, type MarkerKind, type MarkerOptions } from './map';
+export { MapLegend, HeatScale, type LegendItem, type MapLegendProps, type HeatScaleProps } from './MapLegend';
+export { MonthCalendar, type MonthCalendarProps } from './MonthCalendar';
+export { eventsByDay, KIND_LABEL, type CalEvent, type CalKind } from './monthEvents';
+export { OpeningHoursEditor, type OpeningHoursEditorProps } from './OpeningHoursEditor';
+export { parseTime, validateHours, emptyWeek, WEEK, type OpeningHours, type DayHours, type Weekday } from './openingHours';
+export { Avatar, initials, type AvatarProps } from './Avatar';

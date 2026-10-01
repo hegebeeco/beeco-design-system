@@ -56,3 +56,7 @@
 .bc-form-grid { display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
 .bc-form-grid > .is-wide { grid-column: 1 / -1; }
 .bc-form-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--bc-sp-3); padding-top: var(--bc-sp-4); border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }
+
+/* Csoport (rádió): a legend a címke-sor */
+.bc-fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.bc-fieldset > legend { padding: 0; }

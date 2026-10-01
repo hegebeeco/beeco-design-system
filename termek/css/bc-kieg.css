@@ -1,0 +1,193 @@
+/* ============================================================
+   beeco TERMÉKBŐR – 06a kiegészítők (Javaslat 06, jóváhagyva 2026-10-01)
+   Telefonmező, másolás, letöltés, csúszka, mentetlen-változás ablak, offline sáv, állapot-oldalak,
+   előzmények, app-előnézet, célcsoport, összefésülés, ellenőrzési sor.
+   Csak tokenek; UI-mozgás ≤ 300 ms ease-out; hover csak egérrel; érintésen 44 px.
+   ============================================================ */
+
+/* ---- Telefonmező: rögzített +36 előtag balra ---- */
+.bc-phone { display: flex; align-items: stretch; }
+.bc-phone > .bc-input { border-top-left-radius: 0; border-bottom-left-radius: 0; min-width: 0; }
+.bc-phone-cc { display: grid; place-items: center; padding: 0 var(--bc-sp-3); font-size: var(--bc-fs-m); font-weight: var(--bc-fw-semibold); color: var(--bc-ink);
+  background: var(--bc-surface-accent); border: var(--bc-bw-hair) solid var(--bc-line); border-right: 0; border-radius: var(--bc-r-s) 0 0 var(--bc-r-s); }
+
+/* ---- Másolás ---- */
+.bc-copy { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2); max-width: 100%; }
+.bc-copy-value { padding: var(--bc-sp-1) var(--bc-sp-2); font-family: var(--bc-font-body); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); letter-spacing: .04em;
+  font-variant-numeric: tabular-nums; color: var(--bc-ink); background: var(--bc-surface-2); border: var(--bc-bw-hair) dashed var(--bc-line); border-radius: var(--bc-r-s); overflow-wrap: anywhere; }
+.bc-copy-tick { display: inline-grid; color: var(--bc-success-ink); }
+.bc-copy-tick > svg { width: 1.1em; height: 1.1em; }
+.bc-icon-btn .bc-copy-tick > svg { width: 22px; height: 22px; }
+.bc-copy-fallback { display: grid; gap: var(--bc-sp-1); flex: 1 1 100%; }
+
+/* ---- Letöltés ---- */
+.bc-download { display: grid; gap: var(--bc-sp-2); justify-items: start; min-width: 0; }
+.bc-download-meta { display: grid; gap: var(--bc-sp-1); width: min(100%, 360px); font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); overflow-wrap: anywhere; }
+.bc-download-slow { color: var(--bc-warning-ink); font-weight: var(--bc-fw-semibold); }
+
+/* ---- Csúszka: 8 px-es sín, 24 px-es fogantyú, a fogantyú körül 44 px-es érintési felület ---- */
+.bc-slider { display: grid; gap: var(--bc-sp-1); }
+.bc-slider-out { font-family: var(--bc-font-display); font-size: var(--bc-fs-l); line-height: var(--bc-lh-tight); color: var(--bc-ink); font-variant-numeric: tabular-nums; }
+.bc-slider-track { position: relative; height: var(--bc-tap); margin: 0 12px; cursor: pointer; touch-action: pan-y; -webkit-tap-highlight-color: transparent; }
+.bc-slider-track[data-disabled] { cursor: not-allowed; }
+.bc-slider-rail { position: absolute; left: 0; right: 0; top: 50%; height: 10px; transform: translateY(-50%);
+  background: var(--bc-surface-2); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); overflow: hidden; }
+.bc-slider-fill { position: absolute; top: 0; bottom: 0; background: var(--bc-accent); color: var(--bc-on-accent); }
+.bc-slider-thumb { position: absolute; top: 50%; width: 24px; height: 24px; transform: translate(-50%, -50%);
+  background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: 50%; box-shadow: var(--bc-shadow-s);
+  transition: transform var(--bc-t-press) var(--bc-ease-out), box-shadow var(--bc-t-press) var(--bc-ease-out); touch-action: none; }
+.bc-slider-thumb::before { content: ""; position: absolute; inset: -12px; border-radius: 50%; }
+.bc-slider-thumb:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 3px; }
+.bc-slider-thumb:active { transform: translate(-50%, -50%) scale(1.12); box-shadow: none; }
+.bc-slider-track[data-disabled] .bc-slider-thumb { background: var(--bc-surface-2); border-color: var(--bc-line-soft); box-shadow: none; }
+.bc-slider-track[data-disabled] .bc-slider-fill { background: var(--bc-line-soft); }
+.bc-slider-thumb[aria-invalid="true"] { border-color: var(--bc-danger-ink); }
+@media (hover: hover) and (pointer: fine) { .bc-slider-thumb:hover { transform: translate(-50%, -50%) scale(1.08); } }
+
+/* ---- Megerősítő ablak (natív <dialog>) ---- */
+.bc-kdialog { width: min(480px, calc(100vw - 2 * var(--bc-sp-4))); }
+.bc-kdialog .bc-modal-body > p { margin: 0; }
+.bc-kdialog .bc-modal-body > * + .bc-alert { margin-top: var(--bc-sp-3); }
+
+/* ---- Offline sáv: az oldal tetejére tapad ---- */
+.bc-offline { position: sticky; top: 0; z-index: var(--bc-z-sticky); }
+.bc-offline:empty { display: none; }
+.bc-offline-bar { flex-wrap: wrap; align-items: center; justify-content: space-between; box-shadow: var(--bc-shadow-s); }
+.bc-offline-bar > .bc-moment { padding: 0; flex: 1 1 260px; }
+
+/* ---- Állapot-oldalak (404, 403, szerverhiba, lejárt munkamenet, offline) ---- */
+.bc-status-page { display: grid; justify-items: center; align-content: center; gap: var(--bc-sp-2); min-height: min(70vh, 560px); padding: var(--bc-sp-6) var(--bc-sp-4); text-align: center; }
+.bc-status-h { margin: 0; padding: var(--bc-sp-1) var(--bc-sp-3); font-family: var(--bc-font-body); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); color: var(--bc-ink);
+  background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-pill); box-shadow: var(--bc-shadow-s); }
+.bc-status-page > .bc-moment { padding-top: var(--bc-sp-3); }
+.bc-status-actions { justify-content: center; }
+.bc-status-actions > .bc-btn { max-width: 100%; white-space: normal; text-align: center; line-height: var(--bc-lh-tight); padding-block: var(--bc-sp-2); }
+.bc-status-code { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--bc-sp-2); margin: 0; font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+
+/* ---- Előzmények (Timeline / ActivityLog) ---- */
+.bc-tl { display: grid; gap: var(--bc-sp-4); min-width: 0; }
+.bc-tl-day-h { margin: 0 0 var(--bc-sp-2); font-family: var(--bc-font-body); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); color: var(--bc-ink-soft); }
+.bc-tl-list { list-style: none; margin: 0 0 0 var(--bc-sp-2); padding: 0 0 0 var(--bc-sp-5); border-left: var(--bc-bw-base) solid var(--bc-line-soft); display: grid; gap: var(--bc-sp-3); }
+.bc-tl-item { position: relative; display: grid; gap: var(--bc-sp-1); min-width: 0; }
+.bc-tl-item::before { content: ""; position: absolute; left: calc(-1 * var(--bc-sp-5) - 8px); top: 4px; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); }
+.bc-tl-item[data-tone="success"]::before { background: var(--bc-success); }
+.bc-tl-item[data-tone="danger"]::before { background: var(--bc-danger); }
+.bc-tl-item[data-tone="warning"]::before { background: var(--bc-warning); }
+.bc-tl-item[data-tone="info"]::before { background: var(--bc-info); }
+.bc-tl-time { font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); font-variant-numeric: tabular-nums; }
+.bc-tl-text { margin: 0; overflow-wrap: anywhere; }
+.bc-tl-toggle { display: inline-flex; align-items: center; gap: var(--bc-sp-1); justify-self: start; min-height: 36px; padding: 0 var(--bc-sp-2) 0 var(--bc-sp-1);
+  font: inherit; font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); color: var(--bc-ink); background: transparent;
+  border: var(--bc-bw-hair) solid var(--bc-line-soft); border-radius: var(--bc-r-s); cursor: pointer; transition: background-color var(--bc-t-fast) var(--bc-ease-out); }
+.bc-tl-toggle > svg { width: 18px; height: 18px; transition: transform var(--bc-t-fast) var(--bc-ease-out); }
+@media (pointer: coarse) { .bc-tl-toggle { min-height: var(--bc-tap); } }
+@media (hover: hover) and (pointer: fine) { .bc-tl-toggle:hover { background: var(--bc-surface-2); } }
+.bc-tl-diff { display: grid; gap: var(--bc-sp-2); margin: 0; padding: var(--bc-sp-3); background: var(--bc-surface-2); border-radius: var(--bc-r-s); }
+.bc-tl-diff-row { display: grid; gap: 2px; min-width: 0; }
+.bc-tl-diff dt { font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink-soft); }
+.bc-tl-diff dd { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--bc-sp-1) var(--bc-sp-2); font-size: var(--bc-fs-s); overflow-wrap: anywhere; min-width: 0; }
+.bc-tl-diff del, .bc-tl-diff ins { padding: 0 var(--bc-sp-1); border-radius: var(--bc-r-xs); min-width: 0; }
+.bc-tl-diff del { color: var(--bc-danger-ink); background: var(--bc-danger-bg); text-decoration-thickness: 2px; }
+.bc-tl-diff ins { color: var(--bc-success-ink); background: var(--bc-success-bg); text-decoration: none; font-weight: var(--bc-fw-semibold); }
+.bc-tl-empty { font-style: italic; }
+.bc-tl-arrow { color: var(--bc-ink-soft); }
+.bc-tl-more { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--bc-sp-3); padding-top: var(--bc-sp-3); border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }
+.bc-tl-count { font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+
+/* ---- App-előnézet telefonkeretben (PreviewCard) ---- */
+.bc-preview { display: grid; justify-items: center; gap: var(--bc-sp-3); margin: 0; min-width: 0; }
+.bc-pv-phone { position: relative; width: min(100%, 300px); padding: var(--bc-sp-5) var(--bc-sp-2) var(--bc-sp-4); background: var(--bc-shadow);
+  border-radius: calc(var(--bc-r-l) * 3); box-shadow: var(--bc-shadow-m); }
+.bc-pv-notch { position: absolute; top: var(--bc-sp-2); left: 50%; width: 30%; height: 6px; transform: translateX(-50%); border-radius: var(--bc-r-pill); background: var(--bc-ink-soft); }
+.bc-pv-screen { min-height: 300px; padding: var(--bc-sp-3); background: var(--bc-bg); border-radius: calc(var(--bc-r-l) * 2); overflow: hidden; }
+.bc-pv-card { background: var(--bc-surface); color: var(--bc-ink); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); overflow: hidden; }
+.bc-pv-media { position: relative; }
+.bc-pv-img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-bottom: var(--bc-bw-base) solid var(--bc-line); }
+.bc-pv-img.is-empty { display: grid; place-items: center; background: repeating-linear-gradient(45deg, var(--bc-surface-2) 0 8px, var(--bc-surface) 8px 16px); }
+.bc-pv-img.is-empty > span { padding: 2px var(--bc-sp-2); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); background: var(--bc-surface); border-radius: var(--bc-r-s); }
+.bc-pv-discount { position: absolute; top: var(--bc-sp-2); right: var(--bc-sp-2); padding: var(--bc-sp-1) var(--bc-sp-2); font-family: var(--bc-font-display); font-size: var(--bc-fs-l); line-height: 1;
+  background: var(--bc-accent); color: var(--bc-on-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-s); box-shadow: var(--bc-shadow-s); }
+.bc-pv-body { display: grid; gap: var(--bc-sp-1); padding: var(--bc-sp-3); min-width: 0; }
+.bc-pv-title { margin: 0; font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-l); line-height: var(--bc-lh-tight); }
+.bc-pv-meta { margin: 0; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+.bc-pv-text { margin: 0; font-size: var(--bc-fs-s); line-height: var(--bc-lh-snug); }
+.bc-pv-badge { justify-self: start; }
+.bc-pv-btn { margin-top: var(--bc-sp-2); cursor: default; pointer-events: none; }
+/* Annyi sor, amennyi az appban elfér; a levágott szöveg szaggatott jelölést kap */
+.bc-clamp { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: var(--lines, 2); line-clamp: var(--lines, 2); overflow: hidden; overflow-wrap: anywhere; min-width: 0; }
+.bc-clamp.is-one { display: block; white-space: nowrap; text-overflow: ellipsis; }
+.bc-clamp.is-placeholder { color: var(--bc-ink-muted); font-style: italic; }
+.bc-clamp[data-cut] { outline: 2px dashed var(--bc-warning); outline-offset: 1px; }
+.bc-pv-caption { display: grid; justify-items: center; gap: var(--bc-sp-2); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); text-align: center; max-width: 100%; }
+.bc-pv-notes { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--bc-sp-1); }
+.bc-pv-notes .bc-badge { white-space: normal; text-align: left; line-height: var(--bc-lh-snug); padding-block: var(--bc-sp-1); }
+
+/* ---- Célcsoport (AudienceBuilder): szabálysorok, keskeny helyen egymás alatt (konténer-lekérdezés) ---- */
+.bc-aud { display: grid; gap: var(--bc-sp-4); min-width: 0; margin: 0; padding: 0; border: 0; container-type: inline-size; }
+.bc-aud-legend { padding: 0; margin-bottom: var(--bc-sp-1); }
+.bc-aud-join { display: grid; gap: var(--bc-sp-2); justify-items: start; font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); }
+.bc-aud-rules { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--bc-sp-2); }
+.bc-aud-rule { display: grid; gap: var(--bc-sp-2); padding: var(--bc-sp-3); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+.bc-aud-rule[data-invalid] { border-left: 8px solid var(--bc-danger); }
+.bc-aud-grid { display: grid; gap: var(--bc-sp-3); grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.2fr) auto; align-items: start; }
+.bc-aud-remove { margin-top: 26px; }
+@container (max-width: 640px) {
+  .bc-aud-grid { grid-template-columns: minmax(0, 1fr) auto; }
+  .bc-aud-grid > .bc-field:nth-child(n + 2) { grid-column: 1 / -1; grid-row: auto; }
+  .bc-aud-remove { grid-column: 2; grid-row: 1; }
+}
+.bc-aud-joiner { display: flex; justify-content: center; }
+.bc-aud-add .bc-count { font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+.bc-aud-estimate { display: grid; gap: var(--bc-sp-1); padding: var(--bc-sp-3) var(--bc-sp-4); background: var(--bc-surface-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
+.bc-aud-estimate-label { font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink-soft); }
+.bc-aud-count { font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-2xl); line-height: var(--bc-lh-tight); }
+.bc-aud-summary { font-size: var(--bc-fs-s); color: var(--bc-ink-soft); overflow-wrap: anywhere; }
+.bc-aud-warn { font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-warning-ink); }
+
+/* ---- Összefésülés (CompareMerge): mezőnként kártya-rádiók ---- */
+.bc-merge { display: grid; gap: var(--bc-sp-5); min-width: 0; }
+.bc-merge-head, .bc-merge-fields { display: grid; gap: var(--bc-sp-3); }
+.bc-merge-intro { display: flex; align-items: flex-start; gap: var(--bc-sp-1); }
+.bc-merge-intro > p { margin: 0; padding-top: var(--bc-sp-1); }
+.bc-merge-progress { display: grid; gap: var(--bc-sp-1); max-width: 420px; }
+.bc-merge-progress .bc-count { font-size: var(--bc-fs-xs); }
+.bc-merge-field { margin: 0; padding: var(--bc-sp-3) var(--bc-sp-4) var(--bc-sp-4); min-width: 0; background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
+.bc-merge-field[data-decided] { border-left: 8px solid var(--bc-success); }
+.bc-merge-field[aria-invalid="true"] { border-left: 8px solid var(--bc-danger); }
+.bc-merge-legend { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2); padding: 0 var(--bc-sp-1); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); }
+.bc-merge-legend .is-req { color: var(--bc-danger-ink); margin-left: -6px; }
+.bc-merge-opts { display: grid; gap: var(--bc-sp-2); grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+.bc-merge-opt { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: var(--bc-sp-2); min-height: var(--bc-tap); padding: var(--bc-sp-2) var(--bc-sp-3);
+  background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line-soft); border-radius: var(--bc-r-s); cursor: pointer;
+  transition: background-color var(--bc-t-fast) var(--bc-ease-out), border-color var(--bc-t-fast) var(--bc-ease-out); }
+.bc-merge-opt > input { grid-row: span 2; width: 20px; height: 20px; margin: 0; accent-color: var(--bc-ink); cursor: pointer; }
+.bc-merge-opt.is-on { background: var(--bc-surface-accent); border-color: var(--bc-line); box-shadow: var(--bc-shadow-s); }
+@media (hover: hover) and (pointer: fine) { .bc-merge-opt:hover:not(.is-on) { background: var(--bc-surface-2); } }
+.bc-merge-src { font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); }
+.bc-merge-val { overflow-wrap: anywhere; min-width: 0; }
+.bc-merge-opt.is-blank .bc-merge-val { color: var(--bc-ink-muted); font-style: italic; }
+.bc-merge-result { display: grid; gap: var(--bc-sp-2); margin: var(--bc-sp-2) 0 0; }
+.bc-merge-result > div { display: grid; grid-template-columns: minmax(0, 40%) minmax(0, 1fr); gap: var(--bc-sp-3); font-size: var(--bc-fs-s); }
+.bc-merge-result dt { font-weight: var(--bc-fw-bold); overflow-wrap: anywhere; }
+.bc-merge-result dd { margin: 0; overflow-wrap: anywhere; }
+.bc-merge-todo { color: var(--bc-warning-ink); }
+.bc-merge-actions { align-items: center; }
+.bc-merge-missing { margin-right: auto; font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+
+/* ---- Ellenőrzési sor (ReviewQueue) ---- */
+.bc-review { display: grid; gap: var(--bc-sp-4); min-width: 0; }
+.bc-review-top { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2) var(--bc-sp-4); }
+.bc-review-top > .bc-progress { flex: 1 1 160px; }
+.bc-review-pos { font-size: var(--bc-fs-2xl); line-height: 1; }
+.bc-review-tally { font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+.bc-review-last { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2); font-size: var(--bc-fs-s); }
+.bc-review-last-title { overflow-wrap: anywhere; min-width: 0; }
+.bc-review-item { min-width: 0; overflow-wrap: anywhere; }
+.bc-review-title { margin: 0 0 var(--bc-sp-3); font-size: var(--bc-fs-xl); }
+.bc-review-bar { padding-top: var(--bc-sp-3); border-top: var(--bc-bw-base) solid var(--bc-line); }
+.bc-review-actions > .bc-btn { flex: 1 1 auto; }
+.bc-kbd { display: inline-grid; place-items: center; min-width: 1.5em; padding: 0 4px; font-family: var(--bc-font-body); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); line-height: 1.4;
+  border: var(--bc-bw-hair) solid currentColor; border-radius: var(--bc-r-xs); }
+@media (pointer: coarse) { .bc-kbd { display: none; } }
+.bc-review-reject { display: grid; gap: var(--bc-sp-3); padding: var(--bc-sp-4); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); }

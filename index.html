@@ -31,19 +31,16 @@
   <h2>Javaslatok</h2>
   <div class="grid">
     <a class="bc-card is-interactive" href="javaslatok/01-urlap.html"><h3 class="bc-card-title" style="margin:0">01 – Űrlap</h3><p><span class="bc-badge is-success">Jóváhagyva</span> keresős legördülő, dátum, kapcsoló, címkék, számmező – elkészült.</p></a>
-    <a class="bc-card is-accent is-interactive" href="javaslatok/02-adat.html"><h3 class="bc-card-title" style="margin:0">02 – Adat és grafikon</h3><p><span class="bc-badge is-success">Jóváhagyva – épül</span> táblázat, szűrősáv, statisztika, grafikon-kártya.</p></a>
-    <a class="bc-card is-accent is-interactive" href="javaslatok/03-reteg.html"><h3 class="bc-card-title" style="margin:0">03 – Rétegek és navigáció</h3><p><span class="bc-badge is-success">Jóváhagyva – épül</span> ablak, oldalpanel, menü, fülek, értesítés, mobil menü.</p></a>
-    <a class="bc-card is-accent is-interactive" href="javaslatok/05-meh.html"><h3 class="bc-card-title" style="margin:0">05 – Méhecske, mozgás, szóvicc</h3><p><span class="bc-badge is-warning">Jóváhagyásra vár</span> szereposztás, mozgás-minták, méhes szóviccek.</p></a>
-    <a class="bc-card is-accent is-interactive" href="javaslatok/04-media.html"><h3 class="bc-card-title" style="margin:0">04 – Média és speciális</h3><p><span class="bc-badge is-success">Jóváhagyva – épül</span> képfeltöltés, galéria, vágó, térkép, naptár, nyitvatartás.</p></a>
+    <a class="bc-card is-accent is-interactive" href="javaslatok/02-adat.html"><h3 class="bc-card-title" style="margin:0">02 – Adat és grafikon</h3><p><span class="bc-badge is-success">Jóváhagyva – kész</span> táblázat, szűrősáv, statisztika, grafikon-kártya.</p></a>
+    <a class="bc-card is-accent is-interactive" href="javaslatok/03-reteg.html"><h3 class="bc-card-title" style="margin:0">03 – Rétegek és navigáció</h3><p><span class="bc-badge is-success">Jóváhagyva – kész</span> ablak, oldalpanel, menü, fülek, értesítés, mobil menü.</p></a>
+    <a class="bc-card is-accent is-interactive" href="javaslatok/05-meh.html"><h3 class="bc-card-title" style="margin:0">05 – Méhecske, mozgás, szóvicc</h3><p><span class="bc-badge is-success">Jóváhagyva – kész</span> szereposztás, mozgás-minták, méhes szóviccek.</p></a>
+    <a class="bc-card is-interactive" href="https://github.com/hegebeeco/beeco-design-system/blob/main/docs/javaslatok/06-kiegeszitok.md"><h3 class="bc-card-title" style="margin:0">06 – A maradék komponensek</h3><p><span class="bc-badge is-success">Jóváhagyva – kész</span> telefonszám, másolás, letöltés, csúszka, hibaoldalak, előzmények, app-előnézet, célcsoport, összefésülés, jóváhagyási sor, helyválasztó, sorsolás, videó, oldalsablonok.</p></a>
+    <a class="bc-card is-interactive" href="https://github.com/hegebeeco/beeco-design-system/blob/main/docs/meh-sprite.md"><h3 class="bc-card-title" style="margin:0">Méhecske-sprite-ok</h3><p>6 szereplő kódból animálva – Lottie (mobilapp), sprite-lap, WebP.</p></a>
+    <a class="bc-card is-accent is-interactive" href="javaslatok/04-media.html"><h3 class="bc-card-title" style="margin:0">04 – Média és speciális</h3><p><span class="bc-badge is-success">Jóváhagyva – kész</span> képfeltöltés, galéria, vágó, térkép, naptár, nyitvatartás.</p></a>
   </div>
   <h2>Tesztlapok (önteszt)</h2>
-  <div class="grid">
-    <a class="bc-card is-flat is-interactive" href="termek/tesztlapok/mezok.html"><h3 class="bc-card-title" style="margin:0">Mezők</h3><p>szöveg, többsoros, legördülő, jelölők, kapcsoló, kereső</p></a>
-    <a class="bc-card is-flat is-interactive" href="termek/tesztlapok/szam.html"><h3 class="bc-card-title" style="margin:0">Számmező</h3><p>magyar formátum, tiltás, határra igazítás</p></a>
-    <a class="bc-card is-flat is-interactive" href="termek/tesztlapok/valaszto.html"><h3 class="bc-card-title" style="margin:0">Választók</h3><p>keresős legördülő (1200 opció), címkék</p></a>
-    <a class="bc-card is-flat is-interactive" href="termek/tesztlapok/datum.html"><h3 class="bc-card-title" style="margin:0">Dátum</h3><p>naptár, időpont, időszak, szökőnap</p></a>
-    <a class="bc-card is-flat is-interactive" href="termek/tesztlapok/vezerlok.html"><h3 class="bc-card-title" style="margin:0">Vezérlők</h3><p>gombok, nézetváltó, űrlapszakasz</p></a>
-  </div>
+  <p class="bc-muted">Minden komponens minden állapota és szélső esete; a gép 8 nézetben, világos és sötét módban próbálja ki (<code>tests/check-komponensek.js</code>).</p>
+  <div class="grid" id="tesztlapok"></div>
   <h2>Szabálykönyvek</h2>
   <ul>
     <li><a href="https://github.com/hegebeeco/beeco-design-system/blob/main/docs/rendszer.md">Felépítés</a> – közös atomok, két bőr, terjesztés, ellenőrzések</li>
@@ -52,6 +49,7 @@
     <li><a href="https://github.com/hegebeeco/beeco-design-system/blob/main/docs/app-atallas.md">Flutter app átállás</a> (Bencének)</li>
   </ul>
 </main>
-<script>fetch('dist/tokens.json').then(r => r.json()).then(t => { document.getElementById('ver').textContent = 'v' + t.version; }).catch(() => {});</script>
+<script>fetch('termek/tesztlapok/lista.json').then(r => r.json()).then(l => { const g = document.getElementById('tesztlapok'); for (const t of l) { const a = document.createElement('a'); a.className = 'bc-card is-flat is-interactive'; a.href = 'termek/tesztlapok/' + t.nev + '.html'; const h = document.createElement('h3'); h.className = 'bc-card-title'; h.style.margin = '0'; h.textContent = t.cim; const p = document.createElement('p'); p.textContent = t.leiras; a.append(h, p); g.append(a); } }).catch(() => {});
+fetch('dist/tokens.json').then(r => r.json()).then(t => { document.getElementById('ver').textContent = 'v' + t.version; }).catch(() => {});</script>
 </body>
 </html>

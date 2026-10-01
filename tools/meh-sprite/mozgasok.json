@@ -1,0 +1,244 @@
+{
+ "_readme": "Méhecske-sprite mozgások (Javaslat 05 + Kristóf, 2026-10-01: kódból a meglévő méhecskéből; nehéz mozgás SpriteCookkal). Kulcsképkockák: t (0–1), test: dx, dy (px), r (fok), sx, sy (arány); szárny: f (csapás: 1 = nyitott, 0,5 = lecsapva). A köztes képkockák simán (ease-in-out) számolódnak. fps: képkocka/mp. ismetles: hányszor fusson le a felületen (végtelen mozgás nincs – a Futár töltéskor legfeljebb 10 mp-ig).",
+ "canvas": 400,
+ "kimenet": {
+  "meretek": {
+   "1x": 128,
+   "2x": 256,
+   "3x": 384
+  },
+  "webp": 256
+ },
+ "szereplok": {
+  "hazigazda": {
+   "kep": "bee-happy",
+   "mozgas": "lebeg",
+   "frames": 12,
+   "fps": 24,
+   "ismetles": 3,
+   "kulcs": [
+    {
+     "t": 0,
+     "dy": 0,
+     "f": 1
+    },
+    {
+     "t": 0.25,
+     "dy": -4,
+     "f": 0.5,
+     "r": -1
+    },
+    {
+     "t": 0.5,
+     "dy": -6,
+     "f": 1
+    },
+    {
+     "t": 0.75,
+     "dy": -3,
+     "f": 0.5,
+     "r": 1
+    },
+    {
+     "t": 1,
+     "dy": 0,
+     "f": 1
+    }
+   ]
+  },
+  "szurkolo": {
+   "kep": "bee-cheer",
+   "mozgas": "ujjong",
+   "frames": 16,
+   "fps": 24,
+   "ismetles": 1,
+   "kulcs": [
+    {
+     "t": 0,
+     "f": 1
+    },
+    {
+     "t": 0.15,
+     "sy": 0.9,
+     "sx": 1.07,
+     "f": 0.8
+    },
+    {
+     "t": 0.4,
+     "dy": -26,
+     "sy": 1.06,
+     "sx": 0.95,
+     "f": 0.5
+    },
+    {
+     "t": 0.55,
+     "dy": -30,
+     "f": 1
+    },
+    {
+     "t": 0.7,
+     "dy": -24,
+     "f": 0.5
+    },
+    {
+     "t": 0.85,
+     "sy": 0.93,
+     "sx": 1.05,
+     "f": 1
+    },
+    {
+     "t": 1,
+     "f": 1
+    }
+   ]
+  },
+  "gondolkodo": {
+   "kep": "moods/think",
+   "mozgas": "tunodik",
+   "frames": 16,
+   "fps": 16,
+   "ismetles": 2,
+   "kulcs": [
+    {
+     "t": 0,
+     "f": 1
+    },
+    {
+     "t": 0.35,
+     "r": -7,
+     "dx": -2,
+     "f": 0.8
+    },
+    {
+     "t": 0.6,
+     "r": -7,
+     "dx": -2,
+     "f": 1
+    },
+    {
+     "t": 1,
+     "f": 1
+    }
+   ]
+  },
+  "piheno": {
+   "kep": "moods/rest",
+   "mozgas": "alszik",
+   "frames": 24,
+   "fps": 12,
+   "ismetles": 3,
+   "kulcs": [
+    {
+     "t": 0,
+     "sy": 1,
+     "f": 0.9
+    },
+    {
+     "t": 0.5,
+     "sy": 1.035,
+     "sx": 1.01,
+     "dy": -1,
+     "f": 0.85
+    },
+    {
+     "t": 1,
+     "sy": 1,
+     "f": 0.9
+    }
+   ]
+  },
+  "futar": {
+   "kep": "bee-super",
+   "mozgas": "repul",
+   "frames": 12,
+   "fps": 24,
+   "ismetles": 20,
+   "kulcs": [
+    {
+     "t": 0,
+     "dy": 0,
+     "r": -3,
+     "f": 1
+    },
+    {
+     "t": 0.17,
+     "f": 0.45
+    },
+    {
+     "t": 0.33,
+     "dy": -5,
+     "r": 1,
+     "f": 1
+    },
+    {
+     "t": 0.5,
+     "f": 0.45
+    },
+    {
+     "t": 0.67,
+     "dy": -2,
+     "r": -2,
+     "f": 1
+    },
+    {
+     "t": 0.83,
+     "f": 0.45
+    },
+    {
+     "t": 1,
+     "dy": 0,
+     "r": -3,
+     "f": 1
+    }
+   ]
+  },
+  "bajnok": {
+   "kep": "moods/rank",
+   "mozgas": "unnepel",
+   "frames": 20,
+   "fps": 24,
+   "ismetles": 1,
+   "kulcs": [
+    {
+     "t": 0,
+     "f": 1
+    },
+    {
+     "t": 0.12,
+     "sy": 0.9,
+     "sx": 1.06
+    },
+    {
+     "t": 0.35,
+     "dy": -24,
+     "r": -6,
+     "f": 0.5
+    },
+    {
+     "t": 0.5,
+     "dy": -28,
+     "r": 6,
+     "f": 1
+    },
+    {
+     "t": 0.65,
+     "dy": -20,
+     "r": -4,
+     "f": 0.5
+    },
+    {
+     "t": 0.85,
+     "sy": 0.94,
+     "sx": 1.04,
+     "f": 1
+    },
+    {
+     "t": 1,
+     "f": 1
+    }
+   ]
+  }
+ },
+ "cel_szelesseg": 300,
+ "cel_magassag": 260
+}

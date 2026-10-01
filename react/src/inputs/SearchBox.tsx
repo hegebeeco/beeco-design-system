@@ -25,7 +25,7 @@ export const SearchBox = forwardRef<HTMLInputElement, SearchBoxProps>(function S
     timer.current = setTimeout(() => onSearch?.(next.trim()), debounce);
   };
   return (
-    <div className={['bc-search', className].filter(Boolean).join(' ')} role="search">
+    <div className={['bc-search', className].filter(Boolean).join(' ')} role="search" aria-label={label}>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></svg>
       <input ref={mergeRefs(ref, local)} type="search" className="bc-input" aria-label={label} placeholder={placeholder ?? label} value={v}
         onChange={(e) => set(e.target.value)} onKeyDown={(e) => { if (e.key === 'Escape' && v) { e.preventDefault(); set(''); } }} {...rest} />

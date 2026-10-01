@@ -56,7 +56,7 @@ async function main() {
       await page.goto(`${base}/termek/tesztlapok/${lap}.html`); await page.waitForSelector('[data-case]'); await page.waitForTimeout(150);
       const hol = `${v.n} · ${tema === 'dark' ? 'sötét' : 'világos'}`;
       hibak.forEach((h) => add(lap, hol, { kat: 'Működés', sulyos: 'P1', mi: `konzolhiba: ${h.slice(0, 120)}`, hol: 'oldal' }));
-      (await page.evaluate(meres, { touch: v.touch })).forEach((l) => add(lap, hol, l));
+      (await page.evaluate(meres, { touch: v.touch, w: v.w })).forEach((l) => add(lap, hol, l));
       // Teljesítmény: hosszú feladat a betöltés alatt
       const long = await page.evaluate(() => window.__long);
       if (long.some((d) => d > 50)) add(lap, hol, { kat: 'Teljesítmény', sulyos: 'P2', mi: `hosszú feladat betöltéskor: ${long.filter((d) => d > 50).join(', ')} ms (> 50)`, hol: 'oldal' });

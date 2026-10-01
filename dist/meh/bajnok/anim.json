@@ -1,0 +1,14 @@
+{
+ "szereplo": "bajnok",
+ "mozgas": "unnepel",
+ "kepkockak": 20,
+ "fps": 24,
+ "ismetles": 1,
+ "hossz_ms": 833,
+ "meretek": {
+  "1x": 128,
+  "2x": 256,
+  "3x": 384
+ },
+ "forras": "moods/rank.webp"
+}

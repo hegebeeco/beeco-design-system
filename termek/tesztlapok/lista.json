@@ -1,0 +1,172 @@
+[
+ {
+  "nev": "adat-grafikon-szelso",
+  "cim": "Grafikonok – szélső esetek",
+  "leiras": "Nincs adat, egy pont, minden 0, negatív, kiugró, hiányzó, 90 nap, sok kategória, töltés, hiba (3.4). Minden szám mintaadat."
+ },
+ {
+  "nev": "adat-grafikon",
+  "cim": "Grafikonok",
+  "leiras": "ChartCard és saját SVG-grafikonok: oszlop, sáv, vonal, csoportosított, halmozott. Szélső esetek: adat-grafikon-szelso. Minden szám mintaadat."
+ },
+ {
+  "nev": "adat-mutato",
+  "cim": "Mutatók",
+  "leiras": "StatTile (KPI), Sparkline, HeatLegend – minden állapot és szélső eset. Minden szám mintaadat."
+ },
+ {
+  "nev": "adat-szuro",
+  "cim": "Szűrősáv",
+  "leiras": "FilterBar: kereső, szűrők, aktív-szűrő címkék, Szűrők törlése, találatszám; keskenyen gomb + panel. Minden adat mintaadat."
+ },
+ {
+  "nev": "adat-tabla",
+  "cim": "Adattáblázat",
+  "leiras": "DataTable, lapozó, üres / töltés / hiba állapotok. Minden szám és név mintaadat."
+ },
+ {
+  "nev": "datum",
+  "cim": "Dátum",
+  "leiras": "Gépelhető dátum (2026. 10. 01.), lenyíló naptár hétfővel, tiltott napok, időpont, időszak, szökőnap."
+ },
+ {
+  "nev": "kieg-celcsoport",
+  "cim": "Kiegészítők – célcsoport",
+  "leiras": "„Ha … és/vagy …” feltételsorok, élő létszám-becsléssel; az üres és hibás feltétel jelölve. A létszámok mintaadatok."
+ },
+ {
+  "nev": "kieg-ellenorzes",
+  "cim": "Kiegészítők – ellenőrzési sor",
+  "leiras": "Egy tétel nagyban: jóváhagyás (J), elutasítás indokkal (E), kihagyás (K), haladás és visszavonás. Minden adat mintaadat."
+ },
+ {
+  "nev": "kieg-elonezet",
+  "cim": "Kiegészítők – app-előnézet",
+  "leiras": "Így látszik az appban: partner, kupon és értesítés telefonkeretben. Ami az appban levágódna, azt a keret méri és kiírja. Minden szöveg mintaadat."
+ },
+ {
+  "nev": "kieg-elozmenyek",
+  "cim": "Kiegészítők – előzmények",
+  "leiras": "Ki, mit, mikor – napok szerint („Ma”, „Tegnap”, dátum), mezőszintű különbséggel (előtte → utána). Minden név és adat mintaadat."
+ },
+ {
+  "nev": "kieg-mezok",
+  "cim": "Kiegészítők – mezők és gombok",
+  "leiras": "Telefonszám, csúszka, másolás és letöltés – minden állapot és szélső eset. A számok és nevek mintaadatok."
+ },
+ {
+  "nev": "kieg-oldalak",
+  "cim": "Kiegészítők – oldalak és őrök",
+  "leiras": "Állapot-oldalak méhecskével (szóvicc + sima jelentés), offline sáv és a mentetlen változások őre. Szóvicc csak a méh mellett – gombban, teendőben, megerősítésben soha."
+ },
+ {
+  "nev": "kieg-osszefesules",
+  "cim": "Kiegészítők – összefésülés",
+  "leiras": "Duplikált rekordok egymás mellett: mezőnként rádióval választasz, az eltérés szöveggel is jelölve, élő eredmény-előnézet, megerősítés. Minden adat mintaadat."
+ },
+ {
+  "nev": "kieg2-hely",
+  "cim": "Kiegészítők – helyválasztó",
+  "leiras": "LocationPicker (06b/13): térkép-tű, címkereső (Combobox) és koordináta-mezők egymást frissítik; tartomány-igazítás, Magyarországon kívüli figyelmeztetés, jelenlegi hely. Minden cím mintaadat."
+ },
+ {
+  "nev": "kieg2-sorsolas",
+  "cim": "Kiegészítők – sorsolás",
+  "leiras": "PrizeDrawReveal (06b/14): résztvevők száma, „Sorsolás” rövid méhsejt-felfedéssel (≤ 2,5 s, csökkentett mozgásnál azonnal), nyertes a Bajnok méhvel és hatszög-konfettivel, újrasorsolás csak indokkal, jegyzőkönyv. Minden név mintaadat."
+ },
+ {
+  "nev": "kieg2-video",
+  "cim": "Kiegészítők – videó",
+  "leiras": "VideoPlayer és beágyazás (06b/15): natív lejátszó poszterrel és felirattal, billentyűk, töltés és hiba; YouTube/Vimeo csak kattintásra tölt (adatvédelem), hibás link teendővel. A mintavideó a böngészőben készül, hálózat nélkül."
+ },
+ {
+  "nev": "media-import",
+  "cim": "Média – videó és import",
+  "leiras": "Lépésjelző, videófeltöltés (fájl → feltöltés → feldolgozás → kész), Excel-import egy lépésben, eredménylista sorral, oszloppal, okkal és teendővel. Minden adat mintaadat."
+ },
+ {
+  "nev": "media-kepek",
+  "cim": "Média – képek",
+  "leiras": "Képfeltöltő a galériában (húzás, fájlválasztó, billentyűzet), borító és sorrend, képleírás, nagyító, képvágó, avatar. Minden kép és név mintaadat."
+ },
+ {
+  "nev": "media-naptar",
+  "cim": "Média – naptár és nyitvatartás",
+  "leiras": "Havi naptár hétfővel (szerepszín + csík + jelmagyarázat, billentyűzet, telefonon pöttyös hónap) és nyitvatartás-szerkesztő. Minden tartalom mintaadat."
+ },
+ {
+  "nev": "media-terkep",
+  "cim": "Média – térkép",
+  "leiras": "A Leaflet-térkép DS-öltöztetése: tű alakú jelölő betűvel, kijelölt állapot, számozott csoport, 44 px vezérlők, jelmagyarázat, hőskála a data-seq tokenekből."
+ },
+ {
+  "nev": "meh",
+  "cim": "Méhecske és mozgás",
+  "leiras": "A meglévő méhecskék szerepekben, a méhes pillanatok szóviccel és sima jelentéssel, és a mozgás-készlet. Csökkentett mozgásnál semmi nem mozog."
+ },
+ {
+  "nev": "mezok",
+  "cim": "Mezők",
+  "leiras": "Szöveges mező, többsoros mező, legördülő, jelölők, kapcsoló és kereső – minden állapot és szélső eset. Minden mezőnek van súgója (ⓘ), tartománya és számlálója."
+ },
+ {
+  "nev": "reteg-ablak",
+  "cim": "Rétegek – ablakok",
+  "leiras": "Felugró ablak, megerősítés, begépelős végleges törlés és oldalpanel: fókusz, Esc, mentetlen változás, folyamatban, hiba, ablak az ablakban."
+ },
+ {
+  "nev": "reteg-ertesites",
+  "cim": "Rétegek – értesítések",
+  "leiras": "notify.success / error / info / warning: időzítés, hiba marad, rámutatásra megáll, Visszavonás, legfeljebb 3 látszik, ablak fölött."
+ },
+ {
+  "nev": "reteg-menu",
+  "cim": "Rétegek – menük",
+  "leiras": "Legördülő menü (profil, almenü, tiltott elem), sor-műveletek szabálya, gomb-felirat és lenyitható."
+ },
+ {
+  "nev": "reteg-nav",
+  "cim": "Rétegek – navigáció",
+  "leiras": "Fülek (panelváltó és linkes), oldalfej, morzsamenü, a böngészőfül címe (usePageTitle)."
+ },
+ {
+  "nev": "reteg-vaz",
+  "cim": "reteg-vaz.tsx",
+  "leiras": ""
+ },
+ {
+  "nev": "sablon-iranyitopult",
+  "cim": "sablon-iranyitopult.tsx",
+  "leiras": ""
+ },
+ {
+  "nev": "sablon-lista",
+  "cim": "sablon-lista.tsx",
+  "leiras": ""
+ },
+ {
+  "nev": "sablon-reszletek",
+  "cim": "sablon-reszletek.tsx",
+  "leiras": ""
+ },
+ {
+  "nev": "sablon-szerkeszto",
+  "cim": "sablon-szerkeszto.tsx",
+  "leiras": ""
+ },
+ {
+  "nev": "szam",
+  "cim": "Számmező",
+  "leiras": "Betű, második tizedesjel és fölösleges mínusz nem írható be; a tartományon kívüli érték kilépéskor a határra áll, és a mező szól."
+ },
+ {
+  "nev": "valaszto",
+  "cim": "Választók",
+  "leiras": "Keresős legördülő (egyes, többes, új elem, 1200 opció, töltés, hiba) és címkeválasztó (felhő / legördülő)."
+ },
+ {
+  "nev": "vezerlok",
+  "cim": "Vezérlők",
+  "leiras": "Gombok (változat, méret, tiltott, folyamatban), ikongomb, szegmentált kapcsoló, űrlapszakasz."
+ }
+]

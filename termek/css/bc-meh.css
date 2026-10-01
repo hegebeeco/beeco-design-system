@@ -1,0 +1,31 @@
+/* ============================================================
+   beeco TERMÉKBŐR – méhecske-szereplők (Javaslat 05, jóváhagyva 2026-10-01)
+   A képek a meglévő márkaképek (web/assets/brand) – a beeco méhecskét nem rajzoljuk újra.
+   A kép CSS-háttér, így a csomagot használó projekt (Vite, webpack) is megtalálja, mint a betűket.
+   Szerepek és szövegek: tokens/hangnem.json. A mérges méh a termékbőrben TILOS.
+   ============================================================ */
+.bc-bee { display: inline-block; flex: none; width: var(--_s, 88px); height: var(--_s, 88px); background: center / contain no-repeat; }
+.bc-bee.is-s { --_s: 48px; } .bc-bee.is-l { --_s: 128px; }
+.bc-bee[data-szerep="hazigazda"] { background-image: url("../../web/assets/brand/bee-happy.webp"); }
+.bc-bee[data-szerep="kalauz"] { background-image: url("../../web/assets/brand/moods/help.webp"); }
+.bc-bee[data-szerep="futar"] { background-image: url("../../web/assets/brand/bee-super.webp"); }
+.bc-bee[data-szerep="szurkolo"] { background-image: url("../../web/assets/brand/bee-cheer.webp"); }
+.bc-bee[data-szerep="bajnok"] { background-image: url("../../web/assets/brand/moods/rank.webp"); }
+.bc-bee[data-szerep="piheno"] { background-image: url("../../web/assets/brand/moods/rest.webp"); }
+.bc-bee[data-szerep="gondolkodo"] { background-image: url("../../web/assets/brand/moods/think.webp"); }
+.bc-bee[data-szerep="hirvivo"] { background-image: url("../../web/assets/brand/bee-phone.webp"); }
+.bc-bee[data-szerep="halas"] { background-image: url("../../web/assets/brand/moods/love.webp"); }
+.bc-bee[data-szerep="kacsinto"] { background-image: url("../../web/assets/brand/roles/kacsint.webp"); }
+.bc-bee[data-szerep="szomoru"] { background-image: url("../../web/assets/brand/bee-sad.webp"); }
+.bc-bee[data-szerep="tevekeny"] { background-image: url("../../web/assets/brand/moods/action.webp"); }
+/* Megjelenéskor egyszer zümmög (3 × 180 ms), aztán nyugton van */
+.bc-bee.is-buzz { animation: bc-buzz 180ms var(--bc-ease-out) 3; transform-origin: 50% 70%; }
+/* BeeMoment: méh + szóvicc-cím + sima mondat + egy teendő */
+.bc-moment { display: grid; justify-items: center; gap: var(--bc-sp-2); padding: var(--bc-sp-6) var(--bc-sp-4); text-align: center; }
+.bc-moment.is-inline { grid-template-columns: auto 1fr; justify-items: start; text-align: left; padding: var(--bc-sp-3); column-gap: var(--bc-sp-3); }
+.bc-moment.is-inline > .bc-bee { grid-row: span 3; }
+.bc-moment-title { margin: 0; font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-xl); line-height: var(--bc-lh-tight); color: var(--bc-ink); }
+.bc-moment.is-inline .bc-moment-title { font-size: var(--bc-fs-l); }
+.bc-moment-text { margin: 0; max-width: 42ch; color: var(--bc-ink-soft); }
+.bc-moment-action { margin-top: var(--bc-sp-2); }
+.bc-moment.is-inline .bc-moment-action { margin-top: 0; }

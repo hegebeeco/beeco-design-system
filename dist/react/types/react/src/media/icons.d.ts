@@ -1,0 +1,11 @@
+export declare const IcPlus: () => import("react").JSX.Element;
+export declare const IcClose: () => import("react").JSX.Element;
+export declare const IcDots: () => import("react").JSX.Element;
+export declare const IcLeft: () => import("react").JSX.Element;
+export declare const IcRight: () => import("react").JSX.Element;
+export declare const IcRetry: () => import("react").JSX.Element;
+export declare const IcWarn: () => import("react").JSX.Element;
+export declare const IcCheck: () => import("react").JSX.Element;
+export declare const IcCopy: () => import("react").JSX.Element;
+export declare const IcDownload: () => import("react").JSX.Element;
+export declare const IcFile: () => import("react").JSX.Element;

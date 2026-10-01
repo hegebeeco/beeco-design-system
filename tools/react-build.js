@@ -22,7 +22,7 @@ async function main() {
   const outputs = [];
   // 1. A projekteknek: React, Radix külső
   const lib = await esbuild.build({ ...common, entryPoints: [path.join(ROOT, 'react/src/index.ts')], outfile: path.join(ROOT, 'dist/react/index.js'),
-    external: ['react', 'react-dom', 'react/jsx-runtime', '@radix-ui/*'] });
+    external: ['react', 'react-dom', 'react/jsx-runtime', '@radix-ui/*', '@tanstack/*', 'react-easy-crop'] });
   outputs.push(...lib.outputFiles);
   // 2. A tesztlapoknak: minden benne (önálló oldal)
   const dir = path.join(ROOT, 'react/tesztlapok');
@@ -51,6 +51,9 @@ async function main() {
 </html>
 ` });
   }
+  // A tesztlapok listája a kezdőlapnak (GitHub Pages nem listáz mappát): név + cím a tsx mount() hívásából
+  const lista = pages.map((p) => { const src = fs.readFileSync(path.join(dir, p), 'utf8'); const m = src.match(/mount\(\s*'([^']+)'(?:,\s*'([^']*)')?/); return { nev: p.replace(/\.tsx$/, ''), cim: m ? m[1] : p, leiras: m && m[2] ? m[2] : '' }; });
+  outputs.push({ path: path.join(ROOT, 'termek/tesztlapok/lista.json'), text: JSON.stringify(lista, null, 1) + '\n' });
   outputs.push({ path: path.join(ROOT, 'dist/react/index.d.ts'), text: `${banner}\nexport * from './types/index';\n` });
 
   let stale = 0;
@@ -67,6 +70,9 @@ async function main() {
   const tsc = path.join(ROOT, 'node_modules/.bin/tsc');
   try { execFileSync(tsc, ['-p', path.join(ROOT, 'react/tsconfig.json'), ...(check ? ['--noEmit', '--emitDeclarationOnly', 'false'] : [])], { stdio: 'pipe' }); }
   catch (e) { console.log(`TypeScript-hiba:\n${e.stdout}`); process.exit(1); }
+  // A tesztlapok is típusellenőrzést kapnak (az esbuild csak eldobja a típusokat, nem ellenőrzi)
+  try { execFileSync(tsc, ['-p', path.join(ROOT, 'react/tsconfig.tesztlap.json')], { stdio: 'pipe' }); }
+  catch (e) { console.log(`TypeScript-hiba a tesztlapokon:\n${e.stdout}`); process.exit(1); }
   if (check && stale) { console.log('→ futtasd: node tools/react-build.js'); process.exit(1); }
   if (check) console.log(`react-build: a dist/react és a ${pages.length} tesztlap friss`);
 }

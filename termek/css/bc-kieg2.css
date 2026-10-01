@@ -1,0 +1,88 @@
+/* beeco TERMÉKBŐR – 06b (helyválasztó, sorsolás, videó) – jóváhagyva 2026-10-01
+   Csak tokenek; UI-mozgás ≤ 300 ms ease-out, ünnepi pillanat ≤ 600 ms és egyszer; hover csak egérrel; 44 px érintés. */
+
+/* ---------- 13 · LocationPicker ---------- */
+.bc-loc { min-width: 0; margin: 0; padding: 0; border: 0; display: grid; gap: var(--bc-sp-3); container-type: inline-size; }
+.bc-loc-legend { display: flex; align-items: center; gap: var(--bc-sp-1); min-height: 24px; padding: 0; margin-bottom: var(--bc-sp-2); }
+.bc-loc-grid { display: grid; gap: var(--bc-sp-4); grid-template-columns: minmax(0, 1fr); }
+@container (min-width: 640px) { .bc-loc-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; } }
+.bc-loc-side { display: grid; gap: var(--bc-sp-4); min-width: 0; }
+.bc-loc-coords { display: grid; gap: var(--bc-sp-3); grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); }
+.bc-loc-geo { display: grid; gap: var(--bc-sp-2); justify-items: start; }
+.bc-loc-geo-err { margin: 0; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-warning-ink); overflow-wrap: anywhere; }
+.bc-loc-warn { flex-wrap: wrap; align-items: center; }
+.bc-loc-warn p { flex: 1 1 14em; }
+.bc-loc-map .bc-map { min-height: 240px; }
+
+/* Tartalék mini-térkép: vázlatos körvonal + tű, statikus */
+.bc-loc-mini { margin: 0; display: grid; gap: var(--bc-sp-1); padding: var(--bc-sp-3); background: var(--bc-surface-2); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
+.bc-loc-mini svg { display: block; width: 100%; height: auto; max-height: 260px; }
+.bc-loc-mini-land { fill: var(--bc-surface); stroke: var(--bc-line); stroke-width: 1.2; stroke-linejoin: round; }
+.bc-loc-mini-pin path { fill: var(--bc-accent); stroke: var(--bc-line); stroke-width: 1.2; }
+.bc-loc-mini-pin circle { fill: var(--bc-line); }
+.bc-loc-mini-cap { font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+
+/* ---------- 14 · PrizeDrawReveal (neo-brutalista kártya) ---------- */
+.bc-draw { display: grid; gap: var(--bc-sp-4); min-width: 0; padding: var(--bc-sp-5); color: var(--bc-ink); background: var(--bc-surface);
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); }
+.bc-draw-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: var(--bc-sp-2) var(--bc-sp-4); }
+.bc-draw-head > div { min-width: 0; }
+.bc-draw-prize-label { margin: 0; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink-soft); text-transform: uppercase; letter-spacing: .04em; }
+.bc-draw-title { margin: 0; font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-xl); line-height: var(--bc-lh-tight); overflow-wrap: anywhere; }
+.bc-draw-count { margin: 0; display: flex; align-items: baseline; gap: var(--bc-sp-1); font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+.bc-draw-count b { font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-2xl); line-height: 1; color: var(--bc-ink); font-variant-numeric: tabular-nums; }
+.bc-draw-testnote, .bc-draw-one { margin: 0; }
+
+/* Pörgetés: méhsejt-sor + szalag */
+.bc-draw-stage { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--bc-sp-2) var(--bc-sp-3); padding: var(--bc-sp-4);
+  background: var(--bc-surface-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
+.bc-draw-runner { grid-row: span 2; }
+.bc-draw-comb { display: flex; gap: 4px; }
+.bc-draw-comb i { position: relative; width: 22px; height: 25px; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); background: var(--bc-line); }
+.bc-draw-comb i::after { content: ""; position: absolute; inset: 2px; clip-path: inherit; background: var(--bc-surface); transition: background-color var(--bc-t-fast) var(--bc-ease-out); }
+.bc-draw-comb i.is-on::after { background: var(--bc-accent); color: var(--bc-on-accent); }
+.bc-draw-ticker { margin: 0; min-height: 1.4em; font-family: var(--bc-font-display); font-size: var(--bc-fs-xl); line-height: var(--bc-lh-tight); overflow-wrap: anywhere;
+  animation: bc-draw-roll var(--bc-t-fast) var(--bc-ease-out) both; }
+@keyframes bc-draw-roll { from { opacity: 0; transform: translateY(-10px); } }
+
+/* Nyertes: pecsét + Bajnok méh */
+.bc-draw-winner { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--bc-sp-3) var(--bc-sp-4); padding: var(--bc-sp-4);
+  background: var(--bc-surface-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+.bc-draw-winner-body { display: grid; gap: var(--bc-sp-1); min-width: 0; }
+.bc-draw-kicker { margin: 0; font-weight: var(--bc-fw-bold); }
+.bc-draw-kicker span { font-weight: var(--bc-fw-regular); color: var(--bc-ink-soft); }
+.bc-draw-name { margin: 0; font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-2xl); line-height: var(--bc-lh-tight); overflow-wrap: anywhere; }
+.bc-draw-name:focus { outline: none; }
+.bc-draw-name:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-draw-detail, .bc-draw-prize { margin: 0; color: var(--bc-ink-soft); overflow-wrap: anywhere; }
+.bc-draw-test { justify-self: start; margin: var(--bc-sp-1) 0 0; }
+@media (max-width: 420px) { .bc-draw-winner { grid-template-columns: minmax(0, 1fr); justify-items: start; } .bc-draw { padding: var(--bc-sp-4); } }
+
+.bc-draw-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2) var(--bc-sp-3); }
+.bc-draw-hint { margin: 0; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+.bc-draw-reroll { display: grid; gap: var(--bc-sp-3); padding: var(--bc-sp-4); background: var(--bc-surface-2); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-m); }
+.bc-draw-reroll-q { margin: 0; font-weight: var(--bc-fw-semibold); overflow-wrap: anywhere; }
+.bc-draw-log { font-size: var(--bc-fs-s); }
+.bc-draw-log summary { display: flex; align-items: center; min-height: var(--bc-tap); font-weight: var(--bc-fw-bold); cursor: pointer; }
+.bc-draw-log summary:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; border-radius: var(--bc-r-s); }
+.bc-draw-log ol { margin: 0; padding-left: var(--bc-sp-5); display: grid; gap: var(--bc-sp-1); overflow-wrap: anywhere; }
+
+/* ---------- 15 · VideoPlayer / embed ---------- */
+.bc-video { margin: 0; display: grid; gap: var(--bc-sp-2); min-width: 0; }
+.bc-video-frame { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--bc-surface-2); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
+.bc-video-el { display: block; width: 100%; height: 100%; border: 0; background: var(--bc-black); }
+.bc-video-el:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: -3px; }
+.bc-video-loading { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: var(--bc-sp-2); padding: var(--bc-sp-3); text-align: center;
+  font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); color: var(--bc-ink); background: var(--bc-surface-2); }
+.bc-video[data-state="error"] .bc-video-frame { aspect-ratio: auto; min-height: 120px; display: grid; align-items: center; }
+.bc-video-cap { display: grid; gap: 2px; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+.bc-video-title { font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); color: var(--bc-ink); overflow-wrap: anywhere; }
+.bc-video-nocc { color: var(--bc-warning-ink); font-weight: var(--bc-fw-semibold); }
+.bc-video-link { justify-self: start; display: inline-flex; align-items: center; min-height: var(--bc-tap); color: var(--bc-ink); font-weight: var(--bc-fw-semibold); }
+.bc-video-link:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; border-radius: var(--bc-r-s); }
+.bc-video-empty { margin: 0; padding: var(--bc-sp-4); font-size: var(--bc-fs-s); color: var(--bc-ink-soft); background: var(--bc-surface-2); border: var(--bc-bw-hair) dashed var(--bc-line); border-radius: var(--bc-r-m); }
+/* Kattintásra betöltő beágyazás: harmadik féltől semmi (kép sem) a kattintás előtt */
+.bc-vembed-ph { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: var(--bc-sp-3); padding: var(--bc-sp-4); text-align: center;
+  background: repeating-linear-gradient(-45deg, var(--bc-surface-2) 0 12px, var(--bc-surface) 12px 24px); }
+.bc-vembed-note { margin: 0; max-width: 46ch; padding: var(--bc-sp-1) var(--bc-sp-2); font-size: var(--bc-fs-xs); color: var(--bc-ink); background: var(--bc-surface); border-radius: var(--bc-r-s); }
+@media (max-width: 420px) { .bc-vembed .bc-video-frame { aspect-ratio: auto; min-height: 240px; } }

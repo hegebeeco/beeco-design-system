@@ -73,6 +73,21 @@ for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.css'))) {
   for (const m of src.matchAll(/\{([^{}]*background(?:-color)?\s*:\s*var\(--bc-accent\)[^{}]*)\}/g)) if (!/(^|[\s;])(color|--_ink)\s*:\s*var\(--bc-on-accent\)/.test(m[1])) hiba(`${hol(m.index)}: méz (accent) háttér on-accent szövegszín nélkül`);
   for (const m of src.matchAll(/transition[^;]*var\(--bc-t-slow\)[^;]*/g)) if (!/ease-drawer/.test(m[0])) hiba(`${hol(m.index)}: 400 ms-os átmenet csak fióknál (ease-drawer) – UI ≤ 300 ms`);
 }
+
+// 5. Szövegkészlet és méhecskék (Javaslat 05): szóvicc MINDIG sima jelentéssel; létező szerep; a mérges méh tilos a termékbőrben
+const hn = JSON.parse(rd('tokens/hangnem.json'));
+for (const [k, p] of Object.entries(hn.pillanatok)) {
+  if (!hn.szerepek[p.meh]) hiba(`hangnem: a „${k}” pillanat szerepe (${p.meh}) nem létezik`);
+  if (!p.valtozatok?.length) hiba(`hangnem: a „${k}” pillanatnak nincs változata`);
+  for (const v of p.valtozatok || []) if (!v.poen?.trim() || !v.sima?.trim()) hiba(`hangnem: „${k}” – minden változatnak kell szóvicc (poen) ÉS sima jelentés (sima)`);
+}
+for (const [n, r] of Object.entries(hn.szerepek)) if (!fs.existsSync(path.join(ROOT, 'web/assets/brand', r.kep + '.webp'))) hiba(`hangnem: a „${n}” szerep képe hiányzik: ${r.kep}.webp`);
+const tiltott = hn.tiltott_kepek || [];
+const scan = (dir) => fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true }).flatMap((e) => e.isDirectory() ? scan(path.join(dir, e.name)) : [path.join(dir, e.name)]);
+for (const f of [...scan('termek/css'), ...scan('react/src')]) {
+  const t = fs.readFileSync(path.join(ROOT, f), 'utf8');
+  for (const k of tiltott) if (t.includes(k)) hiba(`${f}: tiltott méhecske (${k}) a termékbőrben – nem szidunk senkit`);
+}
 if (core.minTextSize < 12 || Object.values(core.fontSize).some(v => v < core.minTextSize)) hiba('A betűskála legkisebb eleme is legalább 12 px legyen');
 
 if (hibak.length) { console.log(`check-tokens: ${hibak.length} hiba\n- ` + hibak.join('\n- ')); process.exit(1); }

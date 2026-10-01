@@ -30,6 +30,9 @@
 .bc-btn.is-lg { min-height: 56px; padding: 0 var(--bc-sp-6); font-size: var(--bc-fs-xl); --_sh: var(--bc-shadow-m); }
 .bc-btn.is-lg:active:not(:disabled) { transform: translate(var(--bc-shadow-m-x), var(--bc-shadow-m-y)); }
 .bc-btn.is-block { display: flex; width: 100%; }
+/* Hosszú felirat ne lógjon ki: a teljes szélességű és a keskeny helyre szorított gomb tördel */
+.bc-btn { max-width: 100%; }
+.bc-btn.is-block, .bc-btn.is-wrap { white-space: normal; text-align: center; line-height: var(--bc-lh-tight); padding-block: var(--bc-sp-2); }
 @media (pointer: coarse) { .bc-btn.is-sm { min-height: var(--bc-tap); } }
 
 /* Tiltott: halvány, árnyék nélkül – de a felirat olvasható marad */
@@ -47,5 +50,6 @@
 .bc-icon-btn > svg { width: 22px; height: 22px; }
 @media (hover: hover) and (pointer: fine) { .bc-icon-btn:hover { background: var(--bc-surface-2); border-color: var(--bc-line); } }
 .bc-icon-btn.is-danger { color: var(--bc-danger-ink); }
+.bc-icon-btn:disabled { color: var(--bc-ink-muted); cursor: not-allowed; }
 
 @keyframes bc-spin { to { transform: rotate(360deg); } }

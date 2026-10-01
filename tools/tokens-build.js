@@ -188,7 +188,14 @@ function buildJson() {
 // Szerepek ellenőrzése: minden szerep létező primitívre mutasson (különben a build megáll)
 ['light', 'dark'].forEach(m => Object.values(termek.color[m]).forEach(hex));
 
+// Szövegkészlet (Javaslat 05) TS-modulként a React-komponenseknek – egy forrás: tokens/hangnem.json
+function buildHangnem() {
+  const h = read('hangnem.json');
+  return `// ${HEAD}\n// A méhes pillanatok szövegei – forrás: tokens/hangnem.json\nexport default ${JSON.stringify({ szerepek: h.szerepek, pillanatok: h.pillanatok }, null, 2)} as const;\n`;
+}
+
 const OUT = {
+  'react/src/meh/hangnem.gen.ts': buildHangnem(),
   'dist/css/beeco-tokens.css': buildCss(),
   'dist/css/beeco-fonts.css': buildFonts(),
   'dist/scss/_beeco.scss': buildScss(),

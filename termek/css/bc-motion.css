@@ -1,0 +1,60 @@
+/* ============================================================
+   beeco TERMÉKBŐR – mozgás-készlet (Javaslat 05 + bővítés: neo-brutalista és méhecskés, 2026-10-01)
+   Szabály: UI ≤ 300 ms, ünnepi pillanat ≤ 600 ms és egyszer, végtelen mozgás nincs (a töltő 10 mp után megáll),
+   hover csak egérrel, csökkentett mozgásnál minden azonnali (bc-base.css).
+   ============================================================ */
+@keyframes bc-buzz { 25% { transform: rotate(-4deg) translateY(-1px); } 75% { transform: rotate(4deg) translateY(1px); } }
+@keyframes bc-rise { from { opacity: 0; transform: translateY(8px); } }
+@keyframes bc-cheer { 0% { opacity: 0; transform: scale(.6) translateY(12px); } 60% { opacity: 1; transform: scale(1.08) translateY(-4px); } }
+@keyframes bc-tick { 0% { opacity: 0; transform: scale(.4) rotate(-18deg); } 60% { opacity: 1; transform: scale(1.15) rotate(4deg); } }
+/* Pecsét: az új állapot odacsapódik, a kemény árnyék a becsapódáskor jelenik meg */
+@keyframes bc-stamp { 0% { opacity: 0; transform: scale(1.6) rotate(-8deg); box-shadow: none; } 70% { opacity: 1; transform: scale(.96) rotate(1deg); box-shadow: none; } }
+/* Kíméletes „nem jó” rázás (hibás beküldés) – kicsi, rövid, nem szid */
+@keyframes bc-shake { 20%, 60% { transform: translateX(-4px); } 40%, 80% { transform: translateX(4px); } }
+/* Hatszög-konfetti (mérföldkő) */
+@keyframes bc-hex { 0% { opacity: 1; transform: translate(0, 0) scale(.6) rotate(0); } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1) rotate(var(--rot)); } }
+/* Mézsejt-töltő: három hatszög telik sorban */
+@keyframes bc-hexfill { 0%, 100% { background: var(--bc-surface-2); } 40% { background: var(--bc-accent); color: var(--bc-on-accent); } }
+/* Csíkos haladásjelző csúszása (csak amíg nő az érték; kész állapotban áll) */
+@keyframes bc-stripes { to { background-position: 28px 0; } }
+
+.bc-anim-rise { animation: bc-rise var(--bc-t-base) var(--bc-ease-out) both; }
+.bc-anim-cheer { animation: bc-cheer 400ms var(--bc-ease-bounce) both; }
+.bc-anim-tick { animation: bc-tick 400ms var(--bc-ease-bounce) both; }
+.bc-anim-stamp { animation: bc-stamp var(--bc-t-slow) var(--bc-ease-bounce) both; }
+.bc-anim-shake { animation: bc-shake 240ms var(--bc-ease-out) 1; }
+/* Lista beúszás: soronként 30 ms késés, legfeljebb 6 sorig (a Stagger adja a --i-t) */
+.bc-stagger > * { animation: bc-rise var(--bc-t-base) var(--bc-ease-out) both; animation-delay: calc(min(var(--i, 0), 5) * 30ms); }
+
+/* Kártya-emelés: egérrel rámutatva a kemény árnyék nő (neo-brutalista „kiemelkedik”) */
+@media (hover: hover) and (pointer: fine) {
+  .bc-lift { transition: transform var(--bc-t-fast) var(--bc-ease-out), box-shadow var(--bc-t-fast) var(--bc-ease-out); }
+  .bc-lift:hover { transform: translate(-2px, -2px); box-shadow: var(--bc-shadow-l); }
+}
+/* Húzott elem megemelkedik */
+.bc-dragging { transform: translate(-3px, -3px) rotate(-1deg); box-shadow: var(--bc-shadow-l); cursor: grabbing; }
+
+/* Fül-jelző: a méz sáv csúszik az aktív fül alá (a Tabs/NavTabs állítja a --x és --w változót) */
+.bc-tab-ink { position: absolute; bottom: 0; left: 0; height: 4px; width: var(--w, 0); transform: translateX(var(--x, 0)); background: var(--bc-accent); color: var(--bc-on-accent); border: var(--bc-bw-hair) solid var(--bc-line);
+  transition: transform var(--bc-t-base) var(--bc-ease-out), width var(--bc-t-base) var(--bc-ease-out); }
+
+/* Mézsejt-töltő (rövid töltéshez a pörgő helyett) */
+.bc-hexload { display: inline-flex; gap: 3px; }
+.bc-hexload > i { width: 14px; height: 16px; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); background: var(--bc-surface-2); animation: bc-hexfill 900ms var(--bc-ease-in-out) 11; }
+.bc-hexload > i:nth-child(2) { animation-delay: 150ms; } .bc-hexload > i:nth-child(3) { animation-delay: 300ms; }
+.bc-hexload > i { outline: var(--bc-bw-hair) solid var(--bc-line); outline-offset: -1px; }
+
+/* Csíkos haladásjelző (neo-brutalista): fekete keret, méz csík; értéke a --v (0–1) */
+.bc-progress { position: relative; height: 16px; background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-pill); overflow: hidden; }
+.bc-progress > span { position: absolute; inset: 0 auto 0 0; width: calc(var(--v, 0) * 100%); background: repeating-linear-gradient(-45deg, var(--bc-accent) 0 7px, var(--bc-accent-press) 7px 14px);
+  border-right: var(--bc-bw-base) solid var(--bc-line); transition: width var(--bc-t-base) var(--bc-ease-out); }
+.bc-progress.is-moving > span { animation: bc-stripes 600ms linear 17; }
+.bc-progress.is-done > span { background: var(--bc-success); border-right: 0; }
+
+/* Hatszög-konfetti darabok (a celebrate() teszi ki, 600 ms után eltávolítja) */
+.bc-hexpiece { position: fixed; z-index: var(--bc-z-toast); width: 12px; height: 14px; pointer-events: none; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  background: var(--bc-accent); color: var(--bc-on-accent); animation: bc-hex 600ms var(--bc-ease-out) forwards; }
+.bc-hexpiece:nth-child(3n) { background: var(--bc-success); } .bc-hexpiece:nth-child(4n) { background: var(--bc-highlight); }
+
+/* Figyelem-zümmögés: egy elem (pl. az első súgó gomb) háromszor megrezdül */
+.bc-attention { animation: bc-buzz 180ms var(--bc-ease-out) 3; }

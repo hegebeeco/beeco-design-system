@@ -1,2 +1,21 @@
-// Javaslat adat csomag – exportok (a csomag gazdája tölti ki)
-export {};
+// 02 – Adat és grafikon (Javaslat 02, jóváhagyva 2026-10-01). Szabályok: docs/komponensek.md 3/B, 3.4
+export { DataTable, type DataTableProps } from './DataTable';
+export { SortHeader, SelectCell, ExpandToggle, ColumnResizer, BulkBar, type BulkBarProps } from './DataTableParts';
+export type { DataColumnMeta } from './dataTableColumns';
+export { Pagination, type PaginationProps } from './Pagination';
+export { EmptyState, type EmptyStateProps } from './EmptyState';
+export { DataState, SkeletonRows, DataNote, type DataStateProps, type DataStatus, type DataNoteProps } from './DataState';
+export { FilterBar, type FilterBarProps, type FilterValues } from './FilterBar';
+export type { FilterDef, FilterOption, FilterValue } from './FilterControls';
+export { StatTile, type StatTileProps, type StatDelta } from './StatTile';
+export { ChartCard, type ChartCardProps } from './chart/ChartCard';
+export { BarChart, type BarChartProps } from './chart/BarChart';
+export { LineChart, type LineChartProps } from './chart/LineChart';
+export { GroupedBarChart, StackedBarChart, type MultiBarProps } from './chart/ColumnCharts';
+export { Sparkline, type SparklineProps } from './chart/Sparkline';
+export { HeatLegend, type HeatLegendProps } from './chart/HeatLegend';
+export { ChartTable } from './chart/ChartTable';
+export { ChartLegend } from './chart/ChartLegend';
+export type { ChartData, ChartSeries } from './chart/types';
+export { fmt as formatNumberHu, matchText, niceTicks } from './format';
+export { createColumnHelper, type ColumnDef, type SortingState, type RowSelectionState, type PaginationState } from '@tanstack/react-table';

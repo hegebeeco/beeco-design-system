@@ -1,0 +1,122 @@
+/* ============================================================
+   beeco TERMÉKBŐR – 04 Média és speciális, 2. rész: térkép, hőskála, havi naptár, nyitvatartás, avatar
+   (a bc-media.css 200 sor alatt maradjon – Javaslat 04, jóváhagyva 2026-10-01)
+   ============================================================ */
+/* ---------- Térkép (Leaflet-öltöztetés): <div class="bc-map"> ---------- */
+.bc-map { position: relative; overflow: hidden; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); background: var(--bc-surface-2); }
+.bc-map-icon { background: none; border: 0; }
+.bc-map-pin { position: absolute; left: 50%; top: 3px; display: grid; place-items: center; width: 30px; height: 30px; margin-left: -15px; color: var(--bc-on-accent); background: var(--bc-surface);
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: 50% 50% 50% 0; box-shadow: var(--bc-shadow-s); transform: rotate(-45deg); }
+.bc-map-pin > span { transform: rotate(45deg); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); line-height: 1; }
+.bc-map-pin.is-neutral { color: var(--bc-ink); }
+.bc-map-pin.is-info { background: var(--bc-info); } .bc-map-pin.is-success { background: var(--bc-success); }
+.bc-map-pin.is-warning { background: var(--bc-warning); } .bc-map-pin.is-danger { background: var(--bc-danger); }
+.bc-map-pin.is-selected { width: 38px; height: 38px; margin-left: -19px; color: var(--bc-on-accent); background: var(--bc-accent); z-index: var(--bc-z-sticky); }
+.bc-map-cluster { display: grid; place-items: center; width: 100%; height: 100%; font-family: var(--bc-font-display); font-size: var(--bc-fs-m); line-height: 1; color: var(--bc-ink); background: var(--bc-surface);
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: 50%; box-shadow: 0 0 0 4px rgb(var(--bc-surface-rgb) / .6), var(--bc-shadow-s); }
+.bc-map-cluster.is-l { font-size: var(--bc-fs-l); }
+/* Leaflet-vezérlők: 44 px, fekete keret, kemény árnyék */
+.bc-map .leaflet-bar { border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); overflow: hidden; background: var(--bc-surface); }
+.bc-map .leaflet-bar a { display: grid; place-items: center; width: var(--bc-tap); height: var(--bc-tap); font-family: var(--bc-font-body); font-size: var(--bc-fs-l); font-weight: var(--bc-fw-bold); line-height: 1; color: var(--bc-ink); background: var(--bc-surface); text-decoration: none; }
+.bc-map .leaflet-bar a + a { border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }
+.bc-map .leaflet-bar a.leaflet-disabled { color: var(--bc-ink-muted); cursor: not-allowed; }
+.bc-map .leaflet-bar a:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: -3px; }
+@media (hover: hover) and (pointer: fine) { .bc-map .leaflet-bar a:hover { background: var(--bc-surface-2); } }
+.bc-map .leaflet-popup-content-wrapper { color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); }
+.bc-map .leaflet-popup-tip { background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); }
+.bc-map .leaflet-control-attribution { font-size: var(--bc-fs-xs); color: var(--bc-ink); background: rgb(var(--bc-surface-rgb) / .9); }
+.bc-map-legend { padding: var(--bc-sp-1) var(--bc-sp-3); font-size: var(--bc-fs-xs); color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+.bc-map-legend summary { display: flex; align-items: center; min-height: var(--bc-tap); font-weight: var(--bc-fw-bold); cursor: pointer; }
+.bc-map-legend-list { display: grid; gap: var(--bc-sp-1); margin: 0; padding: 0 0 var(--bc-sp-2); list-style: none; }
+.bc-map-legend-list li { display: flex; align-items: center; gap: var(--bc-sp-2); }
+.bc-map-swatch { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; font-weight: var(--bc-fw-bold); color: var(--bc-on-accent); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: 50%; }
+.bc-map-swatch.is-neutral { color: var(--bc-ink); } .bc-map-swatch.is-info { background: var(--bc-info); } .bc-map-swatch.is-success { background: var(--bc-success); }
+.bc-map-swatch.is-warning { background: var(--bc-warning); } .bc-map-swatch.is-danger { background: var(--bc-danger); } .bc-map-swatch.is-accent { color: var(--bc-on-accent); background: var(--bc-accent); }
+
+/* Hőskála (3/B) – egyszínű sorozat a data-seq tokenekből */
+.bc-heat { display: grid; gap: var(--bc-sp-1); margin: 0; max-width: 360px; font-size: var(--bc-fs-xs); }
+.bc-heat-unit { margin: 0; color: var(--bc-ink-soft); }
+.bc-heat-bar { display: flex; height: 14px; border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-xs); overflow: hidden; }
+.bc-heat-bar i, .bc-heat-sw { flex: 1; background: var(--_c); }
+.bc-heat-bar i:nth-child(1), .bc-heat-sw.is-1 { --_c: var(--bc-data-seq-1); } .bc-heat-bar i:nth-child(2), .bc-heat-sw.is-2 { --_c: var(--bc-data-seq-2); }
+.bc-heat-bar i:nth-child(3), .bc-heat-sw.is-3 { --_c: var(--bc-data-seq-3); } .bc-heat-bar i:nth-child(4), .bc-heat-sw.is-4 { --_c: var(--bc-data-seq-4); }
+.bc-heat-bar i:nth-child(5), .bc-heat-sw.is-5 { --_c: var(--bc-data-seq-5); }
+.bc-heat.is-cb .bc-heat-bar i:nth-child(1), .bc-heat.is-cb .bc-heat-sw.is-1 { --_c: var(--bc-data-seq-cb-1); } .bc-heat.is-cb .bc-heat-bar i:nth-child(2), .bc-heat.is-cb .bc-heat-sw.is-2 { --_c: var(--bc-data-seq-cb-2); }
+.bc-heat.is-cb .bc-heat-bar i:nth-child(3), .bc-heat.is-cb .bc-heat-sw.is-3 { --_c: var(--bc-data-seq-cb-3); } .bc-heat.is-cb .bc-heat-bar i:nth-child(4), .bc-heat.is-cb .bc-heat-sw.is-4 { --_c: var(--bc-data-seq-cb-4); }
+.bc-heat.is-cb .bc-heat-bar i:nth-child(5), .bc-heat.is-cb .bc-heat-sw.is-5 { --_c: var(--bc-data-seq-cb-5); }
+.bc-heat-ends { display: flex; justify-content: space-between; font-weight: var(--bc-fw-semibold); }
+.bc-heat-steps { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.bc-heat-steps td { padding: 2px 0; text-align: center; font-variant-numeric: tabular-nums; }
+.bc-heat-sw { display: block; height: 8px; margin: 0 1px 2px; border: var(--bc-bw-hair) solid var(--bc-line); }
+.bc-heat-how summary { display: flex; align-items: center; min-height: var(--bc-tap); font-weight: var(--bc-fw-bold); cursor: pointer; }
+.bc-heat-how p { margin: 0 0 var(--bc-sp-1); }
+
+/* ---------- Havi naptár: asztalon rács címekkel; 560 px alatt pöttyös hónap + a nap listája ---------- */
+.bc-mcal { container-type: inline-size; display: grid; gap: var(--bc-sp-3); min-width: 0; }
+.bc-mcal-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2); }
+.bc-mcal-title { margin: 0; min-width: 9em; text-align: center; font-size: var(--bc-fs-xl); }
+.bc-mcal-head > .bc-btn { margin-left: auto; }
+.bc-mcal-legend { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2); margin: 0; padding: 0; list-style: none; font-size: var(--bc-fs-xs); }
+.bc-mcal-filter[aria-pressed="true"] { color: var(--bc-ink); background: var(--bc-surface); box-shadow: inset 4px 0 0 var(--_c); border-color: var(--bc-line); }
+.bc-mcal-filter[aria-pressed="false"] { color: var(--bc-ink-soft); background: var(--bc-surface-2); border-style: dashed; text-decoration: line-through; }
+.bc-mcal-filter.is-info { --_c: var(--bc-info); } .bc-mcal-filter.is-warning { --_c: var(--bc-warning); } .bc-mcal-filter.is-success { --_c: var(--bc-success); }
+.bc-mcal-note { margin: 0; font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+.bc-mcal-note .bc-spinner, .bc-filecard .bc-spinner { width: 16px; height: 16px; border-width: 2px; vertical-align: -3px; }
+.bc-mcal .bc-alert { align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.bc-mcal-grid { width: 100%; border-collapse: separate; border-spacing: 2px; table-layout: fixed; }
+.bc-mcal-grid th { padding: var(--bc-sp-1); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink-soft); text-align: center; }
+.bc-mcal-grid td { padding: 0; vertical-align: top; }
+.bc-mcal-day { display: flex; flex-direction: column; align-items: stretch; gap: 2px; width: 100%; min-height: 96px; padding: 2px; font: inherit; font-size: var(--bc-fs-xs); text-align: left; color: var(--bc-ink);
+  background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line-soft); border-radius: var(--bc-r-s); cursor: pointer; transition: background-color var(--bc-t-fast) var(--bc-ease-out); }
+.bc-mcal-day > b { display: inline-grid; place-items: center; align-self: flex-start; min-width: 22px; height: 22px; font-weight: var(--bc-fw-bold); border-radius: 50%; }
+.bc-mcal-day.is-outside { background: var(--bc-bg); color: var(--bc-ink-soft); }
+.bc-mcal-day.is-today { border: var(--bc-bw-base) solid var(--bc-line); }
+.bc-mcal-day.is-today > b { color: var(--bc-on-accent); background: var(--bc-accent); }
+.bc-mcal-day.is-selected { box-shadow: inset 0 0 0 var(--bc-bw-base) var(--bc-line); background: var(--bc-surface-accent); }
+.bc-mcal-day:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 1px; }
+@media (hover: hover) and (pointer: fine) { .bc-mcal-day:not(.is-selected):hover { background: var(--bc-surface-2); } }
+.bc-mcal-evs { display: grid; gap: 2px; min-width: 0; }
+.bc-mcal-ev { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 1px var(--bc-sp-1); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold);
+  border-left: 4px solid var(--_c, var(--bc-line)); border-radius: var(--bc-r-xs); color: var(--_ink, var(--bc-ink)); background: var(--_bg, var(--bc-surface-2)); }
+.bc-mcal-ev.is-info { --_c: var(--bc-info); --_bg: var(--bc-info-bg); --_ink: var(--bc-info-ink); }
+.bc-mcal-ev.is-warning { --_c: var(--bc-warning); --_bg: var(--bc-warning-bg); --_ink: var(--bc-warning-ink); }
+.bc-mcal-ev.is-success { --_c: var(--bc-success); --_bg: var(--bc-success-bg); --_ink: var(--bc-success-ink); }
+.bc-mcal-more { font-weight: var(--bc-fw-bold); text-decoration: underline; text-underline-offset: 2px; }
+.bc-mcal-dots { display: none; gap: 2px; justify-content: center; }
+.bc-mcal-dots i { width: 7px; height: 7px; border: var(--bc-bw-hair) solid var(--bc-line); border-radius: 50%; }
+.bc-mcal-dots .is-info { background: var(--bc-info); } .bc-mcal-dots .is-warning { background: var(--bc-warning); } .bc-mcal-dots .is-success { background: var(--bc-success); }
+.bc-mcal-agenda { display: none; gap: var(--bc-sp-2); }
+.bc-mcal-agenda-title { margin: 0; font-size: var(--bc-fs-l); }
+.bc-mcal-agenda ul { display: grid; gap: var(--bc-sp-1); margin: 0; padding: 0; list-style: none; }
+.bc-mcal-agenda .bc-mcal-ev { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--bc-sp-2); padding: var(--bc-sp-2); white-space: normal; font-size: var(--bc-fs-s); }
+.bc-mcal-kind { font-weight: var(--bc-fw-regular); }
+@container (max-width: 559px) {
+  .bc-mcal-day { min-height: var(--bc-tap); align-items: center; padding: 2px 0; }
+  .bc-mcal-day > b { align-self: center; }
+  .bc-mcal-evs { display: none; }
+  .bc-mcal-dots { display: flex; }
+  .bc-mcal-agenda { display: grid; }
+  .bc-mcal-title { font-size: var(--bc-fs-l); min-width: 0; flex: 1; }
+}
+
+/* ---------- Nyitvatartás ---------- */
+.bc-hours-list { background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); overflow: hidden; }
+.bc-hours-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-1) var(--bc-sp-2); min-height: 52px; padding: var(--bc-sp-1) var(--bc-sp-3); border-bottom: var(--bc-bw-hair) solid var(--bc-line-soft); }
+.bc-hours-row:last-child { border-bottom: 0; }
+.bc-hours-row.is-invalid { background: var(--bc-danger-bg); }
+.bc-hours-row > .bc-error { flex-basis: 100%; }
+.bc-hours-day { flex: 0 0 6.5em; font-weight: var(--bc-fw-semibold); }
+.bc-hours-times { display: inline-flex; align-items: center; gap: var(--bc-sp-1); }
+.bc-hours-time.bc-input { width: 5.5em; text-align: center; font-variant-numeric: tabular-nums; }
+.bc-hours-closed { color: var(--bc-ink-soft); }
+
+/* ---------- Avatar: kép vagy monogram ---------- */
+.bc-avatar { display: inline-grid; place-items: center; flex: none; width: 40px; height: 40px; overflow: hidden; font-family: var(--bc-font-display); font-size: var(--bc-fs-m); line-height: 1;
+  color: var(--bc-ink); background: var(--bc-surface-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: 50%; }
+.bc-avatar.is-24 { width: 24px; height: 24px; font-size: var(--bc-fs-xs); border-width: var(--bc-bw-hair); }
+.bc-avatar.is-32 { width: 32px; height: 32px; font-size: var(--bc-fs-s); }
+.bc-avatar.is-64 { width: 64px; height: 64px; font-size: var(--bc-fs-xl); }
+.bc-avatar.is-square { border-radius: var(--bc-r-m); }
+.bc-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.bc-avatar > span { padding-top: .12em; }
+.bc-map .bc-map-icon:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; border-radius: var(--bc-r-s); }

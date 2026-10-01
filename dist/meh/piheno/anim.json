@@ -1,0 +1,14 @@
+{
+ "szereplo": "piheno",
+ "mozgas": "alszik",
+ "kepkockak": 24,
+ "fps": 12,
+ "ismetles": 3,
+ "hossz_ms": 2000,
+ "meretek": {
+  "1x": 128,
+  "2x": 256,
+  "3x": 384
+ },
+ "forras": "moods/rest.webp"
+}

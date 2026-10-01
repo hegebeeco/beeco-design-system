@@ -6,6 +6,8 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     block?: boolean;
     /** Folyamatban: a felirat helyén pörgő, a gomb nem nyomható (dupla beküldés ellen) */
     busy?: boolean;
+    /** Kész: rövid „mentve-pipa” (Javaslat 05) – a hívó ~1,5 mp után visszaállítja */
+    done?: boolean;
     icon?: ReactNode;
 };
 /** Button (atom) – a DS .bc-btn React-változata. Alapból type="button" (nem küld be véletlenül űrlapot). */
@@ -16,6 +18,8 @@ export declare const Button: import("react").ForwardRefExoticComponent<ButtonHTM
     block?: boolean;
     /** Folyamatban: a felirat helyén pörgő, a gomb nem nyomható (dupla beküldés ellen) */
     busy?: boolean;
+    /** Kész: rövid „mentve-pipa” (Javaslat 05) – a hívó ~1,5 mp után visszaállítja */
+    done?: boolean;
     icon?: ReactNode;
 } & import("react").RefAttributes<HTMLButtonElement>>;
 export type IconButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {

@@ -1,6 +1,6 @@
 # Javaslat 05 – Méhecske, mozgás, szóvicc
 
-*Állapot: **jóváhagyásra vár** · készítette: Claude · dátum: 2026-10-01 · Kristóf kérése: animációk, méhecskék funkcionális és érzelmi szerepben, méhes szóviccek a szövegekben – DS szinten.*
+*Állapot: **jóváhagyva (2026-10-01)** · készítette: Claude · dátum: 2026-10-01 · Kristóf kérése: animációk, méhecskék funkcionális és érzelmi szerepben, méhes szóviccek a szövegekben – DS szinten.*
 Vizuális javaslatlap (valódi méhecske-képekkel, lejátszható mozgás-mintákkal): `javaslatok/05-meh.html` – https://hegebeeco.github.io/beeco-design-system/javaslatok/05-meh.html
 
 ## Meglévőből
@@ -16,6 +16,6 @@ A 24 meglévő méhecske-kép (`web/assets/brand/`: 6 alap, 6 hangulat, 12 szere
 | 5 | DS-elemek | Bee, BeeMoment, szövegkészlet (`tokens/hangnem.json`, `say()`), `bc-motion.css` + `useCountUp`, `<Stagger>`, Button „mentve-pipa”, gépi szabályok, képek az npm-csomagban | változat nélkül |
 
 ## Döntés (Kristóf tölti ki)
-- Dátum: …
-- Választott változatok: …
-- Megjegyzés / módosítás (pl. más szerep, kimaradó vagy új szóvicc): …
+- Dátum: 2026-10-01
+- Választott változatok: **Claude javaslata mindenhol** – szereposztás a táblázat szerint, **2A** (csak „pillanatokban”), **4A** (szóvicc „fűszerként”).
+- Megjegyzés: a mozgást **bővíteni kell a neo-brutalista és méhecskés irányhoz** (Kristóf) → pecsét, kártya-emelés, kíméletes rázás, fül-jelző csúszás, mézsejt-töltő, hatszög-konfetti, figyelem-zümmögés, csíkos haladásjelző. **Angol szöveg nem kell**, csak ha Kristóf kéri.

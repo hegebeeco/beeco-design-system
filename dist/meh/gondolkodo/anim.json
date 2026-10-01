@@ -1,0 +1,14 @@
+{
+ "szereplo": "gondolkodo",
+ "mozgas": "tunodik",
+ "kepkockak": 16,
+ "fps": 16,
+ "ismetles": 2,
+ "hossz_ms": 1000,
+ "meretek": {
+  "1x": 128,
+  "2x": 256,
+  "3x": 384
+ },
+ "forras": "moods/think.webp"
+}

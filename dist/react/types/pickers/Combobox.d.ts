@@ -15,6 +15,12 @@ type Common = FieldProps & {
     onRetry?: () => void;
     /** Ennyi címke látszik a mezőben, a többi „+N” (1A) */
     maxChips?: number;
+    /** false: a lista már a szerver találata, helyben nem szűrünk újra (szerveroldali keresés) */
+    filter?: boolean;
+    /** A beírt keresőszöveg minden változáskor (szerveroldali kereséshez) */
+    onQueryChange?: (q: string) => void;
+    /** Ennyi karakter alatt nem keres: „Írj még legalább N betűt.” (nem „Nincs találat”) */
+    minChars?: number;
 };
 export type ComboboxProps = (Common & {
     multiple?: false;

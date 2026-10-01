@@ -1,1 +1,199 @@
-/* beeco TERMÉKBŐR – adat csomag (Javaslat, jóváhagyva 2026-10-01) */
+/* ============================================================
+   beeco TERMÉKBŐR – adat csomag (Javaslat 02, jóváhagyva 2026-10-01)
+   DataTable · Pagination · EmptyState · DataState · DataNote · FilterBar · StatTile · ChartCard + SVG-grafikonok
+   Szabályok: docs/komponensek.md 3/B (grafikon kötelező részei), 3.4 (szélső esetek). Csak tokenek.
+   ============================================================ */
+
+/* ---------- Üres állapot, töltés, hiba, megjegyzés ---------- */
+.bc-empty.is-compact { padding: var(--bc-sp-5) var(--bc-sp-4); gap: var(--bc-sp-2); }
+.bc-empty.is-compact strong { font-size: var(--bc-fs-l); }
+.bc-empty-art { display: grid; place-items: center; }
+.bc-empty-text { margin: 0; max-width: 48ch; font-size: var(--bc-fs-s); } .bc-empty .bc-btn { max-width: 100%; white-space: normal; } /* keskenyen a teendő tördel */
+.bc-state { display: flex; align-items: center; justify-content: center; gap: var(--bc-sp-2); padding: var(--bc-sp-5); font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+.bc-state-box { flex-wrap: wrap; align-items: center; justify-content: space-between; margin: var(--bc-sp-3); }
+.bc-state-box p { flex: 1 1 240px; font-size: var(--bc-fs-s); }
+.bc-note { font-size: var(--bc-fs-s); } .bc-note-body p { margin: var(--bc-sp-1) 0 0; }
+
+/* ---------- Lapozó: „1–25 / 312 POI” · ‹ 1 2 … 13 › · Sor / oldal ---------- */
+.bc-pager-info { margin: 0; font-variant-numeric: tabular-nums; } .bc-pager-gap { min-width: var(--bc-sp-5); text-align: center; }
+.bc-pager-pages { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-1); margin: 0; padding: 0; list-style: none; }
+.bc-pager-num { min-width: var(--bc-tap); min-height: var(--bc-tap); padding: 0 var(--bc-sp-2); font: inherit; font-weight: var(--bc-fw-bold); font-variant-numeric: tabular-nums;
+  color: var(--bc-ink); background: transparent; border: var(--bc-bw-hair) solid transparent; border-radius: var(--bc-r-m); cursor: pointer;
+  transition: background-color var(--bc-t-fast) var(--bc-ease-out); }
+.bc-pager-num[aria-current="page"] { color: var(--bc-on-accent); background: var(--bc-accent); border-color: var(--bc-line); }
+.bc-pager-size { display: flex; align-items: center; gap: var(--bc-sp-2); white-space: nowrap; } .bc-pager-size .bc-select { width: auto; }
+@media (hover: hover) and (pointer: fine) { .bc-pager-num:hover:not([aria-current="page"]) { background: var(--bc-surface-2); border-color: var(--bc-line); } }
+
+/* ---------- Adattáblázat ---------- */
+.bc-dt { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--bc-sp-2); min-width: 0; container: bc-dt / inline-size; }
+.bc-dt-bar { min-height: calc(var(--bc-tap) + var(--bc-sp-2)); display: flex; align-items: center; }
+.bc-dt-tools { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-3); width: 100%; }
+.bc-dt-title { margin: 0 auto 0 0; font-size: var(--bc-fs-l); }
+.bc-dt-tools > .bc-seg { margin-left: auto; }
+/* Tömeges sáv (1b A): a táblázat fölött, görgetéskor odatapad; a sáv helyére csúszik, nem tolja le a táblázatot */
+.bc-dt-bulk { position: sticky; top: 0; z-index: calc(var(--bc-z-sticky) + 2); display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2) var(--bc-sp-4); width: 100%;
+  padding: var(--bc-sp-2) var(--bc-sp-3); color: var(--bc-ink); background: var(--bc-surface-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m);
+  box-shadow: var(--bc-shadow-s); animation: bc-dt-in var(--bc-t-base) var(--bc-ease-out); }
+.bc-dt-bulk-count { margin: 0; font-size: var(--bc-fs-s); }
+.bc-dt-bulk-actions { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2); margin-left: auto; }
+@keyframes bc-dt-in { from { opacity: 0; transform: translateY(-4px); } }
+/* Frissítés: a régi adat látszik, felül vékony töltésjel */
+.bc-dt-progress { position: relative; height: 4px; overflow: hidden; background: var(--bc-surface-2); border-radius: var(--bc-r-pill); }
+.bc-dt-progress::after { content: ""; position: absolute; inset: 0 60% 0 0; color: var(--bc-on-accent); background: var(--bc-accent); animation: bc-dt-bar 1.1s var(--bc-ease-in-out) infinite; }
+@keyframes bc-dt-bar { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+/* Görgethető burok: rögzített fejléc (a bc-table th sticky), max. magasság */
+.bc-dt-wrap { max-height: var(--_dt-max, 70vh); overflow: auto; }
+/* A görgető burok a rejtett (.bc-sr, abszolút) szövegek tartója is – különben azok kitolnák az oldalt telefonon */
+.bc-dt-wrap, .bc-chart-table, .bc-chart-scroll { position: relative; }
+.bc-table.is-fixed { table-layout: fixed; }
+/* Rögzített első oszlop (+ a segédoszlopok): telefonon a név mindig látszik */
+.bc-table .is-pin { position: sticky; z-index: var(--bc-z-sticky); background: var(--bc-surface); }
+.bc-table th.is-pin { z-index: calc(var(--bc-z-sticky) + 1); color: var(--bc-on-accent); background: var(--bc-accent); }
+.bc-table td.is-pin:not(.is-util) { box-shadow: inset calc(-1 * var(--bc-bw-hair)) 0 0 var(--bc-line-soft); }
+.bc-table .is-util { width: var(--bc-tap); padding-block: 0; padding-inline: 0; text-align: center; }
+.bc-table tbody tr[data-selected] td { background: var(--bc-surface-accent); }
+@media (hover: hover) and (pointer: fine) { .bc-table tbody tr:not(.bc-dt-state, .bc-dt-detail):hover td.is-pin { background: var(--bc-surface-2); } }
+/* Rendezés: saját nyíl-pár (a halvány a lehetséges irány); a bc-sort ::after nyilát itt nem kérjük */
+.bc-dt th[aria-sort] .bc-dt-sort::after { content: none; }
+.bc-dt-sort { font-weight: inherit; }
+.bc-dt-sorticon { width: 10px; height: 14px; flex: none; fill: currentColor; }
+.bc-dt-sorticon path { opacity: .3; }
+.bc-dt-sorticon.is-asc .is-up, .bc-dt-sorticon.is-desc .is-down { opacity: 1; }
+/* Oszlophúzás: 12 px fogófelület, billentyűzettel is */
+.bc-dt-resizer { position: absolute; top: 0; right: 0; bottom: 0; width: 12px; cursor: col-resize; touch-action: none; user-select: none; }
+.bc-dt-resizer::after { content: ""; position: absolute; top: 25%; bottom: 25%; right: 5px; width: var(--bc-bw-base); background: var(--bc-line); opacity: .35; transition: opacity var(--bc-t-fast) var(--bc-ease-out); }
+.bc-dt-resizer.is-resizing::after, .bc-dt-resizer:focus-visible::after { opacity: 1; }
+@media (hover: hover) and (pointer: fine) { .bc-dt-resizer:hover::after { opacity: 1; } }
+/* Kijelölő cella: 44 px-es kattintható terület */
+.bc-dt-check { display: grid; place-items: center; width: var(--bc-tap); height: var(--bc-tap); margin: 0 auto; cursor: pointer; }
+.bc-dt-check > input { width: 20px; height: 20px; margin: 0; accent-color: var(--bc-ink); cursor: pointer; }
+.bc-dt-expand > svg { transition: transform var(--bc-t-fast) var(--bc-ease-out); }
+.bc-dt-expand[aria-expanded="true"] > svg { transform: rotate(90deg); }
+@media (pointer: fine) { .bc-table.is-dense .bc-dt-check, .bc-table.is-dense .bc-dt-expand { width: 36px; height: 36px; } }
+/* Cellák: hosszú szöveg „…”-val (teljes szöveg rámutatásra és a lenyitott sorban); hiányzó „–” */
+.bc-dt-text { display: block; max-width: 32ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bc-table.is-fixed .bc-dt-text { max-width: 100%; }
+.bc-table td.is-wrap .bc-dt-text { max-width: 48ch; white-space: normal; overflow-wrap: anywhere; }
+.bc-dt-missing { color: var(--bc-ink-muted); }
+.bc-dt-detail > td { padding: 0; background: var(--bc-surface-2); }
+.bc-dt-detail-body { padding: var(--bc-sp-3) var(--bc-sp-4) var(--bc-sp-4) calc(var(--bc-tap) + var(--bc-sp-3)); font-size: var(--bc-fs-s); overflow-wrap: anywhere; }
+.bc-dt-state > td { padding: 0; } .bc-skel-row .bc-skeleton { height: 1em; }
+.bc-dt-state > td > * { position: sticky; left: 0; max-width: calc(100cqi - 2 * var(--bc-sp-3)); } /* a burok szélességében marad, széles táblán is */
+.bc-dt-sortsel { display: none; align-items: center; gap: var(--bc-sp-2); flex: 1 1 auto; min-width: 0; } .bc-dt-sortsel .bc-select { flex: 1 1 auto; width: auto; min-width: 0; }
+/* Kártyanézet (mobile="cards") keskeny tárolóban: soronként kártya, címke a cella előtt */
+@container bc-dt (max-width: 640px) {
+  /* görgetős nézet: a rögzített név-oszlop legfeljebb a szélesség 40%-a, hogy a többi oszlop is elférjen mellette */
+  .bc-dt:not(.is-cards) .bc-table.is-fixed { table-layout: auto; width: auto !important; }
+  .bc-dt:not(.is-cards) th.is-pin:not(.is-util) { width: 40cqi !important; }
+  .bc-dt:not(.is-cards) td.is-pin .bc-dt-text { max-width: 36cqi; }
+  .bc-dt.is-cards .bc-dt-sortsel { display: flex; }
+  .bc-dt.is-cards .bc-dt-wrap { max-height: none; overflow: visible; background: transparent; border: 0; box-shadow: none; }
+  .bc-dt.is-cards .bc-table, .bc-dt.is-cards .bc-table tbody, .bc-dt.is-cards .bc-table tr, .bc-dt.is-cards .bc-table td { display: block; width: auto; }
+  .bc-dt.is-cards .bc-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .bc-dt.is-cards .bc-table tbody tr { margin-bottom: var(--bc-sp-3); padding: var(--bc-sp-2) var(--bc-sp-3); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+  .bc-dt.is-cards .bc-table td { display: grid; grid-template-columns: minmax(8ch, 38%) 1fr; gap: var(--bc-sp-2); justify-items: start; text-align: left; padding: var(--bc-sp-1) 0; border: 0; position: static; box-shadow: none; background: transparent; }
+  .bc-dt.is-cards .bc-table td::before { content: attr(data-label); font-weight: var(--bc-fw-bold); color: var(--bc-ink-soft); }
+  .bc-dt.is-cards .bc-table td.is-util { display: inline-block; width: auto; }
+  .bc-dt.is-cards .bc-table td.is-util::before, .bc-dt.is-cards .bc-dt-state > td::before, .bc-dt.is-cards .bc-dt-detail > td::before { content: none; }
+  .bc-dt.is-cards .bc-dt-state > td, .bc-dt.is-cards .bc-dt-detail > td { display: block; }
+  .bc-dt.is-cards .bc-dt-text { max-width: none; white-space: normal; overflow-wrap: anywhere; }
+}
+
+/* ---------- Szűrősáv (2B) ---------- */
+.bc-fb { display: grid; gap: var(--bc-sp-3); min-width: 0; }
+.bc-fb-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--bc-sp-3); }
+.bc-fb-search { flex: 1 1 240px; min-width: min(100%, 200px); }
+.bc-filter { display: flex; flex-direction: column; gap: var(--bc-sp-1); flex: 0 1 200px; min-width: min(100%, 160px); }
+.bc-filter.is-multi { flex: 1 1 260px; }
+.bc-filter-err { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2); }
+.bc-fb.is-narrow .bc-fb-search { flex: 1 1 0; min-width: 0; }
+.bc-fb-toggle { flex: none; }
+.bc-fb-toggle .bc-badge { font-family: var(--bc-font-body); }
+.bc-fb-panel { width: min(380px, calc(100vw - 2 * var(--bc-sp-4))); display: grid; gap: var(--bc-sp-4); padding: var(--bc-sp-4); }
+.bc-fb-panel-body { display: grid; gap: var(--bc-sp-4); }
+.bc-fb-panel .bc-filter { flex: none; min-width: 0; }
+.bc-fb-panel-foot { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--bc-sp-2); padding-top: var(--bc-sp-3); border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }
+.bc-fb-active { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2); }
+.bc-fb-chips { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2); margin: 0; padding: 0; list-style: none; }
+.bc-fb-count { margin: 0 0 0 auto; font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); font-variant-numeric: tabular-nums; }
+
+/* ---------- Statisztika-csempe (3A) ---------- */
+.bc-kpi { align-content: start; gap: var(--bc-sp-2); min-width: 0; }
+.bc-kpi-head { justify-content: space-between; }
+.bc-kpi-main { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--bc-sp-2) var(--bc-sp-3); container-type: inline-size; }
+/* Nagy szám: nem tördel, keskeny csempén kisebb betűvel fér el (1 234 567) */
+.bc-kpi .bc-stat-value { margin: 0; font-size: clamp(var(--bc-fs-xl), 16cqi, var(--bc-fs-2xl)); white-space: nowrap; }
+.bc-stat-unit { font-family: var(--bc-font-body); font-size: var(--bc-fs-m); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); }
+.bc-stat-sub { display: block; margin-top: var(--bc-sp-1); font-family: var(--bc-font-body); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); line-height: var(--bc-lh-normal); color: var(--bc-ink-soft); white-space: normal; }
+.bc-stat-value.is-hidden, .bc-stat-value.is-missing { color: var(--bc-ink-soft); }
+.bc-kpi-delta { margin: 0; } .bc-kpi-delta.is-good { color: var(--bc-success-ink); }
+.bc-kpi-delta.is-bad { color: var(--bc-danger-ink); } .bc-kpi-delta.is-neutral { color: var(--bc-ink-soft); }
+.bc-kpi-meaning { font-weight: var(--bc-fw-semibold); }
+.bc-kpi-meta, .bc-kpi-source { margin: 0; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+.bc-stat-skel { width: 60%; height: var(--bc-fs-2xl); }
+.bc-stat-err { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); color: var(--bc-danger-ink); }
+.bc-kpi-spark { flex: none; }
+
+/* ---------- Adatszínek: kategória (bc-s1–8) és egyirányú skála (bc-q1–5); színtévesztő-barát mód: data-cb / .ds-cb ---------- */
+.bc-chart-card, .bc-chart, .bc-spark, .bc-heatkey, .bc-legend {
+  --_c1: var(--bc-data-cat-1); --_c2: var(--bc-data-cat-2); --_c3: var(--bc-data-cat-3); --_c4: var(--bc-data-cat-4);
+  --_c5: var(--bc-data-cat-5); --_c6: var(--bc-data-cat-6); --_c7: var(--bc-data-cat-7); --_c8: var(--bc-data-cat-8);
+  --_q1: var(--bc-data-seq-1); --_q2: var(--bc-data-seq-2); --_q3: var(--bc-data-seq-3); --_q4: var(--bc-data-seq-4); --_q5: var(--bc-data-seq-5); }
+:is([data-cb]:not([data-cb="false"]), .ds-cb) :is(.bc-chart-card, .bc-chart, .bc-spark, .bc-heatkey, .bc-legend),
+:is(.bc-chart-card, .bc-chart, .bc-spark, .bc-heatkey, .bc-legend):is([data-cb]:not([data-cb="false"]), .ds-cb) {
+  /* kék–narancs az első pár (a leggyakoribb színtévesztésnél is elválik), utána a többi */
+  --_c1: var(--bc-data-cat-3); --_c2: var(--bc-data-cat-5); --_c3: var(--bc-data-cat-1); --_c4: var(--bc-data-cat-8);
+  --_c5: var(--bc-data-cat-7); --_c6: var(--bc-data-cat-6); --_c7: var(--bc-data-cat-2); --_c8: var(--bc-data-cat-4);
+  --_q1: var(--bc-data-seq-cb-1); --_q2: var(--bc-data-seq-cb-2); --_q3: var(--bc-data-seq-cb-3); --_q4: var(--bc-data-seq-cb-4); --_q5: var(--bc-data-seq-cb-5); }
+.bc-s1 { --_s: var(--_c1); } .bc-s2 { --_s: var(--_c2); } .bc-s3 { --_s: var(--_c3); } .bc-s4 { --_s: var(--_c4); }
+.bc-s5 { --_s: var(--_c5); } .bc-s6 { --_s: var(--_c6); } .bc-s7 { --_s: var(--_c7); } .bc-s8 { --_s: var(--_c8); }
+
+/* ---------- SVG-jelek: minden adatjel line színű kontúrt kap (3:1 világosban és sötétben) ---------- */
+.bc-chart svg, .bc-spark { display: block; overflow: visible; }
+.bc-mark { fill: var(--_s); stroke: var(--bc-line); stroke-width: 1.5; }
+.bc-mark-zero { stroke: var(--bc-line); stroke-width: 3; }
+.bc-line { fill: none; stroke: var(--_s); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+.bc-line-under { fill: none; stroke: var(--bc-line); stroke-width: 6; stroke-linejoin: round; stroke-linecap: round; }
+.bc-grid { stroke: var(--bc-line-soft); stroke-width: 1; }
+.bc-zero { stroke: var(--bc-line); stroke-width: 1.5; } .bc-zero.is-strong { stroke-width: 2.5; } .bc-gap { stroke: var(--bc-line-soft); stroke-dasharray: 4 3; }
+.bc-gap-bg { fill: var(--bc-surface-2); } .bc-gap-line { stroke: var(--bc-line-soft); stroke-width: 3; }
+.bc-gap-swatch { fill: var(--bc-surface-2); stroke: var(--bc-line); stroke-dasharray: 3 2; } .bc-break { fill: none; stroke: var(--bc-surface); stroke-width: 4; }
+.bc-ax-t, .bc-ax-title, .bc-val, .bc-end-label { font-family: var(--bc-font-body); font-size: var(--bc-fs-xs); font-variant-numeric: tabular-nums; }
+.bc-ax-t { fill: var(--bc-ink-soft); color: var(--bc-ink-soft); }
+.bc-ax-t.is-cat { fill: var(--bc-ink); color: var(--bc-ink); } .bc-ax-t.is-gap { font-style: italic; }
+.bc-ax-title, .bc-end-label { fill: var(--bc-ink); color: var(--bc-ink); font-weight: var(--bc-fw-bold); }
+.bc-val { fill: var(--bc-ink); color: var(--bc-ink); font-weight: var(--bc-fw-semibold); }
+@media (hover: hover) and (pointer: fine) { .bc-chart .bc-mark:hover { stroke-width: 3; } }
+.bc-chart { min-width: 0; }
+.bc-chart-scroll { overflow-x: auto; overflow-y: hidden; }
+.bc-chart-note { margin: var(--bc-sp-2) 0 0; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+
+/* ---------- Grafikonkártya (3/B) ---------- */
+.bc-chart-card { display: grid; gap: var(--bc-sp-3); min-width: 0; margin: 0; } /* <figure>: a grafikon és a hozzá tartozó szöveg egy egység */
+.bc-chart-title { margin: 0; font-size: var(--bc-fs-l); }
+.bc-chart-sub { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2); margin: var(--bc-sp-1) 0 0; font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+.bc-legend { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2) var(--bc-sp-4); margin: 0; padding: 0; list-style: none; font-size: var(--bc-fs-s); }
+.bc-legend li { display: inline-flex; align-items: center; gap: var(--bc-sp-1); }
+.bc-swatch { flex: none; overflow: visible; }
+.bc-chart-body { min-width: 0; }
+.bc-chart-skel { height: 200px; }
+.bc-disclosure { border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }
+.bc-disclosure > summary { display: flex; align-items: center; gap: var(--bc-sp-2); min-height: var(--bc-tap); font-weight: var(--bc-fw-bold); cursor: pointer; list-style: none; }
+.bc-disclosure > summary::-webkit-details-marker { display: none; }
+.bc-disclosure > summary::before { content: ""; width: 8px; height: 8px; border-right: var(--bc-bw-base) solid currentColor; border-bottom: var(--bc-bw-base) solid currentColor;
+  transform: rotate(-45deg); transition: transform var(--bc-t-fast) var(--bc-ease-out); }
+.bc-disclosure[open] > summary::before { transform: rotate(45deg); }
+.bc-disclosure-body { padding-bottom: var(--bc-sp-3); font-size: var(--bc-fs-s); }
+.bc-disclosure-body p { margin: 0 0 var(--bc-sp-2); max-width: 70ch; }
+.bc-chart-table { max-height: 320px; }
+.bc-chart-table th[scope="row"] { position: static; font-weight: var(--bc-fw-semibold); color: var(--bc-ink); background: transparent; border-bottom: var(--bc-bw-hair) solid var(--bc-line-soft); white-space: nowrap; }
+.bc-chart-source { font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+
+/* ---------- Hőtérkép-jelmagyarázat ---------- */
+.bc-heatkey { margin: 0; display: grid; gap: var(--bc-sp-2); }
+.bc-heatkey-title { font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); }
+.bc-heatkey-bins { display: flex; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; }
+.bc-heatkey-bins li { flex: 1 1 56px; display: grid; gap: var(--bc-sp-1); font-size: var(--bc-fs-xs); font-variant-numeric: tabular-nums; }
+.bc-heatkey-sw { display: block; height: 16px; background: var(--_q); border: var(--bc-bw-hair) solid var(--bc-line); }
+.bc-heatkey-bins li + li .bc-heatkey-sw { border-left: 0; }
+.bc-q1 { --_q: var(--_q1); } .bc-q2 { --_q: var(--_q2); } .bc-q3 { --_q: var(--_q3); } .bc-q4 { --_q: var(--_q4); } .bc-q5 { --_q: var(--_q5); }

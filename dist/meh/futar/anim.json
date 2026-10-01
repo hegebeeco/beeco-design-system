@@ -1,0 +1,14 @@
+{
+ "szereplo": "futar",
+ "mozgas": "repul",
+ "kepkockak": 12,
+ "fps": 24,
+ "ismetles": 20,
+ "hossz_ms": 500,
+ "meretek": {
+  "1x": 128,
+  "2x": 256,
+  "3x": 384
+ },
+ "forras": "bee-super.webp"
+}

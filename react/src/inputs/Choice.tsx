@@ -35,13 +35,14 @@ export type RadioGroupProps = ChoiceBase & {
 export function RadioGroup({ label, help, error, className, name, options, value, onChange, required, disabled }: RadioGroupProps) {
   const id = useId();
   return (
-    <fieldset className={cx('bc-field', className)} style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}
+    <fieldset className={cx('bc-field', 'bc-fieldset', className)}
       aria-describedby={error ? `${id}-err` : undefined} aria-invalid={error ? true : undefined} disabled={disabled}>
-      <div className="bc-label-row">
-        <legend className="bc-label" style={{ float: 'left', padding: 0 }}>{label}{required && <span className="is-req" aria-hidden="true">*</span>}</legend>
+      {/* A legend a fieldset ELSŐ gyermeke kell legyen – így lesz a csoportnak hozzáférhető neve */}
+      <legend className="bc-label-row">
+        <span className="bc-label">{label}{required && <span className="is-req" aria-hidden="true">*</span>}</span>
         <HelpButton label={label}>{help}</HelpButton>
-      </div>
-      <div className="bc-row" style={{ clear: 'both' }}>
+      </legend>
+      <div className="bc-row">
         {options.map((o) => (
           <label key={o.value} className="bc-check">
             <input type="radio" name={name} value={o.value} disabled={o.disabled} required={required}

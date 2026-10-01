@@ -13,19 +13,25 @@ module.exports = function meres(opts) {
   const visible = (el) => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none' && !el.closest('[aria-hidden="true"]'); };
 
   // --- Méretezés: vízszintes kilógás (görgethető burkon belül nem hiba)
-  if (document.documentElement.scrollWidth > innerWidth + 1) {
-    const culprit = [...document.querySelectorAll('body *')].filter((e) => e.getBoundingClientRect().right > innerWidth + 1 && !e.parentElement.closest('.bc-table-wrap, .bc-seg, .bc-tabs')).pop();
-    add('Méretezés', 'P1', `vízszintes kilógás ${document.documentElement.scrollWidth - innerWidth} px`, culprit ? desc(culprit) : 'oldal');
+  // A beállított nézet-szélességhez mérünk: mobil emulációnál a böngésző kiszélesítheti az innerWidth-et a tartalomhoz,
+  // így a kilógás „eltűnne” (a 02-es csomag építése közben derült ki)
+  const W = opts.w || innerWidth;
+  if (document.documentElement.scrollWidth > W + 1) {
+    const culprit = [...document.querySelectorAll('body *')].filter((e) => e.getBoundingClientRect().right > W + 1 && !e.parentElement.closest('.bc-table-wrap, .bc-seg, .bc-tabs, [data-scroll]')).pop();
+    add('Méretezés', 'P1', `vízszintes kilógás ${document.documentElement.scrollWidth - W} px`, culprit ? desc(culprit) : 'oldal');
   }
 
   // --- Hozzáférhetőség: 44 px érintésnél (a mondatközi szöveges link kivétel – WCAG 2.5.8)
   if (opts.touch) {
-    for (const el of document.querySelectorAll('button, a[href], input:not([type=hidden]), select, textarea, [role=switch], [role=option], [role=tab]')) {
+    for (const el of document.querySelectorAll('button, a[href], input:not([type=hidden]), select, textarea, [role=switch], [role=option], [role=tab], [role=slider]')) {
       if (!visible(el) || el.disabled) continue;
       if (el.tagName === 'A' && getComputedStyle(el).display === 'inline') continue;
       // A <label>-be ágyazott jelölő/rádió célterülete a teljes címkesor
       const lab = ((el.type === 'checkbox' || el.type === 'radio') && el.closest('label')) || el.closest('.bc-combo');
       const r = (lab || el).getBoundingClientRect();
+      // Láthatatlan, nagyobb érintési terület ::before-rel (pl. csúszka-fogantyú: 24 px látszik, 48 px érinthető)
+      const ps = getComputedStyle(el, '::before');
+      if (ps.content !== 'none' && ps.position === 'absolute' && parseFloat(ps.width) >= 44 && parseFloat(ps.height) >= 44) continue;
       if (Math.round(r.height) < 44 || Math.round(r.width) < 24) add('Hozzáférhetőség', 'P2', `érintési felület ${Math.round(r.width)}×${Math.round(r.height)} px (< 44)`, desc(el));
     }
   }
