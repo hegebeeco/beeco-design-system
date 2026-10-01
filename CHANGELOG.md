@@ -15,6 +15,9 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.16.1 – 2026-10-01
+* **Javítás – sablon gombsor (EditPage), keskeny kijelzőn:** hosszú gombfeliratnál („Partner létrehozása”) a gombok balra kilógtak a sávból; most a felirat tördel. Tesztlap: `sablon-szerkeszto` (`?allapot=hosszu` hosszú mentés-felirattal). Az admin Új partner oldala hozta elő.
+
 ## 1.16.0 – 2026-10-01 – Javaslat 07: vágás feltöltés előtt, csak olvasható képleírás
 * **ImageUploader `crop`:** rögzített képarányú vágás minden fájlnál, feltöltés előtt (`CropDialog`, sorban: „1/2”, kihagyható). Új export: `CropDialog`, `cropToFile`, `UploadCrop`.
 * **`altEditable={false}`** (ImageUploader, Gallery): ha a backend nem tárolja a leírást, a projekt adja az alt-ot. Ilyenkor nincs menüpont és „Leírás kell” jelzés.

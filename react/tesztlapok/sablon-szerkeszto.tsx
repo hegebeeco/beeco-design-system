@@ -37,7 +37,7 @@ function Oldal() {
 
   return (
     <>
-      <EditPage title={a === 'hosszu' ? 'Kupon szerkesztése: 10% kedvezmény kávéra saját pohárral a Méhesdi Főtér összes partnerkávézójában' : 'Kupon szerkesztése'}
+      <EditPage submitLabel={a === 'hosszu' ? 'Kupon módosításainak mentése' : undefined} title={a === 'hosszu' ? 'Kupon szerkesztése: 10% kedvezmény kávéra saját pohárral a Méhesdi Főtér összes partnerkávézójában' : 'Kupon szerkesztése'}
         description="Mintaadat – a mentés nem megy sehova." status={status} what="a kupont" onRetry={() => setHiba(false)}
         breadcrumbs={[{ label: 'Admin', href: 'sablon-lista.html' }, { label: 'Kuponok', href: 'sablon-lista.html' }, { label: 'Szerkesztés' }]}
         dirty={dirty} validate={() => ellenoriz(k)} onSubmit={mentes} successMessage="A kupon mentve."

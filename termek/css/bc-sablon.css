@@ -45,7 +45,8 @@
 @container (max-width: 520px) {
   .bc-sablon-bar { padding: var(--bc-sp-3); }
   .bc-sablon-bar .bc-form-actions { width: 100%; }
-  .bc-sablon-bar .bc-form-actions > * { flex: 1 1 0; }
+  /* hosszú felirat („Partner létrehozása”): a gomb tördel, nem tolja ki a sort balra */
+  .bc-sablon-bar .bc-form-actions > * { flex: 1 1 0; min-width: 0; white-space: normal; text-align: center; line-height: var(--bc-lh-tight); padding-block: var(--bc-sp-2); }
 }
 
 /* Irányítópult */
