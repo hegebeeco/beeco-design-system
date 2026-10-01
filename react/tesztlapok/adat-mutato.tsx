@@ -1,4 +1,4 @@
-import { HeatLegend, Sparkline, StatTile } from '../src';
+import { HeatLegend, InfoCard, InfoGrid, Sparkline, StatTile } from '../src';
 import { trend } from './_adat-minta';
 import { Case, Grid, mount } from './_keret';
 
@@ -39,6 +39,14 @@ function Oldal() {
         <Case id="kpi-tolt" title="Töltés (csontváz a szám helyén)"><StatTile label="Beváltott kuponok" help={S} value={null} loading /></Case>
         <Case id="kpi-hiba" title="Hiba – Újrapróbálás"><StatTile label="Beváltott kuponok" help={S} value={null} error="Nem sikerült betölteni." onRetry={() => undefined} /></Case>
       </Grid>
+      <Grid title="Adatlap (InfoCard, InfoGrid) – részletoldalak">
+        <Case id="info" title="Címke–érték, üres érték, hosszú szöveg, link" wide>
+          <InfoGrid>
+            <InfoCard title="Alapadatok" rows={[['Név', 'Föld napja'], ['Dátum', 'április 22.'], ['Leírás', 'Hosszú, többsoros leírás.\nMásodik sor – a sortörés megmarad, és a nagyon-nagyon-hosszú-szó-is-tördelődik-a-kartya-szelen-belul-ahelyett-hogy-kilogna.'], ['Link', null]]} />
+            <InfoCard title="Elérhetőség" rows={[{ label: 'Weboldal', value: <a href="https://beeco.hu">beeco.hu</a> }, { label: 'Telefon', value: '' }]} emptyText="nincs megadva" footer={<p className="bc-help">Szerkeszteni a Szerkesztés oldalon tudsz.</p>} />
+          </InfoGrid>
+        </Case>
+      </Grid>
       <Grid title="Sparkline és hőtérkép-jelmagyarázat">
         <Case id="spark" title="Sparkline önállóan (névvel), hiánnyal"><Sparkline values={trend} label="Beváltások 12 hét alatt, emelkedő (mintaadat)" /></Case>
         <Case id="heat" title="Hőtérkép-jelmagyarázat (egyirányú skála)"><HeatLegend label="Aktív felhasználók" unit="fő / km²" thresholds={[20, 40, 60, 80]} /></Case>
@@ -49,4 +57,4 @@ function Oldal() {
     </>
   );
 }
-mount('Mutatók', 'StatTile (KPI), Sparkline, HeatLegend – minden állapot és szélső eset. Minden szám mintaadat.', <Oldal />);
+mount('Mutatók', 'StatTile (KPI), Sparkline, HeatLegend, InfoCard – minden állapot és szélső eset. Minden szám mintaadat.', <Oldal />);

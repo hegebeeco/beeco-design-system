@@ -28,4 +28,9 @@ export default async function ({ page, t }) {
     const bg = (id) => c(id).locator('.bc-heatkey-sw').last().evaluate((e) => getComputedStyle(e).backgroundColor);
     ok((await bg('heat')) !== (await bg('heat-cb')), 'a cb skála ugyanaz');
   });
+  await t('InfoCard: üres érték „nincs megadva”, sortörés megmarad, hosszú szó nem lóg ki', async () => {
+    const t1 = await c('info').innerText(); ok((t1.match(/nincs megadva/g) ?? []).length === 2, t1);
+    ok(await c('info').locator('dt').count() === 6, 'nem 6 címke');
+    const r = await c('info').locator('.bc-info').first().evaluate((e) => [e.scrollWidth, e.clientWidth]); ok(r[0] <= r[1] + 1, `kilóg: ${r}`);
+  });
 }

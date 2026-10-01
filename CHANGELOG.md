@@ -11,6 +11,9 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.22.0 – 2026-10-01
+- Új: **InfoCard** + **InfoGrid** (`.bc-info`, `.bc-info-grid`) – címke–érték adatlap a részletoldalak Áttekintés fülére; üres érték helyett „nincs megadva”, a sortörés megmarad, a hosszú szó tördelődik. Tesztlap: adat-mutato.
+
 ## 1.21.1 – 2026-10-01
 - Javítás: a SectionSwitch a tartalom szélességéhez tördel (konténer-lekérdezés), nem a képernyőéhez – oldalmenü mellett nem lóg ki.
 

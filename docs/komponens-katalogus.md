@@ -8,7 +8,7 @@
 **Segédek:** formatHu, formatHuDate, lengthRange, localToUtcIso, parseHu, parseHuDate, todayIso, utcToLocal
 
 ## 02 – Adat és grafikon
-**Komponensek:** BarChart, BulkBar, ChartCard, ChartLegend, ChartTable, ColumnResizer, DataNote, DataState, DataTable, EmptyState, ExpandToggle, FilterBar, GroupedBarChart, HeatLegend, LineChart, Pagination, SelectCell, SkeletonRows, SortHeader, Sparkline, StackedBarChart, StatTile
+**Komponensek:** BarChart, BulkBar, ChartCard, ChartLegend, ChartTable, ColumnResizer, DataNote, DataState, DataTable, EmptyState, ExpandToggle, FilterBar, GroupedBarChart, HeatLegend, InfoCard + InfoGrid (adatlap, 1.22), LineChart, Pagination, SelectCell, SkeletonRows, SortHeader, Sparkline, StackedBarChart, StatTile
 
 **Segédek:** createColumnHelper, formatNumberHu, matchText, niceTicks
 

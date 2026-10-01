@@ -197,3 +197,11 @@
 .bc-heatkey-sw { display: block; height: 16px; background: var(--_q); border: var(--bc-bw-hair) solid var(--bc-line); }
 .bc-heatkey-bins li + li .bc-heatkey-sw { border-left: 0; }
 .bc-q1 { --_q: var(--_q1); } .bc-q2 { --_q: var(--_q2); } .bc-q3 { --_q: var(--_q3); } .bc-q4 { --_q: var(--_q4); } .bc-q5 { --_q: var(--_q5); }
+
+/* InfoCard / InfoGrid: címke–érték adatlap a részletoldalakon (statikus doboz → halvány, elmosott árnyék) */
+.bc-info-grid { display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); align-items: start; }
+.bc-info .bc-card-title { margin: 0 0 var(--bc-sp-3); }
+.bc-info dl { display: grid; gap: var(--bc-sp-3); margin: 0; }
+.bc-info dt { font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink-soft); }
+.bc-info dd { margin: 0; overflow-wrap: anywhere; white-space: pre-line; }
+.bc-info-foot { margin-top: var(--bc-sp-4); padding-top: var(--bc-sp-3); border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }

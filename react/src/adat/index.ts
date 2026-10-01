@@ -7,6 +7,7 @@ export { EmptyState, type EmptyStateProps } from './EmptyState';
 export { DataState, SkeletonRows, DataNote, type DataStateProps, type DataStatus, type DataNoteProps } from './DataState';
 export { FilterBar, type FilterBarProps, type FilterValues } from './FilterBar';
 export type { FilterDef, FilterOption, FilterValue } from './FilterControls';
+export { InfoCard, InfoGrid, type InfoCardProps, type InfoRow } from './InfoCard';
 export { StatTile, type StatTileProps, type StatDelta } from './StatTile';
 export { ChartCard, type ChartCardProps } from './chart/ChartCard';
 export { BarChart, type BarChartProps } from './chart/BarChart';
