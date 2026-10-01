@@ -2,7 +2,8 @@
    beeco TERMÉKBŐR – alkalmazás-váz (admin, partner): oldalsáv + fejléc + tartalom
    <div class="bc-shell"><nav class="bc-sidebar">…</nav><div class="bc-main"><header class="bc-topbar">…</header><main class="bc-content">…
    ============================================================ */
-.bc-shell { display: grid; grid-template-columns: 248px minmax(0, 1fr); min-height: 100dvh; }
+.bc-shell { display: grid; grid-template-columns: 248px minmax(0, 1fr); min-height: 100dvh;
+  transition: grid-template-columns var(--bc-t-base) var(--bc-ease-out); }
 .bc-sidebar { position: sticky; top: 0; height: 100dvh; overflow-y: auto; display: flex; flex-direction: column; gap: var(--bc-sp-1);
   padding: var(--bc-sp-4) var(--bc-sp-3); background: var(--bc-surface); border-right: var(--bc-bw-base) solid var(--bc-line); }
 .bc-brand { display: flex; align-items: center; gap: var(--bc-sp-2); padding: var(--bc-sp-2) var(--bc-sp-2) var(--bc-sp-4); font-family: var(--bc-font-display); font-size: var(--bc-fs-xl); color: var(--bc-ink); text-decoration: none; }
@@ -18,6 +19,39 @@
 .bc-topbar { position: sticky; top: 0; z-index: var(--bc-z-header); display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-3);
   min-height: 64px; padding: 0 var(--bc-sp-5); background: var(--bc-bg); border-bottom: var(--bc-bw-base) solid var(--bc-line); }
 .bc-content { width: 100%; max-width: 1440px; padding: var(--bc-sp-5); }
+/* Javaslat 08 – sáv fej (márka + becsukó gomb), görgethető linkek, rögzített alj (felhasználó) */
+.bc-sidebar-head { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-2); }
+.bc-sidebar-head .bc-brand { min-width: 0; padding-bottom: var(--bc-sp-2); }
+.bc-sidebar-links { flex: 1 1 auto; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: var(--bc-sp-1); }
+.bc-sidebar-foot { padding-top: var(--bc-sp-3); border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }
+.bc-sidebar:has(.bc-sidebar-links) { overflow: hidden; }
+.bc-account { display: flex; align-items: center; gap: var(--bc-sp-2); width: 100%; min-height: var(--bc-tap); padding: var(--bc-sp-1) var(--bc-sp-2);
+  font: inherit; color: var(--bc-ink); text-align: left; background: transparent; border: var(--bc-bw-base) solid transparent; border-radius: var(--bc-r-m); cursor: pointer;
+  transition: background-color var(--bc-t-fast) var(--bc-ease-out); }
+@media (hover: hover) and (pointer: fine) { .bc-account:hover { background: var(--bc-surface-2); } }
+.bc-account[data-state="open"] { border-color: var(--bc-line); background: var(--bc-surface-2); }
+.bc-account-text { display: grid; min-width: 0; flex: 1 1 auto; line-height: var(--bc-lh-tight); }
+.bc-account-name { font-weight: var(--bc-fw-bold); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bc-account-detail { font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bc-account-chev { width: 18px; height: 18px; flex: none; color: var(--bc-ink-soft); }
+/* Becsukott sáv: csak ikonok; a felirat rejtve, de a link neve marad (képernyőolvasó), rámutatáskor title */
+.bc-shell.is-collapsed { grid-template-columns: 84px minmax(0, 1fr); }
+.bc-shell.is-collapsed .bc-sidebar { padding-inline: var(--bc-sp-2); }
+.bc-shell.is-collapsed .bc-sidebar-head { flex-direction: column; }
+.bc-shell.is-collapsed .bc-brand-text, .bc-shell.is-collapsed .bc-nav-group, .bc-shell.is-collapsed .bc-account-text, .bc-shell.is-collapsed .bc-account-chev {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.bc-shell.is-collapsed .bc-brand { justify-content: center; padding-inline: 0; }
+.bc-shell.is-collapsed .bc-brand img { max-width: 56px; height: auto; }
+.bc-shell.is-collapsed .bc-nav-group + .bc-nav-list { margin-top: var(--bc-sp-3); padding-top: var(--bc-sp-3); border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }
+.bc-shell.is-collapsed .bc-nav-link { justify-content: center; padding: 0; }
+.bc-shell.is-collapsed .bc-nav-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.bc-shell.is-collapsed .bc-account { justify-content: center; padding-inline: 0; }
+/* Fejléc nélkül (topbar nincs): a tartalom az oldal tetejéig ér */
+.bc-shell.no-topbar .bc-content { padding-top: var(--bc-sp-5); }
+.bc-topbar-brand { display: flex; align-items: center; min-width: 0; margin-right: auto; }
+.bc-topbar-brand .bc-brand, .bc-shell.is-collapsed .bc-brand { min-width: var(--bc-tap); min-height: var(--bc-tap); }
+.bc-topbar-brand .bc-brand { padding: 0; }
+@media (prefers-reduced-motion: reduce) { .bc-shell { transition: none; } }
 /* Keskeny képernyő: az oldalsáv behúzható fiókká válik (a projekt JS-e kapcsolja a .is-open-t) */
 @media (max-width: 900px) {
   .bc-shell { grid-template-columns: minmax(0, 1fr); }

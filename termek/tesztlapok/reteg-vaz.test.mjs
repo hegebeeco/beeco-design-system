@@ -31,4 +31,30 @@ export default async function ({ page, t }) {
       ok((await page.locator('h1').innerText()) === 'Kuponok', 'a cím nem követte');
     } finally { await page.setViewportSize({ width: 1280, height: 800 }); }
   });
+  await t('asztalon nincs fejléc: a tartalom az oldal tetejéig ér', async () => {
+    await until(async () => (await page.locator('header.bc-topbar').count()) === 0, 'van fejléc'); const r = await page.locator('#bc-content').boundingBox(); ok(r.y <= 1, `a tartalom ${r.y} px-nél kezdődik`);
+  });
+  await t('a sáv becsukható: csak ikonok, a link neve megmarad, újratöltés után is csukva, kinyitható', async () => {
+    try {
+      const btn = page.getByRole('button', { name: 'Menü becsukása' }); ok((await btn.getAttribute('aria-expanded')) === 'true', 'aria-expanded');
+      await btn.click(); await until(async () => (await page.locator('nav.bc-sidebar').boundingBox()).width < 100, 'nem csukódott be');
+      await page.waitForTimeout(300); ok((await page.locator('nav.bc-sidebar').boundingBox()).width < 100, 'széles maradt');
+      ok(await page.getByRole('link', { name: 'POI-k' }).isVisible(), 'a link neve elveszett');
+      await page.reload(); await page.locator('nav.bc-sidebar').waitFor();
+      const open = page.getByRole('button', { name: 'Menü kinyitása' }); await open.waitFor(); ok((await open.getAttribute('aria-expanded')) === 'false', 'nem jegyezte meg');
+      await open.focus(); await page.keyboard.press('Enter'); await page.getByRole('button', { name: 'Menü becsukása' }).waitFor();
+    } finally { await page.evaluate(() => { try { localStorage.removeItem('bc-shell:tesztlap'); } catch { /* */ } }); }
+  });
+  await t('felhasználó a sáv alján: menü kijelentkezéssel, Esc zár', async () => {
+    const acc = page.locator('.bc-sidebar-foot .bc-account'); ok(await acc.isVisible(), 'nincs felhasználó'); await acc.click();
+    const m = page.getByRole('menu'); await m.waitFor(); ok(await m.getByRole('menuitem', { name: 'Kijelentkezés' }).isVisible(), 'nincs kijelentkezés');
+    await page.keyboard.press('Escape'); await m.waitFor({ state: 'detached' }); ok(await acc.evaluate((e) => e === document.activeElement), 'a fókusz nem tért vissza');
+  });
+  await t('telefonon a fiókban is ott a felhasználó', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    try {
+      await page.getByRole('button', { name: 'Menü megnyitása' }).click(); const d = page.getByRole('dialog'); await d.waitFor();
+      ok(await d.locator('.bc-account').isVisible(), 'nincs felhasználó a fiókban'); await page.keyboard.press('Escape'); await d.waitFor({ state: 'detached' });
+    } finally { await page.setViewportSize({ width: 1280, height: 800 }); }
+  });
 }

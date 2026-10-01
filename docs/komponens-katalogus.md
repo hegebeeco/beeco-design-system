@@ -13,7 +13,7 @@
 **Segédek:** createColumnHelper, formatNumberHu, matchText, niceTicks
 
 ## 03 – Rétegek és navigáció
-**Komponensek:** Accordion, AppShell, Breadcrumbs, ConfirmDialog, Drawer, DropdownMenu, Modal, ModalCancel, MoreIcon, NavTabs, PageHeader, RowActions, TabCount, Tabs, Toaster, TooltipIconButton, TypeToConfirm
+**Komponensek:** Accordion, AppShell (`collapsible`, `account` – Javaslat 08), Breadcrumbs, ConfirmDialog, Drawer, DropdownMenu, Modal, ModalCancel, MoreIcon, NavTabs, PageHeader, RowActions, TabCount, Tabs, Toaster, TooltipIconButton, TypeToConfirm
 
 **Hookok:** useLayerClose, usePageTitle, useQueryParam
 
@@ -50,7 +50,7 @@
 **Segédek:** accuracyText, cryptoIndex, formatLatLng, inHungary, looksSwapped, parseVideoUrl, roundLatLng, validLatLng
 
 ## 06c – Oldalsablonok
-**Komponensek:** Dashboard, DetailActions, DetailPage, EditPage, ErrorSummary, ListPage, SablonFrame
+**Komponensek:** Dashboard, DetailActions, DetailPage, EditPage, ErrorSummary, ListPage, SablonFrame, ShellAccount (Javaslat 08)
 
 **Hookok:** useDetailParam, useTemplateTitle
 

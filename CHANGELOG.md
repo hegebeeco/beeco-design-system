@@ -15,6 +15,11 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 
 *(még nincs)*
 
+## 1.17.0 – 2026-10-01 – Javaslat 08: becsukható oldalsáv, felhasználó a sáv alján, fejléc nélküli váz
+* **AppShell:** `collapsible` + `collapseKey` (ikon-sáv, az eszköz megjegyzi), `account` (a sáv alja, a telefonos fiókban is), `brandCompact`; `topbar` nélkül asztalon nincs fejléc.
+* **ShellAccount** (új molekula): avatar, név, szerep, menü (kijelentkezés).
+* Tesztlap: `reteg-vaz` (+4 forgatókönyv). Javaslatlap: `docs/javaslatok/08-becsukhato-sav.md`.
+
 ## 1.16.1 – 2026-10-01
 * **Javítás – sablon gombsor (EditPage), keskeny kijelzőn:** hosszú gombfeliratnál („Partner létrehozása”) a gombok balra kilógtak a sávból; most a felirat tördel. Tesztlap: `sablon-szerkeszto` (`?allapot=hosszu` hosszú mentés-felirattal). Az admin Új partner oldala hozta elő.
 

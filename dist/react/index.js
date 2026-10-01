@@ -1,4 +1,4 @@
-/* beeco design system 1.16.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.17.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -3098,29 +3098,68 @@ import * as Dialog4 from "@radix-ui/react-dialog";
 import { Fragment as Fragment12, useState as useState21 } from "react";
 import { Fragment as Fragment13, jsx as jsx52, jsxs as jsxs47 } from "react/jsx-runtime";
 var NARROW = "(max-width: 900px)";
-function AppShell({ brand, nav, topbar, renderLink = defaultLink, skipLabel = "Ugr\xE1s a tartalomra", navLabel = "F\u0151 navig\xE1ci\xF3", children }) {
+var KEY2 = (k) => `bc-shell:${k}`;
+var readCollapsed = (k) => {
+  try {
+    return localStorage.getItem(KEY2(k)) === "1";
+  } catch {
+    return false;
+  }
+};
+var Chevron2 = ({ left }) => /* @__PURE__ */ jsxs47("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true", children: [
+  /* @__PURE__ */ jsx52("path", { d: left ? "M14 6l-6 6 6 6" : "M10 6l6 6-6 6" }),
+  /* @__PURE__ */ jsx52("path", { d: left ? "M20 4v16" : "M4 4v16" })
+] });
+function AppShell({
+  brand,
+  brandCompact,
+  nav,
+  topbar,
+  account,
+  collapsible = false,
+  collapseKey = "nav",
+  renderLink = defaultLink,
+  skipLabel = "Ugr\xE1s a tartalomra",
+  navLabel = "F\u0151 navig\xE1ci\xF3",
+  children
+}) {
   const narrow = useMedia(NARROW);
   const [open, setOpen] = useState21(false);
+  const [collapsedPref, setCollapsedPref] = useState21(() => collapsible && readCollapsed(collapseKey));
+  const collapsed = collapsible && !narrow && collapsedPref;
   const focus = useReturnFocus();
-  const links = (onPick) => /* @__PURE__ */ jsxs47(Fragment13, { children: [
-    brand,
-    nav.map((g, gi) => /* @__PURE__ */ jsxs47(Fragment12, { children: [
-      g.label && /* @__PURE__ */ jsx52("p", { className: "bc-nav-group", id: `bc-nav-g${gi}`, children: g.label }),
-      /* @__PURE__ */ jsx52("ul", { className: "bc-nav-list", "aria-labelledby": g.label ? `bc-nav-g${gi}` : void 0, children: g.items.map((it) => /* @__PURE__ */ jsx52("li", { children: renderLink({
-        href: it.href,
-        className: "bc-nav-link",
-        "aria-current": it.current ? "page" : void 0,
-        onClick: onPick,
-        children: /* @__PURE__ */ jsxs47(Fragment13, { children: [
-          it.icon && /* @__PURE__ */ jsx52("span", { className: "bc-nav-icon", "aria-hidden": "true", children: it.icon }),
-          /* @__PURE__ */ jsx52("span", { className: "bc-nav-text", children: it.label })
-        ] })
-      }) }, it.href)) })
-    ] }, gi))
-  ] });
-  return /* @__PURE__ */ jsxs47("div", { className: "bc-shell", children: [
+  const toggle = () => {
+    const v = !collapsedPref;
+    setCollapsedPref(v);
+    try {
+      localStorage.setItem(KEY2(collapseKey), v ? "1" : "0");
+    } catch {
+    }
+  };
+  const links = (onPick) => nav.map((g, gi) => /* @__PURE__ */ jsxs47(Fragment12, { children: [
+    g.label && /* @__PURE__ */ jsx52("p", { className: "bc-nav-group", id: `bc-nav-g${gi}`, children: g.label }),
+    /* @__PURE__ */ jsx52("ul", { className: "bc-nav-list", "aria-labelledby": g.label ? `bc-nav-g${gi}` : void 0, children: g.items.map((it) => /* @__PURE__ */ jsx52("li", { title: collapsed ? it.label : void 0, children: renderLink({
+      href: it.href,
+      className: "bc-nav-link",
+      "aria-current": it.current ? "page" : void 0,
+      onClick: onPick,
+      children: /* @__PURE__ */ jsxs47(Fragment13, { children: [
+        it.icon && /* @__PURE__ */ jsx52("span", { className: "bc-nav-icon", "aria-hidden": "true", children: it.icon }),
+        /* @__PURE__ */ jsx52("span", { className: "bc-nav-text", children: it.label })
+      ] })
+    }) }, it.href)) })
+  ] }, gi));
+  const hasHeader = narrow || Boolean(topbar);
+  return /* @__PURE__ */ jsxs47("div", { className: cx("bc-shell", collapsed && "is-collapsed", !hasHeader && "no-topbar"), children: [
     /* @__PURE__ */ jsx52("a", { className: "bc-skip", href: "#bc-content", children: skipLabel }),
-    !narrow && /* @__PURE__ */ jsx52("nav", { className: "bc-sidebar", "aria-label": navLabel, children: links() }),
+    !narrow && /* @__PURE__ */ jsxs47("nav", { className: "bc-sidebar", "aria-label": navLabel, children: [
+      /* @__PURE__ */ jsxs47("div", { className: "bc-sidebar-head", children: [
+        collapsed && brandCompact ? brandCompact : brand,
+        collapsible && /* @__PURE__ */ jsx52(IconButton, { className: "bc-sidebar-toggle", "aria-label": collapsed ? "Men\xFC kinyit\xE1sa" : "Men\xFC becsuk\xE1sa", "aria-expanded": !collapsed, onClick: toggle, children: /* @__PURE__ */ jsx52(Chevron2, { left: !collapsed }) })
+      ] }),
+      /* @__PURE__ */ jsx52("div", { className: "bc-sidebar-links", children: links() }),
+      account && /* @__PURE__ */ jsx52("div", { className: "bc-sidebar-foot", children: account })
+    ] }),
     narrow && /* @__PURE__ */ jsx52(Dialog4.Root, { open, onOpenChange: setOpen, children: /* @__PURE__ */ jsxs47(Dialog4.Portal, { children: [
       /* @__PURE__ */ jsx52(Dialog4.Overlay, { className: "bc-scrim is-nav" }),
       /* @__PURE__ */ jsxs47(
@@ -3135,14 +3174,19 @@ function AppShell({ brand, nav, topbar, renderLink = defaultLink, skipLabel = "U
               /* @__PURE__ */ jsx52(Dialog4.Title, { className: "bc-sr", children: "Men\xFC" }),
               /* @__PURE__ */ jsx52(IconButton, { "aria-label": "Men\xFC bez\xE1r\xE1sa", onClick: () => setOpen(false), children: /* @__PURE__ */ jsx52(CloseIcon, {}) })
             ] }),
-            /* @__PURE__ */ jsx52("nav", { "aria-label": navLabel, children: links(() => setOpen(false)) })
+            /* @__PURE__ */ jsxs47("nav", { "aria-label": navLabel, className: "bc-sidebar-links", children: [
+              brand,
+              links(() => setOpen(false))
+            ] }),
+            account && /* @__PURE__ */ jsx52("div", { className: "bc-sidebar-foot", children: account })
           ]
         }
       )
     ] }) }),
     /* @__PURE__ */ jsxs47("div", { className: "bc-main", children: [
-      /* @__PURE__ */ jsxs47("header", { className: cx("bc-topbar", "bc-topbar-thin"), children: [
+      hasHeader && /* @__PURE__ */ jsxs47("header", { className: cx("bc-topbar", "bc-topbar-thin"), children: [
         narrow && /* @__PURE__ */ jsx52(IconButton, { "aria-label": "Men\xFC megnyit\xE1sa", "aria-expanded": open, "aria-haspopup": "dialog", onClick: () => setOpen(true), children: /* @__PURE__ */ jsx52("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5", strokeLinecap: "round", "aria-hidden": "true", children: /* @__PURE__ */ jsx52("path", { d: "M4 7h16M4 12h16M4 17h16" }) }) }),
+        narrow && !topbar && /* @__PURE__ */ jsx52("div", { className: "bc-topbar-brand", children: brandCompact ?? brand }),
         /* @__PURE__ */ jsx52("div", { className: "bc-topbar-end", children: topbar })
       ] }),
       /* @__PURE__ */ jsx52("main", { className: "bc-content", id: "bc-content", tabIndex: -1, children })
@@ -8110,6 +8154,32 @@ function Counting(s) {
   const v = useCountUp(s.value);
   return /* @__PURE__ */ jsx107(StatTile, { ...s, value: v });
 }
+
+// react/src/sablon/ShellAccount.tsx
+import { Fragment as Fragment33, jsx as jsx108, jsxs as jsxs98 } from "react/jsx-runtime";
+function ShellAccount({ name: name2, detail, avatarSrc, items }) {
+  const nev = name2 ?? "Bet\xF6lt\xE9s\u2026";
+  return /* @__PURE__ */ jsx108(
+    DropdownMenu,
+    {
+      label: `Felhaszn\xE1l\xF3i men\xFC: ${nev}`,
+      align: "start",
+      header: /* @__PURE__ */ jsxs98(Fragment33, { children: [
+        /* @__PURE__ */ jsx108("strong", { children: nev }),
+        detail && /* @__PURE__ */ jsx108("span", { className: "bc-muted", children: detail })
+      ] }),
+      trigger: /* @__PURE__ */ jsxs98("button", { type: "button", className: "bc-account", "aria-label": `Felhaszn\xE1l\xF3i men\xFC: ${nev}`, title: nev, children: [
+        /* @__PURE__ */ jsx108(Avatar, { name: name2 ?? "?", src: avatarSrc, size: 32, decorative: true }),
+        /* @__PURE__ */ jsxs98("span", { className: "bc-account-text", children: [
+          /* @__PURE__ */ jsx108("span", { className: "bc-account-name", children: nev }),
+          detail && /* @__PURE__ */ jsx108("span", { className: "bc-account-detail", children: detail })
+        ] }),
+        /* @__PURE__ */ jsx108("svg", { className: "bc-account-chev", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5", strokeLinecap: "round", "aria-hidden": "true", children: /* @__PURE__ */ jsx108("path", { d: "M8 10l4-4 4 4M8 14l4 4 4-4" }) })
+      ] }),
+      items
+    }
+  );
+}
 export {
   Accordion,
   AddressSearch,
@@ -8208,6 +8278,7 @@ export {
   SelectCell,
   SelectField,
   SessionExpired,
+  ShellAccount,
   SkeletonRows,
   Slider,
   SortHeader,

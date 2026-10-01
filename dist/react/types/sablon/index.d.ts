@@ -5,3 +5,4 @@ export { DetailActions, type DetailAction } from './DetailActions';
 export { EditPage, type EditPageProps, type EditContext } from './EditPage';
 export { ErrorSummary, type FormError } from './ErrorSummary';
 export { Dashboard, type DashboardProps, type DashboardStat } from './Dashboard';
+export { ShellAccount, type ShellAccountProps } from './ShellAccount';

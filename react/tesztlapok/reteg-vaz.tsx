@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { StrictMode, useEffect, useState } from 'react';
-import { AppShell, Button, DropdownMenu, PageHeader, Toaster, type NavGroup } from '../src';
+import { AppShell, Button, PageHeader, ShellAccount, Toaster, type NavGroup } from '../src';
 
 // Saját keret (nem a _keret.mount): az AppShell maga az oldal – benne van a <main>
 const ic = (d: string) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d={d} /></svg>;
@@ -24,13 +24,14 @@ function Oldal() {
   const nav: NavGroup[] = ['Tartalom', 'Naptár', 'Elemzés'].map((g) => ({ label: g, items: LINKS.filter((l) => l[0] === g).map(([, href, label, d]) => ({ href: `#${href}`, label, icon: ic(d), current: href === cur })) }));
   const cim = LINKS.find((l) => l[1] === cur)?.[2] ?? 'Partnerek';
   return (
-    <AppShell brand={<a href="#partnerek" className="bc-brand">beeco admin</a>} nav={nav}
-      topbar={<DropdownMenu label="Profil" header={<><strong>Kovács Kata</strong><span className="bc-muted">admin</span></>} trigger={<Button variant="secondary" size="sm">Kata K.</Button>} items={[{ label: 'Profilom' }, 'separator', { label: 'Kijelentkezés' }]} />}>
+    <AppShell brand={<a href="#partnerek" className="bc-brand">beeco <span className="bc-brand-text">admin</span></a>} brandCompact={<a href="#partnerek" className="bc-brand" aria-label="beeco admin – kezdőlap">b</a>}
+      nav={nav} collapsible collapseKey="tesztlap"
+      account={<ShellAccount name="Kovács Katalin Erzsébet (nagyon hosszú név)" detail="admin" items={[{ label: 'Profilom' }, 'separator', { label: 'Kijelentkezés', onSelect: () => { document.title = 'kijelentkezve'; } }]} />}>
       <Toaster />
       <div data-case="vaz">
-        <PageHeader title={cim} description="Az oldal címe a tartalom tetején, a fejléc vékony (7A)." breadcrumbs={[{ label: 'Admin', href: '#partnerek' }, { label: cim }]} actions={<Button>Új elem</Button>} />
+        <PageHeader title={cim} description="Az oldal címe a tartalom tetején; asztalon nincs fejléc, a sáv becsukható (Javaslat 08)." breadcrumbs={[{ label: 'Admin', href: '#partnerek' }, { label: cim }]} actions={<Button>Új elem</Button>} />
         <p data-out="oldal">oldal: {cur}</p>
-        {Array.from({ length: 12 }, (_, i) => <p key={i}>Tartalom {i + 1}. sora (mintaadat) – görgess, a fejléc ragad.</p>)}
+        {Array.from({ length: 12 }, (_, i) => <p key={i}>Tartalom {i + 1}. sora (mintaadat) – görgess, a sáv a helyén marad.</p>)}
       </div>
     </AppShell>
   );
