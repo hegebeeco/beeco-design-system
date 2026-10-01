@@ -5,6 +5,7 @@ a kinézetet a DS; a grafikonok **saját SVG**-ből készülnek; minden komponen
 új komponens vagy szabály **csak Kristóf jóváhagyásával, javaslatlapon** kerül be. Sorrend: űrlap → adat → réteg → média.*
 
 **Nyelv:** a termék-felületek szövegei **csak magyarul** készülnek; angol változat csak Kristóf kifejezett kérésére (2026-10-01).
+A **partner-app kétnyelvű** (Kristóf, 2026-10-01): ezért a DS-komponensek beépített feliratai felülírhatók (`labels`, `menuLabel`, `srLabel`…), az alapérték magyar.
 
 Kapcsolódó: `docs/rendszer.md` (felépítés) · `docs/termek-arculat.md` (termékbőr) · `docs/arculat.md` (játékbőr).
 

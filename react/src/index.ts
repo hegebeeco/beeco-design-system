@@ -29,3 +29,4 @@ export * from './meh';
 export * from './kieg';
 export * from './kieg2';
 export * from './sablon';
+export * from './tema';

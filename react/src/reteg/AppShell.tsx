@@ -10,6 +10,12 @@ import { CloseIcon } from './Modal';
 export type NavItem = { href: string; label: string; icon?: ReactNode; current?: boolean };
 export type NavGroup = { label?: string; items: NavItem[] };
 
+/** A váz saját feliratai (képernyőolvasó és súgó-buborék). Alapból magyarul; kétnyelvű appban i18n-ből add meg. */
+export type AppShellLabels = { openMenu: string; closeMenu: string; menuTitle: string; expand: string; collapse: string };
+export const APP_SHELL_LABELS_HU: AppShellLabels = {
+  openMenu: 'Menü megnyitása', closeMenu: 'Menü bezárása', menuTitle: 'Menü', expand: 'Menü kinyitása', collapse: 'Menü becsukása',
+};
+
 export type AppShellProps = {
   /** Márka a sáv tetején: <a className="bc-brand" href="/">logó + <span className="bc-brand-text">admin</span></a> */
   brand: ReactNode;
@@ -29,6 +35,8 @@ export type AppShellProps = {
   /** Az ugrólink szövege */
   skipLabel?: string;
   navLabel?: string;
+  /** A váz gombjainak feliratai (pl. angolul) – ami hiányzik, az magyar marad */
+  labels?: Partial<AppShellLabels>;
   children: ReactNode;
 };
 
@@ -49,7 +57,8 @@ const Chevron = ({ left }: { left: boolean }) => (
  * Az első Tab-ra „Ugrás a tartalomra” ugrólink jelenik meg. Az oldal címe a tartalom tetején van (PageHeader).
  */
 export function AppShell({ brand, brandCompact, nav, topbar, account, collapsible = false, collapseKey = 'nav', renderLink = defaultLink,
-  skipLabel = 'Ugrás a tartalomra', navLabel = 'Fő navigáció', children }: AppShellProps) {
+  skipLabel = 'Ugrás a tartalomra', navLabel = 'Fő navigáció', labels, children }: AppShellProps) {
+  const l = { ...APP_SHELL_LABELS_HU, ...labels };
   const narrow = useMedia(NARROW);
   const [open, setOpen] = useState(false);
   const [collapsedPref, setCollapsedPref] = useState(() => collapsible && readCollapsed(collapseKey));
@@ -86,7 +95,7 @@ export function AppShell({ brand, brandCompact, nav, topbar, account, collapsibl
           <div className="bc-sidebar-head">
             {collapsed && brandCompact ? brandCompact : brand}
             {collapsible && (
-              <IconButton className="bc-sidebar-toggle" aria-label={collapsed ? 'Menü kinyitása' : 'Menü becsukása'} aria-expanded={!collapsed} onClick={toggle}>
+              <IconButton className="bc-sidebar-toggle" aria-label={collapsed ? l.expand : l.collapse} aria-expanded={!collapsed} onClick={toggle}>
                 <Chevron left={!collapsed} />
               </IconButton>
             )}
@@ -102,8 +111,8 @@ export function AppShell({ brand, brandCompact, nav, topbar, account, collapsibl
             <Dialog.Content className="bc-sidebar is-open" aria-describedby={undefined}
               onOpenAutoFocus={focus.remember} onCloseAutoFocus={focus.restore}>
               <div className="bc-nav-head">
-                <Dialog.Title className="bc-sr">Menü</Dialog.Title>
-                <IconButton aria-label="Menü bezárása" onClick={() => setOpen(false)}><CloseIcon /></IconButton>
+                <Dialog.Title className="bc-sr">{l.menuTitle}</Dialog.Title>
+                <IconButton aria-label={l.closeMenu} onClick={() => setOpen(false)}><CloseIcon /></IconButton>
               </div>
               <nav aria-label={navLabel} className="bc-sidebar-links">{brand}{links(() => setOpen(false))}</nav>
               {account && <div className="bc-sidebar-foot">{account}</div>}
@@ -115,7 +124,7 @@ export function AppShell({ brand, brandCompact, nav, topbar, account, collapsibl
         {hasHeader && (
           <header className={cx('bc-topbar', 'bc-topbar-thin')}>
             {narrow && (
-              <IconButton aria-label="Menü megnyitása" aria-expanded={open} aria-haspopup="dialog" onClick={() => setOpen(true)}>
+              <IconButton aria-label={l.openMenu} aria-expanded={open} aria-haspopup="dialog" onClick={() => setOpen(true)}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
               </IconButton>
             )}

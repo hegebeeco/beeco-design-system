@@ -11,21 +11,25 @@ export type ShellAccountProps = {
   avatarSrc?: string;
   /** A menü elemei, legalább a kijelentkezés: { label: 'Kijelentkezés', onSelect } */
   items: MenuEntry[];
+  /** A menügomb neve a képernyőolvasónak (kétnyelvű appban i18n-ből). Alap: „Felhasználói menü: <név>” */
+  menuLabel?: (name: string) => string;
+  /** A név helyén töltés közben. Alap: „Betöltés…” */
+  loadingLabel?: string;
 };
 
 /**
  * ShellAccount (molekula, Javaslat 08): a felhasználó az AppShell oldalsávjának alján – avatar, név, szerep, menü (kijelentkezés).
  * Becsukott sávban csak az avatar látszik; a gomb neve a képernyőolvasónak ilyenkor is a teljes név.
  */
-export function ShellAccount({ name, detail, avatarSrc, items }: ShellAccountProps) {
-  const nev = name ?? 'Betöltés…';
+export function ShellAccount({ name, detail, avatarSrc, items, menuLabel = (n) => `Felhasználói menü: ${n}`, loadingLabel = 'Betöltés…' }: ShellAccountProps) {
+  const nev = name ?? loadingLabel;
   return (
     <DropdownMenu
-      label={`Felhasználói menü: ${nev}`}
+      label={menuLabel(nev)}
       align="start"
       header={<><strong>{nev}</strong>{detail && <span className="bc-muted">{detail}</span>}</>}
       trigger={
-        <button type="button" className="bc-account" aria-label={`Felhasználói menü: ${nev}`} title={nev}>
+        <button type="button" className="bc-account" aria-label={menuLabel(nev)} title={nev}>
           <Avatar name={name ?? '?'} src={avatarSrc} size={32} decorative />
           <span className="bc-account-text">
             <span className="bc-account-name">{nev}</span>

@@ -130,6 +130,11 @@
   "leiras": "Fülek (panelváltó és linkes), oldalfej, morzsamenü, a böngészőfül címe (usePageTitle)."
  },
  {
+  "nev": "reteg-vaz-felirat",
+  "cim": "reteg-vaz-felirat.tsx",
+  "leiras": ""
+ },
+ {
   "nev": "reteg-vaz",
   "cim": "reteg-vaz.tsx",
   "leiras": ""
@@ -158,6 +163,11 @@
   "nev": "szam",
   "cim": "Számmező",
   "leiras": "Betű, második tizedesjel és fölösleges mínusz nem írható be; a tartományon kívüli érték kilépéskor a határra áll, és a mező szól."
+ },
+ {
+  "nev": "tema",
+  "cim": "Téma",
+  "leiras": "Világos, sötét vagy a rendszer szerint; az eszköz megjegyzi, más fülön is követi. Csak a szerepek váltanak – ami szerepet használ, az magától jó sötétben is."
  },
  {
   "nev": "valaszto",

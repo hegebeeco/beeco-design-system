@@ -16,4 +16,4 @@ export { Breadcrumbs, type BreadcrumbsProps, type Crumb } from './Breadcrumbs';
 export { PageHeader, usePageTitle, type PageHeaderProps } from './PageHeader';
 export { Toaster, type ToasterProps } from './Toaster';
 export { notify, type ToastOptions, type ToastAction, type ToastKind } from './notify';
-export { AppShell, type AppShellProps, type NavGroup, type NavItem } from './AppShell';
+export { AppShell, APP_SHELL_LABELS_HU, type AppShellProps, type AppShellLabels, type NavGroup, type NavItem } from './AppShell';

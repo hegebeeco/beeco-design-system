@@ -10,6 +10,15 @@ export type NavGroup = {
     label?: string;
     items: NavItem[];
 };
+/** A váz saját feliratai (képernyőolvasó és súgó-buborék). Alapból magyarul; kétnyelvű appban i18n-ből add meg. */
+export type AppShellLabels = {
+    openMenu: string;
+    closeMenu: string;
+    menuTitle: string;
+    expand: string;
+    collapse: string;
+};
+export declare const APP_SHELL_LABELS_HU: AppShellLabels;
 export type AppShellProps = {
     /** Márka a sáv tetején: <a className="bc-brand" href="/">logó + <span className="bc-brand-text">admin</span></a> */
     brand: ReactNode;
@@ -29,6 +38,8 @@ export type AppShellProps = {
     /** Az ugrólink szövege */
     skipLabel?: string;
     navLabel?: string;
+    /** A váz gombjainak feliratai (pl. angolul) – ami hiányzik, az magyar marad */
+    labels?: Partial<AppShellLabels>;
     children: ReactNode;
 };
 /**
@@ -37,4 +48,4 @@ export type AppShellProps = {
  * 900 px alatt a sáv behúzható fiók (☰): Radix Dialog – fókuszcsapda, Esc, háttér; linkre koppintva bezár, a fókusz visszaáll a ☰-re.
  * Az első Tab-ra „Ugrás a tartalomra” ugrólink jelenik meg. Az oldal címe a tartalom tetején van (PageHeader).
  */
-export declare function AppShell({ brand, brandCompact, nav, topbar, account, collapsible, collapseKey, renderLink, skipLabel, navLabel, children }: AppShellProps): import("react").JSX.Element;
+export declare function AppShell({ brand, brandCompact, nav, topbar, account, collapsible, collapseKey, renderLink, skipLabel, navLabel, labels, children }: AppShellProps): import("react").JSX.Element;

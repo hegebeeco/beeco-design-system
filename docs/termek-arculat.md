@@ -115,6 +115,11 @@ Vastagság: 400 · 600 · 700 (a webes Open Sans 400–700 között változó; 8
 `<html data-theme="dark">` vagy `<html class="dark">` (Tailwind), rendszer szerint: `data-theme="auto"`. Csak a szerepek
 váltanak – ha a felület csak szerepet használ, a sötét mód magától működik. A méz sötétben is méz, rajta a szöveg fekete.
 
+**Téma-váltó (1.23.0, Javaslat 09):** React-appban `ThemeProvider` az app gyökerében (a `<html>` `data-theme` + `.dark` jelzőit írja,
+a választást megjegyzi), `ThemeToggle` a kezelőfelületen – kompakt helyen ikongomb, beállítás-oldalon *Világos · Sötét · Rendszer szerint*.
+Villanásmentes induláshoz a `themeInitScript()` kimenete a `<head>`-be kerül. Új kódban `dark:` Tailwind-változat **nem kell**:
+a szerepek maguktól váltanak.
+
 ## 9. Méhecske és logó
 
 A logó és a méhecske-képek a `web/assets/brand/` alatt (belső használatra; külső partneranyagban beeco-jóváhagyás kell).

@@ -9,9 +9,13 @@ export type ShellAccountProps = {
     avatarSrc?: string;
     /** A menü elemei, legalább a kijelentkezés: { label: 'Kijelentkezés', onSelect } */
     items: MenuEntry[];
+    /** A menügomb neve a képernyőolvasónak (kétnyelvű appban i18n-ből). Alap: „Felhasználói menü: <név>” */
+    menuLabel?: (name: string) => string;
+    /** A név helyén töltés közben. Alap: „Betöltés…” */
+    loadingLabel?: string;
 };
 /**
  * ShellAccount (molekula, Javaslat 08): a felhasználó az AppShell oldalsávjának alján – avatar, név, szerep, menü (kijelentkezés).
  * Becsukott sávban csak az avatar látszik; a gomb neve a képernyőolvasónak ilyenkor is a teljes név.
  */
-export declare function ShellAccount({ name, detail, avatarSrc, items }: ShellAccountProps): import("react").JSX.Element;
+export declare function ShellAccount({ name, detail, avatarSrc, items, menuLabel, loadingLabel }: ShellAccountProps): import("react").JSX.Element;

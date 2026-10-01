@@ -1,4 +1,4 @@
-/* beeco design system 1.22.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.23.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -43,7 +43,7 @@ var IcOk = () => /* @__PURE__ */ jsx("svg", { ...S, children: /* @__PURE__ */ js
 import { jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
 var NYIT_MS = 250;
 var ZAR_MS = 200;
-function HelpButton({ label, children }) {
+function HelpButton({ label, children, srLabel }) {
   const [open, setOpen] = useState(false);
   const [rogzitett, setRogzitett] = useState(false);
   const idozito = useRef(void 0);
@@ -72,7 +72,7 @@ function HelpButton({ label, children }) {
     setOpen(o);
     if (!o) setRogzitett(false);
   }, children: [
-    /* @__PURE__ */ jsx2(Popover.Trigger, { className: "bc-help-btn", "aria-label": `S\xFAg\xF3: ${label}`, type: "button", onPointerEnter: be, onPointerLeave: ki, onClick: kattint, children: /* @__PURE__ */ jsx2(IcInfo, {}) }),
+    /* @__PURE__ */ jsx2(Popover.Trigger, { className: "bc-help-btn", "aria-label": srLabel ?? `S\xFAg\xF3: ${label}`, type: "button", onPointerEnter: be, onPointerLeave: ki, onClick: kattint, children: /* @__PURE__ */ jsx2(IcInfo, {}) }),
     /* @__PURE__ */ jsx2(Popover.Portal, { children: /* @__PURE__ */ jsxs2(
       Popover.Content,
       {
@@ -3222,6 +3222,13 @@ function ToastView({ t }) {
 import * as Dialog4 from "@radix-ui/react-dialog";
 import { Fragment as Fragment14, useState as useState22 } from "react";
 import { Fragment as Fragment15, jsx as jsx55, jsxs as jsxs50 } from "react/jsx-runtime";
+var APP_SHELL_LABELS_HU = {
+  openMenu: "Men\xFC megnyit\xE1sa",
+  closeMenu: "Men\xFC bez\xE1r\xE1sa",
+  menuTitle: "Men\xFC",
+  expand: "Men\xFC kinyit\xE1sa",
+  collapse: "Men\xFC becsuk\xE1sa"
+};
 var NARROW = "(max-width: 900px)";
 var KEY2 = (k) => `bc-shell:${k}`;
 var readCollapsed = (k) => {
@@ -3246,8 +3253,10 @@ function AppShell({
   renderLink = defaultLink,
   skipLabel = "Ugr\xE1s a tartalomra",
   navLabel = "F\u0151 navig\xE1ci\xF3",
+  labels,
   children
 }) {
+  const l = { ...APP_SHELL_LABELS_HU, ...labels };
   const narrow = useMedia(NARROW);
   const [open, setOpen] = useState22(false);
   const [collapsedPref, setCollapsedPref] = useState22(() => collapsible && readCollapsed(collapseKey));
@@ -3280,7 +3289,7 @@ function AppShell({
     !narrow && /* @__PURE__ */ jsxs50("nav", { className: "bc-sidebar", "aria-label": navLabel, children: [
       /* @__PURE__ */ jsxs50("div", { className: "bc-sidebar-head", children: [
         collapsed && brandCompact ? brandCompact : brand,
-        collapsible && /* @__PURE__ */ jsx55(IconButton, { className: "bc-sidebar-toggle", "aria-label": collapsed ? "Men\xFC kinyit\xE1sa" : "Men\xFC becsuk\xE1sa", "aria-expanded": !collapsed, onClick: toggle, children: /* @__PURE__ */ jsx55(Chevron2, { left: !collapsed }) })
+        collapsible && /* @__PURE__ */ jsx55(IconButton, { className: "bc-sidebar-toggle", "aria-label": collapsed ? l.expand : l.collapse, "aria-expanded": !collapsed, onClick: toggle, children: /* @__PURE__ */ jsx55(Chevron2, { left: !collapsed }) })
       ] }),
       /* @__PURE__ */ jsx55("div", { className: "bc-sidebar-links", children: links() }),
       account && /* @__PURE__ */ jsx55("div", { className: "bc-sidebar-foot", children: account })
@@ -3296,8 +3305,8 @@ function AppShell({
           onCloseAutoFocus: focus.restore,
           children: [
             /* @__PURE__ */ jsxs50("div", { className: "bc-nav-head", children: [
-              /* @__PURE__ */ jsx55(Dialog4.Title, { className: "bc-sr", children: "Men\xFC" }),
-              /* @__PURE__ */ jsx55(IconButton, { "aria-label": "Men\xFC bez\xE1r\xE1sa", onClick: () => setOpen(false), children: /* @__PURE__ */ jsx55(CloseIcon, {}) })
+              /* @__PURE__ */ jsx55(Dialog4.Title, { className: "bc-sr", children: l.menuTitle }),
+              /* @__PURE__ */ jsx55(IconButton, { "aria-label": l.closeMenu, onClick: () => setOpen(false), children: /* @__PURE__ */ jsx55(CloseIcon, {}) })
             ] }),
             /* @__PURE__ */ jsxs50("nav", { "aria-label": navLabel, className: "bc-sidebar-links", children: [
               brand,
@@ -3310,7 +3319,7 @@ function AppShell({
     ] }) }),
     /* @__PURE__ */ jsxs50("div", { className: "bc-main", children: [
       hasHeader && /* @__PURE__ */ jsxs50("header", { className: cx("bc-topbar", "bc-topbar-thin"), children: [
-        narrow && /* @__PURE__ */ jsx55(IconButton, { "aria-label": "Men\xFC megnyit\xE1sa", "aria-expanded": open, "aria-haspopup": "dialog", onClick: () => setOpen(true), children: /* @__PURE__ */ jsx55("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5", strokeLinecap: "round", "aria-hidden": "true", children: /* @__PURE__ */ jsx55("path", { d: "M4 7h16M4 12h16M4 17h16" }) }) }),
+        narrow && /* @__PURE__ */ jsx55(IconButton, { "aria-label": l.openMenu, "aria-expanded": open, "aria-haspopup": "dialog", onClick: () => setOpen(true), children: /* @__PURE__ */ jsx55("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5", strokeLinecap: "round", "aria-hidden": "true", children: /* @__PURE__ */ jsx55("path", { d: "M4 7h16M4 12h16M4 17h16" }) }) }),
         narrow && !topbar && /* @__PURE__ */ jsx55("div", { className: "bc-topbar-brand", children: brandCompact ?? brand }),
         /* @__PURE__ */ jsx55("div", { className: "bc-topbar-end", children: topbar })
       ] }),
@@ -8282,18 +8291,18 @@ function Counting(s) {
 
 // react/src/sablon/ShellAccount.tsx
 import { Fragment as Fragment35, jsx as jsx111, jsxs as jsxs101 } from "react/jsx-runtime";
-function ShellAccount({ name: name2, detail, avatarSrc, items }) {
-  const nev = name2 ?? "Bet\xF6lt\xE9s\u2026";
+function ShellAccount({ name: name2, detail, avatarSrc, items, menuLabel = (n) => `Felhaszn\xE1l\xF3i men\xFC: ${n}`, loadingLabel = "Bet\xF6lt\xE9s\u2026" }) {
+  const nev = name2 ?? loadingLabel;
   return /* @__PURE__ */ jsx111(
     DropdownMenu,
     {
-      label: `Felhaszn\xE1l\xF3i men\xFC: ${nev}`,
+      label: menuLabel(nev),
       align: "start",
       header: /* @__PURE__ */ jsxs101(Fragment35, { children: [
         /* @__PURE__ */ jsx111("strong", { children: nev }),
         detail && /* @__PURE__ */ jsx111("span", { className: "bc-muted", children: detail })
       ] }),
-      trigger: /* @__PURE__ */ jsxs101("button", { type: "button", className: "bc-account", "aria-label": `Felhaszn\xE1l\xF3i men\xFC: ${nev}`, title: nev, children: [
+      trigger: /* @__PURE__ */ jsxs101("button", { type: "button", className: "bc-account", "aria-label": menuLabel(nev), title: nev, children: [
         /* @__PURE__ */ jsx111(Avatar, { name: name2 ?? "?", src: avatarSrc, size: 32, decorative: true }),
         /* @__PURE__ */ jsxs101("span", { className: "bc-account-text", children: [
           /* @__PURE__ */ jsx111("span", { className: "bc-account-name", children: nev }),
@@ -8305,7 +8314,123 @@ function ShellAccount({ name: name2, detail, avatarSrc, items }) {
     }
   );
 }
+
+// react/src/tema/ThemeProvider.tsx
+import { createContext as createContext4, useCallback as useCallback8, useContext as useContext4, useEffect as useEffect36, useMemo as useMemo6, useState as useState58, useSyncExternalStore as useSyncExternalStore4 } from "react";
+
+// react/src/tema/tema.ts
+var THEME_STORAGE_KEY = "bc-theme";
+var DARK_QUERY = "(prefers-color-scheme: dark)";
+var isThemeMode = (v) => v === "light" || v === "dark" || v === "auto";
+function readThemeMode(storageKey = THEME_STORAGE_KEY, fallback = "auto") {
+  try {
+    const v = localStorage.getItem(storageKey);
+    return isThemeMode(v) ? v : fallback;
+  } catch {
+    return fallback;
+  }
+}
+function writeThemeMode(mode, storageKey = THEME_STORAGE_KEY) {
+  try {
+    localStorage.setItem(storageKey, mode);
+  } catch {
+  }
+}
+var systemPrefersDark = () => typeof window !== "undefined" && typeof window.matchMedia === "function" && window.matchMedia(DARK_QUERY).matches;
+var resolveTheme = (mode, prefersDark) => mode === "auto" ? prefersDark ? "dark" : "light" : mode;
+function applyTheme(mode, resolved, root = document.documentElement) {
+  root.dataset.theme = resolved;
+  root.dataset.themeMode = mode;
+  root.classList.toggle("dark", resolved === "dark");
+}
+function themeInitScript(storageKey = THEME_STORAGE_KEY, fallback = "auto") {
+  const k = JSON.stringify(storageKey);
+  const f = JSON.stringify(fallback);
+  return `(function(){var m;try{m=localStorage.getItem(${k})}catch(e){}if(m!=='light'&&m!=='dark'&&m!=='auto')m=${f};var d=m==='dark'||(m==='auto'&&!!window.matchMedia&&matchMedia(${JSON.stringify(DARK_QUERY)}).matches);var r=document.documentElement;r.setAttribute('data-theme',d?'dark':'light');r.setAttribute('data-theme-mode',m);if(d)r.classList.add('dark');else r.classList.remove('dark')})()`;
+}
+
+// react/src/tema/ThemeProvider.tsx
+import { jsx as jsx112 } from "react/jsx-runtime";
+var ThemeContext = createContext4(null);
+var subscribeSystem = (cb) => {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") return () => {
+  };
+  const mq = window.matchMedia(DARK_QUERY);
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+};
+function ThemeProvider({ storageKey = THEME_STORAGE_KEY, defaultMode = "auto", children }) {
+  const [mode, setModeState] = useState58(() => readThemeMode(storageKey, defaultMode));
+  const prefersDark = useSyncExternalStore4(subscribeSystem, systemPrefersDark, () => false);
+  const resolved = resolveTheme(mode, prefersDark);
+  useEffect36(() => {
+    applyTheme(mode, resolved);
+  }, [mode, resolved]);
+  useEffect36(() => {
+    const onStorage = (e) => {
+      if (e.key === storageKey && isThemeMode(e.newValue)) setModeState(e.newValue);
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, [storageKey]);
+  const setMode = useCallback8((m) => {
+    setModeState(m);
+    writeThemeMode(m, storageKey);
+  }, [storageKey]);
+  const toggle = useCallback8(() => setMode(resolved === "dark" ? "light" : "dark"), [resolved, setMode]);
+  const value = useMemo6(() => ({ mode, resolved, setMode, toggle }), [mode, resolved, setMode, toggle]);
+  return /* @__PURE__ */ jsx112(ThemeContext.Provider, { value, children });
+}
+function useTheme() {
+  const ctx = useContext4(ThemeContext);
+  if (!ctx) throw new Error("useTheme: a komponens nincs ThemeProvider alatt (tedd az app gy\xF6ker\xE9be).");
+  return ctx;
+}
+
+// react/src/tema/ThemeToggle.tsx
+import { jsx as jsx113, jsxs as jsxs102 } from "react/jsx-runtime";
+var THEME_LABELS_HU = {
+  group: "Megjelen\xE9s",
+  light: "Vil\xE1gos",
+  dark: "S\xF6t\xE9t",
+  auto: "Rendszer szerint",
+  toDark: "S\xF6t\xE9t m\xF3d bekapcsol\xE1sa",
+  toLight: "Vil\xE1gos m\xF3d bekapcsol\xE1sa"
+};
+var svg = { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true };
+var IcSun = () => /* @__PURE__ */ jsxs102("svg", { ...svg, children: [
+  /* @__PURE__ */ jsx113("circle", { cx: "12", cy: "12", r: "4" }),
+  /* @__PURE__ */ jsx113("path", { d: "M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" })
+] });
+var IcMoon = () => /* @__PURE__ */ jsx113("svg", { ...svg, children: /* @__PURE__ */ jsx113("path", { d: "M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" }) });
+var IcAuto = () => /* @__PURE__ */ jsxs102("svg", { ...svg, children: [
+  /* @__PURE__ */ jsx113("rect", { x: "3", y: "4", width: "18", height: "12", rx: "2" }),
+  /* @__PURE__ */ jsx113("path", { d: "M8 20h8M12 16v4" })
+] });
+function ThemeToggle({ variant = "icon", labels, className }) {
+  const { mode, resolved, setMode, toggle } = useTheme();
+  const l = { ...THEME_LABELS_HU, ...labels };
+  if (variant === "segmented") {
+    return /* @__PURE__ */ jsx113(
+      SegmentedControl,
+      {
+        label: l.group,
+        value: mode,
+        onChange: setMode,
+        className,
+        items: [
+          { value: "light", label: l.light, icon: /* @__PURE__ */ jsx113(IcSun, {}) },
+          { value: "dark", label: l.dark, icon: /* @__PURE__ */ jsx113(IcMoon, {}) },
+          { value: "auto", label: l.auto, icon: /* @__PURE__ */ jsx113(IcAuto, {}) }
+        ]
+      }
+    );
+  }
+  const toDark = resolved === "light";
+  return /* @__PURE__ */ jsx113(TooltipIconButton, { label: toDark ? l.toDark : l.toLight, onClick: toggle, className, "data-theme-toggle": "", children: toDark ? /* @__PURE__ */ jsx113(IcMoon, {}) : /* @__PURE__ */ jsx113(IcSun, {}) });
+}
 export {
+  APP_SHELL_LABELS_HU,
   Accordion,
   AddressSearch,
   AppShell,
@@ -8360,12 +8485,15 @@ export {
   HeatScale,
   HelpButton,
   HexLoader,
+  IcAuto,
   IcEdit,
   IcInfo,
+  IcMoon,
   IcNew,
   IcOk,
   IcOpen,
   IcSave,
+  IcSun,
   IcTrash,
   IcX,
   IconButton,
@@ -8426,11 +8554,15 @@ export {
   StatusPage,
   Stepper,
   Switch,
+  THEME_LABELS_HU,
+  THEME_STORAGE_KEY,
   TabCount,
   Tabs,
   TagPicker,
   TextArea,
   TextField,
+  ThemeProvider,
+  ThemeToggle,
   Timeline,
   Toaster,
   TooltipIconButton,
@@ -8444,6 +8576,7 @@ export {
   VideoUpload,
   WEEK,
   accuracyText,
+  applyTheme,
   audienceProblems,
   celebrate,
   checkFiles,
@@ -8470,6 +8603,7 @@ export {
   heatGradient,
   inHungary,
   initials,
+  isThemeMode,
   issuesToCsv,
   lengthRange,
   localToUtcIso,
@@ -8488,6 +8622,8 @@ export {
   parseVideoUrl,
   phoneInfo,
   pillanatok,
+  readThemeMode,
+  resolveTheme,
   roundLatLng,
   say,
   shake,
@@ -8495,6 +8631,7 @@ export {
   sniffType,
   stepsFrom,
   szerepek,
+  themeInitScript,
   toE164,
   todayIso,
   typeNames,
@@ -8507,8 +8644,10 @@ export {
   useQueryParam,
   useReducedMotion,
   useTemplateTitle,
+  useTheme,
   useUnsavedChanges,
   utcToLocal,
   validLatLng,
-  validateHours
+  validateHours,
+  writeThemeMode
 };
