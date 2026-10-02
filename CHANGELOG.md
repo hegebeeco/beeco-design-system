@@ -22,6 +22,9 @@ A beeco.hu a termékbőrt kapja (Kristóf, 2026-10-01), de Webflow-ban készül,
   axe-core WCAG 2.2 AA, DS-en kívüli szín/sarok/árnyék/betű, szerkezet, SEO-alap, linkek, animáció.
 - `tools/web/oldal-meres-web.js`: a web-specifikus mérés (a közös `tools/komp/oldal-meres.js` mellé).
 - `tests/check-weboldal.js`: a generált réteg frissességét, teljességét és a névszabályt őrzi; `npm test` része.
+- `tools/web-osztalyleltar.js`: a Webflow-ban definiált stílusokat veti össze az élő oldalakon
+  használt osztályokkal; csoportokba sorol és megmutatja a takarítási jelölteket.
+- `.github/workflows/weboldal.yml`: éjszakai őrjárat a stagingre, letölthető jelentéssel.
 - `npm run web <URL>` parancs.
 
 ## 1.24.0 – 2026-10-02

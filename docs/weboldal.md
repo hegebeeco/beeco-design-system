@@ -119,6 +119,32 @@ Minden oldalt megnyit 4 nézetben (320 · 390 · 768 · 1280), és mér:
 
 P0 vagy P1 lelet → 1-es kilépési kód, tehát CI-ben megbuktatja a futást.
 
+## 7. Osztályleltár – mi a DS, mi egyedi, mi halott
+
+A Webflow-ban az osztályok sosem tűnnek el maguktól: a törölt szekciók stílusai ott maradnak, és
+minden sablon, amiből valaha dolgoztunk, otthagyja a sajátjait. Ez az eszköz két forrást vet össze:
+a Webflow-ban **definiált** stílusokat és az élő oldalakon ténylegesen **használt** osztályokat.
+
+```bash
+# 1. a stíluslista kimentése (Webflow MCP: data_style_tool > get_styles, query "all")
+# 2. összevetés az élő oldallal
+node tools/web-osztalyleltar.js stilusok.json https://beeco-weboldal.webflow.io --max 25 --json leltar.json
+```
+
+Csoportok, amiket megkülönböztet: `DS (bc-)`, `oldal-specifikus (h26-)`, `játékbőr maradék (ds-)`,
+`sablon-maradék` (BRIX és Webflow alapnevek), `ékezetes vagy nagybetűs`, `egyedi`.
+
+**A kimenet nem törlési lista.** A sitemapből csak mintát nézünk, a vázlat oldalak pedig nem is
+szerepelnek benne, tehát egy osztály hiányozhat a mintából úgy is, hogy valahol használatban van.
+A takarítás menete: a `sablon-maradék` csoport a legbiztosabb kezdés, utána az `ékezetes vagy
+nagybetűs`, és minden kör után újra kell futtatni a `web-ellenor`-t.
+
+## 8. Éjszakai őrjárat
+
+A `.github/workflows/weboldal.yml` minden éjjel lefuttatja a `web-ellenor`-t a stagingre, és
+mellékletként felteszi a jelentést. Azért éjszaka és nem push-ra, mert a weboldal nem ebből a
+repóból épül: a repó CI-je nem tud róla, mikor publikálnak a Designerből.
+
 ## 6. Menetrend egy weboldal-munkához
 
 1. `minosegkapu` skill betöltése (szabályok).
