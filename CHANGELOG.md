@@ -81,7 +81,8 @@ Javaslat 13 – működést javító elemek (Kristóf jóváhagyta 2026-10-02). 
 
 ## Készül (következő verzió)
 
-*(még nincs)*
+* **`[WEB]` weboldal-réteg** (JAVÍTÁS, a játékokat nem érinti): `docs/weboldal.md`: a tokenek megfeleltetése a beeco.hu
+  Webflow-osztályaira, a csak weboldalon használt minták listája `[WEB]` jellel; hivatkozás az `arculat.md` 2. és új 12. pontjában és a README-ben.
 
 ## 1.20.3 – 2026-10-01
 * A csak piktogramos gomb jele: `.bc-btn.is-icon` (a Button felirat nélkül magától kapja) – az aria-label alapú felismerés a szöveges másológombra is hatott.
