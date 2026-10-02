@@ -58,4 +58,11 @@ export default async function ({ page, t }) {
     ok(await page.locator('.bc-pop').isVisible(), 'kattintás után nem maradt nyitva');
     await page.keyboard.press('Escape'); await page.locator('.bc-pop').waitFor({ state: 'detached' });
   });
+  await t('tiltott választó a kapott helykitöltőt mutatja, nem a „Nincs választható elem”-et (HIBA, Javaslat 15)', async () => {
+    const sel = page.locator('[data-case="select-tiltott"] select');
+    ok(await sel.isDisabled(), 'nem tiltott');
+    const txt = (await sel.locator('option').first().textContent()).trim();
+    ok(txt === 'Előbb a kategóriát válaszd ki', `a helykitöltő: „${txt}”`);
+    ok(((await page.locator('[data-case="select-ures"] select option').first().textContent()) || '').includes('Nincs választható elem'), 'a nem tiltott, opció nélküli választó szövege elveszett');
+  });
 }

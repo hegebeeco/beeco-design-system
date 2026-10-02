@@ -5,7 +5,8 @@ import { FieldInput } from '../field/FieldInput';
 export type SelectOption = { value: string; label: string; disabled?: boolean };
 export type SelectFieldProps = FieldProps & SelectHTMLAttributes<HTMLSelectElement> & {
   options: ReadonlyArray<SelectOption>;
-  /** Üres első opció szövege (pl. „Válassz…”); ha nincs megadva, nincs üres opció */
+  /** Üres első opció szövege (pl. „Válassz…”); ha nincs megadva, nincs üres opció. Tiltott mezőn ez látszik akkor is, ha nincs opció
+   *  (pl. „Előbb a kategóriát válaszd ki”); nem tiltott, opció nélküli mezőn „Nincs választható elem”. */
   placeholder?: string;
 };
 
@@ -19,7 +20,7 @@ export const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(funct
         {(f) => (
           <select ref={ref} id={f.id} aria-describedby={f.describedBy} aria-invalid={f.invalid || undefined}
             className="bc-select" required={required} disabled={disabled || options.length === 0} {...rest}>
-            {placeholder !== undefined && <option value="">{options.length ? placeholder : 'Nincs választható elem'}</option>}
+            {placeholder !== undefined && <option value="">{options.length || disabled ? placeholder : 'Nincs választható elem'}</option>}
             {options.map((o) => <option key={o.value} value={o.value} disabled={o.disabled}>{o.label}</option>)}
           </select>
         )}

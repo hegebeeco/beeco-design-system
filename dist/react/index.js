@@ -452,7 +452,7 @@ var SelectField = forwardRef5(function SelectField2({ label, help, range, error,
           disabled: disabled || options.length === 0,
           ...rest,
           children: [
-            placeholder !== void 0 && /* @__PURE__ */ jsx8("option", { value: "", children: options.length ? placeholder : "Nincs v\xE1laszthat\xF3 elem" }),
+            placeholder !== void 0 && /* @__PURE__ */ jsx8("option", { value: "", children: options.length || disabled ? placeholder : "Nincs v\xE1laszthat\xF3 elem" }),
             options.map((o) => /* @__PURE__ */ jsx8("option", { value: o.value, disabled: o.disabled, children: o.label }, o.value))
           ]
         }

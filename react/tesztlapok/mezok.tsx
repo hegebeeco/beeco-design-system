@@ -30,6 +30,7 @@ function Oldal() {
       <Grid title="Legördülő (SelectField) – rövid listához">
         <Case id="select-alap" title="Alap"><SelectField label="Típus" help="Ez alapján szűrhetnek a felhasználók a térképen." placeholder="Válassz…" options={[{ value: 'bolt', label: 'Bolt' }, { value: 'kavezo', label: 'Kávézó' }, { value: 'javito', label: 'Javító' }]} /></Case>
         <Case id="select-ures" title="Nincs opció"><SelectField label="Alkategória" help="Előbb válassz kategóriát." placeholder="Válassz…" options={[]} /></Case>
+        <Case id="select-tiltott" title="Tiltott, amíg nincs szülő-érték: a saját helykitöltője látszik"><SelectField label="Alkategória" help="Az alkategória a kategóriától függ." placeholder="Előbb a kategóriát válaszd ki" options={[]} disabled /></Case>
         <Case id="select-sok" title="12 opció + hiba"><SelectField label="Kategória" help="A fő kategória." placeholder="Válassz…" options={many} error="Válassz kategóriát – enélkül nem jelenik meg a térképen." /></Case>
         <Case id="select-hosszu" title="Nagyon hosszú opciónév"><SelectField label="Program" help="Melyik programban vesz részt a partner." options={[{ value: 'a', label: 'Fenntartható Belváros Kezdeményezés 2026 – őszi kupon- és javítóhét partnerprogram' }]} /></Case>
       </Grid>
