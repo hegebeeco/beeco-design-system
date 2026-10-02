@@ -53,6 +53,16 @@ function Oldal() {
         <Case id="heat-cb" title="Hőtérkép-jelmagyarázat – színtévesztő-barát">
           <div data-cb="true"><HeatLegend label="Aktív felhasználók" unit="fő / km²" thresholds={[20, 40, 60, 80]} /></div>
         </Case>
+        <Case id="allapot" title="Állapot-skála (jó → rossz, 5 fok) és színtévesztő-barát párja – a jel minden fokozaton olvasható">
+          {(['allapot', 'allapot-cb'] as const).map((k) => (
+            <div key={k} data-skala={k} style={{ display: 'flex', gap: 'var(--bc-sp-1)', marginBottom: 'var(--bc-sp-2)' }}>
+              {[1, 2, 3, 4, 5].map((i) => (
+                <span key={i} className="tl-out" style={{ display: 'grid', placeItems: 'center', width: 44, height: 44, borderRadius: '50%', border: '2px solid var(--bc-white)',
+                  boxShadow: 'var(--bc-shadow-soft)', background: `var(--bc-data-${k}-${i})`, color: 'var(--bc-black)', fontWeight: 700 }}>{i}</span>
+              ))}
+            </div>
+          ))}
+        </Case>
       </Grid>
     </>
   );

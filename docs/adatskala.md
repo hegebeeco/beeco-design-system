@@ -17,6 +17,7 @@ terhelés egy hálózaton. Erre egységes, a beeco palettájához hangolt **adat
 |---|---|---|---|
 | **Egyirányú** (szekvenciális), 5 fokozat: halvány zsálya → mély levél | `--scale-1` … `--scale-5` → szerep: `--data-seq-1…5` | Egy érték, amelynek csak „kevés–sok” iránya van, nincs rossz oldala | élőhely-pont, hány méh jár a mezőre, forgalom egy úton |
 | **Kétirányú** (divergáló), 5 fokozat: rózsa ← krém → levél | `--div-neg-2`, `--div-neg-1`, `--div-0`, `--div-pos-1`, `--div-pos-2` → szerep: `--data-neg-2 … --data-pos-2` | Előjeles érték, van „jó” és „rossz” irány és egy semleges közép | hűt/melegít, javít/ront, bevétel/kiadás |
+| **Állapot** (jó → rossz), 5 fokozat: levél → méz → piros – *termékbőr, 1.29.0* | `--bc-data-allapot-1…5` (színtévesztő-barát: `--bc-data-allapot-cb-1…5`, kék → narancs) | Minőség/egészség fokozatai, ahol a „rossz” irány is erős jelzés; térképjelölő fekete jellel | öntözési szomjúság, POI-minőség |
 | **Színtévesztő-barát** egyirányú: halvány ég → kék | `--scale-cb-1` … `--scale-cb-5` | automatikusan, ha a `.ds-cb` osztály be van kapcsolva | |
 | **Színtévesztő-barát** kétirányú: narancs ← krém → kék | `--div-cb-neg-2` … `--div-cb-pos-2` | automatikusan, `.ds-cb` alatt | |
 

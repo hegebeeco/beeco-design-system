@@ -39,6 +39,13 @@ for (const mode of ['light', 'dark']) {
   }
 }
 
+// 2/b. Az „állapot” adatskála (Javaslat 12): a fekete jel/szám minden fokozaton olvasható (≥ 4,5:1), és 5 különböző fokozat
+for (const k of ['allapot', 'allapot-cb']) {
+  const arr = core.data[k] || [];
+  if (arr.length !== 5 || new Set(arr).size !== 5) hiba(`data.${k}: 5 különböző szín kell (${arr.join(', ')})`);
+  for (const c of arr) { const r = ratio(c, '#000000'); if (r < 4.5) hiba(`data.${k}: fekete jel a ${c}-on = ${r.toFixed(2)}:1 < 4.5:1`); }
+}
+
 // 3. Párosság a játékok tokens.css-ével
 const tcss = rd('web/css/tokens.css');
 const decl = {};

@@ -1,4 +1,4 @@
-/* beeco design system 1.28.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js */
+/* beeco design system 1.29.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js */
 
 /* 1. Primitívek (nyers színek) – felületen NE használd közvetlenül, csak a szerepeket (2.) */
 :root {
@@ -107,6 +107,16 @@
   --bc-data-div-cb-3: #FBF3E0;
   --bc-data-div-cb-4: #C6E0F6;
   --bc-data-div-cb-5: #80B5E6;
+  --bc-data-allapot-1: #6E8947;
+  --bc-data-allapot-2: #A6BF7B;
+  --bc-data-allapot-3: #FECF39;
+  --bc-data-allapot-4: #EA580C;
+  --bc-data-allapot-5: #DB3A34;
+  --bc-data-allapot-cb-1: #0083E4;
+  --bc-data-allapot-cb-2: #80B5E6;
+  --bc-data-allapot-cb-3: #FEEEBB;
+  --bc-data-allapot-cb-4: #F0A35E;
+  --bc-data-allapot-cb-5: #EA580C;
   --bc-data-cat-1: #FECF39;
   --bc-data-cat-2: #6E8947;
   --bc-data-cat-3: #0083E4;

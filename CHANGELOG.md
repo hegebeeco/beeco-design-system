@@ -11,6 +11,9 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.29.0 – 2026-10-02
+- Új: **„állapot” adatskála** (Javaslat 12): `--bc-data-allapot-1…5` (levél → méz → piros) és színtévesztő-barát párja `--bc-data-allapot-cb-1…5` (kék → narancs); a fekete jel minden fokozaton ≥ 4,5:1 (`check-tokens` ellenőrzi). Tesztlap: `adat-mutato` „Állapot-skála”. Az első fogyasztó a partner-app öntözési szomjúság-skálája.
+
 ## 1.28.0 – 2026-10-02
 - **ListPage**: új `noResultsText` beállítás a „nincs találat” állapot magyarázatához. Eddig mindig a méhecske keresési tippje jelent meg („Próbáld rövidebben, vagy ékezet nélkül.”) – kereső nélküli, csak szűrős listán (pl. hónapválasztó) ez félrevezető volt. Tesztlap: `sablon-lista` („Szűrésre nincs találat”).
 
