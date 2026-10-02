@@ -11,6 +11,12 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.34.1 – önálló link érintési felülete
+
+A landing-opciók mérésekor derült ki: a saját sorban álló `bc-link` (pl. „További válaszok”)
+csak 24 px magas, tehát érintésre kicsi. A mondatba ágyazott link WCAG 2.5.8 szerint kivétel,
+ez viszont navigációs cél, nem az. Új változat: `bc-link.is-standalone`.
+
 ## 1.34.0 – weboldal: mozgás, személyiség és marketing-elemek
 
 **Mozgás (Javaslat 11).** A méhecske nem tapéta, hanem szereplő: akkor mozdul, amikor történik
