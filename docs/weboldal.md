@@ -4,6 +4,22 @@
 partner-felület mellé. Fekete tinta és keret, kemény átlós árnyék, kis sarkok, a méz az egyetlen hangsúlyszín.
 A játékbőr (Méhsejt-diorama, puha árnyék, olíva tinta) a weboldalon **nem** érvényes – az a webjátékoké.*
 
+> ## ⛔ Publikálási szabály (Kristóf, 2026-10-02)
+>
+> **Élesbe (`www.beeco.hu`) semmi nem megy ki Kristóf kifejezett engedélye nélkül.** Nem elég, hogy
+> egy feladat „kész": az élesítés mindig külön kérés, külön mondatban.
+>
+> **Ami szabad engedély nélkül:** a Designerben dolgozni (elem, osztály, változó, oldal), és
+> publikálni a **tesztre** (`beeco-weboldal.webflow.io`), mert azt a csapat úgyis átnézi.
+> A teszt-publikálás a `publish_site` hívás `publishToWebflowSubdomain: true` és
+> **üres `customDomains`** párosával megy. Ha a `customDomains` nem üres, az már éles.
+>
+> **Ellenőrzés mindig saját böngészővel**, a publikált teszt URL-en, ne a Designer vásznán:
+> a Designerben Kristóf dolgozik, és a Designer MCP el is alszik, ha a fül háttérbe kerül.
+>
+> **Új oldal alapból `draft`**, amíg nincs róla döntés. A site csomagja nem engedi API-ból a
+> sitemapből kivenni (403), tehát egy nem draft oldal publikáláskor bekerül a sitemapbe.
+
 A beeco.hu Webflow-ban készül. Ez a réteg azért külön, mert a Webflow három dologban más, mint a többi fogyasztó:
 
 | | admin · partner · app | **weboldal (Webflow)** |
@@ -188,4 +204,5 @@ repóból épül: a repó CI-je nem tud róla, mikor publikálnak a Designerből
 3. Építés a Designerben vagy MCP-vel, **meglévő `bc-` osztályból**.
 4. `node tools/web-ellenor.js <staging>` → javítás → újra.
 5. `minosegkapu` kapu, képernyőképekkel.
-6. Élesítés kézzel (Kristóf).
+6. Teszt-publikálás, és a jelentés átadása.
+7. **Élesítés: csak Kristóf kifejezett engedélyével.** Alapértelmezésben nem történik meg.
