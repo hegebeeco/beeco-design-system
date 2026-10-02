@@ -47,6 +47,9 @@ térköz, időzítés), de két **bőrben** jelenik meg: a játékok játékosab
 | `termek/css/bc-*.css` | termékbőr elemei (gomb, űrlap, kártya, ablak, táblázat, jelzés, váz) | kézzel, csak tokenekkel |
 | `termek/bemutato.html` | élő bemutató (világos/sötét) | |
 | `web/` | játékbőr + játékeszközök (lásd `docs/arculat.md`) | |
+| `dist/weboldal/` | **generált**: `webflow-valtozok.json` (a Webflow „beeco DS” kollekció), `paletta.json` (mit szabad az élő oldalon) | `node tools/webflow-build.js` – kézzel SOHA |
+| `docs/weboldal.md` | a webes réteg: token→Webflow-változó, osztálynevek, Webflow-korlátok, gépi ellenőrzés | kézzel |
+| `tools/web-ellenor.js` | az **élő** weboldal átvizsgálása (Playwright + axe-core) | |
 | `tools/ds-lint.js` | ellenőrző a fogyasztó projektekhez (racsni) | |
 | `tests/check-tokens.js` | a DS saját őre | |
 
@@ -63,6 +66,10 @@ npm install github:hegebeeco/beeco-design-system#v1.15.0
 - Tailwind (partner): `presets: [require('@beeco/design-system/tailwind')]` – a Tailwind saját palettája **kikapcsol**,
   csak beeco-szín létezik (`bg-accent`, `text-ink`, `border-line`, `shadow-m`, `rounded-m`, `font-display`).
 - Frissítés: új verziónál a `#v1.x.y` címke átírása és `npm install`.
+
+**Weboldal (Webflow):** nem tud `npm install`-t, ezért a tokenek Webflow-változóként élnek.
+`node tools/webflow-build.js` → `dist/weboldal/webflow-valtozok.json` → a Webflow MCP ebből viszi fel őket.
+Az élő oldal minőségét a `node tools/web-ellenor.js <URL>` méri. Részletek: `docs/weboldal.md`.
 
 **Flutter app (Bence):** a `dist/dart/beeco_tokens.dart` bemásolva (`BeecoPalette`, `BeecoRoles.light/dark`, `BeecoTokens`).
 Átállási útmutató: `docs/app-atallas.md`.

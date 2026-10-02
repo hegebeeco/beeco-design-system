@@ -11,6 +11,27 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.33.0 – webes réteg (Webflow) és a nyilvános weboldal elemei
+
+A beeco.hu a termékbőrt kapja, de Webflow-ban készül, ezért nem tud `npm install`-lal DS-t húzni.
+Új réteg, ami a bemenetet generálja és a kimenetet méri.
+
+- `tools/webflow-build.js` → `dist/weboldal/webflow-valtozok.json` (57 változó, világos + sötét)
+  és `paletta.json`. A nevek a DS saját CSS-ét követik (`bc-r-*`, `bc-sp-*`, `bc-fs-*`, `bc-tap`).
+- `termek/css/bc-web.css`: a nyilvános weboldal elemei, csak tokenekből. Tartalomszélesség és
+  szekció-ritmus (`bc-wrap`, `bc-sec` + 4 változat), marketing-tipográfia (`bc-display`, `bc-title`,
+  `bc-subtitle`, `bc-lead`, `bc-body`, `bc-eyebrow`), rács (`bc-grid-2/3`), és a bizalmi elemek:
+  `bc-link` (mindig aláhúzva, WCAG 1.4.1), `bc-quote`, `bc-logos`, `bc-figure` (rögzített képarány,
+  CLS ellen), `bc-source` (a „szám csak forrással” szabály látható alakja).
+- `docs/weboldal.md`: token→Webflow-változó megfeleltetés, osztálynevek, a kötés pontos alakja,
+  a Webflow API tanult korlátai, publikálási szabály, menetrend.
+- `tools/web-ellenor.js`: az élő oldal átvizsgálása 4 nézetben (Playwright + axe-core) – működés,
+  kilógás, 44 px, fókusz, kontraszt, DS-en kívüli szín/sarok/árnyék/betű, szerkezet, SEO, linkek.
+- `tools/web-osztalyleltar.js`: a definiált és a ténylegesen használt osztályok összevetése.
+- `tools/web/oldal-meres-web.js`, `tests/check-weboldal.js` (az `npm test` része),
+  `.github/workflows/weboldal.yml` éjszakai őrjárat.
+- Javaslat 10 jóváhagyva (`docs/javaslatok/10-weboldal-elemek.md`).
+
 ## 1.32.0 – 2026-10-02
 
 **Vonalgrafikon: állapot-paletta, sorozat-kapcsoló, végcímke csak ha kifér** (Javaslat 14, a partner-appból – PARTNERAPP).

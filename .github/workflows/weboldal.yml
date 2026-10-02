@@ -1,0 +1,77 @@
+# ============================================================
+#  Weboldal-őrjárat – minden éjjel átvizsgálja a publikált beeco.hu-t
+#
+#  Miért éjszaka és nem a push-ra: a Webflow-oldal nem ebből a repóból épül, hanem a Designerből
+#  publikálják. A repó CI-je tehát nem tud róla; az egyetlen értelmes pillanat a rendszeres mérés.
+#  A jelentés letölthető melléklet (jelentes.json), P0/P1 lelet esetén a futás elbukik.
+# ============================================================
+name: Weboldal-őrjárat
+
+on:
+  schedule:
+    - cron: '0 3 * * *'        # minden éjjel 3:00 UTC (nyáron 5:00, télen 4:00 magyar idő)
+  workflow_dispatch:
+    inputs:
+      alap:
+        description: 'Melyik oldalt nézzük'
+        required: false
+        default: 'https://beeco-weboldal.webflow.io'
+      max:
+        description: 'Hány oldal a sitemapből'
+        required: false
+        default: '15'
+
+permissions:
+  contents: read
+
+jobs:
+  orjarat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Függőségek
+        run: npm ci
+
+      - name: Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: A DS saját őrei
+        run: |
+          node tools/webflow-build.js --check
+          node tests/check-weboldal.js
+
+      - name: Az élő oldal átvizsgálása
+        id: ellenor
+        run: |
+          node tools/web-ellenor.js \
+            "${{ github.event.inputs.alap || 'https://beeco-weboldal.webflow.io' }}" \
+            --max "${{ github.event.inputs.max || '15' }}" \
+            --json jelentes.json | tee kimenet.txt
+
+      - name: Jelentés mellékletként
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weboldal-jelentes
+          path: |
+            jelentes.json
+            kimenet.txt
+          retention-days: 30
+
+      - name: Összegzés a futás oldalára
+        if: always()
+        run: |
+          {
+            echo '## Weboldal-őrjárat'
+            echo ''
+            echo '```'
+            tail -40 kimenet.txt || echo 'nincs kimenet'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

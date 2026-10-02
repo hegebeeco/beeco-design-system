@@ -29,3 +29,17 @@ A játékok külön tárolókban élnek (első: `~/CLAUDE/beeco-szelektalj`, él
 
 ## Ismert játék-projektek
 * `~/CLAUDE/beeco-szelektalj` – Szelektálj!, Hűtő-mester, Greenwashing-vadász, Mi van mögötte?, 2075, Ökos-rejtély, párbaj, Fenntartható otthon.
+
+## Weboldal (beeco.hu, Webflow)
+
+A web a **termékbőrt** kapja (`tokens/theme-termek.json`), nem a játékbőrt. Részletek: `docs/weboldal.md`.
+
+**⛔ Élesbe semmi nem megy ki Kristóf kifejezett engedélye nélkül.** Szabad: a Designerben dolgozni
+és a **tesztre** publikálni (`publish_site` + `publishToWebflowSubdomain: true` + **üres** `customDomains`).
+Nem üres `customDomains` = éles, az engedélyköteles. Új oldal alapból `draft`.
+
+Ellenőrzés mindig saját böngészővel a publikált teszt URL-en, ne a Designer vásznán (ott Kristóf dolgozik).
+
+A tokenek Webflow-változóként élnek: `node tools/webflow-build.js` → `dist/weboldal/webflow-valtozok.json`.
+A kötés csak `data_style_tool`-lal megy (`property_value: "var(--_beeco-ds---bc-accent)"`), a `whtml`
+builderrel nem. Az élő oldal minőségét `node tools/web-ellenor.js <URL>` méri.
