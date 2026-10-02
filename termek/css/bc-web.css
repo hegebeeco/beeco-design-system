@@ -95,3 +95,138 @@
 .bc-source { display: flex; align-items: flex-start; gap: var(--bc-sp-1);
   margin: var(--bc-sp-2) 0 0; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
 .bc-source > svg { flex: none; width: 1em; height: 1em; margin-top: .15em; }
+
+/* ============================================================
+   MOZGÁS ÉS SZEMÉLYISÉG a nyilvános weboldalon (Javaslat 11)
+
+   Elv (a bc-motion.css szabályát követve): a méhecske NEM tapéta, hanem SZEREPLŐ.
+   Akkor mozdul, amikor történik valami: megérkezel, kész lett, elértél egy mérföldkövet.
+   Végtelen mozgás nincs. Egy képernyőn legfeljebb EGY mozgó dolog kérje a figyelmet.
+   A humor a SZÖVEGBEN van, nem a mozgásban: az olcsóbb, jobban működik, és nem kerül
+   akadálymentességbe. Csökkentett mozgásnál minden azonnali (bc-base.css).
+   ============================================================ */
+
+/* Méhecske-érkezés: a hero méhecskéje egyszer berepül, aztán megáll. NEM lebeg örökké. */
+@keyframes bc-web-erkezes {
+  0%   { opacity: 0; transform: translate(42px, 26px) rotate(14deg) scale(.86); }
+  70%  { opacity: 1; transform: translate(-4px, -3px) rotate(-3deg) scale(1.03); }
+  100% { opacity: 1; transform: none; }
+}
+.bc-web-erkezes { animation: bc-web-erkezes 560ms var(--bc-ease-bounce) both; }
+
+/* Zümmögés: a már meglévő bc-buzz végre kap gazdát. Kétszer rezdül, egérrel, és csak
+   ott, ahol a méhecske egy gomb mellett áll – a döntés pillanatában, nem végig. */
+@media (hover: hover) and (pointer: fine) {
+  .bc-web-zum:hover .bc-bee, .bc-web-zum:focus-visible .bc-bee { animation: bc-buzz 260ms var(--bc-ease-out) 2; }
+}
+
+/* Matrica: ferde címke, ami odacsapódik (a DS bc-stamp keyframe-jével). Egy oldalon 1-2 db. */
+.bc-sticker { display: inline-block; transform: rotate(-3deg); transform-origin: center;
+  padding: var(--bc-sp-1) var(--bc-sp-3); background: var(--bc-accent); color: var(--bc-on-accent);
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-s);
+  box-shadow: var(--bc-shadow-s); font-family: var(--bc-font-display); font-size: var(--bc-fs-m); }
+.bc-sticker.is-in { animation: bc-stamp var(--bc-t-slow) var(--bc-ease-bounce) both; }
+
+/* Szekció-beúszás görgetésre: a JS teszi rá az .is-in-t, a sorrendet a --i adja.
+   Rövid és kicsi: 8 px elmozdulás, 340 ms. A nagy beúszás lassúnak érződik. */
+.bc-web-in { opacity: 0; transform: translateY(8px); }
+.bc-web-in.is-in { opacity: 1; transform: none;
+  transition: opacity 340ms var(--bc-ease-out), transform 340ms var(--bc-ease-out);
+  transition-delay: calc(min(var(--i, 0), 4) * 60ms); }
+
+/* Fénykép: a termékbőr kerete és kemény árnyéka a képen is. A szöveg sosem a képen ül,
+   hanem alatta vagy mellette – a képre írt szöveg kontrasztja nem garantálható. */
+.bc-figure.is-framed .bc-figure-media { box-shadow: var(--bc-shadow-m); }
+.bc-figure.is-tilt { transform: rotate(-1.5deg); }
+.bc-figure.is-tilt .bc-figure-cap { transform: rotate(1.5deg); }
+
+/* Csökkentett mozgás: a beúszás áttűnésre csupaszodik, az érkezés és a pecsét elmarad. */
+@media (prefers-reduced-motion: reduce) {
+  .bc-web-erkezes, .bc-sticker.is-in { animation: none; }
+  .bc-web-in { opacity: 0; transform: none; }
+  .bc-web-in.is-in { transition: opacity 200ms linear; transition-delay: 0ms; }
+  .bc-figure.is-tilt, .bc-figure.is-tilt .bc-figure-cap { transform: none; }
+}
+
+/* ============================================================
+   MARKETINGOLDAL-ELEMEK (Javaslat 12, 2026-10-02)
+   Ezek azért kerültek a DS-be, mert a beeco.hu felépítésekor mindegyiket kézzel kellett
+   megírni az oldal fej-kódjába. Ami minden oldalon újraíródik, az DS-elem.
+   ============================================================ */
+
+/* ---- Szekció-elválasztó --------------------------------------------------- */
+/* A termékbőrben a szekciókat a háttér és egy fekete vonal választja el (a méhsejt-perem
+   a játékbőré). Az `is-ruled` arra a szekcióra kerül, amelyik FÖLÉ vonal kell. */
+.bc-sec.is-ruled { border-top: var(--bc-bw-base) solid var(--bc-line); }
+/* Ha minden szekció közé kell vonal, elég a szülőre tenni: nem kell osztályt szórni. */
+.bc-ruled > .bc-sec + .bc-sec { border-top: var(--bc-bw-base) solid var(--bc-line); }
+
+/* ---- Hero ---------------------------------------------------------------- */
+/* Kétoszlopos oldalfejléc: szöveg és mellette kép vagy eszköz. Mobilon egymás alatt,
+   és a KÉP KERÜL ALULRA, mert a döntés a szövegben van. */
+.bc-hero { display: grid; gap: var(--bc-sp-6); align-items: center; }
+.bc-hero > * { min-width: 0; }
+@media (min-width: 900px) {
+  .bc-hero { grid-template-columns: 1.1fr .9fr; }
+  .bc-hero.is-even { grid-template-columns: 1fr 1fr; }
+  /* Tükrözött változat: a kép balra. Csak a megjelenés fordul, a DOM-sorrend nem,
+     így a képernyőolvasó és a billentyűzet is a szöveget kapja előbb. */
+  .bc-hero.is-mirrored > :first-child { order: 2; }
+}
+.bc-hero-media { margin: 0; }
+.bc-hero-media > img, .bc-hero-media > svg { display: block; width: 100%; height: auto; }
+
+/* ---- Áruház-gombpár ------------------------------------------------------- */
+/* A letöltés a nyilvános oldal fő célja, ezért saját eleme van. A két gomb egyforma
+   magas, és sosem törik el egymástól külön sorba, amíg elfér. */
+.bc-stores { display: flex; flex-wrap: wrap; gap: var(--bc-sp-3); align-items: stretch; }
+.bc-store {
+  display: inline-flex; align-items: center; gap: var(--bc-sp-3); min-height: 56px;
+  padding: 0 var(--bc-sp-5); text-decoration: none; cursor: pointer;
+  color: var(--bc-ink); background: var(--bc-surface);
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m);
+  box-shadow: var(--bc-shadow-s);
+  transition: transform var(--bc-t-press) var(--bc-ease-out), box-shadow var(--bc-t-press) var(--bc-ease-out);
+}
+.bc-store:active { transform: translate(var(--bc-shadow-s-x), var(--bc-shadow-s-y)); box-shadow: none; }
+.bc-store > svg { width: 26px; height: 26px; flex: none; }
+.bc-store-text { display: grid; gap: 1px; text-align: left; line-height: 1.1; }
+.bc-store-kicsi { font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+.bc-store-nagy { font-family: var(--bc-font-display); font-size: var(--bc-fs-l); }
+.bc-store.is-accent { background: var(--bc-accent); color: var(--bc-on-accent); }
+.bc-store.is-accent .bc-store-kicsi { color: var(--bc-on-accent); }
+
+/* ---- Csillagos értékelés -------------------------------------------------- */
+/* A csillagok DÍSZÍTÉS: az értéket a szöveg mondja ki, ezért a csillagsor aria-hidden,
+   és a `bc-rating-text` tartalmazza az olvasható alakot (pl. „4,5 az 5-ből”). */
+.bc-rating { display: inline-flex; align-items: center; gap: var(--bc-sp-2); }
+.bc-rating-stars { display: inline-flex; gap: 1px; color: var(--bc-accent-press); }
+.bc-rating-stars > svg { width: 16px; height: 16px; flex: none; }
+.bc-rating-text { font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); }
+.bc-rating-sub { font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+
+/* ---- Ár ------------------------------------------------------------------ */
+/* Táblázatos számjegy, hogy a listában ne ugráljanak az árak egymás alatt. */
+.bc-price { font-family: var(--bc-font-display); font-size: var(--bc-fs-l); line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bc-price.is-lg { font-size: var(--bc-fs-xl); }
+.bc-price-old { margin-inline-start: var(--bc-sp-2); font-family: var(--bc-font-body); font-size: var(--bc-fs-s); color: var(--bc-ink-soft); text-decoration: line-through; }
+.bc-price-note { display: block; margin-top: var(--bc-sp-1); font-family: var(--bc-font-body); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); }
+
+/* ---- Számozott lépéslista ------------------------------------------------- */
+/* A `bc-steps` kompakt folyamatjelző; ez a MARKETING változat: nagy szám, cím, szöveg.
+   `<ol>`-ra kerül, a számot a CSS adja, így a képernyőolvasó a lista sorszámát mondja. */
+.bc-howto { counter-reset: bc-howto; display: grid; gap: var(--bc-sp-5); margin: 0; padding: 0; list-style: none; }
+.bc-howto > li { counter-increment: bc-howto; display: grid; grid-template-columns: auto 1fr; gap: var(--bc-sp-4); align-items: start; min-width: 0; }
+.bc-howto > li::before {
+  content: counter(bc-howto); width: 44px; height: 44px; display: grid; place-items: center;
+  font-family: var(--bc-font-display); font-size: var(--bc-fs-l); line-height: 1;
+  color: var(--bc-on-accent); background: var(--bc-accent);
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-pill);
+}
+.bc-howto-title { margin: 0 0 var(--bc-sp-1); font-family: var(--bc-font-display); font-weight: var(--bc-fw-regular); font-size: var(--bc-fs-l); line-height: var(--bc-lh-tight); }
+.bc-howto > li > div > p { margin: 0; }
+/* Vízszintes változat széles képernyőn: a lépések egymás mellett futnak */
+@media (min-width: 992px) {
+  .bc-howto.is-row { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .bc-howto.is-row > li { grid-template-columns: 1fr; gap: var(--bc-sp-3); }
+}

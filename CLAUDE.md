@@ -42,4 +42,6 @@ Ellenőrzés mindig saját böngészővel a publikált teszt URL-en, ne a Design
 
 A tokenek Webflow-változóként élnek: `node tools/webflow-build.js` → `dist/weboldal/webflow-valtozok.json`.
 A kötés csak `data_style_tool`-lal megy (`property_value: "var(--_beeco-ds---bc-accent)"`), a `whtml`
-builderrel nem. Az élő oldal minőségét `node tools/web-ellenor.js <URL>` méri.
+builderrel nem. **Minden oldalfejlesztéshez kötelező e2e és egységteszt** (docs/weboldal.md 5/b): egység
+`node tests/check-weboldal.js`, e2e `node tools/web-ellenor.js <URL>` – működés, teljesítmény,
+láthatóság, takarás, eltartás, billentyűzet, szerkezet, szöveghelyesség, SEO, mozgás, WCAG 2.2 AA.

@@ -139,6 +139,36 @@ publikálás → nézd meg → draft=true vissza.
 Az első mérése: 0 arculati, 0 tipográfiai, 0 hozzáférhetőségi és 0 szerkezeti lelet. A két P1 a
 site egészén futó `window.Stripe is not a function` konzolhiba, nem ezé az oldalé.
 
+## 3/d. Mozgás és személyiség – amit a Webflow-stílus nem tud
+
+A Webflow-stílus nem ismeri a `@keyframes`-t, a pszeudoelemet és a maszkot. Ezért a mozgás, a
+méhsejt-háttér és a méhecske-animációk **az oldal fej-kódjába** kerülnek, egy generált blokként:
+
+```bash
+node tools/webflow-build.js        # -> dist/weboldal/beeco-web.min.css
+```
+
+A `beeco-web.min.css` tartalma megy a Webflow egyedi kód mezőjébe. Nem kézzel írjuk: a DS saját
+`bc-motion.css` és `bc-marka.css` fájljaiból generálódik, és a generátor írja át a változóneveket a
+Webflow alakjára. A mező korlátja kb. 10 000 karakter, ezért a kimenet tömörített, és az évszakos
+díszítés (önmagában ~11 kB adat-URI) kimarad belőle; ha kell, külön kérésre kerül be.
+A `tests/check-weboldal.js` őrzi, hogy friss legyen és elférjen.
+
+**A mozgás elve (Javaslat 11):** a méhecske nem tapéta, hanem szereplő. Akkor mozdul, amikor
+történik valami: megérkezel, kész lett, elértél egy mérföldkövet. **Végtelen mozgás nincs** – ezt a
+`bc-motion.css` már kimondja, és a weboldalra is áll. Egy képernyőn legfeljebb egy mozgó dolog kéri
+a figyelmet. A humor a **szövegben** van, nem a mozgásban.
+
+| Osztály | Mikor |
+|---|---|
+| `bc-web-erkezes` | a hero méhecskéje egyszer berepül, 560 ms, aztán megáll |
+| `bc-web-zum` | a gomb melletti méhecske kétszer rezdül rámutatásra, csak egérrel |
+| `bc-sticker` + `is-in` | ferde címke, ami odacsapódik (`bc-stamp`). Oldalanként 1-2 db |
+| `bc-web-in` + `is-in` | szekció-beúszás görgetésre, 8 px, 340 ms, soronként 60 ms késéssel |
+| `bc-honeycomb` | méhsejt-háttér a tartalom mögött, erőssége `--_op` |
+| `bc-figure.is-framed` / `.is-tilt` | fénykép kerettel és kemény árnyékkal, enyhén döntve |
+| `bc-anim-cheer` / `-tick` / `-stamp` / `-shake` / `bc-stagger` / `bc-lift` | a DS meglévő készlete, változatlanul |
+
 ## 4. Mit viszünk ki, mit nem
 
 A weboldal **nem** kap meg mindent a DS-ből:
@@ -209,6 +239,61 @@ nagybetűs`, és minden kör után újra kell futtatni a `web-ellenor`-t.
 A `.github/workflows/weboldal.yml` minden éjjel lefuttatja a `web-ellenor`-t a stagingre, és
 mellékletként felteszi a jelentést. Azért éjszaka és nem push-ra, mert a weboldal nem ebből a
 repóból épül: a repó CI-je nem tud róla, mikor publikálnak a Designerből.
+
+## 5/b. Kötelező tesztek minden oldalhoz (Kristóf, 2026-10-02)
+
+**Minden oldalfejlesztéshez tartozik e2e és egységteszt.** Nem opció, és nem a végén derül ki:
+az oldal addig nincs kész, amíg a két teszt nem fut le zölden. A cél, hogy a hibát a gép találja
+meg, ne a látogató.
+
+### Egységteszt (unit) – `tests/check-weboldal.js`
+
+Azt őrzi, ami kód nélkül is eldönthető, és másodpercek alatt lefut:
+
+| Mit | Miért |
+|---|---|
+| a generált Webflow-változók frissek és teljesek | hogy a Webflow és a DS ne csússzon szét |
+| a névalak (`bc-*`, csak ASCII) és a `beeco-tokens.css`-sel való egyezés | ékezetes CSS-név törékeny |
+| a beilleszthető CSS mérete | a Webflow mezője ~10 000 karakter |
+| a generált CSS **zárójel-egyensúlya** | egy csonka blokk némán elronthat mindent |
+| minden szerepnek van sötét párja, a hexek érvényesek | sötét módban ne essen szét |
+
+Futtatás: `node tests/check-weboldal.js`, és az `npm test` része.
+
+### Végponttól végpontig (e2e) – `tools/web-ellenor.js`
+
+Valódi böngészőben, a **publikált** oldalon, négy nézetben (320 · 390 · 768 · 1280):
+
+| Terület | Mit nézünk |
+|---|---|
+| **Működés** | HTTP-hiba, konzolhiba, be nem töltődő oldal, 404-es belső link |
+| **Teljesítmény** | hosszú feladat betöltéskor, nem csendesedő hálózat, folyamatosan töltő beágyazás |
+| **Láthatóság** | a szöveg kontrasztja a tényleges háttérhez, 12 px alatti szöveg, idegen betűcsalád |
+| **Takarás és kilógás** | vízszintes kilógás 320 px-en, egymásra csúszó elemek, elvesző szöveg |
+| **Eltartás és méret** | 44 px érintési felület, nem DS térköz és sarok |
+| **Billentyűzet** | látható fókusz az első 20 elemen, billentyűvel elérhetetlen kattintható elem |
+| **Szerkezet** | pontosan egy `h1`, nincs címsor-ugrás, kép alt nélkül |
+| **Szöveghelyesség** | semmitmondó linkszöveg, ugyanaz a linkszöveg több célra, elérhető név nélküli gomb |
+| **SEO** | oldalcím, meta leírás, canonical, og:image, hibás JSON-LD |
+| **Mozgás** | 400 ms feletti átmenet, `ease-in` görbe, végtelen animáció csökkentett mozgásnál |
+| **Biztonság** | `target="_blank"` `rel="noopener"` nélkül |
+| **WCAG 2.2 AA** | axe-core teljes szabálykészlete |
+
+Futtatás: `node tools/web-ellenor.js <URL>`, vagy `npm run web <URL>`.
+P0 vagy P1 lelet → 1-es kilépési kód, tehát CI-ben megbuktatja a futást.
+
+### Mikor melyik
+
+| Pillanat | Mit futtatunk |
+|---|---|
+| Minden szerkesztés után, helyben | `node tests/check-weboldal.js` |
+| Mielőtt „kész"-t mondunk | teszt-publikálás, majd `npm run web <teszt URL>` **és** a `minosegkapu` kapu |
+| Minden éjjel | `.github/workflows/weboldal.yml` a teljes site-ra |
+| Élesítés előtt | mindkettő zölden, és a jelentés átadva |
+
+**Amit a gép nem tud eldönteni**, és ezért marad emberi feladat: a szöveg tartalmi igazsága
+(szám csak valós adatból vagy forrással), a hangnem, és hogy a kép tényleg azt mutatja-e, amiről
+a szöveg beszél. Ezeket a `minosegkapu` jelentésében kell kimondani, nem elhallgatni.
 
 ## 6. Menetrend egy weboldal-munkához
 
