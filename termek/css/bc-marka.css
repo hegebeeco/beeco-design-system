@@ -4,6 +4,8 @@
    A méhsejt-háttér maszk: a színét a méz szerep adja, ezért sötét módban is jó; a tartalom alá kerül.
    ============================================================ */
 .bc-logo { display: inline-block; flex: none; height: var(--_h, 36px); aspect-ratio: 512 / 313;
+  /* kifejezett szélesség: oszlopos flex/grid tárolóban se nyúljon ki teljes szélességre (a háttérkép középre ugrott) */
+  width: calc(var(--_h, 36px) * 512 / 313); max-width: 100%;
   background: url("../../web/assets/brand/logo.webp") center / contain no-repeat; }
 .bc-logo.is-s { --_h: 24px; } .bc-logo.is-l { --_h: 56px; }
 :root[data-theme="dark"] .bc-logo, :root.dark .bc-logo { background-image: url("../../web/assets/brand/logo-sotet.webp"); }

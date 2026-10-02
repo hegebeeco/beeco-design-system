@@ -1,4 +1,4 @@
-/* beeco design system 1.26.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.26.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 /* Használat a böngészőben: const L = window.bcMeres({ w: innerWidth, touch: true }); – leletek { kat, sulyos, mi, hol } */
 window.bcMeres = function meres(opts) {
   const L = [];

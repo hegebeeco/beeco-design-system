@@ -27,6 +27,9 @@ function Oldal() {
         <Case id="tema-logo" title="Logó (Javaslat 10): sötét módban a fekete részek krémszínűek">
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--bc-sp-4)' }}><Logo size="s" /><Logo /><Logo size="l" /></div>
         </Case>
+        <Case id="tema-logo-oszlop" title="Logó oszlopos flex-tárolóban (pl. belépő kártya): nem nyúlik ki, balra áll">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--bc-sp-2)', maxWidth: 360 }}><Logo size="l" /><p>admin</p></div>
+        </Case>
         <Case id="tema-mehsejt" title="Méhsejt-háttér (.bc-honeycomb): a méz színéből, a tartalom alatt">
           <div className="bc-honeycomb" style={{ minHeight: 160, padding: 'var(--bc-sp-4)', border: 'var(--bc-bw-hair) solid var(--bc-line-soft)', borderRadius: 'var(--bc-r-m)' }}>
             <p>A minta díszítő: a szöveg fölötte olvasható marad, kattintani rajta keresztül is lehet.</p>

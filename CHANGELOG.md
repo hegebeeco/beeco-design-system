@@ -11,6 +11,9 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.26.1 – 2026-10-02
+- Javítás: a **Logo** (`.bc-logo`) kifejezett szélességet kap a magasságból (`--_h` × 512/313). Oszlopos flex- vagy grid-tárolóban (pl. belépő kártya) eddig kinyúlt teljes szélességre, és a kép középre ugrott a balra igazított szöveg fölött. Tesztlap: `tema` („Logó oszlopos flex-tárolóban”).
+
 ## 1.26.0 – 2026-10-02
 - **MonthCalendar**: új `kinds` beállítás – mely tartalomfajták szerepeljenek a jelmagyarázatban és a szűrőben (alap: mind a három). Így olyan naptár is épülhet rá, ahol csak két fajta van (pl. a partner adatlapján: esemény + kupon-időzítés), üres jelmagyarázat-tétel nélkül. A „minden fajta ki van kapcsolva” üzenet is ehhez igazodik. Tesztlap: `media-naptar` („Csak két fajta”).
 

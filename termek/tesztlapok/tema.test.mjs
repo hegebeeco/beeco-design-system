@@ -53,6 +53,10 @@ export default async function ({ page, t }) {
     const h = await page.locator('[data-case="tema-logo"] .bc-logo').nth(1).evaluate((e) => e.getBoundingClientRect().height); ok(Math.round(h) === 36, `magasság ${h}`);
     await seg('Világos').click();
   });
+  await t('logó oszlopos flexben: szélessége a képarányból (56 px magas → ~92 px), a bal szélen', async () => {
+    const r = await page.locator('[data-case="tema-logo-oszlop"] .bc-logo').evaluate((e) => { const b = e.getBoundingClientRect(), p = e.parentElement.getBoundingClientRect(); return { w: b.width, h: b.height, dx: b.left - p.left }; });
+    ok(Math.round(r.h) === 56 && Math.abs(r.w - 56 * 512 / 313) < 1.5 && Math.abs(r.dx) < 1, JSON.stringify(r));
+  });
   await t('méhsejt-háttér: maszk + méz szín, a tartalom alatt, nem fogja el a kattintást', async () => {
     const st = await page.locator('[data-case="tema-mehsejt"] .bc-honeycomb').evaluate((e) => { const s = getComputedStyle(e, '::before'); return { mask: s.maskImage || s.webkitMaskImage, z: s.zIndex, pe: s.pointerEvents, bg: s.backgroundColor }; });
     ok(String(st.mask).startsWith('url('), `nincs maszk: ${st.mask}`); ok(st.z === '-1' && st.pe === 'none', JSON.stringify(st));
