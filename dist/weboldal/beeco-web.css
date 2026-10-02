@@ -1,0 +1,129 @@
+/* GENERÁLT (tools/webflow-build.js) a beeco design system 1.34.0 forrásából – kézzel NE szerkeszd.
+   Ez a blokk a Webflow oldal- vagy site-fejkódjába megy. Azt tartalmazza, amit a Webflow-stílus
+   nem tud kifejezni: @keyframes, mozgás-osztályok, méhsejt-háttér maszkkal.
+   A tokenekre a "beeco DS" változókollekció nevein hivatkozik (--_beeco-ds---bc-*).
+   Frissítés: node tools/webflow-build.js, majd a tartalom bemásolása. */
+
+/* ---- mozgás-készlet (termek/css/bc-motion.css) ---- */
+/* ============================================================
+   beeco TERMÉKBŐR – mozgás-készlet (Javaslat 05 + bővítés: neo-brutalista és méhecskés, 2026-10-01)
+   Szabály: UI ≤ 300 ms, ünnepi pillanat ≤ 600 ms és egyszer, végtelen mozgás nincs (a töltő 10 mp után megáll),
+   hover csak egérrel, csökkentett mozgásnál minden azonnali (bc-base.css).
+   ============================================================ */
+@keyframes bc-buzz { 25% { transform: rotate(-4deg) translateY(-1px); } 75% { transform: rotate(4deg) translateY(1px); } }
+@keyframes bc-rise { from { opacity: 0; transform: translateY(8px); } }
+@keyframes bc-cheer { 0% { opacity: 0; transform: scale(.6) translateY(12px); } 60% { opacity: 1; transform: scale(1.08) translateY(-4px); } }
+@keyframes bc-tick { 0% { opacity: 0; transform: scale(.4) rotate(-18deg); } 60% { opacity: 1; transform: scale(1.15) rotate(4deg); } }
+/* Pecsét: az új állapot odacsapódik, a kemény árnyék a becsapódáskor jelenik meg */
+@keyframes bc-stamp { 0% { opacity: 0; transform: scale(1.6) rotate(-8deg); box-shadow: none; } 70% { opacity: 1; transform: scale(.96) rotate(1deg); box-shadow: none; } }
+/* Kíméletes „nem jó” rázás (hibás beküldés) – kicsi, rövid, nem szid */
+@keyframes bc-shake { 20%, 60% { transform: translateX(-4px); } 40%, 80% { transform: translateX(4px); } }
+/* Hatszög-konfetti (mérföldkő) */
+@keyframes bc-hex { 0% { opacity: 1; transform: translate(0, 0) scale(.6) rotate(0); } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1) rotate(var(--rot)); } }
+/* Mézsejt-töltő: három hatszög telik sorban */
+@keyframes bc-hexfill { 0%, 100% { background: var(--_beeco-ds---bc-surface-2); } 40% { background: var(--_beeco-ds---bc-accent); color: var(--_beeco-ds---bc-on-accent); } }
+/* Csíkos haladásjelző csúszása (csak amíg nő az érték; kész állapotban áll) */
+@keyframes bc-stripes { to { background-position: 28px 0; } }
+
+.bc-anim-rise { animation: bc-rise var(--_beeco-ds---bc-t-base) var(--_beeco-ds---bc-ease-out) both; }
+.bc-anim-cheer { animation: bc-cheer 400ms var(--_beeco-ds---bc-ease-bounce) both; }
+.bc-anim-tick { animation: bc-tick 400ms var(--_beeco-ds---bc-ease-bounce) both; }
+.bc-anim-stamp { animation: bc-stamp var(--_beeco-ds---bc-t-slow) var(--_beeco-ds---bc-ease-bounce) both; }
+.bc-anim-shake { animation: bc-shake 240ms var(--_beeco-ds---bc-ease-out) 1; }
+/* Lista beúszás: soronként 30 ms késés, legfeljebb 6 sorig (a Stagger adja a --i-t) */
+.bc-stagger > * { animation: bc-rise var(--_beeco-ds---bc-t-base) var(--_beeco-ds---bc-ease-out) both; animation-delay: calc(min(var(--i, 0), 5) * 30ms); }
+
+/* Kártya-emelés: egérrel rámutatva a kemény árnyék nő (neo-brutalista „kiemelkedik”) */
+@media (hover: hover) and (pointer: fine) {
+  .bc-lift { transition: transform var(--_beeco-ds---bc-t-fast) var(--_beeco-ds---bc-ease-out), box-shadow var(--_beeco-ds---bc-t-fast) var(--_beeco-ds---bc-ease-out); }
+  .bc-lift:hover { transform: translate(-2px, -2px); box-shadow: var(--_beeco-ds---bc-shadow-l); }
+}
+/* Húzott elem megemelkedik */
+.bc-dragging { transform: translate(-3px, -3px) rotate(-1deg); box-shadow: var(--_beeco-ds---bc-shadow-l); cursor: grabbing; }
+
+/* Fül-jelző: a méz sáv csúszik az aktív fül alá (a Tabs/NavTabs állítja a --x és --w változót) */
+.bc-tab-ink { position: absolute; bottom: 0; left: 0; height: 4px; width: var(--w, 0); transform: translateX(var(--x, 0)); background: var(--_beeco-ds---bc-accent); color: var(--_beeco-ds---bc-on-accent); border: var(--_beeco-ds---bc-bw-hair) solid var(--_beeco-ds---bc-line);
+  transition: transform var(--_beeco-ds---bc-t-base) var(--_beeco-ds---bc-ease-out), width var(--_beeco-ds---bc-t-base) var(--_beeco-ds---bc-ease-out); }
+
+/* Mézsejt-töltő (rövid töltéshez a pörgő helyett) */
+.bc-hexload { display: inline-flex; gap: 3px; }
+.bc-hexload > i { width: 14px; height: 16px; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); background: var(--_beeco-ds---bc-surface-2); animation: bc-hexfill 900ms var(--_beeco-ds---bc-ease-in-out) 11; }
+.bc-hexload > i:nth-child(2) { animation-delay: 150ms; } .bc-hexload > i:nth-child(3) { animation-delay: 300ms; }
+.bc-hexload > i { outline: var(--_beeco-ds---bc-bw-hair) solid var(--_beeco-ds---bc-line); outline-offset: -1px; }
+
+/* Csíkos haladásjelző (neo-brutalista): fekete keret, méz csík; értéke a --v (0–1) */
+.bc-progress { position: relative; height: 16px; background: var(--_beeco-ds---bc-surface); border: var(--_beeco-ds---bc-bw-base) solid var(--_beeco-ds---bc-line); border-radius: var(--_beeco-ds---bc-r-pill); overflow: hidden; }
+.bc-progress > span { position: absolute; inset: 0 auto 0 0; width: calc(var(--v, 0) * 100%); background: repeating-linear-gradient(-45deg, var(--_beeco-ds---bc-accent) 0 7px, var(--_beeco-ds---bc-accent-press) 7px 14px);
+  border-right: var(--_beeco-ds---bc-bw-base) solid var(--_beeco-ds---bc-line); transition: width var(--_beeco-ds---bc-t-base) var(--_beeco-ds---bc-ease-out); }
+.bc-progress.is-moving > span { animation: bc-stripes 600ms linear 17; }
+.bc-progress.is-done > span { background: var(--_beeco-ds---bc-success); border-right: 0; }
+
+/* Hatszög-konfetti darabok (a celebrate() teszi ki, 600 ms után eltávolítja) */
+.bc-hexpiece { position: fixed; z-index: var(--_beeco-ds---bc-z-toast); width: 12px; height: 14px; pointer-events: none; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  background: var(--_beeco-ds---bc-accent); color: var(--_beeco-ds---bc-on-accent); animation: bc-hex 600ms var(--_beeco-ds---bc-ease-out) forwards; }
+.bc-hexpiece:nth-child(3n) { background: var(--_beeco-ds---bc-success); } .bc-hexpiece:nth-child(4n) { background: var(--_beeco-ds---bc-highlight); }
+
+/* Figyelem-zümmögés: egy elem (pl. az első súgó gomb) háromszor megrezdül */
+.bc-attention { animation: bc-buzz 180ms var(--_beeco-ds---bc-ease-out) 3; }
+
+
+/* ---- méhsejt-háttér és évszakos díszítés (termek/css/bc-marka.css) ---- */
+/* Méhsejt-háttér: <div class="bc-honeycomb">…</div> – vagy AppShell pattern="honeycomb" (a tartalomrész mögé).
+   Erősség: --_op (alap .12), pl. style="--_op: .2". A réteg a tartalom MÖGÖTT van (--bc-z-behind). */
+.bc-honeycomb { position: relative; isolation: isolate; }
+.bc-honeycomb::before { content: ""; position: absolute; inset: 0; z-index: var(--_beeco-ds---bc-z-behind); pointer-events: none;
+  background-color: var(--_beeco-ds---bc-accent); color: var(--_beeco-ds---bc-on-accent); opacity: var(--_op, .12);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='104'%3E%3Cpolygon points='30.0,-4.0 56.0,11.0 56.0,41.0 30.0,56.0 4.0,41.0 4.0,11.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='90.0,-4.0 116.0,11.0 116.0,41.0 90.0,56.0 64.0,41.0 64.0,11.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='0.0,48.0 26.0,63.0 26.0,93.0 0.0,108.0 -26.0,93.0 -26.0,63.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='60.0,48.0 86.0,63.0 86.0,93.0 60.0,108.0 34.0,93.0 34.0,63.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='120.0,48.0 146.0,63.0 146.0,93.0 120.0,108.0 94.0,93.0 94.0,63.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E") 0 0 / 120px 104px repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='104'%3E%3Cpolygon points='30.0,-4.0 56.0,11.0 56.0,41.0 30.0,56.0 4.0,41.0 4.0,11.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='90.0,-4.0 116.0,11.0 116.0,41.0 90.0,56.0 64.0,41.0 64.0,11.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='0.0,48.0 26.0,63.0 26.0,93.0 0.0,108.0 -26.0,93.0 -26.0,63.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='60.0,48.0 86.0,63.0 86.0,93.0 60.0,108.0 34.0,93.0 34.0,63.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='120.0,48.0 146.0,63.0 146.0,93.0 120.0,108.0 94.0,93.0 94.0,63.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E") 0 0 / 120px 104px repeat; }
+@media print { .bc-honeycomb::before { display: none; } }
+/* Évszakos díszítés a méhsejt-háttéren (Javaslat 11, 2026-10-02): ritkás motívum a minta fölött – csak díszítés.
+   <div class="bc-honeycomb" data-evszak="tavasz|nyar|osz|tel"> · AppShell season="auto" a dátumból választ (evszak()). */
+.bc-honeycomb[data-evszak]::after { content: ""; position: absolute; inset: 0; z-index: var(--_beeco-ds---bc-z-behind); pointer-events: none;
+  opacity: var(--_op-evszak, .4); -webkit-mask-size: 240px 208px; mask-size: 240px 208px; -webkit-mask-repeat: repeat; mask-repeat: repeat; }
+@media print { .bc-honeycomb[data-evszak]::after { display: none; } }
+.bc-honeycomb[data-evszak="tavasz"]::after { background-color: var(--_beeco-ds---bc-highlight); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='208'%3E%3Ccircle cx='90.0' cy='21.0' r='3.6'/%3E%3Ccircle cx='94.8' cy='24.5' r='3.6'/%3E%3Ccircle cx='92.9' cy='30.0' r='3.6'/%3E%3Ccircle cx='87.1' cy='30.0' r='3.6'/%3E%3Ccircle cx='85.2' cy='24.5' r='3.6'/%3E%3Ccircle cx='90' cy='26' r='2.6'/%3E%3Ccircle cx='180.0' cy='177.0' r='3.6'/%3E%3Ccircle cx='184.8' cy='180.5' r='3.6'/%3E%3Ccircle cx='182.9' cy='186.0' r='3.6'/%3E%3Ccircle cx='177.1' cy='186.0' r='3.6'/%3E%3Ccircle cx='175.2' cy='180.5' r='3.6'/%3E%3Ccircle cx='180' cy='182' r='2.6'/%3E%3Ccircle cx='0.0' cy='125.0' r='3.6'/%3E%3Ccircle cx='4.8' cy='128.5' r='3.6'/%3E%3Ccircle cx='2.9' cy='134.0' r='3.6'/%3E%3Ccircle cx='-2.9' cy='134.0' r='3.6'/%3E%3Ccircle cx='-4.8' cy='128.5' r='3.6'/%3E%3Ccircle cx='0' cy='130' r='2.6'/%3E%3Ccircle cx='240.0' cy='125.0' r='3.6'/%3E%3Ccircle cx='244.8' cy='128.5' r='3.6'/%3E%3Ccircle cx='242.9' cy='134.0' r='3.6'/%3E%3Ccircle cx='237.1' cy='134.0' r='3.6'/%3E%3Ccircle cx='235.2' cy='128.5' r='3.6'/%3E%3Ccircle cx='240' cy='130' r='2.6'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='208'%3E%3Ccircle cx='90.0' cy='21.0' r='3.6'/%3E%3Ccircle cx='94.8' cy='24.5' r='3.6'/%3E%3Ccircle cx='92.9' cy='30.0' r='3.6'/%3E%3Ccircle cx='87.1' cy='30.0' r='3.6'/%3E%3Ccircle cx='85.2' cy='24.5' r='3.6'/%3E%3Ccircle cx='90' cy='26' r='2.6'/%3E%3Ccircle cx='180.0' cy='177.0' r='3.6'/%3E%3Ccircle cx='184.8' cy='180.5' r='3.6'/%3E%3Ccircle cx='182.9' cy='186.0' r='3.6'/%3E%3Ccircle cx='177.1' cy='186.0' r='3.6'/%3E%3Ccircle cx='175.2' cy='180.5' r='3.6'/%3E%3Ccircle cx='180' cy='182' r='2.6'/%3E%3Ccircle cx='0.0' cy='125.0' r='3.6'/%3E%3Ccircle cx='4.8' cy='128.5' r='3.6'/%3E%3Ccircle cx='2.9' cy='134.0' r='3.6'/%3E%3Ccircle cx='-2.9' cy='134.0' r='3.6'/%3E%3Ccircle cx='-4.8' cy='128.5' r='3.6'/%3E%3Ccircle cx='0' cy='130' r='2.6'/%3E%3Ccircle cx='240.0' cy='125.0' r='3.6'/%3E%3Ccircle cx='244.8' cy='128.5' r='3.6'/%3E%3Ccircle cx='242.9' cy='134.0' r='3.6'/%3E%3Ccircle cx='237.1' cy='134.0' r='3.6'/%3E%3Ccircle cx='235.2' cy='128.5' r='3.6'/%3E%3Ccircle cx='240' cy='130' r='2.6'/%3E%3C/svg%3E"); }
+.bc-honeycomb[data-evszak="nyar"]::after { background-color: var(--_beeco-ds---bc-accent-press); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='208'%3E%3Ccircle cx='90' cy='26' r='5.5'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='98.0' y1='26.0' x2='101.0' y2='26.0'/%3E%3Cline x1='95.7' y1='31.7' x2='97.8' y2='33.8'/%3E%3Cline x1='90.0' y1='34.0' x2='90.0' y2='37.0'/%3E%3Cline x1='84.3' y1='31.7' x2='82.2' y2='33.8'/%3E%3Cline x1='82.0' y1='26.0' x2='79.0' y2='26.0'/%3E%3Cline x1='84.3' y1='20.3' x2='82.2' y2='18.2'/%3E%3Cline x1='90.0' y1='18.0' x2='90.0' y2='15.0'/%3E%3Cline x1='95.7' y1='20.3' x2='97.8' y2='18.2'/%3E%3C/g%3E%3Ccircle cx='180' cy='182' r='5.5'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='188.0' y1='182.0' x2='191.0' y2='182.0'/%3E%3Cline x1='185.7' y1='187.7' x2='187.8' y2='189.8'/%3E%3Cline x1='180.0' y1='190.0' x2='180.0' y2='193.0'/%3E%3Cline x1='174.3' y1='187.7' x2='172.2' y2='189.8'/%3E%3Cline x1='172.0' y1='182.0' x2='169.0' y2='182.0'/%3E%3Cline x1='174.3' y1='176.3' x2='172.2' y2='174.2'/%3E%3Cline x1='180.0' y1='174.0' x2='180.0' y2='171.0'/%3E%3Cline x1='185.7' y1='176.3' x2='187.8' y2='174.2'/%3E%3C/g%3E%3Ccircle cx='0' cy='130' r='5.5'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='8.0' y1='130.0' x2='11.0' y2='130.0'/%3E%3Cline x1='5.7' y1='135.7' x2='7.8' y2='137.8'/%3E%3Cline x1='0.0' y1='138.0' x2='0.0' y2='141.0'/%3E%3Cline x1='-5.7' y1='135.7' x2='-7.8' y2='137.8'/%3E%3Cline x1='-8.0' y1='130.0' x2='-11.0' y2='130.0'/%3E%3Cline x1='-5.7' y1='124.3' x2='-7.8' y2='122.2'/%3E%3Cline x1='-0.0' y1='122.0' x2='-0.0' y2='119.0'/%3E%3Cline x1='5.7' y1='124.3' x2='7.8' y2='122.2'/%3E%3C/g%3E%3Ccircle cx='240' cy='130' r='5.5'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='248.0' y1='130.0' x2='251.0' y2='130.0'/%3E%3Cline x1='245.7' y1='135.7' x2='247.8' y2='137.8'/%3E%3Cline x1='240.0' y1='138.0' x2='240.0' y2='141.0'/%3E%3Cline x1='234.3' y1='135.7' x2='232.2' y2='137.8'/%3E%3Cline x1='232.0' y1='130.0' x2='229.0' y2='130.0'/%3E%3Cline x1='234.3' y1='124.3' x2='232.2' y2='122.2'/%3E%3Cline x1='240.0' y1='122.0' x2='240.0' y2='119.0'/%3E%3Cline x1='245.7' y1='124.3' x2='247.8' y2='122.2'/%3E%3C/g%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='208'%3E%3Ccircle cx='90' cy='26' r='5.5'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='98.0' y1='26.0' x2='101.0' y2='26.0'/%3E%3Cline x1='95.7' y1='31.7' x2='97.8' y2='33.8'/%3E%3Cline x1='90.0' y1='34.0' x2='90.0' y2='37.0'/%3E%3Cline x1='84.3' y1='31.7' x2='82.2' y2='33.8'/%3E%3Cline x1='82.0' y1='26.0' x2='79.0' y2='26.0'/%3E%3Cline x1='84.3' y1='20.3' x2='82.2' y2='18.2'/%3E%3Cline x1='90.0' y1='18.0' x2='90.0' y2='15.0'/%3E%3Cline x1='95.7' y1='20.3' x2='97.8' y2='18.2'/%3E%3C/g%3E%3Ccircle cx='180' cy='182' r='5.5'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='188.0' y1='182.0' x2='191.0' y2='182.0'/%3E%3Cline x1='185.7' y1='187.7' x2='187.8' y2='189.8'/%3E%3Cline x1='180.0' y1='190.0' x2='180.0' y2='193.0'/%3E%3Cline x1='174.3' y1='187.7' x2='172.2' y2='189.8'/%3E%3Cline x1='172.0' y1='182.0' x2='169.0' y2='182.0'/%3E%3Cline x1='174.3' y1='176.3' x2='172.2' y2='174.2'/%3E%3Cline x1='180.0' y1='174.0' x2='180.0' y2='171.0'/%3E%3Cline x1='185.7' y1='176.3' x2='187.8' y2='174.2'/%3E%3C/g%3E%3Ccircle cx='0' cy='130' r='5.5'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='8.0' y1='130.0' x2='11.0' y2='130.0'/%3E%3Cline x1='5.7' y1='135.7' x2='7.8' y2='137.8'/%3E%3Cline x1='0.0' y1='138.0' x2='0.0' y2='141.0'/%3E%3Cline x1='-5.7' y1='135.7' x2='-7.8' y2='137.8'/%3E%3Cline x1='-8.0' y1='130.0' x2='-11.0' y2='130.0'/%3E%3Cline x1='-5.7' y1='124.3' x2='-7.8' y2='122.2'/%3E%3Cline x1='-0.0' y1='122.0' x2='-0.0' y2='119.0'/%3E%3Cline x1='5.7' y1='124.3' x2='7.8' y2='122.2'/%3E%3C/g%3E%3Ccircle cx='240' cy='130' r='5.5'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='248.0' y1='130.0' x2='251.0' y2='130.0'/%3E%3Cline x1='245.7' y1='135.7' x2='247.8' y2='137.8'/%3E%3Cline x1='240.0' y1='138.0' x2='240.0' y2='141.0'/%3E%3Cline x1='234.3' y1='135.7' x2='232.2' y2='137.8'/%3E%3Cline x1='232.0' y1='130.0' x2='229.0' y2='130.0'/%3E%3Cline x1='234.3' y1='124.3' x2='232.2' y2='122.2'/%3E%3Cline x1='240.0' y1='122.0' x2='240.0' y2='119.0'/%3E%3Cline x1='245.7' y1='124.3' x2='247.8' y2='122.2'/%3E%3C/g%3E%3C/svg%3E"); }
+.bc-honeycomb[data-evszak="osz"]::after { background-color: var(--_beeco-ds---bc-ember); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='208'%3E%3Cpath d='M90,17 C97,21 97,31 90,35 C83,31 83,21 90,17 Z' transform='rotate%2835 90 26%29'/%3E%3Cpath d='M180,173 C187,177 187,187 180,191 C173,187 173,177 180,173 Z' transform='rotate%2835 180 182%29'/%3E%3Cpath d='M0,121 C7,125 7,135 0,139 C-7,135 -7,125 0,121 Z' transform='rotate%2835 0 130%29'/%3E%3Cpath d='M240,121 C247,125 247,135 240,139 C233,135 233,125 240,121 Z' transform='rotate%2835 240 130%29'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='208'%3E%3Cpath d='M90,17 C97,21 97,31 90,35 C83,31 83,21 90,17 Z' transform='rotate%2835 90 26%29'/%3E%3Cpath d='M180,173 C187,177 187,187 180,191 C173,187 173,177 180,173 Z' transform='rotate%2835 180 182%29'/%3E%3Cpath d='M0,121 C7,125 7,135 0,139 C-7,135 -7,125 0,121 Z' transform='rotate%2835 0 130%29'/%3E%3Cpath d='M240,121 C247,125 247,135 240,139 C233,135 233,125 240,121 Z' transform='rotate%2835 240 130%29'/%3E%3C/svg%3E"); }
+.bc-honeycomb[data-evszak="tel"]::after { background-color: var(--_beeco-ds---bc-sky); -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='208'%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='80.0' y1='26.0' x2='100.0' y2='26.0'/%3E%3Cline x1='85.0' y1='17.3' x2='95.0' y2='34.7'/%3E%3Cline x1='95.0' y1='17.3' x2='85.0' y2='34.7'/%3E%3C/g%3E%3Ccircle cx='90' cy='26' r='2'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='170.0' y1='182.0' x2='190.0' y2='182.0'/%3E%3Cline x1='175.0' y1='173.3' x2='185.0' y2='190.7'/%3E%3Cline x1='185.0' y1='173.3' x2='175.0' y2='190.7'/%3E%3C/g%3E%3Ccircle cx='180' cy='182' r='2'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='-10.0' y1='130.0' x2='10.0' y2='130.0'/%3E%3Cline x1='-5.0' y1='121.3' x2='5.0' y2='138.7'/%3E%3Cline x1='5.0' y1='121.3' x2='-5.0' y2='138.7'/%3E%3C/g%3E%3Ccircle cx='0' cy='130' r='2'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='230.0' y1='130.0' x2='250.0' y2='130.0'/%3E%3Cline x1='235.0' y1='121.3' x2='245.0' y2='138.7'/%3E%3Cline x1='245.0' y1='121.3' x2='235.0' y2='138.7'/%3E%3C/g%3E%3Ccircle cx='240' cy='130' r='2'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='208'%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='80.0' y1='26.0' x2='100.0' y2='26.0'/%3E%3Cline x1='85.0' y1='17.3' x2='95.0' y2='34.7'/%3E%3Cline x1='95.0' y1='17.3' x2='85.0' y2='34.7'/%3E%3C/g%3E%3Ccircle cx='90' cy='26' r='2'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='170.0' y1='182.0' x2='190.0' y2='182.0'/%3E%3Cline x1='175.0' y1='173.3' x2='185.0' y2='190.7'/%3E%3Cline x1='185.0' y1='173.3' x2='175.0' y2='190.7'/%3E%3C/g%3E%3Ccircle cx='180' cy='182' r='2'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='-10.0' y1='130.0' x2='10.0' y2='130.0'/%3E%3Cline x1='-5.0' y1='121.3' x2='5.0' y2='138.7'/%3E%3Cline x1='5.0' y1='121.3' x2='-5.0' y2='138.7'/%3E%3C/g%3E%3Ccircle cx='0' cy='130' r='2'/%3E%3Cg stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='230.0' y1='130.0' x2='250.0' y2='130.0'/%3E%3Cline x1='235.0' y1='121.3' x2='245.0' y2='138.7'/%3E%3Cline x1='245.0' y1='121.3' x2='235.0' y2='138.7'/%3E%3C/g%3E%3Ccircle cx='240' cy='130' r='2'/%3E%3C/svg%3E"); }
+
+/* ---- a nyilvános weboldal mozgása (termek/css/bc-web.css) ---- */
+/* ============================================================
+   MOZGÁS ÉS SZEMÉLYISÉG a nyilvános weboldalon (Javaslat 11)
+
+   Elv (a bc-motion.css szabályát követve): a méhecske NEM tapéta, hanem SZEREPLŐ.
+   Akkor mozdul, amikor történik valami: megérkezel, kész lett, elértél egy mérföldkövet.
+   Végtelen mozgás nincs. Egy képernyőn legfeljebb EGY mozgó dolog kérje a figyelmet.
+   A humor a SZÖVEGBEN van, nem a mozgásban: az olcsóbb, jobban működik, és nem kerül
+   akadálymentességbe. Csökkentett mozgásnál minden azonnali (bc-base.css).
+   ============================================================ */
+
+/* Méhecske-érkezés: a hero méhecskéje egyszer berepül, aztán megáll. NEM lebeg örökké. */
+@keyframes bc-web-erkezes {
+  0%   { opacity: 0; transform: translate(42px, 26px) rotate(14deg) scale(.86); }
+.bc-web-erkezes { animation: bc-web-erkezes 560ms var(--_beeco-ds---bc-ease-bounce) both; }
+/* Zümmögés: a már meglévő bc-buzz végre kap gazdát. Kétszer rezdül, egérrel, és csak
+   ott, ahol a méhecske egy gomb mellett áll – a döntés pillanatában, nem végig. */
+@media (hover: hover) and (pointer: fine) {
+  .bc-web-zum:hover .bc-bee, .bc-web-zum:focus-visible .bc-bee { animation: bc-buzz 260ms var(--_beeco-ds---bc-ease-out) 2; }
+/* Matrica: ferde címke, ami odacsapódik (a DS bc-stamp keyframe-jével). Egy oldalon 1-2 db. */
+.bc-sticker { display: inline-block; transform: rotate(-3deg); transform-origin: center;
+  padding: var(--_beeco-ds---bc-sp-1) var(--_beeco-ds---bc-sp-3); background: var(--_beeco-ds---bc-accent); color: var(--_beeco-ds---bc-on-accent);
+  border: var(--_beeco-ds---bc-bw-base) solid var(--_beeco-ds---bc-line); border-radius: var(--_beeco-ds---bc-r-s);
+  box-shadow: var(--_beeco-ds---bc-shadow-s); font-family: var(--_beeco-ds---bc-font-display); font-size: var(--_beeco-ds---bc-fs-m); }
+.bc-sticker.is-in { animation: bc-stamp var(--_beeco-ds---bc-t-slow) var(--_beeco-ds---bc-ease-bounce) both; }
+/* Szekció-beúszás görgetésre: a JS teszi rá az .is-in-t, a sorrendet a --i adja.
+   Rövid és kicsi: 8 px elmozdulás, 340 ms. A nagy beúszás lassúnak érződik. */
+.bc-web-in { opacity: 0; transform: translateY(8px); }
+.bc-web-in.is-in { opacity: 1; transform: none;
+  transition: opacity 340ms var(--_beeco-ds---bc-ease-out), transform 340ms var(--_beeco-ds---bc-ease-out);
+  transition-delay: calc(min(var(--i, 0), 4) * 60ms); }
+/* Fénykép: a termékbőr kerete és kemény árnyéka a képen is. A szöveg sosem a képen ül,
+   hanem alatta vagy mellette – a képre írt szöveg kontrasztja nem garantálható. */
+.bc-figure.is-framed .bc-figure-media { box-shadow: var(--_beeco-ds---bc-shadow-m); }
+.bc-figure.is-tilt { transform: rotate(-1.5deg); }
+.bc-figure.is-tilt .bc-figure-cap { transform: rotate(1.5deg); }
+/* Csökkentett mozgás: a beúszás áttűnésre csupaszodik, az érkezés és a pecsét elmarad. */
+@media (prefers-reduced-motion: reduce) {
+  .bc-web-erkezes, .bc-sticker.is-in { animation: none; }
+  .bc-web-in { opacity: 0; transform: none; }
+  .bc-web-in.is-in { transition: opacity 200ms linear; transition-delay: 0ms; }
+  .bc-figure.is-tilt, .bc-figure.is-tilt .bc-figure-cap { transform: none; }

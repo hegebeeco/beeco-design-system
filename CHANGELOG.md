@@ -11,6 +11,18 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.34.0 – mozgás és személyiség a weboldalon (Javaslat 11)
+
+- `termek/css/bc-web.css` mozgás-szakasz: `bc-web-erkezes` (a hero méhecskéje egyszer berepül,
+  nem lebeg örökké), `bc-web-zum` (a gazdátlan `bc-buzz` keyframe végre szerepet kap),
+  `bc-sticker`, `bc-web-in`, `bc-figure.is-framed` és `.is-tilt`.
+- `tools/webflow-build.js` → `dist/weboldal/beeco-web.css` és `beeco-web.min.css`: a Webflow
+  egyedi kód mezőjébe beilleszthető blokk, a DS saját `bc-motion.css` és `bc-marka.css`
+  forrásából generálva, a változónevek automatikus átírásával. Tömörítve 7,9 kB, elfér a
+  ~10 000 karakteres mezőben; az évszakos díszítés külön kérésre kerül be.
+- `tests/check-weboldal.js`: a beillesztendő CSS frissességét, méretét és a névalakot őrzi.
+- `docs/weboldal.md` 3/d. szakasz, `docs/javaslatok/11-weboldal-mozgas.md`.
+
 ## 1.33.0 – webes réteg (Webflow) és a nyilvános weboldal elemei
 
 A beeco.hu a termékbőrt kapja, de Webflow-ban készül, ezért nem tud `npm install`-lal DS-t húzni.

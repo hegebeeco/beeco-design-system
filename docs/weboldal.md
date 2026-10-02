@@ -139,6 +139,36 @@ publikálás → nézd meg → draft=true vissza.
 Az első mérése: 0 arculati, 0 tipográfiai, 0 hozzáférhetőségi és 0 szerkezeti lelet. A két P1 a
 site egészén futó `window.Stripe is not a function` konzolhiba, nem ezé az oldalé.
 
+## 3/d. Mozgás és személyiség – amit a Webflow-stílus nem tud
+
+A Webflow-stílus nem ismeri a `@keyframes`-t, a pszeudoelemet és a maszkot. Ezért a mozgás, a
+méhsejt-háttér és a méhecske-animációk **az oldal fej-kódjába** kerülnek, egy generált blokként:
+
+```bash
+node tools/webflow-build.js        # -> dist/weboldal/beeco-web.min.css
+```
+
+A `beeco-web.min.css` tartalma megy a Webflow egyedi kód mezőjébe. Nem kézzel írjuk: a DS saját
+`bc-motion.css` és `bc-marka.css` fájljaiból generálódik, és a generátor írja át a változóneveket a
+Webflow alakjára. A mező korlátja kb. 10 000 karakter, ezért a kimenet tömörített, és az évszakos
+díszítés (önmagában ~11 kB adat-URI) kimarad belőle; ha kell, külön kérésre kerül be.
+A `tests/check-weboldal.js` őrzi, hogy friss legyen és elférjen.
+
+**A mozgás elve (Javaslat 11):** a méhecske nem tapéta, hanem szereplő. Akkor mozdul, amikor
+történik valami: megérkezel, kész lett, elértél egy mérföldkövet. **Végtelen mozgás nincs** – ezt a
+`bc-motion.css` már kimondja, és a weboldalra is áll. Egy képernyőn legfeljebb egy mozgó dolog kéri
+a figyelmet. A humor a **szövegben** van, nem a mozgásban.
+
+| Osztály | Mikor |
+|---|---|
+| `bc-web-erkezes` | a hero méhecskéje egyszer berepül, 560 ms, aztán megáll |
+| `bc-web-zum` | a gomb melletti méhecske kétszer rezdül rámutatásra, csak egérrel |
+| `bc-sticker` + `is-in` | ferde címke, ami odacsapódik (`bc-stamp`). Oldalanként 1-2 db |
+| `bc-web-in` + `is-in` | szekció-beúszás görgetésre, 8 px, 340 ms, soronként 60 ms késéssel |
+| `bc-honeycomb` | méhsejt-háttér a tartalom mögött, erőssége `--_op` |
+| `bc-figure.is-framed` / `.is-tilt` | fénykép kerettel és kemény árnyékkal, enyhén döntve |
+| `bc-anim-cheer` / `-tick` / `-stamp` / `-shake` / `bc-stagger` / `bc-lift` | a DS meglévő készlete, változatlanul |
+
 ## 4. Mit viszünk ki, mit nem
 
 A weboldal **nem** kap meg mindent a DS-ből:

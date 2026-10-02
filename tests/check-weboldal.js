@@ -63,6 +63,17 @@ const egyezik = (a, b) => a.length === b.length && a.every((x, i) => x === b[i])
 if (!egyezik(P.sarok, [...new Set(Object.values(T.termek.radius))].sort((a, b) => a - b))) baj('a paletta sarok-listája eltér a theme-termek.json-tól');
 if (!egyezik(P.keret, [...new Set(Object.values(T.termek.border))].sort((a, b) => a - b))) baj('a paletta keret-listája eltér a theme-termek.json-tól');
 
+// 8/b. A Webflow-ba beilleszthető CSS létezik, friss, és elfér az egyedi kód mezőjében (~10 000 karakter)
+const MEZO_MAX = 10000;
+for (const f of ['dist/weboldal/beeco-web.css', 'dist/weboldal/beeco-web.min.css']) {
+  if (!fs.existsSync(path.join(ROOT, f))) { baj(`hiányzik: ${f}`); continue; }
+}
+const minCss = fs.existsSync(path.join(ROOT, 'dist/weboldal/beeco-web.min.css'))
+  ? fs.readFileSync(path.join(ROOT, 'dist/weboldal/beeco-web.min.css'), 'utf8') : '';
+if (minCss.length > MEZO_MAX) baj(`a beeco-web.min.css ${minCss.length} karakter, a Webflow egyedi kód mezője ~${MEZO_MAX} – vegyél ki belőle`);
+if (/var\(\s*--bc-/.test(minCss)) baj('a beeco-web.min.css nyers --bc-* hivatkozást tartalmaz; a Webflow-ban a nevek --_beeco-ds---bc-* alakúak');
+if (!/@keyframes/.test(minCss)) baj('a beeco-web.min.css nem tartalmaz @keyframes-t – pedig pont ezért van (a Webflow-stílus nem tud ilyet)');
+
 // 9. A nevek a DS saját CSS-ét követik – enélkül a Webflow és a bc-*.css észrevétlenül elcsúszik
 const css = fs.readFileSync(path.join(ROOT, 'dist/css/beeco-tokens.css'), 'utf8');
 const cssNevek = new Set([...css.matchAll(/--(bc-[a-z0-9-]+)\s*:/g)].map((m) => m[1]));
@@ -87,4 +98,4 @@ if (hibak.length) {
   hibak.forEach((h) => console.error(`  · ${h}`));
   process.exit(1);
 }
-console.log(`✓ weboldal rendben (${V.valtozok.length} Webflow-változó, ${P.szinek.length} szín, ${Object.keys(T.termek.light).length} szerep)`);
+console.log(`✓ weboldal rendben (${V.valtozok.length} Webflow-változó, ${P.szinek.length} szín, ${Object.keys(T.termek.light).length} szerep, beillesztendő CSS ${minCss.length} karakter)`);

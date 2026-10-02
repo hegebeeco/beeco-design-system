@@ -95,3 +95,55 @@
 .bc-source { display: flex; align-items: flex-start; gap: var(--bc-sp-1);
   margin: var(--bc-sp-2) 0 0; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
 .bc-source > svg { flex: none; width: 1em; height: 1em; margin-top: .15em; }
+
+/* ============================================================
+   MOZGÁS ÉS SZEMÉLYISÉG a nyilvános weboldalon (Javaslat 11)
+
+   Elv (a bc-motion.css szabályát követve): a méhecske NEM tapéta, hanem SZEREPLŐ.
+   Akkor mozdul, amikor történik valami: megérkezel, kész lett, elértél egy mérföldkövet.
+   Végtelen mozgás nincs. Egy képernyőn legfeljebb EGY mozgó dolog kérje a figyelmet.
+   A humor a SZÖVEGBEN van, nem a mozgásban: az olcsóbb, jobban működik, és nem kerül
+   akadálymentességbe. Csökkentett mozgásnál minden azonnali (bc-base.css).
+   ============================================================ */
+
+/* Méhecske-érkezés: a hero méhecskéje egyszer berepül, aztán megáll. NEM lebeg örökké. */
+@keyframes bc-web-erkezes {
+  0%   { opacity: 0; transform: translate(42px, 26px) rotate(14deg) scale(.86); }
+  70%  { opacity: 1; transform: translate(-4px, -3px) rotate(-3deg) scale(1.03); }
+  100% { opacity: 1; transform: none; }
+}
+.bc-web-erkezes { animation: bc-web-erkezes 560ms var(--bc-ease-bounce) both; }
+
+/* Zümmögés: a már meglévő bc-buzz végre kap gazdát. Kétszer rezdül, egérrel, és csak
+   ott, ahol a méhecske egy gomb mellett áll – a döntés pillanatában, nem végig. */
+@media (hover: hover) and (pointer: fine) {
+  .bc-web-zum:hover .bc-bee, .bc-web-zum:focus-visible .bc-bee { animation: bc-buzz 260ms var(--bc-ease-out) 2; }
+}
+
+/* Matrica: ferde címke, ami odacsapódik (a DS bc-stamp keyframe-jével). Egy oldalon 1-2 db. */
+.bc-sticker { display: inline-block; transform: rotate(-3deg); transform-origin: center;
+  padding: var(--bc-sp-1) var(--bc-sp-3); background: var(--bc-accent); color: var(--bc-on-accent);
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-s);
+  box-shadow: var(--bc-shadow-s); font-family: var(--bc-font-display); font-size: var(--bc-fs-m); }
+.bc-sticker.is-in { animation: bc-stamp var(--bc-t-slow) var(--bc-ease-bounce) both; }
+
+/* Szekció-beúszás görgetésre: a JS teszi rá az .is-in-t, a sorrendet a --i adja.
+   Rövid és kicsi: 8 px elmozdulás, 340 ms. A nagy beúszás lassúnak érződik. */
+.bc-web-in { opacity: 0; transform: translateY(8px); }
+.bc-web-in.is-in { opacity: 1; transform: none;
+  transition: opacity 340ms var(--bc-ease-out), transform 340ms var(--bc-ease-out);
+  transition-delay: calc(min(var(--i, 0), 4) * 60ms); }
+
+/* Fénykép: a termékbőr kerete és kemény árnyéka a képen is. A szöveg sosem a képen ül,
+   hanem alatta vagy mellette – a képre írt szöveg kontrasztja nem garantálható. */
+.bc-figure.is-framed .bc-figure-media { box-shadow: var(--bc-shadow-m); }
+.bc-figure.is-tilt { transform: rotate(-1.5deg); }
+.bc-figure.is-tilt .bc-figure-cap { transform: rotate(1.5deg); }
+
+/* Csökkentett mozgás: a beúszás áttűnésre csupaszodik, az érkezés és a pecsét elmarad. */
+@media (prefers-reduced-motion: reduce) {
+  .bc-web-erkezes, .bc-sticker.is-in { animation: none; }
+  .bc-web-in { opacity: 0; transform: none; }
+  .bc-web-in.is-in { transition: opacity 200ms linear; transition-delay: 0ms; }
+  .bc-figure.is-tilt, .bc-figure.is-tilt .bc-figure-cap { transform: none; }
+}

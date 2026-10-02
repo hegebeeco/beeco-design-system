@@ -9,6 +9,8 @@
    Kimenet (generált, kézzel SOHA):
      dist/weboldal/webflow-valtozok.json   a Webflow „beeco DS” változó-kollekció teljes tartalma
      dist/weboldal/paletta.json            a megengedett értékek listája a web-ellenőrzőnek
+     dist/weboldal/beeco-web.css           a Webflow-ba BEILLESZTHETŐ CSS: amit a Webflow-stílus nem tud
+                                           (@keyframes, mozgás, méhsejt-háttér). A DS forrásából generálva.
 
    Használat: node tools/webflow-build.js [--check]
    ============================================================ */
@@ -77,9 +79,55 @@ const paletta = {
   gorbe: T.easing.out,
 };
 
+// --- A Webflow-ba beilleszthető CSS -----------------------------------------
+// A Webflow-stílus nem tud @keyframes-t, pszeudoelemet és maszkot, ezért ezek a részek
+// az oldal fej-kódjába kerülnek. A forrás a DS saját CSS-e: itt csak a változóneveket
+// írjuk át a Webflow alakjára (--bc-ink  ->  --_beeco-ds---bc-ink), hogy ne legyen másolat.
+const WF = (nev) => `var(--_beeco-ds---${nev})`;
+const atir = (css) => css.replace(/var\(\s*--(bc-[a-z0-9-]+)\s*\)/g, (_, n) => WF(n));
+
+function reszlet(rel, szuro) {
+  const txt = fs.readFileSync(path.join(ROOT, rel), 'utf8');
+  if (!szuro) return txt;
+  // Csak azok a szabályok, amelyek a szűrőre illeszkednek (a logó pl. relatív képre mutat, az nem kell)
+  return txt.split(/(?<=\})\s*\n/).filter((blokk) => szuro.test(blokk)).join('\n');
+}
+
+const webCss = [
+  `/* GENERÁLT (tools/webflow-build.js) a beeco design system ${T.version} forrásából – kézzel NE szerkeszd.`,
+  `   Ez a blokk a Webflow oldal- vagy site-fejkódjába megy. Azt tartalmazza, amit a Webflow-stílus`,
+  `   nem tud kifejezni: @keyframes, mozgás-osztályok, méhsejt-háttér maszkkal.`,
+  `   A tokenekre a "beeco DS" változókollekció nevein hivatkozik (--_beeco-ds---bc-*).`,
+  `   Frissítés: node tools/webflow-build.js, majd a tartalom bemásolása. */`,
+  '',
+  '/* ---- mozgás-készlet (termek/css/bc-motion.css) ---- */',
+  atir(reszlet('termek/css/bc-motion.css')),
+  '',
+  '/* ---- méhsejt-háttér és évszakos díszítés (termek/css/bc-marka.css) ---- */',
+  atir(reszlet('termek/css/bc-marka.css', /honeycomb/)),
+  '',
+  '/* ---- a nyilvános weboldal mozgása (termek/css/bc-web.css) ---- */',
+  atir(reszlet('termek/css/bc-web.css', /bc-web-erkezes|bc-web-zum|bc-sticker|bc-web-in|is-framed|is-tilt|prefers-reduced-motion/)),
+  '',
+].join('\n');
+
+// A Webflow egyedi kód mezője ~10 000 karakter, ezért a beillesztendő változat tömörített,
+// és az évszakos díszítés (önmagában ~11 kB adat-URI) kimarad belőle: az külön kérésre kerül be.
+const tomorit = (css) => css
+  .split('\n').filter((sor) => !sor.includes('data-evszak')).join('\n')
+  .replace(/\/\*[\s\S]*?\*\//g, '')          // kommentek
+  .replace(/\s*\n\s*/g, '')                   // sortörés és behúzás
+  .replace(/\s*([{}:;,>])\s*/g, '$1')          // felesleges szóköz a jelek körül
+  .replace(/;}/g, '}')
+  .trim();
+
+const webMin = `/* beeco DS ${T.version} – web (generált, tools/webflow-build.js). Évszakos díszítés nélkül. */\n` + tomorit(webCss);
+
 const fajlok = {
   'dist/weboldal/webflow-valtozok.json': JSON.stringify(ki, null, 2) + '\n',
   'dist/weboldal/paletta.json': JSON.stringify(paletta, null, 2) + '\n',
+  'dist/weboldal/beeco-web.css': webCss,
+  'dist/weboldal/beeco-web.min.css': webMin + '\n',
 };
 
 let elteres = 0;
@@ -90,7 +138,7 @@ for (const [rel, tartalom] of Object.entries(fajlok)) {
   if (regi === tartalom) continue;
   if (check) { console.error(`webflow-build: a ${rel} nem friss – futtasd: node tools/webflow-build.js`); elteres++; continue; }
   fs.writeFileSync(p, tartalom);
-  console.log(`webflow-build: ${rel} (${rel.endsWith('valtozok.json') ? valtozok.length + ' változó' : paletta.szinek.length + ' szín'})`);
+  console.log(`webflow-build: ${rel} (${rel.endsWith('valtozok.json') ? valtozok.length + ' változó' : rel.endsWith('.css') ? Math.round(tartalom.length / 1024) + ' kB' : paletta.szinek.length + ' szín'})`);
 }
 if (elteres) process.exit(1);
 if (check) console.log('webflow-build: a dist/weboldal friss');
