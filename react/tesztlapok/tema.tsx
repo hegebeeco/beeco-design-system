@@ -1,4 +1,4 @@
-import { ThemeProvider, ThemeToggle, useTheme, themeInitScript } from '../src';
+import { Logo, ThemeProvider, ThemeToggle, useTheme, themeInitScript } from '../src';
 import { Case, Grid, mount } from './_keret';
 
 function Allapot() {
@@ -23,6 +23,15 @@ function Oldal() {
         </Case>
         <Case id="tema-minta" title="Minta: a szerepek maguktól váltanak">
           <div className="bc-card"><strong className="bc-card-title">Kártya</strong><p>Fő szöveg, <span className="bc-muted">másodlagos szöveg</span>.</p><button type="button" className="bc-btn">Fő gomb</button></div>
+        </Case>
+        <Case id="tema-logo" title="Logó (Javaslat 10): sötét módban a fekete részek krémszínűek">
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--bc-sp-4)' }}><Logo size="s" /><Logo /><Logo size="l" /></div>
+        </Case>
+        <Case id="tema-mehsejt" title="Méhsejt-háttér (.bc-honeycomb): a méz színéből, a tartalom alatt">
+          <div className="bc-honeycomb" style={{ minHeight: 160, padding: 'var(--bc-sp-4)', border: 'var(--bc-bw-hair) solid var(--bc-line-soft)', borderRadius: 'var(--bc-r-m)' }}>
+            <p>A minta díszítő: a szöveg fölötte olvasható marad, kattintani rajta keresztül is lehet.</p>
+            <button type="button" className="bc-btn is-secondary">Gomb a minta fölött</button>
+          </div>
         </Case>
         <Case id="tema-init" title="Villanásmentes indítás: a <head>-be tett szkript (themeInitScript)">
           <pre className="tl-out" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{`<script>${themeInitScript()}</script>`}</pre>

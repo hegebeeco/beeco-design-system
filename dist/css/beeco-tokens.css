@@ -1,4 +1,4 @@
-/* beeco design system 1.24.1 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js */
+/* beeco design system 1.25.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js */
 
 /* 1. Primitívek (nyers színek) – felületen NE használd közvetlenül, csak a szerepeket (2.) */
 :root {
@@ -76,6 +76,7 @@
   --bc-ease-drawer: cubic-bezier(.32,.72,0,1);
   --bc-ease-bounce: cubic-bezier(.34,1.56,.64,1);
   --bc-tap: 44px;
+  --bc-z-behind: -1;
   --bc-z-sticky: 10;
   --bc-z-header: 20;
   --bc-z-drawer: 40;

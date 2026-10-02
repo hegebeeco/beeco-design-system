@@ -1,4 +1,4 @@
-/* beeco design system 1.24.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.25.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -3254,6 +3254,7 @@ function AppShell({
   skipLabel = "Ugr\xE1s a tartalomra",
   navLabel = "F\u0151 navig\xE1ci\xF3",
   labels,
+  pattern,
   children
 }) {
   const l = { ...APP_SHELL_LABELS_HU, ...labels };
@@ -3317,7 +3318,7 @@ function AppShell({
         }
       )
     ] }) }),
-    /* @__PURE__ */ jsxs50("div", { className: "bc-main", children: [
+    /* @__PURE__ */ jsxs50("div", { className: cx("bc-main", pattern === "honeycomb" && "bc-honeycomb"), children: [
       hasHeader && /* @__PURE__ */ jsxs50("header", { className: cx("bc-topbar", "bc-topbar-thin"), children: [
         narrow && /* @__PURE__ */ jsx55(IconButton, { "aria-label": l.openMenu, "aria-expanded": open, "aria-haspopup": "dialog", onClick: () => setOpen(true), children: /* @__PURE__ */ jsx55("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5", strokeLinecap: "round", "aria-hidden": "true", children: /* @__PURE__ */ jsx55("path", { d: "M4 7h16M4 12h16M4 17h16" }) }) }),
         narrow && !topbar && /* @__PURE__ */ jsx55("div", { className: "bc-topbar-brand", children: brandCompact ?? brand }),
@@ -8429,6 +8430,18 @@ function ThemeToggle({ variant = "icon", labels, className }) {
   const toDark = resolved === "light";
   return /* @__PURE__ */ jsx113(TooltipIconButton, { label: toDark ? l.toDark : l.toLight, onClick: toggle, className, "data-theme-toggle": "", children: toDark ? /* @__PURE__ */ jsx113(IcMoon, {}) : /* @__PURE__ */ jsx113(IcSun, {}) });
 }
+
+// react/src/marka/Logo.tsx
+import { jsx as jsx114 } from "react/jsx-runtime";
+function Logo({ size = "m", label = "beeco", className }) {
+  return /* @__PURE__ */ jsx114(
+    "span",
+    {
+      className: cx("bc-logo", size !== "m" && `is-${size}`, className),
+      ...label ? { role: "img", "aria-label": label } : { "aria-hidden": true }
+    }
+  );
+}
 export {
   APP_SHELL_LABELS_HU,
   Accordion,
@@ -8510,6 +8523,7 @@ export {
   LineChart,
   ListPage,
   LocationPicker,
+  Logo,
   MARKER_ICON,
   MARKER_ICON_SELECTED,
   MapLegend,

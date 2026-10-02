@@ -37,6 +37,8 @@ export type AppShellProps = {
   navLabel?: string;
   /** A váz gombjainak feliratai (pl. angolul) – ami hiányzik, az magyar marad */
   labels?: Partial<AppShellLabels>;
+  /** Díszítő háttér a tartalomrész mögött (Javaslat 10): 'honeycomb' = méhsejt-minta a méz színéből */
+  pattern?: 'honeycomb';
   children: ReactNode;
 };
 
@@ -57,7 +59,7 @@ const Chevron = ({ left }: { left: boolean }) => (
  * Az első Tab-ra „Ugrás a tartalomra” ugrólink jelenik meg. Az oldal címe a tartalom tetején van (PageHeader).
  */
 export function AppShell({ brand, brandCompact, nav, topbar, account, collapsible = false, collapseKey = 'nav', renderLink = defaultLink,
-  skipLabel = 'Ugrás a tartalomra', navLabel = 'Fő navigáció', labels, children }: AppShellProps) {
+  skipLabel = 'Ugrás a tartalomra', navLabel = 'Fő navigáció', labels, pattern, children }: AppShellProps) {
   const l = { ...APP_SHELL_LABELS_HU, ...labels };
   const narrow = useMedia(NARROW);
   const [open, setOpen] = useState(false);
@@ -120,7 +122,7 @@ export function AppShell({ brand, brandCompact, nav, topbar, account, collapsibl
           </Dialog.Portal>
         </Dialog.Root>
       )}
-      <div className="bc-main">
+      <div className={cx('bc-main', pattern === 'honeycomb' && 'bc-honeycomb')}>
         {hasHeader && (
           <header className={cx('bc-topbar', 'bc-topbar-thin')}>
             {narrow && (

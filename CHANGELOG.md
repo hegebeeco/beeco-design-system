@@ -11,6 +11,11 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.25.0 – 2026-10-02
+- Új: **sötét módú logó** (`web/assets/brand/logo-sotet.webp` – a meglévő logóból, csak az átlátszó háttér melletti fekete részek krémszínűek) és **`Logo`** React-elem / `.bc-logo` CSS, amely a témával magától vált (Javaslat 10).
+- Új: **méhsejt-háttér** – `.bc-honeycomb` (CSS-maszk a méz szerep színéből, a tartalom alatt, nyomtatásban rejtve) és `AppShell pattern="honeycomb"`; a partner-app mintájából, az admin is használhatja. Tesztlap: `tema`.
+- Új token: **`z.behind` = −1** (`--bc-z-behind`, Tailwind `z-behind`) – díszítő réteg a tartalom mögött.
+
 ## 1.24.1 – 2026-10-02
 - Javítás: érintős eszközön a táblázat-cellák linkjei (pl. a sor címe, telefonos kártyanézetben is) legalább 44 px magas célfelületet kapnak (eddig a szövegsor magassága, ~21 px).
 

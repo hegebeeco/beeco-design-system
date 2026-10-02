@@ -3,7 +3,9 @@
 *GENERÁLT (`tools/katalogus.py`) a tényleges exportokból. Szabályok: `docs/komponensek.md`; élő tesztlapok: https://hegebeeco.github.io/beeco-design-system/*
 
 ## 01 – Űrlap (alap)
-**Komponensek:** Button, Calendar, Checkbox, CheckboxInput, Combobox, DatePicker, DateRangePicker, Field, FormActions, FormSection, HelpButton, IcEdit, IcInfo, IcNew, IcOk, IcOpen, IcSave, IcTrash, IcX, IconButton, NumberField, RadioGroup, SearchBox, SegmentedControl, SelectField, Switch, TagPicker, TextArea, TextField
+**Komponensek:** Button, Calendar, Checkbox, CheckboxInput, Combobox, DatePicker, DateRangePicker, Field, FieldInput, FormActions, FormSection, HelpButton, IcEdit, IcInfo, IcNew, IcOk, IcOpen, IcSave, IcTrash, IcX, IconButton, NumberField, RadioGroup, SearchBox, SegmentedControl, SelectField, Switch, TagPicker, TextArea, TextField
+
+**Hookok:** useFieldContext
 
 **Segédek:** formatHu, formatHuDate, lengthRange, localToUtcIso, parseHu, parseHuDate, todayIso, utcToLocal
 

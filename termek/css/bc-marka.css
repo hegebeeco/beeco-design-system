@@ -1,0 +1,18 @@
+/* ============================================================
+   beeco TERMÉKBŐR – márka: logó (világos / sötét) és méhsejt-háttér (Javaslat 10, 2026-10-02)
+   A logó a témával magától vált (sötétben a fekete „be” és csápok krémszínűek, a méh marad).
+   A méhsejt-háttér maszk: a színét a méz szerep adja, ezért sötét módban is jó; a tartalom alá kerül.
+   ============================================================ */
+.bc-logo { display: inline-block; flex: none; height: var(--_h, 36px); aspect-ratio: 512 / 313;
+  background: url("../../web/assets/brand/logo.webp") center / contain no-repeat; }
+.bc-logo.is-s { --_h: 24px; } .bc-logo.is-l { --_h: 56px; }
+:root[data-theme="dark"] .bc-logo, :root.dark .bc-logo { background-image: url("../../web/assets/brand/logo-sotet.webp"); }
+@media (prefers-color-scheme: dark) { :root[data-theme="auto"] .bc-logo { background-image: url("../../web/assets/brand/logo-sotet.webp"); } }
+
+/* Méhsejt-háttér: <div class="bc-honeycomb">…</div> – vagy AppShell pattern="honeycomb" (a tartalomrész mögé).
+   Erősség: --_op (alap .12), pl. style="--_op: .2". A réteg a tartalom MÖGÖTT van (--bc-z-behind). */
+.bc-honeycomb { position: relative; isolation: isolate; }
+.bc-honeycomb::before { content: ""; position: absolute; inset: 0; z-index: var(--bc-z-behind); pointer-events: none;
+  background-color: var(--bc-accent); color: var(--bc-on-accent); opacity: var(--_op, .12);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='104'%3E%3Cpolygon points='30.0,-4.0 56.0,11.0 56.0,41.0 30.0,56.0 4.0,41.0 4.0,11.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='90.0,-4.0 116.0,11.0 116.0,41.0 90.0,56.0 64.0,41.0 64.0,11.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='0.0,48.0 26.0,63.0 26.0,93.0 0.0,108.0 -26.0,93.0 -26.0,63.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='60.0,48.0 86.0,63.0 86.0,93.0 60.0,108.0 34.0,93.0 34.0,63.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='120.0,48.0 146.0,63.0 146.0,93.0 120.0,108.0 94.0,93.0 94.0,63.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E") 0 0 / 120px 104px repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='104'%3E%3Cpolygon points='30.0,-4.0 56.0,11.0 56.0,41.0 30.0,56.0 4.0,41.0 4.0,11.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='90.0,-4.0 116.0,11.0 116.0,41.0 90.0,56.0 64.0,41.0 64.0,11.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='0.0,48.0 26.0,63.0 26.0,93.0 0.0,108.0 -26.0,93.0 -26.0,63.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='60.0,48.0 86.0,63.0 86.0,93.0 60.0,108.0 34.0,93.0 34.0,63.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3Cpolygon points='120.0,48.0 146.0,63.0 146.0,93.0 120.0,108.0 94.0,93.0 94.0,63.0' fill='black' fill-opacity='.35' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E") 0 0 / 120px 104px repeat; }
+@media print { .bc-honeycomb::before { display: none; } }

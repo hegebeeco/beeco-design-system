@@ -45,4 +45,17 @@ export default async function ({ page, t }) {
     ok((await out()).includes('mód: auto'), await out());
     await page.evaluate(() => localStorage.removeItem('bc-theme'));
   });
+  await t('logó: világosban logo.webp, sötétben logo-sotet.webp; van neve', async () => {
+    const bg = () => page.locator('[data-case="tema-logo"] .bc-logo').first().evaluate((e) => getComputedStyle(e).backgroundImage);
+    await seg('Világos').click(); ok((await bg()).includes('logo.webp') && !(await bg()).includes('sotet'), await bg());
+    await seg('Sötét').click(); ok((await bg()).includes('logo-sotet.webp'), await bg());
+    ok((await page.locator('[data-case="tema-logo"] [role="img"][aria-label="beeco"]').count()) === 3, 'nincs képernyőolvasó-név');
+    const h = await page.locator('[data-case="tema-logo"] .bc-logo').nth(1).evaluate((e) => e.getBoundingClientRect().height); ok(Math.round(h) === 36, `magasság ${h}`);
+    await seg('Világos').click();
+  });
+  await t('méhsejt-háttér: maszk + méz szín, a tartalom alatt, nem fogja el a kattintást', async () => {
+    const st = await page.locator('[data-case="tema-mehsejt"] .bc-honeycomb').evaluate((e) => { const s = getComputedStyle(e, '::before'); return { mask: s.maskImage || s.webkitMaskImage, z: s.zIndex, pe: s.pointerEvents, bg: s.backgroundColor }; });
+    ok(String(st.mask).startsWith('url('), `nincs maszk: ${st.mask}`); ok(st.z === '-1' && st.pe === 'none', JSON.stringify(st));
+    await page.locator('[data-case="tema-mehsejt"] .bc-btn').click({ trial: true });
+  });
 }
