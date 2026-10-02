@@ -62,4 +62,15 @@ export default async function ({ page, t }) {
     ok(String(st.mask).startsWith('url('), `nincs maszk: ${st.mask}`); ok(st.z === '-1' && st.pe === 'none', JSON.stringify(st));
     await page.locator('[data-case="tema-mehsejt"] .bc-btn').click({ trial: true });
   });
+  await t('évszakos díszítés: mind a négy évszakon maszkos motívum, a tartalom alatt', async () => {
+    const st = await page.locator('[data-case="tema-evszak"] .bc-honeycomb').evaluateAll((els) => els.map((e) => { const s = getComputedStyle(e, '::after'); return { ev: e.dataset.evszak, mask: String(s.maskImage || s.webkitMaskImage), z: s.zIndex, pe: s.pointerEvents }; }));
+    ok(st.length === 4, `${st.length} doboz`);
+    for (const x of st) ok(x.mask.startsWith('url(') && x.z === '-1' && x.pe === 'none', JSON.stringify(x));
+    const masks = new Set(st.map((x) => x.mask)); ok(masks.size === 4, 'két évszak ugyanazt a motívumot kapta');
+  });
+  await t('evszak(): a hónap szerint', async () => {
+    const r = await page.evaluate(() => document.querySelector('[data-out="evszak"]').textContent);
+    const m = new Date().getMonth() + 1; const vart = m >= 3 && m <= 5 ? 'tavasz' : m >= 6 && m <= 8 ? 'nyar' : m >= 9 && m <= 11 ? 'osz' : 'tel';
+    ok(r.includes(vart), `${r} ≠ ${vart}`);
+  });
 }

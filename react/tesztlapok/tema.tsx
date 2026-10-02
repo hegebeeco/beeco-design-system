@@ -1,4 +1,4 @@
-import { Logo, ThemeProvider, ThemeToggle, useTheme, themeInitScript } from '../src';
+import { Logo, ThemeProvider, ThemeToggle, useTheme, themeInitScript, evszak } from '../src';
 import { Case, Grid, mount } from './_keret';
 
 function Allapot() {
@@ -35,6 +35,16 @@ function Oldal() {
             <p>A minta díszítő: a szöveg fölötte olvasható marad, kattintani rajta keresztül is lehet.</p>
             <button type="button" className="bc-btn is-secondary">Gomb a minta fölött</button>
           </div>
+        </Case>
+        <Case id="tema-evszak" title="Évszakos díszítés (Javaslat 11): tavasz · nyár · ősz · tél – csak a mintán" wide>
+          <div style={{ display: 'grid', gap: 'var(--bc-sp-3)', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))' }}>
+            {(['tavasz', 'nyar', 'osz', 'tel'] as const).map((e) => (
+              <div key={e} className="bc-honeycomb" data-evszak={e} style={{ minHeight: 140, padding: 'var(--bc-sp-3)', border: 'var(--bc-bw-hair) solid var(--bc-line-soft)', borderRadius: 'var(--bc-r-m)' }}>
+                <strong>{e}</strong>
+              </div>
+            ))}
+          </div>
+          <p className="tl-out" data-out="evszak">ma: {evszak()}</p>
         </Case>
         <Case id="tema-init" title="Villanásmentes indítás: a <head>-be tett szkript (themeInitScript)">
           <pre className="tl-out" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{`<script>${themeInitScript()}</script>`}</pre>

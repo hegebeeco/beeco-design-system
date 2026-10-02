@@ -1,4 +1,4 @@
-/* beeco design system 1.26.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.27.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 /* Használat a böngészőben: const L = window.bcMeres({ w: innerWidth, touch: true }); – leletek { kat, sulyos, mi, hol } */
 window.bcMeres = function meres(opts) {
   const L = [];
@@ -55,7 +55,8 @@ window.bcMeres = function meres(opts) {
 
   // --- 3/A: minden beviteli mezőnek súgó gomb; hossz-/tartomány-határnál látható tartomány és számláló
   for (const f of document.querySelectorAll('.bc-field')) {
-    const ctl = f.querySelector('input:not([type=search]), select, textarea, [role=combobox], .bc-tagcloud, [role=switch]');
+    // a rejtett belső mező (pl. Radix jelölőnégyzet „bubble” inputja: aria-hidden, tabindex -1) nem a látható vezérlő
+    const ctl = f.querySelector('input:not([type=search]):not([type=hidden]):not([aria-hidden="true"]), select:not([aria-hidden="true"]), textarea, [role=combobox], .bc-tagcloud, [role=switch], [role=checkbox]');
     if (!ctl) continue;
     if (!f.querySelector('.bc-help-btn')) add('Szöveg', 'P1', 'beviteli mező súgó (ⓘ) nélkül – 3/A', desc(ctl));
     if (ctl.hasAttribute('maxlength') && ctl.closest('.bc-field') === f && !ctl.closest('.bc-tagcloud') && !f.querySelector('.bc-count')) add('Adat', 'P2', 'max. hossz van, de nincs számláló (pl. 213/255) – 3/A', desc(ctl));

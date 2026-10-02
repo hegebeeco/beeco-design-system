@@ -1,4 +1,4 @@
-/* beeco design system 1.26.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.27.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -3221,6 +3221,17 @@ function ToastView({ t }) {
 // react/src/reteg/AppShell.tsx
 import * as Dialog4 from "@radix-ui/react-dialog";
 import { Fragment as Fragment14, useState as useState22 } from "react";
+
+// react/src/marka/evszak.ts
+function evszak(d = /* @__PURE__ */ new Date()) {
+  const m = d.getMonth() + 1;
+  if (m >= 3 && m <= 5) return "tavasz";
+  if (m >= 6 && m <= 8) return "nyar";
+  if (m >= 9 && m <= 11) return "osz";
+  return "tel";
+}
+
+// react/src/reteg/AppShell.tsx
 import { Fragment as Fragment15, jsx as jsx55, jsxs as jsxs50 } from "react/jsx-runtime";
 var APP_SHELL_LABELS_HU = {
   openMenu: "Men\xFC megnyit\xE1sa",
@@ -3255,8 +3266,10 @@ function AppShell({
   navLabel = "F\u0151 navig\xE1ci\xF3",
   labels,
   pattern,
+  season,
   children
 }) {
+  const ev = pattern === "honeycomb" && season ? season === "auto" ? evszak() : season : void 0;
   const l = { ...APP_SHELL_LABELS_HU, ...labels };
   const narrow = useMedia(NARROW);
   const [open, setOpen] = useState22(false);
@@ -3318,7 +3331,7 @@ function AppShell({
         }
       )
     ] }) }),
-    /* @__PURE__ */ jsxs50("div", { className: cx("bc-main", pattern === "honeycomb" && "bc-honeycomb"), children: [
+    /* @__PURE__ */ jsxs50("div", { className: cx("bc-main", pattern === "honeycomb" && "bc-honeycomb"), "data-evszak": ev, children: [
       hasHeader && /* @__PURE__ */ jsxs50("header", { className: cx("bc-topbar", "bc-topbar-thin"), children: [
         narrow && /* @__PURE__ */ jsx55(IconButton, { "aria-label": l.openMenu, "aria-expanded": open, "aria-haspopup": "dialog", onClick: () => setOpen(true), children: /* @__PURE__ */ jsx55("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5", strokeLinecap: "round", "aria-hidden": "true", children: /* @__PURE__ */ jsx55("path", { d: "M4 7h16M4 12h16M4 17h16" }) }) }),
         narrow && !topbar && /* @__PURE__ */ jsx55("div", { className: "bc-topbar-brand", children: brandCompact ?? brand }),
@@ -8606,6 +8619,7 @@ export {
   describeAudience,
   emptyWeek,
   eventsByDay,
+  evszak,
   fileKey,
   formatBytes,
   formatHu,

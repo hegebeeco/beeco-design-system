@@ -11,6 +11,10 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.27.0 – 2026-10-02
+- Új: **évszakos díszítés** a méhsejt-háttéren (Javaslat 11): `.bc-honeycomb[data-evszak]` (virág · nap · levél · hópehely, maszkként, a tartalom alatt) és `AppShell season="auto"`; `evszak(date)` segéd. Tesztlap: `tema`.
+- Javítás (mérés): az oldalmérő (`bcMeres`) a mező vizsgálatánál kihagyja a rejtett belső mezőt (pl. a Radix jelölőnégyzet `aria-hidden` „bubble” inputját) – eddig téves „mezőnek nincs címkéje” P1-et adott; a `role="checkbox"` is vezérlőnek számít.
+
 ## 1.26.1 – 2026-10-02
 - Javítás: a **Logo** (`.bc-logo`) kifejezett szélességet kap a magasságból (`--_h` × 512/313). Oszlopos flex- vagy grid-tárolóban (pl. belépő kártya) eddig kinyúlt teljes szélességre, és a kép középre ugrott a balra igazított szöveg fölött. Tesztlap: `tema` („Logó oszlopos flex-tárolóban”).
 
