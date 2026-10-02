@@ -39,6 +39,7 @@ automatikus ellenőrzés – hogy minden játék egységes maradjon, akárki (va
 | Közös kör vége | `web/js/result.js` | `showResult({...})` – minden játék szint/kör vége panelje (eredmény-minta, ranglista, megosztás, app-sáv) |
 | Ellenőrzés | `tests/check-arculat.js` + `tests/arculat-baseline.json`, `tests/check-art.js` | lásd 8. pont |
 | Eszköz-teszt | `docs/eszkoz-teszt.md` | kézi ellenőrzőlista valódi telefonra, tabletre és a beeco app WebView-jára |
+| `[WEB]` Weboldal | `docs/weboldal.md` | a beeco.hu a **termékbőrt** kapja (2026-10-01), nem ezt a bőrt; a weboldal tokenjei, Webflow-változói és elemei (`termek/css/bc-web.css`) |
 
 **Betöltési sorrend** (`index.html`): a `<head>` saját stílusa (a játék alapja + Szelektálj! HUD, tokenekkel) → `fonts` → `tokens` → `ds` → `ds-game` → modulok CSS-e.
 A modulok a design systemre építenek (utána jönnek). (A korábbi `theme.css` „átöltöztető” réteg 2026-09-16-án megszűnt: a HUD stílusa közvetlenül tokenekre épül.)
@@ -318,3 +319,15 @@ méhecske (app-illusztrációk) és a szereplők (`rezsi-chars.js`); a valódi k
 * A beeco app-méhecskék a játékban belső használatúak – külső (partner) anyagban a beeco jóváhagyása kell.
 * Opcionális: a design system feltölthető a claude.ai Design felületére is (a Claude Code `/design-sync` parancsával),
   így az ott készülő prezentációk és anyagok (pl. cégeknek, iskoláknak) is ezt a stílust kapják.
+
+## 12. `[WEB]` A weboldal (beeco.hu) – **a termékbőrbe költözött**
+
+> **Változás, 2026-10-01 (Kristóf):** a beeco.hu **nem a játékbőrt** kapja, hanem a **termékbőrt**, az app, az
+> admin és a partner-felület mellé. Fekete tinta és keret, kemény átlós árnyék, kis sarkok (2 · 4 · 8 · 12),
+> a méz az egyetlen hangsúlyszín. A puha árnyék, a 3 px olíva körvonal és a méhsejt-perem a **játékoké** marad.
+>
+> A korábbi szöveg (ugyanaz a design system, puha árnyék, olíva körvonal) **elavult**, ne eszerint dolgozz.
+
+A weboldal szabálykönyve: **`docs/weboldal.md`** (token→Webflow-változó megfeleltetés, osztálynevek, a kötés
+pontos alakja, a Webflow API korlátai, publikálási szabály, gépi ellenőrzés). Elemei: `termek/css/bc-web.css`.
+A **`[WEB]`** jel ebben a tárolóban továbbra is azt jelöli, ami csak a weboldalra vonatkozik.
