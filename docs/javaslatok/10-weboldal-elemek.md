@@ -1,6 +1,6 @@
 # Javaslat 10 – marketing-elemek a weboldalhoz (bc-sec, bc-wrap, tipográfia, rács)
 
-*Állapot: **javaslat** · készítette: Claude · dátum: 2026-10-02*
+*Állapot: **jóváhagyva** · Kristóf, 2026-10-02 · megvalósítva: `termek/css/bc-web.css` + Webflow*
 
 ## 1. Igény
 
@@ -70,6 +70,8 @@ szín a DS palettájából való-e.
 
 ## 8. Döntés
 
-- [ ] Jóváhagyva · dátum: … · Kristóf
+- [x] **Jóváhagyva** · 2026-10-02 · Kristóf
+      Kiegészítve a felméréssel: a hiteles weboldalhoz még hiányzott a `bc-link`, `bc-quote`,
+      `bc-logos`, `bc-figure` és `bc-source`. Ezek is bekerültek.
 - [ ] Módosítással: …
 - [ ] Elvetve, mert: …

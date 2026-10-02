@@ -1,0 +1,97 @@
+/* ============================================================
+   beeco TERMÉKBŐR – a NYILVÁNOS WEBOLDAL elemei (docs/weboldal.md, javaslat 10)
+
+   A többi bc-*.css app- és admin-felületre készült: űrlap, tábla, ablak, eszközsáv.
+   Egy marketingoldalhoz más kell: szekció-ritmus, tartalomszélesség, címsor-skála,
+   és néhány bizalmi elem (idézet, logósáv, forrásmegjelölés).
+
+   Minden érték tokenből jön. Nyers szín, nyers px betűméret/sarok/árnyék: nincs.
+   A Webflow-ban ugyanezek a nevek élnek osztályként, változóra kötve (docs/weboldal.md 2.).
+   ============================================================ */
+
+/* ---- Tartalomszélesség és szekció-ritmus ---------------------------------- */
+.bc-wrap { width: 100%; max-width: 1080px; margin-inline: auto; padding-inline: var(--bc-sp-4); }
+.bc-wrap.is-narrow { max-width: 760px; }
+
+.bc-sec { padding-block: var(--bc-sp-7); }
+@media (min-width: 992px) { .bc-sec { padding-block: var(--bc-sp-8); } }
+.bc-sec.is-tight { padding-block: var(--bc-sp-6); }
+.bc-sec.is-accent { background: var(--bc-surface-accent); }
+.bc-sec.is-quiet { background: var(--bc-surface-2); }
+/* Sötét sáv: a szöveg világos, de a benne lévő lapok visszaváltanak sötét tintára.
+   (A CsicsergŐsz protóban élesben jött elő, hogy enélkül krém szöveg kerül krém lapra.) */
+.bc-sec.is-ink { background: var(--bc-ink); color: var(--bc-bg); }
+.bc-sec.is-ink .bc-card, .bc-sec.is-ink .bc-panel { color: var(--bc-ink); }
+/* Két egyforma hátterű szekció között ne duplázódjon a térköz */
+.bc-sec + .bc-sec:not([class*="is-"]) { padding-top: 0; }
+
+/* ---- Marketing-tipográfia ------------------------------------------------- */
+.bc-eyebrow {
+  margin: 0 0 var(--bc-sp-2); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold);
+  letter-spacing: .09em; text-transform: uppercase; color: var(--bc-ink-soft);
+}
+.bc-display, .bc-title, .bc-subtitle {
+  font-family: var(--bc-font-display); font-weight: var(--bc-fw-regular);
+  line-height: var(--bc-lh-tight); margin: 0 0 var(--bc-sp-3); text-wrap: balance;
+}
+.bc-display { font-size: var(--bc-fs-3xl); }
+.bc-title { font-size: var(--bc-fs-2xl); }
+.bc-subtitle { font-size: var(--bc-fs-l); margin-bottom: var(--bc-sp-2); }
+@media (max-width: 767px) {
+  .bc-display { font-size: var(--bc-fs-2xl); }
+  .bc-title { font-size: var(--bc-fs-xl); }
+}
+.bc-lead { font-size: var(--bc-fs-l); line-height: var(--bc-lh-normal); color: var(--bc-ink-soft); max-width: 62ch; margin: 0 0 var(--bc-sp-4); }
+.bc-body { font-size: var(--bc-fs-m); line-height: var(--bc-lh-normal); max-width: 70ch; margin: 0 0 var(--bc-sp-3); }
+
+/* ---- Rács ----------------------------------------------------------------- */
+.bc-grid-2, .bc-grid-3 { display: grid; gap: var(--bc-sp-5); }
+@media (min-width: 768px) { .bc-grid-2 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 768px) { .bc-grid-3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 992px) { .bc-grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+/* ---- Szövegbeli link ------------------------------------------------------ */
+/* A DS-ben eddig csak környezetfüggő link volt (bc-nav-link, bc-toast-link).
+   A folyó szövegben a link mindig aláhúzott: a szín önmagában nem jelölő (WCAG 1.4.1). */
+.bc-link {
+  color: inherit; text-decoration: underline; text-decoration-thickness: 2px;
+  text-underline-offset: .18em; text-decoration-color: var(--bc-accent-press);
+  border-radius: var(--bc-r-xs);
+}
+@media (hover: hover) and (pointer: fine) { .bc-link:hover { text-decoration-color: var(--bc-ink); } }
+.bc-link:focus-visible { outline: var(--bc-bw-base) solid var(--bc-focus); outline-offset: 2px; }
+
+/* ---- Idézet (alapító, felhasználó, önkéntes) ------------------------------ */
+.bc-quote { margin: 0; padding: var(--bc-sp-5); background: var(--bc-surface); color: var(--bc-ink);
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); }
+.bc-quote-text { margin: 0 0 var(--bc-sp-4); font-size: var(--bc-fs-l); line-height: var(--bc-lh-snug); }
+.bc-quote-by { display: flex; align-items: center; gap: var(--bc-sp-3); margin: 0; font-style: normal; }
+.bc-quote-name { font-weight: var(--bc-fw-bold); font-size: var(--bc-fs-s); }
+.bc-quote-role { font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+/* A kiemelt idézet mézes lapon áll – egy oldalon legfeljebb egy ilyen legyen */
+.bc-quote.is-accent { background: var(--bc-surface-accent); }
+
+/* ---- Logósáv (sajtó, partner) --------------------------------------------- */
+/* Szürkeárnyalat nélkül: a hamis „komolyság” helyett a logók a saját színükben,
+   egységes magassággal állnak. Alt szöveg kötelező, különben nem hiteles. */
+.bc-logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: var(--bc-sp-5) var(--bc-sp-6); margin: 0; padding: 0; list-style: none; }
+.bc-logos img, .bc-logos svg { display: block; height: 28px; width: auto; max-width: 160px; }
+.bc-logos-title { margin: 0 0 var(--bc-sp-4); text-align: center; font-size: var(--bc-fs-xs);
+  font-weight: var(--bc-fw-bold); letter-spacing: .09em; text-transform: uppercase; color: var(--bc-ink-soft); }
+
+/* ---- Képkeret rögzített aránnyal ------------------------------------------ */
+/* Az arány előre le van foglalva, így a kép betöltése nem lökdösi a szöveget (CLS). */
+.bc-figure { margin: 0; }
+.bc-figure-media { position: relative; overflow: hidden; aspect-ratio: 16 / 9; background: var(--bc-surface-2);
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
+.bc-figure-media > img, .bc-figure-media > video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.bc-figure.is-square .bc-figure-media { aspect-ratio: 1 / 1; }
+.bc-figure.is-portrait .bc-figure-media { aspect-ratio: 3 / 4; }
+.bc-figure-cap { margin: var(--bc-sp-2) 0 0; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+
+/* ---- Forrásmegjelölés ----------------------------------------------------- */
+/* A DS szabálya: szám csak valós adatból vagy forrással. Ez a forrás látható alakja. */
+.bc-source { display: flex; align-items: flex-start; gap: var(--bc-sp-1);
+  margin: var(--bc-sp-2) 0 0; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
+.bc-source > svg { flex: none; width: 1em; height: 1em; margin-top: .15em; }

@@ -59,15 +59,28 @@ Névszabály: minden Webflow-változó `bc-` előtagú, csak ASCII és kötőjel
 A Webflow-nak nincs komponens-CSS-e, ezért a `termek/css/bc-*.css` elemeit **osztálynévben** tükrözzük:
 ugyanaz a név, ugyanaz a szerep. Így aki a DS-t ismeri, a Designerben is eligazodik.
 
-| DS-elem | Webflow-osztály | Mire |
-|---|---|---|
-| `bc-btn` + `is-primary` / `is-ghost` | `bc-btn`, `bc-btn is-primary` | minden gomb és gomb-kinézetű link |
-| `bc-card` | `bc-card` | kártya (kemény árnyék csak kattinthatón) |
-| `bc-panel` | `bc-panel` | lapos felület, árnyék nélkül |
-| `bc-chip` | `bc-chip` | címke, szűrő |
-| `bc-field` | `bc-field` | űrlapmező burka (címke + segítő + hiba) |
-| – | `bc-sec` | szekció-burok (a szekciók közti ritmus) |
-| – | `bc-sec-head` | szekciófejléc: felső index + cím + lead |
+A Webflow-nak nincs komponens-CSS-e, ezért a `termek/css/bc-*.css` elemeit **osztálynévben** tükrözzük:
+ugyanaz a név, ugyanaz a szerep.
+
+**Már a Webflow-ban (mind változóra kötve):**
+
+| Csoport | Osztályok |
+|---|---|
+| Gomb | `bc-btn` + `is-secondary` · `is-ghost` · `is-sm` · `is-lg` · `is-block` |
+| Felület | `bc-card` + `is-interactive` · `is-flat` · `is-accent` · `is-quiet`; `bc-panel` |
+| Címke | `bc-chip`, `bc-tag` |
+| Űrlap | `bc-field`, `bc-label`, `bc-input`, `bc-help` |
+| Elrendezés | `bc-row`, `bc-stack`, `bc-wrap` + `is-narrow`, `bc-grid-2`, `bc-grid-3` |
+| Szekció | `bc-sec` + `is-tight` · `is-accent` · `is-quiet` · `is-ink` |
+| Tipográfia | `bc-display`, `bc-title`, `bc-subtitle`, `bc-lead`, `bc-body`, `bc-eyebrow`, `bc-muted` |
+| Bizalom | `bc-quote` (+ `-text`, `-by`, `-name`, `-role`), `bc-logos` (+ `-title`), `bc-source` |
+| Média | `bc-figure` (+ `-media`, `-cap`) |
+| Egyéb | `bc-link`, `bc-divider` |
+
+**A DS-ben megvan, de a Webflow-ba még nem vittük át** (akkor hozzuk, amikor egy oldalnak kell):
+`bc-acc` (harmonika, a GYIK-hez), `bc-stat`/`bc-stats` (számblokk), `bc-crumbs`/`bc-crumb`
+(kenyérmorzsa), `bc-steps`, `bc-tl` (idővonal), `bc-avatar`, `bc-badge`, `bc-table`,
+`bc-progress`, `bc-skip` (ugrás a tartalomra), `bc-tabs`/`bc-tab`, `bc-alert`, `bc-empty`.
 
 **Szabály:** új `bc-` osztály a Webflow-ban csak akkor, ha a DS-ben is van hozzá elem. Ha nincs, előbb
 javaslatlap (`docs/javaslatok/_sablon.md`), nem „ideiglenes” osztály a Designerben.
