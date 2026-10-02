@@ -11,6 +11,9 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.27.1 – 2026-10-02
+- Javítás: érintős eszközön a táblázat-cellák linkje a magasság mellett **szélességben** is legalább 44 px (a nagyon rövid név, pl. „vds” eddig 22 px széles célfelület volt). Tesztlap: `adat-tabla` („Rövid nevű link a cellában”).
+
 ## 1.27.0 – 2026-10-02
 - Új: **évszakos díszítés** a méhsejt-háttéren (Javaslat 11): `.bc-honeycomb[data-evszak]` (virág · nap · levél · hópehely, maszkként, a tartalom alatt) és `AppShell season="auto"`; `evszak(date)` segéd. Tesztlap: `tema`.
 - Javítás (mérés): az oldalmérő (`bcMeres`) a mező vizsgálatánál kihagyja a rejtett belső mezőt (pl. a Radix jelölőnégyzet `aria-hidden` „bubble” inputját) – eddig téves „mezőnek nincs címkéje” P1-et adott; a `role="checkbox"` is vezérlőnek számít.

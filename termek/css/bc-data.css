@@ -31,5 +31,6 @@ th[aria-sort="descending"] .bc-sort::after { content: "▼"; font-size: .7em; }
 
 /* Érintős eszközön a táblázat-cellák linkjei (pl. a sor címe, kártyanézetben is) legalább 44 px magas célfelületet kapnak */
 @media (pointer: coarse) {
-  .bc-table td a, .bc-table th a { display: inline-flex; align-items: center; min-height: var(--bc-tap); }
+  /* rövid szövegű link (pl. „vds”) is legalább 44 × 44 px célfelület */
+  .bc-table td a, .bc-table th a { display: inline-flex; align-items: center; min-height: var(--bc-tap); min-width: var(--bc-tap); }
 }
