@@ -240,6 +240,61 @@ A `.github/workflows/weboldal.yml` minden éjjel lefuttatja a `web-ellenor`-t a 
 mellékletként felteszi a jelentést. Azért éjszaka és nem push-ra, mert a weboldal nem ebből a
 repóból épül: a repó CI-je nem tud róla, mikor publikálnak a Designerből.
 
+## 5/b. Kötelező tesztek minden oldalhoz (Kristóf, 2026-10-02)
+
+**Minden oldalfejlesztéshez tartozik e2e és egységteszt.** Nem opció, és nem a végén derül ki:
+az oldal addig nincs kész, amíg a két teszt nem fut le zölden. A cél, hogy a hibát a gép találja
+meg, ne a látogató.
+
+### Egységteszt (unit) – `tests/check-weboldal.js`
+
+Azt őrzi, ami kód nélkül is eldönthető, és másodpercek alatt lefut:
+
+| Mit | Miért |
+|---|---|
+| a generált Webflow-változók frissek és teljesek | hogy a Webflow és a DS ne csússzon szét |
+| a névalak (`bc-*`, csak ASCII) és a `beeco-tokens.css`-sel való egyezés | ékezetes CSS-név törékeny |
+| a beilleszthető CSS mérete | a Webflow mezője ~10 000 karakter |
+| a generált CSS **zárójel-egyensúlya** | egy csonka blokk némán elronthat mindent |
+| minden szerepnek van sötét párja, a hexek érvényesek | sötét módban ne essen szét |
+
+Futtatás: `node tests/check-weboldal.js`, és az `npm test` része.
+
+### Végponttól végpontig (e2e) – `tools/web-ellenor.js`
+
+Valódi böngészőben, a **publikált** oldalon, négy nézetben (320 · 390 · 768 · 1280):
+
+| Terület | Mit nézünk |
+|---|---|
+| **Működés** | HTTP-hiba, konzolhiba, be nem töltődő oldal, 404-es belső link |
+| **Teljesítmény** | hosszú feladat betöltéskor, nem csendesedő hálózat, folyamatosan töltő beágyazás |
+| **Láthatóság** | a szöveg kontrasztja a tényleges háttérhez, 12 px alatti szöveg, idegen betűcsalád |
+| **Takarás és kilógás** | vízszintes kilógás 320 px-en, egymásra csúszó elemek, elvesző szöveg |
+| **Eltartás és méret** | 44 px érintési felület, nem DS térköz és sarok |
+| **Billentyűzet** | látható fókusz az első 20 elemen, billentyűvel elérhetetlen kattintható elem |
+| **Szerkezet** | pontosan egy `h1`, nincs címsor-ugrás, kép alt nélkül |
+| **Szöveghelyesség** | semmitmondó linkszöveg, ugyanaz a linkszöveg több célra, elérhető név nélküli gomb |
+| **SEO** | oldalcím, meta leírás, canonical, og:image, hibás JSON-LD |
+| **Mozgás** | 400 ms feletti átmenet, `ease-in` görbe, végtelen animáció csökkentett mozgásnál |
+| **Biztonság** | `target="_blank"` `rel="noopener"` nélkül |
+| **WCAG 2.2 AA** | axe-core teljes szabálykészlete |
+
+Futtatás: `node tools/web-ellenor.js <URL>`, vagy `npm run web <URL>`.
+P0 vagy P1 lelet → 1-es kilépési kód, tehát CI-ben megbuktatja a futást.
+
+### Mikor melyik
+
+| Pillanat | Mit futtatunk |
+|---|---|
+| Minden szerkesztés után, helyben | `node tests/check-weboldal.js` |
+| Mielőtt „kész"-t mondunk | teszt-publikálás, majd `npm run web <teszt URL>` **és** a `minosegkapu` kapu |
+| Minden éjjel | `.github/workflows/weboldal.yml` a teljes site-ra |
+| Élesítés előtt | mindkettő zölden, és a jelentés átadva |
+
+**Amit a gép nem tud eldönteni**, és ezért marad emberi feladat: a szöveg tartalmi igazsága
+(szám csak valós adatból vagy forrással), a hangnem, és hogy a kép tényleg azt mutatja-e, amiről
+a szöveg beszél. Ezeket a `minosegkapu` jelentésében kell kimondani, nem elhallgatni.
+
 ## 6. Menetrend egy weboldal-munkához
 
 1. `minosegkapu` skill betöltése (szabályok).
