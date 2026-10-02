@@ -1,0 +1,117 @@
+/* ============================================================
+   beeco.hu – Főoldal 2026 (draft) oldal-CSS  ·  FORRÁS, olvasható változat
+   A Webflow oldal fej-kódjába a TÖMÖRÍTETT változat megy, a dist/weboldal/beeco-web.min.css
+   DS-blokk után. Frissítés: node tools/webflow-build.js → a kimenet bemásolása.
+
+   Mit csinál: a h26- osztályokat a DS termékbőr-tokenjeire köti, és felülírja azt a néhány
+   játékbőrös értéket (puha árnyék, nagy sarkok), ami a Webflow-osztályokban beégetve maradt.
+   A mozgást NEM ez adja: azt a DS-blokk (bc-web-in, bc-web-erkezes, bc-anim-*).
+   ============================================================ */
+.h26-page{
+  --accent:var(--_beeco-ds---bc-accent);--accent-press:var(--_beeco-ds---bc-accent-press);
+  --on-accent:var(--_beeco-ds---bc-on-accent);--ink:var(--_beeco-ds---bc-ink);
+  --ink-soft:var(--_beeco-ds---bc-ink-soft);--line:var(--_beeco-ds---bc-line);
+  --bg:var(--_beeco-ds---bc-bg);--surface:var(--_beeco-ds---bc-surface);
+  --surface-2:var(--_beeco-ds---bc-surface-2);--surface-accent:var(--_beeco-ds---bc-surface-accent);
+  --focus:var(--_beeco-ds---bc-focus);--line-w:var(--_beeco-ds---bc-bw-base);
+  --r:var(--_beeco-ds---bc-r-m);--r-s:var(--_beeco-ds---bc-r-s);
+  --honey:var(--accent);--olive:var(--ink);--olive-soft:var(--ink-soft);
+  --soft:4px 4px 0 var(--line);--soft-sm:2px 2px 0 var(--line);
+  --display:"Lalezar","Arial Rounded MT Bold",system-ui,sans-serif;
+  --body:"Open Sans","Segoe UI",system-ui,sans-serif;
+  --t-fast:.12s;--ease:cubic-bezier(.23,1,.32,1);
+  --hex:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  font-family:var(--body);
+}
+/* SITE-SZINTŰ HIBA KERÜLÉSE: `p { color: var(--barna-main-feka) }` fut az oldalon, és ennek a
+   változónak a neve „barna main”, de az értéke hsla(24,0%,0%) = FEKETE. Emiatt a sötét hátterű
+   szekciókban a szöveg fekete lett (1,35:1). Itt visszaadjuk az öröklődést. */
+.h26-page p{color:inherit}
+.h26-camp h1,.h26-camp h2,.h26-camp h3,.h26-news h1,.h26-news h2,.h26-news h3{color:inherit}
+.h26-voice-role,.h26-micro{color:var(--ink-soft)}
+
+/* Címbetű */
+.h26-h1,.h26-h2,.h26-feat-value,.h26-hexnum,.h26-sticker,.h26-stat-num,.h26-win-year,.h26-faq-icon,
+.h26-camp-num,.h26-store-big,.h26-btn-yellow,.h26-proof-num{font-family:var(--display);font-weight:400}
+.h26-faq-title{font-family:var(--body)}
+.h26-hexnum,.h26-faq-icon,.h26-hexbg,.h26-shot-hex{clip-path:var(--hex)}
+
+/* Termékbőr: szögletesebb sarok, fekete keret, kemény árnyék a beégetett értékek helyett */
+.h26-btn-yellow,.h26-btn-dark,.h26-store,.h26-chip,.h26-pill,.h26-tag-yellow{
+  border-radius:var(--r)!important;border-width:var(--line-w)!important;border-color:var(--line)!important}
+.h26-btn-yellow,.h26-store{box-shadow:var(--soft-sm)!important}
+.h26-feat,.h26-pcard,.h26-b2b-card,.h26-win,.h26-voice,.h26-stat,.h26-camp,.h26-news,.h26-sajto-link{
+  border-radius:var(--r)!important;border-width:var(--line-w)!important;border-color:var(--line)!important}
+.h26-bg-yellow{background-color:var(--surface-accent)!important}
+.h26-bg-sage{background-color:var(--surface-2)!important}
+.h26-bg-mist{background-color:var(--surface)!important}
+
+/* Szekció-elválasztó: a méhsejt-perem a JÁTÉKBŐRÉ, itt vékony fekete vonal */
+.h26-page>section{position:relative}
+.h26-page>section:nth-child(n+3):before{content:"";position:absolute;left:0;right:0;top:0;height:0;
+  border-top:var(--line-w) solid var(--line);pointer-events:none}
+.h26-eyebrow:before{content:"";display:inline-block;width:10px;height:10px;margin-right:8px;
+  background:var(--accent);border:var(--_beeco-ds---bc-bw-hair) solid var(--line);vertical-align:0}
+.h26-bullet:before{content:"";position:absolute;left:0;top:6px;width:10px;height:10px;
+  background:var(--accent);border:var(--_beeco-ds---bc-bw-hair) solid var(--line)}
+
+/* Fülek és GYIK nyitott állapota */
+.h26-feat-grid.js-tabs .h26-feat-body{display:none}
+.h26-feat-grid.js-tabs .h26-feat.is-open .h26-feat-body{display:flex}
+.h26-feat{transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease)}
+.h26-feat.is-open{box-shadow:var(--soft)}
+.h26-feat.is-open .h26-hexnum{background:var(--accent)}
+.h26-feat-grid.js-tabs .h26-shot{opacity:0;visibility:hidden;
+  transition:opacity .2s var(--ease),transform .2s var(--ease);transform:scale(.98)}
+.h26-feat-grid.js-tabs .h26-shot.is-open{opacity:1;visibility:visible;transform:none}
+.h26-faq-list.js-faq .h26-faq-a{display:none}
+.h26-faq-list.js-faq .h26-faq.is-open .h26-faq-a{display:block}
+.h26-faq-icon{transition:transform var(--t-fast) var(--ease)}
+.h26-faq.is-open .h26-faq-icon{transform:rotate(45deg)}
+
+/* Nyomás: az elem az árnyék helyére csúszik, az árnyék eltűnik */
+.h26-store,.h26-btn-yellow{min-height:var(--_beeco-ds---bc-tap);
+  transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease)}
+.h26-store:active,.h26-btn-yellow:active{transform:translate(2px,2px);box-shadow:none!important}
+.h26-chip,.h26-btn-dark,.h26-pcard,.h26-b2b-card,.h26-sajto-link{
+  transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease)}
+@media (hover:hover) and (pointer:fine){
+  .h26-chip:hover,.h26-pcard:hover,.h26-b2b-card:hover{transform:translateY(-2px)}
+  .h26-feat:not(.is-open):hover{transform:translateY(-2px)}
+  .h26-sajto-link:hover{transform:translateY(-2px)}
+}
+.h26-chip:active,.h26-btn-dark:active,.h26-pcard:active,.h26-b2b-card:active{
+  transform:translate(2px,2px);box-shadow:none}
+.h26-page a:focus-visible,.h26-feat-head:focus-visible,.h26-faq-q:focus-visible{
+  outline:var(--line-w) solid var(--focus);outline-offset:2px;border-radius:var(--r-s)}
+/* 44 px érintési felület a szövegbeli „tovább” linkeken is */
+.h26-link,.h26-press-link,.h26-sajto-link{display:inline-flex;align-items:center;
+  min-height:var(--_beeco-ds---bc-tap)}
+
+/* A hero méhecskéje: a DS bc-web-erkezes-e adja a mozgást (egyszer), NEM lebeg örökké */
+.h26-hero-bee{animation:bc-web-erkezes 560ms var(--_beeco-ds---bc-ease-bounce,cubic-bezier(.2,1.3,.3,1)) both}
+/* A régi .h26-rev beúszást a DS bc-web-in váltja ki; a footer JS teszi rá az is-in-t */
+.h26-page .h26-rev{opacity:0;transform:translateY(8px)}
+.h26-page .h26-rev.is-in{opacity:1;transform:none;
+  transition:opacity 340ms var(--ease),transform 340ms var(--ease)}
+
+/* Mobil ragadós letöltősáv */
+#h26-sticky{display:none}
+@media (max-width:767px){
+  #h26-sticky{position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:999;
+    background:var(--_beeco-ds---bc-ink);color:var(--_beeco-ds---bc-bg);
+    border-radius:var(--_beeco-ds---bc-r-m);padding:10px 10px 10px 16px;align-items:center;
+    justify-content:space-between;box-shadow:4px 4px 0 var(--_beeco-ds---bc-shadow);
+    font:600 14px "Open Sans",sans-serif;transform:translateY(140%);
+    transition:transform .25s cubic-bezier(.23,1,.32,1)}
+  #h26-sticky.show{transform:none}
+  #h26-sticky a{min-height:var(--_beeco-ds---bc-tap);display:inline-flex;align-items:center;
+    background:var(--_beeco-ds---bc-accent);color:var(--_beeco-ds---bc-on-accent);
+    border:var(--_beeco-ds---bc-bw-base) solid var(--_beeco-ds---bc-line);text-decoration:none;
+    font:400 18px/1 "Lalezar",sans-serif;padding:8px 18px 5px;
+    border-radius:var(--_beeco-ds---bc-r-m);box-shadow:2px 2px 0 var(--_beeco-ds---bc-shadow)}
+}
+@media (prefers-reduced-motion:reduce){
+  .h26-page *,#h26-sticky{transition:none!important;animation:none!important}
+  .h26-page .h26-rev{opacity:1;transform:none}
+}

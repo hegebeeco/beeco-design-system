@@ -99,11 +99,15 @@
 /* Méhecske-érkezés: a hero méhecskéje egyszer berepül, aztán megáll. NEM lebeg örökké. */
 @keyframes bc-web-erkezes {
   0%   { opacity: 0; transform: translate(42px, 26px) rotate(14deg) scale(.86); }
+  70%  { opacity: 1; transform: translate(-4px, -3px) rotate(-3deg) scale(1.03); }
+  100% { opacity: 1; transform: none; }
+}
 .bc-web-erkezes { animation: bc-web-erkezes 560ms var(--_beeco-ds---bc-ease-bounce) both; }
 /* Zümmögés: a már meglévő bc-buzz végre kap gazdát. Kétszer rezdül, egérrel, és csak
    ott, ahol a méhecske egy gomb mellett áll – a döntés pillanatában, nem végig. */
 @media (hover: hover) and (pointer: fine) {
   .bc-web-zum:hover .bc-bee, .bc-web-zum:focus-visible .bc-bee { animation: bc-buzz 260ms var(--_beeco-ds---bc-ease-out) 2; }
+}
 /* Matrica: ferde címke, ami odacsapódik (a DS bc-stamp keyframe-jével). Egy oldalon 1-2 db. */
 .bc-sticker { display: inline-block; transform: rotate(-3deg); transform-origin: center;
   padding: var(--_beeco-ds---bc-sp-1) var(--_beeco-ds---bc-sp-3); background: var(--_beeco-ds---bc-accent); color: var(--_beeco-ds---bc-on-accent);
@@ -127,3 +131,4 @@
   .bc-web-in { opacity: 0; transform: none; }
   .bc-web-in.is-in { transition: opacity 200ms linear; transition-delay: 0ms; }
   .bc-figure.is-tilt, .bc-figure.is-tilt .bc-figure-cap { transform: none; }
+}

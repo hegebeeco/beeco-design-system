@@ -86,11 +86,25 @@ const paletta = {
 const WF = (nev) => `var(--_beeco-ds---${nev})`;
 const atir = (css) => css.replace(/var\(\s*--(bc-[a-z0-9-]+)\s*\)/g, (_, n) => WF(n));
 
+// Legfelső szintű CSS-blokkokra bont. NEM `}` mentén vágunk: az kettévágná a @media és a
+// @keyframes blokkot (élesben kiderült: a kimenet szintaktikailag hibás lett).
+function blokkok(css) {
+  const ki = []; let melyseg = 0, kezd = 0;
+  for (let i = 0; i < css.length; i++) {
+    const c = css[i];
+    if (c === '{') melyseg++;
+    else if (c === '}') { melyseg--; if (melyseg === 0) { ki.push(css.slice(kezd, i + 1).trim()); kezd = i + 1; } }
+  }
+  const marad = css.slice(kezd).trim();
+  if (marad) ki.push(marad);
+  return ki.filter(Boolean);
+}
+
 function reszlet(rel, szuro) {
   const txt = fs.readFileSync(path.join(ROOT, rel), 'utf8');
   if (!szuro) return txt;
   // Csak azok a szabályok, amelyek a szűrőre illeszkednek (a logó pl. relatív képre mutat, az nem kell)
-  return txt.split(/(?<=\})\s*\n/).filter((blokk) => szuro.test(blokk)).join('\n');
+  return blokkok(txt).filter((b) => szuro.test(b)).join('\n');
 }
 
 const webCss = [
@@ -123,11 +137,23 @@ const tomorit = (css) => css
 
 const webMin = `/* beeco DS ${T.version} – web (generált, tools/webflow-build.js). Évszakos díszítés nélkül. */\n` + tomorit(webCss);
 
+// OLDAL-PROFIL: egy Webflow-oldal fej-kódjába az oldal saját CSS-e MELLÉ is be kell férni, ezért
+// a teljes készlet helyett csak a marketingoldalon ténylegesen használt mozgás megy ki.
+// A többi (bc-hexload, bc-tab-ink, bc-dragging, méhsejt-háttér) akkor jön, ha egy oldalnak kell.
+const OLDAL_KELL = /bc-buzz|bc-rise|bc-stamp|bc-web-erkezes|bc-web-zum|bc-sticker|bc-web-in|bc-stagger|bc-lift|is-framed|is-tilt|prefers-reduced-motion/;
+const oldalCss = [
+  `/* beeco DS ${T.version} – web, OLDAL-PROFIL (generált). Csak a marketingoldalon használt mozgás.`,
+  `   A teljes készlet: dist/weboldal/beeco-web.css. Frissítés: node tools/webflow-build.js */`,
+  ...blokkok(webCss).filter((b) => OLDAL_KELL.test(b) && !/honeycomb/.test(b)),
+].join('\n');
+const oldalMin = `/* beeco DS ${T.version} – web, oldal-profil (generált) */\n` + tomorit(oldalCss);
+
 const fajlok = {
   'dist/weboldal/webflow-valtozok.json': JSON.stringify(ki, null, 2) + '\n',
   'dist/weboldal/paletta.json': JSON.stringify(paletta, null, 2) + '\n',
   'dist/weboldal/beeco-web.css': webCss,
   'dist/weboldal/beeco-web.min.css': webMin + '\n',
+  'dist/weboldal/beeco-web-oldal.min.css': oldalMin + '\n',
 };
 
 let elteres = 0;

@@ -74,6 +74,18 @@ if (minCss.length > MEZO_MAX) baj(`a beeco-web.min.css ${minCss.length} karakter
 if (/var\(\s*--bc-/.test(minCss)) baj('a beeco-web.min.css nyers --bc-* hivatkozást tartalmaz; a Webflow-ban a nevek --_beeco-ds---bc-* alakúak');
 if (!/@keyframes/.test(minCss)) baj('a beeco-web.min.css nem tartalmaz @keyframes-t – pedig pont ezért van (a Webflow-stílus nem tud ilyet)');
 
+// 8/c. A generált CSS szintaktikailag ép: a nyitó és záró kapcsos zárójelek száma egyezik.
+// (Élesben előfordult: a blokkdaraboló `}` mentén vágott, és kettévágta a @media/@keyframes blokkot.)
+for (const f of ['dist/weboldal/beeco-web.css', 'dist/weboldal/beeco-web.min.css', 'dist/weboldal/beeco-web-oldal.min.css']) {
+  const t = fs.existsSync(path.join(ROOT, f)) ? fs.readFileSync(path.join(ROOT, f), 'utf8') : '';
+  if (!t) { baj(`hiányzik: ${f}`); continue; }
+  const nyit = (t.match(/\{/g) || []).length, zar = (t.match(/\}/g) || []).length;
+  if (nyit !== zar) baj(`${f}: ${nyit} nyitó és ${zar} záró kapcsos zárójel – a CSS csonka`);
+}
+const oldalCssF = path.join(ROOT, 'dist/weboldal/beeco-web-oldal.min.css');
+const oldalLen = fs.existsSync(oldalCssF) ? fs.readFileSync(oldalCssF, 'utf8').length : 0;
+if (oldalLen > 4000) baj(`a beeco-web-oldal.min.css ${oldalLen} karakter – az oldal saját CSS-e mellé is be kell férnie a ~10 000-es mezőbe`);
+
 // 9. A nevek a DS saját CSS-ét követik – enélkül a Webflow és a bc-*.css észrevétlenül elcsúszik
 const css = fs.readFileSync(path.join(ROOT, 'dist/css/beeco-tokens.css'), 'utf8');
 const cssNevek = new Set([...css.matchAll(/--(bc-[a-z0-9-]+)\s*:/g)].map((m) => m[1]));
