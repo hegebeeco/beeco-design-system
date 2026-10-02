@@ -1,4 +1,4 @@
-/* beeco design system 1.34.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.34.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -3424,7 +3424,7 @@ function ToastView({ t }) {
 
 // react/src/reteg/AppShell.tsx
 import * as Dialog4 from "@radix-ui/react-dialog";
-import { Fragment as Fragment15, useEffect as useEffect13, useRef as useRef20, useState as useState24 } from "react";
+import { Fragment as Fragment15, useEffect as useEffect13, useMemo as useMemo3, useRef as useRef20, useState as useState24 } from "react";
 
 // react/src/marka/evszak.ts
 function evszak(d = /* @__PURE__ */ new Date()) {
@@ -3434,6 +3434,12 @@ function evszak(d = /* @__PURE__ */ new Date()) {
   if (m >= 9 && m <= 11) return "osz";
   return "tel";
 }
+
+// react/src/reteg/shellNav.ts
+import { createContext as createContext3, useContext as useContext3 } from "react";
+var ShellNavContext = createContext3({ closeNav: () => {
+} });
+var useShellNav = () => useContext3(ShellNavContext);
 
 // react/src/reteg/AppShell.tsx
 import { Fragment as Fragment16, jsx as jsx58, jsxs as jsxs53 } from "react/jsx-runtime";
@@ -3512,7 +3518,8 @@ function AppShell({
     }) }, it.href)) })
   ] }, gi));
   const hasHeader = narrow || Boolean(topbar);
-  return /* @__PURE__ */ jsxs53("div", { className: cx("bc-shell", collapsed && "is-collapsed", !hasHeader && "no-topbar"), children: [
+  const navCtx = useMemo3(() => ({ closeNav: () => setOpen(false) }), []);
+  return /* @__PURE__ */ jsx58(ShellNavContext.Provider, { value: navCtx, children: /* @__PURE__ */ jsxs53("div", { className: cx("bc-shell", collapsed && "is-collapsed", !hasHeader && "no-topbar"), children: [
     /* @__PURE__ */ jsx58("a", { className: "bc-skip", href: "#bc-content", children: skipLabel }),
     !narrow && /* @__PURE__ */ jsxs53("nav", { className: "bc-sidebar", "aria-label": navLabel, children: [
       /* @__PURE__ */ jsxs53("div", { className: "bc-sidebar-head", children: [
@@ -3554,7 +3561,7 @@ function AppShell({
       ] }),
       /* @__PURE__ */ jsx58("main", { className: "bc-content", id: "bc-content", tabIndex: -1, children })
     ] })
-  ] });
+  ] }) });
 }
 
 // react/src/reteg/StageDialog.tsx
@@ -4962,7 +4969,7 @@ function HeatScale({ title, unit, help, ends = ["kev\xE9s", "sok"], steps, howTo
 }
 
 // react/src/media/MonthCalendar.tsx
-import { useEffect as useEffect19, useMemo as useMemo3, useRef as useRef29, useState as useState35 } from "react";
+import { useEffect as useEffect19, useMemo as useMemo4, useRef as useRef29, useState as useState35 } from "react";
 
 // react/src/media/monthEvents.ts
 var KIND_ROLE = { event: "info", special: "warning", education: "success" };
@@ -5021,9 +5028,9 @@ function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPer
   const moved = useRef29(false);
   const f = fromIso(focus);
   const monthKey = `${f.getFullYear()}-${f.getMonth()}`;
-  const days = useMemo3(() => monthGrid(f.getFullYear(), f.getMonth()).map(toIso), [monthKey]);
-  const hid = useMemo3(() => new Set(hidden), [hidden]);
-  const byDay = useMemo3(() => eventsByDay(events, days, hid), [events, days, hid]);
+  const days = useMemo4(() => monthGrid(f.getFullYear(), f.getMonth()).map(toIso), [monthKey]);
+  const hid = useMemo4(() => new Set(hidden), [hidden]);
+  const byDay = useMemo4(() => eventsByDay(events, days, hid), [events, days, hid]);
   const names = { ...KIND_LABEL, ...labels };
   const today = todayIso();
   const title = `${f.getFullYear()}. ${MONTHS[f.getMonth()]}`;
@@ -6543,7 +6550,7 @@ function OfflinePage({ onRetry, retrying, className }) {
 }
 
 // react/src/kieg/Timeline.tsx
-import { useId as useId17, useMemo as useMemo4, useState as useState46 } from "react";
+import { useId as useId17, useMemo as useMemo5, useState as useState46 } from "react";
 
 // react/src/kieg/activity.ts
 var pad2 = (n) => String(n).padStart(2, "0");
@@ -6614,7 +6621,7 @@ function Changes({ changes }) {
 function Timeline({ items, status = "ready", onRetry, pageSize = 10, onLoadMore, hasMore, loadingMore, now, empty, label = "El\u0151zm\xE9nyek", className }) {
   const [shown, setShown] = useState46(pageSize);
   const visible = onLoadMore ? items : items.slice(0, shown);
-  const groups = useMemo4(() => groupByDay(visible, now), [visible, now]);
+  const groups = useMemo5(() => groupByDay(visible, now), [visible, now]);
   const rest = onLoadMore ? 0 : items.length - visible.length;
   const more = onLoadMore ? hasMore : rest > 0;
   return /* @__PURE__ */ jsx92(
@@ -6658,12 +6665,12 @@ function Timeline({ items, status = "ready", onRetry, pageSize = 10, onLoadMore,
 import { useCallback as useCallback6, useState as useState47 } from "react";
 
 // react/src/kieg/Clamp.tsx
-import { createContext as createContext3, useContext as useContext3, useEffect as useEffect30, useLayoutEffect as useLayoutEffect5, useRef as useRef38 } from "react";
+import { createContext as createContext4, useContext as useContext4, useEffect as useEffect30, useLayoutEffect as useLayoutEffect5, useRef as useRef38 } from "react";
 import { jsx as jsx93 } from "react/jsx-runtime";
-var CutContext = createContext3(() => void 0);
+var CutContext = createContext4(() => void 0);
 function Clamp({ k, label, lines, as: Tag = "p", placeholder, className, children }) {
   const ref = useRef38(null);
-  const report = useContext3(CutContext);
+  const report = useContext4(CutContext);
   const empty = children === void 0 || children === null || typeof children === "string" && !children.trim();
   useLayoutEffect5(() => {
     const el = ref.current;
@@ -7446,7 +7453,7 @@ function ReviewQueue({ items, getId, getTitle, render, onDecide, onUndo, reasons
 import { useEffect as useEffect36, useId as useId23, useRef as useRef44, useState as useState54 } from "react";
 
 // react/src/kieg2/AddressSearch.tsx
-import { useEffect as useEffect34, useMemo as useMemo5, useRef as useRef42, useState as useState52 } from "react";
+import { useEffect as useEffect34, useMemo as useMemo6, useRef as useRef42, useState as useState52 } from "react";
 import { jsx as jsx101 } from "react/jsx-runtime";
 function AddressSearch({
   search,
@@ -7494,7 +7501,7 @@ function AddressSearch({
       ctl.abort();
     };
   }, [query, minChars, debounceMs, tick]);
-  const options = useMemo5(() => {
+  const options = useMemo6(() => {
     const list2 = hits.map((h) => ({ value: h.id, label: h.label }));
     if (picked && !hits.some((h) => h.id === picked.id)) list2.unshift({ value: picked.id, label: picked.label });
     return list2;
@@ -8620,6 +8627,11 @@ function Counting(s) {
 import { Fragment as Fragment37, jsx as jsx116, jsxs as jsxs106 } from "react/jsx-runtime";
 function ShellAccount({ name: name2, detail, avatarSrc, items, menuLabel = (n) => `Felhaszn\xE1l\xF3i men\xFC: ${n}`, loadingLabel = "Bet\xF6lt\xE9s\u2026" }) {
   const nev = name2 ?? loadingLabel;
+  const { closeNav } = useShellNav();
+  const zaro = items.map((it) => typeof it === "object" && "label" in it && it.onSelect ? { ...it, onSelect: () => {
+    closeNav();
+    it.onSelect?.();
+  } } : it);
   return /* @__PURE__ */ jsx116(
     DropdownMenu,
     {
@@ -8637,13 +8649,13 @@ function ShellAccount({ name: name2, detail, avatarSrc, items, menuLabel = (n) =
         ] }),
         /* @__PURE__ */ jsx116("svg", { className: "bc-account-chev", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5", strokeLinecap: "round", "aria-hidden": "true", children: /* @__PURE__ */ jsx116("path", { d: "M8 10l4-4 4 4M8 14l4 4 4-4" }) })
       ] }),
-      items
+      items: zaro
     }
   );
 }
 
 // react/src/sablon/listState.ts
-import { useCallback as useCallback9, useMemo as useMemo6 } from "react";
+import { useCallback as useCallback9, useMemo as useMemo7 } from "react";
 function useListState({ params, setParams }, opts = {}) {
   const sizes = opts.pageSizes ?? [10, 25, 100];
   const kSearch = opts.keys?.search ?? "q", kPage = opts.keys?.page ?? "lap", kSize = opts.keys?.size ?? "meret";
@@ -8663,7 +8675,7 @@ function useListState({ params, setParams }, opts = {}) {
   const pageSize = sizes.includes(meretParam) ? meretParam : sizes[0];
   const search = params.get(kSearch) ?? "";
   const hasFilters = filterKeys.some((k) => Boolean(params.get(k)));
-  return useMemo6(() => ({
+  return useMemo7(() => ({
     params,
     search,
     page,
@@ -8689,7 +8701,7 @@ function listStatus({ isPending, isError, hasData, count, filtered, forbidden })
 var clampPage = (page, totalPages) => Math.max(0, Math.min(page, Math.max(0, totalPages - 1)));
 
 // react/src/tema/ThemeProvider.tsx
-import { createContext as createContext4, useCallback as useCallback10, useContext as useContext4, useEffect as useEffect41, useMemo as useMemo7, useState as useState61, useSyncExternalStore as useSyncExternalStore4 } from "react";
+import { createContext as createContext5, useCallback as useCallback10, useContext as useContext5, useEffect as useEffect41, useMemo as useMemo8, useState as useState61, useSyncExternalStore as useSyncExternalStore4 } from "react";
 
 // react/src/tema/tema.ts
 var THEME_STORAGE_KEY = "bc-theme";
@@ -8724,7 +8736,7 @@ function themeInitScript(storageKey = THEME_STORAGE_KEY, fallback = "auto") {
 
 // react/src/tema/ThemeProvider.tsx
 import { jsx as jsx117 } from "react/jsx-runtime";
-var ThemeContext = createContext4(null);
+var ThemeContext = createContext5(null);
 var subscribeSystem = (cb) => {
   if (typeof window === "undefined" || typeof window.matchMedia !== "function") return () => {
   };
@@ -8751,11 +8763,11 @@ function ThemeProvider({ storageKey = THEME_STORAGE_KEY, defaultMode = "auto", c
     writeThemeMode(m, storageKey);
   }, [storageKey]);
   const toggle = useCallback10(() => setMode(resolved === "dark" ? "light" : "dark"), [resolved, setMode]);
-  const value = useMemo7(() => ({ mode, resolved, setMode, toggle }), [mode, resolved, setMode, toggle]);
+  const value = useMemo8(() => ({ mode, resolved, setMode, toggle }), [mode, resolved, setMode, toggle]);
   return /* @__PURE__ */ jsx117(ThemeContext.Provider, { value, children });
 }
 function useTheme() {
-  const ctx = useContext4(ThemeContext);
+  const ctx = useContext5(ThemeContext);
   if (!ctx) throw new Error("useTheme: a komponens nincs ThemeProvider alatt (tedd az app gy\xF6ker\xE9be).");
   return ctx;
 }

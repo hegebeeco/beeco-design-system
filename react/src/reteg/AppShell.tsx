@@ -1,5 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { Fragment, useEffect, useRef, useState, type ReactNode } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { IconButton } from '../inputs/Button';
 import { cx } from '../cx';
 import { useMedia } from './layer';
@@ -7,6 +7,7 @@ import { useReturnFocus } from './focus';
 import { defaultLink, type RenderLink } from './NavTabs';
 import { CloseIcon } from './Modal';
 import { evszak, type Evszak } from '../marka/evszak';
+import { ShellNavContext } from './shellNav';
 
 export type NavItem = { href: string; label: string; icon?: ReactNode; current?: boolean };
 export type NavGroup = { label?: string; items: NavItem[] };
@@ -107,7 +108,9 @@ export function AppShell({ brand, brandCompact, nav, topbar, account, collapsibl
     ));
 
   const hasHeader = narrow || Boolean(topbar);
+  const navCtx = useMemo(() => ({ closeNav: () => setOpen(false) }), []);
   return (
+    <ShellNavContext.Provider value={navCtx}>
     <div className={cx('bc-shell', collapsed && 'is-collapsed', !hasHeader && 'no-topbar')}>
       <a className="bc-skip" href="#bc-content">{skipLabel}</a>
       {!narrow && (
@@ -155,5 +158,6 @@ export function AppShell({ brand, brandCompact, nav, topbar, account, collapsibl
         <main className="bc-content" id="bc-content" tabIndex={-1}>{children}</main>
       </div>
     </div>
+    </ShellNavContext.Provider>
   );
 }

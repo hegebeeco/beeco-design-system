@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Avatar } from '../media/Avatar';
 import { DropdownMenu, type MenuEntry } from '../reteg/DropdownMenu';
+import { useShellNav } from '../reteg/shellNav';
 
 export type ShellAccountProps = {
   /** A belépett felhasználó neve; ha null, még töltődik („Betöltés…”) */
@@ -23,6 +24,10 @@ export type ShellAccountProps = {
  */
 export function ShellAccount({ name, detail, avatarSrc, items, menuLabel = (n) => `Felhasználói menü: ${n}`, loadingLabel = 'Betöltés…' }: ShellAccountProps) {
   const nev = name ?? loadingLabel;
+  const { closeNav } = useShellNav();
+  // Menüpont választásakor a telefonos fiók bezárul – így a menüpontból nyíló ablak kapja a fókuszt (1.34.1)
+  const zaro: MenuEntry[] = items.map((it) =>
+    typeof it === 'object' && 'label' in it && it.onSelect ? { ...it, onSelect: () => { closeNav(); it.onSelect?.(); } } : it);
   return (
     <DropdownMenu
       label={menuLabel(nev)}
@@ -38,7 +43,7 @@ export function ShellAccount({ name, detail, avatarSrc, items, menuLabel = (n) =
           <svg className="bc-account-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M8 10l4-4 4 4M8 14l4 4 4-4" /></svg>
         </button>
       }
-      items={items}
+      items={zaro}
     />
   );
 }

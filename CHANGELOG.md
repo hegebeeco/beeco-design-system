@@ -11,6 +11,10 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.34.1 – 2026-10-02
+
+* **Hiba – AppShell telefonos fiók + ShellAccount menü:** ha a fiókmenü egy pontja ablakot nyitott (pl. „Hibajelentés”), a kihúzható fiók nyitva maradt, és modálisként magánál tartotta a fókuszt – az új ablak mezőibe nem lehetett írni. Új `ShellNavContext` (`useShellNav().closeNav()`): a ShellAccount menüpontja választáskor bezárja a fiókot. Keret nélkül nem csinál semmit. A partner-app e2e-tesztje találta (PARTNERAPP).
+
 ## 1.34.0 – weboldal: mozgás, személyiség és marketing-elemek
 
 **Mozgás (Javaslat 11).** A méhecske nem tapéta, hanem szereplő: akkor mozdul, amikor történik
