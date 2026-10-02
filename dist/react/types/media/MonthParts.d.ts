@@ -3,10 +3,11 @@ import { type CalEvent, type CalKind } from './monthEvents';
  * A naptár jelmagyarázata: minden fajta csíkkal + névvel. Ha van onHiddenChange, a tételek kapcsolók (szűrő):
  * aria-pressed = látszik-e – a bekapcsolt állapotot a pipa és a szöveg is mondja.
  */
-export declare function MonthLegend({ names, hidden, onHiddenChange }: {
+export declare function MonthLegend({ names, hidden, onHiddenChange, kinds }: {
     names: Record<CalKind, string>;
     hidden: ReadonlySet<CalKind>;
     onHiddenChange?: (h: CalKind[]) => void;
+    kinds?: readonly CalKind[];
 }): import("react").JSX.Element;
 /** A kiválasztott nap listája (telefonon a pöttyös hónap alatt; asztalon rejtve – ott az oldalpanel nyílik) */
 export declare function MonthAgenda({ iso, events, names }: {

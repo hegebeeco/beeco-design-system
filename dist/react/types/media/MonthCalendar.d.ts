@@ -16,10 +16,12 @@ export type MonthCalendarProps = {
     hidden?: readonly CalKind[];
     onHiddenChange?: (hidden: CalKind[]) => void;
     labels?: Partial<Record<CalKind, string>>;
+    /** Mely fajták szerepeljenek a jelmagyarázatban (alap: mind a három) – pl. ahol csak esemény és egy másik fajta van (1.25) */
+    kinds?: readonly CalKind[];
 };
 /**
  * MonthCalendar (organizmus, Javaslat 04 – 7A): havi rács hétfővel; a fajtát bal csík + szerepszín + jelmagyarázat mondja (nem csak a szín).
  * Billentyűzet: nyilak = nap/hét, PageUp/Down = hónap, Home/End = hét eleje/vége, Enter = a nap megnyitása.
  * Keskeny helyen (560 px alatt) pöttyös hónap + a kiválasztott nap listája.
  */
-export declare function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPerDay, loading, error, onRetry, hidden, onHiddenChange, labels }: MonthCalendarProps): import("react").JSX.Element;
+export declare function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPerDay, loading, error, onRetry, hidden, onHiddenChange, labels, kinds }: MonthCalendarProps): import("react").JSX.Element;

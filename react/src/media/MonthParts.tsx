@@ -6,18 +6,18 @@ const KINDS: CalKind[] = ['event', 'special', 'education'];
  * A naptár jelmagyarázata: minden fajta csíkkal + névvel. Ha van onHiddenChange, a tételek kapcsolók (szűrő):
  * aria-pressed = látszik-e – a bekapcsolt állapotot a pipa és a szöveg is mondja.
  */
-export function MonthLegend({ names, hidden, onHiddenChange }: { names: Record<CalKind, string>; hidden: ReadonlySet<CalKind>; onHiddenChange?: (h: CalKind[]) => void }) {
+export function MonthLegend({ names, hidden, onHiddenChange, kinds = KINDS }: { names: Record<CalKind, string>; hidden: ReadonlySet<CalKind>; onHiddenChange?: (h: CalKind[]) => void; kinds?: readonly CalKind[] }) {
   if (!onHiddenChange) {
     return (
       <ul className="bc-mcal-legend" aria-label="Jelmagyarázat">
-        {KINDS.map((k) => <li key={k}><span className={`bc-mcal-ev is-${KIND_ROLE[k]}`}>{names[k]}</span></li>)}
+        {kinds.map((k) => <li key={k}><span className={`bc-mcal-ev is-${KIND_ROLE[k]}`}>{names[k]}</span></li>)}
       </ul>
     );
   }
   const toggle = (k: CalKind) => onHiddenChange(hidden.has(k) ? [...hidden].filter((x) => x !== k) : [...hidden, k]);
   return (
     <div className="bc-mcal-legend" role="group" aria-label="Jelmagyarázat és szűrő – mit mutasson a naptár">
-      {KINDS.map((k) => (
+      {kinds.map((k) => (
         <button key={k} type="button" className={`bc-tag bc-mcal-filter is-${KIND_ROLE[k]}`} aria-pressed={!hidden.has(k)} onClick={() => toggle(k)}>
           <span aria-hidden="true">{hidden.has(k) ? '○' : '✓'}</span>{names[k]}
         </button>

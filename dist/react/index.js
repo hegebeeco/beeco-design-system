@@ -1,4 +1,4 @@
-/* beeco design system 1.25.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.26.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -4698,12 +4698,12 @@ var dayTitle = (iso) => {
 // react/src/media/MonthParts.tsx
 import { jsx as jsx70, jsxs as jsxs65 } from "react/jsx-runtime";
 var KINDS = ["event", "special", "education"];
-function MonthLegend({ names, hidden, onHiddenChange }) {
+function MonthLegend({ names, hidden, onHiddenChange, kinds = KINDS }) {
   if (!onHiddenChange) {
-    return /* @__PURE__ */ jsx70("ul", { className: "bc-mcal-legend", "aria-label": "Jelmagyar\xE1zat", children: KINDS.map((k) => /* @__PURE__ */ jsx70("li", { children: /* @__PURE__ */ jsx70("span", { className: `bc-mcal-ev is-${KIND_ROLE[k]}`, children: names[k] }) }, k)) });
+    return /* @__PURE__ */ jsx70("ul", { className: "bc-mcal-legend", "aria-label": "Jelmagyar\xE1zat", children: kinds.map((k) => /* @__PURE__ */ jsx70("li", { children: /* @__PURE__ */ jsx70("span", { className: `bc-mcal-ev is-${KIND_ROLE[k]}`, children: names[k] }) }, k)) });
   }
   const toggle = (k) => onHiddenChange(hidden.has(k) ? [...hidden].filter((x) => x !== k) : [...hidden, k]);
-  return /* @__PURE__ */ jsx70("div", { className: "bc-mcal-legend", role: "group", "aria-label": "Jelmagyar\xE1zat \xE9s sz\u0171r\u0151 \u2013 mit mutasson a napt\xE1r", children: KINDS.map((k) => /* @__PURE__ */ jsxs65("button", { type: "button", className: `bc-tag bc-mcal-filter is-${KIND_ROLE[k]}`, "aria-pressed": !hidden.has(k), onClick: () => toggle(k), children: [
+  return /* @__PURE__ */ jsx70("div", { className: "bc-mcal-legend", role: "group", "aria-label": "Jelmagyar\xE1zat \xE9s sz\u0171r\u0151 \u2013 mit mutasson a napt\xE1r", children: kinds.map((k) => /* @__PURE__ */ jsxs65("button", { type: "button", className: `bc-tag bc-mcal-filter is-${KIND_ROLE[k]}`, "aria-pressed": !hidden.has(k), onClick: () => toggle(k), children: [
     /* @__PURE__ */ jsx70("span", { "aria-hidden": "true", children: hidden.has(k) ? "\u25CB" : "\u2713" }),
     names[k]
   ] }, k)) });
@@ -4721,7 +4721,7 @@ function MonthAgenda({ iso, events, names }) {
 
 // react/src/media/MonthCalendar.tsx
 import { jsx as jsx71, jsxs as jsxs66 } from "react/jsx-runtime";
-function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPerDay = 3, loading, error, onRetry, hidden = [], onHiddenChange, labels }) {
+function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPerDay = 3, loading, error, onRetry, hidden = [], onHiddenChange, labels, kinds }) {
   const [focus, setFocus] = useState33(initialDate ?? todayIso());
   const [selected, setSelected] = useState33(focus);
   const grid = useRef26(null);
@@ -4785,7 +4785,7 @@ function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPer
         setSelected(today);
       }, disabled: focus.slice(0, 7) === today.slice(0, 7), children: "Ma" })
     ] }),
-    /* @__PURE__ */ jsx71(MonthLegend, { names, hidden: hid, onHiddenChange }),
+    /* @__PURE__ */ jsx71(MonthLegend, { names, hidden: hid, onHiddenChange, kinds }),
     loading && /* @__PURE__ */ jsxs66("p", { className: "bc-mcal-note", role: "status", children: [
       /* @__PURE__ */ jsx71("span", { className: "bc-spinner", "aria-hidden": "true" }),
       " T\xF6lt\xF6m a h\xF3nap tartalm\xE1t\u2026"
@@ -4794,7 +4794,7 @@ function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPer
       /* @__PURE__ */ jsx71("p", { children: error }),
       onRetry && /* @__PURE__ */ jsx71(Button, { variant: "secondary", size: "sm", onClick: onRetry, children: "\xDAjrapr\xF3b\xE1l\xE1s" })
     ] }),
-    !error && !loading && monthCount === 0 && /* @__PURE__ */ jsx71("p", { className: "bc-mcal-note", role: "status", children: hid.size >= 3 ? "Minden tartalomfajta ki van kapcsolva \u2013 kapcsolj be egyet a jelmagyar\xE1zatban." : `${title}: ebben a h\xF3napban m\xE9g nincs tartalom.` }),
+    !error && !loading && monthCount === 0 && /* @__PURE__ */ jsx71("p", { className: "bc-mcal-note", role: "status", children: (kinds ?? ["event", "special", "education"]).every((k) => hid.has(k)) ? "Minden tartalomfajta ki van kapcsolva \u2013 kapcsolj be egyet a jelmagyar\xE1zatban." : `${title}: ebben a h\xF3napban m\xE9g nincs tartalom.` }),
     /* @__PURE__ */ jsx71("div", { className: "bc-mcal-scroll", children: /* @__PURE__ */ jsxs66("table", { className: "bc-mcal-grid", role: "grid", ref: grid, onKeyDown: onKey, "aria-label": `${title} \u2013 tartalmi napt\xE1r`, children: [
       /* @__PURE__ */ jsx71("thead", { children: /* @__PURE__ */ jsx71("tr", { children: WEEKDAYS.map((w, i) => /* @__PURE__ */ jsx71("th", { scope: "col", abbr: WEEKDAYS_LONG[i], children: w }, w)) }) }),
       /* @__PURE__ */ jsx71("tbody", { children: Array.from({ length: 6 }, (_, w) => /* @__PURE__ */ jsx71("tr", { children: days.slice(w * 7, w * 7 + 7).map((iso) => {

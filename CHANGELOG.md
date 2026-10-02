@@ -11,6 +11,9 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.26.0 – 2026-10-02
+- **MonthCalendar**: új `kinds` beállítás – mely tartalomfajták szerepeljenek a jelmagyarázatban és a szűrőben (alap: mind a három). Így olyan naptár is épülhet rá, ahol csak két fajta van (pl. a partner adatlapján: esemény + kupon-időzítés), üres jelmagyarázat-tétel nélkül. A „minden fajta ki van kapcsolva” üzenet is ehhez igazodik. Tesztlap: `media-naptar` („Csak két fajta”).
+
 ## 1.25.0 – 2026-10-02
 - Új: **sötét módú logó** (`web/assets/brand/logo-sotet.webp` – a meglévő logóból, csak az átlátszó háttér melletti fekete részek krémszínűek) és **`Logo`** React-elem / `.bc-logo` CSS, amely a témával magától vált (Javaslat 10).
 - Új: **méhsejt-háttér** – `.bc-honeycomb` (CSS-maszk a méz szerep színéből, a tartalom alatt, nyomtatásban rejtve) és `AppShell pattern="honeycomb"`; a partner-app mintájából, az admin is használhatja. Tesztlap: `tema`.

@@ -42,6 +42,9 @@ function Oldal() {
       <Grid title="Havi naptár (7A)">
         <Case id="naptar" title="2026. október – sok tartalom egy napon, több napos, ismétlődő, hosszú cím, szűrő" wide><Naptar id="naptar" /></Case>
         <Case id="naptar-keskeny" title="Keskeny hely (telefon): pöttyös hónap + a nap listája"><div style={{ maxWidth: 360 }}><Naptar id="keskeny" /></div></Case>
+        <Case id="naptar-ketfajta" title="Csak két fajta (kinds), saját feliratokkal – pl. partner: esemény + kupon-időzítés">
+          <Naptar id="ketfajta" kinds={['event', 'education']} labels={{ event: 'Esemény', education: 'Kupon-időzítés' }} events={EV.filter((e) => e.kind !== 'special')} />
+        </Case>
         <Case id="naptar-ures" title="Üres hónap"><Naptar id="ures" events={[]} /></Case>
         <Case id="naptar-tolt" title="Töltés"><Naptar id="tolt" loading /></Case>
         <Case id="naptar-hiba" title="Hiba, újrapróbálással"><Naptar id="hiba" error="Nem sikerült betölteni a hónap tartalmát – ellenőrizd a kapcsolatot." onRetry={() => undefined} /></Case>

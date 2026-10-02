@@ -47,6 +47,14 @@ export default async function ({ page, t }) {
     const ag = await c('naptar-keskeny').locator('.bc-mcal-agenda').innerText();
     ok(ag.includes('október 16., péntek') && ag.includes('nem fér el a cellában'), ag);
   });
+  await t('kinds: csak a megadott fajták a jelmagyarázatban; mind kikapcsolva → szól', async () => {
+    const lg = c('naptar-ketfajta').locator('.bc-mcal-legend button');
+    ok((await lg.count()) === 2, `${await lg.count()} fajta`);
+    ok((await lg.allInnerTexts()).join('|').includes('Kupon-időzítés'), 'nincs saját felirat');
+    for (let i = 0; i < 2; i++) await lg.nth(i).click();
+    ok((await c('naptar-ketfajta').locator('.bc-mcal-note').first().innerText()).includes('Minden tartalomfajta ki van kapcsolva'), 'nem szól');
+    for (let i = 0; i < 2; i++) await lg.nth(i).click();
+  });
   await t('üres hónap szól; hiba → Újrapróbálás gomb', async () => {
     ok((await c('naptar-ures').locator('.bc-mcal-note').first().innerText()).includes('még nincs tartalom'), 'nem szól');
     ok(await c('naptar-hiba').getByRole('button', { name: 'Újrapróbálás' }).isVisible(), 'nincs gomb');

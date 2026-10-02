@@ -23,6 +23,8 @@ export type MonthCalendarProps = {
   hidden?: readonly CalKind[];
   onHiddenChange?: (hidden: CalKind[]) => void;
   labels?: Partial<Record<CalKind, string>>;
+  /** Mely fajták szerepeljenek a jelmagyarázatban (alap: mind a három) – pl. ahol csak esemény és egy másik fajta van (1.25) */
+  kinds?: readonly CalKind[];
 };
 
 /**
@@ -30,7 +32,7 @@ export type MonthCalendarProps = {
  * Billentyűzet: nyilak = nap/hét, PageUp/Down = hónap, Home/End = hét eleje/vége, Enter = a nap megnyitása.
  * Keskeny helyen (560 px alatt) pöttyös hónap + a kiválasztott nap listája.
  */
-export function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPerDay = 3, loading, error, onRetry, hidden = [], onHiddenChange, labels }: MonthCalendarProps) {
+export function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPerDay = 3, loading, error, onRetry, hidden = [], onHiddenChange, labels, kinds }: MonthCalendarProps) {
   const [focus, setFocus] = useState(initialDate ?? todayIso());
   const [selected, setSelected] = useState(focus);
   const grid = useRef<HTMLTableElement>(null);
@@ -69,11 +71,11 @@ export function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay,
         <IconButton aria-label="Következő hónap" onClick={() => go(addMonths(focus, 1))}><IcRight /></IconButton>
         <Button variant="secondary" size="sm" onClick={() => { go(today); setSelected(today); }} disabled={focus.slice(0, 7) === today.slice(0, 7)}>Ma</Button>
       </div>
-      <MonthLegend names={names} hidden={hid} onHiddenChange={onHiddenChange} />
+      <MonthLegend names={names} hidden={hid} onHiddenChange={onHiddenChange} kinds={kinds} />
       {loading && <p className="bc-mcal-note" role="status"><span className="bc-spinner" aria-hidden="true" /> Töltöm a hónap tartalmát…</p>}
       {error && <div className="bc-alert is-danger" role="alert"><p>{error}</p>{onRetry && <Button variant="secondary" size="sm" onClick={onRetry}>Újrapróbálás</Button>}</div>}
       {!error && !loading && monthCount === 0 && (
-        <p className="bc-mcal-note" role="status">{hid.size >= 3 ? 'Minden tartalomfajta ki van kapcsolva – kapcsolj be egyet a jelmagyarázatban.' : `${title}: ebben a hónapban még nincs tartalom.`}</p>
+        <p className="bc-mcal-note" role="status">{(kinds ?? (['event', 'special', 'education'] as const)).every((k) => hid.has(k)) ? 'Minden tartalomfajta ki van kapcsolva – kapcsolj be egyet a jelmagyarázatban.' : `${title}: ebben a hónapban még nincs tartalom.`}</p>
       )}
       <div className="bc-mcal-scroll">
         <table className="bc-mcal-grid" role="grid" ref={grid} onKeyDown={onKey} aria-label={`${title} – tartalmi naptár`}>
