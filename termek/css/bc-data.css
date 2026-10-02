@@ -28,3 +28,8 @@ th[aria-sort="descending"] .bc-sort::after { content: "▼"; font-size: .7em; }
 
 /* Lapozó */
 .bc-pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--bc-sp-3); padding: var(--bc-sp-3) 0; font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+
+/* Érintős eszközön a táblázat-cellák linkjei (pl. a sor címe, kártyanézetben is) legalább 44 px magas célfelületet kapnak */
+@media (pointer: coarse) {
+  .bc-table td a, .bc-table th a { display: inline-flex; align-items: center; min-height: var(--bc-tap); }
+}

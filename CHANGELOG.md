@@ -11,6 +11,9 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.24.1 – 2026-10-02
+- Javítás: érintős eszközön a táblázat-cellák linkjei (pl. a sor címe, telefonos kártyanézetben is) legalább 44 px magas célfelületet kapnak (eddig a szövegsor magassága, ~21 px).
+
 ## 1.24.0 – 2026-10-02
 - Új export: **FieldInput** és **useFieldContext** (+ `FieldCtx` típus) – saját mező (pl. natív fájlválasztó) bekötése a `Field` címkéjéhez, súgójához és hibájához (id, aria-describedby, aria-invalid). Eddig csak belül volt elérhető.
 
