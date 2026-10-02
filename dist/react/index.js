@@ -1,4 +1,4 @@
-/* beeco design system 1.33.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.33.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -3424,7 +3424,7 @@ function ToastView({ t }) {
 
 // react/src/reteg/AppShell.tsx
 import * as Dialog4 from "@radix-ui/react-dialog";
-import { Fragment as Fragment15, useState as useState24 } from "react";
+import { Fragment as Fragment15, useEffect as useEffect13, useRef as useRef20, useState as useState24 } from "react";
 
 // react/src/marka/evszak.ts
 function evszak(d = /* @__PURE__ */ new Date()) {
@@ -3480,6 +3480,16 @@ function AppShell({
   const [collapsedPref, setCollapsedPref] = useState24(() => collapsible && readCollapsed(collapseKey));
   const collapsed = collapsible && !narrow && collapsedPref;
   const focus = useReturnFocus();
+  const drawer = useRef20(null);
+  useEffect13(() => {
+    if (!open) return;
+    const h = (e) => {
+      const t = e.target;
+      if (t?.closest?.("a[href]") && drawer.current?.contains(t)) setOpen(false);
+    };
+    document.addEventListener("click", h, true);
+    return () => document.removeEventListener("click", h, true);
+  }, [open]);
   const toggle = () => {
     const v = !collapsedPref;
     setCollapsedPref(v);
@@ -3517,6 +3527,7 @@ function AppShell({
       /* @__PURE__ */ jsxs53(
         Dialog4.Content,
         {
+          ref: drawer,
           className: "bc-sidebar is-open",
           "aria-describedby": void 0,
           onOpenAutoFocus: focus.remember,
@@ -3548,14 +3559,14 @@ function AppShell({
 
 // react/src/reteg/StageDialog.tsx
 import * as Dialog5 from "@radix-ui/react-dialog";
-import { useEffect as useEffect13, useRef as useRef20 } from "react";
+import { useEffect as useEffect14, useRef as useRef21 } from "react";
 import { jsx as jsx59, jsxs as jsxs54 } from "react/jsx-runtime";
 function StageDialog({ open, onOpenChange, title, closable = true, announce = "", fullscreen = false, closeLabel = "Bez\xE1r\xE1s", className, children }) {
   const focus = useReturnFocus();
-  const close = useRef20(null);
-  const sajat = useRef20(false);
-  const tartalom = useRef20(null);
-  useEffect13(() => {
+  const close = useRef21(null);
+  const sajat = useRef21(false);
+  const tartalom = useRef21(null);
+  useEffect14(() => {
     if (!open) return;
     const t = window.setTimeout(() => {
       const a = document.activeElement;
@@ -3563,7 +3574,7 @@ function StageDialog({ open, onOpenChange, title, closable = true, announce = ""
     }, 0);
     return () => window.clearTimeout(t);
   }, [open, closable, announce]);
-  useEffect13(() => {
+  useEffect14(() => {
     if (!open || !fullscreen) return;
     const el = document.documentElement;
     if (document.fullscreenEnabled && !document.fullscreenElement) {
@@ -3612,7 +3623,7 @@ function StageDialog({ open, onOpenChange, title, closable = true, announce = ""
 }
 
 // react/src/media/ImageUploader.tsx
-import { useId as useId11, useRef as useRef25, useState as useState30 } from "react";
+import { useId as useId11, useRef as useRef26, useState as useState30 } from "react";
 
 // react/src/media/files.ts
 var MB = 1024 * 1024;
@@ -3682,7 +3693,7 @@ var isAbort = (e) => e instanceof DOMException && e.name === "AbortError";
 var errorText = (e) => e instanceof Error && e.message ? e.message : "Nem siker\xFClt felt\xF6lteni \u2013 ellen\u0151rizd a kapcsolatot, \xE9s pr\xF3b\xE1ld \xFAjra.";
 
 // react/src/media/CropDialog.tsx
-import { useEffect as useEffect14, useState as useState26 } from "react";
+import { useEffect as useEffect15, useState as useState26 } from "react";
 
 // react/src/media/ImageCropper.tsx
 import { useState as useState25 } from "react";
@@ -3800,7 +3811,7 @@ function CropDialog({ file, crop, position, onDone, onSkip }) {
   const [area, setArea] = useState26(null);
   const [busy, setBusy] = useState26(false);
   const [err, setErr] = useState26();
-  useEffect14(() => {
+  useEffect15(() => {
     if (!file) {
       setSrc(null);
       return;
@@ -3849,16 +3860,16 @@ function CropDialog({ file, crop, position, onDone, onSkip }) {
 }
 
 // react/src/media/Gallery.tsx
-import { useRef as useRef23, useState as useState28 } from "react";
+import { useRef as useRef24, useState as useState28 } from "react";
 
 // react/src/media/GalleryDialogs.tsx
 import * as Dialog6 from "@radix-ui/react-dialog";
-import { useEffect as useEffect15, useState as useState27 } from "react";
+import { useEffect as useEffect16, useState as useState27 } from "react";
 
 // react/src/media/useReturnFocus.ts
-import { useLayoutEffect as useLayoutEffect3, useRef as useRef21 } from "react";
+import { useLayoutEffect as useLayoutEffect3, useRef as useRef22 } from "react";
 function useReturnFocus2(open, fallback) {
-  const prev = useRef21(null);
+  const prev = useRef22(null);
   useLayoutEffect3(() => {
     if (open) prev.current = document.activeElement;
   }, [open]);
@@ -3886,7 +3897,7 @@ var ALT_HELP = "Mondd el egy mondatban, mi l\xE1tszik a k\xE9pen \u2013 ezt olva
 function AltDialog({ img, help = ALT_HELP, onSave, onClose, fallback }) {
   const [text, setText] = useState27("");
   const [err, setErr] = useState27();
-  useEffect15(() => {
+  useEffect16(() => {
     setText(img?.alt ?? "");
     setErr(void 0);
   }, [img]);
@@ -4032,14 +4043,14 @@ function GalleryTile({ img, index, count, ordering, editable, altEditable = true
 
 // react/src/media/Lightbox.tsx
 import * as Dialog7 from "@radix-ui/react-dialog";
-import { useRef as useRef22 } from "react";
+import { useRef as useRef23 } from "react";
 import { jsx as jsx65, jsxs as jsxs60 } from "react/jsx-runtime";
 function Lightbox({ images, index, onIndexChange, returnFocus }) {
   const open = index !== null && images.length > 0;
   const i = Math.min(index ?? 0, Math.max(0, images.length - 1));
   const img = images[i];
   const go = (d) => onIndexChange((i + d + images.length) % images.length);
-  const startX = useRef22(null);
+  const startX = useRef23(null);
   const back = useReturnFocus2(open, returnFocus);
   const onKey = (e) => {
     if (images.length < 2) return;
@@ -4100,8 +4111,8 @@ function Gallery({ images, onChange, ordering = true, confirmDelete, altHelp, al
   const [drag, setDrag] = useState28(null);
   const [said, setSaid] = useState28("");
   const editable = Boolean(onChange);
-  const root = useRef23(null);
-  const opener = useRef23(null);
+  const root = useRef24(null);
+  const opener = useRef24(null);
   const trigger = () => opener.current && root.current?.querySelector(`[data-tile="${opener.current}"] .bc-tile-menu`) || root.current?.querySelector(".bc-tile-menu, .bc-tile-open, input");
   const move = (from, to) => {
     if (!onChange || from === to || to < 0 || to >= images.length) return;
@@ -4257,14 +4268,14 @@ function UploadTile({ item, onCancel, onRetry }) {
 }
 
 // react/src/media/useUploads.ts
-import { useCallback as useCallback4, useEffect as useEffect16, useRef as useRef24, useState as useState29 } from "react";
+import { useCallback as useCallback4, useEffect as useEffect17, useRef as useRef25, useState as useState29 } from "react";
 var seq2 = 0;
 function useUploads(upload, onDone, onCancel) {
   const [items, setItems] = useState29([]);
-  const ctrls = useRef24(/* @__PURE__ */ new Map());
-  const done = useRef24(onDone);
+  const ctrls = useRef25(/* @__PURE__ */ new Map());
+  const done = useRef25(onDone);
   done.current = onDone;
-  const cancelCb = useRef24(onCancel);
+  const cancelCb = useRef25(onCancel);
   cancelCb.current = onCancel;
   const patch = (id, p) => setItems((xs) => xs.map((x) => x.id === id ? { ...x, ...p } : x));
   const drop = (id) => setItems((xs) => {
@@ -4315,7 +4326,7 @@ function useUploads(upload, onDone, onCancel) {
     drop(id);
     if (it) cancelCb.current?.(it.file);
   }, [items]);
-  useEffect16(() => () => ctrls.current.forEach((c) => c.abort()), []);
+  useEffect17(() => () => ctrls.current.forEach((c) => c.abort()), []);
   const keys = new Set(items.map((i) => fileKey(i.file)));
   return { items, start, retry, cancel, keys, busy: items.some((i) => i.status === "uploading") };
 }
@@ -4345,12 +4356,12 @@ function ImageUploader({
   const [rejected, setRejected] = useState30([]);
   const [note, setNote] = useState30();
   const [over, setOver] = useState30(false);
-  const input = useRef25(null);
+  const input = useRef26(null);
   const rejId = useId11();
-  const latest = useRef25(images);
+  const latest = useRef26(images);
   latest.current = images;
-  const fromFile = useRef25(/* @__PURE__ */ new Map());
-  const origKey = useRef25(/* @__PURE__ */ new WeakMap());
+  const fromFile = useRef26(/* @__PURE__ */ new Map());
+  const origKey = useRef26(/* @__PURE__ */ new WeakMap());
   const [queue, setQueue] = useState30({ files: [], total: 0 });
   const up = useUploads(
     upload,
@@ -4490,7 +4501,7 @@ function ImageUploader({
 }
 
 // react/src/media/VideoUpload.tsx
-import { useEffect as useEffect17, useId as useId12, useRef as useRef26, useState as useState31 } from "react";
+import { useEffect as useEffect18, useId as useId12, useRef as useRef27, useState as useState31 } from "react";
 import { Fragment as Fragment20, jsx as jsx70, jsxs as jsxs65 } from "react/jsx-runtime";
 var STEPS = [{ id: "file", label: "F\xE1jl" }, { id: "up", label: "Felt\xF6lt\xE9s" }, { id: "proc", label: "Feldolgoz\xE1s" }, { id: "done", label: "K\xE9sz" }];
 function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, disabled }) {
@@ -4500,9 +4511,9 @@ function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, dis
   const [failed, setFailed] = useState31(null);
   const [rej, setRej] = useState31(null);
   const [eta, setEta] = useState31();
-  const ctrl = useRef26(null);
+  const ctrl = useRef27(null);
   const rejId = useId12();
-  useEffect17(() => {
+  useEffect18(() => {
     if (phase !== "up") return;
     const warn = (e) => {
       e.preventDefault();
@@ -4511,7 +4522,7 @@ function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, dis
     addEventListener("beforeunload", warn);
     return () => removeEventListener("beforeunload", warn);
   }, [phase]);
-  useEffect17(() => () => ctrl.current?.abort(), []);
+  useEffect18(() => () => ctrl.current?.abort(), []);
   const runProcess = async (f) => {
     setPhase("proc");
     setFailed(null);
@@ -4638,7 +4649,7 @@ function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, dis
 }
 
 // react/src/media/FileImport.tsx
-import { useId as useId13, useRef as useRef27, useState as useState33 } from "react";
+import { useId as useId13, useRef as useRef28, useState as useState33 } from "react";
 
 // react/src/media/ImportResult.tsx
 import { useState as useState32 } from "react";
@@ -4743,8 +4754,8 @@ function FileImport({ label, help, importFile, maxSizeMB = 10, allowXls = true, 
   const [result, setResult] = useState33(null);
   const [rej, setRej] = useState33(null);
   const [failed, setFailed] = useState33(null);
-  const ctrl = useRef27(null);
-  const lastKey = useRef27(null);
+  const ctrl = useRef28(null);
+  const lastKey = useRef28(null);
   const [dup, setDup] = useState33(null);
   const rejId = useId13();
   const accept = allowXls ? [XLSX, XLS] : [XLSX];
@@ -4951,7 +4962,7 @@ function HeatScale({ title, unit, help, ends = ["kev\xE9s", "sok"], steps, howTo
 }
 
 // react/src/media/MonthCalendar.tsx
-import { useEffect as useEffect18, useMemo as useMemo3, useRef as useRef28, useState as useState35 } from "react";
+import { useEffect as useEffect19, useMemo as useMemo3, useRef as useRef29, useState as useState35 } from "react";
 
 // react/src/media/monthEvents.ts
 var KIND_ROLE = { event: "info", special: "warning", education: "success" };
@@ -5006,8 +5017,8 @@ import { jsx as jsx75, jsxs as jsxs70 } from "react/jsx-runtime";
 function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPerDay = 3, loading, error, onRetry, hidden = [], onHiddenChange, labels, kinds }) {
   const [focus, setFocus] = useState35(initialDate ?? todayIso());
   const [selected, setSelected] = useState35(focus);
-  const grid = useRef28(null);
-  const moved = useRef28(false);
+  const grid = useRef29(null);
+  const moved = useRef29(false);
   const f = fromIso(focus);
   const monthKey = `${f.getFullYear()}-${f.getMonth()}`;
   const days = useMemo3(() => monthGrid(f.getFullYear(), f.getMonth()).map(toIso), [monthKey]);
@@ -5017,15 +5028,15 @@ function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPer
   const today = todayIso();
   const title = `${f.getFullYear()}. ${MONTHS[f.getMonth()]}`;
   const monthCount = days.filter((d) => fromIso(d).getMonth() === f.getMonth()).reduce((n, d) => n + (byDay.get(d)?.length ?? 0), 0);
-  const first = useRef28(true);
-  useEffect18(() => {
+  const first = useRef29(true);
+  useEffect19(() => {
     if (first.current) {
       first.current = false;
       return;
     }
     onMonthChange?.(`${focus.slice(0, 7)}-01`);
   }, [monthKey]);
-  useEffect18(() => {
+  useEffect19(() => {
     if (moved.current) {
       grid.current?.querySelector(`[data-iso="${focus}"]`)?.focus({ preventScroll: true });
       moved.current = false;
@@ -5114,7 +5125,7 @@ function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPer
 }
 
 // react/src/media/OpeningHoursEditor.tsx
-import { useEffect as useEffect19, useId as useId14, useState as useState36 } from "react";
+import { useEffect as useEffect20, useId as useId14, useState as useState36 } from "react";
 
 // react/src/media/openingHours.ts
 var WEEK = [
@@ -5163,7 +5174,7 @@ var emptyWeek = () => Object.fromEntries(WEEK.map(({ key }) => [key, { open: fal
 import { jsx as jsx76, jsxs as jsxs71 } from "react/jsx-runtime";
 function TimeInput({ value, onCommit, label, invalid, describedBy, disabled, readOnly }) {
   const [text, setText] = useState36(value ?? "");
-  useEffect19(() => setText(value ?? ""), [value]);
+  useEffect20(() => setText(value ?? ""), [value]);
   return /* @__PURE__ */ jsx76(
     "input",
     {
@@ -5254,7 +5265,7 @@ function OpeningHoursEditor({ label = "Nyitvatart\xE1s", help, value, onChange, 
 }
 
 // react/src/media/Avatar.tsx
-import { useEffect as useEffect20, useState as useState37 } from "react";
+import { useEffect as useEffect21, useState as useState37 } from "react";
 import { jsx as jsx77 } from "react/jsx-runtime";
 var DIGRAPH = /^(dzs|cs|dz|gy|ly|ny|sz|ty|zs)/i;
 var firstLetter = (w) => {
@@ -5269,7 +5280,7 @@ function initials(name2) {
 }
 function Avatar({ name: name2, src, size = 40, shape = "circle", decorative = false, className }) {
   const [broken, setBroken] = useState37(false);
-  useEffect20(() => setBroken(false), [src]);
+  useEffect21(() => setBroken(false), [src]);
   const showImg = src && !broken;
   return /* @__PURE__ */ jsx77(
     "span",
@@ -5584,11 +5595,11 @@ function BeeMoment({ pillanat, poen, sima, szerep, action, inline, valtozat, liv
 }
 
 // react/src/meh/motion.tsx
-import { Children, cloneElement as cloneElement2, isValidElement as isValidElement2, useEffect as useEffect21, useRef as useRef29, useState as useState39 } from "react";
+import { Children, cloneElement as cloneElement2, isValidElement as isValidElement2, useEffect as useEffect22, useRef as useRef30, useState as useState39 } from "react";
 import { jsx as jsx81, jsxs as jsxs74 } from "react/jsx-runtime";
 function useReducedMotion() {
   const [r, setR] = useState39(() => typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches);
-  useEffect21(() => {
+  useEffect22(() => {
     const m = matchMedia("(prefers-reduced-motion: reduce)");
     const f = () => setR(m.matches);
     m.addEventListener("change", f);
@@ -5598,9 +5609,9 @@ function useReducedMotion() {
 }
 function useCountUp(value, ms = 600) {
   const reduce = useReducedMotion();
-  const first = useRef29(true);
+  const first = useRef30(true);
   const [anim, setAnim] = useState39(reduce ? null : 0);
-  useEffect21(() => {
+  useEffect22(() => {
     if (reduce || !first.current) {
       setAnim(null);
       return;
@@ -5675,11 +5686,11 @@ function ProgressBar({ value, label, moving }) {
 }
 
 // react/src/meh/BeeSprite.tsx
-import { useEffect as useEffect22, useState as useState40 } from "react";
+import { useEffect as useEffect23, useState as useState40 } from "react";
 import { jsx as jsx82 } from "react/jsx-runtime";
 function BeeSprite({ szereplo, size = "m", replay, label, className }) {
   const [k, setK] = useState40(0);
-  useEffect22(() => {
+  useEffect23(() => {
     if (replay !== void 0) setK((x) => x + 1);
   }, [replay]);
   return /* @__PURE__ */ jsx82(
@@ -5694,7 +5705,7 @@ function BeeSprite({ szereplo, size = "m", replay, label, className }) {
 }
 
 // react/src/kieg/PhoneField.tsx
-import { forwardRef as forwardRef9, useEffect as useEffect23, useLayoutEffect as useLayoutEffect4, useRef as useRef30, useState as useState41 } from "react";
+import { forwardRef as forwardRef9, useEffect as useEffect24, useLayoutEffect as useLayoutEffect4, useRef as useRef31, useState as useState41 } from "react";
 
 // react/src/kieg/phone.ts
 var MOBIL = ["20", "30", "31", "50", "70"];
@@ -5782,13 +5793,13 @@ var caretAfter = (text, n) => {
   return text.length;
 };
 var PhoneField = forwardRef9(function PhoneField2({ label, help, range, error, notice, required, disabled, className, value, onChange, kind = "barmely", onBlur, onFocus, ...rest }, ref) {
-  const inner = useRef30(null);
+  const inner = useRef31(null);
   const [text, setText] = useState41(() => formatNational(parsePhone(value).digits));
   const [note, setNote] = useState41();
   const [touched, setTouched] = useState41(false);
-  const focused = useRef30(false);
-  const caret = useRef30(null);
-  useEffect23(() => {
+  const focused = useRef31(false);
+  const caret = useRef31(null);
+  useEffect24(() => {
     if (!focused.current) setText(formatNational(parsePhone(value).digits));
   }, [value]);
   useLayoutEffect4(() => {
@@ -5899,7 +5910,7 @@ var PhoneField = forwardRef9(function PhoneField2({ label, help, range, error, n
 });
 
 // react/src/kieg/CopyButton.tsx
-import { useEffect as useEffect24, useRef as useRef31, useState as useState42 } from "react";
+import { useEffect as useEffect25, useRef as useRef32, useState as useState42 } from "react";
 
 // react/src/kieg/icons.tsx
 import { jsx as jsx84, jsxs as jsxs76 } from "react/jsx-runtime";
@@ -5944,10 +5955,10 @@ async function copyText(text) {
 function CopyButton({ value, what, variant = "button", showValue: showValue2, disabled, className }) {
   const [state, setState] = useState42("idle");
   const [msg, setMsg] = useState42("");
-  const fallback = useRef31(null);
-  const timer = useRef31(void 0);
-  useEffect24(() => () => window.clearTimeout(timer.current), []);
-  useEffect24(() => {
+  const fallback = useRef32(null);
+  const timer = useRef32(void 0);
+  useEffect25(() => () => window.clearTimeout(timer.current), []);
+  useEffect25(() => {
     if (state === "failed") fallback.current?.select();
   }, [state]);
   const run = async () => {
@@ -5975,7 +5986,7 @@ function CopyButton({ value, what, variant = "button", showValue: showValue2, di
 }
 
 // react/src/kieg/DownloadButton.tsx
-import { useEffect as useEffect25, useRef as useRef32, useState as useState43 } from "react";
+import { useEffect as useEffect26, useRef as useRef33, useState as useState43 } from "react";
 import { Fragment as Fragment23, jsx as jsx86, jsxs as jsxs78 } from "react/jsx-runtime";
 function formatBytes(n) {
   if (n < 1024) return `${n} B`;
@@ -5999,9 +6010,9 @@ function DownloadButton({ label, fileName, sizeHint, onDownload, variant = "seco
   const [size, setSize] = useState43(null);
   const [slow, setSlow] = useState43(false);
   const [stopped, setStopped] = useState43(false);
-  const ctrl = useRef32(null);
-  useEffect25(() => () => ctrl.current?.abort(), []);
-  useEffect25(() => {
+  const ctrl = useRef33(null);
+  useEffect26(() => () => ctrl.current?.abort(), []);
+  useEffect26(() => {
     if (state !== "busy") return;
     const t = window.setTimeout(() => setSlow(true), 1e4);
     return () => window.clearTimeout(t);
@@ -6080,7 +6091,7 @@ function DownloadButton({ label, fileName, sizeHint, onDownload, variant = "seco
 }
 
 // react/src/kieg/Slider.tsx
-import { useRef as useRef33 } from "react";
+import { useRef as useRef34 } from "react";
 
 // react/src/kieg/sliderCore.ts
 var decimalsOf = (n) => (String(n).split(".")[1] ?? "").length;
@@ -6121,8 +6132,8 @@ var defaultBig = (min, max, step) => Math.max(step, Math.round((max - min) / 10 
 import { jsx as jsx87, jsxs as jsxs79 } from "react/jsx-runtime";
 var fmt2 = (unit, step) => (v) => `${formatHu(v, (String(step).split(".")[1] ?? "").length)}${unit ? ` ${unit}` : ""}`;
 function Track({ values, onChange, spec, labels, format, disabled, minGap, describedBy, invalid }) {
-  const track = useRef33(null);
-  const drag = useRef33(null);
+  const track = useRef34(null);
+  const drag = useRef34(null);
   const set = (i, raw) => {
     let x = snap(raw, spec);
     if (values.length === 2) x = i === 0 ? Math.min(x, values[1] - minGap) : Math.max(x, values[0] + minGap);
@@ -6239,16 +6250,16 @@ function RangeSlider({ value, onChange, minGap, ...rest }) {
 }
 
 // react/src/kieg/UnsavedChanges.tsx
-import { useCallback as useCallback5, useEffect as useEffect27, useRef as useRef35, useState as useState44 } from "react";
+import { useCallback as useCallback5, useEffect as useEffect28, useRef as useRef36, useState as useState44 } from "react";
 
 // react/src/kieg/KiegDialog.tsx
-import { useEffect as useEffect26, useId as useId15, useRef as useRef34 } from "react";
+import { useEffect as useEffect27, useId as useId15, useRef as useRef35 } from "react";
 import { Fragment as Fragment24, jsx as jsx88, jsxs as jsxs80 } from "react/jsx-runtime";
 function KiegDialog({ open, onCancel, title, children, actions, className }) {
-  const ref = useRef34(null);
-  const back = useRef34(null);
+  const ref = useRef35(null);
+  const back = useRef35(null);
   const id = useId15();
-  useEffect26(() => {
+  useEffect27(() => {
     const d = ref.current;
     if (!d) return;
     if (open && !d.open) {
@@ -6260,7 +6271,7 @@ function KiegDialog({ open, onCancel, title, children, actions, className }) {
       back.current?.focus();
     }
   }, [open]);
-  useEffect26(() => () => {
+  useEffect27(() => () => {
     if (ref.current?.open) back.current?.focus();
   }, []);
   return /* @__PURE__ */ jsx88(
@@ -6290,7 +6301,7 @@ import { Fragment as Fragment25, jsx as jsx89, jsxs as jsxs81 } from "react/jsx-
 function UnsavedChangesDialog({ open, onStay, onLeave, onSave, title = "Nem mentett v\xE1ltoz\xE1said vannak", children }) {
   const [busy, setBusy] = useState44(false);
   const [err, setErr] = useState44();
-  useEffect27(() => {
+  useEffect28(() => {
     if (!open) {
       setBusy(false);
       setErr(void 0);
@@ -6334,13 +6345,13 @@ function UnsavedChangesDialog({ open, onStay, onLeave, onSave, title = "Nem ment
 }
 function useUnsavedChanges(dirty, opts = {}) {
   const [pending, setPending] = useState44(null);
-  const live = useRef35(dirty);
-  const released = useRef35(false);
-  useEffect27(() => {
+  const live = useRef36(dirty);
+  const released = useRef36(false);
+  useEffect28(() => {
     live.current = dirty;
     released.current = false;
   }, [dirty]);
-  useEffect27(() => {
+  useEffect28(() => {
     if (!dirty) return;
     const h = (e) => {
       if (released.current) return;
@@ -6368,8 +6379,8 @@ function useUnsavedChanges(dirty, opts = {}) {
 }
 function UnsavedChangesGuard({ dirty, interceptLinks = true, ...opts }) {
   const { confirm, dialog } = useUnsavedChanges(dirty, opts);
-  const bypass = useRef35(false);
-  useEffect27(() => {
+  const bypass = useRef36(false);
+  useEffect28(() => {
     if (!dirty || !interceptLinks) return;
     const h = (e) => {
       if (bypass.current || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -6392,11 +6403,11 @@ function UnsavedChangesGuard({ dirty, interceptLinks = true, ...opts }) {
 }
 
 // react/src/kieg/OfflineBanner.tsx
-import { useEffect as useEffect28, useRef as useRef36, useState as useState45 } from "react";
+import { useEffect as useEffect29, useRef as useRef37, useState as useState45 } from "react";
 import { Fragment as Fragment26, jsx as jsx90, jsxs as jsxs82 } from "react/jsx-runtime";
 function useOnline() {
   const [on, setOn] = useState45(() => typeof navigator === "undefined" ? true : navigator.onLine);
-  useEffect28(() => {
+  useEffect29(() => {
     const up = () => setOn(true), down = () => setOn(false);
     window.addEventListener("online", up);
     window.addEventListener("offline", down);
@@ -6412,8 +6423,8 @@ function OfflineBanner({ online, pending = 0, saveText, onRetry, bee = true, bac
   const browser = useOnline();
   const on = online ?? browser;
   const [back, setBack] = useState45(false);
-  const was = useRef36(on);
-  useEffect28(() => {
+  const was = useRef37(on);
+  useEffect29(() => {
     if (on && !was.current) {
       setBack(true);
       const t = window.setTimeout(() => setBack(false), backMs);
@@ -6647,11 +6658,11 @@ function Timeline({ items, status = "ready", onRetry, pageSize = 10, onLoadMore,
 import { useCallback as useCallback6, useState as useState47 } from "react";
 
 // react/src/kieg/Clamp.tsx
-import { createContext as createContext3, useContext as useContext3, useEffect as useEffect29, useLayoutEffect as useLayoutEffect5, useRef as useRef37 } from "react";
+import { createContext as createContext3, useContext as useContext3, useEffect as useEffect30, useLayoutEffect as useLayoutEffect5, useRef as useRef38 } from "react";
 import { jsx as jsx93 } from "react/jsx-runtime";
 var CutContext = createContext3(() => void 0);
 function Clamp({ k, label, lines, as: Tag = "p", placeholder, className, children }) {
-  const ref = useRef37(null);
+  const ref = useRef38(null);
   const report = useContext3(CutContext);
   const empty = children === void 0 || children === null || typeof children === "string" && !children.trim();
   useLayoutEffect5(() => {
@@ -6673,7 +6684,7 @@ function Clamp({ k, label, lines, as: Tag = "p", placeholder, className, childre
       ro?.disconnect();
     };
   }, [children, lines, empty, k, label, report]);
-  useEffect29(() => () => report(k, label, lines, false), [k, label, lines, report]);
+  useEffect30(() => () => report(k, label, lines, false), [k, label, lines, report]);
   const style = { ["--lines"]: lines };
   return /* @__PURE__ */ jsx93(Tag, { ref, className: cx("bc-clamp", lines === 1 && "is-one", empty && "is-placeholder", className), style, "data-clamp": k, children: empty ? placeholder : children });
 }
@@ -6750,7 +6761,7 @@ function PreviewCard({ caption = "\xCDgy l\xE1tszik az appban", className, ...da
 }
 
 // react/src/kieg/AudienceBuilder.tsx
-import { Fragment as Fragment28, useEffect as useEffect30, useId as useId18, useRef as useRef38, useState as useState48 } from "react";
+import { Fragment as Fragment28, useEffect as useEffect31, useId as useId18, useRef as useRef39, useState as useState48 } from "react";
 
 // react/src/kieg/audience.ts
 var OPS = {
@@ -6884,13 +6895,13 @@ function AudienceBuilder({
 }) {
   const uid = useId18();
   const [touched, setTouched] = useState48(() => /* @__PURE__ */ new Set());
-  const focusRule = useRef38(null);
-  const addBtn = useRef38(null);
-  const root = useRef38(null);
+  const focusRule = useRef39(null);
+  const addBtn = useRef39(null);
+  const root = useRef39(null);
   const problems = audienceProblems(value, fields);
   const bad2 = Object.keys(problems).length;
   const full = value.rules.length >= maxRules;
-  useEffect30(() => {
+  useEffect31(() => {
     if (!focusRule.current) return;
     root.current?.querySelector(`[data-rule="${focusRule.current}"] select`)?.focus();
     focusRule.current = null;
@@ -7191,10 +7202,10 @@ function CompareMerge({ records, fields, choices, onChoicesChange, survivor, onS
 }
 
 // react/src/kieg/ReviewQueue.tsx
-import { useEffect as useEffect32, useId as useId22, useRef as useRef40, useState as useState51 } from "react";
+import { useEffect as useEffect33, useId as useId22, useRef as useRef41, useState as useState51 } from "react";
 
 // react/src/kieg/ReviewReject.tsx
-import { useEffect as useEffect31, useId as useId21, useRef as useRef39, useState as useState50 } from "react";
+import { useEffect as useEffect32, useId as useId21, useRef as useRef40, useState as useState50 } from "react";
 import { jsx as jsx99, jsxs as jsxs90 } from "react/jsx-runtime";
 var MIN = 10;
 var MAX = 300;
@@ -7203,8 +7214,8 @@ function ReviewReject({ reasons = [], busy, onSubmit, onCancel }) {
   const [preset, setPreset] = useState50();
   const [text, setText] = useState50("");
   const [err, setErr] = useState50();
-  const box = useRef39(null);
-  useEffect31(() => {
+  const box = useRef40(null);
+  useEffect32(() => {
     box.current?.querySelector("input[type=radio], textarea")?.focus();
   }, []);
   const submit = () => {
@@ -7288,9 +7299,9 @@ function ReviewQueue({ items, getId, getTitle, render, onDecide, onUndo, reasons
   const [busy, setBusy] = useState51(false);
   const [err, setErr] = useState51();
   const [say2, setSay] = useState51("");
-  const head = useRef40(null);
-  const root = useRef40(null);
-  const rejectBtn = useRef40(null);
+  const head = useRef41(null);
+  const root = useRef41(null);
+  const rejectBtn = useRef41(null);
   const titleId = useId22();
   const item = items[at2];
   const total = items.length;
@@ -7335,14 +7346,14 @@ function ReviewQueue({ items, getId, getTitle, render, onDecide, onUndo, reasons
       setErr("Nem siker\xFClt visszavonni. Pr\xF3b\xE1ld \xFAjra.");
     }
   };
-  const focusHead = useRef40(false);
-  useEffect32(() => {
+  const focusHead = useRef41(false);
+  useEffect33(() => {
     if (focusHead.current) {
       focusHead.current = false;
       head.current?.focus();
     }
   });
-  useEffect32(() => {
+  useEffect33(() => {
     const h = (e) => {
       if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || typing(e.target) || rejecting || busy || !item || document.querySelector("dialog[open]")) return;
       const a = document.activeElement, r = root.current;
@@ -7432,10 +7443,10 @@ function ReviewQueue({ items, getId, getTitle, render, onDecide, onUndo, reasons
 }
 
 // react/src/kieg2/LocationPicker.tsx
-import { useEffect as useEffect35, useId as useId23, useRef as useRef43, useState as useState54 } from "react";
+import { useEffect as useEffect36, useId as useId23, useRef as useRef44, useState as useState54 } from "react";
 
 // react/src/kieg2/AddressSearch.tsx
-import { useEffect as useEffect33, useMemo as useMemo5, useRef as useRef41, useState as useState52 } from "react";
+import { useEffect as useEffect34, useMemo as useMemo5, useRef as useRef42, useState as useState52 } from "react";
 import { jsx as jsx101 } from "react/jsx-runtime";
 function AddressSearch({
   search,
@@ -7452,9 +7463,9 @@ function AddressSearch({
   const [loading, setLoading] = useState52(false);
   const [error, setError] = useState52();
   const [tick, setTick] = useState52(0);
-  const searchRef = useRef41(search);
+  const searchRef = useRef42(search);
   searchRef.current = search;
-  useEffect33(() => {
+  useEffect34(() => {
     const q = query.trim();
     if (q.length < minChars) {
       setHits([]);
@@ -7602,7 +7613,7 @@ function MiniMap({ point }) {
 }
 
 // react/src/kieg2/useGeolocation.ts
-import { useCallback as useCallback7, useEffect as useEffect34, useRef as useRef42, useState as useState53 } from "react";
+import { useCallback as useCallback7, useEffect as useEffect35, useRef as useRef43, useState as useState53 } from "react";
 var MSG = {
   denied: "Nem engedted a helymeghat\xE1roz\xE1st. A b\xF6ng\xE9sz\u0151 c\xEDmsor\xE1ban (lakat ikon) enged\xE9lyezheted, vagy keresd meg a c\xEDmet.",
   unavailable: "Most nem tal\xE1lom a helyed (nincs GPS vagy h\xE1l\xF3zat). Pr\xF3b\xE1ld \xFAjra, vagy add meg a c\xEDmet.",
@@ -7612,8 +7623,8 @@ var MSG = {
 var accuracyText = (m) => m < 1e3 ? `\xB1${formatHu(Math.round(m), 0)} m` : `\xB1${formatHu(m / 1e3, 1)} km`;
 function useGeolocation(timeoutMs = 1e4) {
   const [state, setState] = useState53({ status: "idle" });
-  const alive = useRef42(true);
-  useEffect34(() => () => {
+  const alive = useRef43(true);
+  useEffect35(() => () => {
     alive.current = false;
   }, []);
   const locate = useCallback7((onFound) => {
@@ -7665,10 +7676,10 @@ function LocationPicker({
   const id = useId23();
   const [draft, setDraft] = useState54(() => toDraft(value));
   const [said, setSaid] = useState54("");
-  const emitted = useRef43(value);
+  const emitted = useRef44(value);
   const geo = useGeolocation();
   const locked = disabled || readOnly;
-  useEffect35(() => {
+  useEffect36(() => {
     if (!sameLatLng(value, emitted.current, decimals)) {
       emitted.current = value;
       setDraft(toDraft(value));
@@ -7780,7 +7791,7 @@ function LocationPicker({
 }
 
 // react/src/kieg2/PrizeDrawReveal.tsx
-import { useEffect as useEffect36, useRef as useRef45, useState as useState56 } from "react";
+import { useEffect as useEffect37, useRef as useRef46, useState as useState56 } from "react";
 
 // react/src/kieg2/draw.ts
 var REVEAL_STEPS = [110, 150, 210, 290, 400, 540];
@@ -7834,13 +7845,13 @@ var WinnerCard = forwardRef10(function WinnerCard2({ winner, prize, test, attemp
 });
 
 // react/src/kieg2/RerollForm.tsx
-import { useRef as useRef44, useState as useState55 } from "react";
+import { useRef as useRef45, useState as useState55 } from "react";
 import { jsx as jsx105, jsxs as jsxs95 } from "react/jsx-runtime";
 function RerollForm({ previous, minLength, maxLength = 200, onConfirm, onCancel }) {
   const [reason, setReason] = useState55("");
   const [error, setError] = useState55();
-  const form = useRef44(null);
-  const area = useRef44(null);
+  const form = useRef45(null);
+  const area = useRef45(null);
   const submit = (e) => {
     e.preventDefault();
     const r = reason.trim();
@@ -7893,16 +7904,16 @@ function PrizeDrawReveal({ prize, participants, draw, onDrawn, onReroll, exclude
   const [log, setLog] = useState56([]);
   const [error, setError] = useState56();
   const [animated, setAnimated] = useState56(false);
-  const alive = useRef45(true);
-  const heading = useRef45(null);
-  useEffect36(() => () => {
+  const alive = useRef46(true);
+  const heading = useRef46(null);
+  useEffect37(() => () => {
     alive.current = false;
   }, []);
   const last = log[log.length - 1];
   const used = new Set(excludePrevious ? log.map((r) => r.winner.id) : []);
   const pool = participants.filter((p) => !used.has(p.id));
   const test = !draw;
-  useEffect36(() => {
+  useEffect37(() => {
     if (phase !== "won") return;
     heading.current?.focus();
     if (animated) celebrate(heading.current);
@@ -8011,7 +8022,7 @@ function PrizeDrawReveal({ prize, participants, draw, onDrawn, onReroll, exclude
 }
 
 // react/src/kieg2/VideoPlayer.tsx
-import { useRef as useRef46, useState as useState57 } from "react";
+import { useRef as useRef47, useState as useState57 } from "react";
 import { Fragment as Fragment32, jsx as jsx107, jsxs as jsxs97 } from "react/jsx-runtime";
 var ERR = {
   2: "A vide\xF3 nem t\xF6lt\u0151d\xF6tt le (h\xE1l\xF3zati hiba). Ellen\u0151rizd a kapcsolatot, \xE9s pr\xF3b\xE1ld \xFAjra.",
@@ -8020,7 +8031,7 @@ var ERR = {
 };
 var SEEK = 5;
 function VideoPlayer({ title, src, poster, captions = [], warnNoCaptions = true, onError, className }) {
-  const video = useRef46(null);
+  const video = useRef47(null);
   const [state, setState] = useState57("loading");
   const [code, setCode] = useState57(0);
   const [attempt, setAttempt] = useState57(0);
@@ -8097,7 +8108,7 @@ function VideoPlayer({ title, src, poster, captions = [], warnNoCaptions = true,
 }
 
 // react/src/kieg2/VideoEmbed.tsx
-import { useEffect as useEffect37, useRef as useRef47, useState as useState58 } from "react";
+import { useEffect as useEffect38, useRef as useRef48, useState as useState58 } from "react";
 
 // react/src/kieg2/videoUrl.ts
 var FILE_EXT = /\.(mp4|m4v|webm|ogv|ogg|mov)$/i;
@@ -8157,13 +8168,13 @@ function VideoEmbed({ source, title, className }) {
   const [on, setOn] = useState58(false);
   const [loaded, setLoaded] = useState58(false);
   const [slow, setSlow] = useState58(false);
-  const frame = useRef47(null);
-  useEffect37(() => {
+  const frame = useRef48(null);
+  useEffect38(() => {
     setOn(false);
     setLoaded(false);
     setSlow(false);
   }, [source.embedUrl]);
-  useEffect37(() => {
+  useEffect38(() => {
     if (!on || loaded) return;
     frame.current?.focus();
     const t = setTimeout(() => setSlow(true), 15e3);
@@ -8410,10 +8421,10 @@ function DetailPage(p) {
 }
 
 // react/src/sablon/EditPage.tsx
-import { useEffect as useEffect39, useId as useId26, useRef as useRef49, useState as useState60 } from "react";
+import { useEffect as useEffect40, useId as useId26, useRef as useRef50, useState as useState60 } from "react";
 
 // react/src/sablon/ErrorSummary.tsx
-import { forwardRef as forwardRef11, useEffect as useEffect38, useId as useId25, useRef as useRef48 } from "react";
+import { forwardRef as forwardRef11, useEffect as useEffect39, useId as useId25, useRef as useRef49 } from "react";
 import { jsx as jsx113, jsxs as jsxs103 } from "react/jsx-runtime";
 function findField(form, name2) {
   if (!form) return null;
@@ -8446,8 +8457,8 @@ var ErrorSummary = forwardRef11(function ErrorSummary2({ errors, general, form }
   ] });
 });
 function useLinkGuard(dirty, confirm) {
-  const bypass = useRef48(false);
-  useEffect38(() => {
+  const bypass = useRef49(false);
+  useEffect39(() => {
     if (!dirty) return;
     const h = (e) => {
       if (bypass.current || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -8474,8 +8485,8 @@ function EditPage(p) {
   const { title, description, breadcrumbs, renderLink = defaultLink, status = "ready", dirty, validate, preview } = p;
   useTemplateTitle(title, p.docTitle, p.docTitleSuffix, status === "loading");
   const pid = useId26();
-  const form = useRef49(null);
-  const summary = useRef49(null);
+  const form = useRef50(null);
+  const summary = useRef50(null);
   const [busy, setBusy] = useState60(false);
   const [done, setDone] = useState60(false);
   const [saved, setSaved] = useState60(false);
@@ -8486,16 +8497,16 @@ function EditPage(p) {
   const guard = useUnsavedChanges(dirty && !busy);
   const draft = useDraft({ key: status === "ready" ? p.draft?.key ?? null : null, values: p.draft?.values, dirty, onRestore: (v) => p.draft?.onRestore?.(v) });
   useLinkGuard(dirty && !busy, guard.confirm);
-  useEffect39(() => {
+  useEffect40(() => {
     if (dirty) setSaved(false);
   }, [dirty]);
-  useEffect39(() => {
+  useEffect40(() => {
     if (failed) {
       summary.current?.focus();
       shake(summary.current);
     }
   }, [failed]);
-  useEffect39(() => {
+  useEffect40(() => {
     if (!done) return;
     const t = setTimeout(() => setDone(false), 1500);
     return () => clearTimeout(t);
@@ -8567,7 +8578,7 @@ function EditPage(p) {
 }
 
 // react/src/sablon/Dashboard.tsx
-import { useId as useId27, useRef as useRef50 } from "react";
+import { useId as useId27, useRef as useRef51 } from "react";
 import { jsx as jsx115, jsxs as jsxs105 } from "react/jsx-runtime";
 function Dashboard(p) {
   const { title, description, breadcrumbs, renderLink, status = "ready", stats, charts } = p;
@@ -8594,7 +8605,7 @@ function Dashboard(p) {
   ] });
 }
 function CountedStat(s) {
-  const phase = useRef50("wait");
+  const phase = useRef51("wait");
   const ready = !s.loading && !s.error && typeof s.value === "number";
   if (phase.current === "wait" && ready) phase.current = "count";
   else if (phase.current === "count" && !ready) phase.current = "done";
@@ -8678,7 +8689,7 @@ function listStatus({ isPending, isError, hasData, count, filtered, forbidden })
 var clampPage = (page, totalPages) => Math.max(0, Math.min(page, Math.max(0, totalPages - 1)));
 
 // react/src/tema/ThemeProvider.tsx
-import { createContext as createContext4, useCallback as useCallback10, useContext as useContext4, useEffect as useEffect40, useMemo as useMemo7, useState as useState61, useSyncExternalStore as useSyncExternalStore4 } from "react";
+import { createContext as createContext4, useCallback as useCallback10, useContext as useContext4, useEffect as useEffect41, useMemo as useMemo7, useState as useState61, useSyncExternalStore as useSyncExternalStore4 } from "react";
 
 // react/src/tema/tema.ts
 var THEME_STORAGE_KEY = "bc-theme";
@@ -8725,10 +8736,10 @@ function ThemeProvider({ storageKey = THEME_STORAGE_KEY, defaultMode = "auto", c
   const [mode, setModeState] = useState61(() => readThemeMode(storageKey, defaultMode));
   const prefersDark = useSyncExternalStore4(subscribeSystem, systemPrefersDark, () => false);
   const resolved = resolveTheme(mode, prefersDark);
-  useEffect40(() => {
+  useEffect41(() => {
     applyTheme(mode, resolved);
   }, [mode, resolved]);
-  useEffect40(() => {
+  useEffect41(() => {
     const onStorage = (e) => {
       if (e.key === storageKey && isThemeMode(e.newValue)) setModeState(e.newValue);
     };

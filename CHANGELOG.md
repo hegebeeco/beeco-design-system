@@ -11,6 +11,10 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.33.1 – 2026-10-02
+
+* **Hiba – AppShell telefonos fiók + UnsavedChangesGuard:** ha egy kitöltött űrlapról a ☰ menü linkjével navigáltak el, az őr megállította a kattintást, így a fiók nyitva maradt, és modális rétegként letakarta (kattinthatatlanná, felolvasónak láthatatlanná tette) a „Nem mentett változásaid vannak” ablakot. A fiók most a menüben lévő linkre koppintáskor mindig bezár (dokumentum-szintű figyelő). A partner-app e2e-tesztje találta (PARTNERAPP).
+
 ## 1.33.0 – webes réteg (Webflow) és a nyilvános weboldal elemei
 
 A beeco.hu a termékbőrt kapja, de Webflow-ban készül, ezért nem tud `npm install`-lal DS-t húzni.

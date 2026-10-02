@@ -1,5 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { Fragment, useState, type ReactNode } from 'react';
+import { Fragment, useEffect, useRef, useState, type ReactNode } from 'react';
 import { IconButton } from '../inputs/Button';
 import { cx } from '../cx';
 import { useMedia } from './layer';
@@ -70,6 +70,20 @@ export function AppShell({ brand, brandCompact, nav, topbar, account, collapsibl
   const [collapsedPref, setCollapsedPref] = useState(() => collapsible && readCollapsed(collapseKey));
   const collapsed = collapsible && !narrow && collapsedPref;
   const focus = useReturnFocus();
+  // Linkre koppintva a fiók MINDIG bezár – akkor is, ha egy dokumentum-szintű elfogó (pl. UnsavedChangesGuard „Nem mentett
+  // változásaid vannak”) megállítja a kattintást, és így a link saját onClick-je nem fut le. Különben a nyitva maradt fiók
+  // (modális réteg) letakarná és kattinthatatlanná tenné a megerősítő ablakot. Natív, dokumentum-szintű figyelő kell,
+  // mert az elfogó a React gyökeréig el sem engedi az eseményt (stopPropagation); ugyanazon a csomóponton viszont mi is lefutunk.
+  const drawer = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const h = (e: MouseEvent) => {
+      const t = e.target as Element | null;
+      if (t?.closest?.('a[href]') && drawer.current?.contains(t)) setOpen(false);
+    };
+    document.addEventListener('click', h, true);
+    return () => document.removeEventListener('click', h, true);
+  }, [open]);
 
   const toggle = () => {
     const v = !collapsedPref;
@@ -114,7 +128,7 @@ export function AppShell({ brand, brandCompact, nav, topbar, account, collapsibl
         <Dialog.Root open={open} onOpenChange={setOpen}>
           <Dialog.Portal>
             <Dialog.Overlay className="bc-scrim is-nav" />
-            <Dialog.Content className="bc-sidebar is-open" aria-describedby={undefined}
+            <Dialog.Content ref={drawer} className="bc-sidebar is-open" aria-describedby={undefined}
               onOpenAutoFocus={focus.remember} onCloseAutoFocus={focus.restore}>
               <div className="bc-nav-head">
                 <Dialog.Title className="bc-sr">{l.menuTitle}</Dialog.Title>
