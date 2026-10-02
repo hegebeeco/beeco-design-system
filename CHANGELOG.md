@@ -11,6 +11,15 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.32.0 – 2026-10-02
+
+**Vonalgrafikon: állapot-paletta, sorozat-kapcsoló, végcímke csak ha kifér** (Javaslat 14, a partner-appból – PARTNERAPP).
+* `ChartData.palette: 'allapot'` → a sorozatok a `--bc-data-allapot-1…5` színeket kapják (színtévesztő-módban az `-cb` párt); a kártya, a rajz és a jelmagyarázat egyformán (`.bc-pal-allapot`).
+* `ChartCard seriesToggle` (LineChart-tal): a jelmagyarázat elemei kapcsológombok (`aria-pressed`, érintőn 44 px); a kikapcsolt sorozat színe/alakja a helyén marad, az adattáblában megmarad; a tengely a látható sorozatokhoz igazodik. `ChartSeries.hidden`.
+* **Hiba:** a `LineChart` végcímkéje görgethetővé szélesítette a rajzot, ha 30 nap + címke nem fért el (a címke a látható részen kívülre került) → a végcímke csak akkor jelenik meg, ha görgetés nélkül kifér; különben a felső jelmagyarázat elég. `Frame padRight(narrow, spare)`.
+* Kapcsoló-szabályok (review után): az utolsó látható sorozat nem kapcsolható ki; a kikapcsolt sorozat hiánya nem rajzol „nincs adat” sávot; adatcsere után a kikapcsolás nem ragad be; kapcsoláskor nem ugrik a rajz (a címke-hely az összes sorozatból). A `HBarChart` is kapja a palettát.
+* Tesztlap: `adat-grafikon` → „graf-allapot”.
+
 ## 1.31.0 – 2026-10-02
 Javaslat 13 – működést javító elemek (Kristóf jóváhagyta 2026-10-02). Tesztlap: `kieg3-mukodes` (8 forgatókönyv).
 - Új: **useListState** + **listStatus** + **clampPage** – lista-állapot a címsorban (router-független adapter), az állapot-döntés egy helyen (isPending-szabály, üres vs. nincs találat).

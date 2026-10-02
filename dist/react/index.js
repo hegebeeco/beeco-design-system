@@ -1,4 +1,4 @@
-/* beeco design system 1.31.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.32.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -2127,7 +2127,7 @@ function Delta({ d, good }) {
 }
 
 // react/src/adat/chart/ChartCard.tsx
-import { isValidElement, useId as useId10, useState as useState16 } from "react";
+import { cloneElement, isValidElement, useId as useId10, useState as useState16 } from "react";
 
 // react/src/adat/chart/marks.tsx
 import { Fragment as Fragment6, jsx as jsx32, jsxs as jsxs30 } from "react/jsx-runtime";
@@ -2166,21 +2166,27 @@ function GapPattern({ id }) {
 }
 
 // react/src/adat/chart/types.ts
-var isGap = (d, i) => d.series.some((s) => s.values[i] === null || s.values[i] === void 0);
+var isGap = (d, i) => d.series.some((s) => !s.hidden && (s.values[i] === null || s.values[i] === void 0));
 var hasGap = (d) => d.categories.some((_, i) => isGap(d, i));
 var allValues = (d) => d.series.flatMap((s) => s.values.filter((v) => typeof v === "number"));
+var visibleValues = (d) => d.series.filter((s) => !s.hidden).flatMap((s) => s.values.filter((v) => typeof v === "number"));
+var paletteClass = (d) => d.palette === "allapot" ? "bc-pal-allapot" : void 0;
 var isEmptyData = (d) => !d.categories.length || !allValues(d).length;
 
 // react/src/adat/chart/ChartLegend.tsx
-import { jsx as jsx33, jsxs as jsxs31 } from "react/jsx-runtime";
-function ChartLegend({ data, kind }) {
+import { Fragment as Fragment7, jsx as jsx33, jsxs as jsxs31 } from "react/jsx-runtime";
+function ChartLegend({ data, kind, onToggle }) {
   const gap = hasGap(data);
   if (data.series.length < 2 && !gap && kind === "bar") return null;
-  return /* @__PURE__ */ jsxs31("ul", { className: "bc-legend", "aria-label": "Jelmagyar\xE1zat", children: [
-    data.series.map((s, i) => /* @__PURE__ */ jsxs31("li", { children: [
+  const pal = paletteClass(data);
+  return /* @__PURE__ */ jsxs31("ul", { className: pal ? `bc-legend ${pal}` : "bc-legend", "aria-label": onToggle ? "Jelmagyar\xE1zat \u2013 a sorozatok ki-be kapcsolhat\xF3k" : "Jelmagyar\xE1zat", children: [
+    data.series.map((s, i) => /* @__PURE__ */ jsx33("li", { children: onToggle ? /* @__PURE__ */ jsxs31("button", { type: "button", className: s.hidden ? "bc-legend-btn is-off" : "bc-legend-btn", "aria-pressed": !s.hidden, onClick: () => onToggle(s.key), children: [
       /* @__PURE__ */ jsx33(Swatch, { i, kind }),
       s.label
-    ] }, s.key)),
+    ] }) : /* @__PURE__ */ jsxs31(Fragment7, { children: [
+      /* @__PURE__ */ jsx33(Swatch, { i, kind }),
+      s.label
+    ] }) }, s.key)),
     gap && /* @__PURE__ */ jsxs31("li", { children: [
       /* @__PURE__ */ jsx33(Swatch, { i: 0, kind: "gap" }),
       data.gapLabel ?? "nincs adat",
@@ -2229,7 +2235,8 @@ function Frame({ data, min, max, height = 240, minBand = 24, padRight, label, ch
   const { lo, hi, ticks, decimals } = niceTicks(min, max, height < 160 ? 3 : 5);
   const tickW = Math.max(...ticks.map((t2) => fmt(t2, decimals).length)) * CH + 12;
   const narrow = width < 420;
-  const l = Math.max(36, tickW), r = padRight?.(narrow) ?? 12, t = 24, b = 48;
+  const l = Math.max(36, tickW), t = 24, b = 48;
+  const r = padRight?.(narrow, width - l - n * minBand) ?? 12;
   const svgW = Math.max(width, l + r + n * minBand);
   const plot = { l, t, w: Math.max(10, svgW - l - r), h: height - t - b };
   const band = plot.w / n;
@@ -2239,7 +2246,7 @@ function Frame({ data, min, max, height = 240, minBand = 24, padRight, label, ch
   const every = labelEvery(n, plot.w, Math.min(maxChars * CH + 10, 96));
   const fit = Math.max(3, Math.floor((band * every - 6) / CH));
   const scroll = width > 0 && svgW > width + 1;
-  return /* @__PURE__ */ jsxs33("div", { className: "bc-chart", ref: box, children: [
+  return /* @__PURE__ */ jsxs33("div", { className: paletteClass(data) ? `bc-chart ${paletteClass(data)}` : "bc-chart", ref: box, children: [
     /* @__PURE__ */ jsx35("div", { className: "bc-chart-scroll", ...scroll ? { tabIndex: 0, role: "group", "aria-label": `${label} \u2013 oldalra g\xF6rgethet\u0151` } : {}, children: width > 0 && /* @__PURE__ */ jsxs33("svg", { width: svgW, height, viewBox: `0 0 ${svgW} ${height}`, role: "img", "aria-label": `${label}. A pontos sz\xE1mok az adatt\xE1bl\xE1ban.`, children: [
       /* @__PURE__ */ jsx35(GapPattern, { id: pid }),
       data.categories.map((_, i) => isGap(data, i) && /* @__PURE__ */ jsx35("rect", { className: "bc-gap", x: cx2(i) - band / 2, y: plot.t, width: band, height: plot.h, fill: `url(#${pid})` }, `g${i}`)),
@@ -2253,7 +2260,7 @@ function Frame({ data, min, max, height = 240, minBand = 24, padRight, label, ch
         clip(c, fit)
       ] }, `x${i}`)),
       /* @__PURE__ */ jsx35("text", { className: "bc-ax-title", x: plot.l + plot.w / 2, y: height - 6, textAnchor: "middle", children: data.xLabel }),
-      children({ plot, band, cx: cx2, y, lo, hi, decimals, narrow }),
+      children({ plot, band, cx: cx2, y, lo, hi, decimals, narrow, padR: r }),
       /* @__PURE__ */ jsx35("line", { className: lo < 0 ? "bc-zero is-strong" : "bc-zero", x1: plot.l, x2: plot.l + plot.w, y1: y(0), y2: y(0) })
     ] }) }),
     note && /* @__PURE__ */ jsx35("p", { className: "bc-chart-note", children: note })
@@ -2261,7 +2268,7 @@ function Frame({ data, min, max, height = 240, minBand = 24, padRight, label, ch
 }
 
 // react/src/adat/chart/LineChart.tsx
-import { Fragment as Fragment7, jsx as jsx36, jsxs as jsxs34 } from "react/jsx-runtime";
+import { Fragment as Fragment8, jsx as jsx36, jsxs as jsxs34 } from "react/jsx-runtime";
 function segments(values) {
   const out = [];
   let cur = [];
@@ -2281,8 +2288,9 @@ var lastIndex = (v) => {
 };
 var LABEL_MAX = 16;
 function LineChart({ data, height = 260, endLabels, label }) {
-  const vals2 = allValues(data);
-  const showEnd = (narrow) => (endLabels ?? data.series.length <= 4) && !narrow;
+  const vals2 = visibleValues(data);
+  const shown = data.series.filter((s) => !s.hidden);
+  const wantEnd = (narrow) => (endLabels ?? data.series.length <= 4) && !narrow && shown.length > 0;
   const labW = Math.min(LABEL_MAX, Math.max(...data.series.map((s) => s.label.length), 1)) * CH + 16;
   const many = data.categories.length > 40;
   return /* @__PURE__ */ jsx36(
@@ -2293,21 +2301,22 @@ function LineChart({ data, height = 260, endLabels, label }) {
       max: Math.max(0, ...vals2),
       height,
       minBand: many ? 6 : 16,
-      padRight: (narrow) => showEnd(narrow) ? labW : 16,
-      label: label ?? `${data.series.map((s) => s.label).join(", ")} (${data.unit})`,
-      children: ({ cx: cx2, y, narrow, plot, decimals }) => {
+      padRight: (narrow, spare) => wantEnd(narrow) && spare >= labW ? labW : 16,
+      label: label ?? `${shown.map((s) => s.label).join(", ")} (${data.unit})`,
+      children: ({ cx: cx2, y, narrow, plot, decimals, padR }) => {
         const d = data.decimals ?? decimals;
-        const ends = data.series.map((s, i) => ({ i, at: lastIndex(s.values) })).filter((e) => e.at >= 0).map((e) => ({ ...e, y: y(data.series[e.i].values[e.at]) })).sort((a, b) => a.y - b.y);
+        const showEnd = wantEnd(narrow) && padR >= labW;
+        const ends = data.series.map((s, i) => ({ i, at: s.hidden ? -1 : lastIndex(s.values) })).filter((e) => e.at >= 0).map((e) => ({ ...e, y: y(data.series[e.i].values[e.at]) })).sort((a, b) => a.y - b.y);
         for (let k = 1; k < ends.length; k++) ends[k].y = Math.max(ends[k].y, ends[k - 1].y + 14);
-        return /* @__PURE__ */ jsxs34(Fragment7, { children: [
-          data.series.map((s, i) => segments(s.values).map((seg, k) => {
+        return /* @__PURE__ */ jsxs34(Fragment8, { children: [
+          data.series.map((s, i) => !s.hidden && segments(s.values).map((seg, k) => {
             const dPath = seg.map((j, n) => `${n ? "L" : "M"}${cx2(j)} ${y(s.values[j])}`).join("");
             return /* @__PURE__ */ jsxs34("g", { children: [
               /* @__PURE__ */ jsx36("path", { className: "bc-line-under", d: dPath }),
               /* @__PURE__ */ jsx36("path", { className: `bc-line ${sc(i)}`, d: dPath })
             ] }, `${s.key}${k}`);
           })),
-          data.series.map((s, i) => s.values.map((v, j) => {
+          data.series.map((s, i) => !s.hidden && s.values.map((v, j) => {
             if (typeof v !== "number") return null;
             const alone = typeof s.values[j - 1] !== "number" && typeof s.values[j + 1] !== "number";
             if (many && !alone && j !== lastIndex(s.values)) return null;
@@ -2316,7 +2325,7 @@ function LineChart({ data, height = 260, endLabels, label }) {
               /* @__PURE__ */ jsx36("title", { children: `${s.label}, ${data.categories[j]}: ${fmt(v, d)} ${data.unit}` })
             ] }, `${s.key}m${j}`);
           })),
-          showEnd(narrow) && ends.map((e) => /* @__PURE__ */ jsx36("text", { className: "bc-end-label", x: Math.min(cx2(e.at) + 10, plot.l + plot.w + 8), y: e.y, dy: "0.32em", children: clip(data.series[e.i].label, LABEL_MAX) }, `e${e.i}`))
+          showEnd && ends.map((e) => /* @__PURE__ */ jsx36("text", { className: "bc-end-label", x: Math.min(cx2(e.at) + 10, plot.l + plot.w + 8), y: e.y, dy: "0.32em", children: clip(data.series[e.i].label, LABEL_MAX) }, `e${e.i}`))
         ] });
       }
     }
@@ -2342,6 +2351,20 @@ function ChartCard(p) {
   const H = `h${headingLevel}`;
   const empty = status === "ready" && isEmptyData(data);
   const kind = isValidElement(children) && children.type === LineChart ? "line" : "bar";
+  const [offRaw, setOff] = useState16(() => /* @__PURE__ */ new Set());
+  const toggles = !!p.seriesToggle && kind === "line" && data.series.length > 1;
+  const off = new Set([...offRaw].filter((k) => data.series.some((s) => s.key === k)));
+  const childData = isValidElement(children) ? children.props.data ?? data : data;
+  const mark = (d) => ({ ...d, series: d.series.map((s) => ({ ...s, hidden: off.has(s.key) })) });
+  const shown = toggles ? mark(data) : data;
+  const chart = toggles && isValidElement(children) ? cloneElement(children, { data: mark(childData) }) : children;
+  const toggle = (key) => setOff((cur) => {
+    const n = new Set([...cur].filter((k) => data.series.some((s) => s.key === k)));
+    if (n.has(key)) n.delete(key);
+    else if (data.series.length - n.size > 1) n.add(key);
+    return n;
+  });
+  const pal = paletteClass(data);
   const onHow = (open) => {
     setHowOpen(open);
     if (p.rememberKey) try {
@@ -2349,7 +2372,7 @@ function ChartCard(p) {
     } catch {
     }
   };
-  return /* @__PURE__ */ jsxs35("figure", { className: cx("bc-card", "bc-chart-card", p.className), "aria-labelledby": `${id}-t`, "data-cb": p.cb ? "true" : void 0, children: [
+  return /* @__PURE__ */ jsxs35("figure", { className: cx("bc-card", "bc-chart-card", pal, p.className), "aria-labelledby": `${id}-t`, "data-cb": p.cb ? "true" : void 0, children: [
     /* @__PURE__ */ jsx37("header", { className: "bc-chart-head", children: /* @__PURE__ */ jsxs35("div", { className: "bc-chart-titles", children: [
       /* @__PURE__ */ jsxs35("div", { className: "bc-label-row", children: [
         /* @__PURE__ */ jsx37(H, { className: "bc-chart-title", id: `${id}-t`, children: title }),
@@ -2362,8 +2385,8 @@ function ChartCard(p) {
         p.sample && /* @__PURE__ */ jsx37("span", { className: "bc-badge is-muted", children: "mintaadat" })
       ] })
     ] }) }),
-    status === "ready" && !empty && /* @__PURE__ */ jsx37(ChartLegend, { data, kind }),
-    /* @__PURE__ */ jsx37("div", { className: "bc-chart-body", children: empty ? /* @__PURE__ */ jsx37(EmptyState, { compact: true, title: "Ebben az id\u0151szakban nincs adat", action: p.emptyAction, children: "V\xE1lassz hosszabb vagy m\xE1sik id\u0151szakot." }) : /* @__PURE__ */ jsx37(DataState, { status, what: "a grafikont", error: p.error, onRetry: p.onRetry, skeleton: /* @__PURE__ */ jsx37("span", { className: "bc-skeleton bc-chart-skel" }), children }) }),
+    status === "ready" && !empty && /* @__PURE__ */ jsx37(ChartLegend, { data: shown, kind, onToggle: toggles ? toggle : void 0 }),
+    /* @__PURE__ */ jsx37("div", { className: "bc-chart-body", children: empty ? /* @__PURE__ */ jsx37(EmptyState, { compact: true, title: "Ebben az id\u0151szakban nincs adat", action: p.emptyAction, children: "V\xE1lassz hosszabb vagy m\xE1sik id\u0151szakot." }) : /* @__PURE__ */ jsx37(DataState, { status, what: "a grafikont", error: p.error, onRetry: p.onRetry, skeleton: /* @__PURE__ */ jsx37("span", { className: "bc-skeleton bc-chart-skel" }), children: chart }) }),
     /* @__PURE__ */ jsxs35("details", { className: "bc-disclosure", open: howOpen, onToggle: (e) => onHow(e.currentTarget.open), children: [
       /* @__PURE__ */ jsx37("summary", { children: "Hogyan olvasd?" }),
       /* @__PURE__ */ jsx37("div", { className: "bc-disclosure-body", children: howToRead })
@@ -2413,7 +2436,7 @@ function HBarChart({ data, clipOutlier = true, valueLabels = true, label }) {
   const h = t + b + data.categories.length * ROW;
   const pw = Math.max(20, width - l - r);
   const x = linear(lo, hi, l, l + pw);
-  return /* @__PURE__ */ jsxs36("div", { className: "bc-chart", ref: box, children: [
+  return /* @__PURE__ */ jsxs36("div", { className: paletteClass(data) ? `bc-chart ${paletteClass(data)}` : "bc-chart", ref: box, children: [
     width > 0 && /* @__PURE__ */ jsxs36("svg", { width, height: h, viewBox: `0 0 ${width} ${h}`, role: "img", "aria-label": `${label ?? `${s.label} (${data.unit})`}. A pontos sz\xE1mok az adatt\xE1bl\xE1ban.`, children: [
       /* @__PURE__ */ jsx38("text", { className: "bc-ax-title", x: 4, y: 14, children: data.xLabel }),
       ticks.map((v) => /* @__PURE__ */ jsxs36("g", { children: [
@@ -2983,7 +3006,7 @@ var TooltipIconButton = forwardRef8(function TooltipIconButton2({ label, childre
 
 // react/src/reteg/DropdownMenu.tsx
 import * as DM from "@radix-ui/react-dropdown-menu";
-import { Fragment as Fragment8, jsx as jsx49, jsxs as jsxs45 } from "react/jsx-runtime";
+import { Fragment as Fragment9, jsx as jsx49, jsxs as jsxs45 } from "react/jsx-runtime";
 function DropdownMenu({ trigger, items, label, align = "end", header }) {
   return /* @__PURE__ */ jsxs45(DM.Root, { children: [
     /* @__PURE__ */ jsx49(DM.Trigger, { asChild: true, children: trigger }),
@@ -2994,7 +3017,7 @@ function DropdownMenu({ trigger, items, label, align = "end", header }) {
   ] });
 }
 function Entries({ items }) {
-  return /* @__PURE__ */ jsx49(Fragment8, { children: items.map((it, i) => {
+  return /* @__PURE__ */ jsx49(Fragment9, { children: items.map((it, i) => {
     if (it === "separator") return /* @__PURE__ */ jsx49(DM.Separator, { className: "bc-menu-sep" }, `s${i}`);
     if ("group" in it) return /* @__PURE__ */ jsx49(DM.Label, { className: "bc-menu-label", children: it.group }, `g${i}`);
     if (it.items) {
@@ -3107,9 +3130,9 @@ function useScrollFade(selected, dep) {
 }
 
 // react/src/reteg/Tabs.tsx
-import { Fragment as Fragment9, jsx as jsx51, jsxs as jsxs47 } from "react/jsx-runtime";
+import { Fragment as Fragment10, jsx as jsx51, jsxs as jsxs47 } from "react/jsx-runtime";
 function TabCount({ n }) {
-  return /* @__PURE__ */ jsxs47(Fragment9, { children: [
+  return /* @__PURE__ */ jsxs47(Fragment10, { children: [
     /* @__PURE__ */ jsxs47("span", { className: "bc-sr", children: [
       " (",
       n,
@@ -3135,20 +3158,20 @@ function Tabs({ items, label, value, defaultValue, onValueChange }) {
 }
 
 // react/src/reteg/SectionSwitch.tsx
-import { Fragment as Fragment12 } from "react";
+import { Fragment as Fragment13 } from "react";
 
 // react/src/reteg/NavTabs.tsx
-import { Fragment as Fragment10 } from "react";
-import { Fragment as Fragment11, jsx as jsx52, jsxs as jsxs48 } from "react/jsx-runtime";
+import { Fragment as Fragment11 } from "react";
+import { Fragment as Fragment12, jsx as jsx52, jsxs as jsxs48 } from "react/jsx-runtime";
 var defaultLink = ({ href, ...p }) => /* @__PURE__ */ jsx52("a", { href, ...p });
 function NavTabs({ items, label, renderLink = defaultLink }) {
   const cur = items.findIndex((i) => i.current);
   const wrap = useScrollFade('[aria-current="page"]', cur);
-  return /* @__PURE__ */ jsx52("nav", { "aria-label": label, children: /* @__PURE__ */ jsx52("div", { className: "bc-tabs-wrap", ref: wrap, children: /* @__PURE__ */ jsx52("div", { className: "bc-tabs", children: items.map((it) => /* @__PURE__ */ jsx52(Fragment10, { children: renderLink({
+  return /* @__PURE__ */ jsx52("nav", { "aria-label": label, children: /* @__PURE__ */ jsx52("div", { className: "bc-tabs-wrap", ref: wrap, children: /* @__PURE__ */ jsx52("div", { className: "bc-tabs", children: items.map((it) => /* @__PURE__ */ jsx52(Fragment11, { children: renderLink({
     href: it.href,
     className: "bc-tab",
     "aria-current": it.current ? "page" : void 0,
-    children: /* @__PURE__ */ jsxs48(Fragment11, { children: [
+    children: /* @__PURE__ */ jsxs48(Fragment12, { children: [
       /* @__PURE__ */ jsx52("span", { className: "bc-tab-text", title: it.label.length > 28 ? it.label : void 0, children: it.label }),
       it.count !== void 0 && /* @__PURE__ */ jsx52(TabCount, { n: it.count })
     ] })
@@ -3156,13 +3179,13 @@ function NavTabs({ items, label, renderLink = defaultLink }) {
 }
 
 // react/src/reteg/SectionSwitch.tsx
-import { Fragment as Fragment13, jsx as jsx53, jsxs as jsxs49 } from "react/jsx-runtime";
+import { Fragment as Fragment14, jsx as jsx53, jsxs as jsxs49 } from "react/jsx-runtime";
 function SectionSwitch({ items, label, renderLink = defaultLink, className }) {
-  return /* @__PURE__ */ jsx53("nav", { "aria-label": label, className: ["bc-secsw-wrap", className].filter(Boolean).join(" "), children: /* @__PURE__ */ jsx53("div", { className: "bc-secsw", style: { ["--bc-secsw-n"]: items.length }, children: items.map((it) => /* @__PURE__ */ jsx53(Fragment12, { children: renderLink({
+  return /* @__PURE__ */ jsx53("nav", { "aria-label": label, className: ["bc-secsw-wrap", className].filter(Boolean).join(" "), children: /* @__PURE__ */ jsx53("div", { className: "bc-secsw", style: { ["--bc-secsw-n"]: items.length }, children: items.map((it) => /* @__PURE__ */ jsx53(Fragment13, { children: renderLink({
     href: it.href,
     className: "bc-secsw-item",
     "aria-current": it.current ? "page" : void 0,
-    children: /* @__PURE__ */ jsxs49(Fragment13, { children: [
+    children: /* @__PURE__ */ jsxs49(Fragment14, { children: [
       it.icon && /* @__PURE__ */ jsx53("span", { className: "bc-secsw-ic", "aria-hidden": "true", children: it.icon }),
       /* @__PURE__ */ jsx53("span", { children: it.label })
     ] })
@@ -3401,7 +3424,7 @@ function ToastView({ t }) {
 
 // react/src/reteg/AppShell.tsx
 import * as Dialog4 from "@radix-ui/react-dialog";
-import { Fragment as Fragment14, useState as useState24 } from "react";
+import { Fragment as Fragment15, useState as useState24 } from "react";
 
 // react/src/marka/evszak.ts
 function evszak(d = /* @__PURE__ */ new Date()) {
@@ -3413,7 +3436,7 @@ function evszak(d = /* @__PURE__ */ new Date()) {
 }
 
 // react/src/reteg/AppShell.tsx
-import { Fragment as Fragment15, jsx as jsx58, jsxs as jsxs53 } from "react/jsx-runtime";
+import { Fragment as Fragment16, jsx as jsx58, jsxs as jsxs53 } from "react/jsx-runtime";
 var APP_SHELL_LABELS_HU = {
   openMenu: "Men\xFC megnyit\xE1sa",
   closeMenu: "Men\xFC bez\xE1r\xE1sa",
@@ -3465,14 +3488,14 @@ function AppShell({
     } catch {
     }
   };
-  const links = (onPick) => nav.map((g, gi) => /* @__PURE__ */ jsxs53(Fragment14, { children: [
+  const links = (onPick) => nav.map((g, gi) => /* @__PURE__ */ jsxs53(Fragment15, { children: [
     g.label && /* @__PURE__ */ jsx58("p", { className: "bc-nav-group", id: `bc-nav-g${gi}`, children: g.label }),
     /* @__PURE__ */ jsx58("ul", { className: "bc-nav-list", "aria-labelledby": g.label ? `bc-nav-g${gi}` : void 0, children: g.items.map((it) => /* @__PURE__ */ jsx58("li", { title: collapsed ? it.label : void 0, children: renderLink({
       href: it.href,
       className: "bc-nav-link",
       "aria-current": it.current ? "page" : void 0,
       onClick: onPick,
-      children: /* @__PURE__ */ jsxs53(Fragment15, { children: [
+      children: /* @__PURE__ */ jsxs53(Fragment16, { children: [
         it.icon && /* @__PURE__ */ jsx58("span", { className: "bc-nav-icon", "aria-hidden": "true", children: it.icon }),
         /* @__PURE__ */ jsx58("span", { className: "bc-nav-text", children: it.label })
       ] })
@@ -3757,7 +3780,7 @@ function ImageCropper({ src, aspects = DEFAULT_ASPECTS, minZoom = 1, maxZoom = 8
 }
 
 // react/src/media/CropDialog.tsx
-import { Fragment as Fragment16, jsx as jsx61, jsxs as jsxs56 } from "react/jsx-runtime";
+import { Fragment as Fragment17, jsx as jsx61, jsxs as jsxs56 } from "react/jsx-runtime";
 var KIMENET = { "image/png": "image/png", "image/webp": "image/webp" };
 async function cropToFile(file, src, area) {
   const img = new Image();
@@ -3809,11 +3832,11 @@ function CropDialog({ file, crop, position, onDone, onSkip }) {
       size: "wide",
       busy,
       title: `K\xE9p kiv\xE1g\xE1sa (${crop.aspectLabel})${position ? ` \u2013 ${position}` : ""}`,
-      description: /* @__PURE__ */ jsxs56(Fragment16, { children: [
+      description: /* @__PURE__ */ jsxs56(Fragment17, { children: [
         file?.name,
         crop.why ? ` \xB7 ${crop.why}` : ""
       ] }),
-      footer: /* @__PURE__ */ jsxs56(Fragment16, { children: [
+      footer: /* @__PURE__ */ jsxs56(Fragment17, { children: [
         /* @__PURE__ */ jsx61(Button, { variant: "secondary", onClick: () => file && onSkip(file), disabled: busy, children: "Ezt kihagyom" }),
         /* @__PURE__ */ jsx61(Button, { onClick: () => void kesz(), busy, disabled: !area, children: "Kiv\xE1g\xE1s \xE9s felt\xF6lt\xE9s" })
       ] }),
@@ -3847,7 +3870,7 @@ function useReturnFocus2(open, fallback) {
 }
 
 // react/src/media/GalleryDialogs.tsx
-import { Fragment as Fragment17, jsx as jsx62, jsxs as jsxs57 } from "react/jsx-runtime";
+import { Fragment as Fragment18, jsx as jsx62, jsxs as jsxs57 } from "react/jsx-runtime";
 function Small({ open, onClose, title, children, foot, fallback }) {
   const back = useReturnFocus2(open, fallback);
   return /* @__PURE__ */ jsx62(Dialog6.Root, { open, onOpenChange: (o) => {
@@ -3884,7 +3907,7 @@ function AltDialog({ img, help = ALT_HELP, onSave, onClose, fallback }) {
       onClose,
       title: "K\xE9ple\xEDr\xE1s (alt)",
       fallback,
-      foot: /* @__PURE__ */ jsxs57(Fragment17, { children: [
+      foot: /* @__PURE__ */ jsxs57(Fragment18, { children: [
         /* @__PURE__ */ jsx62(Button, { variant: "secondary", onClick: onClose, children: "M\xE9gse" }),
         /* @__PURE__ */ jsx62(Button, { type: "submit", form: "bc-alt-form", children: "Ment\xE9s" })
       ] }),
@@ -3919,7 +3942,7 @@ function DeleteDialog({ img, onConfirm, onClose, fallback }) {
       onClose,
       title: "T\xF6rl\xF6d ezt a k\xE9pet?",
       fallback,
-      foot: /* @__PURE__ */ jsxs57(Fragment17, { children: [
+      foot: /* @__PURE__ */ jsxs57(Fragment18, { children: [
         /* @__PURE__ */ jsx62(Button, { variant: "secondary", onClick: onClose, autoFocus: true, children: "M\xE9gse" }),
         /* @__PURE__ */ jsx62(Button, { variant: "danger", onClick: () => {
           onConfirm();
@@ -4208,14 +4231,14 @@ function Progress({ value, max, label, valueText, className }) {
 }
 
 // react/src/media/UploadTile.tsx
-import { Fragment as Fragment18, jsx as jsx68, jsxs as jsxs63 } from "react/jsx-runtime";
+import { Fragment as Fragment19, jsx as jsx68, jsxs as jsxs63 } from "react/jsx-runtime";
 function UploadTile({ item, onCancel, onRetry }) {
   const { file, loaded, status } = item;
   const failed = status === "error";
   const sizeText = sizePair(loaded, file.size);
   return /* @__PURE__ */ jsxs63("li", { className: failed ? "bc-tile is-upload is-failed" : "bc-tile is-upload", "data-upload": file.name, children: [
     /* @__PURE__ */ jsx68("img", { src: item.preview, alt: "" }),
-    /* @__PURE__ */ jsx68("div", { className: "bc-tile-status", children: failed ? /* @__PURE__ */ jsxs63(Fragment18, { children: [
+    /* @__PURE__ */ jsx68("div", { className: "bc-tile-status", children: failed ? /* @__PURE__ */ jsxs63(Fragment19, { children: [
       /* @__PURE__ */ jsxs63("span", { className: "bc-tile-err", children: [
         /* @__PURE__ */ jsx68(IcWarn, {}),
         "Nem siker\xFClt"
@@ -4224,7 +4247,7 @@ function UploadTile({ item, onCancel, onRetry }) {
         /* @__PURE__ */ jsx68("button", { type: "button", className: "bc-icon-btn", onClick: onRetry, "aria-label": `\xDAjrapr\xF3b\xE1l\xE1s: ${file.name}`, children: /* @__PURE__ */ jsx68(IcRetry, {}) }),
         /* @__PURE__ */ jsx68("button", { type: "button", className: "bc-icon-btn", onClick: onCancel, "aria-label": `Elt\xE1vol\xEDt\xE1s: ${file.name}`, children: /* @__PURE__ */ jsx68(IcClose, {}) })
       ] })
-    ] }) : /* @__PURE__ */ jsxs63(Fragment18, { children: [
+    ] }) : /* @__PURE__ */ jsxs63(Fragment19, { children: [
       /* @__PURE__ */ jsx68("span", { className: "bc-tile-size", children: sizeText }),
       /* @__PURE__ */ jsx68("button", { type: "button", className: "bc-icon-btn", onClick: onCancel, "aria-label": `Felt\xF6lt\xE9s megszak\xEDt\xE1sa: ${file.name}`, children: /* @__PURE__ */ jsx68(IcClose, {}) })
     ] }) }),
@@ -4468,7 +4491,7 @@ function ImageUploader({
 
 // react/src/media/VideoUpload.tsx
 import { useEffect as useEffect17, useId as useId12, useRef as useRef26, useState as useState31 } from "react";
-import { Fragment as Fragment19, jsx as jsx70, jsxs as jsxs65 } from "react/jsx-runtime";
+import { Fragment as Fragment20, jsx as jsx70, jsxs as jsxs65 } from "react/jsx-runtime";
 var STEPS = [{ id: "file", label: "F\xE1jl" }, { id: "up", label: "Felt\xF6lt\xE9s" }, { id: "proc", label: "Feldolgoz\xE1s" }, { id: "done", label: "K\xE9sz" }];
 function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, disabled }) {
   const [phase, setPhase] = useState31("file");
@@ -4591,7 +4614,7 @@ function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, dis
           ] }),
           phase === "up" && /* @__PURE__ */ jsx70(Progress, { value: loaded, max: file?.size ?? 1, label: `${file?.name} felt\xF6lt\xE9se`, valueText: sizeText }),
           /* @__PURE__ */ jsxs65("div", { className: "bc-filecard-row", role: "status", children: [
-            /* @__PURE__ */ jsx70("span", { children: failed ? /* @__PURE__ */ jsx70("span", { className: "bc-error", children: failed }) : phase === "up" ? `${Math.round(loaded / (file?.size || 1) * 100)}%${eta ? ` \xB7 ${eta}` : ""}` : phase === "proc" ? /* @__PURE__ */ jsxs65(Fragment19, { children: [
+            /* @__PURE__ */ jsx70("span", { children: failed ? /* @__PURE__ */ jsx70("span", { className: "bc-error", children: failed }) : phase === "up" ? `${Math.round(loaded / (file?.size || 1) * 100)}%${eta ? ` \xB7 ${eta}` : ""}` : phase === "proc" ? /* @__PURE__ */ jsxs65(Fragment20, { children: [
               /* @__PURE__ */ jsx70("span", { className: "bc-spinner", "aria-hidden": "true" }),
               " Feldolgoz\xE1s\u2026 ez eltarthat p\xE1r percig."
             ] }) : "K\xE9sz \u2013 a vide\xF3 fent van." }),
@@ -4619,7 +4642,7 @@ import { useId as useId13, useRef as useRef27, useState as useState33 } from "re
 
 // react/src/media/ImportResult.tsx
 import { useState as useState32 } from "react";
-import { Fragment as Fragment20, jsx as jsx71, jsxs as jsxs66 } from "react/jsx-runtime";
+import { Fragment as Fragment21, jsx as jsx71, jsxs as jsxs66 } from "react/jsx-runtime";
 var LEVEL = { error: "Hiba", warning: "Figyelmeztet\xE9s" };
 var NO_REASON = "Az okot a rendszer nem adta meg \u2013 nyisd meg a sort az Excelben, \xE9s n\xE9zd \xE1t.";
 var csvCell = (s) => `"${s.replace(/"/g, '""')}"`;
@@ -4649,10 +4672,10 @@ function ImportResult({ result, fileName = "import-hibalista.csv", limit = 200 }
     setSaid(`Let\xF6ltve: ${fileName}`);
   };
   return /* @__PURE__ */ jsxs66("section", { className: "bc-import-result", children: [
-    /* @__PURE__ */ jsx71("div", { className: `bc-alert ${kind}`, role: imported === 0 && total > 0 ? "alert" : "status", children: /* @__PURE__ */ jsx71("p", { children: total === 0 ? /* @__PURE__ */ jsxs66(Fragment20, { children: [
+    /* @__PURE__ */ jsx71("div", { className: `bc-alert ${kind}`, role: imported === 0 && total > 0 ? "alert" : "status", children: /* @__PURE__ */ jsx71("p", { children: total === 0 ? /* @__PURE__ */ jsxs66(Fragment21, { children: [
       /* @__PURE__ */ jsx71("strong", { children: "A f\xE1jlban nincs adatsor." }),
       " Csak a fejl\xE9c van benne? T\xF6ltsd ki a sablont, \xE9s pr\xF3b\xE1ld \xFAjra."
-    ] }) : /* @__PURE__ */ jsxs66(Fragment20, { children: [
+    ] }) : /* @__PURE__ */ jsxs66(Fragment21, { children: [
       /* @__PURE__ */ jsxs66("strong", { children: [
         formatHu(total, 0),
         " sorb\xF3l ",
@@ -4660,17 +4683,17 @@ function ImportResult({ result, fileName = "import-hibalista.csv", limit = 200 }
         " beker\xFClt."
       ] }),
       " ",
-      errors > 0 && /* @__PURE__ */ jsxs66(Fragment20, { children: [
+      errors > 0 && /* @__PURE__ */ jsxs66(Fragment21, { children: [
         formatHu(errors, 0),
         " sor kimaradt (hiba). "
       ] }),
-      warnings > 0 && /* @__PURE__ */ jsxs66(Fragment20, { children: [
+      warnings > 0 && /* @__PURE__ */ jsxs66(Fragment21, { children: [
         formatHu(warnings, 0),
         " sor figyelmeztet\xE9ssel ker\xFClt be. "
       ] }),
       issues.length === 0 && "Minden sor rendben volt."
     ] }) }) }),
-    issues.length > 0 && /* @__PURE__ */ jsxs66(Fragment20, { children: [
+    issues.length > 0 && /* @__PURE__ */ jsxs66(Fragment21, { children: [
       /* @__PURE__ */ jsx71("div", { className: "bc-table-wrap bc-import-list", tabIndex: 0, role: "region", "aria-label": `Hibalista: ${issues.length} sor, ${imported}/${total} beker\xFClt`, children: /* @__PURE__ */ jsxs66("table", { className: "bc-table is-dense", children: [
         /* @__PURE__ */ jsx71("thead", { children: /* @__PURE__ */ jsxs66("tr", { children: [
           /* @__PURE__ */ jsx71("th", { scope: "col", className: "is-num", children: "Sor" }),
@@ -4687,7 +4710,7 @@ function ImportResult({ result, fileName = "import-hibalista.csv", limit = 200 }
             /* @__PURE__ */ jsx71("span", { className: `bc-badge ${i.level === "error" ? "is-danger" : "is-warning"}`, children: LEVEL[i.level] }),
             " ",
             i.reason ?? NO_REASON,
-            i.next && /* @__PURE__ */ jsxs66(Fragment20, { children: [
+            i.next && /* @__PURE__ */ jsxs66(Fragment21, { children: [
               " ",
               /* @__PURE__ */ jsx71("b", { children: i.next })
             ] })
@@ -5262,7 +5285,7 @@ function Avatar({ name: name2, src, size = 40, shape = "circle", decorative = fa
 
 // react/src/media/MapPanel.tsx
 import { useState as useState38 } from "react";
-import { Fragment as Fragment21, jsx as jsx78, jsxs as jsxs72 } from "react/jsx-runtime";
+import { Fragment as Fragment22, jsx as jsx78, jsxs as jsxs72 } from "react/jsx-runtime";
 function MapPanel({ label, legend, note, toolbar, status = "ready", what = "a t\xE9rk\xE9pet", error, onRetry, empty, list: list2, view, onViewChange, height = "min(420px, 60vh)", renderLink = defaultLink, className, children }) {
   const [sajat, setSajat] = useState38("map");
   const nezet = view ?? sajat;
@@ -5275,7 +5298,7 @@ function MapPanel({ label, legend, note, toolbar, status = "ready", what = "a t\
       list2 && /* @__PURE__ */ jsx78(SegmentedControl, { label: "N\xE9zet", value: nezet, onChange: valt, items: [{ value: "map", label: "T\xE9rk\xE9p" }, { value: "list", label: `Lista (${list2.length})` }] }),
       toolbar
     ] }),
-    /* @__PURE__ */ jsx78(DataState, { status, what, error, onRetry, children: empty ? /* @__PURE__ */ jsx78(EmptyState, { title: empty.title, children: empty.text }) : /* @__PURE__ */ jsxs72(Fragment21, { children: [
+    /* @__PURE__ */ jsx78(DataState, { status, what, error, onRetry, children: empty ? /* @__PURE__ */ jsx78(EmptyState, { title: empty.title, children: empty.text }) : /* @__PURE__ */ jsxs72(Fragment22, { children: [
       legend && nezet === "map" && /* @__PURE__ */ jsx78("div", { className: "bc-map-panel-legend", children: legend }),
       nezet === "map" || !list2 ? /* @__PURE__ */ jsx78("div", { className: "bc-map bc-map-panel-map", role: "region", "aria-label": label, style: { minHeight: height }, children }) : /* @__PURE__ */ jsx78("ul", { className: "bc-divided bc-map-panel-list", "aria-label": `${label} \u2013 lista`, children: list2.map((it) => /* @__PURE__ */ jsxs72("li", { children: [
         /* @__PURE__ */ jsxs72("span", { className: "bc-map-panel-item", children: [
@@ -5561,7 +5584,7 @@ function BeeMoment({ pillanat, poen, sima, szerep, action, inline, valtozat, liv
 }
 
 // react/src/meh/motion.tsx
-import { Children, cloneElement, isValidElement as isValidElement2, useEffect as useEffect21, useRef as useRef29, useState as useState39 } from "react";
+import { Children, cloneElement as cloneElement2, isValidElement as isValidElement2, useEffect as useEffect21, useRef as useRef29, useState as useState39 } from "react";
 import { jsx as jsx81, jsxs as jsxs74 } from "react/jsx-runtime";
 function useReducedMotion() {
   const [r, setR] = useState39(() => typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -5599,7 +5622,7 @@ function useCountUp(value, ms = 600) {
   return anim ?? value;
 }
 function Stagger({ children, as: Tag = "div", className }) {
-  return /* @__PURE__ */ jsx81(Tag, { className: cx("bc-stagger", className), children: Children.map(children, (c, i) => isValidElement2(c) ? cloneElement(c, { style: { ...c.props.style ?? {}, ["--i"]: i } }) : c) });
+  return /* @__PURE__ */ jsx81(Tag, { className: cx("bc-stagger", className), children: Children.map(children, (c, i) => isValidElement2(c) ? cloneElement2(c, { style: { ...c.props.style ?? {}, ["--i"]: i } }) : c) });
 }
 function celebrate(from) {
   if (typeof document === "undefined" || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -5953,7 +5976,7 @@ function CopyButton({ value, what, variant = "button", showValue: showValue2, di
 
 // react/src/kieg/DownloadButton.tsx
 import { useEffect as useEffect25, useRef as useRef32, useState as useState43 } from "react";
-import { Fragment as Fragment22, jsx as jsx86, jsxs as jsxs78 } from "react/jsx-runtime";
+import { Fragment as Fragment23, jsx as jsx86, jsxs as jsxs78 } from "react/jsx-runtime";
 function formatBytes(n) {
   if (n < 1024) return `${n} B`;
   if (n < 1024 * 1024) return `${formatHu(n / 1024, 1)} KB`;
@@ -6033,7 +6056,7 @@ function DownloadButton({ label, fileName, sizeHint, onDownload, variant = "seco
         sizeHint ? ` \xB7 ${sizeHint}` : "",
         stopped ? " \xB7 megszak\xEDtottad, b\xE1rmikor \xFAjrakezdheted" : ""
       ] }),
-      state === "busy" && /* @__PURE__ */ jsxs78(Fragment22, { children: [
+      state === "busy" && /* @__PURE__ */ jsxs78(Fragment23, { children: [
         pct === null ? /* @__PURE__ */ jsx86(HexLoader, { label: `K\xE9sz\xFCl: ${fileName}` }) : /* @__PURE__ */ jsx86(ProgressBar, { value: progress ?? 0, label: `K\xE9sz\xFCl: ${fileName}`, moving: true }),
         /* @__PURE__ */ jsxs78("span", { children: [
           "K\xE9sz\xFCl: ",
@@ -6220,7 +6243,7 @@ import { useCallback as useCallback5, useEffect as useEffect27, useRef as useRef
 
 // react/src/kieg/KiegDialog.tsx
 import { useEffect as useEffect26, useId as useId15, useRef as useRef34 } from "react";
-import { Fragment as Fragment23, jsx as jsx88, jsxs as jsxs80 } from "react/jsx-runtime";
+import { Fragment as Fragment24, jsx as jsx88, jsxs as jsxs80 } from "react/jsx-runtime";
 function KiegDialog({ open, onCancel, title, children, actions, className }) {
   const ref = useRef34(null);
   const back = useRef34(null);
@@ -6253,7 +6276,7 @@ function KiegDialog({ open, onCancel, title, children, actions, className }) {
         e.preventDefault();
         onCancel();
       },
-      children: open && /* @__PURE__ */ jsxs80(Fragment23, { children: [
+      children: open && /* @__PURE__ */ jsxs80(Fragment24, { children: [
         /* @__PURE__ */ jsx88("div", { className: "bc-modal-head", children: /* @__PURE__ */ jsx88("h2", { id: `${id}-t`, children: title }) }),
         children && /* @__PURE__ */ jsx88("div", { className: "bc-modal-body", id: `${id}-d`, children }),
         /* @__PURE__ */ jsx88("div", { className: "bc-modal-foot", children: actions })
@@ -6263,7 +6286,7 @@ function KiegDialog({ open, onCancel, title, children, actions, className }) {
 }
 
 // react/src/kieg/UnsavedChanges.tsx
-import { Fragment as Fragment24, jsx as jsx89, jsxs as jsxs81 } from "react/jsx-runtime";
+import { Fragment as Fragment25, jsx as jsx89, jsxs as jsxs81 } from "react/jsx-runtime";
 function UnsavedChangesDialog({ open, onStay, onLeave, onSave, title = "Nem mentett v\xE1ltoz\xE1said vannak", children }) {
   const [busy, setBusy] = useState44(false);
   const [err, setErr] = useState44();
@@ -6297,7 +6320,7 @@ function UnsavedChangesDialog({ open, onStay, onLeave, onSave, title = "Nem ment
         if (!busy) onStay();
       },
       title,
-      actions: /* @__PURE__ */ jsxs81(Fragment24, { children: [
+      actions: /* @__PURE__ */ jsxs81(Fragment25, { children: [
         /* @__PURE__ */ jsx89(Button, { variant: "secondary", "data-autofocus": true, disabled: busy, onClick: onStay, children: "Maradok" }),
         /* @__PURE__ */ jsx89(Button, { variant: onSave ? "secondary" : "danger", disabled: busy, onClick: onLeave, children: "Elvet\xE9s \xE9s tov\xE1bbl\xE9p\xE9s" }),
         onSave && /* @__PURE__ */ jsx89(Button, { busy, onClick: () => void save2(), children: "Ment\xE9s \xE9s tov\xE1bbl\xE9p\xE9s" })
@@ -6370,7 +6393,7 @@ function UnsavedChangesGuard({ dirty, interceptLinks = true, ...opts }) {
 
 // react/src/kieg/OfflineBanner.tsx
 import { useEffect as useEffect28, useRef as useRef36, useState as useState45 } from "react";
-import { Fragment as Fragment25, jsx as jsx90, jsxs as jsxs82 } from "react/jsx-runtime";
+import { Fragment as Fragment26, jsx as jsx90, jsxs as jsxs82 } from "react/jsx-runtime";
 function useOnline() {
   const [on, setOn] = useState45(() => typeof navigator === "undefined" ? true : navigator.onLine);
   useEffect28(() => {
@@ -6404,7 +6427,7 @@ function OfflineBanner({ online, pending = 0, saveText, onRetry, bee = true, bac
   const waiting = pending > 0 ? `${pending} m\xF3dos\xEDt\xE1s v\xE1r ment\xE9sre.` : null;
   return /* @__PURE__ */ jsxs82("div", { className: cx("bc-offline", className), role: "status", "data-state": on ? back ? "back" : "online" : "offline", children: [
     !on && /* @__PURE__ */ jsxs82("div", { className: "bc-alert is-warning bc-offline-bar", children: [
-      bee ? /* @__PURE__ */ jsx90(BeeMoment, { pillanat: "offline", inline: true, sima: /* @__PURE__ */ jsxs82(Fragment25, { children: [
+      bee ? /* @__PURE__ */ jsx90(BeeMoment, { pillanat: "offline", inline: true, sima: /* @__PURE__ */ jsxs82(Fragment26, { children: [
         sima,
         " ",
         waiting
@@ -6549,7 +6572,7 @@ function groupByDay(items, now = /* @__PURE__ */ new Date()) {
 }
 
 // react/src/kieg/Timeline.tsx
-import { Fragment as Fragment26, jsx as jsx92, jsxs as jsxs84 } from "react/jsx-runtime";
+import { Fragment as Fragment27, jsx as jsx92, jsxs as jsxs84 } from "react/jsx-runtime";
 var Empty = () => /* @__PURE__ */ jsx92("span", { className: "bc-tl-empty", children: "(\xFCres)" });
 var isEmpty = (v) => v === null || v === void 0 || v === "";
 function Changes({ changes }) {
@@ -6599,7 +6622,7 @@ function Timeline({ items, status = "ready", onRetry, pageSize = 10, onLoadMore,
               /* @__PURE__ */ jsx92("strong", { children: it.who }),
               " ",
               it.action,
-              it.target ? /* @__PURE__ */ jsxs84(Fragment26, { children: [
+              it.target ? /* @__PURE__ */ jsxs84(Fragment27, { children: [
                 " ",
                 it.target
               ] }) : null
@@ -6727,7 +6750,7 @@ function PreviewCard({ caption = "\xCDgy l\xE1tszik az appban", className, ...da
 }
 
 // react/src/kieg/AudienceBuilder.tsx
-import { Fragment as Fragment27, useEffect as useEffect30, useId as useId18, useRef as useRef38, useState as useState48 } from "react";
+import { Fragment as Fragment28, useEffect as useEffect30, useId as useId18, useRef as useRef38, useState as useState48 } from "react";
 
 // react/src/kieg/audience.ts
 var OPS = {
@@ -6905,7 +6928,7 @@ function AudienceBuilder({
     value.rules.length === 0 ? /* @__PURE__ */ jsx96("div", { className: "bc-alert is-info", children: /* @__PURE__ */ jsxs87("p", { children: [
       /* @__PURE__ */ jsx96("strong", { children: "Nincs felt\xE9tel:" }),
       " az \xFCzenetet mindenki megkapja. Sz\u0171k\xEDt\xE9shez adj hozz\xE1 felt\xE9telt."
-    ] }) }) : /* @__PURE__ */ jsx96("ol", { className: "bc-aud-rules", children: value.rules.map((r, i) => /* @__PURE__ */ jsxs87(Fragment27, { children: [
+    ] }) }) : /* @__PURE__ */ jsx96("ol", { className: "bc-aud-rules", children: value.rules.map((r, i) => /* @__PURE__ */ jsxs87(Fragment28, { children: [
       i > 0 && /* @__PURE__ */ jsx96("li", { className: "bc-aud-joiner", "aria-hidden": "true", children: /* @__PURE__ */ jsx96("span", { className: "bc-badge is-muted", children: value.join === "and" ? "\xC9S" : "VAGY" }) }),
       /* @__PURE__ */ jsx96(
         AudienceRuleRow,
@@ -7027,7 +7050,7 @@ function MergeFieldChoice({ field, records, chosen, onChoose, error }) {
 }
 
 // react/src/kieg/CompareMerge.tsx
-import { Fragment as Fragment28, jsx as jsx98, jsxs as jsxs89 } from "react/jsx-runtime";
+import { Fragment as Fragment29, jsx as jsx98, jsxs as jsxs89 } from "react/jsx-runtime";
 function CompareMerge({ records, fields, choices, onChoicesChange, survivor, onSurvivorChange, onMerge, consequence, className }) {
   const uid = useId20();
   const [showSame, setShowSame] = useState49(false);
@@ -7154,7 +7177,7 @@ function CompareMerge({ records, fields, choices, onChoicesChange, survivor, onS
           if (!busy) setAsking(false);
         },
         title: "\xD6sszef\xE9s\xFCl\xF6d a rekordokat?",
-        actions: /* @__PURE__ */ jsxs89(Fragment28, { children: [
+        actions: /* @__PURE__ */ jsxs89(Fragment29, { children: [
           /* @__PURE__ */ jsx98(Button, { variant: "secondary", "data-autofocus": true, disabled: busy, onClick: () => setAsking(false), children: "M\xE9gse" }),
           /* @__PURE__ */ jsx98(Button, { variant: "danger", busy, onClick: () => void run(), children: "V\xE9gleges \xF6sszef\xE9s\xFCl\xE9s" })
         ] }),
@@ -7783,7 +7806,7 @@ var wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // react/src/kieg2/DrawStage.tsx
 import { forwardRef as forwardRef10 } from "react";
-import { Fragment as Fragment29, jsx as jsx104, jsxs as jsxs94 } from "react/jsx-runtime";
+import { Fragment as Fragment30, jsx as jsx104, jsxs as jsxs94 } from "react/jsx-runtime";
 function DrawSpinner({ step, name: name2, waiting }) {
   return /* @__PURE__ */ jsxs94("div", { className: "bc-draw-stage", "aria-hidden": "true", children: [
     /* @__PURE__ */ jsx104(Bee, { szerep: "futar", size: "s", buzz: false, className: "bc-draw-runner" }),
@@ -7795,7 +7818,7 @@ var WinnerCard = forwardRef10(function WinnerCard2({ winner, prize, test, attemp
   return /* @__PURE__ */ jsxs94("div", { className: cx("bc-draw-winner", animate && "bc-anim-stamp"), "data-winner": winner.id, children: [
     /* @__PURE__ */ jsx104(Bee, { szerep: "bajnok", size: "m", buzz: animate }),
     /* @__PURE__ */ jsxs94("div", { className: "bc-draw-winner-body", children: [
-      /* @__PURE__ */ jsx104("p", { className: "bc-draw-kicker", children: attempt > 1 ? `\xDAj nyertes \u2013 ${attempt}. h\xFAz\xE1s` : /* @__PURE__ */ jsxs94(Fragment29, { children: [
+      /* @__PURE__ */ jsx104("p", { className: "bc-draw-kicker", children: attempt > 1 ? `\xDAj nyertes \u2013 ${attempt}. h\xFAz\xE1s` : /* @__PURE__ */ jsxs94(Fragment30, { children: [
         "Z\xFCmm, megvan! ",
         /* @__PURE__ */ jsx104("span", { children: "Kisorsoltuk a nyertest." })
       ] }) }),
@@ -7861,7 +7884,7 @@ function RerollForm({ previous, minLength, maxLength = 200, onConfirm, onCancel 
 }
 
 // react/src/kieg2/PrizeDrawReveal.tsx
-import { Fragment as Fragment30, jsx as jsx106, jsxs as jsxs96 } from "react/jsx-runtime";
+import { Fragment as Fragment31, jsx as jsx106, jsxs as jsxs96 } from "react/jsx-runtime";
 function PrizeDrawReveal({ prize, participants, draw, onDrawn, onReroll, excludePrevious = true, minReasonLength = 5, loading, className }) {
   const reduce = useReducedMotion();
   const [phase, setPhase] = useState56("ready");
@@ -7930,7 +7953,7 @@ function PrizeDrawReveal({ prize, participants, draw, onDrawn, onReroll, exclude
         /* @__PURE__ */ jsx106("p", { className: "bc-draw-prize-label", children: "Nyerem\xE9ny" }),
         /* @__PURE__ */ jsx106("h2", { className: "bc-draw-title", children: prize })
       ] }),
-      /* @__PURE__ */ jsx106("p", { className: "bc-draw-count", "data-count": n, children: loading ? /* @__PURE__ */ jsx106(HexLoader, { label: "T\xF6lt\xF6m a r\xE9sztvev\u0151ket" }) : /* @__PURE__ */ jsxs96(Fragment30, { children: [
+      /* @__PURE__ */ jsx106("p", { className: "bc-draw-count", "data-count": n, children: loading ? /* @__PURE__ */ jsx106(HexLoader, { label: "T\xF6lt\xF6m a r\xE9sztvev\u0151ket" }) : /* @__PURE__ */ jsxs96(Fragment31, { children: [
         /* @__PURE__ */ jsx106("b", { children: formatHu(n, 0) }),
         " r\xE9sztvev\u0151"
       ] }) })
@@ -7977,7 +8000,7 @@ function PrizeDrawReveal({ prize, participants, draw, onDrawn, onReroll, exclude
         formatHu(r.poolSize, 0),
         " r\xE9sztvev\u0151b\u0151l",
         r.test ? " (teszt-sorsol\xE1s)" : "",
-        r.reason && /* @__PURE__ */ jsxs96(Fragment30, { children: [
+        r.reason && /* @__PURE__ */ jsxs96(Fragment31, { children: [
           " \xB7 \xFAjrasorsol\xE1s oka: \u201E",
           r.reason,
           "\u201D"
@@ -7989,7 +8012,7 @@ function PrizeDrawReveal({ prize, participants, draw, onDrawn, onReroll, exclude
 
 // react/src/kieg2/VideoPlayer.tsx
 import { useRef as useRef46, useState as useState57 } from "react";
-import { Fragment as Fragment31, jsx as jsx107, jsxs as jsxs97 } from "react/jsx-runtime";
+import { Fragment as Fragment32, jsx as jsx107, jsxs as jsxs97 } from "react/jsx-runtime";
 var ERR = {
   2: "A vide\xF3 nem t\xF6lt\u0151d\xF6tt le (h\xE1l\xF3zati hiba). Ellen\u0151rizd a kapcsolatot, \xE9s pr\xF3b\xE1ld \xFAjra.",
   3: "A vide\xF3f\xE1jl s\xE9r\xFClt, nem lehet lej\xE1tszani. T\xF6ltsd fel \xFAjra.",
@@ -8031,7 +8054,7 @@ function VideoPlayer({ title, src, poster, captions = [], warnNoCaptions = true,
           setAttempt((n) => n + 1);
         }, children: "\xDAjrapr\xF3b\xE1l\xE1s" })
       }
-    ) : /* @__PURE__ */ jsxs97(Fragment31, { children: [
+    ) : /* @__PURE__ */ jsxs97(Fragment32, { children: [
       src && /* @__PURE__ */ jsx107(
         "video",
         {
@@ -8129,7 +8152,7 @@ function parseVideoUrl(input) {
 }
 
 // react/src/kieg2/VideoEmbed.tsx
-import { Fragment as Fragment32, jsx as jsx108, jsxs as jsxs98 } from "react/jsx-runtime";
+import { Fragment as Fragment33, jsx as jsx108, jsxs as jsxs98 } from "react/jsx-runtime";
 function VideoEmbed({ source, title, className }) {
   const [on, setOn] = useState58(false);
   const [loaded, setLoaded] = useState58(false);
@@ -8147,7 +8170,7 @@ function VideoEmbed({ source, title, className }) {
     return () => clearTimeout(t);
   }, [on, loaded]);
   return /* @__PURE__ */ jsxs98("figure", { className: cx("bc-video", "bc-vembed", className), "data-provider": source.kind, "data-state": on ? loaded ? "ready" : "loading" : "placeholder", children: [
-    /* @__PURE__ */ jsx108("div", { className: "bc-video-frame", children: on ? /* @__PURE__ */ jsxs98(Fragment32, { children: [
+    /* @__PURE__ */ jsx108("div", { className: "bc-video-frame", children: on ? /* @__PURE__ */ jsxs98(Fragment33, { children: [
       /* @__PURE__ */ jsx108(
         "iframe",
         {
@@ -8210,12 +8233,12 @@ function VideoPreview({ url, title, poster, captions, className }) {
 
 // react/src/sablon/Frame.tsx
 import { useId as useId24 } from "react";
-import { Fragment as Fragment33, jsx as jsx109, jsxs as jsxs99 } from "react/jsx-runtime";
+import { Fragment as Fragment34, jsx as jsx109, jsxs as jsxs99 } from "react/jsx-runtime";
 function SablonFrame({ kind, standalone, skipLabel = "Ugr\xE1s a tartalomra", className, busy, children }) {
   const id = `bc-sablon-${useId24().replace(/[^a-zA-Z0-9-]/g, "")}`;
   const body = /* @__PURE__ */ jsx109("div", { className: cx("bc-sablon", `is-${kind}`, className), "data-sablon": kind, "aria-busy": busy || void 0, children });
   if (!standalone) return body;
-  return /* @__PURE__ */ jsxs99(Fragment33, { children: [
+  return /* @__PURE__ */ jsxs99(Fragment34, { children: [
     /* @__PURE__ */ jsx109("a", { className: "bc-skip", href: `#${id}`, children: skipLabel }),
     /* @__PURE__ */ jsx109("main", { id, className: "bc-sablon-main", tabIndex: -1, children: body })
   ] });
@@ -8227,12 +8250,12 @@ function useTemplateTitle(title, docTitle, suffix, loading) {
 
 // react/src/sablon/ListPage.tsx
 import { useCallback as useCallback8 } from "react";
-import { Fragment as Fragment34, jsx as jsx110, jsxs as jsxs100 } from "react/jsx-runtime";
+import { Fragment as Fragment35, jsx as jsx110, jsxs as jsxs100 } from "react/jsx-runtime";
 function ListPage(p) {
   const { title, description, breadcrumbs, renderLink, primaryAction, actions, filters, status = "ready", what = "a list\xE1t", detail } = p;
   useTemplateTitle(title, p.docTitle, p.docTitleSuffix);
   const showFilters = filters && status !== "empty" && status !== "forbidden";
-  const head = actions || primaryAction ? /* @__PURE__ */ jsxs100(Fragment34, { children: [
+  const head = actions || primaryAction ? /* @__PURE__ */ jsxs100(Fragment35, { children: [
     actions,
     primaryAction
   ] }) : void 0;
@@ -8282,7 +8305,7 @@ function useDetailParam(name2 = "reszlet") {
 
 // react/src/sablon/DetailActions.tsx
 import { useState as useState59 } from "react";
-import { Fragment as Fragment35, jsx as jsx111, jsxs as jsxs101 } from "react/jsx-runtime";
+import { Fragment as Fragment36, jsx as jsx111, jsxs as jsxs101 } from "react/jsx-runtime";
 function DetailActions({ actions, subject }) {
   const [pending, setPending] = useState59(null);
   const [open, setOpen] = useState59(false);
@@ -8306,7 +8329,7 @@ function DetailActions({ actions, subject }) {
     onSelect: () => run(a)
   });
   const items = [...safe.map(entry), ...safe.length && risky.length ? ["separator"] : [], ...risky.map(entry)];
-  return /* @__PURE__ */ jsxs101(Fragment35, { children: [
+  return /* @__PURE__ */ jsxs101(Fragment36, { children: [
     main && /* @__PURE__ */ jsx111(
       Button,
       {
@@ -8583,7 +8606,7 @@ function Counting(s) {
 }
 
 // react/src/sablon/ShellAccount.tsx
-import { Fragment as Fragment36, jsx as jsx116, jsxs as jsxs106 } from "react/jsx-runtime";
+import { Fragment as Fragment37, jsx as jsx116, jsxs as jsxs106 } from "react/jsx-runtime";
 function ShellAccount({ name: name2, detail, avatarSrc, items, menuLabel = (n) => `Felhaszn\xE1l\xF3i men\xFC: ${n}`, loadingLabel = "Bet\xF6lt\xE9s\u2026" }) {
   const nev = name2 ?? loadingLabel;
   return /* @__PURE__ */ jsx116(
@@ -8591,7 +8614,7 @@ function ShellAccount({ name: name2, detail, avatarSrc, items, menuLabel = (n) =
     {
       label: menuLabel(nev),
       align: "start",
-      header: /* @__PURE__ */ jsxs106(Fragment36, { children: [
+      header: /* @__PURE__ */ jsxs106(Fragment37, { children: [
         /* @__PURE__ */ jsx116("strong", { children: nev }),
         detail && /* @__PURE__ */ jsx116("span", { className: "bc-muted", children: detail })
       ] }),

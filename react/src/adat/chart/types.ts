@@ -1,5 +1,14 @@
 /** Egy adatsor: minden kategóriához egy érték; null = hiányzó vagy rejtett (NEM nulla – sávval rajzoljuk) */
-export type ChartSeries = { key: string; label: string; values: Array<number | null> };
+export type ChartSeries = {
+  key: string;
+  label: string;
+  values: Array<number | null>;
+  /** Kikapcsolt sorozat (ChartCard seriesToggle állítja; csak a LineChart veszi figyelembe): nem rajzoljuk, de a színe/alakja a helyén marad – az adattáblában ott van */
+  hidden?: boolean;
+};
+
+/** Adatpaletta: kategória (alap, egymástól független sorozatok) vagy állapot (1 = jó … 5 = rossz, sorrendje jelentés – Javaslat 12) */
+export type ChartPalette = 'kategoria' | 'allapot';
 
 /**
  * A grafikon adatai – ugyanebből készül a rajz, a jelmagyarázat és az adattábla (3/B), így nem térhetnek el.
@@ -18,10 +27,18 @@ export type ChartData = {
   decimals?: number;
   /** Mit jelent a hiányzó érték: „rejtett hét (< 5 érintett)” – alap: „nincs adat” */
   gapLabel?: string;
+  /** Adatpaletta – 'allapot': a sorozatok sorban a --bc-data-allapot-1…5 színeket kapják (legfeljebb 5 sorozat) */
+  palette?: ChartPalette;
 };
 
-export const isGap = (d: ChartData, i: number) => d.series.some((s) => s.values[i] === null || s.values[i] === undefined);
+/** Hiányzó érték az i. kategóriában – csak a látható sorozatokból (egy kikapcsolt sorozat hiánya nem rajzol „nincs adat” sávot) */
+export const isGap = (d: ChartData, i: number) => d.series.some((s) => !s.hidden && (s.values[i] === null || s.values[i] === undefined));
 export const hasGap = (d: ChartData) => d.categories.some((_, i) => isGap(d, i));
 export const allValues = (d: ChartData) => d.series.flatMap((s) => s.values.filter((v): v is number => typeof v === 'number'));
+/** A látható (nem kikapcsolt) sorozatok értékei – ebből készül a tengely */
+export const visibleValues = (d: ChartData) =>
+  d.series.filter((s) => !s.hidden).flatMap((s) => s.values.filter((v): v is number => typeof v === 'number'));
+/** A paletta osztálya (kártya, grafikon, jelmagyarázat egyformán kapja, hogy a színek egyezzenek) */
+export const paletteClass = (d: ChartData) => (d.palette === 'allapot' ? 'bc-pal-allapot' : undefined);
 /** Üres: nincs kategória vagy egyetlen érték sincs */
 export const isEmptyData = (d: ChartData) => !d.categories.length || !allValues(d).length;
