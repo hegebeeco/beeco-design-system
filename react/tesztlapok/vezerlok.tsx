@@ -15,6 +15,7 @@ function Oldal() {
         <Case id="gomb-meret" title="Méretek"><div className="bc-row"><Button size="sm">Kicsi</Button><Button>Közepes</Button><Button size="lg">Nagy</Button></div></Case>
         <Case id="gomb-allapot" title="Tiltott, folyamatban (dupla kattintás ellen)"><div className="bc-row"><Button disabled>Tiltott</Button><Button icon={<IcSave />} busy onClick={() => setKattint((k) => k + 1)}>Mentés</Button></div><p className="tl-out" data-out="busy">kattintás: {kattint}</p></Case>
         <Case id="gomb-ikon" title="Ikongomb"><div className="bc-row"><IconButton aria-label="Partner szerkesztése"><Toll /></IconButton><IconButton aria-label="Partner törlése" danger>×</IconButton></div></Case>
+        <Case id="gomb-kipontozas" title="Ablakot nyitó gomb: a „…” három pont (Lalezar-tartalék)"><div className="bc-row"><Button variant="secondary">Importálás…</Button><Button size="sm" variant="secondary">Exportálás…</Button></div></Case>
         <Case id="gomb-hosszu" title="Hosszú felirat"><Button block>Az összes kijelölt partner kuponjainak meghosszabbítása egy hónappal</Button></Case>
       </Grid>
       <Grid title="Szegmentált kapcsoló – 3A">

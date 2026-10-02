@@ -3,11 +3,15 @@
    Neo-brutalista: 2 px fekete keret, kemény átlós árnyék (elmosás nélkül).
    Lenyomáskor a gomb az árnyék helyére csúszik, az árnyék eltűnik – „kattan”.
    ============================================================ */
+/* A Lalezar a „…” (U+2026) jelet egyetlen pontként rajzolja („Importálás…” → „Importálás.”). A gombokban erre az EGY jelre
+   az Open Sans ugrik be (unicode-range: a többi betű marad Lalezar). HIBA, Javaslat 15. */
+@font-face { font-family: 'bc-kipontozas'; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url(../../web/assets/fonts/opensans-latin.woff2) format('woff2'); unicode-range: U+2026; }
 .bc-btn {
   --_bg: var(--bc-accent); --_ink: var(--bc-on-accent); --_sh: var(--bc-shadow-s);
   display: inline-flex; align-items: center; justify-content: center; gap: var(--bc-sp-2);
   min-height: var(--bc-tap); padding: 0 var(--bc-sp-5);
-  font-family: var(--bc-font-display); font-size: var(--bc-fs-l); font-weight: 400; line-height: 1; letter-spacing: .01em;
+  font-family: 'bc-kipontozas', var(--bc-font-display); font-size: var(--bc-fs-l); font-weight: 400; line-height: 1; letter-spacing: .01em;
   color: var(--_ink); background: var(--_bg); text-decoration: none; white-space: nowrap;
   border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m);
   box-shadow: var(--_sh); cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;

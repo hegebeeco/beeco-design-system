@@ -6,5 +6,14 @@ export default async function ({ page, t }) {
     ok((await page.locator('[data-out="seg"]').innerText()).includes('csempe'), await page.locator('[data-out="seg"]').innerText());
     await page.keyboard.press('ArrowRight'); ok((await page.locator('[data-out="seg"]').innerText()).includes('lista'), 'nem ugrotta át a tiltottat');
   });
+  await t('a gombfeliratban a „…” három pontként rajzolódik, nem egyként (HIBA, Javaslat 15)', async () => {
+    const r = await page.evaluate(async () => {
+      const b = document.querySelector('[data-case="gomb-kipontozas"] .bc-btn');
+      await document.fonts.load(`${getComputedStyle(b).fontSize} ${getComputedStyle(b).fontFamily}`, '…. '); await document.fonts.ready;
+      const m = (t) => { const s = document.createElement('span'); s.textContent = t; b.appendChild(s); const w = s.getBoundingClientRect().width; s.remove(); return w; };
+      return { e: m('…'), p: m('.') };
+    });
+    ok(r.e >= 2.2 * r.p, `a „…” szélessége ${r.e.toFixed(1)} px, egy ponté ${r.p.toFixed(1)} px – egy pontnak látszik`);
+  });
   await t('ikongombnak van neve', async () => ok((await page.locator('.bc-icon-btn:not([aria-label])').count()) === 0, 'név nélküli ikongomb'));
 }
