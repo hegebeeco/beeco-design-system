@@ -144,6 +144,64 @@
       <div class="bc-modal-body"><p>A Zöld Sarok Bolt és a 12 kuponja eltűnik az appból. Ez nem vonható vissza.</p></div>
       <div class="bc-modal-foot"><button class="bc-btn is-secondary" type="button" data-close>Mégse</button><button class="bc-btn is-danger" type="button" data-close>Törlés</button></div>
     </dialog>
+
+    <h2 id="h-web">Weboldal (bc-web.css)</h2>
+    <p class="bc-help">A nyilvános marketingoldal elemei. A beeco.hu felépítésekor mindegyiket kézzel kellett megírni, ezért kerültek a DS-be.</p>
+
+    <h3>Hero</h3>
+    <div class="bc-hero" style="border:var(--bc-bw-hair) dashed var(--bc-line-soft);padding:var(--bc-sp-4);border-radius:var(--bc-r-m)">
+      <div>
+        <p class="bc-eyebrow">Felső index</p>
+        <h4 class="bc-display" style="margin:0 0 var(--bc-sp-3)">Oldalcím, ami egy dolgot ígér</h4>
+        <p class="bc-lead">Bevezető, legfeljebb 62 karakter sorhosszal, hogy olvasható maradjon.</p>
+        <div class="bc-stores">
+          <a class="bc-store is-accent" href="#h-web">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 3l13 9-13 9z"/></svg>
+            <span class="bc-store-text"><span class="bc-store-kicsi">Letöltés</span><span class="bc-store-nagy">Google Play</span></span>
+          </a>
+          <a class="bc-store" href="#h-web">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 7c1-2 3-3 5-3 0 2-1 4-2 5M7 20c-2-3-3-7-1-10 1-2 3-2 5-1 2-1 4-1 5 1 2 3 1 7-1 10-1 1-2 1-4 0-2 1-3 1-4 0z"/></svg>
+            <span class="bc-store-text"><span class="bc-store-kicsi">Letöltés</span><span class="bc-store-nagy">App Store</span></span>
+          </a>
+        </div>
+        <p style="margin-top:var(--bc-sp-3)">
+          <span class="bc-rating">
+            <span class="bc-rating-stars" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.3 7L12 17.8 5.7 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.3 7L12 17.8 5.7 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.3 7L12 17.8 5.7 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.8 1.3 7L12 17.8 5.7 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6.5 7 .9-5 4.8 1.3 7L12 17.8 5.7 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            </span>
+            <span class="bc-rating-text">4,5 az 5-ből</span>
+            <span class="bc-rating-sub">áruházi értékelés</span>
+          </span>
+        </p>
+      </div>
+      <figure class="bc-hero-media"><div class="bc-card is-quiet" style="aspect-ratio:4/3;display:grid;place-items:center">kép vagy eszköz helye</div></figure>
+    </div>
+
+    <h3 style="margin-top:var(--bc-sp-6)">Számozott lépéslista</h3>
+    <ol class="bc-howto is-row">
+      <li><div><p class="bc-howto-title">Kezdd a lábnyomoddal</p><p>Számold ki, hogy tudd, merre érdemes elindulni.</p></div></li>
+      <li><div><p class="bc-howto-title">Nézz körül a közelben</p><p>Fedezz fel fenntartható helyszíneket a térképen.</p></div></li>
+      <li><div><p class="bc-howto-title">Találj rajtársakra</p><p>Csatlakozz programokhoz a zöld eseménynaptárral.</p></div></li>
+    </ol>
+
+    <h3 style="margin-top:var(--bc-sp-6)">Ár</h3>
+    <div class="bc-row" style="gap:var(--bc-sp-6)">
+      <span class="bc-price">5 990 Ft</span>
+      <span><span class="bc-price is-lg">4 900 Ft</span><span class="bc-price-old">6 900 Ft</span><span class="bc-price-note">a szállítás nincs benne</span></span>
+    </div>
+
+    <h3 style="margin-top:var(--bc-sp-6)">Szekció-elválasztó</h3>
+    <p class="bc-help">A <code>bc-sec.is-ruled</code> vonalat tesz a szekció fölé; a szülőn a <code>bc-ruled</code> minden szekció közé.</p>
+    <div class="bc-ruled" style="border:var(--bc-bw-hair) dashed var(--bc-line-soft);border-radius:var(--bc-r-m)">
+      <section class="bc-sec is-tight" style="padding-inline:var(--bc-sp-4)"><p style="margin:0">Első szekció</p></section>
+      <section class="bc-sec is-tight is-quiet" style="padding-inline:var(--bc-sp-4)"><p style="margin:0">Második, halkabb háttérrel</p></section>
+      <section class="bc-sec is-tight is-accent" style="padding-inline:var(--bc-sp-4)"><p style="margin:0">Harmadik, mézes sáv</p></section>
+    </div>
+
   </section>
 </div>
 <script>

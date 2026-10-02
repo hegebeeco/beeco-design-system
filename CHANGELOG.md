@@ -11,17 +11,33 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
-## 1.34.0 – mozgás és személyiség a weboldalon (Javaslat 11)
+## 1.34.0 – weboldal: mozgás, személyiség és marketing-elemek
 
-- `termek/css/bc-web.css` mozgás-szakasz: `bc-web-erkezes` (a hero méhecskéje egyszer berepül,
-  nem lebeg örökké), `bc-web-zum` (a gazdátlan `bc-buzz` keyframe végre szerepet kap),
-  `bc-sticker`, `bc-web-in`, `bc-figure.is-framed` és `.is-tilt`.
-- `tools/webflow-build.js` → `dist/weboldal/beeco-web.css` és `beeco-web.min.css`: a Webflow
-  egyedi kód mezőjébe beilleszthető blokk, a DS saját `bc-motion.css` és `bc-marka.css`
-  forrásából generálva, a változónevek automatikus átírásával. Tömörítve 7,9 kB, elfér a
-  ~10 000 karakteres mezőben; az évszakos díszítés külön kérésre kerül be.
-- `tests/check-weboldal.js`: a beillesztendő CSS frissességét, méretét és a névalakot őrzi.
-- `docs/weboldal.md` 3/d. szakasz, `docs/javaslatok/11-weboldal-mozgas.md`.
+**Mozgás (Javaslat 11).** A méhecske nem tapéta, hanem szereplő: akkor mozdul, amikor történik
+valami. Végtelen mozgás nincs, ezt a `bc-motion.css` már kimondta.
+- `bc-web-erkezes` (a hero méhecskéje egyszer repül be), `bc-web-zum` (a gazdátlan `bc-buzz`
+  keyframe végre szerepet kap), `bc-sticker`, `bc-web-in`, `bc-figure.is-framed` és `.is-tilt`.
+- `tools/webflow-build.js` → `dist/weboldal/beeco-web.css`, `beeco-web.min.css` és
+  `beeco-web-oldal.min.css`: a Webflow egyedi kód mezőjébe beilleszthető blokkok, a DS saját
+  CSS-éből generálva, a változónevek automatikus átírásával. Az oldal-profil 2,8 kB.
+- HIBAJAVÍTÁS a generátorban: a blokkdaraboló a záró kapcsos zárójel mentén vágott, ami
+  kettévágta a @media és @keyframes blokkokat. Most zárójel-számlálással dolgozik.
+
+**Marketing-elemek (Javaslat 12).** A beeco.hu valódi tartalomból való újraépítése után
+27 sor saját CSS maradt a fej-kódban; ez a lista lett az elemkészlet:
+- `bc-sec.is-ruled` és `bc-ruled` (szekció-elválasztó), `bc-hero` (+ `is-even`, `is-mirrored`),
+  `bc-stores` és `bc-store` (+ `is-accent`), `bc-rating` (+ `-stars`, `-text`, `-sub`),
+  `bc-price` (+ `is-lg`, `bc-price-old`, `bc-price-note`), `bc-howto` (+ `is-row`).
+- A `bc-howto` a `bc-steps` MELLÉ kerül, nem helyette: az kompakt folyamatjelző, ez marketing-lista.
+- `termek/bemutato.html` új „Weboldal” szakasz: mind látszik élőben.
+
+**Tesztelés.** `docs/weboldal.md` 5/b: minden oldalfejlesztéshez kötelező e2e és egységteszt
+(működés, teljesítmény, láthatóság, takarás, eltartás, billentyűzet, szerkezet, szöveghelyesség,
+SEO, mozgás, biztonság, WCAG 2.2 AA), és `.github/workflows/weboldal.yml` éjszakai őrjárat.
+
+## 1.33.1 – 2026-10-02
+
+* **Hiba – AppShell telefonos fiók + UnsavedChangesGuard:** ha egy kitöltött űrlapról a ☰ menü linkjével navigáltak el, az őr megállította a kattintást, így a fiók nyitva maradt, és modális rétegként letakarta (kattinthatatlanná, felolvasónak láthatatlanná tette) a „Nem mentett változásaid vannak” ablakot. A fiók most a menüben lévő linkre koppintáskor mindig bezár (dokumentum-szintű figyelő). A partner-app e2e-tesztje találta (PARTNERAPP).
 
 ## 1.33.0 – webes réteg (Webflow) és a nyilvános weboldal elemei
 
