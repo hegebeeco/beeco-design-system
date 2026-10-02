@@ -1638,6 +1638,7 @@ function SortSelect({ table }) {
   const cols = table.getAllLeafColumns().filter((c) => c.getCanSort());
   const s = table.getState().sorting[0];
   const value = s ? `${s.id}:${s.desc ? "desc" : "asc"}` : "";
+  if (!cols.length) return null;
   return /* @__PURE__ */ jsxs23("div", { className: "bc-dt-sortsel", children: [
     /* @__PURE__ */ jsx25("label", { className: "bc-label", htmlFor: id, children: "Rendez\xE9s" }),
     /* @__PURE__ */ jsxs23(

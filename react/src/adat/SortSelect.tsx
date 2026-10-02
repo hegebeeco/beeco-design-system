@@ -5,12 +5,14 @@ import { headerText } from './dataTableColumns';
 /**
  * Rendezés-választó a kártyanézethez (mobile="cards"): ott nincs fejléc, ezért a rendezés egy natív választóból jön.
  * Nézetvezérlő, nem adatbevitel – ezért nincs súgója (mint a SegmentedControl-nak). Csak keskeny tárolóban látszik (CSS).
+ * Ha egyetlen oszlop sem rendezhető, nem jelenik meg (különben egyetlen „Nincs rendezés” opció állna benne – Javaslat 15).
  */
 export function SortSelect<T>({ table }: { table: Table<T> }) {
   const id = useId();
   const cols = table.getAllLeafColumns().filter((c) => c.getCanSort());
   const s = table.getState().sorting[0];
   const value = s ? `${s.id}:${s.desc ? 'desc' : 'asc'}` : '';
+  if (!cols.length) return null;
   return (
     <div className="bc-dt-sortsel">
       <label className="bc-label" htmlFor={id}>Rendezés</label>

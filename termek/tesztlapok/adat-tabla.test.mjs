@@ -75,6 +75,11 @@ export default async function ({ page, t }) {
     const before = await c('tabla-kartya').locator('tbody td[data-label="Név"]').first().evaluate((e) => getComputedStyle(e, '::before').content);
     ok(before.includes('Név'), `nincs címke: ${before}`);
   });
+  await t('rendezhető oszlop nélkül nincs „Rendezés” választó, és üres eszközsáv sem marad (HIBA, Javaslat 15)', async () => {
+    ok((await c('tabla-nincs-rendezes').locator('.bc-dt-sortsel').count()) === 0, 'van rendezés-választó');
+    ok((await c('tabla-nincs-rendezes').getByText('Nincs rendezés').count()) === 0, 'van „Nincs rendezés” opció');
+    ok(!(await c('tabla-nincs-rendezes').locator('.bc-dt-bar').isVisible().catch(() => false)), 'üres eszközsáv látszik');
+  });
   await t('lapozó önállóan: utolsó lap és vissza', async () => {
     await c('lapozo').getByRole('button', { name: '13. lap', exact: true }).click(); ok((await page.locator('[data-out="lapozo"]').innerText()).includes('lap: 13'), 'nem lapozott');
     ok(await c('lapozo').getByRole('button', { name: 'Következő lap' }).isDisabled(), 'az utolsó lapon a Következő nem tiltott');

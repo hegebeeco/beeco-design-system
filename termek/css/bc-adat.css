@@ -30,6 +30,8 @@
 .bc-dt-tools { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-3); width: 100%; }
 .bc-dt-title { margin: 0 auto 0 0; font-size: var(--bc-fs-l); }
 .bc-dt-tools > .bc-seg { margin-left: auto; }
+/* Üres eszközsáv (pl. nincs rendezhető oszlop, sűrűség-kapcsoló nélkül) ne hagyjon üres sávot a táblázat fölött */
+.bc-dt-bar:has(> .bc-dt-tools:empty) { display: none; }
 /* Tömeges sáv (1b A): a táblázat fölött, görgetéskor odatapad; a sáv helyére csúszik, nem tolja le a táblázatot */
 .bc-dt-bulk { position: sticky; top: 0; z-index: calc(var(--bc-z-sticky) + 2); display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2) var(--bc-sp-4); width: 100%;
   padding: var(--bc-sp-2) var(--bc-sp-3); color: var(--bc-ink); background: var(--bc-surface-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m);

@@ -8,6 +8,8 @@ const SOK = pois(1200);
 const KEVES = pois(6);
 const ID = (p: Poi) => p.id;
 const NEV = (p: Poi) => p.nev;
+/** Egyik oszlop sem rendezhető (pl. szerver nem tud rendezni) */
+const NEM_RENDEZHETO = poiOszlopok.map((c) => ({ ...c, enableSorting: false }));
 
 function Teljes() {
   const [sel, setSel] = useState<Record<string, boolean>>({});
@@ -96,6 +98,11 @@ function Oldal() {
         <Case id="tabla-kartya" title={'Telefonon soronként kártya (mobile="cards", keskeny tároló)'}>
           <div style={{ maxWidth: 360 }}>
             <DataTable data={pois(4)} columns={poiOszlopok} caption="Partnerek – kártyanézet" getRowId={ID} rowLabel={NEV} itemLabel="partner" mobile="cards" selectable densityToggle={false} />
+          </div>
+        </Case>
+        <Case id="tabla-nincs-rendezes" title="Kártyanézet rendezhető oszlop nélkül – nincs „Rendezés” választó, nincs üres sáv">
+          <div style={{ maxWidth: 360 }}>
+            <DataTable data={pois(2)} columns={NEM_RENDEZHETO} caption="Partnerek – rendezés nélkül" getRowId={ID} rowLabel={NEV} itemLabel="partner" mobile="cards" densityToggle={false} />
           </div>
         </Case>
       </Grid>
