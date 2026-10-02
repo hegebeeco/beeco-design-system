@@ -24,7 +24,7 @@ export type VideoPlayerProps = {
 const ERR: Record<number, string> = {
   2: 'A videó nem töltődött le (hálózati hiba). Ellenőrizd a kapcsolatot, és próbáld újra.',
   3: 'A videófájl sérült, nem lehet lejátszani. Töltsd fel újra.',
-  4: 'Ezt a videót a böngésző nem tudja lejátszani (rossz vagy nem támogatott formátum). MP4 (H.264) vagy WebM fájlt tölts fel.',
+  4: 'Ezt a videót a böngésző nem tudja lejátszani (rossz vagy nem támogatott formátum). Exportáld újra MP4 (H.264) formátumban, és töltsd fel újra.',
 };
 const SEEK = 5;
 

@@ -17,6 +17,11 @@ export default async function ({ page, t }) {
     const err = c('video').locator('.bc-error');
     await file('video').setInputFiles(MOV);
     await until(async () => (await err.count()) && (await err.innerText()).includes('MOV') && (await err.innerText()).includes('csak MP4'), 'nincs típus-hiba');
+    // Sérült MP4 (a kiterjesztés jó, a tartalom nem): nem önellentmondó „(MP4) … csak MP4 lehet”, hanem „nem tudjuk beolvasni” (HIBA, Javaslat 15)
+    await file('video').setInputFiles({ name: 'serult.mp4', mimeType: 'video/mp4', buffer: Buffer.alloc(2048, 7) });
+    await until(async () => (await err.innerText()).includes('serult.mp4'), 'nincs hiba a sérült fájlra');
+    const sz = await err.innerText();
+    ok(sz.includes('ezt a videót nem tudjuk beolvasni') && sz.includes('exportálni MP4-ként') && !sz.includes('csak MP4'), sz);
     await file('video').setInputFiles(MP4('nagy.mp4', 4000));
     await until(async () => (await err.innerText()).includes('a határ 3 MB') && (await err.innerText()).includes('tömörítsd'), 'nincs méret-hiba');
     ok((await c('video').locator('.bc-count').innerText()).startsWith('0/1'), 'számláló nem 0/1');

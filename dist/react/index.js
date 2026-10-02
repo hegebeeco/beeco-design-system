@@ -3674,6 +3674,11 @@ async function checkFiles(files, o) {
     const type = await sniffType(f, o.accept);
     if (!type) {
       const ext = extOf(f.name);
+      const known = o.accept.some((m) => FILE_TYPES[m]?.name === ext || ext === "JPEG" && m === "image/jpeg");
+      if (known) {
+        rejected.push({ file: f.name, ...o.unreadable ?? { reason: "ezt a f\xE1jlt nem tudjuk beolvasni (lehet, hogy s\xE9r\xFClt)", next: `Pr\xF3b\xE1ld \xFAjra export\xE1lni ${FILE_TYPES[o.accept.find((m) => FILE_TYPES[m]?.name === ext) ?? "image/jpeg"]?.name ?? ext}-k\xE9nt, \xE9s t\xF6ltsd fel \xFAjra.` } });
+        continue;
+      }
       rejected.push({ file: f.name, reason: `${ext ? `ezt a form\xE1tumot (${ext})` : "ezt a f\xE1jlt"} nem tudjuk fogadni \u2013 csak ${typeNames(o.accept)} lehet`, next: o.typeHint ?? `Mentsd el ${typeNames(o.accept).split(", ")[0]}-k\xE9nt, \xE9s t\xF6ltsd fel \xFAjra.` });
       continue;
     }
@@ -4574,7 +4579,8 @@ function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, dis
       maxSizeMB,
       unit: "vide\xF3",
       typeHint: "Alak\xEDtsd \xE1t MP4-re (pl. egy vide\xF3szerkeszt\u0151vel vagy a telefon exportj\xE1val), \xE9s t\xF6ltsd fel \xFAjra.",
-      sizeHint: "R\xF6vid\xEDtsd vagy t\xF6m\xF6r\xEDtsd a vide\xF3t, \xE9s pr\xF3b\xE1ld \xFAjra."
+      sizeHint: "R\xF6vid\xEDtsd vagy t\xF6m\xF6r\xEDtsd a vide\xF3t, \xE9s pr\xF3b\xE1ld \xFAjra.",
+      unreadable: { reason: "ezt a vide\xF3t nem tudjuk beolvasni", next: "Pr\xF3b\xE1ld \xFAjra export\xE1lni MP4-k\xE9nt." }
     });
     setRej(r.rejected[0] ?? null);
     if (r.ok[0]) {
@@ -8035,7 +8041,7 @@ import { Fragment as Fragment32, jsx as jsx107, jsxs as jsxs97 } from "react/jsx
 var ERR = {
   2: "A vide\xF3 nem t\xF6lt\u0151d\xF6tt le (h\xE1l\xF3zati hiba). Ellen\u0151rizd a kapcsolatot, \xE9s pr\xF3b\xE1ld \xFAjra.",
   3: "A vide\xF3f\xE1jl s\xE9r\xFClt, nem lehet lej\xE1tszani. T\xF6ltsd fel \xFAjra.",
-  4: "Ezt a vide\xF3t a b\xF6ng\xE9sz\u0151 nem tudja lej\xE1tszani (rossz vagy nem t\xE1mogatott form\xE1tum). MP4 (H.264) vagy WebM f\xE1jlt t\xF6lts fel."
+  4: "Ezt a vide\xF3t a b\xF6ng\xE9sz\u0151 nem tudja lej\xE1tszani (rossz vagy nem t\xE1mogatott form\xE1tum). Export\xE1ld \xFAjra MP4 (H.264) form\xE1tumban, \xE9s t\xF6ltsd fel \xFAjra."
 };
 var SEEK = 5;
 function VideoPlayer({ title, src, poster, captions = [], warnNoCaptions = true, onError, className }) {

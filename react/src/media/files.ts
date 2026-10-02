@@ -51,6 +51,9 @@ export type CheckOptions = {
   known?: ReadonlySet<string>;
   /** Mit tegyen, ha a típus rossz – a projekt pontosíthatja */
   typeHint?: string;
+  /** Olvashatatlan fájl: a kiterjesztése engedett típus (pl. .mp4), de a tartalma nem az (sérült, félbemaradt export).
+   *  Alap: „ezt a fájlt nem tudjuk beolvasni” + „Próbáld újra exportálni <TÍPUS>-ként, és töltsd fel újra.” */
+  unreadable?: { reason: string; next: string };
   /** Mit tegyen, ha túl nagy */
   sizeHint?: string;
   /** Egység a darab-üzenethez: „kép”, „videó”, „fájl” */
@@ -76,6 +79,9 @@ export async function checkFiles(files: readonly File[], o: CheckOptions) {
     const type = await sniffType(f, o.accept);
     if (!type) {
       const ext = extOf(f.name);
+      // A kiterjesztés szerint engedett típus, de a tartalom nem az → nem „rossz formátum” (önellentmondó lenne: „MP4 – csak MP4 lehet”), hanem olvashatatlan
+      const known = o.accept.some((m) => FILE_TYPES[m]?.name === ext || (ext === 'JPEG' && m === 'image/jpeg'));
+      if (known) { rejected.push({ file: f.name, ...(o.unreadable ?? { reason: 'ezt a fájlt nem tudjuk beolvasni (lehet, hogy sérült)', next: `Próbáld újra exportálni ${FILE_TYPES[o.accept.find((m) => FILE_TYPES[m]?.name === ext) ?? 'image/jpeg']?.name ?? ext}-ként, és töltsd fel újra.` }) }); continue; }
       rejected.push({ file: f.name, reason: `${ext ? `ezt a formátumot (${ext})` : 'ezt a fájlt'} nem tudjuk fogadni – csak ${typeNames(o.accept)} lehet`, next: o.typeHint ?? `Mentsd el ${typeNames(o.accept).split(', ')[0]}-ként, és töltsd fel újra.` });
       continue;
     }

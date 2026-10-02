@@ -66,7 +66,8 @@ export function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 
   const pick = async (list: FileList | null) => {
     if (!list?.length) return;
     const r = await checkFiles([list[0]], { accept: ['video/mp4'], maxSizeMB, unit: 'videó',
-      typeHint: 'Alakítsd át MP4-re (pl. egy videószerkesztővel vagy a telefon exportjával), és töltsd fel újra.', sizeHint: 'Rövidítsd vagy tömörítsd a videót, és próbáld újra.' });
+      typeHint: 'Alakítsd át MP4-re (pl. egy videószerkesztővel vagy a telefon exportjával), és töltsd fel újra.', sizeHint: 'Rövidítsd vagy tömörítsd a videót, és próbáld újra.',
+      unreadable: { reason: 'ezt a videót nem tudjuk beolvasni', next: 'Próbáld újra exportálni MP4-ként.' } });
     setRej(r.rejected[0] ?? null);
     if (r.ok[0]) { setFile(r.ok[0]); void runUpload(r.ok[0]); }
   };

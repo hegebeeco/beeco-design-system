@@ -28,6 +28,12 @@ export type CheckOptions = {
     known?: ReadonlySet<string>;
     /** Mit tegyen, ha a típus rossz – a projekt pontosíthatja */
     typeHint?: string;
+    /** Olvashatatlan fájl: a kiterjesztése engedett típus (pl. .mp4), de a tartalma nem az (sérült, félbemaradt export).
+     *  Alap: „ezt a fájlt nem tudjuk beolvasni” + „Próbáld újra exportálni <TÍPUS>-ként, és töltsd fel újra.” */
+    unreadable?: {
+        reason: string;
+        next: string;
+    };
     /** Mit tegyen, ha túl nagy */
     sizeHint?: string;
     /** Egység a darab-üzenethez: „kép”, „videó”, „fájl” */

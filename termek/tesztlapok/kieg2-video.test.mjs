@@ -25,7 +25,7 @@ export default async function ({ page, t }) {
   await t('töltés: jelzés szöveggel', async () => { ok((await c('video-tolt').locator('.bc-video-loading').innerText()).includes('Töltöm'), 'nincs töltés'); });
   await t('hibás fájl: ok + teendő + Újrapróbálás', async () => {
     const e = c('video-hiba').locator('.bc-moment'); await e.waitFor({ timeout: 5000 });
-    ok((await e.innerText()).includes('MP4'), await e.innerText()); ok(await c('video-hiba').getByRole('button', { name: 'Újrapróbálás' }).isVisible(), 'nincs gomb');
+    ok((await e.innerText()).includes('MP4') && !(await e.innerText()).includes('WebM'), await e.innerText()); ok(await c('video-hiba').getByRole('button', { name: 'Újrapróbálás' }).isVisible(), 'nincs gomb');
   });
   await t('beágyazás: kattintás előtt NINCS kérés a YouTube/Vimeo felé, kép sem', async () => {
     const betolteskor = await page.evaluate(() => performance.getEntriesByType('resource').map((e) => e.name).filter((u) => !/^(https?:\/\/127\.0\.0\.1|data:|blob:)/.test(u)));
