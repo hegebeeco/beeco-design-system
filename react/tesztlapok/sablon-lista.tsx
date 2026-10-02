@@ -11,16 +11,17 @@ const SZUROK: FilterDef[] = [
   { id: 'tipus', label: 'Típus', options: TIPUSOK.map((t) => ({ value: t, label: t })) },
   { id: 'aktiv', label: 'Állapot', options: [{ value: 'igen', label: 'aktív' }, { value: 'nem', label: 'inaktív' }] },
 ];
-const ALLAPOTOK: Array<[string, string]> = [['toltes', 'Töltés'], ['ures', 'Üres lista'], ['nincs-talalat', 'Nincs találat'], ['hiba', 'Hiba'], ['tiltott', 'Nincs jogosultság'], ['hosszu', 'Hosszú cím, sok gomb']];
+const ALLAPOTOK: Array<[string, string]> = [['toltes', 'Töltés'], ['ures', 'Üres lista'], ['nincs-talalat', 'Nincs találat'], ['szuro-nincs', 'Szűrésre nincs találat (keresés nélkül)'], ['hiba', 'Hiba'], ['tiltott', 'Nincs jogosultság'], ['hosszu', 'Hosszú cím, sok gomb']];
 
 function Oldal() {
   const a = allapot();
   const [q, setQ] = useState(a === 'nincs-talalat' ? 'zzzz' : '');
-  const [v, setV] = useState<FilterValues>({});
+  // szuro-nincs: kereső üres, csak a szűrő miatt nincs találat → a saját magyarázat (noResultsText), nem a keresési tipp
+  const [v, setV] = useState<FilterValues>(a === 'szuro-nincs' ? { tipus: TIPUSOK[0] } : {});
   const [hiba, setHiba] = useState(a === 'hiba');
   const [retrying, setRetrying] = useState(false);
   const detail = useDetailParam();
-  const rows = useMemo(() => (a === 'ures' ? [] : ADAT).filter((p) => matchText(p.nev, q)
+  const rows = useMemo(() => (a === 'ures' || a === 'szuro-nincs' ? [] : ADAT).filter((p) => matchText(p.nev, q)
     && (!v.tipus || p.tipus === v.tipus) && (!v.aktiv || p.aktiv === (v.aktiv === 'igen'))), [a, q, v]);
   const open = ADAT.find((p) => p.id === detail.id);
 
@@ -65,6 +66,7 @@ function Oldal() {
       skeleton={<DataTable data={[] as Partner[]} columns={oszlopok} caption="Partnerek" getRowId={(p) => p.id} rowLabel={(p) => p.nev} status="loading" densityToggle={false} />}
       emptyAction={<Button variant="secondary" onClick={() => notify.info('Mintaadat: importálás itt nincs.')}>Partnerek importálása</Button>}
       onClearFilters={clear}
+      noResultsText={q ? undefined : 'Ezekkel a szűrőkkel nincs partner. Lazíts a szűrőkön, vagy töröld őket.'}
       detail={{
         open: Boolean(open), onClose: detail.close, title: open?.nev ?? '', description: open ? `${open.tipus} · ${open.varos}` : undefined,
         footer: <><a className="bc-btn is-secondary" href="sablon-reszletek.html">Teljes oldal</a><a className="bc-btn" href="sablon-szerkeszto.html">Szerkesztés</a></>,

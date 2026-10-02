@@ -1,4 +1,4 @@
-/* beeco design system 1.27.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.28.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -7969,6 +7969,7 @@ function ListPage(p) {
       BeeMoment,
       {
         pillanat: "nincs-talalat",
+        sima: p.noResultsText,
         action: p.onClearFilters && /* @__PURE__ */ jsx105(Button, { variant: "secondary", onClick: p.onClearFilters, children: "Sz\u0171r\u0151k t\xF6rl\xE9se" })
       }
     ) });

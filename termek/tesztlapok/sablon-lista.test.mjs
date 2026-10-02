@@ -7,6 +7,13 @@ export default async function ({ page, t }) {
   const bees = () => page.locator('.bc-bee:visible').count();
   const act = () => page.evaluate(() => ({ text: (document.activeElement?.textContent || '').trim(), label: document.activeElement?.getAttribute('aria-label'), id: document.activeElement?.id }));
 
+  await t('noResultsText: kereső nélküli (szűrő miatti) üres találatnál a saját magyarázat látszik, nem a keresési tipp', async () => {
+    await go('szuro-nincs');
+    await page.locator('[data-pillanat="nincs-talalat"]').waitFor({ timeout: 3000 });
+    const s = await page.locator('.bc-moment').innerText();
+    ok(s.includes('Ezekkel a szűrőkkel nincs partner') && !s.includes('ékezet'), s);
+    await go();
+  });
   await t('egy h1, a lista 42 partnerrel, méhecske nincs (kész állapotban nem kell)', async () => {
     ok((await page.locator('h1').count()) === 1, 'nem egy h1 van'); ok((await page.locator('h1').innerText()) === 'Partnerek', 'rossz cím');
     ok((await page.locator('.bc-fb-count').innerText()).includes('42 partner'), 'nincs találatszám'); ok((await bees()) === 0, 'méhecske a kész listán');
@@ -17,6 +24,7 @@ export default async function ({ page, t }) {
     await page.locator('[data-pillanat="nincs-talalat"]').waitFor({ timeout: 3000 });
     ok((await bees()) === 1, 'nem pontosan egy méhecske'); ok((await page.locator('table').count()) === 0, 'üresen is van táblázat');
     ok(await page.locator('.bc-fb').isVisible(), 'a szűrősáv eltűnt – nem lehetne visszaállítani');
+    ok(!(await page.locator('.bc-moment').innerText()).includes('szűrőkkel'), 'kereséskor a szűrős magyarázat jelent meg');
     await page.locator('.bc-moment').getByRole('button', { name: 'Szűrők törlése' }).click();
     await until(async () => (await page.locator('.bc-fb-count').innerText()).includes('42 partner'), 'nem törölt');
     await until(async () => (await page.locator('[data-pillanat]').count()) === 0, 'a méhecske maradt');

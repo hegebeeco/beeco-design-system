@@ -11,6 +11,9 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.28.0 – 2026-10-02
+- **ListPage**: új `noResultsText` beállítás a „nincs találat” állapot magyarázatához. Eddig mindig a méhecske keresési tippje jelent meg („Próbáld rövidebben, vagy ékezet nélkül.”) – kereső nélküli, csak szűrős listán (pl. hónapválasztó) ez félrevezető volt. Tesztlap: `sablon-lista` („Szűrésre nincs találat”).
+
 ## 1.27.1 – 2026-10-02
 - Javítás: érintős eszközön a táblázat-cellák linkje a magasság mellett **szélességben** is legalább 44 px (a nagyon rövid név, pl. „vds” eddig 22 px széles célfelület volt). Tesztlap: `adat-tabla` („Rövid nevű link a cellában”).
 

@@ -42,6 +42,8 @@ export type ListPageProps = TemplateHeadProps & {
   skeleton?: ReactNode;
   /** Üres lista: a sima mondat a méhecske alatt (alap: a szövegkészletből) és egy teendő (secondary gomb – a fő gomb a fejlécben van) */
   emptyText?: string;
+  /** „Nincs találat” állapot magyarázata (alap: a méhecske keresési tippje). Kereső nélküli listán add meg (pl. „Ebben a hónapban nincs …”). (1.28) */
+  noResultsText?: string;
   emptyAction?: ReactNode;
   /** Nincs találat: „Szűrők törlése” gomb */
   onClearFilters?: () => void;
@@ -66,7 +68,7 @@ export function ListPage(p: ListPageProps) {
   } else if (status === 'no-results') {
     body = (
       <div className="bc-card bc-sablon-state">
-        <BeeMoment pillanat="nincs-talalat"
+        <BeeMoment pillanat="nincs-talalat" sima={p.noResultsText}
           action={p.onClearFilters && <Button variant="secondary" onClick={p.onClearFilters}>Szűrők törlése</Button>} />
       </div>
     );
