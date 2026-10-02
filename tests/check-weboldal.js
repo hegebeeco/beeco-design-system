@@ -63,6 +63,13 @@ const egyezik = (a, b) => a.length === b.length && a.every((x, i) => x === b[i])
 if (!egyezik(P.sarok, [...new Set(Object.values(T.termek.radius))].sort((a, b) => a - b))) baj('a paletta sarok-listája eltér a theme-termek.json-tól');
 if (!egyezik(P.keret, [...new Set(Object.values(T.termek.border))].sort((a, b) => a - b))) baj('a paletta keret-listája eltér a theme-termek.json-tól');
 
+// 9. A nevek a DS saját CSS-ét követik – enélkül a Webflow és a bc-*.css észrevétlenül elcsúszik
+const css = fs.readFileSync(path.join(ROOT, 'dist/css/beeco-tokens.css'), 'utf8');
+const cssNevek = new Set([...css.matchAll(/--(bc-[a-z0-9-]+)\s*:/g)].map((m) => m[1]));
+for (const v of V.valtozok) {
+  if (!cssNevek.has(v.nev)) baj(`a(z) "${v.nev}" változónév nem szerepel a dist/css/beeco-tokens.css-ben – a Webflow és a DS CSS elcsúszna`);
+}
+
 // 9. A dokumentáció megvan
 if (!fs.existsSync(path.join(ROOT, 'docs/weboldal.md'))) baj('hiányzik a docs/weboldal.md');
 

@@ -33,9 +33,10 @@ for (const szerep of Object.keys(T.termek.light)) {
   szin(`bc-${szerep}`, T.termek.light[szerep], T.termek.dark[szerep]);
 }
 
-// 2. Sarok, keret – a termékbőr saját értékei (2 · 4 · 8 · 12 · kapszula, 1 és 2 px keret)
-for (const [k, v] of Object.entries(T.termek.radius)) meret(`bc-radius-${k}`, v);
-for (const [k, v] of Object.entries(T.termek.border)) meret(`bc-border-${k}`, v);
+// 2. Sarok, keret – a NEVEK a DS saját CSS-ét követik (dist/css/beeco-tokens.css: --bc-r-*, --bc-bw-*),
+//    hogy aki a bc-*.css-t olvassa, a Webflow-ban ugyanazt a nevet találja.
+for (const [k, v] of Object.entries(T.termek.radius)) meret(`bc-r-${k}`, v);
+for (const [k, v] of Object.entries(T.termek.border)) meret(`bc-bw-${k}`, v);
 
 // 3. Árnyék – kemény, átlós, elmosás nélkül. A Webflow-ban nincs „árnyék” változótípus,
 //    ezért az eltolást méretként visszük fel, és az osztály rakja össze (x y 0 0 var(--bc-shadow)).
@@ -45,9 +46,10 @@ for (const [k, [x, y]] of Object.entries(T.termek.shadow)) {
   meret(`bc-shadow-${k}-y`, y);
 }
 
-// 4. Térköz és betűméret – a 4 px rács és a 7 fokozatú skála
-for (const [k, v] of Object.entries(T.space)) meret(`bc-space-${k}`, v);
-for (const [k, v] of Object.entries(T.fontSize)) meret(`bc-text-${k}`, v);
+// 4. Térköz, betűméret és a minimális érintési felület
+for (const [k, v] of Object.entries(T.space)) meret(`bc-sp-${k}`, v);
+for (const [k, v] of Object.entries(T.fontSize)) meret(`bc-fs-${k}`, v);
+meret('bc-tap', 44);   // a legkisebb érintési felület – a Designerben is kéznél kell legyen
 
 const ki = {
   _readme: 'GENERÁLT (tools/webflow-build.js) – kézzel ne szerkeszd. Ez a Webflow „beeco DS” változó-kollekció teljes tartalma. A `sotet` mező a kollekció „Sötét” módjának értéke (null = nincs külön sötét érték).',
@@ -67,7 +69,10 @@ const paletta = {
   betuMeret: Object.values(T.fontSize).sort((a, b) => a - b),
   betuCsalad: { display: T.font.display[0], body: T.font.body[0] },
   betuVastagsag: Object.values(T.fontWeight),
+  // A termékbőrben az árnyék kemény és átlós (elmosás 0). EGYETLEN kivétel a --bc-shadow-soft,
+  // amit a nem kattintható kártyák kapnak; ezt az elmosás-értékével engedjük át az ellenőrzőn.
   arnyekElmosas: 0,
+  arnyekElmosasKivetel: [28],
   idotartamMax: T.duration.slow,
   gorbe: T.easing.out,
 };

@@ -176,7 +176,7 @@
       "sotet": "#000000"
     },
     {
-      "nev": "bc-radius-xs",
+      "nev": "bc-r-xs",
       "tipus": "Size",
       "ertek": {
         "value": 2,
@@ -185,7 +185,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-radius-s",
+      "nev": "bc-r-s",
       "tipus": "Size",
       "ertek": {
         "value": 4,
@@ -194,7 +194,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-radius-m",
+      "nev": "bc-r-m",
       "tipus": "Size",
       "ertek": {
         "value": 8,
@@ -203,7 +203,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-radius-l",
+      "nev": "bc-r-l",
       "tipus": "Size",
       "ertek": {
         "value": 12,
@@ -212,7 +212,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-radius-pill",
+      "nev": "bc-r-pill",
       "tipus": "Size",
       "ertek": {
         "value": 999,
@@ -221,7 +221,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-border-hair",
+      "nev": "bc-bw-hair",
       "tipus": "Size",
       "ertek": {
         "value": 1,
@@ -230,7 +230,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-border-base",
+      "nev": "bc-bw-base",
       "tipus": "Size",
       "ertek": {
         "value": 2,
@@ -293,7 +293,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-space-1",
+      "nev": "bc-sp-1",
       "tipus": "Size",
       "ertek": {
         "value": 4,
@@ -302,7 +302,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-space-2",
+      "nev": "bc-sp-2",
       "tipus": "Size",
       "ertek": {
         "value": 8,
@@ -311,7 +311,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-space-3",
+      "nev": "bc-sp-3",
       "tipus": "Size",
       "ertek": {
         "value": 12,
@@ -320,7 +320,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-space-4",
+      "nev": "bc-sp-4",
       "tipus": "Size",
       "ertek": {
         "value": 16,
@@ -329,7 +329,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-space-5",
+      "nev": "bc-sp-5",
       "tipus": "Size",
       "ertek": {
         "value": 24,
@@ -338,7 +338,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-space-6",
+      "nev": "bc-sp-6",
       "tipus": "Size",
       "ertek": {
         "value": 32,
@@ -347,7 +347,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-space-7",
+      "nev": "bc-sp-7",
       "tipus": "Size",
       "ertek": {
         "value": 48,
@@ -356,7 +356,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-space-8",
+      "nev": "bc-sp-8",
       "tipus": "Size",
       "ertek": {
         "value": 64,
@@ -365,7 +365,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-text-xs",
+      "nev": "bc-fs-xs",
       "tipus": "Size",
       "ertek": {
         "value": 12,
@@ -374,7 +374,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-text-s",
+      "nev": "bc-fs-s",
       "tipus": "Size",
       "ertek": {
         "value": 14,
@@ -383,7 +383,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-text-m",
+      "nev": "bc-fs-m",
       "tipus": "Size",
       "ertek": {
         "value": 16,
@@ -392,7 +392,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-text-l",
+      "nev": "bc-fs-l",
       "tipus": "Size",
       "ertek": {
         "value": 20,
@@ -401,7 +401,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-text-xl",
+      "nev": "bc-fs-xl",
       "tipus": "Size",
       "ertek": {
         "value": 26,
@@ -410,7 +410,7 @@
       "sotet": null
     },
     {
-      "nev": "bc-text-2xl",
+      "nev": "bc-fs-2xl",
       "tipus": "Size",
       "ertek": {
         "value": 34,
@@ -419,10 +419,19 @@
       "sotet": null
     },
     {
-      "nev": "bc-text-3xl",
+      "nev": "bc-fs-3xl",
       "tipus": "Size",
       "ertek": {
         "value": 46,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-tap",
+      "tipus": "Size",
+      "ertek": {
+        "value": 44,
         "unit": "px"
       },
       "sotet": null

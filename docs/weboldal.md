@@ -74,6 +74,42 @@ Ezek nem hibák, hanem a tervezést befolyásoló tények. Mindegyik élesben de
   (a CDN 1–2 percig régi HTML-t ad) → csak utána éles.
 - **Elem-szintű műveletek** tartósan 429-re futhatnak; a megoldás a Designerben futó MCP app csatlakoztatása.
 
+## 3/b. Hogyan kötjük a stílust a változóra (ez a lényeg)
+
+A Webflow Designer osztálypanelje nem fogad `var()`-t, **az API viszont igen**, és valódi
+változó-kötéssé alakítja:
+
+```
+data_style_tool > create_style / update_style
+  properties: [{ property_name: "background-color",
+                 property_value: "var(--_beeco-ds---bc-accent)" }]
+```
+
+A visszakapott stílusban az érték már `{"id": "variable-…"}`, nem szöveg. Ettől lesz a token
+egy helyen átállítható. A változók CSS-neve a kollekció nevét is tartalmazza:
+`--_beeco-ds---bc-accent` (a „beeco DS” kollekcióban a `bc-accent`).
+
+**A `whtml` builder ezt NEM tudja:** a CSS-ében a `var()` nyersen marad, és figyelmeztetést ad
+(`unknown_variable`). Ezért a menet: szerkezet `whtml`-lel, utána a tokenes tulajdonságok
+`data_style_tool`-lal. Ugyanez igaz a `font-family`-re.
+
+Kombinált osztály (`.bc-btn.is-secondary`): `create_style` + `parent_style_names: ["bc-btn"]`
+(tömb, nem egyetlen név).
+
+**Amit a Webflow-stílus nem tud átvenni a DS CSS-ből:** saját CSS-tulajdonság (`--_bg`),
+`color-mix()`, `:has()`. Ezeket laposítani kell: a változatok közvetlenül állítják a
+háttér- és szövegszínt.
+
+## 3/c. Élő hivatkozás a Webflow-ban
+
+`/ds-bemutato` (DS bemutató, belső) – gombok, kártya, panel, címkék, mind a `bc-` osztályokkal
+és változó-kötésekkel. **Draft**, mert a site csomagja nem engedi API-ból a sitemapből kivenni,
+és nem akarjuk, hogy nyilvános, indexelt oldal legyen. Ha nézni akarod: draft=false → staging
+publikálás → nézd meg → draft=true vissza.
+
+Az első mérése: 0 arculati, 0 tipográfiai, 0 hozzáférhetőségi és 0 szerkezeti lelet. A két P1 a
+site egészén futó `window.Stripe is not a function` konzolhiba, nem ezé az oldalé.
+
 ## 4. Mit viszünk ki, mit nem
 
 A weboldal **nem** kap meg mindent a DS-ből:

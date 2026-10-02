@@ -71,6 +71,9 @@
     700
   ],
   "arnyekElmosas": 0,
+  "arnyekElmosasKivetel": [
+    28
+  ],
   "idotartamMax": 400,
   "gorbe": "cubic-bezier(.23,1,.32,1)"
 }

@@ -81,7 +81,10 @@ module.exports = function meresWeb(opts) {
     // árnyék: a termékbőrben az elmosás mindig 0
     if (s.boxShadow && s.boxShadow !== 'none' && !s.boxShadow.includes('inset')) {
       const sz = s.boxShadow.match(/(-?[\d.]+)px\s+(-?[\d.]+)px\s+([\d.]+)px/);
-      if (sz && parseFloat(sz[3]) > parseFloat(P.arnyekElmosas)) add('Arculat', 'P2', `elmosott árnyék (${sz[3]} px) – a termékbőrben kemény, átlós árnyék van`, hol(el));
+      const kivetel = (P.arnyekElmosasKivetel || []).map(Number);
+      if (sz && parseFloat(sz[3]) > parseFloat(P.arnyekElmosas) && !kivetel.includes(Math.round(parseFloat(sz[3])))) {
+        add('Arculat', 'P2', `elmosott árnyék (${sz[3]} px) – a termékbőrben kemény, átlós árnyék van (kivétel: a kártyák lágy árnyéka)`, hol(el));
+      }
     }
     // betűcsalád és méret
     const cs = (s.fontFamily || '').split(',')[0].replace(/["']/g, '').trim();
