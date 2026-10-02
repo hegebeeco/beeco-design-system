@@ -3,6 +3,13 @@
    Visszaad: leletek listája { kat, sulyos, mi, hol } – kategóriák: docs/komponensek.md 3/C.
    ============================================================ */
 module.exports = function meres(opts) {
+  // Fagyasztás (alap: be): mérés közben nincs átmenet és animáció – a félúton megállt átmenet (pl. rejtett böngészőfül,
+  // lassú gép) különben álkontraszt-leletet adna (köztes háttérszín). { fagyaszt: false } a nyers állapotot méri.
+  const fagy = opts && opts.fagyaszt === false ? null : document.createElement('style');
+  if (fagy) { fagy.textContent = '*,*::before,*::after{transition:none!important;animation-play-state:paused!important}'; document.head.appendChild(fagy); void document.body.offsetHeight; }
+  try { return meresBelso(opts); } finally { if (fagy) fagy.remove(); }
+
+  function meresBelso(opts) {
   const L = [];
   const add = (kat, sulyos, mi, hol) => L.push({ kat, sulyos, mi, hol });
   const desc = (el) => {
@@ -37,7 +44,8 @@ module.exports = function meres(opts) {
   }
 
   // --- Színezés: szöveg-kontraszt (a tényleges, átlátszatlan háttérhez)
-  const rgb = (s) => (s.match(/[\d.]+/g) || []).map(Number);
+  // rgb()/rgba() és color(srgb r g b / a) – az utóbbit a color-mix() adja, 0–1 közötti komponensekkel
+  const rgb = (s) => { const n = (s.match(/[\d.]+/g) || []).map(Number); return /^color\(srgb/.test(s) ? [n[0] * 255, n[1] * 255, n[2] * 255, ...(n.length > 3 ? [n[3]] : [])] : n; };
   const lum = ([r, g, b]) => [r, g, b].map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }).reduce((a, v, i) => a + v * [0.2126, 0.7152, 0.0722][i], 0);
   const bgOf = (el) => { for (let e = el; e; e = e.parentElement) { const s = getComputedStyle(e); if (s.backgroundImage !== 'none' && !s.backgroundImage.includes('gradient(45deg')) return null; const c = rgb(s.backgroundColor); if (c.length === 3 || c[3] > 0.95) return c; } return [255, 255, 255]; };
   const seen = new Set();
@@ -57,7 +65,8 @@ module.exports = function meres(opts) {
 
   // --- 3/A: minden beviteli mezőnek súgó gomb; hossz-/tartomány-határnál látható tartomány és számláló
   for (const f of document.querySelectorAll('.bc-field')) {
-    const ctl = f.querySelector('input:not([type=search]), select, textarea, [role=combobox], .bc-tagcloud, [role=switch]');
+    // a rejtett belső mező (pl. Radix jelölőnégyzet „bubble” inputja: aria-hidden, tabindex -1) nem a látható vezérlő
+    const ctl = f.querySelector('input:not([type=search]):not([type=hidden]):not([aria-hidden="true"]), select:not([aria-hidden="true"]), textarea, [role=combobox], .bc-tagcloud, [role=switch], [role=checkbox]');
     if (!ctl) continue;
     if (!f.querySelector('.bc-help-btn')) add('Szöveg', 'P1', 'beviteli mező súgó (ⓘ) nélkül – 3/A', desc(ctl));
     if (ctl.hasAttribute('maxlength') && ctl.closest('.bc-field') === f && !ctl.closest('.bc-tagcloud') && !f.querySelector('.bc-count')) add('Adat', 'P2', 'max. hossz van, de nincs számláló (pl. 213/255) – 3/A', desc(ctl));
@@ -130,4 +139,5 @@ module.exports = function meres(opts) {
     }
   }
   return L;
+  }
 };

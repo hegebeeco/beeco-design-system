@@ -120,3 +120,28 @@
 .bc-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .bc-avatar > span { padding-top: .12em; }
 .bc-map .bc-map-icon:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; border-radius: var(--bc-r-s); }
+
+/* ---------- Térkép-panel (MapPanel, Javaslat 13/2) ---------- */
+.bc-map-panel { display: grid; gap: var(--bc-sp-3); min-width: 0; }
+.bc-map-panel-bar { gap: var(--bc-sp-3); }
+/* statikus doboz: halvány, elmosott árnyék (a kattintható elemek kemény árnyéka itt nem kell) */
+.bc-map-panel-map { isolation: isolate; box-shadow: var(--bc-shadow-soft); }
+.bc-map-panel-map > * { height: 100%; min-height: inherit; }
+.bc-map-panel-list { margin: 0; padding: 0; list-style: none; }
+.bc-map-panel-list li { display: grid; gap: var(--bc-sp-1); padding-block: var(--bc-sp-2); }
+.bc-map-panel-item { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2); }
+.bc-map-panel-item a { display: inline-flex; align-items: center; min-height: var(--bc-tap); }
+.bc-map-panel-note { margin: 0; }
+
+/* A Leaflet CSS-e gyakran a DS UTÁN töltődik be (lusta oldal) – azonos erősségnél nyerne, ezért itt dupla osztály.
+   Betű, buborék, bezáró gomb (44 px), DS-gomb a buborékban, forrásjelölés (átlátszatlan: a térkép mintája nem zavarja). */
+.bc-map.bc-map .leaflet-container, .bc-map.bc-map.leaflet-container { font-family: var(--bc-font-body); font-size: var(--bc-fs-s); }
+.bc-map.bc-map .leaflet-control-attribution { color: var(--bc-ink); background: var(--bc-surface); }
+.bc-map.bc-map .leaflet-control-attribution a { color: var(--bc-ink); text-decoration: underline; }
+.bc-map.bc-map .leaflet-popup-content-wrapper, .bc-map.bc-map .leaflet-popup-tip { color: var(--bc-ink); background: var(--bc-surface); }
+.bc-map.bc-map .leaflet-popup-content { margin-right: var(--bc-tap); }
+.bc-map.bc-map a.leaflet-popup-close-button { width: var(--bc-tap); height: var(--bc-tap); font: var(--bc-fw-bold) var(--bc-fs-l) / var(--bc-tap) var(--bc-font-body); color: var(--bc-ink); }
+.bc-map.bc-map a.leaflet-popup-close-button:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: -3px; }
+.bc-map.bc-map a.bc-btn { color: var(--bc-on-accent); }
+.bc-map.bc-map a.bc-btn.is-secondary { color: var(--bc-ink); }
+.bc-map.bc-map .leaflet-control-zoom a, .bc-map.bc-map .leaflet-bar a { width: var(--bc-tap); height: var(--bc-tap); line-height: var(--bc-tap); font-family: var(--bc-font-body); color: var(--bc-ink); background: var(--bc-surface); }

@@ -145,6 +145,15 @@
   --_c1: var(--bc-data-cat-3); --_c2: var(--bc-data-cat-5); --_c3: var(--bc-data-cat-1); --_c4: var(--bc-data-cat-8);
   --_c5: var(--bc-data-cat-7); --_c6: var(--bc-data-cat-6); --_c7: var(--bc-data-cat-2); --_c8: var(--bc-data-cat-4);
   --_q1: var(--bc-data-seq-cb-1); --_q2: var(--bc-data-seq-cb-2); --_q3: var(--bc-data-seq-cb-3); --_q4: var(--bc-data-seq-cb-4); --_q5: var(--bc-data-seq-cb-5); }
+/* Állapot-paletta (Javaslat 14, a 12-es skálára): a sorozatok sorrendje jelentés – 1 = jó … 5 = rossz. A kártya, a rajz és a
+   jelmagyarázat egyaránt megkapja az osztályt, mert mindhárom saját --_c változókat ad. Színtévesztő-módban az allapot-cb pár. */
+:is(.bc-chart-card, .bc-chart, .bc-legend).bc-pal-allapot {
+  --_c1: var(--bc-data-allapot-1); --_c2: var(--bc-data-allapot-2); --_c3: var(--bc-data-allapot-3);
+  --_c4: var(--bc-data-allapot-4); --_c5: var(--bc-data-allapot-5); }
+:is([data-cb]:not([data-cb="false"]), .ds-cb) :is(.bc-chart-card, .bc-chart, .bc-legend).bc-pal-allapot,
+:is(.bc-chart-card, .bc-chart, .bc-legend).bc-pal-allapot:is([data-cb]:not([data-cb="false"]), .ds-cb) {
+  --_c1: var(--bc-data-allapot-cb-1); --_c2: var(--bc-data-allapot-cb-2); --_c3: var(--bc-data-allapot-cb-3);
+  --_c4: var(--bc-data-allapot-cb-4); --_c5: var(--bc-data-allapot-cb-5); }
 .bc-s1 { --_s: var(--_c1); } .bc-s2 { --_s: var(--_c2); } .bc-s3 { --_s: var(--_c3); } .bc-s4 { --_s: var(--_c4); }
 .bc-s5 { --_s: var(--_c5); } .bc-s6 { --_s: var(--_c6); } .bc-s7 { --_s: var(--_c7); } .bc-s8 { --_s: var(--_c8); }
 
@@ -175,6 +184,14 @@
 .bc-legend { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2) var(--bc-sp-4); margin: 0; padding: 0; list-style: none; font-size: var(--bc-fs-s); }
 .bc-legend li { display: inline-flex; align-items: center; gap: var(--bc-sp-1); }
 .bc-swatch { flex: none; overflow: visible; }
+/* Sorozat-kapcsoló a jelmagyarázatban (ChartCard seriesToggle): kapcsológomb, a kikapcsolt áthúzva, halvány mintával (a szöveg kontrasztja marad) */
+.bc-legend-btn { display: inline-flex; align-items: center; gap: var(--bc-sp-1); min-height: 32px; padding: 0 var(--bc-sp-2);
+  font: inherit; color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line-soft); border-radius: var(--bc-r-pill); cursor: pointer; }
+.bc-legend-btn.is-off { text-decoration: line-through; color: var(--bc-ink-soft); background: transparent; border-style: dashed; }
+.bc-legend-btn.is-off .bc-swatch { opacity: .35; }
+.bc-legend-btn:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .bc-legend-btn:hover { border-color: var(--bc-line); } }
+@media (pointer: coarse) { .bc-legend-btn { min-height: var(--bc-tap); } }
 .bc-chart-body { min-width: 0; }
 .bc-chart-skel { height: 200px; }
 .bc-disclosure { border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }

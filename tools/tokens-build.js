@@ -58,7 +58,7 @@ function buildCss() {
   L.push(`  --bc-tap: ${px(core.tap)};`);
   for (const [n, v] of Object.entries(core.z)) if (!n.startsWith('_')) L.push(`  --bc-z-${n}: ${v};`);
   L.push('', '  /* Adatskálák (grafikon, térkép) */');
-  ['seq', 'div', 'seq-cb', 'div-cb'].forEach(k => core.data[k].forEach((v, i) => L.push(`  --bc-data-${k}-${i + 1}: ${v};`)));
+  ['seq', 'div', 'seq-cb', 'div-cb', 'allapot', 'allapot-cb'].forEach(k => core.data[k].forEach((v, i) => L.push(`  --bc-data-${k}-${i + 1}: ${v};`)));
   categorical.forEach((v, i) => L.push(`  --bc-data-cat-${i + 1}: ${v};`));
   L.push('', '  /* 2. TERMÉKBŐR – forma */');
   for (const [n, v] of Object.entries(termek.radius)) L.push(`  --bc-r-${n}: ${px(v)};`);

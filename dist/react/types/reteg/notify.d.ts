@@ -28,5 +28,13 @@ export declare const notify: {
     error: (message: string, opts?: ToastOptions) => string;
     info: (message: string, opts?: ToastOptions) => string;
     warning: (message: string, opts?: ToastOptions) => string;
+    /**
+     * Visszavonható művelet (Javaslat 13/6): megerősítő ablak helyett siker-értesítés „Visszavonás” gombbal, 10 mp-ig.
+     * Csak valóban visszafordítható műveletnél (a projekt tudja a fordítottját hívni) – törlésnél, kiküldésnél nem.
+     */
+    undo: (message: string, onUndo: () => void, opts?: {
+        label?: string;
+        duration?: number;
+    }) => string;
     dismiss: typeof dismiss;
 };

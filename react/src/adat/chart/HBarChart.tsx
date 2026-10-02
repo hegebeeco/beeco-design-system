@@ -3,6 +3,7 @@ import { clip, fmt, linear, niceTicks } from '../format';
 import { useWidth } from '../useWidth';
 import { CH } from './Frame';
 import { sc } from './marks';
+import { paletteClass } from './types';
 import { findOutlier, outlierNote } from './outlier';
 import type { BarChartProps } from './BarChart';
 
@@ -27,7 +28,7 @@ export function HBarChart({ data, clipOutlier = true, valueLabels = true, label 
   const x = linear(lo, hi, l, l + pw);
 
   return (
-    <div className="bc-chart" ref={box}>
+    <div className={paletteClass(data) ? `bc-chart ${paletteClass(data)}` : 'bc-chart'} ref={box}>
       {width > 0 && (
         <svg width={width} height={h} viewBox={`0 0 ${width} ${h}`} role="img" aria-label={`${label ?? `${s.label} (${data.unit})`}. A pontos számok az adattáblában.`}>
           <text className="bc-ax-title" x={4} y={14}>{data.xLabel}</text>

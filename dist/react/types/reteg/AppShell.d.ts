@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react';
 import { type RenderLink } from './NavTabs';
+import { type Evszak } from '../marka/evszak';
 export type NavItem = {
     href: string;
     label: string;
@@ -40,6 +41,10 @@ export type AppShellProps = {
     navLabel?: string;
     /** A váz gombjainak feliratai (pl. angolul) – ami hiányzik, az magyar marad */
     labels?: Partial<AppShellLabels>;
+    /** Díszítő háttér a tartalomrész mögött (Javaslat 10): 'honeycomb' = méhsejt-minta a méz színéből */
+    pattern?: 'honeycomb';
+    /** Évszakos díszítés a mintán (Javaslat 11): 'auto' = a mai dátum szerint, vagy egy adott évszak; alapból nincs */
+    season?: 'auto' | Evszak;
     children: ReactNode;
 };
 /**
@@ -48,4 +53,4 @@ export type AppShellProps = {
  * 900 px alatt a sáv behúzható fiók (☰): Radix Dialog – fókuszcsapda, Esc, háttér; linkre koppintva bezár, a fókusz visszaáll a ☰-re.
  * Az első Tab-ra „Ugrás a tartalomra” ugrólink jelenik meg. Az oldal címe a tartalom tetején van (PageHeader).
  */
-export declare function AppShell({ brand, brandCompact, nav, topbar, account, collapsible, collapseKey, renderLink, skipLabel, navLabel, labels, children }: AppShellProps): import("react").JSX.Element;
+export declare function AppShell({ brand, brandCompact, nav, topbar, account, collapsible, collapseKey, renderLink, skipLabel, navLabel, labels, pattern, season, children }: AppShellProps): import("react").JSX.Element;

@@ -18,6 +18,8 @@ export type FrameCtx = {
     hi: number;
     decimals: number;
     narrow: boolean;
+    /** A jobb oldali margó, amit a padRight végül kapott (a grafikon ebből látja, kifér-e a végcímke) */
+    padR: number;
 };
 type Props = {
     data: ChartData;
@@ -28,7 +30,8 @@ type Props = {
     /** Legkisebb sáv egy kategóriának – ha nem fér el, a grafikon oldalra görgethető (telefon, 365 nap) */
     minBand?: number;
     /** Jobb oldali hely (vonalvégi címkék) */
-    padRight?: (narrow: boolean) => number;
+    /** Jobb margó; `spare` = mennyi hely marad jobbra görgetés nélkül (a minimális sávszélesség mellett) */
+    padRight?: (narrow: boolean, spare: number) => number;
     label: string;
     children: (c: FrameCtx) => ReactNode;
     /** Rajz alatti megjegyzés (pl. kiugró érték) */

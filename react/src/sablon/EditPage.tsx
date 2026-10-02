@@ -10,6 +10,7 @@ import { PageHeader } from '../reteg/PageHeader';
 import { notify } from '../reteg/notify';
 import { defaultLink } from '../reteg/NavTabs';
 import { useUnsavedChanges } from '../kieg';
+import { DraftNotice, useDraft } from '../form/useDraft';
 import { ErrorSummary, useLinkGuard, type FormError } from './ErrorSummary';
 import { SablonFrame, useTemplateTitle, type TemplateHeadProps } from './Frame';
 
@@ -44,6 +45,11 @@ export type EditPageProps = TemplateHeadProps & {
   /** Élő előnézet (pl. PreviewCard) – széles helyen jobb oldalt, telefonon az űrlap alatt */
   preview?: ReactNode;
   previewLabel?: string;
+  /**
+   * Piszkozat (Javaslat 13/7): a módosított űrlap az eszközön megmarad; újranyitáskor felajánljuk a visszaállítást,
+   * sikeres mentés után törlődik. key: űrlap + rekord (pl. „esemeny:126”); onRestore: az értékek visszatöltése (dirty marad).
+   */
+  draft?: { key: string | null; values: unknown; onRestore: (values: never) => void };
   /** A szakaszok (FormSection) – vagy függvény, ami megkapja a hibákat */
   children: ReactNode | ((ctx: EditContext) => ReactNode);
 };
@@ -67,6 +73,7 @@ export function EditPage(p: EditPageProps) {
   const [general, setGeneral] = useState<string>();
   const [failed, setFailed] = useState(0);
   const guard = useUnsavedChanges(dirty && !busy);
+  const draft = useDraft<unknown>({ key: status === 'ready' ? p.draft?.key ?? null : null, values: p.draft?.values, dirty, onRestore: (v) => (p.draft?.onRestore as ((x: unknown) => void) | undefined)?.(v) });
   useLinkGuard(dirty && !busy, guard.confirm);
 
   // Ha újra módosít, a „mentve” pillanat eltűnik
@@ -92,6 +99,7 @@ export function EditPage(p: EditPageProps) {
       setBusy(false);
       if (Array.isArray(r) && r.length) { setServer(r); fail(); return; }
       setAttempted(false); setDone(true);
+      draft.clear();
       if (p.savedMoment !== false) setSaved(true);
       notify.success(p.successMessage ?? 'Mentve.');
     } catch (err) {
@@ -114,6 +122,7 @@ export function EditPage(p: EditPageProps) {
         <div className={cx('bc-sablon-cols', Boolean(preview) && 'has-preview')}>
           <form ref={form} className="bc-sablon-form" noValidate onSubmit={(e) => void submit(e)} aria-busy={busy || undefined}>
             {showSummary && <ErrorSummary ref={summary} errors={errors} general={general} form={form} />}
+            {draft.draft && <DraftNotice savedAt={draft.draft.savedAt} onRestore={draft.restore} onDiscard={draft.discard} />}
             {typeof p.children === 'function' ? p.children({ errorOf, submitting: busy }) : p.children}
             <div className="bc-sablon-bar">
               <div className="bc-sablon-bar-note">

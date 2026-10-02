@@ -22,6 +22,9 @@ export { DateRangePicker, type DateRange } from './pickers/DateRangePicker';
 export { Calendar } from './pickers/Calendar';
 export { formatHuDate, parseHuDate, localToUtcIso, utcToLocal, todayIso } from './pickers/date';
 export { FormSection, FormActions } from './form/FormSection';
+// Javaslat 13 (2026-10-02): időzítés-mező és piszkozat
+export { ScheduleField, scheduleIssues, type ScheduleFieldProps, type ScheduleValue } from './form/ScheduleField';
+export { useDraft, DraftNotice, type DraftOptions } from './form/useDraft';
 export { cx } from './cx';
 
 // 02 – Adat és grafikon · 03 – Rétegek és navigáció · 04 – Média és speciális (jóváhagyva 2026-10-01)
@@ -33,3 +36,4 @@ export * from './kieg';
 export * from './kieg2';
 export * from './sablon';
 export * from './tema';
+export * from './marka';

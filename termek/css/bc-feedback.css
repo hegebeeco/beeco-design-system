@@ -41,3 +41,7 @@
 .bc-empty { display: grid; justify-items: center; gap: var(--bc-sp-3); padding: var(--bc-sp-7) var(--bc-sp-4); text-align: center; color: var(--bc-ink-soft); }
 .bc-empty img, .bc-empty svg { width: 96px; height: auto; }
 .bc-empty strong { font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-xl); color: var(--bc-ink); }
+
+/* ---- Állapotjelvény (StatusBadge, Javaslat 13/5): a bc-badge hangnem-színei + piktogram (nem csak szín) ---- */
+.bc-status { white-space: nowrap; }
+.bc-status > svg { flex: none; }

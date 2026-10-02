@@ -2,7 +2,7 @@ import { useId, useRef, type ReactNode } from 'react';
 import { clip, fmt, labelEvery, linear, niceTicks } from '../format';
 import { useWidth } from '../useWidth';
 import { GapPattern } from './marks';
-import { isGap, type ChartData } from './types';
+import { isGap, paletteClass, type ChartData } from './types';
 
 export const CH = 7; // egy felirat-karakter becsült szélessége (fs-xs), px
 export type Plot = { l: number; t: number; w: number; h: number };
@@ -15,6 +15,8 @@ export type FrameCtx = {
   y: (v: number) => number;
   lo: number; hi: number; decimals: number;
   narrow: boolean;
+  /** A jobb oldali margó, amit a padRight végül kapott (a grafikon ebből látja, kifér-e a végcímke) */
+  padR: number;
 };
 
 type Props = {
@@ -25,7 +27,8 @@ type Props = {
   /** Legkisebb sáv egy kategóriának – ha nem fér el, a grafikon oldalra görgethető (telefon, 365 nap) */
   minBand?: number;
   /** Jobb oldali hely (vonalvégi címkék) */
-  padRight?: (narrow: boolean) => number;
+  /** Jobb margó; `spare` = mennyi hely marad jobbra görgetés nélkül (a minimális sávszélesség mellett) */
+  padRight?: (narrow: boolean, spare: number) => number;
   label: string;
   children: (c: FrameCtx) => ReactNode;
   /** Rajz alatti megjegyzés (pl. kiugró érték) */
@@ -44,7 +47,8 @@ export function Frame({ data, min, max, height = 240, minBand = 24, padRight, la
   const { lo, hi, ticks, decimals } = niceTicks(min, max, height < 160 ? 3 : 5);
   const tickW = Math.max(...ticks.map((t) => fmt(t, decimals).length)) * CH + 12;
   const narrow = width < 420;
-  const l = Math.max(36, tickW), r = padRight?.(narrow) ?? 12, t = 24, b = 48;
+  const l = Math.max(36, tickW), t = 24, b = 48;
+  const r = padRight?.(narrow, width - l - n * minBand) ?? 12;
   const svgW = Math.max(width, l + r + n * minBand);
   const plot: Plot = { l, t, w: Math.max(10, svgW - l - r), h: height - t - b };
   const band = plot.w / n;
@@ -56,7 +60,7 @@ export function Frame({ data, min, max, height = 240, minBand = 24, padRight, la
   const scroll = width > 0 && svgW > width + 1;
 
   return (
-    <div className="bc-chart" ref={box}>
+    <div className={paletteClass(data) ? `bc-chart ${paletteClass(data)}` : 'bc-chart'} ref={box}>
       <div className="bc-chart-scroll" {...(scroll ? { tabIndex: 0, role: 'group', 'aria-label': `${label} – oldalra görgethető` } : {})}>
         {width > 0 && (
           <svg width={svgW} height={height} viewBox={`0 0 ${svgW} ${height}`} role="img" aria-label={`${label}. A pontos számok az adattáblában.`}>
@@ -78,7 +82,7 @@ export function Frame({ data, min, max, height = 240, minBand = 24, padRight, la
               </text>
             ))}
             <text className="bc-ax-title" x={plot.l + plot.w / 2} y={height - 6} textAnchor="middle">{data.xLabel}</text>
-            {children({ plot, band, cx, y, lo, hi, decimals, narrow })}
+            {children({ plot, band, cx, y, lo, hi, decimals, narrow, padR: r })}
             <line className={lo < 0 ? 'bc-zero is-strong' : 'bc-zero'} x1={plot.l} x2={plot.l + plot.w} y1={y(0)} y2={y(0)} />
           </svg>
         )}

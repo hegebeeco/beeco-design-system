@@ -6,6 +6,7 @@ import { useMedia } from './layer';
 import { useReturnFocus } from './focus';
 import { defaultLink, type RenderLink } from './NavTabs';
 import { CloseIcon } from './Modal';
+import { evszak, type Evszak } from '../marka/evszak';
 
 export type NavItem = { href: string; label: string; icon?: ReactNode; current?: boolean };
 export type NavGroup = { label?: string; items: NavItem[] };
@@ -37,6 +38,10 @@ export type AppShellProps = {
   navLabel?: string;
   /** A váz gombjainak feliratai (pl. angolul) – ami hiányzik, az magyar marad */
   labels?: Partial<AppShellLabels>;
+  /** Díszítő háttér a tartalomrész mögött (Javaslat 10): 'honeycomb' = méhsejt-minta a méz színéből */
+  pattern?: 'honeycomb';
+  /** Évszakos díszítés a mintán (Javaslat 11): 'auto' = a mai dátum szerint, vagy egy adott évszak; alapból nincs */
+  season?: 'auto' | Evszak;
   children: ReactNode;
 };
 
@@ -57,7 +62,8 @@ const Chevron = ({ left }: { left: boolean }) => (
  * Az első Tab-ra „Ugrás a tartalomra” ugrólink jelenik meg. Az oldal címe a tartalom tetején van (PageHeader).
  */
 export function AppShell({ brand, brandCompact, nav, topbar, account, collapsible = false, collapseKey = 'nav', renderLink = defaultLink,
-  skipLabel = 'Ugrás a tartalomra', navLabel = 'Fő navigáció', labels, children }: AppShellProps) {
+  skipLabel = 'Ugrás a tartalomra', navLabel = 'Fő navigáció', labels, pattern, season, children }: AppShellProps) {
+  const ev = pattern === 'honeycomb' && season ? (season === 'auto' ? evszak() : season) : undefined;
   const l = { ...APP_SHELL_LABELS_HU, ...labels };
   const narrow = useMedia(NARROW);
   const [open, setOpen] = useState(false);
@@ -120,7 +126,7 @@ export function AppShell({ brand, brandCompact, nav, topbar, account, collapsibl
           </Dialog.Portal>
         </Dialog.Root>
       )}
-      <div className="bc-main">
+      <div className={cx('bc-main', pattern === 'honeycomb' && 'bc-honeycomb')} data-evszak={ev}>
         {hasHeader && (
           <header className={cx('bc-topbar', 'bc-topbar-thin')}>
             {narrow && (

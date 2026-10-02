@@ -16,3 +16,4 @@ export { PageHeader, usePageTitle, type PageHeaderProps } from './PageHeader';
 export { Toaster, type ToasterProps } from './Toaster';
 export { notify, type ToastOptions, type ToastAction, type ToastKind } from './notify';
 export { AppShell, APP_SHELL_LABELS_HU, type AppShellProps, type AppShellLabels, type NavGroup, type NavItem } from './AppShell';
+export { StageDialog, type StageDialogProps } from './StageDialog';

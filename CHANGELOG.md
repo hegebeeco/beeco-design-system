@@ -11,21 +11,78 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
-## 1.25.0 – webes réteg (Webflow)
+## 1.33.0 – webes réteg (Webflow) és a nyilvános weboldal elemei
 
-A beeco.hu a termékbőrt kapja (Kristóf, 2026-10-01), de Webflow-ban készül, ezért nem tud DS-t importálni.
-Új réteg, ami a bemenetet generálja és a kimenetet méri:
+A beeco.hu a termékbőrt kapja, de Webflow-ban készül, ezért nem tud `npm install`-lal DS-t húzni.
+Új réteg, ami a bemenetet generálja és a kimenetet méri.
 
-- `tools/webflow-build.js` → `dist/weboldal/webflow-valtozok.json` (56 változó, világos + sötét) és `paletta.json`.
-- `docs/weboldal.md`: token→Webflow-változó megfeleltetés, osztálynevek, a Webflow API tanult korlátai, menetrend.
-- `tools/web-ellenor.js`: az élő oldal átvizsgálása 4 nézetben – működés, kilógás, 44 px, fókusz, kontraszt,
-  axe-core WCAG 2.2 AA, DS-en kívüli szín/sarok/árnyék/betű, szerkezet, SEO-alap, linkek, animáció.
-- `tools/web/oldal-meres-web.js`: a web-specifikus mérés (a közös `tools/komp/oldal-meres.js` mellé).
-- `tests/check-weboldal.js`: a generált réteg frissességét, teljességét és a névszabályt őrzi; `npm test` része.
-- `tools/web-osztalyleltar.js`: a Webflow-ban definiált stílusokat veti össze az élő oldalakon
-  használt osztályokkal; csoportokba sorol és megmutatja a takarítási jelölteket.
-- `.github/workflows/weboldal.yml`: éjszakai őrjárat a stagingre, letölthető jelentéssel.
-- `npm run web <URL>` parancs.
+- `tools/webflow-build.js` → `dist/weboldal/webflow-valtozok.json` (57 változó, világos + sötét)
+  és `paletta.json`. A nevek a DS saját CSS-ét követik (`bc-r-*`, `bc-sp-*`, `bc-fs-*`, `bc-tap`).
+- `termek/css/bc-web.css`: a nyilvános weboldal elemei, csak tokenekből. Tartalomszélesség és
+  szekció-ritmus (`bc-wrap`, `bc-sec` + 4 változat), marketing-tipográfia (`bc-display`, `bc-title`,
+  `bc-subtitle`, `bc-lead`, `bc-body`, `bc-eyebrow`), rács (`bc-grid-2/3`), és a bizalmi elemek:
+  `bc-link` (mindig aláhúzva, WCAG 1.4.1), `bc-quote`, `bc-logos`, `bc-figure` (rögzített képarány,
+  CLS ellen), `bc-source` (a „szám csak forrással” szabály látható alakja).
+- `docs/weboldal.md`: token→Webflow-változó megfeleltetés, osztálynevek, a kötés pontos alakja,
+  a Webflow API tanult korlátai, publikálási szabály, menetrend.
+- `tools/web-ellenor.js`: az élő oldal átvizsgálása 4 nézetben (Playwright + axe-core) – működés,
+  kilógás, 44 px, fókusz, kontraszt, DS-en kívüli szín/sarok/árnyék/betű, szerkezet, SEO, linkek.
+- `tools/web-osztalyleltar.js`: a definiált és a ténylegesen használt osztályok összevetése.
+- `tools/web/oldal-meres-web.js`, `tests/check-weboldal.js` (az `npm test` része),
+  `.github/workflows/weboldal.yml` éjszakai őrjárat.
+- Javaslat 10 jóváhagyva (`docs/javaslatok/10-weboldal-elemek.md`).
+
+## 1.32.0 – 2026-10-02
+
+**Vonalgrafikon: állapot-paletta, sorozat-kapcsoló, végcímke csak ha kifér** (Javaslat 14, a partner-appból – PARTNERAPP).
+* `ChartData.palette: 'allapot'` → a sorozatok a `--bc-data-allapot-1…5` színeket kapják (színtévesztő-módban az `-cb` párt); a kártya, a rajz és a jelmagyarázat egyformán (`.bc-pal-allapot`).
+* `ChartCard seriesToggle` (LineChart-tal): a jelmagyarázat elemei kapcsológombok (`aria-pressed`, érintőn 44 px); a kikapcsolt sorozat színe/alakja a helyén marad, az adattáblában megmarad; a tengely a látható sorozatokhoz igazodik. `ChartSeries.hidden`.
+* **Hiba:** a `LineChart` végcímkéje görgethetővé szélesítette a rajzot, ha 30 nap + címke nem fért el (a címke a látható részen kívülre került) → a végcímke csak akkor jelenik meg, ha görgetés nélkül kifér; különben a felső jelmagyarázat elég. `Frame padRight(narrow, spare)`.
+* Kapcsoló-szabályok (review után): az utolsó látható sorozat nem kapcsolható ki; a kikapcsolt sorozat hiánya nem rajzol „nincs adat” sávot; adatcsere után a kikapcsolás nem ragad be; kapcsoláskor nem ugrik a rajz (a címke-hely az összes sorozatból). A `HBarChart` is kapja a palettát.
+* Tesztlap: `adat-grafikon` → „graf-allapot”.
+
+## 1.31.0 – 2026-10-02
+Javaslat 13 – működést javító elemek (Kristóf jóváhagyta 2026-10-02). Tesztlap: `kieg3-mukodes` (8 forgatókönyv).
+- Új: **useListState** + **listStatus** + **clampPage** – lista-állapot a címsorban (router-független adapter), az állapot-döntés egy helyen (isPending-szabály, üres vs. nincs találat).
+- Új: **MapPanel** – egységes térkép-keret a meglévő `.bc-map` öltözettel: jelmagyarázat-hely, töltés / hiba / üres, „Térkép | Lista” váltó (a lista linkes – billentyűzet, képernyőolvasó).
+- Új: **StageDialog** – teljes képernyős bemutató-réteg (fókuszcsapda, Esc, fókusz vissza; `closable={false}` folyamat közben; `announce` élő bejelentés; opcionális teljes képernyő).
+- Új: **ScheduleField** + **scheduleIssues** – Azonnal / Időzítve, elhagyható vég; múltbeli kezdés és a kezdés előtti vég jelzése.
+- Új: **StatusBadge** – állapotjelvény hangnem + piktogram + felirat (nem csak szín).
+- Új: **notify.undo** – visszafordítható művelet „Visszavonás” gombbal (10 mp).
+- Új: **useDraft** + **DraftNotice** + **EditPage `draft`** – piszkozat az eszközön, visszaállítás-ajánlat, sikeres mentés után törlődik.
+- Javítás: **DataTable** kliensoldali lapozásnál szűkülő adat után az utolsó létező lapra lép (eddig üres lap maradt).
+- Javítás: `.bc-map` – a később betöltődő Leaflet CSS sem írja felül (betű, buborék, forrásjelölés átlátszatlan, bezáró gomb és nagyító 44 px, DS-gomb a buborékban).
+- Mérő: **fagyasztás** (alap: be) – átmenet/animáció nélkül mér (a megállt átmenet álkontrasztot adott); a `color(srgb …)` színt is helyesen olvassa.
+
+## 1.30.0 – 2026-10-02
+- **smoke.js**: az időkorlát a projekt `smoke.config.json`-jából állítható (`limitPerc`, `limitPercOffline`; alapból 6 / 12 perc). A beeco-szelektalj 25+ játékkal online + offline + kioszk-futásban már nem fért bele a 12 percbe.
+
+## 1.29.0 – 2026-10-02
+- Új: **„állapot” adatskála** (Javaslat 12): `--bc-data-allapot-1…5` (levél → méz → piros) és színtévesztő-barát párja `--bc-data-allapot-cb-1…5` (kék → narancs); a fekete jel minden fokozaton ≥ 4,5:1 (`check-tokens` ellenőrzi). Tesztlap: `adat-mutato` „Állapot-skála”. Az első fogyasztó a partner-app öntözési szomjúság-skálája.
+
+## 1.28.0 – 2026-10-02
+- **ListPage**: új `noResultsText` beállítás a „nincs találat” állapot magyarázatához. Eddig mindig a méhecske keresési tippje jelent meg („Próbáld rövidebben, vagy ékezet nélkül.”) – kereső nélküli, csak szűrős listán (pl. hónapválasztó) ez félrevezető volt. Tesztlap: `sablon-lista` („Szűrésre nincs találat”).
+
+## 1.27.1 – 2026-10-02
+- Javítás: érintős eszközön a táblázat-cellák linkje a magasság mellett **szélességben** is legalább 44 px (a nagyon rövid név, pl. „vds” eddig 22 px széles célfelület volt). Tesztlap: `adat-tabla` („Rövid nevű link a cellában”).
+
+## 1.27.0 – 2026-10-02
+- Új: **évszakos díszítés** a méhsejt-háttéren (Javaslat 11): `.bc-honeycomb[data-evszak]` (virág · nap · levél · hópehely, maszkként, a tartalom alatt) és `AppShell season="auto"`; `evszak(date)` segéd. Tesztlap: `tema`.
+- Javítás (mérés): az oldalmérő (`bcMeres`) a mező vizsgálatánál kihagyja a rejtett belső mezőt (pl. a Radix jelölőnégyzet `aria-hidden` „bubble” inputját) – eddig téves „mezőnek nincs címkéje” P1-et adott; a `role="checkbox"` is vezérlőnek számít.
+
+## 1.26.1 – 2026-10-02
+- Javítás: a **Logo** (`.bc-logo`) kifejezett szélességet kap a magasságból (`--_h` × 512/313). Oszlopos flex- vagy grid-tárolóban (pl. belépő kártya) eddig kinyúlt teljes szélességre, és a kép középre ugrott a balra igazított szöveg fölött. Tesztlap: `tema` („Logó oszlopos flex-tárolóban”).
+
+## 1.26.0 – 2026-10-02
+- **MonthCalendar**: új `kinds` beállítás – mely tartalomfajták szerepeljenek a jelmagyarázatban és a szűrőben (alap: mind a három). Így olyan naptár is épülhet rá, ahol csak két fajta van (pl. a partner adatlapján: esemény + kupon-időzítés), üres jelmagyarázat-tétel nélkül. A „minden fajta ki van kapcsolva” üzenet is ehhez igazodik. Tesztlap: `media-naptar` („Csak két fajta”).
+
+## 1.25.0 – 2026-10-02
+- Új: **sötét módú logó** (`web/assets/brand/logo-sotet.webp` – a meglévő logóból, csak az átlátszó háttér melletti fekete részek krémszínűek) és **`Logo`** React-elem / `.bc-logo` CSS, amely a témával magától vált (Javaslat 10).
+- Új: **méhsejt-háttér** – `.bc-honeycomb` (CSS-maszk a méz szerep színéből, a tartalom alatt, nyomtatásban rejtve) és `AppShell pattern="honeycomb"`; a partner-app mintájából, az admin is használhatja. Tesztlap: `tema`.
+- Új token: **`z.behind` = −1** (`--bc-z-behind`, Tailwind `z-behind`) – díszítő réteg a tartalom mögött.
+
+## 1.24.1 – 2026-10-02
+- Javítás: érintős eszközön a táblázat-cellák linkjei (pl. a sor címe, telefonos kártyanézetben is) legalább 44 px magas célfelületet kapnak (eddig a szövegsor magassága, ~21 px).
 
 ## 1.24.0 – 2026-10-02
 - Új export: **FieldInput** és **useFieldContext** (+ `FieldCtx` típus) – saját mező (pl. natív fájlválasztó) bekötése a `Field` címkéjéhez, súgójához és hibájához (id, aria-describedby, aria-invalid). Eddig csak belül volt elérhető.

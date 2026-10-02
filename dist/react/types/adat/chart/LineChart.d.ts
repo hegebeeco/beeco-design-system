@@ -3,7 +3,7 @@ export type LineChartProps = {
     /** 1–4 sorozat ajánlott (több fölött a közvetlen címke elmarad, csak a felső jelmagyarázat) */
     data: ChartData;
     height?: number;
-    /** Közvetlen címke a vonal végén (4a A) – alap: ≤ 4 sorozatnál, ha van hely */
+    /** Közvetlen címke a vonal végén (4a A) – alap: ≤ 4 sorozatnál. Csak akkor jelenik meg (true-nál is), ha görgetés nélkül kifér; különben a felső jelmagyarázat elég */
     endLabels?: boolean;
     label?: string;
 };

@@ -1,4 +1,4 @@
-// beeco design system 1.25.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js
+// beeco design system 1.33.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js
 // Használat (tailwind.config.js): presets: [require('@beeco/design-system/tailwind')]
 // és a CSS-ben: @import '@beeco/design-system/css/beeco-tokens.css';
 module.exports = {
@@ -177,6 +177,7 @@ module.exports = {
         "tap": "var(--bc-tap)"
       },
       "zIndex": {
+        "behind": "var(--bc-z-behind)",
         "sticky": "var(--bc-z-sticky)",
         "header": "var(--bc-z-header)",
         "drawer": "var(--bc-z-drawer)",

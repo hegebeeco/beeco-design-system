@@ -122,5 +122,7 @@ a szerepek maguktól váltanak.
 
 ## 9. Méhecske és logó
 
+**Logó (1.25.0):** a `Logo` React-elem / `.bc-logo` a témával magától vált (`logo.webp` ↔ `logo-sotet.webp`, Javaslat 10).
+**Méhsejt-háttér:** `AppShell pattern="honeycomb"` vagy `.bc-honeycomb` – díszítő, a méz színéből, a tartalom alatt.
 A logó és a méhecske-képek a `web/assets/brand/` alatt (belső használatra; külső partneranyagban beeco-jóváhagyás kell).
 Emoji-méhecske (🐝) helyett a rajzolt képeket használd – az emoji minden rendszeren másképp néz ki.

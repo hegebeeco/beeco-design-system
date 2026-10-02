@@ -1,6 +1,6 @@
 {
   "name": "@beeco/design-system",
-  "version": "1.25.0",
+  "version": "1.33.0",
   "description": "A beeco egységes design systeme: közös atomok (tokens/), játékbőr (Méhsejt-diorama, web/) és termékbőr (app, admin, partner, web – termek/). Egy forrás, generált kimenetek (CSS, SCSS, Tailwind, Dart).",
   "license": "UNLICENSED",
   "private": true,
@@ -24,6 +24,7 @@
     "web/assets/brand/moods/",
     "web/assets/brand/roles/",
     "web/assets/brand/logo.webp",
+    "web/assets/brand/logo-sotet.webp",
     "web/assets/brand/ikon-32.png",
     "!dist/tesztlapok/",
     "!termek/tesztlapok/",
@@ -49,9 +50,8 @@
     "beeco-ds-lint": "tools/ds-lint.js"
   },
   "scripts": {
-    "build": "node tools/tokens-build.js && node tools/react-build.js && node tools/webflow-build.js",
-    "test": "node tools/tokens-build.js --check && node tools/react-build.js --check && node tools/webflow-build.js --check && for t in tests/check-*.js; do node \"$t\" || exit 1; done",
-    "web": "node tools/web-ellenor.js"
+    "build": "node tools/tokens-build.js && node tools/react-build.js",
+    "test": "node tools/tokens-build.js --check && node tools/react-build.js --check && for t in tests/check-*.js; do node \"$t\" || exit 1; done"
   },
   "engines": {
     "node": ">=18"

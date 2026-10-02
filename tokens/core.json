@@ -100,7 +100,7 @@
   "tap": 44,
   "minTextSize": 12,
   "data": {
-    "_readme": "Adatskálák (grafikon, térkép, hőtérkép) – mindkét bőr ugyanezt használja. Részletek: docs/adatskala.md.",
+    "_readme": "Adatskálák (grafikon, térkép, hőtérkép) – mindkét bőr ugyanezt használja. Részletek: docs/adatskala.md. Az „állapot” skála (jó → rossz, 5 fok; Javaslat 12): térképjelölő, minőség, szomjúság – mindegyik fokozaton olvasható a fekete jel; színtévesztő-barát párja: allapot-cb (kék → narancs).",
     "seq": [
       "#EEF3DE",
       "#D8E4BC",
@@ -129,6 +129,20 @@
       "#C6E0F6",
       "#80B5E6"
     ],
+    "allapot": [
+      "#6E8947",
+      "#A6BF7B",
+      "#FECF39",
+      "#EA580C",
+      "#DB3A34"
+    ],
+    "allapot-cb": [
+      "#0083E4",
+      "#80B5E6",
+      "#FEEEBB",
+      "#F0A35E",
+      "#EA580C"
+    ],
     "categorical": [
       "honey",
       "leaf",
@@ -143,6 +157,7 @@
   "_fontWeight": "Webes Open Sans: változó betű 400–700 (web/assets/fonts). 800 nincs – az app w800-as szövegei a bold (700) szerepre állnak át.",
   "z": {
     "_readme": "Rétegsorrend (Javaslat 03, jóváhagyva 2026-10-01): mi kerül mi fölé. Nyers z-index szám helyett ezt használd.",
+    "behind": -1,
     "sticky": 10,
     "header": 20,
     "drawer": 40,

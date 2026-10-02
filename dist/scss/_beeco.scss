@@ -1,4 +1,4 @@
-// beeco design system 1.25.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js
+// beeco design system 1.33.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js
 // A változók a CSS-változókra mutatnak (így a sötét mód magától működik). Előbb töltsd be a beeco-tokens.css-t.
 
 $bc-bg: var(--bc-bg);
@@ -184,6 +184,7 @@ $bc-t-base: var(--bc-t-base);
 $bc-t-slow: var(--bc-t-slow);
 $bc-t-press: var(--bc-t-press);
 $bc-t: ("fast": var(--bc-t-fast), "base": var(--bc-t-base), "slow": var(--bc-t-slow), "press": var(--bc-t-press));
+$bc-z-behind: var(--bc-z-behind);
 $bc-z-sticky: var(--bc-z-sticky);
 $bc-z-header: var(--bc-z-header);
 $bc-z-drawer: var(--bc-z-drawer);
@@ -192,7 +193,7 @@ $bc-z-modal: var(--bc-z-modal);
 $bc-z-popover: var(--bc-z-popover);
 $bc-z-toast: var(--bc-z-toast);
 $bc-z-tooltip: var(--bc-z-tooltip);
-$bc-z: ("sticky": var(--bc-z-sticky), "header": var(--bc-z-header), "drawer": var(--bc-z-drawer), "overlay": var(--bc-z-overlay), "modal": var(--bc-z-modal), "popover": var(--bc-z-popover), "toast": var(--bc-z-toast), "tooltip": var(--bc-z-tooltip));
+$bc-z: ("behind": var(--bc-z-behind), "sticky": var(--bc-z-sticky), "header": var(--bc-z-header), "drawer": var(--bc-z-drawer), "overlay": var(--bc-z-overlay), "modal": var(--bc-z-modal), "popover": var(--bc-z-popover), "toast": var(--bc-z-toast), "tooltip": var(--bc-z-tooltip));
 $bc-ease-out: var(--bc-ease-out);
 $bc-ease-in-out: var(--bc-ease-in-out);
 $bc-ease-drawer: var(--bc-ease-drawer);

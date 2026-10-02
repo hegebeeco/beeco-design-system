@@ -28,6 +28,11 @@ export type ChartCardProps = {
     sample?: boolean;
     /** Ha megadod, az eszköz megjegyzi, hogy a „Hogyan olvasd?”-t becsuktad (első látogatáskor nyitva) */
     rememberKey?: string;
+    /**
+     * Sorozat-kapcsoló (csak LineChart-tal): a jelmagyarázat elemei gombok, amelyekkel a vonalak ki-be kapcsolhatók –
+     * pl. 5 állapot-sávból csak a „szomjas” fákat nézni. A kikapcsolt sorozat az adattáblában megmarad.
+     */
+    seriesToggle?: boolean;
     headingLevel?: 2 | 3 | 4;
     className?: string;
 };
