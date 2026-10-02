@@ -80,6 +80,11 @@
   "leiras": "VideoPlayer és beágyazás (06b/15): natív lejátszó poszterrel és felirattal, billentyűk, töltés és hiba; YouTube/Vimeo csak kattintásra tölt (adatvédelem), hibás link teendővel. A mintavideó a böngészőben készül, hálózat nélkül."
  },
  {
+  "nev": "kieg3-mukodes",
+  "cim": "Javaslat 13 – működést javító elemek",
+  "leiras": "Színpad, állapotjelvény, lista-állapot, időzítés, térkép-panel, visszavonás, piszkozat – minden állapot és szélső eset."
+ },
+ {
   "nev": "media-import",
   "cim": "Média – videó és import",
   "leiras": "Lépésjelző, videófeltöltés (fájl → feltöltés → feldolgozás → kész), Excel-import egy lépésben, eredménylista sorral, oszloppal, okkal és teendővel. Minden adat mintaadat."

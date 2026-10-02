@@ -1,4 +1,4 @@
-import { Fragment, useId, useMemo, useState, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, Fragment, useId, useMemo, useState, type CSSProperties, type ReactNode } from 'react';
 import {
   flexRender, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable,
   type ColumnDef, type ExpandedState, type PaginationState, type RowSelectionState, type SortingState,
@@ -104,6 +104,11 @@ export function DataTable<T>(p: DataTableProps<T>) {
   });
 
   const total = server ? p.serverRowCount ?? 0 : table.getPrePaginationRowModel().rows.length;
+  // Kliensoldali lapozás: ha az adat szűkült (pl. rövidebb időszak, szűrés), ne maradjon üres lapon – az utolsó létező lapra lép
+  const lapSzam = server ? 0 : table.getPageCount();
+  useEffect(() => {
+    if (!server && pagination.pageIndex > 0 && pagination.pageIndex > Math.max(0, lapSzam - 1)) setPagination({ ...pagination, pageIndex: Math.max(0, lapSzam - 1) });
+  }, [server, lapSzam, pagination, setPagination]);
   const selIds = Object.keys(selection).filter((k) => selection[k]);
   const leafs = table.getVisibleLeafColumns();
   const pinCount = leafs.findIndex((c) => !c.id.startsWith('_')) + 1; // a segédoszlopok + az első adatoszlop rögzített

@@ -31,6 +31,15 @@ export type EditPageProps = TemplateHeadProps & {
     /** Élő előnézet (pl. PreviewCard) – széles helyen jobb oldalt, telefonon az űrlap alatt */
     preview?: ReactNode;
     previewLabel?: string;
+    /**
+     * Piszkozat (Javaslat 13/7): a módosított űrlap az eszközön megmarad; újranyitáskor felajánljuk a visszaállítást,
+     * sikeres mentés után törlődik. key: űrlap + rekord (pl. „esemeny:126”); onRestore: az értékek visszatöltése (dirty marad).
+     */
+    draft?: {
+        key: string | null;
+        values: unknown;
+        onRestore: (values: never) => void;
+    };
     /** A szakaszok (FormSection) – vagy függvény, ami megkapja a hibákat */
     children: ReactNode | ((ctx: EditContext) => ReactNode);
 };

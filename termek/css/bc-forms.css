@@ -73,3 +73,12 @@
 /* Csoport (rádió): a legend a címke-sor */
 .bc-fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
 .bc-fieldset > legend { padding: 0; }
+
+/* ---- Időzítés-mező (ScheduleField, Javaslat 13/4) ---- */
+.bc-schedule { display: grid; justify-items: start; gap: var(--bc-sp-3); min-width: 0; }
+.bc-schedule-label { margin: 0; }
+.bc-schedule > .bc-field { width: 100%; }
+
+/* ---- Piszkozat-ajánlat (DraftNotice, Javaslat 13/7) ---- */
+.bc-draft p { margin: 0 0 var(--bc-sp-2); }
+.bc-draft-actions { gap: var(--bc-sp-2); }

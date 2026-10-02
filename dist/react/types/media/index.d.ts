@@ -16,3 +16,4 @@ export { eventsByDay, KIND_LABEL, type CalEvent, type CalKind } from './monthEve
 export { OpeningHoursEditor, type OpeningHoursEditorProps } from './OpeningHoursEditor';
 export { parseTime, validateHours, emptyWeek, WEEK, type OpeningHours, type DayHours, type Weekday } from './openingHours';
 export { Avatar, initials, type AvatarProps } from './Avatar';
+export { MapPanel, type MapPanelProps, type MapListItem } from './MapPanel';

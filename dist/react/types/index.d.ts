@@ -19,6 +19,8 @@ export { DateRangePicker, type DateRange } from './pickers/DateRangePicker';
 export { Calendar } from './pickers/Calendar';
 export { formatHuDate, parseHuDate, localToUtcIso, utcToLocal, todayIso } from './pickers/date';
 export { FormSection, FormActions } from './form/FormSection';
+export { ScheduleField, scheduleIssues, type ScheduleFieldProps, type ScheduleValue } from './form/ScheduleField';
+export { useDraft, DraftNotice, type DraftOptions } from './form/useDraft';
 export { cx } from './cx';
 export * from './adat';
 export * from './reteg';

@@ -11,6 +11,19 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.31.0 – 2026-10-02
+Javaslat 13 – működést javító elemek (Kristóf jóváhagyta 2026-10-02). Tesztlap: `kieg3-mukodes` (8 forgatókönyv).
+- Új: **useListState** + **listStatus** + **clampPage** – lista-állapot a címsorban (router-független adapter), az állapot-döntés egy helyen (isPending-szabály, üres vs. nincs találat).
+- Új: **MapPanel** – egységes térkép-keret a meglévő `.bc-map` öltözettel: jelmagyarázat-hely, töltés / hiba / üres, „Térkép | Lista” váltó (a lista linkes – billentyűzet, képernyőolvasó).
+- Új: **StageDialog** – teljes képernyős bemutató-réteg (fókuszcsapda, Esc, fókusz vissza; `closable={false}` folyamat közben; `announce` élő bejelentés; opcionális teljes képernyő).
+- Új: **ScheduleField** + **scheduleIssues** – Azonnal / Időzítve, elhagyható vég; múltbeli kezdés és a kezdés előtti vég jelzése.
+- Új: **StatusBadge** – állapotjelvény hangnem + piktogram + felirat (nem csak szín).
+- Új: **notify.undo** – visszafordítható művelet „Visszavonás” gombbal (10 mp).
+- Új: **useDraft** + **DraftNotice** + **EditPage `draft`** – piszkozat az eszközön, visszaállítás-ajánlat, sikeres mentés után törlődik.
+- Javítás: **DataTable** kliensoldali lapozásnál szűkülő adat után az utolsó létező lapra lép (eddig üres lap maradt).
+- Javítás: `.bc-map` – a később betöltődő Leaflet CSS sem írja felül (betű, buborék, forrásjelölés átlátszatlan, bezáró gomb és nagyító 44 px, DS-gomb a buborékban).
+- Mérő: **fagyasztás** (alap: be) – átmenet/animáció nélkül mér (a megállt átmenet álkontrasztot adott); a `color(srgb …)` színt is helyesen olvassa.
+
 ## 1.30.0 – 2026-10-02
 - **smoke.js**: az időkorlát a projekt `smoke.config.json`-jából állítható (`limitPerc`, `limitPercOffline`; alapból 6 / 12 perc). A beeco-szelektalj 25+ játékkal online + offline + kioszk-futásban már nem fért bele a 12 percbe.
 

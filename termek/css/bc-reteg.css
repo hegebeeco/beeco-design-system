@@ -220,3 +220,12 @@ a.bc-tab { text-decoration: none; }
   .bc-secsw-item:nth-child(even) { border-left: var(--bc-bw-base) solid var(--bc-line); }
   .bc-secsw-item:nth-child(n+3) { border-top: var(--bc-bw-base) solid var(--bc-line); }
 }
+
+/* ---- Színpad (StageDialog, Javaslat 13/3): teljes képernyős bemutató-réteg – a projekt öltöztetheti (className) ---- */
+.bc-stage { position: fixed; inset: 0; z-index: var(--bc-z-modal); display: grid; overflow: auto; padding: var(--bc-sp-6) var(--bc-sp-4);
+  color: var(--bc-ink); background: var(--bc-bg); outline: none; }
+.bc-stage[data-state="open"] { animation: bc-fade-in var(--bc-t-base) var(--bc-ease-out); }
+.bc-stage-close { position: fixed; top: var(--bc-sp-3); right: var(--bc-sp-3); z-index: var(--bc-z-sticky); }
+.bc-stage-body { display: grid; justify-items: center; align-content: start; gap: var(--bc-sp-5); width: min(100%, 1100px); margin: 0 auto; text-align: center; }
+.bc-stage-title { margin: 0; padding-inline: var(--bc-sp-7); font-family: var(--bc-font-display); font-size: clamp(var(--bc-fs-xl), 4vw, var(--bc-fs-3xl)); }
+@media (prefers-reduced-motion: reduce) { .bc-stage[data-state="open"] { animation: none; } }
