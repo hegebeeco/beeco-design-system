@@ -1,0 +1,76 @@
+{
+  "_readme": "GENERÁLT – a weboldalon megengedett nyers értékek. A `tools/web-ellenor.js` ehhez méri a futásidejű CSS-t.",
+  "version": "1.25.0",
+  "szinek": [
+    "#000000",
+    "#003E74",
+    "#0083E4",
+    "#1E1E1E",
+    "#1F2615",
+    "#2656D9",
+    "#2F371E",
+    "#353F25",
+    "#3D4E27",
+    "#48542D",
+    "#505050",
+    "#596B39",
+    "#676767",
+    "#6E8947",
+    "#7A2E3F",
+    "#824217",
+    "#B1DEFF",
+    "#B3261E",
+    "#B6C4A3",
+    "#C6C6C6",
+    "#CDEC82",
+    "#D3DDBB",
+    "#D3ECFF",
+    "#D6E8F7",
+    "#D8A500",
+    "#DB3A34",
+    "#E3ECCD",
+    "#E6E6E6",
+    "#EA580C",
+    "#F0F3EC",
+    "#F5B4C7",
+    "#FDE2E8",
+    "#FDEEE6",
+    "#FECF39",
+    "#FEEEBB",
+    "#FFF8E7",
+    "#FFFDF6",
+    "#FFFFFF"
+  ],
+  "sarok": [
+    2,
+    4,
+    8,
+    12,
+    999
+  ],
+  "keret": [
+    1,
+    2
+  ],
+  "betuMeret": [
+    12,
+    14,
+    16,
+    20,
+    26,
+    34,
+    46
+  ],
+  "betuCsalad": {
+    "display": "Lalezar",
+    "body": "Open Sans"
+  },
+  "betuVastagsag": [
+    400,
+    600,
+    700
+  ],
+  "arnyekElmosas": 0,
+  "idotartamMax": 400,
+  "gorbe": "cubic-bezier(.23,1,.32,1)"
+}

@@ -1,0 +1,431 @@
+{
+  "_readme": "GENERÁLT (tools/webflow-build.js) – kézzel ne szerkeszd. Ez a Webflow „beeco DS” változó-kollekció teljes tartalma. A `sotet` mező a kollekció „Sötét” módjának értéke (null = nincs külön sötét érték).",
+  "version": "1.25.0",
+  "kollekcio": "beeco DS",
+  "modok": [
+    "Base mode",
+    "Sötét"
+  ],
+  "valtozok": [
+    {
+      "nev": "bc-bg",
+      "tipus": "Color",
+      "ertek": "#FFF8E7",
+      "sotet": "#1F2615"
+    },
+    {
+      "nev": "bc-surface",
+      "tipus": "Color",
+      "ertek": "#FFFFFF",
+      "sotet": "#353F25"
+    },
+    {
+      "nev": "bc-surface-2",
+      "tipus": "Color",
+      "ertek": "#F0F3EC",
+      "sotet": "#2F371E"
+    },
+    {
+      "nev": "bc-surface-accent",
+      "tipus": "Color",
+      "ertek": "#FEEEBB",
+      "sotet": "#48542D"
+    },
+    {
+      "nev": "bc-ink",
+      "tipus": "Color",
+      "ertek": "#000000",
+      "sotet": "#FFF8E7"
+    },
+    {
+      "nev": "bc-ink-soft",
+      "tipus": "Color",
+      "ertek": "#505050",
+      "sotet": "#D3DDBB"
+    },
+    {
+      "nev": "bc-ink-muted",
+      "tipus": "Color",
+      "ertek": "#676767",
+      "sotet": "#B6C4A3"
+    },
+    {
+      "nev": "bc-line",
+      "tipus": "Color",
+      "ertek": "#000000",
+      "sotet": "#B6C4A3"
+    },
+    {
+      "nev": "bc-line-soft",
+      "tipus": "Color",
+      "ertek": "#C6C6C6",
+      "sotet": "#596B39"
+    },
+    {
+      "nev": "bc-accent",
+      "tipus": "Color",
+      "ertek": "#FECF39",
+      "sotet": "#FECF39"
+    },
+    {
+      "nev": "bc-accent-press",
+      "tipus": "Color",
+      "ertek": "#D8A500",
+      "sotet": "#D8A500"
+    },
+    {
+      "nev": "bc-on-accent",
+      "tipus": "Color",
+      "ertek": "#000000",
+      "sotet": "#000000"
+    },
+    {
+      "nev": "bc-shadow",
+      "tipus": "Color",
+      "ertek": "#000000",
+      "sotet": "#000000"
+    },
+    {
+      "nev": "bc-focus",
+      "tipus": "Color",
+      "ertek": "#2656D9",
+      "sotet": "#B1DEFF"
+    },
+    {
+      "nev": "bc-success",
+      "tipus": "Color",
+      "ertek": "#6E8947",
+      "sotet": "#CDEC82"
+    },
+    {
+      "nev": "bc-success-bg",
+      "tipus": "Color",
+      "ertek": "#E3ECCD",
+      "sotet": "#3D4E27"
+    },
+    {
+      "nev": "bc-success-ink",
+      "tipus": "Color",
+      "ertek": "#3D4E27",
+      "sotet": "#CDEC82"
+    },
+    {
+      "nev": "bc-danger",
+      "tipus": "Color",
+      "ertek": "#DB3A34",
+      "sotet": "#DB3A34"
+    },
+    {
+      "nev": "bc-danger-bg",
+      "tipus": "Color",
+      "ertek": "#FDEEE6",
+      "sotet": "#7A2E3F"
+    },
+    {
+      "nev": "bc-danger-ink",
+      "tipus": "Color",
+      "ertek": "#B3261E",
+      "sotet": "#FDE2E8"
+    },
+    {
+      "nev": "bc-warning",
+      "tipus": "Color",
+      "ertek": "#EA580C",
+      "sotet": "#EA580C"
+    },
+    {
+      "nev": "bc-warning-bg",
+      "tipus": "Color",
+      "ertek": "#FEEEBB",
+      "sotet": "#824217"
+    },
+    {
+      "nev": "bc-warning-ink",
+      "tipus": "Color",
+      "ertek": "#824217",
+      "sotet": "#FEEEBB"
+    },
+    {
+      "nev": "bc-info",
+      "tipus": "Color",
+      "ertek": "#0083E4",
+      "sotet": "#B1DEFF"
+    },
+    {
+      "nev": "bc-info-bg",
+      "tipus": "Color",
+      "ertek": "#D3ECFF",
+      "sotet": "#003E74"
+    },
+    {
+      "nev": "bc-info-ink",
+      "tipus": "Color",
+      "ertek": "#003E74",
+      "sotet": "#D3ECFF"
+    },
+    {
+      "nev": "bc-highlight",
+      "tipus": "Color",
+      "ertek": "#F5B4C7",
+      "sotet": "#F5B4C7"
+    },
+    {
+      "nev": "bc-scrim",
+      "tipus": "Color",
+      "ertek": "#000000",
+      "sotet": "#000000"
+    },
+    {
+      "nev": "bc-radius-xs",
+      "tipus": "Size",
+      "ertek": {
+        "value": 2,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-radius-s",
+      "tipus": "Size",
+      "ertek": {
+        "value": 4,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-radius-m",
+      "tipus": "Size",
+      "ertek": {
+        "value": 8,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-radius-l",
+      "tipus": "Size",
+      "ertek": {
+        "value": 12,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-radius-pill",
+      "tipus": "Size",
+      "ertek": {
+        "value": 999,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-border-hair",
+      "tipus": "Size",
+      "ertek": {
+        "value": 1,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-border-base",
+      "tipus": "Size",
+      "ertek": {
+        "value": 2,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-shadow-s-x",
+      "tipus": "Size",
+      "ertek": {
+        "value": 2,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-shadow-s-y",
+      "tipus": "Size",
+      "ertek": {
+        "value": 2,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-shadow-m-x",
+      "tipus": "Size",
+      "ertek": {
+        "value": 4,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-shadow-m-y",
+      "tipus": "Size",
+      "ertek": {
+        "value": 4,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-shadow-l-x",
+      "tipus": "Size",
+      "ertek": {
+        "value": 6,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-shadow-l-y",
+      "tipus": "Size",
+      "ertek": {
+        "value": 6,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-space-1",
+      "tipus": "Size",
+      "ertek": {
+        "value": 4,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-space-2",
+      "tipus": "Size",
+      "ertek": {
+        "value": 8,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-space-3",
+      "tipus": "Size",
+      "ertek": {
+        "value": 12,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-space-4",
+      "tipus": "Size",
+      "ertek": {
+        "value": 16,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-space-5",
+      "tipus": "Size",
+      "ertek": {
+        "value": 24,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-space-6",
+      "tipus": "Size",
+      "ertek": {
+        "value": 32,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-space-7",
+      "tipus": "Size",
+      "ertek": {
+        "value": 48,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-space-8",
+      "tipus": "Size",
+      "ertek": {
+        "value": 64,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-text-xs",
+      "tipus": "Size",
+      "ertek": {
+        "value": 12,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-text-s",
+      "tipus": "Size",
+      "ertek": {
+        "value": 14,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-text-m",
+      "tipus": "Size",
+      "ertek": {
+        "value": 16,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-text-l",
+      "tipus": "Size",
+      "ertek": {
+        "value": 20,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-text-xl",
+      "tipus": "Size",
+      "ertek": {
+        "value": 26,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-text-2xl",
+      "tipus": "Size",
+      "ertek": {
+        "value": 34,
+        "unit": "px"
+      },
+      "sotet": null
+    },
+    {
+      "nev": "bc-text-3xl",
+      "tipus": "Size",
+      "ertek": {
+        "value": 46,
+        "unit": "px"
+      },
+      "sotet": null
+    }
+  ]
+}

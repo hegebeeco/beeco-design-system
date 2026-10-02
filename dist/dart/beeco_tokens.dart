@@ -1,4 +1,4 @@
-// beeco design system 1.24.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js
+// beeco design system 1.25.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js
 // Bence: ez a fájl a beeco-design-system dist/dart mappájából jön – ne szerkeszd kézzel.
 import 'package:flutter/material.dart';
 

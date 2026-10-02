@@ -11,6 +11,19 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.25.0 – webes réteg (Webflow)
+
+A beeco.hu a termékbőrt kapja (Kristóf, 2026-10-01), de Webflow-ban készül, ezért nem tud DS-t importálni.
+Új réteg, ami a bemenetet generálja és a kimenetet méri:
+
+- `tools/webflow-build.js` → `dist/weboldal/webflow-valtozok.json` (56 változó, világos + sötét) és `paletta.json`.
+- `docs/weboldal.md`: token→Webflow-változó megfeleltetés, osztálynevek, a Webflow API tanult korlátai, menetrend.
+- `tools/web-ellenor.js`: az élő oldal átvizsgálása 4 nézetben – működés, kilógás, 44 px, fókusz, kontraszt,
+  axe-core WCAG 2.2 AA, DS-en kívüli szín/sarok/árnyék/betű, szerkezet, SEO-alap, linkek, animáció.
+- `tools/web/oldal-meres-web.js`: a web-specifikus mérés (a közös `tools/komp/oldal-meres.js` mellé).
+- `tests/check-weboldal.js`: a generált réteg frissességét, teljességét és a névszabályt őrzi; `npm test` része.
+- `npm run web <URL>` parancs.
+
 ## 1.24.0 – 2026-10-02
 - Új export: **FieldInput** és **useFieldContext** (+ `FieldCtx` típus) – saját mező (pl. natív fájlválasztó) bekötése a `Field` címkéjéhez, súgójához és hibájához (id, aria-describedby, aria-invalid). Eddig csak belül volt elérhető.
 
