@@ -11,6 +11,9 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.30.0 – 2026-10-02
+- **smoke.js**: az időkorlát a projekt `smoke.config.json`-jából állítható (`limitPerc`, `limitPercOffline`; alapból 6 / 12 perc). A beeco-szelektalj 25+ játékkal online + offline + kioszk-futásban már nem fért bele a 12 percbe.
+
 ## 1.29.0 – 2026-10-02
 - Új: **„állapot” adatskála** (Javaslat 12): `--bc-data-allapot-1…5` (levél → méz → piros) és színtévesztő-barát párja `--bc-data-allapot-cb-1…5` (kék → narancs); a fekete jel minden fokozaton ≥ 4,5:1 (`check-tokens` ellenőrzi). Tesztlap: `adat-mutato` „Állapot-skála”. Az első fogyasztó a partner-app öntözési szomjúság-skálája.
 

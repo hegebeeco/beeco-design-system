@@ -59,7 +59,8 @@ const stopServer = () => new Promise(r => { srv.close(r); for(const s of sockets
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 let chrome, prof;
 function finish(code){ try{ chrome && chrome.kill(); }catch(e){} try{ prof && fs.rmSync(prof, { recursive:true, force:true }); }catch(e){} process.exit(code); }
-const LIMIT_MIN = OFFLINE ? 12 : 6;
+// időkorlát percben: a projekt smoke.config.json-ja felülírhatja (limitPerc / limitPercOffline) – sok játéknál a 12 perc kevés
+const LIMIT_MIN = (OFFLINE ? SMOKE_CFG.limitPercOffline : SMOKE_CFG.limitPerc) ?? (OFFLINE ? 12 : 6);
 setTimeout(() => { console.error(`HIBA: a smoke-teszt ${LIMIT_MIN} perc alatt sem végzett – leállítom.`); finish(1); }, LIMIT_MIN * 60 * 1000).unref();
 
 srv.listen(0, '127.0.0.1', async () => {
