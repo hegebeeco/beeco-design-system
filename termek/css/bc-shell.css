@@ -20,6 +20,21 @@
   .bc-nav-group { margin-top: var(--bc-sp-2); }
   .bc-sidebar, .bc-sidebar-links { gap: 0; }
 }
+/* Javaslat 17 – tömör oldalsáv (AppShell density="compact"): keskenyebb sáv, kisebb betű és közök; egérrel 36 px-es
+   sorok, érintőképernyőn a 44 px-es érintési felület MARAD (csak a közök szűkülnek). A telefonos fiók (portál) is kapja. */
+.bc-shell.is-compact { grid-template-columns: 224px minmax(0, 1fr); }
+.bc-shell.is-compact.is-collapsed { grid-template-columns: 72px minmax(0, 1fr); }
+.bc-shell.is-compact .bc-sidebar, .bc-sidebar.is-compact { padding: var(--bc-sp-3) var(--bc-sp-2); gap: 0; }
+.bc-shell.is-compact .bc-brand, .bc-sidebar.is-compact .bc-brand { padding-bottom: var(--bc-sp-2); font-size: var(--bc-fs-l); }
+.bc-shell.is-compact .bc-brand img, .bc-sidebar.is-compact .bc-brand img { height: 30px; }
+.bc-shell.is-compact .bc-sidebar-links, .bc-sidebar.is-compact .bc-sidebar-links { gap: 0; }
+.bc-shell.is-compact .bc-nav-group, .bc-sidebar.is-compact .bc-nav-group { margin: var(--bc-sp-3) var(--bc-sp-2) 2px; }
+.bc-shell.is-compact .bc-nav-link, .bc-sidebar.is-compact .bc-nav-link { gap: var(--bc-sp-2); padding: 0 var(--bc-sp-2); font-size: var(--bc-fs-s); }
+.bc-shell.is-compact .bc-nav-link > svg, .bc-sidebar.is-compact .bc-nav-link > svg,
+.bc-shell.is-compact .bc-nav-icon svg, .bc-sidebar.is-compact .bc-nav-icon svg { width: 18px; height: 18px; }
+@media (hover: hover) and (pointer: fine) {
+  .bc-shell.is-compact .bc-nav-link, .bc-sidebar.is-compact .bc-nav-link { min-height: 36px; }
+}
 .bc-main { display: flex; flex-direction: column; min-width: 0; }
 .bc-topbar { position: sticky; top: 0; z-index: var(--bc-z-header); display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-3);
   min-height: 64px; padding: 0 var(--bc-sp-5); background: var(--bc-bg); border-bottom: var(--bc-bw-base) solid var(--bc-line); }

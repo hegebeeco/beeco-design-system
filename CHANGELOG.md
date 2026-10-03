@@ -11,6 +11,12 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.38.0 – 2026-10-03 – tömör oldalsáv (Javaslat 17)
+
+Mellékverzió (PARTNERAPP; Kristóf kérése) – opcionális, alapból semmi nem változik.
+
+* **`AppShell density="compact"`:** keskenyebb sáv (224 px, becsukva 72 px), `fs-s` betű, 18 px ikon, kisebb csoport- és tételköz; **egérrel 36 px-es menüpontok, érintőképernyőn a 44 px-es érintési felület marad**. A telefonos fiók (portál) is tömör. Menücsoportokkal (`NavGroup.label`) 12 menüpont + 3 csoportcím 1280×800-on görgetés nélkül elfér. Tesztlap: `reteg-vaz-tomor`.
+
 ## 1.37.0 – 2026-10-03 – tördelődő nézetváltó, tailwind-merge kiegészítés (Javaslat 16)
 
 Mellékverzió (PARTNERAPP; Kristóf jóváhagyta) – minden új lehetőség opcionális, a meglévő használat nem változik.

@@ -43,6 +43,8 @@ export type AppShellProps = {
   pattern?: 'honeycomb';
   /** Évszakos díszítés a mintán (Javaslat 11): 'auto' = a mai dátum szerint, vagy egy adott évszak; alapból nincs */
   season?: 'auto' | Evszak;
+  /** Javaslat 17: 'compact' = tömör oldalsáv (keskenyebb, kisebb betű; egérrel 36 px-es sorok, érintésre 44 px marad) */
+  density?: 'default' | 'compact';
   children: ReactNode;
 };
 
@@ -63,7 +65,8 @@ const Chevron = ({ left }: { left: boolean }) => (
  * Az első Tab-ra „Ugrás a tartalomra” ugrólink jelenik meg. Az oldal címe a tartalom tetején van (PageHeader).
  */
 export function AppShell({ brand, brandCompact, nav, topbar, account, collapsible = false, collapseKey = 'nav', renderLink = defaultLink,
-  skipLabel = 'Ugrás a tartalomra', navLabel = 'Fő navigáció', labels, pattern, season, children }: AppShellProps) {
+  skipLabel = 'Ugrás a tartalomra', navLabel = 'Fő navigáció', labels, pattern, season, density = 'default', children }: AppShellProps) {
+  const compact = density === 'compact';
   const ev = pattern === 'honeycomb' && season ? (season === 'auto' ? evszak() : season) : undefined;
   const l = { ...APP_SHELL_LABELS_HU, ...labels };
   const narrow = useMedia(NARROW);
@@ -122,7 +125,7 @@ export function AppShell({ brand, brandCompact, nav, topbar, account, collapsibl
   const navCtx = useMemo(() => ({ closeNav: () => setOpen(false) }), []);
   return (
     <ShellNavContext.Provider value={navCtx}>
-    <div className={cx('bc-shell', collapsed && 'is-collapsed', !hasHeader && 'no-topbar')}>
+    <div className={cx('bc-shell', collapsed && 'is-collapsed', compact && 'is-compact', !hasHeader && 'no-topbar')}>
       <a className="bc-skip" href="#bc-content">{skipLabel}</a>
       {!narrow && (
         <nav className="bc-sidebar" aria-label={navLabel}>
@@ -142,7 +145,7 @@ export function AppShell({ brand, brandCompact, nav, topbar, account, collapsibl
         <Dialog.Root open={open} onOpenChange={setOpen}>
           <Dialog.Portal>
             <Dialog.Overlay className="bc-scrim is-nav" />
-            <Dialog.Content ref={drawer} className="bc-sidebar is-open" aria-describedby={undefined}
+            <Dialog.Content ref={drawer} className={cx('bc-sidebar is-open', compact && 'is-compact')} aria-describedby={undefined}
               onOpenAutoFocus={focus.remember} onCloseAutoFocus={focus.restore}>
               <div className="bc-nav-head">
                 <Dialog.Title className="bc-sr">{l.menuTitle}</Dialog.Title>

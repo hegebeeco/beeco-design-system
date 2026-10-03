@@ -1,4 +1,4 @@
-/* beeco design system 1.37.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.38.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -3537,8 +3537,10 @@ function AppShell({
   labels,
   pattern,
   season,
+  density = "default",
   children
 }) {
+  const compact = density === "compact";
   const ev = pattern === "honeycomb" && season ? season === "auto" ? evszak() : season : void 0;
   const l = { ...APP_SHELL_LABELS_HU, ...labels };
   const narrow = useMedia(NARROW);
@@ -3588,7 +3590,7 @@ function AppShell({
   ] }, gi));
   const hasHeader = narrow || Boolean(topbar);
   const navCtx = useMemo3(() => ({ closeNav: () => setOpen(false) }), []);
-  return /* @__PURE__ */ jsx58(ShellNavContext.Provider, { value: navCtx, children: /* @__PURE__ */ jsxs53("div", { className: cx("bc-shell", collapsed && "is-collapsed", !hasHeader && "no-topbar"), children: [
+  return /* @__PURE__ */ jsx58(ShellNavContext.Provider, { value: navCtx, children: /* @__PURE__ */ jsxs53("div", { className: cx("bc-shell", collapsed && "is-collapsed", compact && "is-compact", !hasHeader && "no-topbar"), children: [
     /* @__PURE__ */ jsx58("a", { className: "bc-skip", href: "#bc-content", children: skipLabel }),
     !narrow && /* @__PURE__ */ jsxs53("nav", { className: "bc-sidebar", "aria-label": navLabel, children: [
       /* @__PURE__ */ jsxs53("div", { className: "bc-sidebar-head", children: [
@@ -3604,7 +3606,7 @@ function AppShell({
         Dialog4.Content,
         {
           ref: drawer,
-          className: "bc-sidebar is-open",
+          className: cx("bc-sidebar is-open", compact && "is-compact"),
           "aria-describedby": void 0,
           onOpenAutoFocus: focus.remember,
           onCloseAutoFocus: focus.restore,

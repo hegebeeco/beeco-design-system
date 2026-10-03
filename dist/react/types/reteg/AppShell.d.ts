@@ -45,6 +45,8 @@ export type AppShellProps = {
     pattern?: 'honeycomb';
     /** Évszakos díszítés a mintán (Javaslat 11): 'auto' = a mai dátum szerint, vagy egy adott évszak; alapból nincs */
     season?: 'auto' | Evszak;
+    /** Javaslat 17: 'compact' = tömör oldalsáv (keskenyebb, kisebb betű; egérrel 36 px-es sorok, érintésre 44 px marad) */
+    density?: 'default' | 'compact';
     children: ReactNode;
 };
 /**
@@ -53,4 +55,4 @@ export type AppShellProps = {
  * 900 px alatt a sáv behúzható fiók (☰): Radix Dialog – fókuszcsapda, Esc, háttér; linkre koppintva bezár, a fókusz visszaáll a ☰-re.
  * Az első Tab-ra „Ugrás a tartalomra” ugrólink jelenik meg. Az oldal címe a tartalom tetején van (PageHeader).
  */
-export declare function AppShell({ brand, brandCompact, nav, topbar, account, collapsible, collapseKey, renderLink, skipLabel, navLabel, labels, pattern, season, children }: AppShellProps): import("react").JSX.Element;
+export declare function AppShell({ brand, brandCompact, nav, topbar, account, collapsible, collapseKey, renderLink, skipLabel, navLabel, labels, pattern, season, density, children }: AppShellProps): import("react").JSX.Element;
