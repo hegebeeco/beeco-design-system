@@ -110,6 +110,12 @@ function Oldal() {
             <div className="tl-terkep-hely" style={{ display: 'grid', placeItems: 'center' }}>(itt rajzol a projekt Leaflet-térképe)</div>
           </MapPanel>
         </Case>
+        <Case id="terkep-felirat" title="MapPanel saját lista-felirattal (listLabel – ha az oldalnak is van „Lista” nézete)">
+          <MapPanel label="A nézet POI-i" listLabel="A nézet POI-i" height="160px"
+            list={[{ id: '1', title: 'Zöld Sarok Bolt', detail: 'Pécs', href: '#bolt' }]}>
+            <div className="tl-terkep-hely" style={{ display: 'grid', placeItems: 'center' }}>(térkép)</div>
+          </MapPanel>
+        </Case>
         <Case id="visszavonas" title="notify.undo: visszafordítható művelet megerősítés helyett">
           <Button variant="secondary" disabled={rejtett} onClick={() => { setRejtett(true); notify.undo('A hibajegy megoldottnak jelölve.', () => setRejtett(false)); }}>Megoldottnak jelölöm</Button>
           <p className="tl-out" data-out="visszavonas">hibajegy: {rejtett ? 'megoldva' : 'nyitott'}</p>

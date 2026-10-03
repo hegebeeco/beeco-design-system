@@ -1,6 +1,6 @@
 # Javaslat 15 – Listák hatékonysága (táblázat, tömeges sáv, lista-eszközsáv, menü)
 
-*Állapot: **jóváhagyva (irány)** · készítette: Claude (ADMIN) · dátum: 2026-10-02*
+*Állapot: **megvalósítva – DS 1.36.0** (a HIBA-k: 1.34.2) · készítette: Claude (ADMIN) · dátum: 2026-10-02, megvalósítás: 2026-10-03*
 *Forrás: az admin UX-átvilágítása (2026-10-02, 3 független ügynök, minden szakasz, asztal + telefon) – ClickUp `869fb6yq0`.*
 
 ## 1. Igény
@@ -66,3 +66,11 @@ A prioritás miatt elrejtett oszlop tartalma a lenyitott sorban elérhető (bill
 - Dátum: 2026-10-02
 - Kristóf: „a UX/UI javaslatokat elfogadom, javítsd őket” – az irány jóváhagyva, a fenti **A** változatokkal. Ha a megvalósított képernyőképek alapján mást szeretne, a kiadás előtt jelzi.
 - Kiadás: előbb a HIBA-k (javító verzió), aztán a bővítés (mellékverzió) – a PARTNERAPP-munkamenettel egyeztetve.
+
+## 9. Megvalósítás (2026-10-03)
+- **1.34.2:** a 3.3 „Apró HIBA-k” (SortSelect, Lalezar „…”, tiltott SelectField, VideoUpload-szöveg).
+- **1.36.0:** 3.1 A (`meta.priority` + `meta.pinEnd`), 3.2 A (`meta.card`), telefonos tömeges sáv, `FilterBar` `secondary`, AppShell tömörebb menü + aktív pont görgetése. Az 1.35.0-t közben a játékbőr kiadása foglalta el, ezért lett 1.36.0.
+- **Kiegészítés (PP-11, Kristóf elfogadta a UX-javaslatot):** `MapPanel` `listLabel` – a térkép-panel lista-felirata állítható.
+- **Eltérés a tervtől:** a telefonos tömeges sáv műveletei nem `DropdownMenu`-be kerülnek, hanem vízszintesen görgethető, egysoros sávban maradnak (a projektek tetszőleges gombokat adnak át – a menübe alakítás ismeretlen tartalomnál törékeny lenne). Ha Kristóf a menüs változatot kéri, a következő verzióban.
+- **Nem DS-hiba:** a jobb alsó sarokban látott kerek ikon a React Query fejlesztői eszközének gombja (csak fejlesztői módban).
+

@@ -20,6 +20,8 @@ export type FilterDef = {
   loading?: boolean;
   loadError?: string;
   onRetry?: () => void;
+  /** Másodlagos szűrő (Javaslat 15, 3.3): széles helyen a „További szűrők (N)” lenyitóba kerül – a ritkán használt szűrők nem foglalnak sort */
+  secondary?: boolean;
 };
 export type FilterValue = string | string[] | null | undefined;
 

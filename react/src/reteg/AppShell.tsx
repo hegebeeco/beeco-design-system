@@ -76,6 +76,17 @@ export function AppShell({ brand, brandCompact, nav, topbar, account, collapsibl
   // (modális réteg) letakarná és kattinthatatlanná tenné a megerősítő ablakot. Natív, dokumentum-szintű figyelő kell,
   // mert az elfogó a React gyökeréig el sem engedi az eseményt (stopPropagation); ugyanazon a csomóponton viszont mi is lefutunk.
   const drawer = useRef<HTMLDivElement>(null);
+  // Javaslat 15, 3.3: az aktív menüpont betöltéskor (és oldalváltáskor) a görgethető menüben is látszik
+  const linkek = useRef<HTMLDivElement>(null);
+  const aktivHref = useMemo(() => nav.flatMap((g) => g.items).find((i) => i.current)?.href, [nav]);
+  // a tárolót görgetjük, nem scrollIntoView-val: az a böngészőben a Tab-bejárás kezdőpontját is áthelyezné (az ugrólink elveszne)
+  useEffect(() => {
+    const c = linkek.current;
+    const el = c?.querySelector<HTMLElement>('[aria-current="page"]');
+    if (!c || !el) return;
+    const d = el.getBoundingClientRect().top - c.getBoundingClientRect().top;
+    if (d < 0 || d + el.offsetHeight > c.clientHeight) c.scrollTop += d - (c.clientHeight - el.offsetHeight) / 2;
+  }, [aktivHref]);
   useEffect(() => {
     if (!open) return;
     const h = (e: MouseEvent) => {
@@ -123,7 +134,7 @@ export function AppShell({ brand, brandCompact, nav, topbar, account, collapsibl
               </IconButton>
             )}
           </div>
-          <div className="bc-sidebar-links">{links()}</div>
+          <div ref={linkek} className="bc-sidebar-links">{links()}</div>
           {account && <div className="bc-sidebar-foot">{account}</div>}
         </nav>
       )}

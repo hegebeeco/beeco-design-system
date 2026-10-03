@@ -46,9 +46,11 @@ export type DataTableProps<T> = {
     /** A görgethető terület legnagyobb magassága (rögzített fejléc) – alap: 70vh */
     maxHeight?: string;
 };
-/**
- * DataTable (organizmus, Javaslat 02 – 1a A, 1b A): TanStack-logika + DS `bc-table`.
- * Rendezés (aria-sort), rögzített fejléc és első oszlop, kijelölés + tömeges sáv, lenyitható sor, oszlophúzás (billentyűvel is),
- * lapozás 10/25/100 (kliens vagy szerver), sűrűség, töltés (csontváz) / frissítés / üres / hiba / nincs jogosultság.
- */
+/** Mely oszlopok rejtőzzenek el (a „Részletek” lenyitóba kerülnek): kártyán a `card: 'detail'`, széles nézetben a prioritás szerint, amíg nem fér el */
+export declare function rejtettOszlopok(oszlopok: ReadonlyArray<{
+    id: string;
+    size: number;
+    priority?: 1 | 2 | 3;
+    card?: string;
+}>, szelesseg: number, kartya: boolean, segedSzam: number): string[];
 export declare function DataTable<T>(p: DataTableProps<T>): import("react").JSX.Element;

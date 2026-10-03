@@ -1349,7 +1349,7 @@ function DraftNotice({ savedAt, onRestore, onDiscard }) {
 }
 
 // react/src/adat/DataTable.tsx
-import { useEffect as useEffect9, Fragment as Fragment4, useId as useId7, useMemo as useMemo2, useState as useState13 } from "react";
+import { useEffect as useEffect9, Fragment as Fragment4, useId as useId7, useMemo as useMemo2, useRef as useRef10, useState as useState14 } from "react";
 import {
   flexRender,
   getCoreRowModel,
@@ -1682,8 +1682,38 @@ function useCtl(value, onChange, initial) {
   return [cur, set];
 }
 
+// react/src/adat/useWidth.ts
+import { useLayoutEffect as useLayoutEffect2, useState as useState13 } from "react";
+function useWidth(ref, fallback = 0) {
+  const [w, setW] = useState13(fallback);
+  useLayoutEffect2(() => {
+    const el = ref.current;
+    if (!el) return;
+    setW(el.getBoundingClientRect().width);
+    const ro = new ResizeObserver(([e]) => setW(Math.round(e.contentRect.width)));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [ref]);
+  return w;
+}
+
 // react/src/adat/DataTable.tsx
 import { jsx as jsx26, jsxs as jsxs24 } from "react/jsx-runtime";
+var KARTYA_MAX = 640;
+var SEGED = 44;
+function rejtettOszlopok(oszlopok, szelesseg, kartya, segedSzam) {
+  if (kartya) return oszlopok.filter((o) => o.card === "detail").map((o) => o.id);
+  if (!szelesseg || !oszlopok.some((o) => o.priority && o.priority > 1)) return [];
+  let kell = oszlopok.reduce((n, o) => n + o.size, 0) + segedSzam * SEGED;
+  const jeloltek = [...oszlopok.filter((o) => o.priority === 3).reverse(), ...oszlopok.filter((o) => o.priority === 2).reverse()];
+  const rejtett = [];
+  for (const o of jeloltek) {
+    if (kell + (rejtett.length ? 0 : SEGED) <= szelesseg) break;
+    rejtett.push(o.id);
+    kell -= o.size;
+  }
+  return rejtett;
+}
 function DataTable(p) {
   const { data, caption, getRowId, rowLabel, itemLabel = "sor", status = "ready", selectable, maxSelection, renderExpanded, resizable, mobile = "scroll" } = p;
   const uid = useId7().replace(/[^a-zA-Z0-9-]/g, "");
@@ -1692,14 +1722,29 @@ function DataTable(p) {
   const [selection, setSelection] = useCtl(p.selection, p.onSelectionChange, {});
   const [pagination, setPagination] = useCtl(p.pagination, p.onPaginationChange, { pageIndex: 0, pageSize: (p.pageSizes ?? [10, 25, 100])[1] ?? 25 });
   const [density, setDensity] = useCtl(p.density, p.onDensityChange, "comfortable");
-  const [expanded, setExpanded] = useState13({});
-  const [notice, setNotice] = useState13();
+  const [expanded, setExpanded] = useState14({});
+  const [notice, setNotice] = useState14();
   const server = p.serverRowCount !== void 0;
+  const gyoker = useRef10(null);
+  const szelesseg = useWidth(gyoker);
+  const kartya = mobile === "cards" && szelesseg > 0 && szelesseg <= KARTYA_MAX;
+  const rejtett = useMemo2(() => rejtettOszlopok(
+    p.columns.map((c) => {
+      const m = c.meta ?? {};
+      const a = c;
+      return { id: a.id ?? a.accessorKey ?? "", size: c.size ?? 160, priority: m.priority, card: m.card };
+    }),
+    szelesseg,
+    kartya,
+    (selectable ? 1 : 0) + (renderExpanded ? 1 : 0)
+  ), [p.columns, szelesseg, kartya, selectable, renderExpanded]);
+  const lenyito = Boolean(renderExpanded) || rejtett.length > 0;
+  const lathatosag = useMemo2(() => Object.fromEntries(rejtett.map((id) => [id, false])), [rejtett]);
   const columns = useMemo2(() => [
     ...selectable ? [selectColumn(rowLabel)] : [],
-    ...renderExpanded ? [expandColumn(rowLabel, detailId)] : [],
+    ...lenyito ? [expandColumn(rowLabel, detailId)] : [],
     ...p.columns.map(wrapColumn)
-  ], [p.columns, selectable, renderExpanded]);
+  ], [p.columns, selectable, lenyito]);
   const table = useReactTable({
     data,
     columns,
@@ -1707,7 +1752,7 @@ function DataTable(p) {
     columnResizeMode: "onChange",
     enableColumnResizing: Boolean(resizable),
     defaultColumn: { cell: DefaultCell, sortUndefined: "last", size: 160, minSize: 64 },
-    state: { sorting, rowSelection: selection, pagination, expanded },
+    state: { sorting, rowSelection: selection, pagination, expanded, columnVisibility: lathatosag },
     onSortingChange: (u) => {
       setSorting(u);
       setPagination((o) => ({ ...o, pageIndex: 0 }));
@@ -1725,7 +1770,7 @@ function DataTable(p) {
       setSelection(next);
     },
     enableRowSelection: Boolean(selectable),
-    getRowCanExpand: (r) => Boolean(renderExpanded) && (p.canExpand?.(r.original) ?? true),
+    getRowCanExpand: (r) => rejtett.length > 0 || Boolean(renderExpanded) && (p.canExpand?.(r.original) ?? true),
     getCoreRowModel: getCoreRowModel(),
     ...server ? { manualSorting: true, manualPagination: true, rowCount: p.serverRowCount } : { getSortedRowModel: getSortedRowModel(), getPaginationRowModel: getPaginationRowModel() },
     autoResetPageIndex: false
@@ -1739,13 +1784,17 @@ function DataTable(p) {
   const leafs = table.getVisibleLeafColumns();
   const pinCount = leafs.findIndex((c) => !c.id.startsWith("_")) + 1;
   const pinStyle = (i) => i < pinCount ? { left: `calc(var(--bc-tap) * ${i})` } : void 0;
+  const cardCls = (c) => {
+    const m = metaOf(c);
+    return cx(m.pinEnd && "is-pin-end", m.card && `is-card-${m.card}`);
+  };
   const clear = () => {
     setSelection({});
     setNotice(void 0);
   };
   const rows = table.getRowModel().rows;
   const body = status !== "ready" || !data.length;
-  return /* @__PURE__ */ jsxs24("div", { className: cx("bc-dt", density === "dense" && "is-dense", mobile === "cards" && "is-cards"), children: [
+  return /* @__PURE__ */ jsxs24("div", { ref: gyoker, className: cx("bc-dt", density === "dense" && "is-dense", mobile === "cards" && "is-cards", rejtett.length > 0 && "has-hidden"), children: [
     /* @__PURE__ */ jsx26("p", { className: "bc-sr", "aria-live": "polite", children: selIds.length ? `${selIds.length} kijel\xF6lt ${itemLabel}` : "" }),
     (selectable || p.densityToggle !== false || p.toolbar || p.captionVisible || mobile === "cards") && /* @__PURE__ */ jsx26("div", { className: "bc-dt-bar", children: selIds.length ? /* @__PURE__ */ jsx26(BulkBar, { count: selIds.length, max: maxSelection, itemLabel, notice, onClear: clear, children: p.bulkActions?.(selIds, clear) }) : /* @__PURE__ */ jsxs24("div", { className: "bc-dt-tools", children: [
       p.captionVisible && /* @__PURE__ */ jsx26("h3", { className: "bc-dt-title", "aria-hidden": "true", children: caption }),
@@ -1770,7 +1819,7 @@ function DataTable(p) {
               "th",
               {
                 scope: "col",
-                className: cx(metaOf(c).num && "is-num", i < pinCount && "is-pin", c.id.startsWith("_") && "is-util"),
+                className: cx(metaOf(c).num && "is-num", i < pinCount && "is-pin", c.id.startsWith("_") && "is-util", cardCls(c)),
                 style: { width: h.getSize(), ...pinStyle(i) },
                 "aria-sort": c.getCanSort() ? s === "asc" ? "ascending" : s === "desc" ? "descending" : "none" : void 0,
                 children: [
@@ -1796,12 +1845,19 @@ function DataTable(p) {
               {
                 "data-label": headerText(cell.column),
                 style: pinStyle(i),
-                className: cx(metaOf(cell.column).num && "is-num", i < pinCount && "is-pin", cell.column.id.startsWith("_") && "is-util", metaOf(cell.column).wrap && "is-wrap"),
+                className: cx(metaOf(cell.column).num && "is-num", i < pinCount && "is-pin", cell.column.id.startsWith("_") && "is-util", metaOf(cell.column).wrap && "is-wrap", cardCls(cell.column)),
                 children: flexRender(cell.column.columnDef.cell, cell.getContext())
               },
               cell.id
             )) }),
-            r.getIsExpanded() && renderExpanded && /* @__PURE__ */ jsx26("tr", { className: "bc-dt-detail", id: detailId(r.id), children: /* @__PURE__ */ jsx26("td", { colSpan: leafs.length, children: /* @__PURE__ */ jsx26("div", { className: "bc-dt-detail-body", children: renderExpanded(r.original) }) }) })
+            r.getIsExpanded() && lenyito && /* @__PURE__ */ jsx26("tr", { className: "bc-dt-detail", id: detailId(r.id), children: /* @__PURE__ */ jsx26("td", { colSpan: leafs.length, children: /* @__PURE__ */ jsxs24("div", { className: "bc-dt-detail-body", children: [
+              rejtett.length > 0 && // a szűk hely miatt elrejtett oszlopok tartalma – billentyűzettel és képernyőolvasóval is elérhető (Javaslat 15, 7.)
+              /* @__PURE__ */ jsx26("dl", { className: "bc-dt-hidden", children: r.getAllCells().filter((cell) => rejtett.includes(cell.column.id)).map((cell) => /* @__PURE__ */ jsxs24("div", { children: [
+                /* @__PURE__ */ jsx26("dt", { children: headerText(cell.column) }),
+                /* @__PURE__ */ jsx26("dd", { children: flexRender(cell.column.columnDef.cell, cell.getContext()) })
+              ] }, cell.id)) }),
+              renderExpanded && (p.canExpand?.(r.original) ?? true) && renderExpanded(r.original)
+            ] }) }) })
           ] }, r.id)) })
         ] })
       }
@@ -1824,7 +1880,7 @@ function DataTable(p) {
 
 // react/src/adat/FilterBar.tsx
 import * as Popover5 from "@radix-ui/react-popover";
-import { useEffect as useEffect10, useRef as useRef10, useState as useState15 } from "react";
+import { useEffect as useEffect10, useRef as useRef11, useState as useState15 } from "react";
 
 // react/src/adat/FilterControls.tsx
 import { useId as useId8 } from "react";
@@ -1889,32 +1945,18 @@ function chipText(def, value) {
   return `${def.label}: ${first}${vals2.length > 1 ? ` +${vals2.length - 1}` : ""}`;
 }
 
-// react/src/adat/useWidth.ts
-import { useLayoutEffect as useLayoutEffect2, useState as useState14 } from "react";
-function useWidth(ref, fallback = 0) {
-  const [w, setW] = useState14(fallback);
-  useLayoutEffect2(() => {
-    const el = ref.current;
-    if (!el) return;
-    setW(el.getBoundingClientRect().width);
-    const ro = new ResizeObserver(([e]) => setW(Math.round(e.contentRect.width)));
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, [ref]);
-  return w;
-}
-
 // react/src/adat/FilterBar.tsx
 import { Fragment as Fragment5, jsx as jsx28, jsxs as jsxs26 } from "react/jsx-runtime";
 var vals = (v) => Array.isArray(v) ? v : v ? [v] : [];
 function FilterBar({ search, filters, values, onChange, resultCount, itemLabel = "tal\xE1lat", extra, narrowBelow = 640, className }) {
-  const root = useRef10(null);
+  const root = useRef11(null);
   const width = useWidth(root, typeof window === "undefined" ? 1024 : window.innerWidth);
   const narrow = width > 0 && width < narrowBelow;
   const [q, setQ] = useState15(search?.value ?? "");
   const [open, setOpen] = useState15(false);
+  const [tobbNyitva, setTobbNyitva] = useState15(false);
   const [notice, setNotice] = useState15();
-  const searchInput = useRef10(null);
+  const searchInput = useRef11(null);
   useEffect10(() => {
     searchInput.current?.closest("[role=search]")?.setAttribute("aria-label", search?.label ?? "Keres\xE9s");
   }, [search?.label]);
@@ -1960,7 +2002,10 @@ function FilterBar({ search, filters, values, onChange, resultCount, itemLabel =
     setNotice(void 0);
   };
   const count = resultCount === void 0 ? null : /* @__PURE__ */ jsx28("p", { className: "bc-fb-count", role: "status", "aria-live": "polite", children: resultCount === null ? "Sz\xE1mol\xE1s\u2026" : `${fmt(resultCount)} ${itemLabel}` });
-  const controls = filters.map((f) => /* @__PURE__ */ jsx28(FilterControl, { def: f, value: values[f.id], onChange: (v) => set(f.id, v) }, f.id));
+  const vezerlo = (f) => /* @__PURE__ */ jsx28(FilterControl, { def: f, value: values[f.id], onChange: (v) => set(f.id, v) }, f.id);
+  const controls = filters.map(vezerlo);
+  const masodlagos = filters.filter((f) => f.secondary);
+  const masodlagosAktiv = masodlagos.filter((f) => chipText(f, values[f.id])).length;
   return /* @__PURE__ */ jsxs26("div", { ref: root, className: cx("bc-fb", narrow && "is-narrow", className), children: [
     /* @__PURE__ */ jsxs26("div", { className: "bc-fb-row", children: [
       search && /* @__PURE__ */ jsx28(SearchBox, { ref: searchInput, className: "bc-fb-search", label: search.label, placeholder: search.placeholder, value: q, onChange: setQ, onSearch: (v) => search.onChange(v) }),
@@ -1983,12 +2028,26 @@ function FilterBar({ search, filters, values, onChange, resultCount, itemLabel =
           ] })
         ] }) })
       ] }) : /* @__PURE__ */ jsxs26(Fragment5, { children: [
-        controls,
+        filters.filter((f) => !f.secondary).map(vezerlo),
+        masodlagos.length > 0 && /* @__PURE__ */ jsxs26(Popover5.Root, { open: tobbNyitva, onOpenChange: setTobbNyitva, children: [
+          /* @__PURE__ */ jsx28(Popover5.Trigger, { asChild: true, children: /* @__PURE__ */ jsxs26(Button, { variant: "secondary", className: "bc-fb-toggle bc-fb-more", "aria-haspopup": "dialog", children: [
+            "Tov\xE1bbi sz\u0171r\u0151k",
+            masodlagosAktiv > 0 && /* @__PURE__ */ jsxs26("span", { className: "bc-badge is-accent", children: [
+              masodlagosAktiv,
+              /* @__PURE__ */ jsx28("span", { className: "bc-sr", children: " akt\xEDv" })
+            ] })
+          ] }) }),
+          /* @__PURE__ */ jsx28(Popover5.Portal, { children: /* @__PURE__ */ jsxs26(Popover5.Content, { className: "bc-pop bc-fb-panel", role: "dialog", "aria-label": "Tov\xE1bbi sz\u0171r\u0151k", side: "bottom", align: "start", sideOffset: 8, collisionPadding: 16, children: [
+            /* @__PURE__ */ jsx28("div", { className: "bc-fb-panel-body", children: masodlagos.map(vezerlo) }),
+            /* @__PURE__ */ jsx28("div", { className: "bc-fb-panel-foot", children: /* @__PURE__ */ jsx28(Button, { size: "sm", onClick: () => setTobbNyitva(false), children: resultCount == null ? "K\xE9sz" : `${fmt(resultCount)} ${itemLabel} mutat\xE1sa` }) })
+          ] }) })
+        ] }),
         extra
-      ] })
+      ] }),
+      !any && !narrow && count
     ] }),
     notice && /* @__PURE__ */ jsx28("p", { className: "bc-notice", role: "status", children: notice }),
-    (any || count) && /* @__PURE__ */ jsxs26("div", { className: "bc-fb-active", children: [
+    (any || count && narrow) && /* @__PURE__ */ jsxs26("div", { className: "bc-fb-active", children: [
       any && /* @__PURE__ */ jsxs26("ul", { className: "bc-fb-chips", "aria-label": "Akt\xEDv sz\u0171r\u0151k", children: [
         q.trim() && /* @__PURE__ */ jsx28(FilterChip, { text: `Keres\xE9s: ${q.trim()}`, onRemove: () => {
           setQ("");
@@ -2225,11 +2284,11 @@ function ChartTable({ data, caption }) {
 }
 
 // react/src/adat/chart/Frame.tsx
-import { useId as useId9, useRef as useRef11 } from "react";
+import { useId as useId9, useRef as useRef12 } from "react";
 import { jsx as jsx35, jsxs as jsxs33 } from "react/jsx-runtime";
 var CH = 7;
 function Frame({ data, min, max, height = 240, minBand = 24, padRight, label, children, note }) {
-  const box = useRef11(null);
+  const box = useRef12(null);
   const width = useWidth(box);
   const pid = `bcgap${useId9().replace(/[^a-zA-Z0-9]/g, "")}`;
   const n = Math.max(1, data.categories.length);
@@ -2408,7 +2467,7 @@ function ChartCard(p) {
 }
 
 // react/src/adat/chart/HBarChart.tsx
-import { useRef as useRef12 } from "react";
+import { useRef as useRef13 } from "react";
 
 // react/src/adat/chart/outlier.ts
 function findOutlier(values) {
@@ -2422,7 +2481,7 @@ var outlierNote = (d, o) => `A(z) \u201E${d.categories[o.index]}\u201D \xE9rt\xE
 import { jsx as jsx38, jsxs as jsxs36 } from "react/jsx-runtime";
 var ROW = 32;
 function HBarChart({ data, clipOutlier = true, valueLabels = true, label }) {
-  const box = useRef12(null);
+  const box = useRef13(null);
   const width = useWidth(box);
   const s = data.series[0] ?? { values: [], label: "" };
   const nums = s.values.filter((v) => typeof v === "number");
@@ -2600,7 +2659,7 @@ function StatusBadge({ tone, children, icon, title, className }) {
 
 // react/src/reteg/Modal.tsx
 import * as Dialog2 from "@radix-ui/react-dialog";
-import { useRef as useRef15 } from "react";
+import { useRef as useRef16 } from "react";
 
 // react/src/reteg/layer.ts
 import { useSyncExternalStore } from "react";
@@ -2620,7 +2679,7 @@ function useMedia(query) {
 }
 
 // react/src/reteg/focus.ts
-import { useRef as useRef13 } from "react";
+import { useRef as useRef14 } from "react";
 var TABBABLE = 'input:not([disabled]):not([type=hidden]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])';
 function firstTabbable(root) {
   return root ? [...root.querySelectorAll(TABBABLE)].find((el) => el.offsetParent !== null || el.getClientRects().length > 0) ?? null : null;
@@ -2630,7 +2689,7 @@ function firstField(root) {
   return fields.find((el) => el.getClientRects().length > 0) ?? firstTabbable(root);
 }
 function useReturnFocus() {
-  const opener = useRef13(null);
+  const opener = useRef14(null);
   return {
     remember() {
       let el = document.activeElement;
@@ -2653,7 +2712,7 @@ import { createContext as createContext2, useContext as useContext2, useState as
 
 // react/src/reteg/ConfirmDialog.tsx
 import * as Dialog from "@radix-ui/react-dialog";
-import { useRef as useRef14, useState as useState17 } from "react";
+import { useRef as useRef15, useState as useState17 } from "react";
 import { jsx as jsx43, jsxs as jsxs40 } from "react/jsx-runtime";
 var defaultError = (e) => `Nem siker\xFClt${e instanceof Error && e.message ? `: ${e.message}` : ""}. Pr\xF3b\xE1ld \xFAjra.`;
 function ConfirmDialog({
@@ -2675,7 +2734,7 @@ function ConfirmDialog({
 }) {
   const [busy, setBusy] = useState17(false);
   const [error, setError] = useState17(null);
-  const cancelRef = useRef14(null);
+  const cancelRef = useRef15(null);
   const focus = useReturnFocus();
   const change = (next) => {
     if (busy && !next) return;
@@ -2776,7 +2835,7 @@ function useCloseGuard({ onOpenChange, dirty, busy }) {
 import { jsx as jsx45, jsxs as jsxs41 } from "react/jsx-runtime";
 function Modal({ open, onOpenChange, title, description, size = "md", footer, busy, dirty, initialFocus, closeLabel = "Bez\xE1r\xE1s", className, children }) {
   const guard = useCloseGuard({ onOpenChange, dirty, busy });
-  const body = useRef15(null);
+  const body = useRef16(null);
   const focus = useReturnFocus();
   return /* @__PURE__ */ jsx45(Dialog2.Root, { open, onOpenChange: guard.change, children: /* @__PURE__ */ jsx45(Dialog2.Portal, { children: /* @__PURE__ */ jsx45(Dialog2.Overlay, { className: "bc-scrim", children: /* @__PURE__ */ jsx45(
     Dialog2.Content,
@@ -2817,12 +2876,12 @@ function CloseIcon() {
 }
 
 // react/src/reteg/TypeToConfirm.tsx
-import { useRef as useRef16, useState as useState19 } from "react";
+import { useRef as useRef17, useState as useState19 } from "react";
 import { jsx as jsx46, jsxs as jsxs42 } from "react/jsx-runtime";
 var same = (a, b, isCount) => isCount ? a.replace(/\s/g, "") === b : norm(a.trim().replace(/\s+/g, " ")) === norm(b.trim().replace(/\s+/g, " "));
 function TypeToConfirm({ count, name: name2, prompt, impactLoading, impactError, onRetry, open, onOpenChange, ...rest }) {
   const [typed, setTyped] = useState19("");
-  const input = useRef16(null);
+  const input = useRef17(null);
   const isCount = count !== void 0;
   const expected = isCount ? String(count) : name2 ?? "";
   const match = expected !== "" && same(typed, expected, isCount);
@@ -2874,12 +2933,12 @@ function TypeToConfirm({ count, name: name2, prompt, impactLoading, impactError,
 
 // react/src/reteg/Drawer.tsx
 import * as Dialog3 from "@radix-ui/react-dialog";
-import { useRef as useRef17 } from "react";
+import { useRef as useRef18 } from "react";
 import { jsx as jsx47, jsxs as jsxs43 } from "react/jsx-runtime";
 function Drawer({ open, onOpenChange, title, description, size = "md", footer, busy, dirty, initialFocus, closeLabel = "Panel bez\xE1r\xE1sa", className, children }) {
   const guard = useCloseGuard({ onOpenChange, dirty, busy });
   const focus = useReturnFocus();
-  const head = useRef17(null);
+  const head = useRef18(null);
   return /* @__PURE__ */ jsx47(Dialog3.Root, { open, onOpenChange: guard.change, children: /* @__PURE__ */ jsxs43(Dialog3.Portal, { children: [
     /* @__PURE__ */ jsx47(Dialog3.Overlay, { className: "bc-scrim is-drawer" }),
     /* @__PURE__ */ jsx47(
@@ -2946,7 +3005,7 @@ function useQueryParam(name2) {
 
 // react/src/reteg/Tooltip.tsx
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
-import { forwardRef as forwardRef8, useRef as useRef18, useState as useState20 } from "react";
+import { forwardRef as forwardRef8, useRef as useRef19, useState as useState20 } from "react";
 import { jsx as jsx48, jsxs as jsxs44 } from "react/jsx-runtime";
 var lastTab = 0;
 if (typeof document !== "undefined") document.addEventListener("keydown", (e) => {
@@ -2954,8 +3013,8 @@ if (typeof document !== "undefined") document.addEventListener("keydown", (e) =>
 }, true);
 var TooltipIconButton = forwardRef8(function TooltipIconButton2({ label, children, side = "top", onBlur, onClick, onKeyDown, onPointerDown, ...rest }, ref) {
   const [open, setOpen] = useState20(false);
-  const pointer = useRef18(false);
-  const hover = useRef18(void 0);
+  const pointer = useRef19(false);
+  const hover = useRef19(void 0);
   return /* @__PURE__ */ jsx48(TooltipPrimitive.Provider, { delayDuration: 500, skipDelayDuration: 300, children: /* @__PURE__ */ jsxs44(TooltipPrimitive.Root, { open, onOpenChange: (o) => {
     if (!o) setOpen(false);
   }, children: [
@@ -3088,9 +3147,9 @@ import * as T from "@radix-ui/react-tabs";
 import { useState as useState21 } from "react";
 
 // react/src/reteg/useScrollFade.ts
-import { useEffect as useEffect11, useRef as useRef19 } from "react";
+import { useEffect as useEffect11, useRef as useRef20 } from "react";
 function useScrollFade(selected, dep) {
-  const ref = useRef19(null);
+  const ref = useRef20(null);
   useEffect11(() => {
     const wrap = ref.current;
     const row = wrap?.firstElementChild;
@@ -3425,7 +3484,7 @@ function ToastView({ t }) {
 
 // react/src/reteg/AppShell.tsx
 import * as Dialog4 from "@radix-ui/react-dialog";
-import { Fragment as Fragment15, useEffect as useEffect13, useMemo as useMemo3, useRef as useRef20, useState as useState24 } from "react";
+import { Fragment as Fragment15, useEffect as useEffect13, useMemo as useMemo3, useRef as useRef21, useState as useState24 } from "react";
 
 // react/src/marka/evszak.ts
 function evszak(d = /* @__PURE__ */ new Date()) {
@@ -3487,7 +3546,16 @@ function AppShell({
   const [collapsedPref, setCollapsedPref] = useState24(() => collapsible && readCollapsed(collapseKey));
   const collapsed = collapsible && !narrow && collapsedPref;
   const focus = useReturnFocus();
-  const drawer = useRef20(null);
+  const drawer = useRef21(null);
+  const linkek = useRef21(null);
+  const aktivHref = useMemo3(() => nav.flatMap((g) => g.items).find((i) => i.current)?.href, [nav]);
+  useEffect13(() => {
+    const c = linkek.current;
+    const el = c?.querySelector('[aria-current="page"]');
+    if (!c || !el) return;
+    const d = el.getBoundingClientRect().top - c.getBoundingClientRect().top;
+    if (d < 0 || d + el.offsetHeight > c.clientHeight) c.scrollTop += d - (c.clientHeight - el.offsetHeight) / 2;
+  }, [aktivHref]);
   useEffect13(() => {
     if (!open) return;
     const h = (e) => {
@@ -3527,7 +3595,7 @@ function AppShell({
         collapsed && brandCompact ? brandCompact : brand,
         collapsible && /* @__PURE__ */ jsx58(IconButton, { className: "bc-sidebar-toggle", "aria-label": collapsed ? l.expand : l.collapse, "aria-expanded": !collapsed, onClick: toggle, children: /* @__PURE__ */ jsx58(Chevron2, { left: !collapsed }) })
       ] }),
-      /* @__PURE__ */ jsx58("div", { className: "bc-sidebar-links", children: links() }),
+      /* @__PURE__ */ jsx58("div", { ref: linkek, className: "bc-sidebar-links", children: links() }),
       account && /* @__PURE__ */ jsx58("div", { className: "bc-sidebar-foot", children: account })
     ] }),
     narrow && /* @__PURE__ */ jsx58(Dialog4.Root, { open, onOpenChange: setOpen, children: /* @__PURE__ */ jsxs53(Dialog4.Portal, { children: [
@@ -3567,13 +3635,13 @@ function AppShell({
 
 // react/src/reteg/StageDialog.tsx
 import * as Dialog5 from "@radix-ui/react-dialog";
-import { useEffect as useEffect14, useRef as useRef21 } from "react";
+import { useEffect as useEffect14, useRef as useRef22 } from "react";
 import { jsx as jsx59, jsxs as jsxs54 } from "react/jsx-runtime";
 function StageDialog({ open, onOpenChange, title, closable = true, announce = "", fullscreen = false, closeLabel = "Bez\xE1r\xE1s", className, children }) {
   const focus = useReturnFocus();
-  const close = useRef21(null);
-  const sajat = useRef21(false);
-  const tartalom = useRef21(null);
+  const close = useRef22(null);
+  const sajat = useRef22(false);
+  const tartalom = useRef22(null);
   useEffect14(() => {
     if (!open) return;
     const t = window.setTimeout(() => {
@@ -3631,7 +3699,7 @@ function StageDialog({ open, onOpenChange, title, closable = true, announce = ""
 }
 
 // react/src/media/ImageUploader.tsx
-import { useId as useId11, useRef as useRef26, useState as useState30 } from "react";
+import { useId as useId11, useRef as useRef27, useState as useState30 } from "react";
 
 // react/src/media/files.ts
 var MB = 1024 * 1024;
@@ -3884,16 +3952,16 @@ function CropDialog({ file, crop, position, onDone, onSkip }) {
 }
 
 // react/src/media/Gallery.tsx
-import { useRef as useRef24, useState as useState28 } from "react";
+import { useRef as useRef25, useState as useState28 } from "react";
 
 // react/src/media/GalleryDialogs.tsx
 import * as Dialog6 from "@radix-ui/react-dialog";
 import { useEffect as useEffect16, useState as useState27 } from "react";
 
 // react/src/media/useReturnFocus.ts
-import { useLayoutEffect as useLayoutEffect3, useRef as useRef22 } from "react";
+import { useLayoutEffect as useLayoutEffect3, useRef as useRef23 } from "react";
 function useReturnFocus2(open, fallback) {
-  const prev = useRef22(null);
+  const prev = useRef23(null);
   useLayoutEffect3(() => {
     if (open) prev.current = document.activeElement;
   }, [open]);
@@ -4067,14 +4135,14 @@ function GalleryTile({ img, index, count, ordering, editable, altEditable = true
 
 // react/src/media/Lightbox.tsx
 import * as Dialog7 from "@radix-ui/react-dialog";
-import { useRef as useRef23 } from "react";
+import { useRef as useRef24 } from "react";
 import { jsx as jsx65, jsxs as jsxs60 } from "react/jsx-runtime";
 function Lightbox({ images, index, onIndexChange, returnFocus }) {
   const open = index !== null && images.length > 0;
   const i = Math.min(index ?? 0, Math.max(0, images.length - 1));
   const img = images[i];
   const go = (d) => onIndexChange((i + d + images.length) % images.length);
-  const startX = useRef23(null);
+  const startX = useRef24(null);
   const back = useReturnFocus2(open, returnFocus);
   const onKey = (e) => {
     if (images.length < 2) return;
@@ -4135,8 +4203,8 @@ function Gallery({ images, onChange, ordering = true, confirmDelete, altHelp, al
   const [drag, setDrag] = useState28(null);
   const [said, setSaid] = useState28("");
   const editable = Boolean(onChange);
-  const root = useRef24(null);
-  const opener = useRef24(null);
+  const root = useRef25(null);
+  const opener = useRef25(null);
   const trigger = () => opener.current && root.current?.querySelector(`[data-tile="${opener.current}"] .bc-tile-menu`) || root.current?.querySelector(".bc-tile-menu, .bc-tile-open, input");
   const move = (from, to) => {
     if (!onChange || from === to || to < 0 || to >= images.length) return;
@@ -4292,14 +4360,14 @@ function UploadTile({ item, onCancel, onRetry }) {
 }
 
 // react/src/media/useUploads.ts
-import { useCallback as useCallback4, useEffect as useEffect17, useRef as useRef25, useState as useState29 } from "react";
+import { useCallback as useCallback4, useEffect as useEffect17, useRef as useRef26, useState as useState29 } from "react";
 var seq2 = 0;
 function useUploads(upload, onDone, onCancel) {
   const [items, setItems] = useState29([]);
-  const ctrls = useRef25(/* @__PURE__ */ new Map());
-  const done = useRef25(onDone);
+  const ctrls = useRef26(/* @__PURE__ */ new Map());
+  const done = useRef26(onDone);
   done.current = onDone;
-  const cancelCb = useRef25(onCancel);
+  const cancelCb = useRef26(onCancel);
   cancelCb.current = onCancel;
   const patch = (id, p) => setItems((xs) => xs.map((x) => x.id === id ? { ...x, ...p } : x));
   const drop = (id) => setItems((xs) => {
@@ -4380,12 +4448,12 @@ function ImageUploader({
   const [rejected, setRejected] = useState30([]);
   const [note, setNote] = useState30();
   const [over, setOver] = useState30(false);
-  const input = useRef26(null);
+  const input = useRef27(null);
   const rejId = useId11();
-  const latest = useRef26(images);
+  const latest = useRef27(images);
   latest.current = images;
-  const fromFile = useRef26(/* @__PURE__ */ new Map());
-  const origKey = useRef26(/* @__PURE__ */ new WeakMap());
+  const fromFile = useRef27(/* @__PURE__ */ new Map());
+  const origKey = useRef27(/* @__PURE__ */ new WeakMap());
   const [queue, setQueue] = useState30({ files: [], total: 0 });
   const up = useUploads(
     upload,
@@ -4525,7 +4593,7 @@ function ImageUploader({
 }
 
 // react/src/media/VideoUpload.tsx
-import { useEffect as useEffect18, useId as useId12, useRef as useRef27, useState as useState31 } from "react";
+import { useEffect as useEffect18, useId as useId12, useRef as useRef28, useState as useState31 } from "react";
 import { Fragment as Fragment20, jsx as jsx70, jsxs as jsxs65 } from "react/jsx-runtime";
 var STEPS = [{ id: "file", label: "F\xE1jl" }, { id: "up", label: "Felt\xF6lt\xE9s" }, { id: "proc", label: "Feldolgoz\xE1s" }, { id: "done", label: "K\xE9sz" }];
 function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, disabled }) {
@@ -4535,7 +4603,7 @@ function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, dis
   const [failed, setFailed] = useState31(null);
   const [rej, setRej] = useState31(null);
   const [eta, setEta] = useState31();
-  const ctrl = useRef27(null);
+  const ctrl = useRef28(null);
   const rejId = useId12();
   useEffect18(() => {
     if (phase !== "up") return;
@@ -4674,7 +4742,7 @@ function VideoUpload({ label, help, upload, process, onDone, maxSizeMB = 25, dis
 }
 
 // react/src/media/FileImport.tsx
-import { useId as useId13, useRef as useRef28, useState as useState33 } from "react";
+import { useId as useId13, useRef as useRef29, useState as useState33 } from "react";
 
 // react/src/media/ImportResult.tsx
 import { useState as useState32 } from "react";
@@ -4779,8 +4847,8 @@ function FileImport({ label, help, importFile, maxSizeMB = 10, allowXls = true, 
   const [result, setResult] = useState33(null);
   const [rej, setRej] = useState33(null);
   const [failed, setFailed] = useState33(null);
-  const ctrl = useRef28(null);
-  const lastKey = useRef28(null);
+  const ctrl = useRef29(null);
+  const lastKey = useRef29(null);
   const [dup, setDup] = useState33(null);
   const rejId = useId13();
   const accept = allowXls ? [XLSX, XLS] : [XLSX];
@@ -4987,7 +5055,7 @@ function HeatScale({ title, unit, help, ends = ["kev\xE9s", "sok"], steps, howTo
 }
 
 // react/src/media/MonthCalendar.tsx
-import { useEffect as useEffect19, useMemo as useMemo4, useRef as useRef29, useState as useState35 } from "react";
+import { useEffect as useEffect19, useMemo as useMemo4, useRef as useRef30, useState as useState35 } from "react";
 
 // react/src/media/monthEvents.ts
 var KIND_ROLE = { event: "info", special: "warning", education: "success" };
@@ -5042,8 +5110,8 @@ import { jsx as jsx75, jsxs as jsxs70 } from "react/jsx-runtime";
 function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPerDay = 3, loading, error, onRetry, hidden = [], onHiddenChange, labels, kinds }) {
   const [focus, setFocus] = useState35(initialDate ?? todayIso());
   const [selected, setSelected] = useState35(focus);
-  const grid = useRef29(null);
-  const moved = useRef29(false);
+  const grid = useRef30(null);
+  const moved = useRef30(false);
   const f = fromIso(focus);
   const monthKey = `${f.getFullYear()}-${f.getMonth()}`;
   const days = useMemo4(() => monthGrid(f.getFullYear(), f.getMonth()).map(toIso), [monthKey]);
@@ -5053,7 +5121,7 @@ function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPer
   const today = todayIso();
   const title = `${f.getFullYear()}. ${MONTHS[f.getMonth()]}`;
   const monthCount = days.filter((d) => fromIso(d).getMonth() === f.getMonth()).reduce((n, d) => n + (byDay.get(d)?.length ?? 0), 0);
-  const first = useRef29(true);
+  const first = useRef30(true);
   useEffect19(() => {
     if (first.current) {
       first.current = false;
@@ -5322,7 +5390,7 @@ function Avatar({ name: name2, src, size = 40, shape = "circle", decorative = fa
 // react/src/media/MapPanel.tsx
 import { useState as useState38 } from "react";
 import { Fragment as Fragment22, jsx as jsx78, jsxs as jsxs72 } from "react/jsx-runtime";
-function MapPanel({ label, legend, note, toolbar, status = "ready", what = "a t\xE9rk\xE9pet", error, onRetry, empty, list: list2, view, onViewChange, height = "min(420px, 60vh)", renderLink = defaultLink, className, children }) {
+function MapPanel({ label, legend, note, toolbar, status = "ready", what = "a t\xE9rk\xE9pet", error, onRetry, empty, list: list2, listLabel = "Lista", view, onViewChange, height = "min(420px, 60vh)", renderLink = defaultLink, className, children }) {
   const [sajat, setSajat] = useState38("map");
   const nezet = view ?? sajat;
   const valt = (v) => {
@@ -5331,7 +5399,7 @@ function MapPanel({ label, legend, note, toolbar, status = "ready", what = "a t\
   };
   return /* @__PURE__ */ jsxs72("div", { className: cx("bc-map-panel", className), children: [
     (list2 || toolbar) && /* @__PURE__ */ jsxs72("div", { className: "bc-row bc-map-panel-bar", children: [
-      list2 && /* @__PURE__ */ jsx78(SegmentedControl, { label: "N\xE9zet", value: nezet, onChange: valt, items: [{ value: "map", label: "T\xE9rk\xE9p" }, { value: "list", label: `Lista (${list2.length})` }] }),
+      list2 && /* @__PURE__ */ jsx78(SegmentedControl, { label: "N\xE9zet", value: nezet, onChange: valt, items: [{ value: "map", label: "T\xE9rk\xE9p" }, { value: "list", label: `${listLabel} (${list2.length})` }] }),
       toolbar
     ] }),
     /* @__PURE__ */ jsx78(DataState, { status, what, error, onRetry, children: empty ? /* @__PURE__ */ jsx78(EmptyState, { title: empty.title, children: empty.text }) : /* @__PURE__ */ jsxs72(Fragment22, { children: [
@@ -5620,7 +5688,7 @@ function BeeMoment({ pillanat, poen, sima, szerep, action, inline, valtozat, liv
 }
 
 // react/src/meh/motion.tsx
-import { Children, cloneElement as cloneElement2, isValidElement as isValidElement2, useEffect as useEffect22, useRef as useRef30, useState as useState39 } from "react";
+import { Children, cloneElement as cloneElement2, isValidElement as isValidElement2, useEffect as useEffect22, useRef as useRef31, useState as useState39 } from "react";
 import { jsx as jsx81, jsxs as jsxs74 } from "react/jsx-runtime";
 function useReducedMotion() {
   const [r, setR] = useState39(() => typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -5634,7 +5702,7 @@ function useReducedMotion() {
 }
 function useCountUp(value, ms = 600) {
   const reduce = useReducedMotion();
-  const first = useRef30(true);
+  const first = useRef31(true);
   const [anim, setAnim] = useState39(reduce ? null : 0);
   useEffect22(() => {
     if (reduce || !first.current) {
@@ -5730,7 +5798,7 @@ function BeeSprite({ szereplo, size = "m", replay, label, className }) {
 }
 
 // react/src/kieg/PhoneField.tsx
-import { forwardRef as forwardRef9, useEffect as useEffect24, useLayoutEffect as useLayoutEffect4, useRef as useRef31, useState as useState41 } from "react";
+import { forwardRef as forwardRef9, useEffect as useEffect24, useLayoutEffect as useLayoutEffect4, useRef as useRef32, useState as useState41 } from "react";
 
 // react/src/kieg/phone.ts
 var MOBIL = ["20", "30", "31", "50", "70"];
@@ -5818,12 +5886,12 @@ var caretAfter = (text, n) => {
   return text.length;
 };
 var PhoneField = forwardRef9(function PhoneField2({ label, help, range, error, notice, required, disabled, className, value, onChange, kind = "barmely", onBlur, onFocus, ...rest }, ref) {
-  const inner = useRef31(null);
+  const inner = useRef32(null);
   const [text, setText] = useState41(() => formatNational(parsePhone(value).digits));
   const [note, setNote] = useState41();
   const [touched, setTouched] = useState41(false);
-  const focused = useRef31(false);
-  const caret = useRef31(null);
+  const focused = useRef32(false);
+  const caret = useRef32(null);
   useEffect24(() => {
     if (!focused.current) setText(formatNational(parsePhone(value).digits));
   }, [value]);
@@ -5935,7 +6003,7 @@ var PhoneField = forwardRef9(function PhoneField2({ label, help, range, error, n
 });
 
 // react/src/kieg/CopyButton.tsx
-import { useEffect as useEffect25, useRef as useRef32, useState as useState42 } from "react";
+import { useEffect as useEffect25, useRef as useRef33, useState as useState42 } from "react";
 
 // react/src/kieg/icons.tsx
 import { jsx as jsx84, jsxs as jsxs76 } from "react/jsx-runtime";
@@ -5980,8 +6048,8 @@ async function copyText(text) {
 function CopyButton({ value, what, variant = "button", showValue: showValue2, disabled, className }) {
   const [state, setState] = useState42("idle");
   const [msg, setMsg] = useState42("");
-  const fallback = useRef32(null);
-  const timer = useRef32(void 0);
+  const fallback = useRef33(null);
+  const timer = useRef33(void 0);
   useEffect25(() => () => window.clearTimeout(timer.current), []);
   useEffect25(() => {
     if (state === "failed") fallback.current?.select();
@@ -6011,7 +6079,7 @@ function CopyButton({ value, what, variant = "button", showValue: showValue2, di
 }
 
 // react/src/kieg/DownloadButton.tsx
-import { useEffect as useEffect26, useRef as useRef33, useState as useState43 } from "react";
+import { useEffect as useEffect26, useRef as useRef34, useState as useState43 } from "react";
 import { Fragment as Fragment23, jsx as jsx86, jsxs as jsxs78 } from "react/jsx-runtime";
 function formatBytes(n) {
   if (n < 1024) return `${n} B`;
@@ -6035,7 +6103,7 @@ function DownloadButton({ label, fileName, sizeHint, onDownload, variant = "seco
   const [size, setSize] = useState43(null);
   const [slow, setSlow] = useState43(false);
   const [stopped, setStopped] = useState43(false);
-  const ctrl = useRef33(null);
+  const ctrl = useRef34(null);
   useEffect26(() => () => ctrl.current?.abort(), []);
   useEffect26(() => {
     if (state !== "busy") return;
@@ -6116,7 +6184,7 @@ function DownloadButton({ label, fileName, sizeHint, onDownload, variant = "seco
 }
 
 // react/src/kieg/Slider.tsx
-import { useRef as useRef34 } from "react";
+import { useRef as useRef35 } from "react";
 
 // react/src/kieg/sliderCore.ts
 var decimalsOf = (n) => (String(n).split(".")[1] ?? "").length;
@@ -6157,8 +6225,8 @@ var defaultBig = (min, max, step) => Math.max(step, Math.round((max - min) / 10 
 import { jsx as jsx87, jsxs as jsxs79 } from "react/jsx-runtime";
 var fmt2 = (unit, step) => (v) => `${formatHu(v, (String(step).split(".")[1] ?? "").length)}${unit ? ` ${unit}` : ""}`;
 function Track({ values, onChange, spec, labels, format, disabled, minGap, describedBy, invalid }) {
-  const track = useRef34(null);
-  const drag = useRef34(null);
+  const track = useRef35(null);
+  const drag = useRef35(null);
   const set = (i, raw) => {
     let x = snap(raw, spec);
     if (values.length === 2) x = i === 0 ? Math.min(x, values[1] - minGap) : Math.max(x, values[0] + minGap);
@@ -6275,14 +6343,14 @@ function RangeSlider({ value, onChange, minGap, ...rest }) {
 }
 
 // react/src/kieg/UnsavedChanges.tsx
-import { useCallback as useCallback5, useEffect as useEffect28, useRef as useRef36, useState as useState44 } from "react";
+import { useCallback as useCallback5, useEffect as useEffect28, useRef as useRef37, useState as useState44 } from "react";
 
 // react/src/kieg/KiegDialog.tsx
-import { useEffect as useEffect27, useId as useId15, useRef as useRef35 } from "react";
+import { useEffect as useEffect27, useId as useId15, useRef as useRef36 } from "react";
 import { Fragment as Fragment24, jsx as jsx88, jsxs as jsxs80 } from "react/jsx-runtime";
 function KiegDialog({ open, onCancel, title, children, actions, className }) {
-  const ref = useRef35(null);
-  const back = useRef35(null);
+  const ref = useRef36(null);
+  const back = useRef36(null);
   const id = useId15();
   useEffect27(() => {
     const d = ref.current;
@@ -6370,8 +6438,8 @@ function UnsavedChangesDialog({ open, onStay, onLeave, onSave, title = "Nem ment
 }
 function useUnsavedChanges(dirty, opts = {}) {
   const [pending, setPending] = useState44(null);
-  const live = useRef36(dirty);
-  const released = useRef36(false);
+  const live = useRef37(dirty);
+  const released = useRef37(false);
   useEffect28(() => {
     live.current = dirty;
     released.current = false;
@@ -6404,7 +6472,7 @@ function useUnsavedChanges(dirty, opts = {}) {
 }
 function UnsavedChangesGuard({ dirty, interceptLinks = true, ...opts }) {
   const { confirm, dialog } = useUnsavedChanges(dirty, opts);
-  const bypass = useRef36(false);
+  const bypass = useRef37(false);
   useEffect28(() => {
     if (!dirty || !interceptLinks) return;
     const h = (e) => {
@@ -6428,7 +6496,7 @@ function UnsavedChangesGuard({ dirty, interceptLinks = true, ...opts }) {
 }
 
 // react/src/kieg/OfflineBanner.tsx
-import { useEffect as useEffect29, useRef as useRef37, useState as useState45 } from "react";
+import { useEffect as useEffect29, useRef as useRef38, useState as useState45 } from "react";
 import { Fragment as Fragment26, jsx as jsx90, jsxs as jsxs82 } from "react/jsx-runtime";
 function useOnline() {
   const [on, setOn] = useState45(() => typeof navigator === "undefined" ? true : navigator.onLine);
@@ -6448,7 +6516,7 @@ function OfflineBanner({ online, pending = 0, saveText, onRetry, bee = true, bac
   const browser = useOnline();
   const on = online ?? browser;
   const [back, setBack] = useState45(false);
-  const was = useRef37(on);
+  const was = useRef38(on);
   useEffect29(() => {
     if (on && !was.current) {
       setBack(true);
@@ -6683,11 +6751,11 @@ function Timeline({ items, status = "ready", onRetry, pageSize = 10, onLoadMore,
 import { useCallback as useCallback6, useState as useState47 } from "react";
 
 // react/src/kieg/Clamp.tsx
-import { createContext as createContext4, useContext as useContext4, useEffect as useEffect30, useLayoutEffect as useLayoutEffect5, useRef as useRef38 } from "react";
+import { createContext as createContext4, useContext as useContext4, useEffect as useEffect30, useLayoutEffect as useLayoutEffect5, useRef as useRef39 } from "react";
 import { jsx as jsx93 } from "react/jsx-runtime";
 var CutContext = createContext4(() => void 0);
 function Clamp({ k, label, lines, as: Tag = "p", placeholder, className, children }) {
-  const ref = useRef38(null);
+  const ref = useRef39(null);
   const report = useContext4(CutContext);
   const empty = children === void 0 || children === null || typeof children === "string" && !children.trim();
   useLayoutEffect5(() => {
@@ -6786,7 +6854,7 @@ function PreviewCard({ caption = "\xCDgy l\xE1tszik az appban", className, ...da
 }
 
 // react/src/kieg/AudienceBuilder.tsx
-import { Fragment as Fragment28, useEffect as useEffect31, useId as useId18, useRef as useRef39, useState as useState48 } from "react";
+import { Fragment as Fragment28, useEffect as useEffect31, useId as useId18, useRef as useRef40, useState as useState48 } from "react";
 
 // react/src/kieg/audience.ts
 var OPS = {
@@ -6920,9 +6988,9 @@ function AudienceBuilder({
 }) {
   const uid = useId18();
   const [touched, setTouched] = useState48(() => /* @__PURE__ */ new Set());
-  const focusRule = useRef39(null);
-  const addBtn = useRef39(null);
-  const root = useRef39(null);
+  const focusRule = useRef40(null);
+  const addBtn = useRef40(null);
+  const root = useRef40(null);
   const problems = audienceProblems(value, fields);
   const bad2 = Object.keys(problems).length;
   const full = value.rules.length >= maxRules;
@@ -7227,10 +7295,10 @@ function CompareMerge({ records, fields, choices, onChoicesChange, survivor, onS
 }
 
 // react/src/kieg/ReviewQueue.tsx
-import { useEffect as useEffect33, useId as useId22, useRef as useRef41, useState as useState51 } from "react";
+import { useEffect as useEffect33, useId as useId22, useRef as useRef42, useState as useState51 } from "react";
 
 // react/src/kieg/ReviewReject.tsx
-import { useEffect as useEffect32, useId as useId21, useRef as useRef40, useState as useState50 } from "react";
+import { useEffect as useEffect32, useId as useId21, useRef as useRef41, useState as useState50 } from "react";
 import { jsx as jsx99, jsxs as jsxs90 } from "react/jsx-runtime";
 var MIN = 10;
 var MAX = 300;
@@ -7239,7 +7307,7 @@ function ReviewReject({ reasons = [], busy, onSubmit, onCancel }) {
   const [preset, setPreset] = useState50();
   const [text, setText] = useState50("");
   const [err, setErr] = useState50();
-  const box = useRef40(null);
+  const box = useRef41(null);
   useEffect32(() => {
     box.current?.querySelector("input[type=radio], textarea")?.focus();
   }, []);
@@ -7324,9 +7392,9 @@ function ReviewQueue({ items, getId, getTitle, render, onDecide, onUndo, reasons
   const [busy, setBusy] = useState51(false);
   const [err, setErr] = useState51();
   const [say2, setSay] = useState51("");
-  const head = useRef41(null);
-  const root = useRef41(null);
-  const rejectBtn = useRef41(null);
+  const head = useRef42(null);
+  const root = useRef42(null);
+  const rejectBtn = useRef42(null);
   const titleId = useId22();
   const item = items[at2];
   const total = items.length;
@@ -7371,7 +7439,7 @@ function ReviewQueue({ items, getId, getTitle, render, onDecide, onUndo, reasons
       setErr("Nem siker\xFClt visszavonni. Pr\xF3b\xE1ld \xFAjra.");
     }
   };
-  const focusHead = useRef41(false);
+  const focusHead = useRef42(false);
   useEffect33(() => {
     if (focusHead.current) {
       focusHead.current = false;
@@ -7468,10 +7536,10 @@ function ReviewQueue({ items, getId, getTitle, render, onDecide, onUndo, reasons
 }
 
 // react/src/kieg2/LocationPicker.tsx
-import { useEffect as useEffect36, useId as useId23, useRef as useRef44, useState as useState54 } from "react";
+import { useEffect as useEffect36, useId as useId23, useRef as useRef45, useState as useState54 } from "react";
 
 // react/src/kieg2/AddressSearch.tsx
-import { useEffect as useEffect34, useMemo as useMemo6, useRef as useRef42, useState as useState52 } from "react";
+import { useEffect as useEffect34, useMemo as useMemo6, useRef as useRef43, useState as useState52 } from "react";
 import { jsx as jsx101 } from "react/jsx-runtime";
 function AddressSearch({
   search,
@@ -7488,7 +7556,7 @@ function AddressSearch({
   const [loading, setLoading] = useState52(false);
   const [error, setError] = useState52();
   const [tick, setTick] = useState52(0);
-  const searchRef = useRef42(search);
+  const searchRef = useRef43(search);
   searchRef.current = search;
   useEffect34(() => {
     const q = query.trim();
@@ -7638,7 +7706,7 @@ function MiniMap({ point }) {
 }
 
 // react/src/kieg2/useGeolocation.ts
-import { useCallback as useCallback7, useEffect as useEffect35, useRef as useRef43, useState as useState53 } from "react";
+import { useCallback as useCallback7, useEffect as useEffect35, useRef as useRef44, useState as useState53 } from "react";
 var MSG = {
   denied: "Nem engedted a helymeghat\xE1roz\xE1st. A b\xF6ng\xE9sz\u0151 c\xEDmsor\xE1ban (lakat ikon) enged\xE9lyezheted, vagy keresd meg a c\xEDmet.",
   unavailable: "Most nem tal\xE1lom a helyed (nincs GPS vagy h\xE1l\xF3zat). Pr\xF3b\xE1ld \xFAjra, vagy add meg a c\xEDmet.",
@@ -7648,7 +7716,7 @@ var MSG = {
 var accuracyText = (m) => m < 1e3 ? `\xB1${formatHu(Math.round(m), 0)} m` : `\xB1${formatHu(m / 1e3, 1)} km`;
 function useGeolocation(timeoutMs = 1e4) {
   const [state, setState] = useState53({ status: "idle" });
-  const alive = useRef43(true);
+  const alive = useRef44(true);
   useEffect35(() => () => {
     alive.current = false;
   }, []);
@@ -7701,7 +7769,7 @@ function LocationPicker({
   const id = useId23();
   const [draft, setDraft] = useState54(() => toDraft(value));
   const [said, setSaid] = useState54("");
-  const emitted = useRef44(value);
+  const emitted = useRef45(value);
   const geo = useGeolocation();
   const locked = disabled || readOnly;
   useEffect36(() => {
@@ -7816,7 +7884,7 @@ function LocationPicker({
 }
 
 // react/src/kieg2/PrizeDrawReveal.tsx
-import { useEffect as useEffect37, useRef as useRef46, useState as useState56 } from "react";
+import { useEffect as useEffect37, useRef as useRef47, useState as useState56 } from "react";
 
 // react/src/kieg2/draw.ts
 var REVEAL_STEPS = [110, 150, 210, 290, 400, 540];
@@ -7870,13 +7938,13 @@ var WinnerCard = forwardRef10(function WinnerCard2({ winner, prize, test, attemp
 });
 
 // react/src/kieg2/RerollForm.tsx
-import { useRef as useRef45, useState as useState55 } from "react";
+import { useRef as useRef46, useState as useState55 } from "react";
 import { jsx as jsx105, jsxs as jsxs95 } from "react/jsx-runtime";
 function RerollForm({ previous, minLength, maxLength = 200, onConfirm, onCancel }) {
   const [reason, setReason] = useState55("");
   const [error, setError] = useState55();
-  const form = useRef45(null);
-  const area = useRef45(null);
+  const form = useRef46(null);
+  const area = useRef46(null);
   const submit = (e) => {
     e.preventDefault();
     const r = reason.trim();
@@ -7929,8 +7997,8 @@ function PrizeDrawReveal({ prize, participants, draw, onDrawn, onReroll, exclude
   const [log, setLog] = useState56([]);
   const [error, setError] = useState56();
   const [animated, setAnimated] = useState56(false);
-  const alive = useRef46(true);
-  const heading = useRef46(null);
+  const alive = useRef47(true);
+  const heading = useRef47(null);
   useEffect37(() => () => {
     alive.current = false;
   }, []);
@@ -8047,7 +8115,7 @@ function PrizeDrawReveal({ prize, participants, draw, onDrawn, onReroll, exclude
 }
 
 // react/src/kieg2/VideoPlayer.tsx
-import { useRef as useRef47, useState as useState57 } from "react";
+import { useRef as useRef48, useState as useState57 } from "react";
 import { Fragment as Fragment32, jsx as jsx107, jsxs as jsxs97 } from "react/jsx-runtime";
 var ERR = {
   2: "A vide\xF3 nem t\xF6lt\u0151d\xF6tt le (h\xE1l\xF3zati hiba). Ellen\u0151rizd a kapcsolatot, \xE9s pr\xF3b\xE1ld \xFAjra.",
@@ -8056,7 +8124,7 @@ var ERR = {
 };
 var SEEK = 5;
 function VideoPlayer({ title, src, poster, captions = [], warnNoCaptions = true, onError, className }) {
-  const video = useRef47(null);
+  const video = useRef48(null);
   const [state, setState] = useState57("loading");
   const [code, setCode] = useState57(0);
   const [attempt, setAttempt] = useState57(0);
@@ -8133,7 +8201,7 @@ function VideoPlayer({ title, src, poster, captions = [], warnNoCaptions = true,
 }
 
 // react/src/kieg2/VideoEmbed.tsx
-import { useEffect as useEffect38, useRef as useRef48, useState as useState58 } from "react";
+import { useEffect as useEffect38, useRef as useRef49, useState as useState58 } from "react";
 
 // react/src/kieg2/videoUrl.ts
 var FILE_EXT = /\.(mp4|m4v|webm|ogv|ogg|mov)$/i;
@@ -8193,7 +8261,7 @@ function VideoEmbed({ source, title, className }) {
   const [on, setOn] = useState58(false);
   const [loaded, setLoaded] = useState58(false);
   const [slow, setSlow] = useState58(false);
-  const frame = useRef48(null);
+  const frame = useRef49(null);
   useEffect38(() => {
     setOn(false);
     setLoaded(false);
@@ -8446,10 +8514,10 @@ function DetailPage(p) {
 }
 
 // react/src/sablon/EditPage.tsx
-import { useEffect as useEffect40, useId as useId26, useRef as useRef50, useState as useState60 } from "react";
+import { useEffect as useEffect40, useId as useId26, useRef as useRef51, useState as useState60 } from "react";
 
 // react/src/sablon/ErrorSummary.tsx
-import { forwardRef as forwardRef11, useEffect as useEffect39, useId as useId25, useRef as useRef49 } from "react";
+import { forwardRef as forwardRef11, useEffect as useEffect39, useId as useId25, useRef as useRef50 } from "react";
 import { jsx as jsx113, jsxs as jsxs103 } from "react/jsx-runtime";
 function findField(form, name2) {
   if (!form) return null;
@@ -8482,7 +8550,7 @@ var ErrorSummary = forwardRef11(function ErrorSummary2({ errors, general, form }
   ] });
 });
 function useLinkGuard(dirty, confirm) {
-  const bypass = useRef49(false);
+  const bypass = useRef50(false);
   useEffect39(() => {
     if (!dirty) return;
     const h = (e) => {
@@ -8510,8 +8578,8 @@ function EditPage(p) {
   const { title, description, breadcrumbs, renderLink = defaultLink, status = "ready", dirty, validate, preview } = p;
   useTemplateTitle(title, p.docTitle, p.docTitleSuffix, status === "loading");
   const pid = useId26();
-  const form = useRef50(null);
-  const summary = useRef50(null);
+  const form = useRef51(null);
+  const summary = useRef51(null);
   const [busy, setBusy] = useState60(false);
   const [done, setDone] = useState60(false);
   const [saved, setSaved] = useState60(false);
@@ -8603,7 +8671,7 @@ function EditPage(p) {
 }
 
 // react/src/sablon/Dashboard.tsx
-import { useId as useId27, useRef as useRef51 } from "react";
+import { useId as useId27, useRef as useRef52 } from "react";
 import { jsx as jsx115, jsxs as jsxs105 } from "react/jsx-runtime";
 function Dashboard(p) {
   const { title, description, breadcrumbs, renderLink, status = "ready", stats, charts } = p;
@@ -8630,7 +8698,7 @@ function Dashboard(p) {
   ] });
 }
 function CountedStat(s) {
-  const phase = useRef51("wait");
+  const phase = useRef52("wait");
   const ready = !s.loading && !s.error && typeof s.value === "number";
   if (phase.current === "wait" && ready) phase.current = "count";
   else if (phase.current === "count" && !ready) phase.current = "done";

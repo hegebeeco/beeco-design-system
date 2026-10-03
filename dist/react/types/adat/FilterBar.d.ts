@@ -24,5 +24,7 @@ export type FilterBarProps = {
 /**
  * FilterBar (organizmus, Javaslat 02 – 2B): kereső + szűrők + aktív-szűrő címkék + „Szűrők törlése” + találatszám.
  * Széles helyen soros; keskenyen „Szűrők (N)” gomb és panel, alján a találatszámmal. A régi linkből jött érvénytelen értéket kihagyja és szól.
+ * Javaslat 15: a `secondary` szűrők széles helyen a „További szűrők (N)” lenyitóba kerülnek; aktív szűrő nélkül a találatszám
+ * a kereső sorában áll (nem nyit külön sort) – a szűrők és a lista közti üres sáv megszűnik.
  */
 export declare function FilterBar({ search, filters, values, onChange, resultCount, itemLabel, extra, narrowBelow, className }: FilterBarProps): import("react").JSX.Element;

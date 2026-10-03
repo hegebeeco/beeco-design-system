@@ -1,17 +1,18 @@
-import { useEffect, Fragment, useId, useMemo, useState, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, Fragment, useId, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import {
   flexRender, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable,
-  type ColumnDef, type ExpandedState, type PaginationState, type RowSelectionState, type SortingState,
+  type ColumnDef, type ExpandedState, type PaginationState, type RowSelectionState, type SortingState, type VisibilityState,
 } from '@tanstack/react-table';
 import { cx } from '../cx';
 import { SegmentedControl } from '../inputs/SegmentedControl';
 import { DataState, SkeletonRows } from './DataState';
 import { BulkBar, ColumnResizer, SortHeader } from './DataTableParts';
-import { DefaultCell, expandColumn, headerText, metaOf, selectColumn, wrapColumn } from './dataTableColumns';
+import { DefaultCell, expandColumn, headerText, metaOf, selectColumn, wrapColumn, type DataColumnMeta } from './dataTableColumns';
 import { EmptyState } from './EmptyState';
 import { Pagination } from './Pagination';
 import { SortSelect } from './SortSelect';
 import { useCtl } from './useCtl';
+import { useWidth } from './useWidth';
 
 export type DataTableProps<T> = {
   data: T[];
@@ -64,7 +65,32 @@ export type DataTableProps<T> = {
  * DataTable (organizmus, Javaslat 02 – 1a A, 1b A): TanStack-logika + DS `bc-table`.
  * Rendezés (aria-sort), rögzített fejléc és első oszlop, kijelölés + tömeges sáv, lenyitható sor, oszlophúzás (billentyűvel is),
  * lapozás 10/25/100 (kliens vagy szerver), sűrűség, töltés (csontváz) / frissítés / üres / hiba / nincs jogosultság.
+ * Javaslat 15: `meta.priority` – szűk helyen a kevésbé fontos oszlopok a sor „Részletek” lenyitójába kerülnek (nincs vízszintes
+ * görgetés a sorműveletekért); `meta.pinEnd` – jobbra rögzített oszlop; `meta.card` – szerepek a telefonos kártyán (a `detail`
+ * oszlopok a lenyitóba kerülnek). Minden új lehetőség opcionális: meta nélkül a mai viselkedés marad.
  */
+/** A kártyanézet határa – ugyanaz, mint a bc-adat.css @container bc-dt (max-width: 640px) szabálya */
+const KARTYA_MAX = 640;
+/** A segédoszlopok (jelölő, lenyitó) szélessége a becslésben */
+const SEGED = 44;
+
+/** Mely oszlopok rejtőzzenek el (a „Részletek” lenyitóba kerülnek): kártyán a `card: 'detail'`, széles nézetben a prioritás szerint, amíg nem fér el */
+export function rejtettOszlopok(
+  oszlopok: ReadonlyArray<{ id: string; size: number; priority?: 1 | 2 | 3; card?: string }>,
+  szelesseg: number, kartya: boolean, segedSzam: number,
+): string[] {
+  if (kartya) return oszlopok.filter((o) => o.card === 'detail').map((o) => o.id);
+  if (!szelesseg || !oszlopok.some((o) => o.priority && o.priority > 1)) return [];
+  let kell = oszlopok.reduce((n, o) => n + o.size, 0) + segedSzam * SEGED;
+  const jeloltek = [...oszlopok.filter((o) => o.priority === 3).reverse(), ...oszlopok.filter((o) => o.priority === 2).reverse()];
+  const rejtett: string[] = [];
+  // ha bármi elrejtődik, a „Részletek” lenyitó is helyet kér
+  for (const o of jeloltek) {
+    if (kell + (rejtett.length ? 0 : SEGED) <= szelesseg) break;
+    rejtett.push(o.id); kell -= o.size;
+  }
+  return rejtett;
+}
 export function DataTable<T>(p: DataTableProps<T>) {
   const { data, caption, getRowId, rowLabel, itemLabel = 'sor', status = 'ready', selectable, maxSelection, renderExpanded, resizable, mobile = 'scroll' } = p;
   const uid = useId().replace(/[^a-zA-Z0-9-]/g, '');
@@ -76,17 +102,32 @@ export function DataTable<T>(p: DataTableProps<T>) {
   const [expanded, setExpanded] = useState<ExpandedState>({});
   const [notice, setNotice] = useState<string>();
   const server = p.serverRowCount !== undefined;
+  const gyoker = useRef<HTMLDivElement>(null);
+  const szelesseg = useWidth(gyoker);
+  const kartya = mobile === 'cards' && szelesseg > 0 && szelesseg <= KARTYA_MAX;
+
+  // Javaslat 15: a szűk helyre nem férő (prioritás) / kártyán „detail” oszlopok a „Részletek” lenyitóba kerülnek
+  const rejtett = useMemo(() => rejtettOszlopok(
+    (p.columns as ColumnDef<T, unknown>[]).map((c) => {
+      const m = (c.meta ?? {}) as DataColumnMeta;
+      const a = c as { id?: string; accessorKey?: string };
+      return { id: a.id ?? a.accessorKey ?? '', size: c.size ?? 160, priority: m.priority, card: m.card };
+    }),
+    szelesseg, kartya, (selectable ? 1 : 0) + (renderExpanded ? 1 : 0),
+  ), [p.columns, szelesseg, kartya, selectable, renderExpanded]);
+  const lenyito = Boolean(renderExpanded) || rejtett.length > 0;
+  const lathatosag = useMemo<VisibilityState>(() => Object.fromEntries(rejtett.map((id) => [id, false])), [rejtett]);
 
   const columns = useMemo(() => [
     ...(selectable ? [selectColumn<T>(rowLabel)] : []),
-    ...(renderExpanded ? [expandColumn<T>(rowLabel, detailId)] : []),
+    ...(lenyito ? [expandColumn<T>(rowLabel, detailId)] : []),
     ...(p.columns as ColumnDef<T, unknown>[]).map(wrapColumn),
-  ], [p.columns, selectable, renderExpanded]); // eslint-disable-line react-hooks/exhaustive-deps
+  ], [p.columns, selectable, lenyito]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const table = useReactTable<T>({
     data, columns, getRowId, columnResizeMode: 'onChange', enableColumnResizing: Boolean(resizable),
     defaultColumn: { cell: DefaultCell, sortUndefined: 'last', size: 160, minSize: 64 },
-    state: { sorting, rowSelection: selection, pagination, expanded },
+    state: { sorting, rowSelection: selection, pagination, expanded, columnVisibility: lathatosag },
     onSortingChange: (u) => { setSorting(u); setPagination((o) => ({ ...o, pageIndex: 0 })); },
     onPaginationChange: setPagination,
     onExpandedChange: setExpanded,
@@ -97,7 +138,7 @@ export function DataTable<T>(p: DataTableProps<T>) {
       setNotice(undefined); setSelection(next);
     },
     enableRowSelection: Boolean(selectable),
-    getRowCanExpand: (r) => Boolean(renderExpanded) && (p.canExpand?.(r.original) ?? true),
+    getRowCanExpand: (r) => rejtett.length > 0 || (Boolean(renderExpanded) && (p.canExpand?.(r.original) ?? true)),
     getCoreRowModel: getCoreRowModel(),
     ...(server ? { manualSorting: true, manualPagination: true, rowCount: p.serverRowCount } : { getSortedRowModel: getSortedRowModel(), getPaginationRowModel: getPaginationRowModel() }),
     autoResetPageIndex: false,
@@ -113,12 +154,13 @@ export function DataTable<T>(p: DataTableProps<T>) {
   const leafs = table.getVisibleLeafColumns();
   const pinCount = leafs.findIndex((c) => !c.id.startsWith('_')) + 1; // a segédoszlopok + az első adatoszlop rögzített
   const pinStyle = (i: number): CSSProperties | undefined => (i < pinCount ? { left: `calc(var(--bc-tap) * ${i})` } : undefined);
+  const cardCls = (c: { columnDef: { meta?: unknown } }) => { const m = metaOf(c); return cx(m.pinEnd && 'is-pin-end', m.card && `is-card-${m.card}`); };
   const clear = () => { setSelection({}); setNotice(undefined); };
   const rows = table.getRowModel().rows;
   const body = status !== 'ready' || !data.length;
 
   return (
-    <div className={cx('bc-dt', density === 'dense' && 'is-dense', mobile === 'cards' && 'is-cards')}>
+    <div ref={gyoker} className={cx('bc-dt', density === 'dense' && 'is-dense', mobile === 'cards' && 'is-cards', rejtett.length > 0 && 'has-hidden')}>
       <p className="bc-sr" aria-live="polite">{selIds.length ? `${selIds.length} kijelölt ${itemLabel}` : ''}</p>
       {(selectable || p.densityToggle !== false || p.toolbar || p.captionVisible || mobile === 'cards') && <div className="bc-dt-bar">
         {selIds.length ? (
@@ -145,7 +187,7 @@ export function DataTable<T>(p: DataTableProps<T>) {
                 {g.headers.map((h, i) => {
                   const c = h.column, s = c.getIsSorted();
                   return (
-                    <th key={h.id} scope="col" className={cx(metaOf(c).num && 'is-num', i < pinCount && 'is-pin', c.id.startsWith('_') && 'is-util')} style={{ width: h.getSize(), ...pinStyle(i) }}
+                    <th key={h.id} scope="col" className={cx(metaOf(c).num && 'is-num', i < pinCount && 'is-pin', c.id.startsWith('_') && 'is-util', cardCls(c))} style={{ width: h.getSize(), ...pinStyle(i) }}
                       aria-sort={c.getCanSort() ? (s === 'asc' ? 'ascending' : s === 'desc' ? 'descending' : 'none') : undefined}>
                       {c.getCanSort() ? <SortHeader label={flexRender(c.columnDef.header, h.getContext())} sorted={s} onToggle={() => c.toggleSorting(undefined, false)} />
                         : flexRender(c.columnDef.header, h.getContext())}
@@ -167,13 +209,23 @@ export function DataTable<T>(p: DataTableProps<T>) {
                 <tr data-selected={r.getIsSelected() || undefined} data-expanded={r.getIsExpanded() || undefined}>
                   {r.getVisibleCells().map((cell, i) => (
                     <td key={cell.id} data-label={headerText(cell.column)} style={pinStyle(i)}
-                      className={cx(metaOf(cell.column).num && 'is-num', i < pinCount && 'is-pin', cell.column.id.startsWith('_') && 'is-util', metaOf(cell.column).wrap && 'is-wrap')}>
+                      className={cx(metaOf(cell.column).num && 'is-num', i < pinCount && 'is-pin', cell.column.id.startsWith('_') && 'is-util', metaOf(cell.column).wrap && 'is-wrap', cardCls(cell.column))}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   ))}
                 </tr>
-                {r.getIsExpanded() && renderExpanded && (
-                  <tr className="bc-dt-detail" id={detailId(r.id)}><td colSpan={leafs.length}><div className="bc-dt-detail-body">{renderExpanded(r.original)}</div></td></tr>
+                {r.getIsExpanded() && lenyito && (
+                  <tr className="bc-dt-detail" id={detailId(r.id)}><td colSpan={leafs.length}><div className="bc-dt-detail-body">
+                    {rejtett.length > 0 && (
+                      // a szűk hely miatt elrejtett oszlopok tartalma – billentyűzettel és képernyőolvasóval is elérhető (Javaslat 15, 7.)
+                      <dl className="bc-dt-hidden">
+                        {r.getAllCells().filter((cell) => rejtett.includes(cell.column.id)).map((cell) => (
+                          <div key={cell.id}><dt>{headerText(cell.column)}</dt><dd>{flexRender(cell.column.columnDef.cell, cell.getContext())}</dd></div>
+                        ))}
+                      </dl>
+                    )}
+                    {renderExpanded && (p.canExpand?.(r.original) ?? true) && renderExpanded(r.original)}
+                  </div></td></tr>
                 )}
               </Fragment>
             ))}

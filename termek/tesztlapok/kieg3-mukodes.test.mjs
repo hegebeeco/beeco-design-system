@@ -59,6 +59,10 @@ export default async function ({ page, t }) {
     await c('terkep').getByRole('button', { name: 'ures' }).click(); ok((await c('terkep').innerText()).includes('Nincs térképen megjeleníthető hely'), 'nincs üres állapot');
     await c('terkep').getByRole('button', { name: 'kesz' }).click();
   });
+  await t('MapPanel listLabel: a váltón a saját felirat áll („A nézet POI-i (1)”), nem „Lista”', async () => {
+    ok((await c('terkep-felirat').getByRole('radio', { name: 'A nézet POI-i (1)' }).count()) === 1, 'nincs saját felirat');
+    ok((await c('terkep-felirat').getByRole('radio', { name: /^Lista/ }).count()) === 0, 'a „Lista” felirat maradt');
+  });
   await t('notify.undo: „Visszavonás” visszaállítja a műveletet', async () => {
     await c('visszavonas').getByRole('button', { name: 'Megoldottnak jelölöm' }).click();
     ok((await out('visszavonas')).includes('megoldva'), 'nem jelölt');

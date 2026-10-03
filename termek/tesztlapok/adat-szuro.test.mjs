@@ -60,4 +60,16 @@ export default async function ({ page, t }) {
     ok(await panel.getByText('Nem sikerült betölteni a kategóriákat.').isVisible(), 'nincs hiba');
     ok(await panel.getByRole('button', { name: 'Újrapróbálás' }).isVisible(), 'nincs Újrapróbálás'); await page.keyboard.press('Escape');
   });
+  await t('másodlagos szűrők: a „További szűrők” lenyitóban; kiválasztva a gombon a darabszám és címke jelenik meg', async () => {
+    const k = c('szuro-masodlagos');
+    if ((await page.viewportSize()).width < 700) return; // keskenyen minden szűrő a „Szűrők” panelben van – azt a „keskeny” eset méri
+    ok((await k.locator('.bc-fb-row .bc-fb-count').count()) === 1, 'a találatszám nem a kereső sorában áll aktív szűrő nélkül');
+    ok((await k.getByLabel('Aktív állapot', { exact: true }).count()) === 0, 'a másodlagos szűrő a sorban látszik');
+    await k.getByRole('button', { name: /További szűrők/ }).click();
+    const panel = page.getByRole('dialog', { name: 'További szűrők' }); await panel.waitFor();
+    await panel.getByLabel('Aktív állapot', { exact: true }).selectOption('igen');
+    await page.keyboard.press('Escape');
+    ok((await k.getByRole('button', { name: /További szűrők/ }).innerText()).includes('1'), 'a gombon nincs aktív-darabszám');
+    ok((await k.locator('.bc-fb-chips').innerText()).includes('aktív'), 'nincs címke a választott másodlagos szűrőről');
+  });
 }

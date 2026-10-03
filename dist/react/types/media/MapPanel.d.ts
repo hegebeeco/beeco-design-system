@@ -28,6 +28,8 @@ export type MapPanelProps = {
     } | null;
     /** A térkép elemei listaként – ha megadod, megjelenik a „Térkép | Lista” váltó (billentyűzet, képernyőolvasó, telefon) */
     list?: MapListItem[];
+    /** A lista-nézet felirata a váltón (alap: „Lista”) – pl. „A nézet POI-i”, ha az oldalnak saját „Lista” nézete is van (Javaslat 15, PP-11) */
+    listLabel?: string;
     /** Vezérelt nézet (pl. az URL-ből); ha nincs, a panel maga tartja */
     view?: 'map' | 'list';
     onViewChange?: (v: 'map' | 'list') => void;
@@ -43,4 +45,4 @@ export type MapPanelProps = {
  * Állapotok (töltés, hiba, üres), jelmagyarázat-hely, megjegyzés, és „Térkép | Lista” nézetváltó: a lista ugyanazokat az elemeket
  * mutatja linkként – így a térkép tartalma billentyűzettel és képernyőolvasóval is elérhető. A térképet a projekt rajzolja (Leaflet).
  */
-export declare function MapPanel({ label, legend, note, toolbar, status, what, error, onRetry, empty, list, view, onViewChange, height, renderLink, className, children }: MapPanelProps): import("react").JSX.Element;
+export declare function MapPanel({ label, legend, note, toolbar, status, what, error, onRetry, empty, list, listLabel, view, onViewChange, height, renderLink, className, children }: MapPanelProps): import("react").JSX.Element;

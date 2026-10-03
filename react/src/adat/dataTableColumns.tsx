@@ -3,7 +3,15 @@ import { fmt } from './format';
 import { ExpandToggle, SelectCell } from './DataTableParts';
 
 /** Oszlop-kiegészítők (columnDef.meta): szám-oszlop jobbra igazítva, felirat a kártyanézethez és a rendezés-választóhoz */
-export type DataColumnMeta = { num?: boolean; decimals?: number; label?: string; wrap?: boolean };
+export type DataColumnMeta = {
+  num?: boolean; decimals?: number; label?: string; wrap?: boolean;
+  /** Fontosság (Javaslat 15, 3.1): szűk helyen előbb a 3-as, majd a 2-es oszlop kerül a sor „Részletek” lenyitójába. 1 / nincs = mindig látszik. */
+  priority?: 1 | 2 | 3;
+  /** Jobbra rögzített oszlop (pl. sorműveletek): széles táblán is mindig látszik, a DOM-sorrendben a sor végén marad */
+  pinEnd?: boolean;
+  /** Szerep a telefonos kártyán (Javaslat 15, 3.2): title = fejléc, badge = a cím mellett, main = fő adat, detail = a „Részletek” lenyitóban */
+  card?: 'title' | 'badge' | 'main' | 'detail';
+};
 export const metaOf = (c: { columnDef: { meta?: unknown } }) => (c.columnDef.meta ?? {}) as DataColumnMeta;
 
 /** Hiányzó érték: null, undefined, üres szöveg → undefined (így a TanStack a rendezésnél a végére teszi) */

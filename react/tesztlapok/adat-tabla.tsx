@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Button, DataNote, DataState, DataTable, EmptyState, Pagination, SkeletonRows, type PaginationState, type SortingState, IcNew } from '../src';
+import { Button, DataNote, DataState, DataTable, EmptyState, Pagination, SkeletonRows, type PaginationState, type SortingState, IcEdit, IcNew, IcTrash } from '../src';
 import { pois, type Poi } from './_adat-minta';
 import { PoiReszletek, poiOszlopok } from './_adat-oszlopok';
 import { Case, Grid, mount } from './_keret';
@@ -8,6 +8,33 @@ const SOK = pois(1200);
 const KEVES = pois(6);
 const ID = (p: Poi) => p.id;
 const NEV = (p: Poi) => p.nev;
+/** Javaslat 15: fontosság, jobbra rögzített műveletoszlop, kártya-szerepek */
+const PRIORITAS = [
+  { ...poiOszlopok[0], meta: { label: 'Név', priority: 1, card: 'title' } },
+  { ...poiOszlopok[1], meta: { label: 'Kategória', priority: 2, card: 'main' } },
+  { ...poiOszlopok[2], meta: { label: 'Címkék', priority: 3, card: 'detail' } },
+  { ...poiOszlopok[3], meta: { label: 'Aktív', priority: 2, card: 'badge' } },
+  { ...poiOszlopok[4], meta: { num: true, label: 'Képek (db)', priority: 3, card: 'detail' } },
+  { ...poiOszlopok[5], meta: { label: 'Módosítva', priority: 3, card: 'detail' } },
+  { id: '_muv', header: () => <span className="bc-sr">Műveletek</span>, enableSorting: false, size: 120, meta: { label: 'Műveletek', pinEnd: true },
+    cell: ({ row }: { row: { original: Poi } }) => <Button size="sm" variant="secondary" icon={<IcEdit />} aria-label={`Szerkesztés: ${row.original.nev}`}>Szerkesztés</Button> },
+] as typeof poiOszlopok;
+
+function TelefonosBulk() {
+  const [uzenet, setUzenet] = useState('');
+  return (
+    <div style={{ maxWidth: 360 }}>
+      <DataTable data={pois(8)} columns={PRIORITAS} caption="POI-k – telefonos tömeges sáv" getRowId={ID} rowLabel={NEV} itemLabel="POI" mobile="cards" selectable densityToggle={false}
+        bulkActions={(ids) => (<>
+          <Button variant="secondary" size="sm" icon={<IcEdit />} onClick={() => setUzenet(`módosítás: ${ids.length}`)}>Módosítás</Button>
+          <Button variant="secondary" size="sm" onClick={() => setUzenet(`képek: ${ids.length}`)}>Képek</Button>
+          <Button variant="danger" size="sm" icon={<IcTrash />} onClick={() => setUzenet(`törlés: ${ids.length}`)}>Törlés</Button>
+        </>)} />
+      <p className="tl-out" data-out="telefonos-bulk">{uzenet || 'nincs művelet'}</p>
+    </div>
+  );
+}
+
 /** Egyik oszlop sem rendezhető (pl. szerver nem tud rendezni) */
 const NEM_RENDEZHETO = poiOszlopok.map((c) => ({ ...c, enableSorting: false }));
 
@@ -100,6 +127,20 @@ function Oldal() {
             <DataTable data={pois(4)} columns={poiOszlopok} caption="Partnerek – kártyanézet" getRowId={ID} rowLabel={NEV} itemLabel="partner" mobile="cards" selectable densityToggle={false} />
           </div>
         </Case>
+        <Case id="tabla-prioritas" title="Javaslat 15: szűk helyen a 3-as, majd a 2-es oszlop a „Részletek” lenyitóba kerül; a műveletoszlop jobbra rögzítve" wide>
+          <div style={{ maxWidth: '44rem' }}>
+            <DataTable data={pois(5)} columns={PRIORITAS} caption="POI-k – fontosság szerint" getRowId={ID} rowLabel={NEV} itemLabel="POI" densityToggle={false} />
+          </div>
+        </Case>
+        <Case id="tabla-prioritas-szeles" title="Ugyanez széles helyen: minden oszlop látszik, nincs Részletek-lenyitó" wide>
+          <DataTable data={pois(3)} columns={PRIORITAS} caption="POI-k – széles" getRowId={ID} rowLabel={NEV} itemLabel="POI" densityToggle={false} />
+        </Case>
+        <Case id="tabla-kartya-szerep" title="Kártya-szerepek: cím + jelvény fejlécben, fő adat, a többi a Részletekben">
+          <div style={{ maxWidth: 360 }}>
+            <DataTable data={pois(3)} columns={PRIORITAS} caption="POI-k – kártya-szerepek" getRowId={ID} rowLabel={NEV} itemLabel="POI" mobile="cards" densityToggle={false} />
+          </div>
+        </Case>
+        <Case id="tabla-telefonos-bulk" title="Telefonon a tömeges sáv alul rögzítve, egysoros (Javaslat 15, 3.3)"><TelefonosBulk /></Case>
         <Case id="tabla-nincs-rendezes" title="Kártyanézet rendezhető oszlop nélkül – nincs „Rendezés” választó, nincs üres sáv">
           <div style={{ maxWidth: 360 }}>
             <DataTable data={pois(2)} columns={NEM_RENDEZHETO} caption="Partnerek – rendezés nélkül" getRowId={ID} rowLabel={NEV} itemLabel="partner" mobile="cards" densityToggle={false} />

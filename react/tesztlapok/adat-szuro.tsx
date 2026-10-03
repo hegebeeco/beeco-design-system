@@ -51,6 +51,9 @@ function Oldal() {
           <Elo id="aktiv" start={{ kat: 'Vendéglátás', cimke: ['bio', 'vegán', 'javító', 'bérlés'] }} />
         </Case>
         <Case id="szuro-het" title="7 szűrő – széles képernyőn tördel" wide><Elo id="het" filters={HET} /></Case>
+        <Case id="szuro-masodlagos" title="Javaslat 15: másodlagos szűrők a „További szűrők (N)” lenyitóban; aktív szűrő nélkül a találatszám a kereső sorában" wide>
+          <Elo id="masodlagos" filters={[KAT, { ...AKT, secondary: true }, { ...CIMKE, secondary: true }]} />
+        </Case>
         <Case id="szuro-keskeny" title="Keskeny hely: „Szűrők (N)” gomb + panel, alján a találatszám"><Elo id="keskeny" narrow start={{ akt: 'igen' }} /></Case>
         <Case id="szuro-ervenytelen" title="Régi link: érvénytelen érték – kihagyja és szól">
           <Fix id="ervenytelen" filters={[KAT, CIMKE]} start={{ kat: 'Régi kategória', cimke: ['bio', 'torolt-cimke'] }} count={12} />

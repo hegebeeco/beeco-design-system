@@ -29,6 +29,8 @@ const vals = (v: FilterValue) => (Array.isArray(v) ? v : v ? [v] : []);
 /**
  * FilterBar (organizmus, Javaslat 02 – 2B): kereső + szűrők + aktív-szűrő címkék + „Szűrők törlése” + találatszám.
  * Széles helyen soros; keskenyen „Szűrők (N)” gomb és panel, alján a találatszámmal. A régi linkből jött érvénytelen értéket kihagyja és szól.
+ * Javaslat 15: a `secondary` szűrők széles helyen a „További szűrők (N)” lenyitóba kerülnek; aktív szűrő nélkül a találatszám
+ * a kereső sorában áll (nem nyit külön sort) – a szűrők és a lista közti üres sáv megszűnik.
  */
 export function FilterBar({ search, filters, values, onChange, resultCount, itemLabel = 'találat', extra, narrowBelow = 640, className }: FilterBarProps) {
   const root = useRef<HTMLDivElement>(null);
@@ -36,6 +38,7 @@ export function FilterBar({ search, filters, values, onChange, resultCount, item
   const narrow = width > 0 && width < narrowBelow;
   const [q, setQ] = useState(search?.value ?? '');
   const [open, setOpen] = useState(false);
+  const [tobbNyitva, setTobbNyitva] = useState(false);
   const [notice, setNotice] = useState<string>();
   const searchInput = useRef<HTMLInputElement>(null);
   // A SearchBox role="search" tartománya névtelen; több szűrősáv egy oldalon → nevet adunk neki (amíg a SearchBox maga nem teszi)
@@ -71,7 +74,10 @@ export function FilterBar({ search, filters, values, onChange, resultCount, item
   const count = resultCount === undefined ? null : (
     <p className="bc-fb-count" role="status" aria-live="polite">{resultCount === null ? 'Számolás…' : `${fmt(resultCount)} ${itemLabel}`}</p>
   );
-  const controls = filters.map((f) => <FilterControl key={f.id} def={f} value={values[f.id]} onChange={(v) => set(f.id, v)} />);
+  const vezerlo = (f: FilterDef) => <FilterControl key={f.id} def={f} value={values[f.id]} onChange={(v) => set(f.id, v)} />;
+  const controls = filters.map(vezerlo);
+  const masodlagos = filters.filter((f) => f.secondary);
+  const masodlagosAktiv = masodlagos.filter((f) => chipText(f, values[f.id])).length;
 
   return (
     <div ref={root} className={cx('bc-fb', narrow && 'is-narrow', className)}>
@@ -96,10 +102,31 @@ export function FilterBar({ search, filters, values, onChange, resultCount, item
               </Popover.Content>
             </Popover.Portal>
           </Popover.Root>
-        ) : (<>{controls}{extra}</>)}
+        ) : (<>
+          {filters.filter((f) => !f.secondary).map(vezerlo)}
+          {masodlagos.length > 0 && (
+            <Popover.Root open={tobbNyitva} onOpenChange={setTobbNyitva}>
+              <Popover.Trigger asChild>
+                <Button variant="secondary" className="bc-fb-toggle bc-fb-more" aria-haspopup="dialog">
+                  További szűrők{masodlagosAktiv > 0 && <span className="bc-badge is-accent">{masodlagosAktiv}<span className="bc-sr"> aktív</span></span>}
+                </Button>
+              </Popover.Trigger>
+              <Popover.Portal>
+                <Popover.Content className="bc-pop bc-fb-panel" role="dialog" aria-label="További szűrők" side="bottom" align="start" sideOffset={8} collisionPadding={16}>
+                  <div className="bc-fb-panel-body">{masodlagos.map(vezerlo)}</div>
+                  <div className="bc-fb-panel-foot">
+                    <Button size="sm" onClick={() => setTobbNyitva(false)}>{resultCount == null ? 'Kész' : `${fmt(resultCount)} ${itemLabel} mutatása`}</Button>
+                  </div>
+                </Popover.Content>
+              </Popover.Portal>
+            </Popover.Root>
+          )}
+          {extra}
+        </>)}
+        {!any && !narrow && count}
       </div>
       {notice && <p className="bc-notice" role="status">{notice}</p>}
-      {(any || count) && (
+      {(any || (count && narrow)) && (
         <div className="bc-fb-active">
           {any && (
             <ul className="bc-fb-chips" aria-label="Aktív szűrők">

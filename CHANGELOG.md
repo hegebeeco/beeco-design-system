@@ -11,6 +11,20 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.36.0 – 2026-10-03 – listák hatékonysága (Javaslat 15)
+
+Mellékverzió – a Javaslat 15 bővítése az admin UX-átvilágításából (ClickUp `869fb6yq0`). Minden új lehetőség **opcionális**: meta / prop nélkül a mai viselkedés marad (a partner app változtatás nélkül frissíthet).
+
+* **DataTable – oszlopprioritás (`meta.priority: 1 | 2 | 3`):** szűk helyen előbb a 3-as, majd a 2-es oszlop a sor „Részletek” lenyitójába kerül (a lenyitó magától megjelenik) – 1280 px-en sincs vízszintes görgetés a sorműveletekért. A rejtett oszlopok tartalma billentyűzettel és képernyőolvasóval is elérhető.
+* **DataTable – jobbra rögzített oszlop (`meta.pinEnd`):** pl. a sorműveletek széles táblán is mindig látszanak; a DOM-sorrendben a sor végén maradnak.
+* **DataTable – kártya-szerepek (`meta.card: 'title' | 'badge' | 'main' | 'detail'`):** telefonos kártyán a cím fejlécként (címke nélkül), a jelvény mellette, a `detail` oszlopok a „Részletek” lenyitóban – rövidebb kártyák.
+* **Tömeges sáv telefonon:** 600 px alatti tárolóban alul rögzített, egysoros sáv (a műveletek vízszintesen görgethetők), görgetéskor sem tűnik el; a lista alján helyet hagy.
+* **FilterBar – másodlagos szűrők (`filters[].secondary`):** széles helyen a „További szűrők (N)” lenyitóba kerülnek; aktív szűrő nélkül a találatszám a kereső sorában áll (nem nyit külön sort).
+* **AppShell:** 820 px alatti ablakmagasságnál tömörebb menü (a 44 px-es érintési felület marad); az aktív menüpont betöltéskor és oldalváltáskor látható helyre görgetődik (a Tab-bejárást nem bántja – az ugrólink marad az első).
+* **MapPanel – `listLabel`:** a „Térkép | Lista” váltó lista-felirata állítható (pl. „A nézet POI-i”), ha az oldalnak saját „Lista” nézete is van.
+* **Hiba – fájlellenőrzés:** a sérült `.webp` is „nem tudjuk beolvasni” üzenetet kap (a kiterjesztés és a típusnév kis-/nagybetűtől függetlenül egyezik).
+* Tesztlapok: `adat-tabla` (prioritás szűk/széles, kártya-szerepek, telefonos tömeges sáv), `adat-szuro` (másodlagos szűrők), `kieg3-mukodes` (listLabel), `media-kepek` (sérült webp).
+
 ## 1.35.0 – 2026-10-03 – játékbőr: a játékok új matricái és 3D modelljei a DS-ben
 
 Kristóf kérése (2026-10-03): a játékokban élő design system legyen fent a DS-repóban, és innen frissüljenek a játékok.

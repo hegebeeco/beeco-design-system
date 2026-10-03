@@ -84,4 +84,33 @@ export default async function ({ page, t }) {
     await c('lapozo').getByRole('button', { name: '13. lap', exact: true }).click(); ok((await page.locator('[data-out="lapozo"]').innerText()).includes('lap: 13'), 'nem lapozott');
     ok(await c('lapozo').getByRole('button', { name: 'Következő lap' }).isDisabled(), 'az utolsó lapon a Következő nem tiltott');
   });
+  await t('Javaslat 15: szűk helyen a kevésbé fontos oszlopok a Részletekbe kerülnek, a műveletoszlop jobbra rögzített', async () => {
+    const tab = c('tabla-prioritas');
+    const fej = (await tab.locator('thead th').allInnerTexts()).join('|');
+    ok(fej.includes('Név') && !fej.includes('Módosítva'), `a 3-as oszlop látszik szűk helyen: ${fej}`);
+    ok((await tab.locator('th.is-pin-end').count()) === 1, 'nincs jobbra rögzített műveletoszlop');
+    const b = tab.locator('tbody .bc-dt-expand').first(); await b.click();
+    const det = page.locator(`[id="${await b.getAttribute('aria-controls')}"]`);
+    const txt = await det.innerText();
+    ok(txt.includes('Módosítva') && txt.includes('Címkék'), `a rejtett oszlopok nincsenek a Részletekben: ${txt}`);
+    const szeles = (await c('tabla-prioritas-szeles').locator('thead th').allInnerTexts()).join('|');
+    if ((await page.viewportSize()).width >= 1100) ok(szeles.includes('Módosítva') && (await c('tabla-prioritas-szeles').locator('.bc-dt-expand').count()) === 0, `széles helyen is rejt: ${szeles}`);
+  });
+  await t('kártya-szerepek: a „detail” oszlopok a lenyitóban, a cím címke nélkül', async () => {
+    const k = c('tabla-kartya-szerep');
+    ok((await k.locator('td.is-card-title').first().isVisible()), 'nincs cím-cella');
+    ok((await k.locator('tbody td[data-label="Módosítva"]').count()) === 0, 'a detail oszlop a kártyán maradt');
+    await k.locator('tbody .bc-dt-expand').first().click();
+    ok((await k.locator('.bc-dt-hidden').first().innerText()).includes('Módosítva'), 'a detail oszlop nincs a Részletekben');
+  });
+  await t('telefonos tömeges sáv: kijelöléskor alul, rögzítve; a műveletek működnek', async () => {
+    const k = c('tabla-telefonos-bulk');
+    await k.locator('tbody input[type=checkbox]').nth(0).check();
+    await k.locator('tbody input[type=checkbox]').nth(1).check();
+    const bar = k.locator('.bc-dt-bulk'); await bar.waitFor();
+    ok((await bar.evaluate((e) => getComputedStyle(e).position)) === 'fixed', 'nem rögzített (fixed) a sáv a keskeny tárolóban');
+    await bar.getByRole('button', { name: 'Törlés', exact: true }).click();
+    ok((await page.locator('[data-out="telefonos-bulk"]').innerText()).includes('törlés: 2'), 'a művelet nem kapta meg a sorokat');
+    await bar.getByRole('button', { name: 'Kijelölés törlése' }).click();
+  });
 }
