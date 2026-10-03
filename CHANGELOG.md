@@ -11,6 +11,16 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.34.2 – 2026-10-03
+
+Javító verzió – a Javaslat 15 (listák hatékonysága) apró HIBA-i, az admin UX-átvilágításából (ClickUp `869fb6yq0`). A bővítés (táblázat-prioritás, tömeges sáv, lista-eszközsáv, menü) az 1.35.0-ban jön.
+
+* **Hiba – SortSelect:** ha a táblázatban nincs rendezhető oszlop, a rendezés-választó nem jelenik meg (eddig egyetlen „Nincs rendezés” opcióval állt ott).
+* **Hiba – gombfelirat „…”:** a Lalezar a kipontozást (U+2026) egyetlen pontként rajzolta („Mentés…” → „Mentés.”); a jelre tartalék betű kerül.
+* **Hiba – SelectField:** tiltott mezőn a kapott `placeholder` látszik (pl. „Előbb a kategóriát válaszd ki”), nem „Nincs választható elem”.
+* **Hiba – VideoUpload / VideoPlayer:** nem önellentmondó a hibaszöveg („MP4 – csak MP4 lehet”): ha a kiterjesztés engedett, de a tartalom nem olvasható, „nem tudjuk beolvasni” + teendő (`checkFiles` új `unreadable` opciója).
+* **Hiba – fájlellenőrzés:** az átnevezett más formátum (pl. iPhone HEIC `.jpg`-ként, MOV `.mp4`-ként) „rossz formátum (HEIC)” üzenetet kap, nem „olvashatatlan”.
+
 ## 1.34.1 – 2026-10-02
 
 * **Hiba – AppShell telefonos fiók + ShellAccount menü:** ha a fiókmenü egy pontja ablakot nyitott (pl. „Hibajelentés”), a kihúzható fiók nyitva maradt, és modálisként magánál tartotta a fókuszt – az új ablak mezőibe nem lehetett írni. Új `ShellNavContext` (`useShellNav().closeNav()`): a ShellAccount menüpontja választáskor bezárja a fiókot. Keret nélkül nem csinál semmit. A partner-app e2e-tesztje találta (PARTNERAPP).
