@@ -3684,9 +3684,10 @@ async function checkFiles(files, o) {
       const fej = new Uint8Array(await f.slice(0, 16).arrayBuffer());
       const valodi = masikFormatum(fej);
       const ext = valodi ?? extOf(f.name);
-      const known = !valodi && o.accept.some((m) => FILE_TYPES[m]?.name === ext || ext === "JPEG" && m === "image/jpeg");
+      const egyezo = (m) => FILE_TYPES[m]?.name.toUpperCase() === ext || ext === "JPEG" && m === "image/jpeg";
+      const known = !valodi && o.accept.some(egyezo);
       if (known) {
-        rejected.push({ file: f.name, ...o.unreadable ?? { reason: "ezt a f\xE1jlt nem tudjuk beolvasni (lehet, hogy s\xE9r\xFClt)", next: `Pr\xF3b\xE1ld \xFAjra export\xE1lni ${FILE_TYPES[o.accept.find((m) => FILE_TYPES[m]?.name === ext) ?? "image/jpeg"]?.name ?? ext}-k\xE9nt, \xE9s t\xF6ltsd fel \xFAjra.` } });
+        rejected.push({ file: f.name, ...o.unreadable ?? { reason: "ezt a f\xE1jlt nem tudjuk beolvasni (lehet, hogy s\xE9r\xFClt)", next: `Pr\xF3b\xE1ld \xFAjra export\xE1lni ${FILE_TYPES[o.accept.find(egyezo) ?? "image/jpeg"]?.name ?? ext}-k\xE9nt, \xE9s t\xF6ltsd fel \xFAjra.` } });
         continue;
       }
       rejected.push({ file: f.name, reason: `${ext ? `ezt a form\xE1tumot (${ext})` : "ezt a f\xE1jlt"} nem tudjuk fogadni \u2013 csak ${typeNames(o.accept)} lehet`, next: o.typeHint ?? `Mentsd el ${typeNames(o.accept).split(", ")[0]}-k\xE9nt, \xE9s t\xF6ltsd fel \xFAjra.` });

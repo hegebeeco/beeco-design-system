@@ -37,6 +37,13 @@ export default async function ({ page, t }) {
     ok(txt.includes('nagy.png') && txt.includes('a határ 5 MB') && txt.includes('Kicsinyítsd le'), txt);
     ok((await c('kep-negy').locator('.bc-count').innerText()).startsWith('6/10'), 'a hibás is bekerült');
   });
+  await t('sérült .webp (a tartalma nem WebP): „nem tudjuk beolvasni”, nem önellentmondó „csak … WebP lehet”', async () => {
+    await input('kep-negy').setInputFiles([{ name: 'serult.webp', mimeType: 'image/webp', buffer: Buffer.from('nem kép, csak szöveg – sérült fájl') }]);
+    const err = c('kep-negy').locator('.bc-upload-errors'); await err.waitFor();
+    await until(async () => (await err.innerText()).includes('serult.webp'), 'nincs üzenet a sérült fájlról');
+    const txt = await err.innerText();
+    ok(txt.includes('nem tudjuk beolvasni') && txt.includes('WebP-ként'), txt);
+  });
   await t('ugyanaz a fájl kétszer: szól, nem tölti fel újra', async () => {
     await input('kep-negy').setInputFiles([png('terasz.png', 1.5)]);
     await until(async () => (await c('kep-negy').locator('.bc-upload-errors').innerText()).includes('már kiválasztottad'), 'nem szólt');
