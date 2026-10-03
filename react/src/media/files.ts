@@ -92,8 +92,10 @@ export async function checkFiles(files: readonly File[], o: CheckOptions) {
       const valodi = masikFormatum(fej);
       const ext = valodi ?? extOf(f.name);
       // A kiterjesztés szerint engedett típus, de a tartalom nem az → nem „rossz formátum” (önellentmondó lenne: „MP4 – csak MP4 lehet”), hanem olvashatatlan
-      const known = !valodi && o.accept.some((m) => FILE_TYPES[m]?.name === ext || (ext === 'JPEG' && m === 'image/jpeg'));
-      if (known) { rejected.push({ file: f.name, ...(o.unreadable ?? { reason: 'ezt a fájlt nem tudjuk beolvasni (lehet, hogy sérült)', next: `Próbáld újra exportálni ${FILE_TYPES[o.accept.find((m) => FILE_TYPES[m]?.name === ext) ?? 'image/jpeg']?.name ?? ext}-ként, és töltsd fel újra.` }) }); continue; }
+      // a kiterjesztés nagybetűs („WEBP”), a típusnév vegyes („WebP”) – kis- és nagybetűtől függetlenül vetjük össze
+      const egyezo = (m: string) => FILE_TYPES[m]?.name.toUpperCase() === ext || (ext === 'JPEG' && m === 'image/jpeg');
+      const known = !valodi && o.accept.some(egyezo);
+      if (known) { rejected.push({ file: f.name, ...(o.unreadable ?? { reason: 'ezt a fájlt nem tudjuk beolvasni (lehet, hogy sérült)', next: `Próbáld újra exportálni ${FILE_TYPES[o.accept.find(egyezo) ?? 'image/jpeg']?.name ?? ext}-ként, és töltsd fel újra.` }) }); continue; }
       rejected.push({ file: f.name, reason: `${ext ? `ezt a formátumot (${ext})` : 'ezt a fájlt'} nem tudjuk fogadni – csak ${typeNames(o.accept)} lehet`, next: o.typeHint ?? `Mentsd el ${typeNames(o.accept).split(', ')[0]}-ként, és töltsd fel újra.` });
       continue;
     }
