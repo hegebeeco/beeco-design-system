@@ -11,6 +11,19 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.35.0 – 2026-10-03 – játékbőr: a játékok új matricái és 3D modelljei a DS-ben
+
+Kristóf kérése (2026-10-03): a játékokban élő design system legyen fent a DS-repóban, és innen frissüljenek a játékok.
+A játékokban azóta készült közös elemek visszakerültek ide (MELLÉK: csak bővítés, a meglévő játékokat nem érinti).
+
+* **Új matricák (B szint):** `art-huto-fagy.js` (Hűtő-mester fagyasztó: jégkrém, fagyasztott zöldség és málna, halrúd, jégkocka,
+  mirelit pizza), `art-kaptar.js` (Méhpilóta), `art-birtok.js` (Élő birtok).
+* **Új 3D modellek (kódból, B szint):** `3d/kaptar-modellek.js`, `3d/kaptar-viragok.js` (Méhpilóta: kaptár, háziméh, virágok),
+  `3d/birtok-modellek.js`, `3d/birtok-novenyek.js` (Élő birtok: telek-elemek, ágyások, 16 vetemény 4 növekedési szakasszal,
+  meggyfa, málnasor) – a `katalogus.js`, a `modellek.html` és a `tests/check-3d.js` ismeri őket.
+* **`arculat.html`:** a matricagaléria mind a 618 matricát mutatja (14 eddig hiányzó könyvtár: történelem, Élő lánc
+  4 élőhelye, bolygó, rendelő, fagyasztó, Méhpilóta, Élő birtok, extra2).
+
 ## 1.34.2 – 2026-10-03
 
 Javító verzió – a Javaslat 15 (listák hatékonysága) apró HIBA-i, az admin UX-átvilágításából (ClickUp `869fb6yq0`). A bővítés (táblázat-prioritás, tömeges sáv, lista-eszközsáv, menü) az 1.35.0-ban jön.

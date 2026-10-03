@@ -1,12 +1,160 @@
 {
- "verzio": "1.5.2",
- "keszult": "2026-09-21",
+ "verzio": "1.35.0",
+ "keszult": "2026-10-03",
  "csoportok": [
   {
    "cim": "Matricák (B szint)",
    "ikon": "palette",
    "link": "arculat.html#illusztraciok",
    "elemek": [
+    {
+     "nev": "bt_bozot",
+     "info": "bozót (szeder)"
+    },
+    {
+     "nev": "bt_karton_agyas",
+     "info": "kartonos ásásmentes ágyás"
+    },
+    {
+     "nev": "bt_palanta",
+     "info": "palánta cserépben"
+    },
+    {
+     "nev": "bt_magzacsko",
+     "info": "magzacskó"
+    },
+    {
+     "nev": "bt_talicska",
+     "info": "talicska"
+    },
+    {
+     "nev": "bt_tyuk",
+     "info": "tyúk (barna tojótyúk)"
+    },
+    {
+     "nev": "bt_kacsa",
+     "info": "indiai futókacsa"
+    },
+    {
+     "nev": "bt_folia",
+     "info": "fóliasátor"
+    },
+    {
+     "nev": "bt_arok",
+     "info": "szikkasztó árok (swale)"
+    },
+    {
+     "nev": "bt_kosar",
+     "info": "terményes láda"
+    },
+    {
+     "nev": "bt_komposzt_halom",
+     "info": "komposzthalom"
+    },
+    {
+     "nev": "bt_mulcs",
+     "info": "szalmatakarás (mulcs)"
+    },
+    {
+     "nev": "bt_retek",
+     "info": "retek (csomó)"
+    },
+    {
+     "nev": "bt_borso",
+     "info": "borsó"
+    },
+    {
+     "nev": "bt_bab",
+     "info": "zöldbab (csomó)"
+    },
+    {
+     "nev": "bt_meggy",
+     "info": "meggy"
+    },
+    {
+     "nev": "bt_malna",
+     "info": "málna"
+    },
+    {
+     "nev": "bt_befott",
+     "info": "befőtt (üvegben)"
+    },
+    {
+     "nev": "bl2050_kozlekedes",
+     "info": "Egy nap 2050-ben: közlekedés (fás utca villamossal és biciklisávval)"
+    },
+    {
+     "nev": "bl2050_etkezes",
+     "info": "Egy nap 2050-ben: étkezés (közösségi kert, piac, közös asztal)"
+    },
+    {
+     "nev": "bl2050_gazdasag",
+     "info": "Egy nap 2050-ben: gazdaság (napelemes javítóműhely, helyi munkahelyek)"
+    },
+    {
+     "nev": "bl2050_vasarlas",
+     "info": "Egy nap 2050-ben: vásárlás (újratöltő bolt, vászontáska, bérelhető eszközök)"
+    },
+    {
+     "nev": "bl2050_otthon",
+     "info": "Egy nap 2050-ben: otthon (felújított ház napelemmel, hőszivattyúval, esővízzel, zöldtetővel)"
+    },
+    {
+     "nev": "bl2050_hulladek",
+     "info": "Egy nap 2050-ben: hulladék (javítókávézó, körforgás, komposztáló)"
+    },
+    {
+     "nev": "bl2050_etika",
+     "info": "Egy nap 2050-ben: etika és döntések (közösségi fórum a fa alatt, virágos rét)"
+    },
+    {
+     "nev": "bl2050_digitalis",
+     "info": "Egy nap 2050-ben: digitális lábnyom (javítható laptop a könyvtárban, napelemes adatház)"
+    },
+    {
+     "nev": "bl_pecset_csendes",
+     "info": "Csendes-óceán pecsét (tengeri teknős)"
+    },
+    {
+     "nev": "bl_pecset_atlanti",
+     "info": "Atlanti-óceán pecsét (bálnafarok)"
+    },
+    {
+     "nev": "bl_pecset_indiai",
+     "info": "Indiai-óceán pecsét (ördögrája)"
+    },
+    {
+     "nev": "bl_pecset_deli",
+     "info": "Déli-óceán és Antarktisz pecsét (pingvin)"
+    },
+    {
+     "nev": "bl_pecset_jeges",
+     "info": "Jeges-tenger pecsét (jegesmedve)"
+    },
+    {
+     "nev": "bl_pecset_europa",
+     "info": "Európa pecsét (gólya)"
+    },
+    {
+     "nev": "bl_pecset_azsia",
+     "info": "Ázsia pecsét (vörös macskamedve)"
+    },
+    {
+     "nev": "bl_pecset_afrika",
+     "info": "Afrika pecsét (elefánt)"
+    },
+    {
+     "nev": "bl_pecset_eszak_amerika",
+     "info": "Észak-Amerika pecsét (bölény)"
+    },
+    {
+     "nev": "bl_pecset_del_amerika",
+     "info": "Dél-Amerika pecsét (tukán)"
+    },
+    {
+     "nev": "bl_pecset_oceania",
+     "info": "Óceánia pecsét (kenguru)"
+    },
     {
      "nev": "hutogep",
      "info": "hűtő-fagyasztó"
@@ -162,6 +310,30 @@
     {
      "nev": "regi_mobil",
      "info": "régi mobiltelefon"
+    },
+    {
+     "nev": "pizza",
+     "info": "pizza"
+    },
+    {
+     "nev": "alma",
+     "info": "alma"
+    },
+    {
+     "nev": "karacsonyfa",
+     "info": "karácsonyfa"
+    },
+    {
+     "nev": "hervadt_virag",
+     "info": "hervadt virág"
+    },
+    {
+     "nev": "fogaskerek",
+     "info": "fogaskerék"
+    },
+    {
+     "nev": "muzeum",
+     "info": "múzeum"
     },
     {
      "nev": "hamburger",
@@ -436,6 +608,38 @@
      "info": "Általános tisztítószer"
     },
     {
+     "nev": "gw_halrudacska",
+     "info": "Fagyasztott halrudacska"
+    },
+    {
+     "nev": "gw_kertipad",
+     "info": "Fa kerti pad"
+    },
+    {
+     "nev": "gw_vizforralo",
+     "info": "Vízforraló"
+    },
+    {
+     "nev": "gw_agynemu",
+     "info": "Pamut ágynemű"
+    },
+    {
+     "nev": "gw_polarpulover",
+     "info": "Polárpulóver"
+    },
+    {
+     "nev": "gw_hajbalzsam",
+     "info": "Hajbalzsam"
+    },
+    {
+     "nev": "gw_papirtanyer",
+     "info": "Eldobható tányér"
+    },
+    {
+     "nev": "gw_autogumi",
+     "info": "Autógumi"
+    },
+    {
      "nev": "gw_mosogatotabletta",
      "info": "Mosogatógép-tabletta"
     },
@@ -494,6 +698,390 @@
     {
      "nev": "gw_tisztitokendo",
      "info": "Tisztítókendő"
+    },
+    {
+     "nev": "halo_fatyolka",
+     "info": "zöld fátyolka"
+    },
+    {
+     "nev": "halo_furkeszdarazs",
+     "info": "levéltetű-fürkészdarázs"
+    },
+    {
+     "nev": "halo_voros_vercse",
+     "info": "vörös vércse"
+    },
+    {
+     "nev": "halo_v_vercselada",
+     "info": "vércseláda karón"
+    },
+    {
+     "nev": "halo_szencinege",
+     "info": "széncinege"
+    },
+    {
+     "nev": "halo_denever",
+     "info": "nagyfülű denevér"
+    },
+    {
+     "nev": "halo_macskabagoly",
+     "info": "macskabagoly"
+    },
+    {
+     "nev": "halo_voros_roka",
+     "info": "vörös róka"
+    },
+    {
+     "nev": "halo_h_tarvagas",
+     "info": "nagy tarvágás"
+    },
+    {
+     "nev": "halo_h_holtfa_el",
+     "info": "a holtfa elvitele"
+    },
+    {
+     "nev": "halo_h_ozon",
+     "info": "bálványfa (idegenhonos)"
+    },
+    {
+     "nev": "halo_v_holtfa_meghagyas",
+     "info": "a holtfa meghagyása"
+    },
+    {
+     "nev": "halo_v_odu",
+     "info": "madár- és denevérodú"
+    },
+    {
+     "nev": "halo_v_folyamatos_erdo",
+     "info": "folyamatos erdőborítás"
+    },
+    {
+     "nev": "halo_v_balvanyfa_helyett",
+     "info": "őshonos cserje a bálványfa helyett"
+    },
+    {
+     "nev": "halo_tolgy",
+     "info": "kocsánytalan tölgy"
+    },
+    {
+     "nev": "halo_gyertyan",
+     "info": "közönséges gyertyán"
+    },
+    {
+     "nev": "halo_mogyoro",
+     "info": "közönséges mogyoró"
+    },
+    {
+     "nev": "halo_mikorrhiza",
+     "info": "gyökérgombák (mikorrhiza)"
+    },
+    {
+     "nev": "halo_taplo",
+     "info": "taplógombák"
+    },
+    {
+     "nev": "halo_szarvasbogar",
+     "info": "nagy szarvasbogár"
+    },
+    {
+     "nev": "halo_hernyok",
+     "info": "tölgyön élő hernyók"
+    },
+    {
+     "nev": "halo_sarganyaku_eger",
+     "info": "sárganyakú erdei egér"
+    },
+    {
+     "nev": "halo_mokus",
+     "info": "vörös mókus"
+    },
+    {
+     "nev": "halo_szajko",
+     "info": "szajkó"
+    },
+    {
+     "nev": "halo_vaddiszno",
+     "info": "vaddisznó"
+    },
+    {
+     "nev": "halo_nagy_fakopancs",
+     "info": "nagy fakopáncs"
+    },
+    {
+     "nev": "halo_buza",
+     "info": "őszi búza"
+    },
+    {
+     "nev": "halo_kaposzta",
+     "info": "fejes káposzta"
+    },
+    {
+     "nev": "halo_tok",
+     "info": "kerti tök"
+    },
+    {
+     "nev": "halo_alma",
+     "info": "almafa"
+    },
+    {
+     "nev": "halo_buzavirag",
+     "info": "búzavirág"
+    },
+    {
+     "nev": "halo_kaposztalepke",
+     "info": "káposztalepke"
+    },
+    {
+     "nev": "halo_meztelencsiga",
+     "info": "meztelencsiga"
+    },
+    {
+     "nev": "halo_futobogar",
+     "info": "futóbogár (futrinka)"
+    },
+    {
+     "nev": "halo_sun",
+     "info": "keleti sün"
+    },
+    {
+     "nev": "halo_fogoly",
+     "info": "fogoly"
+    },
+    {
+     "nev": "halo_h_gyomirto",
+     "info": "gyomirtó szer a táblán"
+    },
+    {
+     "nev": "halo_h_mezsgye_el",
+     "info": "a mezsgye felszántása"
+    },
+    {
+     "nev": "halo_h_csupasz_talaj",
+     "info": "csupasz, sokat forgatott talaj"
+    },
+    {
+     "nev": "halo_h_csigaolo",
+     "info": "csigaölő szer"
+    },
+    {
+     "nev": "halo_v_permetezetlen_szegely",
+     "info": "permetezetlen tábla-szegély"
+    },
+    {
+     "nev": "halo_v_mezsgye_vissza",
+     "info": "visszaállított mezsgye"
+    },
+    {
+     "nev": "halo_v_talajtakaras",
+     "info": "talajtakarás"
+    },
+    {
+     "nev": "halo_v_sunbarat_kert",
+     "info": "sünbarát kert"
+    },
+    {
+     "nev": "halo_v_beporzo_kert",
+     "info": "beporzóbarát veteményes"
+    },
+    {
+     "nev": "halo_alga",
+     "info": "algák"
+    },
+    {
+     "nev": "halo_hinar",
+     "info": "hínárnövények"
+    },
+    {
+     "nev": "halo_noszirom",
+     "info": "mocsári nőszirom"
+    },
+    {
+     "nev": "halo_vizibolha",
+     "info": "vízibolhák"
+    },
+    {
+     "nev": "halo_tanyercsiga",
+     "info": "nagy tányércsiga"
+    },
+    {
+     "nev": "halo_szunyog",
+     "info": "csípőszúnyog-lárvák"
+    },
+    {
+     "nev": "halo_viziaszka",
+     "info": "közönséges víziászka"
+    },
+    {
+     "nev": "halo_szitakoto",
+     "info": "óriás-szitakötő"
+    },
+    {
+     "nev": "halo_hanyattuszo",
+     "info": "hanyattúszó poloska"
+    },
+    {
+     "nev": "halo_csikbogar",
+     "info": "sárgaszegélyű csíkbogár"
+    },
+    {
+     "nev": "halo_pettyes_gote",
+     "info": "pettyes gőte"
+    },
+    {
+     "nev": "halo_barna_varangy",
+     "info": "barna varangy"
+    },
+    {
+     "nev": "halo_levelibeka",
+     "info": "zöld levelibéka"
+    },
+    {
+     "nev": "halo_vizisiklo",
+     "info": "vízisikló"
+    },
+    {
+     "nev": "halo_h_halak",
+     "info": "díszhalak a tóban"
+    },
+    {
+     "nev": "halo_h_bemosodas",
+     "info": "műtrágya bemosódása"
+    },
+    {
+     "nev": "halo_h_feltoltes",
+     "info": "a tó feltöltése"
+    },
+    {
+     "nev": "halo_h_ozonnoveny",
+     "info": "idegenhonos vízinövény"
+    },
+    {
+     "nev": "halo_v_halmentes",
+     "info": "halmentes tó"
+    },
+    {
+     "nev": "halo_v_novenysav",
+     "info": "növénysáv a parton"
+    },
+    {
+     "nev": "halo_v_uj_to",
+     "info": "új kis tó lankás parttal"
+    },
+    {
+     "nev": "halo_v_hazai_noveny",
+     "info": "csak hazai vízinövény"
+    },
+    {
+     "nev": "halo_v_rejtekhely",
+     "info": "kő- és farakás a parton"
+    },
+    {
+     "nev": "halo_lucerna",
+     "info": "lucerna"
+    },
+    {
+     "nev": "halo_pipacs",
+     "info": "pipacs"
+    },
+    {
+     "nev": "halo_margitvirag",
+     "info": "margitvirág"
+    },
+    {
+     "nev": "halo_csalan",
+     "info": "nagy csalán"
+    },
+    {
+     "nev": "halo_feher_here",
+     "info": "fehér here"
+    },
+    {
+     "nev": "halo_fufelek",
+     "info": "réti fűfélék"
+    },
+    {
+     "nev": "halo_hazimeh",
+     "info": "házi méh"
+    },
+    {
+     "nev": "halo_poszmeh",
+     "info": "földi poszméh"
+    },
+    {
+     "nev": "halo_vadmeh",
+     "info": "vadméh (levélvágó méh)"
+    },
+    {
+     "nev": "halo_pavaszem",
+     "info": "nappali pávaszem"
+    },
+    {
+     "nev": "halo_zengolegy",
+     "info": "zengőlégy"
+    },
+    {
+     "nev": "halo_leveltetu",
+     "info": "levéltetvek"
+    },
+    {
+     "nev": "halo_mezei_pocok",
+     "info": "mezei pocok"
+    },
+    {
+     "nev": "halo_szocske",
+     "info": "szöcske"
+    },
+    {
+     "nev": "halo_katica",
+     "info": "hétpettyes katicabogár"
+    },
+    {
+     "nev": "halo_gyurgyalag",
+     "info": "gyurgyalag"
+    },
+    {
+     "nev": "halo_egereszolyv",
+     "info": "egerészölyv"
+    },
+    {
+     "nev": "halo_giliszta",
+     "info": "földigiliszta"
+    },
+    {
+     "nev": "halo_h_vegyszer",
+     "info": "vegyszeres permetezés"
+    },
+    {
+     "nev": "halo_h_kaszalas",
+     "info": "túl gyakori kaszálás"
+    },
+    {
+     "nev": "halo_h_beton",
+     "info": "beburkolás (beton)"
+    },
+    {
+     "nev": "halo_h_idegenhonos",
+     "info": "aranyvessző (idegenhonos)"
+    },
+    {
+     "nev": "halo_v_viragsav",
+     "info": "kaszálatlan virágsáv"
+    },
+    {
+     "nev": "halo_v_mozaik_kaszalas",
+     "info": "mozaikos kaszálás"
+    },
+    {
+     "nev": "halo_v_vegyszermentes",
+     "info": "vegyszermentes kert"
+    },
+    {
+     "nev": "halo_v_rovarhotel",
+     "info": "rovarhotel"
+    },
+    {
+     "nev": "halo_v_aranyvesszo_irtas",
+     "info": "őshonos virág az aranyvessző helyett"
     },
     {
      "nev": "jegkocka",
@@ -618,6 +1206,110 @@
     {
      "nev": "cerna",
      "info": "cérna"
+    },
+    {
+     "nev": "f_paprika",
+     "info": "Paprika"
+    },
+    {
+     "nev": "f_szolo",
+     "info": "Szőlő"
+    },
+    {
+     "nev": "f_kukorica",
+     "info": "Csemegekukorica"
+    },
+    {
+     "nev": "f_spenot",
+     "info": "Spenót"
+    },
+    {
+     "nev": "f_cukkini",
+     "info": "Cukkini"
+    },
+    {
+     "nev": "f_liszt",
+     "info": "Liszt"
+    },
+    {
+     "nev": "f_konzerv",
+     "info": "Bontatlan konzerv"
+    },
+    {
+     "nev": "f_sutotok",
+     "info": "Sütőtök"
+    },
+    {
+     "nev": "f_batata",
+     "info": "Édesburgonya (batáta)"
+    },
+    {
+     "nev": "f_avokado",
+     "info": "Avokádó (éretlen)"
+    },
+    {
+     "nev": "f_dinnye",
+     "info": "Görögdinnye (egész)"
+    },
+    {
+     "nev": "f_rizs",
+     "info": "Főtt rizs"
+    },
+    {
+     "nev": "f_lazac",
+     "info": "Füstölt lazac"
+    },
+    {
+     "nev": "f_tiramisu",
+     "info": "Tiramisu"
+    },
+    {
+     "nev": "f_pulyka",
+     "info": "Nyers pulykamell"
+    },
+    {
+     "nev": "f_burgerhus",
+     "info": "Nyers hamburgerhús"
+    },
+    {
+     "nev": "f_pacolt",
+     "info": "Pácolt csirkecomb"
+    },
+    {
+     "nev": "f_majonez",
+     "info": "Bolti majonéz"
+    },
+    {
+     "nev": "f_savanyusag",
+     "info": "Savanyúság"
+    },
+    {
+     "nev": "f_salataontet",
+     "info": "Salátaöntet"
+    },
+    {
+     "nev": "f_jegkrem",
+     "info": "Jégkrém"
+    },
+    {
+     "nev": "f_fagyzoldseg",
+     "info": "Fagyasztott zöldségkeverék"
+    },
+    {
+     "nev": "f_fagymalna",
+     "info": "Fagyasztott málna"
+    },
+    {
+     "nev": "f_halrud",
+     "info": "Halrúd"
+    },
+    {
+     "nev": "f_jegkocka",
+     "info": "Jégkocka"
+    },
+    {
+     "nev": "f_pizza",
+     "info": "Mirelit pizza"
     },
     {
      "nev": "f_alma",
@@ -778,6 +1470,90 @@
     {
      "nev": "imp_facebook",
      "info": "1 óra Facebookozás"
+    },
+    {
+     "nev": "kp_kiralyno",
+     "info": "méhanya"
+    },
+    {
+     "nev": "kp_kas",
+     "info": "szalmakas"
+    },
+    {
+     "nev": "kp_kaptar",
+     "info": "keretes kaptár"
+    },
+    {
+     "nev": "kp_larva",
+     "info": "méhlárva a sejtben"
+    },
+    {
+     "nev": "kp_tanc",
+     "info": "rezgőtánc"
+    },
+    {
+     "nev": "kp_mezgyomor",
+     "info": "mézgyomor"
+    },
+    {
+     "nev": "kp_gyurgyalag",
+     "info": "gyurgyalag"
+    },
+    {
+     "nev": "kp_darazs",
+     "info": "darázs"
+    },
+    {
+     "nev": "e_bringa",
+     "info": "elektromos bringa"
+    },
+    {
+     "nev": "telekocsi",
+     "info": "telekocsi"
+    },
+    {
+     "nev": "berlet",
+     "info": "havibérlet"
+    },
+    {
+     "nev": "esernyo",
+     "info": "esernyő"
+    },
+    {
+     "nev": "esoruha",
+     "info": "esőruha"
+    },
+    {
+     "nev": "esos_felho",
+     "info": "esős felhő"
+    },
+    {
+     "nev": "viharfelho",
+     "info": "viharfelhő"
+    },
+    {
+     "nev": "iskola",
+     "info": "iskola"
+    },
+    {
+     "nev": "rendelo",
+     "info": "rendelő"
+    },
+    {
+     "nev": "aktataska",
+     "info": "aktatáska"
+    },
+    {
+     "nev": "nagyi",
+     "info": "nagyi"
+    },
+    {
+     "nev": "bakancs",
+     "info": "túrabakancs"
+    },
+    {
+     "nev": "jeges_ut",
+     "info": "jeges út"
     },
     {
      "nev": "tuz",
@@ -1120,6 +1896,118 @@
      "info": "öko-pecsét (hatszög)"
     },
     {
+     "nev": "dr_telefon",
+     "info": "telefon"
+    },
+    {
+     "nev": "dr_tablet",
+     "info": "tablet"
+    },
+    {
+     "nev": "dr_laptop",
+     "info": "laptop"
+    },
+    {
+     "nev": "dr_fulhallgato",
+     "info": "fülhallgató"
+    },
+    {
+     "nev": "dr_fejhallgato",
+     "info": "fejhallgató"
+    },
+    {
+     "nev": "dr_okosora",
+     "info": "okosóra"
+    },
+    {
+     "nev": "dr_konzol",
+     "info": "játékkonzol"
+    },
+    {
+     "nev": "dr_kontroller",
+     "info": "kontroller"
+    },
+    {
+     "nev": "dr_teve",
+     "info": "tévé"
+    },
+    {
+     "nev": "dr_router",
+     "info": "router"
+    },
+    {
+     "nev": "dr_nyomtato",
+     "info": "nyomtató"
+    },
+    {
+     "nev": "dr_porszivo",
+     "info": "porszívó"
+    },
+    {
+     "nev": "dr_kavefozo",
+     "info": "kávéfőző"
+    },
+    {
+     "nev": "dr_streaming",
+     "info": "streaming (videó és zene)"
+    },
+    {
+     "nev": "dr_felho",
+     "info": "felhő és fotók"
+    },
+    {
+     "nev": "dr_mi",
+     "info": "mesterséges intelligencia"
+    },
+    {
+     "nev": "dr_keszenlet",
+     "info": "készenlét (elosztó)"
+    },
+    {
+     "nev": "dr_hiba_akku",
+     "info": "lemerült akku"
+    },
+    {
+     "nev": "dr_hiba_kijelzo",
+     "info": "repedt kijelző"
+    },
+    {
+     "nev": "dr_hiba_lassu",
+     "info": "lassú (csiga)"
+    },
+    {
+     "nev": "dr_hiba_meleg",
+     "info": "melegszik (hőmérő)"
+    },
+    {
+     "nev": "dr_hiba_tarhely",
+     "info": "megtelt tárhely (teli doboz)"
+    },
+    {
+     "nev": "dr_kez_csavarhuzo",
+     "info": "javítás (csavarhúzó)"
+    },
+    {
+     "nev": "dr_kez_alkatresz",
+     "info": "alkatrészcsere (akku-modul)"
+    },
+    {
+     "nev": "dr_kez_frissites",
+     "info": "frissítés"
+    },
+    {
+     "nev": "dr_kez_tovabbad",
+     "info": "továbbadás"
+    },
+    {
+     "nev": "dr_kez_ujrahaszn",
+     "info": "újrahasznosítás (e-hulladék gyűjtő)"
+    },
+    {
+     "nev": "dr_kez_uj",
+     "info": "új eszköz (új doboz)"
+    },
+    {
      "nev": "cigaretta",
      "info": "cigaretta"
     },
@@ -1262,6 +2150,94 @@
     {
      "nev": "cumisuveg",
      "info": "cumisüveg"
+    },
+    {
+     "nev": "gozgep",
+     "info": "gőzgép (Newcomen-féle)"
+    },
+    {
+     "nev": "szencsille",
+     "info": "szenes csille"
+    },
+    {
+     "nev": "olajkut",
+     "info": "olajkút (himbás szivattyú)"
+    },
+    {
+     "nev": "olajhordo",
+     "info": "olajhordó"
+    },
+    {
+     "nev": "mutragyazsak",
+     "info": "műtrágyás zsák"
+    },
+    {
+     "nev": "tehen",
+     "info": "tehén"
+    },
+    {
+     "nev": "balna",
+     "info": "hosszúszárnyú bálna"
+    },
+    {
+     "nev": "sas",
+     "info": "rétisas"
+    },
+    {
+     "nev": "kukorica",
+     "info": "kukoricacső"
+    },
+    {
+     "nev": "olajpalma",
+     "info": "olajpálma"
+    },
+    {
+     "nev": "benzinkut",
+     "info": "benzinkút (régi kútoszlop)"
+    },
+    {
+     "nev": "halott_fa",
+     "info": "kiszáradt fa"
+    },
+    {
+     "nev": "gyarkemeny",
+     "info": "gyárkémény"
+    },
+    {
+     "nev": "lancfuresz",
+     "info": "láncfűrész"
+    },
+    {
+     "nev": "varrogep",
+     "info": "ipari varrógép"
+    },
+    {
+     "nev": "tabla_tuntetes",
+     "info": "tüntetőtábla"
+    },
+    {
+     "nev": "tuzok",
+     "info": "túzok"
+    },
+    {
+     "nev": "golya",
+     "info": "fehér gólya"
+    },
+    {
+     "nev": "gat",
+     "info": "gát (füves földgát)"
+    },
+    {
+     "nev": "nadas",
+     "info": "nádas (nádcsomó)"
+    },
+    {
+     "nev": "voros_iszap",
+     "info": "vörös iszap"
+    },
+    {
+     "nev": "szennyviz_medence",
+     "info": "szennyvíz-ülepítő medence"
     },
     {
      "nev": "i_pelenka",
@@ -1719,6 +2695,14 @@
      "info": "pic('sun')"
     },
     {
+     "nev": "wave",
+     "info": "pic('wave')"
+    },
+    {
+     "nev": "flask",
+     "info": "pic('flask')"
+    },
+    {
      "nev": "drop",
      "info": "pic('drop')"
     },
@@ -1813,6 +2797,10 @@
     {
      "nev": "grid",
      "info": "pic('grid')"
+    },
+    {
+     "nev": "list",
+     "info": "pic('list')"
     },
     {
      "nev": "network",
@@ -2320,6 +3308,50 @@
     {
      "nev": "--data-pos-2",
      "info": "var(--div-cb-pos-2)"
+    },
+    {
+     "nev": "--fs-xs",
+     "info": "14px"
+    },
+    {
+     "nev": "--fs-s",
+     "info": "16px"
+    },
+    {
+     "nev": "--fs-m",
+     "info": "19px"
+    },
+    {
+     "nev": "--fs-l",
+     "info": "23px"
+    },
+    {
+     "nev": "--fs-xl",
+     "info": "30px"
+    },
+    {
+     "nev": "--fs-2xl",
+     "info": "38px"
+    },
+    {
+     "nev": "--fs-3xl",
+     "info": "50px"
+    },
+    {
+     "nev": "--ease-out",
+     "info": "be- és kiúszás, nyomás-visszajelzés (azo"
+    },
+    {
+     "nev": "--ease-in-out",
+     "info": "cubic-bezier(.77,0,.175,1)"
+    },
+    {
+     "nev": "--ease-drawer",
+     "info": "cubic-bezier(.32,.72,0,1)"
+    },
+    {
+     "nev": "--t-press",
+     "info": ".12s"
     }
    ]
   },
@@ -2328,6 +3360,98 @@
    "ikon": "box",
    "link": "modellek.html",
    "elemek": [
+    {
+     "nev": "archG",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "bozot",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "gazkupac",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "szemetkupac",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "ko",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "pallet",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "raklap",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "agyas",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "foliasator",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "uveghaz",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "palantatalca",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "tyukol",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "tyuk",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "kacsa",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "szerszamkamra",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "talicska",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "arok",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "csepegteto",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "kosar",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "birtok",
+     "info": "birtok-modellek.js"
+    },
+    {
+     "nev": "noveny",
+     "info": "birtok-novenyek.js"
+    },
+    {
+     "nev": "meggyfa",
+     "info": "birtok-novenyek.js"
+    },
+    {
+     "nev": "malnasor",
+     "info": "birtok-novenyek.js"
+    },
     {
      "nev": "wings",
      "info": "elokert-allatok.js"
@@ -2451,6 +3575,106 @@
     {
      "nev": "wallUnit",
      "info": "huto-modellek.js"
+    },
+    {
+     "nev": "blob",
+     "info": "kaptar-modellek.js"
+    },
+    {
+     "nev": "scaled",
+     "info": "kaptar-modellek.js"
+    },
+    {
+     "nev": "honeybee",
+     "info": "kaptar-modellek.js"
+    },
+    {
+     "nev": "workerLow",
+     "info": "kaptar-modellek.js"
+    },
+    {
+     "nev": "frame",
+     "info": "kaptar-modellek.js"
+    },
+    {
+     "nev": "hiveBase",
+     "info": "kaptar-modellek.js"
+    },
+    {
+     "nev": "hive",
+     "info": "kaptar-modellek.js"
+    },
+    {
+     "nev": "hiveOpen",
+     "info": "kaptar-modellek.js"
+    },
+    {
+     "nev": "skep",
+     "info": "kaptar-modellek.js"
+    },
+    {
+     "nev": "mehes",
+     "info": "kaptar-modellek.js"
+    },
+    {
+     "nev": "done",
+     "info": "kaptar-viragok.js"
+    },
+    {
+     "nev": "almavirag",
+     "info": "kaptar-viragok.js"
+    },
+    {
+     "nev": "feherhere",
+     "info": "kaptar-viragok.js"
+    },
+    {
+     "nev": "facelia",
+     "info": "kaptar-viragok.js"
+    },
+    {
+     "nev": "napraforgo",
+     "info": "kaptar-viragok.js"
+    },
+    {
+     "nev": "hars",
+     "info": "kaptar-viragok.js"
+    },
+    {
+     "nev": "levendula",
+     "info": "kaptar-viragok.js"
+    },
+    {
+     "nev": "paradicsom",
+     "info": "kaptar-viragok.js"
+    },
+    {
+     "nev": "lucerna",
+     "info": "kaptar-viragok.js"
+    },
+    {
+     "nev": "voroshere",
+     "info": "kaptar-viragok.js"
+    },
+    {
+     "nev": "burgonya",
+     "info": "kaptar-viragok.js"
+    },
+    {
+     "nev": "gyurgyalag",
+     "info": "kaptar-viragok.js"
+    },
+    {
+     "nev": "darazs",
+     "info": "kaptar-viragok.js"
+    },
+    {
+     "nev": "permetfelho",
+     "info": "kaptar-viragok.js"
+    },
+    {
+     "nev": "koszoru",
+     "info": "kaptar-viragok.js"
     },
     {
      "nev": "wall",
@@ -2589,6 +3813,46 @@
      "info": "szelektalj-modellek.js"
     },
     {
+     "nev": "observatory",
+     "info": "varos-csillagvizsgalo.js"
+    },
+    {
+     "nev": "townHall",
+     "info": "varos-kozpont.js"
+    },
+    {
+     "nev": "library",
+     "info": "varos-kozpont.js"
+    },
+    {
+     "nev": "busStop",
+     "info": "varos-kozpont.js"
+    },
+    {
+     "nev": "market",
+     "info": "varos-kozpont.js"
+    },
+    {
+     "nev": "recyclingYard",
+     "info": "varos-kozpont.js"
+    },
+    {
+     "nev": "solarRoof",
+     "info": "varos-kozpont.js"
+    },
+    {
+     "nev": "bikeLane",
+     "info": "varos-kozpont.js"
+    },
+    {
+     "nev": "windTurbine",
+     "info": "varos-kozpont.js"
+    },
+    {
+     "nev": "museum",
+     "info": "varos-kozpont.js"
+    },
+    {
      "nev": "oneHouse",
      "info": "varos-modellek.js"
     },
@@ -2675,6 +3939,10 @@
     {
      "nev": "sprayWarn",
      "info": "varos-poszmeh.js"
+    },
+    {
+     "nev": "natureTrail",
+     "info": "varos-tanosveny.js"
     }
    ]
   },
@@ -2863,6 +4131,10 @@
      "info": "Matrica-ív: az illusztrációk egy képen, ellenőrzéshez (fejlesztői eszköz, nem kerül ki a webre)"
     },
     {
+     "nev": "tools/ds-lint.js",
+     "info": "!/usr/bin/env node"
+    },
+    {
      "nev": "tools/forras.js",
      "info": "!/usr/bin/env node"
     },
@@ -2873,6 +4145,10 @@
     {
      "nev": "tools/jatek-foto.js",
      "info": "JÁTÉK-FOTÓ – láthatatlan böngészős ellenőrzés: saját kis statikus szerver (a web/ mappa) + fej nélküli Chrome,"
+    },
+    {
+     "nev": "tools/katalogus.py",
+     "info": "!/usr/bin/env python3"
     },
     {
      "nev": "tools/kit-index.js",
@@ -2895,6 +4171,10 @@
      "info": "<!doctype html>"
     },
     {
+     "nev": "tools/react-build.js",
+     "info": "!/usr/bin/env node"
+    },
+    {
      "nev": "tools/smoke.js",
      "info": "SMOKE-TESZT – „elindul-e mind a hat játék?” – automatikusan minden élesítés előtt (CI), de kézzel is futtatható"
     },
@@ -2907,8 +4187,24 @@
      "info": "!/usr/bin/env node"
     },
     {
+     "nev": "tools/tokens-build.js",
+     "info": "!/usr/bin/env node"
+    },
+    {
      "nev": "tools/uj-jatek.js",
      "info": "új beeco játék-projekt létrehozása a kit sablonjából"
+    },
+    {
+     "nev": "tools/web-ellenor.js",
+     "info": "!/usr/bin/env node"
+    },
+    {
+     "nev": "tools/web-osztalyleltar.js",
+     "info": "!/usr/bin/env node"
+    },
+    {
+     "nev": "tools/webflow-build.js",
+     "info": "!/usr/bin/env node"
     }
    ]
   },
@@ -2924,6 +4220,10 @@
     {
      "nev": "docs/adatskala.md",
      "info": "Adatskálák – színek hőtérképhez, élőhelyhez, hálózati terheléshez"
+    },
+    {
+     "nev": "docs/app-atallas.md",
+     "info": "Flutter app → beeco design system (specifikáció Bencének)"
     },
     {
      "nev": "docs/arculat.md",
@@ -2950,12 +4250,24 @@
      "info": "Közös játékkeret (beeco-jatek-kit)"
     },
     {
+     "nev": "docs/komponens-katalogus.md",
+     "info": "Komponens-katalógus"
+    },
+    {
+     "nev": "docs/komponensek.md",
+     "info": "Komponensek – szabálykönyv (atomic design, öntesztek, szélső esetek, közös definiálás)"
+    },
+    {
      "nev": "docs/kozos-profil.md",
      "info": "Közös játékosprofil és a „központ” (beeco playground)"
     },
     {
      "nev": "docs/mechanikak.md",
      "info": "Játékmechanikák – közös építőelemek"
+    },
+    {
+     "nev": "docs/meh-sprite.md",
+     "info": "Méhecske-sprite-ok (web + mobilapp)"
     },
     {
      "nev": "docs/meh-szerepek.md",
@@ -2982,8 +4294,20 @@
      "info": "Rajzolási mérce – „B szint” (2D matrica és 3D modell)"
     },
     {
+     "nev": "docs/rendszer.md",
+     "info": "A beeco design system felépítése"
+    },
+    {
      "nev": "docs/tartalom-szerkesztes.md",
      "info": "Tartalom szerkesztése táblázatban (Excel / Google Táblázat)"
+    },
+    {
+     "nev": "docs/termek-arculat.md",
+     "info": "Termékbőr – szabálykönyv (app, admin, partner, web)"
+    },
+    {
+     "nev": "docs/weboldal.md",
+     "info": "Weboldal (Webflow) – a DS webes rétege"
     }
    ]
   },
@@ -2995,6 +4319,10 @@
     {
      "nev": "beeco-arculat",
      "info": "A beeco játékok design systemje („Méhsejt-diorama”). Használd MINDEN olyan munkánál, ami a játékok kinézetét érinti – új vagy átdolgozott képernyő, panel, gomb, HUD, menü, CSS, pik"
+    },
+    {
+     "nev": "beeco-ds",
+     "info": "A beeco egységes design systeme (hegebeeco/beeco-design-system). Használd MINDEN beeco-felületen, ami nem webjáték – admin (beeco-admin), partner-felület (beeco-partner), web, Flut"
     },
     {
      "nev": "beeco-jatek",
