@@ -51,6 +51,12 @@
 .bc-seg-item + .bc-seg-item { border-left: var(--bc-bw-base) solid var(--bc-line); }
 .bc-seg-item[data-state="on"] { color: var(--bc-on-accent); background: var(--bc-accent); }
 .bc-seg-item:disabled { color: var(--bc-ink-muted); cursor: not-allowed; }
+/* Javaslat 16: tördelődő nézetváltó (sok elem, pl. GYIK-témák) – több sorba törik, nem rejtetten görget (a jobb szélső
+   elemek így nem maradnak észrevétlenek). Az elválasztó a gombok saját jobb/alsó vonala, hogy tördelve se legyen dupla keret. */
+.bc-seg.is-wrap { display: flex; flex-wrap: wrap; width: 100%; overflow: hidden; }
+.bc-seg.is-wrap > .bc-seg-item { flex: 1 1 auto; justify-content: center; border-left: 0;
+  box-shadow: inset calc(-1 * var(--bc-bw-base)) 0 0 var(--bc-line), inset 0 calc(-1 * var(--bc-bw-base)) 0 var(--bc-line);
+  margin: 0 calc(-1 * var(--bc-bw-base)) calc(-1 * var(--bc-bw-base)) 0; }
 .bc-seg-item:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: -3px; }
 @media (hover: hover) and (pointer: fine) { .bc-seg-item:hover:not([data-state="on"], :disabled) { background: var(--bc-surface-2); } }
 @media (pointer: coarse) { .bc-seg-item { min-height: var(--bc-tap); } }

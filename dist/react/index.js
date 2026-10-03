@@ -1,4 +1,4 @@
-/* beeco design system 1.36.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.37.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
@@ -597,7 +597,7 @@ var SearchBox = forwardRef7(function SearchBox2({ label, value, onChange, deboun
 // react/src/inputs/SegmentedControl.tsx
 import { useRef as useRef5 } from "react";
 import { jsx as jsx11, jsxs as jsxs9 } from "react/jsx-runtime";
-function SegmentedControl({ label, value, onChange, items, className }) {
+function SegmentedControl({ label, value, onChange, items, wrap = false, className }) {
   const root = useRef5(null);
   const onKey = (e) => {
     const dir = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
@@ -609,7 +609,7 @@ function SegmentedControl({ label, value, onChange, items, className }) {
     onChange(next.value);
     root.current?.querySelector(`[data-value="${next.value}"]`)?.focus();
   };
-  return /* @__PURE__ */ jsx11("div", { ref: root, role: "radiogroup", "aria-label": label, className: cx("bc-seg", className), onKeyDown: onKey, children: items.map((it) => {
+  return /* @__PURE__ */ jsx11("div", { ref: root, role: "radiogroup", "aria-label": label, className: cx("bc-seg", wrap && "is-wrap", className), onKeyDown: onKey, children: items.map((it) => {
     const on = it.value === value;
     return /* @__PURE__ */ jsxs9(
       "button",

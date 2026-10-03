@@ -11,6 +11,13 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.37.0 – 2026-10-03 – tördelődő nézetváltó, tailwind-merge kiegészítés (Javaslat 16)
+
+Mellékverzió (PARTNERAPP; Kristóf jóváhagyta) – minden új lehetőség opcionális, a meglévő használat nem változik.
+
+* **`SegmentedControl wrap` / `.bc-seg.is-wrap`:** sok elemnél több sorba tördelődik (teljes szélesség), nem rejtetten görget – a jobb szélső elemek nem maradnak észrevétlenek; tördelve sincs dupla keret. Tesztlap: `vezerlok` → „Sok elem, tördelődő (wrap)”.
+* **`@beeco/design-system/tailwind-merge`** (`dist/tailwind/twmerge.mjs` + típus): a tailwind-merge kiegészítése a preset neveivel (betűméret, -vastagság, -család, árnyék, sarok, réteg, `min-h/w-tap`), ugyanabból a tokenforrásból, mint a preset. Nélküle `cn('text-s', 'text-ink')`-ből csendben eltűnik egyik osztály, és a `z-modal` nem írható felül. **A `rounded-l` kimarad** (Tailwindben a bal oldali sarkok osztálya is – kétértelmű).
+
 ## 1.36.1 – 2026-10-03
 
 * **Kártya-szerepek (meta.card) – fejlécsor:** ha van címszerep, a telefonos kártya első sora jelölő · cím · jelvény · lenyitó egy sorban, alatta a fő adatok teljes szélességben (eddig a lenyitó külön sorban állt a cím fölött, a jelvény a fő adatok között). Az admin Partnerek listáján mérve: kártyánként ~25%-kal rövidebb.

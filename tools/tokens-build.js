@@ -6,6 +6,7 @@
      dist/css/beeco-fonts.css    saját szerverről töltött Lalezar + Open Sans
      dist/scss/_beeco.scss       SCSS-változók (a CSS-változókra mutatnak) – admin
      dist/tailwind/preset.cjs    Tailwind preset (átlátszóság-módosítóval: bg-ink/40) – partner
+     dist/tailwind/twmerge.mjs   tailwind-merge kiegészítés a preset neveihez (+ .d.ts) – Javaslat 16
      dist/dart/beeco_tokens.dart Flutter-konstansok – app (Bence)
      dist/tokens.json            feloldott, lapos értékek (bármely más eszköznek)
    Használat:  node tools/tokens-build.js          (ír)
@@ -150,6 +151,45 @@ function buildTailwind() {
   return `// ${HEAD}\n// Használat (tailwind.config.js): presets: [require('@beeco/design-system/tailwind')]\n// és a CSS-ben: @import '@beeco/design-system/css/beeco-tokens.css';\nmodule.exports = ${JSON.stringify(preset, null, 2)};\n`;
 }
 
+
+/* ---------- 4b. tailwind-merge kiegészítés (Javaslat 16) ----------
+   A tailwind-merge alapból nem ismeri a preset neveit (text-s, shadow-s, z-modal, min-h-tap…): a `text-s`-t színnek hiszi,
+   így cn('text-s', 'text-ink')-ből csendben eltűnik egyik; a `z-modal z-[1200]`-ből mindkettő marad. Ez a kiegészítés
+   ugyanabból a tokenforrásból adja a neveket. A `rounded-l` SZÁNDÉKOSAN kimarad: Tailwindben a bal oldali sarkok
+   osztálya is (kétértelmű a DS `l` sarok-nevével) – a nagy sarokhoz inkább `rounded-pill` / `rounded-m`. */
+function buildTwMerge() {
+  const kulcsok = o => Object.keys(o).filter(k => !k.startsWith('_'));
+  const cfg = {
+    extend: {
+      classGroups: {
+        'font-size': [{ text: kulcsok(core.fontSize) }],
+        'font-weight': [{ font: kulcsok(core.fontWeight) }],
+        'font-family': [{ font: ['display', 'body', 'sans'] }],
+        'shadow': [{ shadow: ['none', ...kulcsok(termek.shadow), 'soft'] }],
+        'rounded': [{ rounded: kulcsok(termek.radius).filter(k => k !== 'l') }],
+        'z': [{ z: kulcsok(core.z) }],
+        'min-h': [{ 'min-h': ['tap'] }],
+        'min-w': [{ 'min-w': ['tap'] }],
+      },
+    },
+  };
+  return `// ${HEAD}
+// Használat: import { extendTailwindMerge } from 'tailwind-merge';
+//            import beecoTwMerge from '@beeco/design-system/tailwind-merge';
+//            const twMerge = extendTailwindMerge(beecoTwMerge);
+// A rounded-l kimarad (Tailwindben a bal oldali sarkok osztálya is).
+const beecoTwMerge = ${JSON.stringify(cfg, null, 2)};
+export default beecoTwMerge;
+`;
+}
+const TWMERGE_DTS = `// ${HEAD}
+/** tailwind-merge kiegészítés a beeco DS Tailwind-presetjéhez – extendTailwindMerge(beecoTwMerge) */
+declare const beecoTwMerge: {
+  extend: { classGroups: Record<string, Array<Record<string, string[]>>> };
+};
+export default beecoTwMerge;
+`;
+
 /* ---------- 5. Dart (Flutter) ---------- */
 function buildDart() {
   const camel = s => s.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase()).replace(/^(\d)/, 'n$1');
@@ -201,6 +241,8 @@ const OUT = {
   'dist/css/beeco-fonts.css': buildFonts(),
   'dist/scss/_beeco.scss': buildScss(),
   'dist/tailwind/preset.cjs': buildTailwind(),
+  'dist/tailwind/twmerge.mjs': buildTwMerge(),
+  'dist/tailwind/twmerge.d.ts': TWMERGE_DTS,
   'dist/dart/beeco_tokens.dart': buildDart(),
   'dist/tokens.json': buildJson(),
 };

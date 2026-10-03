@@ -7,6 +7,8 @@ export type SegmentedControlProps<T extends string> = {
   value: T;
   onChange: (value: T) => void;
   items: ReadonlyArray<{ value: T; label: string; icon?: ReactNode; disabled?: boolean }>;
+  /** sok elemnél: több sorba tördelődik (teljes szélesség), nem rejtetten görget – Javaslat 16 */
+  wrap?: boolean;
   className?: string;
 };
 
@@ -15,7 +17,7 @@ export type SegmentedControlProps<T extends string> = {
  * Rádiócsoport-viselkedés: egy Tab-megálló, a nyilak a következő engedélyezett elemre lépnek ÉS váltanak (a tiltottat átugorják).
  * Nem adatbevitel (nézetet vált), ezért nincs súgó gombja. Mindig van kijelölt elem.
  */
-export function SegmentedControl<T extends string>({ label, value, onChange, items, className }: SegmentedControlProps<T>) {
+export function SegmentedControl<T extends string>({ label, value, onChange, items, wrap = false, className }: SegmentedControlProps<T>) {
   const root = useRef<HTMLDivElement>(null);
   const onKey = (e: KeyboardEvent) => {
     const dir = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
@@ -28,7 +30,7 @@ export function SegmentedControl<T extends string>({ label, value, onChange, ite
     root.current?.querySelector<HTMLButtonElement>(`[data-value="${next.value}"]`)?.focus();
   };
   return (
-    <div ref={root} role="radiogroup" aria-label={label} className={cx('bc-seg', className)} onKeyDown={onKey}>
+    <div ref={root} role="radiogroup" aria-label={label} className={cx('bc-seg', wrap && 'is-wrap', className)} onKeyDown={onKey}>
       {items.map((it) => {
         const on = it.value === value;
         return (

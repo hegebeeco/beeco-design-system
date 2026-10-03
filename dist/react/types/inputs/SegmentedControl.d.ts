@@ -10,6 +10,8 @@ export type SegmentedControlProps<T extends string> = {
         icon?: ReactNode;
         disabled?: boolean;
     }>;
+    /** sok elemnél: több sorba tördelődik (teljes szélesség), nem rejtetten görget – Javaslat 16 */
+    wrap?: boolean;
     className?: string;
 };
 /**
@@ -17,4 +19,4 @@ export type SegmentedControlProps<T extends string> = {
  * Rádiócsoport-viselkedés: egy Tab-megálló, a nyilak a következő engedélyezett elemre lépnek ÉS váltanak (a tiltottat átugorják).
  * Nem adatbevitel (nézetet vált), ezért nincs súgó gombja. Mindig van kijelölt elem.
  */
-export declare function SegmentedControl<T extends string>({ label, value, onChange, items, className }: SegmentedControlProps<T>): import("react").JSX.Element;
+export declare function SegmentedControl<T extends string>({ label, value, onChange, items, wrap, className }: SegmentedControlProps<T>): import("react").JSX.Element;

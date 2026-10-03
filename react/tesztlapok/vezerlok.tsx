@@ -7,6 +7,7 @@ const Toll = () => <svg viewBox="0 0 24 24" width="22" height="22" fill="none" s
 function Oldal() {
   const [nezet, setNezet] = useState<'lista' | 'csempe' | 'terkep'>('lista');
   const [n2, setN2] = useState<'lista' | 'terkep'>('terkep');
+  const [tema, setTema] = useState('osszes');
   const [kattint, setKattint] = useState(0);
   return (
     <>
@@ -21,6 +22,7 @@ function Oldal() {
       <Grid title="Szegmentált kapcsoló – 3A">
         <Case id="seg-ketto" title="Két elem"><SegmentedControl label="Nézet" value={n2} onChange={setN2} items={[{ value: 'lista', label: 'Lista' }, { value: 'terkep', label: 'Térkép' }]} /></Case>
         <Case id="seg-harom" title="Három elem, egy tiltott"><SegmentedControl label="Nézet" value={nezet} onChange={setNezet} items={[{ value: 'lista', label: 'Lista' }, { value: 'csempe', label: 'Csempék' }, { value: 'terkep', label: 'Térkép', disabled: true }]} /><p className="tl-out" data-out="seg">nézet: {nezet}</p></Case>
+        <Case id="seg-tordelodo" title="Sok elem, tördelődő (wrap)" wide><SegmentedControl wrap label="Téma" value={tema} onChange={setTema} items={['Összes', 'Kuponok', 'Térkép', 'Események', 'Beváltás', 'Profil & fiók', 'A partner app használata', 'Szolgáltatások', 'Közösség'].map((l) => ({ value: l === 'Összes' ? 'osszes' : l, label: l }))} /></Case>
       </Grid>
       <Grid title="Űrlapszakasz">
         <Case id="form" title="FormSection + FormActions" wide>

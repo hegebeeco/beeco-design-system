@@ -1,6 +1,6 @@
 {
   "name": "@beeco/design-system",
-  "version": "1.36.1",
+  "version": "1.37.0",
   "description": "A beeco egységes design systeme: közös atomok (tokens/), játékbőr (Méhsejt-diorama, web/) és termékbőr (app, admin, partner, web – termek/). Egy forrás, generált kimenetek (CSS, SCSS, Tailwind, Dart).",
   "license": "UNLICENSED",
   "private": true,
@@ -36,6 +36,10 @@
     "./termek/*": "./termek/css/*",
     "./scss": "./dist/scss/_beeco.scss",
     "./tailwind": "./dist/tailwind/preset.cjs",
+    "./tailwind-merge": {
+      "types": "./dist/tailwind/twmerge.d.ts",
+      "import": "./dist/tailwind/twmerge.mjs"
+    },
     "./tokens.json": "./dist/tokens.json",
     "./dist/*": "./dist/*",
     "./web/assets/fonts/*": "./web/assets/fonts/*",
