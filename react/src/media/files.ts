@@ -27,6 +27,16 @@ export const FILE_TYPES: Record<string, Sig> = {
   'application/vnd.ms-excel': { name: 'XLS', test: (b) => b[0] === 0xd0 && b[1] === 0xcf && b[2] === 0x11 && b[3] === 0xe0 },
 };
 
+/** Felismerhető, de nem engedett formátum a tartalomból (pl. átnevezett iPhone-kép): ilyenkor „rossz formátum”, nem „olvashatatlan” */
+const masikFormatum = (b: Uint8Array): string | null => {
+  if (at(b, 4, 'ftyp')) {
+    if (['heic', 'heix', 'hevc', 'heim', 'heis', 'mif1', 'msf1'].some((m) => at(b, 8, m))) return 'HEIC';
+    if (at(b, 8, 'qt')) return 'MOV';
+  }
+  const hit = Object.values(FILE_TYPES).find((s) => s.test(b));
+  return hit ? hit.name : null;
+};
+
 /** A fájl valódi típusa az első bájtjai alapján (null = ismeretlen / nem engedett) */
 export async function sniffType(file: File, accept: readonly string[]): Promise<string | null> {
   const buf = new Uint8Array(await file.slice(0, 16).arrayBuffer());
@@ -78,9 +88,11 @@ export async function checkFiles(files: readonly File[], o: CheckOptions) {
     if (f.size === 0) { rejected.push({ file: f.name, reason: 'üres fájl (0 bájt)', next: 'Válaszd ki újra az eredetit – lehet, hogy a mentés nem sikerült.' }); continue; }
     const type = await sniffType(f, o.accept);
     if (!type) {
-      const ext = extOf(f.name);
+      const fej = new Uint8Array(await f.slice(0, 16).arrayBuffer());
+      const valodi = masikFormatum(fej);
+      const ext = valodi ?? extOf(f.name);
       // A kiterjesztés szerint engedett típus, de a tartalom nem az → nem „rossz formátum” (önellentmondó lenne: „MP4 – csak MP4 lehet”), hanem olvashatatlan
-      const known = o.accept.some((m) => FILE_TYPES[m]?.name === ext || (ext === 'JPEG' && m === 'image/jpeg'));
+      const known = !valodi && o.accept.some((m) => FILE_TYPES[m]?.name === ext || (ext === 'JPEG' && m === 'image/jpeg'));
       if (known) { rejected.push({ file: f.name, ...(o.unreadable ?? { reason: 'ezt a fájlt nem tudjuk beolvasni (lehet, hogy sérült)', next: `Próbáld újra exportálni ${FILE_TYPES[o.accept.find((m) => FILE_TYPES[m]?.name === ext) ?? 'image/jpeg']?.name ?? ext}-ként, és töltsd fel újra.` }) }); continue; }
       rejected.push({ file: f.name, reason: `${ext ? `ezt a formátumot (${ext})` : 'ezt a fájlt'} nem tudjuk fogadni – csak ${typeNames(o.accept)} lehet`, next: o.typeHint ?? `Mentsd el ${typeNames(o.accept).split(', ')[0]}-ként, és töltsd fel újra.` });
       continue;

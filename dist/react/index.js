@@ -3652,6 +3652,14 @@ var FILE_TYPES = {
   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": { name: "XLSX", test: (b) => b[0] === 80 && b[1] === 75 && b[2] === 3 && b[3] === 4 },
   "application/vnd.ms-excel": { name: "XLS", test: (b) => b[0] === 208 && b[1] === 207 && b[2] === 17 && b[3] === 224 }
 };
+var masikFormatum = (b) => {
+  if (at(b, 4, "ftyp")) {
+    if (["heic", "heix", "hevc", "heim", "heis", "mif1", "msf1"].some((m) => at(b, 8, m))) return "HEIC";
+    if (at(b, 8, "qt")) return "MOV";
+  }
+  const hit = Object.values(FILE_TYPES).find((s) => s.test(b));
+  return hit ? hit.name : null;
+};
 async function sniffType(file, accept) {
   const buf = new Uint8Array(await file.slice(0, 16).arrayBuffer());
   return accept.find((mime) => FILE_TYPES[mime]?.test(buf)) ?? null;
@@ -3673,8 +3681,10 @@ async function checkFiles(files, o) {
     }
     const type = await sniffType(f, o.accept);
     if (!type) {
-      const ext = extOf(f.name);
-      const known = o.accept.some((m) => FILE_TYPES[m]?.name === ext || ext === "JPEG" && m === "image/jpeg");
+      const fej = new Uint8Array(await f.slice(0, 16).arrayBuffer());
+      const valodi = masikFormatum(fej);
+      const ext = valodi ?? extOf(f.name);
+      const known = !valodi && o.accept.some((m) => FILE_TYPES[m]?.name === ext || ext === "JPEG" && m === "image/jpeg");
       if (known) {
         rejected.push({ file: f.name, ...o.unreadable ?? { reason: "ezt a f\xE1jlt nem tudjuk beolvasni (lehet, hogy s\xE9r\xFClt)", next: `Pr\xF3b\xE1ld \xFAjra export\xE1lni ${FILE_TYPES[o.accept.find((m) => FILE_TYPES[m]?.name === ext) ?? "image/jpeg"]?.name ?? ext}-k\xE9nt, \xE9s t\xF6ltsd fel \xFAjra.` } });
         continue;
