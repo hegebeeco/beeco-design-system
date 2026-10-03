@@ -11,6 +11,10 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.36.1 – 2026-10-03
+
+* **Kártya-szerepek (meta.card) – fejlécsor:** ha van címszerep, a telefonos kártya első sora jelölő · cím · jelvény · lenyitó egy sorban, alatta a fő adatok teljes szélességben (eddig a lenyitó külön sorban állt a cím fölött, a jelvény a fő adatok között). Az admin Partnerek listáján mérve: kártyánként ~25%-kal rövidebb.
+
 ## 1.36.0 – 2026-10-03 – listák hatékonysága (Javaslat 15)
 
 Mellékverzió – a Javaslat 15 bővítése az admin UX-átvilágításából (ClickUp `869fb6yq0`). Minden új lehetőség **opcionális**: meta / prop nélkül a mai viselkedés marad (a partner app változtatás nélkül frissíthet).

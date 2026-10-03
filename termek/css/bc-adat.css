@@ -125,6 +125,13 @@
   .bc-dt.is-cards .bc-table td.is-card-title::before, .bc-dt.is-cards .bc-table td.is-card-badge::before { content: none; }
   .bc-dt.is-cards .bc-table td.is-card-badge { display: inline-flex; flex-wrap: wrap; gap: var(--bc-sp-1); width: auto; padding: 0 var(--bc-sp-2) var(--bc-sp-1) 0; }
   .bc-dt.is-cards .bc-table td.is-pin-end { position: static; box-shadow: none; }
+  /* Ha van címszerep: a kártya fejlécsora jelölő · cím · jelvény · lenyitó (egy sorban), alatta a fő adatok teljes szélességben */
+  .bc-dt.is-cards .bc-table tbody tr:has(> td.is-card-title) { display: flex; flex-wrap: wrap; align-items: center; column-gap: var(--bc-sp-2); }
+  .bc-dt.is-cards .bc-table tbody tr:has(> td.is-card-title) > td { flex: 1 1 100%; min-width: 0; }
+  .bc-dt.is-cards .bc-table tbody tr:has(> td.is-card-title) > td.is-util:has(.bc-dt-check) { order: -4; flex: none; }
+  .bc-dt.is-cards .bc-table tbody tr:has(> td.is-card-title) > td.is-card-title { order: -3; flex: 1 1 0; }
+  .bc-dt.is-cards .bc-table tbody tr:has(> td.is-card-title) > td.is-card-badge { order: -2; flex: none; padding: 0; }
+  .bc-dt.is-cards .bc-table tbody tr:has(> td.is-card-title) > td.is-util:has(.bc-dt-expand) { order: -1; flex: none; }
 }
 
 /* ---------- Szűrősáv (2B) ---------- */
