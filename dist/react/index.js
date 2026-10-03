@@ -1,4 +1,4 @@
-/* beeco design system 1.35.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.36.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 
 // react/src/field/Field.tsx
 import { useId } from "react";
