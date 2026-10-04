@@ -1,6 +1,6 @@
 /* ============================================================
    beeco JÁTÉKMECHANIKÁK — a négy közös építőelem felülete (web/js/mech/*.js)
-   Előtagok: .mk- döntéskártya · .mr- rács · .mv- pontok összekötése · .mc- kombinálás
+   Előtagok: .mk- döntéskártya · .mr- rács · .mv- pontok összekötése · .mc- kombinálás · .mp- ügyességi próba
    A design systemre épül (tokens.css, ds.css, ds-game.css, ds-motion.css) – itt CSAK tokenek állnak.
    Leírás: docs/mechanikak.md · Bemutató: /mechanikak.html
    ============================================================ */
@@ -149,3 +149,12 @@
 }
 .reduce-motion .mk-card, .reduce-motion .mk-card.is-leaving, .reduce-motion .mr-cell, .reduce-motion .mc-item{ transition:none; }
 .reduce-motion .mv-edge.is-new .mv-link{ animation:none; stroke-dasharray:none; }
+
+/* ---- 5. ügyességi próba (.mp-): sáv célzónával, mozgó jelző, „Most!” gomb – js/mech/proba-*.js ---- */
+.mp{ display:grid; gap:var(--sp-3); }
+.mp-sav{ position:relative; height:36px; border:var(--line-w) solid var(--line); border-radius:var(--r-pill); background:var(--bg); overflow:hidden; }
+.mp-zona{ position:absolute; top:0; bottom:0; left:var(--tol); width:var(--szel); background:var(--good-bg); border-inline:2px solid var(--good); }
+.mp-jel{ position:absolute; top:3px; bottom:3px; left:0; width:6px; border-radius:3px; background:var(--ink); }
+.mp-sav.is-ok{ box-shadow:0 0 0 4px var(--good); }
+.mp-sav.is-fail{ box-shadow:0 0 0 4px var(--blossom); }
+.mp-gomb .pic{ width:22px; height:22px; }

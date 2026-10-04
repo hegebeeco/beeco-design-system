@@ -57,11 +57,11 @@
 <div class="wrap">
   <header class="top">
     <img src="assets/brand/bee-happy.webp" alt="">
-    <div><h1>Játékmechanikák</h1><p class="ds-lead">Négy közös építőelem a következő beeco játékokhoz – mindegyik kipróbálható.</p></div>
+    <div><h1>Játékmechanikák</h1><p class="ds-lead">Öt közös építőelem a beeco játékokhoz – mindegyik kipróbálható.</p></div>
   </header>
   <nav class="bar" aria-label="Tartalom">
     <a class="ds-tag" href="#kartya">1 · Döntéskártya</a><a class="ds-tag" href="#racs">2 · Rács</a>
-    <a class="ds-tag" href="#vonal">3 · Összekötés</a><a class="ds-tag" href="#kombinal">4 · Kombinálás</a>
+    <a class="ds-tag" href="#vonal">3 · Összekötés</a><a class="ds-tag" href="#kombinal">4 · Kombinálás</a><a class="ds-tag" href="#proba">5 · Ügyességi próba</a>
     <label>Kevesebb mozgás <button type="button" class="ds-switch" role="switch" aria-checked="false" id="rm" aria-label="Kevesebb mozgás"></button></label>
   </nav>
 
@@ -116,6 +116,16 @@ v.graph.metrics()  // { components, isolated, critical, bridges, … } · v.remo
     <details class="ds-details"><summary><span data-pic="text"></span>Hogyan használd?</summary><div><pre>MechKombinal.mount(el, { slots:8, items:{ repa:{ label:'Répa', icon:'🥕', fresh:4, spoilsTo:'komposzt' } },
   recipes:[{ a:'repa', b:'krumpli', out:'leves', time:2 }], start:['repa'], supply:['repa'] });</pre></div></details>
   </section>
+
+  <!-- 5. ÜGYESSÉGI PRÓBA -->
+  <section id="proba">
+    <h2><span data-pic="hand"></span>Ügyességi próba</h2>
+    <p class="ds-lead">Koppints, amikor a jelző a zöld sávban van! Három kör után magától lejár.</p>
+    <p class="for ds-muted">Kinek: Nem gáz a pedál (útközbeni események) · <code>js/mech/proba-*.js</code></p>
+    <div class="demo"><div id="pDemo"></div><p class="ds-muted" id="pEred" aria-live="polite"></p>
+      <button type="button" class="ds-btn-sm" id="pUjra"><span data-pic="refresh"></span>Újra</button></div>
+    <details class="ds-details"><summary><span data-pic="text"></span>Hogyan használd?</summary><div><pre>MechProba.mount(el, { feladat:'Kerüld ki!', zona:0.26, sebesseg:1, korok:3, onKesz:(ok) => {} });</pre></div></details>
+  </section>
 </div>
 
 <script src="js/i18n.js"></script><script src="js/i18n/en-kit.js"></script>
@@ -139,6 +149,8 @@ v.graph.metrics()  // { components, isolated, critical, bridges, … } · v.remo
 <script src="js/mech/vonal-ui.js"></script>
 <script src="js/mech/kombinal-logika.js"></script>
 <script src="js/mech/kombinal-ui.js"></script>
+<script src="js/mech/proba-logika.js"></script>
+<script src="js/mech/proba-ui.js"></script>
 <script src="js/mech/bemutato.js"></script>
 </body>
 </html>

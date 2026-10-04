@@ -88,4 +88,11 @@
     start:['repa', 'krumpli', 'kenyer', 'tojas', 'banan'],
     supply:['repa', 'krumpli', 'kenyer', 'tojas', 'tej', 'banan'],
   });
+
+  // ---- 5. Ügyességi próba: kátyú a bringaúton ----
+  const startProba = () => { $('#pEred').textContent = '';
+    window.demoProba = MechProba.mount($('#pDemo'), { feladat:'Kerüld ki a kátyút!', zona:0.26, sebesseg:1, korok:3,
+      onKesz:(ok) => { $('#pEred').textContent = ok ? 'Ügyesen kikerülted!' : 'Most nem jött össze – próbáld újra!'; } }); };
+  startProba();
+  $('#pUjra').addEventListener('click', () => { if(window.demoProba) window.demoProba.stop(); startProba(); });
 })();

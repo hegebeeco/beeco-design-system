@@ -68,6 +68,18 @@ MechKombinal.mount(el, { slots:8, turnLabel:'Következő nap',
 ```
 Egy recept egy tárgyat ad (`out`); az elkészült tárgy abban a körben még nem romlik.
 
+## 5. Ügyességi próba (időzítés) – `mech/proba-logika.js` + `proba-ui.js`
+**Kinek:** Nem gáz a pedál (útközbeni események: kátyú, induló busz, szűk parkolóhely), bármely játék, ahol egy döntés mellé
+egy rövid ügyességi pillanat kell. Egy sávon jobbra-balra jár a jelző, a „Most!” a zöld zónában sikeres. Ha `korok` kör alatt sem
+jön koppintás, nem sikerült – nincs végtelen várakozás. „Kevesebb mozgás” mellett lassabb (és így is teljesíthető).
+```js
+MechProba.mount(el, { feladat:'Kerüld ki!', zona:0.26, sebesseg:1, korok:3, onKesz:(ok) => {} });
+// csak a logika: const L = MechProba.create({ zona, sebesseg, korMs, korok, tol, rnd, lassit });
+// L.pos(ms) → 0…1 · L.talal(p) → sikerült-e · L.lejart(ms)
+```
+A kimenet hatása (perc, hangulat, pont) a játéké és **játékérték** – a próba csak annyit mond: sikerült-e. Ne legyen gyakoribb,
+mint minden harmadik döntés, és rossz kimenet se büntessen keményen (tanítunk, nem szidunk).
+
 ## Tudnivalók
 * A számok (lépcsők, pontok, korlátok) **játékértékek**; valódi adat csak forrással kerülhet a tartalomba (`docs/jatektervezes.md`).
 * Új felület-osztály csak `web/css/mech.css`-be, tokenekkel; ellenőrzés: `node tests/check-arculat.js`.

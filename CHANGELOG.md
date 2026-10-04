@@ -11,6 +11,18 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.39.0 – 2026-10-05 – játékbőr: „Hogyan játssz?” bevezető, ügyességi próba (mechanika 5), tesztelői tanulságok
+A beeco-szelektalj 16 játékának első nagy tesztköre (2026-10-03) után a játékokban bevált közös elemek és elvek.
+* **Bevezető** – `web/js/bevezeto.js` + `web/css/bevezeto.css` (új, `sync`): `bevezetoMutat({ jatek, cim, cel, szabalyok, utana,
+  kenyszer })`, `bevezetoZar()`, `bevezetoNyitva()`, `bevezetoGombHTML(attr)`. A játék első indulásakor „Hogyan játssz?”: cél egy
+  mondatban + legfeljebb 3 szabály + „Kezdjük!”; játékonként egyszer (`beeco_coach_bev_<játék>` – a „Bemutatók újra” is visszahozza),
+  a „?” gomb bármikor. Önálló (saját szöveg-escape), a pics.js, ds.js, i18n.js után. Leírás: `docs/arculat.md` 4. (Bevezető sor).
+* **Mechanika 5 – ügyességi próba** – `web/js/mech/proba-logika.js` + `proba-ui.js`, `.mp-` osztályok a `mech.css`-ben:
+  `MechProba.mount(el, { feladat, zona, sebesseg, korok, onKesz })`; csak logika: `MechProba.create()` (pos, talal, lejart).
+  „Kevesebb mozgás” mellett lassabb; `korok` kör után magától sikertelen. Bemutató: `mechanikak.html` #proba; teszt: `check-mech` (+3).
+* **Elvek** – `docs/jatektervezes.md`: „Tesztelői tanulságok” (belépés, változatosság, tempó, érthetőség, képernyő).
+* Angol szótár: `Most!`, `Sikerült!`, `Most nem jött össze.`, `Hogyan játssz?`, `A cél:`, `Kezdjük!`.
+
 ## 1.38.0 – 2026-10-03 – tömör oldalsáv (Javaslat 17)
 
 Mellékverzió (PARTNERAPP; Kristóf kérése) – opcionális, alapból semmi nem változik.

@@ -77,7 +77,9 @@
   "web/js/i18n.js",
   "web/js/i18n/en-kit.js",
   "tests/check-i18n.js",
-  "docs/nyelvek.md"
+  "docs/nyelvek.md",
+  "web/js/bevezeto.js",
+  "web/css/bevezeto.css"
  ],
  "sablon": [
   "tests/check-arculat.js",

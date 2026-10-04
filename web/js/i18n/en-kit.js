@@ -43,4 +43,7 @@ I18N.add('en', {
   'Túl messze van':'Too far away', 'Elfogyott a kapcsolat-keret':'You’re out of links', 'Már össze vannak kötve':'Already connected',
   'Ennek a pontnak több kapcsolat nem fér':'This point can’t take more links', 'Ezt a kettőt nem lehet összekötni':'These two can’t be linked',
   'Most koppints a másik pontra':'Now tap the other point', 'Kapcsolat törölve':'Link removed',
+  // 1.39.0: ügyességi próba (mech/proba-ui.js) és „Hogyan játssz?” bevezető (bevezeto.js)
+  'Most!':'Now!', 'Sikerült!':'You did it!', 'Most nem jött össze.':'Not this time.',
+  'Hogyan játssz?':'How to play', 'A cél:':'Goal:', 'Kezdjük!':'Let’s go!',
 });

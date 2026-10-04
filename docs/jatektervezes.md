@@ -21,6 +21,43 @@ Forrás: Kristóf koncepció-dokumentuma („beeco webjátékok – az első 5 p
 * **Rendezvényre is:** kioszk-mód, offline működés, gyors kör, kétjátékos lehetőség.
 * **A tartalom adat:** JSON-ban, a beeco szerkeszti; tesztek ellenőrzik (hossz, forrás, matrica).
 
+## Tesztelői tanulságok (2026-10-03, 16 játék első nagy tesztköre után)
+Amit a tesztelők a legtöbbször mondtak, és ami azóta szabály minden új és átdolgozott játékra:
+
+**Belépés**
+* **Minden játék egy „Hogyan játssz?” kártyával indul** (`web/js/bevezeto.js`): a cél EGY mondatban + legfeljebb 3 szabály +
+  „Kezdjük!”. Játékonként egyszer jön magától, a játék „?” gombja bármikor visszahozza. Ha jön, a súgó-buborék ugyanahhoz a
+  játékhoz kimarad – két magyarázat egymás után sok. A mérőkön legyen látható a cél (célvonal), ne csak a szövegben.
+* **A bemutató az alap, a haladó eszköz rejtett:** az első nézetben csak az, ami a fő élményhez kell; a többi egy „Haladó”
+  gomb mögé kerül (Fenntartható otthonom). Minden új látogatás alapnézettel indul.
+* **A fő gomb a fő út:** a köszöntő fő gombja az, amit a legtöbbeknek csinálniuk kell (pl. vezetett séta), nem a „Bezárás”.
+
+**Változatosság (a leggyakoribb panasz: „hamar repetitív”)**
+* **Látott-memória:** egy munkameneten belül a már látott kártyák hátrébb kerülnek – újrajátszáskor újak jönnek, amíg el nem fogynak.
+* **Formaváltás ugyanarra a tudásra:** pl. minden 5. lap „Melyik a hiteles a kettő közül?” páros kártya; két egyforma kérdés
+  helyett más nézőpont.
+* **Nehezedés visszavágókor:** a 2. visszavágótól jöhet a nehezebb pakli; sorozat-bónusz (3 egymás után).
+* **Véletlen esemény + ügyességi próba** (`mech/proba-*.js`): legfeljebb minden harmadik döntéshez, enyhe kimenettel.
+* **Évszakos/köztes választás** (perk): a hosszabb játékokban 2–3 alkalommal egy-egy hosszabb távú döntés, egyszeri árral.
+
+**Tempó és visszajelzés**
+* **A jó válasz után tovább lehet lépni magától**, a hátralévő időt egy sáv mutatja, és koppintásra megáll; **rossz válasz
+  után nincs automatikus továbblépés** – akkor kell igazán elolvasni a magyarázatot.
+* **Szintek között nincs tempó-ugrás:** az új szint első fele az előző tempóján indul; legyen választható „Nyugodt tempó”.
+* **A jó válasz ne mindig ugyanott legyen:** a válaszok sorrendje keveredik (a tartalomban a jó az első – a felület keveri).
+
+**Érthetőség**
+* **Belső zsargon nincs a felületen** („lejtő”, „kapaszkodó”, „lépcsőfok”): ha kell, egy rövid magyarázattal.
+* **Egy mérő iránya egyértelmű:** a teli sáv legyen a jó („Hőterhelés” helyett „Hűvös város”).
+* **Ahol nincs igazolt szám, ott ne legyen szám** („nincs igazolt szám”), és ne kérjük a játékost, hogy ilyet tippeljen.
+* **Típus-címke minden játékon** (Ügyességi · Kvíz · Szimuláció · Felfedező) és „Tanulós” jelvény a lassabb, tanórára való játékokon.
+
+**Képernyő**
+* **Érintés:** minden koppintható elem ≥ 44 px, a csipeszgombok is; a 375 px széles telefon a mérce (a méret-próba ezt méri).
+* **Panelen belül:** a bezáró gomb ragadós (görgetéskor is látszik), a háttérre koppintás bezár, és a listából nyitott elemről
+  „← Vissza a listához” vezet vissza (a görgetési hely megmarad).
+* **Időbeli adatnál egy szalag** múlt → ma → jövő (A mi bolygónk): a múlt csíkokkal, a jövő célként, nem jóslatként.
+
 ## Az 5 koncepció röviden (javasolt sorrend)
 1. **Polgármester egy napra** – kétirányú döntéskártyák, 4 rendszerérték, késleltetett következmények, városprofil (gyors MVP).
 2. **Élő kert** – lapkalerakás + szomszédsági hatások (élőhely, víz, hő, használhatóság), időjárás-események, kertprofil.

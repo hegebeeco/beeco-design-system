@@ -150,6 +150,23 @@ t('kombinál: frissesség-lépcsők, romlás spoilsTo-ra vagy eltűnés', () => 
   b.tick(); eq(b.list().map(i => i.type), ['maradek', 'cukor']); eq(b.turn(), 3);
 });
 
+// ---- 5. Ügyességi próba ----
+const P = M('proba-logika.js');
+t('próba: háromszög-hullám 0 → 1 → 0, a kör hossza a sebességgel és a lassítással', () => {
+  const L = P.create({ korMs:1000, sebesseg:1, zona:0.2, tol:0.4 });
+  eq([L.pos(0), L.pos(250), L.pos(500), L.pos(750)].map(v => +v.toFixed(2)), [0, 0.5, 1, 0.5]);
+  eq(P.create({ korMs:1000, sebesseg:2 }).kor, 500); eq(P.create({ korMs:1000, lassit:1.8 }).kor, 1800);
+});
+t('próba: találat csak a zónában; lejár a körök után', () => {
+  const L = P.create({ korMs:1000, zona:0.2, tol:0.4, korok:3 });
+  assert(L.talal(0.5) && L.talal(0.4) && L.talal(0.6)); assert(!L.talal(0.39) && !L.talal(0.61));
+  assert(!L.lejart(2999) && L.lejart(3001));
+});
+t('próba: a zóna helye ismételhető véletlen, és a sávon belül marad', () => {
+  const rnd = () => 0.5, a = P.create({ zona:0.3, rnd }), b = P.create({ zona:0.3, rnd }); eq(a.tol, b.tol);
+  for(const r of [0, 0.999]){ const L = P.create({ zona:0.4, rnd:() => r }); assert(L.tol >= 0.1 && L.tol + L.szel <= 0.95); }
+});
+
 console.log(`Mechanikák: ${n} próba, ${n - fails.length} rendben`);
 if(fails.length){ fails.forEach(f => console.log('❌ ' + f)); process.exit(1); }
 console.log('✓ minden rendben');
