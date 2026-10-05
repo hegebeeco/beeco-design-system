@@ -11,6 +11,10 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.39.1 – 2026-10-05 – javítás: a becenév a kör végén nem vágódik le
+* `web/css/ds-game.css`: a `dsResultHTML` ranglista-sorában a becenév (`.ds-result-nick b`) két sorba törik „…” helyett
+  (a beeco-szelektalj átvilágításának csiszoló köre: telefonon a hosszabb generált becenév csonka volt).
+
 ## 1.39.0 – 2026-10-05 – játékbőr: „Hogyan játssz?” bevezető, ügyességi próba (mechanika 5), tesztelői tanulságok
 A beeco-szelektalj 16 játékának első nagy tesztköre (2026-10-03) után a játékokban bevált közös elemek és elvek.
 * **Bevezető** – `web/js/bevezeto.js` + `web/css/bevezeto.css` (új, `sync`): `bevezetoMutat({ jatek, cim, cel, szabalyok, utana,
