@@ -55,6 +55,21 @@ export default async function ({ page, t }) {
     ok((await c('naptar-ketfajta').locator('.bc-mcal-note').first().innerText()).includes('Minden tartalomfajta ki van kapcsolva'), 'nem szól');
     for (let i = 0; i < 2; i++) await lg.nth(i).click();
   });
+  await t('saját fajták (kindDefs): jelmagyarázat címkével és piktogrammal, cella szerepszínnel, szűrő és nap-lista', async () => {
+    const lg = c('naptar-sajat').locator('.bc-mcal-legend button');
+    ok((await lg.count()) === 3, `${await lg.count()} fajta`);
+    ok((await lg.allInnerTexts()).join('|').includes('Kupon-időzítés') && (await lg.allInnerTexts()).join('|').includes('Zárva'), 'nincs saját felirat');
+    ok((await lg.locator('.bc-mcal-ic svg').count()) === 3, 'nincs piktogram a jelmagyarázatban');
+    const d7 = day('naptar-sajat', '2026-10-07');
+    ok((await d7.locator('.bc-mcal-ev.is-danger').count()) === 1 && (await d7.locator('.bc-mcal-ev.is-neutral').count()) === 2, `rossz szerepszín: ${await d7.innerHTML()}`);
+    const lbl = await d7.getAttribute('aria-label'); ok(lbl.includes('Kupon-időzítés') && lbl.includes('Zárva'), lbl);
+    ok((await day('naptar-sajat', '2026-10-09').innerText()).includes('10% kávé'), 'a több napos saját fajta nem látszik');
+    await c('naptar-sajat').locator('.bc-mcal-legend').getByRole('button', { name: /Kupon-időzítés/ }).click();
+    ok((await d7.locator('.bc-mcal-ev.is-neutral').count()) === 0, 'a szűrő nem rejtette');
+    ok((await out('sajat')).includes('rejtve: kupon'), await out('sajat'));
+    await c('naptar-sajat').locator('.bc-mcal-legend').getByRole('button', { name: /Kupon-időzítés/ }).click();
+    await d7.click(); ok((await out('sajat')).includes('2026-10-07 (kupon,kupon,zarva)'), await out('sajat')); // saját fajták a kinds sorrendjében
+  });
   await t('üres hónap szól; hiba → Újrapróbálás gomb', async () => {
     ok((await c('naptar-ures').locator('.bc-mcal-note').first().innerText()).includes('még nincs tartalom'), 'nem szól');
     ok(await c('naptar-hiba').getByRole('button', { name: 'Újrapróbálás' }).isVisible(), 'nincs gomb');

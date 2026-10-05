@@ -3,7 +3,11 @@ import { forwardRef, useEffect, useId, useRef, type MouseEvent as ReactMouseEven
 /** Egy mezőhiba: a mező name-je (ezzel találjuk meg), a címkéje (a listában) és a hiba a következő lépéssel. */
 export type FormError = { name: string; message: string; label?: string };
 
-type Props = { errors: FormError[]; general?: string; form: RefObject<HTMLFormElement | null> };
+type Props = {
+  errors: FormError[]; general?: string; form: RefObject<HTMLFormElement | null>;
+  /** Javaslat 20: a link előbb ezt kérdezi (pl. az EditPage lépés-módja a mező lépésére vált) – true: elintézve */
+  onJump?: (name: string) => boolean;
+};
 
 /** A mező megkeresése name (vagy id) alapján az űrlapban. */
 export function findField(form: HTMLFormElement | null, name: string): HTMLElement | null {
@@ -16,10 +20,11 @@ export function findField(form: HTMLFormElement | null, name: string): HTMLEleme
  * Hibaösszesítő (GOV.UK-minta): sikertelen beküldéskor az űrlap tetején, ide kerül a fókusz.
  * Minden hiba link: a mezőre ugrik és oda teszi a fókuszt (görgetés középre – a ragadós fejléc nem takarja).
  */
-export const ErrorSummary = forwardRef<HTMLDivElement, Props>(function ErrorSummary({ errors, general, form }, ref) {
+export const ErrorSummary = forwardRef<HTMLDivElement, Props>(function ErrorSummary({ errors, general, form, onJump }, ref) {
   const id = useId();
   const n = errors.length;
   const jump = (e: ReactMouseEvent, name: string) => {
+    if (onJump?.(name)) { e.preventDefault(); return; }
     const el = findField(form.current, name);
     if (!el) return;
     e.preventDefault();

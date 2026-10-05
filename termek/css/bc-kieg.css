@@ -103,7 +103,7 @@
 .bc-pv-screen { min-height: 300px; padding: var(--bc-sp-3); background: var(--bc-bg); border-radius: calc(var(--bc-r-l) * 2); overflow: hidden; }
 .bc-pv-card { background: var(--bc-surface); color: var(--bc-ink); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); overflow: hidden; }
 .bc-pv-media { position: relative; }
-.bc-pv-img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-bottom: var(--bc-bw-base) solid var(--bc-line); }
+.bc-pv-img { display: block; width: 100%; aspect-ratio: var(--pv-aspect, 16 / 9); object-fit: cover; border-bottom: var(--bc-bw-base) solid var(--bc-line); }
 .bc-pv-img.is-empty { display: grid; place-items: center; background: repeating-linear-gradient(45deg, var(--bc-surface-2) 0 8px, var(--bc-surface) 8px 16px); }
 .bc-pv-img.is-empty > span { padding: 2px var(--bc-sp-2); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); background: var(--bc-surface); border-radius: var(--bc-r-s); }
 .bc-pv-discount { position: absolute; top: var(--bc-sp-2); right: var(--bc-sp-2); padding: var(--bc-sp-1) var(--bc-sp-2); font-family: var(--bc-font-display); font-size: var(--bc-fs-l); line-height: 1;
@@ -122,6 +122,15 @@
 .bc-pv-caption { display: grid; justify-items: center; gap: var(--bc-sp-2); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); text-align: center; max-width: 100%; }
 .bc-pv-notes { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--bc-sp-1); }
 .bc-pv-notes .bc-badge { white-space: normal; text-align: left; line-height: var(--bc-lh-snug); padding-block: var(--bc-sp-1); }
+/* Javaslat 20: részletek nézet (teljes szöveg, a telefon képernyője görget), adatsor, címkék, kiemelés, képarány (--pv-aspect) */
+.bc-pv-screen.is-scroll { max-height: 560px; overflow-y: auto; overscroll-behavior: contain; }
+.bc-pv-full { white-space: pre-line; overflow-wrap: anywhere; }
+.bc-pv-rows { display: grid; gap: var(--bc-sp-1); margin: 0; font-size: var(--bc-fs-xs); }
+.bc-pv-rows > div { display: grid; grid-template-columns: minmax(0, 6.5em) minmax(0, 1fr); gap: var(--bc-sp-2); }
+.bc-pv-rows dt { color: var(--bc-ink-soft); }
+.bc-pv-rows dd { margin: 0; overflow-wrap: anywhere; }
+.bc-pv-tags { display: flex; flex-wrap: wrap; gap: var(--bc-sp-1); }
+.bc-pv-featured { position: absolute; top: var(--bc-sp-2); left: var(--bc-sp-2); }
 
 /* ---- Célcsoport (AudienceBuilder): szabálysorok, keskeny helyen egymás alatt (konténer-lekérdezés) ---- */
 .bc-aud { display: grid; gap: var(--bc-sp-4); min-width: 0; margin: 0; padding: 0; border: 0; container-type: inline-size; }

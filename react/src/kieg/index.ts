@@ -12,7 +12,9 @@ export {
 } from './StatusPages';
 export { Timeline, type TimelineProps } from './Timeline';
 export { groupByDay, type ActivityItem, type ActivityChange, type DayGroup } from './activity';
-export { PreviewCard, type PreviewCardProps, type PreviewData, type PartnerPreview, type CouponPreview, type NotificationPreview } from './PreviewCard';
+export { PreviewCard, type PreviewCardProps, type PreviewData, type PartnerPreview, type CouponPreview, type NotificationPreview, type EducationPreview, type EventPreview, type PreviewView } from './PreviewCard';
+// Javaslat 20: a szövegvágás (méri, hány sor fér el) önállóan is
+export { Clamp, type ClampProps } from './Clamp';
 export { AudienceBuilder, type AudienceBuilderProps, type AudienceEstimate } from './AudienceBuilder';
 export { audienceProblems, describeAudience, newRule, type Audience, type AudienceField, type AudienceRule, type AudienceOp } from './audience';
 export { CompareMerge, type CompareMergeProps } from './CompareMerge';

@@ -9,6 +9,8 @@ type Props = {
     errors: FormError[];
     general?: string;
     form: RefObject<HTMLFormElement | null>;
+    /** Javaslat 20: a link előbb ezt kérdezi (pl. az EditPage lépés-módja a mező lépésére vált) – true: elintézve */
+    onJump?: (name: string) => boolean;
 };
 /** A mező megkeresése name (vagy id) alapján az űrlapban. */
 export declare function findField(form: HTMLFormElement | null, name: string): HTMLElement | null;

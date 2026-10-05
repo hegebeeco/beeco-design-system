@@ -25,10 +25,16 @@ export type DashboardProps = TemplateHeadProps & {
     /** Grafikonkártyák (ChartCard) – 2 oszlop széles helyen, 1 telefonon; className="is-wide" → teljes sor */
     charts?: ReactNode;
     chartsTitle?: string;
+    /**
+     * Javaslat 20 – nyomtatható riport: nyomtatáskor / PDF-be mentéskor a keret és a vezérlők rejtve, a lap mindig világos.
+     * A nyomtatás gombját a projekt adja (actions; window.print()); ami még ne kerüljön papírra: className="bc-print-hide".
+     */
+    printable?: boolean;
     children?: ReactNode;
 };
 /**
  * Dashboard (sablon, Javaslat 06c/16): oldalfej · időszak · mérföldkő-pillanat · StatTile-sor · ChartCard-rács.
  * A csempe- és a grafikon-szakasz rejtett h2-t kap, így a ChartCard h3-a a helyes szinten van.
+ * printable (Javaslat 20): nyomtatási szabályok – keret és vezérlők rejtve, mindig világos téma papíron.
  */
 export declare function Dashboard(p: DashboardProps): import("react").JSX.Element;

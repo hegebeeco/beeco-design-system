@@ -42,7 +42,7 @@
  {
   "nev": "kieg-elonezet",
   "cim": "Kiegészítők – app-előnézet",
-  "leiras": "Így látszik az appban: partner, kupon és értesítés telefonkeretben. Ami az appban levágódna, azt a keret méri és kiírja. Minden szöveg mintaadat."
+  "leiras": "Így látszik az appban: partner, kupon, értesítés, edukáció és esemény telefonkeretben, kártya és részletek nézetben. Ami a kártyán levágódna, azt a keret méri és kiírja. Minden szöveg mintaadat."
  },
  {
   "nev": "kieg-elozmenyek",
@@ -135,6 +135,11 @@
   "leiras": "Fülek (panelváltó és linkes), oldalfej, morzsamenü, a böngészőfül címe (usePageTitle)."
  },
  {
+  "nev": "reteg-paletta",
+  "cim": "reteg-paletta.tsx",
+  "leiras": ""
+ },
+ {
   "nev": "reteg-vaz-felirat",
   "cim": "reteg-vaz-felirat.tsx",
   "leiras": ""
@@ -152,6 +157,11 @@
  {
   "nev": "sablon-iranyitopult",
   "cim": "sablon-iranyitopult.tsx",
+  "leiras": ""
+ },
+ {
+  "nev": "sablon-lepesek",
+  "cim": "sablon-lepesek.tsx",
   "leiras": ""
  },
  {
@@ -183,6 +193,11 @@
   "nev": "valaszto",
   "cim": "Választók",
   "leiras": "Keresős legördülő (egyes, többes, új elem, 1200 opció, töltés, hiba) és címkeválasztó (felhő / legördülő)."
+ },
+ {
+  "nev": "vezerlok-tomor",
+  "cim": "Tömör vezérlők",
+  "leiras": "Kattintható lépésjelző, sorbeli kapcsoló (44 px érintés, a sort nem nyújtja), nyíl-piktogramok – Javaslat 20. Minden név mintaadat."
  },
  {
   "nev": "vezerlok",

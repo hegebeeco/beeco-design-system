@@ -5,6 +5,27 @@ export type EditContext = {
     /** A mező hibája (a FormError name-je szerint) – add át a mező error propjának */
     errorOf: (name: string) => string | undefined;
     submitting: boolean;
+    /** Lépés-módban (steps) a mostani lépés azonosítója – ennek a mezőit rajzold ki */
+    step?: string;
+};
+/** Egy lépés (Javaslat 20): azonosító, cím, rövid leírás és a lépés mezőinek neve (a FormError name-jei szerint) */
+export type EditStep = {
+    id: string;
+    title: string;
+    description?: ReactNode;
+    fields: readonly string[];
+};
+export type EditStepsConfig = {
+    /** A lépések sorrendben (legalább kettő) */
+    items: readonly EditStep[];
+    /** A lépésjelző neve képernyőolvasónak, pl. „Az új POI felvételének lépései” */
+    label: string;
+    /** Kitöltve induló űrlap (pl. másolás, szerkesztés): a jelző kezdettől minden lépésre kattintható */
+    allReachable?: boolean;
+    /** Lépésváltáskor (pl. analitika, URL) */
+    onStepChange?: (id: string) => void;
+    backLabel?: string;
+    nextLabel?: string;
 };
 export type EditPageProps = TemplateHeadProps & {
     status?: 'ready' | 'loading' | 'error' | 'forbidden';
@@ -40,11 +61,20 @@ export type EditPageProps = TemplateHeadProps & {
         values: unknown;
         onRestore: (values: never) => void;
     };
+    /**
+     * Javaslat 20 – lépés-mód: egyszerre egy lépés látszik, felül a kattintható lépésjelző, a gombsorban Vissza / Tovább és az
+     * utolsó lépésen a Mentés. A „Tovább” csak a lépés mezőit ellenőrzi (a validate eredménye a lépés fields-ére szűrve); a hibaösszesítő
+     * linkje a megfelelő lépésre vált; mentéskor a korábbi lépés hibájára odaugrik. A children függvény ctx.step-je a mostani lépés.
+     */
+    steps?: EditStepsConfig;
+    /** Javaslat 20 – ⌘S / Ctrl+S menti az űrlapot (lépés-módban csak az utolsó lépésen; előtte a „Tovább”-ra figyelmeztet) */
+    saveShortcut?: boolean;
     /** A szakaszok (FormSection) – vagy függvény, ami megkapja a hibákat */
     children: ReactNode | ((ctx: EditContext) => ReactNode);
 };
 /**
  * EditPage (sablon, Javaslat 06c/16): oldalfej · hibaösszesítő · szakaszok · ragadós gombsor (Mégse / Mentés) · előnézet-oszlop.
+ * Javaslat 20: lépés-mód (steps: Vissza / Tovább, lépésenkénti ellenőrzés) és ⌘S / Ctrl+S mentés (saveShortcut).
  * Mentetlen változásnál a Mégse, a linkek és a böngésző bezárása előtt kérdez (kieg useUnsavedChanges).
  * Sikertelen beküldés: összesítő felül, fókusz rá, kíméletes rázás. Siker: értesítés + mentve-pipa + 'mentve' pillanat.
  */

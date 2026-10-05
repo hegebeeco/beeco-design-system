@@ -13,3 +13,6 @@ export const IcEdit = () => <svg {...S}><path d="M4 20h4L19 9l-4-4L4 16z" /><pat
 export const IcOpen = () => <svg {...S}><path d="M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7z" /><circle cx="12" cy="12" r="3" /></svg>;
 export const IcX = () => <svg {...S}><path d="M6 6l12 12M18 6L6 18" /></svg>;
 export const IcOk = () => <svg {...S}><path d="M5 12.5l4.5 4.5L19 7" /></svg>;
+// Javaslat 20 (2026-10-05): nyíl-piktogramok – lépésenkénti űrlap „Vissza” / „Tovább”, lapozás, előző / következő
+export const IcLeft = () => <svg {...S}><path d="M19 12H5M11 6l-6 6 6 6" /></svg>;
+export const IcRight = () => <svg {...S}><path d="M5 12h14M13 6l6 6-6 6" /></svg>;

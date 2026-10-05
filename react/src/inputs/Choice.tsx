@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useId, useRef, type InputHTMLAttributes, type ReactNode } from 'react';
+import { forwardRef, useEffect, useId, useRef, type ButtonHTMLAttributes, type InputHTMLAttributes, type ReactNode } from 'react';
 import { cx } from '../cx';
 import { HelpButton } from '../field/HelpButton';
 
@@ -84,3 +84,39 @@ export function Switch({ label, help, error, className, checked, onChange, disab
     </div>
   );
 }
+
+export type SwitchInputProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'type' | 'role' | 'aria-checked' | 'children'> & {
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+  /** Kötelező (ha nincs aria-labelledby): a képernyőolvasó neve a sor nevével, pl. „Látható az appban: Méhes Kávézó” */
+  'aria-label'?: string;
+  /** md = a mező-kapcsoló mérete (alap) · sm = tömör, táblázatsorba: kisebb sín, az érintési felület 44 px marad, a sort nem nyújtja */
+  size?: 'md' | 'sm';
+  /** Látható állapot-szöveg a kapcsoló mellett (nem csak színnel jelez), pl. „Látható” / „Rejtett” */
+  onText?: string;
+  offText?: string;
+  /** Mentés folyamatban (pl. a sorban): addig nem nyomható */
+  busy?: boolean;
+};
+
+/**
+ * SwitchInput (atom, Javaslat 20): a márkázott kapcsoló címke-sor és súgó nélkül – ahol a környezet adja a nevet és a súgót
+ * (táblázat-sor: a súgó az oszlopfejlécben). Azonnal érvényes be/ki (role="switch"); a mentést és a visszavonást
+ * (notify.undo) a hívó végzi. Kötelező: aria-label (vagy aria-labelledby).
+ */
+export const SwitchInput = forwardRef<HTMLButtonElement, SwitchInputProps>(function SwitchInput(
+  { checked, onChange, size = 'md', onText, offText, busy, disabled, className, onClick, ...rest }, ref) {
+  const btn = (
+    <button ref={ref} type="button" role="switch" aria-checked={checked} className={cx('bc-switch', size === 'sm' && 'is-sm', !(onText || offText) && className)}
+      disabled={disabled || busy} aria-busy={busy || undefined}
+      onClick={(e) => { onClick?.(e); if (!e.defaultPrevented) onChange(!checked); }} {...rest} />
+  );
+  if (!onText && !offText) return btn;
+  return (
+    <span className={cx('bc-switch-inline', size === 'sm' && 'is-sm', className)}>
+      {btn}
+      {/* az állapotot a kapcsoló (aria-checked) már mondja – a szöveg a látó felhasználónak szól */}
+      <span className="bc-switch-state" aria-hidden="true">{checked ? onText : offText}</span>
+    </span>
+  );
+});

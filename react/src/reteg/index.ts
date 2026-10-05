@@ -18,3 +18,7 @@ export { Toaster, type ToasterProps } from './Toaster';
 export { notify, type ToastOptions, type ToastAction, type ToastKind } from './notify';
 export { AppShell, APP_SHELL_LABELS_HU, type AppShellProps, type AppShellLabels, type NavGroup, type NavItem } from './AppShell';
 export { StageDialog, type StageDialogProps } from './StageDialog';
+// Javaslat 20: az AppShell menüállapota projekt-hookként (telefonos fiók bezárása/nyitása, keskeny / becsukott nézet)
+export { useShellNav, type ShellNavState } from './shellNav';
+// Javaslat 20: ⌘K / Ctrl+K kereső-paletta
+export { CommandPalette, COMMAND_PALETTE_LABELS_HU, commandHotkeyLabel, useCommandHotkey, type CommandPaletteProps, type CommandPaletteLabels, type CommandItem, type CommandGroup } from './CommandPalette';

@@ -106,6 +106,13 @@
 .bc-steps .is-done b { color: var(--bc-success-ink); background: var(--bc-success-bg); }
 .bc-steps .is-error { color: var(--bc-danger-ink); border-color: var(--bc-danger-ink); }
 .bc-steps .is-error b { color: var(--bc-danger-ink); background: var(--bc-danger-bg); }
+/* Kattintható lépés (Javaslat 20, Stepper onSelect): az egész pirula gomb; a látható pirula (~30 px) nem nő,
+   a gomb negatív margóval 44 px-es érintési felületet kap. Aláhúzás: ez választható. */
+.bc-steps li:has(> .bc-steps-btn) { padding: 0; }
+.bc-steps-btn { display: flex; align-items: center; gap: var(--bc-sp-2); min-height: var(--bc-tap); margin-block: calc((var(--bc-tap) - 30px) / -2);
+  padding: var(--bc-sp-2) var(--bc-sp-3) var(--bc-sp-2) 2px; font: inherit; color: inherit; background: none; border: 0; border-radius: var(--bc-r-pill); cursor: pointer; }
+.bc-steps-btn > span:not(.bc-sr) { text-decoration: underline; text-underline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) { .bc-steps li:has(> .bc-steps-btn:hover) { border-color: var(--bc-line); background: var(--bc-surface-2); } }
 
 /* ---------- Ejtőzóna + fájlkártya (videó, import) ---------- */
 .bc-video, .bc-import { display: grid; gap: var(--bc-sp-3); }

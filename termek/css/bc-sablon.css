@@ -67,3 +67,22 @@
   .bc-sablon-charts > .is-wide { grid-column: 1 / -1; }
 }
 
+
+/* Szerkesztő lépés-módban (Javaslat 20, EditPage steps): lépésjelző (kattintható Stepper) · lépés címe számlálóval · leírás.
+   A gombsorban Vissza / Tovább, az utolsó lépésen Mentés; a lépés hibája a gombsor jelzés-helyén. */
+.bc-sablon-steps { display: grid; gap: var(--bc-sp-3); min-width: 0; }
+.bc-sablon-step-head { display: grid; gap: var(--bc-sp-1); }
+.bc-sablon-step-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--bc-sp-1) var(--bc-sp-3); margin: 0; font-size: var(--bc-fs-xl); scroll-margin: var(--bc-sp-8); }
+.bc-sablon-step-count { font-family: var(--bc-font-body); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); }
+.bc-sablon-step-desc { margin: 0; color: var(--bc-ink-soft); }
+.bc-sablon-step-error { margin: 0; font-weight: var(--bc-fw-semibold); color: var(--bc-danger-ink); }
+
+/* Nyomtatható oldal (Javaslat 20, usePrintFrame / Dashboard printable): a <html> `bc-print-page` osztálya mellett papíron
+   a keret és a vezérlők rejtve, a kártyák nem törnek ketté, árnyék nincs (a keret tagol). A világos témát a hook állítja. */
+@media print {
+  .bc-print-page { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .bc-print-page :is(.bc-sidebar, .bc-topbar, .bc-skip, .bc-toaster, .bc-print-hide, .bc-help-btn, .bc-sablon-toolbar, .bc-sablon-bar, .bc-page-header .bc-row) { display: none; }
+  .bc-print-page .bc-shell { display: block; min-height: 0; }
+  .bc-print-page :is(.bc-main, .bc-content) { margin: 0; padding: 0; background: none; overflow: visible; }
+  .bc-print-page :is(.bc-stat, .bc-card, .bc-sablon-stat, .bc-sablon-charts > *) { break-inside: avoid; box-shadow: none; }
+}

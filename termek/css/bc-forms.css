@@ -64,6 +64,15 @@
 .bc-switch[aria-checked="true"]::before { background: var(--bc-success); }
 .bc-switch[aria-checked="true"]::after { transform: translateX(22px); }
 .bc-switch:disabled { cursor: not-allowed; opacity: .55; }
+/* Tömör kapcsoló (Javaslat 20 – SwitchInput size="sm", táblázatsorba): 40×22 px-es sín, 14 px-es korong; a gomb 44×44 px-es
+   érintési felület marad, de negatív margóval nem nyújtja a sort. Mellette az állapot szövegben is (.bc-switch-state). */
+.bc-switch.is-sm { width: var(--bc-tap); margin-block: calc((var(--bc-tap) - 22px) / -2); }
+.bc-switch.is-sm::before { top: 11px; bottom: 11px; }
+.bc-switch.is-sm::after { top: 15px; left: 6px; width: 14px; height: 14px; }
+.bc-switch.is-sm[aria-checked="true"]::after { transform: translateX(18px); }
+.bc-switch-inline { display: inline-flex; align-items: center; gap: var(--bc-sp-1); white-space: nowrap; vertical-align: middle; }
+.bc-switch-inline.is-sm { font-size: var(--bc-fs-s); }
+.bc-switch-state { color: var(--bc-ink); }
 
 /* Űrlap-rács: széles képernyőn két oszlop, telefonon egy */
 .bc-form-grid { display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }

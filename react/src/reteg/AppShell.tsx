@@ -7,7 +7,7 @@ import { useReturnFocus } from './focus';
 import { defaultLink, type RenderLink } from './NavTabs';
 import { CloseIcon } from './Modal';
 import { evszak, type Evszak } from '../marka/evszak';
-import { ShellNavContext } from './shellNav';
+import { ShellNavContext, type ShellNavState } from './shellNav';
 
 export type NavItem = { href: string; label: string; icon?: ReactNode; current?: boolean };
 export type NavGroup = { label?: string; items: NavItem[] };
@@ -122,7 +122,8 @@ export function AppShell({ brand, brandCompact, nav, topbar, account, collapsibl
     ));
 
   const hasHeader = narrow || Boolean(topbar);
-  const navCtx = useMemo(() => ({ closeNav: () => setOpen(false) }), []);
+  const navCtx = useMemo<ShellNavState>(() => ({ closeNav: () => setOpen(false), openNav: () => setOpen(true), navOpen: narrow && open, narrow, collapsed, inShell: true }),
+    [narrow, open, collapsed]);
   return (
     <ShellNavContext.Provider value={navCtx}>
     <div className={cx('bc-shell', collapsed && 'is-collapsed', compact && 'is-compact', !hasHeader && 'no-topbar')}>

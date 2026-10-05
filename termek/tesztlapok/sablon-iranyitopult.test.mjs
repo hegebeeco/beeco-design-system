@@ -43,4 +43,25 @@ export default async function ({ page, t }) {
     await go('tiltott'); ok((await page.innerText('body')).includes('Ehhez nincs jogosultságod'), 'nincs jelzés'); ok((await page.locator('.bc-sablon-toolbar').count()) === 0, 'van időszak-választó');
     await go();
   });
+  await t('nyomtatás (Javaslat 20): keret, menü, vezérlők rejtve; a lap világos témára vált, utána visszaáll', async () => {
+    ok(await page.evaluate(() => document.documentElement.classList.contains('bc-print-page')), 'nincs bc-print-page jelölő');
+    await page.evaluate(() => { document.documentElement.setAttribute('data-theme', 'dark'); document.documentElement.classList.add('dark'); });
+    await page.emulateMedia({ media: 'print' });
+    try {
+      await page.evaluate(() => window.dispatchEvent(new Event('beforeprint')));
+      const r = await page.evaluate(() => ({
+        tema: document.documentElement.getAttribute('data-theme'), dark: document.documentElement.classList.contains('dark'),
+        rejtve: ['.bc-sidebar', '.bc-sablon-toolbar', '.bc-help-btn', '.bc-page-header .bc-row'].map((s) => [s, [...document.querySelectorAll(s)].every((e) => getComputedStyle(e).display === 'none')]),
+        arnyek: getComputedStyle(document.querySelector('.bc-stat')).boxShadow, fo: Math.round(document.querySelector('.bc-main').getBoundingClientRect().left),
+      }));
+      ok(r.tema === 'light' && !r.dark, `a téma nyomtatáskor: ${r.tema}/${r.dark}`);
+      ok(r.rejtve.every(([, v]) => v), `látszik: ${r.rejtve.filter(([, v]) => !v).map(([s]) => s).join(', ')}`);
+      ok(r.arnyek === 'none', `árnyék: ${r.arnyek}`); ok(r.fo <= 1, `a tartalom ${r.fo} px-ről indul (az oldalsáv helye maradt)`);
+      await page.evaluate(() => window.dispatchEvent(new Event('afterprint')));
+      ok((await page.evaluate(() => document.documentElement.getAttribute('data-theme'))) === 'dark', 'a téma nem állt vissza');
+    } finally {
+      await page.emulateMedia({ media: 'screen' });
+      await page.evaluate(() => { document.documentElement.setAttribute('data-theme', 'auto'); document.documentElement.classList.remove('dark'); });
+    }
+  });
 }

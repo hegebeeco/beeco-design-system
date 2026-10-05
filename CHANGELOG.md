@@ -11,6 +11,34 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.42.0 – 2026-10-05 – Admin UX-elemek (Javaslat 20): lépésenkénti szerkesztő, kereső-paletta, sorbeli kapcsoló, bővített előnézet, saját naptár-fajták, nyomtatás
+
+Mellékverzió (ADMINAPP; Kristóf jóváhagyta, 2026-10-05) – minden új lehetőség opcionális, semmi nem változott nevet. Javaslatlap: `docs/javaslatok/20-admin-ux-elemek.md`.
+
+* **EditPage `steps`** – lépés-mód: egyszerre egy lépés, felül kattintható lépésjelző, a gombsorban Vissza / Tovább, az utolsó lépésen Mentés
+  (kiváltja az admin `:has()`-os gombrejtését). A „Tovább” csak a lépés mezőit ellenőrzi (a `validate` a lépés `fields`-ére szűrve), Enter a
+  szövegmezőben = Tovább; lépésváltáskor a fókusz a lépés címére, hibánál az első hibás mezőre; a hibaösszesítő linkje a mező lépésére vált
+  (`ErrorSummary onJump`); mentéskori (szerver) hiba egy korábbi lépésben → odaugrik, a fókusz az összesítőn. `children(ctx)` → `ctx.step`.
+  Típusok: `EditStep`, `EditStepsConfig`.
+* **EditPage `saveShortcut`** – ⌘S / Ctrl+S ment (nyitott ablak mögött nem; lépés-módban a köztes lépésen figyelmeztet és a „Tovább”-ra teszi a fókuszt).
+* **Stepper `onSelect`** – a bejárt lépés (`Step.reachable`, alap: kész / hibás) gomb: 44 px érintési felület, a látható pirula nem nő
+  (`.bc-steps-btn`); a mostani `aria-current="step"`. **IcLeft / IcRight** – nyíl-piktogramok (Vissza / Tovább, előző / következő).
+* **CommandPalette** (új organizmus) – ⌘K / Ctrl+K kereső-paletta a DS Modalra (Radix Dialog) építve: csoportosított találatok, combobox +
+  listbox (`aria-activedescendant`), ↑/↓ körbe (tiltott sort kihagyja), Ctrl/⌘+Home/End, Enter / ⌘-Enter (új lap), kiemelés (`<mark>`),
+  töltés / hiba újrapróbálással / nincs találat / túl rövid tipp; `commandHotkeyLabel()`, `useCommandHotkey()`. CSS: `.bc-cmdk-*`.
+* **SwitchInput** (új atom) – kapcsoló címke-sor és súgó nélkül (aria-label), `size="sm"` táblázatsorba: kisebb sín, 44×44 px érintés,
+  a sort nem nyújtja; `onText`/`offText` állapot-szöveg, `busy`. CSS: `.bc-switch.is-sm`, `.bc-switch-inline`, `.bc-switch-state`.
+* **PreviewCard** – új változatok: `edukacio`, `esemeny`; `view="detail"` (részletek: teljes szöveg sortörésekkel, adatsor, a telefon képernyője
+  görget – billentyűzettel is); `aspect` (képarány), `emptyImageText`; kupon: `subtitle`, `terms`, `code`, `price`, `buttonText`, `featured`;
+  értesítés: `sendAt`. **Clamp** nyilvános (`onCut`).
+* **MonthCalendar `kindDefs`** – a projekt saját tartalomfajtái (címke, szerepszín: info / warning / success / danger / neutral, piktogram);
+  a beépítettek is felülírhatók. Generikus típus (`CalEvent<K>`), a `kindDefs` nélküli hívás típusa változatlan. Új exportok: `CalKindDef`,
+  `CalTone`, `CAL_KINDS`, `kindLabel`, `kindTone`.
+* **Dashboard `printable`** / **`usePrintFrame()`** – nyomtatáskor (PDF) a keret, a menü és a vezérlők rejtve (`.bc-print-page`,
+  `.bc-print-hide`), a kártyák nem törnek ketté, a lap mindig világos témában megy papírra (utána visszaáll).
+* **`useShellNav()`** nyilvános – `closeNav`, `openNav`, `navOpen`, `narrow`, `collapsed`, `inShell` (pl. a telefonos fiókban álló kereső-gomb előbb bezárja a fiókot).
+* Tesztlapok: új `sablon-lepesek`, `vezerlok-tomor`, `reteg-paletta`; bővítve `kieg-elonezet`, `media-naptar`, `sablon-iranyitopult`.
+
 ## 1.41.2 – 2026-10-05 – javítás: tömör AppShell telefonon egyoszlopos
 * **AppShell `density="compact"`** – 900 px alatt a `.bc-shell.is-compact` rácsa (224 px + 1fr, erősebb szelektor) felülírta az
   egyoszlopos elrendezést: telefonon a teljes felület 224 px széles volt, a képernyő jobb oldala üres. A keskeny nézet szabálya

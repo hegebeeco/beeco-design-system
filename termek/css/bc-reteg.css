@@ -229,3 +229,23 @@ a.bc-tab { text-decoration: none; }
 .bc-stage-body { display: grid; justify-items: center; align-content: start; gap: var(--bc-sp-5); width: min(100%, 1100px); margin: 0 auto; text-align: center; }
 .bc-stage-title { margin: 0; padding-inline: var(--bc-sp-7); font-family: var(--bc-font-display); font-size: clamp(var(--bc-fs-xl), 4vw, var(--bc-fs-3xl)); }
 @media (prefers-reduced-motion: reduce) { .bc-stage[data-state="open"] { animation: none; } }
+
+/* ---- Kereső-paletta (Javaslat 20, CommandPalette): ⌘K / Ctrl+K – a Modal felül nyílik, a mező görgetéskor is látszik ---- */
+.bc-modal.bc-cmdk { align-self: start; margin-top: min(10vh, 80px); max-height: calc(100dvh - min(10vh, 80px) - 2 * var(--bc-sp-5)); }
+.bc-cmdk .bc-modal-body { padding-top: var(--bc-sp-4); }
+.bc-cmdk .bc-search { position: sticky; top: calc(-1 * var(--bc-sp-4)); z-index: var(--bc-z-sticky); margin-top: calc(-1 * var(--bc-sp-4)); padding-top: var(--bc-sp-4); background: var(--bc-surface); }
+.bc-cmdk-list { display: grid; gap: var(--bc-sp-3); margin-top: var(--bc-sp-3); }
+.bc-cmdk-list:empty { display: none; }
+.bc-cmdk-group { display: grid; gap: var(--bc-sp-1); }
+.bc-cmdk-group-title { margin: 0; padding: 0 var(--bc-sp-2); color: var(--bc-ink-soft); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); text-transform: uppercase; letter-spacing: .04em; }
+.bc-cmdk-item { min-width: 0; }
+.bc-cmdk-icon { flex: none; display: inline-grid; place-items: center; color: var(--bc-ink-soft); }
+.bc-cmdk-icon svg { width: 18px; height: 18px; }
+.bc-cmdk-label { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; color: var(--bc-ink); }
+.bc-cmdk-desc { flex: none; max-width: 45%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--bc-ink-soft); font-size: var(--bc-fs-xs); }
+.bc-cmdk-item[aria-disabled="true"] .bc-cmdk-label, .bc-cmdk-item[aria-disabled="true"] .bc-cmdk-desc { color: var(--bc-ink-muted); }
+.bc-cmdk-note { margin: var(--bc-sp-3) 0 0; padding: 0 var(--bc-sp-2); color: var(--bc-ink-soft); font-size: var(--bc-fs-s); }
+.bc-cmdk-note .bc-spinner { width: 16px; height: 16px; border-width: 2px; vertical-align: -3px; }
+.bc-cmdk-error { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2); color: var(--bc-danger-ink); font-weight: var(--bc-fw-semibold); }
+.bc-cmdk-tips { margin: var(--bc-sp-4) 0 0; color: var(--bc-ink-soft); font-size: var(--bc-fs-xs); }
+@media (pointer: coarse) { .bc-cmdk-tips { display: none; } }

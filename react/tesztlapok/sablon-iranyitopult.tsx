@@ -41,7 +41,9 @@ function Oldal() {
     <Dashboard title="Analitika" description="Mi történt a kiválasztott időszakban. Mintaadat – nem valódi beeco-adat."
       breadcrumbs={[{ label: 'Admin', href: 'sablon-lista.html' }, { label: 'Analitika' }]}
       status={a === 'tiltott' ? 'forbidden' : hiba ? 'error' : 'ready'} onRetry={() => setHiba(false)}
-      actions={<Button variant="secondary" onClick={() => notify.info('Mintaadat: az export itt nem készül el.')}>Exportálás</Button>}
+      printable
+      actions={<><Button variant="secondary" onClick={() => notify.info('Mintaadat: az export itt nem készül el.')}>Exportálás</Button>
+        <Button variant="secondary" onClick={() => window.print()}>Nyomtatás / PDF</Button></>}
       period={<DateRangePicker label="Időszak" help="A számok és a grafikonok erre az időszakra vonatkoznak (helyi idő szerint, a végnap is benne van)." value={range}
         onChange={setRange} max="2026-09-30" />}
       toolbar={<SegmentedControl label="Gyors időszak" value={gyors} onChange={(g) => void valt(g)} items={[{ value: '30', label: 'Utolsó 30 nap' }, { value: '90', label: 'Utolsó 90 nap' }]} />}

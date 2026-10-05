@@ -13,7 +13,7 @@ export { checkFiles, sniffType, typeNames, mbText, sizePair, fileKey, type Uploa
 export { markerHtml, clusterHtml, clusterIcon, clusterTier, heatGradient, MARKER_ICON, MARKER_ICON_SELECTED, type MarkerKind, type MarkerOptions } from './map';
 export { MapLegend, HeatScale, type LegendItem, type MapLegendProps, type HeatScaleProps } from './MapLegend';
 export { MonthCalendar, type MonthCalendarProps } from './MonthCalendar';
-export { eventsByDay, KIND_LABEL, type CalEvent, type CalKind } from './monthEvents';
+export { eventsByDay, KIND_LABEL, CAL_KINDS, kindLabel, kindTone, type CalEvent, type CalKind, type CalKindDef, type CalTone } from './monthEvents';
 export { OpeningHoursEditor, type OpeningHoursEditorProps } from './OpeningHoursEditor';
 export { parseTime, validateHours, emptyWeek, WEEK, type OpeningHours, type DayHours, type Weekday } from './openingHours';
 export { Avatar, initials, type AvatarProps } from './Avatar';

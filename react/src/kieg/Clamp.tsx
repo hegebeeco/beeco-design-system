@@ -5,7 +5,7 @@ import { cx } from '../cx';
 export type CutReport = (key: string, label: string, lines: number, cut: boolean) => void;
 export const CutContext = createContext<CutReport>(() => undefined);
 
-type Props = {
+export type ClampProps = {
   /** Azonosító és emberi név a jelzéshez: „title” / „A cím” */
   k: string;
   label: string;
@@ -15,16 +15,21 @@ type Props = {
   /** Ha üres: ez a halvány helykitöltő látszik („Cím helye”) */
   placeholder: string;
   className?: string;
+  /** Javaslat 20: értesítés a levágásról (PreviewCard nélkül is, pl. saját kártyán) */
+  onCut?: (cut: boolean) => void;
   children?: ReactNode;
 };
 
 /**
- * Clamp: annyi sor, amennyi az appban elfér; a levágást MÉRI (nem karakterszámból becsüli),
- * és jelenti a PreviewCard-nak – szélesség-változáskor (ResizeObserver) és szövegváltáskor újramér.
+ * Clamp (atom, Javaslat 20-tól nyilvános): annyi sor, amennyi az appban elfér („…”-tal); a levágást MÉRI (nem karakterszámból
+ * becsüli), és jelenti a PreviewCard-nak (vagy az onCut-nak) – szélesség-változáskor (ResizeObserver) és szövegváltáskor újramér.
+ * Üresen a halvány helykitöltő látszik. A levágott szöveg szaggatott jelölést kap.
  */
-export function Clamp({ k, label, lines, as: Tag = 'p', placeholder, className, children }: Props) {
+export function Clamp({ k, label, lines, as: Tag = 'p', placeholder, className, onCut, children }: ClampProps) {
   const ref = useRef<HTMLElement>(null);
   const report = useContext(CutContext);
+  const cutCb = useRef(onCut);
+  cutCb.current = onCut;
   const empty = children === undefined || children === null || (typeof children === 'string' && !children.trim());
   useLayoutEffect(() => {
     const el = ref.current;
@@ -35,6 +40,7 @@ export function Clamp({ k, label, lines, as: Tag = 'p', placeholder, className, 
       const cut = !empty && (lines === 1 ? el.scrollWidth > el.clientWidth + 1 : el.scrollHeight - el.clientHeight > lh / 2);
       el.toggleAttribute('data-cut', cut); // a levágott szöveg szaggatott jelölést kap (CSS)
       report(k, label, lines, cut);
+      cutCb.current?.(cut);
     };
     measure();
     // A betűtípus később töltődhet be (a doboz mérete nem változik, a szöveg hossza igen) – akkor is mérünk

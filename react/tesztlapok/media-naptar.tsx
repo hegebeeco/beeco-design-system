@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MonthCalendar, OpeningHoursEditor, type CalEvent, type CalKind, type OpeningHours } from '../src/media';
+import { MonthCalendar, OpeningHoursEditor, type CalEvent, type CalKind, type CalKindDef, type OpeningHours } from '../src/media';
 import { Case, Grid, mount } from './_keret';
 
 // Mintaadat: 2026. október tartalmai (címek kitaláltak, csak a megjelenítés próbájára)
@@ -13,6 +13,28 @@ const EV: CalEvent[] = [
   { id: 'e7', date: '2026-10-16', title: 'Élelmezési világnap – nagyon hosszú cím, amely biztosan nem fér el a cellában', kind: 'special', yearly: true },
   { id: 'e8', date: '2026-10-22', title: 'Iskolai kerti óra', kind: 'education' },
 ];
+
+// Javaslat 20: saját fajták (kindDefs) – címke + szerepszín + piktogram; a beépített „Esemény” piktogramot kap
+type Fajta = CalKind | 'kupon' | 'zarva';
+const svg = (d: string) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={d} /></svg>;
+const DEFS: Partial<Record<Fajta, CalKindDef>> = {
+  event: { label: 'Esemény', icon: svg('M4 6h16v14H4zM4 10h16M8 3v4M16 3v4') },
+  kupon: { label: 'Kupon-időzítés', tone: 'neutral', icon: svg('M3 8h18v3a2 2 0 000 4v3H3v-3a2 2 0 000-4V8z') },
+  zarva: { label: 'Zárva', tone: 'danger', icon: svg('M6 6l12 12M18 6L6 18') },
+};
+const SAJAT: CalEvent<Fajta>[] = [
+  { id: 's1', date: '2026-10-02', title: 'Kertnyitó', kind: 'event' },
+  { id: 's2', date: '2026-10-05', end: '2026-10-09', title: '10% kávé saját pohárral', kind: 'kupon' },
+  { id: 's3', date: '2026-10-07', title: 'Leltár – zárva', kind: 'zarva' },
+  { id: 's4', date: '2026-10-07', title: 'Ingyen süti a 100. vásárlónak – nagyon hosszú kuponnév', kind: 'kupon' },
+];
+function SajatNaptar() {
+  const [hidden, setHidden] = useState<Fajta[]>([]);
+  const [nap, setNap] = useState('–');
+  return <><MonthCalendar events={SAJAT} initialDate="2026-10-01" kinds={['event', 'kupon', 'zarva']} kindDefs={DEFS} hidden={hidden} onHiddenChange={setHidden}
+    onSelectDay={(iso, list) => setNap(`${iso} (${list.map((e) => e.kind).join(',')})`)} />
+    <p className="tl-out" data-out="sajat">nap: {nap} · rejtve: {hidden.join(',') || 'semmi'}</p></>;
+}
 
 function Naptar({ id, events = EV, ...p }: { id: string; events?: CalEvent[] } & Partial<Parameters<typeof MonthCalendar>[0]>) {
   const [hidden, setHidden] = useState<CalKind[]>([]);
@@ -45,6 +67,7 @@ function Oldal() {
         <Case id="naptar-ketfajta" title="Csak két fajta (kinds), saját feliratokkal – pl. partner: esemény + kupon-időzítés">
           <Naptar id="ketfajta" kinds={['event', 'education']} labels={{ event: 'Esemény', education: 'Kupon-időzítés' }} events={EV.filter((e) => e.kind !== 'special')} />
         </Case>
+        <Case id="naptar-sajat" title="Saját fajták (kindDefs): kupon-időzítés és zárva – címke, szerepszín, piktogram" wide><SajatNaptar /></Case>
         <Case id="naptar-ures" title="Üres hónap"><Naptar id="ures" events={[]} /></Case>
         <Case id="naptar-tolt" title="Töltés"><Naptar id="tolt" loading /></Case>
         <Case id="naptar-hiba" title="Hiba, újrapróbálással"><Naptar id="hiba" error="Nem sikerült betölteni a hónap tartalmát – ellenőrizd a kapcsolatot." onRetry={() => undefined} /></Case>
