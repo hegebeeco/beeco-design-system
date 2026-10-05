@@ -1,0 +1,27 @@
+/* CsicsergŐsz kampányoldal: oldalszintű kiegészítések a Webflow-osztályokhoz (cs26 utódja). */
+.dia_kek_ov.cs,.dia_kek_ov.cs_sotet,.dia_ov_light.cs,.dia_ov_light.cs_horgony,.dia_green_ov.cs,.dia_green_ov.cs_feher,.dia_kek.cs,.dia_sarga{overflow-x:clip;position:relative;z-index:0}
+.button_terc,.button_main{min-height:44px}
+.button_terc{display:inline-flex;align-items:center}
+.cs_forras:hover{color:var(--_csicsergosz---cs-feher,#fff)}
+.cs_buborek::after{content:"";position:absolute;left:28px;bottom:-12px;width:20px;height:20px;background:var(--_csicsergosz---cs-felulet-kartya,#fff);border-right:2px solid var(--cs-keret-c);border-bottom:2px solid var(--cs-keret-c);transform:rotate(45deg)}
+.cs_dekor{opacity:var(--_csicsergosz---cs-dekor-attetszoseg,1)}
+/* Ferde szekcióél (arculat: szögletes, ferde sávok). A felette lévő szekció színe: data-cs-ferde="barack|kakao|feher|krem", "-j" végződéssel jobbra lejt. Magasság: cs-ferde token. */
+[data-cs-ferde]::before{content:"";position:absolute;left:0;right:0;top:-1px;height:var(--_csicsergosz---cs-ferde,4vw);clip-path:polygon(0 0,100% 0,0 100%);background:var(--cs-ferde-szin);z-index:-1;pointer-events:none}
+[data-cs-ferde$="-j"]::before{clip-path:polygon(0 0,100% 0,100% 100%)}
+[data-cs-ferde^="barack"]{--cs-ferde-szin:var(--_csicsergosz---cs-barack,#FFE2B5)}
+[data-cs-ferde^="kakao"]{--cs-ferde-szin:var(--_csicsergosz---cs-kakao,#6B3B16)}
+[data-cs-ferde^="feher"]{--cs-ferde-szin:var(--_csicsergosz---cs-feher,#fff)}
+[data-cs-ferde^="krem"]{--cs-ferde-szin:var(--_csicsergosz---cs-krem,#FEF7DE)}
+/* Kampánygomb: árnyék kakaó, nyomásra belesüllyed (a site-gomb nagyító hovere helyett). */
+.button_main.cs{box-shadow:var(--cs-arnyek-k) var(--cs-arnyek-k) 0 0 var(--cs-keret-c);transition:transform var(--cs-d-nyomas) var(--cs-ease-out),box-shadow var(--cs-d-nyomas) var(--cs-ease-out)}
+@media (hover:hover) and (pointer:fine){.button_main.cs:hover{transform:translate(-1px,-1px);box-shadow:calc(var(--cs-arnyek-k) + 1px) calc(var(--cs-arnyek-k) + 1px) 0 0 var(--cs-keret-c)}}
+.button_main.cs:active{transform:translate(3px,3px);box-shadow:1px 1px 0 0 var(--cs-keret-c)}
+@media (prefers-reduced-motion:reduce){.button_main.cs{transition:none}}
+/* Site-komponensek kampányszínben és 44 px-es érintési felülettel (csak ezen az oldalon). */
+.cs_forras{min-height:44px;display:inline-flex;align-items:center}
+.dia_sarga .input_field{min-height:44px;border-color:var(--cs-keret-c)}
+.dia_sarga .input_label{color:var(--_csicsergosz---cs-szoveg-cim,#6B3B16)}
+.cs_egyenlo .brix---icon-square-36px{min-width:44px;min-height:44px;background-color:var(--_csicsergosz---cs-kakao,#6B3B16)}
+.cs_sotet .home-faq-content{border-color:var(--cs-keret-c)}
+/* Kártyán belül egy igazítás (mobilon a site-osztályok középre zárnának). */
+@media (max-width:767px){.card.cs_link>*,.card.cs_egyenlo>*{text-align:left}}

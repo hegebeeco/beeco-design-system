@@ -1,0 +1,60 @@
+{
+  "nev": "CsicsergŐsz kampányoldal",
+  "hatokor": ".dia_kek_ov.cs,.dia_kek_ov.cs_sotet,.dia_ov_light.cs,.dia_ov_light.cs_horgony,.dia_green_ov.cs,.dia_green_ov.cs_feher,.dia_kek.cs,.dia_sarga",
+  "paletta": [
+    "#FEF7DE",
+    "#FFE2B5",
+    "#CB9C7E",
+    "#A87552",
+    "#905E39",
+    "#6B3B16",
+    "#FFAA2E",
+    "#EA6C18",
+    "#FFFFFF",
+    "#1A1A1A"
+  ],
+  "szinTures": 14,
+  "betuk": [
+    "Lalezar",
+    "Open Sans"
+  ],
+  "maxBetumeret": 10,
+  "primerCta": "a[href*=\"apps.apple.com\"],a[href*=\"play.google.com\"],[data-cs-event=\"primary_cta\"]",
+  "gombSelector": "[class*=\"button\"]",
+  "gombMaxKar": 28,
+  "gombMaxSzo": 4,
+  "appKepernyo": {
+    "selector": ".cs_mockup_telefon,.cs_folyamat_kep",
+    "max": 3
+  },
+  "kabala": [
+    {
+      "nev": "madárka (Csicser)",
+      "selector": "img[src*=\"madarka\"]",
+      "max": 0,
+      "ok": "Arculat: a kabala a madarász méhecske, a madár csak indokolt helyen."
+    }
+  ],
+  "helyesiras": [
+    {
+      "rossz": "Csicsergősz",
+      "jo": "CsicsergŐsz"
+    },
+    {
+      "rossz": "az Madár",
+      "jo": "a Madár"
+    }
+  ],
+  "javaslatJelolo": "[data-cs-javaslat]",
+  "esemenyek": [
+    "campaign_landing_view",
+    "scroll_depth"
+  ],
+  "tevekenysegKattintas": "a[data-cs-activity]",
+  "szekcio": "section",
+  "anim": "[data-cs-anim],[data-cs-gyerekek]",
+  "animLathato": "cs-latszik",
+  "kepMaxKB": 300,
+  "kivetel": ".download_block, .footer, footer, .nav, .w-nav",
+  "kivetelIndok": "Site-szintű komponensek (letöltésblokk QR-kódja, lábléc, menü): nem a kampányoldal része, külön jegyben kezelendők."
+}

@@ -1,16 +1,16 @@
-/* beeco design system 1.43.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.44.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ImageCropper
-} from "../reszek/chunk-RFD7LL7I.js";
-import "../reszek/chunk-TP672APL.js";
-import "../reszek/chunk-LAM3IHFC.js";
-import "../reszek/chunk-HOMCSJVU.js";
-import "../reszek/chunk-XFO2U66W.js";
-import "../reszek/chunk-VJ5IICGM.js";
-import "../reszek/chunk-YKMRPDGZ.js";
-import "../reszek/chunk-THJ4H4S4.js";
-import "../reszek/chunk-NZFVTDDC.js";
-import "../reszek/chunk-TXOE2PSE.js";
+} from "../reszek/chunk-FZSV5DFW.js";
+import "../reszek/chunk-5OYP7P2A.js";
+import "../reszek/chunk-2SBYXQKF.js";
+import "../reszek/chunk-XCF3RN5V.js";
+import "../reszek/chunk-G3XKMRPE.js";
+import "../reszek/chunk-644IXS53.js";
+import "../reszek/chunk-CMH3FNYU.js";
+import "../reszek/chunk-OH6YOEFY.js";
+import "../reszek/chunk-RJ4AOGN3.js";
+import "../reszek/chunk-DXS6AO6A.js";
 export {
   ImageCropper
 };

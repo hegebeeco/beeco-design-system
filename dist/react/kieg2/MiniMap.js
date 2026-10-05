@@ -1,9 +1,9 @@
-/* beeco design system 1.43.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.44.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   MiniMap
-} from "../reszek/chunk-OOU3TOSU.js";
-import "../reszek/chunk-7XM4ILEM.js";
-import "../reszek/chunk-YKMRPDGZ.js";
+} from "../reszek/chunk-CHOHVU62.js";
+import "../reszek/chunk-V3FJKXCP.js";
+import "../reszek/chunk-CMH3FNYU.js";
 export {
   MiniMap
 };

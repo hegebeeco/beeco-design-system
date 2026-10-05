@@ -1,4 +1,4 @@
-/* beeco design system 1.43.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.44.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 /* Használat a böngészőben: const L = window.bcMeres({ w: innerWidth, touch: true }); – leletek { kat, sulyos, mi, hol } */
 window.bcMeres = function meres(opts) {
   // Fagyasztás (alap: be): mérés közben nincs átmenet és animáció – a félúton megállt átmenet (pl. rejtett böngészőfül,

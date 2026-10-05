@@ -1,11 +1,11 @@
-/* beeco design system 1.43.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.44.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   Progress,
   Stepper,
   stepsFrom
-} from "../reszek/chunk-3HVJUOZW.js";
-import "../reszek/chunk-YTNKNQ7H.js";
-import "../reszek/chunk-TXOE2PSE.js";
+} from "../reszek/chunk-SE7KBL2Q.js";
+import "../reszek/chunk-CJR4DODQ.js";
+import "../reszek/chunk-DXS6AO6A.js";
 export {
   Progress,
   Stepper,

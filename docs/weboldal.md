@@ -102,6 +102,19 @@ Ezek nem hibák, hanem a tervezést befolyásoló tények. Mindegyik élesben de
 - **Publikálás:** staging (`publishToWebflowSubdomain`, üres `customDomains`) → ellenőrzés cache-törő query-vel
   (a CDN 1–2 percig régi HTML-t ad) → csak utána éles.
 - **Elem-szintű műveletek** tartósan 429-re futhatnak; a megoldás a Designerben futó MCP app csatlakoztatása.
+- **Kép alt-ja API-n nem írható** (`set_attributes alt` → belső hiba). Hibás alt-nál a képet `whtml`-lel újraépítjük
+  `alt`-tal, a régit töröljük. A `whtml` a képeken a `data-*` attribútumot eldobja → utána `set_attributes`.
+- **`box-shadow`-ba ne `var()` menjen `property_value`-val:** a Webflow az egész értéket egyetlen színváltozónak veszi,
+  és érvénytelen árnyék lesz belőle. Az árnyékot az oldal fejkódja rakja össze tokenekből.
+- **Időzítés nem lehet `ms`-es változó** (a méret-változó `120ms`-re hibát dob) → **szám-változó**, a CSS-ben
+  `calc(var(--x) * 1ms)`. Cubic-bezier sem lehet változó: a görbék a fejkódban élnek.
+- **A publikálás aszinkron:** ha egy draft oldalt staging miatt kinyitunk, a draftot csak akkor kapcsoljuk vissza, amikor
+  az oldal a stagingen már 200-zal és az új tartalommal él (curl-lel figyelve). Ha előbb, a staging 404-et ad.
+- **Site-szintű kattintásfigyelők:** a Trustindex loader minden oldalon belüli `#horgony`-kattintást megállít
+  (`stopImmediatePropagation` a dokumentumon) és 150 ms múlva újrakattint. Elemre kötött mérés ezért nem fut, az
+  ablakszintű kétszer. Mérést egyetlen ablakszintű, capture fázisú figyelővel, elemenkénti 600 ms-os szűréssel írunk.
+- **GA4 közvetlenül, GTM nélkül:** a „Tag manager” komponens `gtag` (G-6KVDRD0YQF). Egyedi esemény csak
+  `gtag('event', …)`-tel jut a GA4-be; a `dataLayer.push({event})` önmagában nem.
 
 ## 3/b. Hogyan kötjük a stílust a változóra (ez a lényeg)
 
@@ -304,3 +317,17 @@ a szöveg beszél. Ezeket a `minosegkapu` jelentésében kell kimondani, nem elh
 5. `minosegkapu` kapu, képernyőképekkel.
 6. Teszt-publikálás, és a jelentés átadása.
 7. **Élesítés: csak Kristóf kifejezett engedélyével.** Alapértelmezésben nem történik meg.
+
+## 9. Kampánytémák (pl. CsicsergŐsz)
+
+Egy kampány saját arculatot kaphat (ősz, madarak: krém, barack, kakaó, méz), ami **nem** a termékbőr része. Ilyenkor:
+
+| Réteg | Hogyan |
+|---|---|
+| Tokenek | **külön Webflow-gyűjtemény** a kampány nevével (`Csicsergosz`), `cs-` előtagú változókkal; paletta → szerep-tokenek (felület, szöveg, kiemelés, keret) → osztályok. A kampány egy helyen átszínezhető. |
+| Osztályok | a meglévő site-osztályokra **kombó** (`DIA_KEK_OV` + `CS`, `BUTTON_MAIN` + `CS`), új elemhez kampány-előtag (`cs_`), ahogy a főoldal a `h26-`-öt |
+| Mozgás, díszítés | oldal fejkód + lábléc, `data-cs-*` jelölőkkel (nem osztállyal), így a Designerben bárki ráteheti |
+| Mérés | `gtag('event')`, ablakszintű figyelő (lásd 3. fejezet) |
+| Ellenőrzés | `node tools/web-ellenor.js <staging> --oldalak /kampanyok/...` **és** a minőségkapu `landing_review.mjs` a kampány saját szabályfájljával (paletta, kabala, app-képernyő, események). A `web-ellenor` a termékbőr palettáját méri, ezért a kampányszíneket „DS-en kívüli”-nek jelzi: ez a kampányoldalon várt lelet. |
+
+Minta és beilleszthető kód: **`weboldal/kampany-csicsergosz/`** (README, `tokens.json`, `head.html`, `footer.html`).

@@ -1,12 +1,12 @@
-/* beeco design system 1.43.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.44.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   OpeningHoursEditor
-} from "../reszek/chunk-DMV4YRIW.js";
-import "../reszek/chunk-USR2DCQ4.js";
-import "../reszek/chunk-VJ5IICGM.js";
-import "../reszek/chunk-THJ4H4S4.js";
-import "../reszek/chunk-NZFVTDDC.js";
-import "../reszek/chunk-TXOE2PSE.js";
+} from "../reszek/chunk-LJYM4LKF.js";
+import "../reszek/chunk-FPH2NBCA.js";
+import "../reszek/chunk-644IXS53.js";
+import "../reszek/chunk-OH6YOEFY.js";
+import "../reszek/chunk-RJ4AOGN3.js";
+import "../reszek/chunk-DXS6AO6A.js";
 export {
   OpeningHoursEditor
 };

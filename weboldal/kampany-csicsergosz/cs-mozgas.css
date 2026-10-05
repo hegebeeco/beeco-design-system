@@ -1,0 +1,58 @@
+/* CsicsergŐsz mozgáskészlet v1 (cs-mozgas). Az időzítések a Webflow „Csicsergosz” változógyűjteményből jönnek,
+   ott módosíthatók; a görbék itt élnek, mert Webflow-változó nem tud cubic-bezier-t.
+   Használat: data-cs-anim="fel|pop|level|sav|rajzol" egy elemen, data-cs-gyerekek="fel" egy konténeren
+   (a gyerekek lépcsőzetesen jönnek), data-cs-szamlal="17" egy számon. A JS párja: cs-mozgas.js. */
+:root{
+  --cs-ease-out:cubic-bezier(.23,1,.32,1);
+  --cs-ease-pop:cubic-bezier(.34,1.56,.64,1);
+  --cs-d-nyomas:calc(var(--_csicsergosz---cs-ido-nyomas-ms,120) * 1ms);
+  --cs-d-pop:calc(var(--_csicsergosz---cs-ido-pop-ms,180) * 1ms);
+  --cs-d-belep:calc(var(--_csicsergosz---cs-ido-belepes-ms,300) * 1ms);
+  --cs-d-lepcso:calc(var(--_csicsergosz---cs-ido-lepcso-ms,70) * 1ms);
+  --cs-d-utvonal:calc(var(--_csicsergosz---cs-ido-utvonal-ms,1400) * 1ms);
+  --cs-tav:var(--_csicsergosz---cs-mozgas-tav,16px);
+  --cs-keret-c:var(--_csicsergosz---cs-keret-szin,#6B3B16);
+  --cs-arnyek-n:var(--_csicsergosz---cs-arnyek,6px);
+  --cs-arnyek-k:var(--_csicsergosz---cs-arnyek-kicsi,4px);
+  --cs-fokusz:var(--_csicsergosz---cs-kiemeles,#FFAA2E);
+}
+@keyframes cs-fel{from{opacity:0;transform:translateY(var(--cs-tav))}to{opacity:1;transform:none}}
+@keyframes cs-pop{from{opacity:0;transform:scale(.9) translateY(8px)}to{opacity:1;transform:none}}
+@keyframes cs-level{from{opacity:0;transform:translateY(-28px) rotate(-16deg)}to{opacity:1;transform:none}}
+@keyframes cs-sav{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes cs-attunes{from{opacity:0}to{opacity:1}}
+@keyframes cs-lebeg{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(2deg)}}
+
+/* Rejtett kezdőállapot csak akkor, ha a JS fut (html.cs-js). JS nélkül minden látszik. */
+html.cs-js [data-cs-anim]:not(.cs-latszik):not([data-cs-anim="rajzol"]),
+html.cs-js [data-cs-gyerekek]:not(.cs-latszik)>*{opacity:0}
+[data-cs-anim].cs-latszik,[data-cs-gyerekek].cs-latszik>*{
+  animation:cs-fel var(--cs-d-belep) var(--cs-ease-out) backwards;
+  animation-delay:calc(var(--cs-i,0) * var(--cs-d-lepcso))}
+[data-cs-anim="pop"].cs-latszik{animation-name:cs-pop;animation-duration:calc(var(--cs-d-pop) * 2);animation-timing-function:var(--cs-ease-pop)}
+[data-cs-anim="level"].cs-latszik{animation-name:cs-level;animation-duration:calc(var(--cs-d-belep) * 3)}
+[data-cs-anim="sav"].cs-latszik{animation-name:cs-sav;animation-duration:calc(var(--cs-d-belep) * 3);animation-delay:calc(150ms + var(--cs-i,0) * 4 * var(--cs-d-lepcso))}
+[data-cs-anim="rajzol"].cs-latszik{animation:none}
+[data-cs-szamlal]{font-variant-numeric:tabular-nums}
+
+/* Repülési útvonal: szaggatott vonal a számozott lépések között, rajzolódik. */
+.cs_lepes_lista::before{content:"";position:absolute;left:27px;top:28px;bottom:28px;border-left:2px dashed var(--cs-keret-c);z-index:0}
+html.cs-js .cs_lepes_lista[data-cs-anim="rajzol"]::before{clip-path:inset(0 0 100% 0);transition:clip-path var(--cs-d-utvonal) var(--cs-ease-out)}
+html.cs-js .cs_lepes_lista.cs-latszik::before{clip-path:inset(0 0 0 0)}
+@media (max-width:767px){.cs_lepes_lista::before{left:23px;top:24px;bottom:24px}}
+
+/* Nyomható kártya: árnyék = kattintható (arculati szabály). */
+.card.cs_link{box-shadow:var(--cs-arnyek-n) var(--cs-arnyek-n) 0 0 var(--cs-keret-c);transition:transform var(--cs-d-nyomas) var(--cs-ease-out),box-shadow var(--cs-d-nyomas) var(--cs-ease-out)}
+@media (hover:hover) and (pointer:fine){.card.cs_link:hover{transform:translate(-2px,-2px);box-shadow:calc(var(--cs-arnyek-n) + 2px) calc(var(--cs-arnyek-n) + 2px) 0 0 var(--cs-keret-c)}}
+.card.cs_link:active{transform:translate(4px,4px);box-shadow:2px 2px 0 0 var(--cs-keret-c)}
+.card.cs_link:focus-visible,.gyik_item:focus-visible,.button_terc:focus-visible,.button_main:focus-visible,.cs_forras:focus-visible{outline:3px solid var(--cs-fokusz);outline-offset:3px}
+
+/* Kabala: lebeg (jelentése: él, figyel). Egyetlen folyamatos mozgás az oldalon. */
+.cs_gabee_kep{animation:cs-lebeg 3.6s ease-in-out infinite;transform-origin:50% 60%}
+
+@media (prefers-reduced-motion:reduce){
+  [data-cs-anim].cs-latszik,[data-cs-gyerekek].cs-latszik>*{animation-name:cs-attunes!important;animation-duration:200ms!important;animation-delay:0s!important;animation-timing-function:linear!important}
+  html.cs-js .cs_lepes_lista[data-cs-anim="rajzol"]::before{clip-path:none;transition:none}
+  .cs_gabee_kep{animation:none}
+  .card.cs_link{transition:none}
+}

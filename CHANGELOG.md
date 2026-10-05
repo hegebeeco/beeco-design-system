@@ -11,6 +11,19 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.44.0 – 2026-10-05 – Kampánytéma a weboldal-rétegben: CsicsergŐsz (tokenek, mozgáskészlet, mérés, ellenőrzés)
+
+Mellékverzió (WEB; Kristóf kérte, 2026-10-05) – csak új fájlok és dokumentáció, semmi nem változott nevet.
+
+* **`weboldal/kampany-csicsergosz/`** – az őszi madárkampány arculata újrahasználható formában: a Webflow „Csicsergosz”
+  változógyűjtemény exportja (`tokens.json`: 10 szín, 12 szerep, 2 betű, 14 méret, 8 szám), oldal-CSS (ferde szekcióél,
+  kampánygomb, díszítők), **mozgáskészlet** (`data-cs-anim="fel|pop|level|sav|rajzol"`, `data-cs-gyerekek`, `data-cs-szamlal`;
+  egyszer játszik, csökkentett mozgásnál áttűnés, JS nélkül 2,5 mp után minden látszik), **mérés** (Levi 7 eseménye,
+  `gtag`-gel), beilleszthető `head.html`/`footer.html`, és a kampány ellenőrzési szabályai (`review-szabalyok.json`).
+  jsDelivr-ről is betölthető (README).
+* **`docs/weboldal.md`** – új 9. fejezet (kampánytémák), és hat új tanult Webflow-korlát a 3. fejezetben: alt nem írható
+  API-n, `box-shadow` + `var()`, időzítés szám-változóval, aszinkron publikálás és draft, Trustindex-kattintás, GA4 GTM nélkül.
+
 ## 1.43.1 – 2026-10-05 – javítás: lépés-módban az utolsó lépésre lépés nem küldi be az űrlapot
 * **EditPage `steps`** – az utolsó előtti lépésen a „Tovább” kattintása közben a React ugyanazt a `<button>`-t használta újra
   `type="submit"`-tel (Mentés), így a böngésző még ugyanabban a kattintásban beküldte az űrlapot: az utolsó lépésre lépve

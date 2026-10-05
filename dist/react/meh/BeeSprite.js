@@ -1,8 +1,8 @@
-/* beeco design system 1.43.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.44.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   BeeSprite
-} from "../reszek/chunk-EMDBDWSC.js";
-import "../reszek/chunk-TXOE2PSE.js";
+} from "../reszek/chunk-TWUUG4NM.js";
+import "../reszek/chunk-DXS6AO6A.js";
 export {
   BeeSprite
 };
