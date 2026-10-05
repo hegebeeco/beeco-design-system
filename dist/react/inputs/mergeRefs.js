@@ -1,7 +1,7 @@
-/* beeco design system 1.42.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.43.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   mergeRefs
-} from "../reszek/chunk-ATOVTS53.js";
+} from "../reszek/chunk-2H4LYNK2.js";
 export {
   mergeRefs
 };

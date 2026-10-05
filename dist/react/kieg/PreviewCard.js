@@ -1,9 +1,9 @@
-/* beeco design system 1.42.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.43.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   PreviewCard
-} from "../reszek/chunk-XEX2WUR7.js";
-import "../reszek/chunk-GFLTLCRK.js";
-import "../reszek/chunk-ULBUX4AD.js";
+} from "../reszek/chunk-VG62WRCJ.js";
+import "../reszek/chunk-5FFBFZXM.js";
+import "../reszek/chunk-4NETF2NE.js";
 export {
   PreviewCard
 };

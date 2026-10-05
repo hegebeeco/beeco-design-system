@@ -1,13 +1,13 @@
-/* beeco design system 1.42.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.43.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   DataNote,
   DataState,
   SkeletonRows
-} from "../reszek/chunk-QMR3U4MO.js";
-import "../reszek/chunk-RGFOGPGH.js";
-import "../reszek/chunk-6VNFKTEP.js";
-import "../reszek/chunk-6CWQK3MN.js";
-import "../reszek/chunk-ULBUX4AD.js";
+} from "../reszek/chunk-7PUA56XD.js";
+import "../reszek/chunk-Q6FELXBM.js";
+import "../reszek/chunk-Z655PA3P.js";
+import "../reszek/chunk-O2VQIB3W.js";
+import "../reszek/chunk-4NETF2NE.js";
 export {
   DataNote,
   DataState,

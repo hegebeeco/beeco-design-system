@@ -8,7 +8,7 @@ import {
 import { allapot, mountSablon, wait } from './_sablon-keret';
 import { hibajegyek, kategoriak, kuponHetente, ures } from './_adat-minta';
 
-const ALLAPOTOK: Array<[string, string]> = [['toltes', 'Töltés'], ['ures', 'Nincs adat'], ['hiba', 'Hiba'], ['tiltott', 'Nincs jogosultság']];
+const ALLAPOTOK: Array<[string, string]> = [['toltes', 'Töltés'], ['ures', 'Nincs adat'], ['hiba', 'Hiba'], ['tiltott', 'Nincs jogosultság'], ['csakvezerlo', 'Eszközsor szöveg nélkül']];
 const IDOSZAK: Record<'30' | '90', DateRange> = { '30': { start: '2026-09-01', end: '2026-09-30' }, '90': { start: '2026-07-01', end: '2026-09-30' } };
 // Időszakonként más mintaszámok – így látszik, hogy váltáskor a szám már NEM pörög fel újra
 const SZAMOK: Record<'30' | '90', number[]> = { '30': [128, 342, 17, 9], '90': [131, 1046, 52, 31] };
@@ -46,7 +46,12 @@ function Oldal() {
         <Button variant="secondary" onClick={() => window.print()}>Nyomtatás / PDF</Button></>}
       period={<DateRangePicker label="Időszak" help="A számok és a grafikonok erre az időszakra vonatkoznak (helyi idő szerint, a végnap is benne van)." value={range}
         onChange={setRange} max="2026-09-30" />}
-      toolbar={<SegmentedControl label="Gyors időszak" value={gyors} onChange={(g) => void valt(g)} items={[{ value: '30', label: 'Utolsó 30 nap' }, { value: '90', label: 'Utolsó 90 nap' }]} />}
+      toolbar={<>
+        <SegmentedControl label="Gyors időszak" value={gyors} onChange={(g) => void valt(g)} items={[{ value: '30', label: 'Utolsó 30 nap' }, { value: '90', label: 'Utolsó 90 nap' }]} />
+        {/* Javaslat 21: az eszközsor szövege papírra is kerül; a bc-print-show csak papíron látszik */}
+        {a !== 'csakvezerlo' && <p className="bc-muted" data-out="toolbar-szoveg">Időszak: {period}</p>}
+        {a !== 'csakvezerlo' && <p className="bc-print-show" data-out="csak-papiron">Gyors időszak: utolsó {gyors} nap</p>}
+      </>}
       moment={nincs ? undefined : { pillanat: 'merfoldko', valtozat: 0, sima: 'Elértétek a negyedéves beváltási célt (mintaadat).' }}
       stats={stats}
       charts={<>

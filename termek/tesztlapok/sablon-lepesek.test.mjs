@@ -1,6 +1,6 @@
 // Forgatókönyv – EditPage lépés-módban (Javaslat 20): Tovább csak a lépés mezőit ellenőrzi, fókusz a lépés címére / a hibás mezőre,
 // Enter = Tovább, kattintható lépésjelző, Vissza, mentéskori (szerver) hiba korábbi lépésben → odaugrik, összesítő-link lépést vált,
-// ⌘S / Ctrl+S mentés (köztes lépésen figyelmeztet), másolat: minden lépés elérhető, telefonos gombsor. Futtatja: tests/check-komponensek.js
+// ⌘S / Ctrl+S mentés (köztes lépésen figyelmeztet), másolat: minden lépés elérhető, de pipa csak a látott, hibátlan lépésen (Javaslat 21), telefonos gombsor. Futtatja: tests/check-komponensek.js
 const ok = (c, m) => { if (!c) throw new Error(m); };
 const until = async (fn, m, ms = 3000) => { for (let i = 0; i < ms / 50; i++) { if (await fn()) return; await new Promise((r) => setTimeout(r, 50)); } throw new Error(m); };
 export default async function ({ page, t }) {
@@ -98,10 +98,29 @@ export default async function ({ page, t }) {
       ok(await page.evaluate(() => document.documentElement.scrollWidth <= 391), 'kilógás');
     } finally { await page.setViewportSize({ width: 1280, height: 800 }); }
   });
-  await t('másolat: minden lépés kezdettől elérhető a jelzőn', async () => {
+  const cls = async () => stepper.locator('li').evaluateAll((l) => l.map((e) => e.className));
+  await t('másolat: minden lépés kezdettől elérhető, de a még nem látott „hátravan” (szám, nem pipa) – Javaslat 21', async () => {
     await go('masolat');
     ok((await stepper.getByRole('button').count()) === 2, `${await stepper.getByRole('button').count()} kattintható lépés`);
+    let k = await cls();
+    ok(k[0].includes('is-current') && k[1].includes('is-todo') && k[2].includes('is-todo'), `kezdetben: ${k}`);
+    ok((await stepper.locator('li').nth(1).innerText()).includes('2'), 'a nem látott lépésen nincs szám');
+    ok((await stepper.locator('li').nth(1).locator('.bc-sr').innerText()).includes('még hátravan'), 'képernyőolvasónak nem „hátravan”');
     await stepper.getByRole('button', { name: /Kedvezmény/ }).click(); await until(async () => (await title()).includes('3/3'), await title());
+    k = await cls();
+    ok(k[0].includes('is-done') && k[1].includes('is-todo') && k[2].includes('is-current'), `a 3. lépésre ugrás után: ${k}`);
+    ok((await stepper.getByRole('button', { name: /Hely/ }).count()) === 1, 'a nem látott lépés nem kattintható');
+    await stepper.getByRole('button', { name: /Hely/ }).click(); await until(async () => (await title()).includes('2/3'), await title());
+    k = await cls();
+    ok(k[0].includes('is-done') && k[1].includes('is-current') && k[2].includes('is-done'), `a 2. lépésen: ${k}`);
+  });
+  await t('másolat: a látott, de kiürített lépés nem kap pipát (hátravan), csak újra kitöltve', async () => {
+    await page.locator('input[name="cim"]').fill('');
+    await stepper.getByRole('button', { name: /Alapadatok/ }).click(); await until(async () => (await title()).includes('1/3'), await title());
+    ok((await cls())[1].includes('is-todo'), `a kiürített lépés: ${(await cls())[1]}`);
+    await stepper.getByRole('button', { name: /Hely/ }).click(); await page.locator('input[name="cim"]').fill('Ráday u. 12.');
+    await stepper.getByRole('button', { name: /Alapadatok/ }).click(); await until(async () => (await title()).includes('1/3'), await title());
+    ok((await cls())[1].includes('is-done'), `újra kitöltve: ${(await cls())[1]}`);
     await go();
   });
   await t('hosszú lépésnevek: a jelző tördel, nincs kilógás telefonon', async () => {

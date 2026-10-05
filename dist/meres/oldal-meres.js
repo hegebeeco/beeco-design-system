@@ -1,4 +1,4 @@
-/* beeco design system 1.42.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.43.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 /* Használat a böngészőben: const L = window.bcMeres({ w: innerWidth, touch: true }); – leletek { kat, sulyos, mi, hol } */
 window.bcMeres = function meres(opts) {
   // Fagyasztás (alap: be): mérés közben nincs átmenet és animáció – a félúton megállt átmenet (pl. rejtett böngészőfül,
@@ -117,8 +117,13 @@ window.bcMeres = function meres(opts) {
 
   // --- Árnyék (Kristóf, 2026-10-01): a felületek és gombok kemény árnyékot kapnak – ha valami (pl. projekt-CSS) leszedi, lelet
   const ARNYEKOS = '.bc-card:not(.is-flat), .bc-btn:not(.is-ghost):not(:disabled):not([aria-disabled="true"]), .bc-stat, .bc-tile, .bc-pop, .bc-seg, .bc-sablon-bar, .bc-modal, .bc-dt-wrap';
+  // Szándékosan lapos (Javaslat 19, 1.43.0-tól a mérés is kihagyja): kártyanézet és kártyába ágyazott (bare) tábla, a DetailPage
+  // összegzésének csempéi, és minden felület, ami egy másik árnyékos dobozba van ágyazva („nincs kártya a kártyában”) – a gomb nem ilyen
+  const LAPOS = '.bc-dt.is-cards, .bc-dt.is-bare, .bc-sablon-summary-block';
+  const BEAGYAZO = '.bc-card, .bc-modal, .bc-pop, .bc-drawer, .bc-dt-wrap';
   for (const el of document.querySelectorAll(ARNYEKOS)) {
-    if (!visible(el) || el.closest('.bc-dt.is-cards')) continue;
+    if (!visible(el) || el.closest(LAPOS)) continue;
+    if (!el.matches('.bc-btn') && el.parentElement && el.parentElement.closest(BEAGYAZO) && getComputedStyle(el).boxShadow === 'none') continue;
     if (getComputedStyle(el).boxShadow === 'none') add('Árnyék', 'P2', 'a felületről hiányzik a kemény árnyék', desc(el));
   }
 

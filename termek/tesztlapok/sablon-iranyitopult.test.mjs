@@ -1,4 +1,4 @@
-// Forgatókönyv – Dashboard (06c): szám-felpörgés csak egyszer, időszakváltás, egy méhecske, grafikon-rács telefonon, állapotok. Futtatja: tests/check-komponensek.js
+// Forgatókönyv – Dashboard (06c): szám-felpörgés csak egyszer, időszakváltás, egy méhecske, grafikon-rács telefonon, állapotok, nyomtatás (Javaslat 20–21). Futtatja: tests/check-komponensek.js
 const ok = (c, m) => { if (!c) throw new Error(m); };
 const until = async (fn, m) => { for (let i = 0; i < 60; i++) { if (await fn()) return; await new Promise((r) => setTimeout(r, 50)); } throw new Error(m); };
 export default async function ({ page, t }) {
@@ -51,11 +51,14 @@ export default async function ({ page, t }) {
       await page.evaluate(() => window.dispatchEvent(new Event('beforeprint')));
       const r = await page.evaluate(() => ({
         tema: document.documentElement.getAttribute('data-theme'), dark: document.documentElement.classList.contains('dark'),
-        rejtve: ['.bc-sidebar', '.bc-sablon-toolbar', '.bc-help-btn', '.bc-page-header .bc-row'].map((s) => [s, [...document.querySelectorAll(s)].every((e) => getComputedStyle(e).display === 'none')]),
+        rejtve: ['.bc-sidebar', '.bc-sablon-toolbar .bc-field', '.bc-sablon-toolbar .bc-seg', '.bc-help-btn', '.bc-page-header .bc-row'].map((s) => [s, [...document.querySelectorAll(s)].every((e) => getComputedStyle(e).display === 'none')]),
+        szoveg: getComputedStyle(document.querySelector('[data-out="toolbar-szoveg"]')).display !== 'none' && getComputedStyle(document.querySelector('.bc-sablon-toolbar')).display !== 'none',
+        papir: getComputedStyle(document.querySelector('[data-out="csak-papiron"]')).display !== 'none',
         arnyek: getComputedStyle(document.querySelector('.bc-stat')).boxShadow, fo: Math.round(document.querySelector('.bc-main').getBoundingClientRect().left),
       }));
       ok(r.tema === 'light' && !r.dark, `a téma nyomtatáskor: ${r.tema}/${r.dark}`);
       ok(r.rejtve.every(([, v]) => v), `látszik: ${r.rejtve.filter(([, v]) => !v).map(([s]) => s).join(', ')}`);
+      ok(r.szoveg, 'az eszközsor szövege (időszak) nem kerül papírra (Javaslat 21)'); ok(r.papir, 'a .bc-print-show papíron rejtve');
       ok(r.arnyek === 'none', `árnyék: ${r.arnyek}`); ok(r.fo <= 1, `a tartalom ${r.fo} px-ről indul (az oldalsáv helye maradt)`);
       await page.evaluate(() => window.dispatchEvent(new Event('afterprint')));
       ok((await page.evaluate(() => document.documentElement.getAttribute('data-theme'))) === 'dark', 'a téma nem állt vissza');
@@ -63,5 +66,13 @@ export default async function ({ page, t }) {
       await page.emulateMedia({ media: 'screen' });
       await page.evaluate(() => { document.documentElement.setAttribute('data-theme', 'auto'); document.documentElement.classList.remove('dark'); });
     }
+  });
+  await t('Javaslat 21: képernyőn a .bc-print-show rejtve, az eszközsor szövege látszik; csak vezérlős eszközsor papíron egészében rejtve', async () => {
+    ok((await page.locator('[data-out="csak-papiron"]').isHidden()), 'a .bc-print-show képernyőn is látszik');
+    ok((await page.locator('[data-out="toolbar-szoveg"]').isVisible()), 'az eszközsor szövege nem látszik');
+    await go('csakvezerlo');
+    await page.emulateMedia({ media: 'print' });
+    try { ok(await page.evaluate(() => getComputedStyle(document.querySelector('.bc-sablon-toolbar')).display === 'none'), 'a csak vezérlős eszközsor papíron látszik (üres sor)'); }
+    finally { await page.emulateMedia({ media: 'screen' }); await go(); }
   });
 }

@@ -31,7 +31,10 @@ export type EditStepsConfig = {
   items: readonly EditStep[];
   /** A lépésjelző neve képernyőolvasónak, pl. „Az új POI felvételének lépései” */
   label: string;
-  /** Kitöltve induló űrlap (pl. másolás, szerkesztés): a jelző kezdettől minden lépésre kattintható */
+  /**
+   * Kitöltve induló űrlap (pl. másolás, szerkesztés): a jelző kezdettől minden lépésre kattintható.
+   * Javaslat 21: a még nem látott lépés ettől „hátravan” marad (szám, nem pipa) – pipát csak a ténylegesen bejárt, hibátlan lépés kap.
+   */
   allReachable?: boolean;
   /** Lépésváltáskor (pl. analitika, URL) */
   onStepChange?: (id: string) => void;
@@ -115,7 +118,9 @@ export function EditPage(p: EditPageProps) {
   const steps = p.steps?.items.length ? p.steps.items : null;
   const [curRaw, setCur] = useState(0);
   const cur = steps ? Math.min(curRaw, steps.length - 1) : 0;
+  // reached: meddig kattintható a jelző (allReachable: mind); seen: a ténylegesen látott lépések (Javaslat 21 – a pipa csak ezeken)
   const [reached, setReached] = useState(() => (p.steps?.allReachable && steps ? steps.length - 1 : 0));
+  const [seen, setSeen] = useState<ReadonlySet<number>>(() => new Set([0]));
   // azok a lépések, ahol a „Tovább” hibát talált – ezek hibái élőben látszanak (a javított eltűnik)
   const [tried, setTried] = useState<ReadonlySet<string>>(() => new Set());
   const [focusReq, setFocusReq] = useState<FocusReq | null>(null);
@@ -133,11 +138,13 @@ export function EditPage(p: EditPageProps) {
   useEffect(() => { if (failed) { summary.current?.focus(); shake(summary.current); } }, [failed]);
   useEffect(() => { if (!done) return; const t = setTimeout(() => setDone(false), 1500); return () => clearTimeout(t); }, [done]);
 
-  const live = attempted && validate ? validate() : [];
+  // lépés-módban a validate eredménye kell a pipához is (a látott, de még hibás lépés nem kap pipát) – egyszer számoljuk
+  const all = validate && (attempted || steps) ? validate() : [];
+  const live = attempted ? all : [];
   const names = new Set(live.map((e) => e.name));
   const errors = [...live, ...server.filter((e) => !names.has(e.name))];
   // a „Tovább” utáni lépéshibák (csak a próbált lépések mezőire)
-  const stepLive = steps && tried.size && validate ? validate().filter((e) => { const i = stepOf(e.name); return i >= 0 && tried.has(steps[i].id); }) : [];
+  const stepLive = steps && tried.size ? all.filter((e) => { const i = stepOf(e.name); return i >= 0 && tried.has(steps[i].id); }) : [];
   const errorOf = (name: string) => errors.find((e) => e.name === name)?.message ?? stepLive.find((e) => e.name === name)?.message;
   const fail = () => setFailed((n) => n + 1);
   const stepHasError = (s: EditStep) => s.fields.some((f) => errors.some((e) => e.name === f) || stepLive.some((e) => e.name === f));
@@ -146,6 +153,7 @@ export function EditPage(p: EditPageProps) {
   const goStep = (i: number, target: FocusReq['target'], name?: string) => {
     setCur(i);
     setReached((r) => Math.max(r, i));
+    setSeen((v) => (v.has(i) ? v : new Set(v).add(i)));
     setFocusReq((f) => ({ target, name, n: (f?.n ?? 0) + 1 }));
   };
   const next = () => {
@@ -234,9 +242,12 @@ export function EditPage(p: EditPageProps) {
   const showSummary = (errors.length > 0 || general) && (attempted || server.length > 0 || general);
   const ctx: EditContext = { errorOf, submitting: busy, step: step?.id };
   const content = typeof p.children === 'function' ? p.children(ctx) : p.children;
+  // Javaslat 21: „kész” (pipa) csak a ténylegesen látott és hibátlan lépés (a validate szerint); a még nem látott „hátravan” (szám) –
+  // allReachable mellett is, ott kattintható marad. Egy szabály mindkét módra: a látott, de azóta hibássá vált lépés sem kap pipát.
+  const stepClean = (s: EditStep) => !s.fields.some((f) => all.some((e) => e.name === f));
   const stepperItems: Step[] = steps ? steps.map((s, i) => ({
     id: s.id, label: s.title, reachable: i <= reached,
-    state: i === cur ? 'current' : stepHasError(s) ? 'error' : i < reached ? 'done' : 'todo',
+    state: i === cur ? 'current' : stepHasError(s) ? 'error' : seen.has(i) && stepClean(s) ? 'done' : 'todo',
   })) : [];
   const keys = p.saveShortcut ? 'Meta+S Control+S' : undefined;
 

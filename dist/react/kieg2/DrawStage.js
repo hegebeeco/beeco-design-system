@@ -1,12 +1,12 @@
-/* beeco design system 1.42.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.43.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   DrawSpinner,
   WinnerCard
-} from "../reszek/chunk-GLZVHCZL.js";
-import "../reszek/chunk-3XDWYXQP.js";
-import "../reszek/chunk-W4YIBPAD.js";
-import "../reszek/chunk-DKBMMSDR.js";
-import "../reszek/chunk-ULBUX4AD.js";
+} from "../reszek/chunk-2IEPDUHP.js";
+import "../reszek/chunk-6ORB5XRU.js";
+import "../reszek/chunk-5YKFMX2G.js";
+import "../reszek/chunk-T2RTDYPW.js";
+import "../reszek/chunk-4NETF2NE.js";
 export {
   DrawSpinner,
   WinnerCard

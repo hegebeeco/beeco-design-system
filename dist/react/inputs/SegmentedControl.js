@@ -1,8 +1,8 @@
-/* beeco design system 1.42.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.43.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   SegmentedControl
-} from "../reszek/chunk-BT4GIPGH.js";
-import "../reszek/chunk-ULBUX4AD.js";
+} from "../reszek/chunk-TXDG274V.js";
+import "../reszek/chunk-4NETF2NE.js";
 export {
   SegmentedControl
 };

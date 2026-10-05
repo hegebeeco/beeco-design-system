@@ -11,6 +11,28 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.43.0 – 2026-10-05 – A Javaslat 20 bekötésének finomításai (Javaslat 21): lépésjelző másolásnál, nyomtatható eszközsor, kikapcsolható kupon-sorok, oszlopfejléc-súgó
+
+Mellékverzió (ADMINAPP; Kristóf jóváhagyta, 2026-10-05) – minden új lehetőség opcionális, semmi nem változott nevet. Javaslatlap: `docs/javaslatok/21-admin-bekotes-finomitasok.md`.
+
+* **EditPage `steps` – következetes lépésjelző:** pipa (kész) csak a ténylegesen látott és hibátlan lépésen (a `validate` szerint); a még nem
+  látott lépés „hátravan” (szám) – `allReachable` mellett is, ott kattintható marad. Eddig másolásnál a nem látott köztes lépések pipát
+  kaptak, az utolsó számot. A látott, de azóta hibássá vált lépés sem kap pipát.
+* **Dashboard `printable` / `usePrintFrame` – az eszközsor szövege papírra kerül:** nyomtatáskor a `.bc-sablon-toolbar`-ból csak a vezérlők
+  (mező, gomb, szegmens-választó, kereső, kapcsoló) tűnnek el, a szöveg (pl. „Időszak: …”) marad; a csak vezérlős eszközsor egészében
+  rejtve (mint eddig). Új segédosztály: **`.bc-print-show`** – csak papíron látszik (képernyőn rejtve). `.bc-sablon-toolbar > p` margó nélkül.
+* **PreviewCard kupon:** `validity={false}` – nincs érvényesség-sor (kártyán és a részletek adatsorában sem; pl. kuponsablon, amit az
+  időzítés tesz érvényessé); `descriptionRow={false}` – nincs leírás-sor. **`notes={false}`** (minden változat) – a keret alatti
+  levágás-jelzés nem jelenik meg (ha a projekt maga mondja el), a levágott szöveg szaggatott jelölése marad.
+* **DataTable `columnDef.meta.help`** – oszlopfejléc-súgó: ⓘ (`HelpButton`, 44 px, képernyőolvasónak „<oszlop> – súgó”) a fejléc mellett;
+  rendezhető oszlopnál a rendezés-gombtól külön gomb, nem rendez; a mézen a fejléc színét veszi. CSS: `.bc-dt-head`.
+* **Gépi mérés (`tools/komp/oldal-meres.js` → `dist/meres/oldal-meres.js`, a projektek e2e-je is ezt tölti):** az „Árnyék” szabály kihagyja a
+  szándékosan lapos felületeket – kártyanézetű és `bare` (kártyába ágyazott) tábla, a DetailPage összegzésének csempéi
+  (`.bc-sablon-summary-block`), és minden árnyék nélküli felület, ami egy másik árnyékos dobozba (kártya, ablak, buborék, fiók, tábla)
+  van ágyazva („nincs kártya a kártyában”); a gombot továbbra is méri. Eddig ezek hamis P2-leletet adtak (az admin részletoldalain is).
+* Tesztlapok: bővítve `sablon-lepesek` (másolat: hátravan + kattintható, kiürített lépés), `sablon-iranyitopult` (szöveg papíron,
+  `.bc-print-show`, `?allapot=csakvezerlo`), `kieg-elonezet` (kupon `validity` / `descriptionRow` / `notes`), `adat-tabla` (`tabla-sugo`).
+
 ## 1.42.1 – 2026-10-05 – a React-csomag modulonként épül (kisebb első betöltés a projektekben)
 * **`dist/react/` modulonként** (`tools/react-build.js`: minden forrásfájl belépési pont + közös darabok `dist/react/reszek/`,
   esbuild `splitting`). Eddig az egész DS egyetlen fájl volt, így a projekt buildje (Vite/Rollup) minden használt DS-elemet a

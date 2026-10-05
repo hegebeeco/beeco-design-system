@@ -20,7 +20,10 @@ export type EditStepsConfig = {
     items: readonly EditStep[];
     /** A lépésjelző neve képernyőolvasónak, pl. „Az új POI felvételének lépései” */
     label: string;
-    /** Kitöltve induló űrlap (pl. másolás, szerkesztés): a jelző kezdettől minden lépésre kattintható */
+    /**
+     * Kitöltve induló űrlap (pl. másolás, szerkesztés): a jelző kezdettől minden lépésre kattintható.
+     * Javaslat 21: a még nem látott lépés ettől „hátravan” marad (szám, nem pipa) – pipát csak a ténylegesen bejárt, hibátlan lépés kap.
+     */
     allReachable?: boolean;
     /** Lépésváltáskor (pl. analitika, URL) */
     onStepChange?: (id: string) => void;

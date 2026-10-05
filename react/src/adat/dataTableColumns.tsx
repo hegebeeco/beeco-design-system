@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { CellContext, ColumnDef, Table } from '@tanstack/react-table';
 import { fmt } from './format';
 import { ExpandToggle, SelectCell } from './DataTableParts';
@@ -11,6 +12,12 @@ export type DataColumnMeta = {
   pinEnd?: boolean;
   /** Szerep a telefonos kártyán (Javaslat 15, 3.2): title = fejléc, badge = a cím mellett, main = fő adat, detail = a „Részletek” lenyitóban */
   card?: 'title' | 'badge' | 'main' | 'detail';
+  /**
+   * Javaslat 21 – oszlopfejléc-súgó: mit mutat az oszlop, honnan jön (pl. sorbeli kapcsoló: mit csinál, visszavonható-e).
+   * A fejlécben ⓘ súgógomb (HelpButton, 44 px; képernyőolvasónak „<oszlop> – súgó”); rendezhető oszlopnál a rendezés-gomb mellett,
+   * a súgó nem rendez. A címe a label (vagy a szöveges fejléc).
+   */
+  help?: ReactNode;
 };
 export const metaOf = (c: { columnDef: { meta?: unknown } }) => (c.columnDef.meta ?? {}) as DataColumnMeta;
 

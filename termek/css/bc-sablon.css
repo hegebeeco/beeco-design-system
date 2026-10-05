@@ -58,6 +58,7 @@
 /* Irányítópult */
 .bc-sablon-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-3) var(--bc-sp-4); }
 .bc-sablon-toolbar > .bc-field { flex: 0 1 340px; min-width: min(100%, 260px); }
+.bc-sablon-toolbar > p { margin: 0; } /* Javaslat 21: szöveg az eszközsorban (pl. „Időszak: …”) – papírra is kerül */
 .bc-sablon-moment { padding: var(--bc-sp-2) var(--bc-sp-3); }
 .bc-sablon-stat { display: grid; min-width: 0; }
 .bc-sablon-stat > .bc-stat { height: 100%; }
@@ -78,11 +79,17 @@
 .bc-sablon-step-error { margin: 0; font-weight: var(--bc-fw-semibold); color: var(--bc-danger-ink); }
 
 /* Nyomtatható oldal (Javaslat 20, usePrintFrame / Dashboard printable): a <html> `bc-print-page` osztálya mellett papíron
-   a keret és a vezérlők rejtve, a kártyák nem törnek ketté, árnyék nincs (a keret tagol). A világos témát a hook állítja. */
+   a keret és a vezérlők rejtve, a kártyák nem törnek ketté, árnyék nincs (a keret tagol). A világos témát a hook állítja.
+   Javaslat 21: az eszközsorból (.bc-sablon-toolbar) csak a VEZÉRLŐK tűnnek el (mező, gomb, szegmens-választó, kereső, kapcsoló) –
+   a benne álló szöveg (pl. „Időszak: …”) papírra kerül; ha csak vezérlő van benne, az egész sor rejtve (mint eddig).
+   `.bc-print-show` (segédosztály): csak papíron látszik, képernyőn rejtve – pl. a választó helyett a választott érték szövegként. */
 @media print {
   .bc-print-page { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-  .bc-print-page :is(.bc-sidebar, .bc-topbar, .bc-skip, .bc-toaster, .bc-print-hide, .bc-help-btn, .bc-sablon-toolbar, .bc-sablon-bar, .bc-page-header .bc-row) { display: none; }
+  .bc-print-page :is(.bc-sidebar, .bc-topbar, .bc-skip, .bc-toaster, .bc-print-hide, .bc-help-btn, .bc-sablon-bar, .bc-page-header .bc-row) { display: none; }
+  .bc-print-page .bc-sablon-toolbar :is(.bc-field, .bc-btn, .bc-seg, .bc-search, .bc-switch, .bc-switch-inline, button, input, select, textarea) { display: none; }
+  .bc-print-page .bc-sablon-toolbar:not(:has(> :not(.bc-field, .bc-btn, .bc-seg, .bc-search, .bc-switch, .bc-switch-inline, button, input, select, textarea))) { display: none; }
   .bc-print-page .bc-shell { display: block; min-height: 0; }
   .bc-print-page :is(.bc-main, .bc-content) { margin: 0; padding: 0; background: none; overflow: visible; }
   .bc-print-page :is(.bc-stat, .bc-card, .bc-sablon-stat, .bc-sablon-charts > *) { break-inside: avoid; box-shadow: none; }
 }
+@media not print { .bc-print-show { display: none !important; } }

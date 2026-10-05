@@ -5,6 +5,7 @@ import {
 } from '@tanstack/react-table';
 import { cx } from '../cx';
 import { SegmentedControl } from '../inputs/SegmentedControl';
+import { HelpButton } from '../field/HelpButton';
 import { DataState, SkeletonRows } from './DataState';
 import { BulkBar, ColumnResizer, SortHeader } from './DataTableParts';
 import { DefaultCell, expandColumn, headerText, metaOf, selectColumn, wrapColumn, type DataColumnMeta } from './dataTableColumns';
@@ -72,6 +73,7 @@ export type DataTableProps<T> = {
  * Javaslat 15: `meta.priority` – szűk helyen a kevésbé fontos oszlopok a sor „Részletek” lenyitójába kerülnek (nincs vízszintes
  * görgetés a sorműveletekért); `meta.pinEnd` – jobbra rögzített oszlop; `meta.card` – szerepek a telefonos kártyán (a `detail`
  * oszlopok a lenyitóba kerülnek). Minden új lehetőség opcionális: meta nélkül a mai viselkedés marad.
+ * Javaslat 21: `meta.help` – oszlopfejléc-súgó (ⓘ a fejléc mellett; rendezhető oszlopnál sem rendez).
  */
 /** A kártyanézet határa – ugyanaz, mint a bc-adat.css @container bc-dt (max-width: 640px) szabálya */
 const KARTYA_MAX = 640;
@@ -189,12 +191,13 @@ export function DataTable<T>(p: DataTableProps<T>) {
             {table.getHeaderGroups().map((g) => (
               <tr key={g.id}>
                 {g.headers.map((h, i) => {
-                  const c = h.column, s = c.getIsSorted();
+                  const c = h.column, s = c.getIsSorted(), help = metaOf(c).help;
+                  const head = c.getCanSort() ? <SortHeader label={flexRender(c.columnDef.header, h.getContext())} sorted={s} onToggle={() => c.toggleSorting(undefined, false)} />
+                    : flexRender(c.columnDef.header, h.getContext());
                   return (
                     <th key={h.id} scope="col" className={cx(metaOf(c).num && 'is-num', i < pinCount && 'is-pin', c.id.startsWith('_') && 'is-util', cardCls(c))} style={{ width: h.getSize(), ...pinStyle(i) }}
                       aria-sort={c.getCanSort() ? (s === 'asc' ? 'ascending' : s === 'desc' ? 'descending' : 'none') : undefined}>
-                      {c.getCanSort() ? <SortHeader label={flexRender(c.columnDef.header, h.getContext())} sorted={s} onToggle={() => c.toggleSorting(undefined, false)} />
-                        : flexRender(c.columnDef.header, h.getContext())}
+                      {help ? <span className="bc-dt-head">{head}<HelpButton label={headerText(c)} srLabel={`${headerText(c)} – súgó`}>{help}</HelpButton></span> : head}
                       {resizable && c.getCanResize() && <ColumnResizer header={h} label={headerText(c)} />}
                     </th>
                   );

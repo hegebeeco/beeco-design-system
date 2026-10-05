@@ -87,6 +87,11 @@
 .bc-dt-sorticon { width: 10px; height: 14px; flex: none; fill: currentColor; }
 .bc-dt-sorticon path { opacity: .3; }
 .bc-dt-sorticon.is-asc .is-up, .bc-dt-sorticon.is-desc .is-down { opacity: 1; }
+/* Oszlopfejléc-súgó (Javaslat 21, meta.help): fejléc (vagy rendezés-gomb) + ⓘ egy sorban, függőlegesen középen; a súgó a fejléc
+   színét veszi (a mézen on-accent), a rendezés-gombtól külön gomb – nem rendez */
+.bc-dt-head { display: inline-flex; align-items: center; gap: 0; max-width: 100%; vertical-align: middle; }
+.bc-dt-head > .bc-help-btn { flex: none; margin-block: calc(-1 * var(--bc-sp-3)); margin-inline-start: 0; } /* balra nem nyúlik a rendezés-gombra */
+.bc-table th .bc-dt-head > .bc-help-btn > svg { color: currentColor; }
 /* Oszlophúzás: 12 px fogófelület, billentyűzettel is */
 .bc-dt-resizer { position: absolute; top: 0; right: 0; bottom: 0; width: 12px; cursor: col-resize; touch-action: none; user-select: none; }
 .bc-dt-resizer::after { content: ""; position: absolute; top: 25%; bottom: 25%; right: 5px; width: var(--bc-bw-base); background: var(--bc-line); opacity: .35; transition: opacity var(--bc-t-fast) var(--bc-ease-out); }

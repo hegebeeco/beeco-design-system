@@ -76,6 +76,12 @@ function Oldal() {
         <Case id="pv-kupon-arany" title="Kupon – kártya 4:3 képpel, alcímmel, árral"><PreviewCard variant="kupon" partnerName="Javító Kávézó" title="Ingyen kávé" subtitle="Csak hétköznap, saját pohárral" price="300 Nektár" aspect={4 / 3} imageUrl={KEP} /></Case>
         <Case id="pv-clamp" title="Clamp önállóan (onCut jelzi a levágást)"><Vagas /></Case>
       </Grid>
+      <Grid title="Kupon – kikapcsolható sorok és jelzés (Javaslat 21)">
+        <Case id="pv-kupon-sablon" title="Érvényesség-sor nélkül (validity={false}) – pl. kuponsablon, amit az időzítés tesz érvényessé"><PreviewCard variant="kupon" partnerName="Javító Kávézó" title="Ingyen kávé a javításhoz" discount="-100%" description="Ha javíttatsz nálunk, a kávé ajándék." validity={false} imageUrl={KEP} /></Case>
+        <Case id="pv-kupon-sablon-reszlet" title="Ugyanez részletek nézetben: nincs „Érvényes” adatsor"><PreviewCard variant="kupon" view="detail" partnerName="Javító Kávézó" title="Kávé-sablon (érvényesség nélkül)" validUntil="2026. 10. 31-ig" terms="Egy kupon / fő / nap." validity={false} /></Case>
+        <Case id="pv-kupon-leiras-nelkul" title="Leírás-sor nélkül (descriptionRow={false})"><PreviewCard variant="kupon" partnerName="Javító Kávézó" title="Ingyen kávé" discount="-100%" validUntil="2026. 10. 31-ig" descriptionRow={false} /></Case>
+        <Case id="pv-kupon-jelzes-nelkul" title="Levágás-jelzés nélkül (notes={false}) – a levágott szöveg jelölése marad"><PreviewCard variant="kupon" partnerName="Javító Kávézó" title={'Nagyon hosszú kuponnév, ami két sorban biztosan nem fér el a kártyán, ezért levágódik a végén'} validUntil="2026. 10. 31-ig" description={hosszu} notes={false} /></Case>
+      </Grid>
       <Grid title="Értesítés">
         <Case id="pv-ertesites" title="Kép nélkül, gomb nélkül"><PreviewCard variant="ertesites" title="Új kupon a közeledben" body="Nézd meg az appban!" /></Case>
         <Case id="pv-ertesites-reszlet" title="Részletek – kiküldés ideje (Javaslat 20)"><PreviewCard variant="ertesites" view="detail" title="Új kupon a közeledben" body={'Nézd meg az appban!\nCsak ma.'} buttonText="Megnézem" sendAt="2026. 10. 06. 09:00" /></Case>

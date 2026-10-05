@@ -35,6 +35,14 @@ function TelefonosBulk() {
   );
 }
 
+/** Javaslat 21: oszlopfejléc-súgó (meta.help) – rendezhető (Név, Képek) és nem rendezhető (Aktív) oszlopon is */
+const SUGOS = [
+  { ...poiOszlopok[0], meta: { label: 'Név', help: 'A POI neve, ahogy az appban látszik. Rendezéshez a fejlécre kattints – a ⓘ nem rendez.' } },
+  poiOszlopok[1],
+  { ...poiOszlopok[3], enableSorting: false, meta: { label: 'Aktív', help: <p>Aktív POI látszik az appban. <strong>Mintaadat.</strong></p> } },
+  { ...poiOszlopok[4], meta: { num: true, label: 'Képek (db)', help: 'Hány kép tartozik a POI-hoz (mintaadat).' } },
+] as typeof poiOszlopok;
+
 /** Egyik oszlop sem rendezhető (pl. szerver nem tud rendezni) */
 const NEM_RENDEZHETO = poiOszlopok.map((c) => ({ ...c, enableSorting: false }));
 
@@ -112,6 +120,9 @@ function Oldal() {
         </Case>
         <Case id="tabla-kartya-sav" title="Kártyanézet sűrűség-kapcsoló nélkül: széles nézetben nincs üres eszközsáv (Javaslat 18)" wide><DataTable data={pois(3)} columns={poiOszlopok} caption="POI-k – kártyanézet" getRowId={ID} rowLabel={NEV} itemLabel="POI" mobile="cards" densityToggle={false} /></Case>
         <Case id="tabla-bare" title="Kártyába ágyazva: keret nélkül (bare), alapból sűrű (defaultDensity) – Javaslat 19" wide><section className="bc-card"><h3 className="bc-card-title">Kártyában</h3><DataTable data={pois(3)} columns={poiOszlopok} caption="POI-k – kártyában" getRowId={ID} rowLabel={NEV} itemLabel="POI" bare defaultDensity="dense" /></section></Case>
+        <Case id="tabla-sugo" title="Oszlopfejléc-súgó (meta.help, Javaslat 21): rendezhető és nem rendezhető oszlopon, szám-oszlopon is" wide>
+          <DataTable data={pois(3)} columns={SUGOS} caption="POI-k – fejléc-súgóval" getRowId={ID} rowLabel={NEV} itemLabel="POI" densityToggle={false} />
+        </Case>
         <Case id="tabla-ures" title="0 sor – üres állapot teendővel"><Ures /></Case>
         <Case id="tabla-szurt" title="Szűrésre üres – Szűrők törlése"><Ures szurt /></Case>
         <Case id="tabla-tolt" title="Töltés: a fejléc marad, csontváz-sorok">

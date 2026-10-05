@@ -28,6 +28,8 @@ export type DashboardProps = TemplateHeadProps & {
     /**
      * Javaslat 20 – nyomtatható riport: nyomtatáskor / PDF-be mentéskor a keret és a vezérlők rejtve, a lap mindig világos.
      * A nyomtatás gombját a projekt adja (actions; window.print()); ami még ne kerüljön papírra: className="bc-print-hide".
+     * Javaslat 21: az eszközsorból (period, toolbar) csak a vezérlők tűnnek el – a szöveg (pl. „Időszak: …”) papírra kerül;
+     * ami csak papírra kell (pl. a választó helyett a választott érték): className="bc-print-show" (képernyőn rejtve).
      */
     printable?: boolean;
     children?: ReactNode;

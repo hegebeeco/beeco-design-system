@@ -1,9 +1,9 @@
-/* beeco design system 1.42.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.43.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   Toaster
-} from "../reszek/chunk-VBQ6ECK6.js";
-import "../reszek/chunk-4FWBCJJ4.js";
-import "../reszek/chunk-ULBUX4AD.js";
+} from "../reszek/chunk-JDKRBEKJ.js";
+import "../reszek/chunk-O3MI5HGR.js";
+import "../reszek/chunk-4NETF2NE.js";
 export {
   Toaster
 };

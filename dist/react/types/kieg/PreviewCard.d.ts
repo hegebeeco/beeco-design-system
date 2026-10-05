@@ -21,6 +21,13 @@ export type CouponPreview = {
     price?: string;
     buttonText?: string;
     featured?: boolean;
+    /**
+     * Javaslat 21: az érvényesség-sor a kártyán. Alap: igen (üresen „Érvényesség helye” helykitöltővel); false = nincs sor
+     * (pl. kuponsablon, aminek nincs saját érvényessége) – a részletek nézetben sem.
+     */
+    validity?: boolean;
+    /** Javaslat 21: a leírás (feltételek) sora a kártyán. Alap: igen (üresen helykitöltővel); false = nincs sor (a részletekben sem) */
+    descriptionRow?: boolean;
 };
 export type NotificationPreview = {
     variant: 'ertesites';
@@ -69,6 +76,11 @@ export type PreviewCardProps = PreviewData & {
     aspect?: number | string;
     /** A kép helye, ha nincs kép – alap „Nincs kép” (pl. „Nincs kép – alapkép”) */
     emptyImageText?: string;
+    /**
+     * Javaslat 21: a levágás-jelzés a keret alatt („A leírás levágódik: …” / „Minden szöveg kifér”). Alap: igen; false = nincs jelzés
+     * (pl. ha a projekt saját figyelőben mondja el) – a levágott szöveg szaggatott jelölése a kártyán marad.
+     */
+    notes?: boolean;
     className?: string;
 };
 /**
@@ -77,4 +89,4 @@ export type PreviewCardProps = PreviewData & {
  * levágódna, azt MÉRI és kiírja („A leírás levágódik: 3 sor fér el”), a levágott rész szaggatott jelölést kap.
  * Részletek nézetben a teljes szöveg látszik, a telefon képernyője görget (billentyűzettel is).
  */
-export declare function PreviewCard({ caption, className, view, aspect, emptyImageText, ...data }: PreviewCardProps): import("react").JSX.Element;
+export declare function PreviewCard({ caption, className, view, aspect, emptyImageText, notes, ...data }: PreviewCardProps): import("react").JSX.Element;

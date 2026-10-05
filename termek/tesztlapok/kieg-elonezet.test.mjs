@@ -72,4 +72,23 @@ export default async function ({ page, t }) {
     ok((await c('pv-kupon-arany').locator('[data-clamp="subtitle"]').count()) === 1, 'nincs alcím');
     await until(async () => (await page.locator('[data-out="vagas"]').innerText()).includes('igen'), 'az onCut nem jelzett');
   });
+  await t('Javaslat 21 – kupon: validity={false} → nincs érvényesség-sor (kártyán és részleteken); a többi sor marad', async () => {
+    const k = c('pv-kupon-sablon');
+    ok(!(await k.locator('.bc-pv-card').innerText()).includes('Érvényes'), 'a kártyán van érvényesség-sor');
+    ok((await k.locator('[data-clamp="description"]').count()) === 1, 'a leírás is eltűnt');
+    const r = await c('pv-kupon-sablon-reszlet').locator('.bc-pv-rows').innerText();
+    ok(!r.includes('Érvényes') && r.includes('Egy kupon'), `adatsor: ${r}`);
+    ok((await c('pv-kupon').locator('.bc-pv-card').innerText()).includes('Érvényes: 2026. 10. 31-ig'), 'alapból eltűnt az érvényesség (visszafelé kompatibilitás)');
+  });
+  await t('Javaslat 21 – kupon: descriptionRow={false} → nincs leírás-sor, az érvényesség marad', async () => {
+    const k = c('pv-kupon-leiras-nelkul');
+    ok((await k.locator('[data-clamp="description"]').count()) === 0, 'van leírás-sor');
+    ok((await k.locator('.bc-pv-card').innerText()).includes('Érvényes: 2026. 10. 31-ig'), 'eltűnt az érvényesség');
+  });
+  await t('Javaslat 21 – notes={false}: nincs levágás-jelzés a keret alatt, a levágott szöveg jelölése (data-cut) marad', async () => {
+    const k = c('pv-kupon-jelzes-nelkul');
+    ok((await k.locator('.bc-pv-notes').count()) === 0, 'van jelzés');
+    ok((await k.locator('.bc-pv-caption').innerText()).includes('Így látszik az appban'), 'eltűnt a felirat');
+    await until(async () => (await k.locator('.bc-clamp[data-cut]').count()) > 0, 'a levágás jelölése eltűnt a kártyáról');
+  });
 }

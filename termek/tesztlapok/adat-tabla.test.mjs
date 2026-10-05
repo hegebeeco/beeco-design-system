@@ -130,4 +130,23 @@ export default async function ({ page, t }) {
     await box.locator('.bc-seg-item', { hasText: 'Kényelmes' }).click();
     await until(async () => (await box.locator('.bc-dt.is-dense').count()) === 0, 'nem váltott kényelmesre');
   });
+  await t('oszlopfejléc-súgó (Javaslat 21): ⓘ a fejlécben „<oszlop> – súgó” névvel, 44 px; kattintásra nyílik és NEM rendez; a rendezés-gomb rendez', async () => {
+    const box = c('tabla-sugo');
+    const nev = th('tabla-sugo', 'Név');
+    const sugo = box.getByRole('button', { name: 'Név – súgó' });
+    ok((await sugo.count()) === 1, 'nincs súgó-gomb a Név fejlécében');
+    const b = await sugo.boundingBox(); ok(b.width >= 44 && b.height >= 44, `a súgó-gomb ${b.width}×${b.height}`);
+    ok((await nev.getAttribute('aria-sort')) === 'none', 'kezdetben rendezett');
+    await sugo.click();
+    await page.locator('.bc-pop', { hasText: 'a ⓘ nem rendez' }).waitFor();
+    ok((await nev.getAttribute('aria-sort')) === 'none', 'a súgó rendezett');
+    await page.keyboard.press('Escape');
+    await nev.locator('button.bc-dt-sort').click();
+    ok((await nev.getAttribute('aria-sort')) === 'ascending', 'a rendezés-gomb nem rendezett');
+    ok((await box.getByRole('button', { name: 'Aktív – súgó' }).count()) === 1, 'a nem rendezhető oszlopon nincs súgó');
+    ok((await th('tabla-sugo', 'Aktív').getAttribute('aria-sort')) === null, 'a nem rendezhető oszlop rendezhető lett');
+    ok((await box.getByRole('button', { name: 'Képek (db) – súgó' }).count()) === 1, 'a szám-oszlopon nincs súgó');
+    ok((await th('tabla-sugo', 'Kategória').locator('.bc-help-btn').count()) === 0, 'súgó nélküli oszlopon is van gomb');
+    ok((await c('tabla-teljes').locator('thead .bc-help-btn').count()) === 0, 'meta.help nélkül is van súgó (visszafelé kompatibilitás)');
+  });
 }

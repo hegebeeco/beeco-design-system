@@ -7,6 +7,13 @@ export type CouponPreview = {
   variant: 'kupon'; partnerName?: string; title?: string; discount?: string; validUntil?: string; description?: string; imageUrl?: string;
   /** Javaslat 20: alcím (a kártyán 1 sor), részletek-nézet adatai, kiemelés */
   subtitle?: string; terms?: string; code?: string; price?: string; buttonText?: string; featured?: boolean;
+  /**
+   * Javaslat 21: az érvényesség-sor a kártyán. Alap: igen (üresen „Érvényesség helye” helykitöltővel); false = nincs sor
+   * (pl. kuponsablon, aminek nincs saját érvényessége) – a részletek nézetben sem.
+   */
+  validity?: boolean;
+  /** Javaslat 21: a leírás (feltételek) sora a kártyán. Alap: igen (üresen helykitöltővel); false = nincs sor (a részletekben sem) */
+  descriptionRow?: boolean;
 };
 export type NotificationPreview = { variant: 'ertesites'; title?: string; body?: string; buttonText?: string; imageUrl?: string; /** Javaslat 20: részletek nézetben „Kiküldés: …” */ sendAt?: string };
 /** Javaslat 20 – edukációs tartalom (cikk, videó, tipp) */
@@ -32,6 +39,11 @@ export type PreviewCardProps = PreviewData & {
   aspect?: number | string;
   /** A kép helye, ha nincs kép – alap „Nincs kép” (pl. „Nincs kép – alapkép”) */
   emptyImageText?: string;
+  /**
+   * Javaslat 21: a levágás-jelzés a keret alatt („A leírás levágódik: …” / „Minden szöveg kifér”). Alap: igen; false = nincs jelzés
+   * (pl. ha a projekt saját figyelőben mondja el) – a levágott szöveg szaggatott jelölése a kártyán marad.
+   */
+  notes?: boolean;
   className?: string;
 };
 
@@ -86,8 +98,8 @@ function Coupon(p: CouponPreview & V) {
           <Full placeholder="Partner neve" className="bc-pv-meta">{p.partnerName}</Full>
           <Full as="h3" placeholder="Kupon neve" className="bc-pv-title">{p.title}</Full>
           {has(p.subtitle) && <p className="bc-pv-text bc-pv-full">{p.subtitle!.trim()}</p>}
-          <Full placeholder="Itt jelenik meg a leírás." className="bc-pv-text">{p.description}</Full>
-          <Rows rows={[['Érvényes', p.validUntil], ['Tudnivalók', p.terms], ['Kuponkód', p.code], ['Ár', p.price]]} />
+          {p.descriptionRow !== false && <Full placeholder="Itt jelenik meg a leírás." className="bc-pv-text">{p.description}</Full>}
+          <Rows rows={[['Érvényes', p.validity === false ? undefined : p.validUntil], ['Tudnivalók', p.terms], ['Kuponkód', p.code], ['Ár', p.price]]} />
           {has(p.buttonText) && <span className="bc-btn is-sm is-block bc-pv-btn">{p.buttonText!.trim()}</span>}
         </div>
       </article>
@@ -100,8 +112,8 @@ function Coupon(p: CouponPreview & V) {
         <Clamp k="partner" label="A partner neve" lines={1} placeholder="Partner neve" className="bc-pv-meta">{p.partnerName}</Clamp>
         <Clamp k="title" label="A kupon neve" lines={2} as="h3" placeholder="Kupon neve" className="bc-pv-title">{p.title}</Clamp>
         {has(p.subtitle) && <Clamp k="subtitle" label="Az alcím" lines={1} placeholder="" className="bc-pv-text">{p.subtitle}</Clamp>}
-        <Clamp k="description" label="A feltételek" lines={2} placeholder="Feltételek helye" className="bc-pv-text">{p.description}</Clamp>
-        <p className="bc-pv-meta">{p.validUntil ? `Érvényes: ${p.validUntil}` : 'Érvényesség helye'}</p>
+        {p.descriptionRow !== false && <Clamp k="description" label="A feltételek" lines={2} placeholder="Feltételek helye" className="bc-pv-text">{p.description}</Clamp>}
+        {p.validity !== false && <p className="bc-pv-meta">{p.validUntil ? `Érvényes: ${p.validUntil}` : 'Érvényesség helye'}</p>}
         {has(p.price) && <p className="bc-pv-meta">{p.price}</p>}
       </div>
     </article>
@@ -207,7 +219,7 @@ const regionName = (d: PreviewData) => {
  * levágódna, azt MÉRI és kiírja („A leírás levágódik: 3 sor fér el”), a levágott rész szaggatott jelölést kap.
  * Részletek nézetben a teljes szöveg látszik, a telefon képernyője görget (billentyűzettel is).
  */
-export function PreviewCard({ caption = 'Így látszik az appban', className, view = 'card', aspect, emptyImageText = 'Nincs kép', ...data }: PreviewCardProps) {
+export function PreviewCard({ caption = 'Így látszik az appban', className, view = 'card', aspect, emptyImageText = 'Nincs kép', notes = true, ...data }: PreviewCardProps) {
   const [cuts, setCuts] = useState<Record<string, Cut>>({});
   const report = useCallback<CutReport>((key, label, lines, cut) => {
     setCuts((prev) => {
@@ -239,14 +251,14 @@ export function PreviewCard({ caption = 'Így látszik az appban', className, vi
       </div>
       <figcaption className="bc-pv-caption">
         <span>{caption}</span>
-        <span className="bc-pv-notes" role="status">
+        {notes && <span className="bc-pv-notes" role="status">
           {detail ? <span className="bc-badge is-muted">Részletek: a teljes szöveg látszik</span>
             : list.length === 0
               ? <span className="bc-badge is-success">Minden szöveg kifér</span>
               : list.map(([k, c]) => (
                 <span key={k} className="bc-badge is-warning" data-cut={k}>{c.label} levágódik: {c.lines === 1 ? '1 sor' : `${c.lines} sor`} fér el</span>
               ))}
-        </span>
+        </span>}
       </figcaption>
     </figure>
   );

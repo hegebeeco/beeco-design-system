@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { EditPage, FormSection, IcNew, NumberField, SelectField, TextArea, TextField, type EditStep, type FormError } from '../src';
 import { allapot, mountSablon, wait } from './_sablon-keret';
 
-const ALLAPOTOK: Array<[string, string]> = [['masolat', 'Másolat (minden lépés elérhető)'], ['hosszu', 'Hosszú lépésnevek']];
+const ALLAPOTOK: Array<[string, string]> = [['masolat', 'Másolat (minden lépés elérhető, a nem látott „hátravan”)'], ['hosszu', 'Hosszú lépésnevek']];
 type Kupon = { nev: string; kategoria: string; cim: string; varos: string; leiras: string; kedvezmeny: number | null };
 const URES: Kupon = { nev: '', kategoria: '', cim: '', varos: '', leiras: '', kedvezmeny: null };
 const MASOLAT: Kupon = { nev: '10% kedvezmény kávéra (másolat)', kategoria: 'vendeglatas', cim: 'Ráday u. 12.', varos: 'Budapest', leiras: 'Saját pohárral.', kedvezmeny: 10 };
