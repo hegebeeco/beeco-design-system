@@ -11,6 +11,10 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.41.1 – 2026-10-05 – új piktogram: `filter` (szűrés)
+* `web/js/pics.js`: `pic('filter')` – tölcsér, méz kitöltéssel; a beeco-szelektalj új főmenüjének „Szűrés” gombjához
+  (a szűrők egy gomb mögé kerültek, hogy az első képernyőn játék látsszon).
+
 ## 1.41.0 – 2026-10-05 – Admin UI-tisztítás (Javaslat 19): lapos összegző csempék, Tag, tábla alapsűrűség és keret nélküli változat, szakaszcím
 * **DetailPage összegzés** – a benne álló StatTile-ok laposak (nincs keret/árnyék a kártyán belül), a csempéket vonal választja el.
 * **Tag** (új atom) – tulajdonság-jelvény (típus, kategória, címke, „Kiemelt”), semleges `.bc-badge.is-tag`; állapothoz továbbra is StatusBadge.
