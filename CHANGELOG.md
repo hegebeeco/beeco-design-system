@@ -11,6 +11,13 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.42.1 – 2026-10-05 – a React-csomag modulonként épül (kisebb első betöltés a projektekben)
+* **`dist/react/` modulonként** (`tools/react-build.js`: minden forrásfájl belépési pont + közös darabok `dist/react/reszek/`,
+  esbuild `splitting`). Eddig az egész DS egyetlen fájl volt, így a projekt buildje (Vite/Rollup) minden használt DS-elemet a
+  belépő-csomagba tett – akkor is, ha csak egy lusta oldal használta. Most minden elem abba a csomagba kerül, ahol használják.
+  Az admin belépő-csomagja így 279 → 213 kB (gzip). Az import ugyanaz (`@beeco/design-system/react`), semmi nem változik a
+  projektekben. A `--check` a régi / fölösleges fájlt is jelzi.
+
 ## 1.42.0 – 2026-10-05 – Admin UX-elemek (Javaslat 20): lépésenkénti szerkesztő, kereső-paletta, sorbeli kapcsoló, bővített előnézet, saját naptár-fajták, nyomtatás
 
 Mellékverzió (ADMINAPP; Kristóf jóváhagyta, 2026-10-05) – minden új lehetőség opcionális, semmi nem változott nevet. Javaslatlap: `docs/javaslatok/20-admin-ux-elemek.md`.

@@ -21,9 +21,17 @@ const common = { bundle: true, format: 'esm', jsx: 'automatic', target: 'es2020'
 async function main() {
   const outputs = [];
   // 1. A projekteknek: React, Radix külső
-  const lib = await esbuild.build({ ...common, entryPoints: [path.join(ROOT, 'react/src/index.ts')], outfile: path.join(ROOT, 'dist/react/index.js'),
-    external: ['react', 'react-dom', 'react/jsx-runtime', '@radix-ui/*', '@tanstack/*', 'react-easy-crop'] });
+  //    Modulonként (1.42.1): minden forrásfájl belépési pont + közös darabok (splitting) – így a projekt buildje (Rollup/Vite)
+  //    minden DS-elemet abba a csomagba tesz, ahol használják; egyetlen nagy fájlnál az egész DS a belépő-csomagba került.
+  const srcDir = path.join(ROOT, 'react/src');
+  const modulok = [];
+  (function bejar(d) { for (const f of fs.readdirSync(d, { withFileTypes: true })) { const t = path.join(d, f.name);
+    if (f.isDirectory()) bejar(t); else if (/\.(ts|tsx)$/.test(f.name) && !/\.(d|test)\.tsx?$/.test(f.name)) modulok.push(t); } })(srcDir);
+  modulok.sort();
+  const lib = await esbuild.build({ ...common, entryPoints: modulok, outdir: path.join(ROOT, 'dist/react'), outbase: srcDir, splitting: true,
+    chunkNames: 'reszek/[name]-[hash]', external: ['react', 'react-dom', 'react/jsx-runtime', '@radix-ui/*', '@tanstack/*', 'react-easy-crop'] });
   outputs.push(...lib.outputFiles);
+  const libUtak = new Set(lib.outputFiles.map((o) => o.path));
   // 2. A tesztlapoknak: minden benne (önálló oldal)
   const dir = path.join(ROOT, 'react/tesztlapok');
   const pages = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith('.tsx') && !f.startsWith('_')) : [];
@@ -60,6 +68,10 @@ async function main() {
   outputs.push({ path: path.join(ROOT, 'dist/meres/oldal-meres.js'), text: `${banner}\n/* Használat a böngészőben: const L = window.bcMeres({ w: innerWidth, touch: true }); – leletek { kat, sulyos, mi, hol } */\nwindow.bcMeres = ${meresFn.toString()};\n` });
 
   let stale = 0;
+  // A dist/react régi .js-fájljai (más hash, törölt modul) – a types/ marad
+  (function regi(d) { if (!fs.existsSync(d)) return; for (const f of fs.readdirSync(d, { withFileTypes: true })) { const t = path.join(d, f.name);
+    if (f.isDirectory()) { if (f.name !== 'types') regi(t); } else if (t.endsWith('.js') && !libUtak.has(t)) {
+      if (check) { console.log(`ELAVULT (törlendő): ${path.relative(ROOT, t)}`); stale++; } else { fs.unlinkSync(t); console.log(`törölve: ${path.relative(ROOT, t)}`); } } } })(path.join(ROOT, 'dist/react'));
   for (const o of outputs) {
     const rel = path.relative(ROOT, o.path);
     const old = fs.existsSync(o.path) ? fs.readFileSync(o.path, 'utf8') : null;
