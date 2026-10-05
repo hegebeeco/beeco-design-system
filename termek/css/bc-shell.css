@@ -75,7 +75,8 @@
 @media (prefers-reduced-motion: reduce) { .bc-shell { transition: none; } }
 /* Keskeny képernyő: az oldalsáv behúzható fiókká válik (a projekt JS-e kapcsolja a .is-open-t) */
 @media (max-width: 900px) {
-  .bc-shell { grid-template-columns: minmax(0, 1fr); }
+  /* a tömör sáv rácsa (.is-compact, erősebb szelektor) se maradjon kétoszlopos – 1.41.2 */
+  .bc-shell, .bc-shell.is-compact { grid-template-columns: minmax(0, 1fr); }
   .bc-sidebar { position: fixed; inset: 0 auto 0 0; z-index: var(--bc-z-drawer); width: min(300px, 86vw); transform: translateX(-100%); transition: transform var(--bc-t-slow) var(--bc-ease-drawer); box-shadow: var(--bc-shadow-l); }
   .bc-sidebar.is-open { transform: none; }
   .bc-content { padding: var(--bc-sp-4); }

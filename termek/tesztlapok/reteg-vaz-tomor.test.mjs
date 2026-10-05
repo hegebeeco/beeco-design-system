@@ -11,6 +11,10 @@ export default async function ({ page, t }) {
   await t('érintés: a 44 px-es érintési felület marad (telefonos fiók)', async () => {
     await page.setViewportSize({ width: 390, height: 844 });
     try {
+      // 1.41.2: a tömör rács (224 px + 1fr) telefonon nem írhatja felül az egyoszlopos elrendezést
+      await page.waitForFunction(() => getComputedStyle(document.querySelector('.bc-shell')).gridTemplateColumns.split(' ').length === 1, null, { timeout: 3000 }).catch(() => {});
+      const fo = await page.locator('.bc-main').evaluate((el) => Math.round(el.getBoundingClientRect().width));
+      ok(fo >= 380, `telefonon a tartalom ${fo} px széles (a teljes 390 px várt) – a tömör rács felülírja az egyoszlopos elrendezést`);
       await page.getByRole('button', { name: 'Menü megnyitása' }).click(); const d = page.getByRole('dialog'); await d.waitFor();
       const h = (await d.getByRole('link', { name: 'Kuponok' }).boundingBox()).height;
       ok(h >= 44 || !(await page.evaluate(() => matchMedia('(pointer: coarse)').matches)), `érintésen ${h} px (≥ 44 várt)`);

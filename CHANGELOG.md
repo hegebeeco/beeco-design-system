@@ -11,6 +11,11 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.41.2 – 2026-10-05 – javítás: tömör AppShell telefonon egyoszlopos
+* **AppShell `density="compact"`** – 900 px alatt a `.bc-shell.is-compact` rácsa (224 px + 1fr, erősebb szelektor) felülírta az
+  egyoszlopos elrendezést: telefonon a teljes felület 224 px széles volt, a képernyő jobb oldala üres. A keskeny nézet szabálya
+  most a tömör változatra is vonatkozik (1.38.0 óta élő hiba). Tesztlap: `reteg-vaz-tomor` (a tartalom telefonon a teljes szélességet kapja).
+
 ## 1.41.1 – 2026-10-05 – új piktogram: `filter` (szűrés)
 * `web/js/pics.js`: `pic('filter')` – tölcsér, méz kitöltéssel; a beeco-szelektalj új főmenüjének „Szűrés” gombjához
   (a szűrők egy gomb mögé kerültek, hogy az első képernyőn játék látsszon).
