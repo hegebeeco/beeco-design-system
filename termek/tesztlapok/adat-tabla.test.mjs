@@ -122,4 +122,12 @@ export default async function ({ page, t }) {
     if (w > 640) ok(h === 0, `széles nézetben a sáv ${h}px magas`);
     else ok(h > 0, 'keskeny nézetben a Rendezés-sáv eltűnt');
   });
+  await t('bare + defaultDensity (Javaslat 19): a tábla burkán nincs keret és árnyék; alapból sűrű, a kapcsolóval váltható', async () => {
+    const box = c('tabla-bare');
+    const w = await box.locator('.bc-dt-wrap').evaluate((e) => { const s = getComputedStyle(e); return [s.boxShadow, s.borderTopWidth]; });
+    ok(w[0] === 'none' && w[1] === '0px', `keret/árnyék: ${w}`);
+    ok((await box.locator('.bc-dt.is-dense').count()) === 1, 'nem sűrű alapból');
+    await box.locator('.bc-seg-item', { hasText: 'Kényelmes' }).click();
+    await until(async () => (await box.locator('.bc-dt.is-dense').count()) === 0, 'nem váltott kényelmesre');
+  });
 }

@@ -12,6 +12,8 @@
 .bc-badge.is-info    { color: var(--bc-info-ink);    background: var(--bc-info-bg); }
 .bc-badge.is-accent  { color: var(--bc-on-accent);   background: var(--bc-accent); }
 .bc-badge.is-muted   { color: var(--bc-ink-soft); border-color: var(--bc-line-soft); }
+/* Javaslat 19: tulajdonság (típus, kategória, címke) – semleges, nem állapot; a „lezárult” állapot marad is-muted */
+.bc-badge.is-tag     { color: var(--bc-ink); background: var(--bc-surface-2); border-color: var(--bc-line-soft); font-weight: var(--bc-fw-semibold); }
 
 /* Figyelmeztető sáv az oldalon: <div class="bc-alert is-danger" role="alert"><strong>…</strong> <p>…</p></div> */
 .bc-alert { display: flex; gap: var(--bc-sp-3); align-items: flex-start; padding: var(--bc-sp-3) var(--bc-sp-4);

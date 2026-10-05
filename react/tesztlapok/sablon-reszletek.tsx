@@ -1,6 +1,6 @@
 // Tesztlap – DetailPage (06c): egy POI részletei mintaadattal; állapotok: ?allapot=toltes|hiba|tiltott|hosszu
 import { useState } from 'react';
-import { DetailPage, notify, type DetailAction, type TabItem } from '../src';
+import { StatTile, Tag, DetailPage, notify, type DetailAction, type TabItem } from '../src';
 import { allapot, mountSablon, wait } from './_sablon-keret';
 
 const ALLAPOTOK: Array<[string, string]> = [['toltes', 'Töltés'], ['hiba', 'Hiba'], ['tiltott', 'Nincs jogosultság'], ['hosszu', 'Hosszú cím, sok fül és gomb']];
@@ -54,11 +54,17 @@ function Oldal() {
         breadcrumbs={[{ label: 'Admin', href: 'sablon-lista.html' }, { label: 'POI-k', href: 'sablon-lista.html' }, { label: nev }]}
         actions={torolve ? [] : actions}
         summary={
+          <>
           <div className="bc-row" style={{ alignItems: 'flex-start' }}>
             <span className={torolve ? 'bc-badge is-danger' : 'bc-badge is-success'}>{torolve ? 'törölve' : 'aktív'}</span>
-            <span className="bc-badge is-muted">mintaadat</span>
+            <Tag>mintaadat</Tag>
             <p style={{ margin: 0, flex: '1 1 240px' }}>Kategória: Vendéglátás · Címkék: bio, helyi termék · 4 kép · 3 kupon</p>
           </div>
+          <div className="bc-stats" data-osszegzes-csempek>
+            <StatTile label="Beváltások" help="Mintaadat: a POI kuponjainak beváltásai." value={128} unit="db" />
+            <StatTile label="Frissesség" help="Mintaadat: szöveges érték." value={null} text="Frissítésre vár" />
+          </div>
+          </>
         }
         tabs={tabs} tabsLabel="A POI adatai"
         side={<>

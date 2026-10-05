@@ -53,6 +53,10 @@ export type DataTableProps<T> = {
   onDensityChange?: (d: 'comfortable' | 'dense') => void;
   /** Sűrűség-kapcsoló a sávban (alap: igen) */
   densityToggle?: boolean;
+  /** Kezdő sűrűség, ha nem vezérelt (Javaslat 19) – pl. admin-táblákon 'dense' */
+  defaultDensity?: 'comfortable' | 'dense';
+  /** Keret és árnyék nélkül – kártyába, panelbe ágyazva (Javaslat 19) */
+  bare?: boolean;
   /** Telefonon: 'scroll' (alap, rögzített első oszlop) vagy 'cards' (soronként kártya) */
   mobile?: 'scroll' | 'cards';
   /** Extra elemek a táblázat fölötti sávban (jobbra) */
@@ -98,7 +102,7 @@ export function DataTable<T>(p: DataTableProps<T>) {
   const [sorting, setSorting] = useCtl(p.sorting, p.onSortingChange, []);
   const [selection, setSelection] = useCtl(p.selection, p.onSelectionChange, {});
   const [pagination, setPagination] = useCtl(p.pagination, p.onPaginationChange, { pageIndex: 0, pageSize: (p.pageSizes ?? [10, 25, 100])[1] ?? 25 });
-  const [density, setDensity] = useCtl(p.density, p.onDensityChange, 'comfortable');
+  const [density, setDensity] = useCtl(p.density, p.onDensityChange, p.defaultDensity ?? 'comfortable');
   const [expanded, setExpanded] = useState<ExpandedState>({});
   const [notice, setNotice] = useState<string>();
   const server = p.serverRowCount !== undefined;
@@ -160,7 +164,7 @@ export function DataTable<T>(p: DataTableProps<T>) {
   const body = status !== 'ready' || !data.length;
 
   return (
-    <div ref={gyoker} className={cx('bc-dt', density === 'dense' && 'is-dense', mobile === 'cards' && 'is-cards', rejtett.length > 0 && 'has-hidden')}>
+    <div ref={gyoker} className={cx('bc-dt', p.bare && 'is-bare', density === 'dense' && 'is-dense', mobile === 'cards' && 'is-cards', rejtett.length > 0 && 'has-hidden')}>
       <p className="bc-sr" aria-live="polite">{selIds.length ? `${selIds.length} kijelölt ${itemLabel}` : ''}</p>
       {(selectable || p.densityToggle !== false || p.toolbar || p.captionVisible || mobile === 'cards') && <div className="bc-dt-bar">
         {selIds.length ? (

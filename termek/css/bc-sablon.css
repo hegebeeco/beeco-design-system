@@ -20,6 +20,12 @@
 .bc-sablon-aside-title { margin: 0; font-size: var(--bc-fs-l); }
 .bc-sablon-summary-block > :first-child { margin-top: 0; }
 .bc-sablon-summary-block > :last-child { margin-bottom: 0; }
+/* Javaslat 19: az összegző blokk maga is kártya – benne a csempék laposak (nincs kártya a kártyában), a sorokat vonal választja el */
+.bc-sablon-summary-block .bc-stats > .bc-stat { background: transparent; border: 0; border-radius: 0; box-shadow: none; padding: var(--bc-sp-2) 0; }
+.bc-sablon-summary-block .bc-stats > .bc-stat + .bc-stat { border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }
+@container (min-width: 560px) {
+  .bc-sablon-summary-block .bc-stats > .bc-stat + .bc-stat { border-top: 0; border-left: var(--bc-bw-hair) solid var(--bc-line-soft); padding-left: var(--bc-sp-4); }
+}
 .bc-sablon-skel { display: grid; gap: var(--bc-sp-3); }
 .bc-sablon-skel > .bc-skeleton { display: block; height: var(--bc-sp-6); }
 .bc-sablon-skel > .bc-skeleton:first-child { height: var(--bc-sp-8); }

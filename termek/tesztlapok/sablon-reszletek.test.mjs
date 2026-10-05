@@ -63,4 +63,11 @@ export default async function ({ page, t: t0 }) {
       ok((await m.innerText()).includes('Előbb tölts fel legalább egy képet'), 'nincs tiltás-indok');
     } finally { await page.keyboard.press('Escape'); await page.setViewportSize({ width: 1280, height: 800 }); await go(); }
   });
+  await t('összegzés (Javaslat 19): a csempék laposak – nincs keret, árnyék a kártyán belül; a Tag semleges jelvény', async () => {
+    await go();
+    const st = await page.locator('[data-osszegzes-csempek] .bc-stat').first().evaluate((e) => { const c = getComputedStyle(e); return [c.boxShadow, c.borderTopWidth, c.backgroundColor]; });
+    ok(st[0] === 'none', `árnyék: ${st[0]}`);
+    ok(st[1] === '0px', `keret: ${st[1]}`);
+    ok((await page.locator('.bc-badge.is-tag').count()) >= 1, 'nincs Tag');
+  });
 }

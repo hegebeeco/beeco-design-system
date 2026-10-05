@@ -111,6 +111,7 @@ function Oldal() {
             columns={[{ accessorKey: 'nev', header: 'Név', cell: ({ row }) => <a href="#rovid">{row.original.nev}</a> }]} />
         </Case>
         <Case id="tabla-kartya-sav" title="Kártyanézet sűrűség-kapcsoló nélkül: széles nézetben nincs üres eszközsáv (Javaslat 18)" wide><DataTable data={pois(3)} columns={poiOszlopok} caption="POI-k – kártyanézet" getRowId={ID} rowLabel={NEV} itemLabel="POI" mobile="cards" densityToggle={false} /></Case>
+        <Case id="tabla-bare" title="Kártyába ágyazva: keret nélkül (bare), alapból sűrű (defaultDensity) – Javaslat 19" wide><section className="bc-card"><h3 className="bc-card-title">Kártyában</h3><DataTable data={pois(3)} columns={poiOszlopok} caption="POI-k – kártyában" getRowId={ID} rowLabel={NEV} itemLabel="POI" bare defaultDensity="dense" /></section></Case>
         <Case id="tabla-ures" title="0 sor – üres állapot teendővel"><Ures /></Case>
         <Case id="tabla-szurt" title="Szűrésre üres – Szűrők törlése"><Ures szurt /></Case>
         <Case id="tabla-tolt" title="Töltés: a fejléc marad, csontváz-sorok">

@@ -64,6 +64,8 @@
 @keyframes bc-dt-bar { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
 /* Görgethető burok: rögzített fejléc (a bc-table th sticky), max. magasság */
 .bc-dt-wrap { max-height: var(--_dt-max, 70vh); overflow: auto; }
+/* Javaslat 19: kártyába / panelbe ágyazott tábla – keret és árnyék nélkül (nincs kártya a kártyában) */
+.bc-dt.is-bare .bc-dt-wrap { background: transparent; border: 0; border-radius: 0; box-shadow: none; }
 /* A görgető burok a rejtett (.bc-sr, abszolút) szövegek tartója is – különben azok kitolnák az oldalt telefonon */
 .bc-dt-wrap, .bc-chart-table, .bc-chart-scroll { position: relative; }
 .bc-table.is-fixed { table-layout: fixed; }

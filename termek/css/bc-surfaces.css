@@ -21,6 +21,8 @@ a.bc-card, button.bc-card { display: block; width: 100%; text-align: left; font:
 .bc-card.is-interactive { cursor: pointer; transition: transform var(--bc-t-press) var(--bc-ease-out), box-shadow var(--bc-t-press) var(--bc-ease-out); }
 .bc-card.is-interactive:active { transform: translate(var(--bc-shadow-m-x), var(--bc-shadow-m-y)); box-shadow: none; }
 .bc-card-title { font-family: var(--bc-font-display); font-size: var(--bc-fs-l); font-weight: 400; margin: 0 0 var(--bc-sp-3); }
+/* Javaslat 19: szakaszcím kártya nélkül (tagolt oldalon) – a kártyacímmel azonos megjelenés */
+.bc-section-title { font-family: var(--bc-font-display); font-size: var(--bc-fs-l); font-weight: 400; margin: 0 0 var(--bc-sp-3); }
 
 /* Oldalfej: cím + (opcionális) leírás + műveletek jobbra */
 .bc-page-header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--bc-sp-3) var(--bc-sp-5); margin-bottom: var(--bc-sp-5); }

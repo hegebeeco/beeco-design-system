@@ -11,6 +11,13 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.41.0 – 2026-10-05 – Admin UI-tisztítás (Javaslat 19): lapos összegző csempék, Tag, tábla alapsűrűség és keret nélküli változat, szakaszcím
+* **DetailPage összegzés** – a benne álló StatTile-ok laposak (nincs keret/árnyék a kártyán belül), a csempéket vonal választja el.
+* **Tag** (új atom) – tulajdonság-jelvény (típus, kategória, címke, „Kiemelt”), semleges `.bc-badge.is-tag`; állapothoz továbbra is StatusBadge.
+* **DataTable `defaultDensity`** – kezdő sűrűség vezérlés nélkül (pl. admin: `'dense'`); **`bare`** – keret és árnyék nélkül, kártyába ágyazva.
+* **`.bc-section-title`** – szakaszcím kártya nélkül, a kártyacímmel azonos megjelenéssel.
+* Tesztlapok: `sablon-reszletek`, `adat-mutato`, `adat-tabla`.
+
 ## 1.40.0 – 2026-10-05 – Admin UI-kiegészítések (Javaslat 18): szöveges StatTile, FilePicker, LocationPicker mezőnevek, üres eszközsáv
 * **StatTile `text`** – szöveges érték (pl. „Frissítésre vár”) a szám helyett, tördelhető (`.bc-stat-value.is-text`); nincs „—” és delta.
 * **FilePicker** (új molekula, `react/src/media`) – egy fájl kiválasztása feltöltés NÉLKÜL: drop-zóna, a DS tartalom-alapú ellenőrzése

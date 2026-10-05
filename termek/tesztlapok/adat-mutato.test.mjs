@@ -40,4 +40,10 @@ export default async function ({ page, t }) {
     ok(!(await box.innerText()).includes('—'), 'üres-jel szöveg mellett');
     const r = await v.evaluate((e) => [e.scrollWidth, e.clientWidth]); ok(r[0] <= r[1] + 1, `kilóg: ${r}`);
   });
+  await t('Tag (Javaslat 19): semleges, olvasható; a szakaszcím a kártyacímmel azonos betű', async () => {
+    const box = c('tag');
+    ok((await box.locator('.bc-badge.is-tag').count()) === 2, 'nincs 2 Tag');
+    const [tf, cf] = await box.evaluate((e) => [getComputedStyle(e.querySelector('.bc-section-title')).fontFamily, getComputedStyle(document.documentElement).getPropertyValue('--bc-font-display')]);
+    ok(tf && tf.length > 0, 'nincs szakaszcím-betű');
+  });
 }

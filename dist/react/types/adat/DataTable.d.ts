@@ -39,6 +39,10 @@ export type DataTableProps<T> = {
     onDensityChange?: (d: 'comfortable' | 'dense') => void;
     /** Sűrűség-kapcsoló a sávban (alap: igen) */
     densityToggle?: boolean;
+    /** Kezdő sűrűség, ha nem vezérelt (Javaslat 19) – pl. admin-táblákon 'dense' */
+    defaultDensity?: 'comfortable' | 'dense';
+    /** Keret és árnyék nélkül – kártyába, panelbe ágyazva (Javaslat 19) */
+    bare?: boolean;
     /** Telefonon: 'scroll' (alap, rögzített első oszlop) vagy 'cards' (soronként kártya) */
     mobile?: 'scroll' | 'cards';
     /** Extra elemek a táblázat fölötti sávban (jobbra) */

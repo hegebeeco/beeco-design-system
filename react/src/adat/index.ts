@@ -21,3 +21,4 @@ export type { ChartData, ChartSeries, ChartPalette } from './chart/types';
 export { fmt as formatNumberHu, matchText, niceTicks } from './format';
 export { createColumnHelper, type ColumnDef, type SortingState, type RowSelectionState, type PaginationState } from '@tanstack/react-table';
 export { StatusBadge, type StatusBadgeProps, type StatusTone } from './StatusBadge';
+export { Tag, type TagProps } from './Tag';
