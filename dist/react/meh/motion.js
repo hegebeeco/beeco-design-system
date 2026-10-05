@@ -1,4 +1,4 @@
-/* beeco design system 1.43.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.43.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   HexLoader,
   ProgressBar,
@@ -7,8 +7,8 @@ import {
   shake,
   useCountUp,
   useReducedMotion
-} from "../reszek/chunk-T2RTDYPW.js";
-import "../reszek/chunk-4NETF2NE.js";
+} from "../reszek/chunk-Y4DJTHNU.js";
+import "../reszek/chunk-TXOE2PSE.js";
 export {
   HexLoader,
   ProgressBar,

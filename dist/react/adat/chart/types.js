@@ -1,4 +1,4 @@
-/* beeco design system 1.43.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.43.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   allValues,
   hasGap,
@@ -6,7 +6,7 @@ import {
   isGap,
   paletteClass,
   visibleValues
-} from "../../reszek/chunk-LABSVBLX.js";
+} from "../../reszek/chunk-V2AO7HRM.js";
 export {
   allValues,
   hasGap,

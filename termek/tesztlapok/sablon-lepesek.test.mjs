@@ -129,4 +129,16 @@ export default async function ({ page, t }) {
     try { await page.waitForTimeout(150); ok(await page.evaluate(() => document.documentElement.scrollWidth <= 321), 'kilógás'); }
     finally { await page.setViewportSize({ width: 1280, height: 800 }); await go(); }
   });
+  await t('1.43.1: a „Tovább” kattintás az utolsó lépésre NEM küldi be az űrlapot (a gomb nem változik helyben Mentéssé)', async () => {
+    await go();
+    await page.locator('input[name="nev"]').fill('Kávé saját pohárral');
+    await page.locator('select[name="kategoria"]').selectOption('vendeglatas');
+    await next().click(); await until(async () => (await title()).includes('2/3'), await title());
+    await page.locator('input[name="cim"]').fill('Ráday u. 12.');
+    await next().click(); await until(async () => (await title()).includes('3/3'), await title());
+    await page.waitForTimeout(900); // a minta-mentés 400 ms
+    ok((await summary.count()) === 0, 'az utolsó lépésre lépve beküldte az űrlapot (hibaösszesítő jelent meg)');
+    ok((await page.locator('.bc-sablon-step-error').count()) === 0, 'az utolsó lépésre lépve ellenőrzött (beküldés)');
+    ok((await out()).includes('mentett név: –'), 'az utolsó lépésre lépve elmentette');
+  });
 }

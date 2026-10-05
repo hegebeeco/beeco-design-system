@@ -1,8 +1,8 @@
-/* beeco design system 1.43.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.43.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   Logo
-} from "../reszek/chunk-QJHEHMBU.js";
-import "../reszek/chunk-4NETF2NE.js";
+} from "../reszek/chunk-SFQ44PXO.js";
+import "../reszek/chunk-TXOE2PSE.js";
 export {
   Logo
 };

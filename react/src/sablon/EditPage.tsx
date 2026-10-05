@@ -283,9 +283,11 @@ export function EditPage(p: EditPageProps) {
               <FormActions>
                 {cancel}
                 {steps && cur > 0 && <Button variant="secondary" icon={<IcLeft />} disabled={busy} onClick={() => goStep(cur - 1, 'title')}>{p.steps!.backLabel ?? 'Vissza'}</Button>}
+                {/* 1.43.1: külön kulcs – különben a React ugyanazt a <button>-t használja újra, és a „Tovább” kattintása közben
+                    type="submit"-re váltva a böngésző még ugyanabban a kattintásban beküldené az űrlapot (az utolsó lépésre lépve mentett) */}
                 {last
-                  ? <Button type="submit" busy={busy} done={done} icon={p.submitIcon ?? <IcSave />} aria-keyshortcuts={keys}>{p.submitLabel ?? 'Mentés'}</Button>
-                  : <Button ref={nextBtn} icon={<IcRight />} onClick={next}>{p.steps!.nextLabel ?? 'Tovább'}</Button>}
+                  ? <Button key="bc-submit" type="submit" busy={busy} done={done} icon={p.submitIcon ?? <IcSave />} aria-keyshortcuts={keys}>{p.submitLabel ?? 'Mentés'}</Button>
+                  : <Button key="bc-next" type="button" ref={nextBtn} icon={<IcRight />} onClick={next}>{p.steps!.nextLabel ?? 'Tovább'}</Button>}
               </FormActions>
             </div>
           </form>

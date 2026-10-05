@@ -1,6 +1,6 @@
 {
   "_readme": "GENERÁLT (tools/webflow-build.js) – kézzel ne szerkeszd. Ez a Webflow „beeco DS” változó-kollekció teljes tartalma. A `sotet` mező a kollekció „Sötét” módjának értéke (null = nincs külön sötét érték).",
-  "version": "1.43.0",
+  "version": "1.43.1",
   "kollekcio": "beeco DS",
   "modok": [
     "Base mode",

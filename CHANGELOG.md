@@ -11,6 +11,12 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.43.1 – 2026-10-05 – javítás: lépés-módban az utolsó lépésre lépés nem küldi be az űrlapot
+* **EditPage `steps`** – az utolsó előtti lépésen a „Tovább” kattintása közben a React ugyanazt a `<button>`-t használta újra
+  `type="submit"`-tel (Mentés), így a böngésző még ugyanabban a kattintásban beküldte az űrlapot: az utolsó lépésre lépve
+  mentett (az adminban így jött létre egy partner kétszer). Most a két gomb külön kulcsot és típust kap. 1.42.0 óta élő hiba.
+  Tesztlap: `sablon-lepesek` (új forgatókönyv).
+
 ## 1.43.0 – 2026-10-05 – A Javaslat 20 bekötésének finomításai (Javaslat 21): lépésjelző másolásnál, nyomtatható eszközsor, kikapcsolható kupon-sorok, oszlopfejléc-súgó
 
 Mellékverzió (ADMINAPP; Kristóf jóváhagyta, 2026-10-05) – minden új lehetőség opcionális, semmi nem változott nevet. Javaslatlap: `docs/javaslatok/21-admin-bekotes-finomitasok.md`.

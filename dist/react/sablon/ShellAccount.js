@@ -1,11 +1,11 @@
-/* beeco design system 1.43.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.43.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ShellAccount
-} from "../reszek/chunk-QKDDRU23.js";
-import "../reszek/chunk-KYQQFEZR.js";
-import "../reszek/chunk-WGKGGQ7C.js";
-import "../reszek/chunk-PBCQW4UV.js";
-import "../reszek/chunk-4NETF2NE.js";
+} from "../reszek/chunk-UAYM4KFJ.js";
+import "../reszek/chunk-4BI2BT2T.js";
+import "../reszek/chunk-725P2IGB.js";
+import "../reszek/chunk-FT2OLN4K.js";
+import "../reszek/chunk-TXOE2PSE.js";
 export {
   ShellAccount
 };

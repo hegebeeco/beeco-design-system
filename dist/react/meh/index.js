@@ -1,20 +1,20 @@
-/* beeco design system 1.43.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
-import "../reszek/chunk-RI35TE5H.js";
+/* beeco design system 1.43.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+import "../reszek/chunk-2JAWDNOX.js";
 import {
   BeeSprite
-} from "../reszek/chunk-IOMTW5IA.js";
+} from "../reszek/chunk-EMDBDWSC.js";
 import {
   BeeMoment
-} from "../reszek/chunk-IYB72QSK.js";
+} from "../reszek/chunk-EQKQLON6.js";
 import {
   Bee
-} from "../reszek/chunk-5YKFMX2G.js";
+} from "../reszek/chunk-QRBLQ7CZ.js";
 import {
   pillanatok,
   say,
   szerepek
-} from "../reszek/chunk-CQIT2GAW.js";
-import "../reszek/chunk-JYDHB4GC.js";
+} from "../reszek/chunk-KOQK2IPF.js";
+import "../reszek/chunk-NTYPO63C.js";
 import {
   HexLoader,
   ProgressBar,
@@ -23,8 +23,8 @@ import {
   shake,
   useCountUp,
   useReducedMotion
-} from "../reszek/chunk-T2RTDYPW.js";
-import "../reszek/chunk-4NETF2NE.js";
+} from "../reszek/chunk-Y4DJTHNU.js";
+import "../reszek/chunk-TXOE2PSE.js";
 export {
   Bee,
   BeeMoment,
