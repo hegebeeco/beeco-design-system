@@ -1,10 +1,10 @@
-/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   TooltipIconButton
-} from "../reszek/chunk-75MDGBDX.js";
-import "../reszek/chunk-72KPVFLL.js";
-import "../reszek/chunk-7ZY5MFHX.js";
-import "../reszek/chunk-BVA4MWWR.js";
+} from "../reszek/chunk-O7S5HMRO.js";
+import "../reszek/chunk-PAKWALHM.js";
+import "../reszek/chunk-5GI76K7O.js";
+import "../reszek/chunk-FXE4ZZPK.js";
 export {
   TooltipIconButton
 };

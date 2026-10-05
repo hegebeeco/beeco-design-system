@@ -1,11 +1,11 @@
-/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   dayKey,
   dayLabel,
   groupByDay,
   isoOf,
   timeLabel
-} from "../reszek/chunk-MXSLW5M6.js";
+} from "../reszek/chunk-WTY4OWPZ.js";
 export {
   dayKey,
   dayLabel,

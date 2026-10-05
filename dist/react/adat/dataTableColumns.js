@@ -1,4 +1,4 @@
-/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   DefaultCell,
   expandColumn,
@@ -6,14 +6,14 @@ import {
   metaOf,
   selectColumn,
   wrapColumn
-} from "../reszek/chunk-TK3LOQ3M.js";
-import "../reszek/chunk-HZZXPDMK.js";
-import "../reszek/chunk-UV5HWRQ5.js";
-import "../reszek/chunk-KLRGXZFE.js";
-import "../reszek/chunk-LM7U6PX3.js";
-import "../reszek/chunk-72KPVFLL.js";
-import "../reszek/chunk-7ZY5MFHX.js";
-import "../reszek/chunk-BVA4MWWR.js";
+} from "../reszek/chunk-WW3XNKRA.js";
+import "../reszek/chunk-NAYWA6MR.js";
+import "../reszek/chunk-Q43BAPJH.js";
+import "../reszek/chunk-SR6CVEXD.js";
+import "../reszek/chunk-T2FVZFI7.js";
+import "../reszek/chunk-PAKWALHM.js";
+import "../reszek/chunk-5GI76K7O.js";
+import "../reszek/chunk-FXE4ZZPK.js";
 export {
   DefaultCell,
   expandColumn,

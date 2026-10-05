@@ -1,23 +1,23 @@
-/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   CropDialog,
   cropToFile
-} from "../reszek/chunk-FV7SHSZZ.js";
-import "../reszek/chunk-ZDPXOWWD.js";
-import "../reszek/chunk-32Y57NOD.js";
-import "../reszek/chunk-XVUJOF55.js";
-import "../reszek/chunk-2VPGIMKR.js";
-import "../reszek/chunk-SQ5QUNWT.js";
-import "../reszek/chunk-XC5WBZDX.js";
-import "../reszek/chunk-5QD2ZBRY.js";
-import "../reszek/chunk-NNN6YLCO.js";
-import "../reszek/chunk-XSAN7G7S.js";
-import "../reszek/chunk-OYAC3RBW.js";
-import "../reszek/chunk-FG7TG2MG.js";
-import "../reszek/chunk-KLRGXZFE.js";
-import "../reszek/chunk-72KPVFLL.js";
-import "../reszek/chunk-7ZY5MFHX.js";
-import "../reszek/chunk-BVA4MWWR.js";
+} from "../reszek/chunk-NHRDODI7.js";
+import "../reszek/chunk-HIMZGN3D.js";
+import "../reszek/chunk-XFOUHLIN.js";
+import "../reszek/chunk-VQVBAURU.js";
+import "../reszek/chunk-AKXLROBS.js";
+import "../reszek/chunk-VAFPJPYS.js";
+import "../reszek/chunk-6PT3NFCR.js";
+import "../reszek/chunk-WCAZIFVZ.js";
+import "../reszek/chunk-XTCBEHYV.js";
+import "../reszek/chunk-CUQQBUAU.js";
+import "../reszek/chunk-ADN74CWZ.js";
+import "../reszek/chunk-IKAEKCH4.js";
+import "../reszek/chunk-SR6CVEXD.js";
+import "../reszek/chunk-PAKWALHM.js";
+import "../reszek/chunk-5GI76K7O.js";
+import "../reszek/chunk-FXE4ZZPK.js";
 export {
   CropDialog,
   cropToFile

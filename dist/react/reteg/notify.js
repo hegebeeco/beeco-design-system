@@ -1,11 +1,11 @@
-/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   dismiss,
   getToasts,
   notify,
   pauseToasts,
   subscribe
-} from "../reszek/chunk-VGX5GSDZ.js";
+} from "../reszek/chunk-AWYVQOQU.js";
 export {
   dismiss,
   getToasts,

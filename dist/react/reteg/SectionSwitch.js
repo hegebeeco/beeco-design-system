@@ -1,10 +1,10 @@
-/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   SectionSwitch
-} from "../reszek/chunk-UOXICM3P.js";
-import "../reszek/chunk-RHBBANMV.js";
-import "../reszek/chunk-MAUAX4RV.js";
-import "../reszek/chunk-R34NGBNZ.js";
+} from "../reszek/chunk-OSO2O37K.js";
+import "../reszek/chunk-4E22NCV4.js";
+import "../reszek/chunk-26MQTDXP.js";
+import "../reszek/chunk-H2KWJRHN.js";
 export {
   SectionSwitch
 };

@@ -1,8 +1,8 @@
-/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   StatusBadge
-} from "../reszek/chunk-5QRKTM5C.js";
-import "../reszek/chunk-BVA4MWWR.js";
+} from "../reszek/chunk-NDSDQGQS.js";
+import "../reszek/chunk-FXE4ZZPK.js";
 export {
   StatusBadge
 };

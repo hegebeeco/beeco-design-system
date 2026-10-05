@@ -1,24 +1,24 @@
-/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   DataTable,
   rejtettOszlopok
-} from "../reszek/chunk-VDO7KRMC.js";
-import "../reszek/chunk-5QD2ZBRY.js";
-import "../reszek/chunk-OYDKCSDT.js";
-import "../reszek/chunk-LM6LIZMB.js";
-import "../reszek/chunk-TK3LOQ3M.js";
-import "../reszek/chunk-FGDBA2LX.js";
-import "../reszek/chunk-HZZXPDMK.js";
-import "../reszek/chunk-GJ5ZSVL3.js";
-import "../reszek/chunk-W74WID6F.js";
-import "../reszek/chunk-FG7TG2MG.js";
-import "../reszek/chunk-GD6C3FUU.js";
-import "../reszek/chunk-UV5HWRQ5.js";
-import "../reszek/chunk-KLRGXZFE.js";
-import "../reszek/chunk-LM7U6PX3.js";
-import "../reszek/chunk-72KPVFLL.js";
-import "../reszek/chunk-7ZY5MFHX.js";
-import "../reszek/chunk-BVA4MWWR.js";
+} from "../reszek/chunk-OGX5JXHK.js";
+import "../reszek/chunk-WCAZIFVZ.js";
+import "../reszek/chunk-GWCLO672.js";
+import "../reszek/chunk-652VDSH6.js";
+import "../reszek/chunk-WW3XNKRA.js";
+import "../reszek/chunk-JU5WQH67.js";
+import "../reszek/chunk-NAYWA6MR.js";
+import "../reszek/chunk-AYGFVXWS.js";
+import "../reszek/chunk-BOPNBOG4.js";
+import "../reszek/chunk-IKAEKCH4.js";
+import "../reszek/chunk-UUGA5CYI.js";
+import "../reszek/chunk-Q43BAPJH.js";
+import "../reszek/chunk-SR6CVEXD.js";
+import "../reszek/chunk-T2FVZFI7.js";
+import "../reszek/chunk-PAKWALHM.js";
+import "../reszek/chunk-5GI76K7O.js";
+import "../reszek/chunk-FXE4ZZPK.js";
 export {
   DataTable,
   rejtettOszlopok

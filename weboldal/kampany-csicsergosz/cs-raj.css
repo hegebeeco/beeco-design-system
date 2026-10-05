@@ -2,6 +2,12 @@
    krém → barack → két méz-tónus (#FFD08A, #FFBE5C) → méz: egy színárnyalat, több pont = erősebb méz. */
 [data-cs-raj]{--r-kakao:var(--_csicsergosz---cs-kakao,#6B3B16);--r-krem:var(--_csicsergosz---cs-krem,#FEF7DE);--r-barack:var(--_csicsergosz---cs-barack,#FFE2B5);--r-homok:var(--_csicsergosz---cs-homok,#CB9C7E);--r-mez:var(--_csicsergosz---cs-mez,#FFAA2E);--r-feher:var(--_csicsergosz---cs-feher,#fff);--r-tinta:var(--_csicsergosz---cs-tinta,#1A1A1A);--r-cim:var(--_csicsergosz---cs-font-cim,Lalezar),sans-serif;--r-szoveg:var(--_csicsergosz---cs-font-szoveg,"Open Sans"),sans-serif;width:100%;font-family:var(--r-szoveg);color:var(--r-tinta)}
 [data-cs-raj] *{box-sizing:border-box}
+[data-cs-raj] p,[data-cs-raj] li,[data-cs-raj] span,[data-cs-raj] strong,[data-cs-raj] label,[data-cs-raj] figcaption,[data-cs-raj] ol,[data-cs-raj] ul{color:inherit}
+[data-cs-raj="szamlalo"]:not([data-cs-raj-allapot]){min-height:180px}
+[data-cs-raj="cel"]:not([data-cs-raj-allapot]){min-height:170px}
+[data-cs-raj="verseny"]:not([data-cs-raj-allapot]){min-height:540px}
+[data-cs-raj="fotofal"]:not([data-cs-raj-allapot]){min-height:800px}
+@media (max-width:767px){[data-cs-raj="szamlalo"]:not([data-cs-raj-allapot]){min-height:430px}[data-cs-raj="cel"]:not([data-cs-raj-allapot]){min-height:250px}[data-cs-raj="verseny"]:not([data-cs-raj-allapot]){min-height:940px}[data-cs-raj="fotofal"]:not([data-cs-raj-allapot]){min-height:1380px}}
 [data-cs-raj="cel"]{padding:20px;border:2px solid var(--r-kakao);border-radius:24px 0 24px 0;background:var(--r-feher)}
 .cs_raj_tolt{color:var(--r-kakao)}
 [data-cs-raj-allapot="hiba"]::after{content:"Az adatok most nem érhetők el. Nézz vissza később!";display:block;margin-top:8px;font-weight:600}
@@ -21,11 +27,11 @@
 .cs_raj_sav_toltes{display:block;height:100%;background:var(--r-mez);border-right:2px solid var(--r-kakao);clip-path:inset(0 0 0 0);transition:clip-path calc(var(--_csicsergosz---cs-ido-utvonal-ms,1400) * 1ms) cubic-bezier(.23,1,.32,1)}
 .cs_raj_sav_toltes.is-var{clip-path:inset(0 100% 0 0)}
 .cs_raj_sav_jel{position:absolute;top:4px;bottom:4px;width:2px;background:var(--r-kakao);opacity:.25}
-.cs_raj_cel_allas{margin:8px 0 0;font-size:15px;font-variant-numeric:tabular-nums}
+.cs_raj_cel_allas{margin:8px 0 0;font-size:16px;font-variant-numeric:tabular-nums}
 .cs_raj_cel_hatra{margin:4px 0 0;font-size:16px}
 /* 3. kerületi verseny */
 .cs_raj_fulek{display:inline-flex;gap:0;margin-bottom:16px;border:2px solid var(--r-kakao);border-radius:999px;overflow:hidden;background:var(--r-feher)}
-.cs_raj_ful{min-height:44px;padding:0 20px;border:0;background:transparent;font:700 15px var(--r-szoveg);color:var(--r-kakao);cursor:pointer}
+.cs_raj_ful{min-height:44px;padding:0 20px;border:0;background:transparent;font:700 16px var(--r-szoveg);color:var(--r-kakao);cursor:pointer}
 .cs_raj_ful[aria-selected="true"]{background:var(--r-mez)}
 .cs_raj_ful:focus-visible,.cs_raj_valaszto:focus-visible,.cs_raj_hex:focus-visible{outline:3px solid var(--r-mez);outline-offset:3px}
 .cs_raj_verseny_racs{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:start}
@@ -50,7 +56,7 @@
 .cs_raj_info_bont{font-size:14px}
 .cs_raj_lista_cim{margin:16px 0 6px;font-weight:700}
 .cs_raj_lista{margin:0;padding:0;list-style:none}
-.cs_raj_lista_sor{display:grid;grid-template-columns:28px minmax(0,1fr) 30% 56px;align-items:center;gap:8px;min-height:36px;font-size:15px}
+.cs_raj_lista_sor{display:grid;grid-template-columns:28px minmax(0,1fr) 30% 56px;align-items:center;gap:8px;min-height:36px;font-size:16px}
 .cs_raj_lista_hely{font-weight:700;color:var(--r-kakao)}
 .cs_raj_lista_nev{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cs_raj_lista_sav{height:10px;border-radius:999px;background:var(--r-krem);overflow:hidden}

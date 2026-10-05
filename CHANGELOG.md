@@ -11,6 +11,13 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.45.1 – 2026-10-06 – javítás: Raj modul színöröklés, helyfoglalás, verziósáv
+* **`cs-raj.css`** – a modul szövegei a site elem-szintű stílusa miatt feketék lettek (`li`, `span`): most öröklik a kampány tintáját.
+  Betöltés alatt a blokkok helyet foglalnak (asztalon és mobilon külön), így nincs elrendezés-ugrás (CLS 0,106 → 0).
+  A 15 px-es szövegek 16 px-esek (kevesebb méretlépcső).
+* A kampányoldal a **`@1.45` verziósávra** hivatkozik a jsDelivr-en (README, `head.html`, `footer.html`, mintaadat-cím),
+  így a javítóverziók kódcsere nélkül kijutnak.
+
 ## 1.45.0 – 2026-10-06 – Raj modul a CsicsergŐsz kampánytémához: közösségi számláló, közös cél, kerületi verseny, fotófal
 
 Mellékverzió (WEB; Kristóf kérte, 2026-10-06) – csak új fájlok.

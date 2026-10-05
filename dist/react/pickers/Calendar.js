@@ -1,9 +1,9 @@
-/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   Calendar
-} from "../reszek/chunk-2HMNPE4B.js";
-import "../reszek/chunk-UUERN4KT.js";
-import "../reszek/chunk-BVA4MWWR.js";
+} from "../reszek/chunk-NXHMNTAM.js";
+import "../reszek/chunk-7NHPGZSG.js";
+import "../reszek/chunk-FXE4ZZPK.js";
 export {
   Calendar
 };

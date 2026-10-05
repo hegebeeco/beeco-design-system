@@ -6,7 +6,7 @@
   var d = document;
   var gyokerek = d.querySelectorAll('[data-cs-raj]');
   if (!gyokerek.length) return;
-  var MINTA = 'https://cdn.jsdelivr.net/gh/hegebeeco/beeco-design-system@v1.45.0/weboldal/kampany-csicsergosz/raj-minta.json';
+  var MINTA = 'https://cdn.jsdelivr.net/gh/hegebeeco/beeco-design-system@1.45/weboldal/kampany-csicsergosz/raj-minta.json';
   var forrasEl = d.querySelector('[data-cs-raj-forras]');
   var forras = (forrasEl && forrasEl.getAttribute('data-cs-raj-forras')) || window.CS_RAJ_FORRAS || MINTA;
   var csend = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
