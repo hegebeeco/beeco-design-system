@@ -1,10 +1,10 @@
-/* beeco design system 1.44.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   MonthAgenda,
   MonthLegend
-} from "../reszek/chunk-HQMYWMHE.js";
-import "../reszek/chunk-T2YAZF75.js";
-import "../reszek/chunk-TKJWFI7Y.js";
+} from "../reszek/chunk-356E5ZUT.js";
+import "../reszek/chunk-CHJ6GCTG.js";
+import "../reszek/chunk-UUERN4KT.js";
 export {
   MonthAgenda,
   MonthLegend

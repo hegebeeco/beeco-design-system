@@ -1,11 +1,11 @@
-/* beeco design system 1.44.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   OPS,
   audienceProblems,
   describeAudience,
   newRule,
   ruleProblem
-} from "../reszek/chunk-LHWMX5VT.js";
+} from "../reszek/chunk-CD3OUZAR.js";
 export {
   OPS,
   audienceProblems,

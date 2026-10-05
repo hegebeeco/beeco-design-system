@@ -1,9 +1,9 @@
-/* beeco design system 1.44.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   firstField,
   firstTabbable,
   useReturnFocus
-} from "../reszek/chunk-WXUWELVS.js";
+} from "../reszek/chunk-SQ5QUNWT.js";
 export {
   firstField,
   firstTabbable,

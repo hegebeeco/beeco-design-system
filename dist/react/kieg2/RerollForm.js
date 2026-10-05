@@ -1,19 +1,19 @@
-/* beeco design system 1.44.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   RerollForm
-} from "../reszek/chunk-MPEPHMEW.js";
-import "../reszek/chunk-BJZ2IGIO.js";
-import "../reszek/chunk-ZCABWFQ6.js";
-import "../reszek/chunk-C2PNTW42.js";
-import "../reszek/chunk-MKGLV7DN.js";
-import "../reszek/chunk-O2E34EOS.js";
-import "../reszek/chunk-2SBYXQKF.js";
-import "../reszek/chunk-XCF3RN5V.js";
-import "../reszek/chunk-G3XKMRPE.js";
-import "../reszek/chunk-644IXS53.js";
-import "../reszek/chunk-OH6YOEFY.js";
-import "../reszek/chunk-RJ4AOGN3.js";
-import "../reszek/chunk-DXS6AO6A.js";
+} from "../reszek/chunk-3YGOSIUN.js";
+import "../reszek/chunk-RKQQTCQP.js";
+import "../reszek/chunk-QE44YATO.js";
+import "../reszek/chunk-BESCJQZ2.js";
+import "../reszek/chunk-PKHXHOCV.js";
+import "../reszek/chunk-VRQ45O76.js";
+import "../reszek/chunk-NNN6YLCO.js";
+import "../reszek/chunk-XSAN7G7S.js";
+import "../reszek/chunk-OYAC3RBW.js";
+import "../reszek/chunk-FG7TG2MG.js";
+import "../reszek/chunk-72KPVFLL.js";
+import "../reszek/chunk-7ZY5MFHX.js";
+import "../reszek/chunk-BVA4MWWR.js";
 export {
   RerollForm
 };

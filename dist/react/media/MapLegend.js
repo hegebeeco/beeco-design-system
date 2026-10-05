@@ -1,11 +1,11 @@
-/* beeco design system 1.44.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   HeatScale,
   MapLegend
-} from "../reszek/chunk-GBAGORKK.js";
-import "../reszek/chunk-644IXS53.js";
-import "../reszek/chunk-RJ4AOGN3.js";
-import "../reszek/chunk-DXS6AO6A.js";
+} from "../reszek/chunk-PR6KWHLK.js";
+import "../reszek/chunk-FG7TG2MG.js";
+import "../reszek/chunk-7ZY5MFHX.js";
+import "../reszek/chunk-BVA4MWWR.js";
 export {
   HeatScale,
   MapLegend

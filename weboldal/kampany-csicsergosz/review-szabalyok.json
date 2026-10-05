@@ -11,7 +11,9 @@
     "#FFAA2E",
     "#EA6C18",
     "#FFFFFF",
-    "#1A1A1A"
+    "#1A1A1A",
+    "#FFD08A",
+    "#FFBE5C"
   ],
   "szinTures": 14,
   "betuk": [
@@ -56,5 +58,13 @@
   "animLathato": "cs-latszik",
   "kepMaxKB": 300,
   "kivetel": ".download_block, .footer, footer, .nav, .w-nav",
-  "kivetelIndok": "Site-szintű komponensek (letöltésblokk QR-kódja, lábléc, menü): nem a kampányoldal része, külön jegyben kezelendők."
+  "kivetelIndok": "Site-szintű komponensek (letöltésblokk QR-kódja, lábléc, menü): nem a kampányoldal része, külön jegyben kezelendők.",
+  "palettaMegjegyzes": "A két méz-tónus a kerületi térkép skálája (cs-raj.css).",
+  "tiltott": [
+    {
+      "selector": "[data-cs-raj-allapot=\"minta\"]",
+      "sulyossag": "P1",
+      "uzenet": "Mintaadat van az oldalon: élesítés előtt élő adat kell (raj-adat-szerzodes.md)"
+    }
+  ]
 }

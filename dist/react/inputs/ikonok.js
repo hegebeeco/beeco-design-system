@@ -1,4 +1,4 @@
-/* beeco design system 1.44.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   IcEdit,
   IcInfo,
@@ -10,7 +10,7 @@ import {
   IcSave,
   IcTrash,
   IcX
-} from "../reszek/chunk-RJ4AOGN3.js";
+} from "../reszek/chunk-7ZY5MFHX.js";
 export {
   IcEdit,
   IcInfo,

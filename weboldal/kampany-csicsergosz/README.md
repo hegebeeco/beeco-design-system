@@ -14,7 +14,10 @@ A weboldal-réteg többi szabálya (`docs/weboldal.md`) érvényes rá, a 9. fej
 | `cs-mozgas.css` + `cs-mozgas.js` | a mozgáskészlet (`data-cs-anim`, `data-cs-gyerekek`, `data-cs-szamlal`) | fejkód + lábléckód |
 | `cs-meres.js` | Levi 7 mérési eseménye, GA4-be `gtag`-gel | lábléckód (a `footer.html` része) |
 | `head.html`, `footer.html` | pontosan az, ami a kampányoldalon van (beilleszthető) | Page settings → Custom code |
-| `review-szabalyok.json` | a kampányoldal ellenőrzésének szabályai (paletta, kabala, app-képernyő, események) | a `landing_review.mjs`-nek (minőségkapu skill) |
+| `review-szabalyok.json` | a kampányoldal ellenőrzésének szabályai (paletta, kabala, app-képernyő, események, mintaadat) | a `landing_review.mjs`-nek (minőségkapu skill) |
+| `cs-raj.js` + `cs-raj.css` | **Raj modul**: közösségi számláló, közös cél, kerületi verseny, fotófal | jsDelivr-ről (fej: CSS, lábléc: JS) |
+| `raj-minta.json` | mintaadat a Raj modulhoz (`"minta": true`) | addig, amíg nincs élő végpont |
+| `raj-adat-szerzodes.md` | az élő végpont leírása Bencének | |
 
 ## Használat egy másik oldalon
 
@@ -72,3 +75,17 @@ ablakszintű, capture fázisú figyelő mér, mert a site-szintű Trustindex a h
 újrakattint; ugyanarra az elemre 600 ms-on belül jövő második kattintás nem számít.
 Ellenőrizve 2026-10-05: a GA4-be (`g/collect`) megérkezik a `campaign_landing_view`, `campaign_activity_select`,
 `campaign_faq_expand`, `campaign_primary_cta_click`, egyenként egyszer.
+
+## Raj modul (közösség)
+
+Négy blokk egy JSON-forrásból: `data-cs-raj="szamlalo|cel|verseny|fotofal"` gyökérelemek a Webflow-ban, bennük egy rövid
+betöltés-szöveg (JS nélkül ez látszik). A forrás a számláló gyökér `data-cs-raj-forras` attribútuma: most a `raj-minta.json`,
+élesítéskor Bence végpontja (`raj-adat-szerzodes.md`). Mintaadatnál minden blokk „Mintaadat” címkét kap, és a
+`review-szabalyok.json` P1-et jelez, amíg az oldalon van: **mintaadattal az oldal nem élesíthető.**
+
+| Blokk | Interakció | Mérés |
+|---|---|---|
+| Számláló | a számok felpörögnek, amikor a képernyőre érnek | |
+| Közös cél | haladásjelző (`role=progressbar`), kitöltődik | |
+| Kerületi verseny | sematikus méhsejt-térkép (23 kerület), kattintás/Enter, választólista, Budapest/Városok fül (nyilakkal) | `campaign_district_select`, `campaign_leaderboard_tab` |
+| Fotófal | legfeljebb 8 kép, fókuszpont szerinti kivágás | |

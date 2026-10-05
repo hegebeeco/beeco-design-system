@@ -1,0 +1,333 @@
+{
+ "verzio": 1,
+ "minta": true,
+ "frissitve": "2026-10-05T20:00:00+02:00",
+ "szamlalo": {
+  "itato": 1090,
+  "eteto": 829,
+  "odu": 522,
+  "megfigyeles": 7969,
+  "resztvevo": 3184
+ },
+ "cel": {
+  "cim": "Közös célunk: 2000 madáritató",
+  "mertek": "itato",
+  "cel": 2000,
+  "allas": 1090,
+  "hatarido": "2026-11-30",
+  "szponzor": "E.ON",
+  "jutalom": "az E.ON madárodúkat helyez ki iskolákban (mintaszöveg, a vállalás egyeztetés alatt)"
+ },
+ "keruletek": [
+  {
+   "kod": "I",
+   "nev": "I. kerület",
+   "itato": 28,
+   "eteto": 15,
+   "odu": 28,
+   "megfigyeles": 373,
+   "pont": 642
+  },
+  {
+   "kod": "II",
+   "nev": "II. kerület",
+   "itato": 11,
+   "eteto": 10,
+   "odu": 37,
+   "megfigyeles": 88,
+   "pont": 336
+  },
+  {
+   "kod": "III",
+   "nev": "III. kerület",
+   "itato": 31,
+   "eteto": 43,
+   "odu": 6,
+   "megfigyeles": 299,
+   "pont": 551
+  },
+  {
+   "kod": "IV",
+   "nev": "IV. kerület",
+   "itato": 21,
+   "eteto": 8,
+   "odu": 8,
+   "megfigyeles": 262,
+   "pont": 389
+  },
+  {
+   "kod": "V",
+   "nev": "V. kerület",
+   "itato": 34,
+   "eteto": 10,
+   "odu": 18,
+   "megfigyeles": 86,
+   "pont": 308
+  },
+  {
+   "kod": "VI",
+   "nev": "VI. kerület",
+   "itato": 43,
+   "eteto": 33,
+   "odu": 6,
+   "megfigyeles": 329,
+   "pont": 587
+  },
+  {
+   "kod": "VII",
+   "nev": "VII. kerület",
+   "itato": 15,
+   "eteto": 20,
+   "odu": 40,
+   "megfigyeles": 71,
+   "pont": 376
+  },
+  {
+   "kod": "VIII",
+   "nev": "VIII. kerület",
+   "itato": 44,
+   "eteto": 43,
+   "odu": 28,
+   "megfigyeles": 65,
+   "pont": 466
+  },
+  {
+   "kod": "IX",
+   "nev": "IX. kerület",
+   "itato": 70,
+   "eteto": 20,
+   "odu": 5,
+   "megfigyeles": 325,
+   "pont": 620
+  },
+  {
+   "kod": "X",
+   "nev": "X. kerület",
+   "itato": 62,
+   "eteto": 14,
+   "odu": 21,
+   "megfigyeles": 254,
+   "pont": 587
+  },
+  {
+   "kod": "XI",
+   "nev": "XI. kerület",
+   "itato": 17,
+   "eteto": 40,
+   "odu": 10,
+   "megfigyeles": 332,
+   "pont": 553
+  },
+  {
+   "kod": "XII",
+   "nev": "XII. kerület",
+   "itato": 27,
+   "eteto": 41,
+   "odu": 14,
+   "megfigyeles": 92,
+   "pont": 366
+  },
+  {
+   "kod": "XIII",
+   "nev": "XIII. kerület",
+   "itato": 45,
+   "eteto": 42,
+   "odu": 15,
+   "megfigyeles": 230,
+   "pont": 566
+  },
+  {
+   "kod": "XIV",
+   "nev": "XIV. kerület",
+   "itato": 14,
+   "eteto": 41,
+   "odu": 7,
+   "megfigyeles": 328,
+   "pont": 528
+  },
+  {
+   "kod": "XV",
+   "nev": "XV. kerület",
+   "itato": 11,
+   "eteto": 45,
+   "odu": 16,
+   "megfigyeles": 294,
+   "pont": 542
+  },
+  {
+   "kod": "XVI",
+   "nev": "XVI. kerület",
+   "itato": 51,
+   "eteto": 40,
+   "odu": 30,
+   "megfigyeles": 200,
+   "pont": 623
+  },
+  {
+   "kod": "XVII",
+   "nev": "XVII. kerület",
+   "itato": 37,
+   "eteto": 43,
+   "odu": 32,
+   "megfigyeles": 225,
+   "pont": 625
+  },
+  {
+   "kod": "XVIII",
+   "nev": "XVIII. kerület",
+   "itato": 27,
+   "eteto": 21,
+   "odu": 14,
+   "megfigyeles": 397,
+   "pont": 611
+  },
+  {
+   "kod": "XIX",
+   "nev": "XIX. kerület",
+   "itato": 57,
+   "eteto": 21,
+   "odu": 8,
+   "megfigyeles": 334,
+   "pont": 608
+  },
+  {
+   "kod": "XX",
+   "nev": "XX. kerület",
+   "itato": 27,
+   "eteto": 39,
+   "odu": 34,
+   "megfigyeles": 215,
+   "pont": 583
+  },
+  {
+   "kod": "XXI",
+   "nev": "XXI. kerület",
+   "itato": 54,
+   "eteto": 34,
+   "odu": 21,
+   "megfigyeles": 351,
+   "pont": 720
+  },
+  {
+   "kod": "XXII",
+   "nev": "XXII. kerület",
+   "itato": 70,
+   "eteto": 10,
+   "odu": 10,
+   "megfigyeles": 302,
+   "pont": 592
+  },
+  {
+   "kod": "XXIII",
+   "nev": "XXIII. kerület",
+   "itato": 34,
+   "eteto": 16,
+   "odu": 24,
+   "megfigyeles": 117,
+   "pont": 387
+  }
+ ],
+ "varosok": [
+  {
+   "nev": "Debrecen",
+   "pont": 1301
+  },
+  {
+   "nev": "Szeged",
+   "pont": 1163
+  },
+  {
+   "nev": "Pécs",
+   "pont": 380
+  },
+  {
+   "nev": "Győr",
+   "pont": 1668
+  },
+  {
+   "nev": "Miskolc",
+   "pont": 458
+  },
+  {
+   "nev": "Kecskemét",
+   "pont": 1865
+  },
+  {
+   "nev": "Székesfehérvár",
+   "pont": 1442
+  },
+  {
+   "nev": "Nyíregyháza",
+   "pont": 1473
+  },
+  {
+   "nev": "Szombathely",
+   "pont": 942
+  },
+  {
+   "nev": "Veszprém",
+   "pont": 996
+  }
+ ],
+ "fotok": [
+  {
+   "kep": "https://images.unsplash.com/photo-1576442061090-17df1d256d7b?w=640&q=70&auto=format&fit=max",
+   "faj": "Fekete rigó",
+   "hely": "XII. kerület",
+   "szerzo": "Chris / Unsplash",
+   "fokusz": "55% 40%"
+  },
+  {
+   "kep": "https://images.unsplash.com/photo-1742676915509-5700bf8a8c0a?w=640&q=70&auto=format&fit=max",
+   "faj": "Vörösbegy",
+   "hely": "Szentendre",
+   "szerzo": "Doncoombez / Unsplash",
+   "fokusz": "50% 25%"
+  },
+  {
+   "kep": "https://images.unsplash.com/photo-1623771547547-098bf3d31c12?w=640&q=70&auto=format&fit=max",
+   "faj": "Széncinege",
+   "hely": "XIII. kerület",
+   "szerzo": "Amee Fairbank-Brown / Unsplash",
+   "fokusz": "50% 45%"
+  },
+  {
+   "kep": "https://images.unsplash.com/photo-1623719678037-84c54bfde8c8?w=640&q=70&auto=format&fit=max",
+   "faj": "Házi veréb",
+   "hely": "Debrecen",
+   "szerzo": "Joshua J. Cotten / Unsplash",
+   "fokusz": "55% 40%"
+  },
+  {
+   "kep": "https://images.unsplash.com/photo-1778167058306-c58a6f50086d?w=640&q=70&auto=format&fit=max",
+   "faj": "Kék cinege",
+   "hely": "III. kerület",
+   "szerzo": "Denis Dz. / Unsplash",
+   "fokusz": "50% 35%"
+  },
+  {
+   "kep": "https://images.unsplash.com/photo-1742676916561-88d56853cb8a?w=640&q=70&auto=format&fit=max",
+   "faj": "Fekete rigó",
+   "hely": "Szeged",
+   "szerzo": "Doncoombez / Unsplash",
+   "fokusz": "50% 20%"
+  },
+  {
+   "kep": "https://images.unsplash.com/photo-1606396191353-a57806c7e44e?w=640&q=70&auto=format&fit=max",
+   "faj": "Házi veréb",
+   "hely": "XI. kerület",
+   "szerzo": "Amee Fairbank-Brown / Unsplash",
+   "fokusz": "45% 45%"
+  },
+  {
+   "kep": "https://images.unsplash.com/photo-1744749340751-6a27c4c6eeb2?w=640&q=70&auto=format&fit=max",
+   "faj": "Széncinege",
+   "hely": "Pécs",
+   "szerzo": "Doncoombez / Unsplash",
+   "fokusz": "45% 45%"
+  }
+ ],
+ "kerttervezo": {
+  "kitoltes": null
+ }
+}

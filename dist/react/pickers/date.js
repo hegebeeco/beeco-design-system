@@ -1,4 +1,4 @@
-/* beeco design system 1.44.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   MONTHS,
   WEEKDAYS,
@@ -14,7 +14,7 @@ import {
   toIso,
   todayIso,
   utcToLocal
-} from "../reszek/chunk-TKJWFI7Y.js";
+} from "../reszek/chunk-UUERN4KT.js";
 export {
   MONTHS,
   WEEKDAYS,

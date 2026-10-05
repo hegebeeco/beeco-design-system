@@ -11,6 +11,17 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.45.0 – 2026-10-06 – Raj modul a CsicsergŐsz kampánytémához: közösségi számláló, közös cél, kerületi verseny, fotófal
+
+Mellékverzió (WEB; Kristóf kérte, 2026-10-06) – csak új fájlok.
+
+* **`weboldal/kampany-csicsergosz/cs-raj.js` + `cs-raj.css`** – négy blokk egy JSON-forrásból (`data-cs-raj`): felpörgő
+  számláló, közös cél haladásjelzővel és szponzorral, kerületi verseny sematikus méhsejt-térképpel és ranglistával
+  (billentyűzettel kezelhető, mérve), fotófal. Tokenekre épül, csökkentett mozgásnál nem animál.
+* **`raj-minta.json`** – jelölt mintaadat (`"minta": true` → „Mintaadat” címke az oldalon); **`raj-adat-szerzodes.md`** – az élő
+  végpont leírása (mezők, frissítés, CORS, adatvédelem, fotó-hozzájárulás).
+* **`review-szabalyok.json`** – mintaadat az oldalon = P1 (élesítés előtt élő adat kell); a térkép két méz-tónusa a palettában.
+
 ## 1.44.0 – 2026-10-05 – Kampánytéma a weboldal-rétegben: CsicsergŐsz (tokenek, mozgáskészlet, mérés, ellenőrzés)
 
 Mellékverzió (WEB; Kristóf kérte, 2026-10-05) – csak új fájlok és dokumentáció, semmi nem változott nevet.

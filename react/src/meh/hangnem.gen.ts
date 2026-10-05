@@ -1,4 +1,4 @@
-// beeco design system 1.44.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js
+// beeco design system 1.45.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js
 // A méhes pillanatok szövegei – forrás: tokens/hangnem.json
 export default {
   "szerepek": {

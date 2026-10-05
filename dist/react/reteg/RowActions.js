@@ -1,13 +1,13 @@
-/* beeco design system 1.44.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.45.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   MoreIcon,
   RowActions
-} from "../reszek/chunk-FJKAEZA3.js";
-import "../reszek/chunk-IAWML7NV.js";
-import "../reszek/chunk-L3A4LO3M.js";
-import "../reszek/chunk-OH6YOEFY.js";
-import "../reszek/chunk-RJ4AOGN3.js";
-import "../reszek/chunk-DXS6AO6A.js";
+} from "../reszek/chunk-KZ3CV5CZ.js";
+import "../reszek/chunk-75MDGBDX.js";
+import "../reszek/chunk-LI526W4A.js";
+import "../reszek/chunk-72KPVFLL.js";
+import "../reszek/chunk-7ZY5MFHX.js";
+import "../reszek/chunk-BVA4MWWR.js";
 export {
   MoreIcon,
   RowActions
