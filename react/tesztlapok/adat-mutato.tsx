@@ -20,6 +20,7 @@ function Oldal() {
           <StatTile label="Átlagos munkamenet" help={S} value={4.5} decimals={1} unit="perc" good="none" delta={{ value: -0.5, decimals: 1, unit: 'perc', compare: 'az előző hónaphoz' }} />
         </Case>
         <Case id="kpi-rejtve" title="Rejtett érték (1–4 érintett)"><StatTile label="Új rajok" help={S} value={3} n={3} nLabel="érintett" period="2026. 09." /></Case>
+        <Case id="kpi-szoveg" title="Szöveges érték (Javaslat 18): hosszú állapot-szó tördelve"><StatTile label="Frissesség" help={S} value={null} text="Frissítésre vár – 214 napja" period="2026. 09." /></Case>
         <Case id="kpi-nincs" title="Nincs adat (—)"><StatTile label="Öntözések" help={S} value={null} unit="alkalom" period="2026. 09." /></Case>
         <Case id="kpi-uj" title="Nincs előző időszak – „új”"><StatTile label="Nyereményjáték-résztvevők" help={S} value={58} unit="fő" delta="new" /></Case>
         <Case id="kpi-nulla" title="Előző érték 0 – a % nem értelmezhető"><StatTile label="Edukatív anyagok" help={S} value={37} unit="db" delta={{ value: 37, unit: '%', compare: 'az előző hónaphoz', fromZero: true }} /></Case>

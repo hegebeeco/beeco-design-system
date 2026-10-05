@@ -91,4 +91,19 @@ export default async function ({ page, t }) {
     ok((await c('eredmeny-sok').locator('tbody tr').count()) === 200, 'nem 200 sor');
     ok((await c('eredmeny-sok').innerText()).toLowerCase().includes('az első 200'), 'nem szól');
   });
+  await t('fájlválasztó (Javaslat 18): .xlsx → fájlkártya névvel és mérettel, nem tölt fel; CSV → ok + teendő; Másik fájl → vissza', async () => {
+    const box = c('picker');
+    await box.locator('input[type=file]').setInputFiles({ name: 'rossz.csv', mimeType: 'text/csv', buffer: Buffer.from('a;b\n1;2\n') });
+    await until(async () => (await box.locator('.bc-error').count()) && (await box.locator('.bc-error').innerText()).includes('rossz.csv'), 'nincs típus-hiba');
+    ok((await out('picker')).includes('–'), 'rossz típusnál mégis kiválasztott');
+    await box.locator('input[type=file]').setInputFiles(XLSX('sablon.xlsx', 40));
+    await until(async () => (await out('picker')).includes('sablon.xlsx'), 'nem választotta ki');
+    ok((await box.locator('.bc-filecard').innerText()).includes('sablon.xlsx'), 'nincs fájlkártya');
+    ok((await box.locator('.bc-filecard').innerText()).includes('kB'), 'nincs méret');
+    ok((await box.locator('.bc-error').count()) === 0, 'a hiba megmaradt jó fájl után');
+    await box.getByRole('button', { name: 'Másik fájl' }).click();
+    await until(async () => (await out('picker')).includes('–') && (await box.locator('.bc-dropzone').count()) === 1, 'Másik fájl nem állt vissza');
+    await box.locator('input[type=file]').setInputFiles(XLSX('nagy.xlsx', 1300));
+    await until(async () => (await box.innerText()).includes('a szerver elutasíthatja'), 'nincs nagy-fájl figyelmeztetés');
+  });
 }

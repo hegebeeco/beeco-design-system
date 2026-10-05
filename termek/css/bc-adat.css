@@ -32,6 +32,8 @@
 .bc-dt-tools > .bc-seg { margin-left: auto; }
 /* Üres eszközsáv (pl. nincs rendezhető oszlop, sűrűség-kapcsoló nélkül) ne hagyjon üres sávot a táblázat fölött */
 .bc-dt-bar:has(> .bc-dt-tools:empty) { display: none; }
+/* Javaslat 18: kártyanézetes táblán széles nézetben a Rendezés-választó rejtett – ha más nincs a sávban, a sáv se foglaljon helyet (admin KE-31) */
+.bc-dt.is-cards > .bc-dt-bar:has(> .bc-dt-tools > .bc-dt-sortsel:only-child) { display: none; }
 /* Tömeges sáv (1b A): a táblázat fölött, görgetéskor odatapad; a sáv helyére csúszik, nem tolja le a táblázatot */
 .bc-dt-bulk { position: sticky; top: 0; z-index: calc(var(--bc-z-sticky) + 2); display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2) var(--bc-sp-4); width: 100%;
   padding: var(--bc-sp-2) var(--bc-sp-3); color: var(--bc-ink); background: var(--bc-surface-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m);
@@ -110,6 +112,7 @@
   .bc-dt:not(.is-cards) th.is-pin:not(.is-util) { width: 40cqi !important; }
   .bc-dt:not(.is-cards) td.is-pin .bc-dt-text { max-width: 36cqi; }
   .bc-dt.is-cards .bc-dt-sortsel { display: flex; }
+  .bc-dt.is-cards > .bc-dt-bar:has(> .bc-dt-tools > .bc-dt-sortsel:only-child) { display: flex; }
   .bc-dt.is-cards .bc-dt-wrap { max-height: none; overflow: visible; background: transparent; border: 0; box-shadow: none; }
   .bc-dt.is-cards .bc-table, .bc-dt.is-cards .bc-table tbody, .bc-dt.is-cards .bc-table tr, .bc-dt.is-cards .bc-table td { display: block; width: auto; }
   .bc-dt.is-cards .bc-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -164,6 +167,8 @@
 .bc-stat-unit { font-family: var(--bc-font-body); font-size: var(--bc-fs-m); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); }
 .bc-stat-sub { display: block; margin-top: var(--bc-sp-1); font-family: var(--bc-font-body); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); line-height: var(--bc-lh-normal); color: var(--bc-ink-soft); white-space: normal; }
 .bc-stat-value.is-hidden, .bc-stat-value.is-missing { color: var(--bc-ink-soft); }
+/* Szöveges érték (Javaslat 18): kisebb, tördelhető – egy rövid állapot-szó vagy kifejezés */
+.bc-kpi .bc-stat-value.is-text { font-size: var(--bc-fs-xl); line-height: 1.15; white-space: normal; overflow-wrap: anywhere; }
 .bc-kpi-delta { margin: 0; } .bc-kpi-delta.is-good { color: var(--bc-success-ink); }
 .bc-kpi-delta.is-bad { color: var(--bc-danger-ink); } .bc-kpi-delta.is-neutral { color: var(--bc-ink-soft); }
 .bc-kpi-meaning { font-weight: var(--bc-fw-semibold); }

@@ -16,6 +16,8 @@ export type StatTileProps = {
     help: ReactNode;
     /** Az érték; null = nincs adat („—”) */
     value: number | null;
+    /** Szöveges érték (Javaslat 18), pl. „Frissítésre vár” – ha meg van adva, ezt mutatja a szám helyett (a value-t ilyenkor null-ra állítsd) */
+    text?: string;
     unit?: string;
     decimals?: number;
     /** Időszak: „2026. 07–09.” */

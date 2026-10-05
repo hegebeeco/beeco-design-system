@@ -11,6 +11,16 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.40.0 – 2026-10-05 – Admin UI-kiegészítések (Javaslat 18): szöveges StatTile, FilePicker, LocationPicker mezőnevek, üres eszközsáv
+* **StatTile `text`** – szöveges érték (pl. „Frissítésre vár”) a szám helyett, tördelhető (`.bc-stat-value.is-text`); nincs „—” és delta.
+* **FilePicker** (új molekula, `react/src/media`) – egy fájl kiválasztása feltöltés NÉLKÜL: drop-zóna, a DS tartalom-alapú ellenőrzése
+  (típus, méret), fájlkártya névvel és mérettel, „Másik fájl”, nagy-fájl figyelmeztetés (`warnSizeMB`), `busy` állapot. A feltöltést a projekt
+  indítja. Exportálva: `FilePicker`, `fileSizeText`.
+* **LocationPicker `latName` / `lngName`** – a koordináta-mezők `name`-je (a hibaösszesítő a mezőre ugorhat).
+* **DataTable** – kártyanézetes táblán, ha az eszközsávban csak a (széles nézetben rejtett) Rendezés-választó van, a sáv széles nézetben nem
+  foglal helyet (admin KE-31: ~60–90 px üres sáv a szűrők alatt).
+* Tesztlapok: `media-import` (fájlválasztó), `adat-mutato` (szöveges érték), `kieg2-hely` (mezőnevek), `adat-tabla` (eszközsáv).
+
 ## 1.39.1 – 2026-10-05 – javítás: a becenév a kör végén nem vágódik le
 * `web/css/ds-game.css`: a `dsResultHTML` ranglista-sorában a becenév (`.ds-result-nick b`) két sorba törik „…” helyett
   (a beeco-szelektalj átvilágításának csiszoló köre: telefonon a hosszabb generált becenév csonka volt).

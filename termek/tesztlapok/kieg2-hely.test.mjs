@@ -72,4 +72,8 @@ export default async function ({ page, t }) {
     ok((await c('hely-hiba').locator('.bc-error').innerText()).includes('Jelöld ki'), 'nincs hiba');
     ok((await c('hely-vazlaton-kivul').locator('.bc-loc-mini svg').getAttribute('aria-label')).includes('vázlaton kívül'), 'nincs jelzés');
   });
+  await t('a koordináta-mezők név szerint is elérhetők (latName / lngName – Javaslat 18)', async () => {
+    ok((await c('hely').locator('input[name="latitude"]').count()) === 1, 'nincs name=latitude');
+    ok((await c('hely').locator('input[name="longitude"]').count()) === 1, 'nincs name=longitude');
+  });
 }

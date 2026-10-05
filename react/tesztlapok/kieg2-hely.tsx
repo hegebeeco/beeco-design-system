@@ -57,7 +57,7 @@ function Pelda({ id, start = null, map = true, search = fakeSearch, ...rest }: {
   const [src, setSrc] = useState<LocationSource | ''>('');
   return (
     <>
-      <LocationPicker label="A hely pontos helye" help="Ide tűzzük a térképen a partnert az appban. Keress címet, kattints a térképre, vagy írd be a koordinátákat – egymást frissítik."
+      <LocationPicker latName="latitude" lngName="longitude" label="A hely pontos helye" help="Ide tűzzük a térképen a partnert az appban. Keress címet, kattints a térképre, vagy írd be a koordinátákat – egymást frissítik."
         value={v} onChange={(n, s) => { setV(n); setSrc(s); }} renderMap={map ? (p) => <MintaTerkep {...p} /> : undefined} search={search ?? undefined} {...rest} />
       <p className="tl-out" data-out={id}>{v ? `${formatLatLng(v, 6)}${src ? ` (${src})` : ''}` : `nincs pont${src ? ` (${src})` : ''}`}</p>
     </>

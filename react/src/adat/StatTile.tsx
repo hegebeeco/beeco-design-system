@@ -23,6 +23,8 @@ export type StatTileProps = {
   help: ReactNode;
   /** Az érték; null = nincs adat („—”) */
   value: number | null;
+  /** Szöveges érték (Javaslat 18), pl. „Frissítésre vár” – ha meg van adva, ezt mutatja a szám helyett (a value-t ilyenkor null-ra állítsd) */
+  text?: string;
   unit?: string;
   decimals?: number;
   /** Időszak: „2026. 07–09.” */
@@ -61,6 +63,7 @@ export function StatTile(p: StatTileProps) {
     <div className="bc-stat-err" role="alert"><span>{p.error}</span>{p.onRetry && <Button variant="ghost" size="sm" onClick={p.onRetry}>Újrapróbálás</Button>}</div>
   );
   else if (hidden) body = <p className="bc-stat-value is-hidden">rejtve<span className="bc-stat-sub">kevesebb mint {minN} {nLabel} – adatvédelmi küszöb</span></p>;
+  else if (p.text) body = <p className="bc-stat-value is-text">{p.text}</p>;
   else if (value === null) body = <p className="bc-stat-value is-missing"><span aria-hidden="true">—</span><span className="bc-sr">nincs adat</span></p>;
   else body = (
     <p className="bc-stat-value">
@@ -79,7 +82,7 @@ export function StatTile(p: StatTileProps) {
         {body}
         {trend && !hidden && !p.loading && !p.error && <Sparkline values={trend} className="bc-kpi-spark" />}
       </div>
-      {!hidden && !p.loading && !p.error && value !== null && delta && <Delta d={delta} good={good} />}
+      {!hidden && !p.loading && !p.error && value !== null && !p.text && delta && <Delta d={delta} good={good} />}
       {(period || (n !== undefined && !hidden)) && (
         <p className="bc-kpi-meta">{period}{period && n !== undefined && !hidden ? ' · ' : ''}{n !== undefined && !hidden ? `elemszám: ${fmt(n)} ${nLabel}` : ''}</p>
       )}

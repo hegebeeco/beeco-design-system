@@ -113,4 +113,13 @@ export default async function ({ page, t }) {
     ok((await page.locator('[data-out="telefonos-bulk"]').innerText()).includes('törlés: 2'), 'a művelet nem kapta meg a sorokat');
     await bar.getByRole('button', { name: 'Kijelölés törlése' }).click();
   });
+  await t('kártyanézet sűrűség-kapcsoló nélkül: széles nézetben az eszközsáv nem foglal helyet (Javaslat 18)', async () => {
+    const box = c('tabla-kartya-sav');
+    const w = await box.locator('.bc-dt').evaluate((e) => e.clientWidth);
+    const bar = box.locator('.bc-dt-bar');
+    if (!(await bar.count())) return;
+    const h = await bar.evaluate((e) => e.getBoundingClientRect().height);
+    if (w > 640) ok(h === 0, `széles nézetben a sáv ${h}px magas`);
+    else ok(h > 0, 'keskeny nézetben a Rendezés-sáv eltűnt');
+  });
 }

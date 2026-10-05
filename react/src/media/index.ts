@@ -8,6 +8,7 @@ export { ImageCropper, type ImageCropperProps, type CropArea, type AspectPreset 
 export { Stepper, stepsFrom, Progress, type Step, type StepState, type StepperProps } from './Stepper';
 export { VideoUpload, type VideoUploadProps } from './VideoUpload';
 export { FileImport, type FileImportProps } from './FileImport';
+export { FilePicker, fileSizeText, type FilePickerProps } from './FilePicker';
 export { ImportResult, issuesToCsv, type ImportIssue, type ImportSummary, type ImportResultProps } from './ImportResult';
 export { checkFiles, sniffType, typeNames, mbText, sizePair, fileKey, type UploadFn, type Rejection } from './files';
 export { markerHtml, clusterHtml, clusterIcon, clusterTier, heatGradient, MARKER_ICON, MARKER_ICON_SELECTED, type MarkerKind, type MarkerOptions } from './map';

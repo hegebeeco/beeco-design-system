@@ -110,6 +110,7 @@ function Oldal() {
           <DataTable data={[{ id: '1', nev: 'X' }, { id: '2', nev: 'vds' }]} getRowId={(r) => r.id} rowLabel={(r) => r.nev} caption="Rövid nevek" densityToggle={false}
             columns={[{ accessorKey: 'nev', header: 'Név', cell: ({ row }) => <a href="#rovid">{row.original.nev}</a> }]} />
         </Case>
+        <Case id="tabla-kartya-sav" title="Kártyanézet sűrűség-kapcsoló nélkül: széles nézetben nincs üres eszközsáv (Javaslat 18)" wide><DataTable data={pois(3)} columns={poiOszlopok} caption="POI-k – kártyanézet" getRowId={ID} rowLabel={NEV} itemLabel="POI" mobile="cards" densityToggle={false} /></Case>
         <Case id="tabla-ures" title="0 sor – üres állapot teendővel"><Ures /></Case>
         <Case id="tabla-szurt" title="Szűrésre üres – Szűrők törlése"><Ures szurt /></Case>
         <Case id="tabla-tolt" title="Töltés: a fejléc marad, csontváz-sorok">

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { FileImport, ImportResult, Stepper, VideoUpload, type ImportIssue, type ImportSummary } from '../src/media';
+import { FileImport, FilePicker, ImportResult, Stepper, VideoUpload, type ImportIssue, type ImportSummary } from '../src/media';
 import { Case, Grid, mount } from './_keret';
 import { fakeUpload } from './_media-minta';
 
@@ -41,6 +41,16 @@ function Video({ id, procFailsOnce }: { id: string; procFailsOnce?: boolean }) {
     <p className="tl-out" data-out={id}>kész: {done}</p></>;
 }
 
+const XLSX_MIME = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+/** FilePicker (Javaslat 18): csak kiválaszt, nem tölt fel – a kiválasztott fájl neve a kimenetben */
+function Picker({ id, busy }: { id: string; busy?: boolean }) {
+  const [f, setF] = useState<File | null>(null);
+  return <><FilePicker label="Kitöltött sablon" help="A kitöltött Excel-sablon. A feltöltést az ablak „Feltöltés” gombja indítja." value={f} onChange={setF}
+    accept={[XLSX_MIME]} acceptAttr=".xlsx" maxSizeMB={2} warnSizeMB={1} formatText=".xlsx" busy={busy}
+    typeHint="Nyisd meg az Excelben, és mentsd el „Excel-munkafüzet (.xlsx)” formátumban." sizeHint="Bontsd több fájlra." required />
+    <p className="tl-out" data-out={id}>kiválasztva: {f ? f.name : '–'}</p></>;
+}
+
 function Oldal() {
   return (
     <>
@@ -53,6 +63,10 @@ function Oldal() {
       <Grid title="Videófeltöltés (4)">
         <Case id="video" title="MP4, legfeljebb 3 MB"><Video id="video" /></Case>
         <Case id="video-proc" title="A feldolgozás elsőre hibázik"><Video id="videoproc" procFailsOnce /></Case>
+      </Grid>
+      <Grid title="Fájlválasztó feltöltés nélkül (Javaslat 18)">
+        <Case id="picker" title="Egy .xlsx – kiválasztás, csere, rossz típus, nagy fájl"><Picker id="picker" /></Case>
+        <Case id="picker-busy" title="Feltöltés közben (a Másik fájl tiltva)"><Picker id="pickerbusy" busy /></Case>
       </Grid>
       <Grid title="Excel-import (5B: egy lépés, jobb eredménylista)">
         <Case id="import" title="Import – a fájlnév dönti el az eredményt (mintaadat)" wide><Import id="import" /></Case>

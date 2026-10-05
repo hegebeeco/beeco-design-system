@@ -33,10 +33,13 @@ export type LocationPickerProps = {
     disabled?: boolean;
     readOnly?: boolean;
     className?: string;
+    /** A koordináta-mezők `name`-je (Javaslat 18) – az űrlap hibaösszesítője ezekre a mezőkre ugrik (pl. 'latitude', 'longitude') */
+    latName?: string;
+    lngName?: string;
 };
 /**
  * LocationPicker (organizmus, Javaslat 06b/13): térkép-tű + címkereső + koordináta-mezők, egymást frissítik.
  * Érvényesség: szélesség −90…90, hosszúság −180…180 (kilépéskor a határra igazít + jelzés);
  * Magyarországon kívüli pont csak FIGYELMEZTETÉS (lehet valódi), felcserélt koordinátára „Felcserélem” ajánlat.
  */
-export declare function LocationPicker({ label, help, value, onChange, renderMap, search, geolocation, defaultCenter, decimals, error, required, disabled, readOnly, className }: LocationPickerProps): import("react").JSX.Element;
+export declare function LocationPicker({ label, help, value, onChange, renderMap, search, geolocation, defaultCenter, decimals, error, required, disabled, readOnly, className, latName, lngName }: LocationPickerProps): import("react").JSX.Element;

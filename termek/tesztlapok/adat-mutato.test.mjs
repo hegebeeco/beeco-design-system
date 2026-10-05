@@ -33,4 +33,11 @@ export default async function ({ page, t }) {
     ok(await c('info').locator('dt').count() === 6, 'nem 6 címke');
     const r = await c('info').locator('.bc-info').first().evaluate((e) => [e.scrollWidth, e.clientWidth]); ok(r[0] <= r[1] + 1, `kilóg: ${r}`);
   });
+  await t('szöveges StatTile (Javaslat 18): a szöveg látszik, nincs „—”, nem lóg ki', async () => {
+    const box = c('kpi-szoveg');
+    const v = box.locator('.bc-stat-value');
+    ok((await v.innerText()).includes('Frissítésre vár'), 'nincs szöveg');
+    ok(!(await box.innerText()).includes('—'), 'üres-jel szöveg mellett');
+    const r = await v.evaluate((e) => [e.scrollWidth, e.clientWidth]); ok(r[0] <= r[1] + 1, `kilóg: ${r}`);
+  });
 }

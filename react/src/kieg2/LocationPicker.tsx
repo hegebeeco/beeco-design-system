@@ -44,6 +44,9 @@ export type LocationPickerProps = {
   disabled?: boolean;
   readOnly?: boolean;
   className?: string;
+  /** A koordináta-mezők `name`-je (Javaslat 18) – az űrlap hibaösszesítője ezekre a mezőkre ugrik (pl. 'latitude', 'longitude') */
+  latName?: string;
+  lngName?: string;
 };
 
 type Draft = { lat: number | null; lng: number | null };
@@ -56,7 +59,7 @@ const SRC: Record<LocationSource, string> = { map: 'térképről', search: 'cím
  * Magyarországon kívüli pont csak FIGYELMEZTETÉS (lehet valódi), felcserélt koordinátára „Felcserélem” ajánlat.
  */
 export function LocationPicker({ label, help, value, onChange, renderMap, search, geolocation = true, defaultCenter = HU_CENTER,
-  decimals = 6, error, required, disabled = false, readOnly = false, className }: LocationPickerProps) {
+  decimals = 6, error, required, disabled = false, readOnly = false, className, latName, lngName }: LocationPickerProps) {
   const id = useId();
   const [draft, setDraft] = useState<Draft>(() => toDraft(value));
   const [said, setSaid] = useState('');
@@ -107,9 +110,9 @@ export function LocationPicker({ label, help, value, onChange, renderMap, search
           {search && !readOnly && <AddressSearch search={search} disabled={disabled} onPick={(h) => setPoint(h, 'search')} />}
           <div className="bc-loc-coords">
             <NumberField label="Szélesség (lat)" help="Észak–dél irányú helyzet fokban. Magyarországon kb. 45,7 és 48,6 között van. Tizedesvesszővel vagy ponttal is írhatod."
-              value={draft.lat} onChange={(n) => setField('lat', n)} min={LAT_RANGE.min} max={LAT_RANGE.max} decimals={decimals} unit="°" readOnly={readOnly} disabled={disabled} />
+              name={latName} value={draft.lat} onChange={(n) => setField('lat', n)} min={LAT_RANGE.min} max={LAT_RANGE.max} decimals={decimals} unit="°" readOnly={readOnly} disabled={disabled} />
             <NumberField label="Hosszúság (lng)" help="Kelet–nyugat irányú helyzet fokban. Magyarországon kb. 16,1 és 22,9 között van. Tizedesvesszővel vagy ponttal is írhatod."
-              value={draft.lng} onChange={(n) => setField('lng', n)} min={LNG_RANGE.min} max={LNG_RANGE.max} decimals={decimals} unit="°" readOnly={readOnly} disabled={disabled} />
+              name={lngName} value={draft.lng} onChange={(n) => setField('lng', n)} min={LNG_RANGE.min} max={LNG_RANGE.max} decimals={decimals} unit="°" readOnly={readOnly} disabled={disabled} />
           </div>
           {geolocation && !readOnly && (
             <div className="bc-loc-geo">
