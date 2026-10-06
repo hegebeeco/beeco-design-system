@@ -13,7 +13,7 @@
 const fs = require('fs'), path = require('path'), crypto = require('crypto');
 const WEB = path.join(__dirname, '..', 'web');
 const OUT = path.join(WEB, 'sw-files.json'), SW = path.join(WEB, 'sw.js');
-const EXT = new Set(['.html', '.js', '.css', '.json', '.webp', '.png', '.jpg', '.jpeg', '.svg', '.gif', '.woff2', '.woff', '.glb', '.mp3', '.ogg', '.wav', '.ico', '.txt']);
+const EXT = new Set(['.html', '.js', '.css', '.json', '.webp', '.png', '.jpg', '.jpeg', '.svg', '.gif', '.woff2', '.woff', '.glb', '.mp3', '.m4a', '.ogg', '.wav', '.ico', '.txt']);
 const SKIP = new Set(['sw.js', 'sw-files.json', 'arculat.html', 'assets/brand/og-kep.png',
   'kit.html', 'keret.html', 'modellek.html', 'vilag.html', 'mechanikak.html', 'hatterek.html', 'kit-tartalom.json',
   'js/lib/three.min.js']);   // a kit kalauz-oldalai + a Three.js helyi tartaléka (csak ha a CDN tiltva van – használatkor kerül a tárba)

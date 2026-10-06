@@ -11,6 +11,15 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.48.0 – 2026-10-06 – Méhesd-kertváros a 2D háttérben, hangminták helye az offline listában, átnevezések
+A beeco-szelektalj átvilágításának 3. köréből (Kristóf döntései, 2026-10-06).
+* `web/js/hatter2d/varos.js`: a 2D város **Méhesd kertvárosa** lett (kis nyeregtetős házak kerttel, kerítéssel, templomtorony;
+  szmogos változat: szürke házak, kéményfüst, autók · zöld: napelem, fák, bicikliút, szélkerék) a panelváros helyett –
+  „a kertváros mindenhol”. Új: `beecoHatter2D.varosFest(ctx, W, H, o)` – egy már beállított vászonra fest. Az API többi része változatlan.
+* `tools/sw-lista.js`: az `.m4a` hangfájlok is bekerülnek az offline listába (CC0 hangminták); `tools/jatek-foto.js`: m4a/ogg típus.
+* `web/js/profil.js`, `web/js/i18n/en-kit.js`: a „2075” játék új neve „Vágd a zöld jövőt!” (rövid név: „Zöld jövő”) a közös profilban és a küldetésben.
+* `docs/offline-es-ci.md`: **Netlify-élesítés csak Kristóf kérésére** (2026-10-05): a push csak ellenőriz, élesíteni kézzel (workflow_dispatch) lehet.
+
 ## 1.47.1 – 2026-10-06 – javítás: Kaptár-kapu, minőségkapu
 * **`kk.css`** – a számcímkék zöldje sötétebb (fehér felirat kontrasztja 3,9 → 7,1), a forráslink olvasható, a site
   gombjai a szekciókban 44 px magasak, a nem kattintható értékcsempe nem mutat kéz-kurzort.

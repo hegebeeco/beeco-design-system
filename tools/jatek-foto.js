@@ -12,7 +12,7 @@ const REPO = path.join(__dirname, '..');
 const { findChrome } = require(REPO + '/tools/headless.js');
 const cfg = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
 const ROOT = cfg.root || REPO + '/web';
-const TYPES = { '.html':'text/html', '.js':'text/javascript', '.css':'text/css', '.json':'application/json', '.webp':'image/webp', '.png':'image/png', '.jpg':'image/jpeg', '.svg':'image/svg+xml', '.woff2':'font/woff2', '.glb':'model/gltf-binary' };
+const TYPES = { '.html':'text/html', '.js':'text/javascript', '.css':'text/css', '.json':'application/json', '.webp':'image/webp', '.png':'image/png', '.jpg':'image/jpeg', '.svg':'image/svg+xml', '.woff2':'font/woff2', '.glb':'model/gltf-binary', '.m4a':'audio/mp4', '.ogg':'audio/ogg' };
 const srv = http.createServer((req, res) => {
   let p = decodeURIComponent(req.url.split('?')[0]); if(p.endsWith('/')) p += 'index.html';
   const f = path.join(ROOT, p);

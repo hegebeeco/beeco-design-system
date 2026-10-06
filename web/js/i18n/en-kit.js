@@ -23,7 +23,7 @@ I18N.add('en', {
   'Ragassz be 5 új matricát az albumodba':'Add 5 new stickers to your album',
   'Dobj jó kukába 10 hulladékot':'Put 10 pieces of waste in the right bin', 'Pakolj jó helyre 8 ételt a Hűtő-mesterben':'Store 8 foods in the right place in Fridge Master',
   'Ítélj helyesen 6 kártyát a Greenwashing-vadászban':'Judge 6 cards correctly in Greenwash Hunter', 'Párosíts jól 8 hatás-címkét':'Match 8 impact labels correctly',
-  'Dönts jól 15 repülő matricánál a 2075-ben':'Make 15 right calls on flying stickers in 2075', 'Állíts 3 készüléket takarékosra az Ökos-rejtélyben':'Switch 3 appliances to thrifty in Eco Mystery',
+  'Dönts jól 15 repülő matricánál a „Vágd a zöld jövőt!” játékban':'Make 15 right calls on flying stickers in Slice to a Green Future!', 'Állíts 3 készüléket takarékosra az Ökos-rejtélyben':'Switch 3 appliances to thrifty in Eco Mystery',
   'Első kör':'First round', 'Háromcsillagos':'Three stars', 'Gyűjtő':'Collector', 'Nagy gyűjtő':'Big collector', 'Albummester':'Album master',
   'Küldetés teljesítve':'Mission complete', '3 napos sorozat':'3-day streak', 'Hetes sorozat':'Week-long streak',
   'Szelektálj!':'Sort It!', 'Hűtő-mester':'Fridge Master', 'Greenwashing-vadász':'Greenwash Hunter', 'Mi van mögötte?':'What’s Behind It?',

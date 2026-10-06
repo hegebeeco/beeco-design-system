@@ -23,9 +23,22 @@ node tools/sw-lista.js
 
 Ez újraírja a `web/sw-files.json`-t és a `web/sw.js` verziószámát (a fájlok tartalmából számolt ujjlenyomat). Mindkettőt commitold.
 
-## Mit ellenőriz a CI minden élesítés előtt?
+## Élesítés csak kézzel (Kristóf döntése, 2026-10-05)
 
-`.github/workflows/deploy.yml` – minden `main`-push (és pull request) után, **csak ha minden zöld, akkor élesít**:
+A Netlify-ra **csak Kristóf kérésére** megy ki bármi („hogy spóroljunk” – egy éles kiadás 15 Netlify-kredit).
+A push és a pull request csak **ellenőriz**, nem élesít; a napi automatikus kiadás megszűnt.
+
+**Élesítés, ha Kristóf kéri:**
+1. GitHub → **Actions** fül → bal oldalt **„Deploy to Netlify”** → jobbra **„Run workflow”** → ág: `main` → **Run workflow**.
+2. Vagy parancssorból: `gh workflow run deploy.yml --ref main`.
+3. Előbb lefut a teljes ellenőrzés (kb. 17–20 perc), és csak ha minden zöld, akkor megy ki a `web/` mappa.
+
+Az adatbázisban (Supabase Table Editor) szerkesztett tartalom és a Bolygó friss nyilvános adatai (OWID, NOAA)
+is csak a következő kézi élesítéssel kerülnek ki.
+
+## Mit ellenőriz a CI?
+
+`.github/workflows/deploy.yml` – minden `main`-push (és pull request) után ellenőriz; kézi indításnál, **csak ha minden zöld, akkor élesít**:
 
 1. `tests/check-*.js` – arculat, matricák, Greenwashing, Hűtő-mester, Mi van mögötte?, 2075, Ökos-rejtély tartalma.
 2. `node tools/sw-lista.js --check` – naprakész-e az offline fájllista.

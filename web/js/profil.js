@@ -20,7 +20,7 @@ const beecoProfil = (function(){
     huto:{ nev:'Hűtő-mester', ikon:'hutogep', kuldetesek:[{ id:'hu8', cel:8, szoveg:'Pakolj jó helyre 8 ételt a Hűtő-mesterben' }] },
     gw:{ nev:'Greenwashing-vadász', ikon:'nagyito', kuldetesek:[{ id:'gw6', cel:6, szoveg:'Ítélj helyesen 6 kártyát a Greenwashing-vadászban' }] },
     impact:{ nev:'Mi van mögötte?', ikon:'cimke', kuldetesek:[{ id:'im8', cel:8, szoveg:'Párosíts jól 8 hatás-címkét' }] },
-    jovo:{ nev:'2075', ikon:'szelturbina', kuldetesek:[{ id:'jv15', cel:15, szoveg:'Dönts jól 15 repülő matricánál a 2075-ben' }] },
+    jovo:{ nev:'Zöld jövő', ikon:'szelturbina', kuldetesek:[{ id:'jv15', cel:15, szoveg:'Dönts jól 15 repülő matricánál a „Vágd a zöld jövőt!” játékban' }] },
     rezsi:{ nev:'Ökos-rejtély', ikon:'villanyora', kuldetesek:[{ id:'rz3', cel:3, szoveg:'Állíts 3 készüléket takarékosra az Ökos-rejtélyben' }] },
   }, load('beeco_jatekok') || {});
   const KOZOS = [{ id:'kor2', ev:'round', cel:2, szoveg:'Fejezz be 2 kört bármelyik játékban' },
