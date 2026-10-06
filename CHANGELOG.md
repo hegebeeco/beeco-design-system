@@ -11,6 +11,9 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.49.2 – 2026-10-06 – bevezető cél nélkül
+* `bevezeto.js`: a „Hogyan játssz?” kártya „A cél:” sora csak akkor jelenik meg, ha van `cel` (a közös súgó ezt a kártyát használja, és néha cél nélkül hívja).
+
 ## 1.49.1 – 2026-10-06 – két új piktogram
 * `pics.js`: `seta` (sétáló alak – bejárás belső nézetben; eddig a „szem” helyettesítette) és `ho` (hópehely – tél; eddig matrica állt a vezérlőn).
 

@@ -29,7 +29,7 @@ function bevezetoMutat(o){
   box.innerHTML = `<button class="ds-icon-btn bevZar" type="button" data-ds-close data-bev="zar" aria-label="${tr('Bezárás')}">${pic('close')}</button>
     <div class="ds-say bevSay"><span class="ds-avatar is-bee" aria-hidden="true"><img src="${typeof dsMood === 'function' ? dsMood('help') : ''}" alt=""></span>
       <div><h2 id="bevCim" class="bevCim">${bevEsc(o.cim || tr('Hogyan játssz?'))}</h2>
-      <p class="bevCel">${pic('cel')}<span><b>${tr('A cél:')}</b> ${o.cel || ''}</span></p></div></div>
+      ${o.cel ? `<p class="bevCel">${pic('cel')}<span><b>${tr('A cél:')}</b> ${o.cel}</span></p>` : ''}</div></div>
     <ol class="bevLepesek">${(o.szabalyok || []).slice(0, 3).map((s, i) => `<li><span class="bevN">${i + 1}</span><span>${s}</span></li>`).join('')}</ol>
     <button class="ds-btn is-block bevIndul" type="button" data-bev="zar">${tr('Kezdjük!')} ${pic('play')}</button>`;
   bevEl.classList.remove('hidden');
