@@ -1,6 +1,6 @@
 {
   "_readme": "GENERÁLT – a weboldalon megengedett nyers értékek. A `tools/web-ellenor.js` ehhez méri a futásidejű CSS-t.",
-  "version": "1.46.0",
+  "version": "1.46.1",
   "szinek": [
     "#000000",
     "#003E74",

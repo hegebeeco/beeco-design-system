@@ -1,9 +1,9 @@
-/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   FormActions,
   FormSection
-} from "../reszek/chunk-RVJ7EASU.js";
-import "../reszek/chunk-4HTA5F62.js";
+} from "../reszek/chunk-AYJSCSCT.js";
+import "../reszek/chunk-MW6TFN7W.js";
 export {
   FormActions,
   FormSection

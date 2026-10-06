@@ -9,6 +9,12 @@
   /* Oldalszintű CTA-mérés (data-kk-cta): ablakszintű capture figyelő, mert a site Trustindex-szkriptje a horgonykattintást
      megállítja és 150 ms múlva újrakattint; ugyanarra az elemre 600 ms-on belül jövő második kattintás nem számít. */
   var utolso = typeof WeakMap === 'function' ? new WeakMap() : null;
+  /* „Írd nálunk a diplomamunkád” típusú site-harmonika (gyik_item): az interakció működik, de billentyűzettel nem érhető el */
+  d.querySelectorAll('.gyik_item .home-faq-top').forEach(function (fej) {
+    fej.setAttribute('role', 'button'); fej.setAttribute('tabindex', '0'); fej.setAttribute('aria-expanded', 'false');
+    fej.addEventListener('click', function () { fej.setAttribute('aria-expanded', String(fej.getAttribute('aria-expanded') !== 'true')); });
+    fej.addEventListener('keydown', function (ev) { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); fej.click(); } });
+  });
   function szerepCim(a) {
     var it = a.closest('.uui-career02_item'), cim = it && it.querySelector('.main_heading');
     var lw = a.closest('.uui-career02_list-wrapper'), fej = lw && lw.previousElementSibling, raj = fej && fej.querySelector('h2,h3,h4');

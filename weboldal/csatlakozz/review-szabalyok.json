@@ -50,8 +50,8 @@
   ],
   "tevekenysegKattintas": "",
   "szekcio": "section",
-  "anim": "[data-kk=\"szamok\"]",
-  "animLathato": "",
+  "anim": "[data-kk-anim]",
+  "animLathato": "kk-latszik",
   "kepMaxKB": 300,
   "kivetel": ".download_block, .footer, footer, .nav, .w-nav",
   "kivetelIndok": "Site-szintű komponensek (letöltésblokk, lábléc, menü): nem az oldal része, külön jegyben kezelendők.",
@@ -67,5 +67,6 @@
       "uzenet": "A Kaptár-kapu adatforrása nem töltött be"
     }
   ],
-  "palettaMegjegyzes": "Termékbőr tokenek + a site szekció-színei (DIA_ZOLD/SARGA/KEK áttetsző rétegei, mért értékek 2026-10-06)."
+  "palettaMegjegyzes": "Termékbőr tokenek + a site szekció-színei (DIA_ZOLD/SARGA/KEK áttetsző rétegei, mért értékek 2026-10-06).",
+  "animMegjegyzes": "Az oldalon nincs belépő (rejtő) animáció; a számok felpörgése nem rejt tartalmat."
 }

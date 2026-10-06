@@ -1,9 +1,9 @@
-/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   GalleryTile
-} from "../reszek/chunk-XE77DYQ3.js";
-import "../reszek/chunk-S7BVCCL5.js";
-import "../reszek/chunk-4HTA5F62.js";
+} from "../reszek/chunk-4HESUZCC.js";
+import "../reszek/chunk-M72MX4DN.js";
+import "../reszek/chunk-MW6TFN7W.js";
 export {
   GalleryTile
 };

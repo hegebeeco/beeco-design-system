@@ -1,9 +1,9 @@
-/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   accuracyText,
   useGeolocation
-} from "../reszek/chunk-EAGVQ7YH.js";
-import "../reszek/chunk-FAA7FRJL.js";
+} from "../reszek/chunk-D5MIHVSH.js";
+import "../reszek/chunk-VIY7LMVS.js";
 export {
   accuracyText,
   useGeolocation

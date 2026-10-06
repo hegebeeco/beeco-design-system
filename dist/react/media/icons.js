@@ -1,4 +1,4 @@
-/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   IcCheck,
   IcClose,
@@ -11,7 +11,7 @@ import {
   IcRetry,
   IcRight,
   IcWarn
-} from "../reszek/chunk-S7BVCCL5.js";
+} from "../reszek/chunk-M72MX4DN.js";
 export {
   IcCheck,
   IcClose,

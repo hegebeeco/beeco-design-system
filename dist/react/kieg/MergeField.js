@@ -1,9 +1,9 @@
-/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   MergeFieldChoice
-} from "../reszek/chunk-KEHJLKB7.js";
-import "../reszek/chunk-3PF6MXBW.js";
-import "../reszek/chunk-4HTA5F62.js";
+} from "../reszek/chunk-LJRWBIYJ.js";
+import "../reszek/chunk-P4PEPN5A.js";
+import "../reszek/chunk-MW6TFN7W.js";
 export {
   MergeFieldChoice
 };

@@ -1,15 +1,15 @@
-/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   SortSelect
-} from "../reszek/chunk-NILTQW7L.js";
-import "../reszek/chunk-YLEAPYTQ.js";
-import "../reszek/chunk-DR7YBKMQ.js";
-import "../reszek/chunk-DY3GZMZQ.js";
-import "../reszek/chunk-FAA7FRJL.js";
-import "../reszek/chunk-CHGC2PIS.js";
-import "../reszek/chunk-YZUSUFMW.js";
-import "../reszek/chunk-JR2QHPL6.js";
-import "../reszek/chunk-4HTA5F62.js";
+} from "../reszek/chunk-BIGFNMDO.js";
+import "../reszek/chunk-JDMNEEWR.js";
+import "../reszek/chunk-GOGXZLFK.js";
+import "../reszek/chunk-A2JEPKI4.js";
+import "../reszek/chunk-VIY7LMVS.js";
+import "../reszek/chunk-C2PQVVFO.js";
+import "../reszek/chunk-LQIZVHIZ.js";
+import "../reszek/chunk-AUUWDBFG.js";
+import "../reszek/chunk-MW6TFN7W.js";
 export {
   SortSelect
 };

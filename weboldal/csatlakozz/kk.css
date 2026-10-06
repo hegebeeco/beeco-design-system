@@ -92,5 +92,16 @@
 .uui-career02_job-department[aria-expanded] .accordion-icon_vertical-line{transition:transform 200ms cubic-bezier(.23,1,.32,1)}
 .uui-career02_job-department[aria-expanded="true"] .accordion-icon_vertical-line{transform:rotate(90deg)}
 @media (prefers-reduced-motion:reduce){.uui-career02_job-department .accordion-icon_vertical-line{transition:none}}
+.kk_hero_also{align-items:center}
 .kk_hero_also .kk_gombsor{justify-content:center}
+.kk_hero_also [data-kk="szamok"]{align-self:stretch}
 .kk_hero_also .kk_belepes{text-align:center}
+/* az oldal meglévő site-elemeinek akadálymentesítése (minőségkapu, 2026-10-06) */
+.breadcumb_link{color:#435629}
+.kk_gombsor .button_terc,.kk_gombsor .BUTTON_TERC{display:inline-flex;align-items:center;min-height:44px}
+#onkentes .w-input,#onkentes .input_field{min-height:44px}
+#onkentes .img_beeco{box-shadow:none}
+.gyik_item{cursor:auto}
+.gyik_item .home-faq-top{cursor:pointer}
+.gyik_item .home-faq-top:focus-visible,.uui-career02_job-department:focus-visible{outline:3px solid var(--_beeco-ds---bc-focus,#2656D9);outline-offset:3px}
+.gyik_item .home-faq-top[aria-expanded="true"] .home-faq-icon{transform:rotate(45deg)}

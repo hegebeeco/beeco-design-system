@@ -1,4 +1,4 @@
-// beeco design system 1.46.0 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js
+// beeco design system 1.46.1 – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js
 // Használat: import { extendTailwindMerge } from 'tailwind-merge';
 //            import beecoTwMerge from '@beeco/design-system/tailwind-merge';
 //            const twMerge = extendTailwindMerge(beecoTwMerge);

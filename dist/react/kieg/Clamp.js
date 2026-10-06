@@ -1,9 +1,9 @@
-/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   Clamp,
   CutContext
-} from "../reszek/chunk-VVCZTGDW.js";
-import "../reszek/chunk-4HTA5F62.js";
+} from "../reszek/chunk-SVI5A7U3.js";
+import "../reszek/chunk-MW6TFN7W.js";
 export {
   Clamp,
   CutContext

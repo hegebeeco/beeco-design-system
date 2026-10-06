@@ -1,8 +1,8 @@
-/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   SearchBox
-} from "../reszek/chunk-TMP52CNF.js";
-import "../reszek/chunk-BAZVTC4G.js";
+} from "../reszek/chunk-FP6NSZIV.js";
+import "../reszek/chunk-XYQRVVRJ.js";
 export {
   SearchBox
 };

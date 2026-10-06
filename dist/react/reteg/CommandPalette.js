@@ -1,20 +1,20 @@
-/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   COMMAND_PALETTE_LABELS_HU,
   CommandPalette,
   commandHotkeyLabel,
   useCommandHotkey
-} from "../reszek/chunk-ZZD53QEH.js";
-import "../reszek/chunk-RJ2QYUSP.js";
-import "../reszek/chunk-UNBIAHQH.js";
-import "../reszek/chunk-BBABH2AW.js";
-import "../reszek/chunk-SCWCNF7D.js";
-import "../reszek/chunk-3SLAD2NH.js";
-import "../reszek/chunk-TMP52CNF.js";
-import "../reszek/chunk-BAZVTC4G.js";
-import "../reszek/chunk-YZUSUFMW.js";
-import "../reszek/chunk-JR2QHPL6.js";
-import "../reszek/chunk-4HTA5F62.js";
+} from "../reszek/chunk-UJPNCGRB.js";
+import "../reszek/chunk-OVXWLVYM.js";
+import "../reszek/chunk-2RI2MXQU.js";
+import "../reszek/chunk-VJ5HQPJW.js";
+import "../reszek/chunk-6BSOFRGA.js";
+import "../reszek/chunk-TFFYDVUJ.js";
+import "../reszek/chunk-FP6NSZIV.js";
+import "../reszek/chunk-XYQRVVRJ.js";
+import "../reszek/chunk-LQIZVHIZ.js";
+import "../reszek/chunk-AUUWDBFG.js";
+import "../reszek/chunk-MW6TFN7W.js";
 export {
   COMMAND_PALETTE_LABELS_HU,
   CommandPalette,

@@ -1,23 +1,23 @@
-/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ChartCard
-} from "../../reszek/chunk-FRJ5P5YJ.js";
-import "../../reszek/chunk-FRDHEH4W.js";
-import "../../reszek/chunk-PQRHUZRL.js";
-import "../../reszek/chunk-S35MI532.js";
-import "../../reszek/chunk-3KZL447F.js";
-import "../../reszek/chunk-MW3HAD2D.js";
-import "../../reszek/chunk-MJXA6SXR.js";
-import "../../reszek/chunk-PMGLC5HT.js";
-import "../../reszek/chunk-JRQOK474.js";
-import "../../reszek/chunk-6737ZM66.js";
-import "../../reszek/chunk-NX4AZ7H3.js";
-import "../../reszek/chunk-DY3GZMZQ.js";
-import "../../reszek/chunk-FAA7FRJL.js";
-import "../../reszek/chunk-CHGC2PIS.js";
-import "../../reszek/chunk-YZUSUFMW.js";
-import "../../reszek/chunk-JR2QHPL6.js";
-import "../../reszek/chunk-4HTA5F62.js";
+} from "../../reszek/chunk-XN63SG74.js";
+import "../../reszek/chunk-GUXDAFCP.js";
+import "../../reszek/chunk-I4DUVVD2.js";
+import "../../reszek/chunk-JOKAYSPL.js";
+import "../../reszek/chunk-RS7QBYPH.js";
+import "../../reszek/chunk-GWF535EV.js";
+import "../../reszek/chunk-3ZXHFYNS.js";
+import "../../reszek/chunk-BLH7FQ6Q.js";
+import "../../reszek/chunk-6TOA6BW7.js";
+import "../../reszek/chunk-Y76WF3JB.js";
+import "../../reszek/chunk-3LLIMAW4.js";
+import "../../reszek/chunk-A2JEPKI4.js";
+import "../../reszek/chunk-VIY7LMVS.js";
+import "../../reszek/chunk-C2PQVVFO.js";
+import "../../reszek/chunk-LQIZVHIZ.js";
+import "../../reszek/chunk-AUUWDBFG.js";
+import "../../reszek/chunk-MW6TFN7W.js";
 export {
   ChartCard
 };
