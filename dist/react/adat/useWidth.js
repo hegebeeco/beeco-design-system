@@ -1,7 +1,7 @@
-/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   useWidth
-} from "../reszek/chunk-Y76WF3JB.js";
+} from "../reszek/chunk-DYHAF553.js";
 export {
   useWidth
 };

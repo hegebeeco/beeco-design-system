@@ -1,11 +1,11 @@
-/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   findOutlier,
   outlierNote
-} from "../../reszek/chunk-M23SUEPK.js";
-import "../../reszek/chunk-A2JEPKI4.js";
-import "../../reszek/chunk-VIY7LMVS.js";
-import "../../reszek/chunk-C2PQVVFO.js";
+} from "../../reszek/chunk-VNR3NUWY.js";
+import "../../reszek/chunk-GRYIQIKL.js";
+import "../../reszek/chunk-PJRTRYZN.js";
+import "../../reszek/chunk-LCFIUOPW.js";
 export {
   findOutlier,
   outlierNote

@@ -11,6 +11,10 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.46.2 – 2026-10-06 – javítás: Kaptár-kapu, második minőségkapu-kör
+* **`kk.css`** – a kenyérmorzsa és a site elsődleges gombjai az oldalon 44 px magasak; az oldal képei nem kapnak kemény árnyékot.
+* **`review-szabalyok.json`** – a kenyérmorzsa akadálymentes zöldje a palettán; megjegyzés: a termékbőr tintája #000.
+
 ## 1.46.1 – 2026-10-06 – javítás: Kaptár-kapu akadálymentesség (minőségkapu)
 * **`kk.js`** – a site „diplomamunka” harmonikája (`gyik_item`) billentyűzettel is nyitható (`role=button`, `aria-expanded`).
 * **`kk.css`** – a hero kenyérmorzsája olvasható (kontraszt 2,7 → 5,6), a másodlagos gomb és az űrlapmezők 44 px magasak,

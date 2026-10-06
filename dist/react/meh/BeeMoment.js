@@ -1,11 +1,11 @@
-/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   BeeMoment
-} from "../reszek/chunk-XNMTXE7K.js";
-import "../reszek/chunk-DBIACAMN.js";
-import "../reszek/chunk-ALGDDMVX.js";
-import "../reszek/chunk-POHTC3ZE.js";
-import "../reszek/chunk-MW6TFN7W.js";
+} from "../reszek/chunk-TEKE2TRB.js";
+import "../reszek/chunk-R6NSAYUG.js";
+import "../reszek/chunk-X3B7G27H.js";
+import "../reszek/chunk-DESSPIUB.js";
+import "../reszek/chunk-PG2ADDWU.js";
 export {
   BeeMoment
 };

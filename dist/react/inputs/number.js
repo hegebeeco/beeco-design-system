@@ -1,10 +1,10 @@
-/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   formatHu,
   numberRange,
   parseHu,
   sanitize
-} from "../reszek/chunk-VIY7LMVS.js";
+} from "../reszek/chunk-PJRTRYZN.js";
 export {
   formatHu,
   numberRange,

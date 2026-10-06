@@ -1,7 +1,7 @@
-/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   Accordion
-} from "../reszek/chunk-SGIRI6O5.js";
+} from "../reszek/chunk-JQJCJYVW.js";
 export {
   Accordion
 };

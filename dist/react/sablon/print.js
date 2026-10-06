@@ -1,7 +1,7 @@
-/* beeco design system 1.46.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   usePrintFrame
-} from "../reszek/chunk-LWWTQG4M.js";
+} from "../reszek/chunk-SETAULLO.js";
 export {
   usePrintFrame
 };

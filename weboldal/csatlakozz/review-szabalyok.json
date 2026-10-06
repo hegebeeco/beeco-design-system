@@ -16,7 +16,8 @@
     "#E3ECCD",
     "#6E8947",
     "#A8DAFF",
-    "#DDDDDD"
+    "#DDDDDD",
+    "#435629"
   ],
   "szinTures": 18,
   "betuk": [
@@ -67,6 +68,7 @@
       "uzenet": "A Kaptár-kapu adatforrása nem töltött be"
     }
   ],
-  "palettaMegjegyzes": "Termékbőr tokenek + a site szekció-színei (DIA_ZOLD/SARGA/KEK áttetsző rétegei, mért értékek 2026-10-06).",
-  "animMegjegyzes": "Az oldalon nincs belépő (rejtő) animáció; a számok felpörgése nem rejt tartalmat."
+  "palettaMegjegyzes": "Termékbőr tokenek + a site szekció-színei (DIA_ZOLD/SARGA/KEK áttetsző rétegei, mért értékek 2026-10-06). A #435629 a kenyérmorzsa sötétített zöldje (a site #6E8947-e 2,7-es kontrasztú a hero zöldjén, ez 5,6).",
+  "animMegjegyzes": "Az oldalon nincs belépő (rejtő) animáció; a számok felpörgése nem rejt tartalmat.",
+  "feketeMegjegyzes": "A termékbőrben a tinta (--bc-ink) #000: a „tiszta fekete” P3 itt nem arculati hiba (a kakaó-szabály a CsicsergŐsz-kampányé)."
 }
