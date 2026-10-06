@@ -502,22 +502,22 @@ ART.later('kozlekedes', function(){   // lusta könyvtár: csak az első matric�
 
   // ============================================================================================
   //  11. Nagyi – kedves nagymama mellképe, szemből kicsit 3/4-ben, arc nélkül (mint a 🚶): ősz haj kontyba
-  //      tűzve, kerek szemüveg, pirospozsgás arc, lila kardigán gombokkal, fehér blúzgallér. (cm-ben, y fel)
+  //      tűzve, kerek szemüveg, pirospozsgás arc, méz-sárga kardigán gombokkal (a szereplok.js Nagyi-felsőjéhez igazodik – szereplő-biblia SZB-05), fehér blúzgallér. (cm-ben, y fel)
   // ============================================================================================
   {
     const TILT = 0, Y = ([x, y]) => [x, 90 - y], cs = (x, y, r, n = 14, ry = r) => circ(x, 90 - y, r, n, ry);
     const coat = smooth([[-27, 0], [-26, 13], [-19, 21], [-8, 25], [8, 25], [19, 21], [26, 13], [27, 0]].map(Y), 3).concat([Y([27, 0])]);
     const head = cs(1, 44, 13.5, 18);
-    fin('nagyi', { emoji:['👵'], hu:'nagyi', en:'grandma', look:'friendly faceless grandma bust: grey hair in a bun, round glasses, rosy cheeks, purple cardigan with buttons over a white blouse collar', tilt:TILT, shapes:[
+    fin('nagyi', { emoji:['👵'], hu:'nagyi', en:'grandma', look:'friendly faceless grandma bust: grey hair in a bun, round glasses, rosy cheeks, honey-yellow cardigan with buttons over a white blouse collar', tilt:TILT, shapes:[
       face('steel', 'base', cs(2, 60, 7.5, 14)),                                          // konty
       det('steel', 'light', cs(0.5, 62, 3.5, 8)),
-      face('purple', 'base', coat),                                                       // kardigán
-      det('purple', 'light', [Y([-25, 2]), Y([-24, 14]), Y([-17, 21]), Y([-9, 23]), Y([-13, 2])], { o:.9 }),
-      det('purple', 'dark', [Y([14, 2]), Y([18, 20]), Y([25, 13]), Y([26, 2])], { o:.9 }),
+      face('honey', 'base', coat),                                                       // kardigán
+      det('honey', 'light', [Y([-25, 2]), Y([-24, 14]), Y([-17, 21]), Y([-9, 23]), Y([-13, 2])], { o:.9 }),
+      det('honey', 'dark', [Y([14, 2]), Y([18, 20]), Y([25, 13]), Y([26, 2])], { o:.9 }),
       face('skin', 'base', [Y([-5, 25]), Y([6, 25]), Y([5, 33]), Y([-4, 33])]),              // nyak
       det('white', 'base', [Y([-9, 25]), Y([0, 11]), Y([10, 25]), Y([5, 26]), Y([0, 20]), Y([-4, 26])], { line:true }),   // blúzgallér
-      ln('purple', 'line', [Y([0, 11]), Y([0, 1])], 1),
-      dpth('cream', 'base', [8, 3].map(y => cs(3, y, 1.3, 8))),                              // gombok
+      ln('honey', 'line', [Y([0, 11]), Y([0, 1])], 1),
+      dpth('honey', 'line', [8, 3].map(y => cs(3, y, 1.3, 8))),                              // gombok
       face('skin', 'base', head),                                                         // fej
       face('steel', 'light', pos(hull([...circ(1, 90 - 46, 14.6, 16).filter(([, y]) => y <= 90 - 43), Y([-13.4, 36]), Y([15.4, 36])]))),   // haj
       det('steel', 'base', [Y([9, 58]), Y([14, 52]), Y([15.4, 37]), Y([12.5, 37]), Y([12.5, 48])], { o:.8 }),

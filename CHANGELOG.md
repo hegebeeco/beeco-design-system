@@ -11,6 +11,9 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.49.3 – 2026-10-06 – Nagyi kardigánja
+* `art/art-kozlekedes.js`: a Nem gáz a pedál Nagyi-matricáján a kardigán méz-sárga (a szereplők felsőjéhez igazítva – szereplő-biblia SZB-05, beeco-szelektalj).
+
 ## 1.49.2 – 2026-10-06 – bevezető cél nélkül
 * `bevezeto.js`: a „Hogyan játssz?” kártya „A cél:” sora csak akkor jelenik meg, ha van `cel` (a közös súgó ezt a kártyát használja, és néha cél nélkül hívja).
 
