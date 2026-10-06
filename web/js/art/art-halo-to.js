@@ -11,6 +11,7 @@
 //  Nincs szöveg, szám, márka, jelkép. Render: node tools/art-render.js 2d web/js/art/art-halo-to.js ki.png --skip halo
 //  Emoji-álnév nincs (a játék névvel kéri).
 // ============================================================
+ART.later('halo-to', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, band } = ART.geo;
   const { hypot, max, min, abs } = Math;
@@ -748,3 +749,4 @@
     ] });
   }
 })();
+});

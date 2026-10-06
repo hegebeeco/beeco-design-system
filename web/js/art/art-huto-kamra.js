@@ -3,6 +3,7 @@
 //  és a citromlé. A hűtő belseje és ajtaja: art-huto.js
 //  Kerek ételek középpont + sugárból, hosszúkások gerincvonalból, üvegek és kenyér valódi méretből vetítve; tömör olíva árnyék.
 // ============================================================
+ART.later('huto-kamra', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { R, rad, band, arc, camera } = ART.geo;
   const { cos, sin, sqrt, hypot, max, min, abs, exp, floor, PI } = Math;
@@ -675,3 +676,4 @@
     ]});
   }
 })();
+});

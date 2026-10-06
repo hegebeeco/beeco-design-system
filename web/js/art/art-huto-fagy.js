@@ -6,6 +6,7 @@
 //  A rajz-segédek az art-huto-b.js-ből jönnek (másolat – a matrica-fájlok önállóak, bármilyen sorrendben betölthetők).
 //  Render: node tools/art-render.js 2d web/js/art/art-huto-fagy.js ki.png --skip huto-fagy
 // ============================================================
+ART.later('huto-fagy', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { R, rad, band, camera } = ART.geo;
   const { cos, sin, sqrt, hypot, max, min, abs, exp, floor, PI } = Math;
@@ -385,3 +386,4 @@
     ]});
   }
 })();
+});

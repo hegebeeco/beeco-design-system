@@ -4,6 +4,7 @@
 //  Minden tárgy valódi méretből (méter) vetítve (ART.geo.camera): 3/4-es nézet, 4 éles tónus (teteje világos · eleje alap ·
 //  oldala sötét · hátsó élsáv legsötétebb), megdöntve, tömör olíva árnyék. Render: node tools/art-render.js 2d … (mintakód: docs/rajzolas/minta)
 // ============================================================
+ART.later('devices', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { r1, rad, camera, band, star } = ART.geo;   // közös segédek: web/js/art/art.js
 
@@ -457,3 +458,4 @@
     ]});
   })();
 })();
+});

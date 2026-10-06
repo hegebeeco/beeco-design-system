@@ -11,6 +11,23 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.49.0 – 2026-10-06 – lusta matricák, ikon-szótár, betöltés-mérés
+A beeco-szelektalj betöltés-méréséből: közepes Androidon a menüig 11,9 → 4,1 mp.
+* **`web/js/art/art.js` – lusta matrica-könyvtárak:**
+  - Új: `ART.later('név', function(){ … ART.add(…) … })`. A böngészőben a rajz csak az első matricája kérésekor számolódik ki (artIcon, ART.has, ART.draw…).
+  - Hogy melyik név vagy emoji melyik könyvtárban van, a `web/js/art/art-index.js` mondja meg (`ART.index`), ezt az új `tools/art-index.js` generálja (`--check`: csak ellenőriz).
+  - Ha egy oldal nem tölti be az indexet, az első ismeretlen kérésnél minden könyvtár lefut, mint régen. Node-ban a `later` azonnal fut.
+  - Az `ART.names()` mindent betölt. Új: `ART.need`, `ART.needAll`.
+  - **Minden `art-*.js` fájl** (az `art-pecset.js` kivételével) így épül. Új matrica után: `node tools/art-index.js`.
+* **Új piktogramok:** `pont` (méz-hatszög – a pontszám jele, a csillag ezentúl csak a minősítés) és `cel` (céltábla). Ikon-szótár: a beeco-szelektalj `docs/ikon-szotar.md`.
+* **`bevezeto.js`:** „A cél:” előtt céltábla a csillag helyett.
+* **`tools/jatek-foto.js`, új kapcsolók:**
+  - `init`: kód a lap szkriptjei előtt (időmérés);
+  - `net`: hálózat-lassítás `{ latency, down, up }`;
+  - `profile`: CPU-profil a betöltésről, fájlonként és függvényenként.
+  - Betöltést `gpu:true`-val mérj, mert a szoftveres 3D 15–20 mp-et torzít.
+* Új matrica-fájl a kitben: `art-huto-datum.js` (Hűtő-mester dátumkártyák).
+
 ## 1.48.1 – 2026-10-06 – javítás: Kaptár-kapu, minőségkapu
 * **`kk.js`** – az API-n át betett Webflow-képek a 800 px-es változatra váltanak, ha az létezik (próbabetöltés után; a díjfotó 887 kB → 82 kB).
 * **`kk.css`** – a másodlagos gombok és a belépés- és forráslinkek 44 px magasak.

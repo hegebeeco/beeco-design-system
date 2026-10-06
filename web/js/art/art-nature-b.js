@@ -5,6 +5,7 @@
 //  méretekből vetítve (ART.geo.camera). Semmi nem árulja el, hogy a dolog káros vagy „ökos” (nincs pipa, nincs X).
 //  Render: node tools/art-render.js 2d web/js/art/art-nature-b.js ki.png --skip nature
 // ============================================================
+ART.later('nature-b', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { r1, rad, band, arc, camera } = ART.geo;
   const sin = d => Math.sin(rad(d)), cos = d => Math.cos(rad(d));
@@ -530,3 +531,4 @@
     ]});
   }
 })();
+});

@@ -11,6 +11,7 @@
 //  készletének másolatai, így a fájl önálló. Render: node tools/art-render.js 2d web/js/art/art-bolygo.js ki.png
 //  Emoji-álnév nincs: a játék névvel kéri (bolygo-utlevel.js → 'bl_pecset_' + régió).
 // ============================================================
+ART.later('bolygo', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, band } = ART.geo;
   const { hypot, max, min, abs } = Math;
@@ -342,3 +343,4 @@
       ]);
   }
 })();
+});

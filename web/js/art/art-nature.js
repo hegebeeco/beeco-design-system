@@ -2,6 +2,7 @@
 //  Matricák — természet, időjárás, energia, állatok, jelek  ·  stílus: docs/grafika-spec.md
 //  A 2075-játék természet-matricái (láng, pamacs, pillangó, fák, levelek, állatok…) B szinten: art-nature-b.js
 // ============================================================
+ART.later('nature', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 ART.add('nap', { emoji:['☀️', '🔆', '🌞'], hu:'nap', en:'bright sun', shapes:[
   ...[0, 45, 90, 135, 180, 225, 270, 315].map(a => ({ t:'poly', m:'honey', fc:'none', tone:'dark', rot:a, ox:50, oy:50, pts:[[45, 17], [55, 17], [50, 9]] })),
   { t:'circle', cx:50, cy:50, r:29, m:'honey' },
@@ -387,3 +388,4 @@ ART.add('villam', { emoji:['⚡'], hu:'villám', en:'lightning bolt', shapes:[
     ]});
   }
 })();
+});

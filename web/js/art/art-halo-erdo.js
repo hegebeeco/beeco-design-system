@@ -11,6 +11,7 @@
 //  A segédek az art-halo-b.js másolatai (+ erdei segédek), így a fájl önálló. Nincs szöveg, szám, márka, jelkép.
 //  Render: node tools/art-render.js 2d web/js/art/art-halo-erdo.js ki.png --skip halo-erdo · Emoji-álnév nincs (a játék névvel kéri).
 // ============================================================
+ART.later('halo-erdo', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, band } = ART.geo;
   const { hypot, max, min, abs } = Math;
@@ -518,3 +519,4 @@
   }
 
 })();
+});

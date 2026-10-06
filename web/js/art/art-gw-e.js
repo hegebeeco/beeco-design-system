@@ -7,6 +7,7 @@
 //  A segédek az art-gw-d.js-ből másolva (a fájlok önállóak, közös globális nevük nincs).
 //  Render: node tools/art-render.js 2d <ez a fájl> ki.png
 // ============================================================
+ART.later('gw-e', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, camera, band } = ART.geo;
   const { hypot, max, min, abs, sqrt } = Math;
@@ -473,3 +474,4 @@
     ] });
   }
 })();
+});

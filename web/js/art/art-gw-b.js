@@ -5,6 +5,7 @@
 //  Valódi méretből (cm, a háznál m) vetítve (ART.geo.camera), 4 éles tónus, 3/4-es nézet, tömör olíva árnyék.
 //  A kész rajzot a fin() tölti ki a vászonra (perem + árnyék mellett is befér) – minta: art-waste-special-b.js
 // ============================================================
+ART.later('gw-b', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, camera, band } = ART.geo;
   const { hypot, max, min, abs, sqrt } = Math;
@@ -704,3 +705,4 @@
     ]});
   }
 })();
+});

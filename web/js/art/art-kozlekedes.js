@@ -8,6 +8,7 @@
 //  Render: node tools/art-render.js 2d web/js/art/art-kozlekedes.js ki.png --skip kozlekedes
 //  A 🌧️ emoji már az esofelho (art-nature.js) matricáé → itt az esos_felho csak névvel érhető el.
 // ============================================================
+ART.later('kozlekedes', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, camera, band } = ART.geo;
   const { hypot, max, min, abs, sqrt } = Math;
@@ -589,3 +590,4 @@
   }
 
 })();
+});

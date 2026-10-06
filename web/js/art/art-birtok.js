@@ -9,6 +9,7 @@
 //  A segédek az art-kaptar.js (ott: art-halo.js) másolatai, így a fájl önálló.
 //  Render: node tools/art-render.js 2d web/js/art/art-birtok.js ki.png --skip birtok
 // ============================================================
+ART.later('birtok', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, band } = ART.geo;
   const { hypot, max, min, abs } = Math;
@@ -571,3 +572,4 @@
     ] });
   }
 })();
+});

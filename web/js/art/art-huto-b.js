@@ -6,6 +6,7 @@
 //  A rajz-segédek az art-huto-kamra.js-ből jönnek (másolat – a matrica-fájlok önállóak, bármilyen sorrendben betölthetők).
 //  Render: node tools/art-render.js 2d web/js/art/art-huto-b.js ki.png --skip huto-b
 // ============================================================
+ART.later('huto-b', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { R, rad, band, arc, camera } = ART.geo;
   const { cos, sin, sqrt, hypot, max, min, abs, exp, floor, PI } = Math;
@@ -355,7 +356,7 @@
   // ======================================================================
   //  KONZERV – bontatlan konzervdoboz: a meglévő „konzerv” matrica (art-food.js, B szint) másolata az étel nevével
   // ======================================================================
-  if(ART.LIB.konzerv) ART.add('f_konzerv', Object.assign(JSON.parse(JSON.stringify(ART.LIB.konzerv)), { name:'f_konzerv', emoji:[], hu:'Bontatlan konzerv', en:'unopened tin can of food with a plain label', lib:undefined }));
+  if(ART.has('konzerv')) ART.add('f_konzerv', Object.assign(JSON.parse(JSON.stringify(ART.LIB.konzerv)), { name:'f_konzerv', emoji:[], hu:'Bontatlan konzerv', en:'unopened tin can of food with a plain label', lib:undefined }));
 
   // ======================================================================
   //  SÜTŐTÖK (hokkaido) – lapított, mélyen bordázott narancs tök: a bordák a tető mélyedéséből futnak le, vaskos,
@@ -729,3 +730,4 @@
     ]});
   }
 })();
+});

@@ -5,6 +5,7 @@
 //  tömör olíva árnyék. A put() a végén középre teszi és a vászonra illeszti (a döntéssel együtt).
 //  Render: node tools/art-render.js 2d <ez a fájl> ki.png --skip waste
 // ============================================================
+ART.later('waste-b', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { r1, rad, camera, band, star } = ART.geo;
   const sin = d => Math.sin(rad(d)), cos = d => Math.cos(rad(d));
@@ -667,3 +668,4 @@
     ]);
   }
 })();
+});

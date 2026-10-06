@@ -11,6 +11,7 @@
 //  Render: node tools/art-render.js 2d web/js/art/art-tortenelem.js ki.png --skip tortenelem
 //  Emoji-álnév nincs: a játék névvel kéri (ART.image('gozgep')).
 // ============================================================
+ART.later('tortenelem', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, camera, band } = ART.geo;
   const { hypot, max, min, abs, sqrt } = Math;
@@ -812,3 +813,4 @@
   }
 
 })();
+});

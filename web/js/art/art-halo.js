@@ -11,6 +11,7 @@
 //  így a fájl önálló. Render: node tools/art-render.js 2d web/js/art/art-halo.js ki.png --skip halo
 //  Emoji-álnév csak a 🐞 (katica) és a 🦗 (szöcske) – a többit a játék névvel kéri.
 // ============================================================
+ART.later('halo', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, band } = ART.geo;
   const { hypot, max, min, abs } = Math;
@@ -879,3 +880,4 @@
 
 
 })();
+});

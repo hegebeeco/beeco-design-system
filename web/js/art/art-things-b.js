@@ -7,6 +7,7 @@
 //  Render: node tools/art-render.js 2d web/js/art/art-things-b.js ki.png --skip things
 //  A régi (A szintű) rajzok az art-things.js-ben voltak – onnan törölve, a név, emoji, hu, en változatlan.
 // ============================================================
+ART.later('things-b', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, camera, band } = ART.geo;
   const { hypot, max, min, abs, sqrt } = Math;
@@ -783,3 +784,4 @@
   }
 
 })();
+});

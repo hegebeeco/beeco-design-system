@@ -8,6 +8,7 @@
 //  A segédek (vetítés, vágás, fin() illesztés) az art-tortenelem.js készletének másolata – így a fájl önálló.
 //  Render: node tools/art-render.js 2d web/js/art/art-extra2.js ki.png --skip extra2
 // ============================================================
+ART.later('extra2', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, camera, band, star } = ART.geo;
   const { hypot, max, min, abs, sqrt } = Math;
@@ -355,3 +356,4 @@
   }
 
 })();
+});

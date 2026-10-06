@@ -1,6 +1,7 @@
 // ============================================================
 //  Matricák — iroda, írószer, technika, jelek  ·  stílus: docs/grafika-spec.md
 // ============================================================
+ART.later('office', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 ART.add('doboz', { emoji:['📦'], hu:'kartondoboz', en:'closed cardboard box', shapes:[
   { t:'poly', m:'cardboard', fc:'none', tone:'light', pts:[[10, 32], [48, 18], [90, 30], [52, 46]] },   // teteje
   { t:'poly', m:'cardboard', fc:'none', tone:'base', pts:[[10, 32], [52, 46], [52, 90], [10, 74]] },    // eleje
@@ -455,3 +456,4 @@ ART.add('fejhallgato', { emoji:['🎧'], hu:'fejhallgató', en:'over-ear headpho
     ]});
   }
 })();
+});

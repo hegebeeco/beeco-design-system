@@ -2,6 +2,7 @@
 
 
 // ---- ruha, kiegészítők, szépségápolás ----
+ART.later('things', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 ART.add('farmer', { emoji:['👖'], hu:'farmer', en:'blue denim jeans', shapes:[
   { t:'path', m:'blue', p:'M24 10 H76 L86 88 C86 90 85 91 83 91 H58 C56 91 55 90 55 88 L50 36 L45 88 C45 90 44 91 42 91 H17 C15 91 14 90 14 88 Z' },
   { t:'rect', x:23, y:8, w:54, h:10, r:2, m:'blue', tone:'dark' },
@@ -145,3 +146,4 @@ ART.add('cumisuveg', { emoji:['👶'], hu:'cumisüveg', en:'baby bottle', shapes
   ...[46, 58, 70].map(y => ({ t:'line', pts:[[31, y], [40, y]], m:'white', tone:'dark', w:2 })),
   { t:'shine', x:58, y:38, w:4, h:34 },
 ]});
+});

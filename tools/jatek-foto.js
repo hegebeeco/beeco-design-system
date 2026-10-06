@@ -4,6 +4,8 @@
 //  és nem nyílik ablak – a WebGL-kép is friss (a rejtett böngészőpanelnél elavulhat).
 //  node tools/jatek-foto.js <config.json>
 //  config: { size:[w,h], touch?:bool, cpu?:szorzó (CPU-lassítás, pl. 4 ≈ közepes Android), gpu?:bool (valódi videókártya a szoftveres helyett),
+//           init?:'kód a lap szkriptjei előtt', net?:{ latency:ms, down:kbit/s, up:kbit/s } (hálózat-lassítás),
+//           profile?:true|n (CPU-profil a betöltés alatt: a top n fájl és függvény saját ideje),
 //           dpr?:képpontsűrűség, root?:'mappa' (alap: web/), load?:ms, steps:[ {js:'kód (await is)'} | {file:'szkript.js'} | {wait:ms} | {shot:'ki.png'} ] }
 //  Minta: tools/hatter-minta/fotoz.js
 // ============================================================
@@ -39,8 +41,21 @@ srv.listen(0, async () => {
   await send('Emulation.setDeviceMetricsOverride', { width:w, height:h, deviceScaleFactor:cfg.dpr || 1, mobile:!!cfg.touch });
   if(cfg.cpu) await send('Emulation.setCPUThrottlingRate', { rate:cfg.cpu });
   if(cfg.touch) await send('Emulation.setTouchEmulationEnabled', { enabled:true, maxTouchPoints:5 });
+  // init: a lap SAJÁT szkriptjei előtt fut (pl. időmérő jelzők); net: hálózat-lassítás { latency:ms, down:kbit/s, up:kbit/s }
+  if(cfg.init) await send('Page.addScriptToEvaluateOnNewDocument', { source:cfg.init });
+  if(cfg.net){ await send('Network.enable'); await send('Network.emulateNetworkConditions', { offline:false, latency:cfg.net.latency || 0,
+    downloadThroughput:(cfg.net.down || 0) * 128, uploadThroughput:(cfg.net.up || 0) * 128 }); }
+  if(cfg.profile){ await send('Profiler.enable'); await send('Profiler.setSamplingInterval', { interval:500 }); await send('Profiler.start'); }
   await send('Page.navigate', { url:`http://127.0.0.1:${port}${cfg.path || '/'}` });
   await sleep(cfg.load || 3000);
+  if(cfg.profile){   // CPU-profil a betöltésről: a legtöbb saját időt vivő függvények (fájl:sor) és fájlok
+    const pr = (await send('Profiler.stop')).result.profile, dt = {}, byFn = {}, byFile = {};
+    for(let i = 0; i < pr.samples.length; i++) dt[pr.samples[i]] = (dt[pr.samples[i]] || 0) + (pr.timeDeltas[i] || 0) / 1000;
+    for(const n of pr.nodes){ const ms = dt[n.id] || 0; if(!ms) continue; const cf = n.callFrame, f = (cf.url || '').replace(/^https?:\/\/[^/]+\//, '') || '(' + cf.functionName + ')';
+      const k = `${cf.functionName || '(névtelen)'} ${f}:${cf.lineNumber + 1}`; byFn[k] = (byFn[k] || 0) + ms; byFile[f] = (byFile[f] || 0) + ms; }
+    const top = (o, n) => Object.entries(o).sort((a, b) => b[1] - a[1]).slice(0, n).map(([k, v]) => `  ${Math.round(v).toString().padStart(6)} ms  ${k}`).join('\n');
+    console.log('PROFIL – fájlonként:\n' + top(byFile, cfg.profile === true ? 20 : cfg.profile) + '\nPROFIL – függvényenként:\n' + top(byFn, cfg.profile === true ? 25 : cfg.profile));
+  }
   for(const s of cfg.steps || []){
     if(s.wait) await sleep(s.wait);
     if(s.file){ const r = await send('Runtime.evaluate', { expression:fs.readFileSync(s.file, 'utf8'), returnByValue:true }); const ex = r.result?.exceptionDetails; console.log(ex ? 'FÁJL HIBA: ' + s.file + ' ' + (ex.exception?.description || ex.text) : 'betöltve: ' + path.basename(s.file)); }

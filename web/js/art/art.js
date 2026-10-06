@@ -181,11 +181,30 @@
     if(LIB[name]) throw new Error('art: dupla matrica-név: ' + name);
     LIB[name] = Object.assign({ name, emoji:[], shapes:[] }, meta);
     const cs = typeof document !== 'undefined' && document.currentScript;   // melyik könyvtárból jött (a galériához)
-    if(cs && cs.src) LIB[name].lib = cs.src.replace(/^.*\/art-|\.js.*$/g, '');
+    if(curLib) LIB[name].lib = curLib; else if(cs && cs.src) LIB[name].lib = cs.src.replace(/^.*\/art-|\.js.*$/g, '');
     for(const e of LIB[name].emoji) BY_EMOJI[norm(e)] = name;
   }
   const norm = e => String(e || '').replace(/[︎️]/g, '');
-  const find = key => LIB[key] ? key : BY_EMOJI[norm(key)] || null;
+
+  // ---- LUSTA KÖNYVTÁRAK (2026-10-06, betöltés-mérés: közepes Androidon a matricák kiszámolása 3,8 mp volt az indulásból) ----
+  // Egy matrica-fájl: ART.later('halo', function(){ … ART.add(…) … }) – a böngészőben a rajz csak akkor számolódik ki, amikor
+  // az első matricáját kérik (artIcon, ART.has, ART.draw…). Hogy melyik név/emoji melyik könyvtárban van, azt a
+  // js/art/art-index.js mondja meg (generálja: node tools/art-index.js; a tests/check-art.js szól, ha elavult).
+  // Index nélkül (pl. egy oldal, amely nem tölti be) az első ismeretlen kérésnél minden könyvtár lefut – mint régen.
+  // Node-ban (eszközök, tesztek) a later() azonnal fut.
+  const LATER = {}, IDX = {}, EAGER = typeof document === 'undefined';
+  let curLib = null, idxKesz = false, varo = 0;
+  function run(lib, fn){ const prev = curLib; curLib = lib; try{ fn(); } finally{ curLib = prev; } }
+  function later(lib, fn){ if(EAGER) run(lib, fn); else { LATER[lib] = fn; varo++; } }
+  function need(lib){ const fn = LATER[lib]; if(!fn) return; delete LATER[lib]; varo--; run(lib, fn); }
+  function needAll(){ Object.keys(LATER).forEach(need); }
+  function index(map){ for(const lib in map) for(const k of map[lib]) IDX[norm(k)] = lib; idxKesz = true; }
+  const look = key => LIB[key] ? key : BY_EMOJI[norm(key)] || null;
+  function find(key){
+    const n = look(key); if(n || !varo) return n;
+    if(!idxKesz) needAll(); else { const lib = IDX[norm(key)]; if(!lib || !LATER[lib]) return null; need(lib); }
+    return look(key);
+  }
   const uri = s => 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(s);
   const cacheUri = {};
   function src(key){
@@ -251,7 +270,7 @@
   }
   const geo = { r1, R, rad, arc, band, leaf, star, camera };
 
-  const ART = { MAT, LIB, BY_EMOJI, add, svg, find, src, image, draw, bbox, points, geo, style:STYLE, has:k => !!find(k), names:() => Object.keys(LIB),
+  const ART = { MAT, LIB, BY_EMOJI, add, svg, find, src, image, draw, bbox, points, geo, style:STYLE, has:k => !!find(k), names:() => { needAll(); return Object.keys(LIB); }, later, index, need, needAll,
     override:(map) => Object.assign(OVERRIDE, map) };
   if(typeof module !== 'undefined' && module.exports){ module.exports = ART; return; }
   root.ART = ART;

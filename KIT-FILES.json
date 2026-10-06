@@ -19,6 +19,7 @@
   "tools/headless.js",
   "tools/smoke.js",
   "tools/sw-lista.js",
+  "tools/art-index.js",
   "tools/art-render.js",
   "tools/art-sheet.js",
   "tools/art-png.js",

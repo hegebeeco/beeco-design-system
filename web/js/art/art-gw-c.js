@@ -6,6 +6,7 @@
 //  Valódi méretből (cm) vetítve (ART.geo.camera), 4 éles tónus, 3/4-es nézet, tömör olíva árnyék.
 //  A kész rajzot a fin() illeszti a vászonra (perem + árnyék mellett is befér) – minta: csoport2/matrica.js
 // ============================================================
+ART.later('gw-c', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, camera, band } = ART.geo;
   const { hypot, max, min, abs, sqrt } = Math;
@@ -685,3 +686,4 @@
     ]});
   }
 })();
+});

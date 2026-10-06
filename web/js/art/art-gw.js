@@ -7,6 +7,7 @@
 //  A kártyán csak a TERMÉK látszik – felirat, betű, szám, márkajel nincs (azt a HTML teszi rá).
 //  Render: node tools/art-render.js 2d <ez a fájl> ki.png
 // ============================================================
+ART.later('gw', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, camera, band } = ART.geo;
   const { hypot, max, min, abs, sqrt, PI } = Math;
@@ -666,3 +667,4 @@
     ] });
   }
 })();
+});

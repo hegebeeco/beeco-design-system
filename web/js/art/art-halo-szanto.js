@@ -13,6 +13,7 @@
 //  Render: node tools/art-render.js 2d web/js/art/art-halo-szanto.js ki.png --skip halo
 //  Emoji-álnév nincs (a játék névvel kéri).
 // ============================================================
+ART.later('halo-szanto', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, band } = ART.geo;
   const { hypot, max, min, abs } = Math;
@@ -710,3 +711,4 @@
     ] });
   }
 })();
+});

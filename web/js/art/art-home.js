@@ -1,6 +1,7 @@
 // ============================================================
 //  Matricák — otthon: készülékek, szerelvények, eszközök, bútorok  ·  stílus: docs/grafika-spec.md
 // ============================================================
+ART.later('home', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 ART.add('jegkocka', { emoji:['🧊'], hu:'jégkocka', en:'ice cube', shapes:[
   { t:'poly', m:'sky', fc:'none', tone:'light', pts:[[18, 30], [52, 14], [86, 30], [52, 46]] },
   { t:'poly', m:'sky', fc:'none', tone:'base', pts:[[18, 30], [52, 46], [52, 90], [18, 72]] },
@@ -661,3 +662,4 @@ ART.add('balta', { emoji:['🪓'], hu:'balta', en:'wood axe', shapes:[
     ]});
   }
 })();
+});

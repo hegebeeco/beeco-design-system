@@ -7,6 +7,7 @@
 //  A kész rajzot a fin() illeszti a vászonra (perem + árnyék mellett is befér) – minta: csoport1–3/matrica.js
 //  Render: node tools/art-render.js 2d <ez a fájl> ki.png
 // ============================================================
+ART.later('gw-d', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, camera, band } = ART.geo;
   const { hypot, max, min, abs, sqrt } = Math;
@@ -720,3 +721,4 @@
     ] });
   }
 })();
+});

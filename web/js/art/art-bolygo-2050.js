@@ -13,6 +13,7 @@
 //  készletének másolatai, így a fájl önálló.
 //  Render: node tools/art-render.js 2d web/js/art/art-bolygo-2050.js ki.png --skip bolygo-2050
 // ============================================================
+ART.later('bolygo-2050', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, band, arc } = ART.geo;
   const { hypot, max, min, abs } = Math;
@@ -437,3 +438,4 @@
       ]);
   }
 })();
+});

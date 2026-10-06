@@ -2,6 +2,7 @@
 //  Matricák — célzott matricák a 2075 és a jelenetek tárgyaihoz, és a még hiányzó emojik  ·  stílus: docs/grafika-spec.md
 //  A célzott matricák emoji nélküliek (emoji:[]): a tartalom a nevükkel hivatkozik rájuk.
 // ============================================================
+ART.later('extra', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { r1, R, rad, arc, band, leaf } = ART.geo;   // közös segédek: web/js/art/art.js
 
@@ -421,3 +422,4 @@
     ]});
   })();
 })();
+});

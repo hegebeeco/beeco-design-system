@@ -7,6 +7,7 @@
 //  Az élőlények 2D-ben rajzolva (y lefelé), a fény bal-fentről; a kaptár valódi méretekből vetítve (ART.geo.camera).
 //  A segédek az art-halo.js másolatai (így a fájl önálló). Render: node tools/art-render.js 2d web/js/art/art-kaptar.js ki.png --skip kaptar
 // ============================================================
+ART.later('kaptar', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { rad, band } = ART.geo;
   const { hypot, max, min, abs } = Math;
@@ -325,3 +326,4 @@
     ] });
   }
 })();
+});

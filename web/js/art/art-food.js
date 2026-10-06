@@ -1,5 +1,6 @@
 // ============================================================
 //  Matricák — ételek, italok  ·  stílus: docs/grafika-spec.md
+ART.later('food', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 ART.add('hamburger', { emoji:['🍔'], hu:'hamburger', en:'cheeseburger', shapes:[
   { t:'path', m:'orange', p:'M12 46 C12 22 30 12 50 12 C70 12 88 22 88 46 Z' },
   { t:'rect', x:10, y:48, w:80, h:8, r:4, m:'leaf', fc:'h' },
@@ -364,3 +365,4 @@ ART.add('mez', { emoji:['🍯'], hu:'mézesbödön', en:'jar of golden honey', s
     ]});
   })();
 })();
+});

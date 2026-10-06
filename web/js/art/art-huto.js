@@ -3,6 +3,7 @@
 //  – felső polc, alsó polc, hűtőajtó + a sajt. A zöldségfiók és a konyhapolc ételei: art-huto-kamra.js
 //  Valódi méretből (cm) vetítve (ART.geo.camera), 4 éles tónus, 3/4-es nézet, tömör olíva árnyék. Render: node tools/art-render.js 2d …
 // ============================================================
+ART.later('huto', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { r1, rad, camera, band } = ART.geo;
   const sin = d => Math.sin(rad(d)), cos = d => Math.cos(rad(d));
@@ -783,3 +784,4 @@
   }
 
 })();
+});

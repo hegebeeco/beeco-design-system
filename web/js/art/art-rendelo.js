@@ -12,6 +12,7 @@
 //  2D-ben rajzolva, „vastagsággal” (eltolt sötét másolat). A segédek az art-office.js B-készletének másolatai – a fájl önálló.
 //  Render: node tools/art-render.js 2d web/js/art/art-rendelo.js ki.png --skip rendelo
 // ============================================================
+ART.later('rendelo', function(){   // lusta könyvtár: csak az első matricája kérésekor fut (js/art/art.js – ART.later)
 (function(){
   const { r1, rad, camera, band, star } = ART.geo;
   const sin = d => Math.sin(rad(d)), cos = d => Math.cos(rad(d));
@@ -766,3 +767,4 @@
     ]});
   }
 })();
+});
