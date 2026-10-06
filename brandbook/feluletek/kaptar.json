@@ -1,0 +1,128 @@
+{
+ "id": "kaptar",
+ "nev": "KAPTÁR",
+ "bor": "sajat",
+ "bor_nev": "Saját téma",
+ "technika_rovid": "React · Tailwind v4",
+ "rovid": "A beeco önkéntes- és HR-platformja: rajok, feladatok, Rajpont, jelentkezés – a kaptár belseje.",
+ "kinek": [
+  "a beeco önkéntesei és raj-vezetői",
+  "jelentkezők (Kaptár-kapu)"
+ ],
+ "hol": "`hegebeeco/beeco-hr` – Netlify (`beeco-hr-platform`)",
+ "kozos": [
+  "Lalezar a címekben, Open Sans a szövegben",
+  "méz `#FECF39` a kiemelt fő gombon (mint a beeco.hu `.button_main`)",
+  "van sötét mód",
+  "mobilon alsó menü, asztalon oldalsáv"
+ ],
+ "szandekos": [
+  "zöld az alap művelet színe („intézményi zöld”) – a sokszor ismétlődő gomb nyugodtabb"
+ ],
+ "cel": [
+  "**átállás a DS-re**: ma nincs kapcsolat, a színek a beeco.hu-ról mérve (`src/index.css` `@theme`)",
+  "krém `#FFFCF2` → DS krém `#FFF8E7`; tinta `#212121` → DS tinta",
+  "puha, nagy sarkú, árnyék nélküli elemek → a termékbőr formái (vagy döntés: a Kaptár saját „belső” változatot kap)",
+  "a betűk saját szerverről (most a Google Fonts-ról töltődnek)"
+ ],
+ "szabalykonyv": "`beeco-hr/CLAUDE.md` (UI konvenciók)",
+ "ertekek": {
+  "mez": {
+   "ertek": "méz csak kiemelt fő gombon; az alap gomb **zöld** `#556B37`",
+   "jel": "reszben",
+   "forras": "src/components/Button.jsx"
+  },
+  "tinta": {
+   "ertek": "`#212121`, bézs vonal `#E5E0D2`",
+   "jel": "elter",
+   "forras": "src/index.css @theme"
+  },
+  "hatter": {
+   "ertek": "krém `#FFFCF2` (nem a DS krémje)",
+   "jel": "elter",
+   "forras": "src/index.css @theme"
+  },
+  "sarok": {
+   "ertek": "8–12 px, kapszula is (`rounded-lg/xl/full`)",
+   "jel": "reszben",
+   "forras": "src/index.css @theme"
+  },
+  "arnyek": {
+   "ertek": "szinte nincs; vékony bézs keret",
+   "jel": "elter",
+   "forras": "src/components/*"
+  },
+  "betu": {
+   "ertek": "Lalezar + Open Sans – Google Fonts-ról",
+   "jel": "reszben",
+   "forras": "index.html"
+  },
+  "sotet": {
+   "ertek": "van, saját: `#1A1A17` alap, világosabb zöldek",
+   "jel": "reszben",
+   "forras": "src/index.css [data-theme=\"dark\"]"
+  },
+  "suruseg": {
+   "ertek": "mobil alsó menü (max. 5), asztali oldalsáv",
+   "jel": "nincs",
+   "forras": "src/components/Layout.jsx"
+  },
+  "ds": {
+   "ertek": "nincs kapcsolat – saját `@theme`",
+   "jel": "elter",
+   "forras": "src/index.css"
+  },
+  "technika": {
+   "ertek": "React 19 · Vite · Tailwind v4 · Supabase",
+   "jel": "nincs",
+   "forras": "package.json"
+  }
+ },
+ "minta": {
+  "tipus": "utanzat",
+  "utanzat": true,
+  "gomb": "Jelentkezem",
+  "kartya": "Térképész raj",
+  "kartyaSzoveg": "Nyitott feladatok · online",
+  "ertekek": {
+   "bg": "#FFFCF2",
+   "ink": "#212121",
+   "surface": "#FFFFFF",
+   "line": "#E5E0D2",
+   "btnBg": "#556B37",
+   "btnInk": "#FFFFFF",
+   "radius": "8px",
+   "cardRadius": "12px",
+   "btn2Border": "1px solid #D3CBB6",
+   "inputBorder": "1px solid #D3CBB6",
+   "bgDark": "#1A1A17",
+   "inkDark": "#F0EDE4",
+   "surfaceDark": "#24241F",
+   "lineDark": "#3D3D33"
+  }
+ },
+ "felmeres": {
+  "datum": "2026-10-06",
+  "forras": [
+   "beeco-hr/src/index.css",
+   "src/components/Button.jsx"
+  ],
+  "mert": {
+   "zold": "#6E8947",
+   "zold_sotet": "#556B37",
+   "mez": "#FECF39",
+   "krem": "#FFFCF2",
+   "kartya": "#FFFFFF",
+   "tinta": "#212121",
+   "vonal": "#E5E0D2",
+   "vonal_eros": "#D3CBB6",
+   "sotet": {
+    "krem": "#1A1A17",
+    "kartya": "#24241F",
+    "tinta": "#F0EDE4",
+    "vonal": "#3D3D33"
+   },
+   "ds_kapcsolat": false
+  }
+ }
+}

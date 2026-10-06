@@ -1,0 +1,99 @@
+{
+ "id": "partnereknek",
+ "cim": "Partnereknek",
+ "alcim": "Ha együtt dolgozunk: így jelenik meg a beeco a te anyagaidban, és így jelensz meg te a beecónál.",
+ "blokkok": [
+  {
+   "t": "h2",
+   "x": "A partnerprogram"
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Mit ad a beeco",
+   "x": "„Egyedi megjelenés a térképen, kuponok, hűségprogram és havi analitika.”",
+   "forras": [
+    "[beeco.hu/szolgaltatas/partner](https://www.beeco.hu/szolgaltatas/partner)"
+   ]
+  },
+  {
+   "t": "p",
+   "x": "A **Zümi csomag** (elérhető): egyedi térképes megjelenés, profil a weben és az appban; egyszeri és gyűjtőkuponok; PartnerApp; havi analitika; ajtómatrica, plakát, támogató anyagok; nagyvállalati céges kiajánló. Forrás: [beeco.hu/szolgaltatas/partner](https://www.beeco.hu/szolgaltatas/partner)."
+  },
+  {
+   "t": "h3",
+   "x": "Hogyan lesz valaki partner"
+  },
+  {
+   "t": "szamozott",
+   "elemek": [
+    "**Jelentkezés** – miért ökos a vállalkozás, és mi a kuponajánlat.",
+    "**Beállítás** – profil, kuponok a PartnerAppban.",
+    "**Élesítés** – megjelenés a térképen és az appban."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Hogy ki kerülhet a térképre, azt a beeco szakértő csapata értékelési rendszer alapján dönti el („beecompatibilitási teszt”)."
+  },
+  {
+   "t": "h2",
+   "x": "Logó és méhecske a partner anyagában"
+  },
+  {
+   "t": "szabaly",
+   "cim": "Jóváhagyás kell",
+   "x": "A beeco logója és méhecskéi belső használatúak. Partneranyagban (plakát, poszt, weboldal, sajtóanyag) csak a beeco jóváhagyásával jelenhetnek meg.",
+   "forras": [
+    "docs/termek-arculat.md 9.",
+    "docs/arculat.md 11."
+   ]
+  },
+  {
+   "t": "javaslat",
+   "cim": "Közös megjelenés (co-branding)",
+   "elemek": [
+    "Csak a [Letöltések](letoltesek.html) hivatalos logófájljait használd, változtatás nélkül.",
+    "A két logó egyforma magas, egy vonalban, köztük legalább a logó magasságának megfelelő hely vagy egy vékony elválasztó vonal.",
+    "A beeco logó a saját színeiben marad – nem kap partner-színt, nem kerül a partner mintájára.",
+    "Szövegben: „a beeco partnere”, „beeco-partner”; a beeco mindig kisbetűvel.",
+    "Méhecske csak a beecótól kapott, kész képként – nem rajzolható át, nem öltöztethető a partner márkájába.",
+    "A kész anyagot megjelenés előtt küldd el a beeco kapcsolattartódnak; a jóváhagyásig ne jelenjen meg."
+   ],
+   "forras": [
+    "a jóváhagyási szabály: docs/termek-arculat.md 9.",
+    "a logószabályok: Márka fejezet",
+    "Claude javaslata – általános co-branding gyakorlat alapján"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Kampány-altéma"
+  },
+  {
+   "t": "p",
+   "x": "Közös kampánynál a beeco saját altémát adhat. Példa: a **CsicsergŐsz** kampány saját palettát (kakaó, barack, méz) és saját Webflow-változógyűjteményt kapott, a betűk és a hangnem a beecóé maradtak. Forrás: `weboldal/kampany-csicsergosz/`."
+  },
+  {
+   "t": "hianyzik",
+   "cim": "Ami még nincs",
+   "elemek": [
+    "partneri sablonok (ajtómatrica, plakát, közösségi poszt) a design systemben",
+    "a partner kötelezettségei és a jóváhagyás határideje írásban",
+    "sajtóanyag-csomag (rövid leírás, logók, képek)"
+   ]
+  },
+  {
+   "t": "tovabb",
+   "linkek": [
+    {
+     "href": "marka.html",
+     "x": "Tovább: Márka"
+    },
+    {
+     "href": "letoltesek.html",
+     "x": "Letöltések"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "id": "index",
+ "cim": "Egy méhecske, hat felület",
+ "alcim": "A beeco márkakönyve és design systeme: hogyan szólunk, hogyan nézünk ki, és mit hogyan használj – önkénteseknek, partnereknek, fejlesztőknek.",
+ "blokkok": [
+  {
+   "t": "h2",
+   "x": "Hogyan olvasd ezt az oldalt?"
+  },
+  {
+   "t": "p",
+   "x": "Minden fejezet a design system élő forrásából generálódik: ha a csapat egy színt, szöveget vagy elemet módosít, itt is megjelenik. A tartalomblokkokon jelvény mutatja, mennyire végleges, amit olvasol."
+  },
+  {
+   "t": "szabaly",
+   "cim": "Jelölések",
+   "elemek": [
+    "**Szabály** – jóváhagyott, kötelező.",
+    "**Hivatalos szöveg** – a beeco nyilvános szövege, szó szerint (forrással).",
+    "**Jóváhagyásra vár** – javaslat; amíg a beeco jóvá nem hagyja, ne használd véglegesként.",
+    "**Hiányzik** – erről még nincs döntés vagy forrás.",
+    "**Tilos** – soha ne csináld."
+   ]
+  }
+ ]
+}

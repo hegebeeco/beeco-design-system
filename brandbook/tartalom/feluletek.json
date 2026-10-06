@@ -1,0 +1,75 @@
+{
+ "id": "feluletek",
+ "cim": "Hat felület",
+ "alcim": "Az ADMIN, a PARTNER, a MOBIL APP, a KAPTÁR, a WEBOLDAL és a JÁTÉKOK – mi közös, mi tér el, és mi a teendő.",
+ "blokkok": [
+  {
+   "t": "gen",
+   "nev": "csempek"
+  },
+  {
+   "t": "h2",
+   "x": "Összevető mátrix"
+  },
+  {
+   "t": "p",
+   "x": "A cellák a felületek forráskódjából felmért értékek. ● közös a design systemmel · ◐ részben · ✗ eltér (lehet szándékos – a felület oldalán leírjuk, miért)."
+  },
+  {
+   "t": "gen",
+   "nev": "matrix"
+  },
+  {
+   "t": "h2",
+   "x": "Ugyanaz az elem hat felületen"
+  },
+  {
+   "t": "p",
+   "x": "Egy gomb, egy kártya és egy mező – mindegyik felület a saját stílusában. A témaváltóval a sötét módot is kipróbálhatod: ahol nincs sötét mód, a minta világos marad."
+  },
+  {
+   "t": "gen",
+   "nev": "mintasor"
+  },
+  {
+   "t": "h2",
+   "x": "Ami mindenhol közös"
+  },
+  {
+   "t": "lista",
+   "elemek": [
+    "a méz `#FECF39` – az egyetlen hangsúlyszín",
+    "Lalezar + Open Sans",
+    "a méhecske és a hangnem: tegeződés, tanítunk – nem szidunk",
+    "44 px-es érintési felület, AA kontraszt"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Ahol döntés kell"
+  },
+  {
+   "t": "javaslat",
+   "cim": "A Kaptár iránya",
+   "x": [
+    "A Kaptár ma saját témát használ: zöld alap gomb, más krém és tinta, puha, nagy sarkú elemek, DS-kapcsolat nélkül. Két út van:",
+    "**A)** átáll a termékbőrre, mint az admin és a partner app; **B)** a DS-ben kap egy hivatalos „belső” változatot (a zöld alapművelettel), amit a többi belső eszköz is használhat.",
+    "Javaslat: **A**, mert egy önkéntes ugyanazt a beecót lássa a Kaptárban, mint az appban – a zöld „nyugodt” gombot a termékbőr másodlagos gombja kiváltja."
+   ],
+   "forras": [
+    "felmérés: beeco-hr/src/index.css, src/components/Button.jsx (2026-10-06)"
+   ]
+  },
+  {
+   "t": "javaslat",
+   "cim": "A mobil app sötét módja",
+   "x": [
+    "Az app ma csak világos. A DS-ben minden színszerepnek megvan a sötét párja (`BeecoRoles.dark`), így az átállás után a sötét mód „ingyen” jön."
+   ],
+   "forras": [
+    "docs/app-atallas.md",
+    "felmérés: mobile-app/lib/presentation/theme/app_colors.dart"
+   ]
+  }
+ ]
+}

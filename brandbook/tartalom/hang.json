@@ -1,0 +1,140 @@
+{
+ "id": "hang",
+ "cim": "Hang és szöveg",
+ "alcim": "Tegeződünk, röviden és bátorítóan szólunk: tanítunk, nem szidunk.",
+ "blokkok": [
+  {
+   "t": "h2",
+   "x": "Elvek"
+  },
+  {
+   "t": "szabaly",
+   "cim": "Így írunk",
+   "elemek": [
+    "**Tegeződünk** – barátságosan, de nem bratyizva.",
+    "**Röviden** – egy képernyő, egy gondolat; a részlet lenyitható.",
+    "**Bátorítunk** – a jót erősítjük, nem a rosszat büntetjük.",
+    "**A hiba a következő lépést mondja meg** – mit tegyen most a felhasználó.",
+    "**Szám csak valós adatból vagy forrással.** Túlzás helyett tény.",
+    "**Magyarul** írunk; angolul csak külön kérésre (a partner app kétnyelvű)."
+   ],
+   "forras": [
+    "DESIGN.md – Márka",
+    "docs/termek-arculat.md 1.",
+    "tokens/hangnem.json"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Szóvicc – mikor igen, mikor nem"
+  },
+  {
+   "t": "szabaly",
+   "cim": "A szóvicc fűszer",
+   "elemek": [
+    "Csak a kijelölt pillanatokban (lent a táblázat): üdvözlés, mentés, mérföldkő, üres lista, töltés…",
+    "**Nem** kerül szóvicc gombra, hibaüzenet teendő-részére, törlés megerősítésére, jogi szövegbe és szám mellé.",
+    "Képernyőnként legfeljebb egy méhecske és egy szóvicc.",
+    "Minden szóviccnek van sima párja – a felület mindkettőt kiírja, így a szóvicc nélkül is érthető."
+   ],
+   "forras": [
+    "tokens/hangnem.json → _readme (Javaslat 05, jóváhagyva 2026-10-01)"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Példák"
+  },
+  {
+   "t": "pelda",
+   "jo": "Hiányzik a @ utáni rész – például: nev@pelda.hu",
+   "rossz": "Hibás e-mail!",
+   "miert": "A hiba megmondja, mit tegyél most."
+  },
+  {
+   "t": "pelda",
+   "jo": "Gomb: „Mentés”",
+   "rossz": "Gomb: „Bekaptározom!”",
+   "miert": "Gombon nincs szóvicc: a gomb azt mondja, mi történik. A szóvicc a mentés utáni visszajelzésbe való („Bekaptároztuk!” – „Mentve.”)."
+  },
+  {
+   "t": "pelda",
+   "jo": "Ebben a hónapban 3 fát öntöztél meg.",
+   "rossz": "Rengeteg fát mentettél meg!",
+   "miert": "Szám csak valós adatból; a túlzás rontja a hitelességet."
+  },
+  {
+   "t": "pelda",
+   "jo": "Valami nálunk romlott el. Próbáld újra pár perc múlva.",
+   "rossz": "Hiba történt.",
+   "miert": "Ha mi hibáztunk, kimondjuk – a szomorú méhecske csak ilyenkor jelenik meg."
+  },
+  {
+   "t": "h2",
+   "x": "A méhecske szereplői"
+  },
+  {
+   "t": "p",
+   "x": "12 szereplő, mindegyiknek megvan, mikor jelenik meg. A képek a design systemből jönnek; újat rajzolni nem kell és nem szabad."
+  },
+  {
+   "t": "gen",
+   "nev": "hangszerepek"
+  },
+  {
+   "t": "tilos",
+   "cim": "A mérges méhecske",
+   "x": "Nincs a szereplők között, és nem is lesz.",
+   "forras": [
+    "tokens/hangnem.json → tiltott_kepek"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Szövegpillanatok"
+  },
+  {
+   "t": "p",
+   "x": "Minden pillanathoz tartozik egy méhecske és néhány változat – szóviccel és simán. Új változat bármikor jöhet; új pillanat csak javaslattal."
+  },
+  {
+   "t": "gen",
+   "nev": "pillanatok"
+  },
+  {
+   "t": "h2",
+   "x": "Hívómondatok"
+  },
+  {
+   "t": "hivatalos",
+   "cim": "A beeco.hu hívómondatai",
+   "elemek": [
+    "„beezz a rajban!”",
+    "„Maradj a rajban!”",
+    "„Hiszünk a közösség erejében. Apró lépésekkel csökkentjük a tehetetlenség érzését…”"
+   ],
+   "forras": [
+    "[beeco.hu](https://www.beeco.hu/) – főoldal"
+   ]
+  },
+  {
+   "t": "javaslat",
+   "cim": "Hol használd őket",
+   "x": [
+    "Közösségi poszt, plakát, esemény-meghívó végén – egyszer, nem halmozva. Gombra és jogi szövegbe ezek sem kerülnek."
+   ],
+   "forras": [
+    "tokens/hangnem.json – a szóvicc-szabály kiterjesztése a hívómondatokra"
+   ]
+  },
+  {
+   "t": "tovabb",
+   "linkek": [
+    {
+     "href": "kepek.html",
+     "x": "Tovább: Képek"
+    }
+   ]
+  }
+ ]
+}

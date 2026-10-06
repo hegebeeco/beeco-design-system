@@ -1,0 +1,117 @@
+{
+ "id": "app",
+ "nev": "MOBIL APP",
+ "bor": "termek",
+ "bor_nev": "Termékbőr (értékre)",
+ "technika_rovid": "Flutter",
+ "rovid": "A beeco app (iOS, Android): ökotérkép, lábnyomkalkulátor, események, kuponok, Nektár – térképközpontú, méhecskés.",
+ "kinek": [
+  "a beeco felhasználói",
+  "az app fejlesztője (Flutter) és tervezői"
+ ],
+ "hol": "`beeco-app/mobile-app` – App Store, Google Play",
+ "kozos": [
+  "a fő színek értékre egyeznek a DS palettájával: méz `#FECF39`, nyomott méz `#D8A500`, krém `#FFF8E7`, olíva, levél",
+  "Lalezar + Open Sans",
+  "kemény, eltolt árnyék (neo-brutalista vonal) – ebből lett a termékbőr"
+ ],
+ "szandekos": [
+  "térképközpontú képernyők, alsó lapok (bottom sheet), Rive-méhecske-animációk",
+  "ferde szegélyű és hatszöges elemek (`SlantedBorderContainer`, hatszög-lépésjelző)"
+ ],
+ "cel": [
+  "a DS Dart-tokenjeinek bekötése: `BeecoRoles.light/dark` (`dist/dart/beeco_tokens.dart`, leírás: `docs/app-atallas.md`)",
+  "**sötét mód** – ma nincs",
+  "a ~20 palettán kívüli szürke/barna/kék szín és a skálán kívüli betűméretek (10/17/22/24/30) rendezése",
+  "sarkok 1–150 px helyett 2/4/8/12 px, árnyékok 2/4/6 px"
+ ],
+ "szabalykonyv": "`docs/app-atallas.md` · `mobile-app/AGENTS.md`",
+ "ertekek": {
+  "mez": {
+   "ertek": "méz `#FECF39` (`AppColors.beecoYellow`)",
+   "jel": "kozos",
+   "forras": "lib/presentation/theme/app_colors.dart"
+  },
+  "tinta": {
+   "ertek": "fekete (`blackStrong`)",
+   "jel": "kozos",
+   "forras": "app_colors.dart"
+  },
+  "hatter": {
+   "ertek": "krém `#FFF8E7` (`beecoBgMain`)",
+   "jel": "kozos",
+   "forras": "app_colors.dart"
+  },
+  "sarok": {
+   "ertek": "1–150 px; gomb 4 px",
+   "jel": "elter",
+   "forras": "lib/presentation/utils/ui_constants.dart"
+  },
+  "arnyek": {
+   "ertek": "kemény, eltolt 1–5 px",
+   "jel": "reszben",
+   "forras": "ui_constants.dart"
+  },
+  "betu": {
+   "ertek": "Lalezar + Open Sans, de 800-as vastagság és skálán kívüli méretek",
+   "jel": "reszben",
+   "forras": "text_styles.dart"
+  },
+  "sotet": {
+   "ertek": "nincs",
+   "jel": "elter",
+   "forras": "lib/ (nincs `darkTheme`)"
+  },
+  "suruseg": {
+   "ertek": "mobil, térképközpontú",
+   "jel": "nincs",
+   "forras": "—"
+  },
+  "ds": {
+   "ertek": "nincs bekötve: saját `AppColors` (77 szín), értékre egyezik",
+   "jel": "reszben",
+   "forras": "app_colors.dart"
+  },
+  "technika": {
+   "ertek": "Flutter · Riverpod · flutter_map · Rive",
+   "jel": "nincs",
+   "forras": "pubspec.yaml"
+  }
+ },
+ "minta": {
+  "tipus": "utanzat",
+  "utanzat": true,
+  "nincsSotet": true,
+  "gomb": "Mentés",
+  "kartya": "Közösségi kert",
+  "kartyaSzoveg": "Kert utca 12. · ma nyitva",
+  "ertekek": {
+   "bg": "#FFF8E7",
+   "ink": "#000000",
+   "surface": "#FFFFFF",
+   "line": "#000000",
+   "btnBg": "#FECF39",
+   "btnInk": "#000000",
+   "radius": "4px",
+   "btnFont": "400 18px/1 Lalezar, sans-serif",
+   "cardBorder": "1px solid #000000",
+   "cardRadius": "8px",
+   "cardShadow": "2px 2px 0 #000000",
+   "inputBorder": "1px solid #000000"
+  }
+ },
+ "felmeres": {
+  "datum": "2026-10-06",
+  "forras": [
+   "mobile-app/lib/presentation/theme/app_colors.dart",
+   "lib/presentation/utils/ui_constants.dart",
+   "lib/presentation/widgets/buttons/button.dart"
+  ],
+  "mert": {
+   "szinek": 77,
+   "sarok_min": 1,
+   "sarok_max": 150,
+   "sotet_mod": false
+  }
+ }
+}
