@@ -1,9 +1,9 @@
-/* beeco design system 1.47.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.47.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   Lightbox
-} from "../reszek/chunk-M6B65CM7.js";
-import "../reszek/chunk-5IM56CWE.js";
-import "../reszek/chunk-GLCRFERI.js";
+} from "../reszek/chunk-UVGLH7VN.js";
+import "../reszek/chunk-GGHVIOOY.js";
+import "../reszek/chunk-36ZZ74MR.js";
 export {
   Lightbox
 };

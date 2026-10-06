@@ -1,14 +1,14 @@
-/* beeco design system 1.47.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.47.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   SablonFrame,
   useTemplateTitle
-} from "../reszek/chunk-NVNGWIQD.js";
-import "../reszek/chunk-HDMQFHVL.js";
-import "../reszek/chunk-Z6RFZG2X.js";
-import "../reszek/chunk-XVVBEJYL.js";
-import "../reszek/chunk-YM2R6XJY.js";
-import "../reszek/chunk-GIML2DXT.js";
-import "../reszek/chunk-BM5TW7LS.js";
+} from "../reszek/chunk-VHMBV3LO.js";
+import "../reszek/chunk-OZJUZLMN.js";
+import "../reszek/chunk-Z7GL6CPZ.js";
+import "../reszek/chunk-MBP5A3VH.js";
+import "../reszek/chunk-S4C64BL4.js";
+import "../reszek/chunk-OBRJP3KN.js";
+import "../reszek/chunk-4C25CCAY.js";
 export {
   SablonFrame,
   useTemplateTitle

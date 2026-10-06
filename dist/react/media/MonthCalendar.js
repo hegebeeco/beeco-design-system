@@ -1,14 +1,14 @@
-/* beeco design system 1.47.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.47.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   MonthCalendar
-} from "../reszek/chunk-WG25XIIS.js";
-import "../reszek/chunk-BM7YSNIZ.js";
-import "../reszek/chunk-XTTFBW7D.js";
-import "../reszek/chunk-GLCRFERI.js";
-import "../reszek/chunk-NPO7X7CS.js";
-import "../reszek/chunk-EYUU5TDK.js";
-import "../reszek/chunk-244ABCMR.js";
-import "../reszek/chunk-BM5TW7LS.js";
+} from "../reszek/chunk-44CFC5DH.js";
+import "../reszek/chunk-RUBJWQX3.js";
+import "../reszek/chunk-4B2GYAVN.js";
+import "../reszek/chunk-36ZZ74MR.js";
+import "../reszek/chunk-LTKNJQU2.js";
+import "../reszek/chunk-3RAKH2ZV.js";
+import "../reszek/chunk-BBSUDDUP.js";
+import "../reszek/chunk-4C25CCAY.js";
 export {
   MonthCalendar
 };

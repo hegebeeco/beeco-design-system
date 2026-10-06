@@ -1,11 +1,11 @@
-/* beeco design system 1.47.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.47.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   HeatLegend
-} from "../../reszek/chunk-GYMQ5NVC.js";
-import "../../reszek/chunk-PFWSOZ76.js";
-import "../../reszek/chunk-HMYHC7YL.js";
-import "../../reszek/chunk-V52HX25J.js";
-import "../../reszek/chunk-BM5TW7LS.js";
+} from "../../reszek/chunk-JZI3AKEF.js";
+import "../../reszek/chunk-LPQJ6KWE.js";
+import "../../reszek/chunk-LYDZ6TXT.js";
+import "../../reszek/chunk-F6XAVAHB.js";
+import "../../reszek/chunk-4C25CCAY.js";
 export {
   HeatLegend
 };

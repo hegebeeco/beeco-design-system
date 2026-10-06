@@ -116,3 +116,8 @@
 .kk_kampany_kep{border-radius:8px}
 /* a /rolunk-ból átvett vízióblokk: mobilon a site elrejti a piktogramot, és üres doboz marad (a /rolunk-on is); itt kicsiben megmutatjuk */
 @media (max-width:767px){[data-kk-hely="vizio"] .pikto_img{display:block;width:64px;height:auto}[data-kk-hely="vizio"] .img_box{min-height:0;height:auto;padding-top:8px}}
+/* minőségkapu 2026-10-06 (2): a site zöld címkéjén a fehér felirat 3,9-es kontrasztú → sötétebb zöld (7,1); forráslink; 44 px gombok */
+.kk_chipek .text_chip.zold{background-color:#4A5E2E}
+.kk_forras a{color:#435629}
+.main_csempe.flat{cursor:auto}
+section .button_main{min-height:44px;display:inline-flex;align-items:center;justify-content:center}

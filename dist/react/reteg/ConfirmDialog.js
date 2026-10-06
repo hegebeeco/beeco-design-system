@@ -1,12 +1,12 @@
-/* beeco design system 1.47.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.47.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ConfirmDialog
-} from "../reszek/chunk-3WXLMM77.js";
-import "../reszek/chunk-TAESEL4X.js";
-import "../reszek/chunk-VZHXFVIR.js";
-import "../reszek/chunk-EYUU5TDK.js";
-import "../reszek/chunk-244ABCMR.js";
-import "../reszek/chunk-BM5TW7LS.js";
+} from "../reszek/chunk-A3XCLGSA.js";
+import "../reszek/chunk-TGNA4BID.js";
+import "../reszek/chunk-KN5KKW7L.js";
+import "../reszek/chunk-3RAKH2ZV.js";
+import "../reszek/chunk-BBSUDDUP.js";
+import "../reszek/chunk-4C25CCAY.js";
 export {
   ConfirmDialog
 };

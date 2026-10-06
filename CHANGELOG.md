@@ -11,6 +11,11 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.47.1 – 2026-10-06 – javítás: Kaptár-kapu, minőségkapu
+* **`kk.css`** – a számcímkék zöldje sötétebb (fehér felirat kontrasztja 3,9 → 7,1), a forráslink olvasható, a site
+  gombjai a szekciókban 44 px magasak, a nem kattintható értékcsempe nem mutat kéz-kurzort.
+* **`review-szabalyok.json`** – a címke zöldje és a Webflow-slider pöttye a palettán.
+
 ## 1.47.0 – 2026-10-06 – Kaptár-kapu: a hub a site meglévő blokkjaiból, belső menü, Kaptár-rajnevek
 Mellékverzió (WEB, 2026-10-06; a felhasználó visszajelzése: hiányzott a vízió és a bemutatkozás, a design nem a site-é).
 * **`kk.js`** – belső menü (`data-kk-lapnav`): a site fejléce alá tapad, az aktuális szakasz `aria-current`; a raj-választó a
