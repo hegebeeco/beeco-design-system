@@ -11,6 +11,19 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.46.0 – 2026-10-06 – Kaptár-kapu: élő oldalmodul a Csatlakozz oldalhoz
+
+Mellékverzió (WEB, 2026-10-06) – csak új fájlok és egy új dokumentációs fejezet.
+
+* **`weboldal/csatlakozz/kk.js` + `kk.css`** – hat blokk egy JSON-forrásból (`data-kk`): felpörgő számok, nyitott feladatok
+  szűrővel (raj, online/helyben, kézzel/vibe-code), 3 kérdéses raj-választó, Kaptár-szintek és rajpont-bolt, havi ranglista
+  (csak hozzájárulással), helyi csapatok városonként. Minden választás kitölti a meglévő Webflow-űrlap terület-mezőjét.
+  Pótolja a duplikált oldalról hiányzó „Nyitott méhsejtek” harmonika-interakciót (akadálymentesen), és a szerepkártyák
+  „Érdekel!” gombja is előtölti az űrlapot. Mérés `gtag`-gel, ablakszintű figyelővel (9 esemény).
+* **`kapu-minta.json`** – jelölt mintaadat; **`kapu-adat-szerzodes.md`** – az élő végpont (Netlify function + `security definer`
+  RPC), a Kaptár-mezők megfeleltetése és a szükséges Kaptár-változások; **`review-szabalyok.json`** – mintaadat = P1.
+* **`docs/weboldal.md`** – új 10. fejezet: élő oldalmodulok.
+
 ## 1.45.1 – 2026-10-06 – javítás: Raj modul színöröklés, helyfoglalás, verziósáv
 * **`cs-raj.css`** – a modul szövegei a site elem-szintű stílusa miatt feketék lettek (`li`, `span`): most öröklik a kampány tintáját.
   Betöltés alatt a blokkok helyet foglalnak (asztalon és mobilon külön), így nincs elrendezés-ugrás (CLS 0,106 → 0).

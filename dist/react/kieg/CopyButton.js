@@ -1,12 +1,12 @@
-/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   CopyButton,
   copyText
-} from "../reszek/chunk-XTMPAA75.js";
-import "../reszek/chunk-D4EQ6RUQ.js";
-import "../reszek/chunk-PAKWALHM.js";
-import "../reszek/chunk-5GI76K7O.js";
-import "../reszek/chunk-FXE4ZZPK.js";
+} from "../reszek/chunk-TJYX2222.js";
+import "../reszek/chunk-TTRVO47E.js";
+import "../reszek/chunk-YZUSUFMW.js";
+import "../reszek/chunk-JR2QHPL6.js";
+import "../reszek/chunk-4HTA5F62.js";
 export {
   CopyButton,
   copyText

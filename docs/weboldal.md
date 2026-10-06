@@ -331,3 +331,13 @@ Egy kampány saját arculatot kaphat (ősz, madarak: krém, barack, kakaó, méz
 | Ellenőrzés | `node tools/web-ellenor.js <staging> --oldalak /kampanyok/...` **és** a minőségkapu `landing_review.mjs` a kampány saját szabályfájljával (paletta, kabala, app-képernyő, események). A `web-ellenor` a termékbőr palettáját méri, ezért a kampányszíneket „DS-en kívüli”-nek jelzi: ez a kampányoldalon várt lelet. |
 
 Minta és beilleszthető kód: **`weboldal/kampany-csicsergosz/`** (README, `tokens.json`, `head.html`, `footer.html`).
+
+## 10. Élő oldalmodulok (pl. Csatlakozz: Kaptár-kapu)
+
+Ha egy oldalrész adatból él (feladatlista, ranglista, számláló), a kód **modulként** a `weboldal/<téma>/` mappába kerül,
+és az oldal a jsDelivr verziósávjára hivatkozik (`@1.46/…`). A Webflow-ban csak a gyökérelem van `data-<előtag>="<blokk>"`
+jelölővel és egy betöltés-szöveggel; a modul helyet foglal, amíg betölt. Amíg nincs élő végpont, jelölt mintaadat
+(`"minta": true`) fut látható címkével, és az oldal saját `review-szabalyok.json`-ja P1-et ad rá: **mintaadattal nem élesítünk.**
+Az adatforrás és a mezők leírása a modul `*-szerzodes.md` fájljában van, a backend fejlesztőjének.
+
+Minta: **`weboldal/csatlakozz/`** (Kaptár-kapu: nyitott feladatok szűrővel, raj-választó, szintek, ranglista, helyi csapatok).

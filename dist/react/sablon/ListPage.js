@@ -1,30 +1,30 @@
-/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ListPage,
   useDetailParam
-} from "../reszek/chunk-VDOQERTO.js";
-import "../reszek/chunk-DJXM4V2G.js";
-import "../reszek/chunk-VVCAJ7D4.js";
-import "../reszek/chunk-H26J4SZI.js";
-import "../reszek/chunk-RER7OEF5.js";
-import "../reszek/chunk-S4AVXPCA.js";
-import "../reszek/chunk-4E22NCV4.js";
-import "../reszek/chunk-26MQTDXP.js";
-import "../reszek/chunk-H2KWJRHN.js";
-import "../reszek/chunk-HIMZGN3D.js";
-import "../reszek/chunk-XFOUHLIN.js";
-import "../reszek/chunk-VQVBAURU.js";
-import "../reszek/chunk-AKXLROBS.js";
-import "../reszek/chunk-VAFPJPYS.js";
-import "../reszek/chunk-RAHWQHWH.js";
-import "../reszek/chunk-6FS5FCUK.js";
-import "../reszek/chunk-WXWJ562Q.js";
-import "../reszek/chunk-VLD45ATY.js";
-import "../reszek/chunk-JU5WQH67.js";
-import "../reszek/chunk-AYGFVXWS.js";
-import "../reszek/chunk-PAKWALHM.js";
-import "../reszek/chunk-5GI76K7O.js";
-import "../reszek/chunk-FXE4ZZPK.js";
+} from "../reszek/chunk-OSWOKGRN.js";
+import "../reszek/chunk-HKXABZ4A.js";
+import "../reszek/chunk-355RKRY6.js";
+import "../reszek/chunk-S5B6CY6M.js";
+import "../reszek/chunk-DVWYQGNC.js";
+import "../reszek/chunk-FX3QZA7T.js";
+import "../reszek/chunk-DYRPADOR.js";
+import "../reszek/chunk-OGHTPVH2.js";
+import "../reszek/chunk-PDAI5US5.js";
+import "../reszek/chunk-RJ2QYUSP.js";
+import "../reszek/chunk-UNBIAHQH.js";
+import "../reszek/chunk-BBABH2AW.js";
+import "../reszek/chunk-SCWCNF7D.js";
+import "../reszek/chunk-3SLAD2NH.js";
+import "../reszek/chunk-J55EI2GC.js";
+import "../reszek/chunk-YAQQFQEV.js";
+import "../reszek/chunk-LX7VYFZI.js";
+import "../reszek/chunk-D6VLJNBT.js";
+import "../reszek/chunk-PMGLC5HT.js";
+import "../reszek/chunk-JRQOK474.js";
+import "../reszek/chunk-YZUSUFMW.js";
+import "../reszek/chunk-JR2QHPL6.js";
+import "../reszek/chunk-4HTA5F62.js";
 export {
   ListPage,
   useDetailParam

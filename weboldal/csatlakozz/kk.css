@@ -1,0 +1,96 @@
+/* beeco „Kaptár-kapu” – stílus. Termékbőr: a „beeco DS” Webflow-változók (--_beeco-ds---bc-*), tartalék értékkel.
+   Fekete tinta és keret, kemény árnyék csak kattinthatón, méz kiemelés, 44 px-es érintési felület. */
+[data-kk]{--k-ink:var(--_beeco-ds---bc-ink,#000);--k-soft:var(--_beeco-ds---bc-ink-soft,#505050);--k-surface:var(--_beeco-ds---bc-surface,#fff);--k-s2:var(--_beeco-ds---bc-surface-2,#F0F3EC);--k-acc:var(--_beeco-ds---bc-accent,#FECF39);--k-acc-bg:var(--_beeco-ds---bc-surface-accent,#FEEEBB);--k-line:var(--_beeco-ds---bc-line,#000);--k-focus:var(--_beeco-ds---bc-focus,#2656D9);--k-ok:var(--_beeco-ds---bc-success-bg,#E3ECCD);width:100%;color:var(--k-ink);font-size:16px;line-height:1.5}
+[data-kk] *{box-sizing:border-box}
+[data-kk] p,[data-kk] li,[data-kk] span,[data-kk] strong,[data-kk] small,[data-kk] label,[data-kk] legend,[data-kk] h3{color:inherit}
+[data-kk-allapot="hiba"]::after{content:"Az adatok most nem érhetők el. Nézz vissza később, vagy jelentkezz lent az űrlapon.";display:block;margin-top:8px;font-weight:600}
+[data-kk="szamok"]:not([data-kk-allapot]){min-height:120px}
+[data-kk="feladatok"]:not([data-kk-allapot]){min-height:900px}
+[data-kk="valaszto"]:not([data-kk-allapot]){min-height:260px}
+[data-kk="ranglista"]:not([data-kk-allapot]){min-height:420px}
+[data-kk="csapatok"]:not([data-kk-allapot]){min-height:420px}
+.kk_minta{display:inline-block;margin:0 0 12px;padding:4px 10px;border:2px dashed var(--k-line);border-radius:8px;background:var(--k-acc-bg);font-size:14px;font-weight:700}
+.kk_gomb{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-acc);color:var(--k-ink);font:inherit;font-weight:700;cursor:pointer;box-shadow:4px 4px 0 0 var(--k-line);transition:transform 120ms cubic-bezier(.23,1,.32,1),box-shadow 120ms cubic-bezier(.23,1,.32,1)}
+.kk_gomb.is-masodlagos{background:var(--k-surface)}
+@media (hover:hover) and (pointer:fine){.kk_gomb:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 0 var(--k-line)}}
+.kk_gomb:active{transform:translate(3px,3px);box-shadow:1px 1px 0 0 var(--k-line)}
+.kk_gomb:focus-visible,.kk_valasz:focus-visible,.kk_vissza:focus-visible,[data-kk] select:focus-visible,.kk_eredmeny:focus-visible{outline:3px solid var(--k-focus);outline-offset:3px}
+/* számok */
+.kk_szamok{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0;padding:0;list-style:none}
+.kk_szam_doboz{display:flex;flex-direction:column;gap:2px;padding:14px 16px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-surface);text-align:left}
+.kk_szam{font-size:34px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.kk_szam_cimke{font-size:14px;font-weight:600;color:var(--k-soft)}
+/* feladatok */
+.kk_szurok{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px}
+.kk_szuro{display:flex;flex-direction:column;gap:4px;min-width:170px;font-size:14px;font-weight:700}
+.kk_szuro select{min-height:44px;padding:0 10px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-surface);font:inherit;font-weight:600;color:var(--k-ink)}
+.kk_talalat{margin:0 0 12px;font-size:14px;color:var(--k-soft)}
+.kk_feladatok{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0;padding:0;list-style:none}
+.kk_feladatok.is-kicsi{grid-template-columns:repeat(2,1fr);margin:12px 0 16px}
+.kk_feladat{display:flex;flex-direction:column;gap:8px;padding:16px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-surface);text-align:left}
+.kk_feladat_fej{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.kk_raj{font-size:14px;font-weight:700;color:var(--k-soft)}
+.kk_pont{padding:2px 10px;border:2px solid var(--k-line);border-radius:999px;background:var(--k-acc);font-size:14px;font-weight:800;font-variant-numeric:tabular-nums}
+.kk_feladat_cim{margin:0;font-size:20px;line-height:1.25;font-weight:800}
+.kk_feladat_leiras{margin:0;font-size:16px}
+.kk_cimkek{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 4px}
+.kk_cimkek span{padding:2px 8px;border-radius:4px;background:var(--k-s2);font-size:14px;font-weight:600}
+.kk_feladat .kk_gomb{margin-top:auto;align-self:flex-start}
+.kk_ures{grid-column:1/-1;padding:16px;border:2px dashed var(--k-line);border-radius:8px}
+/* raj-választó */
+.kk_lepes{margin:0 0 6px;font-size:14px;font-weight:700;color:var(--k-soft)}
+.kk_kerdes{margin:0;padding:0;border:0}
+.kk_kerdes legend{margin-bottom:12px;padding:0;font-size:20px;font-weight:800}
+.kk_valaszok{display:flex;flex-wrap:wrap;gap:10px}
+.kk_valasz{min-height:44px;padding:8px 16px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-surface);font:inherit;font-weight:700;color:var(--k-ink);cursor:pointer;box-shadow:4px 4px 0 0 var(--k-line);transition:transform 120ms cubic-bezier(.23,1,.32,1),box-shadow 120ms cubic-bezier(.23,1,.32,1)}
+@media (hover:hover) and (pointer:fine){.kk_valasz:hover{background:var(--k-acc-bg)}}
+.kk_valasz:active{transform:translate(3px,3px);box-shadow:1px 1px 0 0 var(--k-line)}
+.kk_vissza{min-height:44px;margin-top:12px;padding:0 4px;border:0;background:none;font:inherit;font-weight:700;color:var(--k-ink);text-decoration:underline;cursor:pointer}
+.kk_eredmeny{text-align:left}
+.kk_eredmeny_felcim{margin:0;font-weight:700;color:var(--k-soft)}
+.kk_eredmeny_raj{margin:0 0 8px;font-size:34px;font-weight:800;line-height:1.1}
+.kk_eredmeny_gombok{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+/* szintek + bolt */
+.kk_szintek{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:0 0 20px;padding:0;list-style:none;counter-reset:none}
+.kk_szint{display:flex;flex-direction:column;gap:4px;padding:12px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-surface);text-align:left}
+.kk_szint_szam{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:2px solid var(--k-line);border-radius:999px;background:var(--k-acc);font-weight:800}
+.kk_szint_nev{font-weight:800}
+.kk_szint_mi{font-size:14px;color:var(--k-soft)}
+.kk_bolt_cim{margin:8px 0;font-weight:800}
+.kk_bolt{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.kk_bolt li{display:flex;gap:8px;align-items:center;padding:8px 12px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-surface)}
+/* ranglista */
+.kk_rang{margin:0;padding:0;list-style:none;text-align:left}
+.kk_rang_sor{display:grid;grid-template-columns:32px minmax(0,1fr) 30% 64px;align-items:center;gap:10px;min-height:48px;border-bottom:1px solid var(--_beeco-ds---bc-line-soft,#C6C6C6)}
+.kk_rang_hely{font-weight:800}
+.kk_rang_nev{display:flex;flex-direction:column;font-weight:700;overflow:hidden}
+.kk_rang_nev small{font-size:14px;font-weight:600;color:var(--k-soft)}
+.kk_rang_sav{height:10px;border-radius:999px;background:var(--k-s2);overflow:hidden}
+.kk_rang_sav span{display:block;height:100%;background:var(--k-acc)}
+.kk_rang_pont{text-align:right;font-weight:800;font-variant-numeric:tabular-nums}
+.kk_megjegyzes{margin:8px 0 0;font-size:14px;color:var(--k-soft)}
+/* helyi csapatok */
+.kk_csapatok{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0;padding:0;list-style:none}
+.kk_csapat{display:flex;flex-direction:column;gap:6px;padding:16px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-ok);text-align:left}
+.kk_csapat.is-indulo{background:var(--k-surface);border-style:dashed}
+.kk_csapat_varos{margin:0;font-size:26px;font-weight:800;line-height:1.1}
+.kk_csapat_adat{margin:0;font-size:16px}
+.kk_csapat .kk_gomb{margin-top:auto;align-self:flex-start}
+@media (max-width:991px){.kk_feladatok,.kk_csapatok{grid-template-columns:repeat(2,1fr)}.kk_szintek{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:767px){.kk_szamok{grid-template-columns:repeat(2,1fr)}.kk_feladatok,.kk_feladatok.is-kicsi,.kk_csapatok{grid-template-columns:1fr}.kk_szintek{grid-template-columns:repeat(2,1fr)}.kk_szuro{flex:1 1 140px;min-width:0}.kk_szam{font-size:28px}.kk_rang_sor{grid-template-columns:28px minmax(0,1fr) 56px}.kk_rang_sav{display:none}
+[data-kk="szamok"]:not([data-kk-allapot]){min-height:200px}[data-kk="feladatok"]:not([data-kk-allapot]){min-height:1800px}}
+@media (prefers-reduced-motion:reduce){.kk_gomb,.kk_valasz{transition:none}}
+/* statikus oldalelemek (a Webflow-osztályok kiegészítése): idővonal-pötty, horgony-eltolás, kilógás ellen */
+.kk_ido::before{content:"";position:absolute;left:-38px;top:6px;box-sizing:border-box;width:18px;height:18px;border:2px solid var(--_beeco-ds---bc-line,#000);border-radius:999px;background:var(--_beeco-ds---bc-accent,#FECF39)}
+.kk_ido_jovo::before{top:18px}
+#igy-mukodik,#feladatok,#rajvalaszto,#rajpont,#helyi-csapatok,#tortenetunk,#gyik,#onkentes{scroll-margin-top:96px}
+#igy-mukodik,#feladatok,#rajvalaszto,#rajpont,#helyi-csapatok,#tortenetunk,#gyik{overflow-x:clip}
+.kk_blokk>.MAIN_TEXT{max-width:760px;margin-left:auto;margin-right:auto;text-align:center}
+#rajpont .kk_blokk>h3{align-self:center;text-align:center}
+.uui-career02_job-department[role="button"]{cursor:pointer}
+.uui-career02_job-department[role="button"]:focus-visible{outline:3px solid var(--_beeco-ds---bc-focus,#2656D9);outline-offset:3px}
+.uui-career02_job-department[aria-expanded] .accordion-icon_vertical-line{transition:transform 200ms cubic-bezier(.23,1,.32,1)}
+.uui-career02_job-department[aria-expanded="true"] .accordion-icon_vertical-line{transform:rotate(90deg)}
+@media (prefers-reduced-motion:reduce){.uui-career02_job-department .accordion-icon_vertical-line{transition:none}}
+.kk_hero_also .kk_gombsor{justify-content:center}
+.kk_hero_also .kk_belepes{text-align:center}

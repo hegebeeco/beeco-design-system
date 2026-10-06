@@ -1,18 +1,18 @@
-/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   IcAuto,
   IcMoon,
   IcSun,
   THEME_LABELS_HU,
   ThemeToggle
-} from "../reszek/chunk-7O2FJYCM.js";
-import "../reszek/chunk-ZTENDOBB.js";
-import "../reszek/chunk-FT4UB572.js";
-import "../reszek/chunk-O7S5HMRO.js";
-import "../reszek/chunk-WCAZIFVZ.js";
-import "../reszek/chunk-PAKWALHM.js";
-import "../reszek/chunk-5GI76K7O.js";
-import "../reszek/chunk-FXE4ZZPK.js";
+} from "../reszek/chunk-3ME6SPFT.js";
+import "../reszek/chunk-C4WPAEHF.js";
+import "../reszek/chunk-XHYREXTN.js";
+import "../reszek/chunk-OLRF6SFB.js";
+import "../reszek/chunk-WH43WH3I.js";
+import "../reszek/chunk-YZUSUFMW.js";
+import "../reszek/chunk-JR2QHPL6.js";
+import "../reszek/chunk-4HTA5F62.js";
 export {
   IcAuto,
   IcMoon,

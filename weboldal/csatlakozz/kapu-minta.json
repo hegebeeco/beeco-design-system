@@ -1,0 +1,223 @@
+{
+ "verzio": 1,
+ "minta": true,
+ "frissitve": "2026-10-06T08:00:00+02:00",
+ "szamok": {
+  "onkentes": 34,
+  "nyitott_feladat": 9,
+  "helyi_csapat": 1,
+  "rajpont_honap": 1260
+ },
+ "feladatok": [
+  {
+   "id": "f1",
+   "cim": "Írj 3 Instagram-posztot a CsicsergŐsz kampányhoz",
+   "raj": "Kommunikációs raj",
+   "ora": 3,
+   "rajpont": 40,
+   "mod": "online",
+   "varos": "",
+   "eszkoz": "kezi",
+   "szint": "Kezdő",
+   "leiras": "Kész szövegsablon és képek várnak, te adod a hangot."
+  },
+  {
+   "id": "f2",
+   "cim": "Kerületi itató-térkép widget a weboldalra",
+   "raj": "Webes raj",
+   "ora": 6,
+   "rajpont": 120,
+   "mod": "online",
+   "varos": "",
+   "eszkoz": "vibe-code",
+   "szint": "Haladó",
+   "leiras": "Claude-dal és a beeco DS-sablonjával, kész adatforrásból."
+  },
+  {
+   "id": "f3",
+   "cim": "Rajzolj fel 20 madáritatót a kerületedben",
+   "raj": "Térképész raj",
+   "ora": 2,
+   "rajpont": 30,
+   "mod": "helyben",
+   "varos": "Budapest",
+   "eszkoz": "kezi",
+   "szint": "Kezdő",
+   "leiras": "A beeco appban, fotóval. Séta közben is megy."
+  },
+  {
+   "id": "f4",
+   "cim": "Teszteld a Madár album funkciót, és írj hibajegyet",
+   "raj": "Szoftveres raj",
+   "ora": 1,
+   "rajpont": 20,
+   "mod": "online",
+   "varos": "",
+   "eszkoz": "kezi",
+   "szint": "Kezdő",
+   "leiras": "Egy rövid ellenőrzőlista alapján, a telefonodon."
+  },
+  {
+   "id": "f5",
+   "cim": "Készíts egy 1 perces Reels videót a madárbarát kertről",
+   "raj": "Kreatív raj",
+   "ora": 3,
+   "rajpont": 50,
+   "mod": "online",
+   "varos": "",
+   "eszkoz": "kezi",
+   "szint": "Kezdő",
+   "leiras": "Saját telefonnal, a beeco matricáival."
+  },
+  {
+   "id": "f6",
+   "cim": "Beecopedia-kvíz építése vibe-codinggal",
+   "raj": "Webes raj",
+   "ora": 5,
+   "rajpont": 100,
+   "mod": "online",
+   "varos": "",
+   "eszkoz": "vibe-code",
+   "szint": "Haladó",
+   "leiras": "A beeco játék-kit sablonjából, ellenőrzött kérdésekkel."
+  },
+  {
+   "id": "f7",
+   "cim": "Fordíts le 10 Beecopedia-cikket angolra",
+   "raj": "Kommunikációs raj",
+   "ora": 4,
+   "rajpont": 60,
+   "mod": "online",
+   "varos": "",
+   "eszkoz": "kezi",
+   "szint": "Kezdő",
+   "leiras": "A külföldi indulásunkhoz."
+  },
+  {
+   "id": "f8",
+   "cim": "Szervezz madárodú-barkácsot a városodban",
+   "raj": "Térképész raj",
+   "ora": 6,
+   "rajpont": 150,
+   "mod": "helyben",
+   "varos": "Budapest",
+   "eszkoz": "kezi",
+   "szint": "Haladó",
+   "leiras": "Anyagot és forgatókönyvet adunk, te hozod az embereket."
+  },
+  {
+   "id": "f9",
+   "cim": "Partnerlista: 15 zöld bolt a városodban",
+   "raj": "Beeeznisz raj",
+   "ora": 3,
+   "rajpont": 45,
+   "mod": "online",
+   "varos": "",
+   "eszkoz": "kezi",
+   "szint": "Kezdő",
+   "leiras": "Táblázatba, a megadott szempontok szerint."
+  }
+ ],
+ "ranglista": [
+  {
+   "nev": "K. Anna",
+   "varos": "Budapest",
+   "raj": "Kommunikációs raj",
+   "rajpont": 640
+  },
+  {
+   "nev": "T. Bence",
+   "varos": "Budapest",
+   "raj": "Webes raj",
+   "rajpont": 590
+  },
+  {
+   "nev": "M. Réka",
+   "varos": "Budapest",
+   "raj": "Kreatív raj",
+   "rajpont": 515
+  },
+  {
+   "nev": "H. Dávid",
+   "varos": "Debrecen",
+   "raj": "Térképész raj",
+   "rajpont": 470
+  },
+  {
+   "nev": "S. Lili",
+   "varos": "Budapest",
+   "raj": "UX/UI fejlesztő raj",
+   "rajpont": 420
+  },
+  {
+   "nev": "F. Máté",
+   "varos": "Szeged",
+   "raj": "Beeeznisz raj",
+   "rajpont": 360
+  },
+  {
+   "nev": "V. Zsófi",
+   "varos": "Budapest",
+   "raj": "Marketing raj",
+   "rajpont": 315
+  },
+  {
+   "nev": "N. Ádám",
+   "varos": "Budapest",
+   "raj": "Szoftveres raj",
+   "rajpont": 280
+  }
+ ],
+ "csapatok": [
+  {
+   "varos": "Budapest",
+   "allapot": "aktiv",
+   "tagok": 28,
+   "kapitany": "",
+   "kovetkezo": ""
+  },
+  {
+   "varos": "Debrecen",
+   "allapot": "indulo",
+   "erdeklodo": 6
+  },
+  {
+   "varos": "Szeged",
+   "allapot": "indulo",
+   "erdeklodo": 4
+  },
+  {
+   "varos": "Pécs",
+   "allapot": "indulo",
+   "erdeklodo": 3
+  },
+  {
+   "varos": "Győr",
+   "allapot": "indulo",
+   "erdeklodo": 2
+  },
+  {
+   "varos": "Miskolc",
+   "allapot": "indulo",
+   "erdeklodo": 2
+  }
+ ],
+ "bolt": [
+  {
+   "nev": "beeco póló",
+   "rajpont": 300
+  },
+  {
+   "nev": "Vászontáska",
+   "rajpont": 200
+  },
+  {
+   "nev": "Ajánlólevél és igazolás",
+   "rajpont": 400
+  },
+  {
+   "nev": "Mentorbeszélgetés egy alapítóval",
+   "rajpont": 600
+  }
+ ]
+}

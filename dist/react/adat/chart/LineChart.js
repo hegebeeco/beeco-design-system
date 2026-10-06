@@ -1,14 +1,14 @@
-/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   LineChart
-} from "../../reszek/chunk-PUX37UOC.js";
-import "../../reszek/chunk-YT4BF7DQ.js";
-import "../../reszek/chunk-5NVA27WD.js";
-import "../../reszek/chunk-RDG65H7J.js";
-import "../../reszek/chunk-BOPNBOG4.js";
-import "../../reszek/chunk-Q43BAPJH.js";
-import "../../reszek/chunk-SR6CVEXD.js";
-import "../../reszek/chunk-T2FVZFI7.js";
+} from "../../reszek/chunk-FRDHEH4W.js";
+import "../../reszek/chunk-PQRHUZRL.js";
+import "../../reszek/chunk-3KZL447F.js";
+import "../../reszek/chunk-MW3HAD2D.js";
+import "../../reszek/chunk-6737ZM66.js";
+import "../../reszek/chunk-DY3GZMZQ.js";
+import "../../reszek/chunk-FAA7FRJL.js";
+import "../../reszek/chunk-CHGC2PIS.js";
 export {
   LineChart
 };

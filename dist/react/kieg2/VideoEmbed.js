@@ -1,18 +1,18 @@
-/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   VideoEmbed,
   VideoPreview
-} from "../reszek/chunk-24BN6WVA.js";
-import "../reszek/chunk-5UINNBZO.js";
-import "../reszek/chunk-IDCN3OB6.js";
-import "../reszek/chunk-RAHWQHWH.js";
-import "../reszek/chunk-6FS5FCUK.js";
-import "../reszek/chunk-WXWJ562Q.js";
-import "../reszek/chunk-VLD45ATY.js";
-import "../reszek/chunk-I5OXKSPT.js";
-import "../reszek/chunk-PAKWALHM.js";
-import "../reszek/chunk-5GI76K7O.js";
-import "../reszek/chunk-FXE4ZZPK.js";
+} from "../reszek/chunk-P6NDDNBC.js";
+import "../reszek/chunk-36SKGZSW.js";
+import "../reszek/chunk-OPCKEQ3H.js";
+import "../reszek/chunk-J55EI2GC.js";
+import "../reszek/chunk-YAQQFQEV.js";
+import "../reszek/chunk-LX7VYFZI.js";
+import "../reszek/chunk-D6VLJNBT.js";
+import "../reszek/chunk-UZFN2TEW.js";
+import "../reszek/chunk-YZUSUFMW.js";
+import "../reszek/chunk-JR2QHPL6.js";
+import "../reszek/chunk-4HTA5F62.js";
 export {
   VideoEmbed,
   VideoPreview

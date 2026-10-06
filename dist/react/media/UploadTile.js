@@ -1,12 +1,12 @@
-/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   UploadTile
-} from "../reszek/chunk-IPANRO3M.js";
-import "../reszek/chunk-EQS5WLHL.js";
-import "../reszek/chunk-4HDLC5JZ.js";
-import "../reszek/chunk-PLCL5WEH.js";
-import "../reszek/chunk-SR6CVEXD.js";
-import "../reszek/chunk-FXE4ZZPK.js";
+} from "../reszek/chunk-6YKN36F4.js";
+import "../reszek/chunk-Q5D2NXW7.js";
+import "../reszek/chunk-OIA5F5HY.js";
+import "../reszek/chunk-S7BVCCL5.js";
+import "../reszek/chunk-FAA7FRJL.js";
+import "../reszek/chunk-4HTA5F62.js";
 export {
   UploadTile
 };

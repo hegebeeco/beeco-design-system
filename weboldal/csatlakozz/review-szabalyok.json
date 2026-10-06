@@ -1,0 +1,71 @@
+{
+  "nev": "Csatlakozz oldal (Kaptár-kapu)",
+  "hatokor": "main, body > section, body > .w-container, [data-kk]",
+  "paletta": [
+    "#FFF8E7",
+    "#FFFCF2",
+    "#FFFFFF",
+    "#F0F3EC",
+    "#FEEEBB",
+    "#FCF1C5",
+    "#FBF0D3",
+    "#000000",
+    "#505050",
+    "#FECF39",
+    "#2656D9",
+    "#E3ECCD",
+    "#6E8947",
+    "#A8DAFF",
+    "#DDDDDD"
+  ],
+  "szinTures": 18,
+  "betuk": [
+    "Lalezar",
+    "Open Sans",
+    "system-ui"
+  ],
+  "maxBetumeret": 10,
+  "primerCta": "[data-kk-cta=\"hero_feladatok\"]",
+  "gombSelector": "[class*=\"button\"],.kk_gomb",
+  "gombMaxKar": 28,
+  "gombMaxSzo": 4,
+  "appKepernyo": {
+    "selector": "",
+    "max": 3
+  },
+  "kabala": [],
+  "helyesiras": [
+    {
+      "rossz": "Kaptar",
+      "jo": "Kaptár"
+    },
+    {
+      "rossz": "raj pont",
+      "jo": "rajpont"
+    }
+  ],
+  "javaslatJelolo": "[data-javaslat]",
+  "esemenyek": [
+    "scroll_depth"
+  ],
+  "tevekenysegKattintas": "",
+  "szekcio": "section",
+  "anim": "[data-kk=\"szamok\"]",
+  "animLathato": "",
+  "kepMaxKB": 300,
+  "kivetel": ".download_block, .footer, footer, .nav, .w-nav",
+  "kivetelIndok": "Site-szintű komponensek (letöltésblokk, lábléc, menü): nem az oldal része, külön jegyben kezelendők.",
+  "tiltott": [
+    {
+      "selector": "[data-kk-allapot=\"minta\"]",
+      "sulyossag": "P1",
+      "uzenet": "Mintaadat van az oldalon: élesítés előtt élő Kaptár-adat kell (kapu-adat-szerzodes.md)"
+    },
+    {
+      "selector": "[data-kk-allapot=\"hiba\"]",
+      "sulyossag": "P0",
+      "uzenet": "A Kaptár-kapu adatforrása nem töltött be"
+    }
+  ],
+  "palettaMegjegyzes": "Termékbőr tokenek + a site szekció-színei (DIA_ZOLD/SARGA/KEK áttetsző rétegei, mért értékek 2026-10-06)."
+}

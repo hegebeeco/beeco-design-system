@@ -1,8 +1,8 @@
-/* beeco design system 1.45.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ShellNavContext,
   useShellNav
-} from "../reszek/chunk-PU55BRRI.js";
+} from "../reszek/chunk-BEEXM7XX.js";
 export {
   ShellNavContext,
   useShellNav
