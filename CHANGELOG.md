@@ -11,6 +11,9 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.49.1 – 2026-10-06 – két új piktogram
+* `pics.js`: `seta` (sétáló alak – bejárás belső nézetben; eddig a „szem” helyettesítette) és `ho` (hópehely – tél; eddig matrica állt a vezérlőn).
+
 ## 1.49.0 – 2026-10-06 – lusta matricák, ikon-szótár, betöltés-mérés
 A beeco-szelektalj betöltés-méréséből: közepes Androidon a menüig 11,9 → 4,1 mp.
 * **`web/js/art/art.js` – lusta matrica-könyvtárak:**
