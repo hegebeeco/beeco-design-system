@@ -1,13 +1,13 @@
-/* beeco design system 1.46.3 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.47.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   UnsavedChangesDialog,
   UnsavedChangesGuard,
   useUnsavedChanges
-} from "../reszek/chunk-UUIEH2OJ.js";
-import "../reszek/chunk-6B6RFT6Y.js";
-import "../reszek/chunk-YXJMOLOZ.js";
-import "../reszek/chunk-ELRX4ZP3.js";
-import "../reszek/chunk-MGWI3LRM.js";
+} from "../reszek/chunk-N3U3RWSJ.js";
+import "../reszek/chunk-YRRMYRGC.js";
+import "../reszek/chunk-EYUU5TDK.js";
+import "../reszek/chunk-244ABCMR.js";
+import "../reszek/chunk-BM5TW7LS.js";
 export {
   UnsavedChangesDialog,
   UnsavedChangesGuard,

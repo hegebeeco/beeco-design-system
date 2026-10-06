@@ -3,8 +3,17 @@
 **Kinek:** a Kaptár fejlesztője (`beeco-hr`, Supabase „BEECO HR”). **Mire:** a beeco.hu Csatlakozz oldalának élő blokkjai
 (számok, nyitott feladatok, raj-választó, szintek és bolt, ranglista, helyi csapatok).
 **Most:** az oldal a `kapu-minta.json` mintaadatot mutatja „Mintaadat” címkével, ezért **nem élesíthető**.
-Ha kész az élő végpont, a Webflow Designerben a hero számdobozán (`data-kk="szamok"`) a `data-kk-forras` attribútumot
-át kell írni a végpont címére. Más teendő nincs: minden blokk ugyanabból a forrásból olvas.
+Ha kész az élő végpont, a Webflow Designerben a „Nyitott feladatok” dobozán (`data-kk="feladatok"`) a `data-kk-forras`
+attribútumot át kell írni a végpont címére. Más teendő nincs: minden blokk ugyanabból a forrásból olvas.
+
+## Átmenet: ideiglenes Webflow CMS (2026-10-06 döntés)
+
+Amíg a Kaptár-végpont nincs kész, a nyitott feladatokat és a helyi csapatokat a Webflow CMS **„Önkéntes feladatok”**
+gyűjteménye tárolja (`6ac49b2a1ba12f22681830f1`; a Webflow-csomag 20 gyűjteményes korlátja miatt egy gyűjtemény,
+`Típus` = Feladat / Helyi csapat, mezőcsoportokkal). A rajok listája a Kaptár `rajok` tábláját követi. A tételek
+piszkozatként, `[MINTA]` jelöléssel vannak bent; a csapat átírja és publikálja őket. Az oldalon a gyűjteménylistát a
+Designerben kell egyszer összekötni (API-n a mezőkötés nem hozható létre). Ha a Kaptár-végpont elkészül, a CMS-lista
+helyére újra a `data-kk="feladatok"` blokk kerül, a CMS-gyűjtemény pedig törölhető.
 
 ## Végpont
 
@@ -41,7 +50,7 @@ A nyilvános mezőket kizárólag az RPC adja ki (oszlopszintű jog RPC-vel), a 
 |---|---|---|
 | `szamok.onkentes` | `profiles` ahol `status = 'active'` | darabszám |
 | `szamok.nyitott_feladat` | `tasks` ahol `status = 'open'` és `nyilvanos` | darabszám |
-| `szamok.helyi_csapat` | `helyi_csapatok` ahol `allapot = 'aktiv'` | darabszám |
+| `szamok.helyi_csapat` | `helyi_csapatok` ahol `allapot = 'aktiv'` | darabszám (a hero most a főoldal publikált számait mutatja, nem ezt) |
 | `szamok.rajpont_honap` | `rajpont_monthly.points` összege az aktuális hónapra | |
 | `feladatok[]` | `tasks` ahol `status = 'open'` és `nyilvanos`, legfeljebb 24 | `id`, `title`→`cim`, `rajok.name`→`raj`, `estimated_hours`→`ora`, `rajpont`, `description` első 140 karaktere→`leiras` |
 | `feladatok[].mod/varos/eszkoz/szint` | új oszlopok, lásd lent | `mod`: `online`/`helyben`; `eszkoz`: `kezi`/`vibe-code` |

@@ -1,112 +1,112 @@
-/* beeco design system 1.46.3 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
-import "../reszek/chunk-XIRZYZ5O.js";
+/* beeco design system 1.47.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+import "../reszek/chunk-PXPNQR27.js";
 import {
   EditPage
-} from "../reszek/chunk-S435YMHT.js";
+} from "../reszek/chunk-VSQKKARC.js";
 import {
   ErrorSummary
-} from "../reszek/chunk-LNRJW2GK.js";
+} from "../reszek/chunk-KFXAAETF.js";
 import {
   ListPage,
   useDetailParam
-} from "../reszek/chunk-OYCT2L3Q.js";
+} from "../reszek/chunk-UFNVC3IE.js";
 import {
   ShellAccount
-} from "../reszek/chunk-TYS6J3HH.js";
+} from "../reszek/chunk-F5SHTY7M.js";
 import {
   clampPage,
   listStatus,
   useListState
-} from "../reszek/chunk-5DM3KJAG.js";
+} from "../reszek/chunk-3FGMDGGA.js";
 import {
   Dashboard
-} from "../reszek/chunk-T57DC63A.js";
+} from "../reszek/chunk-5CFQHJRK.js";
 import {
   usePrintFrame
-} from "../reszek/chunk-LDSBWUNK.js";
+} from "../reszek/chunk-DS36E7ZG.js";
 import {
   DetailPage
-} from "../reszek/chunk-4PQLB7JH.js";
+} from "../reszek/chunk-ZZP2YAZ5.js";
 import {
   SablonFrame,
   useTemplateTitle
-} from "../reszek/chunk-J5NCG7LI.js";
+} from "../reszek/chunk-NVNGWIQD.js";
 import {
   DetailActions
-} from "../reszek/chunk-7UI7G43I.js";
-import "../reszek/chunk-V5RHFGS7.js";
-import "../reszek/chunk-QL7IDSDP.js";
-import "../reszek/chunk-WQO7EOBQ.js";
-import "../reszek/chunk-P3R7Y6TP.js";
-import "../reszek/chunk-XD7BURQT.js";
-import "../reszek/chunk-QLIW4MHX.js";
-import "../reszek/chunk-F4FTERID.js";
-import "../reszek/chunk-M4S2QYIR.js";
-import "../reszek/chunk-53NEUIID.js";
-import "../reszek/chunk-4ES2XWAF.js";
-import "../reszek/chunk-PRFH6POK.js";
-import "../reszek/chunk-VVAOCCHB.js";
-import "../reszek/chunk-VZ2YRXRL.js";
-import "../reszek/chunk-ZSWXNTQI.js";
-import "../reszek/chunk-73FCQ2FZ.js";
-import "../reszek/chunk-EZ7WHVF7.js";
-import "../reszek/chunk-3MQXB6VF.js";
-import "../reszek/chunk-ZDTJQNQH.js";
-import "../reszek/chunk-EEDG5J6T.js";
-import "../reszek/chunk-6S4MTFX3.js";
-import "../reszek/chunk-W2TON47E.js";
-import "../reszek/chunk-2FEUFROO.js";
-import "../reszek/chunk-WPQZPUOI.js";
-import "../reszek/chunk-5ELCQB2C.js";
-import "../reszek/chunk-Q2MACWGA.js";
-import "../reszek/chunk-UUIEH2OJ.js";
-import "../reszek/chunk-R3K7QJNM.js";
-import "../reszek/chunk-QFZ2H7BD.js";
-import "../reszek/chunk-RP7TWGRD.js";
-import "../reszek/chunk-EOEGQ435.js";
-import "../reszek/chunk-P73CVY2S.js";
-import "../reszek/chunk-26K7FJQ3.js";
-import "../reszek/chunk-TAV45R5V.js";
-import "../reszek/chunk-WLDWXVNI.js";
-import "../reszek/chunk-GKIVUPTU.js";
-import "../reszek/chunk-ILSG7B3D.js";
-import "../reszek/chunk-2QDZA76Q.js";
-import "../reszek/chunk-KHCGT37Z.js";
-import "../reszek/chunk-6CZ3K2RQ.js";
-import "../reszek/chunk-P7JEDYQC.js";
-import "../reszek/chunk-NRHFKTFY.js";
-import "../reszek/chunk-P2SX3SRG.js";
-import "../reszek/chunk-VQLP7QTU.js";
-import "../reszek/chunk-6B6RFT6Y.js";
-import "../reszek/chunk-UWXMJNXT.js";
-import "../reszek/chunk-65VEHGK7.js";
-import "../reszek/chunk-YUG65WGE.js";
-import "../reszek/chunk-APEO6GU6.js";
-import "../reszek/chunk-ZLVI2H7A.js";
-import "../reszek/chunk-E6ZSUVN2.js";
-import "../reszek/chunk-X3H2L6FP.js";
-import "../reszek/chunk-K5CMQEYK.js";
-import "../reszek/chunk-HZ3YAWPW.js";
-import "../reszek/chunk-JSRTDH3E.js";
-import "../reszek/chunk-3LRS2LWU.js";
-import "../reszek/chunk-4AETSBHO.js";
-import "../reszek/chunk-UODGU2UF.js";
-import "../reszek/chunk-564AFZTI.js";
-import "../reszek/chunk-JBS2SYOS.js";
-import "../reszek/chunk-4QIKPZHL.js";
-import "../reszek/chunk-VDC2PVQ7.js";
-import "../reszek/chunk-CYDTWDWI.js";
-import "../reszek/chunk-SFWCYPAE.js";
-import "../reszek/chunk-UA5ONW4W.js";
-import "../reszek/chunk-LXE635NW.js";
-import "../reszek/chunk-Q66XQVVK.js";
-import "../reszek/chunk-S7S44IRI.js";
-import "../reszek/chunk-E6NOQYCW.js";
-import "../reszek/chunk-Z27KC3NB.js";
-import "../reszek/chunk-PBS3RQC2.js";
-import "../reszek/chunk-YXJMOLOZ.js";
-import "../reszek/chunk-ELRX4ZP3.js";
-import "../reszek/chunk-MGWI3LRM.js";
+} from "../reszek/chunk-ER2MTBOH.js";
+import "../reszek/chunk-E4ZTGDA3.js";
+import "../reszek/chunk-5VTOLVXB.js";
+import "../reszek/chunk-RJVPUSL7.js";
+import "../reszek/chunk-HDMQFHVL.js";
+import "../reszek/chunk-QLQNP44F.js";
+import "../reszek/chunk-5VMBA5BQ.js";
+import "../reszek/chunk-TAMY4RA6.js";
+import "../reszek/chunk-D3C5MGXC.js";
+import "../reszek/chunk-Z6RFZG2X.js";
+import "../reszek/chunk-XVVBEJYL.js";
+import "../reszek/chunk-YM2R6XJY.js";
+import "../reszek/chunk-GIML2DXT.js";
+import "../reszek/chunk-7NBVYGS2.js";
+import "../reszek/chunk-LF6ZVIYP.js";
+import "../reszek/chunk-D4VOIT3Q.js";
+import "../reszek/chunk-3WXLMM77.js";
+import "../reszek/chunk-TAESEL4X.js";
+import "../reszek/chunk-VZHXFVIR.js";
+import "../reszek/chunk-F37FGSRK.js";
+import "../reszek/chunk-GLCRFERI.js";
+import "../reszek/chunk-BQKEBJEF.js";
+import "../reszek/chunk-YJVRQGPM.js";
+import "../reszek/chunk-W4XIGC5Q.js";
+import "../reszek/chunk-HC7US62E.js";
+import "../reszek/chunk-ROSQS5BI.js";
+import "../reszek/chunk-N3U3RWSJ.js";
+import "../reszek/chunk-EM7CBV4V.js";
+import "../reszek/chunk-X6LMBBQ5.js";
+import "../reszek/chunk-SUR64XR5.js";
+import "../reszek/chunk-GKM3BNOB.js";
+import "../reszek/chunk-PXNBWAIZ.js";
+import "../reszek/chunk-VG2NZA2J.js";
+import "../reszek/chunk-MQ7WHWJ4.js";
+import "../reszek/chunk-2H4BN53A.js";
+import "../reszek/chunk-G6SDTBIV.js";
+import "../reszek/chunk-ZS7JPALJ.js";
+import "../reszek/chunk-OJLVRHOH.js";
+import "../reszek/chunk-X3YIZRWP.js";
+import "../reszek/chunk-HHKDGG4C.js";
+import "../reszek/chunk-3RE5NZSO.js";
+import "../reszek/chunk-H4UTL6NV.js";
+import "../reszek/chunk-2E7EUHF4.js";
+import "../reszek/chunk-LRDCH3MR.js";
+import "../reszek/chunk-YRRMYRGC.js";
+import "../reszek/chunk-7Z2LHJ6Q.js";
+import "../reszek/chunk-Y57PV4ZY.js";
+import "../reszek/chunk-VJ26PDV5.js";
+import "../reszek/chunk-4BJZQGLB.js";
+import "../reszek/chunk-I2TSS2M2.js";
+import "../reszek/chunk-MLUHLE3K.js";
+import "../reszek/chunk-QPSRCDQD.js";
+import "../reszek/chunk-EHCHSBHP.js";
+import "../reszek/chunk-7KJQQG4R.js";
+import "../reszek/chunk-CWU3OAO6.js";
+import "../reszek/chunk-STE25A32.js";
+import "../reszek/chunk-HNQ3KQIP.js";
+import "../reszek/chunk-U7FMGTHC.js";
+import "../reszek/chunk-3WEL2SSD.js";
+import "../reszek/chunk-523E5FHJ.js";
+import "../reszek/chunk-X2THRGGM.js";
+import "../reszek/chunk-LEFFPIRJ.js";
+import "../reszek/chunk-2Y4HZY4P.js";
+import "../reszek/chunk-NOUIK2NP.js";
+import "../reszek/chunk-Z3BJSSQF.js";
+import "../reszek/chunk-SVRCBHAN.js";
+import "../reszek/chunk-WPIFZNJB.js";
+import "../reszek/chunk-NR2TJ35U.js";
+import "../reszek/chunk-PFWSOZ76.js";
+import "../reszek/chunk-HMYHC7YL.js";
+import "../reszek/chunk-V52HX25J.js";
+import "../reszek/chunk-EYUU5TDK.js";
+import "../reszek/chunk-244ABCMR.js";
+import "../reszek/chunk-BM5TW7LS.js";
 export {
   Dashboard,
   DetailActions,

@@ -15,6 +15,25 @@
     fej.addEventListener('click', function () { fej.setAttribute('aria-expanded', String(fej.getAttribute('aria-expanded') !== 'true')); });
     fej.addEventListener('keydown', function (ev) { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); fej.click(); } });
   });
+  /* Belső menü (data-kk-lapnav): a site fejléce alá tapad, és jelzi, melyik szakasznál jár az olvasó */
+  var lapnav = d.querySelector('[data-kk-lapnav]');
+  function fejlecMagassag() {
+    var h = 0;
+    [].forEach.call(d.querySelectorAll('body > *, body > * > nav, .w-nav'), function (el) {
+      if (el === lapnav || lapnav && lapnav.contains(el)) return;
+      var cs = getComputedStyle(el), r = el.getBoundingClientRect();
+      if ((cs.position === 'fixed' || cs.position === 'sticky') && r.top <= 1 && r.height < 200) h = Math.max(h, r.bottom);
+    });
+    d.documentElement.style.setProperty('--kk-fejlec', Math.round(h) + 'px');
+  }
+  if (lapnav) {
+    fejlecMagassag(); window.addEventListener('resize', fejlecMagassag); window.addEventListener('scroll', function () { if (!lapnav.dataset.kkMert) { lapnav.dataset.kkMert = '1'; fejlecMagassag(); } }, { passive: true });
+    var linkek = [].slice.call(lapnav.querySelectorAll('a[href^="#"]'));
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (x) { if (!x.isIntersecting) return; linkek.forEach(function (a) { if (a.getAttribute('href') === '#' + x.target.id) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); }); }); }, { rootMargin: '-40% 0px -55% 0px' });
+      linkek.forEach(function (a) { var c = d.getElementById(a.getAttribute('href').slice(1)); if (c) io.observe(c); });
+    }
+  }
   function szerepCim(a) {
     var it = a.closest('.uui-career02_item'), cim = it && it.querySelector('.main_heading');
     var lw = a.closest('.uui-career02_list-wrapper'), fej = lw && lw.previousElementSibling, raj = fej && fej.querySelector('h2,h3,h4');
@@ -33,7 +52,7 @@
   });
   window.addEventListener('click', function (ev) {
     var t = ev.target && ev.target.closest ? ev.target : null; if (!t) return;
-    var a = t.closest('[data-kk-cta]') || t.closest('a[href="#onkentes"]'); if (!a || a.closest('[data-kk]')) return;
+    var a = t.closest('[data-kk-cta]') || t.closest('a[href="#onkentes"]'); if (!a || a.closest('[data-kk]') || a.closest('[data-kk-cms]')) return;
     var most = Date.now(); if (utolso) { if (most - (utolso.get(a) || 0) < 600) return; utolso.set(a, most); }
     var cta = a.getAttribute('data-kk-cta');
     if (cta) { kuld(cta === 'kaptar_belepes' ? 'kapu_kaptar_belepes' : 'kapu_cta_click', { cta: cta }); return; }
@@ -43,7 +62,7 @@
     kuld('kapu_szerep_erdekel', { szerep: szerep });
   }, true);
   if (!gy.length) return;
-  var MINTA = 'https://cdn.jsdelivr.net/gh/hegebeeco/beeco-design-system@1.46/weboldal/csatlakozz/kapu-minta.json';
+  var MINTA = 'https://cdn.jsdelivr.net/gh/hegebeeco/beeco-design-system@1.47/weboldal/csatlakozz/kapu-minta.json';
   var fe = d.querySelector('[data-kk-forras]');
   var forras = (fe && fe.getAttribute('data-kk-forras')) || window.KK_FORRAS || MINTA;
   var csend = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -74,13 +93,49 @@
   /* 2. Nyitott feladatok szűrővel */
   var feladatok = [];
   function kartya(f) {
-    return '<li class="kk_feladat"><div class="kk_feladat_fej"><span class="kk_raj">' + e(f.raj) + '</span><span class="kk_pont" aria-label="' + f.rajpont + ' rajpont">+' + sz(f.rajpont) + ' rajpont</span></div>' +
+    return '<li class="kk_feladat"><div class="kk_feladat_fej"><span class="kk_raj">' + e(f.raj) + ' raj</span><span class="kk_pont" aria-label="' + f.rajpont + ' rajpont">+' + sz(f.rajpont) + ' rajpont</span></div>' +
       '<h3 class="kk_feladat_cim">' + e(f.cim) + '</h3>' + (f.leiras ? '<p class="kk_feladat_leiras">' + e(f.leiras) + '</p>' : '') +
       '<p class="kk_cimkek"><span>' + e(f.ora) + ' óra</span><span>' + (f.mod === 'helyben' ? 'Helyben' + (f.varos ? ': ' + e(f.varos) : '') : 'Online') + '</span><span>' + (f.eszkoz === 'vibe-code' ? 'Vibe-code' : 'Kézzel') + '</span>' + (f.szint ? '<span>' + e(f.szint) + '</span>' : '') + '</p>' +
       '<button type="button" class="kk_gomb" data-kk-feladat="' + e(f.id) + '">Ezt választom</button></li>';
   }
+  /* Ideiglenes CMS: a Designerben összekötött gyűjteménylista elemei (data-kk-cms="feladat" + data-kk-raj/-hol/-hogyan/-cim/
+     -ora/-rajpont/-varos/-szint attribútumok). Ha vannak, ezek az igazi feladatok: a szűrő ezeket rejti/mutatja, a
+     raj-választó ezekből ajánl, és a feladatlistán nincs „Mintaadat” címke. */
+  function cmsFeladatok() {
+    return [].map.call(d.querySelectorAll('[data-kk-cms="feladat"]'), function (el, i) {
+      function a(n) { return (el.getAttribute('data-kk-' + n) || '').trim(); }
+      return { id: 'cms' + i, el: el, cim: a('cim'), raj: a('raj'), ora: Number(a('ora')) || 0, rajpont: Number(a('rajpont')) || 0,
+        mod: /helyben/i.test(a('hol')) ? 'helyben' : 'online', varos: a('varos'), eszkoz: /vibe/i.test(a('hogyan')) ? 'vibe-code' : 'kezi', szint: a('szint'), leiras: a('leiras') };
+    }).filter(function (t) { return t.cim; });
+  }
+  var CMS = cmsFeladatok();
+  if (CMS.length) d.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('[data-kk-cms="feladat"] [data-kk-valaszt], [data-kk-cms="feladat"] a[href="#onkentes"]'); if (!b) return;
+    var t = CMS.filter(function (x) { return x.el.contains(b); })[0]; if (!t) return;
+    ev.preventDefault();
+    kuld('kapu_feladat_valasztas', { feladat: t.cim.slice(0, 80), raj: t.raj, rajpont: t.rajpont });
+    jelentkezes(t.raj + ' raj · ' + t.cim, 'feladat');
+  });
   function feladatLista(el, data) {
     feladatok = data.feladatok || [];
+    if (CMS.length) {
+      var rajokC = []; CMS.forEach(function (f) { if (f.raj && rajokC.indexOf(f.raj) < 0) rajokC.push(f.raj); });
+      el.innerHTML = '<div class="kk_szurok" role="group" aria-label="Feladatok szűrése">' +
+        '<label class="kk_szuro"><span>Raj</span><select data-kk-szuro="raj"><option value="">Mind</option>' + rajokC.map(function (r) { return '<option>' + e(r) + '</option>'; }).join('') + '</select></label>' +
+        '<label class="kk_szuro"><span>Hol</span><select data-kk-szuro="mod"><option value="">Mindegy</option><option value="online">Online</option><option value="helyben">Helyben</option></select></label>' +
+        '<label class="kk_szuro"><span>Hogyan</span><select data-kk-szuro="eszkoz"><option value="">Mindegy</option><option value="kezi">Kézzel</option><option value="vibe-code">Vibe-code</option></select></label></div>' +
+        '<p class="kk_talalat" aria-live="polite"></p>';
+      var szC = el.querySelectorAll('[data-kk-szuro]'), talC = el.querySelector('.kk_talalat');
+      function szur(meres) {
+        var f = {}; szC.forEach(function (x) { f[x.getAttribute('data-kk-szuro')] = x.value; });
+        var n = 0; CMS.forEach(function (t) { var ok = (!f.raj || t.raj === f.raj) && (!f.mod || t.mod === f.mod) && (!f.eszkoz || t.eszkoz === f.eszkoz); t.el.hidden = !ok; if (ok) n++; });
+        talC.textContent = n + ' nyitott feladat';
+        if (meres) kuld('kapu_szures', f);
+      }
+      szC.forEach(function (x) { x.addEventListener('change', function () { szur(true); }); });
+      szur(false); el.setAttribute('data-kk-cms-mod', '1');
+      return;
+    }
     var rajok = []; feladatok.forEach(function (f) { if (rajok.indexOf(f.raj) < 0) rajok.push(f.raj); });
     el.innerHTML = minta(data) +
       '<div class="kk_szurok" role="group" aria-label="Feladatok szűrése">' +
@@ -102,7 +157,7 @@
       var b = ev.target.closest && ev.target.closest('[data-kk-feladat]'); if (!b) return;
       var t = feladatok.filter(function (x) { return x.id === b.getAttribute('data-kk-feladat'); })[0]; if (!t) return;
       kuld('kapu_feladat_valasztas', { feladat: t.id, raj: t.raj, rajpont: t.rajpont });
-      jelentkezes(t.raj + ' · ' + t.cim, 'feladat');
+      jelentkezes(t.raj + ' raj · ' + t.cim, 'feladat');
     });
   }
 
@@ -112,23 +167,24 @@
     { k: 'ido', cim: 'Hetente mennyi időd van?', v: [['1', '1–2 óra'], ['3', '3–5 óra'], ['5', 'Több mint 5 óra']] },
     { k: 'hol', cim: 'Hol segítenél?', v: [['online', 'Online'], ['helyben', 'A városomban'], ['', 'Mindkettő jó']] }
   ];
-  var RAJ = { kod: 'Webes raj', iras: 'Kommunikációs raj', design: 'Kreatív raj', terep: 'Térképész raj', uzlet: 'Beeeznisz raj' };
+  /* a Kaptár rajai (rajok.name); a mintaadat és az élő adat ugyanezeket a neveket használja */
+  var RAJ = { kod: 'Szoftver', iras: 'Tartalom', design: 'Design', terep: 'Fenntarthatóság', uzlet: 'Biznisz' };
   function valaszto(el, data) {
     var v = {}, i = 0;
     function lepes() {
       if (i >= KERDESEK.length) return eredmeny();
       var q = KERDESEK[i];
-      el.innerHTML = minta(data) + '<p class="kk_lepes">' + (i + 1) + ' / ' + KERDESEK.length + '</p><fieldset class="kk_kerdes"><legend>' + e(q.cim) + '</legend><div class="kk_valaszok">' +
+      el.innerHTML = (CMS.length ? '' : minta(data)) + '<p class="kk_lepes">' + (i + 1) + ' / ' + KERDESEK.length + '</p><fieldset class="kk_kerdes"><legend>' + e(q.cim) + '</legend><div class="kk_valaszok">' +
         q.v.map(function (o) { return '<button type="button" class="kk_valasz" data-v="' + e(o[0]) + '">' + e(o[1]) + '</button>'; }).join('') + '</div></fieldset>' +
         (i ? '<button type="button" class="kk_vissza">Vissza</button>' : '');
       var elso = el.querySelector('.kk_valasz'); if (elso && i) elso.focus();
     }
     function eredmeny() {
-      var raj = RAJ[v.mihez] || 'Kommunikációs raj';
+      var raj = RAJ[v.mihez] || 'Tartalom';
       var ora = Number(v.ido) || 1;
       var illik = (data.feladatok || []).filter(function (t) { return t.raj === raj && (!v.hol || t.mod === v.hol); }).sort(function (a, b) { return Math.abs(a.ora - ora) - Math.abs(b.ora - ora); }).slice(0, 2);
       if (!illik.length) illik = (data.feladatok || []).filter(function (t) { return !v.hol || t.mod === v.hol; }).slice(0, 2);
-      el.innerHTML = minta(data) + '<div class="kk_eredmeny" tabindex="-1"><p class="kk_eredmeny_felcim">Neked ez a raj illik:</p><p class="kk_eredmeny_raj">' + e(raj) + '</p>' +
+      el.innerHTML = (CMS.length ? '' : minta(data)) + '<div class="kk_eredmeny" tabindex="-1"><p class="kk_eredmeny_felcim">Neked ez a raj illik:</p><p class="kk_eredmeny_raj">' + e(raj) + ' raj</p>' +
         '<p>Két feladat, amivel már ezen a héten kezdhetsz:</p><ul class="kk_feladatok is-kicsi">' + illik.map(kartya).join('') + '</ul>' +
         '<div class="kk_eredmeny_gombok"><button type="button" class="kk_gomb" data-kk-raj="' + e(raj) + '">Jelentkezem ebbe a rajba</button><button type="button" class="kk_vissza" data-kk-ujra>Újrakezdem</button></div></div>';
       el.querySelector('.kk_eredmeny').focus();
@@ -139,8 +195,8 @@
       var b = t.closest('.kk_valasz'); if (b) { v[KERDESEK[i].k] = b.getAttribute('data-v'); i++; lepes(); return; }
       if (t.closest('[data-kk-ujra]')) { v = {}; i = 0; lepes(); return; }
       if (t.closest('.kk_vissza')) { i = Math.max(0, i - 1); lepes(); return; }
-      var r = t.closest('[data-kk-raj]'); if (r) { jelentkezes(r.getAttribute('data-kk-raj') + ' (a raj-választó ajánlása)', 'rajvalaszto'); return; }
-      var f = t.closest('[data-kk-feladat]'); if (f) { var x = (data.feladatok || []).filter(function (y) { return y.id === f.getAttribute('data-kk-feladat'); })[0]; if (x) jelentkezes(x.raj + ' · ' + x.cim, 'rajvalaszto'); }
+      var r = t.closest('[data-kk-raj]'); if (r) { jelentkezes(r.getAttribute('data-kk-raj') + ' raj (a raj-választó ajánlása)', 'rajvalaszto'); return; }
+      var f = t.closest('[data-kk-feladat]'); if (f) { var x = (data.feladatok || []).filter(function (y) { return y.id === f.getAttribute('data-kk-feladat'); })[0]; if (x) jelentkezes(x.raj + ' raj · ' + x.cim, 'rajvalaszto'); }
     });
     lepes();
   }
@@ -181,6 +237,7 @@
 
   var T = { szamok: szamok, feladatok: feladatLista, valaszto: valaszto, szintek: szintek, ranglista: ranglista, csapatok: csapatok };
   fetch(forras, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (data) {
-    gy.forEach(function (g) { var f = T[g.getAttribute('data-kk')]; if (!f) return; try { f(g, data); g.setAttribute('data-kk-allapot', data.minta ? 'minta' : 'elo'); } catch (x) { g.setAttribute('data-kk-allapot', 'hiba'); } });
+    if (CMS.length) data.feladatok = CMS;
+    gy.forEach(function (g) { var nev = g.getAttribute('data-kk'), f = T[nev]; if (!f) return; try { f(g, data); g.setAttribute('data-kk-allapot', data.minta && !(CMS.length && (nev === 'feladatok' || nev === 'valaszto')) ? 'minta' : 'elo'); } catch (x) { g.setAttribute('data-kk-allapot', 'hiba'); } });
   }).catch(function () { gy.forEach(function (g) { g.setAttribute('data-kk-allapot', 'hiba'); }); });
 })();

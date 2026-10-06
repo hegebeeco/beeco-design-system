@@ -1,9 +1,9 @@
-/* beeco design system 1.46.3 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.47.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   useUploads
-} from "../reszek/chunk-ILUFG57K.js";
-import "../reszek/chunk-7AVEYYG4.js";
-import "../reszek/chunk-Z27KC3NB.js";
+} from "../reszek/chunk-HFQ2AOMZ.js";
+import "../reszek/chunk-BVUJUUM4.js";
+import "../reszek/chunk-HMYHC7YL.js";
 export {
   useUploads
 };

@@ -107,3 +107,12 @@
 .gyik_item .home-faq-top[aria-expanded="true"] .home-faq-icon{transform:rotate(45deg)}
 .kk_gombsor .button_main,.kk_gombsor .BUTTON_MAIN,.div-block-228 .button_main,#onkentes .button_main{min-height:44px}
 .kk_gombsor .button_main,.kk_gombsor .BUTTON_MAIN,.div-block-228 .button_main{display:inline-flex;align-items:center}
+/* belső menü: a site fejléce alá tapad (a magasságot a kk.js méri), az aktív szakasz aláhúzva */
+.kk_lapnav{top:var(--kk-fejlec,0px)}
+.kk_lapnav_link[aria-current]{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
+.kk_lapnav_link:focus-visible{outline:3px solid var(--_beeco-ds---bc-focus,#2656D9);outline-offset:-3px}
+#rolunk,#ertekeink,#mit-csinalunk,#kozosseg,#sikereink,#rajok{scroll-margin-top:calc(var(--kk-fejlec,72px) + 56px)}
+#igy-mukodik,#feladatok,#rajvalaszto,#rajpont,#helyi-csapatok,#tortenetunk,#gyik,#onkentes{scroll-margin-top:calc(var(--kk-fejlec,72px) + 56px)}
+.kk_kampany_kep{border-radius:8px}
+/* a /rolunk-ból átvett vízióblokk: mobilon a site elrejti a piktogramot, és üres doboz marad (a /rolunk-on is); itt kicsiben megmutatjuk */
+@media (max-width:767px){[data-kk-hely="vizio"] .pikto_img{display:block;width:64px;height:auto}[data-kk-hely="vizio"] .img_box{min-height:0;height:auto;padding-top:8px}}

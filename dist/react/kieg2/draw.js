@@ -1,4 +1,4 @@
-/* beeco design system 1.46.3 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.47.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   REVEAL_STEPS,
   REVEAL_TOTAL_MS,
@@ -7,7 +7,7 @@ import {
   drawTime,
   tickerNames,
   wait
-} from "../reszek/chunk-IBTLK7NR.js";
+} from "../reszek/chunk-7MSENMUZ.js";
 export {
   REVEAL_STEPS,
   REVEAL_TOTAL_MS,

@@ -1,7 +1,7 @@
-/* beeco design system 1.46.3 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.47.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   cx
-} from "./reszek/chunk-MGWI3LRM.js";
+} from "./reszek/chunk-BM5TW7LS.js";
 export {
   cx
 };

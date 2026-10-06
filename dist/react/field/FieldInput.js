@@ -1,8 +1,8 @@
-/* beeco design system 1.46.3 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.47.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   FieldInput
-} from "../reszek/chunk-UA5ONW4W.js";
-import "../reszek/chunk-Q66XQVVK.js";
+} from "../reszek/chunk-Z3BJSSQF.js";
+import "../reszek/chunk-WPIFZNJB.js";
 export {
   FieldInput
 };

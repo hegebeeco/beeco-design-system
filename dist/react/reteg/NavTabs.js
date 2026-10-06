@@ -1,10 +1,10 @@
-/* beeco design system 1.46.3 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.47.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   NavTabs,
   defaultLink
-} from "../reszek/chunk-4ES2XWAF.js";
-import "../reszek/chunk-PRFH6POK.js";
-import "../reszek/chunk-VVAOCCHB.js";
+} from "../reszek/chunk-XVVBEJYL.js";
+import "../reszek/chunk-YM2R6XJY.js";
+import "../reszek/chunk-GIML2DXT.js";
 export {
   NavTabs,
   defaultLink

@@ -11,6 +11,16 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.47.0 – 2026-10-06 – Kaptár-kapu: a hub a site meglévő blokkjaiból, belső menü, Kaptár-rajnevek
+Mellékverzió (WEB, 2026-10-06; a felhasználó visszajelzése: hiányzott a vízió és a bemutatkozás, a design nem a site-é).
+* **`kk.js`** – belső menü (`data-kk-lapnav`): a site fejléce alá tapad, az aktuális szakasz `aria-current`; a raj-választó a
+  Kaptár valódi rajneveit ajánlja (Szoftver, Tartalom, Design, Fenntarthatóság, Biznisz); az adatforrás bármelyik gyökéren
+  megadható (`data-kk-forras`); **CMS-mód**: ha az oldalon Webflow CMS-feladatkártyák vannak (`data-kk-cms="feladat"`),
+  a modul azokat szűri, azokból tölti az űrlapot és a raj-választót, és nem jelöli mintaadatnak.
+* **`kk.css`** – belső menü, horgony-eltolás a fejléc + menü magasságával, a /rolunk vízióblokkjának piktogramja mobilon.
+* **`kapu-minta.json`** – a mintaadat a Kaptár rajneveit használja. **`kapu-adat-szerzodes.md`** – átmenet ideiglenes Webflow
+  CMS-sel („Önkéntes feladatok” gyűjtemény). **`README.md`** – az oldal felépítése a meglévő komponensekből.
+
 ## 1.46.3 – 2026-10-06 – javítás: Kaptár-kapu, szekció-bevezetők középre
 * **`kk.css`** – a szekciók bevezető szövege középre igazodik, 760 px-es sorhosszal (a Webflow a `MAIN_TEXT` osztályt kisbetűvel, `main_text`-ként adja ki).
 

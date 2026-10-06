@@ -1,7 +1,7 @@
-/* beeco design system 1.46.3 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.47.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   useReturnFocus
-} from "../reszek/chunk-7FWJVGP6.js";
+} from "../reszek/chunk-5IM56CWE.js";
 export {
   useReturnFocus
 };
