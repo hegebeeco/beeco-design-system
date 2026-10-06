@@ -4,7 +4,8 @@
   command = "node tools/brandbook-build.js"
   publish = "_brandbook"
   # csak akkor épít (és fogyaszt kreditet), ha a brand book forrása változott
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- brandbook/ tokens/ termek/ dist/ docs/ web/css/ web/assets/ tools/brandbook-build.js netlify/ netlify.toml CHANGELOG.md DESIGN.md VERSION"
+  # közvetlen feltöltésnél (nincs CACHED_COMMIT_REF) mindig épít
+  ignore = "[ -n \"$CACHED_COMMIT_REF\" ] && git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- brandbook/ tokens/ termek/ dist/ docs/ web/css/ web/assets/ tools/brandbook-build.js netlify/ netlify.toml CHANGELOG.md DESIGN.md VERSION"
 
 [build.environment]
   NODE_VERSION = "22"
