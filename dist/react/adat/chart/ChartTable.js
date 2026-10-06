@@ -1,10 +1,10 @@
-/* beeco design system 1.47.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ChartTable
-} from "../../reszek/chunk-OYSNMECB.js";
-import "../../reszek/chunk-LPQJ6KWE.js";
-import "../../reszek/chunk-LYDZ6TXT.js";
-import "../../reszek/chunk-F6XAVAHB.js";
+} from "../../reszek/chunk-ERQL3VSS.js";
+import "../../reszek/chunk-674RCXSW.js";
+import "../../reszek/chunk-PRCQST7M.js";
+import "../../reszek/chunk-HWNYBUS2.js";
 export {
   ChartTable
 };

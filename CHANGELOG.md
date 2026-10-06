@@ -20,6 +20,18 @@ A beeco-szelektalj átvilágításának 3. köréből (Kristóf döntései, 2026
 * `web/js/profil.js`, `web/js/i18n/en-kit.js`: a „2075” játék új neve „Vágd a zöld jövőt!” (rövid név: „Zöld jövő”) a közös profilban és a küldetésben.
 * `docs/offline-es-ci.md`: **Netlify-élesítés csak Kristóf kérésére** (2026-10-05): a push csak ellenőriz, élesíteni kézzel (workflow_dispatch) lehet.
 
+## 1.48.0 – 2026-10-06 – Kaptár-kapu v2: tömör Csatlakozz oldal, méhecskés navigáció, feladatok a rajokban
+Mellékverzió (WEB, 2026-10-06; a felhasználó visszajelzése alapján: rövidebb oldal, kevesebb blokk, HR-szempontú űrlap).
+* **`kk.js` (v2)** – méhecskés oldalnavigáció (szaggatott vonal, hatszögek, a méhecske az aktuális szakaszhoz repül; a szakaszokat
+  azonosító alapján is megtalálja); képnézegető-vezérlés (`data-kk-galeria`); a feladatok a raj-lenyílókba kerülnek, kereső- és
+  szűrősáv, „Legjobban itt kell a segítség” sor (max. 3); CMS-mód (`data-kk-cms="feladat"`); jelentkezési űrlap: legördülők
+  feltöltése, UTM és oldal rejtett mezőkbe, előtöltés feladatból és szerepkártyából, akadálymentes hozzájárulás-feliratok;
+  mérés: `kapu_kereses`, `kapu_szures`, `kapu_feladat_valasztas`, `kapu_szerep_erdekel`, `kapu_galeria`, `kapu_mehnav`,
+  `kapu_jelentkezes_kuldes`. Kikerült: számláló, raj-választó, szintek, ranglista, helyi csapatok, vízszintes menü.
+* **`kk.css` (v2)** – tömörítés (szekciótérközök, három kártyás vízió, logósávok, kompakt lépések), feladatkártyák, űrlap,
+  navigáció; csökkentett mozgásnál nincs repülés.
+* **`kapu-minta.json`** – a weboldal raj-lenyílóinak nevei, kiemelt jelölés, 11 mintafeladat.
+
 ## 1.47.1 – 2026-10-06 – javítás: Kaptár-kapu, minőségkapu
 * **`kk.css`** – a számcímkék zöldje sötétebb (fehér felirat kontrasztja 3,9 → 7,1), a forráslink olvasható, a site
   gombjai a szekciókban 44 px magasak, a nem kattintható értékcsempe nem mutat kéz-kurzort.

@@ -26,32 +26,24 @@ A weboldal-réteg többi szabálya (`docs/weboldal.md`) érvényes rá; a színe
 
 A verziósáv (`@1.46`) miatt a javító-kiadás kódcsere nélkül kijut az oldalra.
 
-## Jelölés a Designerben
+## Jelölés a Designerben (v2)
 
-| Jelölő | Mi jelenik meg |
+| Jelölő | Mi történik |
 |---|---|
-| `data-kk="szamok"` | 4 szám, felpörögnek: aktív önkéntes, nyitott feladat, helyi csapat, havi rajpont (élő adathoz) |
-| `data-kk-forras="<végpont>"` | bármelyik gyökéren (most a feladatlistán): az adatforrás címe |
-| `data-kk="feladatok"` | nyitott feladatok kártyán, szűrő: raj, hol (online/helyben), hogyan (kézzel/vibe-code); „Ezt választom” |
-| `data-kk="valaszto"` | 3 kérdés → ajánlott raj + 2 illő feladat |
-| `data-kk="szintek"` | a Kaptár karrierszintjei + mire váltható a rajpont |
-| `data-kk="ranglista"` | a hónap top 8 rajtagja (csak hozzájárulással) |
-| `data-kk="csapatok"` | városok: aktív csapat („Csatlakozom”) vagy induló („Én indítom”) |
-| `data-kk-cta="<név>"` | linkre téve: kattintásmérés (`kapu_cta_click`) |
-| `data-kk-cms="feladat"` (+ `data-kk-raj/-hol/-hogyan/-cim/-ora/-rajpont/-varos`) | Webflow CMS-listaelem: ha van ilyen, a `data-kk="feladatok"` doboz szűrősáv lesz, a modul ezeket szűri, a raj-választó ezekből ajánl; gomb: `data-kk-valaszt` |
-| `data-kk-lapnav` | belső menü (`nav`): a site fejléce alá tapad (a magasságot a modul méri), az aktuális szakasz linkje `aria-current` |
+| szakasz-azonosítók (`udv`, `rolunk`, `mit-csinalunk`, `tortenetunk`, `sikereink`, `partnerek`, `igy-mukodik`, `rajok`, `jelentkezes`, `gyik`) | méhecskés oldalnavigáció a jobb szélen (szaggatott vonal, hatszögek, a méhecske az aktuális szakaszhoz repül); a címke `data-kk-nav`-val felülírható |
+| `data-kk-galeria` (benne `ul > li > figure`) | képnézegető: előző/következő gomb, számláló, nyilak |
+| `data-kk="feladatok"` (+ `data-kk-forras`) | kereső- és szűrősáv, „Legjobban itt kell a segítség” sor (max. 3), a feladatok a raj-lenyílókba kerülnek (a lenyíló fejléce = raj neve) |
+| `data-kk-cms="feladat"` (+ `data-kk-raj/-hol/-hogyan/-cim/-ora/-varos/-szint/-leiras/-kiemelt`) | Webflow CMS-listaelem: ha van, ez az adat, a modul a lenyílókba mozgatja; gomb: `data-kk-valaszt` |
+| `#jelentkezes form` | legördülők feltöltése (raj a lenyílókból), UTM és oldal rejtett mezőkbe, előtöltés feladatból és szerepkártyából |
+| `data-kk-cta="<név>"` | kattintásmérés (`kapu_cta_click`) |
 
-Minden gyökérben legyen egy rövid betöltés-szöveg (JS nélkül az látszik). A blokkok helyet foglalnak, amíg betöltenek
-(nincs elcsúszás). Minden választás a meglévő Webflow-űrlapra (`#onkentes`) visz, és kitölti a „Milyen területen
-segítenéd a rajt?” mezőt; a fókusz a név mezőre ugrik.
-
-**Harmonika:** a duplikált oldalra a Webflow „Nyitott méhsejtek” harmonikájának interakciója (IX2) nem jön át. Ha a
-panelen nincs a Webflow kezdőállapota, a `kk.js` csukja és nyitja (`role=button`, `aria-expanded`, Enter/Szóköz).
-Ahol az interakció működik, a modul nem nyúl hozzá.
+Űrlapmezők (a Kaptár `webflow-jelentkezes` functionje ezeket várja): `nev`, `email`, `raj`, `feladat`, `varos`, `heti_ido`,
+`munkamod`, `tapasztalat`, `portfolio`, `telefon`, `forras`, `uzenet`, `adatkezeles` (kötelező), `nyilvanos_profil`, és a modul
+rejtett mezői: `utm_source`, `utm_medium`, `utm_campaign`, `oldal`. Az űrlap neve: „Csatlakozz jelentkezés”.
 
 ## Az oldal felépítése (2026-10-06)
 
-A hub a site meglévő blokkjaiból épül: hero a /csapatunk fotóslideréből (`CSAPAT_FOTOSLIDER` komponens) és a főoldal
+A hub (v2, 2026-10-06) a site meglévő blokkjaiból épül, tömörítve: kéthasábos hero (üdvözlés + fotóslider), „Írtak rólunk” logósáv, „Kik vagyunk” három kártyában + piktogramos alapértékek, „Mit csinálunk” képnézegető, rövid történet két fotóval, Elismerések, Partneri és szakértői háló, Hogyan (3 lépés + Téged várunk / Amit kínálunk), Rajok és feladatok egy felületen, „Egy méh nem csinál csodát” (Jelentkezem gombbal), bővített űrlap, GYIK. Korábbi elemek: hero a /csapatunk fotóslideréből (`CSAPAT_FOTOSLIDER` komponens) és a főoldal
 számcímkéiből; „Erről szól a beeco” és „Alapértékeink” a /rolunk blokkjaiból (`ROLUNK_VIZIO`, `ROLUNK_ERTEKEK`
 komponens, a /rolunk érintetlen); `APP_FEATURE_BLOKK`; a főoldal „Egy méh nem csinál csodát” blokkja (`Csapat`);
 `Versenyek - szereplések`, `MÉDIA_BLOKK`, `Együttműködések`; a GYIK a főoldali harmonika osztályaival. A modul csak

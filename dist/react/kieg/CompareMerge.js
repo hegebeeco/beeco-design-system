@@ -1,16 +1,16 @@
-/* beeco design system 1.47.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   CompareMerge
-} from "../reszek/chunk-U7YED3CV.js";
-import "../reszek/chunk-7NJTH45E.js";
-import "../reszek/chunk-B5VLYRI3.js";
-import "../reszek/chunk-SNTII2C7.js";
-import "../reszek/chunk-IULI4MVX.js";
-import "../reszek/chunk-NGGXTG5G.js";
-import "../reszek/chunk-HRWZQVCF.js";
-import "../reszek/chunk-3RAKH2ZV.js";
-import "../reszek/chunk-BBSUDDUP.js";
-import "../reszek/chunk-4C25CCAY.js";
+} from "../reszek/chunk-HGVG26CF.js";
+import "../reszek/chunk-YA2QIBXU.js";
+import "../reszek/chunk-JEYQA7WE.js";
+import "../reszek/chunk-BDFKINOK.js";
+import "../reszek/chunk-UCRARA5F.js";
+import "../reszek/chunk-IU27EIO3.js";
+import "../reszek/chunk-KABHIMDI.js";
+import "../reszek/chunk-36ROHKV7.js";
+import "../reszek/chunk-LNE5LIOM.js";
+import "../reszek/chunk-2JNV7AMO.js";
 export {
   CompareMerge
 };

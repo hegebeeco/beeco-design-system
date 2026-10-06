@@ -1,16 +1,16 @@
-/* beeco design system 1.47.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   RangeSlider,
   Slider
-} from "../reszek/chunk-XUYPQ7R3.js";
-import "../reszek/chunk-VCMFEH5H.js";
-import "../reszek/chunk-HJAZ6QGY.js";
-import "../reszek/chunk-GK2FB55A.js";
-import "../reszek/chunk-TD63S7M5.js";
-import "../reszek/chunk-HRWZQVCF.js";
-import "../reszek/chunk-LYDZ6TXT.js";
-import "../reszek/chunk-BBSUDDUP.js";
-import "../reszek/chunk-4C25CCAY.js";
+} from "../reszek/chunk-XIKY4DL2.js";
+import "../reszek/chunk-F2T32Z2U.js";
+import "../reszek/chunk-ROTFH5JR.js";
+import "../reszek/chunk-GRXHCTSC.js";
+import "../reszek/chunk-Q2JAGZXW.js";
+import "../reszek/chunk-KABHIMDI.js";
+import "../reszek/chunk-PRCQST7M.js";
+import "../reszek/chunk-LNE5LIOM.js";
+import "../reszek/chunk-2JNV7AMO.js";
 export {
   RangeSlider,
   Slider

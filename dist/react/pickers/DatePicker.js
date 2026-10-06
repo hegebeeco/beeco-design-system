@@ -1,16 +1,16 @@
-/* beeco design system 1.47.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   DatePicker,
   dateRangeText
-} from "../reszek/chunk-64FJ4CLC.js";
-import "../reszek/chunk-B6CUNBSE.js";
-import "../reszek/chunk-LTKNJQU2.js";
-import "../reszek/chunk-HJAZ6QGY.js";
-import "../reszek/chunk-GK2FB55A.js";
-import "../reszek/chunk-TD63S7M5.js";
-import "../reszek/chunk-HRWZQVCF.js";
-import "../reszek/chunk-BBSUDDUP.js";
-import "../reszek/chunk-4C25CCAY.js";
+} from "../reszek/chunk-KRI3RJO3.js";
+import "../reszek/chunk-3CAM4RAP.js";
+import "../reszek/chunk-QXUAQNFS.js";
+import "../reszek/chunk-ROTFH5JR.js";
+import "../reszek/chunk-GRXHCTSC.js";
+import "../reszek/chunk-Q2JAGZXW.js";
+import "../reszek/chunk-KABHIMDI.js";
+import "../reszek/chunk-LNE5LIOM.js";
+import "../reszek/chunk-2JNV7AMO.js";
 export {
   DatePicker,
   dateRangeText

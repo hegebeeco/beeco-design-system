@@ -1,4 +1,4 @@
-/* beeco design system 1.47.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   clip,
   fmt,
@@ -8,9 +8,9 @@ import {
   matchText,
   niceTicks,
   pageList
-} from "../reszek/chunk-LPQJ6KWE.js";
-import "../reszek/chunk-LYDZ6TXT.js";
-import "../reszek/chunk-F6XAVAHB.js";
+} from "../reszek/chunk-674RCXSW.js";
+import "../reszek/chunk-PRCQST7M.js";
+import "../reszek/chunk-HWNYBUS2.js";
 export {
   clip,
   fmt,

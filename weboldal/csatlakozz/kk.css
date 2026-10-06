@@ -1,123 +1,172 @@
-/* beeco „Kaptár-kapu” – stílus. Termékbőr: a „beeco DS” Webflow-változók (--_beeco-ds---bc-*), tartalék értékkel.
-   Fekete tinta és keret, kemény árnyék csak kattinthatón, méz kiemelés, 44 px-es érintési felület. */
-[data-kk]{--k-ink:var(--_beeco-ds---bc-ink,#000);--k-soft:var(--_beeco-ds---bc-ink-soft,#505050);--k-surface:var(--_beeco-ds---bc-surface,#fff);--k-s2:var(--_beeco-ds---bc-surface-2,#F0F3EC);--k-acc:var(--_beeco-ds---bc-accent,#FECF39);--k-acc-bg:var(--_beeco-ds---bc-surface-accent,#FEEEBB);--k-line:var(--_beeco-ds---bc-line,#000);--k-focus:var(--_beeco-ds---bc-focus,#2656D9);--k-ok:var(--_beeco-ds---bc-success-bg,#E3ECCD);width:100%;color:var(--k-ink);font-size:16px;line-height:1.5}
+/* beeco „Kaptár-kapu” v2 – a Csatlakozz oldal kiegészítő stílusa.
+   Termékbőr: a „beeco DS” Webflow-változók (--_beeco-ds---bc-*), tartalék értékkel. Fekete tinta és keret, méz kiemelés,
+   kemény árnyék csak kattinthatón, 44 px-es érintési felület, csökkentett mozgásnál nincs repülés és átmenet.
+   A site meglévő osztályait (a publikált HTML-ben kisbetűs, kötőjeles nevek) csak ezen az oldalon igazítja. */
+:root{--k-ink:var(--_beeco-ds---bc-ink,#000);--k-soft:var(--_beeco-ds---bc-ink-soft,#505050);--k-surface:var(--_beeco-ds---bc-surface,#fff);--k-s2:var(--_beeco-ds---bc-surface-2,#F0F3EC);--k-acc:var(--_beeco-ds---bc-accent,#FECF39);--k-acc-bg:var(--_beeco-ds---bc-surface-accent,#FEEEBB);--k-line:var(--_beeco-ds---bc-line,#000);--k-focus:var(--_beeco-ds---bc-focus,#2656D9);--k-zold:#435629;--k-ease:cubic-bezier(.23,1,.32,1)}
+
+/* ---- általános ---- */
+[data-kk]{width:100%;color:var(--k-ink);font-size:16px;line-height:1.5}
 [data-kk] *{box-sizing:border-box}
-[data-kk] p,[data-kk] li,[data-kk] span,[data-kk] strong,[data-kk] small,[data-kk] label,[data-kk] legend,[data-kk] h3{color:inherit}
+[data-kk] p,[data-kk] li,[data-kk] span,[data-kk] label,[data-kk] h3,[data-kk] h4{color:inherit}
 [data-kk-allapot="hiba"]::after{content:"Az adatok most nem érhetők el. Nézz vissza később, vagy jelentkezz lent az űrlapon.";display:block;margin-top:8px;font-weight:600}
-[data-kk="szamok"]:not([data-kk-allapot]){min-height:120px}
-[data-kk="feladatok"]:not([data-kk-allapot]){min-height:900px}
-[data-kk="valaszto"]:not([data-kk-allapot]){min-height:260px}
-[data-kk="ranglista"]:not([data-kk-allapot]){min-height:420px}
-[data-kk="csapatok"]:not([data-kk-allapot]){min-height:420px}
+[data-kk="feladatok"]:not([data-kk-allapot]){min-height:220px}
 .kk_minta{display:inline-block;margin:0 0 12px;padding:4px 10px;border:2px dashed var(--k-line);border-radius:8px;background:var(--k-acc-bg);font-size:14px;font-weight:700}
-.kk_gomb{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-acc);color:var(--k-ink);font:inherit;font-weight:700;cursor:pointer;box-shadow:4px 4px 0 0 var(--k-line);transition:transform 120ms cubic-bezier(.23,1,.32,1),box-shadow 120ms cubic-bezier(.23,1,.32,1)}
-.kk_gomb.is-masodlagos{background:var(--k-surface)}
+.kk_gomb{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-acc);color:var(--k-ink);font:inherit;font-weight:700;cursor:pointer;box-shadow:4px 4px 0 0 var(--k-line);transition:transform 120ms var(--k-ease),box-shadow 120ms var(--k-ease)}
 @media (hover:hover) and (pointer:fine){.kk_gomb:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 0 var(--k-line)}}
 .kk_gomb:active{transform:translate(3px,3px);box-shadow:1px 1px 0 0 var(--k-line)}
-.kk_gomb:focus-visible,.kk_valasz:focus-visible,.kk_vissza:focus-visible,[data-kk] select:focus-visible,.kk_eredmeny:focus-visible{outline:3px solid var(--k-focus);outline-offset:3px}
-/* számok */
-.kk_szamok{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0;padding:0;list-style:none}
-.kk_szam_doboz{display:flex;flex-direction:column;gap:2px;padding:14px 16px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-surface);text-align:left}
-.kk_szam{font-size:34px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
-.kk_szam_cimke{font-size:14px;font-weight:600;color:var(--k-soft)}
-/* feladatok */
-.kk_szurok{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px}
-.kk_szuro{display:flex;flex-direction:column;gap:4px;min-width:170px;font-size:14px;font-weight:700}
-.kk_szuro select{min-height:44px;padding:0 10px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-surface);font:inherit;font-weight:600;color:var(--k-ink)}
-.kk_talalat{margin:0 0 12px;font-size:14px;color:var(--k-soft)}
-.kk_feladatok{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0;padding:0;list-style:none}
-.kk_feladatok.is-kicsi{grid-template-columns:repeat(2,1fr);margin:12px 0 16px}
-.kk_feladat{display:flex;flex-direction:column;gap:8px;padding:16px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-surface);text-align:left}
-.kk_feladat_fej{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
-.kk_raj{font-size:14px;font-weight:700;color:var(--k-soft)}
-.kk_pont{padding:2px 10px;border:2px solid var(--k-line);border-radius:999px;background:var(--k-acc);font-size:14px;font-weight:800;font-variant-numeric:tabular-nums}
-.kk_feladat_cim{margin:0;font-size:20px;line-height:1.25;font-weight:800}
-.kk_feladat_leiras{margin:0;font-size:16px}
-.kk_cimkek{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 4px}
-.kk_cimkek span{padding:2px 8px;border-radius:4px;background:var(--k-s2);font-size:14px;font-weight:600}
-.kk_feladat .kk_gomb{margin-top:auto;align-self:flex-start}
-.kk_ures{grid-column:1/-1;padding:16px;border:2px dashed var(--k-line);border-radius:8px}
-/* raj-választó */
-.kk_lepes{margin:0 0 6px;font-size:14px;font-weight:700;color:var(--k-soft)}
-.kk_kerdes{margin:0;padding:0;border:0}
-.kk_kerdes legend{margin-bottom:12px;padding:0;font-size:20px;font-weight:800}
-.kk_valaszok{display:flex;flex-wrap:wrap;gap:10px}
-.kk_valasz{min-height:44px;padding:8px 16px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-surface);font:inherit;font-weight:700;color:var(--k-ink);cursor:pointer;box-shadow:4px 4px 0 0 var(--k-line);transition:transform 120ms cubic-bezier(.23,1,.32,1),box-shadow 120ms cubic-bezier(.23,1,.32,1)}
-@media (hover:hover) and (pointer:fine){.kk_valasz:hover{background:var(--k-acc-bg)}}
-.kk_valasz:active{transform:translate(3px,3px);box-shadow:1px 1px 0 0 var(--k-line)}
-.kk_vissza{min-height:44px;margin-top:12px;padding:0 4px;border:0;background:none;font:inherit;font-weight:700;color:var(--k-ink);text-decoration:underline;cursor:pointer}
-.kk_eredmeny{text-align:left}
-.kk_eredmeny_felcim{margin:0;font-weight:700;color:var(--k-soft)}
-.kk_eredmeny_raj{margin:0 0 8px;font-size:34px;font-weight:800;line-height:1.1}
-.kk_eredmeny_gombok{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
-/* szintek + bolt */
-.kk_szintek{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:0 0 20px;padding:0;list-style:none;counter-reset:none}
-.kk_szint{display:flex;flex-direction:column;gap:4px;padding:12px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-surface);text-align:left}
-.kk_szint_szam{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:2px solid var(--k-line);border-radius:999px;background:var(--k-acc);font-weight:800}
-.kk_szint_nev{font-weight:800}
-.kk_szint_mi{font-size:14px;color:var(--k-soft)}
-.kk_bolt_cim{margin:8px 0;font-weight:800}
-.kk_bolt{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
-.kk_bolt li{display:flex;gap:8px;align-items:center;padding:8px 12px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-surface)}
-/* ranglista */
-.kk_rang{margin:0;padding:0;list-style:none;text-align:left}
-.kk_rang_sor{display:grid;grid-template-columns:32px minmax(0,1fr) 30% 64px;align-items:center;gap:10px;min-height:48px;border-bottom:1px solid var(--_beeco-ds---bc-line-soft,#C6C6C6)}
-.kk_rang_hely{font-weight:800}
-.kk_rang_nev{display:flex;flex-direction:column;font-weight:700;overflow:hidden}
-.kk_rang_nev small{font-size:14px;font-weight:600;color:var(--k-soft)}
-.kk_rang_sav{height:10px;border-radius:999px;background:var(--k-s2);overflow:hidden}
-.kk_rang_sav span{display:block;height:100%;background:var(--k-acc)}
-.kk_rang_pont{text-align:right;font-weight:800;font-variant-numeric:tabular-nums}
-.kk_megjegyzes{margin:8px 0 0;font-size:14px;color:var(--k-soft)}
-/* helyi csapatok */
-.kk_csapatok{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0;padding:0;list-style:none}
-.kk_csapat{display:flex;flex-direction:column;gap:6px;padding:16px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-ok);text-align:left}
-.kk_csapat.is-indulo{background:var(--k-surface);border-style:dashed}
-.kk_csapat_varos{margin:0;font-size:26px;font-weight:800;line-height:1.1}
-.kk_csapat_adat{margin:0;font-size:16px}
-.kk_csapat .kk_gomb{margin-top:auto;align-self:flex-start}
-@media (max-width:991px){.kk_feladatok,.kk_csapatok{grid-template-columns:repeat(2,1fr)}.kk_szintek{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:767px){.kk_szamok{grid-template-columns:repeat(2,1fr)}.kk_feladatok,.kk_feladatok.is-kicsi,.kk_csapatok{grid-template-columns:1fr}.kk_szintek{grid-template-columns:repeat(2,1fr)}.kk_szuro{flex:1 1 140px;min-width:0}.kk_szam{font-size:28px}.kk_rang_sor{grid-template-columns:28px minmax(0,1fr) 56px}.kk_rang_sav{display:none}
-[data-kk="szamok"]:not([data-kk-allapot]){min-height:200px}[data-kk="feladatok"]:not([data-kk-allapot]){min-height:1800px}}
-@media (prefers-reduced-motion:reduce){.kk_gomb,.kk_valasz{transition:none}}
-/* statikus oldalelemek (a Webflow-osztályok kiegészítése): idővonal-pötty, horgony-eltolás, kilógás ellen */
-.kk_ido::before{content:"";position:absolute;left:-38px;top:6px;box-sizing:border-box;width:18px;height:18px;border:2px solid var(--_beeco-ds---bc-line,#000);border-radius:999px;background:var(--_beeco-ds---bc-accent,#FECF39)}
-.kk_ido_jovo::before{top:18px}
-#igy-mukodik,#feladatok,#rajvalaszto,#rajpont,#helyi-csapatok,#tortenetunk,#gyik,#onkentes{scroll-margin-top:96px}
-#igy-mukodik,#feladatok,#rajvalaszto,#rajpont,#helyi-csapatok,#tortenetunk,#gyik{overflow-x:clip}
+.kk_gomb:focus-visible,[data-kk] select:focus-visible,[data-kk] input:focus-visible,.kk_galeria_gomb:focus-visible,.kk_galeria_sav:focus-visible,.kk_mehnav_pont:focus-visible,.uui-career02_job-department:focus-visible,.gyik_item .home-faq-top:focus-visible{outline:3px solid var(--k-focus);outline-offset:3px}
 .kk_blokk>.main_text,.kk_blokk>.MAIN_TEXT{max-width:760px;margin-left:auto;margin-right:auto;text-align:center}
-#rajpont .kk_blokk>h3{align-self:center;text-align:center}
-.uui-career02_job-department[role="button"]{cursor:pointer}
-.uui-career02_job-department[role="button"]:focus-visible{outline:3px solid var(--_beeco-ds---bc-focus,#2656D9);outline-offset:3px}
-.uui-career02_job-department[aria-expanded] .accordion-icon_vertical-line{transition:transform 200ms cubic-bezier(.23,1,.32,1)}
-.uui-career02_job-department[aria-expanded="true"] .accordion-icon_vertical-line{transform:rotate(90deg)}
-@media (prefers-reduced-motion:reduce){.uui-career02_job-department .accordion-icon_vertical-line{transition:none}}
-.kk_hero_also{align-items:center}
-.kk_hero_also .kk_gombsor{justify-content:center}
-.kk_hero_also [data-kk="szamok"]{align-self:stretch}
-.kk_hero_also .kk_belepes{text-align:center}
-/* az oldal meglévő site-elemeinek akadálymentesítése (minőségkapu, 2026-10-06) */
-.breadcumb_link{display:inline-flex;align-items:center;min-height:44px;color:#435629}
-.kk_gombsor .button_terc,.kk_gombsor .BUTTON_TERC{display:inline-flex;align-items:center;min-height:44px}
-#onkentes .w-input,#onkentes .input_field{min-height:44px}
+section .button_main{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.breadcumb_link{display:inline-flex;align-items:center;min-height:44px;color:var(--k-zold)}
+.kk_chipek .text_chip.zold{background-color:#4A5E2E}
 .img_beeco{box-shadow:none}
+.main_csempe.flat{cursor:auto}
 .gyik_item{cursor:auto}
 .gyik_item .home-faq-top{cursor:pointer}
-.gyik_item .home-faq-top:focus-visible,.uui-career02_job-department:focus-visible{outline:3px solid var(--_beeco-ds---bc-focus,#2656D9);outline-offset:3px}
 .gyik_item .home-faq-top[aria-expanded="true"] .home-faq-icon{transform:rotate(45deg)}
-.kk_gombsor .button_main,.kk_gombsor .BUTTON_MAIN,.div-block-228 .button_main,#onkentes .button_main{min-height:44px}
-.kk_gombsor .button_main,.kk_gombsor .BUTTON_MAIN,.div-block-228 .button_main{display:inline-flex;align-items:center}
-/* belső menü: a site fejléce alá tapad (a magasságot a kk.js méri), az aktív szakasz aláhúzva */
-.kk_lapnav{top:var(--kk-fejlec,0px)}
-.kk_lapnav_link[aria-current]{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
-.kk_lapnav_link:focus-visible{outline:3px solid var(--_beeco-ds---bc-focus,#2656D9);outline-offset:-3px}
-#rolunk,#ertekeink,#mit-csinalunk,#kozosseg,#sikereink,#rajok{scroll-margin-top:calc(var(--kk-fejlec,72px) + 56px)}
-#igy-mukodik,#feladatok,#rajvalaszto,#rajpont,#helyi-csapatok,#tortenetunk,#gyik,#onkentes{scroll-margin-top:calc(var(--kk-fejlec,72px) + 56px)}
-.kk_kampany_kep{border-radius:8px}
-/* a /rolunk-ból átvett vízióblokk: mobilon a site elrejti a piktogramot, és üres doboz marad (a /rolunk-on is); itt kicsiben megmutatjuk */
-@media (max-width:767px){[data-kk-hely="vizio"] .pikto_img{display:block;width:64px;height:auto}[data-kk-hely="vizio"] .img_box{min-height:0;height:auto;padding-top:8px}}
-/* minőségkapu 2026-10-06 (2): a site zöld címkéjén a fehér felirat 3,9-es kontrasztú → sötétebb zöld (7,1); forráslink; 44 px gombok */
-.kk_chipek .text_chip.zold{background-color:#4A5E2E}
-.kk_forras a{color:#435629}
-.main_csempe.flat{cursor:auto}
-section .button_main{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+[data-kk-nav],#jelentkezes,#rajok{scroll-margin-top:80px}
+
+/* ---- tömörítés: szekciók térköze ---- */
+#udv,#rolunk,#mit-csinalunk,#tortenetunk,#sikereink,#partnerek,#igy-mukodik,#kozosseg,#gyik{padding-top:48px;padding-bottom:48px}
+@media (max-width:767px){#udv,#rolunk,#mit-csinalunk,#tortenetunk,#sikereink,#partnerek,#igy-mukodik,#kozosseg,#gyik{padding-top:32px;padding-bottom:32px}}
+
+/* ---- hero ---- */
+#udv .breadcumb_wrapper{margin:0}
+#udv .slider_img{width:100%;aspect-ratio:4/3;height:auto;object-fit:cover}
+#udv .headline1{text-align:left;margin:0}
+
+/* ---- Írtak rólunk sáv ---- */
+#sajto .sziget_blokk{padding:4px 0;background:transparent;box-shadow:none}
+#sajto .headline2{display:none}
+#sajto .logo_wrapper{display:flex;flex-wrap:wrap;justify-content:center;gap:2px 16px;margin:0}
+#sajto .sziget_blokk{display:flex;flex-direction:column;gap:0}
+#sajto .uui-logos03_wrapper{display:inline-flex;align-items:center;min-height:44px;min-width:44px}
+#sajto .press_img{height:30px;width:auto;max-width:120px;object-fit:contain}
+
+/* ---- Kik vagyunk: vízió, misszió, küldetés három kártyában (fent a képek, alattuk a szövegek; mobilon kép + szöveg párok) ---- */
+[data-kk-hely="vizio"] .div-block-238{display:flex!important;flex-direction:row!important;flex-wrap:wrap;align-items:stretch;gap:12px 24px;width:100%;max-width:1100px}
+[data-kk-hely="vizio"] .div-block-238>*{flex:0 0 calc((100% - 48px) / 3)!important;min-width:0;max-width:calc((100% - 48px) / 3)!important;width:auto!important;margin:0!important;box-sizing:border-box}
+[data-kk-hely="vizio"] .div-block-238>.img{height:auto!important;aspect-ratio:16/10;object-fit:cover;border-radius:12px}
+[data-kk-hely="vizio"] .r-lunk_textblokk{padding:16px;text-align:left;align-items:flex-start!important;justify-content:flex-start!important}
+[data-kk-hely="vizio"] .div-block-453{justify-content:flex-start!important}
+[data-kk-hely="vizio"] .img_box{display:none}
+[data-kk-hely="vizio"] .div-block-238>:nth-child(2){order:1}[data-kk-hely="vizio"] .div-block-238>:nth-child(4){order:2}[data-kk-hely="vizio"] .div-block-238>:nth-child(6){order:3}
+[data-kk-hely="vizio"] .div-block-238>:nth-child(1){order:4}[data-kk-hely="vizio"] .div-block-238>:nth-child(3){order:5}[data-kk-hely="vizio"] .div-block-238>:nth-child(5){order:6}
+@media (max-width:767px){
+  [data-kk-hely="vizio"] .div-block-238>*{flex-basis:100%!important;max-width:100%!important}
+  [data-kk-hely="vizio"] .div-block-238>:nth-child(2){order:1}[data-kk-hely="vizio"] .div-block-238>:nth-child(1){order:2}
+  [data-kk-hely="vizio"] .div-block-238>:nth-child(4){order:3}[data-kk-hely="vizio"] .div-block-238>:nth-child(3){order:4}
+  [data-kk-hely="vizio"] .div-block-238>:nth-child(6){order:5}[data-kk-hely="vizio"] .div-block-238>:nth-child(5){order:6}
+  [data-kk-hely="vizio"] .div-block-238>.img{aspect-ratio:16/9}
+}
+
+/* ---- Mit csinálunk: képnézegető ---- */
+.kk_galeria_sav{position:relative;scrollbar-width:thin}
+.kk_galeria_mockup .kk_galeria_kep{object-fit:contain;padding:12px}
+.kk_galeria_felirat a{color:var(--k-zold)}
+.kk_galeria_vez{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:4px}
+.kk_galeria_gomb{width:44px;height:44px;border:2px solid var(--k-line);border-radius:999px;background:var(--k-acc);color:var(--k-ink);font-size:24px;font-weight:800;line-height:1;cursor:pointer;box-shadow:3px 3px 0 0 var(--k-line);transition:transform 120ms var(--k-ease),box-shadow 120ms var(--k-ease)}
+.kk_galeria_gomb:active{transform:translate(2px,2px);box-shadow:1px 1px 0 0 var(--k-line)}
+.kk_galeria_szamlalo{min-width:56px;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
+
+/* ---- Történetünk ---- */
+#tortenetunk .kk_idovonal{margin:0}
+#tortenetunk .kk_tortenet_kep{aspect-ratio:3/2}
+#tortenetunk .kk_ido_szoveg{font-size:15px}
+.kk_ido::before{content:"";position:absolute;left:-38px;top:6px;box-sizing:border-box;width:18px;height:20px;background:var(--k-acc);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);outline:0}
+.kk_ido_jovo::before{top:18px}
+
+/* ---- Elismerések, partnerek ---- */
+#sikereink .headline1.mid_pos{font-size:clamp(28px,3vw,40px)}
+#partnerek .egy-ttm-k-d-s .headline2,#partnerek .div-block-55{display:none}
+#partnerek .egy-ttm-k-d-s,#partnerek .div-block-139{padding:0;margin:0;background:transparent;box-shadow:none}
+#partnerek .logo_wrapper{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px}
+#partnerek .t-mogat-_link{display:inline-flex;align-items:center;min-height:44px;min-width:44px}
+#partnerek .egy-ttm-k-d-s_img{height:40px;width:auto;max-width:140px;object-fit:contain}
+
+/* ---- Hogyan csatlakozhatsz ---- */
+#igy-mukodik .card{padding:0;overflow:hidden}
+#igy-mukodik .card_img_full{height:120px;width:100%;object-fit:contain;background:var(--k-acc-bg);padding:8px 0}
+#igy-mukodik .card_text_blokk{padding:14px 16px 16px;gap:6px}
+.kk_ajanlat{margin-top:8px;grid-template-columns:minmax(0,1fr) minmax(0,2fr)!important}
+.kk_ajanlat>.div-block-240:last-child ul{columns:2;column-gap:28px}
+.kk_ajanlat li{break-inside:avoid}
+.kk_ajanlat>.div-block-240{width:auto!important;max-width:none!important;display:block!important;padding:16px 20px;border:2px solid var(--k-line);border-radius:12px;background:var(--k-surface);text-align:left}
+.kk_ajanlat .headline2{font-size:24px;margin:0 0 6px}
+.kk_ajanlat ul{margin:0;padding-left:20px}.kk_ajanlat li{margin:2px 0;font-size:15px;line-height:1.4}
+.kk_ajanlat .sub-heading{font-size:15px;margin-top:8px}
+
+@media (max-width:767px){
+  .kk_ajanlat{grid-template-columns:minmax(0,1fr)!important}.kk_ajanlat>.div-block-240:last-child ul{columns:1}
+  #igy-mukodik .card{display:grid!important;grid-template-columns:84px minmax(0,1fr);align-items:start}
+  #igy-mukodik .card_img_full{height:100%;min-height:84px;padding:6px}
+  #igy-mukodik .card_text_blokk{padding:12px 14px}
+}
+
+/* ---- Rajok és feladatok ---- */
+#rajok .uui-career02_item{padding:16px 18px}
+#rajok .uui-career02_item .main_heading{font-size:22px}
+#rajok .uui-career02_item .main_text,#rajok .uui-career02_item .main-text{font-size:15px;line-height:1.45}
+#rajok .uui-career02_list{gap:12px}
+#rajok .uui-padding-vertical-xhuge-16{padding-top:48px;padding-bottom:48px}
+.kk_raj_lead{text-align:left}
+.kk_szurok{display:flex;flex-wrap:wrap;gap:12px;margin:4px 0 6px}
+.kk_szuro{display:flex;flex-direction:column;gap:4px;min-width:150px;font-size:14px;font-weight:700}
+.kk_kereso{flex:1 1 260px}
+.kk_szuro select,.kk_szuro input{min-height:44px;padding:0 10px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-surface);font:inherit;font-weight:600;color:var(--k-ink)}
+.kk_talalat{margin:0 0 10px;font-size:14px;color:var(--k-soft)}
+.kk_kiemelt{margin:4px 0 20px;padding:16px;border:2px solid var(--k-line);border-radius:12px;background:var(--k-acc-bg)}
+.kk_kiemelt_cim{margin:0 0 10px;font-size:20px;font-weight:800}
+.kk_feladatok{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0;padding:0;list-style:none}
+.kk_rajfeladatok{margin:8px 0 16px}
+.kk_rajfeladatok_cim{margin:0 0 8px;font-size:16px;font-weight:800}
+.kk_feladat{display:flex;flex-direction:column;gap:6px;padding:14px;border:2px solid var(--k-line);border-radius:10px;background:var(--k-surface);text-align:left}
+.kk_feladat_raj{margin:0;font-size:13px;font-weight:700;color:var(--k-soft)}
+.kk_feladat_cim{margin:0;font-size:18px;line-height:1.25;font-weight:800}
+.kk_feladat_leiras{margin:0;font-size:15px;line-height:1.45}
+.kk_cimkek{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 4px}
+.kk_cimkek span{padding:2px 8px;border-radius:4px;background:var(--k-s2);font-size:13px;font-weight:600}
+.kk_feladat .kk_gomb{margin-top:auto;align-self:flex-start}
+.kk_rajszam{font-size:15px;font-weight:700;color:var(--k-soft);white-space:nowrap}
+.uui-career02_job-department[role="button"]{cursor:pointer}
+.uui-career02_job-department[aria-expanded] .accordion-icon_vertical-line{transition:transform 200ms var(--k-ease)}
+.uui-career02_job-department[aria-expanded="true"] .accordion-icon_vertical-line{transform:rotate(90deg)}
+#rajok [hidden]{display:none!important}
+@media (max-width:991px){.kk_feladatok{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:767px){.kk_feladatok{grid-template-columns:1fr}.kk_szuro{flex:1 1 140px;min-width:0}}
+
+/* ---- Jelentkezés ---- */
+#jelentkezes .w-input,#jelentkezes .w-select,#jelentkezes .input_field,#jelentkezes .button_main{min-height:44px}
+#jelentkezes textarea.input_field{min-height:96px;padding-top:10px}
+.kk_jovahagyas input[type="checkbox"]{width:20px;height:20px;margin-top:2px;flex-shrink:0;accent-color:var(--k-zold)}
+.kk_jovahagyas a{color:var(--k-zold);text-decoration:underline}
+.kk_jovahagyas .w-checkbox{display:flex;align-items:flex-start;gap:10px;margin:0;padding:0}
+.kk_jovahagyas .w-checkbox-input{margin:2px 0 0;float:none}
+.kk_jovahagyas .w-form-label{font-weight:400;font-size:15px;line-height:1.4}
+.kk_utana{margin-bottom:12px}
+
+/* ---- Méhecskés oldalnavigáció ---- */
+.kk_mehnav{position:fixed;right:14px;top:50%;z-index:30;transform:translateY(-50%);height:min(68vh,560px);width:44px}
+.kk_mehnav::before{content:"";position:absolute;left:50%;top:10px;bottom:10px;border-left:2px dashed var(--k-line);transform:translateX(-1px)}
+.kk_mehnav_lista{position:relative;display:flex;flex-direction:column;justify-content:space-between;height:100%;margin:0;padding:0;list-style:none}
+.kk_mehnav_elem{display:flex;justify-content:center}
+.kk_mehnav_pont{position:relative;display:flex;align-items:center;justify-content:center;width:44px;height:44px;text-decoration:none;color:var(--k-ink)}
+.kk_mehnav_hatszog{display:block;width:16px;height:18px;background:var(--k-line);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);transition:transform 160ms var(--k-ease)}
+.kk_mehnav_hatszog::after{content:"";display:block;margin:2px;width:12px;height:14px;background:var(--k-surface);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.kk_mehnav_pont[aria-current] .kk_mehnav_hatszog{transform:scale(1.25)}
+.kk_mehnav_pont[aria-current] .kk_mehnav_hatszog::after{background:var(--k-acc)}
+.kk_mehnav_cimke{position:absolute;right:46px;top:50%;transform:translate(6px,-50%);padding:4px 10px;border:2px solid var(--k-line);border-radius:8px;background:var(--k-surface);font-size:14px;font-weight:700;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 150ms var(--k-ease),transform 150ms var(--k-ease)}
+@media (hover:hover) and (pointer:fine){.kk_mehnav_pont:hover .kk_mehnav_cimke{opacity:1;transform:translate(0,-50%)}}
+.kk_mehnav_pont:focus-visible .kk_mehnav_cimke{opacity:1;transform:translate(0,-50%)}
+.kk_mehnav_meh{position:absolute;left:50%;top:0;width:40px;height:40px;object-fit:contain;pointer-events:none;transition:transform 520ms cubic-bezier(.34,1.3,.64,1);filter:drop-shadow(1px 2px 0 rgba(0,0,0,.25))}
+.kk_mehnav_meh.kk_repul{animation:kk-szarny 520ms ease-out}
+@keyframes kk-szarny{0%,100%{scale:1}35%{scale:1.12}70%{scale:.96}}
+@media (max-width:767px){
+  .kk_mehnav{right:2px;width:28px;height:min(60vh,440px)}
+  .kk_mehnav_pont{width:28px;height:36px}
+  .kk_mehnav_hatszog{width:11px;height:12px}.kk_mehnav_hatszog::after{margin:1.5px;width:8px;height:9px}
+  .kk_mehnav_meh{width:26px;height:26px}
+  .kk_mehnav_cimke{right:30px}
+  #udv,#rolunk,#mit-csinalunk,#tortenetunk,#sikereink,#partnerek,#igy-mukodik,#rajok,#kozosseg,#jelentkezes,#gyik,#sajto{padding-right:30px}
+}
+@media (prefers-reduced-motion:reduce){.kk_mehnav_meh,.kk_mehnav_hatszog,.kk_mehnav_cimke,.kk_gomb,.kk_galeria_gomb,.uui-career02_job-department .accordion-icon_vertical-line{transition:none}.kk_mehnav_meh.kk_repul{animation:none}}

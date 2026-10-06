@@ -1,15 +1,15 @@
-/* beeco design system 1.47.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   HBarChart
-} from "../../reszek/chunk-5I5KKSY6.js";
-import "../../reszek/chunk-JKJG7GRL.js";
-import "../../reszek/chunk-AIMPGINE.js";
-import "../../reszek/chunk-XFXLJFRN.js";
-import "../../reszek/chunk-UWDR32EL.js";
-import "../../reszek/chunk-WQNXIG4Y.js";
-import "../../reszek/chunk-LPQJ6KWE.js";
-import "../../reszek/chunk-LYDZ6TXT.js";
-import "../../reszek/chunk-F6XAVAHB.js";
+} from "../../reszek/chunk-QT4CTQFJ.js";
+import "../../reszek/chunk-72LTVO2Z.js";
+import "../../reszek/chunk-MYR4QTPV.js";
+import "../../reszek/chunk-I67MWANY.js";
+import "../../reszek/chunk-22PLAAOS.js";
+import "../../reszek/chunk-NZDPFJOH.js";
+import "../../reszek/chunk-674RCXSW.js";
+import "../../reszek/chunk-PRCQST7M.js";
+import "../../reszek/chunk-HWNYBUS2.js";
 export {
   HBarChart
 };
