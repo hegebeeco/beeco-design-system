@@ -1,16 +1,16 @@
-/* beeco design system 1.48.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   MapPanel
-} from "../reszek/chunk-EBZ4ITUD.js";
-import "../reszek/chunk-OGHTG22P.js";
-import "../reszek/chunk-GBBTSXGK.js";
-import "../reszek/chunk-JCGOI4QZ.js";
-import "../reszek/chunk-LCV4ZOIO.js";
-import "../reszek/chunk-UE546BQT.js";
-import "../reszek/chunk-JVMNMB66.js";
-import "../reszek/chunk-36ROHKV7.js";
-import "../reszek/chunk-LNE5LIOM.js";
-import "../reszek/chunk-2JNV7AMO.js";
+} from "../reszek/chunk-PSXE2LKF.js";
+import "../reszek/chunk-7UF3VERD.js";
+import "../reszek/chunk-P737D5XD.js";
+import "../reszek/chunk-SQXN4STZ.js";
+import "../reszek/chunk-U5R4EZNK.js";
+import "../reszek/chunk-4X47HYEZ.js";
+import "../reszek/chunk-MPS5X7O3.js";
+import "../reszek/chunk-K7H75UN6.js";
+import "../reszek/chunk-5AXMXT2U.js";
+import "../reszek/chunk-5U262HSQ.js";
 export {
   MapPanel
 };

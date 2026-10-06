@@ -1,7 +1,7 @@
-/* beeco design system 1.48.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   useQueryParam
-} from "../reszek/chunk-2D43FV27.js";
+} from "../reszek/chunk-Z26SXUAP.js";
 export {
   useQueryParam
 };

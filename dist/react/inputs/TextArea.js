@@ -1,16 +1,16 @@
-/* beeco design system 1.48.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   TextArea
-} from "../reszek/chunk-6T77Z4FK.js";
-import "../reszek/chunk-5C3QEPMX.js";
-import "../reszek/chunk-AASIDWHO.js";
-import "../reszek/chunk-H6PLTBTX.js";
-import "../reszek/chunk-ROTFH5JR.js";
-import "../reszek/chunk-GRXHCTSC.js";
-import "../reszek/chunk-Q2JAGZXW.js";
-import "../reszek/chunk-KABHIMDI.js";
-import "../reszek/chunk-LNE5LIOM.js";
-import "../reszek/chunk-2JNV7AMO.js";
+} from "../reszek/chunk-O6HSSLUZ.js";
+import "../reszek/chunk-QSJO7ZFZ.js";
+import "../reszek/chunk-NHA6BWXI.js";
+import "../reszek/chunk-GALPDBED.js";
+import "../reszek/chunk-KOJG3ZXW.js";
+import "../reszek/chunk-6ZMLXKRE.js";
+import "../reszek/chunk-H4LRM5O5.js";
+import "../reszek/chunk-JOMHH6NG.js";
+import "../reszek/chunk-5AXMXT2U.js";
+import "../reszek/chunk-5U262HSQ.js";
 export {
   TextArea
 };

@@ -1,15 +1,15 @@
-/* beeco design system 1.48.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   StatTile
-} from "../reszek/chunk-MJTMWPJR.js";
-import "../reszek/chunk-WLMVVR3T.js";
-import "../reszek/chunk-KABHIMDI.js";
-import "../reszek/chunk-674RCXSW.js";
-import "../reszek/chunk-PRCQST7M.js";
-import "../reszek/chunk-HWNYBUS2.js";
-import "../reszek/chunk-36ROHKV7.js";
-import "../reszek/chunk-LNE5LIOM.js";
-import "../reszek/chunk-2JNV7AMO.js";
+} from "../reszek/chunk-7Q5GDYWV.js";
+import "../reszek/chunk-ZAOYREI6.js";
+import "../reszek/chunk-JOMHH6NG.js";
+import "../reszek/chunk-6FMOL5PY.js";
+import "../reszek/chunk-F6NRKRHB.js";
+import "../reszek/chunk-I5KQO6UZ.js";
+import "../reszek/chunk-K7H75UN6.js";
+import "../reszek/chunk-5AXMXT2U.js";
+import "../reszek/chunk-5U262HSQ.js";
 export {
   StatTile
 };

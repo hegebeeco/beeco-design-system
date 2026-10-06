@@ -28,7 +28,7 @@
     "system-ui"
   ],
   "maxBetumeret": 10,
-  "primerCta": "[data-kk-cta=\"hero_feladatok\"]",
+  "primerCta": "[data-kk-cta=\"hero_csatlakozom\"]",
   "gombSelector": "[class*=\"button\"],.kk_gomb",
   "gombMaxKar": 28,
   "gombMaxSzo": 4,

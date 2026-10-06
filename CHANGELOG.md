@@ -11,6 +11,11 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.48.1 – 2026-10-06 – javítás: Kaptár-kapu, minőségkapu
+* **`kk.js`** – az API-n át betett Webflow-képek a 800 px-es változatra váltanak, ha az létezik (próbabetöltés után; a díjfotó 887 kB → 82 kB).
+* **`kk.css`** – a másodlagos gombok és a belépés- és forráslinkek 44 px magasak.
+* **`review-szabalyok.json`** – az elsődleges CTA a hero „Csatlakozom” gombja.
+
 ## 1.48.0 – 2026-10-06 – Méhesd-kertváros a 2D háttérben, hangminták helye az offline listában, átnevezések
 A beeco-szelektalj átvilágításának 3. köréből (Kristóf döntései, 2026-10-06).
 * `web/js/hatter2d/varos.js`: a 2D város **Méhesd kertvárosa** lett (kis nyeregtetős házak kerttel, kerítéssel, templomtorony;

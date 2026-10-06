@@ -1,4 +1,4 @@
-/* beeco design system 1.48.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   MARKER_ICON,
   MARKER_ICON_SELECTED,
@@ -7,8 +7,8 @@ import {
   clusterTier,
   heatGradient,
   markerHtml
-} from "../reszek/chunk-N5KMPWZT.js";
-import "../reszek/chunk-PRCQST7M.js";
+} from "../reszek/chunk-UMV6IW5K.js";
+import "../reszek/chunk-F6NRKRHB.js";
 export {
   MARKER_ICON,
   MARKER_ICON_SELECTED,

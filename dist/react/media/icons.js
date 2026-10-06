@@ -1,4 +1,4 @@
-/* beeco design system 1.48.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   IcCheck,
   IcClose,
@@ -11,7 +11,7 @@ import {
   IcRetry,
   IcRight,
   IcWarn
-} from "../reszek/chunk-CMRAGUXG.js";
+} from "../reszek/chunk-TRPWTMLI.js";
 export {
   IcCheck,
   IcClose,

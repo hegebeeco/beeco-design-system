@@ -1,16 +1,16 @@
-/* beeco design system 1.48.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   CloseIcon,
   Modal,
   ModalCancel
-} from "../reszek/chunk-RMNLWSBX.js";
-import "../reszek/chunk-S367SPFR.js";
-import "../reszek/chunk-BOYI5MOG.js";
-import "../reszek/chunk-7W3YRCYC.js";
-import "../reszek/chunk-4HDBQ6OG.js";
-import "../reszek/chunk-36ROHKV7.js";
-import "../reszek/chunk-LNE5LIOM.js";
-import "../reszek/chunk-2JNV7AMO.js";
+} from "../reszek/chunk-L2JCZX7Q.js";
+import "../reszek/chunk-SXQ7TVHJ.js";
+import "../reszek/chunk-KHXVERBG.js";
+import "../reszek/chunk-OQXDTUPF.js";
+import "../reszek/chunk-BEVSBSF6.js";
+import "../reszek/chunk-K7H75UN6.js";
+import "../reszek/chunk-5AXMXT2U.js";
+import "../reszek/chunk-5U262HSQ.js";
 export {
   CloseIcon,
   Modal,

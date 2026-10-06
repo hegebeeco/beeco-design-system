@@ -1,13 +1,13 @@
-/* beeco design system 1.48.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   SelectField
-} from "../reszek/chunk-JN3ETRX5.js";
-import "../reszek/chunk-ROTFH5JR.js";
-import "../reszek/chunk-GRXHCTSC.js";
-import "../reszek/chunk-Q2JAGZXW.js";
-import "../reszek/chunk-KABHIMDI.js";
-import "../reszek/chunk-LNE5LIOM.js";
-import "../reszek/chunk-2JNV7AMO.js";
+} from "../reszek/chunk-AGA2RQFJ.js";
+import "../reszek/chunk-KOJG3ZXW.js";
+import "../reszek/chunk-6ZMLXKRE.js";
+import "../reszek/chunk-H4LRM5O5.js";
+import "../reszek/chunk-JOMHH6NG.js";
+import "../reszek/chunk-5AXMXT2U.js";
+import "../reszek/chunk-5U262HSQ.js";
 export {
   SelectField
 };

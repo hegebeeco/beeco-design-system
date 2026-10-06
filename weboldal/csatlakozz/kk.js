@@ -19,6 +19,15 @@
   function norm(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim(); }
   function $$(sel, gy) { return [].slice.call((gy || d).querySelectorAll(sel)); }
 
+  /* ---------- Képek: az API-n át betett Webflow-képeknek nincs srcset-je, így a teljes (akár 900 kB-os) fájl töltődne.
+     Ha a Webflow már legenerálta a 800 px-es változatot (-p-800), arra cseréljük; csak sikeres próbabetöltés után. */
+  $$('.kk_tortenet_kep, .kk_galeria_kep, .kk_ertek_ikon, .kk_kampany_kep').forEach(function (img) {
+    var src = img.getAttribute('src') || ''; if (img.srcset || !/website-files\.com\/.+\.(webp|jpe?g|png|avif)$/i.test(src) || /-p-\d+\./.test(src)) return;
+    var kicsi = src.replace(/\.(webp|jpe?g|png|avif)$/i, '-p-800.$1'), proba = new Image();
+    proba.onload = function () { if (proba.naturalWidth >= 400) img.src = kicsi; };
+    proba.src = kicsi;
+  });
+
   /* ---------- Űrlap ---------- */
   var urlap = d.querySelector('#jelentkezes form, #onkentes form');
   var OPCIOK = {

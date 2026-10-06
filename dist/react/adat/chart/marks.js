@@ -1,11 +1,11 @@
-/* beeco design system 1.48.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   GapPattern,
   Marker,
   Swatch,
   sc,
   shapeOf
-} from "../../reszek/chunk-22PLAAOS.js";
+} from "../../reszek/chunk-CDTCPRBX.js";
 export {
   GapPattern,
   Marker,
