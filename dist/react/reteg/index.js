@@ -1,92 +1,92 @@
-/* beeco design system 1.46.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
-import "../reszek/chunk-GR6BSZGZ.js";
+/* beeco design system 1.46.3 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+import "../reszek/chunk-CASVUI3X.js";
 import {
   useQueryParam
-} from "../reszek/chunk-PKOGP26I.js";
+} from "../reszek/chunk-V5RHFGS7.js";
 import {
   StageDialog
-} from "../reszek/chunk-JJC6VPHE.js";
+} from "../reszek/chunk-VP7OXFCP.js";
 import {
   Toaster
-} from "../reszek/chunk-M4S7NAYG.js";
+} from "../reszek/chunk-45PJ7XJS.js";
 import {
   notify
-} from "../reszek/chunk-WCKY32KF.js";
+} from "../reszek/chunk-QL7IDSDP.js";
 import {
   TypeToConfirm
-} from "../reszek/chunk-HFJ7543B.js";
+} from "../reszek/chunk-56YSGNKQ.js";
 import {
   Drawer
-} from "../reszek/chunk-Q6DJHNWC.js";
+} from "../reszek/chunk-WQO7EOBQ.js";
 import {
   PageHeader,
   usePageTitle
-} from "../reszek/chunk-HFG7JS7U.js";
+} from "../reszek/chunk-P3R7Y6TP.js";
 import {
   MoreIcon,
   RowActions
-} from "../reszek/chunk-63M7HEH2.js";
+} from "../reszek/chunk-XD7BURQT.js";
 import {
   TooltipIconButton
-} from "../reszek/chunk-BN33ITYF.js";
+} from "../reszek/chunk-QLIW4MHX.js";
 import {
   DropdownMenu
-} from "../reszek/chunk-U4JQJHUS.js";
+} from "../reszek/chunk-F4FTERID.js";
 import {
   SectionSwitch
-} from "../reszek/chunk-OTROGFZX.js";
+} from "../reszek/chunk-U4IUFTF5.js";
 import {
   Accordion
-} from "../reszek/chunk-JQJCJYVW.js";
+} from "../reszek/chunk-D3PXBUGS.js";
 import {
   APP_SHELL_LABELS_HU,
   AppShell
-} from "../reszek/chunk-NO5UDVMV.js";
+} from "../reszek/chunk-UQJXVHBH.js";
 import {
   useShellNav
-} from "../reszek/chunk-7YNKTQ2P.js";
+} from "../reszek/chunk-M4S2QYIR.js";
 import {
   Breadcrumbs
-} from "../reszek/chunk-W3CRTIW5.js";
+} from "../reszek/chunk-53NEUIID.js";
 import {
   COMMAND_PALETTE_LABELS_HU,
   CommandPalette,
   commandHotkeyLabel,
   useCommandHotkey
-} from "../reszek/chunk-PK2QD2TC.js";
+} from "../reszek/chunk-VCH33VTM.js";
 import {
   NavTabs
-} from "../reszek/chunk-4ND44TC6.js";
+} from "../reszek/chunk-4ES2XWAF.js";
 import {
   TabCount,
   Tabs
-} from "../reszek/chunk-DZD3W3WX.js";
-import "../reszek/chunk-PN6PQCUO.js";
-import "../reszek/chunk-DT5YTGSG.js";
+} from "../reszek/chunk-PRFH6POK.js";
+import "../reszek/chunk-VVAOCCHB.js";
+import "../reszek/chunk-RL5QAQRH.js";
 import {
   Modal,
   ModalCancel
-} from "../reszek/chunk-EDRTORDF.js";
+} from "../reszek/chunk-ZSWXNTQI.js";
 import {
   useLayerClose
-} from "../reszek/chunk-E6M2HR5Z.js";
+} from "../reszek/chunk-73FCQ2FZ.js";
 import {
   ConfirmDialog
-} from "../reszek/chunk-TPAU7NVX.js";
-import "../reszek/chunk-ZSRBCJKN.js";
-import "../reszek/chunk-6TFWUMSC.js";
-import "../reszek/chunk-HNZGZAV4.js";
-import "../reszek/chunk-DWCUSKTJ.js";
-import "../reszek/chunk-A4CLGCVT.js";
-import "../reszek/chunk-CKGPIKEG.js";
-import "../reszek/chunk-RCFBAFEP.js";
-import "../reszek/chunk-XU5XH76J.js";
-import "../reszek/chunk-M5NUMA6C.js";
-import "../reszek/chunk-EAVMCSD2.js";
-import "../reszek/chunk-LCFIUOPW.js";
-import "../reszek/chunk-CVRNQZIF.js";
-import "../reszek/chunk-O32J4Q4Q.js";
-import "../reszek/chunk-PG2ADDWU.js";
+} from "../reszek/chunk-EZ7WHVF7.js";
+import "../reszek/chunk-3MQXB6VF.js";
+import "../reszek/chunk-ZDTJQNQH.js";
+import "../reszek/chunk-JSRTDH3E.js";
+import "../reszek/chunk-3LRS2LWU.js";
+import "../reszek/chunk-D67NDU46.js";
+import "../reszek/chunk-SFWCYPAE.js";
+import "../reszek/chunk-UA5ONW4W.js";
+import "../reszek/chunk-LXE635NW.js";
+import "../reszek/chunk-Q66XQVVK.js";
+import "../reszek/chunk-S7S44IRI.js";
+import "../reszek/chunk-PBS3RQC2.js";
+import "../reszek/chunk-YXJMOLOZ.js";
+import "../reszek/chunk-ELRX4ZP3.js";
+import "../reszek/chunk-MGWI3LRM.js";
 export {
   APP_SHELL_LABELS_HU,
   Accordion,

@@ -1,4 +1,4 @@
-/* beeco design system 1.46.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.3 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   FILE_TYPES,
   checkFiles,
@@ -9,8 +9,8 @@ import {
   sizePair,
   sniffType,
   typeNames
-} from "../reszek/chunk-IX4OF42J.js";
-import "../reszek/chunk-PJRTRYZN.js";
+} from "../reszek/chunk-7AVEYYG4.js";
+import "../reszek/chunk-Z27KC3NB.js";
 export {
   FILE_TYPES,
   checkFiles,

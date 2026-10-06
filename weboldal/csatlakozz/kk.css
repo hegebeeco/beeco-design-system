@@ -85,7 +85,7 @@
 .kk_ido_jovo::before{top:18px}
 #igy-mukodik,#feladatok,#rajvalaszto,#rajpont,#helyi-csapatok,#tortenetunk,#gyik,#onkentes{scroll-margin-top:96px}
 #igy-mukodik,#feladatok,#rajvalaszto,#rajpont,#helyi-csapatok,#tortenetunk,#gyik{overflow-x:clip}
-.kk_blokk>.MAIN_TEXT{max-width:760px;margin-left:auto;margin-right:auto;text-align:center}
+.kk_blokk>.main_text,.kk_blokk>.MAIN_TEXT{max-width:760px;margin-left:auto;margin-right:auto;text-align:center}
 #rajpont .kk_blokk>h3{align-self:center;text-align:center}
 .uui-career02_job-department[role="button"]{cursor:pointer}
 .uui-career02_job-department[role="button"]:focus-visible{outline:3px solid var(--_beeco-ds---bc-focus,#2656D9);outline-offset:3px}

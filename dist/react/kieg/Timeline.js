@@ -1,14 +1,14 @@
-/* beeco design system 1.46.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.3 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   Timeline
-} from "../reszek/chunk-DHJXPICF.js";
-import "../reszek/chunk-G6JBOHSM.js";
-import "../reszek/chunk-6D4XVT3X.js";
-import "../reszek/chunk-27GLNWJA.js";
-import "../reszek/chunk-33THNEFE.js";
-import "../reszek/chunk-CVRNQZIF.js";
-import "../reszek/chunk-O32J4Q4Q.js";
-import "../reszek/chunk-PG2ADDWU.js";
+} from "../reszek/chunk-Q2MACWGA.js";
+import "../reszek/chunk-R3K7QJNM.js";
+import "../reszek/chunk-ZLVI2H7A.js";
+import "../reszek/chunk-VDC2PVQ7.js";
+import "../reszek/chunk-CYDTWDWI.js";
+import "../reszek/chunk-YXJMOLOZ.js";
+import "../reszek/chunk-ELRX4ZP3.js";
+import "../reszek/chunk-MGWI3LRM.js";
 export {
   Timeline
 };

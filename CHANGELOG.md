@@ -11,6 +11,9 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.46.3 – 2026-10-06 – javítás: Kaptár-kapu, szekció-bevezetők középre
+* **`kk.css`** – a szekciók bevezető szövege középre igazodik, 760 px-es sorhosszal (a Webflow a `MAIN_TEXT` osztályt kisbetűvel, `main_text`-ként adja ki).
+
 ## 1.46.2 – 2026-10-06 – javítás: Kaptár-kapu, második minőségkapu-kör
 * **`kk.css`** – a kenyérmorzsa és a site elsődleges gombjai az oldalon 44 px magasak; az oldal képei nem kapnak kemény árnyékot.
 * **`review-szabalyok.json`** – a kenyérmorzsa akadálymentes zöldje a palettán; megjegyzés: a termékbőr tintája #000.

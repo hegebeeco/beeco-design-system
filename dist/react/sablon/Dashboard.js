@@ -1,30 +1,30 @@
-/* beeco design system 1.46.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.46.3 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   Dashboard
-} from "../reszek/chunk-4A5IK3J6.js";
-import "../reszek/chunk-SETAULLO.js";
-import "../reszek/chunk-LJDAYQYY.js";
-import "../reszek/chunk-HFG7JS7U.js";
-import "../reszek/chunk-W3CRTIW5.js";
-import "../reszek/chunk-4ND44TC6.js";
-import "../reszek/chunk-DZD3W3WX.js";
-import "../reszek/chunk-PN6PQCUO.js";
-import "../reszek/chunk-TEKE2TRB.js";
-import "../reszek/chunk-R6NSAYUG.js";
-import "../reszek/chunk-X3B7G27H.js";
-import "../reszek/chunk-DESSPIUB.js";
-import "../reszek/chunk-5S5THYRY.js";
-import "../reszek/chunk-IW6NYQWC.js";
-import "../reszek/chunk-QSHI5O2B.js";
-import "../reszek/chunk-27GLNWJA.js";
-import "../reszek/chunk-33THNEFE.js";
-import "../reszek/chunk-EAVMCSD2.js";
-import "../reszek/chunk-GRYIQIKL.js";
-import "../reszek/chunk-PJRTRYZN.js";
-import "../reszek/chunk-LCFIUOPW.js";
-import "../reszek/chunk-CVRNQZIF.js";
-import "../reszek/chunk-O32J4Q4Q.js";
-import "../reszek/chunk-PG2ADDWU.js";
+} from "../reszek/chunk-T57DC63A.js";
+import "../reszek/chunk-LDSBWUNK.js";
+import "../reszek/chunk-J5NCG7LI.js";
+import "../reszek/chunk-P3R7Y6TP.js";
+import "../reszek/chunk-53NEUIID.js";
+import "../reszek/chunk-4ES2XWAF.js";
+import "../reszek/chunk-PRFH6POK.js";
+import "../reszek/chunk-VVAOCCHB.js";
+import "../reszek/chunk-WLDWXVNI.js";
+import "../reszek/chunk-GKIVUPTU.js";
+import "../reszek/chunk-ILSG7B3D.js";
+import "../reszek/chunk-2QDZA76Q.js";
+import "../reszek/chunk-YUG65WGE.js";
+import "../reszek/chunk-564AFZTI.js";
+import "../reszek/chunk-JBS2SYOS.js";
+import "../reszek/chunk-VDC2PVQ7.js";
+import "../reszek/chunk-CYDTWDWI.js";
+import "../reszek/chunk-S7S44IRI.js";
+import "../reszek/chunk-E6NOQYCW.js";
+import "../reszek/chunk-Z27KC3NB.js";
+import "../reszek/chunk-PBS3RQC2.js";
+import "../reszek/chunk-YXJMOLOZ.js";
+import "../reszek/chunk-ELRX4ZP3.js";
+import "../reszek/chunk-MGWI3LRM.js";
 export {
   Dashboard
 };
