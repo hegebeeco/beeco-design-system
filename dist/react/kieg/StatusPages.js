@@ -1,4 +1,4 @@
-/* beeco design system 1.48.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ErrorPage,
   ForbiddenPage,
@@ -6,16 +6,16 @@ import {
   OfflinePage,
   SessionExpired,
   StatusPage
-} from "../reszek/chunk-MEVXMEEM.js";
-import "../reszek/chunk-BM56AYJ7.js";
-import "../reszek/chunk-2P47JWEW.js";
-import "../reszek/chunk-H7CXEXR4.js";
-import "../reszek/chunk-D7HW3GI2.js";
-import "../reszek/chunk-HR5WHLTX.js";
-import "../reszek/chunk-KYKHZRC6.js";
-import "../reszek/chunk-K7H75UN6.js";
-import "../reszek/chunk-5AXMXT2U.js";
-import "../reszek/chunk-5U262HSQ.js";
+} from "../reszek/chunk-JTLUVIBK.js";
+import "../reszek/chunk-PCXM7Q4Q.js";
+import "../reszek/chunk-KWYII737.js";
+import "../reszek/chunk-OW5I2SZT.js";
+import "../reszek/chunk-LZGDFLA6.js";
+import "../reszek/chunk-4JH4QX3O.js";
+import "../reszek/chunk-G5F36T24.js";
+import "../reszek/chunk-DNKGFO3X.js";
+import "../reszek/chunk-F6KEZPWA.js";
+import "../reszek/chunk-KBQVEJSX.js";
 export {
   ErrorPage,
   ForbiddenPage,

@@ -1,30 +1,30 @@
-/* beeco design system 1.48.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   Dashboard
-} from "../reszek/chunk-OAXNYGZP.js";
-import "../reszek/chunk-MSEGX4IG.js";
-import "../reszek/chunk-UMCZEVNR.js";
-import "../reszek/chunk-EYTLHMLK.js";
-import "../reszek/chunk-VQ5ZQ4NL.js";
-import "../reszek/chunk-7UF3VERD.js";
-import "../reszek/chunk-P737D5XD.js";
-import "../reszek/chunk-SQXN4STZ.js";
-import "../reszek/chunk-BM56AYJ7.js";
-import "../reszek/chunk-2P47JWEW.js";
-import "../reszek/chunk-H7CXEXR4.js";
-import "../reszek/chunk-D7HW3GI2.js";
-import "../reszek/chunk-ZDDDXMYL.js";
-import "../reszek/chunk-7Q5GDYWV.js";
-import "../reszek/chunk-ZAOYREI6.js";
-import "../reszek/chunk-4X47HYEZ.js";
-import "../reszek/chunk-MPS5X7O3.js";
-import "../reszek/chunk-JOMHH6NG.js";
-import "../reszek/chunk-6FMOL5PY.js";
-import "../reszek/chunk-F6NRKRHB.js";
-import "../reszek/chunk-I5KQO6UZ.js";
-import "../reszek/chunk-K7H75UN6.js";
-import "../reszek/chunk-5AXMXT2U.js";
-import "../reszek/chunk-5U262HSQ.js";
+} from "../reszek/chunk-K5PP2FDM.js";
+import "../reszek/chunk-OFUJDHWN.js";
+import "../reszek/chunk-RGHZRTY2.js";
+import "../reszek/chunk-5BIKJ5TQ.js";
+import "../reszek/chunk-HK56LPO6.js";
+import "../reszek/chunk-CWAJ56WD.js";
+import "../reszek/chunk-BHKNFB4U.js";
+import "../reszek/chunk-SI7UNRYL.js";
+import "../reszek/chunk-PCXM7Q4Q.js";
+import "../reszek/chunk-KWYII737.js";
+import "../reszek/chunk-OW5I2SZT.js";
+import "../reszek/chunk-LZGDFLA6.js";
+import "../reszek/chunk-ZGCJX5D5.js";
+import "../reszek/chunk-LNUJDVPH.js";
+import "../reszek/chunk-X252H5VD.js";
+import "../reszek/chunk-B2SLZ654.js";
+import "../reszek/chunk-DAYGAJXJ.js";
+import "../reszek/chunk-ERA2YNH3.js";
+import "../reszek/chunk-TJH2MMU2.js";
+import "../reszek/chunk-5ZIOTUTW.js";
+import "../reszek/chunk-FBY3M7WC.js";
+import "../reszek/chunk-DNKGFO3X.js";
+import "../reszek/chunk-F6KEZPWA.js";
+import "../reszek/chunk-KBQVEJSX.js";
 export {
   Dashboard
 };

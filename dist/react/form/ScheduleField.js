@@ -1,18 +1,18 @@
-/* beeco design system 1.48.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ScheduleField,
   scheduleIssues
-} from "../reszek/chunk-XAXWW6ET.js";
-import "../reszek/chunk-BPBYYVYZ.js";
-import "../reszek/chunk-ZABJBK6R.js";
-import "../reszek/chunk-W5WUAR7P.js";
-import "../reszek/chunk-U5R4EZNK.js";
-import "../reszek/chunk-KOJG3ZXW.js";
-import "../reszek/chunk-6ZMLXKRE.js";
-import "../reszek/chunk-H4LRM5O5.js";
-import "../reszek/chunk-JOMHH6NG.js";
-import "../reszek/chunk-5AXMXT2U.js";
-import "../reszek/chunk-5U262HSQ.js";
+} from "../reszek/chunk-N4VGO57C.js";
+import "../reszek/chunk-I7AF2LWB.js";
+import "../reszek/chunk-JTPGKMGN.js";
+import "../reszek/chunk-YGFEDREK.js";
+import "../reszek/chunk-H6W65O4W.js";
+import "../reszek/chunk-NC27PCCN.js";
+import "../reszek/chunk-SY7LFT5E.js";
+import "../reszek/chunk-JRGKVA7P.js";
+import "../reszek/chunk-ERA2YNH3.js";
+import "../reszek/chunk-F6KEZPWA.js";
+import "../reszek/chunk-KBQVEJSX.js";
 export {
   ScheduleField,
   scheduleIssues

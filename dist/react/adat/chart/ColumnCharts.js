@@ -1,15 +1,15 @@
-/* beeco design system 1.48.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.48.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   GroupedBarChart,
   StackedBarChart
-} from "../../reszek/chunk-JQJMQPJG.js";
-import "../../reszek/chunk-2IYGX636.js";
-import "../../reszek/chunk-3GJPGSA6.js";
-import "../../reszek/chunk-CDTCPRBX.js";
-import "../../reszek/chunk-XWVTVUHL.js";
-import "../../reszek/chunk-6FMOL5PY.js";
-import "../../reszek/chunk-F6NRKRHB.js";
-import "../../reszek/chunk-I5KQO6UZ.js";
+} from "../../reszek/chunk-E7WXDBZO.js";
+import "../../reszek/chunk-45ARMBQA.js";
+import "../../reszek/chunk-WZUMSXS3.js";
+import "../../reszek/chunk-YBQ3UMLC.js";
+import "../../reszek/chunk-Q2M5RUII.js";
+import "../../reszek/chunk-TJH2MMU2.js";
+import "../../reszek/chunk-5ZIOTUTW.js";
+import "../../reszek/chunk-FBY3M7WC.js";
 export {
   GroupedBarChart,
   StackedBarChart

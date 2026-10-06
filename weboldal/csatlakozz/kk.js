@@ -67,6 +67,18 @@
       if (urlap.querySelector('[name="' + k + '"]')) return;
       var i = d.createElement('input'); i.type = 'hidden'; i.name = k; i.value = k === 'oldal' ? location.origin + location.pathname : (UTM[k] || ''); urlap.appendChild(i);
     });
+    /* sikeres beküldés: a Webflow megjeleníti a .w-form-done blokkot */
+    var kesz = urlap.parentElement && urlap.parentElement.querySelector('.w-form-done');
+    if (kesz && 'MutationObserver' in w) {
+      var mo = new MutationObserver(function () {
+        if (getComputedStyle(kesz).display !== 'none') {
+          mo.disconnect(); var r = urlap.querySelector('[name="raj"]');
+          kuld('kapu_jelentkezes_siker', { raj: r ? r.value : '', utm_source: UTM.utm_source || '' });
+          kesz.setAttribute('tabindex', '-1'); kesz.focus({ preventScroll: true });
+        }
+      });
+      mo.observe(kesz, { attributes: true, attributeFilter: ['style'] });
+    }
     urlap.addEventListener('submit', function () {
       var r = urlap.querySelector('[name="raj"]'), f = urlap.querySelector('[name="forras"]');
       kuld('kapu_jelentkezes_kuldes', { raj: r ? r.value : '', forras: f ? f.value : '', utm_source: UTM.utm_source || '' });

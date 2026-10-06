@@ -28,6 +28,10 @@ A beeco-szelektalj betöltés-méréséből: közepes Androidon a menüig 11,9 �
   - Betöltést `gpu:true`-val mérj, mert a szoftveres 3D 15–20 mp-et torzít.
 * Új matrica-fájl a kitben: `art-huto-datum.js` (Hűtő-mester dátumkártyák).
 
+## 1.48.2 – 2026-10-06 – Kaptár-kapu: sikeres jelentkezés mérése
+* **`kk.js`** – `kapu_jelentkezes_siker` esemény, amikor a Webflow megjeleníti a sikerüzenetet (raj, UTM-forrás); a sikerüzenet fókuszt kap.
+* **`kk.css`** – mobilon az „Írtak rólunk” logók egy görgethető sorban; a sikerüzenet lépéslistája.
+
 ## 1.48.1 – 2026-10-06 – javítás: Kaptár-kapu, minőségkapu
 * **`kk.js`** – az API-n át betett Webflow-képek a 800 px-es változatra váltanak, ha az létezik (próbabetöltés után; a díjfotó 887 kB → 82 kB).
 * **`kk.css`** – a másodlagos gombok és a belépés- és forráslinkek 44 px magasak.
