@@ -66,6 +66,39 @@
    ]
   },
   {
+   "t": "dodont",
+   "cim": "Közös logósor",
+   "allapot": "javaslat",
+   "forras": [
+    "docs/termek-arculat.md 9. (jóváhagyás)",
+    "Claude javaslata – általános co-branding gyakorlat"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "egyforma magas, elválasztó vonallal",
+      "html": "<div class=\"bb-cobrand\"><img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"><span class=\"bb-cobrand-valaszto\" aria-hidden=\"true\"></span><span class=\"bb-partner-logo\">PARTNER LOGÓ</span></div>"
+     },
+     "rossz": {
+      "felirat": "a beeco logó kicsi és átszínezett",
+      "html": "<div class=\"bb-cobrand\"><span class=\"bb-partner-logo is-nagy\">PARTNER LOGÓ</span><img class=\"bb-logo-kicsi bb-logo-hiba is-szinezett\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"60\" height=\"37\"></div>"
+     },
+     "miert": "A két márka egyenrangú; a beeco logó a saját színeiben marad."
+    },
+    {
+     "jo": {
+      "felirat": "a beecótól kapott méhecske",
+      "html": "<img src=\"ds/web/assets/brand/bee-cheer.webp\" alt=\"beeco méhecske\" width=\"96\" height=\"96\">"
+     },
+     "rossz": {
+      "felirat": "partnerszínre festett méhecske",
+      "html": "<img class=\"bb-logo-hiba is-szinezett\" src=\"ds/web/assets/brand/bee-cheer.webp\" alt=\"átszínezett méhecske\" width=\"96\" height=\"96\">"
+     },
+     "miert": "A méhecske nem öltöztethető a partner márkájába."
+    }
+   ]
+  },
+  {
    "t": "h2",
    "x": "Kampány-altéma"
   },

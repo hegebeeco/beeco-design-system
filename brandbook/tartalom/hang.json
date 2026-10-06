@@ -42,6 +42,27 @@
    ]
   },
   {
+   "t": "dodont",
+   "cim": "Hova kerülhet szóvicc?",
+   "allapot": "szabaly",
+   "forras": [
+    "tokens/hangnem.json → _readme"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "visszajelzésben, sima párjával",
+      "html": "<div class=\"bc-alert is-success\"><p><strong>Bekaptároztuk!</strong> A módosítás elmentve.</p></div>"
+     },
+     "rossz": {
+      "felirat": "hibaüzenetben és törlésnél",
+      "html": "<div class=\"bb-demo-oszlop\"><div class=\"bc-alert is-danger\"><p>Zümm-zümm, valami elrepült!</p></div><button type=\"button\" class=\"bc-btn is-danger\">Kidobjuk a kaptárból</button></div>"
+     },
+     "miert": "Hiba, törlés, jogi szöveg és szám mellé nincs szóvicc: ott a pontosság számít."
+    }
+   ]
+  },
+  {
    "t": "h2",
    "x": "Példák"
   },
@@ -49,25 +70,40 @@
    "t": "pelda",
    "jo": "Hiányzik a @ utáni rész – például: nev@pelda.hu",
    "rossz": "Hibás e-mail!",
-   "miert": "A hiba megmondja, mit tegyél most."
+   "miert": "A hiba megmondja, mit tegyél most.",
+   "forma": "hiba"
   },
   {
    "t": "pelda",
-   "jo": "Gomb: „Mentés”",
-   "rossz": "Gomb: „Bekaptározom!”",
-   "miert": "Gombon nincs szóvicc: a gomb azt mondja, mi történik. A szóvicc a mentés utáni visszajelzésbe való („Bekaptároztuk!” – „Mentve.”)."
+   "jo": "Mentés",
+   "rossz": "Bekaptározom!",
+   "miert": "Gombon nincs szóvicc: a gomb azt mondja, mi történik. A szóvicc a mentés utáni visszajelzésbe való („Bekaptároztuk!” – „Mentve.”).",
+   "forma": "gomb",
+   "jo_felirat": "a gomb azt mondja, mi történik",
+   "rossz_felirat": "szóvicc a gombon"
   },
   {
    "t": "pelda",
    "jo": "Ebben a hónapban 3 fát öntöztél meg.",
    "rossz": "Rengeteg fát mentettél meg!",
-   "miert": "Szám csak valós adatból; a túlzás rontja a hitelességet."
+   "miert": "Szám csak valós adatból; a túlzás rontja a hitelességet.",
+   "forma": "siker"
   },
   {
-   "t": "pelda",
-   "jo": "Valami nálunk romlott el. Próbáld újra pár perc múlva.",
-   "rossz": "Hiba történt.",
-   "miert": "Ha mi hibáztunk, kimondjuk – a szomorú méhecske csak ilyenkor jelenik meg."
+   "t": "dodont",
+   "parok": [
+    {
+     "jo": {
+      "felirat": "ha mi hibáztunk, kimondjuk",
+      "html": "<div class=\"bb-demo-sor bb-demo-meh\"><img src=\"ds/web/assets/brand/bee-sad.webp\" alt=\"\" width=\"56\" height=\"56\"><p class=\"bb-vizual-szoveg\">Valami nálunk romlott el. Próbáld újra pár perc múlva.</p></div>"
+     },
+     "rossz": {
+      "felirat": "semmitmondó, és a felhasználóra hárít",
+      "html": "<div class=\"bc-alert is-danger\"><p>Hiba történt.</p></div>"
+     },
+     "miert": "A szomorú méhecske csak a mi hibánknál jelenik meg – és megmondjuk, mi a következő lépés."
+    }
+   ]
   },
   {
    "t": "h2",

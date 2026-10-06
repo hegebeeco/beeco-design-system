@@ -3,12 +3,12 @@
 
    • A jelszó és a titok a Netlify környezeti változóiban él (Site configuration → Environment variables):
        BRANDBOOK_JELSZO  – a közös jelszó (ezt adod oda önkéntesnek, partnernek)
-       BRANDBOOK_TITOK   – hosszú, véletlen szöveg a süti aláírásához (soha nem kell kiadni)
+       BRANDBOOK_TITOK   – nem kötelező: hosszú, véletlen szöveg a süti aláírásához (nélküle a jelszóból és az oldal azonosítójából képződik)
      A repó nyilvános: jelszó, titok soha nem kerül ide.
    • Belépés: POST /belepes (jelszo, vissza) → helyes jelszóra 30 napos, HttpOnly süti.
      A süti értéke HMAC(titok, jelszó) – jelszócserekor minden régi belépés érvényét veszti.
    • Kilépés: /kilepes. Süti nélkül HTML-kérésre a /belepes.html jön, más kérésre 401.
-   • Ha a két változó nincs beállítva, a kapu zárva marad (503) – így nem lesz véletlenül nyilvános.
+   • Ha a jelszó nincs beállítva, a kapu zárva marad (503) – így nem lesz véletlenül nyilvános.
    ============================================================ */
 const SUTI = 'bb_kapu';
 const NAP30 = 60 * 60 * 24 * 30;
@@ -38,9 +38,10 @@ function biztosVissza(v) { return typeof v === 'string' && /^\/(?!\/)[^\s\\]*$/.
 const atiranyit = (hova, extra = {}) => new Response(null, { status: 303, headers: { Location: hova, 'Cache-Control': 'no-store', ...extra } });
 
 export default async function kapu(req, context) {
-  const jelszo = env('BRANDBOOK_JELSZO'), titok = env('BRANDBOOK_TITOK');
-  if (!jelszo || !titok) {
-    return new Response('A brand book jelszava még nincs beállítva (BRANDBOOK_JELSZO, BRANDBOOK_TITOK a Netlify környezeti változói között).',
+  const jelszo = env('BRANDBOOK_JELSZO');
+  const titok = env('BRANDBOOK_TITOK') || (jelszo ? `bb-kapu:${env('SITE_ID') || ''}:${jelszo}` : '');
+  if (!jelszo) {
+    return new Response('A brand book jelszava még nincs beállítva (BRANDBOOK_JELSZO a Netlify környezeti változói között).',
       { status: 503, headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' } });
   }
   const url = new URL(req.url);

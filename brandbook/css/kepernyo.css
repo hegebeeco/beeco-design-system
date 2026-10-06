@@ -1,0 +1,155 @@
+/* beeco Brand Book – ikonikus képernyők közös rétege: DS-jelölések (a szülő oldal kapcsolja a .bb-jelolve osztályt) */
+html, body { margin: 0; }
+.bb-jelolve [data-ds] { outline: 2px dashed var(--bc-focus); outline-offset: 2px; }
+.bb-jelolve [data-ds]:not(.bb-poz) { position: relative; }
+.bb-jelolve [data-ds]::before { content: attr(data-ds); position: absolute; top: -12px; left: -12px; z-index: 999; min-width: 24px; height: 24px; padding: 0 4px; box-sizing: border-box;
+  border-radius: 999px; background: var(--bc-focus); color: var(--bc-white); font: 700 12px/24px var(--bc-font-body); text-align: center; box-shadow: 0 0 0 2px var(--bc-white); pointer-events: none; }
+
+/* ---- közös: logó világos/sötét ---- */
+.kp-logo-s { display: none; }
+:root[data-theme="dark"] .kp-logo-s { display: inline-block; }
+:root[data-theme="dark"] .kp-logo-v { display: none; }
+
+/* ---- WEB: beeco.hu ---- */
+.kp-web { background: var(--bc-bg); }
+.kp-web-fej { position: sticky; top: 0; z-index: var(--bc-z-header); background: var(--bc-bg); border-bottom: var(--bc-bw-base) solid var(--bc-line); }
+.kp-web-fej.bb-poz { position: sticky; }
+.kp-web-fej-in { display: flex; align-items: center; gap: var(--bc-sp-5); min-height: 72px; }
+.kp-web-logo img { display: block; height: 40px; width: auto; }
+.kp-web-nav { display: flex; gap: var(--bc-sp-5); margin-right: auto; font-weight: var(--bc-fw-semibold); }
+.kp-web-hero-meh { position: relative; display: grid; place-items: center; }
+.kp-web-hero-meh img { width: min(100%, 320px); height: auto; }
+.kp-web-matrica { position: absolute; right: 8%; bottom: 10%; padding: var(--bc-sp-2) var(--bc-sp-3); font-family: var(--bc-font-display); font-size: var(--bc-fs-l); background: var(--bc-accent); color: var(--bc-on-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+.kp-web-racs { display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(3, 1fr); }
+.kp-web-racs .bc-card p { margin: 0; }
+.kp-web-eyebrow-ink { color: var(--bc-bg); opacity: .8; }
+.kp-web-ink-lead { font-size: var(--bc-fs-l); max-width: 46ch; }
+/* lekicsinyített (asztali) képernyőn nagyobb számok, hogy a brand bookban olvashatók maradjanak */
+.bb-jelolve.bb-nagyjel [data-ds]::before { top: -20px; left: -20px; min-width: 44px; height: 44px; font-size: 24px; line-height: 44px; box-shadow: 0 0 0 3px var(--bc-white); }
+.bb-jelolve.bb-nagyjel [data-ds] { outline-width: 4px; outline-offset: 4px; }
+
+/* ---- ADMIN ---- */
+.kp-teendok { list-style: none; margin: 0; padding: 0; }
+.kp-teendok li { display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto; gap: var(--bc-sp-3); align-items: center; padding: var(--bc-sp-2) 0; }
+.kp-teendok p { margin: 2px 0 0; }
+.kp-lista { list-style: none; padding: 0; margin: var(--bc-sp-2) 0 0; }
+.kp-lista li { padding: var(--bc-sp-2) 0; }
+
+/* ---- PARTNER ---- */
+.kp-partner { display: flex; flex-direction: column; gap: var(--bc-sp-5); max-width: 896px; margin: 0 auto; padding-bottom: var(--bc-sp-7); }
+.kp-koszonto { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-3); }
+.kp-koszonto > div { flex: 1 1 auto; }
+.kp-koszonto p { margin: 0; font-size: var(--bc-fs-s); }
+.kp-h1 { margin: 0; font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-xl); line-height: var(--bc-lh-tight); }
+.kp-h2 { margin: 0 0 var(--bc-sp-3); font-size: var(--bc-fs-m); color: var(--bc-ink-soft); }
+.kp-fej { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--bc-sp-3); margin-bottom: var(--bc-sp-3); }
+.kp-fej .bc-card-title { margin: 0; }
+.kp-csempek { display: grid; gap: var(--bc-sp-3); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 1024px) { .kp-csempek { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.kp-lepesek { padding: var(--bc-sp-5); border: var(--bc-bw-base) solid var(--bc-accent); border-radius: var(--bc-r-l); background: color-mix(in srgb, var(--bc-accent) 6%, var(--bc-surface)); }
+.kp-meter { display: flex; align-items: center; gap: 4px; font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); }
+.kp-meter span { margin-left: var(--bc-sp-2); }
+.kp-hex { width: 20px; height: 23px; }
+.kp-hex polygon { fill: var(--bc-surface); stroke: var(--bc-line-soft); stroke-width: 2; }
+.kp-hex.is-kesz polygon { fill: var(--bc-accent); stroke: var(--bc-line); }
+.kp-hex path { fill: none; stroke: var(--bc-on-accent); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.kp-teendok-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--bc-sp-2); }
+.kp-teendok-lista li { display: flex; align-items: center; gap: var(--bc-sp-3); padding: var(--bc-sp-2) var(--bc-sp-3); background: var(--bc-surface); border-radius: var(--bc-r-m); font-weight: var(--bc-fw-semibold); }
+.kp-teendok-lista li .bc-btn { margin-left: auto; }
+.kp-kor { width: 18px; height: 18px; flex: none; border: var(--bc-bw-base) solid var(--bc-line-soft); border-radius: var(--bc-r-pill); }
+.kp-gyors { display: grid; gap: var(--bc-sp-3); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.kp-siker { display: flex; flex-direction: column; align-items: center; gap: var(--bc-sp-3); padding: var(--bc-sp-6); text-align: center; }
+.kp-siker-cim { margin: 0; font-family: var(--bc-font-display); font-size: var(--bc-fs-xl); }
+.kp-kezi { max-width: 520px; }
+.kp-sor { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--bc-sp-3); }
+.kp-sor > .bc-field { flex: 1 1 220px; }
+.kp-kicsi { font-size: var(--bc-fs-s); }
+
+/* ---- MOBIL APP (390 × 844) – a DS-átállás utáni célállapot, az app elrendezése és szövegei szerint ---- */
+.kp-app, .kp-kaptar { margin: 0; background: var(--bc-bg); }
+.kp-app-ernyo, .kp-kaptar-ernyo { position: relative; width: 390px; height: 844px; overflow: hidden; background: var(--bc-bg); font-family: var(--bc-font-body); color: var(--bc-ink); }
+.kp-app-ernyo.is-gorgo { overflow-y: auto; }
+.kp-terkep { position: absolute; inset: 0 0 104px 0; }
+.kp-terkep-alap { width: 100%; height: 100%; display: block; }
+.t-fold { fill: var(--bc-sage-bg); } .t-park { fill: var(--bc-sage); } .t-epulet { fill: var(--bc-sprout); stroke: var(--bc-line-soft); stroke-width: 1; }
+.t-ut { stroke: var(--bc-white); stroke-width: 14; fill: none; } .t-ut.is-kicsi { stroke-width: 7; }
+.kp-terkep-fej { position: absolute; top: 59px; left: 16px; right: 16px; display: flex; gap: var(--bc-sp-2); }
+.kp-kereso { flex: 1; display: flex; align-items: center; gap: var(--bc-sp-2); min-height: var(--bc-tap); padding: 0 var(--bc-sp-3); background: var(--bc-surface);
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-s); color: var(--bc-ink-soft); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); }
+.kp-chipek { position: absolute; top: 112px; left: 16px; right: 0; display: flex; gap: var(--bc-sp-2); overflow: hidden; }
+.kp-chipek.is-sorban { position: static; padding: 0 var(--bc-sp-4); flex-wrap: nowrap; }
+.kp-chip { flex: none; display: inline-flex; align-items: center; min-height: 36px; padding: 0 var(--bc-sp-3); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line);
+  border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); white-space: nowrap; }
+.kp-chip.is-on { background: var(--bc-accent); color: var(--bc-on-accent); }
+.kp-marker { position: absolute; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; box-shadow: 4px 4px 0 color-mix(in srgb, var(--bc-black) 42%, transparent); }
+.kp-marker svg { width: 24px; height: 24px; fill: none; stroke: var(--bc-black); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.kp-marker.is-mez { background: var(--bc-accent); width: 52px; height: 52px; } .kp-marker.is-kek { background: var(--bc-sky); width: 34px; height: 34px; }
+.kp-marker.is-rozsa { background: var(--bc-highlight); } .kp-marker.is-zold { background: var(--bc-leaf); }
+.kp-marker.is-nagy { position: static; width: 64px; height: 64px; flex: none; }
+.kp-m1 { top: 200px; left: 58px; } .kp-m2 { top: 300px; left: 270px; } .kp-m3 { top: 250px; left: 190px; } .kp-m4 { top: 420px; left: 120px; } .kp-m5 { top: 470px; left: 300px; }
+.kp-en { position: absolute; top: 352px; left: 176px; width: 54px; height: 54px; filter: drop-shadow(0 0 10px color-mix(in srgb, var(--bc-accent) 70%, transparent)); }
+.kp-vezerlo { position: absolute; right: 16px; top: 400px; display: grid; background: var(--bc-accent); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-s); box-shadow: var(--bc-shadow-m); }
+.kp-vezerlo button { display: grid; place-items: center; width: 46px; height: 44px; background: none; border: 0; cursor: pointer; }
+.kp-vezerlo button + button { border-top: var(--bc-bw-hair) solid var(--bc-line); }
+.kp-vezerlo svg { width: 24px; height: 24px; fill: none; stroke: var(--bc-on-accent); stroke-width: 2; stroke-linecap: round; }
+.kp-lap { position: absolute; left: 0; right: 0; bottom: 104px; padding: var(--bc-sp-3) var(--bc-sp-4) var(--bc-sp-4); background: var(--bc-bg);
+  border-top: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-l) var(--bc-r-l) 0 0; box-shadow: var(--bc-shadow-soft); }
+.kp-lap-fogo { display: block; width: 32px; height: 4px; margin: 0 auto var(--bc-sp-3); border-radius: 2px; background: var(--bc-ink-muted); }
+.kp-lap-fej { display: flex; gap: var(--bc-sp-4); align-items: center; }
+.kp-lap-cim { margin: 0; font-family: var(--bc-font-display); font-size: var(--bc-fs-xl); line-height: var(--bc-lh-tight); }
+.kp-lap-al, .kp-lap-cimsor { margin: 2px 0 0; font-size: var(--bc-fs-s); }
+.kp-lap-sor { display: flex; justify-content: space-between; align-items: center; margin: var(--bc-sp-3) 0 var(--bc-sp-2); }
+.kp-ertekeld { font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); text-decoration: underline; }
+.kp-lap .bc-btn { margin-top: var(--bc-sp-3); }
+.kp-app-nav { position: absolute; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(5, 1fr); padding: 6px var(--bc-sp-5) 34px; background: var(--bc-surface); border-top: var(--bc-bw-hair) solid var(--bc-line); }
+.kp-app-nav a { display: grid; justify-items: center; gap: 2px; min-height: var(--bc-tap); color: var(--bc-ink); text-decoration: none; font-size: var(--bc-fs-xs); }
+.kp-app-nav svg { width: 30px; height: 30px; fill: var(--bc-surface); stroke: var(--bc-ink-soft); stroke-width: 1.6; stroke-linejoin: round; }
+.kp-app-nav a[aria-current="page"] { font-weight: var(--bc-fw-bold); }
+.kp-app-nav a[aria-current="page"] svg { fill: var(--bc-accent); stroke: var(--bc-ink); }
+.kp-app-fej { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; height: 56px; margin-top: 47px; padding: 0 var(--bc-sp-2);
+  background: var(--bc-surface); border-bottom: var(--bc-bw-hair) solid var(--bc-line); }
+.kp-app-fej h1 { margin: 0; font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-xl); }
+.kp-hely { width: var(--bc-tap); }
+.kp-app-tartalom { padding: var(--bc-sp-4) 0 130px; display: grid; gap: var(--bc-sp-3); }
+.kp-kereso-sor { display: flex; gap: var(--bc-sp-2); padding: 0 var(--bc-sp-4); }
+.kp-szakasz { margin: 0; padding: 0 var(--bc-sp-4); font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-l); }
+.kp-szakasz-fej { display: flex; justify-content: space-between; align-items: center; padding-right: var(--bc-sp-4); }
+.kp-szakasz-fej .kp-szakasz { padding-right: 0; }
+.kp-osszes { display: inline-flex; align-items: center; min-height: var(--bc-tap); padding: 0 var(--bc-sp-3); color: var(--bc-ink); font-weight: var(--bc-fw-bold); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-s); text-decoration: none; }
+.kp-jegyek { display: flex; gap: var(--bc-sp-3); padding: 0 var(--bc-sp-4) var(--bc-sp-2); overflow: hidden; }
+/* a „jegy”: két oldalt bevágás a magasság ~74 %-ánál, köztük letépő vonal; kemény árnyék */
+.kp-jegy { position: relative; flex: none; width: 168px; display: flex; flex-direction: column; background: var(--bc-sage-bg);
+  clip-path: polygon(0 0, 100% 0, 100% 71%, 94% 74%, 100% 77%, 100% 100%, 0 100%, 0 77%, 6% 74%, 0 71%); filter: drop-shadow(5px 5px 0 var(--bc-black)); }
+.kp-jegy-kep { height: 124px; position: relative; } .kp-jegy-kep.is-a { background: linear-gradient(135deg, var(--bc-butter), var(--bc-accent)); } .kp-jegy-kep.is-b { background: linear-gradient(135deg, var(--bc-sky-bg), var(--bc-sky)); }
+.kp-ar { position: absolute; right: 0; bottom: 8px; padding: 2px var(--bc-sp-3) 2px var(--bc-sp-4); background: var(--bc-white); font-family: var(--bc-font-display); font-size: var(--bc-fs-l); clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%); }
+.kp-jegy-partner { display: flex; gap: var(--bc-sp-2); align-items: center; padding: var(--bc-sp-2); }
+.kp-logo { display: grid; place-items: center; width: 40px; height: 40px; flex: none; background: var(--bc-white); border-radius: var(--bc-r-s); font-weight: var(--bc-fw-bold); font-size: var(--bc-fs-xs); }
+.kp-jegy-nev { margin: 0; font-family: var(--bc-font-display); font-size: var(--bc-fs-m); line-height: var(--bc-lh-tight); }
+.kp-jegy-al { margin: 0; font-size: var(--bc-fs-xs); }
+.kp-megnezem { margin: auto var(--bc-sp-2) var(--bc-sp-3) var(--bc-sp-4); display: grid; place-items: center; min-height: 36px; border-top: 2px dashed var(--bc-leaf);
+  background: var(--bc-accent); color: var(--bc-on-accent); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-s); font-family: var(--bc-font-display); text-decoration: none; }
+.kp-uzenj { margin: var(--bc-sp-2) var(--bc-sp-4) 0; padding: var(--bc-sp-4); background: var(--bc-surface-accent); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+.kp-uzenj p { margin: 0; } .kp-uzenj-cim { font-family: var(--bc-font-display); font-size: var(--bc-fs-l); }
+
+/* ---- KAPTÁR – kezdőlap a termékbőrben (cél: DS-átállás) ---- */
+.kp-kaptar-fej { display: flex; align-items: center; gap: var(--bc-sp-2); height: 56px; margin-top: 47px; padding: 0 var(--bc-sp-4); background: var(--bc-surface); border-bottom: var(--bc-bw-base) solid var(--bc-line); }
+.kp-kaptar-fej img { height: 30px; width: auto; } .kp-kaptar-nev { margin-right: auto; font-family: var(--bc-font-display); font-size: var(--bc-fs-l); }
+.kp-kaptar-tartalom { display: grid; gap: var(--bc-sp-4); padding: var(--bc-sp-4) var(--bc-sp-4) 120px; overflow-y: auto; height: calc(844px - 103px); box-sizing: border-box; }
+.kp-udv { position: relative; display: grid; grid-template-columns: auto 1fr; gap: var(--bc-sp-3); align-items: center; padding: var(--bc-sp-4); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-l); background-color: var(--bc-surface-accent); }
+.kp-udv p { margin: 2px 0 0; font-size: var(--bc-fs-s); }
+.kp-rajpont { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline; padding: var(--bc-sp-2) var(--bc-sp-3); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-m); }
+.kp-rajpont strong { font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-2xl); line-height: 1; }
+.kp-halad { height: 8px; margin: 0 0 var(--bc-sp-3); background: var(--bc-surface-2); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); overflow: hidden; }
+.kp-halad span { display: block; width: 37.5%; height: 100%; background: var(--bc-accent); }
+.kp-teendok-lista li.is-kesz { color: var(--bc-ink-muted); text-decoration: line-through; }
+.kp-teendok-lista li.is-kesz .kp-kor { background: var(--bc-success); border-color: var(--bc-success); }
+.kp-teendok-lista li { flex-wrap: wrap; }
+.kp-feladatok { display: flex; gap: var(--bc-sp-3); overflow: hidden; }
+.kp-feladat { flex: none; width: 224px; padding: var(--bc-sp-3); }
+.kp-feladat-cim { margin: var(--bc-sp-2) 0; font-weight: var(--bc-fw-bold); }
+.kp-hatarido { margin: 0; color: var(--bc-ink-soft); } .kp-hatarido.is-ma { color: var(--bc-danger-ink); font-weight: var(--bc-fw-bold); }
+/* a képernyőoldalak vonalas piktogramja (a brand book bb.css-e itt nincs betöltve) */
+.bb-ic { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.kp-kaptar-tartalom > *, .kp-app-tartalom > * { min-width: 0; }
+.kp-udv { grid-template-columns: 64px minmax(0, 1fr); }
+.kp-udv img { width: 64px; height: 64px; object-fit: contain; }

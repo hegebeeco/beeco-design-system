@@ -39,6 +39,27 @@
    ]
   },
   {
+   "t": "dodont",
+   "allapot": "szabaly",
+   "forras": [
+    "docs/termek-arculat.md 9.",
+    "docs/grafika-spec.md"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "a rajzolt beeco méhecske",
+      "html": "<img src=\"ds/web/assets/brand/bee-happy.webp\" alt=\"beeco méhecske\" width=\"96\" height=\"96\">"
+     },
+     "rossz": {
+      "felirat": "emoji-méh",
+      "html": "<p class=\"bb-vizual-szoveg\">🐝 Zümm!</p>"
+     },
+     "miert": "Az emoji minden eszközön másképp néz ki, és nem a mi méhecskénk."
+    }
+   ]
+  },
+  {
    "t": "h2",
    "x": "3D"
   },
@@ -71,6 +92,26 @@
     "termek/css/bc-web.css",
     "docs/javaslatok/11-weboldal-mozgas.md",
     "docs/arculat.md"
+   ]
+  },
+  {
+   "t": "dodont",
+   "allapot": "szabaly",
+   "forras": [
+    "docs/javaslatok/11-weboldal-mozgas.md"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "kerettel, a felirat a kép alatt",
+      "html": "<div class=\"bb-demo-oszlop\"><div class=\"bb-foto\" role=\"img\" aria-label=\"fotó helye\"></div><p class=\"bb-foto-felirat\">Önkéntesek a Kert utcában</p></div>"
+     },
+     "rossz": {
+      "felirat": "szöveg a fotón",
+      "html": "<div class=\"bb-foto\" role=\"img\" aria-label=\"fotó helye\"><p class=\"bb-foto-szoveg\">Öntözz velünk!</p></div>"
+     },
+     "miert": "A fotón a szöveg kontrasztja kiszámíthatatlan – mindig a kép alá vagy mellé kerül."
+    }
    ]
   },
   {

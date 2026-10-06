@@ -214,6 +214,84 @@
    ]
   },
   {
+   "t": "dodont",
+   "cim": "A logó – így igen, így nem",
+   "allapot": "javaslat",
+   "forras": [
+    "docs/termek-arculat.md 9.",
+    "docs/javaslatok/10-logo-sotet-es-mehsejt.md",
+    "Claude javaslata – általános logóhasználati gyakorlat"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "körben üres védőtér",
+      "html": "<div class=\"bb-vedoter\"><img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"></div>"
+     },
+     "rossz": {
+      "felirat": "szöveg a logóra tapad",
+      "html": "<div class=\"bb-demo-sor\"><img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"><p class=\"bb-vizual-szoveg\">Nyári akció!</p></div>"
+     },
+     "miert": "A védőtér a logó magasságának fele – így a logó levegőt kap, és olvasható marad."
+    },
+    {
+     "jo": {
+      "felirat": "eredeti arány",
+      "html": "<img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\">"
+     },
+     "rossz": {
+      "felirat": "nyújtva",
+      "html": "<img class=\"bb-logo-hiba is-nyujtott\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\">"
+     },
+     "miert": "A logót csak arányosan méretezd; a nyújtás torzítja a betűket és a méhecskét."
+    },
+    {
+     "jo": {
+      "felirat": "eredeti színek",
+      "html": "<img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\">"
+     },
+     "rossz": {
+      "felirat": "átszínezve",
+      "html": "<img class=\"bb-logo-hiba is-szinezett\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\">"
+     },
+     "miert": "A logó színe a márka része: nem színezzük a kampány vagy a partner színére."
+    },
+    {
+     "jo": {
+      "felirat": "tiszta, sík logó",
+      "html": "<img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\">"
+     },
+     "rossz": {
+      "felirat": "árnyékkal, forgatva",
+      "html": "<div class=\"bb-demo-sor\"><img class=\"bb-logo-hiba is-arnyekos\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"><img class=\"bb-logo-hiba is-forgatott\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"></div>"
+     },
+     "miert": "Nincs rajta árnyék, körvonal, átmenet, és nem döntjük meg."
+    },
+    {
+     "jo": {
+      "felirat": "nyugodt, egyszínű alap",
+      "html": "<div class=\"bb-sima-hatter\"><img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"></div>"
+     },
+     "rossz": {
+      "felirat": "zajos, mintás alap",
+      "html": "<div class=\"bb-mintas-hatter\"><img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"></div>"
+     },
+     "miert": "Mintás képen, fotón a logó elvész – ilyenkor krém vagy éjszaka-olíva alapra tedd."
+    },
+    {
+     "jo": {
+      "felirat": "sötét alapon a sötét változat",
+      "html": "<div class=\"bb-logo is-sotet\"><img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo-sotet.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"></div>"
+     },
+     "rossz": {
+      "felirat": "sötét alapon a világos változat",
+      "html": "<div class=\"bb-logo is-sotet\"><img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"></div>"
+     },
+     "miert": "Sötét háttéren a fekete „be” eltűnik – ezért van sötét változat (logo-sotet.webp)."
+    }
+   ]
+  },
+  {
    "t": "hianyzik",
    "cim": "Vektoros logó",
    "x": "A design systemben a logó csak WebP-ben van. Nyomdához és nagy felülethez SVG vagy PDF kell – a beeco-hr projektben van egy SVG, ezt össze kell vetni a hivatalossal, mielőtt ide kerül."
@@ -242,6 +320,27 @@
    "x": "A mérges (dühös) méhecske semmilyen felületen, semmilyen anyagban nem jelenhet meg. Tanítunk, nem szidunk.",
    "forras": [
     "tokens/hangnem.json → tiltott_kepek"
+   ]
+  },
+  {
+   "t": "dodont",
+   "cim": "Egy méhecske egy képernyőn",
+   "allapot": "szabaly",
+   "forras": [
+    "tokens/hangnem.json → _readme"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "egy méhecske, egy üzenet",
+      "html": "<div class=\"bb-demo-sor bb-demo-meh\"><img src=\"ds/web/assets/brand/bee-cheer.webp\" alt=\"\" width=\"56\" height=\"56\"><p class=\"bb-vizual-szoveg\">Bekaptároztuk! Mentve.</p></div>"
+     },
+     "rossz": {
+      "felirat": "több méh, több szóvicc egyszerre",
+      "html": "<div class=\"bb-demo-sor bb-demo-meh\"><img src=\"ds/web/assets/brand/bee-cheer.webp\" alt=\"\" width=\"56\" height=\"56\"><img src=\"ds/web/assets/brand/bee-super.webp\" alt=\"\" width=\"56\" height=\"56\"><img src=\"ds/web/assets/brand/bee-phone.webp\" alt=\"\" width=\"56\" height=\"56\"><p class=\"bb-vizual-szoveg\">Zümm! Bekaptároztuk! Mézbe mártva!</p></div>"
+     },
+     "miert": "A méhecske fűszer: képernyőnként legfeljebb egy, és mellette legfeljebb egy szóvicc."
+    }
    ]
   },
   {

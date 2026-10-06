@@ -75,6 +75,12 @@ const feluletek = SORREND.map(id => {
   return JSON.parse(fs.readFileSync(f, 'utf8'));
 }).filter(Boolean);
 
+const KOMP_F = path.join(BB, 'elemek', 'komponensek.json');
+const KOMP = fs.existsSync(KOMP_F) ? JSON.parse(fs.readFileSync(KOMP_F, 'utf8')) : { szintek: [], komponensek: [] };
+const TESZT = json('termek/tesztlapok/lista.json');
+const KEP_F = path.join(BB, 'kepernyok', 'kepernyok.json');
+const KEPERNYOK = fs.existsSync(KEP_F) ? JSON.parse(fs.readFileSync(KEP_F, 'utf8')).kepernyok : [];
+
 // ---------- piktogramok (vonalas, a DS stílusában) ----------
 const IC = {
   menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
@@ -93,6 +99,36 @@ const ic = (n, cls = '') => `<svg class="bb-ic ${cls}" viewBox="0 0 24 24" aria-
 // ---------- keresőindex ----------
 const index = [];
 const strip = h => h.replace(/<[^>]+>/g, ' ').replace(/&[a-z]+;/g, ' ').replace(/\s+/g, ' ').trim();
+
+// ---------- vizuális DO / DON'T (Kristóf: „ha DO és DON'T, mindig legyen vizualizáció”) ----------
+function htmlEllenor(h, ctx) {
+  if (/\sstyle=|<script|\son[a-z]+=|<link|javascript:/i.test(h)) hibak.push(`${ctx}: tiltott jelölés a minta-HTML-ben (style/script/on…/link)`);
+  if (/bee-angry/.test(h)) hibak.push(`${ctx}: a mérges méhecske tilos`);
+  return h;
+}
+function vizual(o, ctx) {
+  if (o.html) return htmlEllenor(o.html, ctx);
+  const t = inl(o.szoveg || '');
+  switch (o.forma) {
+    case 'gomb': return `<button type="button" class="bc-btn">${t}</button>`;
+    case 'gomb2': return `<div class="bb-demo-sor">${(o.szoveg || '').split(' | ').map((g, i) => `<button type="button" class="bc-btn${i ? '' : ''}">${inl(g)}</button>`).join('')}</div>`;
+    case 'hiba': return `<div class="bc-field bb-demo-keskeny"><span class="bc-label">E-mail</span><input class="bc-input" value="nev@" aria-label="E-mail (minta)" aria-invalid="true" readonly><p class="bc-error">${t}</p></div>`;
+    case 'uzenet': return `<div class="bc-alert is-info"><p>${t}</p></div>`;
+    case 'siker': return `<div class="bc-alert is-success"><p>${t}</p></div>`;
+    case 'meh': return `<div class="bb-demo-sor bb-demo-meh"><img src="ds/web/assets/brand/${o.kep || 'bee-cheer'}.webp" alt="" width="56" height="56"><p class="bb-vizual-szoveg">${t}</p></div>`;
+    case 'szam': return `<div class="bc-stat bb-demo-keskeny"><p class="bc-stat-value">${t}</p></div>`;
+    default: return `<p class="bb-vizual-szoveg">${t}</p>`;
+  }
+}
+function ddFig(o, jo, ctx) {
+  return `<figure class="bb-dd ${jo ? 'is-do' : 'is-dont'}"><figcaption><span class="bb-dd-jel" aria-hidden="true">${jo ? '✓' : '✗'}</span> ${jo ? 'Így' : 'Ne így'}${o.felirat || o.cim ? ` – ${inl(o.felirat || o.cim)}` : ''}</figcaption><div class="bb-dd-vizual" inert>${vizual(o, ctx)}</div>${o.miert ? `<p class="bb-dd-miert">${inl(o.miert)}</p>` : ''}</figure>`;
+}
+function dodont(b, ctx) {
+  const parok = (b.parok || []).map(p => `<div class="bb-dd-par">${ddFig(p.jo, true, ctx)}${ddFig(p.rossz, false, ctx)}${p.miert ? `<p class="bb-dd-miert is-kozos">${inl(p.miert)}</p>` : ''}</div>`).join('');
+  if (b.allapot === 'javaslat' && !(b.forras && b.forras.length)) hibak.push(`${ctx}: javaslat-szintű DO/DON'T forrás nélkül („${b.cim || ''}”)`);
+  const jel = b.allapot === 'javaslat' ? '<span class="bc-badge is-warning">Jóváhagyásra vár</span>' : b.allapot === 'szabaly' ? '<span class="bc-badge is-success">Szabály</span>' : '';
+  return `<section class="bb-dodont"${b.cim ? ` aria-labelledby="${slug(ctx + '-dd-' + b.cim)}"` : ''}>${b.cim ? `<div class="bb-blokk-fej">${jel}<h3 id="${slug(ctx + '-dd-' + b.cim)}">${inl(b.cim)}</h3></div>` : ''}${parok}${forrasLista(b.forras)}</section>`;
+}
 
 // ---------- blokkok ----------
 const JEL = { kozos: ['●', 'közös'], reszben: ['◐', 'részben'], elter: ['✗', 'eltér'], nincs: ['—', 'nem értelmezhető'] };
@@ -117,7 +153,8 @@ function blokk(b, ctx) {
       const tor = (b.x ? (Array.isArray(b.x) ? b.x : [b.x]).map(p => `<p>${inl(p)}</p>`).join('') : '') + (b.elemek ? `<ul class="bb-list">${b.elemek.map(e => `<li>${inl(e)}</li>`).join('')}</ul>` : '');
       return `<section class="bc-card is-flat bb-blokk is-${b.t}"${b.cim ? ` aria-labelledby="${slug(ctx + '-' + b.cim)}"` : ''}><div class="bb-blokk-fej">${jelveny}${b.cim ? `<h3 id="${slug(ctx + '-' + b.cim)}">${inl(b.cim)}</h3>` : ''}</div>${tor}${forrasLista(b.forras)}</section>`;
     }
-    case 'pelda': return `<div class="bb-pelda"><div class="bb-pelda-jo"><span class="bc-badge is-success">Így</span><p>${inl(b.jo)}</p></div><div class="bb-pelda-rossz"><span class="bc-badge is-danger">Ne így</span><p>${inl(b.rossz)}</p></div>${b.miert ? `<p class="bb-pelda-miert">${inl(b.miert)}</p>` : ''}</div>`;
+    case 'pelda': return dodont({ parok: [{ jo: { szoveg: b.jo, forma: b.forma, felirat: b.jo_felirat }, rossz: { szoveg: b.rossz, forma: b.forma, felirat: b.rossz_felirat }, miert: b.miert }] }, ctx);
+    case 'dodont': return dodont(b, ctx);
     case 'tabla': return tabla(b.fej, b.sorok, b.cim);
     case 'kep': return `<figure class="bb-kep${b.sotet ? ' is-sotet' : ''}"><img src="${esc(b.src)}" alt="${esc(b.alt)}" loading="lazy"${b.w ? ` width="${b.w}" height="${b.h}"` : ''}>${b.felirat ? `<figcaption>${inl(b.felirat)}</figcaption>` : ''}</figure>`;
     case 'tovabb': return `<nav class="bb-tovabb" aria-label="Tovább">${b.linkek.map(l => `<a class="bc-btn is-secondary" href="${esc(l.href)}">${esc(l.x)}${ic('tovabb')}</a>`).join('')}</nav>`;
@@ -312,9 +349,76 @@ body { margin: 0; background: ${v.bg}; color: ${v.ink}; font-family: 'Open Sans'
   fs.writeFileSync(path.join(OUT, 'minta', `${f.id}.html`), html);
 }
 
+// ---------- komponensek (atom → sablon), élő mintával, használati jegyzettel és képes DO / DON'T-tal ----------
+const SZINT_SORREND = ['atom', 'molekula', 'organizmus', 'sablon'];
+const szintNev = id => (KOMP.szintek.find(x => x.id === id) || { nev: id }).nev;
+function tesztlapRész(nevek, kid) {
+  return (nevek || []).map(n => {
+    const t = TESZT.find(x => x.nev === n);
+    if (!t) { hibak.push(`komponens ${kid}: ismeretlen tesztlap: ${n}`); return ''; }
+    const src = `ds/termek/tesztlapok/${n}.html`;
+    return `<details class="bb-teszt"><summary><span>Élő React-komponens minden állapotban: <strong>${esc(t.cim)}</strong></span></summary><p class="bc-muted bb-kicsi">${esc(t.leiras || '')}</p><iframe data-src="${src}" title="${esc(t.cim)} – élő tesztlap" loading="lazy"></iframe><p><a href="${src}" target="_blank" rel="noopener">Megnyitás külön lapon</a></p></details>`;
+  }).join('');
+}
+function komponensKartya(k) {
+  const ctx = `komponens ${k.id}`;
+  for (const m of ['nev', 'szint', 'leiras', 'minta_html']) if (!k[m]) hibak.push(`${ctx}: hiányzik: ${m}`);
+  if (!(k.do || []).length || !(k.dont || []).length) hibak.push(`${ctx}: kell legalább egy DO és egy DON'T`);
+  const lista = l => `<ul class="bb-list">${(l || []).map(x => `<li>${inl(x)}</li>`).join('')}</ul>`;
+  const kodok = l => (l || []).map(x => `<code>${esc(x)}</code>`).join(' ');
+  return `<article class="bb-komp" aria-labelledby="${esc(k.id)}">
+<header class="bb-komp-fej"><h2 id="${esc(k.id)}">${esc(k.nev)}</h2><span class="bc-badge is-accent">${esc(szintNev(k.szint))}</span>${k.csoport ? `<span class="bc-badge is-muted">${esc(k.csoport)}</span>` : ''}</header>
+<p class="bb-komp-le">${inl(k.leiras)}</p>
+<dl class="bb-komp-meta">${(k.react || []).length ? `<div><dt>React</dt><dd>${kodok(k.react)}</dd></div>` : ''}${(k.css || []).length ? `<div><dt>CSS</dt><dd>${kodok(k.css)}</dd></div>` : ''}</dl>
+<div class="bb-demo" role="group" aria-label="${esc(k.nev)} – élő minta"><p class="bb-demo-cim">Élő minta</p>${htmlEllenor(k.minta_html || '', ctx)}</div>
+<div class="bb-ket bb-mikor-sor"><section class="bb-mikor is-igen"><h3>Mikor használd</h3>${lista(k.mikor)}</section><section class="bb-mikor is-ne"><h3>Mikor ne – és mit helyette</h3>${lista(k.mikor_ne)}</section></div>
+<div class="bb-dd-racs">${(k.do || []).map(d => ddFig(d, true, ctx)).join('')}${(k.dont || []).map(d => ddFig(d, false, ctx)).join('')}</div>
+${tesztlapRész(k.tesztlap, k.id)}
+${forrasLista(k.forras)}
+</article>`;
+}
+function elemekOldalak() {
+  const lefed = new Set(KOMP.komponensek.flatMap(k => k.tesztlap || []));
+  const hiany = TESZT.filter(t => !lefed.has(t.nev)).map(t => t.nev);
+  if (KOMP.komponensek.length && hiany.length) hibak.push(`elemek: tesztlap komponens nélkül: ${hiany.join(', ')}`);
+  const ids = new Set(); for (const k of KOMP.komponensek) { if (ids.has(k.id)) hibak.push(`elemek: kétszer szereplő azonosító: ${k.id}`); ids.add(k.id); }
+  for (const sz of SZINT_SORREND) {
+    const l = KOMP.komponensek.filter(k => k.szint === sz);
+    if (!l.length) continue;
+    const info = KOMP.szintek.find(x => x.id === sz) || {};
+    const i = SZINT_SORREND.indexOf(sz), elozo = SZINT_SORREND.slice(0, i).reverse().find(x => KOMP.komponensek.some(k => k.szint === x)), kov = SZINT_SORREND.slice(i + 1).find(x => KOMP.komponensek.some(k => k.szint === x));
+    const torzs = `<p class="bb-vissza"><a href="elemek.html">← Elemek</a></p><header class="bb-fej"><h1>${esc(info.nev || sz)}</h1><p class="bb-lead">${inl(info.leiras || '')}</p></header>
+<nav class="bb-komp-ugro" aria-label="${esc(info.nev || sz)} – ugrás"><ul>${l.map(k => `<li><a href="#${esc(k.id)}">${esc(k.nev)}</a></li>`).join('')}</ul></nav>
+${l.map(komponensKartya).join('\n')}
+<nav class="bb-tovabb" aria-label="Szintek">${elozo ? `<a class="bc-btn is-secondary" href="elemek-${elozo}.html">← ${esc(szintNev(elozo))}</a>` : ''}${kov ? `<a class="bc-btn is-secondary" href="elemek-${kov}.html">${esc(szintNev(kov))}${ic('tovabb')}</a>` : ''}</nav>`;
+    fs.writeFileSync(path.join(OUT, `elemek-${sz}.html`), oldal({ id: `elemek-${sz}`, cim: info.nev || sz, leiras: info.leiras, torzs, fejezet: '6. fejezet · Elemek' }));
+  }
+}
+GEN.szintek = () => {
+  if (!KOMP.komponensek.length) { hibak.push('elemek: hiányzik a brandbook/elemek/komponensek.json'); return ''; }
+  return `<ul class="bb-csempek">${SZINT_SORREND.filter(sz => KOMP.komponensek.some(k => k.szint === sz)).map(sz => { const info = KOMP.szintek.find(x => x.id === sz) || {}; const l = KOMP.komponensek.filter(k => k.szint === sz);
+    return `<li><a class="bc-card is-interactive bb-csempe" href="elemek-${sz}.html"><span class="bb-csempe-nev">${esc(info.nev || sz)}</span><span class="bb-csempe-bor">${l.length} komponens</span><span class="bb-csempe-le">${esc(l.slice(0, 6).map(k => k.nev).join(' · '))}${l.length > 6 ? ' …' : ''}</span></a></li>`; }).join('')}</ul>`;
+};
+GEN.tesztlapok = () => `<ul class="bb-tesztlista">${TESZT.map(t => `<li><a href="ds/termek/tesztlapok/${esc(t.nev)}.html" target="_blank" rel="noopener"><strong>${esc(t.cim)}</strong><span>${esc(t.leiras || '')}</span></a></li>`).join('')}</ul>`;
+
+// ---------- ikonikus képernyők (felületenként 1–2), kapcsolható DS-jelölésekkel ----------
+function kepernyoResz(fid) {
+  const l = KEPERNYOK.filter(k => k.felulet === fid);
+  if (!l.length) return '';
+  return `<h2 id="ikonikus-kepernyok">Ikonikus képernyők</h2><p>A képernyők a design system elemeiből épülnek. A <strong>DS-jelölések</strong> gombbal megmutatod, melyik rész melyik elem – a számok a lista sorai.</p>` + l.map(k => {
+    const src = k.url || `kepernyok/${k.file}`;
+    if (!k.url && !fs.existsSync(path.join(BB, 'kepernyok', k.file))) hibak.push(`képernyő ${k.id}: hiányzik a fájl: ${k.file}`);
+    return `<section class="bb-kepernyo" aria-labelledby="kep-${esc(k.id)}"><h3 id="kep-${esc(k.id)}">${esc(k.cim)}</h3><p>${inl(k.leiras || '')}</p>
+<div class="bb-kepernyo-sor"><div class="bb-eszkoz is-${esc(k.eszkoz || 'asztal')}"><iframe src="${esc(src)}" title="${esc(k.cim)}" loading="lazy" data-kepernyo${k.url ? ' data-kulso' : ''} referrerpolicy="origin"></iframe></div>
+<div class="bb-kepernyo-info">${k.url ? `<p class="bc-muted bb-kicsi">Élő, kattintható – a valódi felület. <a href="${esc(k.url.replace(/[?&]keret=1/, ''))}" target="_blank" rel="noopener">Megnyitás külön lapon</a></p>` : `<button type="button" class="bc-btn is-secondary" data-jelolo aria-pressed="false">DS-jelölések mutatása</button>`}
+<ol class="bb-jelek">${(k.jelek || []).map(j => `<li value="${j.n}"><strong>${inl(j.nev)}</strong>${j.megj ? ` – ${inl(j.megj)}` : ''}</li>`).join('')}</ol>
+${(k.hatas || []).length ? `<h4>A DS hatása</h4><ul class="bb-list">${k.hatas.map(x => `<li>${inl(x)}</li>`).join('')}</ul>` : ''}</div></div></section>`;
+  }).join('');
+}
+
 // ---------- oldal-váz ----------
 function menu(aktiv) {
-  const linkek = FEJEZETEK.map(f => `<li><a class="bc-nav-link" href="${f.file}"${f.id === aktiv || (aktiv.startsWith('felulet-') && f.id === 'feluletek') ? ' aria-current="page"' : ''}><span class="bb-szam" aria-hidden="true">${f.szam}</span><span class="bc-nav-text">${esc(f.cim)}</span></a></li>`).join('');
+  const linkek = FEJEZETEK.map(f => `<li><a class="bc-nav-link" href="${f.file}"${f.id === aktiv || (aktiv.startsWith('felulet-') && f.id === 'feluletek') || (aktiv.startsWith('elemek-') && f.id === 'elemek') ? ' aria-current="page"' : ''}><span class="bb-szam" aria-hidden="true">${f.szam}</span><span class="bc-nav-text">${esc(f.cim)}</span></a></li>`).join('');
   return `<nav class="bc-sidebar bb-sidebar" id="bb-menu" aria-label="Fejezetek"><div class="bc-sidebar-head"><a class="bc-brand" href="index.html"><img src="ds/web/assets/brand/logo.webp" alt="" width="90" height="36" class="bb-logo-vilagos"><img src="ds/web/assets/brand/logo-sotet.webp" alt="" width="90" height="36" class="bb-logo-sotet"><span class="bc-brand-text">Brand Book</span></a><button type="button" class="bc-btn is-ghost is-icon bb-menu-zar" aria-label="Menü bezárása" data-menu-zar>${ic('x')}</button></div><div class="bc-sidebar-links"><ul class="bc-nav-list">${linkek}</ul><p class="bc-nav-group">Utak</p><ul class="bc-nav-list">${Object.entries(UTAK).map(([id, u]) => `<li><a class="bc-nav-link" href="${FEJEZETEK.find(f => f.id === u.lepesek[0]).file}?ut=${id}" data-ut="${id}"><span class="bc-nav-text">${esc(u.nev)}</span></a></li>`).join('')}</ul></div><div class="bc-sidebar-foot"><p class="bb-kicsi bc-muted">DS v${esc(VERSION)} · <a href="/kilepes">Kilépés</a></p></div></nav>`;
 }
 function oldal({ id, cim, leiras, torzs, fejezet }) {
@@ -377,6 +481,7 @@ function feluletOldal(f) {
   const sorok = Object.entries(f.ertekek || {}).map(([k, c]) => [{ mez: 'Méz-szín', tinta: 'Tinta és vonal', hatter: 'Háttér', sarok: 'Sarok', arnyek: 'Árnyék', betu: 'Betű', sotet: 'Sötét mód', suruseg: 'Sűrűség', ds: 'Kapcsolat a DS-sel', technika: 'Technika' }[k] || k, `${JEL[c.jel] ? JEL[c.jel][0] + ' ' : ''}${c.ertek}`, c.forras || '']);
   const torzs = `<p class="bb-vissza"><a href="feluletek.html">← Hat felület</a></p><header class="bb-fej"><h1>${esc(f.nev)}</h1><p class="bb-lead">${inl(f.rovid)}</p><p><span class="bc-badge is-accent">${esc(f.bor_nev)}</span> <span class="bc-badge is-muted">${esc(f.technika_rovid || '')}</span></p></header>
 <div class="bb-ket bb-fl-fej"><div>${lista('Kinek szól', f.kinek, '')}${f.hol ? `<p><strong>Hol él:</strong> ${inl(f.hol)}</p>` : ''}</div>${mintaKeret(f, 'Élő minta')}</div>
+${kepernyoResz(f.id)}
 ${lista('Mi közös a többi felülettel', f.kozos, 'is-kozos')}${lista('Mi tér el – szándékosan', f.szandekos, 'is-szandekos')}${lista('Cél felé – teendők', f.cel, 'is-cel')}
 <h2 id="ertekek">Értékek a forrásból</h2>${tabla(['Jellemző', 'Érték', 'Forrás'], sorok, `${f.nev} értékei`)}
 <p class="bc-muted bb-kicsi">Felmérve: ${esc(f.felmeres && f.felmeres.datum || '–')} · ${esc((f.felmeres && f.felmeres.forras || []).join(' · '))}</p>
@@ -432,9 +537,11 @@ mkdir(OUT); mkdir(path.join(OUT, 'minta')); mkdir(path.join(OUT, 'bb'));
 // a DS fájljai a repó szerinti relatív helyükön (a bc-all.css @import-jai így működnek)
 copy('termek/css'); copy('dist/css'); copy('dist/tokens.json'); copy('dist/weboldal/webflow-valtozok.json'); copy('dist/dart/beeco_tokens.dart');
 copy('dist/tailwind/preset.cjs'); copy('dist/scss/_beeco.scss'); copy('web/assets/fonts'); copy('web/assets/brand'); copy('web/css');
+copy('termek/tesztlapok'); copy('dist/tesztlapok');   // élő React-komponensek minden állapotban
+if (fs.existsSync(path.join(BB, 'kepernyok'))) fs.cpSync(path.join(BB, 'kepernyok'), path.join(OUT, 'kepernyok'), { recursive: true, filter: f => !/kepernyok\.json$|[\/]src([\/]|$)/.test(f) });
 // a dühös méhecske nem kerül ki (tiltott kép)
 for (const t of hangnem.tiltott_kepek) fs.rmSync(path.join(OUT, 'ds/web/assets/brand', `${t}.webp`), { force: true });
-for (const f of ['bb.css', 'bb.js', 'tema.js', 'minta.css', 'minta.js', 'belepes.js']) {
+for (const f of ['bb.css', 'bb.js', 'tema.js', 'minta.css', 'minta.js', 'belepes.js', 'kepernyo.css']) {
   const src = path.join(BB, f.endsWith('.css') ? 'css' : 'js', f);
   if (!fs.existsSync(src)) { hibak.push(`hiányzó fájl: brandbook/${f.endsWith('.css') ? 'css' : 'js'}/${f}`); continue; }
   fs.copyFileSync(src, path.join(OUT, 'bb', f));
@@ -442,6 +549,7 @@ for (const f of ['bb.css', 'bb.js', 'tema.js', 'minta.css', 'minta.js', 'belepes
 for (const f of feluletek) mintaOldal(f);
 for (const f of FEJEZETEK.filter(f => f.id !== 'index')) fejezetOldal(f);
 for (const f of feluletek) feluletOldal(f);
+elemekOldalak();
 kezdolap(); keresesOldal(); belepesOldal();
 fs.writeFileSync(path.join(OUT, 'bb', 'gen.css'), `/* GENERÁLT (tools/brandbook-build.js) – minták a tokenekből */\n${[...new Set(genCss)].join('\n')}\n`);
 fs.writeFileSync(path.join(OUT, 'bb', 'kereses.json'), JSON.stringify(index));
@@ -459,9 +567,15 @@ for (const o of oldalak) {
     if (!fs.existsSync(path.join(OUT, m[1]))) hibak.push(`${o}: törött link: ${m[1]}`);
   }
 }
-for (const f of fs.readdirSync(path.join(OUT, 'minta')).filter(f => f.endsWith('.html'))) {
-  const h = fs.readFileSync(path.join(OUT, 'minta', f), 'utf8');
-  for (const m of h.matchAll(/(?:href|src)="([^"#?:]+\.(?:css|js))"/g)) if (!fs.existsSync(path.join(OUT, 'minta', m[1]))) hibak.push(`minta/${f}: törött link: ${m[1]}`);
+for (const dir of ['minta', 'kepernyok']) {
+  if (!fs.existsSync(path.join(OUT, dir))) continue;
+  for (const f of fs.readdirSync(path.join(OUT, dir)).filter(f => f.endsWith('.html'))) {
+    const h = fs.readFileSync(path.join(OUT, dir, f), 'utf8');
+    if (/\sstyle="/.test(h)) hibak.push(`${dir}/${f}: inline stílus`);
+    if (/<script(?![^>]*\ssrc=)[^>]*>/.test(h)) hibak.push(`${dir}/${f}: inline script`);
+    if (/bee-angry/.test(h)) hibak.push(`${dir}/${f}: a mérges méhecske tilos`);
+    for (const m of h.matchAll(/(?:href|src)="([^"#?:]+\.(?:css|js|webp|png|svg|html))"/g)) if (!m[1].startsWith('/') && !fs.existsSync(path.join(OUT, dir, m[1]))) hibak.push(`${dir}/${f}: törött link: ${m[1]}`);
+  }
 }
 
 if (hibak.length) { console.error('brandbook – HIBA:\n  ' + hibak.join('\n  ')); process.exit(1); }

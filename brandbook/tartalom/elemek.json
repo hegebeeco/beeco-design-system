@@ -5,6 +5,18 @@
  "blokkok": [
   {
    "t": "h2",
+   "x": "Szintek: atomtól az oldalsablonig"
+  },
+  {
+   "t": "p",
+   "x": "Minden komponensnél: élő minta, mikor használd és mikor ne, képes DO / DON'T, a React-név és a CSS-osztály, és lenyitható élő React-változat minden állapotával."
+  },
+  {
+   "t": "gen",
+   "nev": "szintek"
+  },
+  {
+   "t": "h2",
    "x": "Élő elemek"
   },
   {
@@ -35,6 +47,14 @@
   {
    "t": "gen",
    "nev": "katalogus"
+  },
+  {
+   "t": "h3",
+   "x": "Élő tesztlapok (41)"
+  },
+  {
+   "t": "gen",
+   "nev": "tesztlapok"
   },
   {
    "t": "p",

@@ -36,6 +36,48 @@
    ]
   },
   {
+   "t": "dodont",
+   "allapot": "szabaly",
+   "forras": [
+    "docs/termek-arculat.md 2."
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "fekete szöveg a mézen",
+      "html": "<p class=\"bb-mez-felulet is-on-accent\">Csatlakozz a rajhoz</p>"
+     },
+     "rossz": {
+      "felirat": "fehér szöveg a mézen",
+      "html": "<p class=\"bb-mez-felulet is-feher\">Csatlakozz a rajhoz</p>"
+     },
+     "miert": "A fehér a mézen olvashatatlan (kontraszt ~1,5 : 1); az on-accent sötét módban is fekete."
+    }
+   ]
+  },
+  {
+   "t": "dodont",
+   "cim": "Egy méz fő gomb képernyőnként",
+   "allapot": "szabaly",
+   "forras": [
+    "DESIGN.md – Nem alkudható",
+    "docs/termek-arculat.md 7."
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "egy fő gomb, mellette másodlagos",
+      "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn\">Mentés</button><button type=\"button\" class=\"bc-btn is-secondary\">Mégse</button></div>"
+     },
+     "rossz": {
+      "felirat": "három egyforma méz gomb",
+      "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn\">Mentés</button><button type=\"button\" class=\"bc-btn\">Előnézet</button><button type=\"button\" class=\"bc-btn\">Mégse</button></div>"
+     },
+     "miert": "Ha minden kiemelt, semmi sem az – a méz mutatja meg, mi a következő lépés."
+    }
+   ]
+  },
+  {
    "t": "h2",
    "x": "Betűk"
   },
@@ -59,6 +101,26 @@
    ]
   },
   {
+   "t": "dodont",
+   "allapot": "szabaly",
+   "forras": [
+    "docs/termek-arculat.md 4."
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "Lalezar a címben, Open Sans a szövegben",
+      "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><p class=\"bb-display bb-fs-xl\">Öntözz egy fát</p><p class=\"bb-szovegminta\">Szombaton 10-től a Kert utcában találkozunk. Hozz kannát, ha van.</p></div>"
+     },
+     "rossz": {
+      "felirat": "hosszú szöveg Lalezarral",
+      "html": "<p class=\"bb-szovegminta-lalezar\">Szombaton 10-től a Kert utcában találkozunk. Hozz kannát, ha van, és szólj a barátaidnak is, mert sok fa vár ránk.</p>"
+     },
+     "miert": "A Lalezar hangos – címre, számra, gombra való; hosszú szövegben fárasztó és nehezen olvasható."
+    }
+   ]
+  },
+  {
    "t": "h2",
    "x": "Térköz"
   },
@@ -77,6 +139,28 @@
   {
    "t": "gen",
    "nev": "forma"
+  },
+  {
+   "t": "dodont",
+   "cim": "Kemény árnyék csak arra, ami kattintható",
+   "allapot": "szabaly",
+   "forras": [
+    "docs/termek-arculat.md 3. és 6/A",
+    "tokens/theme-termek.json → shadowSoft (2026-10-01)"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "gomb: kemény; info-doboz: puha",
+      "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn\">Megnyitom</button><div class=\"bc-card\"><p>Nyitva: 8–18 óráig</p></div></div>"
+     },
+     "rossz": {
+      "felirat": "nem kattintható doboz kemény árnyékkal",
+      "html": "<div class=\"bc-card bc-lift\"><p>Nyitva: 8–18 óráig</p></div>"
+     },
+     "miert": "A kemény átlós árnyék azt ígéri: „nyomj meg”. Ha a doboz nem kattintható, puha árnyékot kap."
+    }
+   ]
   },
   {
    "t": "h2",

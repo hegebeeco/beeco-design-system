@@ -102,6 +102,28 @@
    ]
   },
   {
+   "t": "dodont",
+   "cim": "Egy plakát, kétféleképpen",
+   "allapot": "szabaly",
+   "forras": [
+    "Márka, Hang és szöveg fejezet",
+    "tokens/hangnem.json"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "kisbetűs beeco, egy méh, tény",
+      "html": "<div class=\"bc-card bb-demo-keskeny bb-demo-oszlop\"><img class=\"bb-logo-kicsi\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco\" width=\"60\" height=\"37\"><p class=\"bb-display bb-fs-xl\">Öntözz velünk szombaton!</p><p>Kert utca 12., 10 órától. Hozz kannát, ha van.</p><img src=\"ds/web/assets/brand/bee-cheer.webp\" alt=\"\" width=\"56\" height=\"56\"></div>"
+     },
+     "rossz": {
+      "felirat": "nagybetűs név, forrás nélküli szám, túl sok minden",
+      "html": "<div class=\"bc-card bb-demo-keskeny bb-demo-oszlop\"><p class=\"bb-display bb-fs-xl\">A BEECO 1 000 000 FÁT MENTETT MEG!!!</p><div class=\"bb-demo-sor\"><img src=\"ds/web/assets/brand/bee-cheer.webp\" alt=\"\" width=\"40\" height=\"40\"><img src=\"ds/web/assets/brand/bee-super.webp\" alt=\"\" width=\"40\" height=\"40\"><img src=\"ds/web/assets/brand/bee-phone.webp\" alt=\"\" width=\"40\" height=\"40\"></div></div>"
+     },
+     "miert": "Kisbetűs beeco, egy méhecske, tegező és tényszerű szöveg – szám csak forrással."
+    }
+   ]
+  },
+  {
    "t": "tilos",
    "cim": "Soha",
    "elemek": [

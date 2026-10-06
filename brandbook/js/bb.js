@@ -21,7 +21,7 @@
     d.setAttribute('data-tema-kesz', feloldott(v));
     var g = $('[data-tema-gomb]');
     if (g) g.setAttribute('aria-label', 'Téma: ' + TEMA_NEV[v] + ' – váltás: ' + TEMA_NEV[KOVETKEZO[v]]);
-    $$('iframe[data-minta]').forEach(function (f) {
+    $$('iframe[data-minta], iframe[data-kepernyo]:not([data-kulso])').forEach(function (f) {
       try { if (f.contentWindow && f.contentWindow.bbMintaTema) f.contentWindow.bbMintaTema(feloldott(v)); } catch (e) { /* még tölt */ }
     });
   }
@@ -131,6 +131,33 @@
       gombok.appendChild(ki); sav.appendChild(gombok); sav.hidden = false;
     }
   }
+
+  // ---------- élő tesztlapok: csak lenyitáskor töltődnek be ----------
+  $$('details.bb-teszt').forEach(function (d) {
+    d.addEventListener('toggle', function () { var f = $('iframe[data-src]', d); if (d.open && f && !f.getAttribute('src')) f.setAttribute('src', f.getAttribute('data-src')); });
+  });
+
+  // ---------- ikonikus képernyők: a keret szélességéhez méretezve (telefon 390 × 844, asztal 1280 × 800) ----------
+  var MERET = { telefon: [390, 844], asztal: [1280, 800] };
+  function meretez() {
+    $$('.bb-eszkoz').forEach(function (w) {
+      var tip = w.classList.contains('is-telefon') ? 'telefon' : 'asztal', m = MERET[tip], f = $('iframe', w);
+      var k = Math.min(1, w.clientWidth / m[0]);
+      f.style.width = m[0] + 'px'; f.style.height = m[1] + 'px'; f.style.transform = 'scale(' + k + ')';
+      w.style.height = Math.round(m[1] * k) + 'px';
+    });
+  }
+  meretez(); window.addEventListener('resize', meretez);
+  $$('[data-jelolo]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var on = b.getAttribute('aria-pressed') !== 'true', f = $('iframe[data-kepernyo]', b.closest('.bb-kepernyo-sor'));
+      b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.textContent = on ? 'DS-jelölések elrejtése' : 'DS-jelölések mutatása';
+      try { var r = f.contentDocument.documentElement; r.classList.toggle('bb-jelolve', on); r.classList.toggle('bb-nagyjel', f.getBoundingClientRect().width / f.offsetWidth < 0.6); } catch (e) { /* még tölt */ }
+    });
+  });
+  $$('iframe[data-kepernyo]:not([data-kulso])').forEach(function (f) {
+    f.addEventListener('load', function () { temaAlkalmaz(d.getAttribute('data-tema-valasztas') || 'auto'); });
+  });
 
   // ---------- minták: magasság a tartalomhoz ----------
   $$('iframe[data-minta]').forEach(function (f) {
