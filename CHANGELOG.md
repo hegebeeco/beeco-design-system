@@ -11,6 +11,9 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.49.5 – 2026-10-06 – Élő birtok: változatos kellékek
+* `js/3d/birtok-kellekek.js` (új): két új szemétkupac-változat, szétesett raklap, „friss föld” (a kitakarított mező jutalomképe) és füves folt (3 változat) – 284–592 háromszög, kódból; a katalógusban, a `modellek.html`-ben és a `check-3d`-ben is.
+
 ## 1.49.4 – 2026-10-06 – a Menü a bevezető fölött, néma fotózás
 * `css/bevezeto.css`: a „Hogyan játssz?” kártya a játékmenü ALATT, és a Menü gomb sávja alatt kezdődik – így nyitott kártyánál is ki lehet kapcsolni a hangot, teljes képernyőre váltani (a játékban a menü rétege `--z-scene + 6`).
 * `tools/jatek-foto.js`: `--mute-audio` – fejlesztés közben a fej nélküli böngésző is néma.
