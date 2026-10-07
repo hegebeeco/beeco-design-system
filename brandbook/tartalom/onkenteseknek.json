@@ -138,12 +138,16 @@
    ]
   },
   {
-   "t": "hianyzik",
-   "cim": "Ami még nincs",
+   "t": "szabaly",
+   "cim": "Ezek a HR-felületen lesznek",
    "elemek": [
-    "magatartási kódex önkénteseknek",
-    "közös, nem személyes kapcsolati e-mail-cím",
-    "a Rajpont és a szintek konkrét szabályai (a Kaptár-kapu most mintaadattal fut)"
+    "az önkéntesek magatartási kódexe",
+    "a közös, nem személyes kapcsolati e-mail-cím",
+    "a Rajpont és a szintek szabályai"
+   ],
+   "x": "Ezeket a beeco HR-felülete (Kaptár) adja meg, amint elkészülnek – a brand book oda fog mutatni.",
+   "forras": [
+    "Kristóf döntése, 2026-10-07"
    ]
   },
   {

@@ -49,26 +49,25 @@
    "x": "Ahol döntés kell"
   },
   {
-   "t": "javaslat",
-   "cim": "A Kaptár iránya",
+   "t": "hivatalos",
+   "cim": "A Kaptár iránya – döntés",
    "x": [
-    "A Kaptár ma saját témát használ: zöld alap gomb, más krém és tinta, puha, nagy sarkú elemek, DS-kapcsolat nélkül. Két út van:",
-    "**A)** átáll a termékbőrre, mint az admin és a partner app; **B)** a DS-ben kap egy hivatalos „belső” változatot (a zöld alapművelettel), amit a többi belső eszköz is használhat.",
-    "Javaslat: **A**, mert egy önkéntes ugyanazt a beecót lássa a Kaptárban, mint az appban – a zöld „nyugodt” gombot a termékbőr másodlagos gombja kiváltja."
+    "A DS-be kell egy hivatalos, lágyabb változat: a design systemben ma csak éles sarok és kemény árnyék van, a Kaptár (HR-felület) puha, nagy sarkú elemeket használ.",
+    "A változat tervét a [Javaslat 24](https://github.com/hegebeeco/beeco-design-system/blob/main/docs/javaslatok/24-lagy-valtozat.md) írja le; addig a Kaptár a saját témájával fut."
    ],
    "forras": [
-    "felmérés: beeco-hr/src/index.css, src/components/Button.jsx (2026-10-06)"
+    "Kristóf döntése, 2026-10-07: „Erre is kell megoldás a DS-be, most éles sarkok és a kemény árnyék van”"
    ]
   },
   {
-   "t": "javaslat",
-   "cim": "A mobil app sötét módja",
+   "t": "hivatalos",
+   "cim": "A mobil app sötét módja – lesz",
    "x": [
-    "Az app ma csak világos. A DS-ben minden színszerepnek megvan a sötét párja (`BeecoRoles.dark`), így az átállás után a sötét mód „ingyen” jön."
+    "Az app is kap sötét módot. A DS-ben minden színszerepnek megvan a sötét párja (`BeecoRoles.dark`), így a Flutter-átállással együtt jön."
    ],
    "forras": [
-    "docs/app-atallas.md",
-    "felmérés: mobile-app/lib/presentation/theme/app_colors.dart"
+    "Kristóf döntése, 2026-10-07",
+    "docs/app-atallas.md"
    ]
   }
  ]

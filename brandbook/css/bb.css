@@ -365,3 +365,6 @@ body { margin: 0; background: var(--bc-bg); color: var(--bc-ink); font-family: v
 .bb-mob-meret { margin-left: auto; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
 /* a DO / DON'T képek nem kattinthatók (inert) – a mintában a gomb csak kép, nem kap mutató-kurzort */
 .bb-dd-vizual span.bc-btn, .bb-dd-vizual span.bc-icon-btn { cursor: default; }
+
+/* ===== bb-tartalom: korrigálandó blokk (Claude-vázlat, a márkadokumentumban nincs forrása) ===== */
+.bb-blokk.is-korrigalando { border-left: 6px dashed var(--bc-warning); }

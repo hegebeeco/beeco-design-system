@@ -1,6 +1,7 @@
 # Javaslat 22 – beeco Brand Book (design system + márkakönyv egy felületen)
 
-*Állapot: **javaslat** · készítette: Claude (Kristóf kérésére) · dátum: 2026-10-06*
+*Állapot: **jóváhagyva** (Kristóf, 2026-10-07)*  
+*Eredeti állapot: **javaslat** · készítette: Claude (Kristóf kérésére) · dátum: 2026-10-06*
 *(Jóváhagyás után: **jóváhagyva** – lent a Döntés részben.)*
 
 ## 1. Igény
@@ -62,3 +63,6 @@ A jelszót és a titkot a Netlify felületén kell beállítani (`BRANDBOOK_JELS
 - Dátum: …
 - Választott változat: C (hibrid), mátrix + élő minták – a beszélgetésben 2026-10-06
 - Megjegyzés / módosítás: …
+
+## Döntés
+- Kristóf, 2026-10-07: **jóváhagyva** – mehet minden merge és az éles Netlify-oldal. A márkaszövegek forrása a belső márkadokumentum (beeco brandbook v2); ahol nincs forrás, „Korrigálandó” jelölésű Claude-vázlat áll.

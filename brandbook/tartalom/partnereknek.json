@@ -107,12 +107,44 @@
    "x": "Közös kampánynál a beeco saját altémát adhat. Példa: a **CsicsergŐsz** kampány saját palettát (kakaó, barack, méz) és saját Webflow-változógyűjteményt kapott, a betűk és a hangnem a beecóé maradtak. Forrás: `weboldal/kampany-csicsergosz/`."
   },
   {
-   "t": "hianyzik",
-   "cim": "Ami még nincs",
+   "t": "hivatalos",
+   "cim": "Tipikus partnereink",
    "elemek": [
-    "partneri sablonok (ajtómatrica, plakát, közösségi poszt) a design systemben",
-    "a partner kötelezettségei és a jóváhagyás határideje írásban",
-    "sajtóanyag-csomag (rövid leírás, logók, képek)"
+    "csomagolásmentes boltok",
+    "használt termékek üzletei",
+    "javító- és szervizhelyek",
+    "öko, zero waste webshopok",
+    "helyi termelők",
+    "kölcsönzők"
+   ],
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026) – Secunder célcsoportok"
+   ]
+  },
+  {
+   "t": "korrigalando",
+   "cim": "A partner vállalásai és a jóváhagyás menete",
+   "elemek": [
+    "A partner a beeco logóját és méhecskéit csak a beeco jóváhagyásával, a Letöltések fájljaiból, változtatás nélkül használja.",
+    "A közös anyagot (plakát, poszt, sajtóanyag) megjelenés előtt elküldi a beecónak; a beeco **5 munkanapon belül** visszajelez.",
+    "A partner valós adatokat ad meg magáról (nyitvatartás, kínálat), és jelzi, ha ezek változnak.",
+    "A beecompatibilitási teszt szempontjait folyamatosan teljesíti."
+   ],
+   "forras": [
+    "Claude-vázlat – a végleges szöveg és a határidő a partnerszerződésből jön"
+   ]
+  },
+  {
+   "t": "korrigalando",
+   "cim": "Sajtócsomag",
+   "elemek": [
+    "rövid leírás: a 40 szavas bemutatkozó ([Márka](marka.html))",
+    "logók: [Letöltések](letoltesek.html) (a vektoros logó később)",
+    "képek: a beeco fotóbankja (Drive-mappa, a link hamarosan)",
+    "kapcsolat: a beeco kommunikációs csapata"
+   ],
+   "forras": [
+    "Claude-vázlat – helyőrző, amíg a hivatalos csomag elkészül"
    ]
   },
   {
