@@ -1,7 +1,7 @@
-/* beeco design system 1.48.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   useLengthCounter
-} from "../reszek/chunk-4RC7JRT7.js";
+} from "../reszek/chunk-6M2UUQ5B.js";
 export {
   useLengthCounter
 };

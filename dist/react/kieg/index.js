@@ -1,10 +1,10 @@
-/* beeco design system 1.48.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
-import "../reszek/chunk-FEYSXDAA.js";
+/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+import "../reszek/chunk-K3HSXRMW.js";
 import {
   RangeSlider,
   Slider
-} from "../reszek/chunk-S3BB75NG.js";
-import "../reszek/chunk-QKBY2E55.js";
+} from "../reszek/chunk-V2WDFQ2F.js";
+import "../reszek/chunk-UNCGYOWV.js";
 import {
   ErrorPage,
   ForbiddenPage,
@@ -12,91 +12,91 @@ import {
   OfflinePage,
   SessionExpired,
   StatusPage
-} from "../reszek/chunk-JTLUVIBK.js";
+} from "../reszek/chunk-5PFXI5CY.js";
 import {
   Timeline
-} from "../reszek/chunk-Z3BSPFA7.js";
+} from "../reszek/chunk-4NFRSAW3.js";
 import {
   UnsavedChangesDialog,
   UnsavedChangesGuard,
   useUnsavedChanges
-} from "../reszek/chunk-IMYKM537.js";
+} from "../reszek/chunk-JARDO6ZB.js";
 import {
   groupByDay
-} from "../reszek/chunk-OY3AT6UO.js";
+} from "../reszek/chunk-L2PEBX4G.js";
 import {
   DownloadButton,
   formatBytes
-} from "../reszek/chunk-L4ML3HHN.js";
+} from "../reszek/chunk-2ZD4FQ2I.js";
 import {
   OfflineBanner,
   useOnline
-} from "../reszek/chunk-YDYSJI67.js";
+} from "../reszek/chunk-EB5TACQD.js";
 import {
   PhoneField
-} from "../reszek/chunk-DUBCR35H.js";
+} from "../reszek/chunk-NHTV3P62.js";
 import {
   formatHuPhone,
   formatNational,
   parsePhone,
   phoneInfo,
   toE164
-} from "../reszek/chunk-AFTOZTIB.js";
+} from "../reszek/chunk-TUNZRQVI.js";
 import {
   PreviewCard
-} from "../reszek/chunk-XBLF5B5Y.js";
+} from "../reszek/chunk-QWA6F6PI.js";
 import {
   ReviewQueue
-} from "../reszek/chunk-A7NXNXXV.js";
-import "../reszek/chunk-PCXM7Q4Q.js";
-import "../reszek/chunk-KWYII737.js";
-import "../reszek/chunk-OW5I2SZT.js";
-import "../reszek/chunk-LZGDFLA6.js";
-import "../reszek/chunk-R5WBSORB.js";
+} from "../reszek/chunk-WYOWJ52L.js";
+import "../reszek/chunk-SFE3VERN.js";
+import "../reszek/chunk-PSKLVMPE.js";
+import "../reszek/chunk-NHZ7E3AD.js";
+import "../reszek/chunk-33BFXFEL.js";
+import "../reszek/chunk-QUK2WDHW.js";
 import {
   AudienceBuilder
-} from "../reszek/chunk-GO5DH7MF.js";
-import "../reszek/chunk-KJALUJQQ.js";
+} from "../reszek/chunk-3IAK7MBK.js";
+import "../reszek/chunk-J2Y2GK3F.js";
 import {
   audienceProblems,
   describeAudience,
   newRule
-} from "../reszek/chunk-K6K26TCD.js";
+} from "../reszek/chunk-5LQKRR35.js";
 import {
   Clamp
-} from "../reszek/chunk-ZH5JXIY4.js";
+} from "../reszek/chunk-Y7YZCUPS.js";
 import {
   CompareMerge
-} from "../reszek/chunk-T2V5SJAP.js";
-import "../reszek/chunk-ZJTUPW3Y.js";
-import "../reszek/chunk-JAEW2WWL.js";
+} from "../reszek/chunk-AAOOIMMK.js";
+import "../reszek/chunk-AA4HKYZK.js";
+import "../reszek/chunk-S7Z3LM7K.js";
 import {
   mergedValues
-} from "../reszek/chunk-26SU234F.js";
-import "../reszek/chunk-ZGCJX5D5.js";
+} from "../reszek/chunk-CF3YP2BQ.js";
+import "../reszek/chunk-AIU3A5ND.js";
 import {
   CopyButton,
   copyText
-} from "../reszek/chunk-4JH4QX3O.js";
-import "../reszek/chunk-G5F36T24.js";
-import "../reszek/chunk-46DQOX24.js";
-import "../reszek/chunk-AN5WGW3G.js";
-import "../reszek/chunk-AVJVF6TI.js";
-import "../reszek/chunk-MKUTD43E.js";
-import "../reszek/chunk-P3OYCJWU.js";
-import "../reszek/chunk-4RC7JRT7.js";
-import "../reszek/chunk-H6W65O4W.js";
-import "../reszek/chunk-B2SLZ654.js";
-import "../reszek/chunk-DAYGAJXJ.js";
-import "../reszek/chunk-GQL5H3U6.js";
-import "../reszek/chunk-NC27PCCN.js";
-import "../reszek/chunk-SY7LFT5E.js";
-import "../reszek/chunk-JRGKVA7P.js";
-import "../reszek/chunk-ERA2YNH3.js";
-import "../reszek/chunk-5ZIOTUTW.js";
-import "../reszek/chunk-DNKGFO3X.js";
-import "../reszek/chunk-F6KEZPWA.js";
-import "../reszek/chunk-KBQVEJSX.js";
+} from "../reszek/chunk-FKRABJFA.js";
+import "../reszek/chunk-EC2QG63K.js";
+import "../reszek/chunk-PAJVNLNK.js";
+import "../reszek/chunk-NCQRTXIH.js";
+import "../reszek/chunk-XQO2PCEC.js";
+import "../reszek/chunk-76N7V5J3.js";
+import "../reszek/chunk-ELLGP2BG.js";
+import "../reszek/chunk-6M2UUQ5B.js";
+import "../reszek/chunk-GCYM3DUD.js";
+import "../reszek/chunk-JUIQ6RRM.js";
+import "../reszek/chunk-67M5ENIM.js";
+import "../reszek/chunk-632DTIWW.js";
+import "../reszek/chunk-R3M3HYHK.js";
+import "../reszek/chunk-M4KE4BK6.js";
+import "../reszek/chunk-LAVIXOYM.js";
+import "../reszek/chunk-IEHFT7BD.js";
+import "../reszek/chunk-HDFSCYBK.js";
+import "../reszek/chunk-RRMQQIT4.js";
+import "../reszek/chunk-KOQBPG2F.js";
+import "../reszek/chunk-HJFOG57B.js";
 export {
   AudienceBuilder,
   Clamp,

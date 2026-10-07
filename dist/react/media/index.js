@@ -1,75 +1,75 @@
-/* beeco design system 1.48.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
-import "../reszek/chunk-NEKNXRQF.js";
+/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+import "../reszek/chunk-C4FAM4I5.js";
 import {
   MonthCalendar
-} from "../reszek/chunk-VN5V6ZQJ.js";
-import "../reszek/chunk-QOOSSQ25.js";
+} from "../reszek/chunk-MSGL3T3I.js";
+import "../reszek/chunk-2WRPJ347.js";
 import {
   CAL_KINDS,
   KIND_LABEL,
   eventsByDay,
   kindLabel,
   kindTone
-} from "../reszek/chunk-3WMHMUU3.js";
+} from "../reszek/chunk-NUKTLY6Y.js";
 import {
   OpeningHoursEditor
-} from "../reszek/chunk-WBILQPRB.js";
+} from "../reszek/chunk-NCMWDSLB.js";
 import {
   WEEK,
   emptyWeek,
   parseTime,
   validateHours
-} from "../reszek/chunk-AFLFREAQ.js";
+} from "../reszek/chunk-I7F4KJVX.js";
 import {
   VideoUpload
-} from "../reszek/chunk-AQMJBXED.js";
+} from "../reszek/chunk-M66CGPC4.js";
 import {
   ImageUploader
-} from "../reszek/chunk-HVVKX53W.js";
-import "../reszek/chunk-2ZJ575N6.js";
-import "../reszek/chunk-2C3X2Y4J.js";
+} from "../reszek/chunk-YHHQ67F7.js";
+import "../reszek/chunk-OX5KWGDH.js";
+import "../reszek/chunk-RGEU7N54.js";
 import {
   HeatScale,
   MapLegend
-} from "../reszek/chunk-ZHRVUNPF.js";
+} from "../reszek/chunk-46BGTY2S.js";
 import {
   MapPanel
-} from "../reszek/chunk-7GCZLJEO.js";
-import "../reszek/chunk-CWAJ56WD.js";
-import "../reszek/chunk-BHKNFB4U.js";
-import "../reszek/chunk-SI7UNRYL.js";
+} from "../reszek/chunk-E5KDSV5R.js";
+import "../reszek/chunk-D2ZIYQX6.js";
+import "../reszek/chunk-TN3Q4ZPJ.js";
+import "../reszek/chunk-ZO5W3OV6.js";
 import {
   Avatar,
   initials
-} from "../reszek/chunk-22674BWL.js";
+} from "../reszek/chunk-WXUTAGW4.js";
 import {
   CropDialog,
   cropToFile
-} from "../reszek/chunk-SNZPS4WR.js";
-import "../reszek/chunk-J3CVOCWY.js";
-import "../reszek/chunk-Z4ZUUKAR.js";
-import "../reszek/chunk-AM3GDJNB.js";
-import "../reszek/chunk-TFWWS2XD.js";
-import "../reszek/chunk-TALWDK2L.js";
+} from "../reszek/chunk-WWLV7Y5S.js";
+import "../reszek/chunk-Q4YKVQ5Q.js";
+import "../reszek/chunk-ZXIIC2FG.js";
+import "../reszek/chunk-HX5GGJOK.js";
+import "../reszek/chunk-UAQU7MFK.js";
+import "../reszek/chunk-6N77CTOQ.js";
 import {
   ImageCropper
-} from "../reszek/chunk-Q262B4OI.js";
+} from "../reszek/chunk-2E7DHSME.js";
 import {
   FileImport
-} from "../reszek/chunk-GAFYQT3Y.js";
+} from "../reszek/chunk-E4NFMYUT.js";
 import {
   Progress,
   Stepper,
   stepsFrom
-} from "../reszek/chunk-UIHSTFBJ.js";
+} from "../reszek/chunk-XGEJ27VZ.js";
 import {
   ImportResult,
   issuesToCsv
-} from "../reszek/chunk-OUNKSR36.js";
+} from "../reszek/chunk-IT3TGKXY.js";
 import {
   FilePicker,
   fileSizeText
-} from "../reszek/chunk-HQ3QMNB6.js";
+} from "../reszek/chunk-BGI7XBBG.js";
 import {
   checkFiles,
   fileKey,
@@ -77,17 +77,17 @@ import {
   sizePair,
   sniffType,
   typeNames
-} from "../reszek/chunk-RTD4WYMM.js";
+} from "../reszek/chunk-6XDZVDWZ.js";
 import {
   Gallery
-} from "../reszek/chunk-TQ6RHSL5.js";
-import "../reszek/chunk-UV6XBK2N.js";
-import "../reszek/chunk-7OJHKQMZ.js";
+} from "../reszek/chunk-5QSHKJLW.js";
+import "../reszek/chunk-VQSG7VPG.js";
+import "../reszek/chunk-A2GRVEKW.js";
 import {
   Lightbox
-} from "../reszek/chunk-KYMFPJME.js";
-import "../reszek/chunk-DBSSBTRB.js";
-import "../reszek/chunk-LBZU5PSY.js";
+} from "../reszek/chunk-WV55HUZO.js";
+import "../reszek/chunk-3DPHTXDM.js";
+import "../reszek/chunk-LGGDWQQM.js";
 import {
   MARKER_ICON,
   MARKER_ICON_SELECTED,
@@ -96,22 +96,22 @@ import {
   clusterTier,
   heatGradient,
   markerHtml
-} from "../reszek/chunk-PD3LXJ5G.js";
-import "../reszek/chunk-P3OYCJWU.js";
-import "../reszek/chunk-4RC7JRT7.js";
-import "../reszek/chunk-YGFEDREK.js";
-import "../reszek/chunk-H6W65O4W.js";
-import "../reszek/chunk-B2SLZ654.js";
-import "../reszek/chunk-DAYGAJXJ.js";
-import "../reszek/chunk-GQL5H3U6.js";
-import "../reszek/chunk-NC27PCCN.js";
-import "../reszek/chunk-SY7LFT5E.js";
-import "../reszek/chunk-JRGKVA7P.js";
-import "../reszek/chunk-ERA2YNH3.js";
-import "../reszek/chunk-5ZIOTUTW.js";
-import "../reszek/chunk-DNKGFO3X.js";
-import "../reszek/chunk-F6KEZPWA.js";
-import "../reszek/chunk-KBQVEJSX.js";
+} from "../reszek/chunk-BXOGKBEH.js";
+import "../reszek/chunk-ELLGP2BG.js";
+import "../reszek/chunk-6M2UUQ5B.js";
+import "../reszek/chunk-UETNNJPJ.js";
+import "../reszek/chunk-GCYM3DUD.js";
+import "../reszek/chunk-JUIQ6RRM.js";
+import "../reszek/chunk-67M5ENIM.js";
+import "../reszek/chunk-632DTIWW.js";
+import "../reszek/chunk-R3M3HYHK.js";
+import "../reszek/chunk-M4KE4BK6.js";
+import "../reszek/chunk-LAVIXOYM.js";
+import "../reszek/chunk-IEHFT7BD.js";
+import "../reszek/chunk-HDFSCYBK.js";
+import "../reszek/chunk-RRMQQIT4.js";
+import "../reszek/chunk-KOQBPG2F.js";
+import "../reszek/chunk-HJFOG57B.js";
 export {
   Avatar,
   CAL_KINDS,

@@ -1,16 +1,16 @@
-/* beeco design system 1.48.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
-import "../reszek/chunk-QEZFV26X.js";
+/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+import "../reszek/chunk-44RAA23W.js";
 import {
   IcAuto,
   IcMoon,
   IcSun,
   THEME_LABELS_HU,
   ThemeToggle
-} from "../reszek/chunk-RKQH5B7C.js";
+} from "../reszek/chunk-NZYZDJRP.js";
 import {
   ThemeProvider,
   useTheme
-} from "../reszek/chunk-YEPKXTT5.js";
+} from "../reszek/chunk-U52FATWE.js";
 import {
   THEME_STORAGE_KEY,
   applyTheme,
@@ -19,12 +19,12 @@ import {
   resolveTheme,
   themeInitScript,
   writeThemeMode
-} from "../reszek/chunk-6RIUPS7Q.js";
-import "../reszek/chunk-QBWWQ27V.js";
-import "../reszek/chunk-H6W65O4W.js";
-import "../reszek/chunk-DNKGFO3X.js";
-import "../reszek/chunk-F6KEZPWA.js";
-import "../reszek/chunk-KBQVEJSX.js";
+} from "../reszek/chunk-3HSODF7P.js";
+import "../reszek/chunk-QNQBBWSA.js";
+import "../reszek/chunk-GCYM3DUD.js";
+import "../reszek/chunk-RRMQQIT4.js";
+import "../reszek/chunk-KOQBPG2F.js";
+import "../reszek/chunk-HJFOG57B.js";
 export {
   IcAuto,
   IcMoon,
