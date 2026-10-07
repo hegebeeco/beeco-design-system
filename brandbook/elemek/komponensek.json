@@ -2827,6 +2827,60 @@
     "docs/komponensek.md Nyelv",
     "termek/tesztlapok/lista.json kieg-oldalak"
    ]
+  },
+  {
+   "id": "utvonal",
+   "nev": "Útvonal – szakasztérkép és egy következő lépés",
+   "szint": "organizmus",
+   "csoport": "06a – Kiegészítők",
+   "react": [
+    "Utvonal",
+    "hataridoSzoveg",
+    "UTVONAL_LABELS_HU"
+   ],
+   "css": [
+    "bc-ut",
+    "bc-ut-list",
+    "bc-ut-item",
+    "bc-ut-map",
+    "bc-ut-steps",
+    "bc-ut-now",
+    "bc-ut-next",
+    "bc-ut-meta",
+    "bc-ut-done"
+   ],
+   "leiras": "Egy folyamat szakaszai (mögötted dátummal, most, ami jön, kihagyva) és mindig PONTOSAN EGY következő lépés egy fő gombbal. Tömör nézetben vízszintes térkép irányítópultra, alapból függőleges idővonal. Segítő (ki kísér) és határidő (lejárt → figyelmeztető jelvény + megnyugtató mondat).",
+   "minta_html": "<div class=\"bc-ut\"><ol class=\"bc-ut-list\" aria-label=\"Önkéntes útvonal (minta)\"><li class=\"bc-ut-item is-kesz\"><span class=\"bc-ut-mark\" aria-hidden=\"true\">1</span><div class=\"bc-ut-body\"><div class=\"bc-ut-head\"><p class=\"bc-ut-title\">Jelentkezés</p><span class=\"bc-badge is-success\">Kész</span></div></div></li><li class=\"bc-ut-item is-most\" aria-current=\"step\"><span class=\"bc-ut-mark\" aria-hidden=\"true\">2</span><div class=\"bc-ut-body\"><div class=\"bc-ut-head\"><p class=\"bc-ut-title\">Rajba sorolás</p><span class=\"bc-badge is-accent\">Most</span></div></div></li><li class=\"bc-ut-item is-jon\"><span class=\"bc-ut-mark\" aria-hidden=\"true\">3</span><div class=\"bc-ut-body\"><div class=\"bc-ut-head\"><p class=\"bc-ut-title\">Első feladat</p><span class=\"bc-badge is-muted\">Jön</span></div></div></li></ol><div class=\"bc-ut-now\"><div class=\"bc-ut-next\"><p class=\"bc-ut-next-text\">A raj-vezetőd hamarosan jelentkezik. Addig nézd meg a nyitott feladatokat.</p><button type=\"button\" class=\"bc-btn is-wrap\">Válassz feladatot</button></div></div></div>",
+   "mikor": [
+    "Önkéntes vagy partner bevezetése, jelentkezés, sorolás – ahol a felhasználónak tudnia kell, hol tart és mi a dolga most.",
+    "Irányítópulton a tömör (vízszintes) térkép; a részletes oldalon a függőleges idővonal."
+   ],
+   "mikor_ne": [
+    "Sok párhuzamos teendőre – az listába vagy táblázatba való, nem útvonalba.",
+    "Több fő gombbal: a következő lépés mindig egy."
+   ],
+   "do": [
+    {
+     "cim": "Egy következő lépés",
+     "html": "<div class=\"bc-ut-next\"><p class=\"bc-ut-next-text\">Válassz egy kezdő feladatot a rajod listájából.</p><button type=\"button\" class=\"bc-btn is-wrap\">Válassz feladatot</button></div>",
+     "miert": "A felhasználó azonnal tudja, mi a dolga."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Három egyenrangú gomb",
+     "html": "<div class=\"bc-row\"><button type=\"button\" class=\"bc-btn is-sm\">Feladat</button><button type=\"button\" class=\"bc-btn is-sm\">Profil</button><button type=\"button\" class=\"bc-btn is-sm\">Rajok</button></div>",
+     "miert": "Több fő gomb elmossa, mi a következő lépés."
+    }
+   ],
+   "tesztlap": [
+    "utvonal"
+   ],
+   "forras": [
+    "react/src/ut/Utvonal.tsx",
+    "termek/css/bc-utvonal.css",
+    "CHANGELOG.md 1.51.0"
+   ]
   }
  ]
 }
