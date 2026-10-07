@@ -1,10 +1,10 @@
-/* beeco design system 1.50.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   WEEK,
   emptyWeek,
   parseTime,
   validateHours
-} from "../reszek/chunk-WNZ5NRKE.js";
+} from "../reszek/chunk-I7F4KJVX.js";
 export {
   WEEK,
   emptyWeek,

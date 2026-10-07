@@ -1,7 +1,7 @@
-/* beeco design system 1.50.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   useScrollFade
-} from "../reszek/chunk-32L64ZL5.js";
+} from "../reszek/chunk-ZO5W3OV6.js";
 export {
   useScrollFade
 };

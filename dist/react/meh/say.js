@@ -1,10 +1,10 @@
-/* beeco design system 1.50.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   pillanatok,
   say,
   szerepek
-} from "../reszek/chunk-YD7366LB.js";
-import "../reszek/chunk-Z4DYWOGU.js";
+} from "../reszek/chunk-NHZ7E3AD.js";
+import "../reszek/chunk-33BFXFEL.js";
 export {
   pillanatok,
   say,

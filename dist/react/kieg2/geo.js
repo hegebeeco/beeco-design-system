@@ -1,4 +1,4 @@
-/* beeco design system 1.50.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   HU_BOUNDS,
   HU_CENTER,
@@ -13,8 +13,8 @@ import {
   roundLatLng,
   sameLatLng,
   validLatLng
-} from "../reszek/chunk-TJVPRW3F.js";
-import "../reszek/chunk-DSLHGRNE.js";
+} from "../reszek/chunk-TFS2K7FM.js";
+import "../reszek/chunk-HDFSCYBK.js";
 export {
   HU_BOUNDS,
   HU_CENTER,

@@ -1,15 +1,15 @@
-/* beeco design system 1.50.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   VideoPlayer
-} from "../reszek/chunk-QG7K4OWT.js";
-import "../reszek/chunk-NOYLWCO4.js";
-import "../reszek/chunk-VSCRBXI6.js";
-import "../reszek/chunk-YD7366LB.js";
-import "../reszek/chunk-Z4DYWOGU.js";
-import "../reszek/chunk-BMDUYKRG.js";
-import "../reszek/chunk-THMCLQIO.js";
-import "../reszek/chunk-HI2BZSOM.js";
-import "../reszek/chunk-5NOEXS6K.js";
+} from "../reszek/chunk-P5OS2GW7.js";
+import "../reszek/chunk-SFE3VERN.js";
+import "../reszek/chunk-PSKLVMPE.js";
+import "../reszek/chunk-NHZ7E3AD.js";
+import "../reszek/chunk-33BFXFEL.js";
+import "../reszek/chunk-AIU3A5ND.js";
+import "../reszek/chunk-RRMQQIT4.js";
+import "../reszek/chunk-KOQBPG2F.js";
+import "../reszek/chunk-HJFOG57B.js";
 export {
   VideoPlayer
 };

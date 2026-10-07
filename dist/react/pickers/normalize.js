@@ -1,9 +1,9 @@
-/* beeco design system 1.50.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   createError,
   highlight,
   norm
-} from "../reszek/chunk-AAOESENK.js";
+} from "../reszek/chunk-REGLHKMJ.js";
 export {
   createError,
   highlight,
