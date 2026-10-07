@@ -14,6 +14,8 @@ const esbuild = require('esbuild');
 
 const ROOT = path.join(__dirname, '..');
 const check = process.argv.includes('--check');
+// --csak lap1,lap2: csak ezeket a tesztlapokat építi (a projekteknek szóló dist/react-ot és a tsc-t kihagyja) – az egy-komponenses körhöz (npm run check:egy)
+const csak = process.argv.includes('--csak') ? process.argv[process.argv.indexOf('--csak') + 1].split(',') : null;
 // Verzió/dátum SZÁNDÉKOSAN nincs a fejlécben: így egy verzióemelés nem írja át a dist/ több száz fájlját (docs/ai-munkamod.md 2.)
 const banner = `/* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */`;
 const common = { bundle: true, format: 'esm', jsx: 'automatic', target: 'es2020', write: false, legalComments: 'none', banner: { js: banner }, logLevel: 'silent' };
@@ -28,7 +30,7 @@ async function main() {
   (function bejar(d) { for (const f of fs.readdirSync(d, { withFileTypes: true })) { const t = path.join(d, f.name);
     if (f.isDirectory()) bejar(t); else if (/\.(ts|tsx)$/.test(f.name) && !/\.(d|test)\.tsx?$/.test(f.name)) modulok.push(t); } })(srcDir);
   modulok.sort();
-  const lib = await esbuild.build({ ...common, entryPoints: modulok, outdir: path.join(ROOT, 'dist/react'), outbase: srcDir, splitting: true,
+  const lib = csak ? { outputFiles: [] } : await esbuild.build({ ...common, entryPoints: modulok, outdir: path.join(ROOT, 'dist/react'), outbase: srcDir, splitting: true,
     chunkNames: 'reszek/[name]-[hash]', external: ['react', 'react-dom', 'react/jsx-runtime', '@radix-ui/*', '@tanstack/*', 'react-easy-crop'] });
   outputs.push(...lib.outputFiles);
   const libUtak = new Set(lib.outputFiles.map((o) => o.path));
@@ -36,6 +38,7 @@ async function main() {
   const dir = path.join(ROOT, 'react/tesztlapok');
   const pages = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith('.tsx') && !f.startsWith('_')).sort() : []; // rendezve: a readdir sorrendje Linuxon nem az
   for (const p of pages) {
+    if (csak && !csak.includes(p.replace(/\.tsx$/, ''))) continue;
     const r = await esbuild.build({ ...common, entryPoints: [path.join(dir, p)], outfile: path.join(ROOT, 'dist/tesztlapok', p.replace(/\.tsx$/, '.js')),
       minify: true, define: { 'process.env.NODE_ENV': '"production"' } });
     outputs.push(...r.outputFiles);
@@ -69,7 +72,7 @@ async function main() {
 
   let stale = 0;
   // A dist/react régi .js-fájljai (más hash, törölt modul) – a types/ marad
-  (function regi(d) { if (!fs.existsSync(d)) return; for (const f of fs.readdirSync(d, { withFileTypes: true })) { const t = path.join(d, f.name);
+  if (!csak) (function regi(d) { if (!fs.existsSync(d)) return; for (const f of fs.readdirSync(d, { withFileTypes: true })) { const t = path.join(d, f.name);
     if (f.isDirectory()) { if (f.name !== 'types') regi(t); } else if (t.endsWith('.js') && !libUtak.has(t)) {
       if (check) { console.log(`ELAVULT (törlendő): ${path.relative(ROOT, t)}`); stale++; } else { fs.unlinkSync(t); console.log(`törölve: ${path.relative(ROOT, t)}`); } } } })(path.join(ROOT, 'dist/react'));
   for (const o of outputs) {
@@ -81,6 +84,7 @@ async function main() {
     fs.writeFileSync(o.path, o.text);
     console.log(`írva: ${rel}`);
   }
+  if (csak) return;
   // Típusok (tsc) – csak író módban; a --check a TS-hibát is megfogja (noEmit)
   const tsc = path.join(ROOT, 'node_modules/.bin/tsc');
   // --check: ideiglenes mappába ír, és összeveti a dist/react/types-szal (így az elavult .d.ts is kiderül, nem csak a TS-hiba)

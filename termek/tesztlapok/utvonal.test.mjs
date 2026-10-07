@@ -1,7 +1,10 @@
 // Forgatókönyv – Utvonal (06d): ol + aria-current, állapot szövegesen is, egy fő gomb, görgetés a saját dobozban (a mostani középen),
 // telefonon nincs oldal-kilógás (a .bc-sr sem szökik ki), billentyűzet, késés, hiányzó segítő, üres, végigért. Futtatja: tests/check-komponensek.js
 const ok = (c, m) => { if (!c) throw new Error(m); };
-export default async function ({ page, t }) {
+export default async function ({ page, t, stabil = async () => {} }) {
+  // A középre gördítés aszinkron (betűk betöltése, ResizeObserver) – megvárjuk, amíg beáll (legfeljebb 3 s), és UTÁNA mérünk.
+  const kozepen = (sel) => page.waitForFunction((s) => { const el = document.querySelector(s); const cur = el && el.querySelector('[aria-current="step"]'); if (!cur) return false;
+    if (el.scrollWidth <= el.clientWidth) return true; const b = el.getBoundingClientRect(); const k = cur.getBoundingClientRect(); return el.scrollLeft > 0 && Math.abs((k.left + k.width / 2) - (b.left + b.width / 2)) < 40; }, sel, { timeout: 3000 }).catch(() => undefined);
   const c = (id) => page.locator(`[data-case="${id}"]`);
   const fogomb = (id) => c(id).locator('.bc-btn:not(.is-secondary):not(.is-ghost)');
 
@@ -28,6 +31,7 @@ export default async function ({ page, t }) {
     ok((await fogomb('ures').count()) === 0 && (await fogomb('kesz-tomor').count()) === 0, 'fölösleges gomb');
   });
   await t('tömör: a mostani szakasz középre gördül a saját dobozában (14 szakasz)', async () => {
+    await stabil(); await kozepen('[data-case="sok"] .bc-ut-map');
     const r = await c('sok').locator('.bc-ut-map').evaluate((el) => {
       const cur = el.querySelector('[aria-current="step"]'); const b = el.getBoundingClientRect(); const k = cur.getBoundingClientRect();
       return { sl: el.scrollLeft, over: el.scrollWidth > el.clientWidth, d: Math.abs((k.left + k.width / 2) - (b.left + b.width / 2)), pos: getComputedStyle(el).position };
@@ -36,14 +40,14 @@ export default async function ({ page, t }) {
     if (r.over) ok(r.sl > 0 && r.d < 40, `nincs középen: scrollLeft ${r.sl}, eltérés ${Math.round(r.d)} px`);
   });
   await t('telefonon (320): a térkép a dobozában görget, az oldal nem lóg ki (a .bc-sr sem)', async () => {
-    await page.setViewportSize({ width: 320, height: 640 }); await page.reload(); await page.waitForSelector('[data-case]'); await page.waitForTimeout(100);
+    await page.setViewportSize({ width: 320, height: 640 }); await page.reload(); await page.waitForSelector('[data-case]'); await stabil(); await kozepen('[data-case="sok"] .bc-ut-map');
     const r = await page.evaluate(() => {
       const m = document.querySelector('[data-case="sok"] .bc-ut-map'); const cur = m.querySelector('[aria-current="step"]');
       const b = m.getBoundingClientRect(); const k = cur.getBoundingClientRect();
       return { lap: document.documentElement.scrollWidth - innerWidth, over: m.scrollWidth > m.clientWidth, d: Math.abs((k.left + k.width / 2) - (b.left + b.width / 2)), sl: m.scrollLeft };
     });
     ok(r.lap <= 0, `az oldal ${r.lap} px-szel kilóg`); ok(r.over, 'a 14 szakasz nem görget'); ok(r.sl > 0 && r.d < 40, `nincs középen (${Math.round(r.d)} px)`);
-    await page.setViewportSize({ width: 1280, height: 800 }); await page.reload(); await page.waitForSelector('[data-case]');
+    await page.setViewportSize({ width: 1280, height: 800 }); await page.reload(); await page.waitForSelector('[data-case]'); await stabil();
   });
   await t('billentyűzet: a görgető doboz fókuszálható, nyíllal görget; a gomb Enterrel működik', async () => {
     const m = c('sok').locator('.bc-ut-map');

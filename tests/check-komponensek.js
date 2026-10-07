@@ -28,6 +28,15 @@ const NEZETEK = [
 ].filter((v, i) => !gyors || i === 1 || i === 5);
 const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.woff2': 'font/woff2', '.png': 'image/png', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
 
+// Stabil mérési pont (2026-10: a CI-ben a mérés néha a betűk betöltése előtt futott → elcsúszott középre gördítés):
+// megvárja a webbetűket és két képkockát, hogy az elrendezés (és a ResizeObserver-es igazítások) lefussanak.
+async function stabil(page) {
+  await page.evaluate(async () => {
+    if (document.fonts && document.fonts.ready) await document.fonts.ready;
+    await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+  });
+}
+
 // Kis statikus szerver a repó gyökeréből (modul-szkript file://-ról nem töltődik)
 function serve() {
   return new Promise((res) => {
@@ -53,7 +62,7 @@ async function main() {
       const page = await ctx.newPage(); const hibak = [];
       page.on('pageerror', (e) => hibak.push(e.message)); page.on('console', (m) => m.type() === 'error' && hibak.push(m.text()));
       await page.addInitScript(() => { window.__long = []; try { new PerformanceObserver((l) => l.getEntries().forEach((e) => window.__long.push(Math.round(e.duration)))).observe({ type: 'longtask', buffered: true }); } catch {} });
-      await page.goto(`${base}/termek/tesztlapok/${lap}.html`); await page.waitForSelector('[data-case]'); await page.waitForTimeout(150);
+      await page.goto(`${base}/termek/tesztlapok/${lap}.html`); await page.waitForSelector('[data-case]'); await stabil(page); await page.waitForTimeout(150);
       const hol = `${v.n} · ${tema === 'dark' ? 'sötét' : 'világos'}`;
       hibak.forEach((h) => add(lap, hol, { kat: 'Működés', sulyos: 'P1', mi: `konzolhiba: ${h.slice(0, 120)}`, hol: 'oldal' }));
       (await page.evaluate(meres, { touch: v.touch, w: v.w })).forEach((l) => add(lap, hol, l));
@@ -78,9 +87,9 @@ async function main() {
         // Forgatókönyv (működés, szélső esetek) – egyszer, világos asztali nézetben
         const tf = path.join(DIR, `${lap}.test.mjs`);
         if (tema === 'light' && fs.existsSync(tf)) {
-          await page.emulateMedia({ reducedMotion: 'no-preference' }); await page.reload(); await page.waitForSelector('[data-case]');
+          await page.emulateMedia({ reducedMotion: 'no-preference' }); await page.reload(); await page.waitForSelector('[data-case]'); await stabil(page);
           const { default: run } = await import(tf);
-          await run({ page, t: async (nev, fn) => { try { await fn(); forgato.push({ lap, nev, ok: true }); } catch (e) { forgato.push({ lap, nev, ok: false, hiba: e.message.split('\n')[0] }); } } });
+          await run({ page, stabil: () => stabil(page), t: async (nev, fn) => { try { await fn(); forgato.push({ lap, nev, ok: true }); } catch (e) { forgato.push({ lap, nev, ok: false, hiba: e.message.split('\n')[0] }); } } });
         }
       }
       await ctx.close();
