@@ -6,15 +6,15 @@
 //  • call  = a másolható hívás, pontosan így írd a játékba (a teszt ellenőrzi, hogy ugyanazt építi, mint a build)
 //  • build = () => modell, vagy RÉSZEK objektuma ({ body, heat, … }) – a részeket a galéria külön kapcsolja
 //  Új modell: a builder a 3d/ (vagy vilag/) fájlba, ide egy tétel – a galéria és a teszt magától felveszi.
-//  Kell hozzá: js/art/model-kit.js + a 3d/*-modellek.js fájlok (+ 3d/birtok-novenyek.js, 3d/kaptar-viragok.js, 3d/elokert-allatok.js, 3d/varos-poszmeh.js, 3d/varos-kozpont.js, 3d/varos-tanosveny.js, 3d/varos-csillagvizsgalo.js) + vilag/vilag-modellek.js (Node-ban a teszt tölti be őket).
+//  Kell hozzá: js/art/model-kit.js + a 3d/*-modellek.js fájlok (+ 3d/birtok-novenyek.js, 3d/kaptar-viragok.js, 3d/elokert-allatok.js, 3d/varos-poszmeh.js, 3d/varos-kozpont.js, 3d/varos-tanosveny.js, 3d/varos-csillagvizsgalo.js, 3d/kozosseg-modellek.js) + vilag/vilag-modellek.js (Node-ban a teszt tölti be őket).
 // ============================================================
 (function(root){
   const g = n => root[n];                                              // a builder-globálisok (böngészőben window, Node-ban globalThis)
   const hex = c => g('MODEL').hexOf(c);                                // tartalom-szín a palettából (pl. a kuka színe)
   const v = (label, call, build) => ({ label, call, build });
-  const GROUPS = ['Szelektálj!', 'Hűtő-mester', 'Ökos-rejtély ház', 'Matricaház', 'Közös növényzet és kert', 'Égbolt és sziget', 'Élő kert', 'Élő birtok', 'Méhesd', 'Méhpilóta'];
+  const GROUPS = ['Szelektálj!', 'Hűtő-mester', 'Ökos-rejtély ház', 'Matricaház', 'Közös növényzet és kert', 'Égbolt és sziget', 'Élő kert', 'Élő birtok', 'Méhesd', 'Méhpilóta', 'Közösségi Kaptár'];
 
-  const SZ = () => g('SZ_MODELS'), HU = () => g('HUTO_MODELS'), RZ = () => g('RZ_MODELS'), OT = () => g('OT_MODELS'), VM = () => g('VILAG_MODELS'), EK = () => g('EK_MODELS'), VA = () => g('VAROS_MODELS'), KP = () => g('KP_MODELS'), BT = () => g('BT_MODELS'), K = () => g('MODEL');
+  const SZ = () => g('SZ_MODELS'), HU = () => g('HUTO_MODELS'), RZ = () => g('RZ_MODELS'), OT = () => g('OT_MODELS'), VM = () => g('VILAG_MODELS'), EK = () => g('EK_MODELS'), VA = () => g('VAROS_MODELS'), KP = () => g('KP_MODELS'), BT = () => g('BT_MODELS'), KZ = () => g('KZ_MODELS'), K = () => g('MODEL');
   const LIST = [
     // ---------------- Szelektálj! ----------------
     { id:'sz-bin', group:'Szelektálj!', name:'Szelektív kuka', desc:'4 valódi forma: kerekes kuka, gyűjtődoboz, olajos hordó, üveggyűjtő harang. Tábla-oszlop hátul, ikon-hely: m.icon.',
@@ -189,6 +189,19 @@
     { id:'kp-darazs', group:'Méhpilóta', name:'Darázs', desc:'Citromsárga–fekete, csupasz, vékony darázsderék, sárga lábak – ránézésre nem méh. Részek: body + wingL/wingR.', variants:[ v('Alap', 'KP_MODELS.darazs(MODEL)', () => KP().darazs(K())) ] },
     { id:'kp-permet', group:'Méhpilóta', name:'Permetfelhő', desc:'Lágy, lebegő köd-pamacsok szitáló cseppekkel (a külső pamacs glass:0 – áttetsző).', variants:[ v('Alap', 'KP_MODELS.permetfelho(MODEL)', () => KP().permetfelho(K())) ] },
     { id:'kp-koszoru', group:'Méhpilóta', name:'Virágkoszorú (kapu)', desc:'Inda-gyűrű levelekkel és virágokkal a verseny-pályához; az origó a karika közepe (XY sík), m.R = a nyílás sugara.', variants:[ v('Alap', 'KP_MODELS.koszoru(MODEL)', () => KP().koszoru(K())) ] },
+    // ---------------- Közösségi Kaptár (3d/kozosseg-modellek.js; 1 egység ≈ 1 m; a jelenet: 3d/kaptar-jelenet.js – beecoKaptar) ----------------
+    { id:'kz-rajsejt', group:'Közösségi Kaptár', name:'Rajsejt', desc:'Hatszögletű, felülről nyitott sejt-ház egy rajnak: öt fal, ajtó +Z felé, polc, asztal. R = 1,8, magas 1,3.',
+      variants:[ v('Méz', "KZ_MODELS.rajsejt(MODEL)", () => KZ().rajsejt(K())), v('Égkék', "KZ_MODELS.rajsejt(MODEL, { szin:'sky' })", () => KZ().rajsejt(K(), { szin:'sky' })),
+        v('Rózsa', "KZ_MODELS.rajsejt(MODEL, { szin:'blossom' })", () => KZ().rajsejt(K(), { szin:'blossom' })) ] },
+    { id:'kz-torony', group:'Közösségi Kaptár', name:'A jövő tornya', desc:'A beeco útiterve: emeletenként egy mérföldkő; kész = méz, a mostani világos, a jövő zsálya; felül jelzőfény.',
+      variants:[ v('5 emelet, 2 kész', 'KZ_MODELS.jovoTorony(MODEL, { emelet:5, kesz:2 })', () => KZ().jovoTorony(K(), { emelet:5, kesz:2 })),
+        v('8 emelet, 6 kész', 'KZ_MODELS.jovoTorony(MODEL, { emelet:8, kesz:6 })', () => KZ().jovoTorony(K(), { emelet:8, kesz:6 })) ] },
+    { id:'kz-kut', group:'Közösségi Kaptár', name:'Eseménykút', desc:'Kőkút vízzel, tetővel, vödörrel – a közelgő események és a havi helyszínek helye.', variants:[ v('Alap', 'KZ_MODELS.esemenyKut(MODEL)', () => KZ().esemenyKut(K())) ] },
+    { id:'kz-fal', group:'Közösségi Kaptár', name:'Közösségi fal', desc:'Parafatábla oszlopokon. Vicc: színes cetlik; köszönő: méz-hatszög érmék (db = a bejegyzések száma, legfeljebb 14).',
+      variants:[ v('Viccfal', "KZ_MODELS.fal(MODEL, { tipus:'vicc', db:7 })", () => KZ().fal(K(), { tipus:'vicc', db:7 })),
+        v('Köszönőfal', "KZ_MODELS.fal(MODEL, { tipus:'koszono', db:9 })", () => KZ().fal(K(), { tipus:'koszono', db:9 })) ] },
+    { id:'kz-kikoto', group:'Közösségi Kaptár', name:'Kikötő vitorlással', desc:'Stég és vitorlás (a havi retró jelképe). Részek: molo, hajo – a hajó külön ringatható.', variants:[ v('Alap', 'KZ_MODELS.kikoto(MODEL)', () => KZ().kikoto(K())) ] },
+    { id:'kz-kapu', group:'Közösségi Kaptár', name:'Kapu', desc:'Két hatszög-oszlop, gerenda, fölötte hatszög-keret – a nyilvános belépő (beeco.hu).', variants:[ v('Alap', 'KZ_MODELS.kapu(MODEL)', () => KZ().kapu(K())) ] },
   ];
 
   // segéd: modell vagy részek → [[részNév, modell], …]
