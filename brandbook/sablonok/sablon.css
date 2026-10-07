@@ -1,0 +1,204 @@
+/* ============================================================
+   beeco SABLONOK – közös stílus (Brand Book, 9. fejezet és Partnereknek)
+   Csak a DS tokenjei (var(--bc-…)); a sablon mindig világos (a kész kép színe nem vált a témával).
+   A lap TERVEZÉSI méretben készül (--sb-dw × --sb-dh, a betűk és térközök a DS skáláján),
+   és --sb-k-szorosára nagyítva kerül ki:
+     • képernyőn a sablon.js illeszti az ablakhoz (a brand book előnézetében is);
+     • nyomtatáskor (Mentés PDF-ként) a lap pontosan a kimeneti méret (@page), egy lap = egy oldal.
+   ============================================================ */
+html, body { margin: 0; }
+.sb-test { min-height: 100vh; background: var(--bc-mist); color: var(--bc-black); font-family: var(--bc-font-body); line-height: var(--bc-lh-normal);
+  -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+[hidden] { display: none !important; }
+
+/* ---- súgósáv (csak képernyőn, önállóan megnyitva) ---- */
+.sb-sugo { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2) var(--bc-sp-4); padding: var(--bc-sp-3) var(--bc-sp-4);
+  background: var(--bc-white); border-bottom: var(--bc-bw-base) solid var(--bc-black); font-size: var(--bc-fs-s); }
+.sb-sugo p { margin: 0; flex: 1 1 320px; }
+.sb-sugo-jel { display: inline-block; margin-right: var(--bc-sp-2); padding: 0 var(--bc-sp-2); background: var(--bc-honey); border: var(--bc-bw-hair) solid var(--bc-black);
+  border-radius: var(--bc-r-pill); font-weight: var(--bc-fw-bold); font-size: var(--bc-fs-xs); }
+.sb-gomb { display: inline-flex; align-items: center; min-height: var(--bc-tap); padding: 0 var(--bc-sp-4); font: inherit; font-weight: var(--bc-fw-bold); color: var(--bc-black);
+  background: var(--bc-honey); border: var(--bc-bw-base) solid var(--bc-black); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); cursor: pointer; }
+.sb-gomb:active { transform: translate(var(--bc-shadow-s-x), var(--bc-shadow-s-y)); box-shadow: none; }
+.sb-gomb:focus-visible, [contenteditable="true"]:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { [contenteditable="true"]:hover { outline: var(--bc-bw-hair) dashed var(--bc-focus); outline-offset: 2px; } }
+
+/* ---- lapok ---- */
+.sb-lapok { display: grid; justify-content: center; gap: var(--bc-sp-5); padding: var(--bc-sp-5); }
+.sb-hely { overflow: hidden; box-shadow: var(--bc-shadow-m); }
+.sb-lap { position: relative; box-sizing: border-box; width: var(--sb-dw); height: var(--sb-dh); overflow: hidden; transform-origin: 0 0;
+  display: flex; flex-direction: column; background: var(--bc-cream); color: var(--bc-black); }
+.sb-lap * { box-sizing: border-box; }
+.sb-lap p, .sb-lap h1, .sb-lap h2, .sb-lap h3, .sb-lap ul, .sb-lap ol, .sb-lap dl, .sb-lap dd { margin: 0; }
+/* előnézet (a brand book kerete, vagy ?elonezet): csak a lap */
+html.is-elonezet .sb-test { min-height: 0; overflow: hidden; background: transparent; }
+html.is-elonezet .sb-sugo { display: none; }
+html.is-elonezet .sb-lapok { padding: 0; gap: 0; justify-content: start; }
+html.is-elonezet .sb-hely { box-shadow: none; }
+
+/* ---- formátumok: tervezési méret × nagyítás = kimenet ---- */
+.is-poszt-1x1 { --sb-dw: 432px; --sb-dh: 432px; --sb-k: 2.5; }      /* 1080 × 1080 px */
+.is-poszt-4x5 { --sb-dw: 432px; --sb-dh: 540px; --sb-k: 2.5; }      /* 1080 × 1350 px */
+.is-story { --sb-dw: 432px; --sb-dh: 768px; --sb-k: 2.5; }          /* 1080 × 1920 px */
+.is-linkedin { --sb-dw: 480px; --sb-dh: 250.8px; --sb-k: 2.5; }     /* 1200 × 627 px */
+.is-dia { --sb-dw: 600px; --sb-dh: 337.5px; --sb-k: 3.2; }          /* 1920 × 1080 px */
+.is-a4 { --sb-dw: 105mm; --sb-dh: 148.5mm; --sb-k: 2; }             /* A4: 210 × 297 mm */
+.is-a4-valodi { --sb-dw: 210mm; --sb-dh: 297mm; --sb-k: 1; }        /* A4, valódi méretben tervezve (sok szöveg) */
+.is-alairas { --sb-dw: 560px; --sb-dh: 176px; --sb-k: 1; }          /* e-mail-aláírás */
+.is-nevjegy { --sb-dw: 85mm; --sb-dh: 55mm; --sb-k: 1; }            /* névjegy: 85 × 55 mm */
+.is-matrica { --sb-dw: 75mm; --sb-dh: 75mm; --sb-k: 2; }            /* ajtómatrica: 150 × 150 mm */
+.is-poszt-1x1 .sb-hely { page: poszt-1x1; } @page poszt-1x1 { size: 1080px 1080px; margin: 0; }
+.is-poszt-4x5 .sb-hely { page: poszt-4x5; } @page poszt-4x5 { size: 1080px 1350px; margin: 0; }
+.is-story .sb-hely { page: story; } @page story { size: 1080px 1920px; margin: 0; }
+.is-linkedin .sb-hely { page: linkedin; } @page linkedin { size: 1200px 627px; margin: 0; }
+.is-dia .sb-hely { page: dia; } @page dia { size: 1920px 1080px; margin: 0; }
+.is-a4 .sb-hely, .is-a4-valodi .sb-hely { page: a4; } @page a4 { size: 210mm 297mm; margin: 0; }
+.is-alairas .sb-hely { page: alairas; } @page alairas { size: 560px 176px; margin: 0; }
+.is-nevjegy .sb-hely { page: nevjegy; } @page nevjegy { size: 85mm 55mm; margin: 0; }
+.is-matrica .sb-hely { page: matrica; } @page matrica { size: 150mm 150mm; margin: 0; }
+
+@media print {
+  .sb-sugo, .sb-zona, .sb-csak-kepernyo { display: none !important; }
+  .sb-test { min-height: 0; background: none; }
+  .sb-lapok { display: block; padding: 0; }
+  .sb-hely { width: calc(var(--sb-dw) * var(--sb-k)) !important; height: calc(var(--sb-dh) * var(--sb-k) - 1px) !important; box-shadow: none; break-after: page; }
+  .sb-hely:last-child { break-after: auto; }
+  .sb-lap { transform: scale(var(--sb-k)) !important; }
+  [contenteditable="true"] { outline: none !important; }
+}
+
+/* ============ építőkockák ============ */
+.sb-pad { padding: var(--bc-sp-6); }
+.sb-display { font-family: var(--bc-font-display); font-weight: 400; line-height: var(--bc-lh-tight); }
+.sb-fs-3xl { font-size: var(--bc-fs-3xl); } .sb-fs-2xl { font-size: var(--bc-fs-2xl); } .sb-fs-xl { font-size: var(--bc-fs-xl); }
+.sb-fs-l { font-size: var(--bc-fs-l); } .sb-fs-m { font-size: var(--bc-fs-m); } .sb-fs-s { font-size: var(--bc-fs-s); } .sb-fs-xs { font-size: var(--bc-fs-xs); }
+.sb-cim { font-family: var(--bc-font-display); font-weight: 400; line-height: var(--bc-lh-tight); }
+.sb-szoveg { font-size: var(--bc-fs-m); line-height: var(--bc-lh-snug); }
+.sb-halk { color: var(--bc-graphite); }
+.sb-semi { font-weight: var(--bc-fw-semibold); }
+.sb-qr { flex: none; width: 96px; height: 96px; }
+.sb-felcim { align-self: flex-start; display: inline-block; padding: 0 var(--bc-sp-3); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); line-height: 1.9;
+  background: var(--bc-honey); border: var(--bc-bw-base) solid var(--bc-black); border-radius: var(--bc-r-pill); }
+.sb-felcim.is-feher { background: var(--bc-white); }
+.sb-cta { align-self: flex-start; display: inline-block; padding: var(--bc-sp-2) var(--bc-sp-4) calc(var(--bc-sp-2) - .17em); font-family: var(--bc-font-display); font-size: var(--bc-fs-l); line-height: var(--bc-lh-tight);
+  background: var(--bc-honey); border: var(--bc-bw-base) solid var(--bc-black); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); }
+.sb-kartya { padding: var(--bc-sp-4); background: var(--bc-white); border: var(--bc-bw-base) solid var(--bc-black); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); }
+.sb-kartya.is-vaj { background: var(--bc-butter); }
+.sb-logo { display: block; width: 104px; height: auto; }
+.sb-logo.is-kicsi { width: 64px; } .sb-logo.is-nagy { width: 160px; }
+.sb-meh { display: block; width: 112px; height: auto; }
+.sb-lab { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: var(--bc-sp-4); }
+.sb-sor { display: flex; align-items: center; gap: var(--bc-sp-3); }
+.sb-oszlop { display: flex; flex-direction: column; gap: var(--bc-sp-3); }
+.sb-jel-minta { position: absolute; z-index: 3; top: var(--bc-sp-2); left: var(--bc-sp-2); padding: 0 var(--bc-sp-2); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); line-height: 1.8;
+  color: var(--bc-white); background: var(--bc-black); border-radius: var(--bc-r-s); }
+.sb-jel-minta.is-korrigal { color: var(--bc-black); background: var(--bc-white); border: var(--bc-bw-base) dashed var(--bc-crimson); }
+.sb-foto { display: grid; place-items: center; text-align: center; padding: var(--bc-sp-3); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); color: var(--bc-forest);
+  background: repeating-linear-gradient(135deg, var(--bc-sage-bg) 0 12px, var(--bc-sage) 12px 24px); border: var(--bc-bw-base) solid var(--bc-black); border-radius: var(--bc-r-m); }
+.sb-hely-jel { display: grid; place-items: center; text-align: center; padding: var(--bc-sp-2); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); color: var(--bc-graphite);
+  background: var(--bc-white); border: var(--bc-bw-base) dashed var(--bc-graphite); border-radius: var(--bc-r-m); }
+.sb-mezsav { background: var(--bc-honey); border-top: var(--bc-bw-base) solid var(--bc-black); }
+.sb-pont { list-style: none; padding: 0; display: grid; gap: var(--bc-sp-2); }
+.sb-pont li { position: relative; padding-left: var(--bc-sp-5); }
+.sb-pont li::before { content: ""; position: absolute; left: 0; top: .45em; width: 12px; height: 12px; background: var(--bc-honey); border: var(--bc-bw-base) solid var(--bc-black); border-radius: var(--bc-r-xs); }
+
+/* ============ közösségi poszt 1:1 és 4:5 ============ */
+.sb-poszt { padding: var(--bc-sp-7) var(--bc-sp-6) var(--bc-sp-6); gap: var(--bc-sp-4); }
+.sb-poszt .sb-meh { position: absolute; top: var(--bc-sp-5); right: var(--bc-sp-5); width: 104px; }
+.sb-poszt .sb-cim { max-width: 264px; font-size: var(--bc-fs-3xl); }
+.sb-poszt .sb-szoveg { max-width: 300px; }
+.sb-poszt .sb-foto { height: 190px; margin: 0 calc(-1 * var(--bc-sp-6)); border-width: var(--bc-bw-base) 0; border-radius: 0; }
+
+/* ============ story 9:16 – biztonsági zónák (felül 250 px, alul 420 px, jobbra 160 px a kimeneten) ============ */
+.sb-story-tartalom { position: absolute; top: 100px; right: 64px; bottom: 168px; left: 36px; display: flex; flex-direction: column; gap: var(--bc-sp-3); }
+.sb-story-mez { position: absolute; left: 0; right: 0; top: 0; height: 356px; background: var(--bc-honey); border-bottom: var(--bc-bw-base) solid var(--bc-black); }
+.sb-story-tartalom .sb-meh { width: 80px; }
+.sb-story-tartalom .sb-cim { font-size: var(--bc-fs-3xl); }
+.sb-lepes { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: var(--bc-sp-3); }
+.sb-lepes-szam { display: grid; place-items: center; width: 48px; height: 48px; font-family: var(--bc-font-display); font-size: var(--bc-fs-xl); background: var(--bc-honey);
+  border: var(--bc-bw-base) solid var(--bc-black); border-radius: var(--bc-r-pill); }
+.sb-zona { position: absolute; z-index: 2; display: flex; align-items: center; justify-content: center; text-align: center; padding: var(--bc-sp-1);
+  font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-crimson);
+  background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--bc-red) 16%, transparent) 0 8px, transparent 8px 16px); border: var(--bc-bw-hair) dashed var(--bc-red); pointer-events: none; }
+.sb-zona span { padding: 0 var(--bc-sp-1); background: var(--bc-white); }
+.sb-zona.is-fent { top: 0; left: 0; right: 0; height: 100px; }
+.sb-zona.is-lent { bottom: 0; left: 0; right: 0; height: 168px; }
+.sb-zona.is-jobb { top: 100px; bottom: 168px; right: 0; width: 64px; writing-mode: vertical-rl; }
+
+/* ============ LinkedIn 1200 × 627 ============ */
+.sb-li { flex-direction: row; }
+.sb-li-bal { flex: 1 1 58%; display: flex; flex-direction: column; gap: var(--bc-sp-2); padding: var(--bc-sp-6) var(--bc-sp-5) var(--bc-sp-4); }
+.sb-li-bal .sb-cim { font-size: var(--bc-fs-xl); }
+.sb-li .sb-logo.is-kicsi { width: 56px; }
+.sb-li-jobb { flex: 0 0 42%; position: relative; display: grid; place-items: center; background: var(--bc-honey); border-left: var(--bc-bw-base) solid var(--bc-black); }
+.sb-li-jobb .sb-kartya { width: 140px; padding: var(--bc-sp-3); text-align: center; }
+.sb-li-jobb .sb-meh { width: 64px; margin: 0 auto var(--bc-sp-1); }
+
+/* ============ prezentáció 16:9 ============ */
+.sb-dia { padding: var(--bc-sp-6) var(--bc-sp-7); gap: var(--bc-sp-3); }
+.sb-dia-cim .sb-cim { max-width: 330px; font-size: var(--bc-fs-3xl); }
+.sb-dia-cim .sb-meh { position: absolute; right: var(--bc-sp-6); top: 50%; width: 136px; transform: translateY(-50%); }
+.sb-dia-cim::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: var(--bc-sp-4); background: var(--bc-honey); border-right: var(--bc-bw-base) solid var(--bc-black); }
+.sb-dia-fej { display: flex; align-items: baseline; justify-content: space-between; gap: var(--bc-sp-4); padding-bottom: var(--bc-sp-2); border-bottom: var(--bc-sp-1) solid var(--bc-honey); }
+.sb-dia-fej .sb-cim { font-size: var(--bc-fs-2xl); }
+.sb-dia-test { flex: 1; display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--bc-sp-5); align-items: start; padding-top: var(--bc-sp-2); }
+.sb-dia-lab { display: flex; align-items: center; justify-content: space-between; font-size: var(--bc-fs-xs); color: var(--bc-graphite); }
+
+/* ============ A4 plakát ============ */
+.sb-plakat { padding: var(--bc-sp-6); gap: var(--bc-sp-4); }
+.sb-plakat .sb-cim { font-size: var(--bc-fs-3xl); }
+.sb-plakat .sb-meh { position: absolute; z-index: 1; right: var(--bc-sp-5); bottom: var(--bc-sp-3); width: 88px; }
+.sb-adatok { display: grid; grid-template-columns: auto 1fr; gap: var(--bc-sp-1) var(--bc-sp-3); font-size: var(--bc-fs-m); }
+.sb-adatok dt { font-weight: var(--bc-fw-bold); }
+.sb-plakat-lab { margin: auto calc(-1 * var(--bc-sp-6)) calc(-1 * var(--bc-sp-6)); padding: var(--bc-sp-3) var(--bc-sp-6); display: flex; flex-direction: column; align-items: flex-start; }
+.sb-plakat-lab .sb-cim { font-size: var(--bc-fs-xl); }
+
+/* ============ e-mail-aláírás ============ */
+.sb-alairas { flex-direction: row; align-items: center; gap: var(--bc-sp-4); padding: var(--bc-sp-4) var(--bc-sp-5); background: var(--bc-white); }
+.sb-alairas .sb-logo { width: 112px; flex: none; }
+.sb-alairas-vonal { flex: none; align-self: stretch; width: var(--bc-sp-1); background: var(--bc-honey); border-radius: var(--bc-r-pill); }
+.sb-alairas-nev { font-family: var(--bc-font-display); font-size: var(--bc-fs-xl); line-height: var(--bc-lh-tight); }
+.sb-alairas .sb-felcim { margin-top: var(--bc-sp-2); font-size: var(--bc-fs-xs); }
+
+/* ============ névjegy 85 × 55 mm ============ */
+.sb-nevjegy-elo { align-items: center; justify-content: center; }
+.sb-nevjegy-elo .sb-logo { width: 150px; margin-bottom: var(--bc-sp-6); }
+.sb-nevjegy-elo .sb-mezsav { position: absolute; left: 0; right: 0; bottom: 0; padding: var(--bc-sp-2); text-align: center; font-family: var(--bc-font-display); font-size: var(--bc-fs-m); line-height: var(--bc-lh-tight); }
+.sb-nevjegy-hat { padding: var(--bc-sp-4) var(--bc-sp-4) var(--bc-sp-4) var(--bc-sp-6); gap: 2px; background: var(--bc-white); }
+.sb-nevjegy-hat::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: var(--bc-sp-3); background: var(--bc-honey); border-right: var(--bc-bw-base) solid var(--bc-black); }
+.sb-nevjegy-hat .sb-cim { font-size: var(--bc-fs-l); }
+.sb-nevjegy-hat .sb-jel-minta { left: auto; right: var(--bc-sp-2); }
+.sb-nevjegy-hat .sb-meh { position: absolute; right: var(--bc-sp-3); bottom: var(--bc-sp-3); width: 52px; }
+.sb-nevjegy-hat .sb-elerhetoseg { margin-top: auto; font-size: var(--bc-fs-xs); line-height: var(--bc-lh-snug); }
+
+/* ============ partner: közös logósor, matrica ============ */
+.sb-cobrand { display: flex; align-items: center; gap: var(--bc-sp-4); padding: var(--bc-sp-3) var(--bc-sp-4); background: var(--bc-white); border: var(--bc-bw-base) solid var(--bc-black); border-radius: var(--bc-r-m); }
+.sb-cobrand .sb-logo { width: 88px; }
+.sb-cobrand-vonal { align-self: stretch; width: 2px; background: var(--bc-silver); }
+.sb-cobrand .sb-hely-jel { flex: 1; height: 54px; }
+.sb-matrica { align-items: center; justify-content: center; gap: var(--bc-sp-3); padding: var(--bc-sp-7) var(--bc-sp-5) var(--bc-sp-5); text-align: center; background: var(--bc-honey); border: calc(3 * var(--bc-bw-base)) solid var(--bc-black); }
+.sb-matrica .sb-kartya { padding: var(--bc-sp-3) var(--bc-sp-4); }
+.sb-matrica .sb-logo { width: 120px; }
+.sb-matrica .sb-cim { font-size: var(--bc-fs-2xl); }
+
+/* ============ partneri összefoglaló (A4, valódi méret) ============ */
+.sb-osszefoglalo { padding: 14mm 14mm 12mm; gap: var(--bc-sp-4); font-size: var(--bc-fs-s); line-height: var(--bc-lh-snug); background: var(--bc-white); }
+.sb-ossz-fej { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-4); padding-bottom: var(--bc-sp-3); border-bottom: var(--bc-sp-1) solid var(--bc-honey); }
+.sb-ossz-fej .sb-cim { font-size: var(--bc-fs-2xl); }
+.sb-ossz-racs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--bc-sp-4); }
+.sb-ossz-resz { padding: var(--bc-sp-3) var(--bc-sp-4); border: var(--bc-bw-base) solid var(--bc-black); border-radius: var(--bc-r-m); }
+.sb-ossz-resz.is-szeles { grid-column: 1 / -1; }
+.sb-ossz-resz h2 { margin-bottom: var(--bc-sp-2); font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-l); line-height: var(--bc-lh-tight); }
+.sb-ossz-resz ul { padding-left: var(--bc-sp-5); }
+.sb-ossz-resz li + li { margin-top: 2px; }
+.sb-ossz-logok { display: flex; gap: var(--bc-sp-3); }
+.sb-ossz-logok figure { margin: 0; flex: 1; display: grid; justify-items: center; gap: var(--bc-sp-1); padding: var(--bc-sp-3); border-radius: var(--bc-r-s); font-size: var(--bc-fs-xs); }
+.sb-ossz-logok figure.is-vilagos { background: var(--bc-cream); border: var(--bc-bw-hair) solid var(--bc-silver); }
+.sb-ossz-logok figure.is-sotet { background: var(--bc-night); color: var(--bc-cream); }
+.sb-ossz-logok img { width: 96px; height: auto; }
+.sb-szinek { list-style: none; padding: 0 !important; display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--bc-sp-2); }
+.sb-szin { display: grid; gap: 2px; font-size: var(--bc-fs-xs); }
+.sb-szin-folt { display: block; height: 40px; border: var(--bc-bw-base) solid var(--bc-black); border-radius: var(--bc-r-s); }
+.sb-szin-folt.is-honey { background: var(--bc-honey); } .sb-szin-folt.is-cream { background: var(--bc-cream); } .sb-szin-folt.is-black { background: var(--bc-black); }
+.sb-szin-folt.is-butter { background: var(--bc-butter); } .sb-szin-folt.is-night { background: var(--bc-night); }
+.sb-ossz-lab { margin-top: auto; display: flex; justify-content: space-between; gap: var(--bc-sp-4); padding-top: var(--bc-sp-2); border-top: var(--bc-bw-hair) solid var(--bc-silver); font-size: var(--bc-fs-xs); color: var(--bc-graphite); }

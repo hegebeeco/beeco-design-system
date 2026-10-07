@@ -92,5 +92,326 @@
   "mert": {
    "webflow_valtozok": 57
   }
- }
+ },
+ "blokkok": [
+  {
+   "t": "h2",
+   "x": "bc- ↔ Webflow: melyik elem minek felel meg",
+   "id": "bc-webflow"
+  },
+  {
+   "t": "lead",
+   "x": "Önkénteseknek, akik a Webflow Designerben szerkesztenek. A DS-ben és a Webflow-ban **ugyanaz a név, ugyanaz a szerep** – ha a `bc-` osztályt és a „beeco DS” változót használod, az oldal magától a beeco-arculatot kapja, sötét módban is."
+  },
+  {
+   "t": "h3",
+   "x": "Így használd",
+   "id": "webflow-igy-hasznald"
+  },
+  {
+   "t": "szamozott",
+   "elemek": [
+    "**Osztály:** a Stílus panelen előbb gépeld be: `bc-` – és válaszd a meglévőt (`bc-btn`, `bc-card`, `bc-sec`…). Új `bc-` osztályt ne hozz létre.",
+    "**Változat = kombó osztály:** az alap után a módosító, pl. `bc-btn` + `is-secondary`, `bc-sec` + `is-accent`.",
+    "**Szín, méret, sarok:** a „beeco DS” kollekció változójából, nem beírt hex-kóddal vagy px-szel. A változó neve ugyanaz, mint a DS-tokené, csak `--` nélkül: `--bc-accent` → `bc-accent`.",
+    "**Csak az oldalra szóló stílus** saját előtagot kap (pl. `h26-` a 2026-os főoldalon), hogy takarításkor látsszon, mi a DS és mi egyedi.",
+    "**Ha nincs rá elem:** ne gyárts „ideiglenes” osztályt – szólj, és javaslatlap készül (`docs/javaslatok/_sablon.md`).",
+    "**Közzététel:** csak a tesztre (`beeco-weboldal.webflow.io`), és ott nézd meg – élesre (`www.beeco.hu`) semmi nem megy ki Kristóf kifejezett engedélye nélkül."
+   ]
+  },
+  {
+   "t": "h3",
+   "x": "Elemek és osztályok",
+   "id": "webflow-osztalyok"
+  },
+  {
+   "t": "tabla",
+   "cim": "bc- elemek és Webflow-osztályok",
+   "fej": [
+    "Elem",
+    "DS (kód)",
+    "Webflow-osztály",
+    "Ma a Webflow-ban",
+    "Megjegyzés"
+   ],
+   "sorok": [
+    [
+     "Fő gomb",
+     "`bc-btn`",
+     "`bc-btn`",
+     "`button_main`",
+     "méz, képernyőnként egy; mindig ≥ 44 px – a régi `button_main` legfeljebb 42 px magas"
+    ],
+    [
+     "Másodlagos gomb",
+     "`bc-btn is-secondary`",
+     "`bc-btn` + `is-secondary`",
+     "`button_sec`",
+     "fehér, kemény árnyék – a régi elmosott árnyékot kap"
+    ],
+    [
+     "Szöveggomb",
+     "`bc-btn is-ghost`",
+     "`bc-btn` + `is-ghost`",
+     "`button_terc`",
+     "harmadlagos lépés (pl. „Kíváncsi vagyok!”)"
+    ],
+    [
+     "Szövegbeli link",
+     "`bc-link`",
+     "`bc-link`",
+     "–",
+     "mindig aláhúzott: a szín önmagában nem jelölő"
+    ],
+    [
+     "Kijelző-cím",
+     "`bc-display`",
+     "`bc-display`",
+     "`headline1`",
+     "Lalezar 46 px (telefonon 34) – oldalanként egy `h1`"
+    ],
+    [
+     "Szakaszcím",
+     "`bc-title`",
+     "`bc-title`",
+     "`headline2`, `main_heading`, `h1`",
+     "Lalezar 34 px (telefonon 26)"
+    ],
+    [
+     "Alcím, kártyacím",
+     "`bc-subtitle`",
+     "`bc-subtitle`",
+     "`headline3`",
+     "Lalezar 20 px"
+    ],
+    [
+     "Felső index",
+     "`bc-eyebrow`",
+     "`bc-eyebrow`",
+     "`sub-heading`",
+     "kis, nagybetűs, a cím fölött"
+    ],
+    [
+     "Törzsszöveg, bevezető",
+     "`bc-body`, `bc-lead`",
+     "`bc-body`, `bc-lead`",
+     "`main_text`",
+     "Open Sans 16 / 20 px"
+    ],
+    [
+     "Szekció",
+     "`bc-sec` + `is-accent` / `is-quiet` / `is-ink` / `is-tight`",
+     "ugyanaz",
+     "`h26-bg-yellow` → `is-accent`, `h26-bg-sage` → `is-quiet`",
+     "a háttér és a ritmus egy helyen"
+    ],
+    [
+     "Tartalomszélesség",
+     "`bc-wrap` (+ `is-narrow`)",
+     "ugyanaz",
+     "–",
+     "1080 / 760 px, 16 px oldalmargó"
+    ],
+    [
+     "Kártya",
+     "`bc-card` + `is-interactive` / `is-flat` / `is-accent`",
+     "ugyanaz",
+     "`h26-feat`, `h26-pcard`",
+     "kattintható → kemény árnyék, nem kattintható → puha"
+    ],
+    [
+     "Rács",
+     "`bc-grid-2`, `bc-grid-3`",
+     "ugyanaz",
+     "–",
+     "telefonon egy oszlop"
+    ],
+    [
+     "Idézet",
+     "`bc-quote` (+ `-text`, `-by`, `-name`, `-role`)",
+     "ugyanaz",
+     "`h26-voice`",
+     "oldalanként legfeljebb egy `is-accent`"
+    ],
+    [
+     "Logósáv",
+     "`bc-logos` (+ `-title`)",
+     "ugyanaz",
+     "–",
+     "alt szöveg kötelező"
+    ],
+    [
+     "Forrás",
+     "`bc-source`",
+     "ugyanaz",
+     "–",
+     "szám mellé mindig"
+    ],
+    [
+     "GYIK",
+     "`bc-acc`",
+     "még nincs a Webflow-ban",
+     "`h26-faq`",
+     "akkor visszük át, amikor oldal kéri"
+    ],
+    [
+     "Számblokk",
+     "`bc-stats` › `bc-stat`",
+     "még nincs a Webflow-ban",
+     "`h26-stat`",
+     "szám csak forrással"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "A „Ma a Webflow-ban” oszlop: a `button_…`, `headline…`, `sub-heading`, `main_text` az élő www.beeco.hu osztályai; a `h26-` osztályok a 2026-os főoldal-tervezeté (`weboldal/fooldal-2026.css`). Ezeket átírni nem kell egyszerre – új elemnél viszont már a `bc-` osztályt használd."
+  },
+  {
+   "t": "h3",
+   "x": "Változók: DS-token és Webflow-változó",
+   "id": "webflow-valtozok"
+  },
+  {
+   "t": "gen",
+   "nev": "webflowValtozok"
+  },
+  {
+   "t": "h3",
+   "x": "Régi Webflow-változók, amelyek még élnek",
+   "id": "webflow-regi-valtozok"
+  },
+  {
+   "t": "p",
+   "x": "Az élő oldal közös CSS-e ma is a régi, ékezetes nevű változókat használja. Új elemben ezeket ne válaszd – a jobb oldali `bc-` változót használd."
+  },
+  {
+   "t": "tabla",
+   "cim": "Régi változók és a helyettük használandó bc- változó",
+   "fej": [
+    "Régi változó (élesben)",
+    "Értéke ma",
+    "Helyette",
+    "Megjegyzés"
+   ],
+   "sorok": [
+    [
+     "`--sárga`",
+     "`#fecf39`",
+     "`bc-accent`",
+     "ékezetes név – a Webflow a CSS-névbe is átviszi, törékeny"
+    ],
+    [
+     "`--barna-main-feka`",
+     "`#000` (fekete!)",
+     "`bc-ink`",
+     "a neve barna, az értéke fekete – ezért lett sötét sávon fekete a szöveg"
+    ],
+    [
+     "`--fekete`",
+     "`black`",
+     "`bc-ink` (szöveg), `bc-line` (keret)",
+     "sötét módban a kettő mást kap"
+    ],
+    [
+     "`--háttér`",
+     "`#fffcf2`",
+     "`bc-bg`",
+     "a DS krémje `#FFF8E7` – kicsit eltér"
+    ],
+    [
+     "`--zöld`",
+     "`#6e8947`",
+     "`bc-success`",
+     "a zöld a siker színe, nem fő gomb"
+    ],
+    [
+     "`--_tipográfia---cim-xl` / `-l` / `-m` / `-s`",
+     "48 / 40 / 30 / 22 px",
+     "`bc-fs-3xl` / `bc-fs-2xl` / `bc-fs-xl` / `bc-fs-l`",
+     "a DS skálája 46 · 34 · 26 · 20 px – nincs pontos pár, a legközelebbi lépcső"
+    ],
+    [
+     "`--lekerekítés`",
+     "12 px",
+     "`bc-r-m` (8 px, gomb és kártya) · `bc-r-l` (12 px, ablak)",
+     "a termékbőr sarka a gombon 8 px"
+    ]
+   ],
+   "forras": [
+    "`docs/weboldal.md` – 1. Tokenek → Webflow-változók, 2. Osztálynevek, 3/b. Kötés",
+    "`dist/weboldal/webflow-valtozok.json` (generált: `node tools/webflow-build.js`)",
+    "`weboldal/fooldal-2026.css` (a `h26-` osztályok kötése)",
+    "élő oldal, csak olvasva: www.beeco.hu, /szolgaltatas/partner – a webhely közös CSS-e (2026-10-07)"
+   ]
+  },
+  {
+   "t": "dodont",
+   "cim": "Webflow-ban – így, és ne így",
+   "allapot": "szabaly",
+   "parok": [
+    {
+     "jo": {
+      "felirat": "egy méz fő gomb, mellette másodlagos",
+      "html": "<div class=\"bb-demo-sor\"><span class=\"bc-btn\">Töltsd le!</span><span class=\"bc-btn is-secondary\">Kíváncsi vagyok!</span></div>"
+     },
+     "rossz": {
+      "felirat": "két méz gomb egymás mellett",
+      "html": "<div class=\"bb-demo-sor\"><span class=\"bc-btn\">Töltsd le!</span><span class=\"bc-btn\">Kíváncsi vagyok!</span></div>"
+     },
+     "miert": "a méz az egyetlen hangsúlyszín: ha két gomb kiabál, egyik sem vezet."
+    },
+    {
+     "jo": {
+      "felirat": "kemény, átlós árnyék – bc-btn + is-secondary",
+      "html": "<span class=\"bc-btn is-secondary\">Mit kapok pontosan?</span>"
+     },
+     "rossz": {
+      "felirat": "elmosott árnyék – élesben a button_sec",
+      "html": "<span class=\"bc-btn is-secondary bbw-elmosott\">Mit kapok pontosan?</span>"
+     },
+     "miert": "puha, elmosott árnyék a termékbőrben nincs – a gomb a `bc-btn` kombó osztályát kapja, nem saját árnyékot."
+    },
+    {
+     "jo": {
+      "felirat": "44 px magas gomb a weben",
+      "html": "<span class=\"bc-btn\">Jelentkezem!</span>"
+     },
+     "rossz": {
+      "felirat": "alacsony gomb – élesben a button_main legfeljebb 42 px",
+      "html": "<span class=\"bc-btn is-sm bbw-alacsony\">Jelentkezem!</span>"
+     },
+     "miert": "telefonon ujjal kell eltalálni: a weben mindig 44 px – a 36 px-es `is-sm` az admin sűrűsége."
+    },
+    {
+     "jo": {
+      "felirat": "aláhúzott link a szövegben – bc-link",
+      "html": "<p class=\"bb-vizual-szoveg\">Olvasd el a <span class=\"bc-link\">gyakori kérdéseket</span>.</p>"
+     },
+     "rossz": {
+      "felirat": "csak színnel jelölt link",
+      "html": "<p class=\"bb-vizual-szoveg\">Olvasd el a <span class=\"bbw-csak-szin\">gyakori kérdéseket</span>.</p>"
+     },
+     "miert": "a szín önmagában nem jelölő (WCAG 1.4.1) – színtévesztő nem látja, hogy kattintható."
+    },
+    {
+     "jo": {
+      "felirat": "„beeco DS” változó, ASCII névvel",
+      "szoveg": "Háttérszín: `bc-accent` · CSS-ben: `var(--_beeco-ds---bc-accent)`"
+     },
+     "rossz": {
+      "felirat": "beírt hex-kód vagy ékezetes régi változó",
+      "szoveg": "Háttérszín: `#FECF39` vagy `--sárga`"
+     },
+     "miert": "a beírt érték nem követi a DS-t és a sötét módot; az ékezetes név a CSS-ben törékeny."
+    }
+   ],
+   "forras": [
+    "`docs/weboldal.md` – 1. Tokenek → Webflow-változók, 2. Osztálynevek, 3/b. Kötés",
+    "`dist/weboldal/webflow-valtozok.json` (generált: `node tools/webflow-build.js`)",
+    "`weboldal/fooldal-2026.css` (a `h26-` osztályok kötése)",
+    "élő oldal, csak olvasva: www.beeco.hu, /szolgaltatas/partner – a webhely közös CSS-e (2026-10-07)"
+   ]
+  }
+ ]
 }

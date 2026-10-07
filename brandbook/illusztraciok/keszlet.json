@@ -1,0 +1,23 @@
+{
+ "_readme": "Az Illusztrációk fejezet és a Letöltések madárkészletének leltára (tools/brandbook-build.js olvassa; nem kerül ki). A madárkák a Csicsergősz-csapat rajzai (Csicsergősz/madárkák, SVG). A v4 rajzok a Madárgyár motorjával renderelve (bird-catalog/madargyar, 2026-10-07), csak a rajz, fotó nélkül. Új rajz: render → WebP ide → új sor ebbe a fájlba.",
+ "madarkak": [
+  { "id": "liba", "nev": "Liba", "file": "madarkak/liba.svg", "w": 223, "h": 329 },
+  { "id": "rigo", "nev": "Rigó", "file": "madarkak/rigo.svg", "w": 249, "h": 223 },
+  { "id": "varju", "nev": "Varjú", "file": "madarkak/varju.svg", "w": 285, "h": 265 },
+  { "id": "vereb", "nev": "Veréb", "file": "madarkak/vereb.svg", "w": 193, "h": 179 }
+ ],
+ "v4": [
+  { "id": "egereszolyv-oldal", "faj": "Egerészölyv", "poz": "oldalnézet, ágon", "file": "v4/egereszolyv-oldal.webp", "w": 600, "h": 666, "par": "egereszolyv" },
+  { "id": "egereszolyv-34", "faj": "Egerészölyv", "poz": "félig felénk fordulva", "file": "v4/egereszolyv-34.webp", "w": 600, "h": 761, "par": "egereszolyv" },
+  { "id": "tokes-rece-him", "faj": "Tőkés réce hím", "poz": "oldalnézet, áll", "file": "v4/tokes-rece-him.webp", "w": 600, "h": 504, "par": "tokes-rece" },
+  { "id": "tokes-rece-him-34", "faj": "Tőkés réce hím", "poz": "félig felénk fordulva", "file": "v4/tokes-rece-him-34.webp", "w": 600, "h": 520, "par": "tokes-rece" },
+  { "id": "tokes-rece-tojo", "faj": "Tőkés réce tojó", "poz": "oldalnézet, áll", "file": "v4/tokes-rece-tojo.webp", "w": 600, "h": 393, "par": "ivar" },
+  { "id": "fusti-fecske", "faj": "Füsti fecske", "poz": "vezetéken", "file": "v4/fusti-fecske.webp", "w": 600, "h": 486, "par": "talaj" },
+  { "id": "okorszem", "faj": "Ökörszem", "poz": "tönkön", "file": "v4/okorszem.webp", "w": 600, "h": 560, "par": "talaj" }
+ ],
+ "anim": [
+  { "id": "okorszem-fejfordit", "faj": "Ökörszem", "mozgas": "lebegés, pislogás, szárny- és farokbillentés, fejfordítás", "file": "anim/okorszem-fejfordit.svg", "allo": "anim/okorszem-fejfordit-allo.webp", "w": 720, "h": 688 },
+  { "id": "egereszolyv-fejfordit", "faj": "Egerészölyv", "mozgas": "lebegés, pislogás, fejfordítás", "file": "anim/egereszolyv-fejfordit.svg", "allo": "anim/egereszolyv-fejfordit-allo.webp", "w": 720, "h": 810 },
+  { "id": "tokes-rece-fejfordit", "faj": "Tőkés réce hím", "mozgas": "lebegés, pislogás, farokbillentés, fejfordítás", "file": "anim/tokes-rece-fejfordit.svg", "allo": "anim/tokes-rece-fejfordit-allo.webp", "w": 720, "h": 613 }
+ ]
+}

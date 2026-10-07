@@ -61,7 +61,7 @@ async function kapuTeszt() {
 }
 
 function serve(dir) {
-  const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.woff2': 'font/woff2', '.png': 'image/png', '.webp': 'image/webp' };
+  const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.woff2': 'font/woff2', '.png': 'image/png', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
   return new Promise(res => {
     const s = http.createServer((q, w) => {
       let p = path.join(dir, decodeURIComponent(q.url.split('?')[0]));
@@ -78,7 +78,8 @@ async function bongeszo(dir) {
   const srv = await serve(dir), base = `http://127.0.0.1:${srv.address().port}`;
   const browser = await chromium.launch();
   const oldalak = gyors ? ['index.html', 'feluletek.html', 'belepes.html']
-    : fs.readdirSync(dir).filter(f => f.endsWith('.html')).concat(fs.readdirSync(path.join(dir, 'kepernyok')).filter(f => f.endsWith('.html')).map(f => 'kepernyok/' + f));
+    : fs.readdirSync(dir).filter(f => f.endsWith('.html')).concat(fs.readdirSync(path.join(dir, 'kepernyok')).filter(f => f.endsWith('.html')).map(f => 'kepernyok/' + f))
+    .concat(fs.existsSync(path.join(dir, 'sablonok')) ? fs.readdirSync(path.join(dir, 'sablonok')).filter(f => f.endsWith('.html')).map(f => 'sablonok/' + f) : []);   // bb-sablonok: a sablonok is (az ablakhoz illeszkednek, nem lóghatnak ki)
   const nezetek = [{ n: 'mobil', w: 360, h: 740 }, { n: 'széles', w: 1280, h: 800 }];
   try {
     for (const v of nezetek) for (const scheme of ['light', 'dark']) {

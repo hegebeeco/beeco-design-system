@@ -4,65 +4,147 @@
   {
    "id": "web-fooldal",
    "felulet": "web",
-   "cim": "beeco.hu – főoldal",
+   "cim": "beeco.hu – főoldal (asztal)",
    "eszkoz": "asztal",
    "file": "web-fooldal.html",
-   "leiras": "A beeco.hu nyitóoldala a termékbőr webes elemeiből. A szövegek a beeco.hu-ról valók; a képernyő a DS szerinti célállapot.",
+   "leiras": "A valódi beeco.hu főoldal szerkezete és szövegei (2026. október), a termékbőr `bc-` elemeiből. Sorrend, mint élesben: fejléc, hero, nyári kampány, közösségi számok, „Mutatjuk az utat”, öt funkció-kártya, GYIK, közösség, lábléc. A webshop- és díjblokkok kimaradtak (képek). A képernyő a DS szerinti célállapot, nem az élő oldal képe.",
    "jelek": [
     {
      "n": 1,
      "nev": "Fejléc",
-     "megj": "tapadó, 2 px fekete vonallal; logó a téma szerint (`logo` / `logo-sotet`)"
+     "megj": "tapadó, 2 px fekete alsó vonallal; logó a téma szerint (`logo` / `logo-sotet`); a menüpontok `bc-link`-ek, 44 px magasak; 900 px alatt menügomb"
     },
     {
      "n": 2,
-     "nev": "Fő gomb (`bc-btn`)",
-     "megj": "az egyetlen méz gomb a fejlécben"
+     "nev": "Fő gomb (`bc-btn`): Töltsd le!",
+     "megj": "az egyetlen méz gomb a fejlécben – élesben `button_main`"
     },
     {
      "n": 3,
-     "nev": "Felső index (`bc-eyebrow`)"
+     "nev": "Felső index (`bc-eyebrow`)",
+     "megj": "élesben `sub-heading`"
     },
     {
      "n": 4,
      "nev": "Kijelző-cím (`bc-display`)",
-     "megj": "Lalezar, 46 px – csak cím"
+     "megj": "Lalezar, 46 px (telefonon 34) – oldalanként egy `h1`; élesben `headline1`"
     },
     {
      "n": 5,
-     "nev": "Áruház-gombok (`bc-stores`)",
-     "megj": "egy méz, egy fehér: a fő út egyértelmű"
+     "nev": "Másodlagos gomb (`bc-btn is-secondary`)",
+     "megj": "a hero nem versenyez a fejléc méz gombjával – élesben `button_terc`"
     },
     {
      "n": 6,
      "nev": "Méhecske + matrica (`bc-sticker`)",
-     "megj": "egy méh, egy szóvicc a képernyőn; a matrica egyszer pecsételődik be"
+     "megj": "egy méh, egy szóvicc a képernyőn"
     },
     {
      "n": 7,
-     "nev": "Lépéslista (`bc-howto`)",
-     "megj": "Megértés → Cselekvés → Megerősítés"
+     "nev": "Fő gomb a sötét sávon (`bc-sec is-ink`)",
+     "megj": "a mézen a szöveg sötét módban is fekete (`on-accent`)"
     },
     {
      "n": 8,
-     "nev": "Kártyák (`bc-card is-interactive`)",
-     "megj": "kattintható → kemény árnyék"
+     "nev": "Számblokk (`bc-stats` + `bc-source`)",
+     "megj": "szám csak forrással – a forrás-sor alatta"
     },
     {
      "n": 9,
-     "nev": "Fő gomb a sötét sávon",
-     "megj": "a mézen a szöveg sötét módban is fekete"
+     "nev": "Lépéslista (`bc-howto is-row`)",
+     "megj": "Megértés → Cselekvés → Megerősítés; a címkék `bc-badge is-muted`"
     },
     {
      "n": 10,
-     "nev": "Idézet (`bc-quote`)",
-     "megj": "a sötét sávban a lap visszavált sötét tintára"
+     "nev": "Kártyák (`bc-card is-interactive`)",
+     "megj": "kattintható → valódi `<a>`, kemény árnyék; `bc-grid-3`"
+    },
+    {
+     "n": 11,
+     "nev": "GYIK (`bc-acc`)",
+     "megj": "natív `<details>`: billentyűvel és JavaScript nélkül is nyílik"
+    },
+    {
+     "n": 12,
+     "nev": "Idézet (`bc-quote is-accent`)",
+     "megj": "oldalanként legfeljebb egy mézes lap"
+    },
+    {
+     "n": 13,
+     "nev": "Áruház-gombok (`bc-stores`)",
+     "megj": "egy méz, egy fehér: a fő út egyértelmű"
     }
    ],
    "hatas": [
-    "egy hangsúlyszín: a méz vezeti a szemet a letöltésig",
-    "a szekció-ritmus (`bc-sec`) és a tartalomszélesség (`bc-wrap`) minden oldalon ugyanaz",
-    "a Webflow-ban ugyanezek az osztálynevek élnek, változóra kötve"
+    "egy hangsúlyszín: a méz egyszerre egy helyen vezet (fejléc → kampány → letöltés)",
+    "a szekció-ritmus (`bc-sec` + `is-accent` / `is-ink` / `is-quiet`) és a tartalomszélesség (`bc-wrap`) minden oldalon ugyanaz",
+    "élesben ma `button_main`, `headline1`, `sub-heading` osztályok futnak – a DS-ben ugyanez `bc-btn`, `bc-display`, `bc-eyebrow`; a megfeleltetés a lenti táblázatban",
+    "a számok forrás-sorral állnak – élesben a főoldal 25.000+, a partneroldal 20.000+ letöltést ír, ezt egyeztetni kell"
+   ]
+  },
+  {
+   "id": "web-partner",
+   "felulet": "web",
+   "cim": "beeco.hu – partnerprogram (telefon)",
+   "eszkoz": "telefon",
+   "file": "web-partner.html",
+   "leiras": "A valódi `/szolgaltatas/partner` oldal szerkezete és szövegei telefonon (390 px), a DS elemeiből: hero, három előny, két gomb, számok, „Mit kapsz”, „Hogyan működik?”, csomagok, jelentkezés. A partnerlogók és a kapcsolattartó elérhetősége szándékosan kimaradt (a repó nyilvános). Az űrlap hibaüzenete „Minta” jelölésű, nem az élő oldalé.",
+   "jelek": [
+    {
+     "n": 1,
+     "nev": "Fejléc telefonon",
+     "megj": "logó + másodlagos „Töltsd le!” + menügomb (`bc-btn is-ghost is-icon`, `aria-label`) – a méz gomb a hero-é"
+    },
+    {
+     "n": 2,
+     "nev": "Menügomb",
+     "megj": "ikongomb, 44 × 44 px"
+    },
+    {
+     "n": 3,
+     "nev": "Kijelző-cím (`bc-display`)",
+     "megj": "telefonon magától 34 px"
+    },
+    {
+     "n": 4,
+     "nev": "Előnylista hatszög-pipával",
+     "megj": "a méhsejt itt kis jel, nem háttér (a nagy méhsejt-perem a játékbőré)"
+    },
+    {
+     "n": 5,
+     "nev": "Gombpár (`bc-btn is-block`)",
+     "megj": "egy méz (Jelentkezem!) és egy másodlagos – telefonon teljes szélesség"
+    },
+    {
+     "n": 6,
+     "nev": "Számblokk két oszlopban (`bc-stats`)",
+     "megj": "forrás-sorral"
+    },
+    {
+     "n": 7,
+     "nev": "Kártyák (`bc-card`)",
+     "megj": "nem kattinthatók → puha árnyék; a címkék `bc-badge is-muted`"
+    },
+    {
+     "n": 8,
+     "nev": "Lépéslista (`bc-howto`)",
+     "megj": "telefonon egymás alatt"
+    },
+    {
+     "n": 9,
+     "nev": "Csomag-kártya (`bc-card is-accent` + `bc-badge`)",
+     "megj": "állapot szöveggel ÉS színnel: Elérhető / Fejlesztés alatt"
+    },
+    {
+     "n": 10,
+     "nev": "Űrlap (`bc-field`, `bc-input`, `bc-error`)",
+     "megj": "hibánál `aria-invalid` + `aria-describedby`, a hiba megmondja a következő lépést"
+    }
+   ],
+   "hatas": [
+    "telefonon ugyanazok az elemek, csak egy oszlopban: nincs külön „mobil” stílus",
+    "az élő oldal zöld hatszög-képei (`bullet-app`) helyett DS-színű, tokenes jel",
+    "élesben két elírás van („Kedvezémny”, „Ezeken funkciókon”) – itt javítva"
    ]
   },
   {
@@ -580,7 +662,7 @@
     {
      "n": 5,
      "nev": "Feladat-kártyák",
-     "megj": "kattintható → kemény árnyék; Rajpont-jelvény `is-accent`"
+     "megj": "valódi linkek (`<a class=\"bc-card is-interactive\">`) egy vízszintesen görgethető listában – billentyűvel is elérhetők, látható fókusszal; kemény árnyék; Rajpont-jelvény `is-accent`"
     },
     {
      "n": 6,

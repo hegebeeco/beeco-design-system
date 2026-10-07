@@ -29,6 +29,11 @@ const core = json('tokens/core.json');
 const termek = json('tokens/theme-termek.json');
 const hangnem = json('tokens/hangnem.json');
 const VERSION = read('VERSION').trim();
+// a build dátuma (budapesti idő; SOURCE_DATE_EPOCH-csal rögzíthető) – minden oldal láblécébe
+const BUILD_IDO = process.env.SOURCE_DATE_EPOCH ? new Date(Number(process.env.SOURCE_DATE_EPOCH) * 1000) : new Date();
+const BUILD_ISO = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Budapest' }).format(BUILD_IDO);
+const BUILD_HU = new Intl.DateTimeFormat('hu-HU', { timeZone: 'Europe/Budapest', year: 'numeric', month: 'long', day: 'numeric' }).format(BUILD_IDO);
+const labjegy = () => `design system v${esc(VERSION)} · építve: <time datetime="${BUILD_ISO}">${esc(BUILD_HU)}</time>`;
 const hibak = [];
 
 // ---------- segédek ----------
@@ -83,6 +88,8 @@ const KOMP = fs.existsSync(KOMP_F) ? JSON.parse(fs.readFileSync(KOMP_F, 'utf8'))
 const TESZT = json('termek/tesztlapok/lista.json');
 const KEP_F = path.join(BB, 'kepernyok', 'kepernyok.json');
 const KEPERNYOK = fs.existsSync(KEP_F) ? JSON.parse(fs.readFileSync(KEP_F, 'utf8')).kepernyok : [];
+const SABLON_F = path.join(BB, 'sablonok', 'sablonok.json');   // bb-sablonok: social- és partneri sablonok
+const SABLON = fs.existsSync(SABLON_F) ? JSON.parse(fs.readFileSync(SABLON_F, 'utf8')) : { csomagok: {}, sablonok: [] };
 
 // ---------- piktogramok (vonalas, a DS stílusában) ----------
 const IC = {
@@ -292,7 +299,7 @@ const GEN = {
 </div>`;
   },
   valtozasok() {
-    const l = read('CHANGELOG.md').split('\n').filter(s => /^## \d/.test(s)).slice(0, 6).map(s => s.replace(/^## /, ''));
+    const l = read('CHANGELOG.md').split('\n').filter(s => /^## \d/.test(s)).slice(0, 5).map(s => s.replace(/^## /, ''));
     return `<ul class="bb-valtozasok">${l.map(s => { const [v, d, ...t] = s.split(' – '); return `<li><code>${esc(v)}</code> <span class="bc-muted">${esc(d || '')}</span> ${esc(t.join(' – '))}</li>`; }).join('')}</ul><p class="bc-muted bb-kicsi">A teljes lista: <a href="https://github.com/hegebeeco/beeco-design-system/blob/main/CHANGELOG.md" rel="noopener">CHANGELOG.md</a></p>`;
   },
   logo() {
@@ -305,13 +312,101 @@ const GEN = {
       ['Tokenek', [['beeco-tokens.css', 'ds/dist/css/beeco-tokens.css', 'CSS-változók (web)'], ['tokens.json', 'ds/dist/tokens.json', 'minden érték, gépi formában'], ['webflow-valtozok.json', 'ds/dist/weboldal/webflow-valtozok.json', 'Webflow-változók'], ['beeco_tokens.dart', 'ds/dist/dart/beeco_tokens.dart', 'Flutter (mobil app)'], ['preset.cjs', 'ds/dist/tailwind/preset.cjs', 'Tailwind-preset (partner)'], ['_beeco.scss', 'ds/dist/scss/_beeco.scss', 'SCSS (admin)']]],
       ['Betűk', [['Lalezar (woff2)', 'ds/web/assets/fonts/lalezar-latin-ext.woff2', 'SIL Open Font License 1.1'], ['beeco-fonts.css', 'ds/dist/css/beeco-fonts.css', 'betűbetöltő']]],
     ];
-    return L.map(([cim, l]) => `<h3>${esc(cim)}</h3><ul class="bb-letolt">${l.map(([n, h, le]) => {
+    return L.filter(([, l]) => l.length).map(([cim, l]) => `<h3>${esc(cim)}</h3><ul class="bb-letolt">${l.map(([n, h, le]) => {
       const p = path.join(OUT, h); const kb = fs.existsSync(p) ? Math.max(1, Math.round(fs.statSync(p).size / 1024)) : null;
       if (kb === null) hibak.push(`letoltesek: hiányzó fájl: ${h}`);
       return `<li><a class="bc-btn is-secondary" href="${esc(h)}" download>${ic('letolt')}${esc(n)}</a><span>${esc(le)}${kb ? ` · ${kb} KB` : ''}</span></li>`;
     }).join('')}</ul>`).join('');
   },
+  // ===== bb-illusztracio: madárkák, v4 madárrajzok, mozgásminták, madárkészlet (forrás: brandbook/illusztraciok/keszlet.json) =====
+  madarkak() {
+    const van = illu().madarkak.filter(m => fs.existsSync(path.join(BB, 'illusztraciok', m.file)));
+    if (!van.length) return `<p class="bc-muted">A Csicsergősz-madárkák (liba, rigó, varjú, veréb) a csapat rajzai; ebben a kiadásban nem szerepelnek – a beeco csapatától kérd őket.</p>`;
+    return `<ul class="bb-illu-racs">${van.map(m => {
+      const f = path.join(BB, 'illusztraciok', m.file);
+      if (!fs.existsSync(f)) return '';   /* a madárkák (a csapat rajzai) nincsenek a nyilvános repóban – csak a helyi, jelszavas kiadásban */
+      const svg = fs.readFileSync(f, 'utf8');
+      if (/<script|<image|href=/i.test(svg)) hibak.push(`illusztraciok: ${m.file}: a madárka SVG-ben nem lehet szkript, beágyazott kép vagy hivatkozás`);
+      const szinek = [...new Set([...svg.matchAll(/fill="(#[0-9A-Fa-f]{6}|white|black)"/g)].map(x => ({ white: '#FFFFFF', black: '#000000' }[x[1]] || x[1].toUpperCase())))].sort((a, b) => illuFeny(a) - illuFeny(b));
+      const sikok = (svg.match(/<path\b/g) || []).length;
+      szinek.forEach(c => genCss.push(`.bb-illu-sw[data-c="${c.slice(1)}"] { background: ${c}; }`));
+      return `<li><figure class="bb-illu-kartya"><div class="bb-illu-szinpad"><img src="illusztraciok/${esc(m.file)}" alt="${esc(m.nev)} – Csicsergősz-madárka" width="${m.w}" height="${m.h}" loading="lazy"></div><figcaption><strong>${esc(m.nev)}</strong> <span class="bc-muted">${sikok} sík, ${szinek.length} szín</span><span class="bb-illu-sor" role="img" aria-label="${esc(m.nev)} színei, sötéttől világosig: ${esc(szinek.join(', '))}">${szinek.map(c => `<span class="bb-illu-sw" data-c="${c.slice(1)}"></span>`).join('')}</span></figcaption></figure></li>`;
+    }).join('')}</ul>`;
+  },
+  v4kepek(b) {
+    const l = (b.idk || []).map(id => illu().v4.find(x => x.id === id) || (hibak.push(`illusztraciok: ismeretlen v4 rajz: ${id}`), null)).filter(Boolean);
+    return `<div class="bb-illu-racs${l.length === 2 ? ' is-par' : ''}">${l.map(illuKep).join('')}</div>`;
+  },
+  animaciok() {
+    return `<ul class="bb-illu-racs is-mozgas">${illu().anim.map(a => {
+      for (const f of [a.file, a.allo]) if (!fs.existsSync(path.join(BB, 'illusztraciok', f))) hibak.push(`illusztraciok: hiányzó mozgásminta: ${f}`);
+      return `<li><figure class="bb-illu-kartya"><div class="bb-illu-szinpad"><picture><source srcset="illusztraciok/${esc(a.file)}" type="image/svg+xml" media="(prefers-reduced-motion: no-preference)"><img src="illusztraciok/${esc(a.allo)}" alt="${esc(a.faj)} – mozgásminta: ${esc(a.mozgas)}" width="${a.w}" height="${a.h}" loading="lazy"></picture></div><figcaption><strong>${esc(a.faj)}</strong> <span class="bc-muted">${esc(a.mozgas)}</span> <a href="illusztraciok/${esc(a.file)}" target="_blank" rel="noopener">Lejátszás újra, külön lapon</a></figcaption></figure></li>`;
+    }).join('')}</ul><p class="bc-muted bb-kicsi">A minta négyszer játszik le, aztán megáll. Csökkentett mozgásnál (rendszerbeállítás) az álló kép látszik.</p>`;
+  },
+  madarkeszlet() {
+    const K = illu();
+    const L = [
+      ['Csicsergősz-madárkák (SVG, vektoros)', K.madarkak.filter(m => fs.existsSync(path.join(BB, 'illusztraciok', m.file))).map(m => [m.file.split('/').pop(), m.file, m.nev])],
+      ['Madárrajzok v4 (WebP, 600 px széles, átlátszó háttér)', K.v4.map(x => [x.file.split('/').pop(), x.file, `${x.faj} – ${x.poz}`])],
+      ['Mozgásminták (animált SVG + álló WebP)', K.anim.flatMap(a => [[a.file.split('/').pop(), a.file, `${a.faj} – ${a.mozgas}`], [a.allo.split('/').pop(), a.allo, `${a.faj} – álló kép`]])],
+    ];
+    return L.filter(([, l]) => l.length).map(([cim, l]) => `<h3>${esc(cim)}</h3><ul class="bb-letolt bb-illu-letolt">${l.map(([n, h, le]) => {
+      const p = path.join(OUT, 'illusztraciok', h); const kb = fs.existsSync(p) ? Math.max(1, Math.round(fs.statSync(p).size / 1024)) : null;
+      if (kb === null) hibak.push(`madarkeszlet: hiányzó fájl: illusztraciok/${h}`);
+      return `<li><a class="bc-btn is-secondary" href="illusztraciok/${esc(h)}" download>${ic('letolt')}${esc(n)}</a><span>${esc(le)}${kb ? ` · ${kb} KB` : ''}</span></li>`;
+    }).join('')}</ul>`).join('');
+  },
+  // ===== bb-sablonok: sablon-előnézetek, csomagok, partneri gyorscsomag =====
+  /** Sablon-galéria: méretarányos élő előnézet (a sablon HTML-je keretben) + megnyitás szerkesztésre. b.csoport: social | partner */
+  sablonok(b) {
+    const l = SABLON.sablonok.filter(s => s.csoport === b.csoport && (!b.csak || b.csak.includes(s.id)));
+    if (!l.length) { hibak.push(`sablonok: üres csoport: ${b.csoport}`); return ''; }
+    return `<ul class="bb-sablonok">${l.map(s => {
+      for (const m of ['id', 'file', 'w', 'h', 'cim', 'meret']) if (!s[m]) hibak.push(`sablon ${s.id || '?'}: hiányzik: ${m}`);
+      if (!fs.existsSync(path.join(BB, 'sablonok', s.file))) hibak.push(`sablon ${s.id}: hiányzó fájl: brandbook/sablonok/${s.file}`);
+      genCss.push(`.bb-sablon-kep[data-sablon="${s.id}"] iframe { aspect-ratio: ${s.w} / ${s.h}; max-width: ${Math.round(360 * s.w / s.h)}px; }`);
+      const jel = s.osszefoglalo ? '<span class="bc-badge is-warning">Tervezet</span>' : s.korrigalando ? '<span class="bc-badge is-danger">Minta – korrigálandó</span>' : '<span class="bc-badge is-muted">Minta</span>';
+      return `<li class="bb-sablon"><div class="bb-sablon-kep" data-sablon="${esc(s.id)}" inert><iframe src="sablonok/${esc(s.file)}${s.lap ? `?lap=${s.lap}` : ''}" title="${esc(s.cim)} – előnézet" loading="lazy" tabindex="-1"></iframe></div>`
+        + `<div class="bb-sablon-info"><h3 id="sablon-${esc(s.id)}">${esc(s.cim)}</h3><p class="bb-sablon-meret">${jel} ${esc(s.meret)}</p><p class="bb-sablon-hol">${esc(s.hol || '')}</p><p>${inl(s.leiras || '')}</p>`
+        + `<a class="bc-btn is-secondary" href="sablonok/${esc(s.file)}" target="_blank" rel="noopener">Megnyitás és szerkesztés${ic('tovabb')}</a></div></li>`;
+    }).join('')}</ul>`;
+  },
+  /** A sablon-csomagok (ZIP) letöltése, méret szerint; b.csoport nélkül mind. b.osszefoglalo: az A4-es összefoglaló is. */
+  sablonletoltes(b) {
+    const cs = Object.entries(SABLON.csomagok).filter(([id]) => !b.csoport || id === b.csoport);
+    const sor = (h, n, le, letolt = true) => { const p = path.join(OUT, h); const kb = fs.existsSync(p) ? Math.max(1, Math.round(fs.statSync(p).size / 1024)) : null;
+      if (kb === null) hibak.push(`sablonletoltes: hiányzó fájl: ${h}`);
+      return `<li><a class="bc-btn is-secondary" href="${esc(h)}"${letolt ? ' download' : ' target="_blank" rel="noopener"'}>${ic(letolt ? 'letolt' : 'tovabb')}${esc(n)}</a><span>${esc(le)}${kb ? ` · ${kb} KB` : ''}</span></li>`; };
+    const db = id => new Set(SABLON.sablonok.filter(s => s.csoport === id).map(s => s.file)).size;
+    return `<ul class="bb-letolt">${cs.map(([id, c]) => sor(`sablonok/${c.file}`, c.file, `${c.cim}: ${db(id)} szerkeszthető HTML-sablon, betűk és képek egy csomagban`)).join('')}`
+      + `${b.osszefoglalo ? sor('sablonok/partner-osszefoglalo.html', 'Összefoglaló (A4)', 'egyoldalas, nyomtatható – megnyitás, utána Nyomtatás → Mentés PDF-ként', false) : ''}</ul>`;
+  },
+  /** A partneri gyorscsomag színei (a tokenekből). */
+  partnerszinek() {
+    return `<ul class="bb-swatches">${['honey', 'cream', 'black', 'butter', 'night'].filter(n => core.color[n]).map(swatch).join('')}</ul>`;
+  },
+  /** A partneri gyorscsomag logói: a két WebP, letöltéssel. */
+  partnerlogok() {
+    return GEN.logo() + `<ul class="bb-letolt bb-sablon-logok">${[['logo.webp', 'világos háttérre'], ['logo-sotet.webp', 'sötét háttérre']].map(([f, le]) => {
+      const h = `ds/web/assets/brand/${f}`, p = path.join(OUT, h); const kb = fs.existsSync(p) ? Math.max(1, Math.round(fs.statSync(p).size / 1024)) : null;
+      if (kb === null) hibak.push(`partnerlogok: hiányzó fájl: ${h}`);
+      return `<li><a class="bc-btn is-secondary" href="${h}" download>${ic('letolt')}${f}</a><span>${le}${kb ? ` · ${kb} KB` : ''}</span></li>`; }).join('')}</ul>`;
+  },
 };
+
+// ===== bb-illusztracio: segédek a madárkészlethez =====
+let ILLU = null;
+function illu() {
+  if (ILLU) return ILLU;
+  const f = path.join(BB, 'illusztraciok', 'keszlet.json');
+  if (!fs.existsSync(f)) { hibak.push('illusztraciok: hiányzik a brandbook/illusztraciok/keszlet.json'); return (ILLU = { madarkak: [], v4: [], anim: [] }); }
+  return (ILLU = JSON.parse(fs.readFileSync(f, 'utf8')));
+}
+function illuFeny(c) { const n = parseInt(c.slice(1), 16); return 0.2126 * (n >> 16) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255); }
+function illuKep(x) {
+  if (!fs.existsSync(path.join(BB, 'illusztraciok', x.file))) hibak.push(`illusztraciok: hiányzó v4 rajz: ${x.file}`);
+  return `<figure class="bb-illu-kartya"><div class="bb-illu-szinpad"><img src="illusztraciok/${esc(x.file)}" alt="${esc(x.faj)} – ${esc(x.poz)} (v4 madárrajz)" width="${x.w}" height="${x.h}" loading="lazy"></div><figcaption><strong>${esc(x.faj)}</strong> <span class="bc-muted">${esc(x.poz)}</span></figcaption></figure>`;
+}
 
 // ---------- élő minták (iframe, hogy a bőrök ne keveredjenek) ----------
 function mintaKeret(f, felirat) {
@@ -403,6 +498,8 @@ GEN.szintek = () => {
   return `<ul class="bb-csempek">${SZINT_SORREND.filter(sz => KOMP.komponensek.some(k => k.szint === sz)).map(sz => { const info = KOMP.szintek.find(x => x.id === sz) || {}; const l = KOMP.komponensek.filter(k => k.szint === sz);
     return `<li><a class="bc-card is-interactive bb-csempe" href="elemek-${sz}.html"><span class="bb-csempe-nev">${esc(info.nev || sz)}</span><span class="bb-csempe-bor">${l.length} komponens</span><span class="bb-csempe-le">${esc(l.slice(0, 6).map(k => k.nev).join(' · '))}${l.length > 6 ? ' …' : ''}</span></a></li>`; }).join('')}</ul>`;
 };
+// bb-web: Webflow-megfeleltetés (WEBOLDAL) és a játékbőr élő elemei (JÁTÉKOK) – külön modulban: tools/brandbook-bbweb.js
+Object.assign(GEN, require('./brandbook-bbweb.js')({ ROOT, OUT, esc, inl, hibak, tabla, ddFig, forrasLista, genCss, htmlEllenor }));
 GEN.tesztlapok = () => `<ul class="bb-tesztlista">${TESZT.map(t => `<li><a href="ds/termek/tesztlapok/${esc(t.nev)}.html" target="_blank" rel="noopener"><strong>${esc(t.cim)}</strong><span>${esc(t.leiras || '')}</span></a></li>`).join('')}</ul>`;
 
 // ---------- ikonikus képernyők (felületenként 1–2), kapcsolható DS-jelölésekkel ----------
@@ -460,7 +557,7 @@ ${fejezet ? `<p class="bb-fejezetszam">${fejezet}</p>` : ''}
 ${torzs}
 <nav class="bb-utsav" data-utsav hidden aria-label="Utad"></nav>
 </main>
-<footer class="bb-lab"><p class="bc-muted">beeco Brand Book · design system v${esc(VERSION)} · generálva a <code>hegebeeco/beeco-design-system</code> repóból. A beeco méhecskéi és logója belső használatúak; külső anyagban a beeco jóváhagyása kell.</p></footer>
+<footer class="bb-lab"><p class="bc-muted">beeco Brand Book · ${labjegy()} · generálva a <code>hegebeeco/beeco-design-system</code> repóból. A beeco méhecskéi és logója belső használatúak; külső anyagban a beeco jóváhagyása kell.</p></footer>
 </div>
 </div>
 </body>
@@ -530,10 +627,71 @@ function belepesOldal() {
 <div class="bc-field"><label class="bc-label" for="jelszo">Jelszó</label><input class="bc-input" id="jelszo" name="jelszo" type="password" autocomplete="current-password" required aria-describedby="jelszo-hiba"><p class="bc-error" id="jelszo-hiba" data-hiba hidden>Ez nem a jó jelszó. Nézd meg, nincs-e bekapcsolva a nagybetű, vagy kérd el újra a beeco csapatától.</p></div>
 <button type="submit" class="bc-btn is-block">Belépés${ic('tovabb')}</button>
 </form>
+<p class="bb-kicsi bc-muted bb-belepes-lab">beeco Brand Book · ${labjegy()}</p>
 </main>
 </body>
 </html>
 `);
+}
+
+// ===== bb-sablonok: a sablonok kimásolása (tokenértékek a {{…}} helyére) és a ZIP-csomagok =====
+function crc32(buf) {
+  let c = 0xFFFFFFFF;
+  for (let i = 0; i < buf.length; i++) { c ^= buf[i]; for (let k = 0; k < 8; k++) c = (c >>> 1) ^ (0xEDB88320 & -(c & 1)); }
+  return (c ^ 0xFFFFFFFF) >>> 0;
+}
+/** Egyszerű, determinisztikus ZIP (deflate, rögzített dátum) – csak a Node beépített zlib-jével. */
+function zipIr(cel, bejegyzesek) {
+  const zlib = require('zlib');
+  const DATUM = ((2026 - 1980) << 9) | (1 << 5) | 1, IDO = 0;
+  const reszek = [], kozponti = []; let hely = 0;
+  for (const [nev, adat] of bejegyzesek) {
+    const n = Buffer.from(nev, 'utf8'), tomor = zlib.deflateRawSync(adat, { level: 9 }), crc = crc32(adat);
+    const fej = Buffer.alloc(30); fej.writeUInt32LE(0x04034b50, 0); fej.writeUInt16LE(20, 4); fej.writeUInt16LE(0x0800, 6); fej.writeUInt16LE(8, 8);
+    fej.writeUInt16LE(IDO, 10); fej.writeUInt16LE(DATUM, 12); fej.writeUInt32LE(crc, 14); fej.writeUInt32LE(tomor.length, 18); fej.writeUInt32LE(adat.length, 22); fej.writeUInt16LE(n.length, 26);
+    const kf = Buffer.alloc(46); kf.writeUInt32LE(0x02014b50, 0); kf.writeUInt16LE(20, 4); kf.writeUInt16LE(20, 6); kf.writeUInt16LE(0x0800, 8); kf.writeUInt16LE(8, 10);
+    kf.writeUInt16LE(IDO, 12); kf.writeUInt16LE(DATUM, 14); kf.writeUInt32LE(crc, 16); kf.writeUInt32LE(tomor.length, 20); kf.writeUInt32LE(adat.length, 24); kf.writeUInt16LE(n.length, 28); kf.writeUInt32LE(hely, 42);
+    reszek.push(fej, n, tomor); kozponti.push(kf, n); hely += 30 + n.length + tomor.length;
+  }
+  const kd = Buffer.concat(kozponti), veg = Buffer.alloc(22);
+  veg.writeUInt32LE(0x06054b50, 0); veg.writeUInt16LE(bejegyzesek.length, 8); veg.writeUInt16LE(bejegyzesek.length, 10); veg.writeUInt32LE(kd.length, 12); veg.writeUInt32LE(hely, 16);
+  fs.writeFileSync(cel, Buffer.concat([...reszek, kd, veg]));
+}
+function sablonokMasol() {
+  const src = path.join(BB, 'sablonok');
+  if (!fs.existsSync(src)) return;
+  const dst = path.join(OUT, 'sablonok'); mkdir(dst);
+  for (const f of fs.readdirSync(src).filter(f => /\.(html|css|js)$/.test(f))) {
+    let t = fs.readFileSync(path.join(src, f), 'utf8');
+    if (f.endsWith('.html')) t = t.replace(/\{\{hex:([a-z-]+)\}\}/g, (m, n) => { if (!core.color[n]) { hibak.push(`sablonok/${f}: ismeretlen szín: ${n}`); return m; } return hex(n); }).replace(/\{\{verzio\}\}/g, esc(VERSION));
+    if (/\{\{/.test(t)) hibak.push(`sablonok/${f}: kitöltetlen {{…}} jelölő`);
+    fs.writeFileSync(path.join(dst, f), t);
+  }
+  const ds = rel => fs.readFileSync(path.join(OUT, 'ds', rel));
+  for (const [id, c] of Object.entries(SABLON.csomagok)) {
+    const m = c.mappa, fajlok = [...new Set(SABLON.sablonok.filter(s => s.csoport === id).map(s => s.file))];
+    const sor = [
+      [`${m}/OLVASS-EL.txt`, Buffer.from(`beeco – ${c.cim} (design system v${VERSION})\r\n\r\n`
+        + `1. Csomagold ki a mappát, és nyisd meg a sablonok/ alatti HTML-fájlt Chrome-ban vagy Edge-ben.\r\n`
+        + `2. Kattints a szövegre, és írd át. A szövegek mintaszövegek${id === 'partner' ? ' – a partneri sablonok placeholderek („Minta – korrigálandó”), a végleges változatot a beeco adja' : ''}.\r\n`
+        + `3. Mentés: Nyomtatás → Mentés PDF-ként. A lap pontosan a kimeneti méret (pl. 1080 × 1080 px, A4). A PDF-et a Canva és a Figma szerkeszthetően megnyitja.\r\n\r\n`
+        + `Betűk: Lalezar és Open Sans (SIL Open Font License 1.1) – a ds/web/assets/fonts mappában; ha más programban dolgozol, telepítsd őket (Google Fonts).\r\n`
+        + `A beeco logója és méhecskéi belső használatúak; külső anyagban csak a beeco jóváhagyásával jelenhetnek meg.\r\n`
+        + `Forrás: a beeco Brand Book (hegebeeco/beeco-design-system).\r\n`, 'utf8')],
+      ...fajlok.concat(['sablon.css', 'sablon.js']).map(f => [`${m}/sablonok/${f}`, fs.readFileSync(path.join(dst, f))]),
+      ...['dist/css/beeco-tokens.css', 'dist/css/beeco-fonts.css'].map(f => [`${m}/ds/${f}`, ds(f)]),
+      ...fs.readdirSync(path.join(OUT, 'ds/web/assets/fonts')).filter(f => f.endsWith('.woff2')).map(f => [`${m}/ds/web/assets/fonts/${f}`, ds(`web/assets/fonts/${f}`)]),
+      ...c.kepek.map(k => [`${m}/ds/web/assets/brand/${k}.webp`, ds(`web/assets/brand/${k}.webp`)]),
+    ];
+    if (c.logok) {
+      sor.push(...['logo', 'logo-sotet'].map(k => [`${m}/logo/${k}.webp`, ds(`web/assets/brand/${k}.webp`)]));
+      sor.push([`${m}/szinek.txt`, Buffer.from(`beeco színek (design system v${VERSION})\r\n`
+        + ['honey', 'cream', 'black', 'butter', 'night'].map(n => `${NEV_HU[n] || n}\t${hex(n)}\t--bc-${n}`).join('\r\n')
+        + `\r\n\r\nA méz az egyetlen hangsúlyszín – rajta a szöveg mindig fekete. Vektoros logó: hamarosan.\r\n`, 'utf8')]);
+    }
+    for (const [n] of sor) if (/bee-angry/.test(n)) hibak.push(`csomag ${id}: a mérges méhecske tilos`);
+    zipIr(path.join(dst, c.file), sor);
+  }
 }
 
 // ---------- futtatás ----------
@@ -543,9 +701,11 @@ mkdir(OUT); mkdir(path.join(OUT, 'minta')); mkdir(path.join(OUT, 'bb'));
 copy('termek/css'); copy('dist/css'); copy('dist/tokens.json'); copy('dist/weboldal/webflow-valtozok.json'); copy('dist/dart/beeco_tokens.dart');
 copy('dist/tailwind/preset.cjs'); copy('dist/scss/_beeco.scss'); copy('web/assets/fonts'); copy('web/assets/brand'); copy('web/css');
 copy('termek/tesztlapok'); copy('dist/tesztlapok');   // élő React-komponensek minden állapotban
+if (fs.existsSync(path.join(BB, 'illusztraciok'))) fs.cpSync(path.join(BB, 'illusztraciok'), path.join(OUT, 'illusztraciok'), { recursive: true, filter: f => !/keszlet\.json$|\.DS_Store$/.test(f) });
 if (fs.existsSync(path.join(BB, 'kepernyok'))) fs.cpSync(path.join(BB, 'kepernyok'), path.join(OUT, 'kepernyok'), { recursive: true, filter: f => !/kepernyok\.json$|[\/]src([\/]|$)/.test(f) });
 // a dühös méhecske nem kerül ki (tiltott kép)
 for (const t of hangnem.tiltott_kepek) fs.rmSync(path.join(OUT, 'ds/web/assets/brand', `${t}.webp`), { force: true });
+sablonokMasol();   // bb-sablonok
 for (const f of ['bb.css', 'bb.js', 'tema.js', 'minta.css', 'minta.js', 'belepes.js', 'kepernyo.css']) {
   const src = path.join(BB, f.endsWith('.css') ? 'css' : 'js', f);
   if (!fs.existsSync(src)) { hibak.push(`hiányzó fájl: brandbook/${f.endsWith('.css') ? 'css' : 'js'}/${f}`); continue; }
@@ -567,12 +727,12 @@ for (const o of oldalak) {
   if (/\sstyle="/.test(h)) hibak.push(`${o}: inline stílus`);
   if (/<script(?![^>]*\ssrc=)[^>]*>/.test(h)) hibak.push(`${o}: inline script`);
   if (!/<html lang="hu"/.test(h)) hibak.push(`${o}: nincs lang="hu"`);
-  for (const m of h.matchAll(/(?:href|src)="([^"#?:]+\.(?:html|css|js|webp|png|json|woff2|dart|cjs|scss))(?:[?#][^"]*)?"/g)) {
+  for (const m of h.matchAll(/(?:href|src)="([^"#?:]+\.(?:html|css|js|webp|png|svg|gif|json|woff2|dart|cjs|scss))(?:[?#][^"]*)?"/g)) {
     if (m[1].startsWith('/')) continue;
     if (!fs.existsSync(path.join(OUT, m[1]))) hibak.push(`${o}: törött link: ${m[1]}`);
   }
 }
-for (const dir of ['minta', 'kepernyok']) {
+for (const dir of ['minta', 'kepernyok', 'sablonok']) {
   if (!fs.existsSync(path.join(OUT, dir))) continue;
   for (const f of fs.readdirSync(path.join(OUT, dir)).filter(f => f.endsWith('.html'))) {
     const h = fs.readFileSync(path.join(OUT, dir, f), 'utf8');

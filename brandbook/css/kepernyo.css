@@ -243,3 +243,80 @@ html, body { margin: 0; }
 /* érintési felület telefonon mindenhol ≥ 44 px (a DS kis gombja és a szegmens-elem 40 px – asztali sűrűségre készült) */
 .kpm-ernyo .bc-btn.is-sm, .kpm-ernyo .bc-seg-item { min-height: var(--bc-tap); }
 .kpm-ernyo .bc-icon-btn { flex: none; }
+
+/* ===== bb-web: Kaptár-képernyő javításai (320 px, billentyűzet, érintési felület) – az arculat változatlan ===== */
+/* a telefonkeret 390 px helyett a rendelkezésre álló szélességet tölti ki (legfeljebb 390 px), így 320 px-en sem lóg ki */
+.kp-kaptar-ernyo { width: 100%; max-width: 390px; height: 100vh; min-height: 560px; margin: 0 auto; }
+.kp-kaptar-tartalom { height: calc(100% - 103px); }
+/* feladat-kártyák: valódi linkek egy vízszintesen görgethető listában (eddig a második kártya levágva, elérhetetlen volt) */
+.kp-feladatok { list-style: none; margin: 0 calc(-1 * var(--bc-sp-4)); padding: var(--bc-sp-1) var(--bc-sp-4) var(--bc-sp-3); overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: var(--bc-sp-4); scrollbar-width: none; }
+.kp-feladatok > li { flex: none; scroll-snap-align: start; }
+.kp-feladatok .kp-feladat { display: grid; justify-items: start; gap: var(--bc-sp-1); width: min(224px, 72vw); box-sizing: border-box; }
+.kp-feladat .kp-sor { width: 100%; }
+.kp-feladat-cim { display: block; }
+.kp-hatarido { display: block; }
+/* érintési felület ≥ 44 px: az „Összes feladat” link, a kis gomb és a fejléc ikongombja */
+.kp-kaptar .bc-link { display: inline-flex; align-items: center; min-height: var(--bc-tap); }
+.kp-kaptar .bc-btn.is-sm, .kp-kaptar .bc-btn.is-icon { min-height: var(--bc-tap); min-width: var(--bc-tap); }
+
+/* ===== bb-web: WEBOLDAL – a valódi beeco.hu szerkezete a DS elemeiből (főoldal asztalon, partnerprogram telefonon) ===== */
+.kp-web { color: var(--bc-ink); font-family: var(--bc-font-body); }
+.kp-web .bc-link { display: inline-flex; align-items: center; min-height: var(--bc-tap); }
+.kp-web .bc-btn.is-sm, .kp-web .bc-btn.is-icon { min-height: var(--bc-tap); min-width: var(--bc-tap); }
+.kp-web-fej-in { min-height: 64px; gap: var(--bc-sp-3); }
+.kpw-menu { display: none; }
+@media (max-width: 899px) {
+  .kpw-nav { display: none; }
+  .kpw-menu { display: inline-flex; }
+  .kp-web-logo { margin-right: auto; }
+  .kp-web-logo img { height: 32px; }
+}
+.kpw-kerdes { margin: 0 0 var(--bc-sp-3); font-weight: var(--bc-fw-semibold); }
+.kpw-kampany { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--bc-sp-5); }
+.kpw-kampany > div { flex: 1 1 320px; min-width: 0; }
+.kpw-cimkek { display: flex; flex-wrap: wrap; gap: var(--bc-sp-1); margin: var(--bc-sp-3) 0 0; }
+.kpw-racs { list-style: none; margin: 0; padding: 0; }
+.kpw-racs > li { display: flex; min-width: 0; }
+.kpw-racs .bc-card-title, .kpw-kartya-szoveg { display: block; }
+.kpw-kartya-szoveg { color: var(--bc-ink-soft); }
+/* GYIK: a DS harmonikája natív <details> elemmel – billentyűvel és JavaScript nélkül is nyílik */
+.kp-web details.bc-acc-item > summary { list-style: none; cursor: pointer; padding: var(--bc-sp-3) var(--bc-sp-4); font-weight: var(--bc-fw-semibold); }
+.kp-web details.bc-acc-item > summary::-webkit-details-marker { display: none; }
+.kp-web details.bc-acc-item[open] .bc-acc-chev { transform: rotate(180deg); }
+.kp-web .bc-acc-inner p { margin: 0; }
+.kpw-tovabb { margin: var(--bc-sp-4) 0 0; }
+.kpw-idezet-meh { width: 48px; height: 48px; object-fit: contain; }
+.kpw-lab-in { display: grid; gap: var(--bc-sp-6); }
+@media (min-width: 768px) { .kpw-lab-in { grid-template-columns: 1fr 1fr; } }
+.kpw-lab-in p { margin: 0 0 var(--bc-sp-4); }
+.kpw-lab-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--bc-sp-4); }
+.kpw-lab-nav ul { list-style: none; margin: 0; padding: 0; }
+.kpw-lab-cim { font-weight: var(--bc-fw-bold); }
+/* partnerprogram (telefon) */
+.kpw-pipak { list-style: none; display: grid; gap: var(--bc-sp-2); margin: 0 0 var(--bc-sp-5); padding: 0; font-weight: var(--bc-fw-semibold); }
+.kpw-pipak.is-kicsi { margin: var(--bc-sp-3) 0 0; font-weight: var(--bc-fw-regular); font-size: var(--bc-fs-s); }
+.kpw-pipak li { display: flex; align-items: center; gap: var(--bc-sp-2); }
+.kpw-hex { width: 22px; height: 24px; flex: none; }
+.kpw-hex polygon { fill: var(--bc-accent); stroke: var(--bc-line); stroke-width: 2; }
+.kpw-hex path { fill: none; stroke: var(--bc-on-accent); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.kpw-gombsor { display: grid; gap: var(--bc-sp-3); }
+.kpw-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--bc-sp-3); }
+.kpw-stats .bc-stat { padding: var(--bc-sp-3); }
+.kpw-stats .bc-stat-value { font-size: var(--bc-fs-xl); }
+.kpw-kartyak { display: grid; gap: var(--bc-sp-4); }
+.kpw-kartyak .bc-card p { margin: 0; }
+.kpw-csomag { margin: 0 0 var(--bc-sp-4); }
+.kpw-csomag p { margin: 0; }
+.kpw-csomag-fej { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--bc-sp-2); margin-bottom: var(--bc-sp-2); }
+.kpw-csomag-fej .bc-card-title { margin: 0; }
+.kpw-urlap { display: grid; gap: var(--bc-sp-4); }
+/* bb-web: a teendő szövege keskeny kijelzőn sem csúszik a kör alá (kör | szöveg; a gomb és a megjegyzés a szöveg oszlopában) */
+.kp-kaptar .kp-teendok-lista li { display: grid; grid-template-columns: 18px minmax(0, 1fr); column-gap: var(--bc-sp-3); row-gap: var(--bc-sp-2); }
+.kp-kaptar .kp-teendok-lista li > .bc-btn, .kp-kaptar .kp-teendok-lista li > .kp-kicsi { grid-column: 2; }
+.kp-kaptar .kp-teendok-lista li > .bc-btn { justify-self: end; margin-left: 0; }
+/* bb-web: a logó témapárja (a .kp-web-logo img display:block-ja eddig mindkét logót mutatta) */
+.kp-web-logo img.kp-logo-s { display: none; }
+:root[data-theme="dark"] .kp-web-logo img.kp-logo-s { display: block; }
+:root[data-theme="dark"] .kp-web-logo img.kp-logo-v { display: none; }
+.bc-howto .kpw-cimkek { margin-top: var(--bc-sp-3); }
+.kp-web-logo { display: inline-flex; align-items: center; min-height: var(--bc-tap); min-width: var(--bc-tap); }

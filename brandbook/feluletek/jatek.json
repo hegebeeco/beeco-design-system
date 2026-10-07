@@ -98,5 +98,305 @@
     32
    ]
   }
- }
+ },
+ "blokkok": [
+  {
+   "t": "h2",
+   "x": "A játékbőr élő elemei",
+   "id": "jatekbor-elemek"
+  },
+  {
+   "t": "p",
+   "x": "Az alábbi minták a játékok **saját** CSS-ével futnak (`web/css/tokens.css` → `ds.css` → `ds-game.css`), mindegyik külön keretben – így a brand book termékbőre nem keveredik beléjük. A szövegek a `docs/arculat.md` példái; a számok mintaadatok. Sötét mód helyett a játékokban éjszakai jelenet van (`ds-dark`), ezért a minták világosak maradnak."
+  },
+  {
+   "t": "gen",
+   "nev": "jatekelemek",
+   "elemek": [
+    {
+     "id": "gomb",
+     "nev": "Nagy gomb",
+     "css": [
+      "ds-btn",
+      "is-secondary",
+      "is-small",
+      "is-block"
+     ],
+     "leiras": "Méz kapszula 4 px „vastagsággal”: lenyomva lesüllyed. A képernyő **egyetlen** fő cselekvése.",
+     "minta": "<div class=\"jm-sor\"><button type=\"button\" class=\"ds-btn\">Indulhat! {{pic:play}}</button><button type=\"button\" class=\"ds-btn is-secondary is-small\">Szabályok {{pic:info}}</button></div>",
+     "mikor": [
+      "képernyőnként **egy** `ds-btn`: indulás, következő pálya, kész",
+      "a mellékes lépés `is-secondary` és/vagy `is-small` – ugyanúgy 44 px magas",
+      "a felirat ige + piktogram: `Indulhat! ▶` (`pic('play')`)"
+     ],
+     "mikor_ne": [
+      "beállítás, szint, „Mégse”: kis gomb vagy `is-secondary`, nem még egy méz gomb",
+      "a termékbőr `bc-btn`-je (fekete, kemény árnyék) a játékban soha"
+     ],
+     "do": [
+      {
+       "felirat": "egy méz gomb, mellette másodlagos",
+       "html": "<div class=\"jm-sor\"><button type=\"button\" class=\"ds-btn\">Indulhat! {{pic:play}}</button><button type=\"button\" class=\"ds-btn is-secondary is-small\">Szabályok</button></div>",
+       "miert": "egy pillantásra látszik, hová koppints"
+      }
+     ],
+     "dont": [
+      {
+       "felirat": "három egyforma méz gomb",
+       "html": "<div class=\"jm-sor\"><button type=\"button\" class=\"ds-btn is-small\">Indulhat!</button><button type=\"button\" class=\"ds-btn is-small\">Szabályok</button><button type=\"button\" class=\"ds-btn is-small\">Ranglista</button></div>",
+       "miert": "ha minden kiemelt, semmi sem az"
+      },
+      {
+       "felirat": "termékbőr-gomb a játékban",
+       "termekTokenek": true,
+       "html": "<button type=\"button\" class=\"ds-btn jm-rossz-termek\">Indulhat!</button>",
+       "miert": "kemény, átlós árnyék és fekete keret a játékbőrben tilos – az a termékeké"
+      }
+     ],
+     "forras": [
+      "`docs/arculat.md` – 4. Elemkészlet, 5. Piktogramok, 5/b–5/d, 7. Szöveg",
+      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`",
+      "`beeco-arculat` skill – Szabályok (nem alkudható)"
+     ]
+    },
+    {
+     "id": "hud",
+     "nev": "Kijelző (HUD): csipeszek és ikongombok",
+     "css": [
+      "ds-hud",
+      "ds-chip",
+      "is-honey",
+      "is-blossom",
+      "ds-icon-btn"
+     ],
+     "js": [
+      "pic('név')"
+     ],
+     "leiras": "Játék közben fent: pont, élet, sorozat **piktogrammal és számmal**; jobbra a rendszergombok (hang, menü).",
+     "minta": "<div class=\"ds-hud jm-hud\"><div class=\"ds-hud-group\"><span class=\"ds-chip is-honey\">{{pic:star}}<span class=\"jm-sr\">Pont:</span>1 240</span><span class=\"ds-chip\">{{pic:heart}}<span class=\"jm-sr\">Élet:</span>3</span><span class=\"ds-chip is-blossom\">{{pic:flame}}<span class=\"jm-sr\">Sorozat:</span>5×</span></div><span class=\"ds-hud-spacer\"></span><div class=\"ds-hud-group\"><button type=\"button\" class=\"ds-icon-btn\" aria-label=\"Hang kikapcsolása\">{{pic:sound}}</button><button type=\"button\" class=\"ds-icon-btn\" aria-label=\"Menü\">{{pic:menu}}</button></div></div>",
+     "minta_jel": "a számok mintaadatok",
+     "mikor": [
+      "minden csipesz: piktogram + szám; a képernyőolvasó a nevét is hallja (rejtett „Pont:”)",
+      "ikongomb mindig `aria-label`-lel, 44 × 44 px",
+      "rétegek tokennel: `--z-hud`, `--z-controls` – nyers `z-index` szám nem"
+     ],
+     "mikor_ne": [
+      "emoji a vezérlőn – minden telefonon másképp néz ki → `pic()`",
+      "hosszú felirat a HUD-ban → egy szám, a magyarázat `ds-details`-be"
+     ],
+     "do": [
+      {
+       "felirat": "piktogram + szám",
+       "html": "<div class=\"jm-sor\"><span class=\"ds-chip is-honey\">{{pic:star}}1 240</span><span class=\"ds-chip\">{{pic:heart}}3</span><button type=\"button\" class=\"ds-icon-btn\" aria-label=\"Menü\">{{pic:menu}}</button></div>",
+       "miert": "a saját piktogram mindenhol ugyanígy néz ki, és illik a rajzstílushoz"
+      }
+     ],
+     "dont": [
+      {
+       "felirat": "emoji a vezérlőn",
+       "html": "<div class=\"jm-sor\"><span class=\"ds-chip is-honey\">⭐ 1 240</span><span class=\"ds-chip\">❤️ 3</span><button type=\"button\" class=\"ds-icon-btn\" aria-label=\"Menü\">☰</button></div>",
+       "miert": "az emoji telefononként más, és kilóg a beeco rajzstílusából"
+      }
+     ],
+     "forras": [
+      "`docs/arculat.md` – 4. Elemkészlet, 5. Piktogramok, 5/b–5/d, 7. Szöveg",
+      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`",
+      "`beeco-arculat` skill – Szabályok (nem alkudható)"
+     ]
+    },
+    {
+     "id": "visszajelzes",
+     "nev": "Visszajelzés és a gondolkodó méhecske",
+     "css": [
+      "ds-feedback",
+      "is-good",
+      "is-bad",
+      "ds-say",
+      "ds-avatar",
+      "ds-bubble"
+     ],
+     "js": [
+      "dsFeedback('good' | 'great' | 'try')"
+     ],
+     "leiras": "Jó és „próbáld újra” válasz: **szín ÉS ikon** együtt. Rossz válasznál a gondolkodó méhecske tanít – soha nem a mérges.",
+     "minta": "<div class=\"jm-oszlop\"><span class=\"ds-feedback is-good\">{{pic:check}}Szuper, ez a papírba megy!</span><div class=\"ds-say\"><span class=\"ds-avatar is-bee jm-meh\"><img src=\"../ds/web/assets/brand/moods/think.webp\" alt=\"\" width=\"56\" height=\"56\"></span><div class=\"ds-bubble\">Majdnem! A tükör nem üveg – próbáld a kommunálist.</div></div><span class=\"ds-feedback is-bad\">{{pic:refresh}}Majdnem! Próbáld újra.</span></div>",
+     "mikor": [
+      "egy hívás = hang + rezgés + méhecske: `dsFeedback('good' | 'great' | 'try')`",
+      "rossz válasznál a `think` (gondolkodó) méhecske és egy tanító mondat",
+      "a hangnem tegeződő, bátorító: „Majdnem!”"
+     ],
+     "mikor_ne": [
+      "csak színnel jelzett jó/rossz – mindig ikon is (`check`, `refresh`)",
+      "szidás („Rossz!”, „Hibás!”) és a mérges méhecske – soha"
+     ],
+     "do": [
+      {
+       "felirat": "ikon + szín + bátorítás",
+       "html": "<span class=\"ds-feedback is-bad\">{{pic:refresh}}Majdnem! Próbáld újra.</span>",
+       "miert": "színtévesztő is látja, és a játékos tanul belőle"
+      }
+     ],
+     "dont": [
+      {
+       "felirat": "csak szín, szidó szöveg",
+       "html": "<span class=\"ds-feedback is-bad\">Rossz! Hibás válasz.</span>",
+       "miert": "ikon nélkül a jelentés csak a színen múlik, és a játék soha nem szid"
+      }
+     ],
+     "forras": [
+      "`docs/arculat.md` – 4. Elemkészlet, 5. Piktogramok, 5/b–5/d, 7. Szöveg",
+      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`",
+      "`beeco-arculat` skill – Szabályok (nem alkudható)"
+     ]
+    },
+    {
+     "id": "panel",
+     "nev": "Kör vége: panel és eredmény",
+     "css": [
+      "ds-panel",
+      "ds-result",
+      "ds-stars",
+      "ds-btn"
+     ],
+     "js": [
+      "dsResultHTML({ mood, title, stars, score, lead, actions })",
+      "showResult({…})"
+     ],
+     "leiras": "**Minden** szint és kör vége ugyanígy: méhecske, cím, csillag, pont, egy mondat, egy nagy gomb + kis gombok.",
+     "minta": "<div class=\"ds-panel jm-panel\" role=\"group\" aria-label=\"Kör vége (minta)\"><div class=\"ds-result\"><img class=\"ds-result-bee\" src=\"../ds/web/assets/brand/moods/rank.webp\" alt=\"\" width=\"88\" height=\"88\"><h2 class=\"ds-result-title\">Szép munka!</h2><span class=\"ds-stars is-big\" role=\"img\" aria-label=\"3-ból 2 csillag\">{{pic:star}}{{pic:star}}{{pic:nostar}}</span><div class=\"ds-result-score\"><span class=\"ds-result-num\">1 240</span><small>pont</small></div><p class=\"ds-result-lead\">Minta: egy mondat arról, mit értél el.</p><div class=\"ds-result-actions\"><button type=\"button\" class=\"ds-btn\">Következő pálya {{pic:next}}</button><button type=\"button\" class=\"ds-btn is-secondary is-small\">Újra {{pic:refresh}}</button></div></div></div>",
+     "minta_jel": "a szöveg és a pontszám minta",
+     "mikor": [
+      "a játékban felugró ablak: `role=\"dialog\"` + `aria-modal=\"true\"`, a bezáró gombon `data-ds-close` – a `ds.js` őre intézi a Tab/Esc-et és a fókuszt",
+      "a panel belseje mindig `dsResultHTML()` / `showResult()` – nem saját elrendezés",
+      "a részletek `ds-details`-be kerülnek"
+     ],
+     "mikor_ne": [
+      "szövegfal a panelen – a „3 másodperc” szabály: egy mondat látszik",
+      "két nagy gomb egymás mellett – egy `ds-btn`, a többi kicsi"
+     ],
+     "do": [
+      {
+       "felirat": "egy cím, egy mondat, egy nagy gomb",
+       "html": "<div class=\"ds-panel jm-panel\" role=\"group\" aria-label=\"Kör vége – így\"><div class=\"ds-result\"><h2 class=\"ds-result-title\">Szép munka!</h2><span class=\"ds-stars\" role=\"img\" aria-label=\"3-ból 2 csillag\">{{pic:star}}{{pic:star}}{{pic:nostar}}</span><p class=\"ds-result-lead\">Minta: egy mondat arról, mit értél el.</p><button type=\"button\" class=\"ds-btn\">Tovább {{pic:next}}</button></div></div>",
+       "miert": "3 másodperc alatt megvan, mi történt és mi a következő lépés"
+      }
+     ],
+     "dont": [
+      {
+       "felirat": "szövegfal, két nagy gomb",
+       "html": "<div class=\"ds-panel jm-panel\" role=\"group\" aria-label=\"Kör vége – ne így\"><div class=\"ds-result\"><h2 class=\"ds-result-title\">Vége a körnek</h2><p class=\"jm-szovegfal\">Minta: hosszú magyarázat arról, mi történt a körben, melyik tárgy hová került volna, miért, és mit lehetne legközelebb jobban csinálni – mindez egyetlen bekezdésben, lenyitható rész nélkül.</p><div class=\"jm-sor\"><button type=\"button\" class=\"ds-btn is-small\">Tovább</button><button type=\"button\" class=\"ds-btn is-small\">Újra</button></div></div></div>",
+       "miert": "senki nem olvassa el; a részletek `ds-details`-be valók, a gombok közül egy a fő"
+      }
+     ],
+     "forras": [
+      "`docs/arculat.md` – 4. Elemkészlet, 5. Piktogramok, 5/b–5/d, 7. Szöveg",
+      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`",
+      "`beeco-arculat` skill – Szabályok (nem alkudható)"
+     ]
+    },
+    {
+     "id": "kartya",
+     "nev": "Játékkártya hatszöggel",
+     "css": [
+      "ds-card",
+      "is-interactive",
+      "ds-hex"
+     ],
+     "leiras": "Választható elem (játék, szerep, pálya): papír lap, 3 px olíva keret, nagy sarok, **puha, függőleges** árnyék; a méhsejt-hatszögben a szerep-méhecske.",
+     "minta": "<a class=\"ds-card is-interactive jm-kartya\" href=\"#\"><span class=\"ds-hex jm-acc-sage\"><img src=\"../ds/web/assets/brand/roles/szelektalj.webp\" alt=\"\" width=\"56\" height=\"56\"></span><span class=\"jm-kartya-szoveg\"><span class=\"mt-cim\">Szelektálj!</span><span class=\"mt-halk\">Válogasd szét a hulladékot!</span></span></a>",
+     "mikor": [
+      "kattintható kártya valódi `<a>` vagy `<button>`, billentyűvel is",
+      "a hatszög színe tokenből (`--acc: var(--sage)`), osztályon át – nem inline stílussal",
+      "egy kártyán egy cím és egy mondat"
+     ],
+     "mikor_ne": [
+      "termékbőr-keverés: fekete keret, kemény átlós árnyék, 8 px sarok – a játékban soha",
+      "`div` kattintás-figyelővel – nem érhető el billentyűzettel"
+     ],
+     "do": [
+      {
+       "felirat": "puha árnyék, olíva keret, nagy sarok",
+       "html": "<a class=\"ds-card is-interactive jm-kartya\" href=\"#\" tabindex=\"-1\"><span class=\"ds-hex jm-acc-sage\"><img src=\"../ds/web/assets/brand/roles/szelektalj.webp\" alt=\"\" width=\"56\" height=\"56\"></span><span class=\"jm-kartya-szoveg\"><span class=\"mt-cim\">Szelektálj!</span><span class=\"mt-halk\">Válogasd szét a hulladékot!</span></span></a>",
+       "miert": "meleg, puha, játékos – ez a Méhsejt-diorama"
+      }
+     ],
+     "dont": [
+      {
+       "felirat": "a termékbőr árnyéka és sarka",
+       "termekTokenek": true,
+       "html": "<a class=\"ds-card is-interactive jm-kartya jm-rossz-termek\" href=\"#\" tabindex=\"-1\"><span class=\"ds-hex jm-acc-sage\"><img src=\"../ds/web/assets/brand/roles/szelektalj.webp\" alt=\"\" width=\"56\" height=\"56\"></span><span class=\"jm-kartya-szoveg\"><span class=\"mt-cim\">Szelektálj!</span><span class=\"mt-halk\">Válogasd szét a hulladékot!</span></span></a>",
+       "miert": "a két bőr nem keveredik: a kemény, átlós árnyék a termékbőré"
+      }
+     ],
+     "forras": [
+      "`docs/arculat.md` – 4. Elemkészlet, 5. Piktogramok, 5/b–5/d, 7. Szöveg",
+      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`",
+      "`beeco-arculat` skill – Szabályok (nem alkudható)"
+     ]
+    },
+    {
+     "id": "matrica",
+     "nev": "Matrica a tartalomra, piktogram a vezérlőre",
+     "css": [
+      "img.art",
+      "ds-card",
+      "ds-btn"
+     ],
+     "js": [
+      "artIcon('név')",
+      "ART.image('név')",
+      "pic('név')"
+     ],
+     "leiras": "A **matrica** (színes illusztráció fehér peremmel) azt mutatja, „mit látsz” – tárgy, étel, hulladék. A **piktogram** (egyszínű, vonalas) azt, „mit csinálsz” – gomb, fül, állapot.",
+     "minta": "<div class=\"jm-sor\"><div class=\"ds-card is-flat jm-targy\">{{art:pet_palack|}}<span class=\"mt-cim\">PET-palack</span></div><div class=\"ds-card is-flat jm-targy\">{{art:banan|}}<span class=\"mt-cim\">Banán</span></div></div><button type=\"button\" class=\"ds-btn is-secondary is-small\">Tovább {{pic:next}}</button>",
+     "mikor": [
+      "tartalomban `artIcon()` (HTML), `ART.image()` (vászon, 3D) – ha nincs matrica, az emoji marad, semmi nem törik el",
+      "új matrica csak a jóváhagyott B szinten: `docs/rajzolas.md`",
+      "a vezérlőn mindig `pic()`"
+     ],
+     "mikor_ne": [
+      "matrica a gombon – a gomb piktogramot kap",
+      "emoji a tartalomban, ha van rá matrica",
+      "a beeco méhecske matricának átrajzolva, valódi logó vagy tanúsító jel – soha"
+     ],
+     "do": [
+      {
+       "felirat": "matrica a tárgyon, piktogram a gombon",
+       "html": "<div class=\"jm-sor\"><div class=\"ds-card is-flat jm-targy\">{{art:konzerv|}}<span class=\"mt-cim\">Konzervdoboz</span></div><button type=\"button\" class=\"ds-btn is-secondary is-small\">Tovább {{pic:next}}</button></div>",
+       "miert": "a szem azonnal szétválasztja: ez a tartalom, az a teendő"
+      }
+     ],
+     "dont": [
+      {
+       "felirat": "matrica a gombon, emoji a tartalmon",
+       "html": "<div class=\"jm-sor\"><div class=\"ds-card is-flat jm-targy\"><span class=\"mt-cim\">🥫 Konzervdoboz</span></div><button type=\"button\" class=\"ds-btn is-secondary is-small jm-btn-art\">{{art:konzerv|}} Tovább</button></div>",
+       "miert": "összemosódik, mi a tárgy és mi a vezérlő; az emoji telefononként más"
+      }
+     ],
+     "forras": [
+      "`docs/arculat.md` – 4. Elemkészlet, 5. Piktogramok, 5/b–5/d, 7. Szöveg",
+      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`",
+      "`beeco-arculat` skill – Szabályok (nem alkudható)",
+      "`docs/grafika-spec.md`, `docs/rajzolas.md`"
+     ]
+    }
+   ]
+  },
+  {
+   "t": "szabaly",
+   "cim": "A játékbőr – nem alkudható",
+   "elemek": [
+    "csak tokenek (`web/css/tokens.css`); új token a `tokens.css`-be ÉS a `web/js/ds.js` `DS.color`-jába",
+    "**olíva** tinta és vonal, 3 px keret, nagy sarok, puha árnyék – fekete és kemény, eltolt árnyék soha",
+    "képernyőnként egy mondat és egy nagy gomb; a többi `ds-details`-be",
+    "szín mellé mindig ikon; koppintási felület ≥ 44 px (`--tap`); a fókuszkeret marad",
+    "rossz válasznál a gondolkodó méhecske – a mérges soha",
+    "ellenőrzés: `node tests/check-arculat.js` és `node tests/check-art.js`"
+   ],
+   "forras": [
+    "`docs/arculat.md` 3–9.",
+    "`beeco-arculat` skill"
+   ]
+  }
+ ]
 }
