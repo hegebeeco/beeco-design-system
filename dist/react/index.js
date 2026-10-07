@@ -4,7 +4,7 @@ import {
   UTVONAL_LABELS_HU,
   Utvonal,
   hataridoSzoveg
-} from "./reszek/chunk-NEXAIRVQ.js";
+} from "./reszek/chunk-FNDTR2ON.js";
 import "./reszek/chunk-DKN2RXAQ.js";
 import {
   ListPage,

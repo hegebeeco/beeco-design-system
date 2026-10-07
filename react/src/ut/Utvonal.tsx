@@ -129,10 +129,22 @@ export function Utvonal({ szakaszok, cimke, kovetkezo, segito, hatarido, tomor, 
   const terkep = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     const el = terkep.current;
-    const cur = el?.querySelector<HTMLElement>('[aria-current="step"]');
-    if (!el || !cur || el.scrollWidth <= el.clientWidth) return;
-    // A doboz position: relative → az offsetLeft hozzá képest számít; azonnal (nem görgetési animációval)
-    el.scrollLeft = cur.offsetLeft - el.clientWidth / 2 + cur.offsetWidth / 2;
+    if (!el) return;
+    const kozepre = () => {
+      const cur = el.querySelector<HTMLElement>('[aria-current="step"]');
+      if (!cur || el.scrollWidth <= el.clientWidth) return;
+      // A doboz position: relative → az offsetLeft hozzá képest számít; azonnal (nem görgetési animációval)
+      el.scrollLeft = cur.offsetLeft - el.clientWidth / 2 + cur.offsetWidth / 2;
+    };
+    kozepre();
+    // A betűk (Lalezar, Open Sans) később töltődhetnek be, és a doboz mérete is változhat:
+    // ilyenkor újra középre igazítunk. Görgetésre nem fut, így a felhasználót nem rángatja.
+    let elo = true;
+    document.fonts?.ready.then(() => { if (elo) kozepre(); });
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(() => kozepre()) : null;
+    ro?.observe(el);
+    if (el.firstElementChild) ro?.observe(el.firstElementChild);
+    return () => { elo = false; ro?.disconnect(); };
   }, [szakaszok, tomor]);
 
   const cta = kovetkezo && (() => {

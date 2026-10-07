@@ -53,9 +53,24 @@ function Utvonal({ szakaszok, cimke, kovetkezo, segito, hatarido, tomor, cimSzin
   const terkep = useRef(null);
   useLayoutEffect(() => {
     const el = terkep.current;
-    const cur = el?.querySelector('[aria-current="step"]');
-    if (!el || !cur || el.scrollWidth <= el.clientWidth) return;
-    el.scrollLeft = cur.offsetLeft - el.clientWidth / 2 + cur.offsetWidth / 2;
+    if (!el) return;
+    const kozepre = () => {
+      const cur = el.querySelector('[aria-current="step"]');
+      if (!cur || el.scrollWidth <= el.clientWidth) return;
+      el.scrollLeft = cur.offsetLeft - el.clientWidth / 2 + cur.offsetWidth / 2;
+    };
+    kozepre();
+    let elo = true;
+    document.fonts?.ready.then(() => {
+      if (elo) kozepre();
+    });
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(() => kozepre()) : null;
+    ro?.observe(el);
+    if (el.firstElementChild) ro?.observe(el.firstElementChild);
+    return () => {
+      elo = false;
+      ro?.disconnect();
+    };
   }, [szakaszok, tomor]);
   const cta = kovetkezo && (() => {
     const tart = /* @__PURE__ */ jsxs(Fragment, { children: [
