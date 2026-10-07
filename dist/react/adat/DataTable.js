@@ -2,9 +2,9 @@
 import {
   DataTable,
   rejtettOszlopok
-} from "../reszek/chunk-755PZQUF.js";
-import "../reszek/chunk-6UTOY3WE.js";
+} from "../reszek/chunk-DQ6R6ZEJ.js";
 import "../reszek/chunk-FIQXKHFT.js";
+import "../reszek/chunk-6UTOY3WE.js";
 import "../reszek/chunk-EYOCAGE4.js";
 import "../reszek/chunk-Y76GFFTT.js";
 import "../reszek/chunk-FDP27ZEF.js";

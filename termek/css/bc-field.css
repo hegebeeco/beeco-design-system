@@ -43,9 +43,10 @@
 .bc-search > .bc-icon-btn { position: absolute; right: 0; top: 50%; transform: translateY(-50%); }
 .bc-search > .bc-input::-webkit-search-cancel-button { display: none; }
 
-/* Szegmentált kapcsoló (1A: gombsor, méz kijelölés); keskeny helyen görgethető */
+/* Szegmentált kapcsoló (1A: gombsor, méz kijelölés); keskeny helyen görgethető.
+   1.52.0: minden szegmens legalább --bc-tap (44 px) magas MINDEN nézetben (asztalon is – a minőségkapu 40 px-t mért). */
 .bc-seg { display: inline-flex; width: fit-content; max-width: 100%; overflow-x: auto; border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); background: var(--bc-surface); scrollbar-width: none; }
-.bc-seg-item { flex: none; display: inline-flex; align-items: center; gap: var(--bc-sp-2); min-height: 40px; padding: 0 var(--bc-sp-4);
+.bc-seg-item { flex: none; display: inline-flex; align-items: center; gap: var(--bc-sp-2); min-height: var(--bc-tap); padding: 0 var(--bc-sp-4);
   font: inherit; font-weight: var(--bc-fw-semibold); color: var(--bc-ink); background: transparent; border: 0; cursor: pointer;
   transition: background-color var(--bc-t-fast) var(--bc-ease-out); }
 .bc-seg-item + .bc-seg-item { border-left: var(--bc-bw-base) solid var(--bc-line); }
@@ -59,7 +60,6 @@
   margin: 0 calc(-1 * var(--bc-bw-base)) calc(-1 * var(--bc-bw-base)) 0; }
 .bc-seg-item:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: -3px; }
 @media (hover: hover) and (pointer: fine) { .bc-seg-item:hover:not([data-state="on"], :disabled) { background: var(--bc-surface-2); } }
-@media (pointer: coarse) { .bc-seg-item { min-height: var(--bc-tap); } }
 
 /* Címkefelhő (4A: ≤ 20 címkéig) */
 .bc-tagcloud { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2); }

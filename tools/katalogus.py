@@ -4,7 +4,7 @@ import os, re
 ROOT = os.path.join(os.path.dirname(__file__), '..')
 CSOM = [('01 – Űrlap (alap)', ['field', 'inputs', 'pickers', 'form']), ('02 – Adat és grafikon', ['adat']), ('03 – Rétegek és navigáció', ['reteg']),
         ('04 – Média és speciális', ['media']), ('05 – Méhecske, mozgás, szöveg', ['meh']), ('06a – Kiegészítők', ['kieg']),
-        ('06b – Helyválasztó, sorsolás, videó', ['kieg2']), ('06c – Oldalsablonok', ['sablon']), ('06d – Út (szakasztérkép)', ['ut'])]
+        ('06b – Helyválasztó, sorsolás, videó', ['kieg2']), ('06c – Oldalsablonok', ['sablon']), ('06d – Út (szakasztérkép)', ['ut']), ('06e – Csapat-egészség (kerék, jelzőkártya, retró)', ['csapat'])]
 idx = open(os.path.join(ROOT, 'react/src/index.ts')).read()
 
 def nevek(text):

@@ -1,6 +1,24 @@
 /* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import "../reszek/chunk-72VBOYUU.js";
 import {
+  VideoUpload
+} from "../reszek/chunk-P6YHT7ZO.js";
+import {
+  ImageUploader
+} from "../reszek/chunk-4LEDFMHN.js";
+import "../reszek/chunk-FX24ZZVA.js";
+import "../reszek/chunk-XHC4VM7X.js";
+import {
+  HeatScale,
+  MapLegend
+} from "../reszek/chunk-I33TNT2P.js";
+import {
+  MapPanel
+} from "../reszek/chunk-Z77FUP65.js";
+import "../reszek/chunk-2TPYLK2Y.js";
+import "../reszek/chunk-76D6KKTK.js";
+import "../reszek/chunk-PIENKO5S.js";
+import {
   MonthCalendar
 } from "../reszek/chunk-RFL7SRNU.js";
 import "../reszek/chunk-RPMNVMB2.js";
@@ -21,42 +39,21 @@ import {
   validateHours
 } from "../reszek/chunk-TID7NPC5.js";
 import {
-  VideoUpload
-} from "../reszek/chunk-QKA5RZ4T.js";
-import {
-  ImageUploader
-} from "../reszek/chunk-574CYTUR.js";
-import "../reszek/chunk-FX24ZZVA.js";
-import "../reszek/chunk-XHC4VM7X.js";
-import {
-  HeatScale,
-  MapLegend
-} from "../reszek/chunk-I33TNT2P.js";
-import {
-  MapPanel
-} from "../reszek/chunk-Z77FUP65.js";
-import "../reszek/chunk-2TPYLK2Y.js";
-import "../reszek/chunk-76D6KKTK.js";
-import "../reszek/chunk-PIENKO5S.js";
-import {
   Avatar,
   initials
 } from "../reszek/chunk-KUQSEZ3V.js";
 import {
   CropDialog,
   cropToFile
-} from "../reszek/chunk-HY3WXT7W.js";
-import "../reszek/chunk-6REKQ267.js";
-import "../reszek/chunk-VYKV7YGA.js";
-import "../reszek/chunk-25EL4YNB.js";
-import "../reszek/chunk-M3HNDASB.js";
+} from "../reszek/chunk-OXWOUVNU.js";
+import "../reszek/chunk-CI5NPOMQ.js";
+import "../reszek/chunk-UWGZHPAC.js";
+import "../reszek/chunk-CKJ7TVFR.js";
 import "../reszek/chunk-FSQ5GEYV.js";
-import {
-  ImageCropper
-} from "../reszek/chunk-CAKZ4A7D.js";
+import "../reszek/chunk-M3HNDASB.js";
 import {
   FileImport
-} from "../reszek/chunk-B6DKRKKA.js";
+} from "../reszek/chunk-Y3HWWUN5.js";
 import {
   Progress,
   Stepper,
@@ -69,7 +66,7 @@ import {
 import {
   FilePicker,
   fileSizeText
-} from "../reszek/chunk-I7BSLTQQ.js";
+} from "../reszek/chunk-UFAURDQF.js";
 import {
   checkFiles,
   fileKey,
@@ -80,14 +77,17 @@ import {
 } from "../reszek/chunk-JARBHXIC.js";
 import {
   Gallery
-} from "../reszek/chunk-CGVQ53R4.js";
-import "../reszek/chunk-L3CHOTIX.js";
-import "../reszek/chunk-TH7GHE2J.js";
+} from "../reszek/chunk-TANSEPH6.js";
 import {
   Lightbox
 } from "../reszek/chunk-NIUK4GWS.js";
+import "../reszek/chunk-CEVX3CXA.js";
 import "../reszek/chunk-PVWOVVRC.js";
+import "../reszek/chunk-TH7GHE2J.js";
 import "../reszek/chunk-OJ253HUL.js";
+import {
+  ImageCropper
+} from "../reszek/chunk-2Y5EETJ3.js";
 import {
   MARKER_ICON,
   MARKER_ICON_SELECTED,
@@ -97,15 +97,15 @@ import {
   heatGradient,
   markerHtml
 } from "../reszek/chunk-6VN2CA6Y.js";
-import "../reszek/chunk-ANZHIEDC.js";
-import "../reszek/chunk-CP3GHWKB.js";
 import "../reszek/chunk-7BHAWIHZ.js";
+import "../reszek/chunk-WBMML2HB.js";
+import "../reszek/chunk-CP3GHWKB.js";
 import "../reszek/chunk-6UTOY3WE.js";
 import "../reszek/chunk-FDP27ZEF.js";
 import "../reszek/chunk-NILXBJHT.js";
 import "../reszek/chunk-2OVUAIP6.js";
-import "../reszek/chunk-AXT3NV5V.js";
 import "../reszek/chunk-TUR5VE7W.js";
+import "../reszek/chunk-AXT3NV5V.js";
 import "../reszek/chunk-UFICQAUZ.js";
 import "../reszek/chunk-WSKDGDS2.js";
 import "../reszek/chunk-AGN4Q77Z.js";

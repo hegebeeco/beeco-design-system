@@ -2,10 +2,10 @@
 import {
   RangeSlider,
   Slider
-} from "../reszek/chunk-TZTNAYVA.js";
+} from "../reszek/chunk-MXCJTOWF.js";
 import "../reszek/chunk-XVNYYG75.js";
-import "../reszek/chunk-AXT3NV5V.js";
 import "../reszek/chunk-TUR5VE7W.js";
+import "../reszek/chunk-AXT3NV5V.js";
 import "../reszek/chunk-UFICQAUZ.js";
 import "../reszek/chunk-WSKDGDS2.js";
 import "../reszek/chunk-AGN4Q77Z.js";

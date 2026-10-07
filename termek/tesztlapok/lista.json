@@ -30,6 +30,16 @@
   "leiras": "Gépelhető dátum (2026. 10. 01.), lenyíló naptár hétfővel, tiltott napok, időpont, időszak, szökőnap."
  },
  {
+  "nev": "jelzo-kartya",
+  "cim": "Jelzőkártya (JelzoKartya)",
+  "leiras": "Csapat-egészség szavazókártya: zöld / sárga / piros (ikon + szöveg), irány, rövid szövegek – vezérelt, billentyűzettel, hibával és tiltva is."
+ },
+ {
+  "nev": "kerek-radar",
+  "cim": "Kerék (KerekRadar)",
+  "leiras": "Interaktív radar 3–12 területtel, két hónap egymásra vetítve, kijelölhető tengelyekkel, listával és táblázattal – minden állapottal és szélső esettel."
+ },
+ {
   "nev": "kieg-celcsoport",
   "cim": "Kiegészítők – célcsoport",
   "leiras": "„Ha … és/vagy …” feltételsorok, élő létszám-becsléssel; az üres és hibás feltétel jelölve. A létszámok mintaadatok."
@@ -153,6 +163,11 @@
   "nev": "reteg-vaz",
   "cim": "reteg-vaz.tsx",
   "leiras": ""
+ },
+ {
+  "nev": "retro-vaszon",
+  "cim": "Retró-vászon (RetroVaszon)",
+  "leiras": "Zónák cetlikkel (vitorlás, 4L, Start–Stop–Folytasd): új cetli név nélkül is, áthelyezés húzással és billentyűzettel, szerkesztés, törlés, üres, töltés, csak olvasható."
  },
  {
   "nev": "sablon-iranyitopult",

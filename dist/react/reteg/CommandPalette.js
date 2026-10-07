@@ -4,12 +4,12 @@ import {
   CommandPalette,
   commandHotkeyLabel,
   useCommandHotkey
-} from "../reszek/chunk-P7QAMPDM.js";
-import "../reszek/chunk-6REKQ267.js";
-import "../reszek/chunk-VYKV7YGA.js";
-import "../reszek/chunk-25EL4YNB.js";
-import "../reszek/chunk-M3HNDASB.js";
+} from "../reszek/chunk-EVBEJS6B.js";
+import "../reszek/chunk-CI5NPOMQ.js";
+import "../reszek/chunk-UWGZHPAC.js";
+import "../reszek/chunk-CKJ7TVFR.js";
 import "../reszek/chunk-FSQ5GEYV.js";
+import "../reszek/chunk-M3HNDASB.js";
 import "../reszek/chunk-H63GJBVA.js";
 import "../reszek/chunk-2OVUAIP6.js";
 import "../reszek/chunk-E5CUZH7I.js";

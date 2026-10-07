@@ -38,3 +38,4 @@ export * from './sablon';
 export * from './tema';
 export * from './marka';
 export * from './ut';
+export * from './csapat';
