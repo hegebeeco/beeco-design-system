@@ -11,6 +11,14 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.51.0 – 2026-10-07 – Utvonal: szakasztérkép + egy következő lépés
+Jóváhagyta Kristóf 2026-10-07 (a Kaptár „Az utad” jelöltje, beeco-hr `docs/IRANYOK.md` C5). Újrahasznosítható: Kaptár, partner-onboarding, beeco.hu „így csatlakozz”.
+* `react/src/ut/Utvonal.tsx` (új, organizmus, export: `Utvonal`, `hataridoSzoveg`, `UTVONAL_LABELS_HU` + típusok): `szakaszok` (`kulcs`, `cim`, `allapot`: kesz · most · jon · kihagyva, `datum`, `leiras`), EGY `kovetkezo` lépés (`szoveg`, `cta`, `href` vagy `onClick` – az egyetlen fő gomb), `segito` (`null` = még nincs, kíméletes szöveg), `hatarido` (`ora`, negatív = lejárt → figyelmeztető jelvény + megnyugtató mondat), `tomor` (vízszintes térkép irányítópultra) vagy alapból függőleges idővonal (mögötted dátummal, most, ami jön), `children` (pl. `Progress` a mostani szakaszhoz), `renderLink` (router), `labels` (más nyelv), `cimSzint`.
+* Hozzáférhetőség: `<ol>`, a mostani szakasz `aria-current="step"`, az állapot szövegesen is (tömörben képernyőolvasónak, teljesben látható jelvény), 44 px gomb és segítő-link, a görgető doboz fókuszálható régió.
+* `termek/css/bc-utvonal.css` (új, a `bc-all.css` végén): a tömör térkép a `bc-steps` pirulákra épül, és a SAJÁT dobozában görget (`position: relative` – a `.bc-sr` sem szökik ki az oldalból), a mostani szakasz középre gördül; hosszú cím 2 sorban `…`-val. **Aki a DS CSS-fájljait egyenként importálja (Kaptár), vegye fel a `bc-utvonal.css`-t.**
+* Tesztlap: `termek/tesztlapok/utvonal.html` + `utvonal.test.mjs` (13 forgatókönyv: üres, végigért, késő határidő, hiányzó segítő, nagyon hosszú címek, 14 szakasz, telefonon nincs kilógás, billentyűzet, angol feliratok); katalógus: 06d.
+* A `dist/react` csak az új modullal bővült (a fejléc-verzió a meglévő fájlokban marad – a teljes újragenerálás külön feladat).
+
 ## 1.50.0 – 2026-10-07 – Közösségi Kaptár 3D
 * `js/3d/kozosseg-modellek.js` (új, `KZ_MODELS`): rajsejt (nyitott hatszög-ház egy rajnak), a jövő tornya (emeletenként egy mérföldkő), eseménykút, közösségi fal (vicc / köszönő), kikötő vitorlással, kapu, hatszög-alap – B szint, 1 egység ≈ 1 m; a katalógusban („Közösségi Kaptár”), a `modellek.html`-ben és a `check-3d`-ben is.
 * `js/3d/kaptar-jelenet.js` (új, `beecoKaptar(THREE, scene, adat, opts)`): a közösség 3D otthona ADATBÓL – a `beecoVilag` szigetén középen a torony, gyűrűben a rajsejtek (egészség = gyűrű színe + jel a táblán), a tagok méhei, kint kút, falak, kikötő, kapu; `pick` (koppintás), `kiemel`, `lista` (2D tartalékhoz), `frissit`, `dispose`, `mozgas` (csökkentett mozgás). Leírás: `docs/3d-vilag.md` 8.

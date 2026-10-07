@@ -1,4 +1,4 @@
-/* beeco design system 1.50.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   differing,
   isBlank,
@@ -6,7 +6,7 @@ import {
   sameValue,
   showValue,
   suggest
-} from "../reszek/chunk-FBQYXCUI.js";
+} from "../reszek/chunk-CF3YP2BQ.js";
 export {
   differing,
   isBlank,

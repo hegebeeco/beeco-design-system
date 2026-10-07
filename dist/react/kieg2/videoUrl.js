@@ -1,8 +1,8 @@
-/* beeco design system 1.50.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   VIDEO_URL_MSG,
   parseVideoUrl
-} from "../reszek/chunk-XOIXLRE4.js";
+} from "../reszek/chunk-GPEPCORR.js";
 export {
   VIDEO_URL_MSG,
   parseVideoUrl

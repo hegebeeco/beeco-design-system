@@ -1,7 +1,7 @@
-/* beeco design system 1.50.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   hangnem_gen_default
-} from "../reszek/chunk-Z4DYWOGU.js";
+} from "../reszek/chunk-33BFXFEL.js";
 export {
   hangnem_gen_default as default
 };

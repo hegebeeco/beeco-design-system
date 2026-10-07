@@ -1,26 +1,26 @@
-/* beeco design system 1.50.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ReviewQueue
-} from "../reszek/chunk-45757L6Q.js";
-import "../reszek/chunk-NOYLWCO4.js";
-import "../reszek/chunk-VSCRBXI6.js";
-import "../reszek/chunk-YD7366LB.js";
-import "../reszek/chunk-Z4DYWOGU.js";
-import "../reszek/chunk-PQ7UVTGP.js";
-import "../reszek/chunk-BMDUYKRG.js";
-import "../reszek/chunk-DJD2TL4G.js";
-import "../reszek/chunk-WL764XTJ.js";
-import "../reszek/chunk-I632UO37.js";
-import "../reszek/chunk-X4MZGUDN.js";
-import "../reszek/chunk-AF2QNKOP.js";
-import "../reszek/chunk-55DYTIR3.js";
-import "../reszek/chunk-QYL2LISZ.js";
-import "../reszek/chunk-D7KYBR4M.js";
-import "../reszek/chunk-SSXA2GGQ.js";
-import "../reszek/chunk-XAUW6NUN.js";
-import "../reszek/chunk-THMCLQIO.js";
-import "../reszek/chunk-HI2BZSOM.js";
-import "../reszek/chunk-5NOEXS6K.js";
+} from "../reszek/chunk-WYOWJ52L.js";
+import "../reszek/chunk-SFE3VERN.js";
+import "../reszek/chunk-PSKLVMPE.js";
+import "../reszek/chunk-NHZ7E3AD.js";
+import "../reszek/chunk-33BFXFEL.js";
+import "../reszek/chunk-QUK2WDHW.js";
+import "../reszek/chunk-AIU3A5ND.js";
+import "../reszek/chunk-EC2QG63K.js";
+import "../reszek/chunk-PAJVNLNK.js";
+import "../reszek/chunk-76N7V5J3.js";
+import "../reszek/chunk-ELLGP2BG.js";
+import "../reszek/chunk-6M2UUQ5B.js";
+import "../reszek/chunk-632DTIWW.js";
+import "../reszek/chunk-R3M3HYHK.js";
+import "../reszek/chunk-M4KE4BK6.js";
+import "../reszek/chunk-LAVIXOYM.js";
+import "../reszek/chunk-IEHFT7BD.js";
+import "../reszek/chunk-RRMQQIT4.js";
+import "../reszek/chunk-KOQBPG2F.js";
+import "../reszek/chunk-HJFOG57B.js";
 export {
   ReviewQueue
 };

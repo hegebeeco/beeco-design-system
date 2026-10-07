@@ -1,0 +1,62 @@
+/* beeco TERMÉKBŐR – Utvonal (szakasztérkép + egy következő lépés), jóváhagyva 2026-10-07 (Kaptár „Az utad” jelöltje)
+   Csak tokenek; a tömör térkép a bc-steps pirulákra épül, a saját dobozában görget (position: relative – így a
+   képernyőolvasó-szöveg (.bc-sr, abszolút) sem lóg ki az oldalból); 44 px érintés; mozgás ≤ 300 ms ease-out. */
+.bc-ut { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--bc-sp-4); min-width: 0; color: var(--bc-ink); }
+
+/* ---------- Tömör: vízszintes térkép ---------- */
+.bc-ut-map { position: relative; min-width: 0; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; padding: var(--bc-sp-1); border-radius: var(--bc-r-m); scrollbar-width: thin; }
+.bc-ut-map:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 0; }
+.bc-ut-steps { flex-wrap: nowrap; width: max-content; }
+.bc-ut-steps li { flex: none; max-width: 14em; }
+.bc-ut-steps b { flex: none; }
+/* Nagyon hosszú cím: legfeljebb 2 sor, a vágást … jelzi (a teljes cím a title-ben, a mostani panelen és a képernyőolvasónak megvan) */
+.bc-ut-step-label { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; line-height: var(--bc-lh-snug); }
+.bc-steps .is-skipped { border-style: dashed; }
+.bc-steps .is-skipped b { color: var(--bc-ink-soft); background: var(--bc-surface); border-style: dashed; }
+
+/* ---------- A mostani szakasz: cím, leírás, egy következő lépés, segítő, határidő ---------- */
+.bc-ut-now { display: grid; gap: var(--bc-sp-3); min-width: 0; }
+.bc-ut-kicker { margin: 0; font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); }
+.bc-ut-now-title { margin: var(--bc-sp-1) 0 0; font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-xl); line-height: var(--bc-lh-tight); overflow-wrap: anywhere; }
+.bc-ut-desc { margin: var(--bc-sp-1) 0 0; font-size: var(--bc-fs-s); line-height: var(--bc-lh-snug); color: var(--bc-ink-soft); overflow-wrap: anywhere; }
+.bc-ut-extra { display: grid; gap: var(--bc-sp-2); min-width: 0; }
+.bc-ut-next { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-3); min-width: 0; padding: var(--bc-sp-3);
+  background: var(--bc-surface-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
+.bc-ut-next-text { flex: 1 1 12em; min-width: 0; margin: 0; font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); color: var(--bc-ink); overflow-wrap: anywhere; }
+.bc-ut-next .bc-btn { flex: 0 1 auto; }
+.bc-ut-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-2) var(--bc-sp-4); min-width: 0; font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+.bc-ut-meta p { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.bc-ut-segito b { color: var(--bc-ink); font-weight: var(--bc-fw-semibold); }
+.bc-ut-segito-link { display: inline-flex; align-items: center; min-height: var(--bc-tap); color: var(--bc-ink); font-weight: var(--bc-fw-semibold); text-decoration: underline; text-underline-offset: 3px; }
+.bc-ut-segito.is-missing { font-style: italic; }
+.bc-ut-meta .bc-badge { white-space: normal; }
+.bc-ut-nyugi { flex-basis: 100%; font-size: var(--bc-fs-xs); }
+
+/* Végigért: siker-sáv (szöveg + szín, nem csak szín) */
+.bc-ut-done { display: grid; gap: var(--bc-sp-1); padding: var(--bc-sp-3) var(--bc-sp-4); color: var(--bc-success-ink); background: var(--bc-success-bg);
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
+.bc-ut-done p { margin: 0; }
+.bc-ut-done-title { font-family: var(--bc-font-display); font-size: var(--bc-fs-l); line-height: var(--bc-lh-tight); }
+.bc-ut-done-text { font-size: var(--bc-fs-s); }
+.bc-ut-after { display: grid; gap: var(--bc-sp-3); }
+
+/* ---------- Teljes: függőleges idővonal ---------- */
+.bc-ut-list { display: grid; margin: 0; padding: 0; list-style: none; }
+.bc-ut-item { position: relative; display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: var(--bc-sp-4); padding-bottom: var(--bc-sp-5); }
+.bc-ut-item:last-child { padding-bottom: 0; }
+.bc-ut-item:not(:last-child)::before { content: ""; position: absolute; left: 15px; top: 36px; bottom: 4px; width: 2px; background: var(--bc-line-soft); }
+.bc-ut-item.is-kesz:not(:last-child)::before { background: var(--bc-line); }
+.bc-ut-mark { display: grid; place-items: center; width: 32px; height: 32px; font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); color: var(--bc-ink-soft);
+  background: var(--bc-surface-2); border: var(--bc-bw-base) solid var(--bc-line-soft); border-radius: 50%; }
+.bc-ut-item.is-kesz > .bc-ut-mark { color: var(--bc-success-ink); background: var(--bc-success-bg); border-color: var(--bc-line); }
+.bc-ut-item.is-most > .bc-ut-mark { color: var(--bc-on-accent); background: var(--bc-accent); border-color: var(--bc-line); }
+.bc-ut-item.is-most > .bc-ut-mark { margin-top: var(--bc-sp-3); }
+.bc-ut-item.is-most:not(:last-child)::before { top: calc(36px + var(--bc-sp-3)); }
+.bc-ut-item.is-kihagyva > .bc-ut-mark { background: var(--bc-surface); border-style: dashed; }
+.bc-ut-body { min-width: 0; padding-top: var(--bc-sp-1); }
+.bc-ut-item.is-most > .bc-ut-body { padding: var(--bc-sp-4); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+.bc-ut-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-1) var(--bc-sp-3); min-width: 0; }
+.bc-ut-title { margin: 0; min-width: 0; font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-l); line-height: var(--bc-lh-tight); overflow-wrap: anywhere; }
+.bc-ut-item:is(.is-jon, .is-kihagyva) .bc-ut-title { color: var(--bc-ink-soft); }
+.bc-ut-head .bc-badge { white-space: normal; }
+.bc-ut-body > .bc-ut-now { margin-top: var(--bc-sp-4); }
