@@ -36,6 +36,7 @@
 .headline1.cs,.headline2.cs,.headline3.cs,.headline2.feher,.main_heading.cs,.cs_szam,.cs_kicker{text-wrap:balance}
 .dia_kek_ov.cs p,.dia_ov_light.cs p,.dia_green_ov.cs p,.dia_kek.cs p,.dia_sarga p,.home-faq-content .text-size-regular,.cs_kinek_pont{text-wrap:pretty}
 .cs_sotet .home-faq-content .text-size-regular{color:var(--cs-tinta)}
+.cs_sotet .home-faq-content{border-color:var(--cs-keret-c)}
 .dia_sarga .sikeres_text,.dia_sarga .error_message{color:var(--cs-kakao)}
 section .cs_forras,section .cs_grafikon_lab,section .cs_raj_cimke,section .cs_raj_info_bont{font-size:13px}
 .cs_nyil{font-size:24px}
@@ -75,12 +76,12 @@ html.cs-js .cs_lepes_lista.cs-latszik::before{clip-path:inset(0 0 0 0)}
 
 /* ---------- Hero: nagyobb app-kép, bizalmi sor ---------- */
 .dia_kek_ov.cs .cs_mockup{width:100%;max-width:560px;margin-left:auto;margin-right:auto;overflow:visible}
-@media (max-width:767px){.dia_kek_ov.cs .cs_mockup{max-width:380px}}
+@media (max-width:767px){.dia_kek_ov.cs .cs_mockup{max-width:380px}.dia_kek_ov.cs h1.headline1{font-size:40px;line-height:1.08}}
 .cs_bizalom_v2{flex-wrap:wrap;align-items:stretch;gap:12px;width:100%;max-width:1100px;margin:0 auto}
 .cs_bizalom_v2 .cs_bizalom_elem{flex:1 1 150px;justify-content:center}
 .cs_bizalom_v2 .cs_bizalom_szamok{flex:2 1 320px;flex-direction:column;align-items:flex-start}
 .cs_bizalom_v2 .cs_bizalom_logo{height:56px;width:auto;max-width:100%;object-fit:contain}
-@media (min-width:992px){.dia_kek_ov.cs ._2_column_content_wrapper{align-items:center}.dia_kek_ov.cs ._2_column_content_wrapper>.small_content_block{flex:1 1 52%}.dia_kek_ov.cs ._2_column_content_wrapper>:last-child{flex:1 1 48%;min-width:0}}
+@media (min-width:992px){.dia_kek_ov.cs ._2_column_content_wrapper{align-items:flex-start}.dia_kek_ov.cs ._2_column_content_wrapper>.small_content_block{flex:52 1 0;min-width:0}.dia_kek_ov.cs ._2_column_content_wrapper>:last-child{flex:48 1 0;min-width:0}.dia_kek_ov.cs .cs_mockup_telefon{aspect-ratio:300/576;height:auto}}
 .cs-hm-uzenet{position:absolute;z-index:6;padding:8px 10px;border:2px solid var(--cs-kakao);border-radius:12px;background:#fff;color:var(--cs-kakao);font:700 13px/1.3 'Open Sans',sans-serif;text-align:center;opacity:0;transform:translateY(8px) scale(.96);transition:opacity 200ms var(--cs-ease-out),transform 200ms var(--cs-ease-out);pointer-events:none}
 .cs-hm-uzenet.cs-lat{opacity:1;transform:none}
 
@@ -95,7 +96,7 @@ html.cs-js .cs_lepes_lista.cs-latszik::before{clip-path:inset(0 0 0 0)}
 .cs_veszt_sav{position:relative;height:24px;border:2px solid var(--cs-kakao);border-radius:999px;background:var(--cs-mez);overflow:hidden}
 .cs_veszt_vesz{position:absolute;top:0;right:0;bottom:0;background:repeating-linear-gradient(-45deg,var(--cs-kakao) 0 6px,var(--cs-narancs) 6px 12px);border-left:2px solid var(--cs-kakao)}
 .cs_veszt .cs_grafikon_lab{color:var(--cs-tinta)}
-.cs_veszt .cs_forras{color:var(--cs-kakao);min-height:0;text-decoration:underline}
+.cs_veszt .cs_forras{color:var(--cs-kakao);min-height:44px;display:inline-flex;align-items:center;text-decoration:underline}
 .cs_veszt_vereb{align-items:center;gap:12px;margin-top:4px;padding:12px;border-radius:16px;background:#fff;border:2px dashed var(--cs-kakao)}
 .cs_veszt_vereb_kep{flex:0 0 auto;height:auto}
 .cs_veszt_vereb_szoveg{font-size:16px;line-height:1.45;color:var(--cs-tinta)}
@@ -108,7 +109,7 @@ html.cs-js .cs_lepes_lista.cs-latszik::before{clip-path:inset(0 0 0 0)}
 .card.cs_link{box-shadow:var(--cs-arnyek-n) var(--cs-arnyek-n) 0 0 var(--cs-keret-c);transition:transform var(--cs-d-nyomas) var(--cs-ease-out),box-shadow var(--cs-d-nyomas) var(--cs-ease-out)}
 @media (hover:hover) and (pointer:fine){.card.cs_link:hover{transform:translate(-2px,-2px);box-shadow:calc(var(--cs-arnyek-n) + 2px) calc(var(--cs-arnyek-n) + 2px) 0 0 var(--cs-keret-c)}}
 .card.cs_link:active{transform:translate(4px,4px);box-shadow:2px 2px 0 0 var(--cs-keret-c)}
-@media (max-width:767px){.dia_green_ov.cs .div-block-564{flex-direction:column}.dia_green_ov.cs .card.cs_link{max-width:none}.card.cs_link>*,.card.cs_egyenlo>*{text-align:left}}
+@media (max-width:767px){.dia_green_ov.cs .div-block-564{flex-direction:column}.dia_green_ov.cs .card.cs_link{max-width:none;flex:0 0 auto}.card.cs_link>*,.card.cs_egyenlo>*{text-align:left}}
 
 /* ---------- A raj ereje: verseny-alcím ---------- */
 .cs_raj_alcim_blokk{margin-top:40px;margin-bottom:-8px}
@@ -209,3 +210,4 @@ html.cs-js .cs_lepes_lista[data-cs-anim="rajzol"]::before{clip-path:none;transit
 .cs-mb,.cs-hm-uzenet{transition:opacity 150ms linear;transform:none}
 .cs_dekor.cs-porog{animation:none}
 }
+@media (min-width:992px){.dia_kek_ov.cs .download_block{min-height:200px}}

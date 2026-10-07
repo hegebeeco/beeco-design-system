@@ -7,7 +7,7 @@
 [data-cs-raj="cel"]:not([data-cs-raj-allapot]){min-height:170px}
 [data-cs-raj="verseny"]:not([data-cs-raj-allapot]){min-height:560px}
 [data-cs-raj="fotofal"]:not([data-cs-raj-allapot]){min-height:340px}
-[data-cs-raj="orszagos"]:not([data-cs-raj-allapot]){min-height:64px}
+[data-cs-raj="orszagos"]:not([data-cs-raj-allapot]){min-height:136px}
 @media (max-width:767px){[data-cs-raj="szamlalo"]:not([data-cs-raj-allapot]){min-height:520px}[data-cs-raj="cel"]:not([data-cs-raj-allapot]){min-height:250px}[data-cs-raj="verseny"]:not([data-cs-raj-allapot]){min-height:980px}[data-cs-raj="fotofal"]:not([data-cs-raj-allapot]){min-height:300px}}
 [data-cs-raj="cel"]{padding:20px;border:2px solid var(--r-kakao);border-radius:24px 0 24px 0;background:var(--r-feher)}
 .cs_raj_tolt{color:var(--r-kakao)}
