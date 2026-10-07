@@ -10,7 +10,7 @@ váratlanul, (b) az ügynökök kevés fájlból, kevés tokennel dolgozzanak, �
 2. Csak a szükséges forrást nyisd meg: `react/src/<csoport>/<Komponens>.tsx`, `termek/css/bc-*.css`, a tesztlapot
    (`react/tesztlapok/<lap>.tsx` + `termek/tesztlapok/<lap>.test.mjs`).
 3. Munka közben **csak az egy-komponenses kört** futtasd: `npm run check:egy -- <lap vagy Komponens>`
-   (csak az érintett tesztlapot építi és teszteli, 2 nézetben; kb. 15–25 s).
+   (csak az érintett tesztlapot építi és teszteli, 2 nézetben; mérve: egy lap ~9 s, komponensnévvel 2 lap ~20 s – a teljes `npm test` ennek sokszorosa).
 4. A végén **egyszer** a teljes kört: `npm run build && npm test` (ez a CI is).
 5. **Verziót ne emelj** a feature-ágon (nincs `VERSION`/`package.json`-módosítás) – a kiadás külön lépés (4.).
    A `CHANGELOG.md` „Készül” szakaszába írd, mit csináltál.

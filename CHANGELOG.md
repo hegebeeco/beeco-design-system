@@ -11,6 +11,18 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## Készül – AI-munkamód: verziómentes dist, API-őr, AI-index, stabil tesztek, egy-komponenses kör
+Fogyasztóknak **semmi teendő** (nincs törő változás; az `api-check` a v1.52.1-hez mérve zöld). Részletek: `docs/ai-munkamod.md`.
+* **Verziómentes generált fájlok:** a `dist/` (CSS, SCSS, Tailwind, Dart, React, tesztlapok, weboldal) és a `react/src/meh/hangnem.gen.ts` fejlécében már nincs verziószám; a verzió egyetlen generált helye a `dist/tokens.json` `version` mezője. Egy verzióemelés így **417 helyett 5 fájlt** érint (`VERSION`, `package.json`, `package-lock.json`, `dist/tokens.json`, `CHANGELOG.md`). A `dist/weboldal/webflow-valtozok.json` és `paletta.json` `version` mezője megszűnt (senki nem olvasta). Egyszeri átállás: a `dist/react/reszek/` közös darabjai új hash-t kaptak.
+* **Determinisztikus build:** rendezett tesztlap-sorrend (Linuxon a `readdir` nem rendez); változatlan forrásból újraépítve a diff nulla. A `react-build --check` mostantól a `dist/react/types` frissességét is nézi; az `npm test` a `webflow-build --check`-et is.
+* **API-őr:** `node tools/api-check.js` + `api/api.json` (React-exportok és propok, `bc-`/`is-`/játék-osztályok, tokenek, játék-JS globális nevek). A CI a legutóbbi `v*` címkéhez méri: eltűnő név/prop vagy új kötelező prop csak FŐ verzióval.
+* **Kiadás:** `tools/kiadas.js X.Y.Z` és az Actions „Kiadás” workflow (verzió → build → `npm test` → commit → címke). Feature-ágon nincs verzióemelés; a CHANGELOG „## Készül” szakasza lesz a kiadás.
+* **AI-index:** `docs/AI.md` (generált, `tools/ai-index.js`, CI-ben `--check`): 149 komponens egy-egy sorban, tokenek, CSS-elemek, szabályok, tesztek; `llms.txt` a gyökérben; a `beeco-ds` skill: először az AI.md, a `dist/`-et nem kell megnyitni. A csomag `files` listája bővült: `docs/AI.md`, `api/api.json`.
+* **`.gitattributes`:** a `dist/` `linguist-generated`, a nagy JS-kimenet `-diff` (kisebb PR-diff, kevesebb token).
+* **Stabil layout-tesztek:** a `check-komponensek` mérés előtt megvárja a betűket és két képkockát (`stabil()`); az `utvonal` forgatókönyv megvárja a középre gördítést; a `kieg2-sorsolas` bővebb várakozási korlátot kap (a tényleges időt továbbra is a komponens méri és az állítás azon fut).
+* **Egy-komponenses kör:** `npm run check:egy -- <tesztlap | Komponens>` (csak az érintett tesztlap építése + teszt 2 nézetben, ~9–20 s); `react-build --csak <lap>`.
+* **Repó-higiénia:** `tests/check-repo.js` – kifelé mutató / abszolút szimlink, követett `node_modules`, verzió a generált fejlécben → hiba.
+
 ## 1.52.1 – 2026-10-07 – Záró javítócsomag: önálló link (`bc-link.is-standalone`)
 * **`.bc-link.is-standalone`** (`termek/css/bc-web.css`): a saját sorban álló navigációs link (nem mondat közben) érintésre is elég nagy (`min-height: var(--bc-tap)`, `inline-flex`). A mondatba agyazott link WCAG 2.5.8 szerint kivétel, továbbra is sima `bc-link`. Bemutato: `termek/bemutato.html` „Önálló link”. (A #4-es PR átvezetése 1.52-re.)
 * **Fájlellenőrzés (WEBP/WebP kis-/nagybetű):** már a main-ben van (4c5195d, 1.52 előtt); a #5-os PR forrásváltozása és tesztje (`media-kepek.test.mjs`) azonos, ezért nem kellett újra átvenni.
