@@ -1,11 +1,11 @@
-/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   DraftNotice,
   useDraft
-} from "../reszek/chunk-R6PPWDG5.js";
-import "../reszek/chunk-RRMQQIT4.js";
-import "../reszek/chunk-KOQBPG2F.js";
-import "../reszek/chunk-HJFOG57B.js";
+} from "../reszek/chunk-E5G3TOHP.js";
+import "../reszek/chunk-E5CUZH7I.js";
+import "../reszek/chunk-BWSUD5Z6.js";
+import "../reszek/chunk-42HXLUBI.js";
 export {
   DraftNotice,
   useDraft

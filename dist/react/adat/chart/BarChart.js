@@ -1,16 +1,16 @@
-/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   BarChart
-} from "../../reszek/chunk-QFG3OYXA.js";
-import "../../reszek/chunk-KAAAGPD6.js";
-import "../../reszek/chunk-SIMGX3TF.js";
-import "../../reszek/chunk-GMKRBMRL.js";
-import "../../reszek/chunk-SSRQIQMR.js";
-import "../../reszek/chunk-4TBP4DV3.js";
-import "../../reszek/chunk-TLULGRMY.js";
-import "../../reszek/chunk-KPAJG4PO.js";
-import "../../reszek/chunk-HDFSCYBK.js";
-import "../../reszek/chunk-REGLHKMJ.js";
+} from "../../reszek/chunk-QYGZKGAY.js";
+import "../../reszek/chunk-O3537XYY.js";
+import "../../reszek/chunk-HOFYQ3M4.js";
+import "../../reszek/chunk-XH4U3VXK.js";
+import "../../reszek/chunk-VKCPPSCK.js";
+import "../../reszek/chunk-TE4UBFJP.js";
+import "../../reszek/chunk-ALIIXQ26.js";
+import "../../reszek/chunk-ADA2ZXKE.js";
+import "../../reszek/chunk-AGN4Q77Z.js";
+import "../../reszek/chunk-RRIC23XG.js";
 export {
   BarChart
 };

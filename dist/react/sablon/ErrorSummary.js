@@ -1,9 +1,9 @@
-/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ErrorSummary,
   findField,
   useLinkGuard
-} from "../reszek/chunk-U4UG3MLW.js";
+} from "../reszek/chunk-DDCLB4TH.js";
 export {
   ErrorSummary,
   findField,

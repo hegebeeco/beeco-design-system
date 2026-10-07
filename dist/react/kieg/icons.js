@@ -1,4 +1,4 @@
-/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   CheckIcon,
   ChevronIcon,
@@ -8,7 +8,7 @@ import {
   PlusIcon,
   RetryIcon,
   UndoIcon
-} from "../reszek/chunk-EC2QG63K.js";
+} from "../reszek/chunk-EN7F4OJ3.js";
 export {
   CheckIcon,
   ChevronIcon,
