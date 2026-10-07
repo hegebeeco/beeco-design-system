@@ -1,30 +1,30 @@
-/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ListPage,
   useDetailParam
-} from "../reszek/chunk-LHXO5LR5.js";
-import "../reszek/chunk-YFBFHW3C.js";
-import "../reszek/chunk-FCED5XRX.js";
-import "../reszek/chunk-UCCOBUCC.js";
-import "../reszek/chunk-7OZSL25F.js";
-import "../reszek/chunk-3K4WSV2L.js";
-import "../reszek/chunk-JXGXR4JO.js";
-import "../reszek/chunk-JQ5MZ7BN.js";
-import "../reszek/chunk-TS2LZAYU.js";
-import "../reszek/chunk-TZV67NPC.js";
-import "../reszek/chunk-ENL5BR4Y.js";
-import "../reszek/chunk-7OVPBAO2.js";
-import "../reszek/chunk-NUNQTNKR.js";
-import "../reszek/chunk-Z7B3MBLJ.js";
-import "../reszek/chunk-YHBB3NU7.js";
-import "../reszek/chunk-KYYIUVXH.js";
-import "../reszek/chunk-VFRA3TLK.js";
-import "../reszek/chunk-2IL57U7Y.js";
-import "../reszek/chunk-AKCU4LY2.js";
-import "../reszek/chunk-FAPKDIIU.js";
-import "../reszek/chunk-FYLKJ6X5.js";
-import "../reszek/chunk-B5K6ARMB.js";
-import "../reszek/chunk-UHO66ITM.js";
+} from "../reszek/chunk-VGOW7OPP.js";
+import "../reszek/chunk-E5UNLYGT.js";
+import "../reszek/chunk-KIIEXD6O.js";
+import "../reszek/chunk-YZ47UMY2.js";
+import "../reszek/chunk-RNODAAJI.js";
+import "../reszek/chunk-N55DSSYS.js";
+import "../reszek/chunk-6FTTBX5L.js";
+import "../reszek/chunk-XELF2VC2.js";
+import "../reszek/chunk-CBDZNT5J.js";
+import "../reszek/chunk-AR3MUHW3.js";
+import "../reszek/chunk-43GDBKDB.js";
+import "../reszek/chunk-ZQBU4M7V.js";
+import "../reszek/chunk-FJZZDQUQ.js";
+import "../reszek/chunk-HOI6WE7L.js";
+import "../reszek/chunk-UA4AGC45.js";
+import "../reszek/chunk-DCNIJFGI.js";
+import "../reszek/chunk-4TWKO3ZO.js";
+import "../reszek/chunk-5CMHQUNX.js";
+import "../reszek/chunk-VY47U3JM.js";
+import "../reszek/chunk-FMQGC4VY.js";
+import "../reszek/chunk-ERIU5VPQ.js";
+import "../reszek/chunk-GQKKPGX5.js";
+import "../reszek/chunk-PFNFGQD5.js";
 export {
   ListPage,
   useDetailParam

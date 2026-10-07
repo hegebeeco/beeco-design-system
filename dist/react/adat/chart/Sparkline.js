@@ -1,11 +1,11 @@
-/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   Sparkline
-} from "../../reszek/chunk-W6D2SVQJ.js";
-import "../../reszek/chunk-QIBUPNT2.js";
-import "../../reszek/chunk-4BN3XTQS.js";
-import "../../reszek/chunk-2JUV2CP5.js";
-import "../../reszek/chunk-UHO66ITM.js";
+} from "../../reszek/chunk-K5FTVZRO.js";
+import "../../reszek/chunk-4B2TW2CC.js";
+import "../../reszek/chunk-ODKPT4AU.js";
+import "../../reszek/chunk-76XJSA3J.js";
+import "../../reszek/chunk-PFNFGQD5.js";
 export {
   Sparkline
 };

@@ -1,0 +1,51 @@
+# ============================================================
+#  Kiadás – kézi indítás (Actions → Kiadás → Run workflow, bemenet: verzió X.Y.Z), csak a main-ről.
+#  A git-címkét telepítő fogyasztóknak (github:hegebeeco/beeco-design-system#vX.Y.Z) a címkézett commitban kell
+#  a friss dist/ – ezért itt: verzióemelés → teljes build → teljes teszt + API-őr (a legutóbbi címkéhez) → commit → címke.
+#  Részletek: docs/ai-munkamod.md 3.
+# ============================================================
+name: Kiadás
+
+on:
+  workflow_dispatch:
+    inputs:
+      verzio:
+        description: 'Új verzió (X.Y.Z). A CHANGELOG.md-ben legyen „## X.Y.Z” vagy „## Készül” szakasz.'
+        required: true
+
+permissions:
+  contents: write
+
+concurrency: kiadas
+
+jobs:
+  kiadas:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      VERZIO: ${{ github.event.inputs.verzio }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Függőségek
+        run: npm ci
+      - name: Chromium a komponens-önteszthez
+        run: npx playwright install --with-deps chromium
+      - name: Verzióemelés, CHANGELOG, build
+        run: node tools/kiadas.js "$VERZIO"
+      - name: Teljes ellenőrzés (dist friss, API-őr a legutóbbi címkéhez, tesztek)
+        run: npm test
+      - name: Commit, címke, push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Kiadas v$VERZIO"
+          git tag -a "v$VERZIO" -m "beeco design system v$VERZIO"
+          git push origin HEAD:main "v$VERZIO"

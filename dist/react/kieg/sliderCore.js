@@ -1,11 +1,11 @@
-/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   defaultBig,
   keyValue,
   pctOf,
   snap,
   valueAt
-} from "../reszek/chunk-XTRCG7NT.js";
+} from "../reszek/chunk-WX4P4VGZ.js";
 export {
   defaultBig,
   keyValue,

@@ -1,8 +1,8 @@
-/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   keepToasts,
   useMedia
-} from "../reszek/chunk-Z7B3MBLJ.js";
+} from "../reszek/chunk-HOI6WE7L.js";
 export {
   keepToasts,
   useMedia

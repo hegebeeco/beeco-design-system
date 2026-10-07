@@ -1,0 +1,14 @@
+# Generált kimenetek (docs/ai-munkamod.md 2.–3.)
+# linguist-generated: a GitHub a PR-ban összecsukja. -diff: a git diff csak „Binary files differ”-t ír
+# (a nagy JS-kimenet ne egye a figyelmet / a tokeneket). A dist/tokens.json, dist/weboldal és az api/api.json
+# diffje SZÁNDÉKOSAN látszik: ezekben van a lényeg. Ütközésnél: npm run build (ne kézzel oldd fel).
+dist/** linguist-generated=true
+termek/tesztlapok/*.html linguist-generated=true
+termek/tesztlapok/lista.json linguist-generated=true
+react/src/meh/hangnem.gen.ts linguist-generated=true
+docs/AI.md linguist-generated=true
+docs/komponens-katalogus.md linguist-generated=true
+dist/react/** -diff
+dist/tesztlapok/** -diff
+dist/meres/** -diff
+dist/weboldal/*.min.css -diff

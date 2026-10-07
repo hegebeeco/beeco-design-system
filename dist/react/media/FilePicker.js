@@ -1,18 +1,18 @@
-/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   FilePicker,
   fileSizeText
-} from "../reszek/chunk-KEBHSSLW.js";
-import "../reszek/chunk-QCEK6ZQX.js";
-import "../reszek/chunk-T4T6BK53.js";
-import "../reszek/chunk-K4WGO4RX.js";
-import "../reszek/chunk-5M3UQKCL.js";
-import "../reszek/chunk-SEXNYI7O.js";
-import "../reszek/chunk-OJRN3NYX.js";
-import "../reszek/chunk-4BN3XTQS.js";
-import "../reszek/chunk-FYLKJ6X5.js";
-import "../reszek/chunk-B5K6ARMB.js";
-import "../reszek/chunk-UHO66ITM.js";
+} from "../reszek/chunk-KNLJRLCP.js";
+import "../reszek/chunk-FRIE5ONO.js";
+import "../reszek/chunk-YFTXXZ6K.js";
+import "../reszek/chunk-U5OFI6TE.js";
+import "../reszek/chunk-B6IOV2EK.js";
+import "../reszek/chunk-MFUVLMMM.js";
+import "../reszek/chunk-2BUAG7XU.js";
+import "../reszek/chunk-ODKPT4AU.js";
+import "../reszek/chunk-ERIU5VPQ.js";
+import "../reszek/chunk-GQKKPGX5.js";
+import "../reszek/chunk-PFNFGQD5.js";
 export {
   FilePicker,
   fileSizeText

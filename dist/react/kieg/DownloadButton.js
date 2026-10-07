@@ -1,16 +1,16 @@
-/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   DownloadButton,
   formatBytes
-} from "../reszek/chunk-L7SVX43Z.js";
-import "../reszek/chunk-VFRA3TLK.js";
-import "../reszek/chunk-2IL57U7Y.js";
-import "../reszek/chunk-B3QGGSN4.js";
-import "../reszek/chunk-AARUQ4TG.js";
-import "../reszek/chunk-4BN3XTQS.js";
-import "../reszek/chunk-FYLKJ6X5.js";
-import "../reszek/chunk-B5K6ARMB.js";
-import "../reszek/chunk-UHO66ITM.js";
+} from "../reszek/chunk-DE4Q5BXB.js";
+import "../reszek/chunk-4TWKO3ZO.js";
+import "../reszek/chunk-5CMHQUNX.js";
+import "../reszek/chunk-VX625S5W.js";
+import "../reszek/chunk-CARXS6OD.js";
+import "../reszek/chunk-ODKPT4AU.js";
+import "../reszek/chunk-ERIU5VPQ.js";
+import "../reszek/chunk-GQKKPGX5.js";
+import "../reszek/chunk-PFNFGQD5.js";
 export {
   DownloadButton,
   formatBytes

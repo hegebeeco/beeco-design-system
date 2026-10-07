@@ -1,9 +1,9 @@
-/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   TabCount,
   Tabs
-} from "../reszek/chunk-JQ5MZ7BN.js";
-import "../reszek/chunk-TS2LZAYU.js";
+} from "../reszek/chunk-XELF2VC2.js";
+import "../reszek/chunk-CBDZNT5J.js";
 export {
   TabCount,
   Tabs

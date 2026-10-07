@@ -22,7 +22,8 @@ const core = read('core.json');
 const termek = read('theme-termek.json');
 const VERSION = fs.readFileSync(path.join(ROOT, 'VERSION'), 'utf8').trim();
 
-const HEAD = `beeco design system ${VERSION} – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js`;
+// A fejlécben SZÁNDÉKOSAN nincs verzió/dátum (docs/ai-munkamod.md 2.): a verzió egyetlen generált helye a dist/tokens.json.
+const HEAD = `beeco design system – GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás: tokens/*.json, eszköz: tools/tokens-build.js`;
 const hex = name => {
   const v = core.color[name];
   if (!v) throw new Error(`Ismeretlen primitív szín: "${name}"`);

@@ -1,48 +1,48 @@
-/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
-import "../reszek/chunk-TKLASACG.js";
+/* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+import "../reszek/chunk-ZAVVBZET.js";
 import {
   RETRO_KERETEK,
   RETRO_VASZON_LABELS_HU,
   RetroVaszon
-} from "../reszek/chunk-AQXSUD4S.js";
-import "../reszek/chunk-3T4KQ7HN.js";
-import "../reszek/chunk-U6RB3TF5.js";
+} from "../reszek/chunk-IKUBL7XT.js";
+import "../reszek/chunk-LPUWHIAA.js";
+import "../reszek/chunk-7Y76TZ5Z.js";
 import {
   IRANY_IKON,
   JELZES_IKON,
   JELZO_KARTYA_LABELS_HU,
   JELZO_SZOVEG_MEZOK_HU,
   JelzoKartya
-} from "../reszek/chunk-CP7IE26O.js";
-import "../reszek/chunk-UDRACMXF.js";
-import "../reszek/chunk-SN5WOAZO.js";
-import "../reszek/chunk-MX7GTSLY.js";
+} from "../reszek/chunk-ZXS7ORSI.js";
+import "../reszek/chunk-EA6XYHLF.js";
+import "../reszek/chunk-UAF6X222.js";
+import "../reszek/chunk-TRQYNXV6.js";
 import {
   KEREK_RADAR_LABELS_HU,
   KerekRadar
-} from "../reszek/chunk-NQBO5UUZ.js";
+} from "../reszek/chunk-H5HW4TYE.js";
 import {
   cimkeIgazitas,
   cimkeTordeles,
   radarPoligon,
   radarPont,
   tengelySzog
-} from "../reszek/chunk-5364AEPC.js";
-import "../reszek/chunk-2XDPGPZH.js";
-import "../reszek/chunk-OMXYADDB.js";
-import "../reszek/chunk-FAPKDIIU.js";
-import "../reszek/chunk-5EEWJR3M.js";
-import "../reszek/chunk-SFXSRWNV.js";
-import "../reszek/chunk-K4WGO4RX.js";
-import "../reszek/chunk-5M3UQKCL.js";
-import "../reszek/chunk-SEXNYI7O.js";
-import "../reszek/chunk-OJRN3NYX.js";
-import "../reszek/chunk-QIBUPNT2.js";
-import "../reszek/chunk-4BN3XTQS.js";
-import "../reszek/chunk-2JUV2CP5.js";
-import "../reszek/chunk-FYLKJ6X5.js";
-import "../reszek/chunk-B5K6ARMB.js";
-import "../reszek/chunk-UHO66ITM.js";
+} from "../reszek/chunk-GTNGGJ7Z.js";
+import "../reszek/chunk-KR6XDATQ.js";
+import "../reszek/chunk-YUMMGPIQ.js";
+import "../reszek/chunk-FMQGC4VY.js";
+import "../reszek/chunk-OCOEHCOY.js";
+import "../reszek/chunk-5UB4PBZJ.js";
+import "../reszek/chunk-U5OFI6TE.js";
+import "../reszek/chunk-B6IOV2EK.js";
+import "../reszek/chunk-MFUVLMMM.js";
+import "../reszek/chunk-2BUAG7XU.js";
+import "../reszek/chunk-4B2TW2CC.js";
+import "../reszek/chunk-ODKPT4AU.js";
+import "../reszek/chunk-76XJSA3J.js";
+import "../reszek/chunk-ERIU5VPQ.js";
+import "../reszek/chunk-GQKKPGX5.js";
+import "../reszek/chunk-PFNFGQD5.js";
 export {
   IRANY_IKON,
   JELZES_IKON,
