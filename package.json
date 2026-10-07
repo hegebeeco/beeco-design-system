@@ -26,6 +26,14 @@
     "web/assets/brand/logo.webp",
     "web/assets/brand/logo-sotet.webp",
     "web/assets/brand/ikon-32.png",
+    "web/js/ds.js",
+    "web/js/art/art.js",
+    "web/js/art/model-kit.js",
+    "web/js/vilag/",
+    "web/js/3d/orbit.js",
+    "web/js/3d/kaptar-modellek.js",
+    "web/js/3d/kozosseg-modellek.js",
+    "web/js/3d/kaptar-jelenet.js",
     "!dist/tesztlapok/",
     "!termek/tesztlapok/",
     "!dist/meh/nezo.png"
@@ -43,6 +51,7 @@
     "./tokens.json": "./dist/tokens.json",
     "./dist/*": "./dist/*",
     "./web/assets/fonts/*": "./web/assets/fonts/*",
+    "./web/js/*": "./web/js/*",
     "./package.json": "./package.json",
     "./react": {
       "types": "./dist/react/index.d.ts",
