@@ -1,0 +1,96 @@
+{
+ "id": "web",
+ "nev": "WEBOLDAL",
+ "bor": "termek",
+ "bor_nev": "Termékbőr",
+ "technika_rovid": "Webflow",
+ "rovid": "A beeco.hu: bemutatkozás, partnerprogram, kampányok (Vízadás, CsicsergŐsz), csatlakozás – levegős, marketing-oldalak.",
+ "kinek": [
+  "látogatók, leendő felhasználók, partnerek, önkéntesek, sajtó",
+  "aki Webflow-ban oldalt épít"
+ ],
+ "hol": "Webflow – teszt: `beeco-weboldal.webflow.io`, éles: `www.beeco.hu` (élesbe csak Kristóf engedélyével)",
+ "kozos": [
+  "a termékbőr tokenjei Webflow-változóként (`bc-` gyűjtemény, 57 változó)",
+  "az osztálynevek a DS-t tükrözik: `bc-btn`, `bc-card`, `bc-sec`, `bc-quote`…",
+  "Lalezar + Open Sans, 44 px"
+ ],
+ "szandekos": [
+  "marketing-elemek (`bc-web.css`), oldalankénti saját előtag (pl. `h26-`)",
+  "mozgás csak egyszeri: a méhecske egyszer berepül, oldalanként 1–2 „matrica”",
+  "kampány-altéma saját gyűjteménnyel (CsicsergŐsz: `cs-`)"
+ ],
+ "cel": [
+  "a 2026-os főoldal (`weboldal/fooldal-2026.css`) élesítése",
+  "a „barna” nevű, de fekete változó rendbetétele"
+ ],
+ "szabalykonyv": "`docs/weboldal.md`",
+ "ertekek": {
+  "mez": {
+   "ertek": "méz `#FECF39` – egy fő gomb képernyőnként",
+   "jel": "kozos",
+   "forras": "dist/weboldal/webflow-valtozok.json"
+  },
+  "tinta": {
+   "ertek": "fekete",
+   "jel": "kozos",
+   "forras": "webflow-valtozok.json"
+  },
+  "hatter": {
+   "ertek": "krém / fehér",
+   "jel": "kozos",
+   "forras": "webflow-valtozok.json"
+  },
+  "sarok": {
+   "ertek": "8 px",
+   "jel": "kozos",
+   "forras": "bc-web.css"
+  },
+  "arnyek": {
+   "ertek": "kemény, átlós",
+   "jel": "kozos",
+   "forras": "bc-web.css"
+  },
+  "betu": {
+   "ertek": "Lalezar + Open Sans",
+   "jel": "kozos",
+   "forras": "webflow-valtozok.json"
+  },
+  "sotet": {
+   "ertek": "a változóknak van sötét értéke; az élő oldalon nincs felmérve",
+   "jel": "reszben",
+   "forras": "webflow-valtozok.json"
+  },
+  "suruseg": {
+   "ertek": "levegős, mindig 44 px",
+   "jel": "nincs",
+   "forras": "docs/weboldal.md"
+  },
+  "ds": {
+   "ertek": "Webflow-változók + `bc-` osztálynevek",
+   "jel": "kozos",
+   "forras": "tools/webflow-build.js"
+  },
+  "technika": {
+   "ertek": "Webflow (+ `web-ellenor` éjszakai mérés)",
+   "jel": "nincs",
+   "forras": "docs/weboldal.md"
+  }
+ },
+ "minta": {
+  "tipus": "termek",
+  "gomb": "Töltsd le az appot",
+  "kartya": "Önkéntes Vízadás",
+  "kartyaSzoveg": "Öntözz egy fát a környékeden"
+ },
+ "felmeres": {
+  "datum": "2026-10-06",
+  "forras": [
+   "dist/weboldal/webflow-valtozok.json",
+   "docs/weboldal.md"
+  ],
+  "mert": {
+   "webflow_valtozok": 57
+  }
+ }
+}

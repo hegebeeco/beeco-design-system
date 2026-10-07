@@ -1,0 +1,99 @@
+{
+ "id": "admin",
+ "nev": "ADMINAPP",
+ "bor": "termek",
+ "bor_nev": "Termékbőr",
+ "technika_rovid": "React · SCSS",
+ "rovid": "A beeco belső kezelőfelülete: partnerek, helyszínek, kuponok, rajok, tartalom és statisztika – sűrű, adatközpontú képernyők.",
+ "kinek": [
+  "a beeco csapata (tartalom, partnerkezelés, moderálás)",
+  "fejlesztők, akik új admin-képernyőt építenek"
+ ],
+ "hol": "`Isakots/beeco-admin` – teszt és éles: AWS S3 + CloudFront",
+ "kozos": [
+  "a termékbőr minden szerepe, betűje, sarka és árnyéka a DS-ből jön (`termek.css` + SCSS `@use`)",
+  "DS React-komponensek: `AppShell`, `DataTable`, `FilterBar`, `PageHeader`, `ConfirmDialog`…",
+  "sötét mód a DS `ThemeProvider`-ével"
+ ],
+ "szandekos": [
+  "**tömör sűrűség**: `AppShell density=\"compact\"`, egérrel 36 px-es gomb és menüsor (érintőképernyőn marad a 44 px)",
+  "oldalsablonok: lista, részletek, szerkesztés, irányítópult; ⌘K parancspaletta",
+  "kompakt helyen csak piktogramos gomb tooltippel (6/A szabály)",
+  "méz csak a kijelölt állapoton és a fő gombon (`src/ds/szinSzabaly.ts`)"
+ ],
+ "cel": [
+  "DS-verzió emelése a legfrissebbre (most `#v1.43.1`, a DS `1.49.3`)",
+  "a `ds-lint` racsni szerint 14 nyers szín maradt – ezeket szerepre cserélni"
+ ],
+ "szabalykonyv": "`docs/termek-arculat.md` · `beeco_ADMIN_APP/CLAUDE.md` (Design system rész)",
+ "ertekek": {
+  "mez": {
+   "ertek": "méz `#FECF39` – fő gomb, kijelölt állapot",
+   "jel": "kozos",
+   "forras": "src/ds/szinSzabaly.ts"
+  },
+  "tinta": {
+   "ertek": "fekete tinta és vonal",
+   "jel": "kozos",
+   "forras": "termek.css (DS)"
+  },
+  "hatter": {
+   "ertek": "krém / fehér",
+   "jel": "kozos",
+   "forras": "termek.css (DS)"
+  },
+  "sarok": {
+   "ertek": "2 · 4 · **8** · 12 px",
+   "jel": "kozos",
+   "forras": "dist/scss/_beeco.scss"
+  },
+  "arnyek": {
+   "ertek": "kemény, átlós 2/4/6 px; puha a nem kattinthatón",
+   "jel": "kozos",
+   "forras": "termek.css (DS)"
+  },
+  "betu": {
+   "ertek": "Lalezar + Open Sans",
+   "jel": "kozos",
+   "forras": "termek.css (DS)"
+  },
+  "sotet": {
+   "ertek": "van – DS `ThemeProvider`",
+   "jel": "kozos",
+   "forras": "src/main.tsx"
+  },
+  "suruseg": {
+   "ertek": "tömör (`density=\"compact\"`), 36 px egérrel",
+   "jel": "reszben",
+   "forras": "AppShell, Javaslat 17"
+  },
+  "ds": {
+   "ertek": "git-függőség `#v1.43.1`: CSS + SCSS + React",
+   "jel": "reszben",
+   "forras": "package.json"
+  },
+  "technika": {
+   "ertek": "React 19 · Vite · SCSS · TanStack",
+   "jel": "nincs",
+   "forras": "package.json"
+  }
+ },
+ "minta": {
+  "tipus": "termek",
+  "suru": true,
+  "gomb": "Mentés",
+  "kartya": "Kert utcai közösségi kert",
+  "kartyaSzoveg": "Partner · aktív"
+ },
+ "felmeres": {
+  "datum": "2026-10-06",
+  "forras": [
+   "beeco_ADMIN_APP/beeco-admin/package.json",
+   "src/main.tsx",
+   "src/ds/szinSzabaly.ts"
+  ],
+  "mert": {
+   "ds_verzio": "1.43.1"
+  }
+ }
+}

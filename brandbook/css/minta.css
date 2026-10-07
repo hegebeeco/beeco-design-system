@@ -1,0 +1,16 @@
+/* beeco Brand Book – élő minta (iframe) közös elrendezése. A felület saját stílusa a saját CSS-éből jön
+   (termék: bc-all.css · játék: web/css/ds.css · app és Kaptár: a forrásból generált minta/<id>.css). */
+html, body { margin: 0; }
+.mt-wrap { display: grid; gap: 12px; padding: 16px; }
+.mt-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.mt-card p { margin: 0; }
+.mt-termek { background: var(--bc-bg); color: var(--bc-ink); }
+.mt-termek .mt-card { padding: var(--bc-sp-3) var(--bc-sp-4); }
+.mt-termek.is-suru .mt-wrap { gap: 8px; padding: 12px; }
+.mt-jatek { background: var(--bg); color: var(--ink); font-family: var(--body); }
+.mt-jatek .mt-card { padding: var(--sp-3) var(--sp-4); }
+.mt-jatek .mt-cim { margin: 0 0 4px; font-family: var(--display); font-size: var(--fs-l); line-height: 1.15; }
+.mt-jatek .mt-halk { margin: 0; font-size: var(--fs-s); color: var(--ink-soft); }
+.mt-jatek .mt-label { display: block; margin-top: var(--sp-2); font-size: var(--fs-s); font-weight: 700; }
+.mt-jatek .mt-input { box-sizing: border-box; width: 100%; min-height: var(--tap); padding: 0 var(--sp-3); font: 400 var(--fs-m) var(--body); color: var(--ink);
+  background: var(--surface); border: var(--line-w) solid var(--line); border-radius: var(--r-m); }

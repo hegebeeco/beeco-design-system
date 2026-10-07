@@ -1,0 +1,11 @@
+{
+ "id": "hozzaferhetoseg",
+ "cim": "Hozzáférhetőség",
+ "alcim": "Ellenőrzőlista posztokhoz, oldalakhoz és anyagokhoz, hogy mindenki elérje, amit készítesz.",
+ "blokkok": [
+  {
+   "t": "p",
+   "x": "Készül."
+  }
+ ]
+}

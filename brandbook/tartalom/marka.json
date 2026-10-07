@@ -1,0 +1,485 @@
+{
+ "id": "marka",
+ "cim": "Márka",
+ "alcim": "Kik vagyunk, mit akarunk, és hogyan jelenik meg a beeco neve, logója és méhecskéje.",
+ "blokkok": [
+  {
+   "t": "h2",
+   "x": "Kik vagyunk"
+  },
+  {
+   "t": "p",
+   "x": "A beeco magyar fenntarthatósági ökoplatform: app, webjátékok, partnerprogram és közösség. A név jelentése: **be-eco, bee-co** – légy öko, és méhecske, aki raj tagjaként dolgozik."
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Létezésünk oka",
+   "x": [
+    "„Célunk, hogy motiváljuk és összekapcsoljuk az embereket és a zöld vállalkozásokat egy fenntartható, ökologikus életmód érdekében, hogy együtt zöldebb jövőt hagyhassunk a következő generációknak.”"
+   ],
+   "elemek": [
+    "**Tudatosság növelése:** olyan információkat és eszközöket adunk, amelyek humorosan, közérthetően segítenek megérteni, hogyan hatnak a döntéseink a természeti környezetünkre.",
+    "**Közösségépítés:** a közösségünkben tapasztalatot cserélhetsz, támogathatjátok egymást, és közösen tehettek a természeti és közösségi értékeinkért.",
+    "**Fenntartható életmód népszerűsítése:** környezetbarát termékeket, szolgáltatásokat és eseményeket mutatunk meg."
+   ],
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026) – 1. Alapértékek"
+   ]
+  },
+  {
+   "t": "hivatalos",
+   "cim": "A méhraj-gondolat",
+   "x": "„Egy méh nem csinál csodát, de… egy egész raj felvirágoztatja a környezetét!”",
+   "forras": [
+    "[beeco.hu](https://www.beeco.hu/) – főoldal",
+    "[beeco.hu/tortenetunk](https://www.beeco.hu/tortenetunk)"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Vízió, misszió, küldetés"
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Víziónk",
+   "x": "„Egy tudatos társadalom, ahol nem a fogyasztás határozza meg az embereket, hanem az, hogy mennyit adnak vissza a természeti környezetnek életük során.”",
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026)",
+    "[beeco.hu/rolunk](https://www.beeco.hu/rolunk)"
+   ]
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Missziónk",
+   "x": "„Egy játékos és motiváló ökoiránytűvel mutatjuk meg a fenntartható döntések széles választékát. Közösségi küldetésekkel könnyedén és hatékonyan segítünk csökkenteni ökológiai lábnyomunkat.”",
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026)"
+   ]
+  },
+  {
+   "t": "javaslat",
+   "cim": "Küldetésünk (átgondolás alatt)",
+   "x": [
+    "„Teljes jogú polgárként mindannyiunknak kötelessége a társadalmi felelősségvállalás, a részvételi demokrácia támogatása és gyakorlása. Valódi hatást közösségi összefogással érhetünk el, ezért a beeco nem csak startup, hanem társadalmi kezdeményezés is, amelynek célja az emberek összefogása és mozgósítása egy fenntarthatóbb jövőért.”",
+    "A márkadokumentumban „átgondolni” jelöléssel szerepel – addig ne használd külső anyagban; helyette a missziót."
+   ],
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026)"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Fő üzeneteink"
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Három fő üzenet",
+   "elemek": [
+    "**Jövő:** az ökos döntések és a zöldebb jövő közelebb vannak, mint gondolnád!",
+    "**Közösség:** egy méh nem csinál csodát, de egy szorgos raj felvirágoztatja a környezetét.",
+    "**Egyszerűség:** a fenntartható döntések pár kattintásnyira vannak tőled."
+   ],
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026) – A beeco fő üzenete"
+   ]
+  },
+  {
+   "t": "korrigalando",
+   "cim": "Márkaígéret egy mondatban",
+   "x": [
+    "„Apró lépésekkel, együtt: érthetővé tesszük a fenntarthatóságot, és megmutatjuk, mit tehetsz ma.”",
+    "Rövid bemutatkozáshoz, partneri anyagba, közösségi profilba. A márkadokumentum fő üzeneteiből és a misszióból összegyúrva – végleges megfogalmazás kell."
+   ],
+   "forras": [
+    "Claude-vázlat a fő üzenetekből és a misszióból"
+   ]
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Bemutatkozás 40 szóban",
+   "x": "„Képzelj el egy világot, ahol a fenntartható megoldások elérhetőbbek mindenki számára! Találd meg a legzöldebb helyeket a közelben, kedvezményeket fenntartható vállalkozásoknál, eseményeket, ahol kapcsolódhatsz ökos közösségekhez! Ne hagyd, hogy az ökológiai válság megbénítson, mert rád is szükség van! Ha úgy érzed, baj van, csatlakozz hozzánk, és beezz a rajban!”",
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026) – 40 szavas bemutatkozó"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Alapértékeink"
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Közösség",
+   "x": "„Kapcsolatot építünk az emberek között, és törődünk a természettel. Összetartó közösség erejével, a kis lépések és szárnycsapások hatásával dolgozunk a közös célokért.”",
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026)",
+    "[beeco.hu/rolunk](https://www.beeco.hu/rolunk)"
+   ]
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Edukáció",
+   "x": "„Online tartalmainkkal és eseményeinken edukáljuk az embereket, ezzel csökkentve az ökoszorongásukat, és arra ösztönözve őket, hogy aktívan cselekedjenek a fenntarthatóságért.”",
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026)"
+   ]
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Hitelesség és őszinteség",
+   "x": [
+    "„Minden tevékenységünk és információnk a legmagasabb szintű megbízhatóságot képviseli.”",
+    "„Minden témában őszintén és tudományos alapokon nyugvó információkat osztunk meg. Ha valamiben nincs konszenzus, azt kommunikáljuk. Nem gond, ha valaki hibázik – akár mi is –, a lényeg, hogy mindig transzparensek legyünk.”"
+   ],
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026)"
+   ]
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Nyitottság",
+   "x": "„A beeco nyitott az új dolgokra, új nézőpontokra, a kritikákra és a fejlődési lehetőségekre, mert közösségi tudásra építkezik.”",
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026)"
+   ]
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Közösségi hatás és kapcsolatépítés",
+   "x": [
+    "„Kezdeményezéseink nemcsak a résztvevők tudatosságát növelik, hanem hozzájárulnak a helyi közösségek fejlődéséhez is.”",
+    "„Motiválunk, tanítunk, nyílt diskurzusokat folytatunk, megoldásokat keresünk, változtatunk, új perspektívákat adunk, inspirálunk.”"
+   ],
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026)"
+   ]
+  },
+  {
+   "t": "korrigalando",
+   "cim": "Hidak építése",
+   "x": "„Hidakat építünk: generációk között és generációkon belül, magánemberek és önkormányzatok, üzleti és nonprofit szereplők között – mert a zöld jövő csak együtt épülhet.”",
+   "forras": [
+    "Claude-vázlat – a márkadokumentumban „kidolgozandó” jelöléssel, csak címszavakkal szerepel"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Mit értünk fenntarthatóságon"
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Fenntarthatóság – ökologikus élet",
+   "x": [
+    "„Ember és környezete harmonikus, hosszú távon is stabil és kiegyensúlyozott együttélése, amikor az emberek és társadalmuk ökolábnyoma nem haladja meg a Föld kapacitásait, és sem az emberek, sem a természet nem állnak egymás felett.”",
+    "Miért foglalkozunk vele: az éghajlatváltozás és az ökológiai válság sürgető ténye. Mire alapozunk: az UNFCCC, az IPCC, az MTVSZ és a WWF jelentéseire és a tudományos konszenzusra."
+   ],
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026) – Fenntarthatóság"
+   ]
+  },
+  {
+   "t": "korrigalando",
+   "cim": "Miért pont mi?",
+   "x": "„Mert mi a hétköznapokból indulunk: egy appban, egy közösségben és a helyi zöld vállalkozásokkal együtt tesszük könnyűvé az első és a következő lépést – szorongás helyett jókedvvel.”",
+   "forras": [
+    "Claude-vázlat – a márkadokumentumban „(még meglássuk)” jelöléssel"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Történetünk"
+  },
+  {
+   "t": "tabla",
+   "cim": "A beeco története",
+   "fej": [
+    "Mikor",
+    "Mi történt"
+   ],
+   "sorok": [
+    [
+     "2022 ősze",
+     "Megszületik az ötlet – „Egy ötlet a nyóckerből”."
+    ],
+    [
+     "2023 tavasza",
+     "Megvan a név; a méhraj 5–6 emberrel indul."
+    ],
+    [
+     "2023 nyara",
+     "10, majd nyár végére 20 fő; EFOTT, K&H Start It inkubátor."
+    ],
+    [
+     "2023 ősze",
+     "KlímaFreskó, UNICEF Klímahősök, KlímaEXPO."
+    ],
+    [
+     "2024 tavasza",
+     "Elérhető az app ökotérképe; az indulóeseményen több mint 120 fő."
+    ],
+    [
+     "2024 ősze",
+     "WebSummit Lisszabon, a BME első fenntarthatósági szakmai napja."
+    ],
+    [
+     "2024 tele",
+     "Vége a K&H programnak; a HUMUSZ, a Bolygó és a MUNCH fogadja be a csapatot."
+    ],
+    [
+     "2025",
+     "„A virágzás éve” – a fejezet a weboldalon még készül."
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Forrás: [beeco.hu/tortenetunk](https://www.beeco.hu/tortenetunk). Az évek fejezetcímei: 2023 – a raj alakulásának éve, 2024 – a beporzás éve, 2025 – a virágzás éve."
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Elismeréseink",
+   "elemek": [
+    "EIT ClimateLaunchpad",
+    "K&H Start It",
+    "MVM Edison",
+    "Design Terminal",
+    "Győri Klíma EXPO",
+    "UNICEF Klímahősök"
+   ],
+   "forras": [
+    "[beeco.hu/tortenetunk](https://www.beeco.hu/tortenetunk)",
+    "beeco brandbook v2 (belső márkadokumentum, 2026) – Beeco sztori"
+   ]
+  },
+  {
+   "t": "hivatalos",
+   "cim": "A jövő, amit megálmodtunk",
+   "x": [
+    "Rövid táv: minél több magyarnak csengjen ismerősen a beeco neve, aztán az Európai Unió, majd a világ.",
+    "2030-ig (5 éves terv): világszerte ismert márka, egy 20 milliós közösség, üzleti önfenntartás, elsődleges forrás a fenntarthatóság terén."
+   ],
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026) – Jövőképek és hosszú távú tervek"
+   ]
+  },
+  {
+   "t": "szabaly",
+   "cim": "Számokat csak egy forrásból",
+   "elemek": [
+    "A letöltés-, partner-, ökospont-, csapat- és önkéntesszámok, az alapítási adatok és a cégadatok forrása a **beeco Power BI** felülete.",
+    "Külső anyagba csak onnan, a lekérdezés dátumával írj számot („2026. októberi adat”). A weboldal régi számai (pl. 20.000+ és 25.000+ letöltés) eltérnek – ne másold őket."
+   ],
+   "forras": [
+    "Kristóf döntése, 2026-10-07"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "A név írása"
+  },
+  {
+   "t": "szabaly",
+   "cim": "beeco – mindig kisbetűvel",
+   "x": [
+    "A „beeco” mondat elején, címben és logó mellett is kisbetűs. Ragozva: beecós, beecóval, a beeco-csapat."
+   ],
+   "forras": [
+    "Kristóf döntése, 2026-10-02 (docs/javaslatok/10-logo-sotet-es-mehsejt.md)"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Logó"
+  },
+  {
+   "t": "gen",
+   "nev": "logo"
+  },
+  {
+   "t": "szabaly",
+   "cim": "Világos és sötét változat",
+   "elemek": [
+    "Világos háttérre a `logo.webp`, sötétre a `logo-sotet.webp` – a DS `Logo` komponense és a `.bc-logo` a téma szerint magától vált.",
+    "A sötét változat nem új rajz: a fekete „be”, a csápok és a lábak krém színűek (`#FFF8E7`), a méhecske csíkjai maradnak.",
+    "Képernyőn használt méretek: 24 px (kicsi), 36 px (alap), 56 px (nagy) magas; az arány 512 : 313.",
+    "Akadálymentesen: `role=\"img\"` + `aria-label=\"beeco\"`, vagy díszként jelölve, ha mellette ki van írva a név."
+   ],
+   "forras": [
+    "docs/termek-arculat.md 9.",
+    "termek/css/bc-marka.css",
+    "docs/javaslatok/10-logo-sotet-es-mehsejt.md"
+   ]
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Védőtér, változatok, tilos használat",
+   "elemek": [
+    "**Védőtér:** a logó körül minden oldalon legalább **egy betűnyi** helyet hagyj üresen.",
+    "A **beeco felirat a méhecske-emblémával együtt és külön is** használható, az embléma önmagában is.",
+    "Az alap logó világos (fehér, krém) alapra való; sötét alapon a sötét változat, illetve telített fekete a világos és telített fehér a sötét háttéren.",
+    "**Ne** torzítsd, ne színezd át, ne tegyél rá árnyékot, körvonalat vagy átmenetet; ne tedd mintás, zajos fotóra.",
+    "Legkisebb méret: képernyőn 24 px, nyomtatásban 10 mm magas (DS-szabály; a kézikönyvben nincs megadva)."
+   ],
+   "forras": [
+    "Arculati kézikönyv és stratégia (DesignBook_V1, 2023) – logó",
+    "docs/termek-arculat.md 9."
+   ]
+  },
+  {
+   "t": "dodont",
+   "cim": "A logó – így igen, így nem",
+   "allapot": "szabaly",
+   "forras": [
+    "Arculati kézikönyv és stratégia (DesignBook_V1, 2023) – logó",
+    "docs/termek-arculat.md 9."
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "körben üres védőtér",
+      "html": "<div class=\"bb-vedoter\"><img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"></div>"
+     },
+     "rossz": {
+      "felirat": "szöveg a logóra tapad",
+      "html": "<div class=\"bb-demo-sor\"><img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"><p class=\"bb-vizual-szoveg\">Nyári akció!</p></div>"
+     },
+     "miert": "A védőtér a logó magasságának fele – így a logó levegőt kap, és olvasható marad."
+    },
+    {
+     "jo": {
+      "felirat": "eredeti arány",
+      "html": "<img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\">"
+     },
+     "rossz": {
+      "felirat": "nyújtva",
+      "html": "<img class=\"bb-logo-hiba is-nyujtott\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\">"
+     },
+     "miert": "A logót csak arányosan méretezd; a nyújtás torzítja a betűket és a méhecskét."
+    },
+    {
+     "jo": {
+      "felirat": "eredeti színek",
+      "html": "<img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\">"
+     },
+     "rossz": {
+      "felirat": "átszínezve",
+      "html": "<img class=\"bb-logo-hiba is-szinezett\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\">"
+     },
+     "miert": "A logó színe a márka része: nem színezzük a kampány vagy a partner színére."
+    },
+    {
+     "jo": {
+      "felirat": "tiszta, sík logó",
+      "html": "<img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\">"
+     },
+     "rossz": {
+      "felirat": "árnyékkal, forgatva",
+      "html": "<div class=\"bb-demo-sor\"><img class=\"bb-logo-hiba is-arnyekos\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"><img class=\"bb-logo-hiba is-forgatott\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"></div>"
+     },
+     "miert": "Nincs rajta árnyék, körvonal, átmenet, és nem döntjük meg."
+    },
+    {
+     "jo": {
+      "felirat": "nyugodt, egyszínű alap",
+      "html": "<div class=\"bb-sima-hatter\"><img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"></div>"
+     },
+     "rossz": {
+      "felirat": "zajos, mintás alap",
+      "html": "<div class=\"bb-mintas-hatter\"><img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"></div>"
+     },
+     "miert": "Mintás képen, fotón a logó elvész – ilyenkor krém vagy éjszaka-olíva alapra tedd."
+    },
+    {
+     "jo": {
+      "felirat": "sötét alapon a sötét változat",
+      "html": "<div class=\"bb-logo is-sotet\"><img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo-sotet.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"></div>"
+     },
+     "rossz": {
+      "felirat": "sötét alapon a világos változat",
+      "html": "<div class=\"bb-logo is-sotet\"><img class=\"bb-logo-ok\" src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"></div>"
+     },
+     "miert": "Sötét háttéren a fekete „be” eltűnik – ezért van sötét változat (logo-sotet.webp)."
+    }
+   ]
+  },
+  {
+   "t": "hianyzik",
+   "cim": "Vektoros logó",
+   "x": "A design systemben a logó csak WebP-ben van. Nyomdához és nagy felülethez SVG vagy PDF kell – Kristóf feltölti a hivatalos vektoros logót, addig nyomdai anyaghoz kérd a beeco csapatától."
+  },
+  {
+   "t": "h2",
+   "x": "A méhecske"
+  },
+  {
+   "t": "szabaly",
+   "cim": "A méhecske a jelképünk",
+   "elemek": [
+    "A beeco méhecskéje kész rajz: a csapat rajzolta, csak a meglévő képeket használd (Letöltések, Képek).",
+    "Képernyőnként legfeljebb egy méhecske és egy szóvicc.",
+    "Emoji-méh (🐝) helyett mindig a rajzolt méhecske.",
+    "A szomorú méhecske csak akkor jelenik meg, ha mi hibáztunk – soha nem a felhasználó hibájánál."
+   ],
+   "forras": [
+    "tokens/hangnem.json",
+    "docs/termek-arculat.md 9."
+   ]
+  },
+  {
+   "t": "tilos",
+   "cim": "Mérges méhecske – soha",
+   "x": "A mérges (dühös) méhecske semmilyen felületen, semmilyen anyagban nem jelenhet meg. Tanítunk, nem szidunk.",
+   "forras": [
+    "tokens/hangnem.json → tiltott_kepek"
+   ]
+  },
+  {
+   "t": "dodont",
+   "cim": "Egy méhecske egy képernyőn",
+   "allapot": "szabaly",
+   "forras": [
+    "tokens/hangnem.json → _readme"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "egy méhecske, egy üzenet",
+      "html": "<div class=\"bb-demo-sor bb-demo-meh\"><img src=\"ds/web/assets/brand/bee-cheer.webp\" alt=\"\" width=\"56\" height=\"56\"><p class=\"bb-vizual-szoveg\">Bekaptároztuk! Mentve.</p></div>"
+     },
+     "rossz": {
+      "felirat": "több méh, több szóvicc egyszerre",
+      "html": "<div class=\"bb-demo-sor bb-demo-meh\"><img src=\"ds/web/assets/brand/bee-cheer.webp\" alt=\"\" width=\"56\" height=\"56\"><img src=\"ds/web/assets/brand/bee-super.webp\" alt=\"\" width=\"56\" height=\"56\"><img src=\"ds/web/assets/brand/bee-phone.webp\" alt=\"\" width=\"56\" height=\"56\"><p class=\"bb-vizual-szoveg\">Zümm! Bekaptároztuk! Mézbe mártva!</p></div>"
+     },
+     "miert": "A méhecske fűszer: képernyőnként legfeljebb egy, és mellette legfeljebb egy szóvicc."
+    }
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Méhsejt-háttér"
+  },
+  {
+   "t": "szabaly",
+   "cim": "Csak dísz, a tartalom alatt",
+   "elemek": [
+    "A méz színéből, halványan (alap átlátszatlanság 12 %), a tartalom alatt.",
+    "Nyomtatáskor rejtve; szöveg soha nem kerül közvetlenül a mintára kontraszt nélkül."
+   ],
+   "forras": [
+    "docs/javaslatok/10-logo-sotet-es-mehsejt.md"
+   ]
+  },
+  {
+   "t": "tovabb",
+   "linkek": [
+    {
+     "href": "hang.html",
+     "x": "Tovább: Hang és szöveg"
+    },
+    {
+     "href": "letoltesek.html",
+     "x": "Logó letöltése"
+    }
+   ]
+  }
+ ]
+}

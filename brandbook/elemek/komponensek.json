@@ -1,0 +1,2886 @@
+{
+ "szintek": [
+  {
+   "id": "atom",
+   "nev": "Atomok",
+   "leiras": "Egy feladatú, tovább nem bontható elemek. Csak tokeneket használnak, és megvannak a saját állapotaik."
+  },
+  {
+   "id": "molekula",
+   "nev": "Molekulák",
+   "leiras": "Néhány atom egy közös céllal, például címke + mező + súgó + hiba. Atomokból épülnek, a belsejükhöz nem nyúlnak."
+  },
+  {
+   "id": "organizmus",
+   "nev": "Organizmusok",
+   "leiras": "Önálló felületrészek molekulákból és atomokból. Az üzleti adatot kívülről kapják, saját gombot nem írnak."
+  },
+  {
+   "id": "sablon",
+   "nev": "Oldalsablonok",
+   "leiras": "Oldalváz tartalom nélkül – minden projektben ugyanaz. A valódi adattal töltött oldal a projektben él, nem a DS-ben."
+  }
+ ],
+ "komponensek": [
+  {
+   "id": "gomb",
+   "nev": "Gomb",
+   "szint": "atom",
+   "csoport": "01 – Űrlap (alap)",
+   "react": [
+    "Button",
+    "CopyButton",
+    "DownloadButton"
+   ],
+   "css": [
+    "bc-btn",
+    "bc-btn is-secondary",
+    "bc-btn is-ghost",
+    "bc-btn is-danger",
+    "bc-btn is-sm",
+    "bc-btn is-lg",
+    "bc-btn is-block"
+   ],
+   "leiras": "Egy művelet indítója: Lalezar felirat, 2 px fekete keret, kemény átlós árnyék. Lenyomva az árnyék helyére csúszik.",
+   "minta_html": "<div class=\"bb-demo-oszlop\"><div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg>Mentés</button><button type=\"button\" class=\"bc-btn is-secondary\">Mégse</button><button type=\"button\" class=\"bc-btn is-ghost\">Részletek</button><button type=\"button\" class=\"bc-btn is-danger\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6\"/></svg>Törlés</button></div><div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn\" disabled>Tiltott</button><button type=\"button\" class=\"bc-btn is-secondary\" aria-busy=\"true\">Mentés</button><button type=\"button\" class=\"bc-btn is-sm is-secondary\">Kicsi</button><button type=\"button\" class=\"bc-btn is-lg is-secondary\">Nagy gomb</button></div></div>",
+   "mikor": [
+    "Egy kattintással induló műveletre: mentés, létrehozás, küldés.",
+    "Szöveg + piktogram: az oldal fő gombja, az űrlap Mentése, a törlés megerősítése, az üres állapot teendője.",
+    "Képernyőnként egy méz (fő) gomb – a többi másodlagos (is-secondary) vagy szellem (is-ghost).",
+    "Folyamatban: aria-busy=\"true\" (a felirat helyén pörgő); tiltva: disabled.",
+    "Másolás és letöltés: CopyButton („Másolva” pipa), DownloadButton (készül → letöltve → hiba, újra)."
+   ],
+   "mikor_ne": [
+    "Kompakt helyen (táblázatsor, eszközsáv, kártyafejléc, galéria-csempe) – oda ikongomb kell, tooltippel.",
+    "Visszafordítható műveletnél ne kérj külön megerősítő gombot – ott „Visszavonás” az értesítésben."
+   ],
+   "do": [
+    {
+     "cim": "Egy méz gomb, mellette másodlagos",
+     "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn is-secondary\">Mégse</button><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg>Mentés</button></div>",
+     "miert": "A fő művelet azonnal látszik: a méz a fő művelet színe, képernyőnként egy."
+    },
+    {
+     "cim": "A felirathoz illő piktogram",
+     "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg>Új partner</button><button type=\"button\" class=\"bc-btn is-danger\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6\"/></svg>Törlés</button></div>",
+     "miert": "A szöveges gombon is ott a hozzá tartozó piktogram (IcNew, IcTrash) – a szöveg a biztonság."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Két méz fő gomb egymás mellett",
+     "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg>Mentés</button><button type=\"button\" class=\"bc-btn\">Közzététel</button></div>",
+     "miert": "Nem derül ki, melyik a fő művelet. Egy maradjon méz, a másik legyen is-secondary."
+    },
+    {
+     "cim": "Szóvicc a gombon",
+     "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg>Bekaptározom!</button></div>",
+     "miert": "Gombfeliratban nincs szóvicc – a felirat maga a művelet: „Mentés”."
+    }
+   ],
+   "tesztlap": [
+    "vezerlok",
+    "kieg-mezok"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 1 (Elvek), 6, 6/A, 7",
+    "tokens/hangnem.json _readme",
+    "docs/javaslatok/03-reteg.md 1",
+    "docs/javaslatok/06-kiegeszitok.md 06a/2–3",
+    "termek/bemutato.html Gombok"
+   ]
+  },
+  {
+   "id": "ikongomb",
+   "nev": "Ikongomb",
+   "szint": "atom",
+   "csoport": "01 – Űrlap (alap)",
+   "react": [
+    "IconButton",
+    "TooltipIconButton"
+   ],
+   "css": [
+    "bc-icon-btn",
+    "bc-icon-btn is-danger",
+    "bc-tooltip"
+   ],
+   "leiras": "Csak piktogramos, 44×44 px-es gomb kompakt helyekre. Kötelező neve (aria-label) van, és súgó-buborék is mutatja.",
+   "minta_html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Szerkesztés\" aria-describedby=\"ikongomb-tt\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 20h4L19 9l-4-4L4 16zM13 7l4 4\"/></svg></button><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Megnyitás\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7S2.5 12 2.5 12zM12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6\"/></svg></button><button type=\"button\" class=\"bc-icon-btn is-danger\" aria-label=\"Törlés\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6\"/></svg></button><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Mentés\" disabled><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg></button><span class=\"bc-tooltip\" role=\"tooltip\" id=\"ikongomb-tt\">Szerkesztés</span></div>",
+   "mikor": [
+    "Táblázatsorban (RowActions), eszközsávon, kártyafejlécben, galéria-csempén.",
+    "Itt a mentés, törlés, új, info, szerkesztés és megnyitás szöveg nélkül állhat.",
+    "Mindig TooltipIconButton: a label egyszerre a képernyőolvasó neve és a súgó-buborék szövege."
+   ],
+   "mikor_ne": [
+    "Az oldal fő gombjára, az űrlap Mentésére, a törlés megerősítésére – ott a félrekattintás drága, szöveg + piktogram kell.",
+    "3+ műveletnél a sorban – a fő látszik, a többi a „⋯” menübe kerül."
+   ],
+   "do": [
+    {
+     "cim": "Sorműveletek piktogrammal, tooltippel",
+     "html": "<div class=\"bb-demo-sor\"><div class=\"bc-row-actions\"><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Példa Kávézó szerkesztése\" aria-describedby=\"ikongomb-do-tt\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 20h4L19 9l-4-4L4 16zM13 7l4 4\"/></svg></button><button type=\"button\" class=\"bc-icon-btn is-danger\" aria-label=\"Példa Kávézó törlése\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6\"/></svg></button></div><span class=\"bc-tooltip\" role=\"tooltip\" id=\"ikongomb-do-tt\">Szerkesztés</span></div>",
+     "miert": "Kompakt helyen kevés helyet foglal, a neve mégis kiderül – rámutatásra és képernyőolvasóval is."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Csak piktogram az oldal fő gombján",
+     "html": "<div class=\"bc-page-header bc-page-head\"><div class=\"bc-card-title\">Partnerek</div><button type=\"button\" class=\"bc-btn is-icon\" aria-label=\"Új partner\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg></button></div>",
+     "miert": "Az oldal fő gombjánál a félrekattintás drága – ide szöveg + piktogram kell: „Új partner”."
+    },
+    {
+     "cim": "Szöveges gombok a táblázatsorban",
+     "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn is-sm is-secondary\">Szerkesztés</button><button type=\"button\" class=\"bc-btn is-sm is-secondary\">Megnyitás</button><button type=\"button\" class=\"bc-btn is-sm is-danger\">Törlés</button></div>",
+     "miert": "A sor szétesik és kilóg – kompakt helyen ikongomb tooltippel, 3+ műveletnél „⋯” menü."
+    }
+   ],
+   "tesztlap": [
+    "vezerlok",
+    "vezerlok-tomor",
+    "reteg-menu"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 6, 6/A",
+    "docs/javaslatok/03-reteg.md 4, 5",
+    "docs/komponensek.md 3.3, 3.4/b"
+   ]
+  },
+  {
+   "id": "piktogram",
+   "nev": "Piktogram",
+   "szint": "atom",
+   "csoport": "01 – Űrlap (alap)",
+   "react": [
+    "IcSave",
+    "IcTrash",
+    "IcNew",
+    "IcInfo",
+    "IcEdit",
+    "IcOpen",
+    "IcX",
+    "IcOk",
+    "IcLeft",
+    "IcRight"
+   ],
+   "css": [],
+   "leiras": "A termékbőr közös, vonalas piktogramjai (24-es rács, currentColor). Díszítők: a jelentést a gomb neve viszi.",
+   "minta_html": "<div class=\"bb-demo-sor\"><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg>Mentés</span><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6\"/></svg>Törlés</span><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg>Új</span><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 11v6M12 7.5v.5\"/></svg>Info</span><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 20h4L19 9l-4-4L4 16zM13 7l4 4\"/></svg>Szerkesztés</span><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7S2.5 12 2.5 12zM12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6\"/></svg>Megnyitás</span><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg>Bezárás</span><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg>Tovább</span></div>",
+   "mikor": [
+    "Mentés → IcSave, Törlés → IcTrash, Új … → IcNew, Szerkesztés → IcEdit, Megnyitás/Részletek → IcOpen, Info → IcInfo.",
+    "Szöveges gombon is, ha a piktogram kapcsolódik a művelethez.",
+    "Lépések között: IcLeft (Vissza) és IcRight (Tovább)."
+   ],
+   "mikor_ne": [
+    "Emoji helyett – az emoji minden rendszeren másképp néz ki.",
+    "Saját ikonstílusra – új vizuális minta csak jóváhagyott javaslatlappal kerülhet be."
+   ],
+   "do": [
+    {
+     "cim": "A felirathoz illő piktogram",
+     "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn is-danger\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6\"/></svg>Törlés</button><button type=\"button\" class=\"bc-btn is-secondary\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg>Tovább</button></div>",
+     "miert": "A piktogram és a felirat ugyanazt mondja, és a látható közepük egy vonalban ül (a .bc-btn igazít)."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Félrevezető piktogram",
+     "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn is-danger\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg>Törlés</button></div>",
+     "miert": "A floppy a mentésé. A törlés gombján IcTrash álljon, különben a szem mást olvas, mint a felirat."
+    },
+    {
+     "cim": "Emoji piktogram helyett",
+     "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn is-secondary\">🐝 Új partner</button></div>",
+     "miert": "Az emoji minden rendszeren másképp néz ki – a DS piktogramját (IcNew) használd."
+    }
+   ],
+   "tesztlap": [
+    "vezerlok",
+    "vezerlok-tomor"
+   ],
+   "forras": [
+    "react/src/inputs/ikonok.tsx (fejléc-megjegyzés)",
+    "docs/termek-arculat.md 6/A, 9",
+    "docs/komponensek.md 1",
+    "docs/javaslatok/20-admin-ux-elemek.md 2"
+   ]
+  },
+  {
+   "id": "szovegmezo",
+   "nev": "Szövegmező (egy- és többsoros)",
+   "szint": "atom",
+   "csoport": "01 – Űrlap (alap)",
+   "react": [
+    "FieldInput",
+    "TextArea"
+   ],
+   "css": [
+    "bc-input",
+    "bc-textarea",
+    "bc-affix"
+   ],
+   "leiras": "A beviteli doboz maga: 1 px fekete keret, fehér felület, 44 px magas. Mindig mező-keretben (Field) áll.",
+   "minta_html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"szovegmezo-alap\">Partner neve</label></div><input class=\"bc-input\" id=\"szovegmezo-alap\" placeholder=\"pl. Példa Kávézó\"></div><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"szovegmezo-ro\">Azonosító</label></div><input class=\"bc-input\" id=\"szovegmezo-ro\" value=\"PK-0042\" readonly></div><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"szovegmezo-tilt\">Létrehozta</label></div><input class=\"bc-input\" id=\"szovegmezo-tilt\" value=\"Példa Kata\" disabled></div><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"szovegmezo-hosszu\">Leírás</label></div><textarea class=\"bc-textarea\" id=\"szovegmezo-hosszu\">Csomagolásmentes bolt a belvárosban.</textarea></div></div>",
+   "mikor": [
+    "Rövid szövegre (név, cím, kód) bc-input; hosszabbra (leírás) bc-textarea, ami függőlegesen nyújtható.",
+    "Mértékegység vagy előtag a mező mellé: bc-affix (Ft, %, db, km).",
+    "Csak olvasható értékre readonly, nem módosíthatóra disabled."
+   ],
+   "mikor_ne": [
+    "Választható értékekre – oda legördülő vagy keresős legördülő.",
+    "Számra és pénzre – NumberField (magyar formátum, tartomány).",
+    "Keresésre – SearchBox (nagyító, törlés gomb)."
+   ],
+   "do": [
+    {
+     "cim": "Mértékegység a mező mellett",
+     "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"szovegmezo-do-ar\">Ár</label></div><div class=\"bc-affix\"><input class=\"bc-input\" id=\"szovegmezo-do-ar\" inputmode=\"decimal\" value=\"1 200\"><span>Ft</span></div></div></div>",
+     "miert": "A mértékegység nem a címkében bújik el, hanem a mező mellett áll."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Helykitöltő mint címke",
+     "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><input class=\"bc-input\" placeholder=\"Partner neve\" aria-label=\"Partner neve\"></div>",
+     "miert": "Gépeléskor a helykitöltő eltűnik, és vele a kérdés is. A címke mindig látható (bc-label)."
+    }
+   ],
+   "tesztlap": [
+    "mezok"
+   ],
+   "forras": [
+    "docs/komponensek.md 3.3, 3/A, 3.4 (Szám- és pénzmező)",
+    "docs/termek-arculat.md 3, 6",
+    "termek/css/bc-forms.css"
+   ]
+  },
+  {
+   "id": "legordulo",
+   "nev": "Legördülő",
+   "szint": "atom",
+   "csoport": "01 – Űrlap (alap)",
+   "react": [
+    "SelectField"
+   ],
+   "css": [
+    "bc-select",
+    "bc-filter"
+   ],
+   "leiras": "Natív legördülő saját nyíllal, néhány ismert opcióhoz. Ugyanaz a keret és magasság, mint a szövegmezőé.",
+   "minta_html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"legordulo-kat\">Kategória</label></div><select class=\"bc-select\" id=\"legordulo-kat\"><option>Bolt</option><option>Kávézó</option><option>Javító</option></select></div><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"legordulo-al\">Alkategória</label></div><select class=\"bc-select\" id=\"legordulo-al\" disabled><option>Előbb a kategóriát válaszd ki</option></select></div></div>",
+   "mikor": [
+    "Néhány ismert, fix opcióhoz: kategória, típus, állapot.",
+    "Szűrősávban tartalomszélességű (hug) – nem nyúlik ki a sor végéig.",
+    "Tiltva a helykitöltő mondja meg, mi kell előbb: „Előbb a kategóriát válaszd ki”."
+   ],
+   "mikor_ne": [
+    "Sok opcióhoz, kereséshez, többes választáshoz – keresős legördülő (Combobox).",
+    "Nézetek közti váltásra – szegmentált kapcsoló (SegmentedControl)."
+   ],
+   "do": [
+    {
+     "cim": "Szűrő tartalomszélességgel",
+     "html": "<div class=\"bc-fb-row\"><div class=\"bc-filter\"><label class=\"bc-label\" for=\"legordulo-do-f\">Állapot</label><select class=\"bc-select\" id=\"legordulo-do-f\"><option>Mind</option><option>Aktív</option></select></div></div>",
+     "miert": "A szűrő akkora, amekkora a tartalma – mellette marad hely a többinek."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Szűrő a sor végéig nyújtva",
+     "html": "<div class=\"bb-demo-szeles\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"legordulo-dont-f\">Állapot</label></div><select class=\"bc-select\" id=\"legordulo-dont-f\"><option>Mind</option><option>Aktív</option></select></div></div>",
+     "miert": "A szűrők és a nézetváltó tartalomszélességűek – a kinyújtott választó szétnyomja a szűrősávot."
+    }
+   ],
+   "tesztlap": [
+    "mezok",
+    "adat-szuro"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 6/A (Szűrők és nézetváltó)",
+    "docs/javaslatok/15-lista-hatekonysag.md 3.3",
+    "docs/komponensek.md 3.4 (Választó)",
+    "termek/css/bc-adat.css (Szűrősáv)"
+   ]
+  },
+  {
+   "id": "jelolo",
+   "nev": "Jelölőnégyzet és rádió",
+   "szint": "atom",
+   "csoport": "01 – Űrlap (alap)",
+   "react": [
+    "Checkbox",
+    "CheckboxInput",
+    "RadioGroup"
+   ],
+   "css": [
+    "bc-check",
+    "bc-checkbox",
+    "bc-fieldset",
+    "bc-dt-check"
+   ],
+   "leiras": "Márkázott jelölőnégyzet: fekete keret, bejelölve erdőzöld háttér fehér pipával, részlegesen „–”. Mellette rádió; a címke is kattintható, a sor 44 px.",
+   "minta_html": "<div class=\"bb-demo-oszlop\"><label class=\"bc-check\"><input type=\"checkbox\" checked> Megjelenik a térképen</label><label class=\"bc-check\"><input type=\"checkbox\"> Hírlevelet kér</label><label class=\"bc-check\"><input type=\"checkbox\" checked disabled> Ellenőrzött (tiltott)</label><fieldset class=\"bc-fieldset\"><legend class=\"bc-label\">Láthatóság</legend><div class=\"bb-demo-sor\"><label class=\"bc-check\"><input type=\"radio\" name=\"jelolo-lathato\" checked> Nyilvános</label><label class=\"bc-check\"><input type=\"radio\" name=\"jelolo-lathato\"> Csak partnereknek</label></div></fieldset></div>",
+   "mikor": [
+    "Jelölőnégyzet: független igen/nem választás, vagy több elem kijelölése (táblázatsor).",
+    "Rádió: egymást kizáró opciók, mind látszik egyszerre (pl. összefésülésnél mezőnként).",
+    "A teljes sor kattintható: a <label class=\"bc-check\"> veszi körül a mezőt."
+   ],
+   "mikor_ne": [
+    "Azonnal ható be/ki beállításra – kapcsoló (Switch).",
+    "Natív, márkázatlan négyzetként – nem maradhat a felületen."
+   ],
+   "do": [
+    {
+     "cim": "Márkázott négyzet, kattintható címke",
+     "html": "<div class=\"bb-demo-oszlop\"><label class=\"bc-check\"><input type=\"checkbox\" checked> Megjelenik a térképen</label></div>",
+     "miert": "A pipa és a címke is célfelület, a sor 44 px – telefonon is könnyű eltalálni."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Natív, márkázatlan négyzet",
+     "html": "<div class=\"bb-demo-oszlop\"><label><input type=\"checkbox\" checked> Megjelenik a térképen</label></div>",
+     "miert": "A böngésző saját négyzete kicsi és mindenhol más – márkázott atom kell (CheckboxInput, bc-check)."
+    }
+   ],
+   "tesztlap": [
+    "mezok",
+    "kieg-osszefesules",
+    "adat-tabla"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 6, 6/A (Jelölőnégyzet)",
+    "termek/css/bc-forms.css",
+    "docs/javaslatok/06-kiegeszitok.md 06a/11"
+   ]
+  },
+  {
+   "id": "kapcsolo",
+   "nev": "Kapcsoló",
+   "szint": "atom",
+   "csoport": "01 – Űrlap (alap)",
+   "react": [
+    "Switch",
+    "SwitchInput"
+   ],
+   "css": [
+    "bc-switch",
+    "bc-switch is-sm",
+    "bc-switch-inline",
+    "bc-switch-state"
+   ],
+   "leiras": "Azonnal ható be/ki kapcsoló (role=\"switch\", aria-checked). Bekapcsolva zöld sínnel; az állapot szövegben is látszik.",
+   "minta_html": "<div class=\"bb-demo-sor\"><span class=\"bc-switch-inline\"><button type=\"button\" class=\"bc-switch\" role=\"switch\" aria-checked=\"true\" aria-labelledby=\"kapcsolo-a\"></button><span id=\"kapcsolo-a\">Aktív</span></span><span class=\"bc-switch-inline\"><button type=\"button\" class=\"bc-switch\" role=\"switch\" aria-checked=\"false\" aria-labelledby=\"kapcsolo-b\"></button><span id=\"kapcsolo-b\">Hírlevél</span></span><span class=\"bc-switch-inline\"><button type=\"button\" class=\"bc-switch\" role=\"switch\" aria-checked=\"true\" disabled aria-labelledby=\"kapcsolo-c\"></button><span id=\"kapcsolo-c\">Tiltott</span></span><span class=\"bc-switch-inline is-sm\"><button type=\"button\" class=\"bc-switch is-sm\" role=\"switch\" aria-checked=\"true\" aria-label=\"Látható az appban: Példa Kávézó\"></button><span class=\"bc-switch-state\">Látható</span></span></div>",
+   "mikor": [
+    "Beállításra, ami azonnal érvénybe lép: Aktív, Látható az appban.",
+    "Táblázatsorban SwitchInput size=\"sm\": 44×44 px érintési felület, de a sort nem nyújtja; kötelező aria-label.",
+    "Mentés közben aria-busy és tiltott."
+   ],
+   "mikor_ne": [
+    "Kettőnél több állapotra – szegmentált kapcsoló (pl. Világos · Sötét · Rendszer szerint).",
+    "Független opciók listájára egy űrlapon – jelölőnégyzet."
+   ],
+   "do": [
+    {
+     "cim": "Állapot szövegben is",
+     "html": "<div class=\"bb-demo-sor\"><span class=\"bc-switch-inline is-sm\"><button type=\"button\" class=\"bc-switch is-sm\" role=\"switch\" aria-checked=\"true\" aria-label=\"Látható az appban: Kert utcai közösségi kert\"></button><span class=\"bc-switch-state\">Látható</span></span></div>",
+     "miert": "Az állapot nem csak színből derül ki – a szöveg is kimondja."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Kapcsoló felirat nélkül",
+     "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-switch\" role=\"switch\" aria-checked=\"false\" aria-label=\"Hírlevél\"></button></div>",
+     "miert": "Nem derül ki, mit kapcsol és milyen állapotban van – mellé látható felirat vagy állapotszöveg kell."
+    }
+   ],
+   "tesztlap": [
+    "mezok",
+    "vezerlok-tomor"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 6",
+    "docs/javaslatok/20-admin-ux-elemek.md 3, 4, 7",
+    "docs/javaslatok/09-tema-es-feliratok.md 3",
+    "termek/css/bc-forms.css (Kapcsoló)"
+   ]
+  },
+  {
+   "id": "jelveny",
+   "nev": "Állapotjelvény és címke",
+   "szint": "atom",
+   "csoport": "02 – Adat és grafikon",
+   "react": [
+    "StatusBadge",
+    "Tag"
+   ],
+   "css": [
+    "bc-badge",
+    "bc-badge is-success",
+    "bc-badge is-warning",
+    "bc-badge is-danger",
+    "bc-badge is-info",
+    "bc-badge is-accent",
+    "bc-badge is-muted",
+    "bc-badge is-tag",
+    "bc-status"
+   ],
+   "leiras": "Rövid, nem kattintható jelölés. Az állapotjelvény hangnem-színt és piktogramot kap; a címke (Tag) semleges tulajdonság.",
+   "minta_html": "<div class=\"bb-demo-sor\"><span class=\"bc-badge bc-status is-success\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7\"/></svg>Aktív</span><span class=\"bc-badge bc-status is-warning\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3l10 18H2zM12 10v5M12 18v.5\"/></svg>Függőben</span><span class=\"bc-badge bc-status is-danger\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg>Elutasítva</span><span class=\"bc-badge bc-status is-info\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 11v6M12 7.5v.5\"/></svg>Új</span><span class=\"bc-badge bc-status is-muted\">Lezárult</span><span class=\"bc-badge is-tag\">Vendéglátás</span></div>",
+   "mikor": [
+    "Állapotra (Aktív, Függőben, Lezárult): StatusBadge – a szín jelentést hordoz, mellette piktogram.",
+    "Tulajdonságra (típus, kategória): Tag – semleges, nem állapot.",
+    "Táblázatcellában, kártyán, a cím mellett."
+   ],
+   "mikor_ne": [
+    "Kategóriára a szürke is-muted – az a „lezárult” állapotot jelenti; tulajdonságra Tag.",
+    "Kattintható választásra – oda címkefelhő (bc-tag) vagy aktív-szűrő címke kell."
+   ],
+   "do": [
+    {
+     "cim": "Állapot piktogrammal, tulajdonság semlegesen",
+     "html": "<div class=\"bb-demo-sor\"><span class=\"bc-badge bc-status is-success\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7\"/></svg>Aktív</span><span class=\"bc-badge is-tag\">Kávézó</span></div>",
+     "miert": "A szín nem beszél egyedül, és az állapot nem keveredik a tulajdonsággal."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Tulajdonság állapotszínnel",
+     "html": "<div class=\"bb-demo-sor\"><span class=\"bc-badge is-success\">Kávézó</span><span class=\"bc-badge is-muted\">Vendéglátás</span></div>",
+     "miert": "A zöld „aktívat”, a szürke „lezárultat” jelent – a kategória Tag legyen (is-tag)."
+    },
+    {
+     "cim": "Csak színnel jelzett állapot",
+     "html": "<div class=\"bb-demo-sor\"><span class=\"bc-badge is-danger\" role=\"img\" aria-label=\"Elutasítva\">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class=\"bc-badge is-success\" role=\"img\" aria-label=\"Aktív\">&nbsp;&nbsp;&nbsp;&nbsp;</span></div>",
+     "miert": "Színtévesztőnek semmit nem mond – felirat és piktogram kell."
+    }
+   ],
+   "tesztlap": [
+    "adat-mutato",
+    "kieg3-mukodes",
+    "sablon-reszletek"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 6 (Címke)",
+    "docs/javaslatok/13-mukodest-javito-elemek.md 3/5, 6",
+    "docs/javaslatok/19-admin-ui-tisztitas.md 1, 3",
+    "docs/komponensek.md 3.3"
+   ]
+  },
+  {
+   "id": "link",
+   "nev": "Szövegbeli link",
+   "szint": "atom",
+   "csoport": "03 – Rétegek és navigáció",
+   "react": [],
+   "css": [
+    "bc-link"
+   ],
+   "leiras": "Hivatkozás folyó szövegben: mindig aláhúzott, a vonal mézszínű, rámutatásra fekete. A szín önmagában nem jelöl.",
+   "minta_html": "<p id=\"link-cel\">Az adatkezelésről a <a class=\"bc-link\" href=\"#link-cel\">tájékoztatóban</a> olvashatsz bővebben.</p>",
+   "mikor": [
+    "Folyó szövegben másik oldalra vagy részre mutatsz.",
+    "Ha a cél egy hely (URL) – a kattintható kártyán is a fő link (.bc-card-link) visz."
+   ],
+   "mikor_ne": [
+    "Műveletre (mentés, törlés) – oda gomb kell.",
+    "Menüben – oda az oldalsáv eleme (bc-nav-link)."
+   ],
+   "do": [
+    {
+     "cim": "Aláhúzott, beszédes link",
+     "html": "<p id=\"link-do\">Nézd meg a <a class=\"bc-link\" href=\"#link-do\">partneri szabályokat</a> a feltöltés előtt.</p>",
+     "miert": "Aláhúzva színtévesztő is látja, hogy kattintható, és a szövegéből kiderül, hová visz."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "„Itt” mint linkszöveg",
+     "html": "<p id=\"link-dont\">A partneri szabályokat <a class=\"bc-link\" href=\"#link-dont\">itt</a> találod.</p>",
+     "miert": "Képernyőolvasó linklistájában az „itt” semmit nem mond – a link szövege a cél legyen."
+    }
+   ],
+   "tesztlap": [],
+   "forras": [
+    "termek/css/bc-web.css (Szövegbeli link)",
+    "termek/css/bc-base.css (a)",
+    "termek/css/bc-surfaces.css (Kattintható kártya)"
+   ]
+  },
+  {
+   "id": "toltes",
+   "nev": "Töltésjelző",
+   "szint": "atom",
+   "csoport": "05 – Méhecske, mozgás, szöveg",
+   "react": [
+    "HexLoader",
+    "ProgressBar",
+    "Progress",
+    "SkeletonRows"
+   ],
+   "css": [
+    "bc-spinner",
+    "bc-spinner is-lg",
+    "bc-hexload",
+    "bc-skeleton",
+    "bc-progress",
+    "bc-dt-progress"
+   ],
+   "leiras": "Várakozás jelzése: rövidre pörgő vagy mézsejt-töltő, a tartalom helyére csontváz, mérhető folyamatra haladásjelző.",
+   "minta_html": "<div class=\"bb-demo-oszlop\"><div class=\"bb-demo-sor\"><span class=\"bc-spinner\" role=\"status\" aria-label=\"Töltés\"></span><span class=\"bc-spinner is-lg\" role=\"status\" aria-label=\"Töltés\"></span><span class=\"bc-hexload\" role=\"status\" aria-label=\"Töltés\"><i></i><i></i><i></i></span></div><div class=\"bb-demo-oszlop bb-demo-keskeny\"><span class=\"bc-skeleton\"></span><span class=\"bc-skeleton\"></span><span class=\"bc-skeleton\"></span></div></div>",
+   "mikor": [
+    "Rövid várakozás: pörgő vagy mézsejt-töltő, role=\"status\" + aria-label.",
+    "Lista, táblázat, kártya töltése: csontváz a tartalom helyén (SkeletonRows).",
+    "1 mp-nél hosszabb töltés, feltöltés, import: Futár méhecske és haladásjelző.",
+    "A töltő 10 mp után megáll; csökkentett mozgásnál semmi nem pörög."
+   ],
+   "mikor_ne": [
+    "Frissítéskor, ha már van adat – a régi adat marad, felül vékony töltésjel (bc-dt-progress).",
+    "A gomb mellé külön pörgőnek – a gomb kapja az aria-busy=\"true\"-t."
+   ],
+   "do": [
+    {
+     "cim": "Csontváz a tartalom helyén",
+     "html": "<div class=\"bc-card\" aria-busy=\"true\" aria-label=\"Partnerek betöltése\"><div class=\"bb-demo-oszlop bb-demo-keskeny\"><span class=\"bc-skeleton\"></span><span class=\"bc-skeleton\"></span><span class=\"bc-skeleton\"></span></div></div>",
+     "miert": "Hosszabb töltésnél a csontváz a tartalom helyét mutatja; a pörgő a rövid várakozásé."
+    },
+    {
+     "cim": "Folyamatban lévő gomb",
+     "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn\" aria-busy=\"true\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg>Mentés</button></div>",
+     "miert": "A felirat helyén pörög, és nem nyomható meg újra – nincs dupla beküldés."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Pörgő a gomb mellett, a gomb aktív",
+     "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg>Mentés</button><span class=\"bc-spinner\" role=\"status\" aria-label=\"Mentés folyamatban\"></span></div>",
+     "miert": "A gomb újra megnyomható, így duplán menthet – aria-busy=\"true\" a gombon."
+    }
+   ],
+   "tesztlap": [
+    "meh",
+    "adat-tabla"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 5, 6 (Töltés, Gomb)",
+    "termek/css/bc-motion.css (fejléc)",
+    "tokens/hangnem.json szerepek.futar",
+    "docs/komponensek.md 3.4 (Minden elemnél)",
+    "termek/css/bc-adat.css (Frissítés)"
+   ]
+  },
+  {
+   "id": "logo",
+   "nev": "Logó és méhsejt-háttér",
+   "szint": "atom",
+   "csoport": "05 – Méhecske, mozgás, szöveg",
+   "react": [],
+   "css": [
+    "bc-logo",
+    "bc-logo is-s",
+    "bc-logo is-l",
+    "bc-honeycomb"
+   ],
+   "leiras": "A beeco logó a témával magától vált: sötétben a „be” betűk és a csápok krémszínűek. A méhsejt-háttér díszítés a tartalom alatt.",
+   "minta_html": "<div class=\"bb-demo-oszlop\"><div class=\"bb-demo-sor\"><span class=\"bc-logo is-s\" role=\"img\" aria-label=\"beeco\"></span><span class=\"bc-logo\" role=\"img\" aria-label=\"beeco\"></span><span class=\"bc-logo is-l\" role=\"img\" aria-label=\"beeco\"></span></div><div class=\"bc-card bc-honeycomb\"><p>Tartalom a méhsejt-minta fölött – a minta a méz színéből, díszítő.</p></div></div>",
+   "mikor": [
+    "Oldalsáv márkahelye (bc-brand), belépő oldal, nyomtatott riport.",
+    "Méhsejt-háttér (bc-honeycomb vagy AppShell pattern=\"honeycomb\"): díszítés a tartalom mögött; nyomtatáskor rejtve."
+   ],
+   "mikor_ne": [
+    "Saját átszínezéssel vagy újrarajzolva – sötét módra a logo-sotet.webp kész.",
+    "Külső partneranyagban beeco-jóváhagyás nélkül."
+   ],
+   "do": [
+    {
+     "cim": "Témakövető logó",
+     "html": "<div class=\"bb-demo-sor\"><span class=\"bc-logo\" role=\"img\" aria-label=\"beeco\"></span></div>",
+     "miert": "A .bc-logo sötét módban magától a krémszínű változatra vált – nem kell külön kép."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Fix kép, ami sötétben eltűnik",
+     "html": "<div class=\"bb-demo-oszlop\"><img src=\"ds/web/assets/brand/logo.webp\" alt=\"beeco\" width=\"96\" height=\"59\"><p class=\"bc-help\">Sötét módban a fekete betűk és csápok alig látszanak.</p></div>",
+     "miert": "A fix logo.webp sötét háttéren olvashatatlan – a .bc-logo (vagy Logo) vált helyetted."
+    }
+   ],
+   "tesztlap": [
+    "tema"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 8, 9",
+    "docs/javaslatok/10-logo-sotet-es-mehsejt.md 1–4",
+    "docs/javaslatok/11-evszakos-mehsejt.md"
+   ]
+  },
+  {
+   "id": "meh-kep",
+   "nev": "Méhecske-kép",
+   "szint": "atom",
+   "csoport": "05 – Méhecske, mozgás, szöveg",
+   "react": [
+    "Bee",
+    "BeeSprite"
+   ],
+   "css": [
+    "bc-bee",
+    "bc-bee is-s",
+    "bc-bee is-l",
+    "bc-bee is-buzz"
+   ],
+   "leiras": "A meglévő, rajzolt méhecskék szerepekben. Új méhet nem rajzolunk, és a mérges méh a termékbőrben tilos.",
+   "minta_html": "<div class=\"bb-demo-sor\"><span class=\"bb-demo-oszlop\"><span class=\"bc-bee is-s\" data-szerep=\"hazigazda\" aria-hidden=\"true\"></span><span class=\"bc-help\">Házigazda</span></span><span class=\"bb-demo-oszlop\"><span class=\"bc-bee is-s\" data-szerep=\"kalauz\" aria-hidden=\"true\"></span><span class=\"bc-help\">Kalauz</span></span><span class=\"bb-demo-oszlop\"><span class=\"bc-bee is-s\" data-szerep=\"futar\" aria-hidden=\"true\"></span><span class=\"bc-help\">Futár</span></span><span class=\"bb-demo-oszlop\"><span class=\"bc-bee is-s\" data-szerep=\"szurkolo\" aria-hidden=\"true\"></span><span class=\"bc-help\">Szurkoló</span></span><span class=\"bb-demo-oszlop\"><span class=\"bc-bee is-s\" data-szerep=\"piheno\" aria-hidden=\"true\"></span><span class=\"bc-help\">Pihenő</span></span><span class=\"bb-demo-oszlop\"><span class=\"bc-bee is-s\" data-szerep=\"gondolkodo\" aria-hidden=\"true\"></span><span class=\"bc-help\">Gondolkodó</span></span><span class=\"bb-demo-oszlop\"><span class=\"bc-bee is-s\" data-szerep=\"hirvivo\" aria-hidden=\"true\"></span><span class=\"bc-help\">Hírvivő</span></span><span class=\"bb-demo-oszlop\"><span class=\"bc-bee is-s\" data-szerep=\"szomoru\" aria-hidden=\"true\"></span><span class=\"bc-help\">Szomorú</span></span></div>",
+   "mikor": [
+    "Csak pillanatokban: üres lista, siker, 1 mp-nél hosszabb töltés, hiba, első használat, mérföldkő, 404.",
+    "Képernyőnként legfeljebb egy méh.",
+    "A szerep illik a helyzethez: Szurkoló a sikeres mentéshez, Gondolkodó a „nincs találat”-hoz, Pihenő az üres listához."
+   ],
+   "mikor_ne": [
+    "Állandó díszként (fejléc-méh) – a méh csak pillanatokban jelenik meg.",
+    "A felhasználó hibájánál: mérges méh soha, a Szomorú csak a mi hibánk (szerverhiba).",
+    "Emoji-méhecske (🐝) – a rajzolt képeket használd."
+   ],
+   "do": [
+    {
+     "cim": "Gondolkodó méh a „nincs találat”-nál",
+     "html": "<div class=\"bc-moment is-inline\"><span class=\"bc-bee is-s\" data-szerep=\"gondolkodo\" aria-hidden=\"true\"></span><p class=\"bc-moment-title\">Zümm… erre nincs találat.</p><p class=\"bc-moment-text\">Próbáld rövidebben, vagy ékezet nélkül.</p></div>",
+     "miert": "A Gondolkodó kíváncsi, nem szid – a sima mondat pedig megmondja a teendőt."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Szomorú méh a felhasználó hibájánál",
+     "html": "<div class=\"bc-moment is-inline\"><span class=\"bc-bee is-s\" data-szerep=\"szomoru\" aria-hidden=\"true\"></span><p class=\"bc-moment-title\">Rossz jelszó.</p><p class=\"bc-moment-text\">Nem sikerült belépni.</p></div>",
+     "miert": "A Szomorú csak a mi hibánkhoz jár. A felhasználó hibájához a mező alatti hiba kell, teendővel."
+    },
+    {
+     "cim": "Két méh egy képernyőn",
+     "html": "<div class=\"bb-demo-sor\"><span class=\"bc-bee\" data-szerep=\"hazigazda\" aria-hidden=\"true\"></span><span class=\"bc-bee\" data-szerep=\"szurkolo\" aria-hidden=\"true\"></span></div>",
+     "miert": "Képernyőnként legfeljebb egy méh – a második elveszi az első hatását."
+    }
+   ],
+   "tesztlap": [
+    "meh"
+   ],
+   "forras": [
+    "tokens/hangnem.json szerepek, tiltott_kepek, _readme",
+    "docs/javaslatok/05-meh.md Meglévőből, 1, 2",
+    "docs/termek-arculat.md 1.5, 7, 9",
+    "termek/css/bc-meh.css"
+   ]
+  },
+  {
+   "id": "avatar",
+   "nev": "Avatar",
+   "szint": "atom",
+   "csoport": "04 – Média és speciális",
+   "react": [
+    "Avatar"
+   ],
+   "css": [
+    "bc-avatar",
+    "bc-avatar is-24",
+    "bc-avatar is-32",
+    "bc-avatar is-64",
+    "bc-avatar is-square"
+   ],
+   "leiras": "Személy vagy szervezet képe kör alakban, kép nélkül monogrammal. Fekete keret, vaj háttér.",
+   "minta_html": "<div class=\"bb-demo-sor\"><span class=\"bc-avatar is-24\" role=\"img\" aria-label=\"Példa monogram PK\"><span>PK</span></span><span class=\"bc-avatar is-32\" role=\"img\" aria-label=\"Példa monogram KB\"><span>KB</span></span><span class=\"bc-avatar\" role=\"img\" aria-label=\"Példa monogram PK\"><span>PK</span></span><span class=\"bc-avatar is-64\" role=\"img\" aria-label=\"Példa monogram KK\"><span>KK</span></span><span class=\"bc-avatar is-square\" role=\"img\" aria-label=\"Példa monogram PK\"><span>PK</span></span></div>",
+   "mikor": [
+    "A felhasználó a sáv alján (ShellAccount), előzmények sorai, partnerlista.",
+    "Ha nincs kép: monogram a tartalék."
+   ],
+   "mikor_ne": [
+    "Galériára vagy tartalomképre – oda a galéria csempéi.",
+    "Ugyanarra a beégetett képre mindenkinek."
+   ],
+   "do": [
+    {
+     "cim": "Monogram, ha nincs kép",
+     "html": "<div class=\"bb-demo-sor\"><span class=\"bc-avatar\" aria-hidden=\"true\"><span>PK</span></span><span>Példa Kata</span></div>",
+     "miert": "Kép nélkül is megkülönböztethető, ki kicsoda."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Ugyanaz a kép mindenkinek",
+     "html": "<div class=\"bb-demo-sor\"><span class=\"bb-demo-sor\"><span class=\"bc-avatar\" aria-hidden=\"true\"><img src=\"ds/web/assets/brand/bee-happy.webp\" alt=\"\"></span><span>Példa Kata</span></span><span class=\"bb-demo-sor\"><span class=\"bc-avatar\" aria-hidden=\"true\"><img src=\"ds/web/assets/brand/bee-happy.webp\" alt=\"\"></span><span>Példa Bence</span></span></div>",
+     "miert": "Nem derül ki, ki kicsoda – ha nincs saját kép, monogram kell."
+    }
+   ],
+   "tesztlap": [
+    "media-kepek",
+    "reteg-vaz"
+   ],
+   "forras": [
+    "docs/javaslatok/04-media.md Igény (Avatar), 9",
+    "docs/javaslatok/08-becsukhato-sav.md 3",
+    "termek/css/bc-media-terkep.css (Avatar)"
+   ]
+  },
+  {
+   "id": "mezo",
+   "nev": "Mező (Field)",
+   "szint": "molekula",
+   "csoport": "01 – Űrlap (alap)",
+   "react": [
+    "Field",
+    "TextField"
+   ],
+   "css": [
+    "bc-field",
+    "bc-label",
+    "bc-label-row",
+    "bc-help-btn",
+    "bc-meta",
+    "bc-count",
+    "bc-count is-near",
+    "bc-count is-full",
+    "bc-help",
+    "bc-error",
+    "bc-notice"
+   ],
+   "leiras": "Minden beviteli mező közös kerete: látható címke + súgó (ⓘ), mező, érvényes tartomány + élő számláló, alatta hiba vagy jelzés.",
+   "minta_html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"mezo-nev\">Kupon neve</label><button type=\"button\" class=\"bc-help-btn\" aria-label=\"Súgó: Kupon neve\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 11v6M12 7.5v.5\"/></svg></button></div><input class=\"bc-input\" id=\"mezo-nev\" value=\"10% kedvezmény kávéra\" maxlength=\"60\" aria-describedby=\"mezo-nev-meta\"><div class=\"bc-meta\" id=\"mezo-nev-meta\"><span>3–60 karakter</span><span class=\"bc-count\">22/60</span></div></div><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"mezo-web\">Weboldal</label><button type=\"button\" class=\"bc-help-btn\" aria-label=\"Súgó: Weboldal\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 11v6M12 7.5v.5\"/></svg></button></div><input class=\"bc-input\" id=\"mezo-web\" value=\"pelda\" aria-invalid=\"true\" aria-describedby=\"mezo-web-err\"><p class=\"bc-error\" id=\"mezo-web-err\">Teljes cím kell, pl. https://pelda.hu</p></div></div>",
+   "mikor": [
+    "Minden adatbevitelnél: szöveg, szám, dátum, választó, címke, feltöltés.",
+    "A súgó elmondja, mit és miért kell megadni, és ha van, ad egy példát.",
+    "A tartomány mindig látszik („3–60 karakter”), mellette élő számláló („22/60”): 90%-nál figyelmeztető, a határon hibaszín – szövegben is.",
+    "Hibánál: aria-invalid=\"true\" + aria-describedby a hibaszövegre."
+   ],
+   "mikor_ne": [
+    "Keresőmezőnél – ott a címke csak képernyőolvasónak szól, és nincs súgó.",
+    "Nézetváltónál (SegmentedControl) – nem adatbevitel; a listaszűrők súgója sem kötelező."
+   ],
+   "do": [
+    {
+     "cim": "A hiba megmondja a következő lépést",
+     "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"mezo-do-nev\">Partner neve</label></div><input class=\"bc-input\" id=\"mezo-do-nev\" value=\"PK\" aria-invalid=\"true\" aria-describedby=\"mezo-do-nev-err\"><p class=\"bc-error\" id=\"mezo-do-nev-err\">Legalább 3 karakter kell – most 2.</p></div></div>",
+     "miert": "Tanítunk, nem szidunk: a hiba a mező alatt áll, szövegesen, a teendővel."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Csak „Hibás érték!”",
+     "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"mezo-dont-web\">Weboldal</label></div><input class=\"bc-input\" id=\"mezo-dont-web\" value=\"pelda\" aria-invalid=\"true\" aria-describedby=\"mezo-dont-web-err\"><p class=\"bc-error\" id=\"mezo-dont-web-err\">Hibás érték!</p></div></div>",
+     "miert": "Nem derül ki, mit kell javítani. Írd le a teendőt: „Teljes cím kell, pl. https://pelda.hu”."
+    },
+    {
+     "cim": "Hiba csak színnel",
+     "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"mezo-dont-szin\">Weboldal</label></div><input class=\"bc-input\" id=\"mezo-dont-szin\" value=\"pelda\" aria-invalid=\"true\"></div></div>",
+     "miert": "A piros keret nem mondja meg, mi a baj, színtévesztőnek semmit – a hiba szövegesen a mező alá kerül."
+    }
+   ],
+   "tesztlap": [
+    "mezok",
+    "kieg-mezok"
+   ],
+   "forras": [
+    "docs/komponensek.md 3/A, 3.3",
+    "docs/termek-arculat.md 1.5, 6 (Mező)",
+    "docs/javaslatok/01-urlap.md Döntés",
+    "react/src/field/Field.tsx"
+   ]
+  },
+  {
+   "id": "sugo",
+   "nev": "Súgó (ⓘ) és gomb-felirat",
+   "szint": "molekula",
+   "csoport": "01 – Űrlap (alap)",
+   "react": [
+    "HelpButton",
+    "TooltipIconButton"
+   ],
+   "css": [
+    "bc-help-btn",
+    "bc-pop",
+    "bc-pop-title",
+    "bc-tooltip"
+   ],
+   "leiras": "A ⓘ súgó háttér és körvonal nélküli piktogram: elmondja, mit és miért kell megadni. A gomb-felirat (tooltip) csak az ikongomb nevét mutatja.",
+   "minta_html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-label-row\"><span class=\"bc-label\">Kupon neve</span><button type=\"button\" class=\"bc-help-btn\" aria-label=\"Súgó: Kupon neve\" aria-expanded=\"true\" aria-controls=\"sugo-pop\" data-state=\"open\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 11v6M12 7.5v.5\"/></svg></button></div><div class=\"bc-pop\" id=\"sugo-pop\"><strong class=\"bc-pop-title\">Kupon neve</strong><p>Így jelenik meg az appban a kupon kártyáján. Rövid, cselekvésre hívó név jó, pl. „10% kedvezmény kávéra”.</p></div><div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Szerkesztés\" aria-describedby=\"sugo-tt\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 20h4L19 9l-4-4L4 16zM13 7l4 4\"/></svg></button><span class=\"bc-tooltip\" role=\"tooltip\" id=\"sugo-tt\">Szerkesztés</span></div></div>",
+   "mikor": [
+    "Súgó: mezőcímke, oszlopfejléc, statisztika-csempe, grafikon mellett. Egérrel rámutatásra nyílik, kattintásra rögzül, érintésen koppintásra.",
+    "Gomb-felirat: csak ikongombhoz (TooltipIconButton) – a label a gomb neve is."
+   ],
+   "mikor_ne": [
+    "title= attribútumként – érintésen nem látszik.",
+    "Szöveges gomb mellé tooltipnek – ott a felirat már elmondja."
+   ],
+   "do": [
+    {
+     "cim": "Mit és miért, példával",
+     "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-pop\"><strong class=\"bc-pop-title\">Nyitvatartás</strong><p>Ebből tudja az app, mikor mutatja „nyitva” a helyet. Ha egy nap zárva vagy, kapcsold ki.</p></div></div>",
+     "miert": "A súgó a mezőhöz kötött magyarázat: mit, miért, és ha van, egy példa."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Súgó keretes gombként",
+     "html": "<div class=\"bb-demo-sor\"><span class=\"bc-label\">Kupon neve</span><button type=\"button\" class=\"bc-btn is-sm is-secondary is-icon\" aria-label=\"Súgó: Kupon neve\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 11v6M12 7.5v.5\"/></svg></button></div>",
+     "miert": "A súgó nem művelet: háttér és körvonal nélküli ⓘ (bc-help-btn). A keretes, árnyékos gomb a műveleté."
+    }
+   ],
+   "tesztlap": [
+    "mezok",
+    "reteg-menu",
+    "reteg-vaz-felirat"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 6/A (Súgó)",
+    "docs/komponensek.md 3/A",
+    "docs/javaslatok/03-reteg.md Igény, 4",
+    "docs/javaslatok/21-admin-bekotes-finomitasok.md 3, 7"
+   ]
+  },
+  {
+   "id": "kereso",
+   "nev": "Keresőmező",
+   "szint": "molekula",
+   "csoport": "01 – Űrlap (alap)",
+   "react": [
+    "SearchBox"
+   ],
+   "css": [
+    "bc-search"
+   ],
+   "leiras": "Keresőmező nagyítóval balra és törlés gombbal jobbra. A címke csak képernyőolvasónak szól, súgója nincs.",
+   "minta_html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-search\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M10.5 4a6.5 6.5 0 1 0 0 13a6.5 6.5 0 1 0 0-13M15.5 15.5L20 20\"/></svg><label class=\"bc-sr\" for=\"kereso-q\">Partner keresése</label><input class=\"bc-input\" id=\"kereso-q\" type=\"search\" value=\"kávé\" placeholder=\"Partner keresése\"><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Keresés törlése\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg></button></div></div>",
+   "mikor": [
+    "Lista, táblázat, menü szűrése szöveggel; a szűrősáv és a kereső-paletta is ezt használja.",
+    "A helykitöltő mondja a célt: „Partner keresése”."
+   ],
+   "mikor_ne": [
+    "Adatbevitelre (név, cím) – oda mező-keretes szövegmező.",
+    "Cím keresésére térképen – AddressSearch (helyválasztó)."
+   ],
+   "do": [
+    {
+     "cim": "Nincs találat: tipp, nem szidás",
+     "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-search\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M10.5 4a6.5 6.5 0 1 0 0 13a6.5 6.5 0 1 0 0-13M15.5 15.5L20 20\"/></svg><label class=\"bc-sr\" for=\"kereso-do-q\">Partner keresése</label><input class=\"bc-input\" id=\"kereso-do-q\" type=\"search\" value=\"kávéé\" aria-describedby=\"kereso-do-t\"></div><p class=\"bc-help\" id=\"kereso-do-t\">Nincs találat. Próbáld rövidebben, vagy ékezet nélkül.</p></div>",
+     "miert": "A sima mondat megmondja a következő lépést."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Látható címke és súgó a keresőn",
+     "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"kereso-dont-q\">Keresés</label><button type=\"button\" class=\"bc-help-btn\" aria-label=\"Súgó: Keresés\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 11v6M12 7.5v.5\"/></svg></button></div><input class=\"bc-input\" id=\"kereso-dont-q\" type=\"search\" placeholder=\"Partner keresése\"></div></div>",
+     "miert": "Fölösleges zaj: a nagyító és a helykitöltő egyértelmű – a keresőn a címke csak képernyőolvasónak szól."
+    }
+   ],
+   "tesztlap": [
+    "mezok",
+    "adat-szuro"
+   ],
+   "forras": [
+    "docs/komponensek.md 3/A (Kivételek)",
+    "tokens/hangnem.json pillanatok.nincs-talalat",
+    "termek/css/bc-field.css (Keresőmező)"
+   ]
+  },
+  {
+   "id": "valaszto",
+   "nev": "Keresős legördülő és címkeválasztó",
+   "szint": "molekula",
+   "csoport": "01 – Űrlap (alap)",
+   "react": [
+    "Combobox",
+    "TagPicker"
+   ],
+   "css": [
+    "bc-combo",
+    "bc-chip",
+    "bc-chip is-more",
+    "bc-combo-toggle",
+    "bc-listbox",
+    "bc-option",
+    "bc-option is-create",
+    "bc-tagcloud",
+    "bc-tag",
+    "bc-tag is-add"
+   ],
+   "leiras": "Sok opcióból keres és választ, egyesével vagy többet, új elem létrehozásával. A kijelöltek címkeként a mezőben, „+N” túlcsordulással; kevés címkénél felhő.",
+   "minta_html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><span class=\"bc-label\" id=\"valaszto-l\">Címkék</span><div class=\"bc-combo\"><span class=\"bc-chip\"><span>Komposzt</span><button type=\"button\" aria-label=\"Komposzt eltávolítása\">×</button></span><button type=\"button\" class=\"bc-chip is-more\">+2</button><input aria-labelledby=\"valaszto-l\" value=\"ker\"><button type=\"button\" class=\"bc-combo-toggle\" aria-expanded=\"true\" aria-label=\"Lista\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 9l6 6 6-6\"/></svg></button></div><div class=\"bc-listbox\" role=\"listbox\" aria-labelledby=\"valaszto-l\"><div class=\"bc-option\" role=\"option\" aria-selected=\"false\" data-active=\"true\"><span class=\"bc-ck\"></span><span><mark>Ker</mark>t</span></div><div class=\"bc-option is-create\" role=\"option\" aria-selected=\"false\">+ Új címke: „ker”</div></div><div class=\"bc-tagcloud\" role=\"group\" aria-label=\"Témák\"><button type=\"button\" class=\"bc-tag\" aria-pressed=\"true\">Kert</button><button type=\"button\" class=\"bc-tag\" aria-pressed=\"false\">Víz</button><button type=\"button\" class=\"bc-tag is-add\">+ Új</button></div></div>",
+   "mikor": [
+    "Sok opcióhoz (1000+ is): keresés, görgetés, egyes és többes választás, új elem létrehozása.",
+    "Címkeválasztó: legfeljebb 20 címkéig felhő, fölötte keresős legördülő.",
+    "Többesnél a mező nem nő a végtelenségig: „+N”."
+   ],
+   "mikor_ne": [
+    "Néhány fix opcióhoz – natív legördülő.",
+    "Nézetváltásra – szegmentált kapcsoló."
+   ],
+   "do": [
+    {
+     "cim": "Túlcsordulás „+N”-nel",
+     "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><span class=\"bc-label\" id=\"valaszto-do-l\">Címkék</span><div class=\"bc-combo\"><span class=\"bc-chip\"><span>Komposzt</span><button type=\"button\" aria-label=\"Komposzt eltávolítása\">×</button></span><span class=\"bc-chip\"><span>Javítás</span><button type=\"button\" aria-label=\"Javítás eltávolítása\">×</button></span><button type=\"button\" class=\"bc-chip is-more\">+5</button><input aria-labelledby=\"valaszto-do-l\"></div></div>",
+     "miert": "A mező egy sorban marad, a többi kijelölt egy kattintásra előjön."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Minden kijelölt a mezőben",
+     "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><span class=\"bc-label\" id=\"valaszto-dont-l\">Címkék</span><div class=\"bc-combo\"><span class=\"bc-chip\"><span>Komposzt</span><button type=\"button\" aria-label=\"Komposzt eltávolítása\">×</button></span><span class=\"bc-chip\"><span>Javítás</span><button type=\"button\" aria-label=\"Javítás eltávolítása\">×</button></span><span class=\"bc-chip\"><span>Kert</span><button type=\"button\" aria-label=\"Kert eltávolítása\">×</button></span><span class=\"bc-chip\"><span>Víz</span><button type=\"button\" aria-label=\"Víz eltávolítása\">×</button></span><span class=\"bc-chip\"><span>Bolt</span><button type=\"button\" aria-label=\"Bolt eltávolítása\">×</button></span><span class=\"bc-chip\"><span>Piac</span><button type=\"button\" aria-label=\"Piac eltávolítása\">×</button></span><span class=\"bc-chip\"><span>Csere</span><button type=\"button\" aria-label=\"Csere eltávolítása\">×</button></span><input aria-labelledby=\"valaszto-dont-l\"></div></div>",
+     "miert": "A mező a végtelenségig nő, és szétnyomja az űrlapot – „+N” túlcsordulás kell."
+    }
+   ],
+   "tesztlap": [
+    "valaszto",
+    "kieg2-hely"
+   ],
+   "forras": [
+    "docs/javaslatok/01-urlap.md 1, 4, Döntés",
+    "docs/komponensek.md 3.4 (Választó)",
+    "termek/css/bc-picker.css",
+    "termek/css/bc-field.css (Címkefelhő)"
+   ]
+  },
+  {
+   "id": "szegmentalt",
+   "nev": "Szegmentált kapcsoló (nézetváltó)",
+   "szint": "molekula",
+   "csoport": "01 – Űrlap (alap)",
+   "react": [
+    "SegmentedControl"
+   ],
+   "css": [
+    "bc-seg",
+    "bc-seg-item",
+    "bc-seg is-wrap"
+   ],
+   "leiras": "Nézetváltó gombsor fekete kerettel; a kijelölt elem méz. Rádiócsoport: egy Tab-megálló, nyilakkal vált.",
+   "minta_html": "<div class=\"bb-demo-sor\"><div class=\"bc-seg\" role=\"radiogroup\" aria-label=\"Nézet\"><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"true\" data-state=\"on\">Térkép</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">Lista</button></div><div class=\"bc-seg\" role=\"radiogroup\" aria-label=\"Téma\"><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">Világos</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">Sötét</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"true\" data-state=\"on\">Rendszer szerint</button></div></div>",
+   "mikor": [
+    "Ugyanannak a tartalomnak a nézetei közt: Térkép | Lista, Kártya | Részletek, Világos · Sötét · Rendszer szerint.",
+    "Sok elemnél (pl. 9 GYIK-téma) is-wrap: tördelődik, minden elem látszik."
+   ],
+   "mikor_ne": [
+    "Adatbevitelre – nem mező, nincs súgója; űrlapértékhez rádió vagy legördülő.",
+    "Oldalak közti navigációra – NavTabs vagy SectionSwitch (link, útvonalat vált)."
+   ],
+   "do": [
+    {
+     "cim": "Sok elem tördelve",
+     "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-seg is-wrap\" role=\"radiogroup\" aria-label=\"Téma\"><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"true\" data-state=\"on\">Első lépések</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">Kuponok</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">Események</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">Térkép</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">Fiók</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">Analitika</button></div></div>",
+     "miert": "Minden elem látszik, nincs rejtett görgetés."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Sok elem rejtett görgetéssel",
+     "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-seg\" role=\"radiogroup\" aria-label=\"Téma\"><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"true\" data-state=\"on\">Első lépések</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">Kuponok</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">Események</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">Térkép</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">Fiók</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">Analitika</button></div></div>",
+     "miert": "A jobb szélső elemek észrevétlenek maradnak – sok elemnél tördelődő változat kell (is-wrap)."
+    }
+   ],
+   "tesztlap": [
+    "vezerlok",
+    "kieg-elonezet",
+    "media-terkep"
+   ],
+   "forras": [
+    "docs/javaslatok/01-urlap.md 3",
+    "docs/javaslatok/16-tordelodo-nezetvalto-es-twmerge.md 1, 3, 7",
+    "docs/komponensek.md 3/A (Kivételek)",
+    "docs/javaslatok/09-tema-es-feliratok.md 3"
+   ]
+  },
+  {
+   "id": "szammezo",
+   "nev": "Szám-, telefonmező és csúszka",
+   "szint": "molekula",
+   "csoport": "01 – Űrlap (alap)",
+   "react": [
+    "NumberField",
+    "PhoneField",
+    "Slider",
+    "RangeSlider"
+   ],
+   "css": [
+    "bc-affix",
+    "bc-phone",
+    "bc-phone-cc",
+    "bc-slider",
+    "bc-notice"
+   ],
+   "leiras": "Magyar formátumú számmező mértékegységgel (1 234,5), rögzített +36 előtagos telefonmező és csúszka. Betű, második tizedesjel, fölösleges előjel nem írható be.",
+   "minta_html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"szammezo-kedv\">Kedvezmény</label><button type=\"button\" class=\"bc-help-btn\" aria-label=\"Súgó: Kedvezmény\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 11v6M12 7.5v.5\"/></svg></button></div><div class=\"bc-affix\"><input class=\"bc-input\" id=\"szammezo-kedv\" inputmode=\"decimal\" value=\"15\" aria-describedby=\"szammezo-kedv-meta\"><span>%</span></div><div class=\"bc-meta\" id=\"szammezo-kedv-meta\"><span>0–100 %</span></div></div><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"szammezo-tel\">Telefonszám</label><button type=\"button\" class=\"bc-help-btn\" aria-label=\"Súgó: Telefonszám\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 11v6M12 7.5v.5\"/></svg></button></div><div class=\"bc-phone\"><span class=\"bc-phone-cc\" aria-hidden=\"true\">+36</span><input class=\"bc-input\" id=\"szammezo-tel\" type=\"tel\" value=\"30 123 4567\" aria-describedby=\"szammezo-tel-meta\"></div><div class=\"bc-meta\" id=\"szammezo-tel-meta\"><span>mobil vagy vezetékes</span></div></div></div>",
+   "mikor": [
+    "Számra, pénzre, százalékra NumberField: a tartományon kívüli érték kilépéskor a határra áll, és a mező szól – gépelés közben nem vág.",
+    "Mértékegység (Ft, %, db, km) a mező mellett; üres ≠ 0.",
+    "Telefonszámra PhoneField: +36 előtag, magyar tagolás, mobil/vezetékes hossz-ellenőrzés.",
+    "Csúszka szűrőkben (távolság, %): billentyűzettel is, érintésen 44 px, érték-kijelzéssel."
+   ],
+   "mikor_ne": [
+    "+/− gombos számmezőnek – csak a gépelős változat van.",
+    "Szám helyett szövegmezőnek – ott nincs magyar formátum, tartomány és igazítás."
+   ],
+   "do": [
+    {
+     "cim": "Határra igazít, és szól",
+     "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"szammezo-do\">Kedvezmény</label></div><div class=\"bc-affix\"><input class=\"bc-input\" id=\"szammezo-do\" inputmode=\"decimal\" value=\"100\" aria-describedby=\"szammezo-do-meta szammezo-do-note\"><span>%</span></div><div class=\"bc-meta\" id=\"szammezo-do-meta\"><span>0–100 %</span></div><p class=\"bc-notice\" id=\"szammezo-do-note\">100-ra állítottam – legfeljebb 100 lehet.</p></div></div>",
+     "miert": "Kilépéskor a határra áll, és megmondja, mit csinált."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Angol formátum, egység a címkében",
+     "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"szammezo-dont\">Ár (Ft)</label></div><input class=\"bc-input\" id=\"szammezo-dont\" value=\"1,234.50\"></div></div>",
+     "miert": "Magyarul 1 234,50: ezres tagolás szóközzel, tizedesvessző – a Ft a mező mellé kerül."
+    }
+   ],
+   "tesztlap": [
+    "szam",
+    "kieg-mezok"
+   ],
+   "forras": [
+    "docs/komponensek.md 3/A (Helytelen érték), 3.4 (Szám- és pénzmező)",
+    "docs/javaslatok/01-urlap.md 5, Döntés",
+    "docs/javaslatok/06-kiegeszitok.md 06a/1, 06a/4",
+    "termek/tesztlapok/lista.json szam"
+   ]
+  },
+  {
+   "id": "datum",
+   "nev": "Dátumválasztó",
+   "szint": "molekula",
+   "csoport": "01 – Űrlap (alap)",
+   "react": [
+    "DatePicker",
+    "DateRangePicker",
+    "Calendar",
+    "ScheduleField"
+   ],
+   "css": [
+    "bc-date",
+    "bc-date-input",
+    "bc-time",
+    "bc-cal",
+    "bc-cal-head",
+    "bc-cal-grid",
+    "bc-day",
+    "bc-day is-today",
+    "bc-day is-in-range",
+    "bc-schedule"
+   ],
+   "leiras": "Gépelhető dátummező (2026. 10. 07.) lenyíló naptárral, a hét hétfővel kezdődik. A tartományon kívüli nap halvány és áthúzott.",
+   "minta_html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"datum-kezd\">Kezdés</label></div><div class=\"bc-date\"><div class=\"bc-date-input\"><input class=\"bc-input\" id=\"datum-kezd\" value=\"2026. 10. 07.\"><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Naptár megnyitása\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 6h16v14H4zM4 10h16M8 3v4M16 3v4\"/></svg></button></div><input class=\"bc-input bc-time\" aria-label=\"Kezdés időpontja\" value=\"10:00\"></div></div><div class=\"bc-pop bc-cal\"><div class=\"bc-cal-head\"><strong>2026. október</strong></div><table class=\"bc-cal-grid\"><thead><tr><th scope=\"col\">H</th><th scope=\"col\">K</th><th scope=\"col\">Sze</th><th scope=\"col\">Cs</th><th scope=\"col\">P</th><th scope=\"col\">Szo</th><th scope=\"col\">V</th></tr></thead><tbody><tr><td><button type=\"button\" class=\"bc-day\" disabled>5</button></td><td><button type=\"button\" class=\"bc-day is-today\">6</button></td><td><button type=\"button\" class=\"bc-day\" aria-pressed=\"true\">7</button></td><td><button type=\"button\" class=\"bc-day\">8</button></td><td><button type=\"button\" class=\"bc-day\">9</button></td><td><button type=\"button\" class=\"bc-day\">10</button></td><td><button type=\"button\" class=\"bc-day\">11</button></td></tr></tbody></table></div></div>",
+   "mikor": [
+    "Dátum, időpont, időszak (DateRangePicker); időzítésre ScheduleField: Azonnal / Időzítve, a vége csak a kezdés után.",
+    "Magyar formátum (2026. 10. 01.), a hét első napja hétfő; a szerver UTC-t kap, a felület helyi időt mutat.",
+    "Tiltott nap nem választható; gépelésnél kilépéskor igazít, és jelez."
+   ],
+   "mikor_ne": [
+    "A böngésző saját választója (datetime-local) – helyette a DS dátumválasztója.",
+    "Egy hónap eseményeinek áttekintésére – havi naptár (MonthCalendar)."
+   ],
+   "do": [
+    {
+     "cim": "Tiltott nap halványan, áthúzva",
+     "html": "<div class=\"bc-pop bc-cal\"><table class=\"bc-cal-grid\"><thead><tr><th scope=\"col\">H</th><th scope=\"col\">K</th><th scope=\"col\">Sze</th><th scope=\"col\">Cs</th><th scope=\"col\">P</th><th scope=\"col\">Szo</th><th scope=\"col\">V</th></tr></thead><tbody><tr><td><button type=\"button\" class=\"bc-day\" disabled>5</button></td><td><button type=\"button\" class=\"bc-day\" disabled>6</button></td><td><button type=\"button\" class=\"bc-day\" disabled>7</button></td><td><button type=\"button\" class=\"bc-day\">8</button></td><td><button type=\"button\" class=\"bc-day\">9</button></td><td><button type=\"button\" class=\"bc-day\">10</button></td><td><button type=\"button\" class=\"bc-day\">11</button></td></tr></tbody></table></div>",
+     "miert": "A tartományon kívüli nap nem választható – és ez látszik is."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Amerikai formátum, vasárnapi hétkezdés",
+     "html": "<div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"datum-dont\">Kezdés</label></div><input class=\"bc-input\" id=\"datum-dont\" value=\"10/07/2026\"></div><table class=\"bc-cal-grid\"><thead><tr><th scope=\"col\">V</th><th scope=\"col\">H</th><th scope=\"col\">K</th><th scope=\"col\">Sze</th><th scope=\"col\">Cs</th><th scope=\"col\">P</th><th scope=\"col\">Szo</th></tr></thead></table></div>",
+     "miert": "Magyarul 2026. 10. 07., és a hét hétfővel kezdődik."
+    }
+   ],
+   "tesztlap": [
+    "datum",
+    "kieg3-mukodes"
+   ],
+   "forras": [
+    "docs/javaslatok/01-urlap.md 2",
+    "docs/komponensek.md 3/A (Helytelen érték), 3.4 (Dátum és idő)",
+    "docs/javaslatok/13-mukodest-javito-elemek.md 3/4, 4",
+    "termek/css/bc-picker.css"
+   ]
+  },
+  {
+   "id": "fulek",
+   "nev": "Fülek és lenyitható",
+   "szint": "molekula",
+   "csoport": "03 – Rétegek és navigáció",
+   "react": [
+    "Tabs",
+    "NavTabs",
+    "TabCount",
+    "SectionSwitch",
+    "Accordion"
+   ],
+   "css": [
+    "bc-tabs",
+    "bc-tab",
+    "bc-tab-count",
+    "bc-tab-panel",
+    "bc-secsw",
+    "bc-secsw-item",
+    "bc-acc",
+    "bc-acc-item",
+    "bc-acc-trigger",
+    "bc-acc-inner"
+   ],
+   "leiras": "Fülek: egy oldal paneljei közt váltanak (Tabs) vagy útvonalat (NavTabs); az aktív fül méz, kemény árnyékkal. Lenyitható: a ritkábban kellő tartalom összecsukva.",
+   "minta_html": "<div class=\"bb-demo-oszlop\"><div class=\"bc-tabs\" role=\"tablist\" aria-label=\"Partner nézetei\"><button type=\"button\" class=\"bc-tab\" role=\"tab\" aria-selected=\"true\">Részletek</button><button type=\"button\" class=\"bc-tab\" role=\"tab\" aria-selected=\"false\">Kuponok<span class=\"bc-tab-count\">12</span></button><button type=\"button\" class=\"bc-tab\" role=\"tab\" aria-selected=\"false\">Előzmények</button></div><div class=\"bc-acc\"><div class=\"bc-acc-item\"><div class=\"bc-acc-h\"><button type=\"button\" class=\"bc-acc-trigger\" aria-expanded=\"true\" data-state=\"open\"><span>Hogyan számoljuk?</span><svg class=\"bb-ic bc-acc-chev\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 9l6 6 6-6\"/></svg></button></div><div class=\"bc-acc-content\" data-state=\"open\"><div class=\"bc-acc-inner\"><p>Egy felhasználó naponta egyszer számít.</p></div></div></div><div class=\"bc-acc-item\"><div class=\"bc-acc-h\"><button type=\"button\" class=\"bc-acc-trigger\" aria-expanded=\"false\"><span>Honnan jön az adat?</span><svg class=\"bb-ic bc-acc-chev\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 9l6 6 6-6\"/></svg></button></div></div></div></div>",
+   "mikor": [
+    "Tabs: egy oldal paneljei (Részletek · Kuponok · Előzmények); NavTabs, ha a fül útvonalat vált.",
+    "Telefonon a fülsor görgethető, halványuló széllel.",
+    "Lenyitható: GYIK, „Hogyan számoljuk?” – ami nem kell mindenkinek."
+   ],
+   "mikor_ne": [
+    "Egy tartalom nézetei közt (Térkép | Lista) – szegmentált kapcsoló.",
+    "Sorrendben kitöltendő lépésekhez – lépésjelző és EditPage lépés-mód."
+   ],
+   "do": [
+    {
+     "cim": "Aktív fül méz, árnyékkal",
+     "html": "<div class=\"bc-tabs\" role=\"tablist\" aria-label=\"Kupon nézetei\"><button type=\"button\" class=\"bc-tab\" role=\"tab\" aria-selected=\"true\">Aktív</button><button type=\"button\" class=\"bc-tab\" role=\"tab\" aria-selected=\"false\">Lejárt</button></div>",
+     "miert": "A kiválasztott, kattintható elem méz kijelölést és kemény árnyékot kap – rögtön látszik, hol vagy."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Fülek lépésként",
+     "html": "<div class=\"bc-tabs\" role=\"tablist\" aria-label=\"Új POI\"><button type=\"button\" class=\"bc-tab\" role=\"tab\" aria-selected=\"true\">1. Alapadatok</button><button type=\"button\" class=\"bc-tab\" role=\"tab\" aria-selected=\"false\">2. Hely</button><button type=\"button\" class=\"bc-tab\" role=\"tab\" aria-selected=\"false\">3. Képek</button></div>",
+     "miert": "A fülek független nézetek. Sorrendben kitöltendő lépésekhez lépésjelző kell, ellenőrzéssel."
+    }
+   ],
+   "tesztlap": [
+    "reteg-nav",
+    "reteg-menu"
+   ],
+   "forras": [
+    "docs/javaslatok/03-reteg.md 6, 10",
+    "docs/termek-arculat.md 5, 6 (Fülek), 6/A (Árnyék)",
+    "docs/javaslatok/20-admin-ux-elemek.md 1, 3"
+   ]
+  },
+  {
+   "id": "kartya",
+   "nev": "Kártya",
+   "szint": "molekula",
+   "csoport": "02 – Adat és grafikon",
+   "react": [
+    "InfoCard",
+    "InfoGrid"
+   ],
+   "css": [
+    "bc-card",
+    "bc-card is-flat",
+    "bc-card is-accent",
+    "bc-card is-quiet",
+    "bc-card is-interactive",
+    "bc-card is-link",
+    "bc-card-link",
+    "bc-card-title",
+    "bc-section-title",
+    "bc-divided",
+    "bc-info"
+   ],
+   "leiras": "Fehér felület 2 px fekete kerettel. A statikus kártya halvány, elmosott árnyékot kap, a kattintható kemény, átlós árnyékot – ebből látszik, hogy megnyomható.",
+   "minta_html": "<div class=\"bb-demo-sor\"><article class=\"bc-card\"><p class=\"bc-card-title\">Alap kártya</p><p>Statikus doboz, puha árnyék.</p></article><div class=\"bc-card is-link\"><p class=\"bc-card-title\"><a class=\"bc-card-link\" href=\"#kartya-cel\">Példa Kávézó</a></p><p id=\"kartya-cel\">Az egész kártya kattintható.</p></div><article class=\"bc-card is-quiet\"><p class=\"bc-card-title\">Csendes</p><p>Másodlagos tartalom.</p></article><article class=\"bc-card is-accent\"><p class=\"bc-card-title\">Kiemelt</p><p>Teendő vagy összegzés.</p></article></div>",
+   "mikor": [
+    "Összetartozó tartalom egy dobozban: adatlap (InfoCard), űrlapszakasz, kiemelt teendő (is-accent).",
+    "Ha az egész kártya visz valahová: .bc-card.is-link + a fő link .bc-card-link (billentyűvel is).",
+    "Csoportok között elválasztó vonal: .bc-divided."
+   ],
+   "mikor_ne": [
+    "Kártya a kártyában – a beágyazott elem lapos (is-flat, keret nélküli tábla, lapos csempe).",
+    "Kártyán kívüli szakaszcímre – arra .bc-section-title, nem .bc-card-title."
+   ],
+   "do": [
+    {
+     "cim": "Kattintható: kemény árnyék; statikus: puha",
+     "html": "<div class=\"bb-demo-sor\"><article class=\"bc-card\"><p class=\"bc-card-title\">Nyitvatartás</p><p>H–P 8–18</p></article><div class=\"bc-card is-link\"><p class=\"bc-card-title\"><a class=\"bc-card-link\" href=\"#kartya-do\">Kuponok</a></p><p id=\"kartya-do\">3 aktív</p></div></div>",
+     "miert": "Az árnyékból látszik, mi nyomható meg."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Kemény árnyék nem kattintható dobozon",
+     "html": "<div class=\"bb-demo-sor\"><article class=\"bc-card is-interactive\"><p class=\"bc-card-title\">Nyitvatartás</p><p>H–P 8–18</p></article></div>",
+     "miert": "Megnyomhatónak látszik, de nem az. A statikus doboz puha árnyékot kap (sima .bc-card)."
+    },
+    {
+     "cim": "Hosszú szöveg Lalezarral",
+     "html": "<article class=\"bc-card\"><p class=\"bc-display\">A partner a hét minden napján várja a vásárlókat, és a csomagolásmentes termékekhez saját dobozt is hozhatsz.</p></article>",
+     "miert": "A Lalezar a címé, a számé és a gombé – a folyó szöveg Open Sans."
+    }
+   ],
+   "tesztlap": [
+    "adat-mutato",
+    "sablon-reszletek"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 1.4, 3, 4, 6 (Kártya), 6/A (Árnyék, Kattintható kártya)",
+    "docs/javaslatok/19-admin-ui-tisztitas.md 1, 6",
+    "termek/css/bc-surfaces.css"
+   ]
+  },
+  {
+   "id": "sav",
+   "nev": "Figyelmeztető sáv",
+   "szint": "molekula",
+   "csoport": "02 – Adat és grafikon",
+   "react": [
+    "DataNote",
+    "DraftNotice"
+   ],
+   "css": [
+    "bc-alert",
+    "bc-alert is-info",
+    "bc-alert is-success",
+    "bc-alert is-warning",
+    "bc-alert is-danger",
+    "bc-note",
+    "bc-draft"
+   ],
+   "leiras": "Az oldalon maradó üzenet vastag bal szegéllyel, a hangnem színével. role=\"alert\" csak hibánál.",
+   "minta_html": "<div class=\"bb-demo-oszlop\"><div class=\"bc-alert is-success\" role=\"status\"><p><strong>Mentve.</strong> A partner mostantól látszik az appban.</p></div><div class=\"bc-alert is-warning\" role=\"note\"><p><strong>Hiányzik a nyitvatartás.</strong> Nélküle a térkép „ismeretlen”-t mutat.</p></div><div class=\"bc-alert is-danger\" role=\"alert\"><p><strong>Nem sikerült menteni.</strong> Ellenőrizd a weboldal címét, és próbáld újra.</p></div><div class=\"bc-alert is-info bc-draft\" role=\"status\"><div><p>Van egy mentetlen piszkozatod.</p><div class=\"bc-row bc-draft-actions\"><button type=\"button\" class=\"bc-btn is-sm is-secondary\">Visszaállítás</button><button type=\"button\" class=\"bc-btn is-sm is-ghost\">Elvetés</button></div></div></div></div>",
+   "mikor": [
+    "Tartós állapot az oldalon: hiányzó adat, mentési hiba, piszkozat-ajánlat (DraftNotice, role=\"status\").",
+    "Adat mellé megjegyzés (DataNote): becsült vagy vitatott érték jelölése."
+   ],
+   "mikor_ne": [
+    "Egy művelet rövid visszajelzésére – értesítés (toast).",
+    "Mezőhibára – a hiba a mező alá kerül.",
+    "role=\"alert\"-tel, ha nem hiba – a képernyőolvasót félbeszakítaná."
+   ],
+   "do": [
+    {
+     "cim": "Hiba a teendővel",
+     "html": "<div class=\"bc-alert is-danger\" role=\"alert\"><p><strong>Nem sikerült menteni.</strong> Ellenőrizd a weboldal címét, és próbáld újra.</p></div>",
+     "miert": "Megmondja, mi a baj, és mi a következő lépés."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Szóvicc a hibaüzenetben",
+     "html": "<div class=\"bc-alert is-danger\" role=\"alert\"><p><strong>Hoppá, elzümmögött!</strong> Valami nem jó.</p></div>",
+     "miert": "A hibaüzenet teendő-részében nincs szóvicc, és meg kell mondania a következő lépést."
+    }
+   ],
+   "tesztlap": [
+    "adat-tabla",
+    "kieg3-mukodes"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 1.5, 6 (Sáv)",
+    "tokens/hangnem.json _readme",
+    "docs/javaslatok/13-mukodest-javito-elemek.md 3/7, 6",
+    "docs/komponensek.md 3/B",
+    "termek/bemutato.html Visszajelzés"
+   ]
+  },
+  {
+   "id": "ertesites",
+   "nev": "Értesítés (toast)",
+   "szint": "molekula",
+   "csoport": "03 – Rétegek és navigáció",
+   "react": [
+    "Toaster"
+   ],
+   "css": [
+    "bc-toast",
+    "bc-toast is-success",
+    "bc-toast is-danger",
+    "bc-toast is-info",
+    "bc-toast is-warning",
+    "bc-toast-icon",
+    "bc-toast-body",
+    "bc-toast-actions",
+    "bc-toast-action",
+    "bc-toast-close"
+   ],
+   "leiras": "Rövid visszajelzés egy műveletről (notify.success / error / info / warning). Asztalon jobb fent, telefonon lent középen; a hiba nem tűnik el magától.",
+   "minta_html": "<div class=\"bb-demo-szeles\"><div class=\"bb-demo-oszlop\"><div class=\"bc-toast is-success\" role=\"status\"><svg class=\"bb-ic bc-toast-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7\"/></svg><div class=\"bc-toast-body\"><p>Törölve – ha meggondoltad, visszavonhatod.</p><div class=\"bc-toast-actions\"><button type=\"button\" class=\"bc-toast-action\">Visszavonás</button></div></div><button type=\"button\" class=\"bc-toast-close\" aria-label=\"Értesítés bezárása\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg></button></div><div class=\"bc-toast is-danger\" role=\"alert\"><svg class=\"bb-ic bc-toast-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3l10 18H2zM12 10v5M12 18v.5\"/></svg><div class=\"bc-toast-body\"><p>Nem sikerült menteni. Próbáld újra egy perc múlva.</p><div class=\"bc-toast-actions\"><button type=\"button\" class=\"bc-toast-action\">Újra</button></div></div><button type=\"button\" class=\"bc-toast-close\" aria-label=\"Értesítés bezárása\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg></button></div></div></div>",
+   "mikor": [
+    "Siker, info, figyelmeztetés egy művelet után; egyszerre legfeljebb 3 látszik, ablak fölött is.",
+    "Visszafordítható műveletnél megerősítő ablak helyett „Visszavonás” (notify.undo, 10 mp).",
+    "A hiba marad, amíg be nem zárják; rámutatásra az időzítés megáll."
+   ],
+   "mikor_ne": [
+    "Mezőhibára – a hiba a mező alá kerül.",
+    "Tartós állapotra (hiányzó adat) – figyelmeztető sáv."
+   ],
+   "do": [
+    {
+     "cim": "Visszavonás megerősítés helyett",
+     "html": "<div class=\"bb-demo-szeles\"><div class=\"bc-toast is-success\" role=\"status\"><svg class=\"bb-ic bc-toast-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7\"/></svg><div class=\"bc-toast-body\"><p>Megoldottnak jelölve.</p><div class=\"bc-toast-actions\"><button type=\"button\" class=\"bc-toast-action\">Visszavonás</button></div></div></div></div>",
+     "miert": "A visszafordítható művelet nem kérdez előre – utólag egy kattintással visszavonható."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Hiba teendő nélkül",
+     "html": "<div class=\"bb-demo-szeles\"><div class=\"bc-toast is-danger\" role=\"alert\"><svg class=\"bb-ic bc-toast-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3l10 18H2zM12 10v5M12 18v.5\"/></svg><div class=\"bc-toast-body\"><p>Hoppá! Valami félrement.</p></div></div></div>",
+     "miert": "Mondd meg, mi történt és mi a teendő: „Nem sikerült menteni. Próbáld újra egy perc múlva.”"
+    }
+   ],
+   "tesztlap": [
+    "reteg-ertesites",
+    "kieg3-mukodes",
+    "reteg-vaz"
+   ],
+   "forras": [
+    "docs/javaslatok/03-reteg.md Igény, 1, 8",
+    "docs/javaslatok/13-mukodest-javito-elemek.md 3/6",
+    "termek/tesztlapok/lista.json reteg-ertesites",
+    "docs/termek-arculat.md 1.5"
+   ]
+  },
+  {
+   "id": "stat-csempe",
+   "nev": "Statisztika-csempe",
+   "szint": "molekula",
+   "csoport": "02 – Adat és grafikon",
+   "react": [
+    "StatTile",
+    "Sparkline"
+   ],
+   "css": [
+    "bc-stats",
+    "bc-stat",
+    "bc-kpi",
+    "bc-stat-label",
+    "bc-stat-value",
+    "bc-stat-unit",
+    "bc-stat-delta",
+    "bc-kpi-delta is-good",
+    "bc-kpi-delta is-bad",
+    "bc-kpi-meta",
+    "bc-kpi-source"
+   ],
+   "leiras": "Egy szám nagyban (Lalezar) címkével, egységgel, időszakkal és forrással. A változás színe a jelentésétől függ, nem az irányától.",
+   "minta_html": "<div class=\"bc-stats\"><div class=\"bc-stat bc-kpi\"><span class=\"bc-stat-label\">Beváltott kupon</span><p class=\"bc-stat-value\">1 042<span class=\"bc-stat-unit\"> db</span></p><p class=\"bc-stat-delta bc-kpi-delta is-good\">+6% az előző hónaphoz</p><p class=\"bc-kpi-meta\">2026. 09.</p><p class=\"bc-kpi-source\">Forrás: mintaadat</p></div><div class=\"bc-stat bc-kpi\"><span class=\"bc-stat-label\">Nyitott hibajegy</span><p class=\"bc-stat-value\">14<span class=\"bc-stat-unit\"> db</span></p><p class=\"bc-stat-delta bc-kpi-delta is-bad\">+3 az előző héthez</p><p class=\"bc-kpi-meta\">2026. 09. 28. – 10. 04.</p><p class=\"bc-kpi-source\">Forrás: mintaadat</p></div></div>",
+   "mikor": [
+    "Irányítópult, részletek-oldal összegzése: néhány kulcsszám egymás mellett (bc-stats rács).",
+    "Mindig: egység, időszak, forrás; becsült érték jelölve.",
+    "Szöveges állapotra (pl. „Frissítésre vár”) a szöveges változat."
+   ],
+   "mikor_ne": [
+    "Forrás nélküli, kitalált számra – szám csak valós adatból vagy forrással.",
+    "Kártyába ágyazva saját kerettel – az összegző blokkban a csempe lapos."
+   ],
+   "do": [
+    {
+     "cim": "A szín a jelentést követi",
+     "html": "<div class=\"bc-stat bc-kpi\"><span class=\"bc-stat-label\">Nyitott hibajegy</span><p class=\"bc-stat-value\">14<span class=\"bc-stat-unit\"> db</span></p><p class=\"bc-stat-delta bc-kpi-delta is-bad\">+3 az előző héthez</p><p class=\"bc-kpi-source\">Forrás: mintaadat</p></div>",
+     "miert": "Több hibajegy rossz hír, ezért piros, pedig felfelé megy."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Szám egység, időszak és forrás nélkül",
+     "html": "<div class=\"bc-stat\"><span class=\"bc-stat-label\">Kupon</span><span class=\"bc-stat-value\">1042</span></div>",
+     "miert": "Nem derül ki, mennyi idő alatt és miből; ezres tagolás nélkül nehezen olvasható. Szám csak forrással."
+    }
+   ],
+   "tesztlap": [
+    "adat-mutato",
+    "sablon-iranyitopult",
+    "sablon-reszletek"
+   ],
+   "forras": [
+    "docs/javaslatok/02-adat.md 3",
+    "docs/termek-arculat.md 6 (Statisztika), 6/A (Árnyék)",
+    "docs/komponensek.md 3/B, 3.4 (Szám)",
+    "docs/javaslatok/18-admin-ui-kiegeszitesek.md 3",
+    "docs/javaslatok/19-admin-ui-tisztitas.md 3"
+   ]
+  },
+  {
+   "id": "ures-allapot",
+   "nev": "Üres, töltés és hiba állapot",
+   "szint": "molekula",
+   "csoport": "02 – Adat és grafikon",
+   "react": [
+    "EmptyState",
+    "DataState"
+   ],
+   "css": [
+    "bc-empty",
+    "bc-empty is-compact",
+    "bc-empty-art",
+    "bc-empty-text",
+    "bc-state",
+    "bc-state-box"
+   ],
+   "leiras": "Ha nincs mit mutatni: méhecske + egy mondat + egy teendő. A töltés, a hiba (újrapróbálással) és a „nincs találat” külön állapot.",
+   "minta_html": "<div class=\"bb-demo-oszlop\"><div class=\"bc-card is-quiet\"><div class=\"bc-empty\"><img src=\"ds/web/assets/brand/moods/rest.webp\" alt=\"\"><strong>Még nincs kupon</strong><p class=\"bc-empty-text\">Az első kuponnal a partner rögtön megjelenik az appban.</p><div class=\"bc-row\"><button type=\"button\" class=\"bc-btn\">Kupon létrehozása</button></div></div></div><div class=\"bc-alert is-danger bc-state-box\" role=\"alert\"><p><strong>Nem sikerült betölteni a partnereket.</strong> Ellenőrizd a kapcsolatot, és próbáld újra.</p><button type=\"button\" class=\"bc-btn is-sm is-secondary\">Újrapróbálás</button></div></div>",
+   "mikor": [
+    "Üres lista: Pihenő méh + egy mondat + az első teendő.",
+    "Nincs találat szűrés után: Gondolkodó méh + tipp + „Szűrők törlése”.",
+    "Hálózati hiba: hibaállapot újrapróbálással – nem üres lista."
+   ],
+   "mikor_ne": [
+    "Hálózati hibánál „üres lista” – félrevezető.",
+    "Második méhvel ugyanazon a képernyőn – képernyőnként egy."
+   ],
+   "do": [
+    {
+     "cim": "Egy mondat, egy teendő",
+     "html": "<div class=\"bc-empty is-compact\"><img src=\"ds/web/assets/brand/moods/rest.webp\" alt=\"\"><strong>Még nincs esemény</strong><p class=\"bc-empty-text\">Az első eseményed itt jelenik meg.</p><div class=\"bc-row\"><button type=\"button\" class=\"bc-btn\">Új esemény</button></div></div>",
+     "miert": "Megmondja, miért üres, és mi a következő lépés – egy fő gombbal."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Csak „Nincs adat”",
+     "html": "<div class=\"bc-empty is-compact\"><strong>Nincs adat</strong></div>",
+     "miert": "Nem derül ki, hogy üres, szűrt vagy hibás-e, és mit tehetsz."
+    }
+   ],
+   "tesztlap": [
+    "adat-tabla",
+    "adat-szuro"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 6 (Üres állapot)",
+    "tokens/hangnem.json pillanatok.ures, nincs-talalat",
+    "docs/javaslatok/13-mukodest-javito-elemek.md 1, 4",
+    "docs/komponensek.md 3.4 (Táblázat, lista)",
+    "react/src/adat/DataState.tsx"
+   ]
+  },
+  {
+   "id": "lapozo",
+   "nev": "Lapozó",
+   "szint": "molekula",
+   "csoport": "02 – Adat és grafikon",
+   "react": [
+    "Pagination"
+   ],
+   "css": [
+    "bc-pager",
+    "bc-pager-info",
+    "bc-pager-pages",
+    "bc-pager-num",
+    "bc-pager-gap",
+    "bc-pager-size"
+   ],
+   "leiras": "Első · előző · oldalszámok · következő · utolsó, mellette „1–25 / 312 · 1. oldal / 13” és a sor/oldal választó.",
+   "minta_html": "<nav class=\"bc-pager\" aria-label=\"Lapozás\"><p class=\"bc-pager-info\">1–25 / 312 elem · 1. oldal / 13</p><ul class=\"bc-pager-pages\"><li><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Előző lap\" disabled><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M19 12H5M11 6l-6 6 6 6\"/></svg></button></li><li><button type=\"button\" class=\"bc-pager-num\" aria-current=\"page\" aria-label=\"1. lap\">1</button></li><li><button type=\"button\" class=\"bc-pager-num\" aria-label=\"2. lap\">2</button></li><li class=\"bc-pager-gap\" aria-hidden=\"true\">…</li><li><button type=\"button\" class=\"bc-pager-num\" aria-label=\"13. lap\">13</button></li><li><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Következő lap\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></button></li></ul><div class=\"bc-pager-size\"><label for=\"lapozo-meret\">Sor / oldal</label><select class=\"bc-select\" id=\"lapozo-meret\"><option>25</option><option>100</option></select></div></nav>",
+   "mikor": [
+    "Táblázat és lista alatt, ha több lap van.",
+    "Mindig kiírja, hányadik elemeknél és lapon jársz: „1–25 / 312 · 1. oldal / 13”.",
+    "Ha a szűrés után kevesebb lap marad, a lista az utolsó létező lapra lép."
+   ],
+   "mikor_ne": [
+    "Egy lapnyi adatnál – ott a lapozó gombjai nem jelennek meg."
+   ],
+   "do": [
+    {
+     "cim": "Hol jársz – szövegben is",
+     "html": "<nav class=\"bc-pager\" aria-label=\"Lapozás (minta)\"><p class=\"bc-pager-info\">26–50 / 312 elem · 2. oldal / 13</p></nav>",
+     "miert": "Látszik, mennyi az összes, és hol tartasz benne."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Csak nyilak, információ nélkül",
+     "html": "<nav class=\"bc-pager\" aria-label=\"Lapozás (rossz minta)\"><ul class=\"bc-pager-pages\"><li><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Előző lap\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M19 12H5M11 6l-6 6 6 6\"/></svg></button></li><li><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Következő lap\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></button></li></ul></nav>",
+     "miert": "Nem derül ki, hány elem és lap van – nem lehet az elejére vagy egy adott lapra ugrani."
+    }
+   ],
+   "tesztlap": [
+    "adat-tabla"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 6/A (Lapozó)",
+    "docs/javaslatok/13-mukodest-javito-elemek.md 3 (DataTable)",
+    "react/src/adat/Pagination.tsx"
+   ]
+  },
+  {
+   "id": "urlapszakasz",
+   "nev": "Űrlapszakasz és gombsor",
+   "szint": "organizmus",
+   "csoport": "01 – Űrlap (alap)",
+   "react": [
+    "FormSection",
+    "FormActions"
+   ],
+   "css": [
+    "bc-card",
+    "bc-card-title",
+    "bc-form-grid",
+    "bc-form-grid is-wide",
+    "bc-form-actions"
+   ],
+   "leiras": "Az űrlap tagolása: kártyán szakaszcím + leírás, alatta kétoszlopos mezőrács (telefonon egy oszlop), a végén jobbra igazított gombsor.",
+   "minta_html": "<section class=\"bc-card\" aria-label=\"Alapadatok\"><p class=\"bc-card-title\">Alapadatok</p><div class=\"bc-form-grid\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"szakasz-nev\">Partner neve</label></div><input class=\"bc-input\" id=\"szakasz-nev\" value=\"Példa Kávézó\"></div><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"szakasz-kat\">Kategória</label></div><select class=\"bc-select\" id=\"szakasz-kat\"><option>Kávézó</option><option>Bolt</option></select></div></div><div class=\"bc-form-actions\"><button type=\"button\" class=\"bc-btn is-secondary\">Mégse</button><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg>Mentés</button></div></section>",
+   "mikor": [
+    "Hosszabb űrlapnál a mezőket témánként szakaszokba rendezed.",
+    "A gombsor az űrlap végén, jobbra: „Mégse” (másodlagos) és „Mentés” (méz, piktogrammal); telefonon egymás alatt.",
+    "Űrlapmezők között 16 px, kártya belső margója 24 px."
+   ],
+   "mikor_ne": [
+    "Lépésenként kitöltendő, hosszú felvételre – EditPage lépés-mód.",
+    "Kártyába ágyazva újabb kártyaként – nincs kártya a kártyában."
+   ],
+   "do": [
+    {
+     "cim": "Mentés szöveggel és piktogrammal",
+     "html": "<div class=\"bc-form-actions\"><button type=\"button\" class=\"bc-btn is-secondary\">Mégse</button><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg>Mentés</button></div>",
+     "miert": "Az űrlap Mentésénél a félrekattintás drága – a szöveg a biztonság."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Csak piktogramos Mentés",
+     "html": "<div class=\"bc-form-actions\"><button type=\"button\" class=\"bc-btn is-secondary\">Mégse</button><button type=\"button\" class=\"bc-btn is-icon\" aria-label=\"Mentés\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg></button></div>",
+     "miert": "Az űrlap Mentése szöveg + piktogram – csak piktogram a kompakt helyeken állhat."
+    }
+   ],
+   "tesztlap": [
+    "vezerlok",
+    "sablon-szerkeszto"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 3, 6 (Űrlap-rács), 6/A",
+    "docs/komponensek.md 2",
+    "react/src/form/FormSection.tsx",
+    "termek/bemutato.html Űrlap"
+   ]
+  },
+  {
+   "id": "adattabla",
+   "nev": "Adattáblázat, szűrősáv és sorműveletek",
+   "szint": "organizmus",
+   "csoport": "02 – Adat és grafikon",
+   "react": [
+    "DataTable",
+    "FilterBar",
+    "RowActions",
+    "BulkBar",
+    "SortHeader",
+    "SelectCell",
+    "ExpandToggle",
+    "ColumnResizer",
+    "SkeletonRows"
+   ],
+   "css": [
+    "bc-dt",
+    "bc-table-wrap",
+    "bc-table",
+    "bc-table is-dense",
+    "bc-sort",
+    "bc-dt-bulk",
+    "bc-fb",
+    "bc-fb-row",
+    "bc-fb-search",
+    "bc-filter",
+    "bc-fb-count",
+    "bc-row-actions"
+   ],
+   "leiras": "Rendezhető, kijelölhető táblázat méz fejléccel; fölötte szűrősáv (kereső, szűrők, találatszám), a sor végén ikongombos műveletek.",
+   "minta_html": "<div class=\"bb-demo-oszlop\"><div class=\"bc-fb-row\"><div class=\"bc-fb-search\"><div class=\"bc-search\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M10.5 4a6.5 6.5 0 1 0 0 13a6.5 6.5 0 1 0 0-13M15.5 15.5L20 20\"/></svg><label class=\"bc-sr\" for=\"tabla-q\">Partner keresése</label><input class=\"bc-input\" id=\"tabla-q\" type=\"search\"></div></div><div class=\"bc-filter\"><label class=\"bc-label\" for=\"tabla-f\">Állapot</label><select class=\"bc-select\" id=\"tabla-f\"><option>Mind</option></select></div><p class=\"bc-fb-count\">2 találat</p></div><div class=\"bc-table-wrap\"><table class=\"bc-table\"><thead><tr><th aria-sort=\"ascending\"><button type=\"button\" class=\"bc-sort\">Név</button></th><th>Állapot</th><th class=\"is-num\">Kupon</th><th><span class=\"bc-sr\">Műveletek</span></th></tr></thead><tbody><tr><td>Példa Kávézó</td><td><span class=\"bc-badge bc-status is-success\">Aktív</span></td><td class=\"is-num\">12</td><td><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Példa Kávézó szerkesztése\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 20h4L19 9l-4-4L4 16zM13 7l4 4\"/></svg></button></td></tr><tr><td>Példa Bolt</td><td><span class=\"bc-badge bc-status is-warning\">Függőben</span></td><td class=\"is-num\">3</td><td><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Példa Bolt szerkesztése\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 20h4L19 9l-4-4L4 16zM13 7l4 4\"/></svg></button></td></tr></tbody></table></div></div>",
+   "mikor": [
+    "Listák (partnerek, POI-k, kuponok): rendezés, kijelölés + tömeges sáv, lenyitható sor, lapozás, sűrűség.",
+    "Szűrősáv: széles képernyőn soros, keskenyen „Szűrők (N)” gomb + panel; aktív-szűrő címkék, „Szűrők törlése”, találatszám.",
+    "Sorműveletek: legfeljebb 2 ikongomb, 3+ esetén a fő látszik, a többi „⋯” menüben; a műveletoszlop jobbra rögzíthető.",
+    "0 sor: üres állapot teendővel; töltés: csontváz; hiba: újrapróbálás."
+   ],
+   "mikor_ne": [
+    "Telefonon partner-listához vízszintes görgetés helyett kártyanézet (mobile=\"cards\").",
+    "Kártyába ágyazva saját kerettel – ott keret nélküli (bare), sűrű változat."
+   ],
+   "do": [
+    {
+     "cim": "Szám jobbra, hiányzó érték „–”",
+     "html": "<div class=\"bc-table-wrap\"><table class=\"bc-table is-dense\"><thead><tr><th>Név</th><th class=\"is-num\">Kupon</th></tr></thead><tbody><tr><td>Példa Kávézó</td><td class=\"is-num\">1 204</td></tr><tr><td>Példa Bolt</td><td class=\"is-num\"><span class=\"bc-dt-missing\" aria-label=\"nincs adat\">–</span></td></tr></tbody></table></div>",
+     "miert": "A számok egymás alatt összevethetők, és a hiányzó érték nem keverhető össze a nullával."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Hálózati hiba üres listaként",
+     "html": "<div class=\"bc-table-wrap\"><table class=\"bc-table\"><thead><tr><th>Név</th><th>Állapot</th></tr></thead><tbody><tr><td colspan=\"2\">Nincs megjeleníthető elem.</td></tr></tbody></table></div>",
+     "miert": "Hibánál ne mondd, hogy üres: „Nem sikerült betölteni…” + Újrapróbálás."
+    }
+   ],
+   "tesztlap": [
+    "adat-tabla",
+    "adat-szuro",
+    "sablon-lista"
+   ],
+   "forras": [
+    "docs/javaslatok/02-adat.md 1, 2, 5",
+    "docs/javaslatok/03-reteg.md 5",
+    "docs/javaslatok/15-lista-hatekonysag.md 3.1–3.3",
+    "docs/javaslatok/13-mukodest-javito-elemek.md 1",
+    "docs/javaslatok/19-admin-ui-tisztitas.md 6",
+    "docs/termek-arculat.md 6 (Táblázat), 6/A",
+    "docs/komponensek.md 3.4 (Táblázat, lista)"
+   ]
+  },
+  {
+   "id": "oldalfej",
+   "nev": "Oldalfej és morzsa",
+   "szint": "organizmus",
+   "csoport": "03 – Rétegek és navigáció",
+   "react": [
+    "PageHeader",
+    "Breadcrumbs"
+   ],
+   "css": [
+    "bc-page-header",
+    "bc-page-head",
+    "bc-page-head-text",
+    "bc-crumbs",
+    "bc-crumb",
+    "bc-crumb is-current",
+    "bc-crumb is-parent"
+   ],
+   "leiras": "Az oldal teteje: morzsa a cím fölött, cím + rövid leírás, jobbra az oldal műveletei – köztük az egyetlen méz fő gomb.",
+   "minta_html": "<div class=\"bc-page-header bc-page-head\"><div class=\"bc-page-head-text\"><nav class=\"bc-crumbs\" aria-label=\"Morzsa\"><ol><li class=\"bc-crumb is-parent\"><a href=\"#oldalfej-cim\">Partnerek</a></li><li class=\"bc-crumb is-current\"><span aria-current=\"page\">Példa Kávézó</span></li></ol></nav><div class=\"bc-card-title\" id=\"oldalfej-cim\">Példa Kávézó</div><p>Kávézó · Budapest</p></div><div class=\"bc-row\"><button type=\"button\" class=\"bc-btn is-secondary\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7S2.5 12 2.5 12zM12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6\"/></svg>Megnyitás</button><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 20h4L19 9l-4-4L4 16zM13 7l4 4\"/></svg>Szerkesztés</button></div></div>",
+   "mikor": [
+    "Minden oldal tetején; a cím és a morzsa az útvonal leírásából jön, a böngészőfül címe is (usePageTitle).",
+    "A műveletek jobbra: legfeljebb egy méz fő gomb („Új partner” piktogrammal), a többi másodlagos.",
+    "Telefonon a morzsából csak a szülő marad: „‹ Partnerek”."
+   ],
+   "mikor_ne": [
+    "Cím a felső sávban – a cím és a morzsa a tartalom tetején áll, vékony fejléc mellett."
+   ],
+   "do": [
+    {
+     "cim": "Morzsa a cím fölött",
+     "html": "<div class=\"bc-page-head-text\"><nav class=\"bc-crumbs\" aria-label=\"Morzsa (jó minta)\"><ol><li class=\"bc-crumb is-parent\"><a href=\"#oldalfej-do\">Kuponok</a></li><li class=\"bc-crumb is-current\"><span aria-current=\"page\">Őszi kedvezmény</span></li></ol></nav><p class=\"bc-card-title\" id=\"oldalfej-do\">Őszi kedvezmény</p></div>",
+     "miert": "Előbb látod, hol vagy, aztán a címet – és egy kattintással feljebb léphetsz."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Morzsa a cím alatt",
+     "html": "<div class=\"bc-page-head-text\"><p class=\"bc-card-title\" id=\"oldalfej-dont\">Őszi kedvezmény</p><nav class=\"bc-crumbs\" aria-label=\"Morzsa (rossz minta)\"><ol><li class=\"bc-crumb is-parent\"><a href=\"#oldalfej-dont\">Kuponok</a></li><li class=\"bc-crumb is-current\"><span aria-current=\"page\">Őszi kedvezmény</span></li></ol></nav></div>",
+     "miert": "A morzsa mindig a cím fölött áll – a cím alatt a szem már a tartalomnál jár."
+    }
+   ],
+   "tesztlap": [
+    "reteg-nav"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 6 (Oldalfej), 6/A (Morzsa)",
+    "docs/javaslatok/03-reteg.md Igény, 7",
+    "termek/css/bc-reteg.css (Oldalfej és morzsamenü)"
+   ]
+  },
+  {
+   "id": "alkalmazas-vaz",
+   "nev": "Alkalmazás-váz (oldalsáv)",
+   "szint": "organizmus",
+   "csoport": "03 – Rétegek és navigáció",
+   "react": [
+    "AppShell",
+    "ShellAccount"
+   ],
+   "css": [
+    "bc-shell",
+    "bc-shell is-compact",
+    "bc-shell is-collapsed",
+    "bc-sidebar",
+    "bc-brand",
+    "bc-nav-group",
+    "bc-nav-list",
+    "bc-nav-link",
+    "bc-nav-icon",
+    "bc-nav-text",
+    "bc-sidebar-foot",
+    "bc-account",
+    "bc-main",
+    "bc-topbar",
+    "bc-content"
+   ],
+   "leiras": "Az admin és a partner-felület váza: bal oldalsáv (márka, csoportosított menü, alul a felhasználó), mellette a tartalom. 900 px alatt behúzható fiók, asztalon becsukható ikonsáv.",
+   "minta_html": "<nav class=\"bc-card bb-demo-keskeny\" aria-label=\"Fő menü (minta)\"><span class=\"bc-brand\"><span class=\"bc-logo is-s\" aria-hidden=\"true\"></span><span class=\"bc-brand-text\">Admin</span></span><p class=\"bc-nav-group\" id=\"vaz-g1\">Kínálatod</p><ul class=\"bc-nav-list\" aria-labelledby=\"vaz-g1\"><li><a class=\"bc-nav-link\" href=\"#vaz-g1\" aria-current=\"page\"><span class=\"bc-nav-icon\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 11l9-7 9 7M5 10v10h14V10\"/></svg></span><span class=\"bc-nav-text\">Főoldal</span></a></li><li><a class=\"bc-nav-link\" href=\"#vaz-g1\"><span class=\"bc-nav-icon\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12zM12 7a2 2 0 1 0 0 4a2 2 0 1 0 0-4\"/></svg></span><span class=\"bc-nav-text\">Térkép pontok</span></a></li><li><a class=\"bc-nav-link\" href=\"#vaz-g1\"><span class=\"bc-nav-icon\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 20V10M10 20V4M16 20v-7M2 20h20\"/></svg></span><span class=\"bc-nav-text\">Analitika</span></a></li></ul><div class=\"bc-sidebar-foot\"><button type=\"button\" class=\"bc-account\"><span class=\"bc-avatar is-32\" aria-hidden=\"true\"><span>PK</span></span><span class=\"bc-account-text\"><span class=\"bc-account-name\">Példa Kata</span><span class=\"bc-account-detail\">admin</span></span></button></div></nav>",
+   "mikor": [
+    "Minden admin- és partneroldal kerete; a menüpontok csoportokban (címmel).",
+    "Sok menüpontnál tömör sáv (density=\"compact\"): egérrel 36 px-es sorok, érintésen 44 px marad.",
+    "Becsukott sáv: csak ikonok, a link neve képernyőolvasónak megmarad; a felhasználó a sáv alján, a menüjéből kijelentkezhet.",
+    "Téma-váltó a sáv alján ikongombként; beállítás-oldalon Világos · Sötét · Rendszer szerint."
+   ],
+   "mikor_ne": [
+    "Állandó fejléc-méhecskének – a méh csak pillanatokban jelenik meg.",
+    "Fő műveletek gyűjtőhelyének – az oldal fő gombja az oldalfejben áll."
+   ],
+   "do": [
+    {
+     "cim": "Aktív menüpont mézzel",
+     "html": "<ul class=\"bc-nav-list bb-demo-keskeny\" aria-label=\"Menü (jó minta)\"><li><a class=\"bc-nav-link\" href=\"#vaz-do\" id=\"vaz-do\" aria-current=\"page\"><span class=\"bc-nav-icon\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 11l9-7 9 7M5 10v10h14V10\"/></svg></span><span class=\"bc-nav-text\">Főoldal</span></a></li><li><a class=\"bc-nav-link\" href=\"#vaz-do\"><span class=\"bc-nav-icon\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 20V10M10 20V4M16 20v-7M2 20h20\"/></svg></span><span class=\"bc-nav-text\">Analitika</span></a></li></ul>",
+     "miert": "A kiválasztott, kattintható elem méz és kemény árnyék, mellette aria-current=\"page\"."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Sok egyenrangú, csoportosítatlan menüpont",
+     "html": "<ul class=\"bc-nav-list bb-demo-keskeny\" aria-label=\"Menü (rossz minta)\"><li><a class=\"bc-nav-link\" href=\"#vaz-g1\">Főoldal</a></li><li><a class=\"bc-nav-link\" href=\"#vaz-g1\">Keresés</a></li><li><a class=\"bc-nav-link\" href=\"#vaz-g1\">Első lépések</a></li><li><a class=\"bc-nav-link\" href=\"#vaz-g1\">Profil</a></li><li><a class=\"bc-nav-link\" href=\"#vaz-g1\">Térkép pontok</a></li><li><a class=\"bc-nav-link\" href=\"#vaz-g1\">Kuponok</a></li><li><a class=\"bc-nav-link\" href=\"#vaz-g1\">Beváltás</a></li><li><a class=\"bc-nav-link\" href=\"#vaz-g1\">Események</a></li><li><a class=\"bc-nav-link\" href=\"#vaz-g1\">Edukáció</a></li><li><a class=\"bc-nav-link\" href=\"#vaz-g1\">GYIK</a></li></ul>",
+     "miert": "A hosszú, egyforma lista görgetést kér, és nem mutatja, mi tartozik össze – csoportosítsd, és használd a tömör sávot."
+    }
+   ],
+   "tesztlap": [
+    "reteg-vaz",
+    "reteg-vaz-tomor",
+    "reteg-vaz-felirat"
+   ],
+   "forras": [
+    "docs/termek-arculat.md 6 (Váz), 8",
+    "docs/javaslatok/03-reteg.md 9",
+    "docs/javaslatok/08-becsukhato-sav.md 3",
+    "docs/javaslatok/09-tema-es-feliratok.md 3",
+    "docs/javaslatok/17-tomor-oldalsav.md 1, 4",
+    "docs/javaslatok/05-meh.md 2"
+   ]
+  },
+  {
+   "id": "modal",
+   "nev": "Felugró ablak és megerősítés",
+   "szint": "organizmus",
+   "csoport": "03 – Rétegek és navigáció",
+   "react": [
+    "Modal",
+    "ModalCancel",
+    "ConfirmDialog",
+    "TypeToConfirm",
+    "UnsavedChangesDialog",
+    "UnsavedChangesGuard"
+   ],
+   "css": [
+    "bc-modal",
+    "bc-modal is-layer",
+    "bc-modal is-sm",
+    "bc-modal is-wide",
+    "bc-modal-head",
+    "bc-modal-body",
+    "bc-modal-foot",
+    "bc-layer-titles",
+    "bc-layer-desc",
+    "bc-kdialog",
+    "bc-scrim"
+   ],
+   "leiras": "Középre nyíló ablak: fej, görgethető törzs, rögzített gombsor. Esc-re zár, a fókuszt bent tartja. Megerősítést csak visszafordíthatatlan műveletnél kér.",
+   "minta_html": "<div class=\"bb-demo-szeles\"><section class=\"bc-modal is-layer is-sm\" aria-labelledby=\"modal-cim\"><div class=\"bc-modal-head\"><p class=\"bc-card-title\" id=\"modal-cim\">Törlöd a partnert?</p><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Bezárás\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg></button></div><div class=\"bc-modal-body\"><p>A Példa Kávézó és a 12 kuponja eltűnik az appból. Ez nem vonható vissza.</p></div><div class=\"bc-modal-foot\"><button type=\"button\" class=\"bc-btn is-secondary\">Mégse</button><button type=\"button\" class=\"bc-btn is-danger\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6\"/></svg>Törlés</button></div></section></div>",
+   "mikor": [
+    "Rövid, fókuszált feladat, ami nem visz el az oldalról (pl. címke létrehozása).",
+    "Megerősítés csak visszafordíthatatlan műveletnél: a következménnyel, a fókusz a Mégse-n.",
+    "10+ elem végleges törlése vagy másokat érintő törlés: a darabszámot (egy elemnél a nevet) be kell gépelni.",
+    "Mentetlen változásnál oldalelhagyás előtt kérdez – kíméletesen, szóvicc nélkül."
+   ],
+   "mikor_ne": [
+    "Visszafordítható műveletnél – ott „Visszavonás” az értesítésben.",
+    "Hosszú űrlapra – az oldal marad; részletekhez és rövid szerkesztéshez oldalpanel."
+   ],
+   "do": [
+    {
+     "cim": "A gomb kimondja, mi történik",
+     "html": "<div class=\"bb-demo-szeles\"><div class=\"bc-modal is-sm\" role=\"group\" aria-label=\"Megerősítés (jó minta)\"><div class=\"bc-modal-body\"><p>3 kupon véglegesen törlődik. Ez nem vonható vissza.</p></div><div class=\"bc-modal-foot\"><button type=\"button\" class=\"bc-btn is-secondary\">Mégse</button><button type=\"button\" class=\"bc-btn is-danger\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6\"/></svg>Törlés</button></div></div></div>",
+     "miert": "Leírja a következményt, a megerősítő gomb vörös, piktogrammal és a művelet nevével."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Szóvicc és „Igen / Nem”",
+     "html": "<div class=\"bb-demo-szeles\"><div class=\"bc-modal is-sm\" role=\"group\" aria-label=\"Megerősítés (rossz minta)\"><div class=\"bc-modal-head\"><p class=\"bc-card-title\">Biztos kirepíted?</p></div><div class=\"bc-modal-foot\"><button type=\"button\" class=\"bc-btn is-secondary\">Nem</button><button type=\"button\" class=\"bc-btn\">Igen</button></div></div></div>",
+     "miert": "Törlés-megerősítésben nincs szóvicc, és az „Igen” nem mondja meg, mi történik – „Törlés” (is-danger) kell."
+    }
+   ],
+   "tesztlap": [
+    "reteg-ablak",
+    "reteg-ertesites",
+    "kieg-oldalak"
+   ],
+   "forras": [
+    "docs/javaslatok/03-reteg.md 1, 2, Technika",
+    "docs/javaslatok/06-kiegeszitok.md 06a/5",
+    "docs/termek-arculat.md 5, 6 (Felugró ablak), 6/A",
+    "tokens/hangnem.json _readme",
+    "termek/bemutato.html Felugró ablak"
+   ]
+  },
+  {
+   "id": "oldalpanel",
+   "nev": "Oldalpanel (Drawer)",
+   "szint": "organizmus",
+   "csoport": "03 – Rétegek és navigáció",
+   "react": [
+    "Drawer"
+   ],
+   "css": [
+    "bc-drawer",
+    "bc-drawer is-wide",
+    "bc-drawer-head",
+    "bc-drawer-body",
+    "bc-drawer-foot"
+   ],
+   "leiras": "Jobbról beúszó, 480 px széles panel a lista mellett: részletek, rövid szerkesztés, saját URL-lel. 600 px alatt teljes képernyő.",
+   "minta_html": "<div class=\"bb-demo-szeles\"><section class=\"bc-modal\" aria-labelledby=\"panel-cim\"><div class=\"bc-drawer-head\"><p class=\"bc-card-title\" id=\"panel-cim\">Példa Kávézó</p><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Bezárás\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg></button></div><div class=\"bc-drawer-body\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"panel-nev\">Partner neve</label></div><input class=\"bc-input\" id=\"panel-nev\" value=\"Példa Kávézó\"></div></div><div class=\"bc-drawer-foot\"><button type=\"button\" class=\"bc-btn is-secondary\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7S2.5 12 2.5 12zM12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6\"/></svg>Teljes adatlap</button><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg>Mentés</button></div></section></div>",
+   "mikor": [
+    "Listából megnyitott részletek, gyors szerkesztés – a lista mögötte marad.",
+    "Saját URL-lel, hogy a link megosztható legyen.",
+    "Beúszás 400 ms ease-drawer; csökkentett mozgásnál azonnal."
+   ],
+   "mikor_ne": [
+    "Hosszú űrlapra – az külön oldal marad (szerkesztő-oldal).",
+    "Megerősítésre – ConfirmDialog."
+   ],
+   "do": [
+    {
+     "cim": "Rövid szerkesztés a lista mellett",
+     "html": "<div class=\"bb-demo-szeles\"><div class=\"bc-modal is-sm\" role=\"group\" aria-label=\"Oldalpanel (jó minta)\"><div class=\"bc-drawer-body\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"panel-do\">Kupon neve</label></div><input class=\"bc-input\" id=\"panel-do\" value=\"Őszi kedvezmény\"></div></div><div class=\"bc-drawer-foot\"><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg>Mentés</button></div></div></div>",
+     "miert": "A lista kontextusa megmarad, egy-két mező gyorsan módosítható."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Hosszú űrlap a panelben",
+     "html": "<div class=\"bb-demo-szeles\"><div class=\"bc-modal is-sm\" role=\"group\" aria-label=\"Oldalpanel (rossz minta)\"><div class=\"bc-drawer-body bb-demo-oszlop\"><label class=\"bc-label\" for=\"panel-dont-0\">Név</label><input class=\"bc-input\" id=\"panel-dont-0\"><label class=\"bc-label\" for=\"panel-dont-1\">Cím</label><input class=\"bc-input\" id=\"panel-dont-1\"><label class=\"bc-label\" for=\"panel-dont-2\">Leírás</label><input class=\"bc-input\" id=\"panel-dont-2\"><label class=\"bc-label\" for=\"panel-dont-3\">Telefon</label><input class=\"bc-input\" id=\"panel-dont-3\"><label class=\"bc-label\" for=\"panel-dont-4\">Weboldal</label><input class=\"bc-input\" id=\"panel-dont-4\"></div></div></div>",
+     "miert": "A hosszú űrlap a panelben görgetéssé és elveszett kontextussá válik – vidd külön oldalra."
+    }
+   ],
+   "tesztlap": [
+    "reteg-ablak"
+   ],
+   "forras": [
+    "docs/javaslatok/03-reteg.md 3, Technika",
+    "docs/termek-arculat.md 5",
+    "termek/css/bc-reteg.css (Oldalpanel)"
+   ]
+  },
+  {
+   "id": "legordulo-menu",
+   "nev": "Legördülő menü és sorműveletek",
+   "szint": "organizmus",
+   "csoport": "03 – Rétegek és navigáció",
+   "react": [
+    "DropdownMenu",
+    "RowActions",
+    "MoreIcon"
+   ],
+   "css": [
+    "bc-menu",
+    "bc-menu-item",
+    "bc-menu-item is-danger",
+    "bc-menu-icon",
+    "bc-menu-text",
+    "bc-menu-reason",
+    "bc-menu-sep",
+    "bc-menu-label",
+    "bc-menu-header",
+    "bc-row-actions"
+   ],
+   "leiras": "Lenyíló műveletlista (profil, „⋯” menü, sorműveletek). Billentyűzettel bejárható, Esc-re zár; a veszélyes elem piros, a tiltott megmondja, miért tiltott.",
+   "minta_html": "<div class=\"bb-demo-oszlop\"><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"További műveletek: Példa Kávézó\" aria-haspopup=\"menu\" aria-expanded=\"true\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4.5 12h1M11.5 12h1M18.5 12h1\"/></svg></button><div class=\"bc-menu\" role=\"menu\" aria-label=\"Példa Kávézó műveletei\"><div class=\"bc-menu-item\" role=\"menuitem\" tabindex=\"-1\" data-highlighted><span class=\"bc-menu-icon\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7S2.5 12 2.5 12zM12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6\"/></svg></span><span class=\"bc-menu-text\">Megnyitás</span></div><div class=\"bc-menu-item\" role=\"menuitem\" tabindex=\"-1\" aria-disabled=\"true\" data-disabled><span class=\"bc-menu-icon\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M9 9h11v11H9zM5 15V4h11\"/></svg></span><span class=\"bc-menu-text\">Másolás<span class=\"bc-menu-reason\">Előbb mentsd a partnert.</span></span></div><div class=\"bc-menu-sep\" role=\"separator\"></div><div class=\"bc-menu-item is-danger\" role=\"menuitem\" tabindex=\"-1\"><span class=\"bc-menu-icon\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6\"/></svg></span><span class=\"bc-menu-text\">Törlés…</span></div></div></div>",
+   "mikor": [
+    "3+ műveletnél: a fő művelet látszik, a többi a „⋯” menüben.",
+    "Profil-menü, „Új …” típusválasztó, almenü.",
+    "Tiltott elemnél rövid ok; a veszélyes elem piros (is-danger)."
+   ],
+   "mikor_ne": [
+    "Legfeljebb 2 műveletnél – ikongombok a sorban.",
+    "Fő navigációra – oldalsáv (AppShell)."
+   ],
+   "do": [
+    {
+     "cim": "Fő művelet kint, a többi a ⋯ alatt",
+     "html": "<div class=\"bb-demo-sor\"><div class=\"bc-row-actions\"><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Példa Bolt szerkesztése\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 20h4L19 9l-4-4L4 16zM13 7l4 4\"/></svg></button><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"További műveletek: Példa Bolt\" aria-haspopup=\"menu\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4.5 12h1M11.5 12h1M18.5 12h1\"/></svg></button></div></div>",
+     "miert": "A gyakori művelet egy kattintás, a ritkább nem zsúfolja a sort."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Minden művelet ikonként a sorban",
+     "html": "<div class=\"bb-demo-sor\"><div class=\"bc-row-actions\"><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Szerkesztés\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 20h4L19 9l-4-4L4 16zM13 7l4 4\"/></svg></button><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Megnyitás\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7S2.5 12 2.5 12zM12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6\"/></svg></button><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Másolás\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M9 9h11v11H9zM5 15V4h11\"/></svg></button><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Letöltés\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 4v12M7 11l5 5 5-5M4 20h16\"/></svg></button><button type=\"button\" class=\"bc-icon-btn is-danger\" aria-label=\"Törlés\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6\"/></svg></button></div></div>",
+     "miert": "3+ műveletnél a sor zsúfolt, és 1280 px-en kilóg – a fő látszik, a többi a „⋯” menübe."
+    }
+   ],
+   "tesztlap": [
+    "reteg-menu",
+    "reteg-nav",
+    "sablon-lista"
+   ],
+   "forras": [
+    "docs/javaslatok/03-reteg.md Igény, 5",
+    "docs/javaslatok/15-lista-hatekonysag.md 1, 3.1",
+    "termek/tesztlapok/lista.json reteg-menu",
+    "termek/css/bc-reteg.css (Legördülő menü)"
+   ]
+  },
+  {
+   "id": "kereso-paletta",
+   "nev": "Kereső-paletta",
+   "szint": "organizmus",
+   "csoport": "03 – Rétegek és navigáció",
+   "react": [
+    "CommandPalette"
+   ],
+   "css": [
+    "bc-cmdk",
+    "bc-cmdk-list",
+    "bc-cmdk-group",
+    "bc-cmdk-group-title",
+    "bc-cmdk-item",
+    "bc-cmdk-icon",
+    "bc-cmdk-label",
+    "bc-cmdk-desc",
+    "bc-cmdk-note",
+    "bc-cmdk-tips",
+    "bc-kbd",
+    "bc-option"
+   ],
+   "leiras": "⌘K / Ctrl+K-ra felül nyíló kereső: csoportosított találatok, kiemelt egyezés, ↑/↓ és Enter. A keresést a projekt végzi.",
+   "minta_html": "<div class=\"bb-demo-szeles\"><section class=\"bc-modal bc-cmdk\" aria-label=\"Kereső-paletta (minta)\"><div class=\"bc-modal-body\"><div class=\"bc-search\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M10.5 4a6.5 6.5 0 1 0 0 13a6.5 6.5 0 1 0 0-13M15.5 15.5L20 20\"/></svg><label class=\"bc-sr\" for=\"paletta-q\">Keresés</label><input class=\"bc-input\" id=\"paletta-q\" type=\"search\" value=\"kert\"></div><div class=\"bc-cmdk-list\" role=\"listbox\" aria-label=\"Találatok\"><div class=\"bc-cmdk-group\" role=\"group\" aria-labelledby=\"paletta-g1\"><p class=\"bc-cmdk-group-title\" id=\"paletta-g1\">Partnerek</p><div class=\"bc-option bc-cmdk-item\" role=\"option\" aria-selected=\"true\" data-active=\"true\"><span class=\"bc-cmdk-icon\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12zM12 7a2 2 0 1 0 0 4a2 2 0 1 0 0-4\"/></svg></span><span class=\"bc-cmdk-label\"><mark>Kert</mark> utcai közösségi kert</span><span class=\"bc-cmdk-desc\">Partner</span></div></div></div><p class=\"bc-cmdk-tips\"><span class=\"bc-kbd\">↑</span> <span class=\"bc-kbd\">↓</span> léptet · <span class=\"bc-kbd\">Enter</span> megnyit · <span class=\"bc-kbd\">Esc</span> bezár</p></div></section></div>",
+   "mikor": [
+    "Gyors ugrás bárhová (partner, POI, oldal) billentyűzettel.",
+    "Üresen a legutóbbiak és egy tipp; túl rövid keresésnél „Írj legalább 2 betűt.”",
+    "Töltés („Keresem…”), nincs találat, hiba újrapróbálással – mind külön állapot."
+   ],
+   "mikor_ne": [
+    "Egy lista szűrésére – szűrősáv a lista fölött.",
+    "Adatbevitelre – ez navigáció, nem mező."
+   ],
+   "do": [
+    {
+     "cim": "Csoportok és kiemelt egyezés",
+     "html": "<div class=\"bb-demo-szeles\"><div class=\"bc-cmdk-list\" role=\"listbox\" aria-label=\"Találatok (jó minta)\"><div class=\"bc-cmdk-group\" role=\"group\" aria-labelledby=\"paletta-do-g\"><p class=\"bc-cmdk-group-title\" id=\"paletta-do-g\">POI-k</p><div class=\"bc-option bc-cmdk-item\" role=\"option\" aria-selected=\"false\"><span class=\"bc-cmdk-label\"><mark>Kert</mark>i komposztáló</span><span class=\"bc-cmdk-desc\">POI</span></div></div></div></div>",
+     "miert": "Látszik, miért jött a találat és milyen fajta – nem egy hosszú, egyforma lista."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "„Nincs találat” tipp nélkül",
+     "html": "<div class=\"bb-demo-szeles\"><p class=\"bc-cmdk-note\">Nincs találat.</p></div>",
+     "miert": "Mondd meg, mit próbáljon: „Próbáld rövidebben, vagy ékezet nélkül.”"
+    }
+   ],
+   "tesztlap": [
+    "reteg-paletta"
+   ],
+   "forras": [
+    "docs/javaslatok/20-admin-ux-elemek.md 3, 4, 6, 7",
+    "tokens/hangnem.json pillanatok.nincs-talalat",
+    "termek/css/bc-reteg.css (Kereső-paletta)"
+   ]
+  },
+  {
+   "id": "grafikon-kartya",
+   "nev": "Grafikonkártya",
+   "szint": "organizmus",
+   "csoport": "02 – Adat és grafikon",
+   "react": [
+    "ChartCard",
+    "BarChart",
+    "LineChart",
+    "GroupedBarChart",
+    "StackedBarChart",
+    "ChartLegend",
+    "ChartTable"
+   ],
+   "css": [
+    "bc-chart-card",
+    "bc-chart-title",
+    "bc-chart-sub",
+    "bc-legend",
+    "bc-swatch",
+    "bc-chart",
+    "bc-mark",
+    "bc-ax-t",
+    "bc-grid",
+    "bc-zero",
+    "bc-disclosure",
+    "bc-chart-table",
+    "bc-chart-source",
+    "bc-s1"
+   ],
+   "leiras": "Saját SVG-grafikon kártyában: cím, egység és időszak, tengelyfeliratok, jelmagyarázat, súgó, „Hogyan olvasd?”, adattábla és forrás. Minden adatjel fekete kontúrt kap.",
+   "minta_html": "<figure class=\"bc-card bc-chart-card\"><div><p class=\"bc-card-title bc-chart-title\">Beváltott kuponok hetente</p><p class=\"bc-chart-sub\">db, 2026. 09. · mintaadat</p></div><ul class=\"bc-legend\"><li><svg class=\"bc-swatch\" width=\"12\" height=\"12\" aria-hidden=\"true\"><rect class=\"bc-mark bc-s1\" x=\"1\" y=\"1\" width=\"10\" height=\"10\"/></svg>Beváltás</li></ul><div class=\"bc-chart bc-chart-scroll\" tabindex=\"0\" role=\"region\" aria-label=\"Görgethető grafikon\"><svg width=\"260\" height=\"122\" viewBox=\"0 0 260 122\" role=\"img\" aria-label=\"Oszlopdiagram, mintaadat\"><line class=\"bc-zero\" x1=\"34\" y1=\"100\" x2=\"256\" y2=\"100\"/><text class=\"bc-ax-t\" x=\"28\" y=\"44\" text-anchor=\"end\">60</text><text class=\"bc-ax-t\" x=\"28\" y=\"104\" text-anchor=\"end\">0</text><rect class=\"bc-mark bc-s1\" x=\"44\" y=\"80\" width=\"30\" height=\"20\"/><text class=\"bc-ax-t is-cat\" x=\"59\" y=\"116\" text-anchor=\"middle\">1. hét</text><rect class=\"bc-mark bc-s1\" x=\"98\" y=\"55\" width=\"30\" height=\"45\"/><text class=\"bc-ax-t is-cat\" x=\"113\" y=\"116\" text-anchor=\"middle\">2. hét</text><rect class=\"bc-mark bc-s1\" x=\"152\" y=\"40\" width=\"30\" height=\"60\"/><text class=\"bc-ax-t is-cat\" x=\"167\" y=\"116\" text-anchor=\"middle\">3. hét</text><rect class=\"bc-mark bc-s1\" x=\"206\" y=\"65\" width=\"30\" height=\"35\"/><text class=\"bc-ax-t is-cat\" x=\"221\" y=\"116\" text-anchor=\"middle\">4. hét</text></svg></div><details class=\"bc-disclosure\"><summary>Hogyan olvasd?</summary><div class=\"bc-disclosure-body\"><p>Magasabb oszlop = több beváltás azon a héten.</p></div></details><p class=\"bc-chart-source\">Forrás: mintaadat</p></figure>",
+   "mikor": [
+    "Időbeli trend (vonal), kategóriák összevetése (oszlop, vízszintes sáv), összetétel (halmozott).",
+    "Mindig: cím, egység + időszak, tengelyfeliratok, jelmagyarázat, súgó, „Hogyan olvasd?”, adattábla, üres/töltés/hiba állapot.",
+    "Színtévesztő-barát mód (data-cb); a sorozatok alakban is eltérnek (■ ●)."
+   ],
+   "mikor_ne": [
+    "Fánk- és tortadiagramnak – nehezen összevethető; helyette vízszintes sáv.",
+    "Egyetlen számra – statisztika-csempe."
+   ],
+   "do": [
+    {
+     "cim": "Cím, egység, időszak és forrás",
+     "html": "<div class=\"bc-chart-card\"><div><p class=\"bc-card-title bc-chart-title\">Új partnerek havonta</p><p class=\"bc-chart-sub\">db, 2026. 07–09. · mintaadat</p></div><p class=\"bc-chart-source\">Forrás: mintaadat</p></div>",
+     "miert": "Mezei látogató is érti, mit lát, és a szám forrással jelenik meg."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Cím, egység és tengely nélkül",
+     "html": "<div class=\"bc-chart\"><svg width=\"260\" height=\"104\" viewBox=\"0 0 260 104\" role=\"img\" aria-label=\"Felirat nélküli oszlopok (rossz minta)\"><rect class=\"bc-mark bc-s1\" x=\"44\" y=\"80\" width=\"30\" height=\"20\"/><rect class=\"bc-mark bc-s1\" x=\"98\" y=\"55\" width=\"30\" height=\"45\"/><rect class=\"bc-mark bc-s1\" x=\"152\" y=\"40\" width=\"30\" height=\"60\"/><rect class=\"bc-mark bc-s1\" x=\"206\" y=\"65\" width=\"30\" height=\"35\"/></svg></div>",
+     "miert": "Nem derül ki, mit mér és mennyit – a grafikonkártya e részek nélkül nem jelenik meg."
+    }
+   ],
+   "tesztlap": [
+    "adat-grafikon",
+    "adat-grafikon-szelso",
+    "sablon-iranyitopult"
+   ],
+   "forras": [
+    "docs/komponensek.md 3/B, 3.4 (Grafikon), 4",
+    "docs/javaslatok/02-adat.md 4, 4c, Nyitott kérdések",
+    "docs/javaslatok/14-vonal-allapot-kapcsolo.md 3, 7"
+   ]
+  },
+  {
+   "id": "terkep",
+   "nev": "Térkép, térkép-panel és helyválasztó",
+   "szint": "organizmus",
+   "csoport": "04 – Média és speciális",
+   "react": [
+    "MapPanel",
+    "MapLegend",
+    "HeatScale",
+    "HeatLegend",
+    "LocationPicker",
+    "AddressSearch",
+    "MiniMap"
+   ],
+   "css": [
+    "bc-map",
+    "bc-map-panel",
+    "bc-map-pin",
+    "bc-map-legend",
+    "bc-map-legend-list",
+    "bc-map-swatch",
+    "bc-heat",
+    "bc-heat-bar",
+    "bc-heatkey",
+    "bc-loc",
+    "bc-loc-mini"
+   ],
+   "leiras": "A Leaflet-térkép DS-öltözete: tű alakú jelölő betűvel, számozott csoport, 44 px vezérlők, jelmagyarázat, hőskála. A térkép-panel „Térkép | Lista” váltóval billentyűzettel is bejárható.",
+   "minta_html": "<div class=\"bb-demo-oszlop\"><div class=\"bc-seg\" role=\"radiogroup\" aria-label=\"Nézet\"><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"true\" data-state=\"on\">Térkép</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">Lista</button></div><figure class=\"bc-loc-mini\"><svg viewBox=\"0 0 200 110\" role=\"img\" aria-label=\"Vázlatos térkép egy tűvel (minta)\"><path class=\"bc-loc-mini-land\" d=\"M10 60 40 20 100 12 170 25 192 70 150 100 60 98z\"/><g class=\"bc-loc-mini-pin\"><path d=\"M100 30c-9 0-15 7-15 15 0 11 15 25 15 25s15-14 15-25c0-8-6-15-15-15z\"/><circle cx=\"100\" cy=\"45\" r=\"5\"/></g></svg><figcaption class=\"bc-loc-mini-cap\">Kert utcai közösségi kert (minta)</figcaption></figure><details class=\"bc-map-legend\" open><summary>Jelmagyarázat</summary><ul class=\"bc-map-legend-list\"><li><span class=\"bc-map-swatch is-success\">K</span>Közösségi kert</li><li><span class=\"bc-map-swatch is-info\">V</span>Ivóvíz</li><li><span class=\"bc-map-swatch is-accent\">!</span>Kijelölt</li></ul></details><figure class=\"bc-heat\"><p class=\"bc-heat-unit\">látogatás / nap · mintaadat</p><div class=\"bc-heat-bar\" aria-hidden=\"true\"><i></i><i></i><i></i><i></i><i></i></div><div class=\"bc-heat-ends\"><span>kevés</span><span>sok</span></div></figure></div>",
+   "mikor": [
+    "Helyszínek térképen – mellette mindig lista nézet, hogy billentyűzettel, képernyőolvasóval, telefonon is bejárható legyen.",
+    "Hely megadására LocationPicker: térkép-tű, címkereső és koordináta-mezők egymást frissítik; Magyarországon kívül figyelmeztet.",
+    "Sűrűségre hőskála a data-seq tokenekből, egységgel; állapotra az 5 fokú „állapot” skála."
+   ],
+   "mikor_ne": [
+    "Szivárvány-skálával, nyers színekkel – csak a DS adatskálái.",
+    "Csak színben eltérő jelölőkkel – a tűbe betű vagy ikon kell."
+   ],
+   "do": [
+    {
+     "cim": "Jelölő betűvel, felirattal",
+     "html": "<ul class=\"bc-map-legend-list\"><li><span class=\"bc-map-swatch is-success\">K</span>Közösségi kert</li><li><span class=\"bc-map-swatch is-info\">V</span>Ivóvíz</li></ul>",
+     "miert": "A fajta nem csak színből derül ki: a tűben betű, mellette felirat."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Csak színes pöttyök",
+     "html": "<ul class=\"bc-map-legend-list\"><li><span class=\"bc-map-swatch is-success\" role=\"img\" aria-label=\"Közösségi kert\"></span></li><li><span class=\"bc-map-swatch is-info\" role=\"img\" aria-label=\"Ivóvíz\"></span></li><li><span class=\"bc-map-swatch is-warning\" role=\"img\" aria-label=\"Javító\"></span></li></ul>",
+     "miert": "Színtévesztő nem tudja szétválasztani, és felirat nélkül senki nem tudja, mit jelent."
+    }
+   ],
+   "tesztlap": [
+    "media-terkep",
+    "kieg2-hely",
+    "kieg3-mukodes"
+   ],
+   "forras": [
+    "docs/javaslatok/04-media.md Igény, 6",
+    "docs/javaslatok/13-mukodest-javito-elemek.md 1, 3/2, 6",
+    "docs/javaslatok/06-kiegeszitok.md 06b/13",
+    "docs/javaslatok/12-allapot-skala.md Megoldás",
+    "termek/tesztlapok/lista.json kieg2-hely, media-terkep"
+   ]
+  },
+  {
+   "id": "feltoltok",
+   "nev": "Kép-, fájl- és videófeltöltő",
+   "szint": "organizmus",
+   "csoport": "04 – Média és speciális",
+   "react": [
+    "ImageUploader",
+    "Gallery",
+    "Lightbox",
+    "ImageCropper",
+    "CropDialog",
+    "FileImport",
+    "FilePicker",
+    "ImportResult",
+    "VideoUpload",
+    "VideoPlayer",
+    "VideoEmbed",
+    "VideoPreview"
+   ],
+   "css": [
+    "bc-upload",
+    "bc-gallery-grid",
+    "bc-tile",
+    "bc-tile is-add",
+    "bc-tile is-failed",
+    "bc-tile-cover",
+    "bc-upload-errors",
+    "bc-dropzone",
+    "bc-filecard",
+    "bc-upbar",
+    "bc-video",
+    "bc-video-frame"
+   ],
+   "leiras": "Képfeltöltés a galéria-rácsba („+ Kép” csempe), vágás feltöltés előtt, borító és sorrend; fájlimport ejtőzónával és eredménylistával; videó lépésekben. A típus, a méret és a darabszám mindig látszik.",
+   "minta_html": "<div class=\"bc-upload\"><div class=\"bc-label-row\"><span class=\"bc-label\" id=\"feltolto-l\">Képek</span></div><ul class=\"bc-gallery-grid\" aria-labelledby=\"feltolto-l\"><li class=\"bc-tile\"><img src=\"ds/web/assets/brand/bee-happy.webp\" alt=\"Példa kép 1\"><span class=\"bc-badge is-accent bc-tile-cover\">Borító</span></li><li class=\"bc-tile\"><img src=\"ds/web/assets/brand/bee-cheer.webp\" alt=\"Példa kép 2\"></li><li class=\"bc-tile is-add\"><label><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg><span class=\"bc-tile-add-t\">Kép</span><span class=\"bc-tile-add-s\">vagy húzd ide</span><input class=\"bc-upload-input\" type=\"file\" accept=\"image/jpeg,image/png,image/webp\" aria-describedby=\"feltolto-meta\"></label></li></ul><div class=\"bc-meta\" id=\"feltolto-meta\"><span>JPG, PNG vagy WebP · legfeljebb 5 MB</span><span class=\"bc-count\">2/10 kép</span></div></div>",
+   "mikor": [
+    "Kép: a galéria-rácsba épülő „+ Kép” csempe; az első kép a borító; vágás a megjelenés arányára, feltöltés előtt.",
+    "Fájlimport (Excel): eredménylista sorral, oszloppal, okkal és teendővel; fájlválasztó feltöltés nélkül (FilePicker).",
+    "Videó: fájl → feltöltés → feldolgozás → kész; a YouTube/Vimeo-beágyazás csak kattintásra tölt.",
+    "Mindig látszik: engedett típus, méret, darab, élő számláló („4/10 kép”); a hibás fájl el sem indul."
+   ],
+   "mikor_ne": [
+    "Hibát csak értesítésben jelezni – az ok és a teendő a mező alatt marad.",
+    "Képleírást (alt) kérni, ha a backend nem tudja elmenteni – ott altEditable={false}."
+   ],
+   "do": [
+    {
+     "cim": "Hiba a feltöltő alatt, teendővel",
+     "html": "<div class=\"bc-upload-errors\" role=\"alert\"><ul><li>kert.gif – ezt a típust nem tudjuk feltölteni. JPG, PNG vagy WebP lehet.</li></ul></div>",
+     "miert": "A hibás fájl el sem indul, és a mező alatt ott marad az ok és a teendő."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "A felirat mást ígér, határ nélkül",
+     "html": "<label class=\"bc-dropzone\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 16V4M7 9l5-5 5 5M4 20h16\"/></svg><strong>Húzd ide a képeket</strong><span>JPG, PNG, GIF</span><input class=\"bc-upload-input\" type=\"file\" accept=\"image/*\"></label>",
+     "miert": "Ha a felirat mást ígér, mint amit a mező elfogad, és nincs méret- és darabhatár, a hiba csak utólag derül ki."
+    }
+   ],
+   "tesztlap": [
+    "media-kepek",
+    "media-import",
+    "kieg2-video"
+   ],
+   "forras": [
+    "docs/javaslatok/04-media.md Igény, 1–5",
+    "docs/javaslatok/07-kepfeltoltes-admin.md 3, 4",
+    "docs/javaslatok/18-admin-ui-kiegeszitesek.md 3, 4",
+    "docs/javaslatok/06-kiegeszitok.md 06b/15",
+    "termek/tesztlapok/lista.json kieg2-video, media-import"
+   ]
+  },
+  {
+   "id": "naptar",
+   "nev": "Havi naptár és nyitvatartás",
+   "szint": "organizmus",
+   "csoport": "04 – Média és speciális",
+   "react": [
+    "MonthCalendar",
+    "OpeningHoursEditor"
+   ],
+   "css": [
+    "bc-mcal",
+    "bc-mcal-grid",
+    "bc-mcal-day",
+    "bc-mcal-day is-today",
+    "bc-mcal-ev",
+    "bc-mcal-ev is-info",
+    "bc-mcal-ev is-warning",
+    "bc-mcal-ev is-success",
+    "bc-mcal-legend",
+    "bc-hours-list",
+    "bc-hours-row",
+    "bc-hours-day",
+    "bc-hours-time"
+   ],
+   "leiras": "Havi naptár hétfővel: a fajtát szerepszín, csík, piktogram és felirat is mondja; telefonon pöttyös hónap + a nap listája. Nyitvatartás soronként: nap, kapcsoló, idősáv.",
+   "minta_html": "<div class=\"bc-mcal\"><table class=\"bc-mcal-grid\"><thead><tr><th scope=\"col\">H</th><th scope=\"col\">K</th><th scope=\"col\">Sze</th><th scope=\"col\">Cs</th><th scope=\"col\">P</th><th scope=\"col\">Szo</th><th scope=\"col\">V</th></tr></thead><tbody><tr><td><button type=\"button\" class=\"bc-mcal-day\" aria-label=\"október 5.\"><b>5</b></button></td><td><button type=\"button\" class=\"bc-mcal-day is-today\" aria-label=\"október 6., Kertnap\"><b>6</b><span class=\"bc-mcal-evs\"><span class=\"bc-mcal-ev is-info\">Kertnap</span></span></button></td><td><button type=\"button\" class=\"bc-mcal-day\" aria-label=\"október 7.\"><b>7</b></button></td><td><button type=\"button\" class=\"bc-mcal-day\" aria-label=\"október 8., Ünnepnap\"><b>8</b><span class=\"bc-mcal-evs\"><span class=\"bc-mcal-ev is-warning\">Ünnepnap</span></span></button></td><td><button type=\"button\" class=\"bc-mcal-day\" aria-label=\"október 9.\"><b>9</b></button></td><td><button type=\"button\" class=\"bc-mcal-day\" aria-label=\"október 10., Workshop\"><b>10</b><span class=\"bc-mcal-evs\"><span class=\"bc-mcal-ev is-success\">Workshop</span></span></button></td><td><button type=\"button\" class=\"bc-mcal-day\" aria-label=\"október 11.\"><b>11</b></button></td></tr></tbody></table><ul class=\"bc-mcal-legend\"><li><span class=\"bc-mcal-ev is-info\">Esemény</span></li><li><span class=\"bc-mcal-ev is-warning\">Speciális nap</span></li><li><span class=\"bc-mcal-ev is-success\">Oktatás</span></li></ul></div>",
+   "mikor": [
+    "Események, speciális napok, időzítések egy hónapra; szín szerepből (esemény = info, speciális nap = warning, oktatás = success) + jelmagyarázat.",
+    "Saját fajta (pl. kupon-időzítés): címke, szerepszín, piktogram – a méz a kijelölésé marad.",
+    "Nyitvatartás: soronként nap + kapcsoló + idősáv, „másolás a hétköznapokra”."
+   ],
+   "mikor_ne": [
+    "Egy dátum kiválasztására – dátumválasztó.",
+    "Szabad, nyers színnel – csak szerepszín."
+   ],
+   "do": [
+    {
+     "cim": "Nyitvatartás soronként",
+     "html": "<div class=\"bc-hours-list\"><div class=\"bc-hours-row\"><span class=\"bc-hours-day\" id=\"nyitva-h\">Hétfő</span><button type=\"button\" class=\"bc-switch is-sm\" role=\"switch\" aria-checked=\"true\" aria-label=\"Hétfőn nyitva\"></button><span class=\"bc-hours-times\"><input class=\"bc-input bc-hours-time\" aria-label=\"Hétfő nyitás\" value=\"08:00\">–<input class=\"bc-input bc-hours-time\" aria-label=\"Hétfő zárás\" value=\"18:00\"></span></div><div class=\"bc-hours-row\"><span class=\"bc-hours-day\">Vasárnap</span><button type=\"button\" class=\"bc-switch is-sm\" role=\"switch\" aria-checked=\"false\" aria-label=\"Vasárnap nyitva\"></button><span class=\"bc-hours-closed\">Zárva</span></div></div>",
+     "miert": "Egy pillantásra látszik a hét, és a zárt nap szövegben is ott áll."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Fajta csak színnel",
+     "html": "<div class=\"bc-mcal-evs bb-demo-keskeny\"><span class=\"bc-mcal-ev is-info\" role=\"img\" aria-label=\"Esemény\">&nbsp;</span><span class=\"bc-mcal-ev is-warning\" role=\"img\" aria-label=\"Speciális nap\">&nbsp;</span><span class=\"bc-mcal-ev is-success\" role=\"img\" aria-label=\"Oktatás\">&nbsp;</span></div>",
+     "miert": "A színt mindig felirat, piktogram és jelmagyarázat kíséri – csak színből nem derül ki a fajta."
+    }
+   ],
+   "tesztlap": [
+    "media-naptar"
+   ],
+   "forras": [
+    "docs/javaslatok/04-media.md Igény, 7, 8",
+    "docs/javaslatok/20-admin-ux-elemek.md 3, 7",
+    "termek/tesztlapok/lista.json media-naptar"
+   ]
+  },
+  {
+   "id": "lepesjelzo",
+   "nev": "Lépésjelző",
+   "szint": "organizmus",
+   "csoport": "04 – Média és speciális",
+   "react": [
+    "Stepper"
+   ],
+   "css": [
+    "bc-steps",
+    "bc-steps-btn"
+   ],
+   "leiras": "Pirula-sor a folyamat lépéseivel: kész (pipa), mostani (méz), hátravan (szám), hiba. A bejárt lépés kattintható.",
+   "minta_html": "<ol class=\"bc-steps\" aria-label=\"Új POI felvétele\"><li class=\"is-done\"><b><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7\"/></svg></b>Alapadatok<span class=\"bc-sr\"> – kész</span></li><li class=\"is-current\" aria-current=\"step\"><b>2</b>Hely</li><li><b>3</b>Képek<span class=\"bc-sr\"> – még hátravan</span></li><li class=\"is-error\"><b>!</b>Nyitvatartás<span class=\"bc-sr\"> – hiba</span></li></ol>",
+   "mikor": [
+    "Többlépéses folyamat: videófeltöltés, import, lépésenkénti felvétel.",
+    "Kattintható csak a bejárt lépés: valódi gomb, 44 px érintési felület.",
+    "Pipa csak a látott és hibátlan lépésen; az állapotot a képernyőolvasó is kimondja."
+   ],
+   "mikor_ne": [
+    "Egymástól független nézetekre – fülek."
+   ],
+   "do": [
+    {
+     "cim": "Kattintható, bejárt lépés",
+     "html": "<ol class=\"bc-steps\" aria-label=\"Lépések (jó minta)\"><li class=\"is-done\"><button type=\"button\" class=\"bc-steps-btn\"><b><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7\"/></svg></b><span>Alapadatok</span><span class=\"bc-sr\"> – kész</span></button></li><li class=\"is-current\" aria-current=\"step\"><b>2</b>Hely</li></ol>",
+     "miert": "A már látott lépésre egy kattintással visszaléphetsz – valódi gombbal, billentyűvel is."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Pipa a még nem látott lépésen",
+     "html": "<ol class=\"bc-steps\" aria-label=\"Lépések (rossz minta)\"><li class=\"is-done\"><b><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7\"/></svg></b>Alapadatok</li><li class=\"is-done\"><b><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7\"/></svg></b>Hely</li><li class=\"is-current\" aria-current=\"step\"><b>3</b>Képek</li></ol>",
+     "miert": "A pipa azt ígéri, hogy átnézted – csak a látott és hibátlan lépés kap pipát."
+    }
+   ],
+   "tesztlap": [
+    "media-import",
+    "vezerlok-tomor",
+    "sablon-lepesek"
+   ],
+   "forras": [
+    "docs/javaslatok/04-media.md 4",
+    "docs/javaslatok/20-admin-ux-elemek.md 4, 7",
+    "docs/javaslatok/21-admin-bekotes-finomitasok.md 3, 4, 7",
+    "termek/css/bc-media.css (Lépésjelző)"
+   ]
+  },
+  {
+   "id": "meh-pillanat",
+   "nev": "Méhes pillanat",
+   "szint": "organizmus",
+   "csoport": "05 – Méhecske, mozgás, szöveg",
+   "react": [
+    "BeeMoment"
+   ],
+   "css": [
+    "bc-moment",
+    "bc-moment is-inline",
+    "bc-moment-title",
+    "bc-moment-text",
+    "bc-moment-action"
+   ],
+   "leiras": "Méhecske + szóvicc-cím + sima mondat + egy teendő. A felület a szóviccet és a sima jelentést is kiírja.",
+   "minta_html": "<div class=\"bc-moment\"><span class=\"bc-bee\" data-szerep=\"szurkolo\" aria-hidden=\"true\"></span><p class=\"bc-moment-title\">Bekaptároztuk!</p><p class=\"bc-moment-text\">Mentve.</p><div class=\"bc-moment-action\"><button type=\"button\" class=\"bc-btn is-secondary\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M19 12H5M11 6l-6 6 6 6\"/></svg>Vissza a listához</button></div></div>",
+   "mikor": [
+    "Csak a pillanatokban: üdvözlés, mentve, mérföldkő, üres, nincs találat, töltés, visszavonható, szerverhiba, lejárt munkamenet, offline, 404, nincs jogosultság, köszönjük, üzenet elküldve.",
+    "Képernyőnként legfeljebb egy méh és egy szóvicc – mindig a sima jelentéssel együtt.",
+    "A szereplőt a pillanat adja meg (tokens/hangnem.json)."
+   ],
+   "mikor_ne": [
+    "Gombfeliratban, hibaüzenet teendő-részében, törlés-megerősítésben, jogi szövegben, szám mellett – ott nincs szóvicc.",
+    "A felhasználó hibájánál – mérges méh tilos, a Szomorú csak a mi hibánk."
+   ],
+   "do": [
+    {
+     "cim": "Szóvicc + sima jelentés",
+     "html": "<div class=\"bc-moment is-inline\"><span class=\"bc-bee is-s\" data-szerep=\"hazigazda\" aria-hidden=\"true\"></span><p class=\"bc-moment-title\">Üdv a kaptárban!</p><p class=\"bc-moment-text\">Jó, hogy itt vagy.</p></div>",
+     "miert": "A szóvicc fűszer, a sima mondat viszi a jelentést – így mindenki érti."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Szóvicc a gombon is",
+     "html": "<div class=\"bc-moment is-inline\"><span class=\"bc-bee is-s\" data-szerep=\"szurkolo\" aria-hidden=\"true\"></span><p class=\"bc-moment-title\">Bekaptároztuk!</p><p class=\"bc-moment-text\">Mentve.</p><div class=\"bc-moment-action\"><button type=\"button\" class=\"bc-btn is-sm\">Zümmögj tovább!</button></div></div>",
+     "miert": "Egy pillanatban egy szóvicc – és gombon soha. A teendő sima: „Vissza a listához”."
+    }
+   ],
+   "tesztlap": [
+    "meh",
+    "kieg-oldalak"
+   ],
+   "forras": [
+    "tokens/hangnem.json _readme, pillanatok",
+    "docs/javaslatok/05-meh.md 2, 4",
+    "termek/css/bc-meh.css (BeeMoment)"
+   ]
+  },
+  {
+   "id": "app-elonezet",
+   "nev": "App-előnézet",
+   "szint": "organizmus",
+   "csoport": "06a – Kiegészítők",
+   "react": [
+    "PreviewCard",
+    "Clamp"
+   ],
+   "css": [
+    "bc-preview",
+    "bc-pv-phone",
+    "bc-pv-notch",
+    "bc-pv-screen",
+    "bc-pv-card",
+    "bc-pv-media",
+    "bc-pv-img",
+    "bc-pv-discount",
+    "bc-pv-body",
+    "bc-pv-title",
+    "bc-pv-meta",
+    "bc-pv-text",
+    "bc-clamp"
+   ],
+   "leiras": "Szerkesztés közben „így látszik az appban”: kártya telefonkeretben, az app vonalában. Ami a kártyán levágódna, azt a keret méri és jelöli.",
+   "minta_html": "<figure class=\"bc-preview\"><div class=\"bc-pv-phone\"><span class=\"bc-pv-notch\"></span><div class=\"bc-pv-screen\"><div class=\"bc-pv-card\"><div class=\"bc-pv-media\"><div class=\"bc-pv-img is-empty\"><span>Kép helye</span></div><span class=\"bc-pv-discount\">−10%</span></div><div class=\"bc-pv-body\"><p class=\"bc-pv-title bc-clamp\">10% kedvezmény kávéra</p><p class=\"bc-pv-meta\">Példa Kávézó</p><p class=\"bc-pv-text bc-clamp\">Mutasd fel a kupont a pultnál, és a kávé árából 10% kedvezményt kapsz.</p></div></div></div></div><figcaption class=\"bc-pv-caption\">Így látszik az appban</figcaption></figure>",
+   "mikor": [
+    "Partner, kupon, értesítés, edukáció, esemény szerkesztésekor – élő előnézet, kártya és részletek nézetben.",
+    "Hosszú szövegnél a levágott rész szaggatott jelölést kap.",
+    "Üres mező helyén helykitöltő mutatja, hol lesz a szöveg."
+   ],
+   "mikor_ne": [
+    "Kitalált szöveggel a hiányzó mezők helyén – ott helykitöltő álljon, vagy kapcsold ki a sort."
+   ],
+   "do": [
+    {
+     "cim": "A levágás jelölve",
+     "html": "<div class=\"bc-pv-card bb-demo-keskeny\"><div class=\"bc-pv-body\"><p class=\"bc-pv-title bc-clamp is-one\" data-cut>Őszi kedvezmény minden szezonális süteményre a hét minden napján</p></div></div>",
+     "miert": "Szerkesztés közben látszik, hogy a cím vége az appban nem fér ki."
+    },
+    {
+     "cim": "Üres mező helykitöltővel",
+     "html": "<div class=\"bc-pv-card bb-demo-keskeny\"><div class=\"bc-pv-body\"><p class=\"bc-pv-title\">Őszi kedvezmény</p><p class=\"bc-pv-text bc-clamp is-placeholder\">Leírás helye</p></div></div>",
+     "miert": "Látszik, hol lesz a szöveg – kitalált tartalom nélkül."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Csendben levágott szöveg",
+     "html": "<div class=\"bc-pv-card bb-demo-keskeny\"><div class=\"bc-pv-body\"><p class=\"bc-pv-title bc-clamp is-one\">Őszi kedvezmény minden szezonális süteményre a hét minden napján</p></div></div>",
+     "miert": "Nem derül ki, hogy a cím vége az appban eltűnik – a levágott szöveg jelölést kap."
+    }
+   ],
+   "tesztlap": [
+    "kieg-elonezet"
+   ],
+   "forras": [
+    "docs/javaslatok/06-kiegeszitok.md 06a/9",
+    "docs/javaslatok/20-admin-ux-elemek.md 4, 5",
+    "docs/javaslatok/21-admin-bekotes-finomitasok.md 3, 7",
+    "termek/tesztlapok/lista.json kieg-elonezet",
+    "termek/css/bc-kieg.css (App-előnézet)"
+   ]
+  },
+  {
+   "id": "admin-folyamatok",
+   "nev": "Előzmények, célcsoport, összefésülés, ellenőrzés",
+   "szint": "organizmus",
+   "csoport": "06a – Kiegészítők",
+   "react": [
+    "Timeline",
+    "AudienceBuilder",
+    "CompareMerge",
+    "ReviewQueue"
+   ],
+   "css": [
+    "bc-tl",
+    "bc-tl-list",
+    "bc-tl-item",
+    "bc-tl-time",
+    "bc-tl-text",
+    "bc-tl-diff",
+    "bc-aud",
+    "bc-aud-rule",
+    "bc-aud-estimate",
+    "bc-merge",
+    "bc-merge-field",
+    "bc-merge-opt",
+    "bc-review",
+    "bc-kbd"
+   ],
+   "leiras": "Az admin közös munkafelületei: előzmények (ki, mit, mikor, előtte → utána), célcsoport-szabályok élő létszámmal, duplikátumok összefésülése mezőnként, ellenőrzési sor billentyűparancsokkal.",
+   "minta_html": "<div class=\"bb-demo-oszlop\"><div class=\"bc-tl\"><div><p class=\"bc-tl-day-h\">Ma</p><ol class=\"bc-tl-list\"><li class=\"bc-tl-item\" data-tone=\"success\"><span class=\"bc-tl-time\">10:42</span><p class=\"bc-tl-text\"><b>Példa Kata</b> módosította a nyitvatartást.</p><dl class=\"bc-tl-diff\"><div class=\"bc-tl-diff-row\"><dt>Hétfő</dt><dd><del>8:00–16:00</del><span class=\"bc-tl-arrow\" aria-hidden=\"true\">→</span><ins>8:00–18:00</ins></dd></div></dl></li></ol></div></div><fieldset class=\"bc-merge-field\"><legend class=\"bc-merge-legend\">Telefonszám</legend><div class=\"bc-merge-opts\"><label class=\"bc-merge-opt is-on\"><input type=\"radio\" name=\"admin-merge-tel\" checked><span class=\"bc-merge-src\">A rekord</span><span class=\"bc-merge-val\">+36 30 123 4567</span></label><label class=\"bc-merge-opt is-blank\"><input type=\"radio\" name=\"admin-merge-tel\"><span class=\"bc-merge-src\">B rekord</span><span class=\"bc-merge-val\">(üres)</span></label></div></fieldset><p class=\"bc-review-tally\">Jóváhagyás <span class=\"bc-kbd\">J</span> · Elutasítás <span class=\"bc-kbd\">E</span> · Kihagyás <span class=\"bc-kbd\">K</span></p></div>",
+   "mikor": [
+    "Előzmények: napok szerint („Ma”, „Tegnap”, dátum), mezőszintű különbséggel (előtte → utána).",
+    "Célcsoport: „ha … és/vagy …” szabálysorok, élő létszám-becslés; az üres és hibás szabály jelölve.",
+    "Összefésülés: mezőnként rádióval választasz, az eltérés szöveggel is jelölve, élő eredmény-előnézet, megerősítés.",
+    "Ellenőrzési sor: jóváhagyás (J), elutasítás indokkal (E), kihagyás (K), haladás („12/40”), visszavonás."
+   ],
+   "mikor_ne": [
+    "Elutasításra indok nélkül – az indok kötelező.",
+    "Különbség jelzésére csak színnel – a régi és az új érték szövegben is (áthúzás, nyíl)."
+   ],
+   "do": [
+    {
+     "cim": "Előtte → utána, szövegben",
+     "html": "<dl class=\"bc-tl-diff\"><div class=\"bc-tl-diff-row\"><dt>Weboldal</dt><dd><del>pelda.hu</del><span class=\"bc-tl-arrow\" aria-hidden=\"true\">→</span><ins>https://pelda.hu</ins></dd></div></dl>",
+     "miert": "A változás nem csak színnel látszik: áthúzott régi érték, nyíl, kiemelt új érték."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Csak „módosította”",
+     "html": "<ol class=\"bc-tl-list\"><li class=\"bc-tl-item\"><span class=\"bc-tl-time\">10:42</span><p class=\"bc-tl-text\"><b>Példa Kata</b> módosította a partnert.</p></li></ol>",
+     "miert": "Nem derül ki, mi változott – mezőszintű különbség kell."
+    }
+   ],
+   "tesztlap": [
+    "kieg-elozmenyek",
+    "kieg-celcsoport",
+    "kieg-osszefesules",
+    "kieg-ellenorzes"
+   ],
+   "forras": [
+    "docs/javaslatok/06-kiegeszitok.md 06a/8, 06a/10, 06a/11, 06a/12",
+    "termek/tesztlapok/lista.json kieg-elozmenyek, kieg-celcsoport, kieg-osszefesules, kieg-ellenorzes",
+    "termek/css/bc-kieg.css"
+   ]
+  },
+  {
+   "id": "sorsolas",
+   "nev": "Sorsolás és színpad",
+   "szint": "organizmus",
+   "csoport": "06b – Helyválasztó, sorsolás, videó",
+   "react": [
+    "PrizeDrawReveal",
+    "StageDialog"
+   ],
+   "css": [
+    "bc-draw",
+    "bc-draw-head",
+    "bc-draw-title",
+    "bc-draw-count",
+    "bc-draw-winner",
+    "bc-draw-name",
+    "bc-draw-actions",
+    "bc-draw-reroll",
+    "bc-draw-log",
+    "bc-stage"
+   ],
+   "leiras": "Nyereménysorsolás: résztvevők száma, rövid méhsejt-felfedés (≤ 2,5 s, csökkentett mozgásnál azonnal), nyertes a Bajnok méhvel és hatszög-konfettivel, újrasorsolás csak indokkal, jegyzőkönyv.",
+   "minta_html": "<section class=\"bc-draw\" aria-labelledby=\"sorsolas-cim\"><div class=\"bc-draw-head\"><div><p class=\"bc-draw-prize-label\">Nyeremény</p><p class=\"bc-draw-title\" id=\"sorsolas-cim\">Kosár helyi termékekkel</p></div><p class=\"bc-draw-count\"><b>48</b> résztvevő</p></div><div class=\"bc-draw-winner\"><div class=\"bc-draw-winner-body\"><p class=\"bc-draw-kicker\">A nyertes <span>(mintaadat)</span></p><p class=\"bc-draw-name\">Példa Kata</p><p class=\"bc-draw-detail\">Sorszám: 17</p></div></div><div class=\"bc-draw-actions\"><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 4v12M7 11l5 5 5-5M4 20h16\"/></svg>Jegyzőkönyv</button><button type=\"button\" class=\"bc-btn is-secondary\">Újrasorsolás…</button><p class=\"bc-draw-hint\">Újrasorsolás csak indokkal.</p></div></section>",
+   "mikor": [
+    "Nyereményjáték lezárása az adminban, jegyzőkönyvvel.",
+    "Teljes képernyős bemutatóhoz StageDialog: a fókusz nem esik ki, folyamat közben nem zárható, élő régióban mondja az állapotot."
+   ],
+   "mikor_ne": [
+    "Hosszú, látványos animációra – a felfedés ≤ 2,5 s, ünnepi mozgás ≤ 600 ms és egyszer.",
+    "Indok nélküli újrasorsolásra."
+   ],
+   "do": [
+    {
+     "cim": "Újrasorsolás indokkal",
+     "html": "<div class=\"bc-draw-reroll\"><p class=\"bc-draw-reroll-q\">Miért sorsolsz újra?</p><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"sorsolas-indok\">Indok</label></div><input class=\"bc-input\" id=\"sorsolas-indok\" value=\"A nyertes nem érhető el.\"></div></div>",
+     "miert": "A jegyzőkönyvben ott marad, miért lett új nyertes."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Az újrasorsolás is méz fő gomb",
+     "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 4v12M7 11l5 5 5-5M4 20h16\"/></svg>Jegyzőkönyv</button><button type=\"button\" class=\"bc-btn\">Újrasorsolás</button></div>",
+     "miert": "Az újrasorsolás kivétel, nem fő művelet: másodlagos gomb, indokkal – képernyőnként egy méz gomb."
+    }
+   ],
+   "tesztlap": [
+    "kieg2-sorsolas"
+   ],
+   "forras": [
+    "docs/javaslatok/06-kiegeszitok.md 06b/14",
+    "docs/javaslatok/13-mukodest-javito-elemek.md 1, 3/3, 6",
+    "termek/tesztlapok/lista.json kieg2-sorsolas",
+    "termek/css/bc-motion.css (fejléc)",
+    "docs/termek-arculat.md 1.1"
+   ]
+  },
+  {
+   "id": "lista-oldal",
+   "nev": "Lista-oldal",
+   "szint": "sablon",
+   "csoport": "06c – Oldalsablonok",
+   "react": [
+    "ListPage"
+   ],
+   "css": [
+    "bc-sablon",
+    "bc-sablon-list",
+    "bc-page-header",
+    "bc-fb",
+    "bc-dt",
+    "bc-pager"
+   ],
+   "leiras": "Lista-oldal váza: oldalfej (cím, leírás, egy fő gomb) → szűrősáv → táblázat → lapozó. Állapotai: töltés, hiba, üres, nincs találat, kész.",
+   "minta_html": "<div class=\"bc-sablon bc-card is-quiet\"><div class=\"bc-page-header bc-page-head\"><div class=\"bc-page-head-text\"><div class=\"bc-card-title\">Partnerek</div><p>Minden partner egy helyen.</p></div><div class=\"bc-row\"><button type=\"button\" class=\"bc-btn is-secondary\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 4v12M7 11l5 5 5-5M4 20h16\"/></svg>Exportálás</button><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg>Új partner</button></div></div><div class=\"bc-fb-row\"><div class=\"bc-fb-search\"><div class=\"bc-search\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M10.5 4a6.5 6.5 0 1 0 0 13a6.5 6.5 0 1 0 0-13M15.5 15.5L20 20\"/></svg><label class=\"bc-sr\" for=\"lista-q\">Partner keresése</label><input class=\"bc-input\" id=\"lista-q\" type=\"search\" placeholder=\"Partner keresése\"></div></div><p class=\"bc-fb-count\">312 partner</p></div><div class=\"bc-table-wrap\" aria-hidden=\"true\"><div class=\"bb-demo-oszlop\"><span class=\"bc-skeleton\"></span><span class=\"bc-skeleton\"></span><span class=\"bc-skeleton\"></span></div></div><nav class=\"bc-pager\" aria-label=\"Lapozás (minta)\"><p class=\"bc-pager-info\">1–25 / 312 partner · 1. oldal / 13</p></nav></div>",
+   "mikor": [
+    "Bármely elemlista: partnerek, POI-k, kuponok, értesítések.",
+    "Szűrés után a 0. lapra ugrik; 0 találatnál „nincs találat” + Szűrők törlése, nem „üres lista”.",
+    "A nézetváltó, a találatszám és a sűrűség-kapcsoló egy sorban."
+   ],
+   "mikor_ne": [
+    "Egy elem adataira – részletek-oldal.",
+    "Néhány kiemelt számra – irányítópult."
+   ],
+   "do": [
+    {
+     "cim": "Egy fő gomb az oldalfejben",
+     "html": "<div class=\"bc-page-header bc-page-head\"><div class=\"bc-card-title\">Kuponok</div><div class=\"bc-row\"><button type=\"button\" class=\"bc-btn is-secondary\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 4v12M7 11l5 5 5-5M4 20h16\"/></svg>Exportálás</button><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg>Új kupon</button></div></div>",
+     "miert": "A lista fő teendője egyértelmű, a többi másodlagos."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Szűrők és sávok külön sorokban",
+     "html": "<div class=\"bb-demo-oszlop\"><div class=\"bc-search\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M10.5 4a6.5 6.5 0 1 0 0 13a6.5 6.5 0 1 0 0-13M15.5 15.5L20 20\"/></svg><label class=\"bc-sr\" for=\"lista-dont-q\">Keresés</label><input class=\"bc-input\" id=\"lista-dont-q\" type=\"search\"></div><div class=\"bc-filter\"><label class=\"bc-label\" for=\"lista-dont-f\">Állapot</label><select class=\"bc-select\" id=\"lista-dont-f\"><option>Mind</option></select></div><p class=\"bc-fb-count\">312 partner</p><div class=\"bc-seg\" role=\"radiogroup\" aria-label=\"Sűrűség\"><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"true\" data-state=\"on\">Alap</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">Sűrű</button></div></div>",
+     "miert": "1280×800-on így a táblázat ~490 px-nél kezdődik – a szűrő, a találatszám és a sűrűség egy sorba kerül."
+    }
+   ],
+   "tesztlap": [
+    "sablon-lista"
+   ],
+   "forras": [
+    "docs/komponensek.md 2",
+    "docs/javaslatok/06-kiegeszitok.md 06b/16",
+    "docs/javaslatok/13-mukodest-javito-elemek.md 1, 4, 5",
+    "docs/javaslatok/15-lista-hatekonysag.md 1, 3.3",
+    "termek/css/bc-sablon.css"
+   ]
+  },
+  {
+   "id": "reszletek-oldal",
+   "nev": "Részletek-oldal",
+   "szint": "sablon",
+   "csoport": "06c – Oldalsablonok",
+   "react": [
+    "DetailPage",
+    "DetailActions"
+   ],
+   "css": [
+    "bc-sablon",
+    "bc-sablon-cols",
+    "bc-sablon-cols has-side",
+    "bc-sablon-summary-block",
+    "bc-info-grid",
+    "bc-info"
+   ],
+   "leiras": "Egy elem adatlapja: oldalfej morzsával és műveletekkel, összegző blokk lapos csempékkel, fülek, adatlap-kártyák; széles nézetben oldalsó oszlop.",
+   "minta_html": "<div class=\"bc-sablon\"><section class=\"bc-card bc-sablon-summary-block\" aria-label=\"Összegzés\"><div class=\"bc-row\"><p class=\"bc-card-title\">Példa Kávézó</p><span class=\"bc-badge bc-status is-success\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7\"/></svg>Aktív</span><span class=\"bc-badge is-tag\">Kávézó</span></div><div class=\"bc-stats\"><div class=\"bc-stat\"><span class=\"bc-stat-label\">Kupon</span><span class=\"bc-stat-value\">12</span></div><div class=\"bc-stat\"><span class=\"bc-stat-label\">Beváltás</span><span class=\"bc-stat-value\">340</span></div></div><p class=\"bc-help\">Mintaadat</p></section><div class=\"bc-tabs\" role=\"tablist\" aria-label=\"Partner nézetei (minta)\"><button type=\"button\" class=\"bc-tab\" role=\"tab\" aria-selected=\"true\">Részletek</button><button type=\"button\" class=\"bc-tab\" role=\"tab\" aria-selected=\"false\">Kuponok</button><button type=\"button\" class=\"bc-tab\" role=\"tab\" aria-selected=\"false\">Előzmények</button></div></div>",
+   "mikor": [
+    "Partner, POI, kupon adatlapja: összegzés, fülek (Részletek · Kuponok · Előzmények), szerkesztés gomb.",
+    "Az összegző blokk kártya, benne a csempék laposak, vonallal tagolva."
+   ],
+   "mikor_ne": [
+    "Sok mezős szerkesztésre – szerkesztő-oldal.",
+    "Gyors betekintésre a listából – oldalpanel."
+   ],
+   "do": [
+    {
+     "cim": "Lapos csempék az összegzőben",
+     "html": "<section class=\"bc-card bc-sablon-summary-block\" aria-label=\"Összegzés (jó minta)\"><div class=\"bc-stats\"><div class=\"bc-stat\"><span class=\"bc-stat-label\">Kupon</span><span class=\"bc-stat-value\">12</span></div><div class=\"bc-stat\"><span class=\"bc-stat-label\">Beváltás</span><span class=\"bc-stat-value\">340</span></div></div></section>",
+     "miert": "Egy keret elég – a belső csempék vonallal tagolódnak, nincs kártya a kártyában."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Kártya a kártyában",
+     "html": "<section class=\"bc-card\" aria-label=\"Összegzés (rossz minta)\"><div class=\"bc-stats\"><div class=\"bc-stat\"><span class=\"bc-stat-label\">Kupon</span><span class=\"bc-stat-value\">12</span></div><div class=\"bc-stat\"><span class=\"bc-stat-label\">Beváltás</span><span class=\"bc-stat-value\">340</span></div></div></section>",
+     "miert": "Dupla keret és árnyék: zajos, és elmossa, mi tartozik össze."
+    }
+   ],
+   "tesztlap": [
+    "sablon-reszletek"
+   ],
+   "forras": [
+    "docs/javaslatok/19-admin-ui-tisztitas.md 1, 3, 4–5",
+    "docs/javaslatok/06-kiegeszitok.md 06b/16",
+    "termek/css/bc-sablon.css",
+    "docs/termek-arculat.md 6/A (Árnyék)"
+   ]
+  },
+  {
+   "id": "szerkeszto-oldal",
+   "nev": "Szerkesztő-oldal",
+   "szint": "sablon",
+   "csoport": "06c – Oldalsablonok",
+   "react": [
+    "EditPage",
+    "ErrorSummary",
+    "FormSection",
+    "FormActions"
+   ],
+   "css": [
+    "bc-sablon-form",
+    "bc-sablon-summary",
+    "bc-sablon-summary-title",
+    "bc-sablon-summary-list",
+    "bc-sablon-bar",
+    "bc-sablon-dirty",
+    "bc-sablon-dot"
+   ],
+   "leiras": "Szerkesztő-oldal: szakaszos űrlap; sikertelen mentésnél hibaösszesítő a tetején (ide kerül a fókusz), alul ragadós gombsor a „nem mentett változás” jelzéssel.",
+   "minta_html": "<div class=\"bc-sablon\"><div class=\"bb-demo-oszlop\"><div class=\"bc-alert is-danger bc-sablon-summary\" role=\"alert\" tabindex=\"-1\"><div><p class=\"bc-sablon-summary-title\">1 mezőt javíts a mentés előtt:</p><ul class=\"bc-sablon-summary-list\"><li><a href=\"#szerk-nev\">Partner neve: legalább 3 karakter kell.</a></li></ul></div></div><div class=\"bb-demo-oszlop bb-demo-keskeny\"><div class=\"bc-field\"><div class=\"bc-label-row\"><label class=\"bc-label\" for=\"szerk-nev\">Partner neve</label></div><input class=\"bc-input\" id=\"szerk-nev\" value=\"PK\" aria-invalid=\"true\" aria-describedby=\"szerk-nev-err\"><p class=\"bc-error\" id=\"szerk-nev-err\">Legalább 3 karakter kell – most 2.</p></div></div><div class=\"bc-sablon-bar\"><p class=\"bc-sablon-dirty\"><span class=\"bc-sablon-dot\" aria-hidden=\"true\"></span>Nem mentett változásaid vannak</p><div class=\"bc-form-actions\"><button type=\"button\" class=\"bc-btn is-secondary\">Mégse</button><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg>Mentés</button></div></div></div></div>",
+   "mikor": [
+    "Új elem és szerkesztés: szakaszok (FormSection), alul ragadós gombsor.",
+    "Sikertelen mentésnél a fókusz a hibaösszesítőre, onnan linkek a hibás mezőkhöz.",
+    "Mentetlen változásnál oldalelhagyás előtt kérdez; piszkozatot ajánl fel lefagyás vagy lejárt belépés után."
+   ],
+   "mikor_ne": [
+    "Egy-két mező gyors módosítására – oldalpanel vagy sorbeli kapcsoló.",
+    "Lépésenkénti felvételre – lépés-mód (EditPage steps)."
+   ],
+   "do": [
+    {
+     "cim": "Hibaösszesítő linkekkel",
+     "html": "<div class=\"bc-alert is-danger bc-sablon-summary\" role=\"alert\"><div><p class=\"bc-sablon-summary-title\">2 mezőt javíts a mentés előtt:</p><ul class=\"bc-sablon-summary-list\"><li><a href=\"#szerk-nev\">Partner neve: legalább 3 karakter kell.</a></li><li><a href=\"#szerk-nev\">Weboldal: teljes cím kell, pl. https://pelda.hu</a></li></ul></div></div>",
+     "miert": "Egy helyen látszik minden hiba, és mindegyik a mezőre visz."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Csak egy általános hibasáv",
+     "html": "<div class=\"bc-alert is-danger\" role=\"alert\"><p>Hiba történt a mentés során.</p></div>",
+     "miert": "Nem derül ki, melyik mező hibás és mi a teendő – összesítő kell, a mezőknél a hibával."
+    }
+   ],
+   "tesztlap": [
+    "sablon-szerkeszto",
+    "kieg-oldalak"
+   ],
+   "forras": [
+    "docs/komponensek.md 3.1, 3/A",
+    "docs/javaslatok/06-kiegeszitok.md 06a/5, 06b/16",
+    "docs/javaslatok/13-mukodest-javito-elemek.md 1, 3/7",
+    "termek/css/bc-sablon.css (Hibaösszesítő, Ragadós gombsor)"
+   ]
+  },
+  {
+   "id": "lepesenkenti",
+   "nev": "Lépésenkénti szerkesztő",
+   "szint": "sablon",
+   "csoport": "06c – Oldalsablonok",
+   "react": [
+    "EditPage",
+    "Stepper"
+   ],
+   "css": [
+    "bc-sablon-steps",
+    "bc-sablon-step-head",
+    "bc-sablon-step-title",
+    "bc-sablon-step-count",
+    "bc-sablon-step-desc",
+    "bc-sablon-step-error",
+    "bc-sablon-bar"
+   ],
+   "leiras": "Az EditPage lépés-módja: lépésjelző, lépéscím számlálóval, leírás; a gombsorban Vissza / Tovább, az utolsó lépésen Mentés.",
+   "minta_html": "<div class=\"bc-sablon\"><div class=\"bb-demo-oszlop\"><div class=\"bc-sablon-steps\"><ol class=\"bc-steps\" aria-label=\"Új POI felvételének lépései\"><li class=\"is-done\"><b><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7\"/></svg></b>Alapadatok</li><li class=\"is-current\" aria-current=\"step\"><b>2</b>Hely</li><li><b>3</b>Képek</li></ol><div class=\"bc-sablon-step-head\"><p class=\"bc-sablon-step-title bc-display\">Hely <span class=\"bc-sablon-step-count\">2. lépés / 3</span></p><p class=\"bc-sablon-step-desc\">Hol található a pont? Írd be a címet, vagy tűzd a térképre.</p></div></div><div class=\"bc-sablon-bar\"><div class=\"bc-form-actions\"><button type=\"button\" class=\"bc-btn is-ghost\">Mégse</button><button type=\"button\" class=\"bc-btn is-secondary\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M19 12H5M11 6l-6 6 6 6\"/></svg>Vissza</button><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg>Tovább</button></div></div></div></div>",
+   "mikor": [
+    "Hosszú felvétel lépésekre bontva (pl. új POI: Alapadatok → Hely → Képek).",
+    "„Tovább” után hibánál a fókusz az első hibás mezőre, a hiba a gombsor jelzés-helyén; Enter a szövegmezőben = Tovább.",
+    "Köztes lépésen ⌘S nem ment, csak figyelmeztet; másolatnál minden lépés elérhető."
+   ],
+   "mikor_ne": [
+    "Rövid űrlapra – sima szerkesztő-oldal.",
+    "Saját, projekt-szintű lépés-kerettel – a DS lépés-módja intézi az őrt, a piszkozatot és az összesítőt."
+   ],
+   "do": [
+    {
+     "cim": "Mentés csak az utolsó lépésen",
+     "html": "<div class=\"bc-form-actions\"><button type=\"button\" class=\"bc-btn is-secondary\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M19 12H5M11 6l-6 6 6 6\"/></svg>Vissza</button><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg>Tovább</button></div>",
+     "miert": "Köztes lépésen nincs Mentés – így nem futsz bele egy még nem látott lépés hibájába."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Mentés minden lépésen",
+     "html": "<div class=\"bc-form-actions\"><button type=\"button\" class=\"bc-btn is-secondary\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M19 12H5M11 6l-6 6 6 6\"/></svg>Vissza</button><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg>Tovább</button><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg>Mentés</button></div>",
+     "miert": "Két méz gomb, és a mentés a még nem látott lépések hibáiba futna – Mentés csak az utolsó lépésen."
+    }
+   ],
+   "tesztlap": [
+    "sablon-lepesek"
+   ],
+   "forras": [
+    "docs/javaslatok/20-admin-ux-elemek.md 1, 3, 4, 5, 7, 8",
+    "docs/javaslatok/21-admin-bekotes-finomitasok.md 3",
+    "docs/termek-arculat.md 1.1",
+    "termek/css/bc-sablon.css (Szerkesztő lépés-módban)"
+   ]
+  },
+  {
+   "id": "iranyitopult",
+   "nev": "Irányítópult",
+   "szint": "sablon",
+   "csoport": "06c – Oldalsablonok",
+   "react": [
+    "Dashboard"
+   ],
+   "css": [
+    "bc-sablon-toolbar",
+    "bc-sablon-stat",
+    "bc-sablon-charts",
+    "bc-stats",
+    "bc-chart-card",
+    "bc-print-show"
+   ],
+   "leiras": "Irányítópult váza: eszközsor (időszak), statisztika-csempék sora, alatta grafikonkártyák rácsa; nyomtatható riport.",
+   "minta_html": "<div class=\"bb-demo-oszlop\"><div class=\"bc-sablon-toolbar\"><div class=\"bc-seg\" role=\"radiogroup\" aria-label=\"Időszak\"><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"false\">7 nap</button><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"true\" data-state=\"on\">30 nap</button></div><p class=\"bc-muted\">Időszak: 2026. 09. 01. – 09. 30.</p></div><div class=\"bc-stats\"><div class=\"bc-stat\"><span class=\"bc-stat-label\">Aktív partner</span><span class=\"bc-stat-value\">128</span><span class=\"bc-kpi-source\">Forrás: mintaadat</span></div><div class=\"bc-stat\"><span class=\"bc-stat-label\">Beváltott kupon</span><span class=\"bc-stat-value\">1 042</span><span class=\"bc-kpi-source\">Forrás: mintaadat</span></div></div><div class=\"bc-sablon-charts\"><figure class=\"bc-card bc-chart-card\"><p class=\"bc-card-title bc-chart-title\">Beváltások hetente</p><span class=\"bc-skeleton bc-chart-skel\" aria-hidden=\"true\"></span></figure></div></div>",
+   "mikor": [
+    "Analitika, hatás-riport: néhány kulcsszám, alatta trendek.",
+    "Nyomtatáskor (printable) papíron világos téma, a vezérlők rejtve, az eszközsor szövege (időszak) megmarad.",
+    "Állapotai: töltés, üres, hiba, tiltott."
+   ],
+   "mikor_ne": [
+    "Forrás és időszak nélküli számokra.",
+    "Részletes listára – lista-oldal."
+   ],
+   "do": [
+    {
+     "cim": "Az időszak szövegben az eszközsorban",
+     "html": "<div class=\"bc-sablon-toolbar\"><div class=\"bc-seg\" role=\"radiogroup\" aria-label=\"Időszak (jó minta)\"><button type=\"button\" class=\"bc-seg-item\" role=\"radio\" aria-checked=\"true\" data-state=\"on\">30 nap</button></div><p class=\"bc-muted\">Időszak: 2026. 09. 01. – 09. 30.</p></div>",
+     "miert": "A választott időszak papírra is kerül – a vezérlő nem."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Számok forrás, egység és időszak nélkül",
+     "html": "<div class=\"bc-stats\"><div class=\"bc-stat\"><span class=\"bc-stat-label\">Mutató 1</span><span class=\"bc-stat-value\">128</span></div><div class=\"bc-stat\"><span class=\"bc-stat-label\">Mutató 2</span><span class=\"bc-stat-value\">1042</span></div><div class=\"bc-stat\"><span class=\"bc-stat-label\">Mutató 3</span><span class=\"bc-stat-value\">37</span></div><div class=\"bc-stat\"><span class=\"bc-stat-label\">Mutató 4</span><span class=\"bc-stat-value\">9</span></div></div>",
+     "miert": "Egy mezei látogató sem érti, mit lát. Kevesebb, de megmagyarázott, forrással jelölt szám kell."
+    }
+   ],
+   "tesztlap": [
+    "sablon-iranyitopult"
+   ],
+   "forras": [
+    "docs/javaslatok/06-kiegeszitok.md 06b/16",
+    "docs/javaslatok/20-admin-ux-elemek.md 4, 7",
+    "docs/javaslatok/21-admin-bekotes-finomitasok.md 3, 4",
+    "docs/komponensek.md 3/B",
+    "termek/css/bc-sablon.css (Irányítópult, Nyomtatható oldal)"
+   ]
+  },
+  {
+   "id": "allapot-oldal",
+   "nev": "Állapot-oldalak és offline sáv",
+   "szint": "sablon",
+   "csoport": "06a – Kiegészítők",
+   "react": [
+    "StatusPage",
+    "ErrorPage",
+    "NotFoundPage",
+    "ForbiddenPage",
+    "SessionExpired",
+    "OfflinePage",
+    "OfflineBanner"
+   ],
+   "css": [
+    "bc-status-page",
+    "bc-status-h",
+    "bc-status-actions",
+    "bc-status-code",
+    "bc-offline",
+    "bc-offline-bar",
+    "bc-moment"
+   ],
+   "leiras": "Teljes oldalas állapotok méhecskével (szóvicc + sima jelentés): 404 (Kacsintó), nincs jogosultság (Gondolkodó), szerverhiba (Szomorú – csak a mi hibánk), lejárt munkamenet (Pihenő), offline.",
+   "minta_html": "<div class=\"bb-demo-oszlop\"><div class=\"bc-card is-quiet bb-demo-oszlop\"><div class=\"bc-row bc-status-actions\"><p class=\"bc-status-h\">Szerverhiba</p></div><div class=\"bc-moment\"><span class=\"bc-bee\" data-szerep=\"szomoru\" aria-hidden=\"true\"></span><p class=\"bc-moment-title\">Hoppá, elrepült a kapcsolat.</p><p class=\"bc-moment-text\">Ez a mi hibánk. Próbáld újra egy perc múlva.</p></div><div class=\"bc-row bc-status-actions\"><button type=\"button\" class=\"bc-btn\">Újrapróbálás</button><button type=\"button\" class=\"bc-btn is-secondary\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 11l9-7 9 7M5 10v10h14V10\"/></svg>Kezdőlap</button></div></div><div class=\"bc-alert is-warning bc-offline-bar\" role=\"status\"><div class=\"bc-moment is-inline\"><span class=\"bc-bee is-s\" data-szerep=\"gondolkodo\" aria-hidden=\"true\"></span><p class=\"bc-moment-title\">Nincs térerő a kaptárban.</p><p class=\"bc-moment-text\">Amint visszajön a kapcsolat, mentjük.</p></div></div></div>",
+   "mikor": [
+    "404, 403, szerverhiba, lejárt munkamenet, offline – a hangnem.json pillanatai és szereplői szerint.",
+    "Offline sáv az oldal tetején: elmondja, mi lesz a mentéssel; a kapcsolat visszatérésekor eltűnik."
+   ],
+   "mikor_ne": [
+    "Szomorú méhvel a felhasználó hibájánál (pl. rossz link) – 404-nél a Kacsintó jár.",
+    "Szóviccel a gombban vagy a teendőben."
+   ],
+   "do": [
+    {
+     "cim": "Lejárt munkamenet: teendőt ad",
+     "html": "<div class=\"bc-moment is-inline\"><span class=\"bc-bee is-s\" data-szerep=\"piheno\" aria-hidden=\"true\"></span><p class=\"bc-moment-title\">Elszundítottál?</p><p class=\"bc-moment-text\">Lépj be újra – ott folytatod, ahol abbahagytad.</p><div class=\"bc-moment-action\"><button type=\"button\" class=\"bc-btn is-sm\">Belépés</button></div></div>",
+     "miert": "A sima mondat megnyugtat (megmarad a munkád), és megmondja a következő lépést."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Nyers hibakód magyarázat nélkül",
+     "html": "<div class=\"bc-card is-quiet\"><div class=\"bc-row\"><p class=\"bc-status-h\">Error 500</p></div><p>Internal Server Error</p></div>",
+     "miert": "Angol, és nem mondja meg, kinek a hibája és mi a teendő: „Ez a mi hibánk. Próbáld újra egy perc múlva.”"
+    }
+   ],
+   "tesztlap": [
+    "kieg-oldalak"
+   ],
+   "forras": [
+    "docs/javaslatok/06-kiegeszitok.md 06a/6, 06a/7",
+    "tokens/hangnem.json pillanatok, szerepek",
+    "docs/komponensek.md Nyelv",
+    "termek/tesztlapok/lista.json kieg-oldalak"
+   ]
+  },
+  {
+   "id": "utvonal",
+   "nev": "Útvonal – szakasztérkép és egy következő lépés",
+   "szint": "organizmus",
+   "csoport": "06a – Kiegészítők",
+   "react": [
+    "Utvonal",
+    "hataridoSzoveg",
+    "UTVONAL_LABELS_HU"
+   ],
+   "css": [
+    "bc-ut",
+    "bc-ut-list",
+    "bc-ut-item",
+    "bc-ut-map",
+    "bc-ut-steps",
+    "bc-ut-now",
+    "bc-ut-next",
+    "bc-ut-meta",
+    "bc-ut-done"
+   ],
+   "leiras": "Egy folyamat szakaszai (mögötted dátummal, most, ami jön, kihagyva) és mindig PONTOSAN EGY következő lépés egy fő gombbal. Tömör nézetben vízszintes térkép irányítópultra, alapból függőleges idővonal. Segítő (ki kísér) és határidő (lejárt → figyelmeztető jelvény + megnyugtató mondat).",
+   "minta_html": "<div class=\"bc-ut\"><ol class=\"bc-ut-list\" aria-label=\"Önkéntes útvonal (minta)\"><li class=\"bc-ut-item is-kesz\"><span class=\"bc-ut-mark\" aria-hidden=\"true\">1</span><div class=\"bc-ut-body\"><div class=\"bc-ut-head\"><p class=\"bc-ut-title\">Jelentkezés</p><span class=\"bc-badge is-success\">Kész</span></div></div></li><li class=\"bc-ut-item is-most\" aria-current=\"step\"><span class=\"bc-ut-mark\" aria-hidden=\"true\">2</span><div class=\"bc-ut-body\"><div class=\"bc-ut-head\"><p class=\"bc-ut-title\">Rajba sorolás</p><span class=\"bc-badge is-accent\">Most</span></div></div></li><li class=\"bc-ut-item is-jon\"><span class=\"bc-ut-mark\" aria-hidden=\"true\">3</span><div class=\"bc-ut-body\"><div class=\"bc-ut-head\"><p class=\"bc-ut-title\">Első feladat</p><span class=\"bc-badge is-muted\">Jön</span></div></div></li></ol><div class=\"bc-ut-now\"><div class=\"bc-ut-next\"><p class=\"bc-ut-next-text\">A raj-vezetőd hamarosan jelentkezik. Addig nézd meg a nyitott feladatokat.</p><button type=\"button\" class=\"bc-btn is-wrap\">Válassz feladatot</button></div></div></div>",
+   "mikor": [
+    "Önkéntes vagy partner bevezetése, jelentkezés, sorolás – ahol a felhasználónak tudnia kell, hol tart és mi a dolga most.",
+    "Irányítópulton a tömör (vízszintes) térkép; a részletes oldalon a függőleges idővonal."
+   ],
+   "mikor_ne": [
+    "Sok párhuzamos teendőre – az listába vagy táblázatba való, nem útvonalba.",
+    "Több fő gombbal: a következő lépés mindig egy."
+   ],
+   "do": [
+    {
+     "cim": "Egy következő lépés",
+     "html": "<div class=\"bc-ut-next\"><p class=\"bc-ut-next-text\">Válassz egy kezdő feladatot a rajod listájából.</p><button type=\"button\" class=\"bc-btn is-wrap\">Válassz feladatot</button></div>",
+     "miert": "A felhasználó azonnal tudja, mi a dolga."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Három egyenrangú gomb",
+     "html": "<div class=\"bc-row\"><button type=\"button\" class=\"bc-btn is-sm\">Feladat</button><button type=\"button\" class=\"bc-btn is-sm\">Profil</button><button type=\"button\" class=\"bc-btn is-sm\">Rajok</button></div>",
+     "miert": "Több fő gomb elmossa, mi a következő lépés."
+    }
+   ],
+   "tesztlap": [
+    "utvonal"
+   ],
+   "forras": [
+    "react/src/ut/Utvonal.tsx",
+    "termek/css/bc-utvonal.css",
+    "CHANGELOG.md 1.51.0"
+   ]
+  }
+ ]
+}

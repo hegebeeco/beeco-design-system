@@ -1,0 +1,98 @@
+{
+ "id": "partner",
+ "nev": "PARTNERAPP",
+ "bor": "termek",
+ "bor_nev": "Termékbőr",
+ "technika_rovid": "React · Tailwind",
+ "rovid": "A partnerek (ökos vállalkozások) felülete: profil a térképen, kuponok, beváltás, analitika – mobilelső, játékosabb.",
+ "kinek": [
+  "a beeco partnerei – kis- és középvállalkozások",
+  "fejlesztők, akik partner-képernyőt építenek"
+ ],
+ "hol": "`Isakots/beeco-partner` – AWS S3 + CloudFront",
+ "kozos": [
+  "a termékbőr szerepei a DS Tailwind-presetjéből (a Tailwind saját palettája kikapcsolva)",
+  "a `components/ui/*` megtartja az API-t, de `bc-` osztályokat rajzol",
+  "sötét mód a DS `ThemeProvider`-ével"
+ ],
+ "szandekos": [
+  "**kétnyelvű** (magyar és angol, i18next) – a DS-komponensek feliratai felülírhatók (`labels`)",
+  "mobilelső: 44 px, 375 px-es ellenőrzés, lebegő gomb szabályai",
+  "játékos réteg: méz-mérő, jelvénypolc, méhes pillanat, ünneplés, „Merre tovább?”, Nektár-pontok",
+  "QR-beváltás"
+ ],
+ "cel": [
+  "DS-verzió emelése (most `#v1.38.0`)",
+  "a régi `rounded-*`/`shadow-*` nevek kivezetése a DS-nevekre"
+ ],
+ "szabalykonyv": "`docs/termek-arculat.md` · `beeco_partner_app/CLAUDE.md`",
+ "ertekek": {
+  "mez": {
+   "ertek": "méz `#FECF39` – `bg-accent` + `text-on-accent`",
+   "jel": "kozos",
+   "forras": "tailwind.config.js (DS-preset)"
+  },
+  "tinta": {
+   "ertek": "fekete tinta és vonal",
+   "jel": "kozos",
+   "forras": "DS-preset"
+  },
+  "hatter": {
+   "ertek": "krém / fehér",
+   "jel": "kozos",
+   "forras": "DS-preset"
+  },
+  "sarok": {
+   "ertek": "2 · 4 · **8** · 12 px (régi nevek átfordítva)",
+   "jel": "kozos",
+   "forras": "tailwind.config.js"
+  },
+  "arnyek": {
+   "ertek": "kemény, átlós 2/4/6 px",
+   "jel": "kozos",
+   "forras": "DS-preset"
+  },
+  "betu": {
+   "ertek": "Lalezar + Open Sans",
+   "jel": "kozos",
+   "forras": "src/index.css"
+  },
+  "sotet": {
+   "ertek": "van – DS `ThemeProvider` + `themeInitScript`",
+   "jel": "kozos",
+   "forras": "src/main.tsx"
+  },
+  "suruseg": {
+   "ertek": "tömör váz, mobilelső",
+   "jel": "reszben",
+   "forras": "AppShell"
+  },
+  "ds": {
+   "ertek": "git-függőség `#v1.38.0`: CSS + Tailwind-preset",
+   "jel": "reszben",
+   "forras": "package.json"
+  },
+  "technika": {
+   "ertek": "React 19 · Vite · Tailwind 3 · Radix",
+   "jel": "nincs",
+   "forras": "package.json"
+  }
+ },
+ "minta": {
+  "tipus": "termek",
+  "gomb": "Kupon beváltása",
+  "kartya": "Példa Kávézó",
+  "kartyaSzoveg": "Kupon: −10% saját pohárral"
+ },
+ "felmeres": {
+  "datum": "2026-10-06",
+  "forras": [
+   "beeco_partner_app/beeco-partner/package.json",
+   "tailwind.config.js",
+   "src/index.css"
+  ],
+  "mert": {
+   "ds_verzio": "1.38.0"
+  }
+ }
+}

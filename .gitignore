@@ -2,3 +2,4 @@
 node_modules/
 *.log
 dist/meh/nezo.png
+_brandbook/

@@ -1,0 +1,77 @@
+{
+ "id": "elemek",
+ "cim": "Elemek",
+ "alcim": "A termékbőr kész elemei: gombok, mezők, kártyák, táblázatok, ablakok – CSS-ben (`bc-`) és React-komponensként.",
+ "blokkok": [
+  {
+   "t": "h2",
+   "x": "Szintek: atomtól az oldalsablonig"
+  },
+  {
+   "t": "p",
+   "x": "Minden komponensnél: élő minta, mikor használd és mikor ne, képes DO / DON'T, a React-név és a CSS-osztály, és lenyitható élő React-változat minden állapotával."
+  },
+  {
+   "t": "gen",
+   "nev": "szintek"
+  },
+  {
+   "t": "h2",
+   "x": "Élő elemek"
+  },
+  {
+   "t": "gen",
+   "nev": "elemminta"
+  },
+  {
+   "t": "h2",
+   "x": "Gombszabályok"
+  },
+  {
+   "t": "szabaly",
+   "cim": "Gombok (6/A)",
+   "elemek": [
+    "Képernyőnként **egy** méz fő gomb.",
+    "Kompakt helyen (sor, eszközsáv, kártyafejléc, csempe) a mentés, törlés, új, info, szerkesztés csak piktogramos gomb, tooltippel.",
+    "Az oldal fő gombja, az űrlap Mentése és a törlés megerősítése: szöveg + piktogram.",
+    "A gomb kemény árnyékkal ül, lenyomva a helyére csúszik."
+   ],
+   "forras": [
+    "docs/termek-arculat.md 6/A (Kristóf, 2026-10-01)"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Komponens-katalógus"
+  },
+  {
+   "t": "gen",
+   "nev": "katalogus"
+  },
+  {
+   "t": "h3",
+   "x": "Élő tesztlapok (41)"
+  },
+  {
+   "t": "gen",
+   "nev": "tesztlapok"
+  },
+  {
+   "t": "p",
+   "x": "Minden komponens minden állapotát és szélső esetét tesztlap mutatja: [hegebeeco.github.io/beeco-design-system](https://hegebeeco.github.io/beeco-design-system/)."
+  },
+  {
+   "t": "h2",
+   "x": "Új elem kell?"
+  },
+  {
+   "t": "szamozott",
+   "elemek": [
+    "Nézd meg, van-e már: DS React-komponens → `bc-` CSS-elem → projekt-komponens.",
+    "Ha nincs: javaslatlap a `docs/javaslatok/_sablon.md` alapján (igény, változatok, állapotok, szélső esetek).",
+    "Kristóf jóváhagyja – addig „ideiglenesen” se épüljön meg.",
+    "Tesztlap és gépi ellenőrzés (`tests/check-komponensek.js`), utána kiadás."
+   ]
+  }
+ ]
+}

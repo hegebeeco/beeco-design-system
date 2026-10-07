@@ -1,0 +1,102 @@
+{
+ "id": "jatek",
+ "nev": "JÁTÉKOK",
+ "bor": "jatek",
+ "bor_nev": "Játékbőr – Méhsejt-diorama",
+ "technika_rovid": "HTML · three.js",
+ "rovid": "A beeco webjátékai (Méhesd 2050: Szelektálj!, Hűtő-mester, Greenwashing-vadász…) – meleg, puha, low-poly diorama.",
+ "kinek": [
+  "játékosok – iskolák, rendezvények (kioszk), az app felhasználói",
+  "aki játékot fejleszt (`beeco-jatek` skill)"
+ ],
+ "hol": "`beeco-szelektalj` és társai – Netlify (`beeco-szelektalj.netlify.app`)",
+ "kozos": [
+  "ugyanazok a közös atomok: paletta, Lalezar + Open Sans, betűskála, 4 px rács, 44 px, mozgás (ease-out, ≤ 300 ms)",
+  "ugyanaz a méhecske és hangnem: tanítunk, nem szidunk; a mérges méh soha"
+ ],
+ "szandekos": [
+  "**olíva** tinta és vonal (fekete tilos), 3 px keret",
+  "nagy sarkok (12–32 px), kapszula-gomb, amely lenyomva lesüllyed",
+  "**puha, függőleges árnyék** – kemény átlós soha",
+  "hatszög (méhsejt) ikonok, low-poly 3D díszlet, matricák",
+  "kioszk mód, offline működés; sötét mód helyett éjszakai jelenetek"
+ ],
+ "cel": [
+  "a régi játékok átállása az új bőrre (`kit-sync`)"
+ ],
+ "szabalykonyv": "`docs/arculat.md` · élő: `web/arculat.html`",
+ "ertekek": {
+  "mez": {
+   "ertek": "méz `#FECF39` – fő gomb, kiemelés",
+   "jel": "kozos",
+   "forras": "web/css/tokens.css"
+  },
+  "tinta": {
+   "ertek": "**olíva** `#2F371E` (fekete tilos) – szándékos",
+   "jel": "elter",
+   "forras": "web/css/tokens.css"
+  },
+  "hatter": {
+   "ertek": "krém / papír `#FFFDF6`",
+   "jel": "kozos",
+   "forras": "web/css/tokens.css"
+  },
+  "sarok": {
+   "ertek": "12 · 18 · 24 · 32 px, kapszula – szándékos",
+   "jel": "elter",
+   "forras": "web/css/tokens.css"
+  },
+  "arnyek": {
+   "ertek": "puha, függőleges – szándékos",
+   "jel": "elter",
+   "forras": "web/css/tokens.css"
+  },
+  "betu": {
+   "ertek": "Lalezar + Open Sans",
+   "jel": "kozos",
+   "forras": "web/css/fonts.css"
+  },
+  "sotet": {
+   "ertek": "éjszakai jelenetek, nincs teljes sötét mód",
+   "jel": "reszben",
+   "forras": "docs/arculat.md"
+  },
+  "suruseg": {
+   "ertek": "levegős, nagy elemek",
+   "jel": "nincs",
+   "forras": "docs/arculat.md"
+  },
+  "ds": {
+   "ertek": "a DS játékbőre, `kit-sync` másolja",
+   "jel": "kozos",
+   "forras": "KIT-FILES.json"
+  },
+  "technika": {
+   "ertek": "statikus HTML · three.js r128 · service worker",
+   "jel": "nincs",
+   "forras": "docs/offline-es-ci.md"
+  }
+ },
+ "minta": {
+  "tipus": "jatek",
+  "nincsSotet": true,
+  "gomb": "Indulhat!",
+  "kartya": "Szelektálj!",
+  "kartyaSzoveg": "Válogasd szét a hulladékot!"
+ },
+ "felmeres": {
+  "datum": "2026-10-06",
+  "forras": [
+   "web/css/tokens.css",
+   "docs/arculat.md"
+  ],
+  "mert": {
+   "sarkok": [
+    12,
+    18,
+    24,
+    32
+   ]
+  }
+ }
+}

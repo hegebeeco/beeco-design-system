@@ -27,6 +27,14 @@ A játékok külön tárolókban élnek (első: `~/CLAUDE/beeco-szelektalj`, él
   szimbolikus link ide), így minden Claude Code projekt látja őket.
 * A beeco méhecskék (`web/assets/brand/`) belső használatúak; külső partner anyagban a beeco jóváhagyása kell. **A tároló publikus** (Kristóf döntése, 2026-10-01) – titok, jelszó, kulcs soha ne kerüljön bele.
 
+## Brand Book (márkakönyv + design system, Javaslat 22)
+* Forrás: `brandbook/` (fejezetszövegek: `tartalom/*.json`, a hat felület profilja: `feluletek/*.json`, stílus `css/bb.css` – csak `--bc-` tokenek).
+  Építés: `node tools/brandbook-build.js` → `_brandbook/` (nem commitoljuk; a Netlify építi a gyökér `netlify.toml` szerint).
+* A felületek mért értékei helyben frissülnek: `node tools/brandbook-felmeres.js --forras ~/CLAUDE` (a kézi szövegekhez nem nyúl).
+* Jelszókapu: `netlify/edge-functions/kapu.js`; a jelszó és a titok CSAK a Netlify környezeti változóiban (`BRANDBOOK_JELSZO`, `BRANDBOOK_TITOK`).
+* Tartalomszabály: tény csak forrással (`hivatalos`/`szabaly` blokk), Claude-javaslat `javaslat` blokkban („Jóváhagyásra vár”), ismeretlen → `hianyzik`.
+  A repó nyilvános: magánszemély elérhetősége, belső szerződéses adat nem kerülhet bele. Teszt: `node tests/check-brandbook.js`.
+
 ## Ismert játék-projektek
 * `~/CLAUDE/beeco-szelektalj` – Szelektálj!, Hűtő-mester, Greenwashing-vadász, Mi van mögötte?, 2075, Ökos-rejtély, párbaj, Fenntartható otthon.
 

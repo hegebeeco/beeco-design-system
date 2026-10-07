@@ -1,0 +1,28 @@
+{
+ "id": "letoltesek",
+ "cim": "Letöltések",
+ "alcim": "Logó, méhecskék, tokenek és betűk – mindig a legfrissebb változat, a design systemből.",
+ "blokkok": [
+  {
+   "t": "szabaly",
+   "cim": "Mielőtt letöltöd",
+   "x": "A logó és a méhecskék belső használatúak; külső anyagban a beeco jóváhagyása kell. A fájlokat ne módosítsd – ha más méret vagy formátum kell, szólj a csapatnak.",
+   "forras": [
+    "CLAUDE.md (DS)",
+    "docs/termek-arculat.md 9."
+   ]
+  },
+  {
+   "t": "gen",
+   "nev": "letoltesek"
+  },
+  {
+   "t": "h2",
+   "x": "Fejlesztőknek: telepítés"
+  },
+  {
+   "t": "p",
+   "x": "Webes projektben a design system git-függőségként, címkével: `npm install github:hegebeeco/beeco-design-system#v1.x.y` (a legfrissebb címkét a [CHANGELOG](https://github.com/hegebeeco/beeco-design-system/blob/main/CHANGELOG.md)-ban találod), utána `npx beeco-ds-lint --init`."
+  }
+ ]
+}

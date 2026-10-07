@@ -1,0 +1,148 @@
+{
+ "id": "kepek",
+ "cim": "Képek",
+ "alcim": "Méhecskék, matricák, 3D és fotó – mit használhatsz, és mi a minőségi mérce.",
+ "blokkok": [
+  {
+   "t": "h2",
+   "x": "Méhecskék"
+  },
+  {
+   "t": "p",
+   "x": "A méhecske-képek a design systemben vannak (12 szereplő, hangulatok, animált változatok). Melyik mikor jelenik meg: [Hang és szöveg](hang.html)."
+  },
+  {
+   "t": "szabaly",
+   "cim": "Belső használat",
+   "x": "A beeco méhecskéi és logója belső használatúak. Külső partneranyagban a beeco jóváhagyása kell.",
+   "forras": [
+    "CLAUDE.md (DS)",
+    "docs/termek-arculat.md 9."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Matricák (illusztráció)"
+  },
+  {
+   "t": "szabaly",
+   "cim": "B szintű matrica",
+   "elemek": [
+    "10–20 alakzat, 4 éles tónus, háromnegyedes nézet, 10–30°-ban megdöntve.",
+    "Fehér, kivágott szél és tömör olíva árnyék jobbra lent; legfeljebb 10 KB, WebP.",
+    "Nincs rajta márka, logó, szöveg és arc; a beeco méhecskét nem rajzoljuk újra.",
+    "Matrica tartalomra való, kezelőelemre nem – ott vonalas piktogram van."
+   ],
+   "forras": [
+    "docs/grafika-spec.md",
+    "docs/rajzolas.md"
+   ]
+  },
+  {
+   "t": "dodont",
+   "allapot": "szabaly",
+   "forras": [
+    "docs/termek-arculat.md 9.",
+    "docs/grafika-spec.md"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "a rajzolt beeco méhecske",
+      "html": "<img src=\"ds/web/assets/brand/bee-happy.webp\" alt=\"beeco méhecske\" width=\"96\" height=\"96\">"
+     },
+     "rossz": {
+      "felirat": "emoji-méh",
+      "html": "<p class=\"bb-vizual-szoveg\">🐝 Zümm!</p>"
+     },
+     "miert": "Az emoji minden eszközön másképp néz ki, és nem a mi méhecskénk."
+    }
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "3D"
+  },
+  {
+   "t": "szabaly",
+   "cim": "Low-poly diorama",
+   "elemek": [
+    "Low-poly, 3 lépcsős cel-árnyalás, meleg napfény; méhsejt alakú lebegő szigetek.",
+    "300–1200 háromszög, 4–6 egyszínű felület, kódból épül.",
+    "Tilos: fotórealisztikus textúra, tiszta fekete."
+   ],
+   "forras": [
+    "docs/3d-vilag.md",
+    "docs/arculat.md"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Fotó"
+  },
+  {
+   "t": "szabaly",
+   "cim": "Fotó a felületen",
+   "elemek": [
+    "Fotó kerettel és kemény árnyékkal (`bc-figure.is-framed`), enyhén megdöntve is (`.is-tilt`).",
+    "Szöveg soha nem kerül közvetlenül a fotóra.",
+    "Webjátékban nincs fotó – ott matrica és 3D van."
+   ],
+   "forras": [
+    "termek/css/bc-web.css",
+    "docs/javaslatok/11-weboldal-mozgas.md",
+    "docs/arculat.md"
+   ]
+  },
+  {
+   "t": "dodont",
+   "allapot": "szabaly",
+   "forras": [
+    "docs/javaslatok/11-weboldal-mozgas.md"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "kerettel, a felirat a kép alatt",
+      "html": "<div class=\"bb-demo-oszlop\"><div class=\"bb-foto\" role=\"img\" aria-label=\"fotó helye\"></div><p class=\"bb-foto-felirat\">Önkéntesek a Kert utcában</p></div>"
+     },
+     "rossz": {
+      "felirat": "szöveg a fotón",
+      "html": "<div class=\"bb-foto\" role=\"img\" aria-label=\"fotó helye\"><p class=\"bb-foto-szoveg\">Öntözz velünk!</p></div>"
+     },
+     "miert": "A fotón a szöveg kontrasztja kiszámíthatatlan – mindig a kép alá vagy mellé kerül."
+    }
+   ]
+  },
+  {
+   "t": "javaslat",
+   "cim": "Milyen fotó illik a beecóhoz",
+   "elemek": [
+    "Valódi emberek, cselekvés közben – öntözés, kertészkedés, esemény, csapatmunka.",
+    "Valódi hazai helyszínek, természetes fény; a kampányban csak hazai madárfaj.",
+    "Kerüld a „zöld levél a kézben”, „föld a tenyérben” típusú stockfotót.",
+    "Felismerhető emberről csak hozzájárulással; gyerekről csak szülői hozzájárulással."
+   ],
+   "forras": [
+    "docs/weboldal.md – CsicsergŐsz kampány (hazai madár)",
+    "Claude javaslata a beeco értékei alapján (közösség, hitelesség)"
+   ]
+  },
+  {
+   "t": "szabaly",
+   "cim": "Fotóbank",
+   "x": "A beeco fotóbankja egy közös Drive-mappa (a link hamarosan ide kerül). Fotót csak innen, illetve a beeco csapatától használj; felismerhető emberről csak hozzájárulással.",
+   "forras": [
+    "Kristóf döntése, 2026-10-07"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "AI-val készült képek"
+  },
+  {
+   "t": "p",
+   "x": "Ha AI-val készül illusztráció, a promptolás szabályai és mintái a design systemben vannak: `docs/promptolas.md`. A beeco méhecskét AI-val sem rajzoljuk újra."
+  }
+ ]
+}

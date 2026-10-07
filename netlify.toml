@@ -1,0 +1,27 @@
+# beeco BRAND BOOK – Netlify (Javaslat 22). Csak a brand bookot teszi ki; a DS többi része a GitHub Pages-en marad.
+# A jelszó a Netlify környezeti változói között: BRANDBOOK_JELSZO (+ nem kötelező BRANDBOOK_TITOK) – soha nem a repóban, a repó nyilvános.
+[build]
+  command = "node tools/brandbook-build.js"
+  publish = "_brandbook"
+  # csak akkor épít (és fogyaszt kreditet), ha a brand book forrása változott
+  # közvetlen feltöltésnél (nincs CACHED_COMMIT_REF) mindig épít
+  ignore = "[ -n \"$CACHED_COMMIT_REF\" ] && git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- brandbook/ tokens/ termek/ dist/ docs/ web/css/ web/assets/ tools/brandbook-build.js netlify/ netlify.toml CHANGELOG.md DESIGN.md VERSION"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# a jelszókapu útvonalait a függvény maga adja meg (netlify/edge-functions/kapu.js → config)
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; frame-src 'self' https://beeco-szelektalj.netlify.app; frame-ancestors 'self'; form-action 'self'; base-uri 'none'; object-src 'none'"
+    X-Robots-Tag = "noindex, nofollow"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "same-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/ds/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
