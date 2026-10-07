@@ -11,7 +11,7 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
-## Készül – AI-munkamód: verziómentes dist, API-őr, AI-index, stabil tesztek, egy-komponenses kör
+## 1.53.0 – 2026-10-07 – AI-munkamód: verziómentes dist, API-őr, AI-index, stabil tesztek, egy-komponenses kör
 Fogyasztóknak **semmi teendő** (nincs törő változás; az `api-check` a v1.52.1-hez mérve zöld). Részletek: `docs/ai-munkamod.md`.
 * **Verziómentes generált fájlok:** a `dist/` (CSS, SCSS, Tailwind, Dart, React, tesztlapok, weboldal) és a `react/src/meh/hangnem.gen.ts` fejlécében már nincs verziószám; a verzió egyetlen generált helye a `dist/tokens.json` `version` mezője. Egy verzióemelés így **417 helyett 5 fájlt** érint (`VERSION`, `package.json`, `package-lock.json`, `dist/tokens.json`, `CHANGELOG.md`). A `dist/weboldal/webflow-valtozok.json` és `paletta.json` `version` mezője megszűnt (senki nem olvasta). Egyszeri átállás: a `dist/react/reszek/` közös darabjai új hash-t kaptak.
 * **Determinisztikus build:** rendezett tesztlap-sorrend (Linuxon a `readdir` nem rendez); változatlan forrásból újraépítve a diff nulla. A `react-build --check` mostantól a `dist/react/types` frissességét is nézi; az `npm test` a `webflow-build --check`-et is.
