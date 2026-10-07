@@ -67,5 +67,12 @@
 
 **Segédek:** hataridoSzoveg
 
-## Tesztlapok (42)
-`adat-grafikon`, `adat-grafikon-szelso`, `adat-mutato`, `adat-szuro`, `adat-tabla`, `datum`, `kieg-celcsoport`, `kieg-ellenorzes`, `kieg-elonezet`, `kieg-elozmenyek`, `kieg-mezok`, `kieg-oldalak`, `kieg-osszefesules`, `kieg2-hely`, `kieg2-sorsolas`, `kieg2-video`, `kieg3-mukodes`, `media-import`, `media-kepek`, `media-naptar`, `media-terkep`, `meh`, `mezok`, `reteg-ablak`, `reteg-ertesites`, `reteg-menu`, `reteg-nav`, `reteg-paletta`, `reteg-vaz`, `reteg-vaz-felirat`, `reteg-vaz-tomor`, `sablon-iranyitopult`, `sablon-lepesek`, `sablon-lista`, `sablon-reszletek`, `sablon-szerkeszto`, `szam`, `tema`, `utvonal`, `valaszto`, `vezerlok`, `vezerlok-tomor`
+## 06e – Csapat-egészség (kerék, jelzőkártya, retró)
+**Komponensek:** JelzoKartya, KerekRadar, RetroVaszon
+
+**Állandók:** IRANY_IKON, JELZES_IKON, JELZO_KARTYA_LABELS_HU, JELZO_SZOVEG_MEZOK_HU, KEREK_RADAR_LABELS_HU, RETRO_KERETEK, RETRO_VASZON_LABELS_HU
+
+**Segédek:** cimkeIgazitas, cimkeTordeles, radarPoligon, radarPont, tengelySzog
+
+## Tesztlapok (45)
+`adat-grafikon`, `adat-grafikon-szelso`, `adat-mutato`, `adat-szuro`, `adat-tabla`, `datum`, `jelzo-kartya`, `kerek-radar`, `kieg-celcsoport`, `kieg-ellenorzes`, `kieg-elonezet`, `kieg-elozmenyek`, `kieg-mezok`, `kieg-oldalak`, `kieg-osszefesules`, `kieg2-hely`, `kieg2-sorsolas`, `kieg2-video`, `kieg3-mukodes`, `media-import`, `media-kepek`, `media-naptar`, `media-terkep`, `meh`, `mezok`, `reteg-ablak`, `reteg-ertesites`, `reteg-menu`, `reteg-nav`, `reteg-paletta`, `reteg-vaz`, `reteg-vaz-felirat`, `reteg-vaz-tomor`, `retro-vaszon`, `sablon-iranyitopult`, `sablon-lepesek`, `sablon-lista`, `sablon-reszletek`, `sablon-szerkeszto`, `szam`, `tema`, `utvonal`, `valaszto`, `vezerlok`, `vezerlok-tomor`

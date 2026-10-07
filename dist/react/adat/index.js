@@ -1,97 +1,97 @@
-/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   createColumnHelper
-} from "../reszek/chunk-2ALM4ZV5.js";
+} from "../reszek/chunk-BOLOOF2Y.js";
 import {
   GroupedBarChart,
   StackedBarChart
-} from "../reszek/chunk-S6YO7GA4.js";
+} from "../reszek/chunk-LAFUTJRP.js";
 import {
   HeatLegend
-} from "../reszek/chunk-4RWFJLPX.js";
+} from "../reszek/chunk-U7CLUAON.js";
 import {
   StatTile
-} from "../reszek/chunk-MM2OB2RE.js";
+} from "../reszek/chunk-4ZQ4R3AT.js";
 import {
   Sparkline
-} from "../reszek/chunk-5WEI46GH.js";
+} from "../reszek/chunk-47JUHSSP.js";
 import {
   StatusBadge
-} from "../reszek/chunk-GPZWYYOG.js";
+} from "../reszek/chunk-DS2CDXZX.js";
 import {
   Tag
-} from "../reszek/chunk-S2EQQMK4.js";
+} from "../reszek/chunk-SEEUCWJA.js";
 import {
   BarChart
-} from "../reszek/chunk-QFG3OYXA.js";
-import "../reszek/chunk-KAAAGPD6.js";
-import "../reszek/chunk-SIMGX3TF.js";
+} from "../reszek/chunk-QYGZKGAY.js";
+import "../reszek/chunk-O3537XYY.js";
+import "../reszek/chunk-HOFYQ3M4.js";
 import {
   ChartCard
-} from "../reszek/chunk-H2YOPXEO.js";
+} from "../reszek/chunk-SAFPRPE6.js";
 import {
   LineChart
-} from "../reszek/chunk-5XDLS3NF.js";
-import "../reszek/chunk-GMKRBMRL.js";
+} from "../reszek/chunk-MSSC6KGX.js";
+import "../reszek/chunk-XH4U3VXK.js";
 import {
   ChartLegend
-} from "../reszek/chunk-NXE56EQA.js";
-import "../reszek/chunk-SSRQIQMR.js";
-import "../reszek/chunk-4TBP4DV3.js";
+} from "../reszek/chunk-3MQUXDLE.js";
+import "../reszek/chunk-VKCPPSCK.js";
+import "../reszek/chunk-TE4UBFJP.js";
 import {
   ChartTable
-} from "../reszek/chunk-WTCBEUGS.js";
+} from "../reszek/chunk-FLHKC7NH.js";
 import {
   DataTable
-} from "../reszek/chunk-BWBTIIIR.js";
-import "../reszek/chunk-GCYM3DUD.js";
-import "../reszek/chunk-7DE63CEF.js";
-import "../reszek/chunk-EPEMBIZI.js";
-import "../reszek/chunk-VAZE2NBR.js";
+} from "../reszek/chunk-DQ6R6ZEJ.js";
+import "../reszek/chunk-FIQXKHFT.js";
+import "../reszek/chunk-6UTOY3WE.js";
+import "../reszek/chunk-EYOCAGE4.js";
+import "../reszek/chunk-Y76GFFTT.js";
 import {
   DataNote,
   DataState,
   SkeletonRows
-} from "../reszek/chunk-JUIQ6RRM.js";
+} from "../reszek/chunk-FDP27ZEF.js";
 import {
   BulkBar,
   ColumnResizer,
   ExpandToggle,
   SelectCell,
   SortHeader
-} from "../reszek/chunk-VB6HX462.js";
+} from "../reszek/chunk-525GR3MW.js";
 import {
   EmptyState
-} from "../reszek/chunk-67M5ENIM.js";
+} from "../reszek/chunk-NILXBJHT.js";
 import {
   FilterBar
-} from "../reszek/chunk-TB7QIQYD.js";
-import "../reszek/chunk-CCVV32P6.js";
-import "../reszek/chunk-632DTIWW.js";
-import "../reszek/chunk-TLULGRMY.js";
-import "../reszek/chunk-J6KGAU2Y.js";
-import "../reszek/chunk-RPIND4NJ.js";
-import "../reszek/chunk-R3M3HYHK.js";
-import "../reszek/chunk-M4KE4BK6.js";
-import "../reszek/chunk-LAVIXOYM.js";
-import "../reszek/chunk-IEHFT7BD.js";
+} from "../reszek/chunk-Z7B2WJ3I.js";
+import "../reszek/chunk-H63GJBVA.js";
+import "../reszek/chunk-2OVUAIP6.js";
+import "../reszek/chunk-ALIIXQ26.js";
+import "../reszek/chunk-PJV2J3LJ.js";
+import "../reszek/chunk-H62V33G2.js";
+import "../reszek/chunk-TUR5VE7W.js";
+import "../reszek/chunk-AXT3NV5V.js";
+import "../reszek/chunk-UFICQAUZ.js";
+import "../reszek/chunk-WSKDGDS2.js";
 import {
   InfoCard,
   InfoGrid
-} from "../reszek/chunk-IM5TVXXF.js";
+} from "../reszek/chunk-JXV7W4KV.js";
 import {
   Pagination
-} from "../reszek/chunk-3FYMIERP.js";
+} from "../reszek/chunk-NM4TF36Z.js";
 import {
   fmt,
   matchText,
   niceTicks
-} from "../reszek/chunk-KPAJG4PO.js";
-import "../reszek/chunk-HDFSCYBK.js";
-import "../reszek/chunk-REGLHKMJ.js";
-import "../reszek/chunk-RRMQQIT4.js";
-import "../reszek/chunk-KOQBPG2F.js";
-import "../reszek/chunk-HJFOG57B.js";
+} from "../reszek/chunk-ADA2ZXKE.js";
+import "../reszek/chunk-AGN4Q77Z.js";
+import "../reszek/chunk-RRIC23XG.js";
+import "../reszek/chunk-E5CUZH7I.js";
+import "../reszek/chunk-BWSUD5Z6.js";
+import "../reszek/chunk-42HXLUBI.js";
 export {
   BarChart,
   BulkBar,

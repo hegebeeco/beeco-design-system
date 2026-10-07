@@ -1,15 +1,15 @@
-/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   OfflineBanner,
   useOnline
-} from "../reszek/chunk-EB5TACQD.js";
-import "../reszek/chunk-SFE3VERN.js";
-import "../reszek/chunk-PSKLVMPE.js";
-import "../reszek/chunk-NHZ7E3AD.js";
-import "../reszek/chunk-33BFXFEL.js";
-import "../reszek/chunk-RRMQQIT4.js";
-import "../reszek/chunk-KOQBPG2F.js";
-import "../reszek/chunk-HJFOG57B.js";
+} from "../reszek/chunk-FBM7FUPU.js";
+import "../reszek/chunk-IQE2XY7J.js";
+import "../reszek/chunk-37GXML4F.js";
+import "../reszek/chunk-EKIBPSUU.js";
+import "../reszek/chunk-6GDXY26P.js";
+import "../reszek/chunk-E5CUZH7I.js";
+import "../reszek/chunk-BWSUD5Z6.js";
+import "../reszek/chunk-42HXLUBI.js";
 export {
   OfflineBanner,
   useOnline

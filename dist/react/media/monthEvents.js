@@ -1,4 +1,4 @@
-/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   CAL_KINDS,
   KIND_LABEL,
@@ -7,8 +7,8 @@ import {
   eventsByDay,
   kindLabel,
   kindTone
-} from "../reszek/chunk-NUKTLY6Y.js";
-import "../reszek/chunk-UETNNJPJ.js";
+} from "../reszek/chunk-UNTCMOCE.js";
+import "../reszek/chunk-7BHAWIHZ.js";
 export {
   CAL_KINDS,
   KIND_LABEL,

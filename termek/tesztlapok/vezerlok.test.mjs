@@ -6,6 +6,13 @@ export default async function ({ page, t }) {
     ok((await page.locator('[data-out="seg"]').innerText()).includes('csempe'), await page.locator('[data-out="seg"]').innerText());
     await page.keyboard.press('ArrowRight'); ok((await page.locator('[data-out="seg"]').innerText()).includes('lista'), 'nem ugrotta át a tiltottat');
   });
+  await t('szegmentált kapcsoló: minden szegmens ≥ 44 px magas asztalon (egérrel) és telefonon is (1.52.0)', async () => {
+    const meres = () => page.locator('.bc-seg-item').evaluateAll((els) => els.map((e) => e.getBoundingClientRect().height));
+    const asztal = await meres(); ok(asztal.length > 0 && asztal.every((h) => h >= 44), `asztal: ${asztal.join(', ')} px`);
+    await page.setViewportSize({ width: 320, height: 640 }); await page.waitForTimeout(50);
+    const tel = await meres(); ok(tel.every((h) => h >= 44), `telefon: ${tel.join(', ')} px`);
+    await page.setViewportSize({ width: 1280, height: 800 });
+  });
   await t('a gombfeliratban a „…” három pontként rajzolódik, nem egyként (HIBA, Javaslat 15)', async () => {
     const r = await page.evaluate(async () => {
       const b = document.querySelector('[data-case="gomb-kipontozas"] .bc-btn');

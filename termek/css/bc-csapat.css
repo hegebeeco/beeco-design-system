@@ -1,0 +1,162 @@
+/* beeco TERMÉKBŐR – Csapat-egészség: KerekRadar (kerék), JelzoKartya (szavazókártya), RetroVaszon (retró-vászon).
+   Jóváhagyva 2026-10-07 (a Kaptár F5 jelöltjei). Csak tokenek; 44 px érintés; látható fókusz; mozgás ≤ 300 ms ease-out,
+   csökkentett mozgásnál azonnali. Az adatszínek a bc-adat.css palettájából (bc-s1/bc-s2, színtévesztő-mód: data-cb / .ds-cb). */
+
+/* ======================= KerekRadar ======================= */
+.bc-kerek { display: grid; gap: var(--bc-sp-3); min-width: 0; color: var(--bc-ink); }
+.bc-kerek-fej { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--bc-sp-3); min-width: 0; }
+.bc-kerek-megj { margin: 0; font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+.bc-kerek-test { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--bc-sp-4); min-width: 0; }
+.bc-kerek-abra { flex: 1 1 20rem; min-width: 0; margin: 0; }
+.bc-kerek-rajz { width: 100%; min-width: 0; }
+.bc-kerek-svg { display: block; max-width: 100%; height: auto; overflow: visible; }
+.bc-kerek-gyuru { fill: none; stroke: var(--bc-line-soft); stroke-width: 1; }
+.bc-kerek-gyuru.is-kulso { stroke-width: 2; }
+.bc-kerek-kullo { stroke: var(--bc-line-soft); stroke-width: 1; }
+.bc-kerek-kullo.is-on { stroke: var(--bc-ink); stroke-width: 2.5; }
+/* 1. sorozat: kitöltött terület + kontúr; 2. (összevetés): szaggatott vonal, kitöltés nélkül – az alak is más, nem csak a szín */
+.bc-kerek-sor .bc-kerek-terulet { fill: var(--_s); fill-opacity: .35; stroke: var(--_s); stroke-width: 3; stroke-linejoin: round; }
+.bc-kerek-sor .bc-kerek-terulet-under { fill: none; stroke: var(--bc-line); stroke-width: 5; stroke-linejoin: round; }
+.bc-kerek-sor.is-osszevet .bc-kerek-terulet { fill: none; stroke-dasharray: 7 5; }
+.bc-kerek-sor.is-osszevet .bc-kerek-terulet-under { stroke-dasharray: 7 5; }
+.bc-kerek-jelmagyarazat .bc-kerek-terulet { fill: var(--_s); fill-opacity: .35; stroke: var(--_s); stroke-width: 3; }
+.bc-kerek-jelmagyarazat .is-osszevet .bc-kerek-terulet { fill: none; stroke-dasharray: 5 3; }
+/* Tengelycímke: gomb a rajzon (egy Tab-megálló, nyilak) – a háttér a 44 px-es érintési felület, kijelölve méz */
+.bc-kerek-cimke text { font-family: var(--bc-font-body); fill: var(--bc-ink); }
+.bc-kerek-cimke-nev { font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); }
+.bc-kerek-svg.is-keskeny .bc-kerek-cimke-nev { font-size: var(--bc-fs-xs); }
+.bc-kerek-cimke-ertek { font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); font-variant-numeric: tabular-nums; fill: var(--bc-ink-soft); }
+.bc-kerek-cimke-ertek.is-nincs { font-weight: 400; font-style: italic; }
+.bc-kerek-cimke-hatter { fill: transparent; stroke: transparent; stroke-width: var(--bc-bw-base); transition: fill var(--bc-t-fast) var(--bc-ease-out); }
+.bc-kerek-cimke.is-valaszthato { cursor: pointer; }
+.bc-kerek-cimke.is-valaszthato:focus { outline: none; }
+.bc-kerek-cimke.is-valaszthato:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-kerek-cimke.is-valaszthato:focus-visible .bc-kerek-cimke-hatter { stroke: var(--bc-focus); stroke-width: 3; }
+.bc-kerek-cimke.is-on .bc-kerek-cimke-hatter { fill: var(--bc-accent); stroke: var(--bc-line); }
+.bc-kerek-cimke.is-on text, .bc-kerek-cimke.is-on .bc-kerek-cimke-ertek { fill: var(--bc-on-accent); }
+@media (hover: hover) and (pointer: fine) { .bc-kerek-cimke.is-valaszthato:not(.is-on):hover .bc-kerek-cimke-hatter { fill: var(--bc-surface-2); } }
+/* Tengely-lista (a rajz mellett / telefonon alatta): név, érték, változás */
+.bc-kerek-lista { flex: 1 1 15rem; max-width: 100%; display: grid; gap: var(--bc-sp-2); margin: 0; padding: 0; list-style: none; min-width: 0; }
+.bc-kerek-test:has(> .bc-kerek-abra) > .bc-kerek-lista { max-width: 24rem; }
+.bc-kerek-lista-elem { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-2); width: 100%; min-height: var(--bc-tap);
+  padding: var(--bc-sp-1) var(--bc-sp-3); font: inherit; font-size: var(--bc-fs-s); text-align: left; color: var(--bc-ink); background: var(--bc-surface);
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
+button.bc-kerek-lista-elem { cursor: pointer; box-shadow: var(--bc-shadow-s);
+  transition: transform var(--bc-t-press) var(--bc-ease-out), box-shadow var(--bc-t-press) var(--bc-ease-out), background-color var(--bc-t-fast) var(--bc-ease-out); }
+button.bc-kerek-lista-elem:active { transform: translate(var(--bc-shadow-s-x), var(--bc-shadow-s-y)); box-shadow: none; }
+button.bc-kerek-lista-elem:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { button.bc-kerek-lista-elem:not(.is-on):hover { background: var(--bc-surface-2); } }
+.bc-kerek-lista-elem.is-on { color: var(--bc-on-accent); background: var(--bc-accent); }
+.bc-kerek-lista-nev { min-width: 0; font-weight: var(--bc-fw-semibold); overflow-wrap: anywhere; }
+.bc-kerek-lista-szam { display: inline-flex; align-items: center; gap: var(--bc-sp-2); flex: none; font-variant-numeric: tabular-nums; }
+.bc-kerek-lista-szam .is-nincs { font-style: italic; color: var(--bc-ink-soft); }
+.bc-kerek-lista-elem.is-on .bc-kerek-lista-szam .is-nincs { color: var(--bc-on-accent); }
+.bc-kerek-delta { display: inline-flex; padding: 0 var(--bc-sp-1); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink-soft);
+  background: var(--bc-surface); border-radius: var(--bc-r-s); }
+.bc-kerek-delta.is-fel { color: var(--bc-success-ink); background: var(--bc-success-bg); }
+.bc-kerek-delta.is-le { color: var(--bc-danger-ink); background: var(--bc-danger-bg); }
+.bc-kerek-tabla .bc-table { min-width: 100%; }
+.bc-kerek-tabla tbody th { white-space: normal; min-width: 8rem; }
+.bc-kerek-tabla tr.is-selected > td { background: var(--bc-surface-accent); }
+.bc-kerek-test[hidden] { display: none; }
+.bc-kerek-sorgomb { display: inline-flex; align-items: center; min-height: var(--bc-tap); min-width: var(--bc-tap); padding: 0; font: inherit; font-weight: var(--bc-fw-semibold); text-align: left;
+  color: inherit; background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.bc-kerek-sorgomb[aria-pressed="true"] { text-decoration-thickness: 3px; }
+.bc-kerek-sorgomb[aria-pressed="true"]::before { content: "▸ "; white-space: pre; }
+.bc-kerek-sorgomb:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; border-radius: var(--bc-r-s); }
+
+/* ======================= JelzoKartya ======================= */
+.bc-jelzo { display: grid; gap: var(--bc-sp-4); min-width: 0; padding: var(--bc-sp-4); color: var(--bc-ink); background: var(--bc-surface);
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+@media (min-width: 640px) { .bc-jelzo { padding: var(--bc-sp-5); } }
+.bc-jelzo.is-error { border-color: var(--bc-danger-ink); }
+.bc-jelzo-fej { display: grid; gap: var(--bc-sp-1); min-width: 0; }
+.bc-jelzo-cim { margin: 0; font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-xl); line-height: var(--bc-lh-tight); overflow-wrap: anywhere; }
+.bc-jelzo-leiras { margin: 0; font-size: var(--bc-fs-s); line-height: var(--bc-lh-snug); color: var(--bc-ink-soft); overflow-wrap: anywhere; }
+.bc-jelzo-csoport { display: grid; gap: var(--bc-sp-2); min-width: 0; margin: 0; padding: 0; border: 0; }
+.bc-jelzo-kerdes { margin-bottom: var(--bc-sp-2); padding: 0; font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); color: var(--bc-ink); }
+.bc-jelzo-kerdes .is-req { margin-left: var(--bc-sp-1); color: var(--bc-danger-ink); }
+.bc-jelzo-opciok { display: grid; gap: var(--bc-sp-2); grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); }
+.bc-jelzo-opciok.is-irany { grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr)); }
+.bc-jelzo-opcio { position: relative; display: flex; align-items: center; gap: var(--bc-sp-3); min-width: 0; min-height: var(--bc-tap); padding: var(--bc-sp-2) var(--bc-sp-3);
+  color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); cursor: pointer;
+  transition: transform var(--bc-t-press) var(--bc-ease-out), box-shadow var(--bc-t-press) var(--bc-ease-out), background-color var(--bc-t-fast) var(--bc-ease-out); }
+.bc-jelzo-opcio.is-nagy { min-height: 64px; }
+/* A natív rádió láthatatlan, de fókuszálható (a nyilak léptetnek); a fókuszkeret a kártyán látszik */
+.bc-jelzo-radio { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.bc-jelzo-opcio:has(.bc-jelzo-radio:focus-visible) { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-jelzo-opcio:has(.bc-jelzo-radio:checked) { transform: translate(var(--bc-shadow-s-x), var(--bc-shadow-s-y)); box-shadow: none; border-width: 3px; }
+.bc-jelzo-opcio.is-zold:has(.bc-jelzo-radio:checked) { color: var(--bc-success-ink); background: var(--bc-success-bg); }
+.bc-jelzo-opcio.is-sarga:has(.bc-jelzo-radio:checked) { color: var(--bc-warning-ink); background: var(--bc-warning-bg); }
+.bc-jelzo-opcio.is-piros:has(.bc-jelzo-radio:checked) { color: var(--bc-danger-ink); background: var(--bc-danger-bg); }
+.bc-jelzo-opcio.is-irany:has(.bc-jelzo-radio:checked) { background: var(--bc-surface-accent); }
+@media (hover: hover) and (pointer: fine) { .bc-jelzo-opcio:not(:has(.bc-jelzo-radio:checked, .bc-jelzo-radio:disabled)):hover { background: var(--bc-surface-2); } }
+.bc-jelzo-ikon { display: inline-flex; flex: none; }
+.bc-jelzo-ikon svg { width: 24px; height: 24px; }
+.bc-jelzo-opcio.is-nagy .bc-jelzo-ikon svg { width: 28px; height: 28px; }
+.bc-jelzo-opcio.is-zold .bc-jelzo-ikon { color: var(--bc-success-ink); }
+.bc-jelzo-opcio.is-sarga .bc-jelzo-ikon { color: var(--bc-warning-ink); }
+.bc-jelzo-opcio.is-piros .bc-jelzo-ikon { color: var(--bc-danger-ink); }
+.bc-jelzo-szoveg { display: grid; min-width: 0; }
+.bc-jelzo-opcio-cim { font-weight: var(--bc-fw-bold); overflow-wrap: anywhere; }
+.bc-jelzo-opcio.is-irany .bc-jelzo-opcio-cim { font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); }
+.bc-jelzo-opcio-leiras { font-size: var(--bc-fs-s); line-height: var(--bc-lh-snug); overflow-wrap: anywhere; }
+.bc-jelzo-csoport:disabled .bc-jelzo-opcio, .bc-jelzo.is-disabled .bc-jelzo-opcio { color: var(--bc-ink-soft); background: var(--bc-surface-2); border-style: dashed; box-shadow: none; cursor: not-allowed; }
+.bc-jelzo-csoport:disabled .bc-jelzo-radio { cursor: not-allowed; }
+.bc-jelzo-reszlet { min-width: 0; padding: var(--bc-sp-2) var(--bc-sp-3); background: var(--bc-surface-2); border-radius: var(--bc-r-m); }
+.bc-jelzo-osszegzes { display: flex; align-items: center; min-height: var(--bc-tap); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); cursor: pointer; }
+.bc-jelzo-osszegzes::-webkit-details-marker { display: none; }
+.bc-jelzo-osszegzes::before { content: ""; flex: none; width: 8px; height: 8px; margin: 0 var(--bc-sp-3) 0 var(--bc-sp-1); border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg); transition: transform var(--bc-t-fast) var(--bc-ease-out); }
+.bc-jelzo-reszlet[open] > .bc-jelzo-osszegzes::before { transform: rotate(45deg); }
+.bc-jelzo-osszegzes:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; border-radius: var(--bc-r-s); }
+.bc-jelzo-mezok { display: grid; gap: var(--bc-sp-3); margin-top: var(--bc-sp-2); min-width: 0; }
+
+/* ======================= RetroVaszon ======================= */
+.bc-retro { display: grid; gap: var(--bc-sp-3); min-width: 0; color: var(--bc-ink); }
+.bc-retro-zarva { margin: 0; padding: var(--bc-sp-2) var(--bc-sp-3); font-size: var(--bc-fs-s); color: var(--bc-info-ink); background: var(--bc-info-bg); border-radius: var(--bc-r-m); }
+.bc-retro-zonak { display: grid; gap: var(--bc-sp-3); grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); min-width: 0; }
+@media (min-width: 900px) { .bc-retro-zonak:not(.is-harom) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1200px) { .bc-retro-zonak:not(.is-harom) { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.bc-retro-zona { display: flex; flex-direction: column; gap: var(--bc-sp-2); min-width: 0; min-height: 10rem; padding: var(--bc-sp-3);
+  background: var(--bc-surface-2); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m);
+  transition: background-color var(--bc-t-fast) var(--bc-ease-out), border-color var(--bc-t-fast) var(--bc-ease-out); }
+.bc-retro-zona.is-cel { background: var(--bc-surface-accent); border-style: dashed; border-width: 3px; }
+.bc-retro-zona-fej { display: grid; gap: var(--bc-sp-1); }
+.bc-retro-zona-cim { display: flex; align-items: center; gap: var(--bc-sp-2); margin: 0; font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-l); line-height: var(--bc-lh-tight); overflow-wrap: anywhere; }
+.bc-retro-zona-ikon { display: inline-flex; flex: none; }
+.bc-retro-db { margin-left: auto; min-width: 28px; padding: 0 var(--bc-sp-2); font-family: var(--bc-font-body); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); text-align: center;
+  color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line-soft); border-radius: var(--bc-r-pill); }
+.bc-retro-kerdes { margin: 0; font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+.bc-retro-cetlik { display: grid; gap: var(--bc-sp-2); margin: 0; padding: 0; list-style: none; min-width: 0; }
+.bc-retro-cetli { display: grid; gap: var(--bc-sp-2); min-width: 0; padding: var(--bc-sp-3); background: var(--bc-surface-accent);
+  border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }
+.bc-retro-cetli.is-sajat { border-width: 3px; }
+.bc-retro-cetli.is-huzott { position: relative; z-index: var(--bc-z-popover); pointer-events: none; box-shadow: var(--bc-shadow-m); }
+.bc-retro.is-huzas { user-select: none; }
+.bc-retro-cetli-test { display: flex; align-items: flex-start; gap: var(--bc-sp-2); min-width: 0; }
+.bc-retro-fogo { display: inline-grid; place-items: center; flex: none; width: 28px; height: var(--bc-tap); margin: calc(-1 * var(--bc-sp-2)) 0 calc(-1 * var(--bc-sp-2)) calc(-1 * var(--bc-sp-1));
+  color: var(--bc-ink-soft); border-radius: var(--bc-r-s); cursor: grab; touch-action: none; pointer-events: auto; }
+.bc-retro.is-huzas .bc-retro-fogo { cursor: grabbing; }
+@media (hover: hover) and (pointer: fine) { .bc-retro-fogo:hover { color: var(--bc-ink); background: var(--bc-surface); } }
+.bc-retro-szoveg { flex: 1 1 auto; min-width: 0; margin: 0; font-size: var(--bc-fs-s); line-height: var(--bc-lh-snug); overflow-wrap: anywhere; white-space: pre-wrap; }
+.bc-retro.is-nagy .bc-retro-szoveg { font-size: var(--bc-fs-l); }
+.bc-retro.is-nagy .bc-retro-zona-cim { font-size: var(--bc-fs-2xl); }
+.bc-retro.is-nagy .bc-retro-kerdes { font-size: var(--bc-fs-m); }
+.bc-retro-cetli-lab { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--bc-sp-2); min-width: 0; }
+.bc-retro-szerzo { min-width: 0; font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); overflow-wrap: anywhere; }
+.bc-retro-muveletek { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-1); margin-left: auto; }
+.bc-retro-mozgat.bc-select { width: auto; max-width: 11rem; min-height: var(--bc-tap); font-size: var(--bc-fs-s); }
+.bc-retro-ures { margin: 0; font-size: var(--bc-fs-s); font-style: italic; color: var(--bc-ink-soft); }
+.bc-retro-uj { margin-top: auto; align-self: flex-start; max-width: 100%; }
+.bc-retro-urlap { display: grid; gap: var(--bc-sp-2); min-width: 0; padding: var(--bc-sp-3); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
+.bc-retro-cetli .bc-retro-urlap { padding: 0; background: none; border: 0; }
+.bc-retro-gombok { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2); }
+.bc-retro-gombok .bc-btn { flex: 0 1 auto; }
+.bc-retro-skel { height: 64px; border-radius: var(--bc-r-m); }
+.bc-retro-skel.is-rovid { height: 44px; width: 70%; }
+.bc-retro.is-readonly .bc-retro-cetli { box-shadow: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bc-kerek-cimke-hatter, button.bc-kerek-lista-elem, .bc-jelzo-opcio, .bc-retro-zona, .bc-jelzo-osszegzes::before { transition: none; }
+}

@@ -2881,6 +2881,161 @@
     "termek/css/bc-utvonal.css",
     "CHANGELOG.md 1.51.0"
    ]
+  },
+  {
+   "id": "kerek-radar",
+   "nev": "Kerék – interaktív radar (KerekRadar)",
+   "szint": "organizmus",
+   "csoport": "06e – Csapat-egészség",
+   "react": [
+    "KerekRadar",
+    "KEREK_RADAR_LABELS_HU",
+    "radarPont",
+    "radarPoligon",
+    "cimkeIgazitas",
+    "cimkeTordeles",
+    "tengelySzog"
+   ],
+   "css": [
+    "bc-kerek",
+    "bc-kerek-svg",
+    "bc-kerek-cimke",
+    "bc-kerek-lista",
+    "bc-kerek-lista-elem",
+    "bc-kerek-delta",
+    "bc-kerek-tabla"
+   ],
+   "leiras": "3–12 terület (tengely) 0–10-es skálán, 1–2 egymásra vetített sorozattal (most kitöltve, az előző szaggatott vonallal). A tengelycímkék gombok (egy Tab-megálló, nyilak, Enter), a kijelölt tengely kiemelve; mellette lista az értékkel és a változással, átváltható táblázatra. Hiányzó érték = „nincs adat”, nem nulla.",
+   "minta_html": "<svg class=\"bc-kerek-svg\" viewBox=\"0 0 240 200\" width=\"240\" height=\"200\" role=\"img\" aria-label=\"Csapat-kerék (minta): Cél 8, Csapat 6, Tanulás 4, Jókedv 9, Hatás 7\"><g class=\"bc-chart\"><polygon class=\"bc-kerek-gyuru is-kulso\" points=\"120,30 196,85 167,175 73,175 44,85\"/><polygon class=\"bc-kerek-gyuru\" points=\"120,68 158,95 144,140 96,140 82,95\"/><g class=\"bc-kerek-sor bc-s1\"><polygon class=\"bc-kerek-terulet\" points=\"120,46 166,92 139,140 78,160 67,103\"/></g></g></svg>",
+   "mikor": [
+    "Havi csapat-egészség (Team Health Check), partner-értékelés, önértékelés – ahol több terület egyensúlya a kérdés.",
+    "Két időszak összevetésére (ez a hónap vs. az előző)."
+   ],
+   "mikor_ne": [
+    "Kettőnél kevesebb vagy 12-nél több terület: táblázat vagy oszlopdiagram (a komponens magától táblázatra vált).",
+    "Időbeli trendre: vonaldiagram (LineChart)."
+   ],
+   "do": [
+    {
+     "cim": "Lista és táblázat a rajz mellett",
+     "html": "<ul class=\"bc-kerek-lista\" aria-label=\"Területek (minta)\"><li><div class=\"bc-kerek-lista-elem\"><span class=\"bc-kerek-lista-nev\">Csapatmunka</span><span class=\"bc-kerek-lista-szam\"><span>7,5</span><span class=\"bc-kerek-delta is-fel\">+1,5</span></span></div></li></ul>",
+     "miert": "Az érték és a változás szövegesen is olvasható – képernyőolvasóval és színtévesztéssel is."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Csak a rajz, szín a jelentés",
+     "html": "<p class=\"bc-muted\">Zöld folt = jó, piros folt = rossz (felirat és tábla nélkül)</p>",
+     "miert": "A színt nem mindenki látja; az adat legyen listában és táblázatban is."
+    }
+   ],
+   "tesztlap": [
+    "kerek-radar"
+   ],
+   "forras": [
+    "react/src/csapat/KerekRadar.tsx",
+    "termek/css/bc-csapat.css",
+    "CHANGELOG.md 1.52.0"
+   ]
+  },
+  {
+   "id": "jelzo-kartya",
+   "nev": "Jelzőkártya – csapat-egészség szavazás (JelzoKartya)",
+   "szint": "organizmus",
+   "csoport": "06e – Csapat-egészség",
+   "react": [
+    "JelzoKartya",
+    "JELZO_KARTYA_LABELS_HU",
+    "JELZO_SZOVEG_MEZOK_HU",
+    "JELZES_IKON",
+    "IRANY_IKON"
+   ],
+   "css": [
+    "bc-jelzo",
+    "bc-jelzo-opcio",
+    "bc-jelzo-radio",
+    "bc-jelzo-reszlet"
+   ],
+   "leiras": "Egy terület szavazókártyája: három nagy választás (zöld / sárga / piros – mindegyik piktogrammal és szöveggel), irány (előre / helyben / hátra) és legfeljebb néhány rövid, nem kötelező szöveg. Vezérelt; natív rádiócsoportok (nyilak), hiba szövegesen, tiltott állapot.",
+   "minta_html": "<div class=\"bc-jelzo\" role=\"group\" aria-label=\"Jelzőkártya (minta)\"><p class=\"bc-jelzo-cim\">Kommunikáció</p><div class=\"bc-jelzo-opciok\"><span class=\"bc-jelzo-opcio is-nagy is-zold\"><span class=\"bc-jelzo-opcio-cim\">Zöld – jól megy</span></span><span class=\"bc-jelzo-opcio is-nagy is-sarga\"><span class=\"bc-jelzo-opcio-cim\">Sárga – döcög</span></span><span class=\"bc-jelzo-opcio is-nagy is-piros\"><span class=\"bc-jelzo-opcio-cim\">Piros – elakadt</span></span></div></div>",
+   "mikor": [
+    "Havi csapat-felmérés területenként (Kaptár „Beeco-kerék”), partner- vagy projekt-pulzus."
+   ],
+   "mikor_ne": [
+    "Pontos számértékre (pl. 1–10): NumberField vagy csúszka.",
+    "Sok kérdéses kérdőívre: RadioGroup a Field keretben."
+   ],
+   "do": [
+    {
+     "cim": "Szín + piktogram + szöveg",
+     "html": "<span class=\"bc-badge is-warning\">⚠ Sárga – döcög</span>",
+     "miert": "A jelentés szín nélkül is érthető."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Csak színes pötty",
+     "html": "<p class=\"bc-muted\">● ● ● (három színes kör, felirat nélkül)</p>",
+     "miert": "Színtévesztéssel és képernyőolvasóval nem használható."
+    }
+   ],
+   "tesztlap": [
+    "jelzo-kartya"
+   ],
+   "forras": [
+    "react/src/csapat/JelzoKartya.tsx",
+    "termek/css/bc-csapat.css",
+    "CHANGELOG.md 1.52.0"
+   ]
+  },
+  {
+   "id": "retro-vaszon",
+   "nev": "Retró-vászon cetlikkel (RetroVaszon)",
+   "szint": "organizmus",
+   "csoport": "06e – Csapat-egészség",
+   "react": [
+    "RetroVaszon",
+    "RETRO_KERETEK",
+    "RETRO_VASZON_LABELS_HU"
+   ],
+   "css": [
+    "bc-retro",
+    "bc-retro-zonak",
+    "bc-retro-zona",
+    "bc-retro-cetli",
+    "bc-retro-fogo",
+    "bc-retro-urlap"
+   ],
+   "leiras": "Zónák cetlikkel – kész keretek: vitorlás (szél, horgony, sziklák, sziget), 4L, Start–Stop–Folytasd, vagy saját zónák. Zónánként új cetli (név nélkül is), a saját cetli szerkeszthető és törölhető; áthelyezés húzással (egér és érintés) és billentyűzettel (a cetli választója). Üres, töltés, csak olvasható, kivetítő-mód; telefonon a zónák egymás alatt.",
+   "minta_html": "<div class=\"bc-retro\"><div class=\"bc-retro-zonak\"><div class=\"bc-retro-zona\" role=\"group\" aria-label=\"Szél (minta)\"><p class=\"bc-retro-zona-cim\">Szél</p><p class=\"bc-retro-kerdes\">Mi visz előre?</p><ul class=\"bc-retro-cetlik\"><li class=\"bc-retro-cetli\"><p class=\"bc-retro-szoveg\">Végre van közös naptár.</p><span class=\"bc-retro-szerzo\">Név nélkül</span></li></ul></div><div class=\"bc-retro-zona\" role=\"group\" aria-label=\"Horgony (minta)\"><p class=\"bc-retro-zona-cim\">Horgony</p><p class=\"bc-retro-kerdes\">Mi tart vissza?</p><p class=\"bc-retro-ures\">Még üres.</p></div></div></div>",
+   "mikor": [
+    "Havi vagy projektzáró retró csapatban, partnercsapatokkal; élőben kivetítve is."
+   ],
+   "mikor_ne": [
+    "Feladatkezelésre (felelős, határidő): ott lista vagy tábla kell, nem cetli."
+   ],
+   "do": [
+    {
+     "cim": "Húzás ÉS billentyűzet",
+     "html": "<label class=\"bc-check\">Áthelyezés: <select class=\"bc-select bc-retro-mozgat\" aria-label=\"Áthelyezés (minta)\"><option>Szél</option><option>Horgony</option></select></label>",
+     "miert": "A húzás egérrel és ujjal megy, a választó billentyűzettel és képernyőolvasóval."
+    }
+   ],
+   "dont": [
+    {
+     "cim": "Csak húzással mozgatható cetli",
+     "html": "<p class=\"bc-muted\">Fogd és vidd – más mód nincs</p>",
+     "miert": "Billentyűzettel és sok segédeszközzel így nem mozgatható."
+    }
+   ],
+   "tesztlap": [
+    "retro-vaszon"
+   ],
+   "forras": [
+    "react/src/csapat/RetroVaszon.tsx",
+    "termek/css/bc-csapat.css",
+    "CHANGELOG.md 1.52.0"
+   ]
   }
  ]
 }

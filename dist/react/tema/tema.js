@@ -1,4 +1,4 @@
-/* beeco design system 1.51.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   DARK_QUERY,
   THEME_STORAGE_KEY,
@@ -9,7 +9,7 @@ import {
   systemPrefersDark,
   themeInitScript,
   writeThemeMode
-} from "../reszek/chunk-3HSODF7P.js";
+} from "../reszek/chunk-QI4OTZRV.js";
 export {
   DARK_QUERY,
   THEME_STORAGE_KEY,
