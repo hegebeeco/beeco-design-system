@@ -23,13 +23,15 @@ váratlanul, (b) az ügynökök kevés fájlból, kevés tokennel dolgozzanak, �
 | `dist/react/**` (JS + `types/`), `dist/tesztlapok`, `termek/tesztlapok/*.html`, `dist/meres` | `tools/react-build.js` | `react/` | `--check` (a `types/` is) |
 | `dist/weboldal/*` | `tools/webflow-build.js` | `dist/tokens.json`, `termek/css` | `--check` |
 | `api/api.json` – a nyilvános API pillanatképe | `tools/api-check.js --write` | `dist/react/types`, CSS, tokenek, játék-JS | `api-check` |
-| `docs/AI.md` – ügynök-index | `tools/ai-index.js` | `api/api.json`, JSDoc, `docs/komponensek.md` | `--check` |
+| `docs/AI.md` – ügynök-index | `tools/ai-index.js` | `dist/react/types` (JSDoc, propok), `react/src`, `termek/css`, `tokens/`, `CHANGELOG.md` (🆕 jelölés) | `--check` |
 | `docs/komponens-katalogus.md` | `tools/katalogus.py` | `react/src/index.ts` | – |
 
 **Determinisztikus:** a generált fájlok fejlécében **nincs verzió és dátum**; a verzió egyetlen generált helye a
 `dist/tokens.json` `version` mezője. Változatlan forrásból újraépítve a diff **nulla** (rendezett bejárás, tartalom-hash
 a közös darabok nevében). Egy verzióemelés így 5 fájlt érint: `VERSION`, `package.json`, `package-lock.json`,
-`dist/tokens.json`, `CHANGELOG.md`.
+`dist/tokens.json`, `CHANGELOG.md` (mérve: 1.52.0-nál 417 fájl volt, az 1.53.0-nál 5). Az `npm run build` minden generátort lefuttat
+(tokens, React, weboldal, API-pillanatkép, AI-index). A 🆕 jelölés a CHANGELOG utolsó 3 mellékverzió-szakaszából
+jön (a „Készül” egy helynek számít), így mellékverzió-kiadás nem írja át az AI.md-t; javítóverziónál előfordulhat.
 
 ## 3. A `dist/` gazdája: a PR (a + b változat együtt)
 
@@ -41,6 +43,7 @@ A git-címkét telepítő fogyasztóknak (`github:hegebeeco/beeco-design-system#
   (a `git diff` csak „Binary files differ”-t ír – kevesebb token). A `dist/tokens.json`, `dist/weboldal/*` és az
   `api/api.json` diffje látszik: ezekben van a lényeg.
 - **`dist/`-ütközés** két ág között: ne kézzel oldd fel – `git checkout --theirs dist termek/tesztlapok && npm run build`.
+- **CI a `main`-en nem commitol** (nincs bot-commit): a PR-ban lévő `dist/`-et a CI csak ellenőrzi.
 - **(b) Kiadás-workflow** (`.github/workflows/kiadas.yml`, kézi indítás, bemenet: verzió): ellenőrzi, hogy a
   `CHANGELOG.md`-ben van `## X.Y.Z` szakasz, átírja a `VERSION`/`package.json`/`package-lock.json`-t, `npm run build`,
   `npm test`, API-őr a legutóbbi címkéhez képest, majd commit a `main`-re + `vX.Y.Z` címke + push. Kézi kiadás
