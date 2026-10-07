@@ -1,15 +1,15 @@
-/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   LayerCloseContext,
   useCloseGuard,
   useLayerClose
-} from "../reszek/chunk-ENL5BR4Y.js";
-import "../reszek/chunk-7OVPBAO2.js";
-import "../reszek/chunk-NUNQTNKR.js";
-import "../reszek/chunk-Z7B3MBLJ.js";
-import "../reszek/chunk-FYLKJ6X5.js";
-import "../reszek/chunk-B5K6ARMB.js";
-import "../reszek/chunk-UHO66ITM.js";
+} from "../reszek/chunk-43GDBKDB.js";
+import "../reszek/chunk-ZQBU4M7V.js";
+import "../reszek/chunk-FJZZDQUQ.js";
+import "../reszek/chunk-HOI6WE7L.js";
+import "../reszek/chunk-ERIU5VPQ.js";
+import "../reszek/chunk-GQKKPGX5.js";
+import "../reszek/chunk-PFNFGQD5.js";
 export {
   LayerCloseContext,
   useCloseGuard,

@@ -14,8 +14,8 @@ const esbuild = require('esbuild');
 
 const ROOT = path.join(__dirname, '..');
 const check = process.argv.includes('--check');
-const VERSION = fs.readFileSync(path.join(ROOT, 'VERSION'), 'utf8').trim();
-const banner = `/* beeco design system ${VERSION} – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */`;
+// Verzió/dátum SZÁNDÉKOSAN nincs a fejlécben: így egy verzióemelés nem írja át a dist/ több száz fájlját (docs/ai-munkamod.md 2.)
+const banner = `/* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */`;
 const common = { bundle: true, format: 'esm', jsx: 'automatic', target: 'es2020', write: false, legalComments: 'none', banner: { js: banner }, logLevel: 'silent' };
 
 async function main() {
@@ -34,7 +34,7 @@ async function main() {
   const libUtak = new Set(lib.outputFiles.map((o) => o.path));
   // 2. A tesztlapoknak: minden benne (önálló oldal)
   const dir = path.join(ROOT, 'react/tesztlapok');
-  const pages = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith('.tsx') && !f.startsWith('_')) : [];
+  const pages = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith('.tsx') && !f.startsWith('_')).sort() : []; // rendezve: a readdir sorrendje Linuxon nem az
   for (const p of pages) {
     const r = await esbuild.build({ ...common, entryPoints: [path.join(dir, p)], outfile: path.join(ROOT, 'dist/tesztlapok', p.replace(/\.tsx$/, '.js')),
       minify: true, define: { 'process.env.NODE_ENV': '"production"' } });
@@ -83,8 +83,27 @@ async function main() {
   }
   // Típusok (tsc) – csak író módban; a --check a TS-hibát is megfogja (noEmit)
   const tsc = path.join(ROOT, 'node_modules/.bin/tsc');
-  try { execFileSync(tsc, ['-p', path.join(ROOT, 'react/tsconfig.json'), ...(check ? ['--noEmit', '--emitDeclarationOnly', 'false'] : [])], { stdio: 'pipe' }); }
+  // --check: ideiglenes mappába ír, és összeveti a dist/react/types-szal (így az elavult .d.ts is kiderül, nem csak a TS-hiba)
+  const typesDir = path.join(ROOT, 'dist/react/types');
+  const tmpTypes = check ? fs.mkdtempSync(path.join(require('os').tmpdir(), 'bc-types-')) : null;
+  try { execFileSync(tsc, ['-p', path.join(ROOT, 'react/tsconfig.json'), ...(check ? ['--outDir', tmpTypes] : [])], { stdio: 'pipe' }); }
   catch (e) { console.log(`TypeScript-hiba:\n${e.stdout}`); process.exit(1); }
+  if (check) {
+    const lista = (d, b = d) => fs.existsSync(d) ? fs.readdirSync(d, { withFileTypes: true }).flatMap((f) => f.isDirectory() ? lista(path.join(d, f.name), b) : [path.relative(b, path.join(d, f.name))]) : [];
+    // a types/react/ egy régi build maradéka (be van commitolva) – visszafelé kompatibilitás miatt nem nyúlunk hozzá
+    const regiMaradek = (f) => f.startsWith('react' + path.sep);
+    const uj = new Set(lista(tmpTypes)); const regi = new Set(lista(typesDir).filter((f) => !regiMaradek(f)));
+    for (const f of [...new Set([...uj, ...regi])].sort()) {
+      const a = uj.has(f) ? fs.readFileSync(path.join(tmpTypes, f), 'utf8') : null; const b = regi.has(f) ? fs.readFileSync(path.join(typesDir, f), 'utf8') : null;
+      if (a !== b) { console.log(`ELAVULT: dist/react/types/${f}${a === null ? ' (törlendő)' : ''}`); stale++; }
+    }
+    fs.rmSync(tmpTypes, { recursive: true, force: true });
+  } else {
+    // a már nem létező forrás típusfájlja ne maradjon ott (a tsc magától nem töröl)
+    const forras = (rel) => ['.ts', '.tsx'].some((x) => fs.existsSync(path.join(srcDir, rel.replace(/\.d\.ts$/, x))));
+    (function tisztit(d) { if (!fs.existsSync(d)) return; for (const f of fs.readdirSync(d, { withFileTypes: true })) { const t = path.join(d, f.name);
+      if (f.isDirectory()) { if (!(d === typesDir && f.name === 'react')) tisztit(t); } else if (t.endsWith('.d.ts') && !forras(path.relative(typesDir, t))) { fs.unlinkSync(t); console.log(`törölve: ${path.relative(ROOT, t)}`); } } })(typesDir);
+  }
   // A tesztlapok is típusellenőrzést kapnak (az esbuild csak eldobja a típusokat, nem ellenőrzi)
   try { execFileSync(tsc, ['-p', path.join(ROOT, 'react/tsconfig.tesztlap.json')], { stdio: 'pipe' }); }
   catch (e) { console.log(`TypeScript-hiba a tesztlapokon:\n${e.stdout}`); process.exit(1); }

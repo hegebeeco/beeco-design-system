@@ -1,17 +1,17 @@
-/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   KEREK_RADAR_LABELS_HU,
   KerekRadar
-} from "../reszek/chunk-NQBO5UUZ.js";
-import "../reszek/chunk-5364AEPC.js";
-import "../reszek/chunk-2XDPGPZH.js";
-import "../reszek/chunk-OMXYADDB.js";
-import "../reszek/chunk-FAPKDIIU.js";
-import "../reszek/chunk-SFXSRWNV.js";
-import "../reszek/chunk-QIBUPNT2.js";
-import "../reszek/chunk-4BN3XTQS.js";
-import "../reszek/chunk-2JUV2CP5.js";
-import "../reszek/chunk-UHO66ITM.js";
+} from "../reszek/chunk-H5HW4TYE.js";
+import "../reszek/chunk-GTNGGJ7Z.js";
+import "../reszek/chunk-KR6XDATQ.js";
+import "../reszek/chunk-YUMMGPIQ.js";
+import "../reszek/chunk-FMQGC4VY.js";
+import "../reszek/chunk-5UB4PBZJ.js";
+import "../reszek/chunk-4B2TW2CC.js";
+import "../reszek/chunk-ODKPT4AU.js";
+import "../reszek/chunk-76XJSA3J.js";
+import "../reszek/chunk-PFNFGQD5.js";
 export {
   KEREK_RADAR_LABELS_HU,
   KerekRadar

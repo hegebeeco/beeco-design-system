@@ -1,12 +1,12 @@
-/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
-import "../reszek/chunk-NKQBT4RE.js";
+/* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+import "../reszek/chunk-YRKAUWEU.js";
 import {
   Logo
-} from "../reszek/chunk-3SOOZ6B5.js";
+} from "../reszek/chunk-XYXBGGKJ.js";
 import {
   evszak
-} from "../reszek/chunk-FZN32GDX.js";
-import "../reszek/chunk-UHO66ITM.js";
+} from "../reszek/chunk-PG7BSDOS.js";
+import "../reszek/chunk-PFNFGQD5.js";
 export {
   Logo,
   evszak

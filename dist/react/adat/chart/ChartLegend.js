@@ -1,9 +1,9 @@
-/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ChartLegend
-} from "../../reszek/chunk-KGHBR3BZ.js";
-import "../../reszek/chunk-MPHF2NZ5.js";
-import "../../reszek/chunk-2XDPGPZH.js";
+} from "../../reszek/chunk-VGMBJGQ3.js";
+import "../../reszek/chunk-ZRKC3OJT.js";
+import "../../reszek/chunk-KR6XDATQ.js";
 export {
   ChartLegend
 };

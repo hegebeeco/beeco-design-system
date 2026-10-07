@@ -55,7 +55,6 @@ meret('bc-tap', 44);   // a legkisebb érintési felület – a Designerben is k
 
 const ki = {
   _readme: 'GENERÁLT (tools/webflow-build.js) – kézzel ne szerkeszd. Ez a Webflow „beeco DS” változó-kollekció teljes tartalma. A `sotet` mező a kollekció „Sötét” módjának értéke (null = nincs külön sötét érték).',
-  version: T.version,
   kollekcio: 'beeco DS',
   modok: ['Base mode', 'Sötét'],
   valtozok,
@@ -64,7 +63,6 @@ const ki = {
 // A web-ellenőrzőnek: mi számít megengedett értéknek egy élő oldalon.
 const paletta = {
   _readme: 'GENERÁLT – a weboldalon megengedett nyers értékek. A `tools/web-ellenor.js` ehhez méri a futásidejű CSS-t.',
-  version: T.version,
   szinek: [...new Set([...Object.values(T.color).map((c) => c.toUpperCase()), ...valtozok.filter((v) => v.tipus === 'Color').flatMap((v) => [v.ertek, v.sotet]).filter(Boolean)])].sort(),
   sarok: [...new Set(Object.values(T.termek.radius))].sort((a, b) => a - b),
   keret: [...new Set(Object.values(T.termek.border))].sort((a, b) => a - b),
@@ -108,7 +106,7 @@ function reszlet(rel, szuro) {
 }
 
 const webCss = [
-  `/* GENERÁLT (tools/webflow-build.js) a beeco design system ${T.version} forrásából – kézzel NE szerkeszd.`,
+  `/* GENERÁLT (tools/webflow-build.js) a beeco design system forrásából (verzió: dist/tokens.json) – kézzel NE szerkeszd.`,
   `   Ez a blokk a Webflow oldal- vagy site-fejkódjába megy. Azt tartalmazza, amit a Webflow-stílus`,
   `   nem tud kifejezni: @keyframes, mozgás-osztályok, méhsejt-háttér maszkkal.`,
   `   A tokenekre a "beeco DS" változókollekció nevein hivatkozik (--_beeco-ds---bc-*).`,
@@ -135,18 +133,18 @@ const tomorit = (css) => css
   .replace(/;}/g, '}')
   .trim();
 
-const webMin = `/* beeco DS ${T.version} – web (generált, tools/webflow-build.js). Évszakos díszítés nélkül. */\n` + tomorit(webCss);
+const webMin = `/* beeco DS – web (generált, tools/webflow-build.js). Évszakos díszítés nélkül. */\n` + tomorit(webCss);
 
 // OLDAL-PROFIL: egy Webflow-oldal fej-kódjába az oldal saját CSS-e MELLÉ is be kell férni, ezért
 // a teljes készlet helyett csak a marketingoldalon ténylegesen használt mozgás megy ki.
 // A többi (bc-hexload, bc-tab-ink, bc-dragging, méhsejt-háttér) akkor jön, ha egy oldalnak kell.
 const OLDAL_KELL = /bc-buzz|bc-rise|bc-stamp|bc-web-erkezes|bc-web-zum|bc-sticker|bc-web-in|bc-stagger|bc-lift|is-framed|is-tilt|prefers-reduced-motion/;
 const oldalCss = [
-  `/* beeco DS ${T.version} – web, OLDAL-PROFIL (generált). Csak a marketingoldalon használt mozgás.`,
+  `/* beeco DS – web, OLDAL-PROFIL (generált). Csak a marketingoldalon használt mozgás.`,
   `   A teljes készlet: dist/weboldal/beeco-web.css. Frissítés: node tools/webflow-build.js */`,
   ...blokkok(webCss).filter((b) => OLDAL_KELL.test(b) && !/honeycomb/.test(b)),
 ].join('\n');
-const oldalMin = `/* beeco DS ${T.version} – web, oldal-profil (generált) */\n` + tomorit(oldalCss);
+const oldalMin = `/* beeco DS – web, oldal-profil (generált) */\n` + tomorit(oldalCss);
 
 const fajlok = {
   'dist/weboldal/webflow-valtozok.json': JSON.stringify(ki, null, 2) + '\n',
