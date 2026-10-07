@@ -4,28 +4,44 @@
  "bor": "termek",
  "bor_nev": "Termékbőr (értékre)",
  "technika_rovid": "Flutter",
- "rovid": "A beeco app (iOS, Android): ökotérkép, lábnyomkalkulátor, események, kuponok, Nektár – térképközpontú, méhecskés.",
+ "rovid": "A beeco app (iOS, Android): ökotérkép, kezdőlap, kuponfüzet, nyereményjáték, Nektár, rajok és ranglista, lábnyomkalkulátor, faöntözés – térképközpontú, méhecskés.",
  "kinek": [
   "a beeco felhasználói",
   "az app fejlesztője (Flutter) és tervezői"
  ],
  "hol": "`beeco-app/mobile-app` – App Store, Google Play",
  "kozos": [
-  "a fő színek értékre egyeznek a DS palettájával: méz `#FECF39`, nyomott méz `#D8A500`, krém `#FFF8E7`, olíva, levél",
-  "Lalezar + Open Sans",
-  "kemény, eltolt árnyék (neo-brutalista vonal) – ebből lett a termékbőr"
+  "a fő színek **értékre** egyeznek a DS palettájával: méz `#FECF39` (`beecoYellow`), nyomott méz `#D8A500`, krém `#FFF8E7` (`beecoBgMain`), levél, olíva, rózsa, víz – a megfeleltetés: `docs/app-atallas.md`",
+  "Lalezar a címekre és a gombokra, Open Sans minden másra",
+  "fekete keret és kemény, eltolt árnyék, lenyomva „besüllyed” (`ElevatedContainer`) – ebből a vonalból lett a termékbőr",
+  "a méz a fő gomb és a kijelölés színe (`Button`: `beecoYellow`, 48 magas)",
+  "a hangnem: tegeződés, méhes szóviccek – „beezz a rajban!”, „Milyen kupont keresel, Kaptárs?”, „Zümmögök, hogy nyerjek!”"
  ],
  "szandekos": [
-  "térképközpontú képernyők, alsó lapok (bottom sheet), Rive-méhecske-animációk",
-  "ferde szegélyű és hatszöges elemek (`SlantedBorderContainer`, hatszög-lépésjelző)"
+  "térképközpontú, egykezes használat: **alsó navigáció** öt füllel (Főoldal · Térkép · Kupon · Naptár · Profil), **alsó lapok** (bottom sheet) a térkép fölött, **lebegő térképvezérlő**",
+  "a **kuponjegy**: letéphető jegy-forma kemény árnyékkal – az app saját, felismerhető eleme",
+  "ferde szélű és hatszöges díszítő elemek (`SlantedBorderContainer`, hatszög-ikonok)",
+  "a kódból animált méhecske (`AnimatedProfileBee`) a térképen a felhasználó helyén és a frissítéskor"
+ ],
+ "elter": [
+  "**a DS nincs bekötve**: saját `AppColors` (77 szín); a fő színek értékre egyeznek, de nincs szerep-réteg (`BeecoRoles`) – a widgetek közvetlenül nyers színt használnak",
+  "**nincs sötét mód** (nincs `darkTheme`) – a brand book képernyőit sötétben a DS szerepeivel mutatjuk: így nézne ki az átállás után",
+  "palettán kívüli színek, pl. a kijelölt chip és a kijelölt rétegkártya `beecoMidGreen` `#B6C4A3`, `redStrong` `#E85A25`, `markerBlue` `#A8DAFF`, `specialShadow` `#000B2F`",
+  "sarkok 1–24, 40 és 150 px (gomb 4, chip 8, alsó lap 16) a DS 4 / 8 / 12 px-e helyett; árnyék 1–5 px eltolás, részben elmosva – a DS-ben kemény 2 / 4 / 6 px",
+  "betű: Open Sans 500 és 800-as vastagság, skálán kívüli méretek (17, 22, 30, 36 px)",
+  "érintési felület 44 px alatt: térkép-rétegválasztó 41, profil-ikongombok 35, kategória-chipek kb. 34, az alsó lap fő gombja 40 px"
  ],
  "cel": [
-  "a DS Dart-tokenjeinek bekötése: `BeecoRoles.light/dark` (`dist/dart/beeco_tokens.dart`, leírás: `docs/app-atallas.md`)",
-  "**sötét mód** – ma nincs",
-  "a ~20 palettán kívüli szürke/barna/kék szín és a skálán kívüli betűméretek (10/17/22/24/30) rendezése",
-  "sarkok 1–150 px helyett 2/4/8/12 px, árnyékok 2/4/6 px"
+  "**Flutter-átállás** (`docs/app-atallas.md`, Bence dönti el a sorrendet): `dist/dart/beeco_tokens.dart` beemelése; az `AppColors` azonos értékű konstansai a `BeecoPalette`-re mutatnak – a hívó kód nem változik",
+  "`BeecoRoles.light` / `.dark` a `ThemeExtension`-ben → ezzel jön a **sötét mód**",
+  "`ElevatedContainer`: sarok csak `BeecoTokens.rS/rM/rL` (4 / 8 / 12), árnyék csak `shadowS/M/L` (2 / 4 / 6), elmosás nélkül",
+  "a palettán kívüli színek összevonása a legközelebbi szerepre; új szín csak a DS-repón át, indoklással – döntés kell: kijelölt chip, `markerBlue`, a ranglista bronz sora",
+  "betűskála 12 / 14 / 16 / 20 / 26 / 34 / 46 px, Open Sans 400 / 600 / 700",
+  "minden érinthető elem legalább 48 dp (Material) – a térképvezérlő, a chipek és a profil-ikongombok is",
+  "a négy mobilminta (alsó navigáció, alsó lap, lebegő vezérlő, kuponjegy) DS-leírása – **Javaslat 23**, Kristóf jóváhagyására vár",
+  "racsni-teszt a `lib/` alatti `Color(0x…)` előfordulásokra (mint a weben a `ds-lint`): a szám csak csökkenhet"
  ],
- "szabalykonyv": "`docs/app-atallas.md` · `mobile-app/AGENTS.md`",
+ "szabalykonyv": "`docs/app-atallas.md` · `docs/javaslatok/23-mobil-mintak.md` · `mobile-app/AGENTS.md`",
  "ertekek": {
   "mez": {
    "ertek": "méz `#FECF39` (`AppColors.beecoYellow`)",
@@ -43,19 +59,19 @@
    "forras": "app_colors.dart"
   },
   "sarok": {
-   "ertek": "1–150 px; gomb 4 px",
+   "ertek": "1–24, 40, 150 px; gomb 4, chip 8, alsó lap 16",
    "jel": "elter",
    "forras": "lib/presentation/utils/ui_constants.dart"
   },
   "arnyek": {
-   "ertek": "kemény, eltolt 1–5 px",
+   "ertek": "kemény, eltolt 1–5 px, részben elmosva (blur 2–4)",
    "jel": "reszben",
    "forras": "ui_constants.dart"
   },
   "betu": {
-   "ertek": "Lalezar + Open Sans, de 800-as vastagság és skálán kívüli méretek",
+   "ertek": "Lalezar + Open Sans, de 500/800-as vastagság és skálán kívüli méretek (17/22/30/36)",
    "jel": "reszben",
-   "forras": "text_styles.dart"
+   "forras": "lib/presentation/theme/text_styles.dart"
   },
   "sotet": {
    "ertek": "nincs",
@@ -63,17 +79,17 @@
    "forras": "lib/ (nincs `darkTheme`)"
   },
   "suruseg": {
-   "ertek": "mobil, térképközpontú",
+   "ertek": "mobil, térképközpontú; alsó navigáció, alsó lapok",
    "jel": "nincs",
    "forras": "—"
   },
   "ds": {
-   "ertek": "nincs bekötve: saját `AppColors` (77 szín), értékre egyezik",
+   "ertek": "nincs bekötve: saját `AppColors` (77 szín), értékre egyezik; nincs `BeecoRoles`",
    "jel": "reszben",
    "forras": "app_colors.dart"
   },
   "technika": {
-   "ertek": "Flutter · Riverpod · flutter_map · Rive",
+   "ertek": "Flutter · Riverpod · AutoRoute · flutter_map · easy_localization",
    "jel": "nincs",
    "forras": "pubspec.yaml"
   }
@@ -101,11 +117,14 @@
   }
  },
  "felmeres": {
-  "datum": "2026-10-06",
+  "datum": "2026-10-07",
   "forras": [
    "mobile-app/lib/presentation/theme/app_colors.dart",
+   "lib/presentation/theme/text_styles.dart",
    "lib/presentation/utils/ui_constants.dart",
-   "lib/presentation/widgets/buttons/button.dart"
+   "lib/presentation/widgets/buttons/button.dart",
+   "lib/presentation/features/* (képernyők)",
+   "assets/translations/hu.json"
   ],
   "mert": {
    "szinek": 77,
@@ -113,5 +132,172 @@
    "sarok_max": 150,
    "sotet_mod": false
   }
- }
+ },
+ "blokkok": [
+  {
+   "t": "h2",
+   "x": "Mobilminták – így használd",
+   "id": "mobilmintak"
+  },
+  {
+   "t": "p",
+   "x": "Hat minta, ami csak telefonon fordul elő. Ahol a DS-ben van rá elem (térképjelölő, érintési felület), az **szabály**; ahol nincs (alsó navigáció, alsó lap, lebegő gomb, kuponjegy), ott az app mostani mintáját írjuk le, és **javaslatként** vár Kristóf jóváhagyására – új DS-elem csak így születhet."
+  },
+  {
+   "t": "javaslat",
+   "cim": "Javaslat – jóváhagyásra vár: négy mobilminta a DS-be",
+   "x": [
+    "Az **alsó navigáció**, az **alsó lap** (bottom sheet), a **lebegő gomb** és a **kuponjegy** ma csak az app saját widgetje; a DS-ben nincs `bc-` elemük. A brand book képernyői a képernyő saját CSS-ével rajzolják őket, tokenekből – ez nem DS-elem.",
+    "Javaslat: most csak a lenti szabályok (A), a Flutter-átállással együtt CSS-elem + Flutter-widget leírás (C). Részletek, állapotok, szélső esetek: `docs/javaslatok/23-mobil-mintak.md`."
+   ],
+   "forras": [
+    "felmérés: beeco_MOBILE_APP/mobile-app (2026-10-07)",
+    "docs/javaslatok/23-mobil-mintak.md"
+   ]
+  },
+  {
+   "t": "dodont",
+   "allapot": "javaslat",
+   "cim": "Alsó navigáció",
+   "forras": [
+    "felmérés: beeco_MOBILE_APP/mobile-app (2026-10-07)",
+    "docs/javaslatok/23-mobil-mintak.md"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "5 fül, ikon + felirat",
+      "html": "<div class=\"bb-mob \"><div class=\"bb-mob-terkep\"></div><div class=\"bb-mob-nav \"><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 11l9-7 9 7v9H5v-9z\"/></svg><span>Főoldal</span></span><span class=\"is-on\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z\"/></svg><span>Térkép</span></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 8h18v3a2 2 0 000 4v3H3v-3a2 2 0 000-4V8z\"/></svg><span>Kupon</span></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 6h16v14H4zM4 10h16M8 3v5M16 3v5\"/></svg><span>Naptár</span></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0\"/></svg><span>Profil</span></span></div></div>"
+     },
+     "rossz": {
+      "felirat": "7 fül, csak ikon",
+      "html": "<div class=\"bb-mob \"><div class=\"bb-mob-terkep\"></div><div class=\"bb-mob-nav is-zsufolt\"><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 11l9-7 9 7v9H5v-9z\"/></svg></span><span class=\"is-on\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z\"/></svg></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 8h18v3a2 2 0 000 4v3H3v-3a2 2 0 000-4V8z\"/></svg></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 6h16v14H4zM4 10h16M8 3v5M16 3v5\"/></svg></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8-5.3-2.8-5.3 2.8 1-5.8-4.2-4.1 5.9-.9z\"/></svg></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z\"/></svg></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0\"/></svg></span></div></div>"
+     },
+     "miert": "Legfeljebb öt fül, mindegyiknek felirata van: az ikon magában nem mond elég. Több cél a Profil vagy a Főoldal alá kerül."
+    },
+    {
+     "jo": {
+      "felirat": "az aktív fül: méz kitöltés + félkövér felirat",
+      "html": "<div class=\"bb-mob \"><div class=\"bb-mob-terkep\"></div><div class=\"bb-mob-nav \"><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 11l9-7 9 7v9H5v-9z\"/></svg><span>Főoldal</span></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z\"/></svg><span>Térkép</span></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 8h18v3a2 2 0 000 4v3H3v-3a2 2 0 000-4V8z\"/></svg><span>Kupon</span></span><span class=\"is-on\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 6h16v14H4zM4 10h16M8 3v5M16 3v5\"/></svg><span>Naptár</span></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0\"/></svg><span>Profil</span></span></div></div>"
+     },
+     "rossz": {
+      "felirat": "az aktív fül csak más színű",
+      "html": "<div class=\"bb-mob \"><div class=\"bb-mob-terkep\"></div><div class=\"bb-mob-nav is-szines\"><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 11l9-7 9 7v9H5v-9z\"/></svg><span>Főoldal</span></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z\"/></svg><span>Térkép</span></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 8h18v3a2 2 0 000 4v3H3v-3a2 2 0 000-4V8z\"/></svg><span>Kupon</span></span><span class=\"is-on\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 6h16v14H4zM4 10h16M8 3v5M16 3v5\"/></svg><span>Naptár</span></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0\"/></svg><span>Profil</span></span></div></div>"
+     },
+     "miert": "Az állapotot ne csak a szín mondja: a kitöltés és a vastagság színtévesztőnek is látszik (és a kódban `aria-current=\"page\"`)."
+    }
+   ]
+  },
+  {
+   "t": "dodont",
+   "allapot": "javaslat",
+   "cim": "Alsó lap (bottom sheet)",
+   "forras": [
+    "felmérés: beeco_MOBILE_APP/mobile-app (2026-10-07)",
+    "docs/javaslatok/23-mobil-mintak.md"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "fogantyú, a térkép látszik, egy méz gomb",
+      "html": "<div class=\"bb-mob \"><div class=\"bb-mob-terkep\"></div><div class=\"bb-mob-lap\"><span class=\"bb-mob-fogo\"></span><p class=\"bb-mob-lap-cim\">Minta Zöldbolt</p><p class=\"bb-mob-lap-al\">Bolt · minta</p><div class=\"bb-mob-gombok\"><span class=\"bc-btn is-secondary is-sm\">Útvonal</span><span class=\"bc-btn is-sm\">Részletek</span></div></div></div>"
+     },
+     "rossz": {
+      "felirat": "teljes képernyő, két méz gomb, nincs fogantyú",
+      "html": "<div class=\"bb-mob \"><div class=\"bb-mob-lap is-teli\"><p class=\"bb-mob-lap-cim\">Minta Zöldbolt</p><p class=\"bb-mob-lap-al\">Bolt · minta</p><div class=\"bb-mob-gombok\"><span class=\"bc-btn is-sm\">Útvonal</span><span class=\"bc-btn is-sm\">Részletek</span></div></div></div>"
+     },
+     "miert": "Az alsó lap a térkép fölé nyílik, nem helyette: a kijelölt pont látszik mögötte. Fogantyú + bezárás-gomb jelzi, hogy lehúzható. Egy méz fő gomb, a többi másodlagos."
+    }
+   ]
+  },
+  {
+   "t": "dodont",
+   "allapot": "szabaly",
+   "cim": "Térképjelölő",
+   "forras": [
+    "react/src/media/map.ts (`markerHtml`, `MapLegend`)",
+    "termek/css/bc-media-terkep.css"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "szín + betű, a kijelölt méz és nagyobb",
+      "html": "<div class=\"bb-mob is-alacsony\"><div class=\"bb-mob-terkep\"></div><div class=\"bb-mob-pinek\"><span class=\"bc-map-pin is-success\"><span>V</span></span><span class=\"bc-map-pin is-info is-selected\"><span>B</span></span><span class=\"bc-map-pin is-warning\"><span>J</span></span><span class=\"bc-map-pin is-neutral\"><span>É</span></span></div></div>"
+     },
+     "rossz": {
+      "felirat": "apró, csak színben eltérő pöttyök",
+      "html": "<div class=\"bb-mob is-alacsony\"><div class=\"bb-mob-terkep\"></div><div class=\"bb-mob-pinek is-csak-szin\"><span class=\"bb-mob-potty is-a\"></span><span class=\"bb-mob-potty is-b\"></span><span class=\"bb-mob-potty is-c\"></span></div></div>"
+     },
+     "miert": "A jelölő fajtáját a szín ÉS a betű vagy piktogram együtt mondja, a jelmagyarázat (`MapLegend`) ugyanazt a párost mutatja. A kijelölt jelölő méz és nagyobb – így a lap tartalmához köthető."
+    }
+   ]
+  },
+  {
+   "t": "dodont",
+   "allapot": "javaslat",
+   "cim": "Kuponkártya",
+   "forras": [
+    "felmérés: beeco_MOBILE_APP/mobile-app (2026-10-07)",
+    "docs/javaslatok/23-mobil-mintak.md",
+    "react/src/kieg/PreviewCard.tsx (a kupon adatai)"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "a kedvezmény külön lapon, az állapot jelvénnyel",
+      "html": "<div class=\"bb-mob \"><div class=\"bb-mob-kupon\"><div class=\"bb-mob-jegy \"><div class=\"bb-mob-jegy-kep\"><span class=\"bb-mob-jegy-ar\">−10%</span></div><p class=\"bb-mob-jegy-nev\">Minta Kávézó</p><p class=\"bb-mob-jegy-meta\">Érvényes: minta</p><span class=\"bc-badge is-success\">Érvényes</span></div><div class=\"bb-mob-jegy \"><div class=\"bb-mob-jegy-kep\"><span class=\"bb-mob-jegy-ar\">−5%</span></div><p class=\"bb-mob-jegy-nev\">Minta Bolt</p><p class=\"bb-mob-jegy-meta\">Érvényes: minta</p><span class=\"bc-badge is-muted\">Beváltva!</span></div></div></div>"
+     },
+     "rossz": {
+      "felirat": "szöveg a képen, a beváltott sem különbözik",
+      "html": "<div class=\"bb-mob \"><div class=\"bb-mob-kupon\"><div class=\"bb-mob-jegy is-lejart-rossz\"><div class=\"bb-mob-jegy-kep\"><span class=\"bb-mob-jegy-kepszoveg\">10% minden kávéra</span><span class=\"bb-mob-jegy-ar\">−10%</span></div><p class=\"bb-mob-jegy-nev\">Minta Kávézó</p><p class=\"bb-mob-jegy-meta\">minta</p></div><div class=\"bb-mob-jegy is-lejart-rossz\"><div class=\"bb-mob-jegy-kep\"><span class=\"bb-mob-jegy-ar\">−5%</span></div><p class=\"bb-mob-jegy-nev\">Minta Bolt</p><p class=\"bb-mob-jegy-meta\">minta</p></div></div></div>"
+     },
+     "miert": "A kedvezmény Lalezarral, saját fehér lapon áll – a kép bármilyen lehet alatta. A beváltott kupon jelvényt kap (`StatusBadge` „Beváltva!”), nem csak szürke fátylat."
+    }
+   ]
+  },
+  {
+   "t": "dodont",
+   "allapot": "javaslat",
+   "cim": "Lebegő gomb",
+   "forras": [
+    "felmérés: beeco_MOBILE_APP/mobile-app (2026-10-07)",
+    "docs/javaslatok/23-mobil-mintak.md"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "egy lebegő vezérlő, a navigáció fölött",
+      "html": "<div class=\"bb-mob \"><div class=\"bb-mob-terkep\"></div><span class=\"bb-mob-fab \"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 8a4 4 0 100 8 4 4 0 000-8zM12 2v4M12 18v4M2 12h4M18 12h4\"/></svg></span><div class=\"bb-mob-nav \"><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 11l9-7 9 7v9H5v-9z\"/></svg><span>Főoldal</span></span><span class=\"is-on\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z\"/></svg><span>Térkép</span></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 8h18v3a2 2 0 000 4v3H3v-3a2 2 0 000-4V8z\"/></svg><span>Kupon</span></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 6h16v14H4zM4 10h16M8 3v5M16 3v5\"/></svg><span>Naptár</span></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0\"/></svg><span>Profil</span></span></div></div>"
+     },
+     "rossz": {
+      "felirat": "három lebegő gomb, egy a navigáción",
+      "html": "<div class=\"bb-mob \"><div class=\"bb-mob-terkep\"></div><span class=\"bb-mob-fab is-2\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 8a4 4 0 100 8 4 4 0 000-8zM12 2v4M12 18v4M2 12h4M18 12h4\"/></svg></span><span class=\"bb-mob-fab is-3\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg></span><span class=\"bb-mob-fab is-takar\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M4 12h16M4 17h16\"/></svg></span><div class=\"bb-mob-nav \"><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 11l9-7 9 7v9H5v-9z\"/></svg><span>Főoldal</span></span><span class=\"is-on\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z\"/></svg><span>Térkép</span></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 8h18v3a2 2 0 000 4v3H3v-3a2 2 0 000-4V8z\"/></svg><span>Kupon</span></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 6h16v14H4zM4 10h16M8 3v5M16 3v5\"/></svg><span>Naptár</span></span><span class=\"\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0\"/></svg><span>Profil</span></span></div></div>"
+     },
+     "miert": "Képernyőnként egy lebegő vezérlő(-csoport), ami nem takarja az alsó navigációt és az alsó lap gombját. Ikonos, ezért mindig van `aria-label`-je („Saját helyem”)."
+    }
+   ]
+  },
+  {
+   "t": "dodont",
+   "allapot": "szabaly",
+   "cim": "Érintési felület (44 px, Flutterben 48 dp)",
+   "forras": [
+    "docs/termek-arculat.md 6. (`bc-icon-btn` 44×44)",
+    "tokens: `--bc-tap` 44 px"
+   ],
+   "parok": [
+    {
+     "jo": {
+      "felirat": "44 px-es ikongombok, 8 px közzel",
+      "html": "<div class=\"bb-mob-erintes\"><span class=\"bc-icon-btn\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z\"/></svg></span><span class=\"bc-icon-btn\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 12v8h16v-8M12 3v13M7 8l5-5 5 5\"/></svg></span><span class=\"bc-icon-btn\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg></span><span class=\"bb-mob-meret\">44 × 44</span></div>"
+     },
+     "rossz": {
+      "felirat": "28 px-es gombok, egymáshoz tapadva",
+      "html": "<div class=\"bb-mob-erintes is-apro\"><span class=\"bb-mob-mini\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z\"/></svg></span><span class=\"bb-mob-mini\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 12v8h16v-8M12 3v13M7 8l5-5 5 5\"/></svg></span><span class=\"bb-mob-mini\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg></span><span class=\"bb-mob-meret\">28 × 28</span></div>"
+     },
+     "miert": "Ujjal 44 px alatt sokat tévedünk – főleg sétálva, egy kézzel. A rajzolt ikon lehet kisebb, de az érinthető terület nem. A Flutter (Material) mértéke 48 dp."
+    }
+   ]
+  }
+ ]
 }

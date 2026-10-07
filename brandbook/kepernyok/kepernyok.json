@@ -259,108 +259,294 @@
   {
    "id": "app-terkep",
    "felulet": "app",
-   "cim": "Ökotérkép – a beeco app kezdő élménye",
+   "cim": "Térkép + POI alsó lap",
    "eszkoz": "telefon",
    "file": "app-terkep.html",
-   "leiras": "Az app térképe a Flutter-kód elrendezésével és szövegeivel, a DS tokenjeivel újrarajzolva – így néz ki a DS-átállás után. A hely és a térkép minta.",
+   "leiras": "Az ökotérkép az app elrendezésével és szövegeivel (`map_widget.dart`, `poi_details_modal.dart`), a DS komponenseiből – így néz ki a DS-átállás után. Koppints egy jelölőre vagy egy kategóriára; a ✕ bezárja a lapot. A helyek és a térkép mintaadatok.",
    "jelek": [
     {
      "n": 1,
-     "nev": "Kereső",
-     "megj": "„Ökos pont keresése” – ma 1,5 px keret és 17 px / 800-as betű; DS-sel 2 px keret, 14 px / 600"
+     "nev": "Kereső (`SearchBox`) + rétegválasztó (`IconButton`)",
+     "megj": "„Ökos pont keresése”; ma 1,5 px keret, 17 px / 800-as betű, a gomb 41 px → DS-sel 2 px keret, 44 px"
     },
     {
      "n": 2,
-     "nev": "Rétegválasztó (ikongomb)",
-     "megj": "44 px érintési felület (ma 41 px)"
+     "nev": "Kategória-chipek (`Button` másodlagos, kicsi, `aria-pressed`)",
+     "megj": "a kijelölt méz; ma `beecoMidGreen` zöld – erre nincs DS-szerep, döntés kell"
     },
     {
      "n": 3,
-     "nev": "Szűrőchipek",
-     "megj": "kijelölve méz (ma `#B6C4A3` zöld – erre a DS-ben nincs szerep, döntés kell)"
+     "nev": "Térképjelölők (`markerHtml` – `bc-map-pin`)",
+     "megj": "szín + betű együtt; a kijelölt méz és nagyobb. Ma PNG-ikonok, a bolt méz, a hulladék `markerBlue` – a DS-ben más a fajta-színezés"
     },
     {
      "n": 4,
-     "nev": "Markerek",
-     "megj": "méz a boltoknak; a kék és a zöld marker színe ma a DS-en kívül esik"
+     "nev": "Lebegő térképvezérlő (két `IconButton`)",
+     "megj": "ma méz; a célállapotban fehér, mert a képernyő egyetlen méz gombja a „Részletek”"
     },
     {
      "n": 5,
-     "nev": "Sárga vezérlő",
-     "megj": "kemény 4 px árnyék = `--bc-shadow-m` – már ma is DS-kompatibilis"
+     "nev": "Alsó lap (az app saját mintája – Javaslat 23)",
+     "megj": "krém alap, fogantyú, 12 px felső sarok (ma 16), puha árnyék; `Avatar`, `StatusBadge` „Nyitva”, ✕ bezárás (ma csak lehúzható)"
     },
     {
      "n": 6,
-     "nev": "Alsó lap",
-     "megj": "krém alap, 12 px felső sarok (ma 16)"
-    },
-    {
-     "n": 7,
-     "nev": "„Nyitva” jelvény",
-     "megj": "`bc-badge is-success`"
-    },
-    {
-     "n": 8,
-     "nev": "Részletek – a fő gomb",
+     "nev": "Fő gomb: Részletek (`Button`)",
      "megj": "44 px, 8 px sarok, 2 px keret (ma 40 px, 2 px sarok)"
     },
     {
-     "n": 9,
-     "nev": "Alsó menü",
-     "megj": "aktív ikon méz kitöltéssel; a felirat 12 px"
+     "n": 7,
+     "nev": "Alsó navigáció (az app saját mintája – Javaslat 23)",
+     "megj": "5 fül, ikon + felirat; az aktív méz kitöltésű, félkövér, `aria-current=\"page\"` – nem csak színnel jelölt"
+    },
+    {
+     "n": 8,
+     "nev": "Jelmagyarázat (`MapLegend`)",
+     "megj": "telefonon csukva indul – nem takarja a térképet; ma nincs az appban"
     }
    ],
    "hatas": [
-    "a színek ma is egyeznek a DS-szel – az átállás főleg a sarkokat, a vastagságokat és a betűvastagságot rendezi",
-    "a `BeecoRoles` bekötésével a sötét mód is megjön",
-    "a markerek palettáján kívüli színeire döntés kell (kék víz, zöld park)"
+    "a színek ma is egyeznek a DS-szel – az átállás főleg a sarkokat, a vastagságokat, a 44 px-t és a betűvastagságot rendezi",
+    "egy méz fő gomb a képernyőn: a lap „Részletek” gombja; a vezérlő és a chipek nem versenyeznek vele",
+    "a jelölő a színét betűvel is elmondja – színtévesztőnek és a jelmagyarázatban is ugyanaz"
+   ]
+  },
+  {
+   "id": "app-kezdolap",
+   "felulet": "app",
+   "cim": "Főoldal – „beezz a rajban!”",
+   "eszkoz": "telefon",
+   "file": "app-kezdolap.html",
+   "leiras": "Az app kezdőlapja (`landing_screen.dart`) a fő blokkokkal: üdvözlés, nyereményjáték-csempe, a lábnyom-kalkulátor folytatása, „Aktualitások nektárért”. A név és a számok mintaadatok.",
+   "jelek": [
+    {
+     "n": 1,
+     "nev": "Fejléc (app bar) két `IconButton`-nal",
+     "megj": "„beezz a rajban!” Lalezarral; keresés és üzenetek 44 px-en"
+    },
+    {
+     "n": 2,
+     "nev": "Üdvözlő kártya (`bc-card` + `bc-honeycomb` + `Bee`)",
+     "megj": "„Helló, {név}!” és a napi idézet az appból"
+    },
+    {
+     "n": 3,
+     "nev": "Számcsempék (`StatTile`)",
+     "megj": "„Nektárod”, „Rajok” – kötelező súgóval (ⓘ): mit számol a szám"
+    },
+    {
+     "n": 4,
+     "nev": "Nyereményjáték-csempe (`bc-card is-interactive`)",
+     "megj": "az egész kártya egy link – kemény árnyék, mert kattintható"
+    },
+    {
+     "n": 5,
+     "nev": "Lábnyom-kártya (`bc-card is-accent` + `ProgressBar`)",
+     "megj": "a haladás szöveggel is: „4/10 megválaszolt kérdés (40%)”"
+    },
+    {
+     "n": 6,
+     "nev": "Fő gomb: Kitöltés folytatása",
+     "megj": "az egyetlen méz gomb; mellette másodlagos „Lábnyom részletek”"
+    },
+    {
+     "n": 7,
+     "nev": "Aktualitások nektárért (`bc-card is-interactive` + `Tag`)",
+     "megj": "a feladat-kártyák piktogrammal, a nektár címkével"
+    },
+    {
+     "n": 8,
+     "nev": "Alsó navigáció (az app saját mintája – Javaslat 23)",
+     "megj": "5 fül, ikon + felirat; az aktív méz kitöltésű, félkövér, `aria-current=\"page\"` – nem csak színnel jelölt"
+    }
+   ],
+   "hatas": [
+    "a kezdőlap a partner-irányítópult mintáját követi: üdvözlés → számok → következő lépés",
+    "a játékosság a méhecskéből és a hangnemből jön (bajnok méh a nyereményjátéknál), nem új színekből",
+    "a lábnyom-folytatás az egyetlen méz gomb – a kezdőlap egy irányba terel"
+   ]
+  },
+  {
+   "id": "app-nektar",
+   "felulet": "app",
+   "cim": "NekTÁR – a nektár egyenleg és története",
+   "eszkoz": "telefon",
+   "file": "app-nektar.html",
+   "leiras": "A profil nektár-oldala (`nectar_screen.dart`): Történet · Gyűjtés · Elköltés fülek. A fülek működnek. Az egyenleg és a történet mintaadat.",
+   "jelek": [
+    {
+     "n": 1,
+     "nev": "Fejléc vissza- és súgógombbal (`IconButton`)"
+    },
+    {
+     "n": 2,
+     "nev": "Fülek (`Tabs`)",
+     "megj": "ma fekete aláhúzásos fülek; a DS-ben a kijelölt fül méz – nyíl-billentyűvel is vált"
+    },
+    {
+     "n": 3,
+     "nev": "Egyenleg (`bc-card is-accent` + `Bee` bajnok)",
+     "megj": "„{név} most … nektárod van!” – a szám Lalezarral"
+    },
+    {
+     "n": 4,
+     "nev": "Gyűjtött / Elköltött (`StatTile`)"
+    },
+    {
+     "n": 5,
+     "nev": "Nektár történet (`StatusBadge`, `bc-divided`)",
+     "megj": "+ nektár: sikerszín, − nektár: figyelmeztető szín (ma `NectarChip`: zöld / narancs)"
+    },
+    {
+     "n": 6,
+     "nev": "Alsó navigáció (az app saját mintája – Javaslat 23)",
+     "megj": "5 fül, ikon + felirat; az aktív méz kitöltésű, félkövér, `aria-current=\"page\"` – nem csak színnel jelölt"
+    }
+   ],
+   "hatas": [
+    "a nektár-chip helyett a DS `StatusBadge`-e: ugyanaz a jelentés, ikonnal és AA kontraszttal, sötét módban is",
+    "szintrendszer nincs az appban – ezért a képernyő sem talál ki szintet, csak egyenleget és történetet mutat"
+   ]
+  },
+  {
+   "id": "app-ranglista",
+   "felulet": "app",
+   "cim": "Kaptár – ranglista",
+   "eszkoz": "telefon",
+   "file": "app-ranglista.html",
+   "leiras": "A rajok közös ranglistája (`hive_global_leaderboard_screen.dart`) szűrőkkel és a dobogóval; a saját sor kiemelve. A nevek és a számok mintaadatok.",
+   "jelek": [
+    {
+     "n": 1,
+     "nev": "Fejléc vissza- és megosztásgombbal (`IconButton`)"
+    },
+    {
+     "n": 2,
+     "nev": "Szűrők (`SegmentedControl` + `SelectField`)",
+     "megj": "„Időszak”, „Aktivitás”, „Típus” – ma szűrőcsempék; a két legördülő alja egy vonalban"
+    },
+    {
+     "n": 3,
+     "nev": "Rangsor (`Avatar`, Lalezar pontszám)",
+     "megj": "dobogó: vaj, halvány zöld, halvány rózsa háttér (ma `yellowVeryLight`, `greyWarmLight`, `#EFC2A6` – az utóbbi palettán kívül)"
+    },
+    {
+     "n": 4,
+     "nev": "Saját sor",
+     "megj": "„Te ({becenév})” – sikerszínű keret és háttér (ma `beecoBgLightGreen` + `greenMedium`)"
+    },
+    {
+     "n": 5,
+     "nev": "Gombsor: Locsolok! (fő) + Aktuális nyereményjáték (másodlagos)"
+    },
+    {
+     "n": 6,
+     "nev": "Alsó navigáció (az app saját mintája – Javaslat 23)",
+     "megj": "5 fül, ikon + felirat; az aktív méz kitöltésű, félkövér, `aria-current=\"page\"` – nem csak színnel jelölt"
+    }
+   ],
+   "hatas": [
+    "a dobogó színei DS-szerepekre állnak, így sötét módban is olvashatók",
+    "a nem kattintható sorok puha árnyékot kapnak, a gombok keményet – a termékbőr 6/A szabálya szerint"
    ]
   },
   {
    "id": "app-kuponok",
    "felulet": "app",
-   "cim": "Kuponfüzet – a „jegy” kártya",
+   "cim": "Kuponfüzet + nyereményjáték",
    "eszkoz": "telefon",
    "file": "app-kuponok.html",
-   "leiras": "A beeco legjellegzetesebb app-eleme: a letéphető kuponjegy kemény árnyékkal. A partnerek és a kedvezmények mintaadatok.",
+   "leiras": "A kuponfüzet (`coupons/`, `coupon_card.dart`) a beeco legjellegzetesebb app-elemével, a letéphető kuponjeggyel, és alatta egy nyereményjáték-kártya (`prize_draw_list_card.dart`). A partnerek, a kedvezmények, a dátumok és a játék mintaadatok.",
    "jelek": [
     {
      "n": 1,
      "nev": "Fejléc",
-     "megj": "„Kuponfüzet” Lalezarral; a + gomb ikongomb felirattal"
+     "megj": "„Kuponfüzet” Lalezarral; ⓘ „Hogyan működik?”"
     },
     {
      "n": 2,
-     "nev": "Kereső",
-     "megj": "„Milyen kupont keresel, Kaptárs?” – a szóvicc itt a mező helyőrzőjében van, nem gombon"
+     "nev": "Kereső (`SearchBox`) + Szűrők (`IconButton`)",
+     "megj": "„Milyen kupont keresel, Kaptárs?” – a szóvicc a helyőrzőben van, nem gombon"
     },
     {
      "n": 3,
-     "nev": "Kategória-chipek darabszámmal"
+     "nev": "Kuponjegy (az app saját mintája – Javaslat 23)",
+     "megj": "bevágás és letépő vonal; a kedvezmény Lalezarral saját lapon; `Tag` „új” / „Prémium”; ma képalapú (`coupon_card.png`)"
     },
     {
      "n": 4,
-     "nev": "Kuponjegy",
-     "megj": "bevágás a ~74 %-nál, letépő vonal, kemény 5 px árnyék; a háttere ma `#DFE6C7` – DS-ben `--bc-sage-bg`"
+     "nev": "Beváltott kupon (`StatusBadge` „Beváltva!”)",
+     "megj": "az állapot szöveggel is (ma csak szürke fátyol); „lejárt” állapot az appban nincs"
     },
     {
      "n": 5,
-     "nev": "„Megnézem” gomb",
-     "megj": "méz, 1 px keret, árnyék nélkül – a kártyán belül másodlagos szerepű"
+     "nev": "Nyereményjáték-kártya (`StatusBadge` + `ProgressBar`)",
+     "megj": "„2/3 teljesítve”, a feltétel az app szövegéből: „Öntözz meg legalább {} fát!”"
     },
     {
      "n": 6,
-     "nev": "Üzenj nekünk!",
-     "megj": "`--bc-surface-accent` (ma `#FEE79C`, palettán kívül)"
+     "nev": "Fő gomb: Csatlakozom",
+     "megj": "az egyetlen méz gomb; a „Megnézem” a jegyeken másodlagos (ma méz)"
     },
     {
      "n": 7,
-     "nev": "Alsó menü – Kupon aktív"
+     "nev": "Alsó navigáció (az app saját mintája – Javaslat 23)",
+     "megj": "5 fül, ikon + felirat; az aktív méz kitöltésű, félkövér, `aria-current=\"page\"` – nem csak színnel jelölt"
     }
    ],
    "hatas": [
-    "a jegy-forma maradhat: a DS a színét és az árnyékát adja, az alakja az app saját eleme",
-    "a „Megnézem” gomb a kártyán belül van, így a képernyő fő méz gombja nem ütközik vele"
+    "a jegy-forma maradhat: a DS a színét, a keretét és a kemény árnyékát adja, az alakja az app saját eleme",
+    "a „Megnézem” másodlagos lesz, így a képernyő fő méz gombja (Csatlakozom) nem ütközik vele",
+    "a kupon állapota (új, prémium, beváltva) jelvénnyel és szöveggel is látszik, nem csak színnel"
+   ]
+  },
+  {
+   "id": "app-labnyom",
+   "felulet": "app",
+   "cim": "Lábnyom – a gyors teszt eredménye",
+   "eszkoz": "telefon",
+   "file": "app-labnyom.html",
+   "leiras": "A rövid lábnyomkalkulátor eredménye (`footprint/`, `footprint_fastTest_results_*`): gratuláció, a becsült karbonlábnyom, egyenértékek, megosztás. Az érték és az egyenértékek mintaadatok.",
+   "jelek": [
+    {
+     "n": 1,
+     "nev": "Fejléc",
+     "megj": "„Rövid lábnyomkalkulátor”"
+    },
+    {
+     "n": 2,
+     "nev": "Gratuláció (`BeeMoment`, szurkoló méh)",
+     "megj": "„Gratulálunk!” – „Megtetted az első lépést!”: szóvicc helyett a valódi app-szöveg"
+    },
+    {
+     "n": 3,
+     "nev": "Eredmény (`bc-card is-accent`)",
+     "megj": "a szám Lalezarral (46 px), a mértékegység „tonna CO₂/év” mellette"
+    },
+    {
+     "n": 4,
+     "nev": "Egyenértékek (`bc-card`)",
+     "megj": "„Ez ennyivel egyenlő:” … „vagy” – a feliratok az appból"
+    },
+    {
+     "n": 5,
+     "nev": "Megosztás (`IconButton`)",
+     "megj": "„Oszd meg a hírt!”"
+    },
+    {
+     "n": 6,
+     "nev": "Gombok",
+     "megj": "fő: „Frissítem a válaszokat!”, másodlagos: „Kitöltöm a részletes tesztet!”"
+    },
+    {
+     "n": 7,
+     "nev": "Alsó navigáció (az app saját mintája – Javaslat 23)",
+     "megj": "5 fül, ikon + felirat; az aktív méz kitöltésű, félkövér, `aria-current=\"page\"` – nem csak színnel jelölt"
+    }
+   ],
+   "hatas": [
+    "a lábnyom-eredmény ma zöld hátterű, egyedi illusztrációs képernyő; a DS-sel ugyanazokból a kártyákból épül, mint a többi",
+    "a szám mindig mértékegységgel és forrással („a gyors teszt alapján”) áll – a DS adatszabálya szerint"
    ]
   },
   {

@@ -482,7 +482,8 @@ function feluletOldal(f) {
   const torzs = `<p class="bb-vissza"><a href="feluletek.html">← Hat felület</a></p><header class="bb-fej"><h1>${esc(f.nev)}</h1><p class="bb-lead">${inl(f.rovid)}</p><p><span class="bc-badge is-accent">${esc(f.bor_nev)}</span> <span class="bc-badge is-muted">${esc(f.technika_rovid || '')}</span></p></header>
 <div class="bb-ket bb-fl-fej"><div>${lista('Kinek szól', f.kinek, '')}${f.hol ? `<p><strong>Hol él:</strong> ${inl(f.hol)}</p>` : ''}</div>${mintaKeret(f, 'Élő minta')}</div>
 ${kepernyoResz(f.id)}
-${lista('Mi közös a többi felülettel', f.kozos, 'is-kozos')}${lista('Mi tér el – szándékosan', f.szandekos, 'is-szandekos')}${lista('Cél felé – teendők', f.cel, 'is-cel')}
+${lista('Mi közös a többi felülettel', f.kozos, 'is-kozos')}${lista('Mi tér el – szándékosan', f.szandekos, 'is-szandekos')}${lista('Mi tér el ma – rendezendő', f.elter, 'is-elter')}${lista('Cél felé – teendők', f.cel, 'is-cel')}
+${(f.blokkok || []).map(b => blokk(b, `felulet-${f.id}`)).join('\n')}
 <h2 id="ertekek">Értékek a forrásból</h2>${tabla(['Jellemző', 'Érték', 'Forrás'], sorok, `${f.nev} értékei`)}
 <p class="bc-muted bb-kicsi">Felmérve: ${esc(f.felmeres && f.felmeres.datum || '–')} · ${esc((f.felmeres && f.felmeres.forras || []).join(' · '))}</p>
 ${f.szabalykonyv ? `<p>Szabálykönyv: ${inl(f.szabalykonyv)}</p>` : ''}`;
