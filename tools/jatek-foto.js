@@ -26,7 +26,7 @@ srv.listen(0, async () => {
   const port = srv.address().port, dbg = 9300 + Math.floor(Math.random() * 500);
   const [w, h] = cfg.size || [1280, 800];
   const prof = fs.mkdtempSync(path.join(os.tmpdir(), 'cdp-'));
-  const ch = spawn(findChrome(), ['--headless', `--remote-debugging-port=${dbg}`, `--user-data-dir=${prof}`, ...(cfg.gpu ? ['--use-angle=metal', '--enable-gpu', '--ignore-gpu-blocklist'] : ['--use-angle=swiftshader', '--enable-unsafe-swiftshader']),
+  const ch = spawn(findChrome(), ['--headless', '--mute-audio', `--remote-debugging-port=${dbg}`, `--user-data-dir=${prof}`, ...(cfg.gpu ? ['--use-angle=metal', '--enable-gpu', '--ignore-gpu-blocklist'] : ['--use-angle=swiftshader', '--enable-unsafe-swiftshader']),
     '--hide-scrollbars', `--window-size=${w},${h}`, '--autoplay-policy=no-user-gesture-required', 'about:blank'], { stdio:'ignore' });
   let targets; for(let i = 0; i < 50; i++){ try{ targets = await (await fetch(`http://127.0.0.1:${dbg}/json`)).json(); if(targets.find(t => t.type === 'page')) break; }catch(e){} await sleep(100); }
   const ws = new WebSocket(targets.find(t => t.type === 'page').webSocketDebuggerUrl);

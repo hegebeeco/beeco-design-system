@@ -110,3 +110,37 @@ bushes, tufts, flowers, free(x, z) }` – a `free` a játéktér szabadon hagyan
 * A `szelektalj-modellek.js` (217 sor) és a `rezsi-modellek.js` (247 sor) 200 sor fölött van – a játék eredetijével
   együtt érdemes kettébontani (pl. kukák / pálya-tárgyak; konyha-fürdő / gépészet).
 * Néhány kis tárgy (termosztát, vízóra, érme, lámpa, házikó) a B-sáv alatt van – kicsik, ez rendben van, de a teszt jelzi.
+
+
+## 8. Közösségi Kaptár – a közösség 3D otthona (`beecoKaptar`)
+
+A beeco Kaptár platform (önkéntes-közösség) és a beeco.hu közös 3D jelenete. **Adatból épül**: nincs külön, kézzel
+táplált tartalom – a rajok, a tagok, az útiterv, az események és a köszönetek ugyanazok, mint a 2D felületen.
+Élő bemutató mintaadattal: **`web/kaptar3d.html`**.
+
+```html
+<!-- three r128 · ds · art · model-kit · vilag (3 fájl) · kaptar-modellek · kozosseg-modellek · kaptar-jelenet · orbit -->
+```
+```js
+const KP = beecoKaptar(THREE, scene, adat, { quality:'auto', time:'nap', mozgas:!csokkentettMozgas });
+KP.tick(dt, camera);                                   // képkockánként (a világot is lépteti)
+const sel = KP.pick(ndcX, ndcY, camera);               // koppintás → { tipus, id, cim, adat, hol:[x,y,z] } vagy null
+KP.kiemel(sel);                                        // fénygyűrű a kijelölt alá
+KP.lista                                               // minden kijelölhető tárgy – a 2D tartalék-listához, ugyanabban a sorrendben
+KP.frissit(ujAdat); KP.dispose();
+```
+`adat = { rajok:[{ id, nev, tagok:[{ id, nev }], egeszseg:0..1|null, sajat }], jovo:[{ id, cim, allapot:'kesz'|'most'|'jon' }],
+esemenyek:[…], koszonetek:[…], viccek:[…], retro:{ cim }|null }` – minden mező elhagyható.
+
+**Elrendezés:** középen a jövő tornya (emeletenként egy mérföldkő), gyűrűben a rajsejtek ajtóval befelé (a raj egészsége a
+sejt alatti gyűrű színe ÉS jel a táblán: ● jó, ◆ figyelni, ▲ segítség kell), a tagok méhei a sejt fölött (rajonként ≤ 8),
+kint az eseménykút, a vicc- és a köszönőfal, balra a kikötő (havi retró), elöl a kapu. A rét csak a peremen nő, és szabadon
+hagyja a kaput és a kikötőt.
+
+**Hozzáférhetőség (kötelező a beépítéskor):** a vászon mellett mindig legyen 2D lista ugyanazokkal a tárgyakkal (`KP.lista`),
+billentyűzettel elérhető gombokkal; csökkentett mozgásnál `mozgas:false` és ne forogjon a kamera magától; WebGL nélkül
+csak a lista jelenjen meg.
+
+**Termék-projektben (Vite):** a fájlok a csomagban vannak (`@beeco/design-system/web/js/...`). A `three` r128-at a projekt
+adja (`npm i three@0.128.0`, `window.THREE`), a szkripteket `?url` importtal, sorban töltse be (saját domainről – a CSP így
+nem kell lazítani). Példa: a Kaptár `src/components/kaptar3d/`.

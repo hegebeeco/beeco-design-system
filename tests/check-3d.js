@@ -24,7 +24,8 @@ globalThis.VILAG_MODELS = require(J('vilag/vilag-modellek.js'));
 require(J('3d/elokert-modellek.js')); require(J('3d/elokert-allatok.js'));   // → globalThis.EK_MODELS
 require(J('3d/varos-modellek.js')); require(J('3d/varos-poszmeh.js')); require(J('3d/varos-kozpont.js')); require(J('3d/varos-tanosveny.js')); require(J('3d/varos-csillagvizsgalo.js'));       // → globalThis.VAROS_MODELS (Méhesd)
 require(J('3d/kaptar-modellek.js')); require(J('3d/kaptar-viragok.js'));   // → globalThis.KP_MODELS (Méhpilóta)
-require(J('3d/birtok-modellek.js')); require(J('3d/birtok-novenyek.js'));   // → globalThis.BT_MODELS (Élő birtok)
+require(J('3d/kozosseg-modellek.js'));   // → globalThis.KZ_MODELS (Közösségi Kaptár)
+require(J('3d/birtok-modellek.js')); require(J('3d/birtok-novenyek.js')); require(J('3d/birtok-kellekek.js'));   // → globalThis.BT_MODELS (Élő birtok)
 const CAT = require(J('3d/katalogus.js'));
 
 // a hívás-szöveg kiértékelése ugyanazokkal a nevekkel, mint a böngészőben

@@ -11,6 +11,19 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.50.0 – 2026-10-07 – Közösségi Kaptár 3D
+* `js/3d/kozosseg-modellek.js` (új, `KZ_MODELS`): rajsejt (nyitott hatszög-ház egy rajnak), a jövő tornya (emeletenként egy mérföldkő), eseménykút, közösségi fal (vicc / köszönő), kikötő vitorlással, kapu, hatszög-alap – B szint, 1 egység ≈ 1 m; a katalógusban („Közösségi Kaptár”), a `modellek.html`-ben és a `check-3d`-ben is.
+* `js/3d/kaptar-jelenet.js` (új, `beecoKaptar(THREE, scene, adat, opts)`): a közösség 3D otthona ADATBÓL – a `beecoVilag` szigetén középen a torony, gyűrűben a rajsejtek (egészség = gyűrű színe + jel a táblán), a tagok méhei, kint kút, falak, kikötő, kapu; `pick` (koppintás), `kiemel`, `lista` (2D tartalékhoz), `frissit`, `dispose`, `mozgas` (csökkentett mozgás). Leírás: `docs/3d-vilag.md` 8.
+* `kaptar3d.html` (új): élő bemutató mintaadattal.
+* `package.json` `files`: a 3D futtatókörnyezet fájljai (ds, art, model-kit, vilag, orbit, kaptar-, kozosseg-modellek, kaptar-jelenet) bekerülnek a csomagba, így a termék-projektek (Kaptár, beeco.hu) is betölthetik.
+
+## 1.49.5 – 2026-10-06 – Élő birtok: változatos kellékek
+* `js/3d/birtok-kellekek.js` (új): két új szemétkupac-változat, szétesett raklap, „friss föld” (a kitakarított mező jutalomképe) és füves folt (3 változat) – 284–592 háromszög, kódból; a katalógusban, a `modellek.html`-ben és a `check-3d`-ben is.
+
+## 1.49.4 – 2026-10-06 – a Menü a bevezető fölött, néma fotózás
+* `css/bevezeto.css`: a „Hogyan játssz?” kártya a játékmenü ALATT, és a Menü gomb sávja alatt kezdődik – így nyitott kártyánál is ki lehet kapcsolni a hangot, teljes képernyőre váltani (a játékban a menü rétege `--z-scene + 6`).
+* `tools/jatek-foto.js`: `--mute-audio` – fejlesztés közben a fej nélküli böngésző is néma.
+
 ## 1.49.3 – 2026-10-06 – Nagyi kardigánja
 * `art/art-kozlekedes.js`: a Nem gáz a pedál Nagyi-matricáján a kardigán méz-sárga (a szereplők felsőjéhez igazítva – szereplő-biblia SZB-05, beeco-szelektalj).
 

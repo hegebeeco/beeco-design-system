@@ -1,36 +1,36 @@
-/* beeco design system 1.48.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.50.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ImageUploader
-} from "../reszek/chunk-HVVKX53W.js";
-import "../reszek/chunk-2ZJ575N6.js";
-import "../reszek/chunk-2C3X2Y4J.js";
-import "../reszek/chunk-SNZPS4WR.js";
-import "../reszek/chunk-J3CVOCWY.js";
-import "../reszek/chunk-Z4ZUUKAR.js";
-import "../reszek/chunk-AM3GDJNB.js";
-import "../reszek/chunk-TFWWS2XD.js";
-import "../reszek/chunk-TALWDK2L.js";
-import "../reszek/chunk-Q262B4OI.js";
-import "../reszek/chunk-UIHSTFBJ.js";
-import "../reszek/chunk-RTD4WYMM.js";
-import "../reszek/chunk-TQ6RHSL5.js";
-import "../reszek/chunk-UV6XBK2N.js";
-import "../reszek/chunk-7OJHKQMZ.js";
-import "../reszek/chunk-KYMFPJME.js";
-import "../reszek/chunk-DBSSBTRB.js";
-import "../reszek/chunk-LBZU5PSY.js";
-import "../reszek/chunk-P3OYCJWU.js";
-import "../reszek/chunk-4RC7JRT7.js";
-import "../reszek/chunk-H6W65O4W.js";
-import "../reszek/chunk-GQL5H3U6.js";
-import "../reszek/chunk-NC27PCCN.js";
-import "../reszek/chunk-SY7LFT5E.js";
-import "../reszek/chunk-JRGKVA7P.js";
-import "../reszek/chunk-ERA2YNH3.js";
-import "../reszek/chunk-5ZIOTUTW.js";
-import "../reszek/chunk-DNKGFO3X.js";
-import "../reszek/chunk-F6KEZPWA.js";
-import "../reszek/chunk-KBQVEJSX.js";
+} from "../reszek/chunk-PGVVBEHL.js";
+import "../reszek/chunk-6TTFB6AY.js";
+import "../reszek/chunk-O55SYAGY.js";
+import "../reszek/chunk-LKMAS5N4.js";
+import "../reszek/chunk-DFEUZEKK.js";
+import "../reszek/chunk-ABHRPIV2.js";
+import "../reszek/chunk-CIBLUUGP.js";
+import "../reszek/chunk-BLYIR6KR.js";
+import "../reszek/chunk-L7X72X3X.js";
+import "../reszek/chunk-XDBCTDWL.js";
+import "../reszek/chunk-XE2UP7NL.js";
+import "../reszek/chunk-L4SWDLXS.js";
+import "../reszek/chunk-ITLPH4I6.js";
+import "../reszek/chunk-QCQCCHMI.js";
+import "../reszek/chunk-4GWWP7XO.js";
+import "../reszek/chunk-37U5ARAA.js";
+import "../reszek/chunk-23LJULVM.js";
+import "../reszek/chunk-N244MI7A.js";
+import "../reszek/chunk-X4MZGUDN.js";
+import "../reszek/chunk-AF2QNKOP.js";
+import "../reszek/chunk-TOLHTVN7.js";
+import "../reszek/chunk-55DYTIR3.js";
+import "../reszek/chunk-QYL2LISZ.js";
+import "../reszek/chunk-D7KYBR4M.js";
+import "../reszek/chunk-SSXA2GGQ.js";
+import "../reszek/chunk-XAUW6NUN.js";
+import "../reszek/chunk-DSLHGRNE.js";
+import "../reszek/chunk-THMCLQIO.js";
+import "../reszek/chunk-HI2BZSOM.js";
+import "../reszek/chunk-5NOEXS6K.js";
 export {
   ImageUploader
 };

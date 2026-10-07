@@ -1,16 +1,16 @@
-/* beeco design system 1.48.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.50.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   DetailActions
-} from "../reszek/chunk-ZTEFTI53.js";
-import "../reszek/chunk-HUH5D6HS.js";
-import "../reszek/chunk-QBWWQ27V.js";
-import "../reszek/chunk-E6SMCYDV.js";
-import "../reszek/chunk-AM3GDJNB.js";
-import "../reszek/chunk-TFWWS2XD.js";
-import "../reszek/chunk-TALWDK2L.js";
-import "../reszek/chunk-DNKGFO3X.js";
-import "../reszek/chunk-F6KEZPWA.js";
-import "../reszek/chunk-KBQVEJSX.js";
+} from "../reszek/chunk-WAPLRARU.js";
+import "../reszek/chunk-4I6BMVKA.js";
+import "../reszek/chunk-DKZHUKIE.js";
+import "../reszek/chunk-TB3QTPYD.js";
+import "../reszek/chunk-CIBLUUGP.js";
+import "../reszek/chunk-BLYIR6KR.js";
+import "../reszek/chunk-L7X72X3X.js";
+import "../reszek/chunk-THMCLQIO.js";
+import "../reszek/chunk-HI2BZSOM.js";
+import "../reszek/chunk-5NOEXS6K.js";
 export {
   DetailActions
 };

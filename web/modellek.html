@@ -116,8 +116,10 @@
 <script src="js/3d/varos-csillagvizsgalo.js"></script>
 <script src="js/3d/kaptar-modellek.js"></script>
 <script src="js/3d/kaptar-viragok.js"></script>
+<script src="js/3d/kozosseg-modellek.js"></script>
 <script src="js/3d/birtok-modellek.js"></script>
 <script src="js/3d/birtok-novenyek.js"></script>
+<script src="js/3d/birtok-kellekek.js"></script>
 <script src="js/3d/katalogus.js"></script>
 <script src="js/3d/orbit.js"></script>
 <script src="js/pics.js"></script>
@@ -212,7 +214,7 @@
   const howTo = call => ['<script src="js/art/art.js"><\/script>', '<script src="js/art/model-kit.js"><\/script>',
     `<script src="${FILES[call.split('.')[0]] || '…'}"><\/script>`, '', `const m = ${call};`,
     `const g = ${/^(RZ_MODELS)/.test(call) ? '(m.body)' : 'm'}.toThree(THREE, { material: hex => new THREE.MeshToonMaterial({ color: hex, gradientMap: GRAD }) });`, 'scene.add(g);'].join('\n');
-  const FILES = { SZ_MODELS:'js/3d/szelektalj-modellek.js', HUTO_MODELS:'js/3d/huto-modellek.js', RZ_MODELS:'js/3d/rezsi-modellek.js', OT_MODELS:'js/3d/otthon-modellek.js', VILAG_MODELS:'js/vilag/vilag-modellek.js', EK_MODELS:'js/3d/elokert-modellek.js', VAROS_MODELS:'js/3d/varos-modellek.js', KP_MODELS:'js/3d/kaptar-modellek.js"><\/script>\n<script src="js/3d/kaptar-viragok.js', BT_MODELS:'js/3d/birtok-modellek.js"><\/script>\n<script src="js/3d/birtok-novenyek.js' };
+  const FILES = { SZ_MODELS:'js/3d/szelektalj-modellek.js', HUTO_MODELS:'js/3d/huto-modellek.js', RZ_MODELS:'js/3d/rezsi-modellek.js', OT_MODELS:'js/3d/otthon-modellek.js', VILAG_MODELS:'js/vilag/vilag-modellek.js', EK_MODELS:'js/3d/elokert-modellek.js', VAROS_MODELS:'js/3d/varos-modellek.js', KP_MODELS:'js/3d/kaptar-modellek.js"><\/script>\n<script src="js/3d/kaptar-viragok.js', KZ_MODELS:'js/3d/kozosseg-modellek.js', BT_MODELS:'js/3d/birtok-modellek.js"><\/script>\n<script src="js/3d/birtok-novenyek.js"><\/script>\n<script src="js/3d/birtok-kellekek.js' };
 
   // ---- gombok ----
   $('#copy').onclick = async () => { try{ await navigator.clipboard.writeText($('#call').textContent); $('#copy').textContent = 'Másolva ✓'; }

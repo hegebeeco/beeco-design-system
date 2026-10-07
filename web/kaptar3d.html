@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>beeco Kaptár 3D</title>
+  <meta name="theme-color" content="#FECF39">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/ikon-32.png">
+  <!--
+    ÉLŐ BEMUTATÓ: a közösség 3D otthona (js/3d/kaptar-jelenet.js – beecoKaptar) MINTAADATTAL.
+    A Kaptár platform és a beeco.hu ugyanezt a jelenetet tölti be, valódi adattal. Leírás: docs/3d-vilag.md 8.
+  -->
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/ds.css">
+  <link rel="stylesheet" href="css/ds-game.css">
+  <style>
+    *{ box-sizing:border-box; }
+    html, body{ margin:0; height:100%; overflow:hidden; background:var(--bg); color:var(--ink); font-family:var(--body); }
+    #view{ position:fixed; inset:0; width:100%; height:100%; display:block; outline:none; cursor:grab; }
+    .panel{ position:fixed; left:var(--sp-3); top:var(--sp-3); width:min(340px, calc(100vw - 2 * var(--sp-3))); padding:var(--sp-3) var(--sp-4);
+      display:grid; gap:var(--sp-2); z-index:var(--z-hud); max-height:calc(100vh - 2 * var(--sp-3)); overflow:auto; }
+    .panel h1{ font:400 var(--fs-xl)/1 var(--display); margin:0; }
+    .panel h2{ font:400 var(--fs-l)/1.1 var(--display); margin:0; }
+    .lista{ display:grid; gap:var(--sp-1); margin:0; padding:0; list-style:none; }
+    .lista button{ width:100%; min-height:var(--tap); text-align:left; }
+    @media (max-width:600px){ .panel{ top:auto; bottom:var(--sp-3); max-height:45vh; } }
+  </style>
+</head>
+<body class="ds-page">
+<canvas id="view" aria-label="A beeco Kaptár 3D-ben – húzással forgatható, görgővel közelíthető. A tartalom a panelen listaként is elérhető."></canvas>
+<section class="panel ds-card" aria-label="A Kaptár">
+  <h1>A Kaptár</h1>
+  <div id="valasztas" aria-live="polite"><p class="ds-muted" style="margin:0">Koppints egy sejtre vagy helyre – vagy válassz a listából.</p></div>
+  <ul class="lista" id="lista"></ul>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/ds.js"></script>
+<script src="js/art/art.js"></script>
+<script src="js/art/model-kit.js"></script>
+<script src="js/vilag/vilag-modellek.js"></script>
+<script src="js/vilag/vilag-fold.js"></script>
+<script src="js/vilag/vilag.js"></script>
+<script src="js/3d/kaptar-modellek.js"></script>
+<script src="js/3d/kozosseg-modellek.js"></script>
+<script src="js/3d/kaptar-jelenet.js"></script>
+<script src="js/3d/orbit.js"></script>
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  // MINTAADAT – kitalált nevek (a valódi adatot a Kaptár / a beeco.hu adja)
+  const tagok = n => Array.from({ length:n }, (_, i) => ({ id:'t' + i, nev:'Tag ' + (i + 1) }));
+  const ADAT = {
+    rajok:[ { id:'r1', nev:'Madárvédők', tagok:tagok(6), egeszseg:0.8, sajat:true }, { id:'r2', nev:'Tartalom', tagok:tagok(4), egeszseg:0.5 },
+            { id:'r3', nev:'Szoftver', tagok:tagok(3), egeszseg:0.2 }, { id:'r4', nev:'Marketing', tagok:tagok(5), egeszseg:null },
+            { id:'r5', nev:'Partnerek', tagok:tagok(2), egeszseg:0.7 } ],
+    jovo:[ { id:'j1', cim:'Kaptár indul', allapot:'kesz' }, { id:'j2', cim:'40 aktív önkéntes', allapot:'kesz' }, { id:'j3', cim:'Csicsergősz kampány', allapot:'most' },
+           { id:'j4', cim:'10 helyi csapat', allapot:'jon' }, { id:'j5', cim:'1000 app-felhasználó', allapot:'jon' } ],
+    esemenyek:[ { id:'e1', cim:'Madárszámlálás' }, { id:'e2', cim:'Havi kaptártalálkozó' } ],
+    koszonetek:[ { id:'k1', cim:'Köszi a plakátot!' }, { id:'k2', cim:'Terepbajnok' }, { id:'k3', cim:'Szuper fotók' } ],
+    viccek:[ { id:'v1', cim:'Miért zümmög a méh?' }, { id:'v2', cim:'Mert nem tudja a szöveget.' } ],
+    retro:{ cim:'Októberi retró' },
+  };
+
+  const canvas = $('#view'), renderer = new THREE.WebGLRenderer({ canvas, antialias:true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(50, 1, 0.1, 400);
+  const csendes = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const orb = beecoOrbit(THREE, camera, canvas, { target:[0, 1.5, 0], dist:30, az:20, el:28, maxDist:44, minDist:6, minEl:8, speed:4, auto:!csendes });
+  const KP = beecoKaptar(THREE, scene, ADAT, { mozgas:!csendes });
+
+  function valaszt(sel){
+    KP.kiemel(sel);
+    if(!sel){ return; }
+    orb.set({ target:sel.hol });
+    const db = Array.isArray(sel.adat) ? sel.adat.length : sel.adat && sel.adat.tagok ? sel.adat.tagok.length : null;
+    $('#valasztas').innerHTML = `<h2>${sel.cim}</h2><p style="margin:var(--sp-1) 0 0">${db != null ? db + ' elem' : ''}</p>`;
+  }
+  $('#lista').innerHTML = KP.lista.map((s, i) => `<li><button class="ds-btn-sm" type="button" data-i="${i}">${s.cim}</button></li>`).join('');
+  $('#lista').onclick = e => { const b = e.target.closest('button'); if(b) valaszt(KP.lista[+b.dataset.i]); };
+
+  let le = null;
+  canvas.addEventListener('pointerdown', e => { le = [e.clientX, e.clientY]; });
+  canvas.addEventListener('pointerup', e => {
+    if(!le || Math.hypot(e.clientX - le[0], e.clientY - le[1]) > 8) return;   // húzás volt, nem koppintás
+    const r = canvas.getBoundingClientRect();
+    valaszt(KP.pick(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1, camera));
+  });
+
+  function resize(){ renderer.setSize(innerWidth, innerHeight, false); camera.aspect = innerWidth / innerHeight;
+    camera.fov = camera.aspect < 1 ? 68 : 50; camera.updateProjectionMatrix(); orb.set({ dist:camera.aspect < 1 ? 40 : 30 }); }
+  addEventListener('resize', resize); resize();
+  let last = performance.now();
+  (function loop(now){ requestAnimationFrame(loop); const dt = Math.min((now - last) / 1000, 0.1); last = now;
+    orb.update(dt); KP.tick(dt, camera); renderer.render(scene, camera); })(last);
+  window.KAPTAR_DEMO = { KP, orb, valaszt, camera };   // a képernyőképes ellenőrzéshez
+})();
+</script>
+</body>
+</html>
