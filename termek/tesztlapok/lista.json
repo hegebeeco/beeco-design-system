@@ -190,6 +190,11 @@
   "leiras": "Világos, sötét vagy a rendszer szerint; az eszköz megjegyzi, más fülön is követi. Csak a szerepek váltanak – ami szerepet használ, az magától jó sötétben is."
  },
  {
+  "nev": "utvonal",
+  "cim": "Út (Utvonal)",
+  "leiras": "Szakasztérkép + egyetlen következő lépés: tömör (irányítópult) és teljes (saját oldal) nézet, minden állapottal és szélső esettel."
+ },
+ {
   "nev": "valaszto",
   "cim": "Választók",
   "leiras": "Keresős legördülő (egyes, többes, új elem, 1200 opció, töltés, hiba) és címkeválasztó (felhő / legördülő)."

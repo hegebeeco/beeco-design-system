@@ -1,0 +1,1 @@
+export { Utvonal, hataridoSzoveg, UTVONAL_LABELS_HU, type UtvonalProps, type UtvonalSzakasz, type UtvonalAllapot, type UtvonalLepes, type UtvonalSegito, type UtvonalHatarido, type UtvonalLabels, } from './Utvonal';

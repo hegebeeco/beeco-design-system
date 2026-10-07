@@ -20,6 +20,12 @@ import {
   themeInitScript,
   writeThemeMode
 } from "./reszek/chunk-6RIUPS7Q.js";
+import "./reszek/chunk-4CEQFMS6.js";
+import {
+  UTVONAL_LABELS_HU,
+  Utvonal,
+  hataridoSzoveg
+} from "./reszek/chunk-EZJ5UEBK.js";
 import "./reszek/chunk-OIBUPMUM.js";
 import {
   EditPage
@@ -705,8 +711,10 @@ export {
   Toaster,
   TooltipIconButton,
   TypeToConfirm,
+  UTVONAL_LABELS_HU,
   UnsavedChangesDialog,
   UnsavedChangesGuard,
+  Utvonal,
   VIDEO_URL_MSG,
   VideoEmbed,
   VideoPlayer,
@@ -742,6 +750,7 @@ export {
   formatNational,
   fmt as formatNumberHu,
   groupByDay,
+  hataridoSzoveg,
   heatGradient,
   inHungary,
   initials,
