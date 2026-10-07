@@ -39,6 +39,8 @@ function reactApi(root, { docs = false } = {}) {
     const sym = exp.flags & ts.SymbolFlags.Alias ? ch.getAliasedSymbol(exp) : exp;
     const decl = (sym.declarations || [])[0];
     const e = {};
+    // feloldhatatlan export (pl. kis-/nagybetű-eltérés a fájlnévben Linuxon – így volt a v1.52.1 Timeline-ja)
+    if (!decl) { ki[exp.name] = { fajta: 'ismeretlen' }; continue; }
     if (!(sym.flags & ts.SymbolFlags.Value)) { e.fajta = 'tipus'; }
     else {
       const t = ch.getTypeOfSymbolAtLocation(sym, decl);
@@ -160,7 +162,7 @@ function pillanatkep(root, opt) {
   return { _readme: 'GENERÁLT (node tools/api-check.js --write) – a DS nyilvános felülete. Eltűnő név = törő változás (docs/ai-munkamod.md 4.).',
     react: reactApi(root, opt), css: cssApi(root), tokenek: tokenApi(root), jatekJs: jatekJsApi(root) };
 }
-module.exports = { pillanatkep, reactApi };
+module.exports = { pillanatkep, reactApi, osszevet };
 
 /* ---------- 5. Viszonyítási pont: a legutóbbi címke ---------- */
 function git(args) { return execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 256 << 20 }).trim(); }
@@ -182,6 +184,7 @@ function osszevet(regi, uj) {
     const u = uj.react[nev];
     if (!u) { torik.push(`react: eltűnt export „${nev}”`); continue; }
     if (r.fajta !== u.fajta && !(r.fajta === 'tipus')) figy.push(`react: „${nev}” fajtája ${r.fajta} → ${u.fajta}`);
+    if (r.fajta !== 'komponens') continue; // propokat csak komponens→komponens között hasonlítunk (az alap lehetett feloldhatatlan)
     if (r.htmlAttr && !u.htmlAttr) torik.push(`react: „${nev}” már nem ad át natív attribútumokat`);
     for (const [p, rp] of Object.entries(r.props || {})) {
       const up = (u.props || {})[p];
