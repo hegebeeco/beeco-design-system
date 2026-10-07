@@ -37,3 +37,4 @@ export * from './kieg2';
 export * from './sablon';
 export * from './tema';
 export * from './marka';
+export * from './ut';
