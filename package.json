@@ -51,6 +51,7 @@
     "./tokens.json": "./dist/tokens.json",
     "./dist/*": "./dist/*",
     "./web/assets/fonts/*": "./web/assets/fonts/*",
+    "./web/js/*": "./web/js/*",
     "./package.json": "./package.json",
     "./react": {
       "types": "./dist/react/index.d.ts",
