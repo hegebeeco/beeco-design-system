@@ -26,6 +26,57 @@
   },
   {
    "t": "h2",
+   "x": "Márkaszemélyiség"
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Ki a beeco, ha ember lenne",
+   "x": "„Bátor, erős és kreatív személyiség, aki szívesen kísérletezik új dolgokkal. Friss és kritikai gondolkodással értelmezi a világot, és közben a megoldásokat keresi. Fontos számára az egyszerűség és a könnyedség, ugyanakkor szorgalmas és megbízható. Játékos és vidám, de ha kell, lázadó és innovatív. Az együttműködésre épít, és intelligenciájával, lelkiismeretességével inspirálja a környezetét.”",
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026) – 3. Márkaszemélyiség és Tone of Voice"
+   ]
+  },
+  {
+   "t": "hivatalos",
+   "cim": "A hangunk négy jellemzője",
+   "elemek": [
+    "**Pozitív és motiváló:** azt mondjuk, mit nyerhetünk a fenntartható megoldásokkal; a probléma után a hangsúly a megoldáson van.",
+    "**Rövid, tömör, lényegre törő:** minden mondatnak célja van; praktikus, közérthető tippek hosszú magyarázat helyett.",
+    "**Játékos és szokatlan:** nem a „szokványos öko” – lazább, olykor szándékosan vicces, néha olyan egyszerű, hogy már zseniális.",
+    "**Barátságos és közvetlen:** mint egy jó haver – nem leereszkedő, nem kioktat, hanem melléd áll."
+   ],
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026) – 3. Márkaszemélyiség és Tone of Voice"
+   ]
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Tone of Voice skála",
+   "elemek": [
+    "**Humor:** vicces, de nem komolytalan.",
+    "**Formalitás:** teljesen laza.",
+    "**Tisztelet:** barátságos szemtelenség – a témának kijáró tisztelettel.",
+    "**Lelkesedés:** teljes mértékben lelkes."
+   ],
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026) – 3. Márkaszemélyiség és Tone of Voice"
+   ]
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Tegezünk mindenkit",
+   "elemek": [
+    "Mindenkit tegezünk – egymást, a partnereinket és az ügyfeleinket is, ha közönségként szólítjuk meg őket. Formális eseményen, udvariasságból, magázódunk.",
+    "Megszólítások: **Kaptárs**, **Rajtárs**, **Ökomuki** (lakossági); partner felé: **Partner** vagy **Rajtárs**.",
+    "A „beeco” folyó szövegben és címben is kisbetűs."
+   ],
+   "forras": [
+    "Arculati kézikönyv és stratégia (DesignBook_V1, 2023) – hangvétel",
+    "beeco brandbook v2 (belső márkadokumentum, 2026) – 3. Márkaszemélyiség és Tone of Voice – Megszólítások"
+   ]
+  },
+  {
+   "t": "h2",
    "x": "Szóvicc – mikor igen, mikor nem"
   },
   {
@@ -39,6 +90,33 @@
    ],
    "forras": [
     "tokens/hangnem.json → _readme (Javaslat 05, jóváhagyva 2026-10-01)"
+   ]
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Mennyi szóvicc fér bele",
+   "elemek": [
+    "**Minimálisan, okosan.** A szóvicc fűszer, nem étel.",
+    "**B2B-ben nagyon ritkán:** partnernek, cégnek, LinkedInen kb. **100 mondatból 4**.",
+    "**Lakossági felületeken gyakrabban:** appban, Instán, TikTokon, eseményen kb. **100 mondatból 10**.",
+    "Kétség esetén a sima változat – a szóvicc nélkül is érthetőnek kell lennie."
+   ],
+   "forras": [
+    "Kristóf döntése, 2026-10-07"
+   ]
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Bevált szójátékaink",
+   "elemek": [
+    "Még → **Méh**",
+    "Együttműködés → **Együttzümmögés**",
+    "Bringa → **Bicóó**",
+    "Bízz → **Beezz** („Beezz a rajban!”)",
+    "**TerMÉHszetesen**, **beeconikus**, **beecompatibilis**, **Beeezalom**, **KaptárNaptár**, **Ökofitying**, **Zümmögjünk**"
+   ],
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026) – 3. Márkaszemélyiség és Tone of Voice – Használt szavak, szójátékok"
    ]
   },
   {
@@ -154,14 +232,85 @@
    ]
   },
   {
-   "t": "javaslat",
-   "cim": "Hol használd őket",
-   "x": [
-    "Közösségi poszt, plakát, esemény-meghívó végén – egyszer, nem halmozva. Gombra és jogi szövegbe ezek sem kerülnek."
+   "t": "hivatalos",
+   "cim": "Szlogenjeink és hol használd őket",
+   "elemek": [
+    "Fő szlogen: **„Beezz a rajban!”** / angolul **„Bee the change!”**",
+    "Továbbiak: „Time to bee eco!”, „Legyünk együtt ökohősök!”, „Az ökos döntések sokszor a legokosabbak.”",
+    "Közösségi poszt, plakát, esemény-meghívó végén – egyszer, nem halmozva. Gombra és jogi szövegbe nem kerül szlogen."
    ],
    "forras": [
-    "tokens/hangnem.json – a szóvicc-szabály kiterjesztése a hívómondatokra"
+    "beeco brandbook v2 (belső márkadokumentum, 2026) – Szlogenek",
+    "tokens/hangnem.json"
    ]
+  },
+  {
+   "t": "h2",
+   "x": "Kinek írunk"
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Négy perszóna – négy hangsúly",
+   "elemek": [
+    "**Elfoglalt pragmatikus:** kevés idő, döntésfáradtság → „1 perc, 1 lépés”, „Mi szűrünk helyetted”. Rövid, tömör; nincs napi több push.",
+    "**Csendes bizonytalan:** információs zaj, fél a hibától → „Kezdjük egyszerűen, ott, ahol vagy.” Megértő hang, egy téma, egy könnyű lépés.",
+    "**Készen álló kezdő:** lelkes, de fél, hogy nem tart ki → „Kis lépésekből lesz tartós szokás.” 7 napos mini-kihívás, Nektár-jutalom.",
+    "**Haladó cselekvő:** már sokat tesz, újat keres → „A következő szint: hatás + közösség.” Haladó kihívás, közösségi akció."
+   ],
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026) – 5. Célcsoportok"
+   ]
+  },
+  {
+   "t": "hivatalos",
+   "cim": "Felhasználók és partnerek felé",
+   "elemek": [
+    "**Felhasználók:** a megoldásra fókuszálj, ne szorongást keltő tényekkel indíts; „Apró döntések is nagy változást hozhatnak.” A Nektárt és a kuponokat érdemes mindig megemlíteni.",
+    "**Partnerek:** profi, de barátságos; a beeco üzleti értéke a fókusz – zöld marketingplatform, amely új és hűséges vásárlókat hoz: megjelenés a térképen, kuponokban és edukatív tartalmakban.",
+    "**Push értesítés:** legfeljebb napi egy, személyre szabott, „1 perc alatt hasznos”."
+   ],
+   "forras": [
+    "beeco brandbook v2 (belső márkadokumentum, 2026) – 7. Kommunikáció, App kommunikáció"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Vitás helyzetek"
+  },
+  {
+   "t": "tabla",
+   "cim": "Kríziskommunikáció alapelvei",
+   "fej": [
+    "Helyzet",
+    "Irányelv",
+    "Mintaválasz"
+   ],
+   "sorok": [
+    [
+     "Komment, kritika",
+     "Nyitottság és közvetlenség. Építő kritikát soha ne törölj; ismerd el az érvet, kérdezz vissza.",
+     "„Köszönjük a visszajelzést, Kaptárs! Ez segít, hogy jobbak legyünk.”"
+    ],
+    [
+     "Greenwashing-vád",
+     "Transzparencia és tudományos alapok; hivatkozz a forrásainkra (UNFCCC, MTVSZ).",
+     "„Fontos számunkra a hitelesség. Munkánkat tudományos alapokra helyezzük, és ezt a partnereinktől is elvárjuk.”"
+    ],
+    [
+     "Egy partnert támadnak",
+     "A beeco értékei az elsődlegesek; vizsgálat, szükség esetén eltávolodunk.",
+     "„Megvizsgáljuk az esetet. A beeco értékei az elsődlegesek.”"
+    ],
+    [
+     "Egy csapattagról derül ki valami",
+     "Gyors és őszinte válasz; a közös kötőelem a közösség és a fenntarthatóság.",
+     "„Nem gond, ha valaki hibázik – a lényeg, hogy mindig transzparensek legyünk.”"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Krízishelyzetben mindig egyeztess a kommunikációs csapattal, mielőtt a beeco nevében válaszolsz. Forrás: beeco brandbook v2 – Krízis kommunikáció."
   },
   {
    "t": "tovabb",

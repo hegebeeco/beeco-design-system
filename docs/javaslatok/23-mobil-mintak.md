@@ -1,6 +1,7 @@
 # Javaslat 23 – Mobil minták: alsó navigáció, alsó lap, lebegő gomb, kuponjegy
 
-*Állapot: **javaslat** · készítette: Claude (a brand book MOBIL APP oldalához) · dátum: 2026-10-07*
+*Állapot: **jóváhagyva** (Kristóf, 2026-10-07)*  
+*Eredeti állapot: **javaslat** · készítette: Claude (a brand book MOBIL APP oldalához) · dátum: 2026-10-07*
 *(Jóváhagyás után: **jóváhagyva** – lent a Döntés részben.)*
 
 ## 1. Igény
@@ -51,3 +52,6 @@
 - Dátum: …
 - Választott változat: …
 - Megjegyzés / módosítás: …
+
+## Döntés
+- Kristóf, 2026-10-07: **jóváhagyva**, a mobilos kérdésekre adott javaslatokkal együtt (kijelölt chip mézben, egy méz fő gomb képernyőnként, a ranglista színei, a jelölők színezése, 44 px-es mobil sűrűség). A komponensek a hamarosan érkező Figma DS alapján frissülnek.

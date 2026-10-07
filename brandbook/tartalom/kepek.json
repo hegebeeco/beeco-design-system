@@ -129,9 +129,12 @@
    ]
   },
   {
-   "t": "hianyzik",
+   "t": "szabaly",
    "cim": "Fotóbank",
-   "x": "Nincs közös, jóváhagyott fotóbank és hozzájárulás-nyilvántartás. Addig fotót csak a beeco csapatától kérj."
+   "x": "A beeco fotóbankja egy közös Drive-mappa (a link hamarosan ide kerül). Fotót csak innen, illetve a beeco csapatától használj; felismerhető emberről csak hozzájárulással.",
+   "forras": [
+    "Kristóf döntése, 2026-10-07"
+   ]
   },
   {
    "t": "h2",

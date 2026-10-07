@@ -149,10 +149,11 @@ function blokk(b, ctx) {
     case 'lead': return `<p class="bb-lead">${inl(b.x)}</p>`;
     case 'lista': return `<ul class="bb-list">${b.elemek.map(e => `<li>${inl(e)}</li>`).join('')}</ul>`;
     case 'szamozott': return `<ol class="bb-list">${b.elemek.map(e => `<li>${inl(e)}</li>`).join('')}</ol>`;
-    case 'szabaly': case 'javaslat': case 'hianyzik': case 'tilos': case 'hivatalos': {
-      if ((b.t === 'javaslat' || b.t === 'hivatalos') && !(b.forras && b.forras.length)) hibak.push(`${ctx}: ${b.t}-blokk forrás nélkül („${b.cim || ''}”)`);
+    case 'szabaly': case 'javaslat': case 'hianyzik': case 'tilos': case 'hivatalos': case 'korrigalando': {
+      if ((b.t === 'javaslat' || b.t === 'hivatalos' || b.t === 'korrigalando') && !(b.forras && b.forras.length)) hibak.push(`${ctx}: ${b.t}-blokk forrás nélkül („${b.cim || ''}”)`);
       const jelveny = { szabaly: '<span class="bc-badge is-success">Szabály</span>', javaslat: '<span class="bc-badge is-warning">Jóváhagyásra vár</span>', hivatalos: '<span class="bc-badge is-info">Hivatalos szöveg</span>',
-        hianyzik: '<span class="bc-badge is-muted">Hiányzik</span>', tilos: '<span class="bc-badge is-danger">Tilos</span>' }[b.t];
+        hianyzik: '<span class="bc-badge is-muted">Hiányzik</span>', tilos: '<span class="bc-badge is-danger">Tilos</span>',
+        korrigalando: '<span class="bc-badge is-warning">Korrigálandó – Claude-vázlat, forrás nélkül</span>' }[b.t];   /* Kristóf, 2026-10-07: ami a márkadokumentumban nincs meg, arra vázlat kerül, így jelölve */
       const tor = (b.x ? (Array.isArray(b.x) ? b.x : [b.x]).map(p => `<p>${inl(p)}</p>`).join('') : '') + (b.elemek ? `<ul class="bb-list">${b.elemek.map(e => `<li>${inl(e)}</li>`).join('')}</ul>` : '');
       return `<section class="bc-card is-flat bb-blokk is-${b.t}"${b.cim ? ` aria-labelledby="${slug(ctx + '-' + b.cim)}"` : ''}><div class="bb-blokk-fej">${jelveny}${b.cim ? `<h3 id="${slug(ctx + '-' + b.cim)}">${inl(b.cim)}</h3>` : ''}</div>${tor}${forrasLista(b.forras)}</section>`;
     }
