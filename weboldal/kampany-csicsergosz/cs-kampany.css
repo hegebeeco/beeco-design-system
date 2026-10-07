@@ -1,0 +1,211 @@
+/* CsicsergŐsz kampányoldal – stílus (v1.50). Párja: cs-kampany.js. Az oldal fejkódja csak ezt és a cs-raj.css-t tölti be.
+   Tokenek: a Webflow „Csicsergosz” változógyűjteménye (--_csicsergosz---*), tartalék értékkel.
+   Gombok: a beeco fő gombjai (button_main sárga, button_sec fehér, brutalista) – felhasználói döntés, 2026-10-07. */
+:root{
+--cs-ease-out:cubic-bezier(.23,1,.32,1);
+--cs-ease-in:cubic-bezier(.55,0,1,.45);
+--cs-ease-pop:cubic-bezier(.34,1.56,.64,1);
+--cs-d-nyomas:calc(var(--_csicsergosz---cs-ido-nyomas-ms,120) * 1ms);
+--cs-d-pop:calc(var(--_csicsergosz---cs-ido-pop-ms,180) * 1ms);
+--cs-d-belep:calc(var(--_csicsergosz---cs-ido-belepes-ms,300) * 1ms);
+--cs-d-lepcso:calc(var(--_csicsergosz---cs-ido-lepcso-ms,70) * 1ms);
+--cs-d-utvonal:calc(var(--_csicsergosz---cs-ido-utvonal-ms,1400) * 1ms);
+--cs-tav:var(--_csicsergosz---cs-mozgas-tav,16px);
+--cs-keret-c:var(--_csicsergosz---cs-keret-szin,#6B3B16);
+--cs-kakao:var(--_csicsergosz---cs-kakao,#6B3B16);
+--cs-krem:var(--_csicsergosz---cs-krem,#FEF7DE);
+--cs-barack:var(--_csicsergosz---cs-barack,#FFE2B5);
+--cs-mez:var(--_csicsergosz---cs-mez,#FFAA2E);
+--cs-narancs:var(--_csicsergosz---cs-narancs,#EA6C18);
+--cs-tinta:var(--_csicsergosz---cs-szoveg-torzs,#1A1A1A);
+--cs-arnyek-n:var(--_csicsergosz---cs-arnyek,6px);
+--cs-fokusz:var(--_csicsergosz---cs-kiemeles,#FFAA2E);
+}
+
+/* ---------- Alap: szekciók, ferde élek, díszítők ---------- */
+.dia_kek_ov.cs,.dia_kek_ov.cs_sotet,.dia_ov_light.cs,.dia_ov_light.cs_horgony,.dia_green_ov.cs,.dia_green_ov.cs_feher,.dia_kek.cs,.dia_sarga{overflow-x:clip;position:relative;z-index:0}
+.cs_dekor{opacity:var(--_csicsergosz---cs-dekor-attetszoseg,1)}
+[data-cs-ferde]::before{content:"";position:absolute;left:0;right:0;top:-1px;height:var(--_csicsergosz---cs-ferde,4vw);clip-path:polygon(0 0,100% 0,0 100%);background:var(--cs-ferde-szin);z-index:-1;pointer-events:none}
+[data-cs-ferde$="-j"]::before{clip-path:polygon(0 0,100% 0,100% 100%)}
+[data-cs-ferde^="barack"]{--cs-ferde-szin:var(--cs-barack)}
+[data-cs-ferde^="kakao"]{--cs-ferde-szin:var(--cs-kakao)}
+[data-cs-ferde^="feher"]{--cs-ferde-szin:var(--_csicsergosz---cs-feher,#fff)}
+[data-cs-ferde^="krem"]{--cs-ferde-szin:var(--cs-krem)}
+
+/* ---------- Tipográfia: kiegyensúlyozott tördelés, 10 méretes lépcső, kampányszínű szöveg ---------- */
+.headline1.cs,.headline2.cs,.headline3.cs,.headline2.feher,.main_heading.cs,.cs_szam,.cs_kicker{text-wrap:balance}
+.dia_kek_ov.cs p,.dia_ov_light.cs p,.dia_green_ov.cs p,.dia_kek.cs p,.dia_sarga p,.home-faq-content .text-size-regular,.cs_kinek_pont{text-wrap:pretty}
+.cs_sotet .home-faq-content .text-size-regular{color:var(--cs-tinta)}
+.dia_sarga .sikeres_text,.dia_sarga .error_message{color:var(--cs-kakao)}
+section .cs_forras,section .cs_grafikon_lab,section .cs_raj_cimke,section .cs_raj_info_bont{font-size:13px}
+.cs_nyil{font-size:24px}
+@media (min-width:768px){.cs_sotet .headline2.feher{font-size:40px}}
+@media (max-width:767px){.alap-blokk>.headline2.cs{text-align:center}}
+
+/* ---------- Gombok: beeco fő gombok, 44 px-es érintési felület ---------- */
+section .button_main,section .button_sec,.cs-ragados .button_main{min-height:44px;max-height:none}
+section .button_sec{display:inline-flex;align-items:center;justify-content:center;padding:8px 16px;text-decoration:none}
+.button_main:focus-visible,.button_sec:focus-visible,.card.cs_link:focus-visible,.gyik_item:focus-visible,.cs_forras:focus-visible{outline:3px solid var(--cs-fokusz);outline-offset:3px}
+.cs_forras{min-height:44px;display:inline-flex;align-items:center}
+.cs_forras:hover{color:var(--_csicsergosz---cs-feher,#fff)}
+.dia_sarga .input_field{min-height:44px;border-color:var(--cs-keret-c)}
+.dia_sarga .input_label{color:var(--cs-kakao)}
+.cs_egyenlo .brix---icon-square-36px,.cs_sziget .brix---icon-square-36px{min-width:44px;min-height:44px;background-color:var(--cs-kakao)}
+
+/* ---------- Mozgáskészlet (cs-mozgas): egyszeri belépés, csökkentett mozgásnál áttűnés ---------- */
+@keyframes cs-fel{from{opacity:0;transform:translateY(var(--cs-tav))}to{opacity:1;transform:none}}
+@keyframes cs-pop{from{opacity:0;transform:scale(.9) translateY(8px)}to{opacity:1;transform:none}}
+@keyframes cs-level{from{opacity:0;transform:translateY(-28px) rotate(-16deg)}to{opacity:1;transform:none}}
+@keyframes cs-sav{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes cs-attunes{from{opacity:0}to{opacity:1}}
+@keyframes cs-lebeg{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(2deg)}}
+html.cs-js [data-cs-anim]:not(.cs-latszik):not([data-cs-anim="rajzol"]),html.cs-js [data-cs-gyerekek]:not(.cs-latszik)>*{opacity:0}
+[data-cs-anim].cs-latszik,[data-cs-gyerekek].cs-latszik>*{animation:cs-fel var(--cs-d-belep) var(--cs-ease-out) backwards;animation-delay:calc(var(--cs-i,0) * var(--cs-d-lepcso))}
+[data-cs-anim="pop"].cs-latszik{animation-name:cs-pop;animation-duration:calc(var(--cs-d-pop) * 2);animation-timing-function:var(--cs-ease-pop)}
+[data-cs-anim="level"].cs-latszik{animation-name:cs-level;animation-duration:calc(var(--cs-d-belep) * 3)}
+[data-cs-anim="sav"].cs-latszik{animation-name:cs-sav;animation-duration:calc(var(--cs-d-belep) * 3);animation-delay:calc(250ms + var(--cs-i,0) * 4 * var(--cs-d-lepcso))}
+[data-cs-anim="rajzol"].cs-latszik{animation:none}
+[data-cs-szamlal]{font-variant-numeric:tabular-nums}
+.cs_lepes_lista::before{content:"";position:absolute;left:27px;top:28px;bottom:28px;border-left:2px dashed var(--cs-keret-c);z-index:0}
+html.cs-js .cs_lepes_lista[data-cs-anim="rajzol"]::before{clip-path:inset(0 0 100% 0);transition:clip-path var(--cs-d-utvonal) var(--cs-ease-out)}
+html.cs-js .cs_lepes_lista.cs-latszik::before{clip-path:inset(0 0 0 0)}
+@media (max-width:767px){.cs_lepes_lista::before{left:23px;top:24px;bottom:24px}}
+.cs_gabee_kep{animation:cs-lebeg 3.6s ease-in-out infinite;transform-origin:50% 60%}
+.cs_buborek::after{content:"";position:absolute;left:28px;bottom:-12px;width:20px;height:20px;background:var(--_csicsergosz---cs-felulet-kartya,#fff);border-right:2px solid var(--cs-keret-c);border-bottom:2px solid var(--cs-keret-c);transform:rotate(45deg)}
+
+/* ---------- Hero: nagyobb app-kép, bizalmi sor ---------- */
+.dia_kek_ov.cs .cs_mockup{width:100%;max-width:560px;margin-left:auto;margin-right:auto;overflow:visible}
+@media (max-width:767px){.dia_kek_ov.cs .cs_mockup{max-width:380px}}
+.cs_bizalom_v2{flex-wrap:wrap;align-items:stretch;gap:12px;width:100%;max-width:1100px;margin:0 auto}
+.cs_bizalom_v2 .cs_bizalom_elem{flex:1 1 150px;justify-content:center}
+.cs_bizalom_v2 .cs_bizalom_szamok{flex:2 1 320px;flex-direction:column;align-items:flex-start}
+.cs_bizalom_v2 .cs_bizalom_logo{height:56px;width:auto;max-width:100%;object-fit:contain}
+@media (min-width:992px){.dia_kek_ov.cs ._2_column_content_wrapper{align-items:center}.dia_kek_ov.cs ._2_column_content_wrapper>.small_content_block{flex:1 1 52%}.dia_kek_ov.cs ._2_column_content_wrapper>:last-child{flex:1 1 48%;min-width:0}}
+.cs-hm-uzenet{position:absolute;z-index:6;padding:8px 10px;border:2px solid var(--cs-kakao);border-radius:12px;background:#fff;color:var(--cs-kakao);font:700 13px/1.3 'Open Sans',sans-serif;text-align:center;opacity:0;transform:translateY(8px) scale(.96);transition:opacity 200ms var(--cs-ease-out),transform 200ms var(--cs-ease-out);pointer-events:none}
+.cs-hm-uzenet.cs-lat{opacity:1;transform:none}
+
+/* ---------- Miért fontos: tagoltabb tér, mérsékeltebb szám, veszteség-grafikon ---------- */
+.dia_ov_light.cs_horgony>.alap-blokk{padding-top:calc(var(--_csicsergosz---cs-ferde,4vw) + 4rem)}
+.dia_ov_light.cs_horgony .cs_szam{font-size:clamp(48px,6.5vw,80px);line-height:1;margin-bottom:4px}
+.cs_veszt{gap:14px;padding:24px;border:2px solid var(--cs-keret-c);border-radius:24px 0 24px 0;background:var(--cs-krem);color:var(--cs-tinta)}
+.cs_veszt .cs_grafikon_cim{margin:0 0 4px;font:400 26px/1.15 Lalezar,sans-serif;padding-top:4px;color:var(--cs-kakao);text-transform:none;letter-spacing:0}
+.cs_veszt_fej{align-items:baseline;gap:12px;margin-bottom:6px}
+.cs_veszt_nev{font-weight:700;font-size:16px;color:var(--cs-tinta)}
+.cs_veszt_szam{font:400 26px/1 Lalezar,sans-serif;padding-top:4px;color:var(--cs-kakao);font-variant-numeric:tabular-nums}
+.cs_veszt_sav{position:relative;height:24px;border:2px solid var(--cs-kakao);border-radius:999px;background:var(--cs-mez);overflow:hidden}
+.cs_veszt_vesz{position:absolute;top:0;right:0;bottom:0;background:repeating-linear-gradient(-45deg,var(--cs-kakao) 0 6px,var(--cs-narancs) 6px 12px);border-left:2px solid var(--cs-kakao)}
+.cs_veszt .cs_grafikon_lab{color:var(--cs-tinta)}
+.cs_veszt .cs_forras{color:var(--cs-kakao);min-height:0;text-decoration:underline}
+.cs_veszt_vereb{align-items:center;gap:12px;margin-top:4px;padding:12px;border-radius:16px;background:#fff;border:2px dashed var(--cs-kakao)}
+.cs_veszt_vereb_kep{flex:0 0 auto;height:auto}
+.cs_veszt_vereb_szoveg{font-size:16px;line-height:1.45;color:var(--cs-tinta)}
+
+/* ---------- Mit tehetsz: nagyobb kártyák, kártyán belüli beeco gomb ---------- */
+.dia_green_ov.cs .div-block-564{gap:32px;justify-content:center;align-items:stretch;width:100%}
+.dia_green_ov.cs .card.cs_link{flex:1 1 0;max-width:560px}
+.dia_green_ov.cs .card.cs_link .cs_kartya_foto{aspect-ratio:4/3;object-fit:cover;width:100%;height:auto}
+.card.cs_link .button_main{align-self:flex-start;margin-top:auto;pointer-events:none}
+.card.cs_link{box-shadow:var(--cs-arnyek-n) var(--cs-arnyek-n) 0 0 var(--cs-keret-c);transition:transform var(--cs-d-nyomas) var(--cs-ease-out),box-shadow var(--cs-d-nyomas) var(--cs-ease-out)}
+@media (hover:hover) and (pointer:fine){.card.cs_link:hover{transform:translate(-2px,-2px);box-shadow:calc(var(--cs-arnyek-n) + 2px) calc(var(--cs-arnyek-n) + 2px) 0 0 var(--cs-keret-c)}}
+.card.cs_link:active{transform:translate(4px,4px);box-shadow:2px 2px 0 0 var(--cs-keret-c)}
+@media (max-width:767px){.dia_green_ov.cs .div-block-564{flex-direction:column}.dia_green_ov.cs .card.cs_link{max-width:none}.card.cs_link>*,.card.cs_egyenlo>*{text-align:left}}
+
+/* ---------- A raj ereje: verseny-alcím ---------- */
+.cs_raj_alcim_blokk{margin-top:40px;margin-bottom:-8px}
+
+/* ---------- Fotófal: Gabee bemutatkozik ---------- */
+.cs_gabee_bemutat{width:100%;max-width:1100px;margin:0 auto 24px}
+.cs_gabee_bemutat .cs_gabee_figura{flex:0 0 220px;position:relative}
+.cs_gabee_bemutat .cs_gabee_kep{width:200px;height:auto}
+.cs_gabee_bemutat_szoveg{flex:1 1 auto}
+.cs_gabee_bemutat_szoveg .headline2,.cs_gabee_bemutat_szoveg .cs_lead{text-align:left}
+@media (max-width:767px){.cs_gabee_bemutat{flex-direction:column;gap:12px}.cs_gabee_bemutat .cs_gabee_figura{flex:0 0 auto}.cs_gabee_bemutat .cs_gabee_kep{width:150px}.cs_gabee_bemutat_szoveg,.cs_gabee_bemutat_szoveg .headline2,.cs_gabee_bemutat_szoveg .cs_lead{text-align:center}}
+
+/* ---------- Vékony sziget: közösségi linkek + hírlevél ---------- */
+.dia_sarga{background-color:var(--cs-barack)}
+.dia_sarga>.alap-blokk{padding-top:24px;padding-bottom:24px}
+.cs_sziget{flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 40px;width:100%;max-width:1100px;margin:0 auto;padding:16px 24px;background:#fff;border:2px solid var(--cs-keret-c);border-radius:24px 0 24px 0}
+.cs_sziget_resz{flex:1 1 300px;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.cs_sziget_resz .headline3{margin:0;font-size:24px;line-height:1.1;padding-top:4px}
+.cs_sziget .w-form,.cs_sziget form{width:100%;margin:0}
+.cs_sziget form{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 12px}
+.cs_sziget form .headline3{flex:1 0 100%}
+.cs_sziget form .input_label{flex:1 0 100%;margin:0;font-size:13px}
+.cs_sziget form .input_field{flex:1 1 220px;margin:0}
+.cs_sziget .div-block-55,.cs_sziget .div-block-53{display:none}
+@media (max-width:767px){.cs_sziget{padding:16px}}
+
+/* ---------- „Hogyan segítheted” fülek ---------- */
+.cs_kinek_gomb{transition:background-color var(--cs-d-nyomas) var(--cs-ease-out),color var(--cs-d-nyomas) var(--cs-ease-out)}
+@media (hover:hover) and (pointer:fine){.cs_kinek_gomb:hover{background-color:var(--cs-barack)}}
+.cs_kinek_gomb[aria-selected="true"]{background-color:var(--cs-kakao);color:var(--cs-krem)}
+.cs_kinek_gomb:focus-visible,.cs_kinek_panel:focus-visible{outline:3px solid var(--cs-fokusz);outline-offset:3px}
+.cs_kinek_panel{position:relative;overflow:visible!important}
+.cs_kinek_panel[hidden]{display:none!important}
+.cs_kinek_pont::before{content:"";position:absolute;left:2px;top:.3em;width:16px;height:18px;background:var(--cs-fokusz);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+@media (max-width:767px){.cs_kinek_valaszto .cs_kinek_gomb{font-size:16px}.card.cs_egyenlo.cs_kinek_panel{margin-top:44px}}
+
+/* ---------- Süvöltő a fülek panelén ---------- */
+.cs-mh{position:absolute;z-index:5;width:96px}
+.cs-mh--suvolto{right:40px;bottom:calc(100% - 12px)}
+.cs-madar{display:block;width:100%;padding:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;border-radius:12px}
+.cs-madar img{display:block;width:100%;height:auto;transform-origin:50% 95%;filter:drop-shadow(3px 3px 0 rgba(107,59,22,.2))}
+html.cs-js .cs-madar:not(.cs-leszallt) img{opacity:0}
+.cs-madar.cs-repul img{animation:cs-be 900ms var(--cs-ease-out) both;--dx:240px;--dy:-160px}
+.cs-madar.cs-leszallt img{animation:none}
+.cs-madar.cs-leszallt.cs-ugrik img{animation:cs-ugrik 260ms var(--cs-ease-out)}
+@media (hover:hover) and (pointer:fine){.cs-madar.cs-leszallt img{transition:transform 160ms var(--cs-ease-out)}.cs-madar.cs-leszallt:hover img{transform:translateY(-4px) rotate(-5deg)}}
+.cs-madar:focus-visible{outline:3px solid var(--cs-fokusz);outline-offset:4px}
+.cs-mb{position:absolute;right:0;bottom:calc(100% + 8px);width:max-content;max-width:min(260px,72vw);padding:10px 12px;background:#fff;border:2px solid var(--cs-keret-c);border-radius:14px 14px 2px 14px;font:600 16px/1.4 'Open Sans',sans-serif;color:var(--cs-tinta);text-align:left;opacity:0;transform:translateY(6px) scale(.96);transform-origin:100% 100%;transition:opacity 180ms var(--cs-ease-out),transform 180ms var(--cs-ease-out);pointer-events:none}
+.cs-mb.cs-lat{opacity:1;transform:none;pointer-events:auto}
+.cs-mb:empty{display:none}
+.cs-mb b{display:block;color:var(--cs-kakao)}
+@media (max-width:767px){.cs-mh{width:56px}.cs-mh--suvolto{right:20px;bottom:calc(100% - 8px)}}
+
+/* ---------- Jelenet-madarak (hero, megfigyelés, záró): a csomagoló áll, a kép mozog ---------- */
+.cs-m{position:absolute;z-index:5;pointer-events:none}
+.cs-m img{display:block;width:100%;height:auto;transform-origin:50% 90%;filter:drop-shadow(3px 3px 0 rgba(107,59,22,.2));opacity:0}
+.cs-m--tukor{scale:-1 1}
+.cs-m--ul img{opacity:1}
+.cs-m--repul img{animation:cs-be 950ms var(--cs-ease-out) both}
+.cs-m--el img{animation:cs-ki 700ms var(--cs-ease-in) both}
+.cs-m--beszall img{opacity:1;animation:cs-beszall 450ms var(--cs-ease-in) forwards}
+.cs-m--oduba img{opacity:1;animation:cs-oduba 520ms var(--cs-ease-in) forwards}
+.cs-m--iszik img{animation:cs-iszik 1.6s var(--cs-ease-out) 2}
+.cs-m--csipeget img{animation:cs-csipeget 300ms var(--cs-ease-out) 3}
+@keyframes cs-be{0%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(14deg) scale(.85)}45%{opacity:1;transform:translate(calc(var(--dx) * .25),calc(var(--dy) * .3)) rotate(6deg) scale(.95)}80%{transform:translate(0,-6px) rotate(-3deg)}100%{opacity:1;transform:none}}
+@keyframes cs-ki{0%{opacity:1;transform:none}20%{transform:translateY(-8px) rotate(-6deg)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(-14deg) scale(.85)}}
+@keyframes cs-beszall{to{opacity:0;transform:translate(10%,30%) scale(.15)}}
+@keyframes cs-oduba{0%{transform:none}35%{transform:translateY(-6px)}100%{opacity:0;transform:translate(18%,28%) scale(.2)}}
+@keyframes cs-iszik{0%,100%{transform:none}30%,60%{transform:translateY(5px) rotate(14deg)}}
+@keyframes cs-csipeget{0%,100%{transform:none}50%{transform:translateY(4px) rotate(18deg)}}
+@keyframes cs-ugrik{40%{transform:translateY(-14px) rotate(-8deg)}100%{transform:none}}
+.cs-m-szinpad{position:relative;overflow:visible}
+#download .cs_mockup{overflow:visible;width:100%;max-width:440px;margin-left:auto;margin-right:auto}
+@media (max-width:767px){#download .cs_mockup{max-width:250px}}
+.cs-kellek{position:absolute;z-index:4;height:auto;pointer-events:none;filter:drop-shadow(2px 2px 0 rgba(107,59,22,.25))}
+
+/* ---------- Interaktív háttér ---------- */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.cs_dekor{transition:translate 700ms var(--cs-ease-out)}}
+.cs_dekor.cs-porog{animation:cs-porog 700ms var(--cs-ease-out)}
+@keyframes cs-porog{from{rotate:0deg}to{rotate:360deg}}
+
+/* ---------- Mobilos ragadós letöltősáv ---------- */
+.cs-ragados{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:950;display:flex;align-items:center;gap:10px;padding:8px 10px 8px 12px;background:#fff;border:2px solid var(--cs-keret-c);border-radius:16px;transform:translateY(160%);transition:transform 260ms var(--cs-ease-out)}
+.cs-ragados.cs-lat{transform:none}
+.cs-ragados img{flex:0 0 auto;width:40px;height:auto}
+.cs-ragados_szoveg{flex:1 1 auto;font:700 13px/1.3 'Open Sans',sans-serif;color:var(--cs-kakao)}
+.cs-ragados .button_main{flex:0 0 auto;padding:10px 16px 8px;text-decoration:none}
+@media (min-width:768px){.cs-ragados{display:none}}
+
+/* ---------- Csökkentett mozgás ---------- */
+@media (prefers-reduced-motion:reduce){
+[data-cs-anim].cs-latszik,[data-cs-gyerekek].cs-latszik>*{animation-name:cs-attunes!important;animation-duration:200ms!important;animation-delay:0s!important;animation-timing-function:linear!important}
+html.cs-js .cs_lepes_lista[data-cs-anim="rajzol"]::before{clip-path:none;transition:none}
+.cs_gabee_kep{animation:none}
+.card.cs_link,.cs_kinek_gomb,.cs-ragados{transition:none}
+.cs-madar.cs-repul img{animation:cs-attunes 200ms linear both}
+.cs-madar.cs-leszallt.cs-ugrik img,.cs-m img{animation:none!important}
+.cs-mb,.cs-hm-uzenet{transition:opacity 150ms linear;transform:none}
+.cs_dekor.cs-porog{animation:none}
+}

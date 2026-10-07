@@ -89,3 +89,16 @@ betöltés-szöveg (JS nélkül ez látszik). A forrás a számláló gyökér `
 | Közös cél | haladásjelző (`role=progressbar`), kitöltődik | |
 | Kerületi verseny | sematikus méhsejt-térkép (23 kerület), kattintás/Enter, választólista, Budapest/Városok fül (nyilakkal) | `campaign_district_select`, `campaign_leaderboard_tab` |
 | Fotófal | legfeljebb 8 kép, fókuszpont szerinti kivágás | |
+
+## v1.50: egy helyen az oldal kódja
+
+A Webflow-oldal fejkódja csak a `cs-kampany.css` és `cs-raj.css`, a lábkódja a `cs-meres.js`, `cs-mozgas.js`, `cs-raj.js`
+és `cs-kampany.js` fájlokra hivatkozik (most a `csicsergosz-v3` ág: `@csicsergosz-v3`; a main-be olvasztás és kiadás után verziósáv). Javítás menete: a fájl módosítása helyben, Playwright-teszt
+a jsDelivr-címek helyi fájlra irányításával, majd push az ágra és jsDelivr-purge. A Webflow-ban csak szerkezeti változáshoz kell nyúlni.
+
+| Fájl | Mit csinál |
+|---|---|
+| `cs-kampany.css` | az oldal teljes stílusa (tokenek, tipográfia, gombok, szekciók, madarak, ragadós sáv) |
+| `cs-kampany.js` | fülek, süvöltő, hero-madarak, szállingózó madarak, záró jelenet, interaktív háttér, ragadós letöltősáv |
+| `cs-raj.js` / `.css` | országos számok, számláló, közös cél, verseny minitérképpel, fotófal |
+| `cs-terkep.json` | Budapest kerületei (OSM, ODbL) és Magyarország körvonala (Natural Earth), egyszerűsített SVG-útvonalak |

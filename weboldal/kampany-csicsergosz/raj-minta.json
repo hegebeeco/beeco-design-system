@@ -230,43 +230,63 @@
  "varosok": [
   {
    "nev": "Debrecen",
-   "pont": 1301
+   "pont": 1301,
+   "lat": 47.5316,
+   "lon": 21.6273
   },
   {
    "nev": "Szeged",
-   "pont": 1163
+   "pont": 1163,
+   "lat": 46.253,
+   "lon": 20.1414
   },
   {
    "nev": "Pécs",
-   "pont": 380
+   "pont": 380,
+   "lat": 46.0727,
+   "lon": 18.2323
   },
   {
    "nev": "Győr",
-   "pont": 1668
+   "pont": 1668,
+   "lat": 47.6875,
+   "lon": 17.6504
   },
   {
    "nev": "Miskolc",
-   "pont": 458
+   "pont": 458,
+   "lat": 48.1035,
+   "lon": 20.7784
   },
   {
    "nev": "Kecskemét",
-   "pont": 1865
+   "pont": 1865,
+   "lat": 46.8964,
+   "lon": 19.6897
   },
   {
    "nev": "Székesfehérvár",
-   "pont": 1442
+   "pont": 1442,
+   "lat": 47.186,
+   "lon": 18.4221
   },
   {
    "nev": "Nyíregyháza",
-   "pont": 1473
+   "pont": 1473,
+   "lat": 47.9554,
+   "lon": 21.7167
   },
   {
    "nev": "Szombathely",
-   "pont": 942
+   "pont": 942,
+   "lat": 47.2307,
+   "lon": 16.6218
   },
   {
    "nev": "Veszprém",
-   "pont": 996
+   "pont": 996,
+   "lat": 47.0933,
+   "lon": 17.9115
   }
  ],
  "fotok": [
@@ -274,60 +294,61 @@
    "kep": "https://images.unsplash.com/photo-1576442061090-17df1d256d7b?w=640&q=70&auto=format&fit=max",
    "faj": "Fekete rigó",
    "hely": "XII. kerület",
-   "szerzo": "Chris / Unsplash",
    "fokusz": "55% 40%"
   },
   {
    "kep": "https://images.unsplash.com/photo-1742676915509-5700bf8a8c0a?w=640&q=70&auto=format&fit=max",
    "faj": "Vörösbegy",
    "hely": "Szentendre",
-   "szerzo": "Doncoombez / Unsplash",
    "fokusz": "50% 25%"
   },
   {
    "kep": "https://images.unsplash.com/photo-1623771547547-098bf3d31c12?w=640&q=70&auto=format&fit=max",
    "faj": "Széncinege",
    "hely": "XIII. kerület",
-   "szerzo": "Amee Fairbank-Brown / Unsplash",
    "fokusz": "50% 45%"
   },
   {
    "kep": "https://images.unsplash.com/photo-1623719678037-84c54bfde8c8?w=640&q=70&auto=format&fit=max",
    "faj": "Házi veréb",
    "hely": "Debrecen",
-   "szerzo": "Joshua J. Cotten / Unsplash",
    "fokusz": "55% 40%"
   },
   {
    "kep": "https://images.unsplash.com/photo-1778167058306-c58a6f50086d?w=640&q=70&auto=format&fit=max",
    "faj": "Kék cinege",
    "hely": "III. kerület",
-   "szerzo": "Denis Dz. / Unsplash",
    "fokusz": "50% 35%"
   },
   {
    "kep": "https://images.unsplash.com/photo-1742676916561-88d56853cb8a?w=640&q=70&auto=format&fit=max",
    "faj": "Fekete rigó",
    "hely": "Szeged",
-   "szerzo": "Doncoombez / Unsplash",
    "fokusz": "50% 20%"
   },
   {
    "kep": "https://images.unsplash.com/photo-1606396191353-a57806c7e44e?w=640&q=70&auto=format&fit=max",
    "faj": "Házi veréb",
    "hely": "XI. kerület",
-   "szerzo": "Amee Fairbank-Brown / Unsplash",
    "fokusz": "45% 45%"
   },
   {
    "kep": "https://images.unsplash.com/photo-1744749340751-6a27c4c6eeb2?w=640&q=70&auto=format&fit=max",
    "faj": "Széncinege",
    "hely": "Pécs",
-   "szerzo": "Doncoombez / Unsplash",
    "fokusz": "45% 45%"
   }
  ],
  "kerttervezo": {
   "kitoltes": null
+ },
+ "orszagos": {
+  "letoltes": 25000,
+  "letoltes_forras": "a beeco.hu főoldalán publikált szám",
+  "heti": {
+   "itato": 41,
+   "eteto": 28,
+   "odu": 17
+  }
  }
 }

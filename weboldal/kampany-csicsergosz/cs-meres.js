@@ -23,8 +23,8 @@
     if(a=t.closest('a[data-cs-activity]')){kuld('campaign_activity_select',{activity_type:a.getAttribute('data-cs-activity'),target_anchor:a.getAttribute('href')});return;}
     if(a=t.closest('[data-cs-event="primary_cta"]')){kuld('campaign_primary_cta_click',{placement:a.getAttribute('data-cs-placement')||'',destination:a.getAttribute('href'),platform:ios?'ios':(android?'android':'web')});return;}
     if(a=t.closest('a[href*="apps.apple.com"],a[href*="play.google.com"]')){var s=a.closest('section,[id]');kuld('campaign_primary_cta_click',{placement:s?(s.id||'store'):'store',destination:a.href,platform:/apple/.test(a.href)?'ios':'android'});return;}
-    if(a=t.closest(SOCIAL)){kuld('campaign_social_click',{platform:(a.hostname||'').replace('www.',''),placement:'gabee'});return;}
+    if(a=t.closest(SOCIAL)){kuld('campaign_social_click',{platform:(a.hostname||'').replace('www.',''),placement:'sziget'});return;}
     if(a=t.closest('.gyik_item')){kuld('campaign_faq_expand',{question_id:'q'+(gyik.indexOf(a)+1)});}
   },true);
-  var f=d.querySelector('form[id^="wf-form"]'); if(f) f.addEventListener('submit',function(){kuld('campaign_newsletter_click',{placement:'gabee'});});
+  var f=d.querySelector('form[id^="wf-form"]'); if(f) f.addEventListener('submit',function(){kuld('campaign_newsletter_click',{placement:'sziget'});});
 })();
