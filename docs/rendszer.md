@@ -95,5 +95,7 @@ Az élő oldal minőségét a `node tools/web-ellenor.js <URL>` méri. Részlete
 ## 7. Változtatás a DS-ben
 
 - **Név soha nem változik és nem törlődik** (token, szerep, osztály) – csak új jön. Ha egy érték változik (pl. más zöld), az minden terméket érint: Kristóf döntése kell.
-- Menet: `tokens/*.json` → `node tools/tokens-build.js` → `npm test` → `CHANGELOG.md` + `VERSION` + `package.json` → commit + push → git-címke (`git tag v1.x.y && git push --tags`) → a projektekben verzió-emelés.
+- Menet (1.53.0 óta, részletek: `docs/ai-munkamod.md`): forrás (`tokens/*.json`, `react/`, `termek/css`) → `npm run build` → munka közben `npm run check:egy -- <lap>`, a végén `npm test` → `CHANGELOG.md` „## Készül” → PR (verzióemelés nélkül) → merge → **kiadás**: Actions „Kiadás” workflow (verzió bemenettel) vagy helyben `node tools/kiadas.js 1.x.y` + `npm test` + commit + `git tag v1.x.y && git push origin main v1.x.y` → a projektekben verzió-emelés.
+- **Törő változás elleni őr:** `node tools/api-check.js` (CI): az `api/api.json` pillanatképet a legutóbbi címkéhez méri; eltűnő export/prop/osztály/token/globális név csak FŐ verzióval mehet.
+- Ügynököknek: `docs/AI.md` (generált index) – a `dist/`-et nem kell megnyitni.
 - Új szín csak indokolva (CHANGELOG): előbb nézd meg, fedi-e egy meglévő primitív.

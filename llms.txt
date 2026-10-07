@@ -1,0 +1,17 @@
+# beeco design system
+
+> A beeco egységes design systeme (hegebeeco/beeco-design-system): tokenek, termékbőr (React + bc- CSS: admin, partner, web, Flutter-tokenek) és játékbőr (webjátékok). Magyar nyelvű.
+
+Ügynököknek: először a docs/AI.md-t olvasd el (generált, tömör index); a dist/ mappát ne nyisd meg (generált kimenet).
+
+## Kezdd itt
+- [docs/AI.md](docs/AI.md): minden React-komponens egy sorban (import, fő propok, CSS-osztály, mire), tokenek, CSS-elemek, szabályok, tesztek
+- [docs/ai-munkamod.md](docs/ai-munkamod.md): munkamód, mi generált, kiadás, törő-változás-őr, szabályok ügynököknek
+- [api/api.json](api/api.json): a teljes nyilvános felület gépi pillanatképe (exportok, propok, osztályok, tokenek, játék-JS nevek)
+
+## Részletek (csak ha kell)
+- [docs/rendszer.md](docs/rendszer.md): a rendszer felépítése, fogyasztók
+- [docs/komponensek.md](docs/komponensek.md): komponens-szabálykönyv, öntesztek, szélső esetek
+- [docs/termek-arculat.md](docs/termek-arculat.md): a termékbőr szabályai
+- [docs/arculat.md](docs/arculat.md): a játékbőr (Méhsejt-diorama)
+- [CHANGELOG.md](CHANGELOG.md): változások

@@ -11,6 +11,12 @@ A DS-repó: `~/CLAUDE/beeco-jatek-kit` (GitHub: `hegebeeco/beeco-design-system`)
   Szabálykönyv: `docs/termek-arculat.md` · elemek: `termek/css/bc-*.css` · bemutató: `termek/bemutato.html`.
 - **Játékbőr** (webjátékok): Méhsejt-diorama → **a `beeco-arculat` skillt töltsd be**, ne ezt kövesd.
 
+## 0. Gyors út (kevés token) – ELŐSZÖR EZT
+1. **Olvasd el a `docs/AI.md`-t** (a DS-repóban `docs/AI.md`; fogyasztó projektben `node_modules/@beeco/design-system/docs/AI.md`): minden React-komponens egy sorban (import, fő propok, `.bc-` osztály, mire), tokenek, CSS-elemek, top 10 szabály. Ha kell, onnan nyisd meg a megnevezett forrásfájlt – mást ne.
+2. **A `dist/`-et ne nyisd meg** (generált, nagy); a propokat az AI.md vagy a `react/src/<fájl>.tsx` adja, a teljes felületet az `api/api.json`.
+3. DS-munka közben **csak az egy-komponenses kör**: `npm run check:egy -- <tesztlap | Komponens>` (~15–25 s). A teljes `npm run build && npm test` **egyszer, a végén**.
+4. Feature-ágon **ne emelj verziót** (kiadás: `node tools/kiadas.js X.Y.Z` vagy az Actions „Kiadás” workflow). Írd a `CHANGELOG.md` „## Készül” szakaszába, mi változott. Részletek: `docs/ai-munkamod.md`.
+
 ## 1. Mielőtt hozzányúlsz
 0. **Meglévőből dolgozz** (`docs/komponensek.md` 1.): DS React-komponens → `bc-` CSS-elem → projekt-komponens → tokenekből. **Új elem, változat vagy szabály csak Kristóf jóváhagyásával, javaslatlapon** (`docs/javaslatok/_sablon.md`) – ha kellene, állj meg és javasolj, ne építsd meg „ideiglenesen”.
 1. Melyik bőr? Játék → `beeco-arculat`. Minden más → ez a skill.
@@ -19,7 +25,7 @@ A DS-repó: `~/CLAUDE/beeco-jatek-kit` (GitHub: `hegebeeco/beeco-design-system`)
 4. `minosegkapu` skill a munka elején (szabályok) és a végén (kapu).
 
 ## 1/b. Mi van készen
-Katalógus: `docs/komponens-katalogus.md` (űrlap, adat és grafikon, rétegek, média, méhecske és mozgás, kiegészítők, oldalsablonok). Méhecske-szereplők, szóviccek: `tokens/hangnem.json` + `docs/javaslatok/05-meh.md`; sprite-ok: `docs/meh-sprite.md`. Szöveg csak magyarul (angol csak kérésre).
+Index: **`docs/AI.md`** (először ezt); katalógus: `docs/komponens-katalogus.md` (űrlap, adat és grafikon, rétegek, média, méhecske és mozgás, kiegészítők, oldalsablonok). Méhecske-szereplők, szóviccek: `tokens/hangnem.json` + `docs/javaslatok/05-meh.md`; sprite-ok: `docs/meh-sprite.md`. Szöveg csak magyarul (angol csak kérésre).
 
 ## 2. Szabályok (nem alkudható)
 - **Csak tokenek / szerepek:** CSS `var(--bc-ink)`, SCSS `bc.$bc-ink` / `bc.sp(4)`, Tailwind `text-ink bg-accent shadow-m rounded-m`,
@@ -40,13 +46,13 @@ Tesztlap (`termek/tesztlapok/<komponens>.html`) minden állapottal és a széls�
 
 ## 4. Ellenőrzés, mielőtt „kész”
 - Termék-projektben: `npx beeco-ds-lint` → „nem romlott” (javult? `npx beeco-ds-lint --update`).
-- DS-repóban: `npm test` (dist friss, kontraszt világos+sötét, párosság a játékokkal, `bc-` elemek szabályai).
+- DS-repóban: munka közben `npm run check:egy -- <lap>`; a végén egyszer `npm run build && npm test` (dist + AI.md + api friss, API-őr: eltűnő név/prop = hiba, kontraszt világos+sötét, párosság a játékokkal, `bc-` elemek szabályai).
 - `minosegkapu`: mérés mobil + széles, világos + sötét; a képeket nézd meg.
 
 ## 5. A DS bővítése
-- Token: `tokens/*.json` → `node tools/tokens-build.js` → `npm test`. Név **soha** nem változik és nem törlődik.
+- Token: `tokens/*.json` → `npm run build` → `npm test`. Név **soha** nem változik és nem törlődik (a `node tools/api-check.js` megfogja).
 - Új elem: ha ≥ 2 projektnek kell → `termek/css/` (+ bemutató + ha kell, teszt-szabály); különben a projektben, tokenekből.
-- Kiadás: `CHANGELOG.md` + `VERSION` + `package.json` → commit + push → `git tag v1.x.y && git push --tags` → a projektekben a `#v…` emelése.
+- Kiadás: a „## Készül” szakasz a CHANGELOG-ban → Actions „Kiadás” (verzió bemenettel: emel, épít, tesztel, commitol, címkéz) vagy helyben `node tools/kiadas.js 1.x.y` → `npm test` → commit → `git tag v1.x.y && git push origin main v1.x.y` → a projektekben a `#v…` emelése.
 - Értékváltozás (pl. más zöld) minden terméket érint → Kristóf döntése kell.
 
 ## 6. Beépítés egy projektbe
