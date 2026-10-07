@@ -1,0 +1,35 @@
+/* beeco Brand Book – a JÁTÉKBŐR élő mintái (minta/jatek-*.html, a tools/brandbook-bbweb.js generálja).
+   Csak a játékbőr tokenjei (web/css/tokens.css) és elemei (ds.css, ds-game.css). Kivétel: a .jm-rossz-termek a NEM-képeken
+   szándékosan a termékbőr tokenjeit keveri be (beeco-tokens.css) – ez mutatja, hogyan NE. */
+.jm { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); }
+.jm-wrap { display: grid; gap: var(--sp-3); justify-items: start; padding: var(--sp-4); }
+.jm-wrap > * { max-width: 100%; }
+.jm-sor { display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center; }
+.jm-oszlop { display: grid; gap: var(--sp-3); justify-items: start; }
+.jm-sr { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* HUD: a ds-hud egy sorban marad a játékban; a keskeny minta-keretben törhet */
+.jm-hud { flex-wrap: wrap; box-sizing: border-box; width: 100%; padding: var(--sp-2) var(--sp-3);
+  background: var(--surface); border: var(--line-w) solid var(--line); border-radius: var(--r-l); box-shadow: var(--soft-sm); }
+
+/* beszéd: a gondolkodó méhecske */
+.jm-meh { --size: 56px; }
+
+/* kör vége panel – a mintában nem felugró, ezért nincs alatta sötétítés */
+.jm-panel { margin: 0; width: 100%; max-width: 420px; box-sizing: border-box; }
+.jm-panel .ds-result-bee { --size: 88px; }
+.jm-szovegfal { margin: 0; max-width: 46ch; font-size: var(--fs-s); line-height: 1.5; text-align: left; }
+
+/* játékkártya hatszöggel */
+.jm-kartya { display: flex; align-items: center; gap: var(--sp-3); box-sizing: border-box; max-width: 360px; padding: var(--sp-3) var(--sp-4); color: var(--ink); text-decoration: none; }
+.jm-kartya .ds-hex { --size: 72px; flex: none; }
+.jm-kartya-szoveg { display: grid; gap: var(--sp-1); }
+.jm-acc-sage { --acc: var(--sage); }
+
+/* matrica a tartalmon */
+.jm-targy { display: grid; justify-items: center; gap: var(--sp-1); min-width: 112px; padding: var(--sp-3); text-align: center; }
+.jm-targy img.art { width: 72px; height: 72px; vertical-align: 0; }
+.jm-btn-art img.art { width: 32px; height: 32px; }
+
+/* NEM-kép: a termékbőr (fekete, kemény, átlós árnyék, 8 px sarok) a játékban – szándékos keverés, hogy látsszon a hiba */
+.jm-rossz-termek { border: var(--bc-bw-base) solid var(--bc-black); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); }

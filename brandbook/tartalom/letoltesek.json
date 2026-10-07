@@ -17,6 +17,32 @@
    "nev": "letoltesek"
   },
   {
+   "t": "h3",
+   "x": "Sablonok"
+  },
+  {
+   "t": "gen",
+   "nev": "sablonletoltes",
+   "osszefoglalo": true
+  },
+  {
+   "t": "p",
+   "x": "Az egyes sablonok élő előnézete és a szabályok: [Social media és sablonok](social.html#sablonok), a partnereknek szóló csomag: [Partneri gyorscsomag](partnereknek.html#partneri-gyorscsomag)."
+  },
+  {
+   "t": "h2",
+   "x": "Madárkészlet",
+   "id": "madarkeszlet"
+  },
+  {
+   "t": "p",
+   "x": "A Csicsergősz-madárkák, a v4 madárrajzok és a mozgásminták. A stílus és a szabályok: [Illusztrációk](illusztraciok.html). Amíg a külső felhasználásról nincs döntés, ugyanaz érvényes rájuk, mint a méhecskékre: külső anyagban a beeco jóváhagyása kell."
+  },
+  {
+   "t": "gen",
+   "nev": "madarkeszlet"
+  },
+  {
    "t": "h2",
    "x": "Fejlesztőknek: telepítés"
   },

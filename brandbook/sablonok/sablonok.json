@@ -1,0 +1,23 @@
+{
+ "_readme": "A brand book sablonjai (9. fejezet, Partnereknek). Egy sor = egy előnézet-kártya. file: a sablon HTML-je (brandbook/sablonok/), lap: hányadik lapja (több lapos fájlnál), w×h: a kimeneti méret aránya. A build kimásolja a mappát, a {{hex:<szín>}} és {{verzio}} helyére a tokenek értékét írja, és ZIP-csomagot készít (csoportonként).",
+ "csomagok": {
+  "social": { "file": "beeco-sablonok.zip", "mappa": "beeco-sablonok", "cim": "Social- és irodai sablonok", "kepek": ["logo", "logo-sotet", "bee-happy", "bee-cheer", "bee-super", "bee-phone"] },
+  "partner": { "file": "beeco-partner-csomag.zip", "mappa": "beeco-partner-csomag", "cim": "Partneri gyorscsomag", "kepek": ["logo", "logo-sotet", "bee-happy", "bee-cheer"], "logok": true }
+ },
+ "sablonok": [
+  { "id": "poszt-1x1", "csoport": "social", "file": "poszt-1x1.html", "w": 1080, "h": 1080, "cim": "Közösségi poszt 1:1", "meret": "1080 × 1080 px", "hol": "Instagram, Facebook hírfolyam", "leiras": "Tipp, hír, felhívás: egy cím, egy-két mondat, egy CTA." },
+  { "id": "poszt-4x5", "csoport": "social", "file": "poszt-4x5.html", "w": 1080, "h": 1350, "cim": "Közösségi poszt 4:5", "meret": "1080 × 1350 px", "hol": "Instagram, Facebook hírfolyam (álló)", "leiras": "Fotós poszt: a kép a fotóbankból, alatta egy mondat." },
+  { "id": "story", "csoport": "social", "file": "story-9x16.html", "w": 1080, "h": 1920, "cim": "Story és reels 9:16", "meret": "1080 × 1920 px", "hol": "Instagram, Facebook story és reels, TikTok", "leiras": "„1 perc, 1 lépés”. A piros sávok a platform gombjai – oda ne kerüljön semmi fontos." },
+  { "id": "linkedin", "csoport": "social", "file": "linkedin.html", "w": 1200, "h": 627, "cim": "LinkedIn-poszt", "meret": "1200 × 627 px", "hol": "LinkedIn (B2B)", "leiras": "Partnereknek szól: szakmai, rövid, szóvicc nélkül." },
+  { "id": "dia-cim", "csoport": "social", "file": "dia.html", "lap": 1, "w": 1920, "h": 1080, "cim": "Prezentáció – címdia", "meret": "1920 × 1080 px (16:9)", "hol": "előadás, pályázat, partneri bemutató", "leiras": "Cím, alcím, előadó. A fájlban a tartalomdia is benne van." },
+  { "id": "dia-tartalom", "csoport": "social", "file": "dia.html", "lap": 2, "w": 1920, "h": 1080, "cim": "Prezentáció – tartalomdia", "meret": "1920 × 1080 px (16:9)", "hol": "előadás, pályázat, partneri bemutató", "leiras": "Egy dia, egy gondolat: legfeljebb négy pont és egy kiemelés." },
+  { "id": "plakat-a4", "csoport": "social", "file": "plakat-a4.html", "w": 210, "h": 297, "cim": "Plakát A4", "meret": "210 × 297 mm", "hol": "esemény, közösségi tér, iroda", "leiras": "Esemény-plakát: mikor, hol, mit hozz – és egy hívómondat." },
+  { "id": "email-alairas", "csoport": "social", "file": "email-alairas.html", "w": 560, "h": 176, "cim": "E-mail-aláírás", "meret": "560 × 176 px", "hol": "levelező (Gmail, Outlook)", "leiras": "Név, szerep, elérhetőség, szlogen – a mintát írd át a sajátodra." },
+  { "id": "nevjegy-elo", "csoport": "social", "file": "nevjegy.html", "lap": 1, "w": 85, "h": 55, "cim": "Névjegy – előlap", "meret": "85 × 55 mm", "hol": "nyomda", "leiras": "Logó és szlogen. A fájlban a hátlap is benne van." },
+  { "id": "nevjegy-hat", "csoport": "social", "file": "nevjegy.html", "lap": 2, "w": 85, "h": 55, "cim": "Névjegy – hátlap", "meret": "85 × 55 mm", "hol": "nyomda", "leiras": "Név, szerep, elérhetőség – mintaadatokkal." },
+  { "id": "partner-ajtomatrica", "csoport": "partner", "korrigalando": true, "file": "partner-ajtomatrica.html", "w": 150, "h": 150, "cim": "Ajtómatrica", "meret": "150 × 150 mm", "hol": "a partner bejárata, kirakata", "leiras": "„beeco-partner vagyunk” – a végleges méretet és szöveget a beeco adja." },
+  { "id": "partner-plakat-a4", "csoport": "partner", "korrigalando": true, "file": "partner-plakat-a4.html", "w": 210, "h": 297, "cim": "Partneri plakát A4", "meret": "210 × 297 mm", "hol": "a partner üzlete, pultja", "leiras": "Közös logósor, a partner neve, QR-kód helye az app letöltéséhez." },
+  { "id": "partner-poszt-1x1", "csoport": "partner", "korrigalando": true, "file": "partner-poszt-1x1.html", "w": 1080, "h": 1080, "cim": "Partneri közösségi poszt", "meret": "1080 × 1080 px", "hol": "a partner és a beeco közösségi oldalai", "leiras": "„Új tag a rajban!” – bejelentő poszt a közös logósorral." },
+  { "id": "partner-osszefoglalo", "csoport": "partner", "osszefoglalo": true, "file": "partner-osszefoglalo.html", "w": 210, "h": 297, "cim": "Egyoldalas összefoglaló", "meret": "A4, nyomtatható", "hol": "a partnernek átadva, papíron vagy PDF-ben", "leiras": "Logó, színek, betűk, a közös megjelenés szabályai és a jóváhagyás – egy lapon." }
+ ]
+}

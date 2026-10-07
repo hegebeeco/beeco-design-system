@@ -148,11 +148,129 @@
    ]
   },
   {
+   "t": "h2",
+   "x": "Partneri gyorscsomag"
+  },
+  {
+   "t": "lead",
+   "x": "Minden, ami a közös anyaghoz kell, egy helyen: logó, színek, a közös megjelenés szabályai, egy nyomtatható összefoglaló és a partneri sablonok."
+  },
+  {
+   "t": "gen",
+   "nev": "sablonletoltes",
+   "csoport": "partner",
+   "osszefoglalo": true
+  },
+  {
+   "t": "p",
+   "x": "A csomagban: a két logó (WebP), a színkódok, az egyoldalas összefoglaló és a három partneri sablon szerkeszthető HTML-ként, a betűkkel együtt. Kicsomagolás után a sablon böngészőben nyílik; a szöveg átírható, a lap PDF-be menthető."
+  },
+  {
+   "t": "h3",
+   "x": "Logó"
+  },
+  {
+   "t": "gen",
+   "nev": "partnerlogok"
+  },
+  {
+   "t": "hianyzik",
+   "cim": "Vektoros logó",
+   "x": "Nyomdához és nagy felülethez SVG vagy PDF kell – **hamarosan**. Addig a WebP-t használd, és nagy méretű nyomtatás előtt kérd a beecótól a vektoros fájlt."
+  },
+  {
+   "t": "h3",
+   "x": "Színek"
+  },
+  {
+   "t": "gen",
+   "nev": "partnerszinek"
+  },
+  {
+   "t": "szabaly",
+   "cim": "A méz az egyetlen hangsúly",
+   "elemek": [
+    "A méz (`--bc-honey`) a beeco hangsúlyszíne – rajta a szöveg mindig fekete.",
+    "A beeco logója krém vagy fehér alapon áll; sötét alapon a sötét változat."
+   ],
+   "forras": [
+    "docs/termek-arculat.md 1–2., 9."
+   ]
+  },
+  {
+   "t": "h3",
+   "x": "A közös megjelenés röviden"
+  },
+  {
+   "t": "javaslat",
+   "cim": "Öt pont, amit a partner megkap",
+   "elemek": [
+    "Csak a hivatalos logófájlt használd, változtatás nélkül.",
+    "A két logó egyforma magas, egy vonalban, köztük hely vagy vékony elválasztó vonal.",
+    "A beeco logó a saját színeiben marad; a méhecske csak kész képként, a beecótól.",
+    "Szövegben: „a beeco partnere”, „beeco-partner” – a beeco mindig kisbetűvel.",
+    "A kész anyag a beeco jóváhagyása után jelenhet meg."
+   ],
+   "forras": [
+    "a jóváhagyási szabály: docs/termek-arculat.md 9.",
+    "a co-branding pontok: lent, „Közös megjelenés (co-branding)” (jóváhagyásra vár)"
+   ]
+  },
+  {
+   "t": "h3",
+   "x": "Egyoldalas összefoglaló"
+  },
+  {
+   "t": "p",
+   "x": "A fenti szabályok egy A4-es lapon – a partnernek átadható, papíron vagy PDF-ben. Tervezet: a „jóváhagyásra vár” pontokat a beeco véglegesíti."
+  },
+  {
+   "t": "gen",
+   "nev": "sablonok",
+   "csoport": "partner",
+   "csak": [
+    "partner-osszefoglalo"
+   ]
+  },
+  {
+   "t": "h3",
+   "x": "Partneri sablonok"
+  },
+  {
+   "t": "hianyzik",
+   "cim": "Minta – korrigálandó",
+   "x": "Az ajtómatrica, a plakát és a közösségi poszt **placeholder**: a végleges szöveget, méretet és elrendezést a beeco adja. A „Minta – korrigálandó” jelzés a nyomtatott lapon is látszik, hogy véletlenül se kerüljön ki."
+  },
+  {
+   "t": "gen",
+   "nev": "sablonok",
+   "csoport": "partner",
+   "csak": [
+    "partner-ajtomatrica",
+    "partner-plakat-a4",
+    "partner-poszt-1x1"
+   ]
+  },
+  {
+   "t": "hianyzik",
+   "cim": "Ami még nincs",
+   "elemek": [
+    "a partneri sablonok végleges szövege és mérete (most placeholder, „Minta – korrigálandó”)",
+    "a partner vállalásai és a jóváhagyás határideje véglegesen (fent vázlat, korrigálandó)",
+    "a hivatalos sajtócsomag (fent vázlat, korrigálandó)",
+    "vektoros logó (SVG vagy PDF) a gyorscsomagba"
+   ]
+  },
+  {
    "t": "tovabb",
    "linkek": [
     {
      "href": "marka.html",
      "x": "Tovább: Márka"
+    },
+    {
+     "href": "social.html",
+     "x": "Social media és sablonok"
     },
     {
      "href": "letoltesek.html",

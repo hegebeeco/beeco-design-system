@@ -3,3 +3,6 @@ node_modules/
 *.log
 dist/meh/nezo.png
 _brandbook/
+
+# a Csicsergősz-madárkák a csapat rajzai: nem kerülnek a nyilvános repóba (a helyi, jelszavas kiadás tartalmazza őket)
+brandbook/illusztraciok/madarkak/
