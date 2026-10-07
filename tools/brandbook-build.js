@@ -57,14 +57,17 @@ const FEJEZETEK = [
   { id: 'feluletek', szam: 5, cim: 'Hat felület' },
   { id: 'elemek', szam: 6, cim: 'Elemek' },
   { id: 'kepek', szam: 7, cim: 'Képek' },
-  { id: 'partnereknek', szam: 8, cim: 'Partnereknek' },
-  { id: 'onkenteseknek', szam: 9, cim: 'Önkénteseknek' },
-  { id: 'letoltesek', szam: 10, cim: 'Letöltések' },
+  { id: 'illusztraciok', szam: 8, cim: 'Illusztrációk' },
+  { id: 'social', szam: 9, cim: 'Social media és sablonok' },
+  { id: 'partnereknek', szam: 10, cim: 'Partnereknek' },
+  { id: 'onkenteseknek', szam: 11, cim: 'Önkénteseknek' },
+  { id: 'hozzaferhetoseg', szam: 12, cim: 'Hozzáférhetőség' },
+  { id: 'letoltesek', szam: 13, cim: 'Letöltések' },
 ].map(f => ({ ...f, file: f.file || `${f.id}.html` }));
 const UTAK = {
-  onkentes: { nev: 'Önkéntes', leiras: 'Csatlakoztál a kaptárhoz: így szólunk, így nézünk ki, ezt használhatod.', lepesek: ['onkenteseknek', 'marka', 'hang', 'kepek', 'letoltesek'] },
-  partner: { nev: 'Partner', leiras: 'Együtt dolgozunk: a logó, a méhecske és a közös anyagok szabályai.', lepesek: ['partnereknek', 'marka', 'hang', 'kepek', 'letoltesek'] },
-  fejleszto: { nev: 'Fejlesztő, tervező', leiras: 'Képernyőt, oldalt vagy játékot építesz: tokenek, bőrök, elemek.', lepesek: ['alapok', 'borok', 'feluletek', 'elemek', 'hang', 'letoltesek'] },
+  onkentes: { nev: 'Önkéntes', leiras: 'Csatlakoztál a kaptárhoz: így szólunk, így nézünk ki, ezt használhatod.', lepesek: ['onkenteseknek', 'marka', 'hang', 'kepek', 'illusztraciok', 'social', 'hozzaferhetoseg', 'letoltesek'] },
+  partner: { nev: 'Partner', leiras: 'Együtt dolgozunk: a logó, a méhecske és a közös anyagok szabályai.', lepesek: ['partnereknek', 'marka', 'hang', 'kepek', 'social', 'letoltesek'] },
+  fejleszto: { nev: 'Fejlesztő, tervező', leiras: 'Képernyőt, oldalt vagy játékot építesz: tokenek, bőrök, elemek.', lepesek: ['alapok', 'borok', 'feluletek', 'elemek', 'illusztraciok', 'hang', 'hozzaferhetoseg', 'letoltesek'] },
 };
 const tartalom = Object.fromEntries(fs.readdirSync(path.join(BB, 'tartalom')).filter(f => f.endsWith('.json'))
   .map(f => [f.replace(/\.json$/, ''), JSON.parse(fs.readFileSync(path.join(BB, 'tartalom', f), 'utf8'))]));
