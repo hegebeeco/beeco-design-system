@@ -1,9 +1,9 @@
-/* beeco design system 1.48.2 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.50.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   InfoCard,
   InfoGrid
-} from "../reszek/chunk-7KU6NBTK.js";
-import "../reszek/chunk-KBQVEJSX.js";
+} from "../reszek/chunk-SNY4RCKM.js";
+import "../reszek/chunk-5NOEXS6K.js";
 export {
   InfoCard,
   InfoGrid
