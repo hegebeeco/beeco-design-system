@@ -1,0 +1,7399 @@
+{
+ "_readme": "GENERÁLT (node tools/api-check.js --write) – a DS nyilvános felülete. Eltűnő név = törő változás (docs/ai-munkamod.md 4.).",
+ "react": {
+  "Accordion": {
+   "fajta": "komponens",
+   "props": {
+    "defaultValue": {
+     "t": "string | string[] | undefined"
+    },
+    "headingLevel": {
+     "t": "2 | 3 | 4 | undefined"
+    },
+    "items": {
+     "t": "AccordionItem[]",
+     "kotelezo": true
+    },
+    "onValueChange": {
+     "t": "((v: string) => void) | ((v: string[]) => void) | undefined"
+    },
+    "type": {
+     "t": "\"single\" | \"multiple\" | undefined"
+    },
+    "value": {
+     "t": "string | string[] | undefined"
+    }
+   }
+  },
+  "AccordionItem": {
+   "fajta": "tipus"
+  },
+  "AccordionProps": {
+   "fajta": "tipus"
+  },
+  "accuracyText": {
+   "fajta": "fuggveny"
+  },
+  "ActivityChange": {
+   "fajta": "tipus"
+  },
+  "ActivityItem": {
+   "fajta": "tipus"
+  },
+  "AddressHit": {
+   "fajta": "tipus"
+  },
+  "AddressSearch": {
+   "fajta": "komponens",
+   "props": {
+    "debounceMs": {
+     "t": "number | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "help": {
+     "t": "ReactNode"
+    },
+    "label": {
+     "t": "string | undefined"
+    },
+    "minChars": {
+     "t": "number | undefined"
+    },
+    "onPick": {
+     "t": "(hit: AddressHit) => void",
+     "kotelezo": true
+    },
+    "search": {
+     "t": "(query: string, signal: AbortSignal) => Promise<readonly AddressHit[]>",
+     "kotelezo": true
+    }
+   }
+  },
+  "AddressSearchProps": {
+   "fajta": "tipus"
+  },
+  "APP_SHELL_LABELS_HU": {
+   "fajta": "ertek"
+  },
+  "applyTheme": {
+   "fajta": "fuggveny"
+  },
+  "AppShell": {
+   "fajta": "komponens",
+   "props": {
+    "account": {
+     "t": "ReactNode"
+    },
+    "brand": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "brandCompact": {
+     "t": "ReactNode"
+    },
+    "children": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "collapseKey": {
+     "t": "string | undefined"
+    },
+    "collapsible": {
+     "t": "boolean | undefined"
+    },
+    "density": {
+     "t": "\"default\" | \"compact\" | undefined"
+    },
+    "labels": {
+     "t": "Partial<AppShellLabels> | undefined"
+    },
+    "nav": {
+     "t": "NavGroup[]",
+     "kotelezo": true
+    },
+    "navLabel": {
+     "t": "string | undefined"
+    },
+    "pattern": {
+     "t": "\"honeycomb\" | undefined"
+    },
+    "renderLink": {
+     "t": "RenderLink | undefined"
+    },
+    "season": {
+     "t": "\"auto\" | Evszak | undefined"
+    },
+    "skipLabel": {
+     "t": "string | undefined"
+    },
+    "topbar": {
+     "t": "ReactNode"
+    }
+   }
+  },
+  "AppShellLabels": {
+   "fajta": "tipus"
+  },
+  "AppShellProps": {
+   "fajta": "tipus"
+  },
+  "AspectPreset": {
+   "fajta": "tipus"
+  },
+  "Audience": {
+   "fajta": "tipus"
+  },
+  "AudienceBuilder": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "estimate": {
+     "t": "AudienceEstimate | undefined"
+    },
+    "fields": {
+     "t": "readonly AudienceField[]",
+     "kotelezo": true
+    },
+    "help": {
+     "t": "ReactNode"
+    },
+    "label": {
+     "t": "string | undefined"
+    },
+    "maxRules": {
+     "t": "number | undefined"
+    },
+    "onChange": {
+     "t": "(value: Audience) => void",
+     "kotelezo": true
+    },
+    "showErrors": {
+     "t": "boolean | undefined"
+    },
+    "value": {
+     "t": "Audience",
+     "kotelezo": true
+    }
+   }
+  },
+  "AudienceBuilderProps": {
+   "fajta": "tipus"
+  },
+  "AudienceEstimate": {
+   "fajta": "tipus"
+  },
+  "AudienceField": {
+   "fajta": "tipus"
+  },
+  "AudienceOp": {
+   "fajta": "tipus"
+  },
+  "audienceProblems": {
+   "fajta": "fuggveny"
+  },
+  "AudienceRule": {
+   "fajta": "tipus"
+  },
+  "Avatar": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "decorative": {
+     "t": "boolean | undefined"
+    },
+    "name": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "shape": {
+     "t": "\"circle\" | \"square\" | undefined"
+    },
+    "size": {
+     "t": "24 | 32 | 40 | 64 | undefined"
+    },
+    "src": {
+     "t": "string | null | undefined"
+    }
+   }
+  },
+  "AvatarProps": {
+   "fajta": "tipus"
+  },
+  "BarChart": {
+   "fajta": "komponens",
+   "props": {
+    "clipOutlier": {
+     "t": "boolean | undefined"
+    },
+    "data": {
+     "t": "ChartData",
+     "kotelezo": true
+    },
+    "height": {
+     "t": "number | undefined"
+    },
+    "label": {
+     "t": "string | undefined"
+    },
+    "orientation": {
+     "t": "\"vertical\" | \"horizontal\" | undefined"
+    },
+    "valueLabels": {
+     "t": "boolean | undefined"
+    }
+   }
+  },
+  "BarChartProps": {
+   "fajta": "tipus"
+  },
+  "Bee": {
+   "fajta": "komponens",
+   "props": {
+    "buzz": {
+     "t": "boolean | undefined"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "label": {
+     "t": "string | undefined"
+    },
+    "size": {
+     "t": "\"s\" | \"m\" | \"l\" | undefined"
+    },
+    "szerep": {
+     "t": "\"hazigazda\" | \"kalauz\" | \"futar\" | \"szurkolo\" | \"bajnok\" | \"piheno\" | \"gondolkodo\" | \"hirvivo\" | \"halas\" | \"kacsinto\" | \"szomoru\" | \"tevekeny\"",
+     "kotelezo": true
+    }
+   }
+  },
+  "BeeMoment": {
+   "fajta": "komponens",
+   "props": {
+    "action": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "inline": {
+     "t": "boolean | undefined"
+    },
+    "live": {
+     "t": "\"status\" | \"alert\" | undefined"
+    },
+    "pillanat": {
+     "t": "\"udvozles\" | \"mentve\" | \"merfoldko\" | \"ures\" | \"nincs-talalat\" | \"toltes\" | \"toltes-hosszu\" | \"visszavonhato\" | \"szerverhiba\" | \"munkamenet-lejart\" | \"offlin..."
+    },
+    "poen": {
+     "t": "string | undefined"
+    },
+    "sima": {
+     "t": "ReactNode"
+    },
+    "szerep": {
+     "t": "\"hazigazda\" | \"kalauz\" | \"futar\" | \"szurkolo\" | \"bajnok\" | \"piheno\" | \"gondolkodo\" | \"hirvivo\" | \"halas\" | \"kacsinto\" | \"szomoru\" | \"tevekeny\" | undefined"
+    },
+    "valtozat": {
+     "t": "number | undefined"
+    }
+   }
+  },
+  "BeeMomentProps": {
+   "fajta": "tipus"
+  },
+  "BeeProps": {
+   "fajta": "tipus"
+  },
+  "BeeSprite": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "label": {
+     "t": "string | undefined"
+    },
+    "replay": {
+     "t": "unknown"
+    },
+    "size": {
+     "t": "\"s\" | \"m\" | \"l\" | undefined"
+    },
+    "szereplo": {
+     "t": "SpriteSzereplo",
+     "kotelezo": true
+    }
+   }
+  },
+  "BeeSpriteProps": {
+   "fajta": "tipus"
+  },
+  "Breadcrumbs": {
+   "fajta": "komponens",
+   "props": {
+    "items": {
+     "t": "Crumb[]",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string | undefined"
+    },
+    "maxVisible": {
+     "t": "number | undefined"
+    },
+    "renderLink": {
+     "t": "RenderLink | undefined"
+    }
+   }
+  },
+  "BreadcrumbsProps": {
+   "fajta": "tipus"
+  },
+  "BulkBar": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "ReactNode"
+    },
+    "count": {
+     "t": "number",
+     "kotelezo": true
+    },
+    "itemLabel": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "max": {
+     "t": "number | undefined"
+    },
+    "notice": {
+     "t": "string | undefined"
+    },
+    "onClear": {
+     "t": "() => void",
+     "kotelezo": true
+    }
+   }
+  },
+  "BulkBarProps": {
+   "fajta": "tipus"
+  },
+  "Button": {
+   "fajta": "komponens",
+   "props": {
+    "block": {
+     "t": "boolean | undefined"
+    },
+    "busy": {
+     "t": "boolean | undefined"
+    },
+    "done": {
+     "t": "boolean | undefined"
+    },
+    "icon": {
+     "t": "ReactNode"
+    },
+    "size": {
+     "t": "\"sm\" | \"md\" | \"lg\" | undefined"
+    },
+    "variant": {
+     "t": "\"primary\" | \"secondary\" | \"ghost\" | \"danger\" | undefined"
+    }
+   },
+   "htmlAttr": true
+  },
+  "ButtonProps": {
+   "fajta": "tipus"
+  },
+  "CAL_KINDS": {
+   "fajta": "ertek"
+  },
+  "Calendar": {
+   "fajta": "komponens",
+   "props": {
+    "max": {
+     "t": "string | undefined"
+    },
+    "min": {
+     "t": "string | undefined"
+    },
+    "onPick": {
+     "t": "(iso: string) => void",
+     "kotelezo": true
+    },
+    "selected": {
+     "t": "{ start: string | null; end?: string | null | undefined; }",
+     "kotelezo": true
+    }
+   }
+  },
+  "CalEvent": {
+   "fajta": "tipus"
+  },
+  "CalKind": {
+   "fajta": "tipus"
+  },
+  "CalKindDef": {
+   "fajta": "tipus"
+  },
+  "CalTone": {
+   "fajta": "tipus"
+  },
+  "CaptionTrack": {
+   "fajta": "tipus"
+  },
+  "celebrate": {
+   "fajta": "fuggveny"
+  },
+  "ChartCard": {
+   "fajta": "komponens",
+   "props": {
+    "cb": {
+     "t": "boolean | undefined"
+    },
+    "children": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "data": {
+     "t": "ChartData",
+     "kotelezo": true
+    },
+    "emptyAction": {
+     "t": "ReactNode"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "headingLevel": {
+     "t": "2 | 3 | 4 | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "howToRead": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "period": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "rememberKey": {
+     "t": "string | undefined"
+    },
+    "sample": {
+     "t": "boolean | undefined"
+    },
+    "seriesToggle": {
+     "t": "boolean | undefined"
+    },
+    "source": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "status": {
+     "t": "\"ready\" | \"loading\" | \"error\" | undefined"
+    },
+    "title": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "unit": {
+     "t": "string",
+     "kotelezo": true
+    }
+   }
+  },
+  "ChartCardProps": {
+   "fajta": "tipus"
+  },
+  "ChartData": {
+   "fajta": "tipus"
+  },
+  "ChartLegend": {
+   "fajta": "komponens",
+   "props": {
+    "data": {
+     "t": "ChartData",
+     "kotelezo": true
+    },
+    "kind": {
+     "t": "\"bar\" | \"line\"",
+     "kotelezo": true
+    },
+    "onToggle": {
+     "t": "((key: string) => void) | undefined"
+    }
+   }
+  },
+  "ChartPalette": {
+   "fajta": "tipus"
+  },
+  "ChartSeries": {
+   "fajta": "tipus"
+  },
+  "ChartTable": {
+   "fajta": "komponens",
+   "props": {
+    "caption": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "data": {
+     "t": "ChartData",
+     "kotelezo": true
+    }
+   }
+  },
+  "Checkbox": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    }
+   },
+   "htmlAttr": true
+  },
+  "CheckboxInput": {
+   "fajta": "komponens",
+   "props": {
+    "indeterminate": {
+     "t": "boolean | undefined"
+    }
+   },
+   "htmlAttr": true
+  },
+  "checkFiles": {
+   "fajta": "fuggveny"
+  },
+  "cimkeIgazitas": {
+   "fajta": "fuggveny"
+  },
+  "cimkeTordeles": {
+   "fajta": "fuggveny"
+  },
+  "Clamp": {
+   "fajta": "komponens",
+   "props": {
+    "as": {
+     "t": "\"p\" | \"h3\" | \"span\" | undefined"
+    },
+    "children": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "k": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "lines": {
+     "t": "number",
+     "kotelezo": true
+    },
+    "onCut": {
+     "t": "((cut: boolean) => void) | undefined"
+    },
+    "placeholder": {
+     "t": "string",
+     "kotelezo": true
+    }
+   }
+  },
+  "clampPage": {
+   "fajta": "fuggveny"
+  },
+  "ClampProps": {
+   "fajta": "tipus"
+  },
+  "clusterHtml": {
+   "fajta": "fuggveny"
+  },
+  "clusterIcon": {
+   "fajta": "fuggveny"
+  },
+  "clusterTier": {
+   "fajta": "fuggveny"
+  },
+  "ColumnDef": {
+   "fajta": "tipus"
+  },
+  "ColumnResizer": {
+   "fajta": "komponens",
+   "props": {
+    "header": {
+     "t": "Header<T, unknown>",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    }
+   }
+  },
+  "Combobox": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "count": {
+     "t": "{ value: number; max: number; unit?: string | undefined; } | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "filter": {
+     "t": "boolean | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "loadError": {
+     "t": "string | undefined"
+    },
+    "loading": {
+     "t": "boolean | undefined"
+    },
+    "max": {
+     "t": "number | undefined"
+    },
+    "maxChips": {
+     "t": "number | undefined"
+    },
+    "minChars": {
+     "t": "number | undefined"
+    },
+    "multiple": {
+     "t": "boolean | undefined"
+    },
+    "notice": {
+     "t": "string | undefined"
+    },
+    "onChange": {
+     "t": "((v: string | null) => void) | ((v: string[]) => void)",
+     "kotelezo": true
+    },
+    "onCreate": {
+     "t": "((label: string) => string | Promise<string>) | undefined"
+    },
+    "onQueryChange": {
+     "t": "((q: string) => void) | undefined"
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "options": {
+     "t": "readonly ComboOption[]",
+     "kotelezo": true
+    },
+    "placeholder": {
+     "t": "string | undefined"
+    },
+    "range": {
+     "t": "string | undefined"
+    },
+    "required": {
+     "t": "boolean | undefined"
+    },
+    "value": {
+     "t": "string | string[] | null",
+     "kotelezo": true
+    }
+   }
+  },
+  "ComboOption": {
+   "fajta": "tipus"
+  },
+  "COMMAND_PALETTE_LABELS_HU": {
+   "fajta": "ertek"
+  },
+  "CommandGroup": {
+   "fajta": "tipus"
+  },
+  "commandHotkeyLabel": {
+   "fajta": "fuggveny"
+  },
+  "CommandItem": {
+   "fajta": "tipus"
+  },
+  "CommandPalette": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "description": {
+     "t": "ReactNode"
+    },
+    "emptyText": {
+     "t": "((query: string) => ReactNode) | undefined"
+    },
+    "error": {
+     "t": "ReactNode"
+    },
+    "groups": {
+     "t": "readonly CommandGroup[]",
+     "kotelezo": true
+    },
+    "highlight": {
+     "t": "boolean | undefined"
+    },
+    "hint": {
+     "t": "ReactNode"
+    },
+    "hotkey": {
+     "t": "boolean | undefined"
+    },
+    "labels": {
+     "t": "Partial<CommandPaletteLabels> | undefined"
+    },
+    "minChars": {
+     "t": "number | undefined"
+    },
+    "onOpenChange": {
+     "t": "(open: boolean) => void",
+     "kotelezo": true
+    },
+    "onQueryChange": {
+     "t": "(query: string) => void",
+     "kotelezo": true
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "onSelect": {
+     "t": "(item: CommandItem, opts: { newTab: boolean; }) => void",
+     "kotelezo": true
+    },
+    "open": {
+     "t": "boolean",
+     "kotelezo": true
+    },
+    "query": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "status": {
+     "t": "\"ready\" | \"loading\" | \"error\" | undefined"
+    },
+    "tips": {
+     "t": "boolean | undefined"
+    }
+   }
+  },
+  "CommandPaletteLabels": {
+   "fajta": "tipus"
+  },
+  "CommandPaletteProps": {
+   "fajta": "tipus"
+  },
+  "CompareMerge": {
+   "fajta": "komponens",
+   "props": {
+    "choices": {
+     "t": "Record<string, string>",
+     "kotelezo": true
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "consequence": {
+     "t": "ReactNode"
+    },
+    "fields": {
+     "t": "MergeFieldDef[]",
+     "kotelezo": true
+    },
+    "onChoicesChange": {
+     "t": "(choices: Record<string, string>) => void",
+     "kotelezo": true
+    },
+    "onMerge": {
+     "t": "(result: Record<string, unknown>, choices: Record<string, string>) => void | Promise<void>",
+     "kotelezo": true
+    },
+    "onSurvivorChange": {
+     "t": "((id: string) => void) | undefined"
+    },
+    "records": {
+     "t": "MergeRecord[]",
+     "kotelezo": true
+    },
+    "survivor": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "CompareMergeProps": {
+   "fajta": "tipus"
+  },
+  "ConfirmDialog": {
+   "fajta": "komponens",
+   "props": {
+    "cancelLabel": {
+     "t": "string | undefined"
+    },
+    "children": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "confirmDisabled": {
+     "t": "boolean | undefined"
+    },
+    "confirmIcon": {
+     "t": "ReactNode"
+    },
+    "confirmLabel": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "danger": {
+     "t": "boolean | undefined"
+    },
+    "errorText": {
+     "t": "((error: unknown) => string) | undefined"
+    },
+    "extra": {
+     "t": "ReactNode"
+    },
+    "initialFocus": {
+     "t": "\"cancel\" | (() => HTMLElement | null) | undefined"
+    },
+    "onConfirm": {
+     "t": "() => void | Promise<void>",
+     "kotelezo": true
+    },
+    "onOpenChange": {
+     "t": "(open: boolean) => void",
+     "kotelezo": true
+    },
+    "open": {
+     "t": "boolean",
+     "kotelezo": true
+    },
+    "size": {
+     "t": "\"sm\" | \"md\" | undefined"
+    },
+    "title": {
+     "t": "string",
+     "kotelezo": true
+    }
+   }
+  },
+  "ConfirmDialogProps": {
+   "fajta": "tipus"
+  },
+  "CopyButton": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "showValue": {
+     "t": "boolean | undefined"
+    },
+    "value": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "variant": {
+     "t": "\"button\" | \"icon\" | undefined"
+    },
+    "what": {
+     "t": "string",
+     "kotelezo": true
+    }
+   }
+  },
+  "CopyButtonProps": {
+   "fajta": "tipus"
+  },
+  "copyText": {
+   "fajta": "fuggveny"
+  },
+  "CouponPreview": {
+   "fajta": "tipus"
+  },
+  "createColumnHelper": {
+   "fajta": "fuggveny"
+  },
+  "CropArea": {
+   "fajta": "tipus"
+  },
+  "CropDialog": {
+   "fajta": "komponens",
+   "props": {
+    "crop": {
+     "t": "UploadCrop",
+     "kotelezo": true
+    },
+    "file": {
+     "t": "File | null",
+     "kotelezo": true
+    },
+    "onDone": {
+     "t": "(cropped: File) => void",
+     "kotelezo": true
+    },
+    "onSkip": {
+     "t": "(file: File) => void",
+     "kotelezo": true
+    },
+    "position": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "cropToFile": {
+   "fajta": "fuggveny"
+  },
+  "Crumb": {
+   "fajta": "tipus"
+  },
+  "cryptoIndex": {
+   "fajta": "fuggveny"
+  },
+  "cx": {
+   "fajta": "fuggveny"
+  },
+  "Dashboard": {
+   "fajta": "komponens",
+   "props": {
+    "actions": {
+     "t": "ReactNode"
+    },
+    "breadcrumbs": {
+     "t": "Crumb[] | undefined"
+    },
+    "charts": {
+     "t": "ReactNode"
+    },
+    "chartsTitle": {
+     "t": "string | undefined"
+    },
+    "children": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "description": {
+     "t": "ReactNode"
+    },
+    "docTitle": {
+     "t": "string | undefined"
+    },
+    "docTitleSuffix": {
+     "t": "string | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "moment": {
+     "t": "BeeMomentProps | undefined"
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "period": {
+     "t": "ReactNode"
+    },
+    "printable": {
+     "t": "boolean | undefined"
+    },
+    "renderLink": {
+     "t": "RenderLink | undefined"
+    },
+    "skipLabel": {
+     "t": "string | undefined"
+    },
+    "standalone": {
+     "t": "boolean | undefined"
+    },
+    "stats": {
+     "t": "DashboardStat[] | undefined"
+    },
+    "statsTitle": {
+     "t": "string | undefined"
+    },
+    "status": {
+     "t": "\"ready\" | \"error\" | \"forbidden\" | undefined"
+    },
+    "title": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "toolbar": {
+     "t": "ReactNode"
+    },
+    "what": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "DashboardProps": {
+   "fajta": "tipus"
+  },
+  "DashboardStat": {
+   "fajta": "tipus"
+  },
+  "DataColumnMeta": {
+   "fajta": "tipus"
+  },
+  "DataNote": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "title": {
+     "t": "string | undefined"
+    },
+    "tone": {
+     "t": "\"info\" | \"warning\" | undefined"
+    }
+   }
+  },
+  "DataNoteProps": {
+   "fajta": "tipus"
+  },
+  "DataState": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "ReactNode"
+    },
+    "empty": {
+     "t": "ReactNode"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "retrying": {
+     "t": "boolean | undefined"
+    },
+    "skeleton": {
+     "t": "ReactNode"
+    },
+    "status": {
+     "t": "DataStatus",
+     "kotelezo": true
+    },
+    "what": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "DataStateProps": {
+   "fajta": "tipus"
+  },
+  "DataStatus": {
+   "fajta": "tipus"
+  },
+  "DataTable": {
+   "fajta": "komponens",
+   "props": {
+    "bare": {
+     "t": "boolean | undefined"
+    },
+    "bulkActions": {
+     "t": "((ids: string[], clear: () => void) => ReactNode) | undefined"
+    },
+    "canExpand": {
+     "t": "((row: T) => boolean) | undefined"
+    },
+    "caption": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "captionVisible": {
+     "t": "boolean | undefined"
+    },
+    "columns": {
+     "t": "ColumnDef<T, any>[]",
+     "kotelezo": true
+    },
+    "data": {
+     "t": "T[]",
+     "kotelezo": true
+    },
+    "defaultDensity": {
+     "t": "\"comfortable\" | \"dense\" | undefined"
+    },
+    "density": {
+     "t": "\"comfortable\" | \"dense\" | undefined"
+    },
+    "densityToggle": {
+     "t": "boolean | undefined"
+    },
+    "empty": {
+     "t": "ReactNode"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "getRowId": {
+     "t": "(row: T) => string",
+     "kotelezo": true
+    },
+    "itemLabel": {
+     "t": "string | undefined"
+    },
+    "maxHeight": {
+     "t": "string | undefined"
+    },
+    "maxSelection": {
+     "t": "number | undefined"
+    },
+    "mobile": {
+     "t": "\"scroll\" | \"cards\" | undefined"
+    },
+    "onDensityChange": {
+     "t": "((d: \"comfortable\" | \"dense\") => void) | undefined"
+    },
+    "onPaginationChange": {
+     "t": "((p: PaginationState) => void) | undefined"
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "onSelectionChange": {
+     "t": "((s: RowSelectionState) => void) | undefined"
+    },
+    "onSortingChange": {
+     "t": "((s: SortingState) => void) | undefined"
+    },
+    "pageSizes": {
+     "t": "number[] | undefined"
+    },
+    "pagination": {
+     "t": "PaginationState | undefined"
+    },
+    "refreshing": {
+     "t": "boolean | undefined"
+    },
+    "renderExpanded": {
+     "t": "((row: T) => ReactNode) | undefined"
+    },
+    "resizable": {
+     "t": "boolean | undefined"
+    },
+    "rowLabel": {
+     "t": "(row: T) => string",
+     "kotelezo": true
+    },
+    "selectable": {
+     "t": "boolean | undefined"
+    },
+    "selection": {
+     "t": "RowSelectionState | undefined"
+    },
+    "serverRowCount": {
+     "t": "number | undefined"
+    },
+    "sorting": {
+     "t": "SortingState | undefined"
+    },
+    "status": {
+     "t": "\"ready\" | \"loading\" | \"error\" | \"forbidden\" | undefined"
+    },
+    "toolbar": {
+     "t": "ReactNode"
+    }
+   }
+  },
+  "DataTableProps": {
+   "fajta": "tipus"
+  },
+  "DatePicker": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "count": {
+     "t": "{ value: number; max: number; unit?: string | undefined; } | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "max": {
+     "t": "string | undefined"
+    },
+    "min": {
+     "t": "string | undefined"
+    },
+    "notice": {
+     "t": "string | undefined"
+    },
+    "onChange": {
+     "t": "(iso: string | null) => void",
+     "kotelezo": true
+    },
+    "range": {
+     "t": "string | undefined"
+    },
+    "required": {
+     "t": "boolean | undefined"
+    },
+    "time": {
+     "t": "{ value: string | null; onChange: (hhmm: string | null) => void; label?: string | undefined; } | undefined"
+    },
+    "value": {
+     "t": "string | null",
+     "kotelezo": true
+    }
+   }
+  },
+  "DateRange": {
+   "fajta": "tipus"
+  },
+  "DateRangePicker": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "count": {
+     "t": "{ value: number; max: number; unit?: string | undefined; } | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "max": {
+     "t": "string | undefined"
+    },
+    "min": {
+     "t": "string | undefined"
+    },
+    "notice": {
+     "t": "string | undefined"
+    },
+    "onChange": {
+     "t": "(r: DateRange) => void",
+     "kotelezo": true
+    },
+    "range": {
+     "t": "string | undefined"
+    },
+    "required": {
+     "t": "boolean | undefined"
+    },
+    "value": {
+     "t": "DateRange",
+     "kotelezo": true
+    }
+   }
+  },
+  "DayGroup": {
+   "fajta": "tipus"
+  },
+  "DayHours": {
+   "fajta": "tipus"
+  },
+  "describeAudience": {
+   "fajta": "fuggveny"
+  },
+  "DetailAction": {
+   "fajta": "tipus"
+  },
+  "DetailActions": {
+   "fajta": "komponens",
+   "props": {
+    "actions": {
+     "t": "DetailAction[]",
+     "kotelezo": true
+    },
+    "subject": {
+     "t": "string",
+     "kotelezo": true
+    }
+   }
+  },
+  "DetailPage": {
+   "fajta": "komponens",
+   "props": {
+    "actions": {
+     "t": "DetailAction[] | undefined"
+    },
+    "breadcrumbs": {
+     "t": "Crumb[] | undefined"
+    },
+    "children": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "description": {
+     "t": "ReactNode"
+    },
+    "docTitle": {
+     "t": "string | undefined"
+    },
+    "docTitleSuffix": {
+     "t": "string | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "onTabChange": {
+     "t": "((value: string) => void) | undefined"
+    },
+    "renderLink": {
+     "t": "RenderLink | undefined"
+    },
+    "side": {
+     "t": "ReactNode"
+    },
+    "sideLabel": {
+     "t": "string | undefined"
+    },
+    "skipLabel": {
+     "t": "string | undefined"
+    },
+    "standalone": {
+     "t": "boolean | undefined"
+    },
+    "status": {
+     "t": "\"ready\" | \"loading\" | \"error\" | \"forbidden\" | undefined"
+    },
+    "subject": {
+     "t": "string | undefined"
+    },
+    "summary": {
+     "t": "ReactNode"
+    },
+    "tab": {
+     "t": "string | undefined"
+    },
+    "tabs": {
+     "t": "TabItem[] | undefined"
+    },
+    "tabsLabel": {
+     "t": "string | undefined"
+    },
+    "title": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "what": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "DetailPageProps": {
+   "fajta": "tipus"
+  },
+  "DownloadButton": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "fileName": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "onDownload": {
+     "t": "(ctx: DownloadContext) => Promise<void | Blob>",
+     "kotelezo": true
+    },
+    "sizeHint": {
+     "t": "string | undefined"
+    },
+    "variant": {
+     "t": "\"primary\" | \"secondary\" | undefined"
+    }
+   }
+  },
+  "DownloadButtonProps": {
+   "fajta": "tipus"
+  },
+  "DownloadContext": {
+   "fajta": "tipus"
+  },
+  "DraftNotice": {
+   "fajta": "komponens",
+   "props": {
+    "onDiscard": {
+     "t": "() => void",
+     "kotelezo": true
+    },
+    "onRestore": {
+     "t": "() => void",
+     "kotelezo": true
+    },
+    "savedAt": {
+     "t": "number",
+     "kotelezo": true
+    }
+   }
+  },
+  "DraftOptions": {
+   "fajta": "tipus"
+  },
+  "Drawer": {
+   "fajta": "komponens",
+   "props": {
+    "busy": {
+     "t": "boolean | undefined"
+    },
+    "children": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "closeLabel": {
+     "t": "string | undefined"
+    },
+    "description": {
+     "t": "ReactNode"
+    },
+    "dirty": {
+     "t": "boolean | undefined"
+    },
+    "footer": {
+     "t": "ReactNode"
+    },
+    "initialFocus": {
+     "t": "(() => HTMLElement | null) | undefined"
+    },
+    "onOpenChange": {
+     "t": "(open: boolean) => void",
+     "kotelezo": true
+    },
+    "open": {
+     "t": "boolean",
+     "kotelezo": true
+    },
+    "size": {
+     "t": "\"md\" | \"wide\" | undefined"
+    },
+    "title": {
+     "t": "ReactNode",
+     "kotelezo": true
+    }
+   }
+  },
+  "DrawerProps": {
+   "fajta": "tipus"
+  },
+  "DrawParticipant": {
+   "fajta": "tipus"
+  },
+  "DrawRecord": {
+   "fajta": "tipus"
+  },
+  "DropdownMenu": {
+   "fajta": "komponens",
+   "props": {
+    "align": {
+     "t": "\"start\" | \"end\" | undefined"
+    },
+    "header": {
+     "t": "ReactNode"
+    },
+    "items": {
+     "t": "MenuEntry[]",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string | undefined"
+    },
+    "trigger": {
+     "t": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+     "kotelezo": true
+    }
+   }
+  },
+  "DropdownMenuProps": {
+   "fajta": "tipus"
+  },
+  "EditContext": {
+   "fajta": "tipus"
+  },
+  "EditPage": {
+   "fajta": "komponens",
+   "props": {
+    "breadcrumbs": {
+     "t": "Crumb[] | undefined"
+    },
+    "cancelHref": {
+     "t": "string | undefined"
+    },
+    "cancelLabel": {
+     "t": "string | undefined"
+    },
+    "children": {
+     "t": "ReactNode | ((ctx: EditContext) => ReactNode)",
+     "kotelezo": true
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "description": {
+     "t": "ReactNode"
+    },
+    "dirty": {
+     "t": "boolean",
+     "kotelezo": true
+    },
+    "docTitle": {
+     "t": "string | undefined"
+    },
+    "docTitleSuffix": {
+     "t": "string | undefined"
+    },
+    "draft": {
+     "t": "{ key: string | null; values: unknown; onRestore: (values: never) => void; } | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "onCancel": {
+     "t": "(() => void) | undefined"
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "onSubmit": {
+     "t": "() => void | FormError[] | Promise<void | FormError[]>",
+     "kotelezo": true
+    },
+    "preview": {
+     "t": "ReactNode"
+    },
+    "previewLabel": {
+     "t": "string | undefined"
+    },
+    "renderLink": {
+     "t": "RenderLink | undefined"
+    },
+    "savedMoment": {
+     "t": "boolean | undefined"
+    },
+    "saveShortcut": {
+     "t": "boolean | undefined"
+    },
+    "skipLabel": {
+     "t": "string | undefined"
+    },
+    "standalone": {
+     "t": "boolean | undefined"
+    },
+    "status": {
+     "t": "\"ready\" | \"loading\" | \"error\" | \"forbidden\" | undefined"
+    },
+    "steps": {
+     "t": "EditStepsConfig | undefined"
+    },
+    "submitIcon": {
+     "t": "ReactNode"
+    },
+    "submitLabel": {
+     "t": "string | undefined"
+    },
+    "successMessage": {
+     "t": "string | undefined"
+    },
+    "title": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "validate": {
+     "t": "(() => FormError[]) | undefined"
+    },
+    "what": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "EditPageProps": {
+   "fajta": "tipus"
+  },
+  "EditStep": {
+   "fajta": "tipus"
+  },
+  "EditStepsConfig": {
+   "fajta": "tipus"
+  },
+  "EducationPreview": {
+   "fajta": "tipus"
+  },
+  "EmptyState": {
+   "fajta": "komponens",
+   "props": {
+    "action": {
+     "t": "ReactNode"
+    },
+    "children": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "compact": {
+     "t": "boolean | undefined"
+    },
+    "illustration": {
+     "t": "ReactNode"
+    },
+    "title": {
+     "t": "string",
+     "kotelezo": true
+    }
+   }
+  },
+  "EmptyStateProps": {
+   "fajta": "tipus"
+  },
+  "emptyWeek": {
+   "fajta": "fuggveny"
+  },
+  "ErrorPage": {
+   "fajta": "komponens",
+   "props": {
+    "action": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "errorId": {
+     "t": "string | undefined"
+    },
+    "homeHref": {
+     "t": "string | undefined"
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "retrying": {
+     "t": "boolean | undefined"
+    }
+   }
+  },
+  "ErrorPageProps": {
+   "fajta": "tipus"
+  },
+  "ErrorSummary": {
+   "fajta": "komponens",
+   "props": {
+    "errors": {
+     "t": "FormError[]",
+     "kotelezo": true
+    },
+    "form": {
+     "t": "RefObject<HTMLFormElement | null>",
+     "kotelezo": true
+    },
+    "general": {
+     "t": "string | undefined"
+    },
+    "onJump": {
+     "t": "((name: string) => boolean) | undefined"
+    }
+   },
+   "htmlAttr": true
+  },
+  "EventPreview": {
+   "fajta": "tipus"
+  },
+  "eventsByDay": {
+   "fajta": "fuggveny"
+  },
+  "evszak": {
+   "fajta": "fuggveny"
+  },
+  "Evszak": {
+   "fajta": "tipus"
+  },
+  "ExpandToggle": {
+   "fajta": "komponens",
+   "props": {
+    "controls": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "expanded": {
+     "t": "boolean",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "onToggle": {
+     "t": "() => void",
+     "kotelezo": true
+    }
+   }
+  },
+  "Field": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "count": {
+     "t": "{ value: number; max: number; unit?: string | undefined; } | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "labelFor": {
+     "t": "boolean | undefined"
+    },
+    "notice": {
+     "t": "string | undefined"
+    },
+    "range": {
+     "t": "string | undefined"
+    },
+    "required": {
+     "t": "boolean | undefined"
+    }
+   }
+  },
+  "FieldCtx": {
+   "fajta": "tipus"
+  },
+  "FieldInput": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "(f: FieldCtx) => ReactElement<unknown, string | JSXElementConstructor<any>>",
+     "kotelezo": true
+    }
+   }
+  },
+  "FieldProps": {
+   "fajta": "tipus"
+  },
+  "FileImport": {
+   "fajta": "komponens",
+   "props": {
+    "allowXls": {
+     "t": "boolean | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "importFile": {
+     "t": "UploadFn<ImportSummary>",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "maxSizeMB": {
+     "t": "number | undefined"
+    },
+    "template": {
+     "t": "{ href: string; label?: string | undefined; } | undefined"
+    }
+   }
+  },
+  "FileImportProps": {
+   "fajta": "tipus"
+  },
+  "fileKey": {
+   "fajta": "fuggveny"
+  },
+  "FilePicker": {
+   "fajta": "komponens",
+   "props": {
+    "accept": {
+     "t": "readonly string[]",
+     "kotelezo": true
+    },
+    "acceptAttr": {
+     "t": "string | undefined"
+    },
+    "busy": {
+     "t": "boolean | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "formatText": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "maxSizeMB": {
+     "t": "number",
+     "kotelezo": true
+    },
+    "onChange": {
+     "t": "(file: File | null) => void",
+     "kotelezo": true
+    },
+    "required": {
+     "t": "boolean | undefined"
+    },
+    "sizeHint": {
+     "t": "string | undefined"
+    },
+    "typeHint": {
+     "t": "string | undefined"
+    },
+    "value": {
+     "t": "File | null",
+     "kotelezo": true
+    },
+    "warnSizeMB": {
+     "t": "number | undefined"
+    }
+   }
+  },
+  "FilePickerProps": {
+   "fajta": "tipus"
+  },
+  "fileSizeText": {
+   "fajta": "fuggveny"
+  },
+  "FilterBar": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "extra": {
+     "t": "ReactNode"
+    },
+    "filters": {
+     "t": "FilterDef[]",
+     "kotelezo": true
+    },
+    "itemLabel": {
+     "t": "string | undefined"
+    },
+    "narrowBelow": {
+     "t": "number | undefined"
+    },
+    "onChange": {
+     "t": "(values: FilterValues) => void",
+     "kotelezo": true
+    },
+    "resultCount": {
+     "t": "number | null | undefined"
+    },
+    "search": {
+     "t": "{ label: string; value: string; onChange: (v: string) => void; placeholder?: string | undefined; } | undefined"
+    },
+    "values": {
+     "t": "FilterValues",
+     "kotelezo": true
+    }
+   }
+  },
+  "FilterBarProps": {
+   "fajta": "tipus"
+  },
+  "FilterDef": {
+   "fajta": "tipus"
+  },
+  "FilterOption": {
+   "fajta": "tipus"
+  },
+  "FilterValue": {
+   "fajta": "tipus"
+  },
+  "FilterValues": {
+   "fajta": "tipus"
+  },
+  "ForbiddenPage": {
+   "fajta": "komponens",
+   "props": {
+    "action": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "homeHref": {
+     "t": "string | undefined"
+    },
+    "onRequestAccess": {
+     "t": "(() => void) | undefined"
+    },
+    "requested": {
+     "t": "boolean | undefined"
+    }
+   }
+  },
+  "ForbiddenPageProps": {
+   "fajta": "tipus"
+  },
+  "FormActions": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "className": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "formatBytes": {
+   "fajta": "fuggveny"
+  },
+  "formatHu": {
+   "fajta": "fuggveny"
+  },
+  "formatHuDate": {
+   "fajta": "fuggveny"
+  },
+  "formatHuPhone": {
+   "fajta": "fuggveny"
+  },
+  "formatLatLng": {
+   "fajta": "fuggveny"
+  },
+  "formatNational": {
+   "fajta": "fuggveny"
+  },
+  "formatNumberHu": {
+   "fajta": "fuggveny"
+  },
+  "FormError": {
+   "fajta": "tipus"
+  },
+  "FormSection": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "description": {
+     "t": "ReactNode"
+    },
+    "title": {
+     "t": "string",
+     "kotelezo": true
+    }
+   }
+  },
+  "Gallery": {
+   "fajta": "komponens",
+   "props": {
+    "altEditable": {
+     "t": "boolean | undefined"
+    },
+    "altHelp": {
+     "t": "ReactNode"
+    },
+    "children": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "confirmDelete": {
+     "t": "((img: GalleryImage) => boolean | Promise<boolean>) | undefined"
+    },
+    "images": {
+     "t": "readonly GalleryImage[]",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string | undefined"
+    },
+    "onChange": {
+     "t": "((images: GalleryImage[]) => void) | undefined"
+    },
+    "onFileDrag": {
+     "t": "{ over: (e: DragEvent<Element>) => void; leave: (e: DragEvent<Element>) => void; drop: (e: DragEvent<Element>) => void; } | undefined"
+    },
+    "ordering": {
+     "t": "boolean | undefined"
+    }
+   }
+  },
+  "GalleryImage": {
+   "fajta": "tipus"
+  },
+  "GalleryProps": {
+   "fajta": "tipus"
+  },
+  "GeoState": {
+   "fajta": "tipus"
+  },
+  "groupByDay": {
+   "fajta": "fuggveny"
+  },
+  "GroupedBarChart": {
+   "fajta": "komponens",
+   "props": {
+    "data": {
+     "t": "ChartData",
+     "kotelezo": true
+    },
+    "height": {
+     "t": "number | undefined"
+    },
+    "label": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "hataridoSzoveg": {
+   "fajta": "fuggveny"
+  },
+  "heatGradient": {
+   "fajta": "fuggveny"
+  },
+  "HeatLegend": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "decimals": {
+     "t": "number | undefined"
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "min": {
+     "t": "number | undefined"
+    },
+    "thresholds": {
+     "t": "number[]",
+     "kotelezo": true
+    },
+    "unit": {
+     "t": "string",
+     "kotelezo": true
+    }
+   }
+  },
+  "HeatLegendProps": {
+   "fajta": "tipus"
+  },
+  "HeatScale": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "colorblind": {
+     "t": "boolean | undefined"
+    },
+    "ends": {
+     "t": "[string, string] | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "howToRead": {
+     "t": "ReactNode"
+    },
+    "steps": {
+     "t": "readonly string[] | undefined"
+    },
+    "title": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "unit": {
+     "t": "string",
+     "kotelezo": true
+    }
+   }
+  },
+  "HeatScaleProps": {
+   "fajta": "tipus"
+  },
+  "HelpButton": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "srLabel": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "HexLoader": {
+   "fajta": "komponens",
+   "props": {
+    "label": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "HU_BOUNDS": {
+   "fajta": "ertek"
+  },
+  "HU_CENTER": {
+   "fajta": "ertek"
+  },
+  "IcAuto": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcEdit": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcInfo": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcLeft": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcMoon": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcNew": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcOk": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IconButton": {
+   "fajta": "komponens",
+   "props": {
+    "danger": {
+     "t": "boolean | undefined"
+    }
+   },
+   "htmlAttr": true
+  },
+  "IcOpen": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcRight": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcSave": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcSun": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcTrash": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcX": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "ImageCropper": {
+   "fajta": "komponens",
+   "props": {
+    "aspectHelp": {
+     "t": "ReactNode"
+    },
+    "aspects": {
+     "t": "readonly AspectPreset[] | undefined"
+    },
+    "maxZoom": {
+     "t": "number | undefined"
+    },
+    "minOutputWidth": {
+     "t": "number | undefined"
+    },
+    "minZoom": {
+     "t": "number | undefined"
+    },
+    "onCrop": {
+     "t": "(area: CropArea, info: { zoom: number; aspect: AspectPreset; }) => void",
+     "kotelezo": true
+    },
+    "src": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "zoomHelp": {
+     "t": "ReactNode"
+    }
+   }
+  },
+  "ImageCropperProps": {
+   "fajta": "tipus"
+  },
+  "ImageUploader": {
+   "fajta": "komponens",
+   "props": {
+    "accept": {
+     "t": "readonly string[] | undefined"
+    },
+    "altEditable": {
+     "t": "boolean | undefined"
+    },
+    "altHelp": {
+     "t": "ReactNode"
+    },
+    "confirmDelete": {
+     "t": "((img: GalleryImage) => boolean | Promise<boolean>) | undefined"
+    },
+    "crop": {
+     "t": "UploadCrop | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "images": {
+     "t": "readonly GalleryImage[]",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "maxCount": {
+     "t": "number | undefined"
+    },
+    "maxSizeMB": {
+     "t": "number | undefined"
+    },
+    "onChange": {
+     "t": "(images: GalleryImage[]) => void",
+     "kotelezo": true
+    },
+    "ordering": {
+     "t": "boolean | undefined"
+    },
+    "readOnly": {
+     "t": "boolean | undefined"
+    },
+    "required": {
+     "t": "boolean | undefined"
+    },
+    "sizeHint": {
+     "t": "string | undefined"
+    },
+    "upload": {
+     "t": "UploadFn<GalleryImage>",
+     "kotelezo": true
+    }
+   }
+  },
+  "ImageUploaderProps": {
+   "fajta": "tipus"
+  },
+  "ImportIssue": {
+   "fajta": "tipus"
+  },
+  "ImportResult": {
+   "fajta": "komponens",
+   "props": {
+    "fileName": {
+     "t": "string | undefined"
+    },
+    "limit": {
+     "t": "number | undefined"
+    },
+    "result": {
+     "t": "ImportSummary",
+     "kotelezo": true
+    }
+   }
+  },
+  "ImportResultProps": {
+   "fajta": "tipus"
+  },
+  "ImportSummary": {
+   "fajta": "tipus"
+  },
+  "InfoCard": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "emptyText": {
+     "t": "string | undefined"
+    },
+    "footer": {
+     "t": "ReactNode"
+    },
+    "rows": {
+     "t": "readonly (InfoRow | [string, ReactNode])[]",
+     "kotelezo": true
+    },
+    "title": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "InfoCardProps": {
+   "fajta": "tipus"
+  },
+  "InfoGrid": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "className": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "InfoRow": {
+   "fajta": "tipus"
+  },
+  "inHungary": {
+   "fajta": "fuggveny"
+  },
+  "initials": {
+   "fajta": "fuggveny"
+  },
+  "Irany": {
+   "fajta": "tipus"
+  },
+  "IRANY_IKON": {
+   "fajta": "ertek"
+  },
+  "issuesToCsv": {
+   "fajta": "fuggveny"
+  },
+  "isThemeMode": {
+   "fajta": "fuggveny"
+  },
+  "Jelzes": {
+   "fajta": "tipus"
+  },
+  "JELZES_IKON": {
+   "fajta": "ertek"
+  },
+  "JELZO_KARTYA_LABELS_HU": {
+   "fajta": "ertek"
+  },
+  "JELZO_SZOVEG_MEZOK_HU": {
+   "fajta": "ertek"
+  },
+  "JelzoErtek": {
+   "fajta": "tipus"
+  },
+  "JelzoKartya": {
+   "fajta": "komponens",
+   "props": {
+    "cim": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "cimSzint": {
+     "t": "2 | 3 | 4 | undefined"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "ertek": {
+     "t": "JelzoErtek",
+     "kotelezo": true
+    },
+    "hiba": {
+     "t": "string | undefined"
+    },
+    "irany": {
+     "t": "boolean | undefined"
+    },
+    "kotelezo": {
+     "t": "boolean | undefined"
+    },
+    "labels": {
+     "t": "Partial<JelzoKartyaLabels> | undefined"
+    },
+    "leiras": {
+     "t": "ReactNode"
+    },
+    "onValtozas": {
+     "t": "(uj: JelzoErtek) => void",
+     "kotelezo": true
+    },
+    "szovegMezok": {
+     "t": "false | readonly JelzoSzovegMezo[] | undefined"
+    },
+    "szovegNyitva": {
+     "t": "boolean | undefined"
+    }
+   }
+  },
+  "JelzoKartyaLabels": {
+   "fajta": "tipus"
+  },
+  "JelzoKartyaProps": {
+   "fajta": "tipus"
+  },
+  "JelzoSzovegMezo": {
+   "fajta": "tipus"
+  },
+  "KEREK_RADAR_LABELS_HU": {
+   "fajta": "ertek"
+  },
+  "KerekJelzes": {
+   "fajta": "tipus"
+  },
+  "KerekNezet": {
+   "fajta": "tipus"
+  },
+  "KerekRadar": {
+   "fajta": "komponens",
+   "props": {
+    "cim": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "jelzes": {
+     "t": "((ertek: number | null) => KerekJelzes) | undefined"
+    },
+    "kijelolt": {
+     "t": "string | null | undefined"
+    },
+    "labels": {
+     "t": "Partial<KerekRadarLabels> | undefined"
+    },
+    "lista": {
+     "t": "boolean | undefined"
+    },
+    "max": {
+     "t": "number | undefined"
+    },
+    "nezet": {
+     "t": "KerekNezet | undefined"
+    },
+    "onNezet": {
+     "t": "((n: KerekNezet) => void) | undefined"
+    },
+    "onValaszt": {
+     "t": "((kulcs: string) => void) | undefined"
+    },
+    "sorozatok": {
+     "t": "readonly KerekSorozat[]",
+     "kotelezo": true
+    },
+    "tengelyek": {
+     "t": "readonly KerekTengely[]",
+     "kotelezo": true
+    },
+    "tizedes": {
+     "t": "number | undefined"
+    },
+    "tolt": {
+     "t": "boolean | undefined"
+    },
+    "uresTeendo": {
+     "t": "ReactNode"
+    }
+   }
+  },
+  "KerekRadarLabels": {
+   "fajta": "tipus"
+  },
+  "KerekRadarProps": {
+   "fajta": "tipus"
+  },
+  "KerekSorozat": {
+   "fajta": "tipus"
+  },
+  "KerekTengely": {
+   "fajta": "tipus"
+  },
+  "KIND_LABEL": {
+   "fajta": "ertek"
+  },
+  "kindLabel": {
+   "fajta": "fuggveny"
+  },
+  "kindTone": {
+   "fajta": "fuggveny"
+  },
+  "LAT_RANGE": {
+   "fajta": "ertek"
+  },
+  "LatLng": {
+   "fajta": "tipus"
+  },
+  "LegendItem": {
+   "fajta": "tipus"
+  },
+  "lengthRange": {
+   "fajta": "fuggveny"
+  },
+  "Lightbox": {
+   "fajta": "komponens",
+   "props": {
+    "images": {
+     "t": "readonly GalleryImage[]",
+     "kotelezo": true
+    },
+    "index": {
+     "t": "number | null",
+     "kotelezo": true
+    },
+    "onIndexChange": {
+     "t": "(index: number | null) => void",
+     "kotelezo": true
+    },
+    "returnFocus": {
+     "t": "(() => Element | null | undefined) | undefined"
+    }
+   }
+  },
+  "LightboxProps": {
+   "fajta": "tipus"
+  },
+  "LineChart": {
+   "fajta": "komponens",
+   "props": {
+    "data": {
+     "t": "ChartData",
+     "kotelezo": true
+    },
+    "endLabels": {
+     "t": "boolean | undefined"
+    },
+    "height": {
+     "t": "number | undefined"
+    },
+    "label": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "LineChartProps": {
+   "fajta": "tipus"
+  },
+  "LinkRenderProps": {
+   "fajta": "tipus"
+  },
+  "ListDetail": {
+   "fajta": "tipus"
+  },
+  "ListPage": {
+   "fajta": "komponens",
+   "props": {
+    "actions": {
+     "t": "ReactNode"
+    },
+    "breadcrumbs": {
+     "t": "Crumb[] | undefined"
+    },
+    "children": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "description": {
+     "t": "ReactNode"
+    },
+    "detail": {
+     "t": "ListDetail | undefined"
+    },
+    "docTitle": {
+     "t": "string | undefined"
+    },
+    "docTitleSuffix": {
+     "t": "string | undefined"
+    },
+    "emptyAction": {
+     "t": "ReactNode"
+    },
+    "emptyText": {
+     "t": "string | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "filters": {
+     "t": "ReactNode"
+    },
+    "noResultsText": {
+     "t": "string | undefined"
+    },
+    "onClearFilters": {
+     "t": "(() => void) | undefined"
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "primaryAction": {
+     "t": "ReactNode"
+    },
+    "renderLink": {
+     "t": "RenderLink | undefined"
+    },
+    "retrying": {
+     "t": "boolean | undefined"
+    },
+    "skeleton": {
+     "t": "ReactNode"
+    },
+    "skipLabel": {
+     "t": "string | undefined"
+    },
+    "standalone": {
+     "t": "boolean | undefined"
+    },
+    "status": {
+     "t": "ListStatus | undefined"
+    },
+    "title": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "what": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "ListPageProps": {
+   "fajta": "tipus"
+  },
+  "ListState": {
+   "fajta": "tipus"
+  },
+  "ListStateAdapter": {
+   "fajta": "tipus"
+  },
+  "ListStateOptions": {
+   "fajta": "tipus"
+  },
+  "listStatus": {
+   "fajta": "fuggveny"
+  },
+  "ListStatus": {
+   "fajta": "tipus"
+  },
+  "ListStatusInput": {
+   "fajta": "tipus"
+  },
+  "LNG_RANGE": {
+   "fajta": "ertek"
+  },
+  "localToUtcIso": {
+   "fajta": "fuggveny"
+  },
+  "LocationMapProps": {
+   "fajta": "tipus"
+  },
+  "LocationPicker": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "decimals": {
+     "t": "number | undefined"
+    },
+    "defaultCenter": {
+     "t": "LatLng | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "geolocation": {
+     "t": "boolean | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "latName": {
+     "t": "string | undefined"
+    },
+    "lngName": {
+     "t": "string | undefined"
+    },
+    "onChange": {
+     "t": "(value: LatLng | null, source: LocationSource) => void",
+     "kotelezo": true
+    },
+    "readOnly": {
+     "t": "boolean | undefined"
+    },
+    "renderMap": {
+     "t": "((p: LocationMapProps) => ReactNode) | undefined"
+    },
+    "required": {
+     "t": "boolean | undefined"
+    },
+    "search": {
+     "t": "((query: string, signal: AbortSignal) => Promise<readonly AddressHit[]>) | undefined"
+    },
+    "value": {
+     "t": "LatLng | null",
+     "kotelezo": true
+    }
+   }
+  },
+  "LocationPickerProps": {
+   "fajta": "tipus"
+  },
+  "LocationSource": {
+   "fajta": "tipus"
+  },
+  "Logo": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "label": {
+     "t": "string | undefined"
+    },
+    "size": {
+     "t": "\"s\" | \"m\" | \"l\" | undefined"
+    }
+   }
+  },
+  "LogoProps": {
+   "fajta": "tipus"
+  },
+  "looksSwapped": {
+   "fajta": "fuggveny"
+  },
+  "MapLegend": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "collapsible": {
+     "t": "boolean | undefined"
+    },
+    "defaultOpen": {
+     "t": "boolean | undefined"
+    },
+    "items": {
+     "t": "readonly LegendItem[]",
+     "kotelezo": true
+    },
+    "title": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "MapLegendProps": {
+   "fajta": "tipus"
+  },
+  "MapListItem": {
+   "fajta": "tipus"
+  },
+  "MapPanel": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "empty": {
+     "t": "{ title: string; text?: ReactNode; } | null | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "height": {
+     "t": "string | undefined"
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "legend": {
+     "t": "ReactNode"
+    },
+    "list": {
+     "t": "MapListItem[] | undefined"
+    },
+    "listLabel": {
+     "t": "string | undefined"
+    },
+    "note": {
+     "t": "ReactNode"
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "onViewChange": {
+     "t": "((v: \"list\" | \"map\") => void) | undefined"
+    },
+    "renderLink": {
+     "t": "((p: LinkRenderProps) => ReactNode) | undefined"
+    },
+    "status": {
+     "t": "\"ready\" | \"loading\" | \"error\" | undefined"
+    },
+    "toolbar": {
+     "t": "ReactNode"
+    },
+    "view": {
+     "t": "\"list\" | \"map\" | undefined"
+    },
+    "what": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "MapPanelProps": {
+   "fajta": "tipus"
+  },
+  "MARKER_ICON": {
+   "fajta": "ertek"
+  },
+  "MARKER_ICON_SELECTED": {
+   "fajta": "ertek"
+  },
+  "markerHtml": {
+   "fajta": "fuggveny"
+  },
+  "MarkerKind": {
+   "fajta": "tipus"
+  },
+  "MarkerOptions": {
+   "fajta": "tipus"
+  },
+  "matchText": {
+   "fajta": "fuggveny"
+  },
+  "mbText": {
+   "fajta": "fuggveny"
+  },
+  "MenuEntry": {
+   "fajta": "tipus"
+  },
+  "MenuItem": {
+   "fajta": "tipus"
+  },
+  "mergedValues": {
+   "fajta": "fuggveny"
+  },
+  "MergeFieldDef": {
+   "fajta": "tipus"
+  },
+  "MergeRecord": {
+   "fajta": "tipus"
+  },
+  "MiniMap": {
+   "fajta": "komponens",
+   "props": {
+    "point": {
+     "t": "LatLng | null",
+     "kotelezo": true
+    }
+   }
+  },
+  "Modal": {
+   "fajta": "komponens",
+   "props": {
+    "busy": {
+     "t": "boolean | undefined"
+    },
+    "children": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "closeLabel": {
+     "t": "string | undefined"
+    },
+    "description": {
+     "t": "ReactNode"
+    },
+    "dirty": {
+     "t": "boolean | undefined"
+    },
+    "footer": {
+     "t": "ReactNode"
+    },
+    "initialFocus": {
+     "t": "(() => HTMLElement | null) | undefined"
+    },
+    "onOpenChange": {
+     "t": "(open: boolean) => void",
+     "kotelezo": true
+    },
+    "open": {
+     "t": "boolean",
+     "kotelezo": true
+    },
+    "size": {
+     "t": "\"sm\" | \"md\" | \"wide\" | undefined"
+    },
+    "title": {
+     "t": "ReactNode",
+     "kotelezo": true
+    }
+   }
+  },
+  "ModalCancel": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "ReactNode"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    }
+   }
+  },
+  "ModalProps": {
+   "fajta": "tipus"
+  },
+  "Mondat": {
+   "fajta": "tipus"
+  },
+  "MonthCalendar": {
+   "fajta": "komponens",
+   "props": {
+    "error": {
+     "t": "string | undefined"
+    },
+    "events": {
+     "t": "readonly CalEvent<K>[]",
+     "kotelezo": true
+    },
+    "hidden": {
+     "t": "readonly K[] | undefined"
+    },
+    "initialDate": {
+     "t": "string | undefined"
+    },
+    "kindDefs": {
+     "t": "Partial<Record<K, CalKindDef>>",
+     "kotelezo": true
+    },
+    "kinds": {
+     "t": "readonly K[] | undefined"
+    },
+    "labels": {
+     "t": "Partial<Record<K, string>> | undefined"
+    },
+    "loading": {
+     "t": "boolean | undefined"
+    },
+    "maxPerDay": {
+     "t": "number | undefined"
+    },
+    "onHiddenChange": {
+     "t": "((hidden: K[]) => void) | undefined"
+    },
+    "onMonthChange": {
+     "t": "((firstDay: string) => void) | undefined"
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "onSelectDay": {
+     "t": "((iso: string, events: CalEvent<K>[]) => void) | undefined"
+    }
+   }
+  },
+  "MonthCalendarProps": {
+   "fajta": "tipus"
+  },
+  "MoreIcon": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "MultiBarProps": {
+   "fajta": "tipus"
+  },
+  "NavGroup": {
+   "fajta": "tipus"
+  },
+  "NavItem": {
+   "fajta": "tipus"
+  },
+  "NavTabItem": {
+   "fajta": "tipus"
+  },
+  "NavTabs": {
+   "fajta": "komponens",
+   "props": {
+    "items": {
+     "t": "NavTabItem[]",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "renderLink": {
+     "t": "RenderLink | undefined"
+    }
+   }
+  },
+  "NavTabsProps": {
+   "fajta": "tipus"
+  },
+  "newRule": {
+   "fajta": "fuggveny"
+  },
+  "niceTicks": {
+   "fajta": "fuggveny"
+  },
+  "NotFoundPage": {
+   "fajta": "komponens",
+   "props": {
+    "action": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "homeHref": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "NotFoundPageProps": {
+   "fajta": "tipus"
+  },
+  "NotificationPreview": {
+   "fajta": "tipus"
+  },
+  "notify": {
+   "fajta": "ertek"
+  },
+  "NumberField": {
+   "fajta": "komponens",
+   "props": {
+    "clamp": {
+     "t": "\"blur\" | \"input\" | undefined"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "count": {
+     "t": "{ value: number; max: number; unit?: string | undefined; } | undefined"
+    },
+    "decimals": {
+     "t": "number | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "max": {
+     "t": "number | undefined"
+    },
+    "min": {
+     "t": "number | undefined"
+    },
+    "notice": {
+     "t": "string | undefined"
+    },
+    "onChange": {
+     "t": "(value: number | null) => void",
+     "kotelezo": true
+    },
+    "range": {
+     "t": "string | undefined"
+    },
+    "required": {
+     "t": "boolean | undefined"
+    },
+    "unit": {
+     "t": "string | undefined"
+    },
+    "value": {
+     "t": "number | null",
+     "kotelezo": true
+    }
+   },
+   "htmlAttr": true
+  },
+  "OfflineBanner": {
+   "fajta": "komponens",
+   "props": {
+    "backMs": {
+     "t": "number | undefined"
+    },
+    "bee": {
+     "t": "boolean | undefined"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "online": {
+     "t": "boolean | undefined"
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "pending": {
+     "t": "number | undefined"
+    },
+    "saveText": {
+     "t": "ReactNode"
+    }
+   }
+  },
+  "OfflineBannerProps": {
+   "fajta": "tipus"
+  },
+  "OfflinePage": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "retrying": {
+     "t": "boolean | undefined"
+    }
+   }
+  },
+  "OfflinePageProps": {
+   "fajta": "tipus"
+  },
+  "OpeningHours": {
+   "fajta": "tipus"
+  },
+  "OpeningHoursEditor": {
+   "fajta": "komponens",
+   "props": {
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string | undefined"
+    },
+    "onChange": {
+     "t": "(value: OpeningHours) => void",
+     "kotelezo": true
+    },
+    "readOnly": {
+     "t": "boolean | undefined"
+    },
+    "value": {
+     "t": "OpeningHours",
+     "kotelezo": true
+    }
+   }
+  },
+  "OpeningHoursEditorProps": {
+   "fajta": "tipus"
+  },
+  "PageHeader": {
+   "fajta": "komponens",
+   "props": {
+    "actions": {
+     "t": "ReactNode"
+    },
+    "breadcrumbs": {
+     "t": "Crumb[] | undefined"
+    },
+    "breadcrumbsLabel": {
+     "t": "string | undefined"
+    },
+    "description": {
+     "t": "ReactNode"
+    },
+    "loading": {
+     "t": "boolean | undefined"
+    },
+    "renderLink": {
+     "t": "RenderLink | undefined"
+    },
+    "title": {
+     "t": "ReactNode",
+     "kotelezo": true
+    }
+   }
+  },
+  "PageHeaderProps": {
+   "fajta": "tipus"
+  },
+  "Pagination": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "itemLabel": {
+     "t": "string | undefined"
+    },
+    "label": {
+     "t": "string | undefined"
+    },
+    "onPageChange": {
+     "t": "(page: number) => void",
+     "kotelezo": true
+    },
+    "onPageSizeChange": {
+     "t": "((size: number) => void) | undefined"
+    },
+    "page": {
+     "t": "number",
+     "kotelezo": true
+    },
+    "pageSize": {
+     "t": "number",
+     "kotelezo": true
+    },
+    "pageSizes": {
+     "t": "number[] | undefined"
+    },
+    "total": {
+     "t": "number",
+     "kotelezo": true
+    }
+   }
+  },
+  "PaginationProps": {
+   "fajta": "tipus"
+  },
+  "PaginationState": {
+   "fajta": "tipus"
+  },
+  "parseHu": {
+   "fajta": "fuggveny"
+  },
+  "parseHuDate": {
+   "fajta": "fuggveny"
+  },
+  "parsePhone": {
+   "fajta": "fuggveny"
+  },
+  "parseTime": {
+   "fajta": "fuggveny"
+  },
+  "parseVideoUrl": {
+   "fajta": "fuggveny"
+  },
+  "PartnerPreview": {
+   "fajta": "tipus"
+  },
+  "PhoneField": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "count": {
+     "t": "{ value: number; max: number; unit?: string | undefined; } | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "kind": {
+     "t": "\"barmely\" | \"mobil\" | \"vezetekes\" | undefined"
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "notice": {
+     "t": "string | undefined"
+    },
+    "onChange": {
+     "t": "(value: string, info: PhoneInfo) => void",
+     "kotelezo": true
+    },
+    "range": {
+     "t": "string | undefined"
+    },
+    "required": {
+     "t": "boolean | undefined"
+    },
+    "value": {
+     "t": "string",
+     "kotelezo": true
+    }
+   },
+   "htmlAttr": true
+  },
+  "PhoneFieldProps": {
+   "fajta": "tipus"
+  },
+  "phoneInfo": {
+   "fajta": "fuggveny"
+  },
+  "PhoneInfo": {
+   "fajta": "tipus"
+  },
+  "PhoneKind": {
+   "fajta": "tipus"
+  },
+  "Pillanat": {
+   "fajta": "tipus"
+  },
+  "pillanatok": {
+   "fajta": "ertek"
+  },
+  "PreviewCard": {
+   "fajta": "komponens",
+   "props": {
+    "aspect": {
+     "t": "string | number | undefined"
+    },
+    "caption": {
+     "t": "string | undefined"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "emptyImageText": {
+     "t": "string | undefined"
+    },
+    "imageUrl": {
+     "t": "string | undefined"
+    },
+    "notes": {
+     "t": "boolean | undefined"
+    },
+    "variant": {
+     "t": "\"partner\" | \"kupon\" | \"ertesites\" | \"edukacio\" | \"esemeny\"",
+     "kotelezo": true
+    },
+    "view": {
+     "t": "PreviewView | undefined"
+    }
+   }
+  },
+  "PreviewCardProps": {
+   "fajta": "tipus"
+  },
+  "PreviewData": {
+   "fajta": "tipus"
+  },
+  "PreviewView": {
+   "fajta": "tipus"
+  },
+  "PrizeDrawReveal": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "draw": {
+     "t": "((pool: readonly DrawParticipant[]) => DrawParticipant | Promise<DrawParticipant>) | undefined"
+    },
+    "excludePrevious": {
+     "t": "boolean | undefined"
+    },
+    "loading": {
+     "t": "boolean | undefined"
+    },
+    "minReasonLength": {
+     "t": "number | undefined"
+    },
+    "onDrawn": {
+     "t": "((record: DrawRecord) => void) | undefined"
+    },
+    "onReroll": {
+     "t": "((r: { previous: DrawParticipant; reason: string; }) => void) | undefined"
+    },
+    "participants": {
+     "t": "readonly DrawParticipant[]",
+     "kotelezo": true
+    },
+    "prize": {
+     "t": "string",
+     "kotelezo": true
+    }
+   }
+  },
+  "PrizeDrawRevealProps": {
+   "fajta": "tipus"
+  },
+  "Progress": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "max": {
+     "t": "number",
+     "kotelezo": true
+    },
+    "value": {
+     "t": "number",
+     "kotelezo": true
+    },
+    "valueText": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "ProgressBar": {
+   "fajta": "komponens",
+   "props": {
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "moving": {
+     "t": "boolean | undefined"
+    },
+    "value": {
+     "t": "number",
+     "kotelezo": true
+    }
+   }
+  },
+  "RadarOpciok": {
+   "fajta": "tipus"
+  },
+  "radarPoligon": {
+   "fajta": "fuggveny"
+  },
+  "radarPont": {
+   "fajta": "fuggveny"
+  },
+  "RadioGroup": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "name": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "onChange": {
+     "t": "((value: string) => void) | undefined"
+    },
+    "options": {
+     "t": "readonly { value: string; label: string; disabled?: boolean | undefined; }[]",
+     "kotelezo": true
+    },
+    "required": {
+     "t": "boolean | undefined"
+    },
+    "value": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "RangeSlider": {
+   "fajta": "komponens",
+   "props": {
+    "bigStep": {
+     "t": "number | undefined"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "count": {
+     "t": "{ value: number; max: number; unit?: string | undefined; } | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "format": {
+     "t": "((v: number) => string) | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "max": {
+     "t": "number",
+     "kotelezo": true
+    },
+    "min": {
+     "t": "number",
+     "kotelezo": true
+    },
+    "minGap": {
+     "t": "number | undefined"
+    },
+    "name": {
+     "t": "string | undefined"
+    },
+    "notice": {
+     "t": "string | undefined"
+    },
+    "onChange": {
+     "t": "(value: [number, number]) => void",
+     "kotelezo": true
+    },
+    "range": {
+     "t": "string | undefined"
+    },
+    "required": {
+     "t": "boolean | undefined"
+    },
+    "step": {
+     "t": "number | undefined"
+    },
+    "unit": {
+     "t": "string | undefined"
+    },
+    "value": {
+     "t": "[number, number]",
+     "kotelezo": true
+    }
+   }
+  },
+  "RangeSliderProps": {
+   "fajta": "tipus"
+  },
+  "readThemeMode": {
+   "fajta": "fuggveny"
+  },
+  "Rejection": {
+   "fajta": "tipus"
+  },
+  "RenderLink": {
+   "fajta": "tipus"
+  },
+  "ResolvedTheme": {
+   "fajta": "tipus"
+  },
+  "resolveTheme": {
+   "fajta": "fuggveny"
+  },
+  "RETRO_KERETEK": {
+   "fajta": "ertek"
+  },
+  "RETRO_VASZON_LABELS_HU": {
+   "fajta": "ertek"
+  },
+  "RetroCetli": {
+   "fajta": "tipus"
+  },
+  "RetroKeret": {
+   "fajta": "tipus"
+  },
+  "RetroVaszon": {
+   "fajta": "komponens",
+   "props": {
+    "cetlik": {
+     "t": "readonly RetroCetli[]",
+     "kotelezo": true
+    },
+    "cimSzint": {
+     "t": "2 | 3 | 4 | undefined"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "csakOlvashato": {
+     "t": "boolean | undefined"
+    },
+    "labels": {
+     "t": "Partial<RetroVaszonLabels> | undefined"
+    },
+    "maxHossz": {
+     "t": "number | undefined"
+    },
+    "moderator": {
+     "t": "boolean | undefined"
+    },
+    "nagy": {
+     "t": "boolean | undefined"
+    },
+    "onMozgat": {
+     "t": "((id: string, zona: string) => void) | undefined"
+    },
+    "onSzerkeszt": {
+     "t": "((id: string, szoveg: string) => void) | undefined"
+    },
+    "onTorol": {
+     "t": "((id: string) => void) | undefined"
+    },
+    "onUj": {
+     "t": "((zona: string, szoveg: string, anonim: boolean) => boolean | void | Promise<boolean | void>) | undefined"
+    },
+    "tolt": {
+     "t": "boolean | undefined"
+    },
+    "zonak": {
+     "t": "readonly RetroZona[]",
+     "kotelezo": true
+    }
+   }
+  },
+  "RetroVaszonLabels": {
+   "fajta": "tipus"
+  },
+  "RetroVaszonProps": {
+   "fajta": "tipus"
+  },
+  "RetroZona": {
+   "fajta": "tipus"
+  },
+  "REVEAL_STEPS": {
+   "fajta": "ertek"
+  },
+  "REVEAL_TOTAL_MS": {
+   "fajta": "ertek"
+  },
+  "ReviewDecision": {
+   "fajta": "tipus"
+  },
+  "ReviewQueue": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "getId": {
+     "t": "(item: T) => string",
+     "kotelezo": true
+    },
+    "getTitle": {
+     "t": "(item: T) => string",
+     "kotelezo": true
+    },
+    "items": {
+     "t": "readonly T[]",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string | undefined"
+    },
+    "onDecide": {
+     "t": "(item: T, decision: ReviewDecision) => void | Promise<void>",
+     "kotelezo": true
+    },
+    "onUndo": {
+     "t": "((item: T, decision: ReviewDecision) => void | Promise<void>) | undefined"
+    },
+    "reasons": {
+     "t": "readonly string[] | undefined"
+    },
+    "render": {
+     "t": "(item: T) => ReactNode",
+     "kotelezo": true
+    }
+   }
+  },
+  "ReviewQueueProps": {
+   "fajta": "tipus"
+  },
+  "roundLatLng": {
+   "fajta": "fuggveny"
+  },
+  "RowAction": {
+   "fajta": "tipus"
+  },
+  "RowActions": {
+   "fajta": "komponens",
+   "props": {
+    "actions": {
+     "t": "RowAction[]",
+     "kotelezo": true
+    },
+    "rowLabel": {
+     "t": "string",
+     "kotelezo": true
+    }
+   }
+  },
+  "RowActionsProps": {
+   "fajta": "tipus"
+  },
+  "RowSelectionState": {
+   "fajta": "tipus"
+  },
+  "SablonFrame": {
+   "fajta": "komponens",
+   "props": {
+    "busy": {
+     "t": "boolean | undefined"
+    },
+    "children": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "kind": {
+     "t": "\"lista\" | \"reszletek\" | \"szerkeszto\" | \"iranyitopult\"",
+     "kotelezo": true
+    },
+    "skipLabel": {
+     "t": "string | undefined"
+    },
+    "standalone": {
+     "t": "boolean | undefined"
+    }
+   }
+  },
+  "say": {
+   "fajta": "fuggveny"
+  },
+  "ScheduleField": {
+   "fajta": "komponens",
+   "props": {
+    "endError": {
+     "t": "string | undefined"
+    },
+    "endHelp": {
+     "t": "string | undefined"
+    },
+    "endLabel": {
+     "t": "string | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "help": {
+     "t": "string | undefined"
+    },
+    "label": {
+     "t": "string | undefined"
+    },
+    "laterLabel": {
+     "t": "string | undefined"
+    },
+    "nowLabel": {
+     "t": "string | undefined"
+    },
+    "onChange": {
+     "t": "(v: ScheduleValue) => void",
+     "kotelezo": true
+    },
+    "silent": {
+     "t": "boolean | undefined"
+    },
+    "value": {
+     "t": "ScheduleValue",
+     "kotelezo": true
+    },
+    "withEnd": {
+     "t": "boolean | undefined"
+    }
+   }
+  },
+  "ScheduleFieldProps": {
+   "fajta": "tipus"
+  },
+  "scheduleIssues": {
+   "fajta": "fuggveny"
+  },
+  "ScheduleValue": {
+   "fajta": "tipus"
+  },
+  "SearchBox": {
+   "fajta": "komponens",
+   "props": {
+    "debounce": {
+     "t": "number | undefined"
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "onChange": {
+     "t": "((value: string) => void) | undefined"
+    },
+    "onSearch": {
+     "t": "((value: string) => void) | undefined"
+    },
+    "value": {
+     "t": "string | undefined"
+    }
+   },
+   "htmlAttr": true
+  },
+  "SectionSwitch": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "items": {
+     "t": "SectionSwitchItem[]",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "renderLink": {
+     "t": "RenderLink | undefined"
+    }
+   }
+  },
+  "SectionSwitchItem": {
+   "fajta": "tipus"
+  },
+  "SectionSwitchProps": {
+   "fajta": "tipus"
+  },
+  "SegmentedControl": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "items": {
+     "t": "readonly { value: T; label: string; icon?: ReactNode; disabled?: boolean | undefined; }[]",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "onChange": {
+     "t": "(value: T) => void",
+     "kotelezo": true
+    },
+    "value": {
+     "t": "T",
+     "kotelezo": true
+    },
+    "wrap": {
+     "t": "boolean | undefined"
+    }
+   }
+  },
+  "SelectCell": {
+   "fajta": "komponens",
+   "props": {
+    "checked": {
+     "t": "boolean",
+     "kotelezo": true
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "indeterminate": {
+     "t": "boolean | undefined"
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "onChange": {
+     "t": "() => void",
+     "kotelezo": true
+    }
+   }
+  },
+  "SelectField": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "count": {
+     "t": "{ value: number; max: number; unit?: string | undefined; } | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "notice": {
+     "t": "string | undefined"
+    },
+    "options": {
+     "t": "readonly SelectOption[]",
+     "kotelezo": true
+    },
+    "placeholder": {
+     "t": "string | undefined"
+    },
+    "range": {
+     "t": "string | undefined"
+    },
+    "required": {
+     "t": "boolean | undefined"
+    }
+   },
+   "htmlAttr": true
+  },
+  "SelectOption": {
+   "fajta": "tipus"
+  },
+  "SessionExpired": {
+   "fajta": "komponens",
+   "props": {
+    "action": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "loginHref": {
+     "t": "string | undefined"
+    },
+    "onLogin": {
+     "t": "(() => void) | undefined"
+    }
+   }
+  },
+  "SessionExpiredProps": {
+   "fajta": "tipus"
+  },
+  "shake": {
+   "fajta": "fuggveny"
+  },
+  "ShellAccount": {
+   "fajta": "komponens",
+   "props": {
+    "avatarSrc": {
+     "t": "string | undefined"
+    },
+    "detail": {
+     "t": "ReactNode"
+    },
+    "items": {
+     "t": "MenuEntry[]",
+     "kotelezo": true
+    },
+    "loadingLabel": {
+     "t": "string | undefined"
+    },
+    "menuLabel": {
+     "t": "((name: string) => string) | undefined"
+    },
+    "name": {
+     "t": "string | null",
+     "kotelezo": true
+    }
+   }
+  },
+  "ShellAccountProps": {
+   "fajta": "tipus"
+  },
+  "ShellNavState": {
+   "fajta": "tipus"
+  },
+  "sizePair": {
+   "fajta": "fuggveny"
+  },
+  "SkeletonRows": {
+   "fajta": "komponens",
+   "props": {
+    "cols": {
+     "t": "number",
+     "kotelezo": true
+    },
+    "rows": {
+     "t": "number | undefined"
+    }
+   }
+  },
+  "Slider": {
+   "fajta": "komponens",
+   "props": {
+    "bigStep": {
+     "t": "number | undefined"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "count": {
+     "t": "{ value: number; max: number; unit?: string | undefined; } | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "format": {
+     "t": "((v: number) => string) | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "max": {
+     "t": "number",
+     "kotelezo": true
+    },
+    "min": {
+     "t": "number",
+     "kotelezo": true
+    },
+    "name": {
+     "t": "string | undefined"
+    },
+    "notice": {
+     "t": "string | undefined"
+    },
+    "onChange": {
+     "t": "(value: number) => void",
+     "kotelezo": true
+    },
+    "range": {
+     "t": "string | undefined"
+    },
+    "required": {
+     "t": "boolean | undefined"
+    },
+    "step": {
+     "t": "number | undefined"
+    },
+    "unit": {
+     "t": "string | undefined"
+    },
+    "value": {
+     "t": "number",
+     "kotelezo": true
+    }
+   }
+  },
+  "SliderProps": {
+   "fajta": "tipus"
+  },
+  "sniffType": {
+   "fajta": "fuggveny"
+  },
+  "SortHeader": {
+   "fajta": "komponens",
+   "props": {
+    "label": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "onToggle": {
+     "t": "() => void",
+     "kotelezo": true
+    },
+    "sorted": {
+     "t": "false | \"asc\" | \"desc\"",
+     "kotelezo": true
+    }
+   }
+  },
+  "SortingState": {
+   "fajta": "tipus"
+  },
+  "Sparkline": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "label": {
+     "t": "string | undefined"
+    },
+    "values": {
+     "t": "(number | null)[]",
+     "kotelezo": true
+    }
+   }
+  },
+  "SparklineProps": {
+   "fajta": "tipus"
+  },
+  "SpriteSzereplo": {
+   "fajta": "tipus"
+  },
+  "StackedBarChart": {
+   "fajta": "komponens",
+   "props": {
+    "data": {
+     "t": "ChartData",
+     "kotelezo": true
+    },
+    "height": {
+     "t": "number | undefined"
+    },
+    "label": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "StageDialog": {
+   "fajta": "komponens",
+   "props": {
+    "announce": {
+     "t": "string | undefined"
+    },
+    "children": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "closable": {
+     "t": "boolean | undefined"
+    },
+    "closeLabel": {
+     "t": "string | undefined"
+    },
+    "fullscreen": {
+     "t": "boolean | undefined"
+    },
+    "onOpenChange": {
+     "t": "(open: boolean) => void",
+     "kotelezo": true
+    },
+    "open": {
+     "t": "boolean",
+     "kotelezo": true
+    },
+    "title": {
+     "t": "ReactNode",
+     "kotelezo": true
+    }
+   }
+  },
+  "StageDialogProps": {
+   "fajta": "tipus"
+  },
+  "Stagger": {
+   "fajta": "komponens",
+   "props": {
+    "as": {
+     "t": "\"div\" | \"ul\" | \"ol\" | \"tbody\" | undefined"
+    },
+    "children": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "className": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "StatDelta": {
+   "fajta": "tipus"
+  },
+  "StatTile": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "decimals": {
+     "t": "number | undefined"
+    },
+    "delta": {
+     "t": "StatDelta | \"new\" | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "estimate": {
+     "t": "boolean | undefined"
+    },
+    "good": {
+     "t": "\"up\" | \"down\" | \"none\" | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "loading": {
+     "t": "boolean | undefined"
+    },
+    "minN": {
+     "t": "number | undefined"
+    },
+    "n": {
+     "t": "number | undefined"
+    },
+    "nLabel": {
+     "t": "string | undefined"
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "period": {
+     "t": "string | undefined"
+    },
+    "source": {
+     "t": "ReactNode"
+    },
+    "text": {
+     "t": "string | undefined"
+    },
+    "trend": {
+     "t": "(number | null)[] | undefined"
+    },
+    "unit": {
+     "t": "string | undefined"
+    },
+    "value": {
+     "t": "number | null",
+     "kotelezo": true
+    }
+   }
+  },
+  "StatTileProps": {
+   "fajta": "tipus"
+  },
+  "StatusBadge": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "icon": {
+     "t": "ReactNode"
+    },
+    "title": {
+     "t": "string | undefined"
+    },
+    "tone": {
+     "t": "StatusTone",
+     "kotelezo": true
+    }
+   }
+  },
+  "StatusBadgeProps": {
+   "fajta": "tipus"
+  },
+  "StatusKind": {
+   "fajta": "tipus"
+  },
+  "StatusPage": {
+   "fajta": "komponens",
+   "props": {
+    "action": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "extra": {
+     "t": "ReactNode"
+    },
+    "kind": {
+     "t": "StatusKind",
+     "kotelezo": true
+    },
+    "secondary": {
+     "t": "ReactNode"
+    },
+    "sima": {
+     "t": "ReactNode"
+    }
+   }
+  },
+  "StatusPageProps": {
+   "fajta": "tipus"
+  },
+  "StatusTone": {
+   "fajta": "tipus"
+  },
+  "Step": {
+   "fajta": "tipus"
+  },
+  "Stepper": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "onSelect": {
+     "t": "((index: number, step: Step) => void) | undefined"
+    },
+    "steps": {
+     "t": "readonly Step[]",
+     "kotelezo": true
+    }
+   }
+  },
+  "StepperProps": {
+   "fajta": "tipus"
+  },
+  "stepsFrom": {
+   "fajta": "fuggveny"
+  },
+  "StepState": {
+   "fajta": "tipus"
+  },
+  "Switch": {
+   "fajta": "komponens",
+   "props": {
+    "checked": {
+     "t": "boolean",
+     "kotelezo": true
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "onChange": {
+     "t": "(checked: boolean) => void",
+     "kotelezo": true
+    }
+   }
+  },
+  "SwitchInput": {
+   "fajta": "komponens",
+   "props": {
+    "busy": {
+     "t": "boolean | undefined"
+    },
+    "checked": {
+     "t": "boolean",
+     "kotelezo": true
+    },
+    "offText": {
+     "t": "string | undefined"
+    },
+    "onChange": {
+     "t": "(checked: boolean) => void",
+     "kotelezo": true
+    },
+    "onText": {
+     "t": "string | undefined"
+    },
+    "size": {
+     "t": "\"sm\" | \"md\" | undefined"
+    }
+   },
+   "htmlAttr": true
+  },
+  "SwitchInputProps": {
+   "fajta": "tipus"
+  },
+  "SwitchProps": {
+   "fajta": "tipus"
+  },
+  "Szerep": {
+   "fajta": "tipus"
+  },
+  "szerepek": {
+   "fajta": "ertek"
+  },
+  "TabCount": {
+   "fajta": "komponens",
+   "props": {
+    "n": {
+     "t": "number",
+     "kotelezo": true
+    }
+   }
+  },
+  "TabItem": {
+   "fajta": "tipus"
+  },
+  "Tabs": {
+   "fajta": "komponens",
+   "props": {
+    "defaultValue": {
+     "t": "string | undefined"
+    },
+    "items": {
+     "t": "TabItem[]",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "onValueChange": {
+     "t": "((value: string) => void) | undefined"
+    },
+    "value": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "TabsProps": {
+   "fajta": "tipus"
+  },
+  "Tag": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "icon": {
+     "t": "ReactNode"
+    },
+    "title": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "TagPicker": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "cloudLimit": {
+     "t": "number | undefined"
+    },
+    "count": {
+     "t": "{ value: number; max: number; unit?: string | undefined; } | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "max": {
+     "t": "number | undefined"
+    },
+    "notice": {
+     "t": "string | undefined"
+    },
+    "onChange": {
+     "t": "(v: string[]) => void",
+     "kotelezo": true
+    },
+    "onCreate": {
+     "t": "((label: string) => string | Promise<string>) | undefined"
+    },
+    "options": {
+     "t": "readonly ComboOption[]",
+     "kotelezo": true
+    },
+    "range": {
+     "t": "string | undefined"
+    },
+    "required": {
+     "t": "boolean | undefined"
+    },
+    "value": {
+     "t": "string[]",
+     "kotelezo": true
+    }
+   }
+  },
+  "TagProps": {
+   "fajta": "tipus"
+  },
+  "TemplateHeadProps": {
+   "fajta": "tipus"
+  },
+  "tengelySzog": {
+   "fajta": "fuggveny"
+  },
+  "TextArea": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "count": {
+     "t": "{ value: number; max: number; unit?: string | undefined; } | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "notice": {
+     "t": "string | undefined"
+    },
+    "range": {
+     "t": "string | undefined"
+    },
+    "required": {
+     "t": "boolean | undefined"
+    }
+   },
+   "htmlAttr": true
+  },
+  "TextField": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "count": {
+     "t": "{ value: number; max: number; unit?: string | undefined; } | undefined"
+    },
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "error": {
+     "t": "string | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "notice": {
+     "t": "string | undefined"
+    },
+    "range": {
+     "t": "string | undefined"
+    },
+    "required": {
+     "t": "boolean | undefined"
+    },
+    "type": {
+     "t": "\"tel\" | \"text\" | \"email\" | \"url\" | \"password\" | undefined"
+    }
+   },
+   "htmlAttr": true
+  },
+  "THEME_LABELS_HU": {
+   "fajta": "ertek"
+  },
+  "THEME_STORAGE_KEY": {
+   "fajta": "ertek"
+  },
+  "ThemeContextValue": {
+   "fajta": "tipus"
+  },
+  "themeInitScript": {
+   "fajta": "fuggveny"
+  },
+  "ThemeLabels": {
+   "fajta": "tipus"
+  },
+  "ThemeMode": {
+   "fajta": "tipus"
+  },
+  "ThemeProvider": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "defaultMode": {
+     "t": "ThemeMode | undefined"
+    },
+    "storageKey": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "ThemeProviderProps": {
+   "fajta": "tipus"
+  },
+  "ThemeToggle": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "labels": {
+     "t": "Partial<ThemeLabels> | undefined"
+    },
+    "variant": {
+     "t": "\"icon\" | \"segmented\" | undefined"
+    }
+   }
+  },
+  "ThemeToggleProps": {
+   "fajta": "tipus"
+  },
+  "Timeline": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "empty": {
+     "t": "ReactNode"
+    },
+    "hasMore": {
+     "t": "boolean | undefined"
+    },
+    "items": {
+     "t": "ActivityItem[]",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string | undefined"
+    },
+    "loadingMore": {
+     "t": "boolean | undefined"
+    },
+    "now": {
+     "t": "Date | undefined"
+    },
+    "onLoadMore": {
+     "t": "(() => void) | undefined"
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "pageSize": {
+     "t": "number | undefined"
+    },
+    "status": {
+     "t": "\"ready\" | \"loading\" | \"error\" | \"forbidden\" | undefined"
+    }
+   }
+  },
+  "TimelineProps": {
+   "fajta": "tipus"
+  },
+  "ToastAction": {
+   "fajta": "tipus"
+  },
+  "Toaster": {
+   "fajta": "komponens",
+   "props": {
+    "label": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "ToasterProps": {
+   "fajta": "tipus"
+  },
+  "ToastKind": {
+   "fajta": "tipus"
+  },
+  "ToastOptions": {
+   "fajta": "tipus"
+  },
+  "todayIso": {
+   "fajta": "fuggveny"
+  },
+  "toE164": {
+   "fajta": "fuggveny"
+  },
+  "TooltipIconButton": {
+   "fajta": "komponens",
+   "props": {
+    "danger": {
+     "t": "boolean | undefined"
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "side": {
+     "t": "\"top\" | \"bottom\" | \"left\" | \"right\" | undefined"
+    }
+   },
+   "htmlAttr": true
+  },
+  "TooltipIconButtonProps": {
+   "fajta": "tipus"
+  },
+  "typeNames": {
+   "fajta": "fuggveny"
+  },
+  "TypeToConfirm": {
+   "fajta": "komponens",
+   "props": {
+    "cancelLabel": {
+     "t": "string | undefined"
+    },
+    "children": {
+     "t": "ReactNode"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "confirmIcon": {
+     "t": "ReactNode"
+    },
+    "confirmLabel": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "count": {
+     "t": "number | undefined"
+    },
+    "errorText": {
+     "t": "((error: unknown) => string) | undefined"
+    },
+    "impactError": {
+     "t": "string | undefined"
+    },
+    "impactLoading": {
+     "t": "boolean | undefined"
+    },
+    "name": {
+     "t": "string | undefined"
+    },
+    "onConfirm": {
+     "t": "() => void | Promise<void>",
+     "kotelezo": true
+    },
+    "onOpenChange": {
+     "t": "(open: boolean) => void",
+     "kotelezo": true
+    },
+    "onRetry": {
+     "t": "(() => void) | undefined"
+    },
+    "open": {
+     "t": "boolean",
+     "kotelezo": true
+    },
+    "prompt": {
+     "t": "string | undefined"
+    },
+    "size": {
+     "t": "\"sm\" | \"md\" | undefined"
+    },
+    "title": {
+     "t": "string",
+     "kotelezo": true
+    }
+   }
+  },
+  "TypeToConfirmProps": {
+   "fajta": "tipus"
+  },
+  "UnsavedChangesDialog": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "ReactNode"
+    },
+    "onLeave": {
+     "t": "() => void",
+     "kotelezo": true
+    },
+    "onSave": {
+     "t": "(() => void | Promise<void>) | undefined"
+    },
+    "onStay": {
+     "t": "() => void",
+     "kotelezo": true
+    },
+    "open": {
+     "t": "boolean",
+     "kotelezo": true
+    },
+    "title": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "UnsavedChangesDialogProps": {
+   "fajta": "tipus"
+  },
+  "UnsavedChangesGuard": {
+   "fajta": "komponens",
+   "props": {
+    "dirty": {
+     "t": "boolean",
+     "kotelezo": true
+    },
+    "interceptLinks": {
+     "t": "boolean | undefined"
+    },
+    "onSave": {
+     "t": "(() => void | Promise<void>) | undefined"
+    },
+    "text": {
+     "t": "ReactNode"
+    },
+    "title": {
+     "t": "string | undefined"
+    }
+   }
+  },
+  "UnsavedChangesGuardProps": {
+   "fajta": "tipus"
+  },
+  "UploadCrop": {
+   "fajta": "tipus"
+  },
+  "UploadFn": {
+   "fajta": "tipus"
+  },
+  "useCommandHotkey": {
+   "fajta": "hook"
+  },
+  "useCountUp": {
+   "fajta": "hook"
+  },
+  "useDetailParam": {
+   "fajta": "hook"
+  },
+  "useDraft": {
+   "fajta": "hook"
+  },
+  "useFieldContext": {
+   "fajta": "hook"
+  },
+  "useGeolocation": {
+   "fajta": "hook"
+  },
+  "useLayerClose": {
+   "fajta": "hook"
+  },
+  "useListState": {
+   "fajta": "hook"
+  },
+  "useOnline": {
+   "fajta": "hook"
+  },
+  "usePageTitle": {
+   "fajta": "hook"
+  },
+  "usePrintFrame": {
+   "fajta": "hook"
+  },
+  "useQueryParam": {
+   "fajta": "hook"
+  },
+  "useReducedMotion": {
+   "fajta": "hook"
+  },
+  "useShellNav": {
+   "fajta": "hook"
+  },
+  "useTemplateTitle": {
+   "fajta": "hook"
+  },
+  "useTheme": {
+   "fajta": "hook"
+  },
+  "useUnsavedChanges": {
+   "fajta": "hook"
+  },
+  "UseUnsavedChangesOptions": {
+   "fajta": "tipus"
+  },
+  "utcToLocal": {
+   "fajta": "fuggveny"
+  },
+  "Utvonal": {
+   "fajta": "komponens",
+   "props": {
+    "children": {
+     "t": "ReactNode"
+    },
+    "cimke": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "cimSzint": {
+     "t": "2 | 3 | 4 | undefined"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "hatarido": {
+     "t": "UtvonalHatarido | undefined"
+    },
+    "kovetkezo": {
+     "t": "UtvonalLepes | undefined"
+    },
+    "labels": {
+     "t": "Partial<UtvonalLabels> | undefined"
+    },
+    "renderLink": {
+     "t": "RenderLink | undefined"
+    },
+    "segito": {
+     "t": "UtvonalSegito | null | undefined"
+    },
+    "szakaszok": {
+     "t": "readonly UtvonalSzakasz[]",
+     "kotelezo": true
+    },
+    "tomor": {
+     "t": "boolean | undefined"
+    }
+   }
+  },
+  "UTVONAL_LABELS_HU": {
+   "fajta": "ertek"
+  },
+  "UtvonalAllapot": {
+   "fajta": "tipus"
+  },
+  "UtvonalHatarido": {
+   "fajta": "tipus"
+  },
+  "UtvonalLabels": {
+   "fajta": "tipus"
+  },
+  "UtvonalLepes": {
+   "fajta": "tipus"
+  },
+  "UtvonalProps": {
+   "fajta": "tipus"
+  },
+  "UtvonalSegito": {
+   "fajta": "tipus"
+  },
+  "UtvonalSzakasz": {
+   "fajta": "tipus"
+  },
+  "validateHours": {
+   "fajta": "fuggveny"
+  },
+  "validLatLng": {
+   "fajta": "fuggveny"
+  },
+  "VIDEO_URL_MSG": {
+   "fajta": "ertek"
+  },
+  "VideoEmbed": {
+   "fajta": "komponens",
+   "props": {
+    "className": {
+     "t": "string | undefined"
+    },
+    "source": {
+     "t": "{ kind: \"youtube\" | \"vimeo\"; id: string; provider: string; embedUrl: string; watchUrl: string; }",
+     "kotelezo": true
+    },
+    "title": {
+     "t": "string",
+     "kotelezo": true
+    }
+   }
+  },
+  "VideoEmbedProps": {
+   "fajta": "tipus"
+  },
+  "VideoPlayer": {
+   "fajta": "komponens",
+   "props": {
+    "captions": {
+     "t": "readonly CaptionTrack[] | undefined"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "onError": {
+     "t": "((code: number) => void) | undefined"
+    },
+    "poster": {
+     "t": "string | undefined"
+    },
+    "src": {
+     "t": "string | undefined"
+    },
+    "title": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "warnNoCaptions": {
+     "t": "boolean | undefined"
+    }
+   }
+  },
+  "VideoPlayerProps": {
+   "fajta": "tipus"
+  },
+  "VideoPreview": {
+   "fajta": "komponens",
+   "props": {
+    "captions": {
+     "t": "readonly CaptionTrack[] | undefined"
+    },
+    "className": {
+     "t": "string | undefined"
+    },
+    "poster": {
+     "t": "string | undefined"
+    },
+    "title": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "url": {
+     "t": "string",
+     "kotelezo": true
+    }
+   }
+  },
+  "VideoPreviewProps": {
+   "fajta": "tipus"
+  },
+  "VideoSource": {
+   "fajta": "tipus"
+  },
+  "VideoUpload": {
+   "fajta": "komponens",
+   "props": {
+    "disabled": {
+     "t": "boolean | undefined"
+    },
+    "help": {
+     "t": "ReactNode",
+     "kotelezo": true
+    },
+    "label": {
+     "t": "string",
+     "kotelezo": true
+    },
+    "maxSizeMB": {
+     "t": "number | undefined"
+    },
+    "onDone": {
+     "t": "((file: File) => void) | undefined"
+    },
+    "process": {
+     "t": "(() => Promise<void>) | undefined"
+    },
+    "upload": {
+     "t": "UploadFn<void>",
+     "kotelezo": true
+    }
+   }
+  },
+  "VideoUploadProps": {
+   "fajta": "tipus"
+  },
+  "WEEK": {
+   "fajta": "ertek"
+  },
+  "Weekday": {
+   "fajta": "tipus"
+  },
+  "writeThemeMode": {
+   "fajta": "fuggveny"
+  }
+ },
+ "css": {
+  "bc": [
+   "bc-acc",
+   "bc-acc-chev",
+   "bc-acc-content",
+   "bc-acc-h",
+   "bc-acc-inner",
+   "bc-acc-item",
+   "bc-acc-trigger",
+   "bc-account",
+   "bc-account-chev",
+   "bc-account-detail",
+   "bc-account-name",
+   "bc-account-text",
+   "bc-affix",
+   "bc-alert",
+   "bc-alt-thumb",
+   "bc-anim-cheer",
+   "bc-anim-rise",
+   "bc-anim-shake",
+   "bc-anim-stamp",
+   "bc-anim-tick",
+   "bc-attention",
+   "bc-aud",
+   "bc-aud-add",
+   "bc-aud-count",
+   "bc-aud-estimate",
+   "bc-aud-estimate-label",
+   "bc-aud-grid",
+   "bc-aud-join",
+   "bc-aud-joiner",
+   "bc-aud-legend",
+   "bc-aud-remove",
+   "bc-aud-rule",
+   "bc-aud-rules",
+   "bc-aud-summary",
+   "bc-aud-warn",
+   "bc-avatar",
+   "bc-ax-t",
+   "bc-ax-title",
+   "bc-badge",
+   "bc-bee",
+   "bc-body",
+   "bc-brand",
+   "bc-brand-text",
+   "bc-break",
+   "bc-btn",
+   "bc-cal",
+   "bc-cal-foot",
+   "bc-cal-grid",
+   "bc-cal-head",
+   "bc-card",
+   "bc-card-link",
+   "bc-card-title",
+   "bc-chart",
+   "bc-chart-body",
+   "bc-chart-card",
+   "bc-chart-note",
+   "bc-chart-scroll",
+   "bc-chart-skel",
+   "bc-chart-source",
+   "bc-chart-sub",
+   "bc-chart-table",
+   "bc-chart-title",
+   "bc-check",
+   "bc-checkbox",
+   "bc-chip",
+   "bc-ck",
+   "bc-clamp",
+   "bc-cmdk",
+   "bc-cmdk-desc",
+   "bc-cmdk-error",
+   "bc-cmdk-group",
+   "bc-cmdk-group-title",
+   "bc-cmdk-icon",
+   "bc-cmdk-item",
+   "bc-cmdk-label",
+   "bc-cmdk-list",
+   "bc-cmdk-note",
+   "bc-cmdk-tips",
+   "bc-combo",
+   "bc-combo-toggle",
+   "bc-content",
+   "bc-copy",
+   "bc-copy-fallback",
+   "bc-copy-tick",
+   "bc-copy-value",
+   "bc-count",
+   "bc-cropper",
+   "bc-cropper-area",
+   "bc-cropper-out",
+   "bc-cropper-row",
+   "bc-cropper-stage",
+   "bc-cropper-zoom",
+   "bc-crumb",
+   "bc-crumb-more",
+   "bc-crumbs",
+   "bc-date",
+   "bc-date-input",
+   "bc-day",
+   "bc-disclosure",
+   "bc-disclosure-body",
+   "bc-display",
+   "bc-divided",
+   "bc-divider",
+   "bc-download",
+   "bc-download-meta",
+   "bc-download-slow",
+   "bc-draft",
+   "bc-draft-actions",
+   "bc-dragging",
+   "bc-draw",
+   "bc-draw-actions",
+   "bc-draw-comb",
+   "bc-draw-count",
+   "bc-draw-detail",
+   "bc-draw-head",
+   "bc-draw-hint",
+   "bc-draw-kicker",
+   "bc-draw-log",
+   "bc-draw-name",
+   "bc-draw-one",
+   "bc-draw-prize",
+   "bc-draw-prize-label",
+   "bc-draw-reroll",
+   "bc-draw-reroll-q",
+   "bc-draw-runner",
+   "bc-draw-stage",
+   "bc-draw-test",
+   "bc-draw-testnote",
+   "bc-draw-ticker",
+   "bc-draw-title",
+   "bc-draw-winner",
+   "bc-draw-winner-body",
+   "bc-drawer",
+   "bc-drawer-body",
+   "bc-drawer-foot",
+   "bc-drawer-head",
+   "bc-dropzone",
+   "bc-dt",
+   "bc-dt-bar",
+   "bc-dt-bulk",
+   "bc-dt-bulk-actions",
+   "bc-dt-bulk-count",
+   "bc-dt-check",
+   "bc-dt-detail",
+   "bc-dt-detail-body",
+   "bc-dt-expand",
+   "bc-dt-head",
+   "bc-dt-hidden",
+   "bc-dt-missing",
+   "bc-dt-progress",
+   "bc-dt-resizer",
+   "bc-dt-sort",
+   "bc-dt-sorticon",
+   "bc-dt-sortsel",
+   "bc-dt-state",
+   "bc-dt-text",
+   "bc-dt-title",
+   "bc-dt-tools",
+   "bc-dt-wrap",
+   "bc-empty",
+   "bc-empty-art",
+   "bc-empty-text",
+   "bc-end-label",
+   "bc-error",
+   "bc-eyebrow",
+   "bc-fb",
+   "bc-fb-active",
+   "bc-fb-chips",
+   "bc-fb-count",
+   "bc-fb-panel",
+   "bc-fb-panel-body",
+   "bc-fb-panel-foot",
+   "bc-fb-row",
+   "bc-fb-search",
+   "bc-fb-toggle",
+   "bc-field",
+   "bc-fieldset",
+   "bc-figure",
+   "bc-figure-cap",
+   "bc-figure-media",
+   "bc-filecard",
+   "bc-filecard-row",
+   "bc-filecard-size",
+   "bc-filter",
+   "bc-filter-err",
+   "bc-form-actions",
+   "bc-form-grid",
+   "bc-gallery-empty",
+   "bc-gallery-grid",
+   "bc-gap",
+   "bc-gap-bg",
+   "bc-gap-line",
+   "bc-gap-swatch",
+   "bc-gmenu",
+   "bc-gmenu-item",
+   "bc-gmenu-sep",
+   "bc-grid",
+   "bc-grid-2",
+   "bc-grid-3",
+   "bc-heat",
+   "bc-heat-bar",
+   "bc-heat-ends",
+   "bc-heat-how",
+   "bc-heat-steps",
+   "bc-heat-sw",
+   "bc-heat-unit",
+   "bc-heatkey",
+   "bc-heatkey-bins",
+   "bc-heatkey-sw",
+   "bc-heatkey-title",
+   "bc-help",
+   "bc-help-btn",
+   "bc-hero",
+   "bc-hero-media",
+   "bc-hexload",
+   "bc-hexpiece",
+   "bc-honeycomb",
+   "bc-hours-closed",
+   "bc-hours-day",
+   "bc-hours-list",
+   "bc-hours-row",
+   "bc-hours-time",
+   "bc-hours-times",
+   "bc-howto",
+   "bc-howto-title",
+   "bc-icon-btn",
+   "bc-import",
+   "bc-import-list",
+   "bc-import-result",
+   "bc-info",
+   "bc-info-foot",
+   "bc-info-grid",
+   "bc-input",
+   "bc-jelzo",
+   "bc-jelzo-cim",
+   "bc-jelzo-csoport",
+   "bc-jelzo-fej",
+   "bc-jelzo-ikon",
+   "bc-jelzo-kerdes",
+   "bc-jelzo-leiras",
+   "bc-jelzo-mezok",
+   "bc-jelzo-opcio",
+   "bc-jelzo-opcio-cim",
+   "bc-jelzo-opcio-leiras",
+   "bc-jelzo-opciok",
+   "bc-jelzo-osszegzes",
+   "bc-jelzo-radio",
+   "bc-jelzo-reszlet",
+   "bc-jelzo-szoveg",
+   "bc-kbd",
+   "bc-kdialog",
+   "bc-kerek",
+   "bc-kerek-abra",
+   "bc-kerek-cimke",
+   "bc-kerek-cimke-ertek",
+   "bc-kerek-cimke-hatter",
+   "bc-kerek-cimke-nev",
+   "bc-kerek-delta",
+   "bc-kerek-fej",
+   "bc-kerek-gyuru",
+   "bc-kerek-jelmagyarazat",
+   "bc-kerek-kullo",
+   "bc-kerek-lista",
+   "bc-kerek-lista-elem",
+   "bc-kerek-lista-nev",
+   "bc-kerek-lista-szam",
+   "bc-kerek-megj",
+   "bc-kerek-rajz",
+   "bc-kerek-sor",
+   "bc-kerek-sorgomb",
+   "bc-kerek-svg",
+   "bc-kerek-tabla",
+   "bc-kerek-terulet",
+   "bc-kerek-terulet-under",
+   "bc-kerek-test",
+   "bc-kpi",
+   "bc-kpi-delta",
+   "bc-kpi-head",
+   "bc-kpi-main",
+   "bc-kpi-meaning",
+   "bc-kpi-meta",
+   "bc-kpi-source",
+   "bc-kpi-spark",
+   "bc-label",
+   "bc-label-row",
+   "bc-layer-desc",
+   "bc-layer-titles",
+   "bc-lead",
+   "bc-legend",
+   "bc-legend-btn",
+   "bc-lift",
+   "bc-lightbox",
+   "bc-lightbox-btn",
+   "bc-lightbox-cap",
+   "bc-lightbox-mid",
+   "bc-lightbox-pill",
+   "bc-lightbox-scrim",
+   "bc-lightbox-stage",
+   "bc-lightbox-top",
+   "bc-line",
+   "bc-line-under",
+   "bc-link",
+   "bc-list-note",
+   "bc-listbox",
+   "bc-loc",
+   "bc-loc-coords",
+   "bc-loc-geo",
+   "bc-loc-geo-err",
+   "bc-loc-grid",
+   "bc-loc-legend",
+   "bc-loc-map",
+   "bc-loc-mini",
+   "bc-loc-mini-cap",
+   "bc-loc-mini-land",
+   "bc-loc-mini-pin",
+   "bc-loc-side",
+   "bc-loc-warn",
+   "bc-logo",
+   "bc-logos",
+   "bc-logos-title",
+   "bc-main",
+   "bc-map",
+   "bc-map-cluster",
+   "bc-map-icon",
+   "bc-map-legend",
+   "bc-map-legend-list",
+   "bc-map-panel",
+   "bc-map-panel-bar",
+   "bc-map-panel-item",
+   "bc-map-panel-list",
+   "bc-map-panel-map",
+   "bc-map-panel-note",
+   "bc-map-pin",
+   "bc-map-swatch",
+   "bc-mark",
+   "bc-mark-zero",
+   "bc-mcal",
+   "bc-mcal-agenda",
+   "bc-mcal-agenda-title",
+   "bc-mcal-day",
+   "bc-mcal-dots",
+   "bc-mcal-ev",
+   "bc-mcal-evs",
+   "bc-mcal-filter",
+   "bc-mcal-grid",
+   "bc-mcal-head",
+   "bc-mcal-ic",
+   "bc-mcal-kind",
+   "bc-mcal-legend",
+   "bc-mcal-more",
+   "bc-mcal-note",
+   "bc-mcal-title",
+   "bc-menu",
+   "bc-menu-header",
+   "bc-menu-icon",
+   "bc-menu-item",
+   "bc-menu-label",
+   "bc-menu-reason",
+   "bc-menu-right",
+   "bc-menu-sep",
+   "bc-menu-text",
+   "bc-merge",
+   "bc-merge-actions",
+   "bc-merge-field",
+   "bc-merge-fields",
+   "bc-merge-head",
+   "bc-merge-intro",
+   "bc-merge-legend",
+   "bc-merge-missing",
+   "bc-merge-opt",
+   "bc-merge-opts",
+   "bc-merge-progress",
+   "bc-merge-result",
+   "bc-merge-src",
+   "bc-merge-todo",
+   "bc-merge-val",
+   "bc-meta",
+   "bc-modal",
+   "bc-modal-body",
+   "bc-modal-foot",
+   "bc-modal-head",
+   "bc-moment",
+   "bc-moment-action",
+   "bc-moment-text",
+   "bc-moment-title",
+   "bc-muted",
+   "bc-nav-group",
+   "bc-nav-head",
+   "bc-nav-icon",
+   "bc-nav-link",
+   "bc-nav-list",
+   "bc-nav-text",
+   "bc-note",
+   "bc-note-body",
+   "bc-notice",
+   "bc-num",
+   "bc-offline",
+   "bc-offline-bar",
+   "bc-option",
+   "bc-page-head",
+   "bc-page-head-text",
+   "bc-page-header",
+   "bc-pager",
+   "bc-pager-gap",
+   "bc-pager-info",
+   "bc-pager-num",
+   "bc-pager-pages",
+   "bc-pager-size",
+   "bc-pal-allapot",
+   "bc-panel",
+   "bc-phone",
+   "bc-phone-cc",
+   "bc-pop",
+   "bc-pop-title",
+   "bc-preview",
+   "bc-price",
+   "bc-price-note",
+   "bc-price-old",
+   "bc-print-hide",
+   "bc-print-page",
+   "bc-print-show",
+   "bc-progress",
+   "bc-pv-badge",
+   "bc-pv-body",
+   "bc-pv-btn",
+   "bc-pv-caption",
+   "bc-pv-card",
+   "bc-pv-discount",
+   "bc-pv-featured",
+   "bc-pv-full",
+   "bc-pv-img",
+   "bc-pv-media",
+   "bc-pv-meta",
+   "bc-pv-notch",
+   "bc-pv-notes",
+   "bc-pv-phone",
+   "bc-pv-rows",
+   "bc-pv-screen",
+   "bc-pv-tags",
+   "bc-pv-text",
+   "bc-pv-title",
+   "bc-q1",
+   "bc-q2",
+   "bc-q3",
+   "bc-q4",
+   "bc-q5",
+   "bc-quote",
+   "bc-quote-by",
+   "bc-quote-name",
+   "bc-quote-role",
+   "bc-quote-text",
+   "bc-range",
+   "bc-rating",
+   "bc-rating-stars",
+   "bc-rating-sub",
+   "bc-rating-text",
+   "bc-retro",
+   "bc-retro-cetli",
+   "bc-retro-cetli-lab",
+   "bc-retro-cetli-test",
+   "bc-retro-cetlik",
+   "bc-retro-db",
+   "bc-retro-fogo",
+   "bc-retro-gombok",
+   "bc-retro-kerdes",
+   "bc-retro-mozgat",
+   "bc-retro-muveletek",
+   "bc-retro-skel",
+   "bc-retro-szerzo",
+   "bc-retro-szoveg",
+   "bc-retro-uj",
+   "bc-retro-ures",
+   "bc-retro-urlap",
+   "bc-retro-zarva",
+   "bc-retro-zona",
+   "bc-retro-zona-cim",
+   "bc-retro-zona-fej",
+   "bc-retro-zona-ikon",
+   "bc-retro-zonak",
+   "bc-review",
+   "bc-review-actions",
+   "bc-review-bar",
+   "bc-review-item",
+   "bc-review-last",
+   "bc-review-last-title",
+   "bc-review-pos",
+   "bc-review-reject",
+   "bc-review-tally",
+   "bc-review-title",
+   "bc-review-top",
+   "bc-row",
+   "bc-row-actions",
+   "bc-ruled",
+   "bc-s1",
+   "bc-s2",
+   "bc-s3",
+   "bc-s4",
+   "bc-s5",
+   "bc-s6",
+   "bc-s7",
+   "bc-s8",
+   "bc-sablon",
+   "bc-sablon-aside-title",
+   "bc-sablon-bar",
+   "bc-sablon-bar-note",
+   "bc-sablon-charts",
+   "bc-sablon-cols",
+   "bc-sablon-dirty",
+   "bc-sablon-dot",
+   "bc-sablon-form",
+   "bc-sablon-list",
+   "bc-sablon-main",
+   "bc-sablon-moment",
+   "bc-sablon-preview",
+   "bc-sablon-primary",
+   "bc-sablon-side",
+   "bc-sablon-skel",
+   "bc-sablon-stat",
+   "bc-sablon-state",
+   "bc-sablon-step-count",
+   "bc-sablon-step-desc",
+   "bc-sablon-step-error",
+   "bc-sablon-step-head",
+   "bc-sablon-step-title",
+   "bc-sablon-steps",
+   "bc-sablon-summary",
+   "bc-sablon-summary-block",
+   "bc-sablon-summary-list",
+   "bc-sablon-summary-title",
+   "bc-sablon-toolbar",
+   "bc-schedule",
+   "bc-schedule-label",
+   "bc-scrim",
+   "bc-search",
+   "bc-sec",
+   "bc-secsw",
+   "bc-secsw-ic",
+   "bc-secsw-item",
+   "bc-secsw-wrap",
+   "bc-section-title",
+   "bc-seg",
+   "bc-seg-item",
+   "bc-select",
+   "bc-shell",
+   "bc-sidebar",
+   "bc-sidebar-foot",
+   "bc-sidebar-head",
+   "bc-sidebar-links",
+   "bc-sidebar-toggle",
+   "bc-skel-row",
+   "bc-skeleton",
+   "bc-skip",
+   "bc-slider",
+   "bc-slider-fill",
+   "bc-slider-out",
+   "bc-slider-rail",
+   "bc-slider-thumb",
+   "bc-slider-track",
+   "bc-small",
+   "bc-sort",
+   "bc-source",
+   "bc-spark",
+   "bc-spinner",
+   "bc-sprite",
+   "bc-sr",
+   "bc-stack",
+   "bc-stage",
+   "bc-stage-body",
+   "bc-stage-close",
+   "bc-stage-title",
+   "bc-stagger",
+   "bc-stat",
+   "bc-stat-delta",
+   "bc-stat-err",
+   "bc-stat-label",
+   "bc-stat-skel",
+   "bc-stat-sub",
+   "bc-stat-unit",
+   "bc-stat-value",
+   "bc-state",
+   "bc-state-box",
+   "bc-stats",
+   "bc-status",
+   "bc-status-actions",
+   "bc-status-code",
+   "bc-status-h",
+   "bc-status-page",
+   "bc-steps",
+   "bc-steps-btn",
+   "bc-sticker",
+   "bc-store",
+   "bc-store-kicsi",
+   "bc-store-nagy",
+   "bc-store-text",
+   "bc-stores",
+   "bc-subtitle",
+   "bc-swatch",
+   "bc-switch",
+   "bc-switch-inline",
+   "bc-switch-state",
+   "bc-tab",
+   "bc-tab-count",
+   "bc-tab-ink",
+   "bc-tab-panel",
+   "bc-tab-text",
+   "bc-table",
+   "bc-table-wrap",
+   "bc-tabs",
+   "bc-tabs-wrap",
+   "bc-tag",
+   "bc-tagcloud",
+   "bc-textarea",
+   "bc-tile",
+   "bc-tile-actions",
+   "bc-tile-add-s",
+   "bc-tile-add-t",
+   "bc-tile-cover",
+   "bc-tile-err",
+   "bc-tile-menu",
+   "bc-tile-noalt",
+   "bc-tile-open",
+   "bc-tile-size",
+   "bc-tile-status",
+   "bc-time",
+   "bc-title",
+   "bc-title-skeleton",
+   "bc-tl",
+   "bc-tl-arrow",
+   "bc-tl-count",
+   "bc-tl-day-h",
+   "bc-tl-diff",
+   "bc-tl-diff-row",
+   "bc-tl-empty",
+   "bc-tl-item",
+   "bc-tl-list",
+   "bc-tl-more",
+   "bc-tl-text",
+   "bc-tl-time",
+   "bc-tl-toggle",
+   "bc-toast",
+   "bc-toast-action",
+   "bc-toast-actions",
+   "bc-toast-body",
+   "bc-toast-close",
+   "bc-toast-count",
+   "bc-toast-icon",
+   "bc-toast-link",
+   "bc-toast-list",
+   "bc-toast-more",
+   "bc-toaster",
+   "bc-tooltip",
+   "bc-topbar",
+   "bc-topbar-brand",
+   "bc-topbar-end",
+   "bc-topbar-thin",
+   "bc-upbar",
+   "bc-upload",
+   "bc-upload-alt",
+   "bc-upload-errors",
+   "bc-upload-input",
+   "bc-ut",
+   "bc-ut-after",
+   "bc-ut-body",
+   "bc-ut-desc",
+   "bc-ut-done",
+   "bc-ut-done-text",
+   "bc-ut-done-title",
+   "bc-ut-extra",
+   "bc-ut-head",
+   "bc-ut-item",
+   "bc-ut-kicker",
+   "bc-ut-list",
+   "bc-ut-map",
+   "bc-ut-mark",
+   "bc-ut-meta",
+   "bc-ut-next",
+   "bc-ut-next-text",
+   "bc-ut-now",
+   "bc-ut-now-title",
+   "bc-ut-nyugi",
+   "bc-ut-segito",
+   "bc-ut-segito-link",
+   "bc-ut-step-label",
+   "bc-ut-steps",
+   "bc-ut-title",
+   "bc-val",
+   "bc-vembed",
+   "bc-vembed-note",
+   "bc-vembed-ph",
+   "bc-video",
+   "bc-video-cap",
+   "bc-video-el",
+   "bc-video-empty",
+   "bc-video-frame",
+   "bc-video-link",
+   "bc-video-loading",
+   "bc-video-nocc",
+   "bc-video-title",
+   "bc-web-erkezes",
+   "bc-web-in",
+   "bc-web-zum",
+   "bc-wrap",
+   "bc-zero"
+  ],
+  "is": [
+   "is-1",
+   "is-2",
+   "is-24",
+   "is-3",
+   "is-32",
+   "is-4",
+   "is-5",
+   "is-64",
+   "is-accent",
+   "is-add",
+   "is-asc",
+   "is-bad",
+   "is-bare",
+   "is-between",
+   "is-blank",
+   "is-block",
+   "is-buzz",
+   "is-card-badge",
+   "is-card-title",
+   "is-cards",
+   "is-cat",
+   "is-cb",
+   "is-cel",
+   "is-clamped",
+   "is-collapsed",
+   "is-compact",
+   "is-create",
+   "is-current",
+   "is-danger",
+   "is-dense",
+   "is-desc",
+   "is-disabled",
+   "is-done",
+   "is-down",
+   "is-dragging",
+   "is-drawer",
+   "is-drop",
+   "is-empty",
+   "is-end",
+   "is-error",
+   "is-even",
+   "is-failed",
+   "is-fel",
+   "is-fixed",
+   "is-flat",
+   "is-framed",
+   "is-full",
+   "is-gap",
+   "is-ghost",
+   "is-good",
+   "is-harom",
+   "is-hidden",
+   "is-huzas",
+   "is-huzott",
+   "is-icon",
+   "is-in",
+   "is-in-range",
+   "is-info",
+   "is-ink",
+   "is-inline",
+   "is-interactive",
+   "is-invalid",
+   "is-irany",
+   "is-jon",
+   "is-keskeny",
+   "is-kesz",
+   "is-kihagyva",
+   "is-kulso",
+   "is-l",
+   "is-layer",
+   "is-le",
+   "is-lg",
+   "is-link",
+   "is-mirrored",
+   "is-missing",
+   "is-more",
+   "is-most",
+   "is-moving",
+   "is-multi",
+   "is-muted",
+   "is-nagy",
+   "is-narrow",
+   "is-nav",
+   "is-near",
+   "is-neutral",
+   "is-nincs",
+   "is-num",
+   "is-off",
+   "is-on",
+   "is-one",
+   "is-open",
+   "is-osszevet",
+   "is-outside",
+   "is-over",
+   "is-parent",
+   "is-paused",
+   "is-pin",
+   "is-pin-end",
+   "is-piros",
+   "is-placeholder",
+   "is-portrait",
+   "is-quiet",
+   "is-readonly",
+   "is-req",
+   "is-resizing",
+   "is-rovid",
+   "is-row",
+   "is-ruled",
+   "is-s",
+   "is-sajat",
+   "is-sarga",
+   "is-scroll",
+   "is-secondary",
+   "is-selected",
+   "is-skipped",
+   "is-sm",
+   "is-square",
+   "is-standalone",
+   "is-strong",
+   "is-success",
+   "is-tag",
+   "is-text",
+   "is-tight",
+   "is-tilt",
+   "is-today",
+   "is-up",
+   "is-upload",
+   "is-util",
+   "is-valaszthato",
+   "is-warning",
+   "is-wide",
+   "is-wrap",
+   "is-zold"
+  ],
+  "jatek": [
+   "art",
+   "bevBox",
+   "bevCel",
+   "bevCim",
+   "bevGomb",
+   "bevLepesek",
+   "bevN",
+   "bevSay",
+   "bevZar",
+   "box",
+   "btn",
+   "ds-anim-buzz",
+   "ds-anim-drop",
+   "ds-anim-flip",
+   "ds-anim-float",
+   "ds-anim-glow",
+   "ds-anim-in",
+   "ds-anim-out",
+   "ds-anim-pop",
+   "ds-anim-pulse",
+   "ds-anim-rise",
+   "ds-anim-shake",
+   "ds-anim-slide-l",
+   "ds-anim-slide-r",
+   "ds-anim-spin",
+   "ds-anim-stamp",
+   "ds-anim-sweep",
+   "ds-anim-swipe",
+   "ds-anim-tick",
+   "ds-assume",
+   "ds-avatar",
+   "ds-badge",
+   "ds-banner",
+   "ds-bar",
+   "ds-bars",
+   "ds-big",
+   "ds-btn",
+   "ds-btn-sm",
+   "ds-bubble",
+   "ds-card",
+   "ds-cb",
+   "ds-checklist",
+   "ds-chip",
+   "ds-coach",
+   "ds-coach-ring",
+   "ds-coach-say",
+   "ds-code",
+   "ds-dark",
+   "ds-delay-1",
+   "ds-delay-2",
+   "ds-delay-3",
+   "ds-delay-4",
+   "ds-delta",
+   "ds-delta-num",
+   "ds-delta-pop",
+   "ds-delta-sign",
+   "ds-details",
+   "ds-dots",
+   "ds-feedback",
+   "ds-h3",
+   "ds-hex",
+   "ds-hex-ico",
+   "ds-hud",
+   "ds-hud-group",
+   "ds-hud-spacer",
+   "ds-icon-btn",
+   "ds-input",
+   "ds-key",
+   "ds-lead",
+   "ds-loader",
+   "ds-meter",
+   "ds-meter-ghost",
+   "ds-mrow",
+   "ds-mrow-head",
+   "ds-muted",
+   "ds-num",
+   "ds-page",
+   "ds-panel",
+   "ds-piece",
+   "ds-profile",
+   "ds-profile-bar",
+   "ds-profile-lbl",
+   "ds-qr",
+   "ds-range",
+   "ds-range-box",
+   "ds-range-ends",
+   "ds-range-field",
+   "ds-range-hex",
+   "ds-range-label",
+   "ds-range-val",
+   "ds-result",
+   "ds-result-actions",
+   "ds-result-bee",
+   "ds-result-lb",
+   "ds-result-lb-list",
+   "ds-result-lb-note",
+   "ds-result-lb-row",
+   "ds-result-lead",
+   "ds-result-more",
+   "ds-result-nick",
+   "ds-result-score",
+   "ds-result-stat",
+   "ds-result-stats",
+   "ds-result-title",
+   "ds-rg-axis",
+   "ds-rg-dot",
+   "ds-rg-ring",
+   "ds-rg-shape",
+   "ds-ring",
+   "ds-ring-bar",
+   "ds-ring-num",
+   "ds-ring-track",
+   "ds-row",
+   "ds-say",
+   "ds-screen",
+   "ds-screen-main",
+   "ds-screen-top",
+   "ds-screen-tray",
+   "ds-scrim",
+   "ds-seg",
+   "ds-sheet",
+   "ds-sheet-body",
+   "ds-sheet-handle",
+   "ds-sheet-head",
+   "ds-sheet-scrim",
+   "ds-sheet-title",
+   "ds-skeleton",
+   "ds-source",
+   "ds-source-note",
+   "ds-sr",
+   "ds-stars",
+   "ds-switch",
+   "ds-tab",
+   "ds-tabs",
+   "ds-tag",
+   "ds-tip",
+   "ds-tip-btn",
+   "ds-title",
+   "ds-toast",
+   "ds-who",
+   "dsf",
+   "dsf-core",
+   "dsf-rim",
+   "fail",
+   "hidden",
+   "is-above",
+   "is-accent",
+   "is-after",
+   "is-bad",
+   "is-bars",
+   "is-bee",
+   "is-below",
+   "is-berry",
+   "is-big",
+   "is-block",
+   "is-blossom",
+   "is-bridge",
+   "is-c",
+   "is-closing",
+   "is-contained",
+   "is-cream",
+   "is-critical",
+   "is-dark",
+   "is-delta",
+   "is-done",
+   "is-dragging",
+   "is-ember",
+   "is-empty",
+   "is-fail",
+   "is-filled",
+   "is-flat",
+   "is-gone",
+   "is-good",
+   "is-hidden",
+   "is-honey",
+   "is-in",
+   "is-interactive",
+   "is-isolated",
+   "is-l",
+   "is-landscape",
+   "is-late",
+   "is-leaf",
+   "is-leaving",
+   "is-left",
+   "is-lifted",
+   "is-locked",
+   "is-low",
+   "is-me",
+   "is-minus",
+   "is-n1",
+   "is-n2",
+   "is-new",
+   "is-ok",
+   "is-olive",
+   "is-on",
+   "is-outer",
+   "is-over",
+   "is-paper",
+   "is-paused",
+   "is-plain",
+   "is-plus",
+   "is-primary",
+   "is-process",
+   "is-quick",
+   "is-r",
+   "is-radar",
+   "is-reach",
+   "is-right",
+   "is-s1",
+   "is-s2",
+   "is-s3",
+   "is-s4",
+   "is-s5",
+   "is-secondary",
+   "is-selected",
+   "is-sky",
+   "is-small",
+   "is-still",
+   "is-target",
+   "is-waiting",
+   "is-zero",
+   "kerApp",
+   "kerBox",
+   "kerSor",
+   "key",
+   "kiosk-lock",
+   "kz-nagyit",
+   "kzApp",
+   "kzBees",
+   "kzBox",
+   "kzFoot",
+   "kzGo",
+   "kzHead",
+   "kzIco",
+   "kzIdleBox",
+   "kzInput",
+   "kzNum",
+   "kzRole",
+   "kzSaverApp",
+   "kzSaverBox",
+   "kzSlide",
+   "kzSlides",
+   "kzStories",
+   "kzStory",
+   "kzTap",
+   "kzTxt",
+   "kzWait",
+   "mc",
+   "mc-add",
+   "mc-board",
+   "mc-fresh",
+   "mc-ghost",
+   "mc-ico",
+   "mc-item",
+   "mc-msg",
+   "mc-name",
+   "mc-recipes",
+   "mc-slot",
+   "mc-supply",
+   "mc-tick",
+   "mc-timer",
+   "mc-top",
+   "mk",
+   "mk-body",
+   "mk-btn",
+   "mk-buttons",
+   "mk-card",
+   "mk-empty",
+   "mk-stage",
+   "mk-stamp",
+   "mnBtn",
+   "mnSwitch",
+   "mp",
+   "mp-gomb",
+   "mp-jel",
+   "mp-sav",
+   "mp-zona",
+   "mr",
+   "mr-badge",
+   "mr-cell",
+   "mr-grid",
+   "mr-meter",
+   "mr-meters",
+   "mr-mlabel",
+   "mr-mnum",
+   "mr-pick",
+   "mr-row",
+   "mr-tile",
+   "mr-tiles",
+   "mr-tray",
+   "mr-undo",
+   "mr-view",
+   "mv",
+   "mv-edge",
+   "mv-flag",
+   "mv-hit",
+   "mv-ico",
+   "mv-lines",
+   "mv-link",
+   "mv-map",
+   "mv-msg",
+   "mv-node",
+   "mv-range",
+   "mv-stats",
+   "mv-temp",
+   "nagy-betuk",
+   "on",
+   "overlay",
+   "pic",
+   "pic-star",
+   "primary",
+   "reduce-motion",
+   "rzHomeShare",
+   "show"
+  ]
+ },
+ "tokenek": {
+  "css": [
+   "--bc-accent",
+   "--bc-accent-press",
+   "--bc-accent-press-rgb",
+   "--bc-accent-rgb",
+   "--bc-berry",
+   "--bc-berry-rgb",
+   "--bc-bg",
+   "--bc-bg-rgb",
+   "--bc-black",
+   "--bc-black-rgb",
+   "--bc-blossom",
+   "--bc-blossom-bg",
+   "--bc-blossom-bg-rgb",
+   "--bc-blossom-rgb",
+   "--bc-blush",
+   "--bc-blush-rgb",
+   "--bc-butter",
+   "--bc-butter-rgb",
+   "--bc-bw-base",
+   "--bc-bw-hair",
+   "--bc-coal",
+   "--bc-coal-rgb",
+   "--bc-cream",
+   "--bc-cream-rgb",
+   "--bc-crimson",
+   "--bc-crimson-rgb",
+   "--bc-danger",
+   "--bc-danger-bg",
+   "--bc-danger-bg-rgb",
+   "--bc-danger-ink",
+   "--bc-danger-ink-rgb",
+   "--bc-danger-rgb",
+   "--bc-data-allapot-1",
+   "--bc-data-allapot-2",
+   "--bc-data-allapot-3",
+   "--bc-data-allapot-4",
+   "--bc-data-allapot-5",
+   "--bc-data-allapot-cb-1",
+   "--bc-data-allapot-cb-2",
+   "--bc-data-allapot-cb-3",
+   "--bc-data-allapot-cb-4",
+   "--bc-data-allapot-cb-5",
+   "--bc-data-cat-1",
+   "--bc-data-cat-2",
+   "--bc-data-cat-3",
+   "--bc-data-cat-4",
+   "--bc-data-cat-5",
+   "--bc-data-cat-6",
+   "--bc-data-cat-7",
+   "--bc-data-cat-8",
+   "--bc-data-div-1",
+   "--bc-data-div-2",
+   "--bc-data-div-3",
+   "--bc-data-div-4",
+   "--bc-data-div-5",
+   "--bc-data-div-cb-1",
+   "--bc-data-div-cb-2",
+   "--bc-data-div-cb-3",
+   "--bc-data-div-cb-4",
+   "--bc-data-div-cb-5",
+   "--bc-data-seq-1",
+   "--bc-data-seq-2",
+   "--bc-data-seq-3",
+   "--bc-data-seq-4",
+   "--bc-data-seq-5",
+   "--bc-data-seq-cb-1",
+   "--bc-data-seq-cb-2",
+   "--bc-data-seq-cb-3",
+   "--bc-data-seq-cb-4",
+   "--bc-data-seq-cb-5",
+   "--bc-ease-bounce",
+   "--bc-ease-drawer",
+   "--bc-ease-in-out",
+   "--bc-ease-out",
+   "--bc-ember",
+   "--bc-ember-rgb",
+   "--bc-focus",
+   "--bc-focus-rgb",
+   "--bc-font-body",
+   "--bc-font-display",
+   "--bc-forest",
+   "--bc-forest-rgb",
+   "--bc-fs-2xl",
+   "--bc-fs-3xl",
+   "--bc-fs-l",
+   "--bc-fs-m",
+   "--bc-fs-s",
+   "--bc-fs-xl",
+   "--bc-fs-xs",
+   "--bc-fw-bold",
+   "--bc-fw-regular",
+   "--bc-fw-semibold",
+   "--bc-graphite",
+   "--bc-graphite-rgb",
+   "--bc-highlight",
+   "--bc-highlight-rgb",
+   "--bc-honey",
+   "--bc-honey-deep",
+   "--bc-honey-deep-rgb",
+   "--bc-honey-rgb",
+   "--bc-ice",
+   "--bc-ice-rgb",
+   "--bc-info",
+   "--bc-info-bg",
+   "--bc-info-bg-rgb",
+   "--bc-info-ink",
+   "--bc-info-ink-rgb",
+   "--bc-info-rgb",
+   "--bc-ink",
+   "--bc-ink-muted",
+   "--bc-ink-muted-rgb",
+   "--bc-ink-rgb",
+   "--bc-ink-soft",
+   "--bc-ink-soft-rgb",
+   "--bc-leaf",
+   "--bc-leaf-rgb",
+   "--bc-lh-normal",
+   "--bc-lh-snug",
+   "--bc-lh-tight",
+   "--bc-lime",
+   "--bc-lime-rgb",
+   "--bc-line",
+   "--bc-line-rgb",
+   "--bc-line-soft",
+   "--bc-line-soft-rgb",
+   "--bc-mist",
+   "--bc-mist-rgb",
+   "--bc-navy",
+   "--bc-navy-rgb",
+   "--bc-night",
+   "--bc-night-line",
+   "--bc-night-line-rgb",
+   "--bc-night-rgb",
+   "--bc-night-surface",
+   "--bc-night-surface-rgb",
+   "--bc-olive",
+   "--bc-olive-rgb",
+   "--bc-olive-soft",
+   "--bc-olive-soft-rgb",
+   "--bc-olive-strong",
+   "--bc-olive-strong-rgb",
+   "--bc-on-accent",
+   "--bc-on-accent-rgb",
+   "--bc-paper",
+   "--bc-paper-rgb",
+   "--bc-r-l",
+   "--bc-r-m",
+   "--bc-r-pill",
+   "--bc-r-s",
+   "--bc-r-xs",
+   "--bc-red",
+   "--bc-red-rgb",
+   "--bc-rust",
+   "--bc-rust-rgb",
+   "--bc-sage",
+   "--bc-sage-bg",
+   "--bc-sage-bg-rgb",
+   "--bc-sage-rgb",
+   "--bc-scrim",
+   "--bc-scrim-opacity",
+   "--bc-scrim-rgb",
+   "--bc-shadow",
+   "--bc-shadow-l",
+   "--bc-shadow-l-x",
+   "--bc-shadow-l-y",
+   "--bc-shadow-m",
+   "--bc-shadow-m-x",
+   "--bc-shadow-m-y",
+   "--bc-shadow-rgb",
+   "--bc-shadow-s",
+   "--bc-shadow-s-x",
+   "--bc-shadow-s-y",
+   "--bc-shadow-soft",
+   "--bc-silver",
+   "--bc-silver-rgb",
+   "--bc-sky",
+   "--bc-sky-bg",
+   "--bc-sky-bg-rgb",
+   "--bc-sky-rgb",
+   "--bc-slate",
+   "--bc-slate-rgb",
+   "--bc-sp-1",
+   "--bc-sp-2",
+   "--bc-sp-3",
+   "--bc-sp-4",
+   "--bc-sp-5",
+   "--bc-sp-6",
+   "--bc-sp-7",
+   "--bc-sp-8",
+   "--bc-sprout",
+   "--bc-sprout-rgb",
+   "--bc-success",
+   "--bc-success-bg",
+   "--bc-success-bg-rgb",
+   "--bc-success-ink",
+   "--bc-success-ink-rgb",
+   "--bc-success-rgb",
+   "--bc-surface",
+   "--bc-surface-2",
+   "--bc-surface-2-rgb",
+   "--bc-surface-accent",
+   "--bc-surface-accent-rgb",
+   "--bc-surface-rgb",
+   "--bc-t-base",
+   "--bc-t-fast",
+   "--bc-t-press",
+   "--bc-t-slow",
+   "--bc-tap",
+   "--bc-warning",
+   "--bc-warning-bg",
+   "--bc-warning-bg-rgb",
+   "--bc-warning-ink",
+   "--bc-warning-ink-rgb",
+   "--bc-warning-rgb",
+   "--bc-water",
+   "--bc-water-rgb",
+   "--bc-white",
+   "--bc-white-rgb",
+   "--bc-z-behind",
+   "--bc-z-drawer",
+   "--bc-z-header",
+   "--bc-z-modal",
+   "--bc-z-overlay",
+   "--bc-z-popover",
+   "--bc-z-sticky",
+   "--bc-z-toast",
+   "--bc-z-tooltip"
+  ],
+  "jatekCss": [
+   "--accent",
+   "--bad-bg",
+   "--bad-ink",
+   "--berry",
+   "--bg",
+   "--blossom",
+   "--blossom-bg",
+   "--body",
+   "--bounce",
+   "--butter",
+   "--cream",
+   "--data-0",
+   "--data-after",
+   "--data-before",
+   "--data-neg-1",
+   "--data-neg-2",
+   "--data-pos-1",
+   "--data-pos-2",
+   "--data-seq-1",
+   "--data-seq-2",
+   "--data-seq-3",
+   "--data-seq-4",
+   "--data-seq-5",
+   "--display",
+   "--div-0",
+   "--div-cb-0",
+   "--div-cb-neg-1",
+   "--div-cb-neg-2",
+   "--div-cb-pos-1",
+   "--div-cb-pos-2",
+   "--div-neg-1",
+   "--div-neg-2",
+   "--div-pos-1",
+   "--div-pos-2",
+   "--ease",
+   "--ease-drawer",
+   "--ease-in-out",
+   "--ease-out",
+   "--ember",
+   "--fekete",
+   "--focus",
+   "--fs-2xl",
+   "--fs-3xl",
+   "--fs-l",
+   "--fs-m",
+   "--fs-s",
+   "--fs-xl",
+   "--fs-xs",
+   "--glow",
+   "--glow-0",
+   "--good",
+   "--good-bg",
+   "--good-ink",
+   "--hex",
+   "--honey",
+   "--honey-deep",
+   "--ink",
+   "--ink-soft",
+   "--krem",
+   "--leaf",
+   "--line",
+   "--line-w",
+   "--night",
+   "--night-surface",
+   "--olive",
+   "--olive-soft",
+   "--on-accent",
+   "--on-data",
+   "--paper",
+   "--press",
+   "--r-l",
+   "--r-m",
+   "--r-pill",
+   "--r-s",
+   "--r-xl",
+   "--sage",
+   "--sage-bg",
+   "--sarga",
+   "--scale-1",
+   "--scale-2",
+   "--scale-3",
+   "--scale-4",
+   "--scale-5",
+   "--scale-cb-1",
+   "--scale-cb-2",
+   "--scale-cb-3",
+   "--scale-cb-4",
+   "--scale-cb-5",
+   "--scrim",
+   "--shine",
+   "--sky",
+   "--sky-bg",
+   "--soft",
+   "--soft-sm",
+   "--sp-1",
+   "--sp-2",
+   "--sp-3",
+   "--sp-4",
+   "--sp-5",
+   "--sp-6",
+   "--surface",
+   "--t-base",
+   "--t-fast",
+   "--t-press",
+   "--t-slow",
+   "--t-xslow",
+   "--tap",
+   "--z-alert",
+   "--z-bubble",
+   "--z-controls",
+   "--z-hud",
+   "--z-panel",
+   "--z-popup",
+   "--z-scene",
+   "--z-top",
+   "--z-world"
+  ],
+  "scss": [
+   "bc-accent",
+   "bc-accent-press",
+   "bc-bg",
+   "bc-bw",
+   "bc-bw-base",
+   "bc-bw-hair",
+   "bc-c-berry",
+   "bc-c-black",
+   "bc-c-blossom",
+   "bc-c-blossom-bg",
+   "bc-c-blush",
+   "bc-c-butter",
+   "bc-c-coal",
+   "bc-c-cream",
+   "bc-c-crimson",
+   "bc-c-ember",
+   "bc-c-focus",
+   "bc-c-forest",
+   "bc-c-graphite",
+   "bc-c-honey",
+   "bc-c-honey-deep",
+   "bc-c-ice",
+   "bc-c-leaf",
+   "bc-c-lime",
+   "bc-c-mist",
+   "bc-c-navy",
+   "bc-c-night",
+   "bc-c-night-line",
+   "bc-c-night-surface",
+   "bc-c-olive",
+   "bc-c-olive-soft",
+   "bc-c-olive-strong",
+   "bc-c-paper",
+   "bc-c-red",
+   "bc-c-rust",
+   "bc-c-sage",
+   "bc-c-sage-bg",
+   "bc-c-silver",
+   "bc-c-sky",
+   "bc-c-sky-bg",
+   "bc-c-slate",
+   "bc-c-sprout",
+   "bc-c-water",
+   "bc-c-white",
+   "bc-danger",
+   "bc-danger-bg",
+   "bc-danger-ink",
+   "bc-ease",
+   "bc-ease-bounce",
+   "bc-ease-drawer",
+   "bc-ease-in-out",
+   "bc-ease-out",
+   "bc-focus",
+   "bc-font-body",
+   "bc-font-display",
+   "bc-fs",
+   "bc-fs-2xl",
+   "bc-fs-3xl",
+   "bc-fs-l",
+   "bc-fs-m",
+   "bc-fs-s",
+   "bc-fs-xl",
+   "bc-fs-xs",
+   "bc-fw",
+   "bc-fw-bold",
+   "bc-fw-regular",
+   "bc-fw-semibold",
+   "bc-hex-berry",
+   "bc-hex-black",
+   "bc-hex-blossom",
+   "bc-hex-blossom-bg",
+   "bc-hex-blush",
+   "bc-hex-butter",
+   "bc-hex-coal",
+   "bc-hex-cream",
+   "bc-hex-crimson",
+   "bc-hex-ember",
+   "bc-hex-focus",
+   "bc-hex-forest",
+   "bc-hex-graphite",
+   "bc-hex-honey",
+   "bc-hex-honey-deep",
+   "bc-hex-ice",
+   "bc-hex-leaf",
+   "bc-hex-lime",
+   "bc-hex-mist",
+   "bc-hex-navy",
+   "bc-hex-night",
+   "bc-hex-night-line",
+   "bc-hex-night-surface",
+   "bc-hex-olive",
+   "bc-hex-olive-soft",
+   "bc-hex-olive-strong",
+   "bc-hex-paper",
+   "bc-hex-red",
+   "bc-hex-role-accent",
+   "bc-hex-role-accent-press",
+   "bc-hex-role-bg",
+   "bc-hex-role-danger",
+   "bc-hex-role-danger-bg",
+   "bc-hex-role-danger-ink",
+   "bc-hex-role-focus",
+   "bc-hex-role-highlight",
+   "bc-hex-role-info",
+   "bc-hex-role-info-bg",
+   "bc-hex-role-info-ink",
+   "bc-hex-role-ink",
+   "bc-hex-role-ink-muted",
+   "bc-hex-role-ink-soft",
+   "bc-hex-role-line",
+   "bc-hex-role-line-soft",
+   "bc-hex-role-on-accent",
+   "bc-hex-role-scrim",
+   "bc-hex-role-shadow",
+   "bc-hex-role-success",
+   "bc-hex-role-success-bg",
+   "bc-hex-role-success-ink",
+   "bc-hex-role-surface",
+   "bc-hex-role-surface-2",
+   "bc-hex-role-surface-accent",
+   "bc-hex-role-warning",
+   "bc-hex-role-warning-bg",
+   "bc-hex-role-warning-ink",
+   "bc-hex-rust",
+   "bc-hex-sage",
+   "bc-hex-sage-bg",
+   "bc-hex-silver",
+   "bc-hex-sky",
+   "bc-hex-sky-bg",
+   "bc-hex-slate",
+   "bc-hex-sprout",
+   "bc-hex-water",
+   "bc-hex-white",
+   "bc-highlight",
+   "bc-info",
+   "bc-info-bg",
+   "bc-info-ink",
+   "bc-ink",
+   "bc-ink-muted",
+   "bc-ink-soft",
+   "bc-lh",
+   "bc-lh-normal",
+   "bc-lh-snug",
+   "bc-lh-tight",
+   "bc-line",
+   "bc-line-soft",
+   "bc-on-accent",
+   "bc-r",
+   "bc-r-l",
+   "bc-r-m",
+   "bc-r-pill",
+   "bc-r-s",
+   "bc-r-xs",
+   "bc-scrim",
+   "bc-shadow",
+   "bc-shadow-l",
+   "bc-shadow-m",
+   "bc-shadow-s",
+   "bc-shadow-soft",
+   "bc-sp",
+   "bc-sp-1",
+   "bc-sp-2",
+   "bc-sp-3",
+   "bc-sp-4",
+   "bc-sp-5",
+   "bc-sp-6",
+   "bc-sp-7",
+   "bc-sp-8",
+   "bc-success",
+   "bc-success-bg",
+   "bc-success-ink",
+   "bc-surface",
+   "bc-surface-2",
+   "bc-surface-accent",
+   "bc-t",
+   "bc-t-base",
+   "bc-t-fast",
+   "bc-t-press",
+   "bc-t-slow",
+   "bc-warning",
+   "bc-warning-bg",
+   "bc-warning-ink",
+   "bc-z",
+   "bc-z-behind",
+   "bc-z-drawer",
+   "bc-z-header",
+   "bc-z-modal",
+   "bc-z-overlay",
+   "bc-z-popover",
+   "bc-z-sticky",
+   "bc-z-toast",
+   "bc-z-tooltip",
+   "bw()",
+   "fs()",
+   "fw()",
+   "r()",
+   "shadow()",
+   "sp()"
+  ],
+  "tailwind": [
+   "borderRadius.DEFAULT",
+   "borderRadius.full",
+   "borderRadius.l",
+   "borderRadius.m",
+   "borderRadius.none",
+   "borderRadius.pill",
+   "borderRadius.s",
+   "borderRadius.xs",
+   "borderWidth.0",
+   "borderWidth.DEFAULT",
+   "borderWidth.base",
+   "borderWidth.hair",
+   "boxShadow.l",
+   "boxShadow.m",
+   "boxShadow.none",
+   "boxShadow.s",
+   "boxShadow.soft",
+   "colors.accent",
+   "colors.accent-press",
+   "colors.bg",
+   "colors.c.berry",
+   "colors.c.black",
+   "colors.c.blossom",
+   "colors.c.blossom-bg",
+   "colors.c.blush",
+   "colors.c.butter",
+   "colors.c.coal",
+   "colors.c.cream",
+   "colors.c.crimson",
+   "colors.c.ember",
+   "colors.c.focus",
+   "colors.c.forest",
+   "colors.c.graphite",
+   "colors.c.honey",
+   "colors.c.honey-deep",
+   "colors.c.ice",
+   "colors.c.leaf",
+   "colors.c.lime",
+   "colors.c.mist",
+   "colors.c.navy",
+   "colors.c.night",
+   "colors.c.night-line",
+   "colors.c.night-surface",
+   "colors.c.olive",
+   "colors.c.olive-soft",
+   "colors.c.olive-strong",
+   "colors.c.paper",
+   "colors.c.red",
+   "colors.c.rust",
+   "colors.c.sage",
+   "colors.c.sage-bg",
+   "colors.c.silver",
+   "colors.c.sky",
+   "colors.c.sky-bg",
+   "colors.c.slate",
+   "colors.c.sprout",
+   "colors.c.water",
+   "colors.c.white",
+   "colors.current",
+   "colors.danger",
+   "colors.danger-bg",
+   "colors.danger-ink",
+   "colors.focus",
+   "colors.highlight",
+   "colors.info",
+   "colors.info-bg",
+   "colors.info-ink",
+   "colors.inherit",
+   "colors.ink",
+   "colors.ink-muted",
+   "colors.ink-soft",
+   "colors.line",
+   "colors.line-soft",
+   "colors.on-accent",
+   "colors.scrim",
+   "colors.shadow",
+   "colors.success",
+   "colors.success-bg",
+   "colors.success-ink",
+   "colors.surface",
+   "colors.surface-2",
+   "colors.surface-accent",
+   "colors.transparent",
+   "colors.warning",
+   "colors.warning-bg",
+   "colors.warning-ink",
+   "fontFamily.body",
+   "fontFamily.display",
+   "fontFamily.sans",
+   "fontSize.2xl",
+   "fontSize.3xl",
+   "fontSize.l",
+   "fontSize.m",
+   "fontSize.s",
+   "fontSize.xl",
+   "fontSize.xs",
+   "fontWeight.bold",
+   "fontWeight.regular",
+   "fontWeight.semibold",
+   "minHeight.tap",
+   "minWidth.tap",
+   "spacing.tap",
+   "transitionDuration.base",
+   "transitionDuration.fast",
+   "transitionDuration.press",
+   "transitionDuration.slow",
+   "transitionTimingFunction.bounce",
+   "transitionTimingFunction.drawer",
+   "transitionTimingFunction.in-out",
+   "transitionTimingFunction.out",
+   "zIndex.behind",
+   "zIndex.drawer",
+   "zIndex.header",
+   "zIndex.modal",
+   "zIndex.overlay",
+   "zIndex.popover",
+   "zIndex.sticky",
+   "zIndex.toast",
+   "zIndex.tooltip"
+  ],
+  "dart": [
+   "BeecoPalette.berry",
+   "BeecoPalette.black",
+   "BeecoPalette.blossom",
+   "BeecoPalette.blossomBg",
+   "BeecoPalette.blush",
+   "BeecoPalette.butter",
+   "BeecoPalette.coal",
+   "BeecoPalette.cream",
+   "BeecoPalette.crimson",
+   "BeecoPalette.ember",
+   "BeecoPalette.focus",
+   "BeecoPalette.forest",
+   "BeecoPalette.graphite",
+   "BeecoPalette.honey",
+   "BeecoPalette.honeyDeep",
+   "BeecoPalette.ice",
+   "BeecoPalette.leaf",
+   "BeecoPalette.lime",
+   "BeecoPalette.mist",
+   "BeecoPalette.navy",
+   "BeecoPalette.night",
+   "BeecoPalette.nightLine",
+   "BeecoPalette.nightSurface",
+   "BeecoPalette.olive",
+   "BeecoPalette.oliveSoft",
+   "BeecoPalette.oliveStrong",
+   "BeecoPalette.paper",
+   "BeecoPalette.red",
+   "BeecoPalette.rust",
+   "BeecoPalette.sage",
+   "BeecoPalette.sageBg",
+   "BeecoPalette.silver",
+   "BeecoPalette.sky",
+   "BeecoPalette.skyBg",
+   "BeecoPalette.slate",
+   "BeecoPalette.sprout",
+   "BeecoPalette.water",
+   "BeecoPalette.white",
+   "BeecoRoles.accent",
+   "BeecoRoles.accentPress",
+   "BeecoRoles.bg",
+   "BeecoRoles.danger",
+   "BeecoRoles.dangerBg",
+   "BeecoRoles.dangerInk",
+   "BeecoRoles.dark",
+   "BeecoRoles.focus",
+   "BeecoRoles.highlight",
+   "BeecoRoles.info",
+   "BeecoRoles.infoBg",
+   "BeecoRoles.infoInk",
+   "BeecoRoles.ink",
+   "BeecoRoles.inkMuted",
+   "BeecoRoles.inkSoft",
+   "BeecoRoles.light",
+   "BeecoRoles.line",
+   "BeecoRoles.lineSoft",
+   "BeecoRoles.onAccent",
+   "BeecoRoles.scrim",
+   "BeecoRoles.shadow",
+   "BeecoRoles.success",
+   "BeecoRoles.successBg",
+   "BeecoRoles.successInk",
+   "BeecoRoles.surface",
+   "BeecoRoles.surface2",
+   "BeecoRoles.surfaceAccent",
+   "BeecoRoles.warning",
+   "BeecoRoles.warningBg",
+   "BeecoRoles.warningInk",
+   "BeecoTokens.bwBase",
+   "BeecoTokens.bwHair",
+   "BeecoTokens.easeOut",
+   "BeecoTokens.fontBody",
+   "BeecoTokens.fontDisplay",
+   "BeecoTokens.fsL",
+   "BeecoTokens.fsM",
+   "BeecoTokens.fsS",
+   "BeecoTokens.fsXl",
+   "BeecoTokens.fsXs",
+   "BeecoTokens.fsn2xl",
+   "BeecoTokens.fsn3xl",
+   "BeecoTokens.rL",
+   "BeecoTokens.rM",
+   "BeecoTokens.rPill",
+   "BeecoTokens.rS",
+   "BeecoTokens.rXs",
+   "BeecoTokens.shadowL",
+   "BeecoTokens.shadowM",
+   "BeecoTokens.shadowS",
+   "BeecoTokens.sp1",
+   "BeecoTokens.sp2",
+   "BeecoTokens.sp3",
+   "BeecoTokens.sp4",
+   "BeecoTokens.sp5",
+   "BeecoTokens.sp6",
+   "BeecoTokens.sp7",
+   "BeecoTokens.sp8",
+   "BeecoTokens.tBase",
+   "BeecoTokens.tFast",
+   "BeecoTokens.tPress",
+   "BeecoTokens.tSlow",
+   "BeecoTokens.tap"
+  ]
+ },
+ "jatekJs": [
+  "ART",
+  "BT_MODELS",
+  "DS",
+  "DS.color",
+  "DS.feedback",
+  "DS.feedback.good",
+  "DS.feedback.great",
+  "DS.feedback.try",
+  "DS.font",
+  "DS.font.body",
+  "DS.font.display",
+  "DS.haptic",
+  "DS.haptic.good",
+  "DS.haptic.great",
+  "DS.haptic.tap",
+  "DS.haptic.try",
+  "DS.interior",
+  "DS.interior.applianceInner",
+  "DS.interior.applianceShell",
+  "DS.interior.cabinet",
+  "DS.interior.cord",
+  "DS.interior.counter",
+  "DS.interior.counterBase",
+  "DS.interior.floorDark",
+  "DS.interior.floorLight",
+  "DS.interior.floorLine",
+  "DS.interior.glass",
+  "DS.interior.lampShade",
+  "DS.interior.shadow",
+  "DS.interior.steel",
+  "DS.interior.steelDark",
+  "DS.interior.tableEdge",
+  "DS.interior.tableTop",
+  "DS.interior.tile",
+  "DS.interior.wall",
+  "DS.interior.window",
+  "DS.interior.wood",
+  "DS.interior.woodDark",
+  "DS.interior.woodLight",
+  "DS.light",
+  "DS.light.indoor",
+  "DS.light.outdoor",
+  "DS.moods",
+  "DS.moods.action",
+  "DS.moods.app",
+  "DS.moods.good",
+  "DS.moods.great",
+  "DS.moods.harm",
+  "DS.moods.hello",
+  "DS.moods.help",
+  "DS.moods.love",
+  "DS.moods.rank",
+  "DS.moods.rest",
+  "DS.moods.think",
+  "DS.pillCanvas",
+  "DS.roundRect",
+  "DS.scale",
+  "DS.scale.color",
+  "DS.scale.div",
+  "DS.scale.divCb",
+  "DS.scale.divStep",
+  "DS.scale.seq",
+  "DS.scale.seqCb",
+  "DS.scale.step",
+  "DS.signCanvas",
+  "DS.sound",
+  "DS.sound.good",
+  "DS.sound.great",
+  "DS.sound.pop",
+  "DS.sound.tap",
+  "DS.sound.try",
+  "DS.sound.unlock",
+  "DS.toCss",
+  "DS.toNum",
+  "DS.world",
+  "DS_FLOW",
+  "EK_MODELS",
+  "GW_SEAL_BOX",
+  "HUTO_MODELS",
+  "I18N",
+  "KIOSZK",
+  "KP_MODELS",
+  "KZ_MODELS",
+  "MODEL",
+  "MODEL_CATALOG",
+  "MechKartya",
+  "MechKombinal",
+  "MechProba",
+  "MechRacs",
+  "MechUI",
+  "MechVonal",
+  "OT",
+  "OT_MODELS",
+  "PIC_DEFS",
+  "PIC_INK",
+  "QR_SRC",
+  "QR_SRI",
+  "RZ_MODELS",
+  "SZEREPLO_KINEZET",
+  "SZEREPLO_NEV",
+  "SZ_MODELS",
+  "VAROS_MODELS",
+  "VILAG_FOLD",
+  "VILAG_MODELS",
+  "artIcon",
+  "beecoBridge",
+  "beecoHang",
+  "beecoHatter2D",
+  "beecoKaptar",
+  "beecoOffline",
+  "beecoOrbit",
+  "beecoProfil",
+  "beecoVilag",
+  "beep",
+  "bevEl",
+  "bevEsc",
+  "bevJelol",
+  "bevKulcs",
+  "bevLatta",
+  "bevUtana",
+  "bevezetoGombHTML",
+  "bevezetoMutat",
+  "bevezetoNyitva",
+  "bevezetoZar",
+  "demoKartya",
+  "demoKombinal",
+  "demoProba",
+  "demoRacs",
+  "demoVaros",
+  "demoVonal",
+  "dsBurst",
+  "dsFeedback",
+  "dsHaptic",
+  "dsIcon",
+  "dsModalSync",
+  "dsMood",
+  "dsResultHTML",
+  "dsRise",
+  "dsSound",
+  "dsStarsHTML",
+  "haptic",
+  "keretBeallitasok",
+  "keretEredmeny",
+  "keretKioszk",
+  "name",
+  "pic",
+  "qrFill",
+  "qrHTML",
+  "qrLib",
+  "qrLoad",
+  "qrSVG",
+  "szereploHTML",
+  "szereploHozzaad",
+  "szereploSVG",
+  "tr"
+ ]
+}

@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # az API-őr a legutóbbi v* címkéhez mér (tools/api-check.js)
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -15,5 +17,5 @@ jobs:
         run: npm ci
       - name: Chromium a komponens-önteszthez
         run: npx playwright install --with-deps chromium
-      - name: Tesztek (dist friss, React-kimenet friss, kontraszt, párosság, elemek, komponens-önteszt, játékbőr)
+      - name: Tesztek (dist + types + weboldal + AI.md friss, API-őr, kontraszt, párosság, elemek, komponens-önteszt, játékbőr, repó-higiénia)
         run: npm test
