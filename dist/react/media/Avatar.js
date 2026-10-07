@@ -1,9 +1,9 @@
-/* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   Avatar,
   initials
-} from "../reszek/chunk-KUQSEZ3V.js";
-import "../reszek/chunk-42HXLUBI.js";
+} from "../reszek/chunk-JMCYUJIV.js";
+import "../reszek/chunk-UHO66ITM.js";
 export {
   Avatar,
   initials

@@ -1,17 +1,17 @@
-/* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   BulkBar,
   ColumnResizer,
   ExpandToggle,
   SelectCell,
   SortHeader
-} from "../reszek/chunk-525GR3MW.js";
-import "../reszek/chunk-ADA2ZXKE.js";
-import "../reszek/chunk-AGN4Q77Z.js";
-import "../reszek/chunk-RRIC23XG.js";
-import "../reszek/chunk-E5CUZH7I.js";
-import "../reszek/chunk-BWSUD5Z6.js";
-import "../reszek/chunk-42HXLUBI.js";
+} from "../reszek/chunk-UTXJKJRZ.js";
+import "../reszek/chunk-QIBUPNT2.js";
+import "../reszek/chunk-4BN3XTQS.js";
+import "../reszek/chunk-2JUV2CP5.js";
+import "../reszek/chunk-FYLKJ6X5.js";
+import "../reszek/chunk-B5K6ARMB.js";
+import "../reszek/chunk-UHO66ITM.js";
 export {
   BulkBar,
   ColumnResizer,

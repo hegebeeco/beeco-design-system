@@ -60,6 +60,9 @@
 }
 @media (hover: hover) and (pointer: fine) { .bc-link:hover { text-decoration-color: var(--bc-ink); } }
 .bc-link:focus-visible { outline: var(--bc-bw-base) solid var(--bc-focus); outline-offset: 2px; }
+/* Önálló link (nem mondat közben, hanem saját sorban navigációs célként): érintésre is elég nagy.
+   A mondatba ágyazott link WCAG 2.5.8 szerint kivétel, ez viszont nem az. Élesben mérve derült ki. */
+.bc-link.is-standalone { display: inline-flex; align-items: center; min-height: var(--bc-tap); }
 
 /* ---- Idézet (alapító, felhasználó, önkéntes) ------------------------------ */
 .bc-quote { margin: 0; padding: var(--bc-sp-5); background: var(--bc-surface); color: var(--bc-ink);

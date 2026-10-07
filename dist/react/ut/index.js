@@ -1,17 +1,17 @@
-/* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
-import "../reszek/chunk-GS7XVKLE.js";
+/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+import "../reszek/chunk-XK6VJZIG.js";
 import {
   UTVONAL_LABELS_HU,
   Utvonal,
   hataridoSzoveg
-} from "../reszek/chunk-FNDTR2ON.js";
-import "../reszek/chunk-2TPYLK2Y.js";
-import "../reszek/chunk-76D6KKTK.js";
-import "../reszek/chunk-PIENKO5S.js";
-import "../reszek/chunk-7BHAWIHZ.js";
-import "../reszek/chunk-NILXBJHT.js";
-import "../reszek/chunk-BWSUD5Z6.js";
-import "../reszek/chunk-42HXLUBI.js";
+} from "../reszek/chunk-YBAYU67O.js";
+import "../reszek/chunk-JXGXR4JO.js";
+import "../reszek/chunk-JQ5MZ7BN.js";
+import "../reszek/chunk-TS2LZAYU.js";
+import "../reszek/chunk-UJIZ5L5R.js";
+import "../reszek/chunk-FAPKDIIU.js";
+import "../reszek/chunk-B5K6ARMB.js";
+import "../reszek/chunk-UHO66ITM.js";
 export {
   UTVONAL_LABELS_HU,
   Utvonal,

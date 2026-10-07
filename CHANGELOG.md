@@ -11,6 +11,12 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.52.1 – 2026-10-07 – Záró javítócsomag: önálló link (`bc-link.is-standalone`)
+* **`.bc-link.is-standalone`** (`termek/css/bc-web.css`): a saját sorban álló navigációs link (nem mondat közben) érintésre is elég nagy (`min-height: var(--bc-tap)`, `inline-flex`). A mondatba agyazott link WCAG 2.5.8 szerint kivétel, továbbra is sima `bc-link`. Bemutato: `termek/bemutato.html` „Önálló link”. (A #4-es PR átvezetése 1.52-re.)
+* **Fájlellenőrzés (WEBP/WebP kis-/nagybetű):** már a main-ben van (4c5195d, 1.52 előtt); a #5-os PR forrásváltozása és tesztje (`media-kepek.test.mjs`) azonos, ezért nem kellett újra átvenni.
+* `.gitignore`: `node_modules/` → `node_modules` (perjel nélkül, így a szimbolikus linket is kihagyja; a #14-es PR-ból kimaradt rész).
+* `VERSION`, `package.json` 1.52.1; `dist` újragenerálva.
+
 ## 1.52.0 – 2026-10-07 – Csapat-egészség (kerék, jelzőkártya, retró) + SegmentedControl 44 px + dist újragenerálva
 Jóváhagyta Kristóf 2026-10-07 (a Kaptár F5 „Beeco-kerék és retró” jelöltjei, beeco-hr `f5-kerek-retro`). Újrahasznosítható: Kaptár, partner-értékelés, admin-irányítópult, ÖKOS JÖVŐ.
 * **Új csoport: 06e – Csapat-egészség** (`react/src/csapat/`, export a `@beeco/design-system/react`-ből; minden felirat magyar alapértékű, `labels`-szel felülírható):

@@ -1,4 +1,4 @@
-/* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   MAX_DIGITS,
   MOBIL,
@@ -9,7 +9,7 @@ import {
   phoneProblem,
   toE164,
   typedDigits
-} from "../reszek/chunk-HTQWCXJG.js";
+} from "../reszek/chunk-ZUVLXMN4.js";
 export {
   MAX_DIGITS,
   MOBIL,
