@@ -1,8 +1,8 @@
-/* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   DropdownMenu
-} from "../reszek/chunk-DNNXNHOT.js";
-import "../reszek/chunk-42HXLUBI.js";
+} from "../reszek/chunk-T7BRMK6Y.js";
+import "../reszek/chunk-UHO66ITM.js";
 export {
   DropdownMenu
 };

@@ -1,18 +1,18 @@
-/* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   FilterChip,
   FilterControl,
   chipText
-} from "../reszek/chunk-PJV2J3LJ.js";
-import "../reszek/chunk-H62V33G2.js";
-import "../reszek/chunk-TUR5VE7W.js";
-import "../reszek/chunk-AXT3NV5V.js";
-import "../reszek/chunk-UFICQAUZ.js";
-import "../reszek/chunk-WSKDGDS2.js";
-import "../reszek/chunk-RRIC23XG.js";
-import "../reszek/chunk-E5CUZH7I.js";
-import "../reszek/chunk-BWSUD5Z6.js";
-import "../reszek/chunk-42HXLUBI.js";
+} from "../reszek/chunk-XT5O4LNM.js";
+import "../reszek/chunk-S5VZPHKR.js";
+import "../reszek/chunk-K4WGO4RX.js";
+import "../reszek/chunk-5M3UQKCL.js";
+import "../reszek/chunk-SEXNYI7O.js";
+import "../reszek/chunk-OJRN3NYX.js";
+import "../reszek/chunk-2JUV2CP5.js";
+import "../reszek/chunk-FYLKJ6X5.js";
+import "../reszek/chunk-B5K6ARMB.js";
+import "../reszek/chunk-UHO66ITM.js";
 export {
   FilterChip,
   FilterControl,

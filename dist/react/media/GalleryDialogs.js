@@ -1,21 +1,21 @@
-/* beeco design system 1.52.0 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
+/* beeco design system 1.52.1 – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ALT_HELP,
   ALT_MAX,
   AltDialog,
   DeleteDialog
-} from "../reszek/chunk-CEVX3CXA.js";
-import "../reszek/chunk-PVWOVVRC.js";
-import "../reszek/chunk-WBMML2HB.js";
-import "../reszek/chunk-CP3GHWKB.js";
-import "../reszek/chunk-2OVUAIP6.js";
-import "../reszek/chunk-TUR5VE7W.js";
-import "../reszek/chunk-AXT3NV5V.js";
-import "../reszek/chunk-UFICQAUZ.js";
-import "../reszek/chunk-WSKDGDS2.js";
-import "../reszek/chunk-E5CUZH7I.js";
-import "../reszek/chunk-BWSUD5Z6.js";
-import "../reszek/chunk-42HXLUBI.js";
+} from "../reszek/chunk-NFUATUYB.js";
+import "../reszek/chunk-PXY2NJ7X.js";
+import "../reszek/chunk-SN5WOAZO.js";
+import "../reszek/chunk-MX7GTSLY.js";
+import "../reszek/chunk-5EEWJR3M.js";
+import "../reszek/chunk-K4WGO4RX.js";
+import "../reszek/chunk-5M3UQKCL.js";
+import "../reszek/chunk-SEXNYI7O.js";
+import "../reszek/chunk-OJRN3NYX.js";
+import "../reszek/chunk-FYLKJ6X5.js";
+import "../reszek/chunk-B5K6ARMB.js";
+import "../reszek/chunk-UHO66ITM.js";
 export {
   ALT_HELP,
   ALT_MAX,
