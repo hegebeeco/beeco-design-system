@@ -256,6 +256,37 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
 .bb-kereses-ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--bc-sp-2); }
 .bb-kereses-ul .bb-talalat-elem { background: var(--bc-surface); border-color: var(--bc-line); }
 
+/* ---- komponensoldal: bal leírás (fülek rögzítve) · jobb élő panel (rögzítve) ---- */
+.bb-cikk:has(.bb-komp-osztas) { max-width: none; }
+.bb-cikk:has(.bb-komp-osztas) .bb-oldalfej { max-width: var(--bb-olvas); }
+.bb-komp-osztas { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: var(--bc-sp-6); align-items: start; }
+.bb-komp-bal { min-width: 0; }
+.bb-komp-bal .bb-fulsor { position: sticky; top: var(--bb-fej-h); z-index: var(--bc-z-sticky); margin-bottom: var(--bc-sp-4); padding-top: var(--bc-sp-1); background: var(--bc-bg); }
+.bb-komp-jobb { position: sticky; top: calc(var(--bb-fej-h) + var(--bc-sp-4)); min-width: 0; }
+.bb-elo { display: flex; flex-direction: column; gap: var(--bc-sp-2); height: calc(100dvh - var(--bb-fej-h) - var(--bc-sp-6)); min-height: 24rem; }
+.bb-elo-fej { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-3); }
+.bb-elo-cim { margin: 0; font-family: var(--bc-font-display); font-size: var(--bc-fs-l); }
+.bb-elo-uj { display: inline-flex; align-items: center; gap: var(--bc-sp-1); min-height: var(--bc-tap); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); }
+.bb-elo-uj .bb-ic { width: 16px; height: 16px; }
+.bb-elo-valaszt { display: flex; flex-wrap: wrap; gap: var(--bc-sp-1); }
+.bb-elo-valaszt a { display: inline-flex; align-items: center; min-height: var(--bc-tap); padding: 0 var(--bc-sp-3); font-size: var(--bc-fs-s); color: var(--bc-ink); text-decoration: none; background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-pill); }
+.bb-elo-valaszt a[aria-current="true"] { color: var(--bc-on-accent); background: var(--bc-accent); font-weight: var(--bc-fw-bold); }
+.bb-elo-keret { flex: 1 1 auto; width: 100%; min-height: 0; background: var(--bc-bg); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-l); }
+.bb-elo-lab { margin: 0; }
+.bb-elo-html { font-size: var(--bc-fs-s); }
+.bb-elo-html > summary { display: flex; align-items: center; min-height: var(--bc-tap); cursor: pointer; font-weight: var(--bc-fw-semibold); }
+.bb-elo-html[open] .bb-demo { max-height: 14rem; margin: 0; overflow: auto; }
+.bb-alful ul { display: flex; flex-wrap: wrap; gap: var(--bc-sp-1); margin: 0 0 var(--bc-sp-4); padding: 0; list-style: none; }
+.bb-alful a { display: inline-flex; align-items: center; min-height: var(--bc-tap); padding: 0 var(--bc-sp-3); font-size: var(--bc-fs-s); color: var(--bc-ink-soft); text-decoration: none; border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); }
+@media (hover: hover) and (pointer: fine) { .bb-alful a:hover, .bb-elo-valaszt a:hover { color: var(--bc-ink); border-color: var(--bc-line); } }
+.bb-panel :target, .bb-panel [id] { scroll-margin-top: calc(var(--bb-fej-h) + var(--bc-tap) + var(--bc-sp-3)); }
+@media (max-width: 1100px) {
+  .bb-komp-osztas { grid-template-columns: minmax(0, 1fr); }
+  .bb-komp-jobb { position: static; order: -1; }
+  .bb-elo { height: 32rem; min-height: 0; }
+  .bb-komp-bal .bb-fulsor { top: var(--bb-fej-h); }
+}
+
 /* ---- karakter: Brand Book (játékbőr) – több levegő, méhsejt; Design System – tömörebb ---- */
 .is-brand .bb-fo { padding-top: var(--bc-sp-7); }
 .is-brand .bb-cikk h2 { font-size: var(--bc-fs-2xl); }

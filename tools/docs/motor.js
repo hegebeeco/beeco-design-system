@@ -130,9 +130,9 @@ function build(cfg) {
     if (!o.cim) hibak.push(`${forras}: hiányzik a cim`);
     const ctx = B.kornyezet(n.slug, hibak, cfg.gen || {});
     ctx.cfg = cfg; ctx.oldalAdat = o; ctx.nav = nav; ctx.masikUrl = masikUrl; ctx.ki = ki; ctx.navKategoriaOf = navKategoriaOf;
-    let torzs, extraForras = [], kulcsszavak = '', kereso = [];
+    let torzs, extraForras = [], kulcsszavak = '', kereso = [], nincsToc = false;
     try {
-      if (o.tipus && cfg.tipusok && cfg.tipusok[o.tipus]) ({ torzs, extraForras = [], kulcsszavak = '', kereso = [] } = cfg.tipusok[o.tipus](o, ctx));
+      if (o.tipus && cfg.tipusok && cfg.tipusok[o.tipus]) ({ torzs, extraForras = [], kulcsszavak = '', kereso = [], nincsToc = false } = cfg.tipusok[o.tipus](o, ctx));
       else if (o.tipus) { hibak.push(`${forras}: ismeretlen oldaltípus: ${o.tipus}`); torzs = ''; }
       else torzs = B.blokkok(o.blokkok, ctx);
     } catch (e) { hibak.push(`${forras}: építési hiba: ${e.stack || e}`); torzs = ''; }
@@ -140,7 +140,7 @@ function build(cfg) {
     const fajlForras = vanJson ? [forras] : [];
     const datum = o.modositva || A.gitDatum([...fajlForras, ...extraForras]) || A.BUILD_ISO;
     const datumForras = o.modositva ? 'kézi' : (A.gitDatum([...fajlForras, ...extraForras]) ? 'git' : 'build');
-    const toc = [...torzs.matchAll(/<h([23])[^>]*\sid="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>/g)].map(m => ({ szint: +m[1], id: m[2], cim: strip(m[3]) }));
+    const toc = nincsToc ? [] : [...torzs.matchAll(/<h([23])[^>]*\sid="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>/g)].map(m => ({ szint: +m[1], id: m[2], cim: strip(m[3]) }));
     const file = `${n.slug}.html`;
     const csoportCim = szuloOf[n.slug] ? `${n.csoport.cim} › ${szuloOf[n.slug].cim}` : n.csoport.cim;
     index.push({ u: file, c: o.cim, h: '', g: csoportCim, x: strip(o.alcim || '').slice(0, 160), k: kulcsszavak });
