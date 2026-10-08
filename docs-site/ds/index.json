@@ -1,0 +1,27 @@
+{
+  "id": "index",
+  "cim": "beeco Design System",
+  "alcim": "Közös alapok, komponensek és minták a beeco appjához, admin- és partnerfelületéhez és weboldalához – tervezőknek, fejlesztőknek és AI-eszközöknek.",
+  "csoport": "kezdes",
+  "statusz": "vázlat",
+  "hos": {},
+  "blokkok": [
+    { "t": "gen", "nev": "szamok" },
+    { "t": "h2", "x": "Kezdés" },
+    { "t": "gen", "nev": "kartyak", "kartyak": [
+      { "nev": "Tervezőknek", "leiras": "A komponensek használati szabályai: mikor, mikor ne, így és ne így – élő mintával.", "link": "Első komponensoldal: Gomb", "href": "gomb.html" },
+      { "nev": "Fejlesztőknek", "leiras": "React-komponensek, `bc-` CSS-osztályok és tokenek egy csomagban.", "link": "Telepítés", "href": "#telepites" },
+      { "nev": "AI-eszközökkel", "leiras": "Gépi index a csomag teljes felületéről: `llms.txt` és `docs/AI.md`.", "link": "docs/AI.md a GitHubon", "href": "https://github.com/hegebeeco/beeco-design-system/blob/main/docs/AI.md" }
+    ] },
+    { "t": "h2", "x": "Telepítés", "id": "telepites" },
+    { "t": "p", "x": "Címkézett verzióval, a GitHubról (a verzió a `VERSION` fájlból):" },
+    { "t": "gen", "nev": "telepites" },
+    { "t": "p", "x": "React-ben egyszer a stílus, utána a komponensek:" },
+    { "t": "gen", "nev": "kod", "cimke": "React-import", "x": "import '@beeco/design-system/termek.css';\nimport { Button, TextField } from '@beeco/design-system/react';" },
+    { "t": "p", "x": "Forrás: `docs/AI.md` – Használat a projektben. SCSS, Tailwind és Flutter: ugyanott." },
+    { "t": "h2", "x": "Mi új" },
+    { "t": "gen", "nev": "valtozasok" },
+    { "t": "h2", "x": "Szótár" },
+    { "t": "hianyzik", "cim": "Szakszavak egy helyen", "x": "A bőr, a téma és a felület pontos jelentése a szótárba kerül – a cserékről javaslatlap készül." }
+  ]
+}

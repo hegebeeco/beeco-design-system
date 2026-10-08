@@ -1,0 +1,45 @@
+{
+  "id": "logo",
+  "cim": "Logó",
+  "alcim": "Két változat, körben üres hely, és néhány dolog, amit soha ne csinálj vele.",
+  "csoport": "vizualis",
+  "statusz": "vázlat",
+  "blokkok": [
+    { "t": "h2", "x": "Két változat" },
+    { "t": "gen", "nev": "logo" },
+    { "t": "szabaly", "cim": "Világos és sötét háttérre", "elemek": [
+      "Világos háttérre a `logo.webp`, sötétre a `logo-sotet.webp` való.",
+      "A sötét változat nem új rajz: a fekete „be”, a csápok és a lábak krém színűek, a méhecske csíkjai maradnak.",
+      "Képernyőn 24 px (kicsi), 36 px (alap) vagy 56 px (nagy) magas; az arány 512 : 313."
+    ], "forras": ["docs/termek-arculat.md 9.", "termek/css/bc-marka.css", "docs/javaslatok/10-logo-sotet-es-mehsejt.md"] },
+    { "t": "h2", "x": "Védőtér és legkisebb méret" },
+    { "t": "hivatalos", "cim": "Védőtér, változatok, tilos használat", "elemek": [
+      "**Védőtér:** a logó körül minden oldalon legalább **egy betűnyi** helyet hagyj üresen.",
+      "A **beeco felirat a méhecske-emblémával együtt és külön is** használható, az embléma önmagában is.",
+      "Az alap logó világos (fehér, krém) alapra való; sötét alapon a sötét változat.",
+      "**Ne** torzítsd, ne színezd át, ne tegyél rá árnyékot, körvonalat vagy átmenetet; ne tedd mintás, zajos fotóra.",
+      "Legkisebb méret: képernyőn 24 px, nyomtatásban 10 mm magas (DS-szabály; a kézikönyvben nincs megadva)."
+    ], "forras": ["Arculati kézikönyv és stratégia (DesignBook_V1, 2023) – logó", "docs/termek-arculat.md 9."] },
+    { "t": "h2", "x": "Így igen, így nem" },
+    { "t": "dodont", "cim": "Négy gyakori hiba", "allapot": "szabaly",
+      "forras": ["Arculati kézikönyv és stratégia (DesignBook_V1, 2023) – logó", "docs/termek-arculat.md 9."],
+      "parok": [
+        { "jo": { "felirat": "körben üres védőtér", "html": "<div class=\"bb-vedoter\"><img class=\"bb-logo-ok\" src=\"assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"></div>" },
+          "rossz": { "felirat": "szöveg a logóra tapad", "html": "<div class=\"bb-demo-sor\"><img class=\"bb-logo-ok\" src=\"assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"><p class=\"bb-vizual-szoveg\">Nyári akció!</p></div>" },
+          "miert": "A védőtér levegőt ad: a logó így olvasható marad, és nem olvad össze a szöveggel." },
+        { "jo": { "felirat": "eredeti arány", "html": "<img class=\"bb-logo-ok\" src=\"assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\">" },
+          "rossz": { "felirat": "nyújtva", "html": "<img class=\"bb-logo-hiba is-nyujtott\" src=\"assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\">" },
+          "miert": "A logót csak arányosan méretezd; a nyújtás torzítja a betűket és a méhecskét." },
+        { "jo": { "felirat": "eredeti színek", "html": "<img class=\"bb-logo-ok\" src=\"assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\">" },
+          "rossz": { "felirat": "átszínezve", "html": "<img class=\"bb-logo-hiba is-szinezett\" src=\"assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\">" },
+          "miert": "A logó színe a márka része: nem színezzük a kampány vagy a partner színére." },
+        { "jo": { "felirat": "sötét alapon a sötét változat", "html": "<div class=\"bb-logo is-sotet\"><img class=\"bb-logo-ok\" src=\"assets/brand/logo-sotet.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"></div>" },
+          "rossz": { "felirat": "sötét alapon a világos változat", "html": "<div class=\"bb-logo is-sotet\"><img class=\"bb-logo-ok\" src=\"assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"></div>" },
+          "miert": "Sötét háttéren a fekete „be” eltűnik – ezért van sötét változat." }
+      ] },
+    { "t": "h2", "x": "Ki használhatja?" },
+    { "t": "szabaly", "cim": "Belső használatú", "x": "A beeco logója és méhecskéi belső használatúak; külső anyagban csak a beeco jóváhagyásával jelenhetnek meg.", "forras": ["CLAUDE.md – a repó szabályai", "tools/brandbook-build.js – a régi Brand Book lábléce"] },
+    { "t": "h2", "x": "Vektoros logó" },
+    { "t": "hianyzik", "cim": "SVG vagy PDF nyomdához", "x": "A logó most csak WebP-ben van. Nyomdához és nagy felülethez vektoros fájl kell – addig nyomdai anyaghoz kérd a beeco csapatától." }
+  ]
+}
