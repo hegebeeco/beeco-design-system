@@ -5,6 +5,7 @@
   "csoport": "vizualis",
   "statusz": "vázlat",
   "blokkok": [
+    {"t": "roviden", "mi": "A méhecske a beeco hangja, a madár a Csicsergősz tartalma: a hazai fajok.", "hasznald": "Csak a kész, meglévő képeket használd (Letöltések); képernyőnként legfeljebb egy méhecske és egy szóvicc.", "ne": "Mérges méhecske soha, semmilyen felületen."},
     { "t": "p", "x": "A beeco két rajzolt szereplőcsaládja a méhecske és a madár. A méhecske a beeco hangja, a madár a Csicsergősz tartalma: a hazai fajok." },
     { "t": "h2", "x": "A méhecske" },
     { "t": "kep", "src": "assets/brand/bee-happy.webp", "alt": "A beeco méhecske, a házigazda szereplő, mosolyog", "w": 160, "h": 161, "felirat": "A házigazda, a beeco alap méhecskéje." },

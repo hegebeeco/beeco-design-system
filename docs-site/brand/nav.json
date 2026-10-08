@@ -2,17 +2,17 @@
   "_readme": "A Brand Book menüje és olvasási sorrendje (a „Következő” lánc ebből jön). tervezett = a cél-struktúra még meg nem írt oldala. Oldal: docs-site/brand/<slug>.json.",
   "cim": "Brand Book",
   "csoportok": [
-    { "id": "kezdes", "cim": "Kezdőlap", "oldalak": [ { "slug": "index", "cim": "Kezdőlap" } ] },
+    { "id": "kezdes", "cim": "Kezdőlap", "oldalak": [ { "slug": "index", "cim": "Kezdőlap" }, { "slug": "szotar", "cim": "Szótár" } ] },
     { "id": "marka", "cim": "Márka", "oldalak": [
-      { "slug": "marka-pozicio", "cim": "Pozíció" },
-      { "slug": "marka-hang", "cim": "Hang és személyiség" }
+      { "slug": "marka-pozicio", "cim": "Pozíció", "ut": 1 },
+      { "slug": "marka-hang", "cim": "Hang és személyiség", "ut": 2 }
     ] },
     { "id": "vizualis", "cim": "Vizuális identitás", "oldalak": [
       { "slug": "vizualis-bevezeto", "cim": "Bevezető" },
-      { "slug": "logo", "cim": "Logó" },
-      { "slug": "szin", "cim": "Szín" },
-      { "slug": "tipografia", "cim": "Tipográfia" },
-      { "slug": "meh-illusztracio", "cim": "Méhecske és illusztráció" },
+      { "slug": "logo", "cim": "Logó", "ut": 3 },
+      { "slug": "szin", "cim": "Szín", "ut": 4 },
+      { "slug": "tipografia", "cim": "Tipográfia", "ut": 5 },
+      { "slug": "meh-illusztracio", "cim": "Méhecske és illusztráció", "ut": 6 },
       { "slug": "kepek-fotok", "cim": "Képek és fotó" },
       { "slug": "mozgas", "cim": "Mozgás" }
     ] },
@@ -24,6 +24,6 @@
       { "slug": "kampany-altema", "cim": "Kampány-altéma: Csicsergősz" }
     ] },
     { "id": "csatlakozz", "cim": "Csatlakozz", "oldalak": [ { "slug": "csatlakozz", "cim": "Önkénteseknek" } ] },
-    { "id": "letoltesek", "cim": "Letöltések", "oldalak": [ { "slug": "letoltesek", "cim": "Letöltések" } ] }
+    { "id": "letoltesek", "cim": "Letöltések", "oldalak": [ { "slug": "letoltesek", "cim": "Letöltések", "ut": 7 } ] }
   ]
 }

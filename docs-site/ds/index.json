@@ -20,6 +20,12 @@
       "nev": "kartyak",
       "kartyak": [
         {
+          "nev": "Először vagy itt?",
+          "leiras": "Húsz perc, hat lépés: szavak, telepítés, az első komponens, az első javaslat.",
+          "link": "Első nap",
+          "href": "elso-nap.html"
+        },
+        {
           "nev": "Tervezőknek",
           "leiras": "Az alapok (szín, betű, tér, forma, mozgás) és a komponensek használati szabályai: mikor, mikor ne, így és ne így – élő mintával.",
           "link": "Alapok: Szín",

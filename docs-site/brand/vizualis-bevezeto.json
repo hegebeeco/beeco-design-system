@@ -16,7 +16,7 @@
       ],
       "forras": ["docs/termek-arculat.md 1. (Elvek)", "docs/arculat.md 1. (Öt alapelv)"] },
     { "t": "h2", "x": "Két stílus, egy márka" },
-    { "t": "p", "x": "Ugyanaz a márka két stílusban jelenik meg. A **termék-stílus** (app, admin, partner-felület, weboldal) fekete vonalat és kemény, átlós árnyékot használ. A **játék-stílus** (a webjátékok) a Méhsejt-diorama: olíva körvonal, puha árnyék, hatszög-motívum. A Brand Book maga is a játék-stílusban készült. A szín, a betű és a logó mindkettőben ugyanaz." },
+    { "t": "p", "x": "Ugyanaz a márka két stílusban jelenik meg. A **termék-stílus** ([szótár](szotar.html)) (app, admin, partner-felület, weboldal) fekete vonalat és kemény, átlós árnyékot használ. A **játék-stílus** (a webjátékok) a Méhsejt-diorama: olíva körvonal, puha árnyék, hatszög-motívum. A Brand Book maga is a játék-stílusban készült. A szín, a betű és a logó mindkettőben ugyanaz." },
     { "t": "p", "x": "A két stílus pontos szabályai a [Design Systemben](ds:temak) vannak." },
     { "t": "h2", "x": "Méhsejt-háttér" },
     { "t": "szabaly", "cim": "Csak dísz, a tartalom alatt",

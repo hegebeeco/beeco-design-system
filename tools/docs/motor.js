@@ -159,7 +159,7 @@ function build(cfg) {
   // ---------- oldalváz ----------
   function menu(aktivSlug) {
     const aktivCs = csoportOf[aktivSlug];
-    const link = (o, cls = 'bb-nav-link') => `<a class="${cls}" href="${esc(o.slug)}.html"${o.slug === aktivSlug ? ' aria-current="page"' : ''}>${esc(o.cim)}</a>`;
+    const link = (o, cls = 'bb-nav-link') => `<a class="${cls}" href="${esc(o.slug)}.html"${o.slug === aktivSlug ? ' aria-current="page"' : ''}>${esc(o.cim)}${o.ut ? `<span class="bb-ut" title="Az önkéntes hétoldalas útja">${o.ut}<span class="bc-sr">. oldal az önkéntes úton</span></span>` : ''}</a>`;
     const tetel = (o) => {
       if (o.tervezett) return `<li${o.al ? ' class="is-al"' : ''}><span class="bb-nav-link is-soon">${esc(o.cim)}<span class="bb-soon">hamarosan</span></span></li>`;
       if (!(o.gyerekek || []).length) return `<li${o.al ? ' class="is-al"' : ''}>${link(o)}</li>`;

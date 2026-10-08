@@ -102,6 +102,16 @@ function blokk(b, ctx) {
     case 'h3': return cimsor(ctx, 3, b.x, b.id);
     case 'p': return `<p>${inl(b.x)}</p>`;
     case 'lead': return `<p class="bb-lead">${inl(b.x)}</p>`;
+    case 'roviden': {
+      // „Röviden”: három sor az oldal tetején – mi ez, mit használj, mi a tilos (csak az oldal saját tartalmából)
+      for (const m of ['mi', 'hasznald', 'ne']) if (!b[m]) ctx.hibak.push(`${ctx.oldal}: a „roviden” blokkból hiányzik: ${m}`);
+      return `<section class="bb-roviden" aria-label="Röviden"><p class="bb-roviden-cim">Röviden</p><dl><div><dt>Mi ez</dt><dd>${inl(b.mi || '')}</dd></div><div><dt>Használd</dt><dd>${inl(b.hasznald || '')}</dd></div><div class="is-ne"><dt>Ne</dt><dd>${inl(b.ne || '')}</dd></div></dl></section>`;
+    }
+    case 'merno': {
+      // „Mérnököknek”: a kódok és értékek egy lenyitható sorban (az önkéntes a nevet és a használatot látja)
+      const tor = (b.x ? [].concat(b.x).map(x => `<p>${inl(x)}</p>`).join('') : '') + (b.tabla ? tabla(b.tabla.fej, b.tabla.sorok, b.tabla.cim) : '') + (b.elemek ? lista(b.elemek) : '');
+      return `<details class="bb-merno"><summary>${inl(b.cim || 'Mérnököknek')}</summary>${tor}</details>`;
+    }
     case 'lista': return lista(b.elemek);
     case 'szamozott': return `<ol class="bb-list">${b.elemek.map(e => `<li>${inl(e)}</li>`).join('')}</ol>`;
     case 'szabaly': case 'javaslat': case 'hianyzik': case 'tilos': case 'hivatalos': case 'korrigalando': {

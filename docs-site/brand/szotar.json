@@ -1,0 +1,79 @@
+{
+  "id": "szotar",
+  "cim": "Szótár",
+  "alcim": "A márkakönyv néhány szava egyszerűen: mit jelent, ha új vagy a csapatban.",
+  "csoport": "kezdes",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "p",
+      "x": "Itt azok a szavak vannak, amik a márkakönyvben és a csapatban újnak tűnhetnek. A pontos, műszaki jelentésük a [Design System szótárában](ds:szotar) van."
+    },
+    {
+      "t": "tabla",
+      "cim": "A márka szavai",
+      "fej": [
+        "Szó",
+        "Jelentés"
+      ],
+      "sorok": [
+        [
+          "termék-stílus",
+          "Az app, az admin, a partner-felület és a weboldal megjelenése: fekete vonal és kemény, átlós árnyék."
+        ],
+        [
+          "játék-stílus",
+          "A webjátékok megjelenése (Méhsejt-diorama): olíva körvonal és puha árnyék. A Brand Book is ebben készült."
+        ],
+        [
+          "védőtér",
+          "A logó körül üresen hagyandó hely: minden oldalon legalább a logó magasságának fele."
+        ],
+        [
+          "méz",
+          "A márka egyetlen hangsúlyszíne: a fő gomb és a kiemelés színe."
+        ],
+        [
+          "Lalezar és Open Sans",
+          "A két betűtípus: a Lalezar a címekhez, számokhoz és gombokhoz, az Open Sans minden más szöveghez."
+        ],
+        [
+          "altéma",
+          "Egy kampány saját színpalettát kaphat. A betű, a hang és a méhecske a beecóé marad."
+        ],
+        [
+          "raj",
+          "A beeco önkénteseinek csapata. Nyolc raj van, például a Szoftveres, a Webes és a Kreatív raj."
+        ],
+        [
+          "Kaptár",
+          "A belső önkéntes-platform: rajok, feladatok, Rajpont."
+        ],
+        [
+          "token",
+          "Névvel ellátott érték (szín, méret, idő…) a Design Systemben; belőle készül a CSS, a Tailwind, a Dart és a Webflow kimenet."
+        ],
+        [
+          "hex-kód",
+          "A szín számokkal írt neve, például a méz: `#FECF39`. Az önkéntesnek a szín neve és a használata a fontos; a kódok a „Mérnököknek” sorokban vannak."
+        ]
+      ]
+    },
+    {
+      "t": "hianyzik",
+      "cim": "Rajpont",
+      "x": "A Rajpont szabályai még nincsenek leírva; a beeco HR-felületén (Kaptár) lesznek elérhetők."
+    },
+    {
+      "t": "h2",
+      "x": "Kapcsolódó"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Hol kezdjem: [Kezdőlap](index.html)",
+        "Az önkéntes első napjai: [Önkénteseknek](csatlakozz.html)"
+      ]
+    }
+  ]
+}

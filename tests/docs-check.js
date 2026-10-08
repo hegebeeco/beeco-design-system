@@ -21,6 +21,7 @@ const ROOT = path.join(__dirname, '..');
 const SITE = process.env.DOCS_SITE ? path.resolve(process.env.DOCS_SITE) : path.join(ROOT, '_site');
 const LAZA = process.argv.includes('--laza') || process.env.DOCS_LAZA === '1';
 const SZIGORU = process.argv.includes('--szigoru');
+const ONKENTES_UT = ['marka-pozicio', 'marka-hang', 'logo', 'szin', 'tipografia', 'meh-illusztracio', 'letoltesek'];
 const hibak = [], figy = [];
 // laza módban csak ezek buktatnak (a feladat szerint: üres oldal, törött link; + az átirányítás célja)
 const SULYOS = /üres vagy majdnem üres|törött link|nem létező horgony|átirányítás célja nem létezik|nincs megépítve/;
@@ -74,6 +75,8 @@ for (const [nev, forras] of OLDALAK) {
     const sz = torzsSzoveg(h);
     for (const re of TILTOTT) { if (nev === 'ds' && re.source === 'javaslatlap') continue; const m = sz.match(re); if (m) hiba(`${hol}: belső szöveg a publikus oldalon: „${m[0]}” („…${sz.slice(Math.max(0, m.index - 40), m.index + 40)}…”)`); }
     if (nev === 'brand') { const m = sz.match(/bőr/i); if (m) hiba(`${hol}: a Brand Bookban „termék-stílus” / „játék-stílus” a szó, nem „bőr” („…${sz.slice(Math.max(0, m.index - 40), m.index + 40)}…”)`); }
+    // az önkéntes fejlesztő hétoldalas útja: mindegyik oldal tetején legyen „Röviden” (docs-site/brand/index.json: hetoldalas-ut)
+    if (nev === 'brand' && ONKENTES_UT.includes(path.basename(p, '.html')) && !/class="bb-roviden"/.test(h)) hiba(`${hol}: az önkéntes úton lévő oldalról hiányzik a „Röviden” doboz`);
     hianyDb[nev] += (h.match(/<span class="bc-badge is-muted">Hiányzik|\sdata-mezo="/g) || []).length;
     for (const m of h.matchAll(/<img\b[^>]*>/g)) {
       if (!/\salt="/.test(m[0])) hiba(`${hol}: kép alt nélkül: ${m[0].slice(0, 80)}`);

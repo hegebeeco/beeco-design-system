@@ -7,18 +7,8 @@
   "blokkok": [
     { "t": "h2", "x": "Mi az altéma?" },
     { "t": "p", "x": "Közös kampánynál a beeco saját altémát adhat. Példa: a **CsicsergŐsz** őszi madárkampány saját palettát (krém, barack, kakaó, méz) kapott. Ez **kampányarculat**, nem a beeco alap stílusa: a saját színei csak a kampányoldalakon élnek. A betűk és a hangnem a beecóé maradtak." },
-    { "t": "tabla", "cim": "A CsicsergŐsz kampány színei", "fej": ["Szín", "Kód", "Szerep"], "sorok": [
-      ["Krém", "`#FEF7DE`", "csendes felület"],
-      ["Barack", "`#FFE2B5`", "meleg felület, nyitókép"],
-      ["Homok", "`#CB9C7E`", "díszítő"],
-      ["Dió", "`#A87552`", "csak nagy méretben szöveg"],
-      ["Gesztenye", "`#905E39`", "díszítő barna"],
-      ["Kakaó", "`#6B3B16`", "cím, keret, árnyék, sötét felület (a „fekete”)"],
-      ["Méz", "`#FFAA2E`", "az egyetlen interaktív kiemelő"],
-      ["Narancs", "`#EA6C18`", "jelzés"],
-      ["Fehér", "`#FFFFFF`", "kártya"],
-      ["Tinta", "`#1A1A1A`", "törzsszöveg"]
-    ] },
+    {"t": "tabla", "cim": "A CsicsergŐsz kampány színei", "fej": ["Szín", "Szerep"], "sorok": [["Krém", "csendes felület"], ["Barack", "meleg felület, nyitókép"], ["Homok", "díszítő"], ["Dió", "csak nagy méretben szöveg"], ["Gesztenye", "díszítő barna"], ["Kakaó", "cím, keret, árnyék, sötét felület (a „fekete”)"], ["Méz", "az egyetlen interaktív kiemelő"], ["Narancs", "jelzés"], ["Fehér", "kártya"], ["Tinta", "törzsszöveg"]]},
+    {"t": "merno", "cim": "Mérnököknek: színkódok", "tabla": {"cim": "A CsicsergŐsz kampány színei – kódok", "fej": ["Szín", "Kód"], "sorok": [["Krém", "`#FEF7DE`"], ["Barack", "`#FFE2B5`"], ["Homok", "`#CB9C7E`"], ["Dió", "`#A87552`"], ["Gesztenye", "`#905E39`"], ["Kakaó", "`#6B3B16`"], ["Méz", "`#FFAA2E`"], ["Narancs", "`#EA6C18`"], ["Fehér", "`#FFFFFF`"], ["Tinta", "`#1A1A1A`"]]}},
     { "t": "p", "x": "A kampány a madarak kampánya: a tartalom a hazai fajok, a rajzok a [Méhecske és illusztráció](meh-illusztracio.html) oldal madár-szabályai szerint készülnek." },
     { "t": "hivatalos", "cim": "Mi változik, mi marad",
       "elemek": [

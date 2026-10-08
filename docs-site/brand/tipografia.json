@@ -5,6 +5,7 @@
   "csoport": "vizualis",
   "statusz": "stabil",
   "blokkok": [
+    {"t": "roviden", "mi": "Két betű: a Lalezar a hangos címekhez, az Open Sans mindenhez, amit olvasni kell.", "hasznald": "Lalezar csak cím, szám, rövid felirat és gomb; minden más szöveg Open Sans.", "ne": "Más betűtípus nem kerül be, és hosszú szövegben ne használj Lalezart."},
     { "t": "h2", "x": "Mikor melyik betű" },
     { "t": "szabaly", "cim": "Két betű, mindenhol",
       "elemek": [
