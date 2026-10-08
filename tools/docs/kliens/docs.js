@@ -23,9 +23,24 @@
       try { if (f.contentWindow && f.contentWindow.bbMintaTema) f.contentWindow.bbMintaTema(t); } catch (e) { /* még tölt */ }
     });
   }
+  /** a komponensoldal élő tesztlapja (iframe, azonos eredet) a szülő témáját kapja */
+  function eloTema() {
+    var v = d.getAttribute('data-tema-valasztas') || 'auto';
+    $$('iframe.bb-elo-keret').forEach(function (f) {
+      try { f.contentDocument.documentElement.setAttribute('data-theme', v); } catch (e) { /* még tölt */ }
+    });
+  }
+  $$('iframe.bb-elo-keret').forEach(function (f) { f.addEventListener('load', eloTema); });
+  $$('.bb-elo-valaszt a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      $$('.bb-elo-valaszt a').forEach(function (b) { b.removeAttribute('aria-current'); });
+      a.setAttribute('aria-current', 'true');
+      var uj = $('[data-elo-uj]'); if (uj) uj.href = a.href;
+    });
+  });
   function tema(v) {
     d.setAttribute('data-theme', v); d.setAttribute('data-tema-valasztas', v); d.setAttribute('data-tema-kesz', feloldott(v));
-    mintakTema();
+    mintakTema(); eloTema();
     var g = $('[data-tema-gomb]');
     if (g) { var t = 'Téma: ' + TEMA_NEV[v] + ' – váltás erre: ' + TEMA_NEV[KOV[v]]; g.setAttribute('aria-label', t); g.title = t; }
   }

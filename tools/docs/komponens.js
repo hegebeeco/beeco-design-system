@@ -226,22 +226,34 @@ ${a.megjegyzes ? `<p>${inl(a.megjegyzes)}</p>` : ''}${forrasSor(k, 'a11y')}
   const osszegzo = ful => { const l = hianyok[ful]; return l.length ? `<p class="bb-hiany-osszeg"><span class="bc-badge is-muted">Még hiányzik ezen az oldalon</span> ${l.map(([m, t]) => `<span class="bb-hiany-nev" data-mezo="${esc(m)}">${esc(t || m)}</span>`).join(' · ')}</p>` : ''; };
   const elotag = id => (id === 'specifikacio' || id === 'hozzaferhetoseg') ? osszegzo(id) : '';
   const kat = ctx.navKategoriaOf ? ctx.navKategoriaOf[kSlug(k.id)] : null;
-  const torzs = `<dl class="bb-komp-meta">${kat ? `<div><dt>Kategória</dt><dd><a href="${esc(kat.slug)}.html">${esc(kat.cim)}</a></dd></div>` : ''}${(k.react || []).length ? `<div><dt>React</dt><dd>${k.react.map(x => `<code>${esc(x)}</code>`).join('')}</dd></div>` : ''}<div><dt>Szint</dt><dd>${esc((KOMP.szintek.find(s => s.id === k.szint) || { nev: k.szint }).nev)}</dd></div><div><dt>Életciklus</dt><dd>${k.statusz ? B.statuszJelveny(k.statusz) : '<span class="bc-badge is-muted">Státusz: nincs döntés</span>'}</dd></div></dl>
-<section class="bb-demo" aria-labelledby="elo-minta"><p class="bb-demo-cim" id="elo-minta">Élő minta</p>${B.htmlEllenor(k.minta_html || '', ctx, 'minta_html')}</section>
+  // al-gyorsmenü: az aktív fül h3-szakaszai (görgetés helyett egy kattintás)
+  const alful = t => { const l = [...t.matchAll(/<h3[^>]*\sid="([^"]+)"[^>]*>([\s\S]*?)<\/h3>/g)].map(m => [m[1], A.strip ? A.strip(m[2]) : m[2].replace(/<[^>]+>/g, '')]); return l.length > 1 ? `<nav class="bb-alful" aria-label="Szakaszok ezen a fülön"><ul role="list">${l.map(([id, c]) => `<li><a href="#${esc(id)}">${esc(c)}</a></li>`).join('')}</ul></nav>` : ''; };
+  // élő, kipróbálható rész: a komponens tesztlapja a jobb oldali, rögzített panelben (iframe, lusta betöltés)
+  const tl = (k.tesztlap || []).map(n => { ctx.ki.tesztlap(n); return { n, t: TESZT.find(x => x.nev === n), u: `${TUKOR}/termek/tesztlapok/${esc(n)}.html` }; });
+  const elo = `<aside class="bb-komp-jobb" aria-labelledby="elo-minta"><div class="bb-elo">
+<div class="bb-elo-fej"><p class="bb-elo-cim" id="elo-minta">Kipróbálom</p>${tl.length ? `<a class="bb-elo-uj" href="${tl[0].u}" target="_blank" rel="noopener" data-elo-uj>Új lapon${ic('kulso')}<span class="bc-sr"> (megnyílik egy új lapon)</span></a>` : ''}</div>
+${tl.length > 1 ? `<nav class="bb-elo-valaszt" aria-label="Melyik tesztlap látsszon">${tl.map((x, i) => `<a href="${x.u}" target="komp-demo"${i ? '' : ' aria-current="true"'}>${esc(x.t ? x.t.cim : x.n)}</a>`).join('')}</nav>` : ''}
+${tl.length ? `<iframe class="bb-elo-keret" name="komp-demo" title="${esc(k.nev)} – élő, kipróbálható tesztlap" src="${tl[0].u}" loading="lazy"></iframe>
+<p class="bb-kicsi bb-elo-lab">Minden állapot és szélső eset él: kattints, írj, használd billentyűvel. A számok és nevek mintaadatok.</p>` : hj('tesztlap', 'élő tesztlap')}
+<details class="bb-elo-html"><summary>Egyszerű HTML-minta</summary><div class="bb-demo" role="group" aria-label="${esc(k.nev)} – HTML-minta">${B.htmlEllenor(k.minta_html || '', ctx, 'minta_html')}</div></details>
+</div></aside>`;
+  const torzs = `<div class="bb-komp-osztas"><div class="bb-komp-bal">
+<dl class="bb-komp-meta">${kat ? `<div><dt>Kategória</dt><dd><a href="${esc(kat.slug)}.html">${esc(kat.cim)}</a></dd></div>` : ''}${(k.react || []).length ? `<div><dt>React</dt><dd>${k.react.map(x => `<code>${esc(x)}</code>`).join('')}</dd></div>` : ''}<div><dt>Szint</dt><dd>${esc((KOMP.szintek.find(s => s.id === k.szint) || { nev: k.szint }).nev)}</dd></div><div><dt>Életciklus</dt><dd>${k.statusz ? B.statuszJelveny(k.statusz) : '<span class="bc-badge is-muted">Státusz: nincs döntés</span>'}</dd></div></dl>
 <div class="bb-fulek" data-fulek>
 <div class="bb-fulsor" role="tablist" aria-label="${esc(k.nev)} – dokumentáció" hidden>${fulek.map(([id, cim], i) => `<button type="button" class="bb-ful" role="tab" id="ful-${id}" aria-controls="panel-${id}" aria-selected="${i ? 'false' : 'true'}"${i ? ' tabindex="-1"' : ''}>${cim}</button>`).join('')}</div>
-${fulek.map(([id, , t]) => `<section class="bb-panel" id="panel-${id}" data-ful="ful-${id}">${t.replace(/^(<h2[^>]*>[\s\S]*?<\/h2>)/, m => m + elotag(id))}</section>`).join('\n')}
+${fulek.map(([id, , t]) => `<section class="bb-panel" id="panel-${id}" data-ful="ful-${id}">${t.replace(/^(<h2[^>]*>[\s\S]*?<\/h2>)/, m => m + alful(t) + elotag(id))}</section>`).join('\n')}
 </div>
 <h2 id="kapcsolodo">Kapcsolódó</h2>${kapcs}${forrasSor(k, 'kapcsolodo')}
 <h3 id="tesztlapok">Tesztlapok</h3>${teszt}
-${B.forrasLista(k.forras)}`;
+${B.forrasLista(k.forras)}
+</div>${elo}</div>`;
 
   // keresőindex: változatok és propok külön tételként (a találatnál a szakasz neve látszik)
   const kereso = [];
   if (valtozatok.length || (k.css || []).length) kereso.push({ h: 'Irányelvek › Változatok', id: 'valtozatok', x: [...valtozatok.map(([n, l]) => `${n}: ${l.map(([p, v]) => `${p} = ${literalok(v.t).join(' | ')}`).join('; ')}`), ...(k.css || [])].join(' · ') });
   for (const [n, d] of reactok) if (d && d.props && Object.keys(d.props).length) kereso.push({ h: `Kód › Propok › ${n}`, id: `propok-${A.slug(n)}`, x: Object.entries(d.props).map(([p, v]) => `${p}: ${v.t}`).join(' · ') });
   const adatForras = [...new Set(adatForrasok(k, null, ctx.hibak))];
-  return { torzs, extraForras: [KOMP_F, 'api/api.json', ...adatForras.filter(f => f !== KOMP_F)], kereso,
+  return { torzs, nincsToc: true, extraForras: [KOMP_F, 'api/api.json', ...adatForras.filter(f => f !== KOMP_F)], kereso,
     kulcsszavak: [...(k.react || []), ...(k.css || []), ...reactok.flatMap(([, d]) => Object.keys((d && d.props) || {}))].join(' ') };
 }
 
