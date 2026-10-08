@@ -1,5 +1,5 @@
 /* ============================================================
-   beeco docs – tartalomblokkok (ugyanazok a típusok, mint a régi brandbook/tartalom/*.json-ban)
+   beeco docs – tartalomblokkok (a régi brandbook-építő blokktípusai, a git-előzményben: brandbook/tartalom/*.json)
 
    Változás a régi építőhöz képest:
    • A jelvényes kártya (szabaly, hivatalos, javaslat, hianyzik, tilos, korrigalando) és a DO/DON'T címe a környezet
@@ -115,7 +115,7 @@ function blokk(b, ctx) {
     case 'tabla': return tabla(b.fej, b.sorok, b.cim);
     case 'kep': return `<figure class="bb-kep${b.sotet ? ' is-sotet' : ''}"><img src="${esc(String(b.src || '').replace(/^(?:\.\.\/)?ds\/web\/assets\//, 'assets/'))}" alt="${esc(b.alt)}" loading="lazy"${b.w ? ` width="${b.w}" height="${b.h}"` : ''}>${b.felirat ? `<figcaption>${inl(b.felirat)}</figcaption>` : ''}</figure>`;
     case 'gen': {
-      // a generátor neve: „nev” (a régi brandbook/tartalom/*.json így írja), tartalékként „id”
+      // a generátor neve: „nev” (a régi, kivezetett tartalomfájlok így írták), tartalékként „id”
       const nev = b.nev || b.id;
       const g = ctx.gen[nev];
       if (!g) { ctx.hibak.push(`${ctx.oldal}: ismeretlen generátor: ${nev}`); return ''; }

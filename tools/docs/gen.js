@@ -1,6 +1,6 @@
 /* ============================================================
-   beeco docs – a „gen” blokkok (generált tartalom) a régi tools/brandbook-build.js (+ brandbook-bbweb.js) összes
-   generátorából, VÁLTOZATLAN névvel: a régi brandbook/tartalom/*.json blokkja ({ "t": "gen", "nev": "…" }) átmásolható.
+   beeco docs – a „gen” blokkok (generált tartalom) a kivezetett régi brandbook-építő (+ bbweb) összes
+   generátorából, VÁLTOZATLAN névvel: a régi tartalomfájlok blokkja ({ "t": "gen", "nev": "…" }) átmásolható.
 
    Minden generátor { oldal, fn, miert }: oldal = 'brand' | 'ds' | '*'. Ha a blokk a rossz oldalon áll, az építő hibát ad
    (pl. a komponens-katalógus és a felületi mátrix csak a Design Systemben, a logó, a madárkészlet és a hangszerepek csak a

@@ -1,6 +1,6 @@
 # Javaslat 22 – beeco Brand Book (design system + márkakönyv egy felületen)
 
-*Állapot: **jóváhagyva** (Kristóf, 2026-10-07)*  
+*Állapot: **jóváhagyva** (Kristóf, 2026-10-07) – az építőt és a kezelőfelületet felváltotta a 25. javaslat (két oldal, `tools/docs/`); a régi `tools/brandbook-build.js` kivezetve*  
 *Eredeti állapot: **javaslat** · készítette: Claude (Kristóf kérésére) · dátum: 2026-10-06*
 *(Jóváhagyás után: **jóváhagyva** – lent a Döntés részben.)*
 

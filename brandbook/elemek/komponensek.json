@@ -333,7 +333,7 @@
       "`TooltipIconButton`: bezárja a súgó-buborékot."
      ]
     ],
-    "megjegyzes": "Név nélküli ikongomb nem lehet: az `aria-label` típus-szinten kötelező, és a tesztlap is méri (`.bc-icon-btn:not([aria-label])` = 0). A buborék `aria-hidden`, az `aria-describedby` ki van kapcsolva, hogy a nevet ne mondja kétszer. A buborék egérrel 500 ms rámutatás után nyílik, érintésre nem. Radix Tooltip adja a buborék pozicionálását."
+    "megjegyzes": "Név nélküli ikongomb nem lehet: az `aria-label` típus-szinten kötelező, és a tesztlap is méri (`.bc-icon-btn:not([aria-label])` = 0). A buborék `aria-hidden`, az `aria-describedby` ki van kapcsolva, hogy a nevet ne mondja kétszer. A buborék egérrel 500 ms rámutatás után nyílik, érintésre nem. Radix Tooltip adja a buborék pozicionálását. Billentyű-források (Radix hivatalos dokumentáció, Keyboard Interactions): fókuszra megnyílik, Esc: bezár): https://www.radix-ui.com/primitives/docs/components/tooltip · @radix-ui/react-tooltip@1.2.16."
    },
    "kapcsolodo": [
     "gomb",
@@ -366,7 +366,8 @@
     "a11y": [
      "react/src/inputs/Button.tsx",
      "react/src/reteg/Tooltip.tsx",
-     "termek/tesztlapok/vezerlok.test.mjs"
+     "termek/tesztlapok/vezerlok.test.mjs",
+     "package.json"
     ],
     "kapcsolodo": [
      "react/src/reteg/RowActions.tsx",
@@ -1316,7 +1317,8 @@
       "Követi a hivatkozást."
      ]
     ],
-    "megjegyzes": "A mondatba ágyazott link a WCAG 2.5.8 szerint kivétel az érintési méret alól; a saját sorban álló link `is-standalone` osztályt kap (44 px). Az aláhúzás miatt a link nem csak színnel különül el (WCAG 1.4.1)."
+    "megjegyzes": "A mondatba ágyazott link a WCAG 2.5.8 szerint kivétel az érintési méret alól; a saját sorban álló link `is-standalone` osztályt kap (44 px). Az aláhúzás miatt a link nem csak színnel különül el (WCAG 1.4.1).",
+    "szerep": "`link` (natív `<a href>`; `href` nélküli `<a>` nincs szerepe). Forrás: HTML-AAM (a[href] → link), WAI-ARIA 1.2 `link`."
    },
    "adat_forras": {
     "anatomia": [
@@ -1329,7 +1331,12 @@
      "termek/css/bc-web.css",
      "CHANGELOG.md"
     ]
-   }
+   },
+   "kapcsolodo": [
+    "gomb",
+    "kartya",
+    "alkalmazas-vaz"
+   ]
   },
   {
    "id": "toltes",
@@ -2249,9 +2256,17 @@
      [
       "Tab (TooltipIconButton)",
       "Ha a felhasználó Tab-bal lépett a gombra, megjelenik a felirat."
+     ],
+     [
+      "Enter / Szóköz",
+      "A súgó-gombon megnyitja / bezárja a felugró súgót (Radix Popover Trigger)."
+     ],
+     [
+      "Shift + Tab",
+      "A fókusz az előző fókuszálható elemre lép (Radix Popover)."
      ]
     ],
-    "megjegyzes": "Radix Popover adja a nyitás/zárás viselkedést; a forrás megjegyzése szerint kattintásra és Enter/Szóközre is nyílik (ezt a forgatókönyv nem méri külön, ezért nincs a billentyűk között). Rámutatásra nyíló buboréknál a buborék nem veszi el a fókuszt. A gomb 44 px (`--bc-tap`). A `TooltipIconButton` felirata `aria-hidden`, mert megegyezik a gomb nevével; érintésen nem jelenik meg."
+    "megjegyzes": "Radix Popover adja a nyitás/zárás viselkedést; a forrás megjegyzése szerint kattintásra és Enter/Szóközre is nyílik (ezt a forgatókönyv nem méri külön, ezért nincs a billentyűk között). Rámutatásra nyíló buboréknál a buborék nem veszi el a fókuszt. A gomb 44 px (`--bc-tap`). A `TooltipIconButton` felirata `aria-hidden`, mert megegyezik a gomb nevével; érintésen nem jelenik meg. Billentyű-források (Radix hivatalos dokumentáció, Keyboard Interactions): https://www.radix-ui.com/primitives/docs/components/popover · @radix-ui/react-popover@1.1.23; https://www.radix-ui.com/primitives/docs/components/tooltip · @radix-ui/react-tooltip@1.2.16."
    },
    "kapcsolodo": [
     "mezo",
@@ -2279,7 +2294,8 @@
     "a11y": [
      "react/src/field/HelpButton.tsx",
      "react/src/reteg/Tooltip.tsx",
-     "termek/tesztlapok/mezok.test.mjs"
+     "termek/tesztlapok/mezok.test.mjs",
+     "package.json"
     ],
     "kapcsolodo": [
      "react/src/field/Field.tsx",
@@ -3430,9 +3446,25 @@
      [
       "↓",
       "Accordion: a következő fejlécre lép, a tiltott kimarad."
+     ],
+     [
+      "End",
+      "Tabs: az utolsó fülre ugrik (Radix Tabs)."
+     ],
+     [
+      "Tab",
+      "Tabs: a fülsorba lépve a kijelölt fülre kerül a fókusz, a következő Tab a hozzá tartozó panelre viszi (Radix Tabs)."
+     ],
+     [
+      "↑",
+      "Accordion: az előző fejlécre lép, a tiltott kimarad (Radix Accordion)."
+     ],
+     [
+      "Home / End",
+      "Accordion: az első / az utolsó fejlécre ugrik (Radix Accordion)."
      ]
     ],
-    "megjegyzes": "Radix Tabs és Radix Accordion adja a viselkedést. A számláló a fül nevébe is bekerül („Lábnyom (3)”). NavTabs-nál a mostani oldal `aria-current=page`, a linkek Tab-bal léptethetők. Fül és fejléc legalább `--bc-tap` magas; telefonon a kijelölt fül a látható részbe gördül."
+    "megjegyzes": "Radix Tabs és Radix Accordion adja a viselkedést. A számláló a fül nevébe is bekerül („Lábnyom (3)”). NavTabs-nál a mostani oldal `aria-current=page`, a linkek Tab-bal léptethetők. Fül és fejléc legalább `--bc-tap` magas; telefonon a kijelölt fül a látható részbe gördül. Billentyű-források (Radix hivatalos dokumentáció, Keyboard Interactions): https://www.radix-ui.com/primitives/docs/components/tabs · @radix-ui/react-tabs@1.1.21; https://www.radix-ui.com/primitives/docs/components/accordion · @radix-ui/react-accordion@1.2.20."
    },
    "kapcsolodo": [
     "oldalfej",
@@ -3472,7 +3504,8 @@
      "react/src/reteg/Tabs.tsx",
      "react/src/reteg/NavTabs.tsx",
      "react/src/reteg/Accordion.tsx",
-     "termek/css/bc-surfaces.css"
+     "termek/css/bc-surfaces.css",
+     "package.json"
     ],
     "kapcsolodo": [
      "react/src/sablon/DetailPage.tsx",
@@ -5637,9 +5670,17 @@
      [
       "Esc",
       "Bezárja az ablakot; a fókusz visszatér a nyitó elemre. Egymásba ágyazott ablaknál csak a belsőt zárja. Folyamatban és `busy` esetén nem zár; mentetlennél előbb kérdez."
+     ],
+     [
+      "Shift + Tab",
+      "A fókusz visszafelé lép az ablakon belül; az első elemről az utolsóra ér (fókuszcsapda, Radix Dialog)."
+     ],
+     [
+      "Szóköz",
+      "A nyitó gombon megnyitja az ablakot (Radix Dialog Trigger)."
      ]
     ],
-    "megjegyzes": "Radix Dialog adja a fókuszcsapdát, az Esc-et és a görgetés-zárat. Nyitáskor a fókusz a törzs első mezőjére, ennek híján az első elérhető elemre, végül a ✕-re kerül (`initialFocus` felülírja). A ConfirmDialog fókusza a Mégse gombon indul, kívül kattintás nem zár (alertdialog-minta). A natív megerősítő ablak fókusza a `data-autofocus` gombon indul („Maradok”). Az értesítések az ablak fölött élnek, és a „Visszavonás” nem zárja be az ablakot. A ✕ gomb `aria-label`: „Bezárás”."
+    "megjegyzes": "Radix Dialog adja a fókuszcsapdát, az Esc-et és a görgetés-zárat. Nyitáskor a fókusz a törzs első mezőjére, ennek híján az első elérhető elemre, végül a ✕-re kerül (`initialFocus` felülírja). A ConfirmDialog fókusza a Mégse gombon indul, kívül kattintás nem zár (alertdialog-minta). A natív megerősítő ablak fókusza a `data-autofocus` gombon indul („Maradok”). Az értesítések az ablak fölött élnek, és a „Visszavonás” nem zárja be az ablakot. A ✕ gomb `aria-label`: „Bezárás”. Billentyű-források (Radix hivatalos dokumentáció, Keyboard Interactions): https://www.radix-ui.com/primitives/docs/components/dialog · @radix-ui/react-dialog@1.1.23."
    },
    "kapcsolodo": [
     "oldalpanel",
@@ -5691,7 +5732,8 @@
      "react/src/reteg/Modal.tsx",
      "react/src/reteg/ConfirmDialog.tsx",
      "react/src/reteg/focus.ts",
-     "react/src/kieg/KiegDialog.tsx"
+     "react/src/kieg/KiegDialog.tsx",
+     "package.json"
     ],
     "kapcsolodo": [
      "react/src/reteg/Drawer.tsx",
@@ -5824,9 +5866,17 @@
      [
       "Esc",
       "Bezárja a panelt; az URL-paraméter (`?reszlet=`) törlődik, a fókusz a nyitó elemre tér vissza. Folyamatban nem zár, mentetlennél előbb kérdez."
+     ],
+     [
+      "Enter / Szóköz",
+      "A nyitó elemen megnyitja a panelt (Radix Dialog Trigger)."
+     ],
+     [
+      "Tab / Shift + Tab",
+      "A fókusz a panelen belül lép előre / hátra, onnan nem lép ki (Radix Dialog fókuszcsapda)."
      ]
     ],
-    "megjegyzes": "Radix Dialog adja a fókuszcsapdát és a görgetés-zárat. Nyitáskor a fókusz alapból a ✕ gombra kerül (olvasásra nyílik, nem ugrik a billentyűzet mezőbe); az `initialFocus` felülírja. A nyitott állapot jöhet az URL-ből (`useQueryParam`), így a böngésző Vissza gombja bezárja a panelt. A ✕ gomb `aria-label`: „Panel bezárása”."
+    "megjegyzes": "Radix Dialog adja a fókuszcsapdát és a görgetés-zárat. Nyitáskor a fókusz alapból a ✕ gombra kerül (olvasásra nyílik, nem ugrik a billentyűzet mezőbe); az `initialFocus` felülírja. A nyitott állapot jöhet az URL-ből (`useQueryParam`), így a böngésző Vissza gombja bezárja a panelt. A ✕ gomb `aria-label`: „Panel bezárása”. Billentyű-források (Radix hivatalos dokumentáció, Keyboard Interactions): https://www.radix-ui.com/primitives/docs/components/dialog · @radix-ui/react-dialog@1.1.23."
    },
    "kapcsolodo": [
     "modal",
@@ -5853,7 +5903,8 @@
     "a11y": [
      "termek/tesztlapok/reteg-ablak.test.mjs",
      "react/src/reteg/Drawer.tsx",
-     "react/src/reteg/useQueryParam.ts"
+     "react/src/reteg/useQueryParam.ts",
+     "package.json"
     ],
     "kapcsolodo": [
      "react/src/reteg/Drawer.tsx",
@@ -6028,9 +6079,29 @@
      [
       "Esc",
       "Bezárja a menüt; a fókusz a nyitó gombra tér vissza."
+     ],
+     [
+      "Szóköz",
+      "A nyitó gombon megnyitja a menüt; a kiemelt elemet kiválasztja (Radix DropdownMenu)."
+     ],
+     [
+      "↓ (zárt menün)",
+      "A nyitó gombon megnyitja a menüt (Radix DropdownMenu)."
+     ],
+     [
+      "↑",
+      "Az előző elemre lép, az elsőről körbeér az utolsóra; a tiltott elem kimarad."
+     ],
+     [
+      "Home",
+      "Az első elemre ugrik (a Radix Menu forrásában: Home / PageUp)."
+     ],
+     [
+      "Betű begépelése",
+      "Typeahead: a begépelt betűkkel kezdődő címkéjű elemre ugrik (Radix DropdownMenu)."
      ]
     ],
-    "megjegyzes": "Radix DropdownMenu adja a viselkedést (`loop` be van kapcsolva). A „⋯” gomb neve: „További műveletek: <sor neve>”, a menüé „Műveletek: <sor neve>”. Ablakot nyitó elem felirata „…”-ra végződik (pl. „Törlés…”); menüpontból nyíló ablak bezárásakor a fókusz a menü nyitógombjára tér vissza. A tiltott RowAction indoklása a soron belüli gomb `title`-jében is megjelenik."
+    "megjegyzes": "Radix DropdownMenu adja a viselkedést (`loop` be van kapcsolva). A „⋯” gomb neve: „További műveletek: <sor neve>”, a menüé „Műveletek: <sor neve>”. Ablakot nyitó elem felirata „…”-ra végződik (pl. „Törlés…”); menüpontból nyíló ablak bezárásakor a fókusz a menü nyitógombjára tér vissza. A tiltott RowAction indoklása a soron belüli gomb `title`-jében is megjelenik. Billentyű-források (Radix hivatalos dokumentáció, Keyboard Interactions): https://www.radix-ui.com/primitives/docs/components/dropdown-menu · @radix-ui/react-dropdown-menu@2.1.24."
    },
    "kapcsolodo": [
     "ikongomb",
@@ -6060,7 +6131,8 @@
      "termek/tesztlapok/reteg-menu.test.mjs",
      "react/src/reteg/DropdownMenu.tsx",
      "react/src/reteg/RowActions.tsx",
-     "react/src/reteg/focus.ts"
+     "react/src/reteg/focus.ts",
+     "package.json"
     ],
     "kapcsolodo": [
      "react/src/reteg/RowActions.tsx",

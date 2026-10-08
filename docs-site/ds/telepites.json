@@ -57,7 +57,7 @@
     },
     {
       "t": "p",
-      "x": "A `dist/` mappa generált (`node tools/tokens-build.js`), kézzel sosem szerkesztjük. Forrás: `docs/rendszer.md` 3–4., `brandbook/tartalom/alapok.json` („Honnan veszed?”)."
+      "x": "A `dist/` mappa generált (`node tools/tokens-build.js`), kézzel sosem szerkesztjük. Forrás: `docs/rendszer.md` 3–4., a korábbi Brand Book tartalom (git-előzmény) („Honnan veszed?”)."
     },
     {
       "t": "h2",

@@ -1,5 +1,5 @@
 /* ============================================================
-   beeco docs – átirányítások a régi Brand Book címeiről (tools/brandbook-build.js, 27 oldal) az új két oldalra
+   beeco docs – átirányítások a régi Brand Book címeiről (a kivezetett régi építő, 27 oldal) az új két oldalra
 
    Forrás: docs-site/leltar.json (régi fejezet → szakaszonként új oldal). Egy régi oldal oda megy, ahová a szakaszai
    többsége (a régi fejezet „cel” mezőinek leggyakoribbja az adott oldalon). Nincs kitalált alias: ha a leltár célja

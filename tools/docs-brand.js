@@ -4,7 +4,7 @@
    (netlify.toml + netlify/edge-functions/brand/kapu-brand.js).
 
    node tools/docs-brand.js          → _site/brand/ (+ belepes.html, _redirects a régi Brand Book címeiről)
-   Forrás: docs-site/brand/ (nav.json + oldalanként <slug>.json). A régi tools/brandbook-build.js külön él tovább.
+   Forrás: docs-site/brand/ (nav.json + oldalanként <slug>.json). A régi brandbook-építő kivezetve (git-előzmény).
    A DS címe: DOCS_DS_URL (alap: ../ds/ – helyben a két kimenet egymás mellett van). Abszolút DOCS_DS_URL mellett a régi
    DS-tartalmú címek (alapok.html, elemek.html …) is átirányítódnak a DS-re.
    A „gen” blokkok: tools/docs/gen.js (a régi építő nevei); a DS-be való generátor itt hibát ad.
