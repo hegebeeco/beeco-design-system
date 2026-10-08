@@ -287,6 +287,20 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
   .bb-komp-bal .bb-fulsor { top: var(--bb-fej-h); }
 }
 
+/* ---- Röviden · Mérnököknek ---- */
+.bb-roviden { margin: 0 0 var(--bc-sp-6); padding: var(--bc-sp-4) var(--bc-sp-5); background: var(--bc-surface-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-l); }
+.bb-roviden-cim { margin: 0 0 var(--bc-sp-2); font-family: var(--bc-font-display); font-size: var(--bc-fs-l); }
+.bb-roviden dl { display: grid; gap: var(--bc-sp-2); margin: 0; }
+.bb-roviden dl > div { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: var(--bc-sp-3); align-items: baseline; }
+.bb-roviden dt { font-weight: var(--bc-fw-bold); }
+.bb-roviden dd { margin: 0; }
+.bb-roviden .is-ne dt::before { content: "\2717\00a0"; }
+.bb-merno { margin: var(--bc-sp-4) 0; background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
+.bb-merno > summary { display: flex; align-items: center; min-height: var(--bc-tap); padding: 0 var(--bc-sp-4); font-weight: var(--bc-fw-semibold); cursor: pointer; }
+.bb-merno > :not(summary) { margin-left: var(--bc-sp-4); margin-right: var(--bc-sp-4); }
+.bb-merno > :last-child { margin-bottom: var(--bc-sp-4); }
+@media (max-width: 600px) { .bb-roviden dl > div { grid-template-columns: minmax(0, 1fr); gap: 0; } }
+
 /* ---- karakter: Brand Book (játékbőr) – több levegő, méhsejt; Design System – tömörebb ---- */
 .is-brand .bb-fo { padding-top: var(--bc-sp-7); }
 .is-brand .bb-cikk h2 { font-size: var(--bc-fs-2xl); }

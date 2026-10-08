@@ -5,6 +5,7 @@
   "csoport": "letoltesek",
   "statusz": "vázlat",
   "blokkok": [
+    {"t": "roviden", "mi": "Logó, méhecskék, madárkészlet, sablonok és betű egy helyen, fájltípussal és darabszámmal.", "hasznald": "Ha más méret vagy formátum kell, szólj a csapatnak.", "ne": "A fájlokat ne módosítsd; a logó és a méhecskék belső használatúak, külső anyagban a beeco jóváhagyása kell."},
     { "t": "h2", "x": "Mielőtt letöltöd" },
     { "t": "szabaly", "cim": "Belső használatú anyagok",
       "x": "A logó és a méhecskék belső használatúak; külső anyagban a beeco jóváhagyása kell. A fájlokat ne módosítsd – ha más méret vagy formátum kell, szólj a csapatnak.",

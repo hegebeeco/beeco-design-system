@@ -5,6 +5,7 @@
   "csoport": "marka",
   "statusz": "stabil",
   "blokkok": [
+    {"t": "roviden", "mi": "Tegeződünk, röviden és bátorítóan szólunk: tanítunk, nem szidunk.", "hasznald": "A hibaüzenet mondja meg, mit tegyen az olvasó; a szóvicc csak a kijelölt pillanatokban jön (üdvözlés, mentés, mérföldkő…).", "ne": "Gombra nem kerül szóvicc, és krízishelyzetben a beeco nevében csak a kommunikációs csapattal egyeztetve válaszolj."},
     { "t": "h2", "x": "Hangelvek" },
     { "t": "szabaly", "cim": "Így írunk",
       "elemek": [

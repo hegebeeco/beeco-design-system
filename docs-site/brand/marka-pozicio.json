@@ -5,6 +5,7 @@
   "csoport": "marka",
   "statusz": "vázlat",
   "blokkok": [
+    {"t": "roviden", "mi": "A beeco magyar fenntarthatósági ökoplatform: app, webjátékok, partnerprogram és közösség.", "hasznald": "Három fő üzenet: jövő, közösség, egyszerűség – és a méhraj-gondolat: egy méh nem csinál csodát, de egy raj felvirágoztatja a környezetét.", "ne": "A „Korrigálandó” jelzésű szövegeket (márkaígéret, Hidak építése, Miért pont mi?) ne használd véglegesként, és számot csak a beeco Power BI felületéről vegyél."},
     { "t": "h2", "x": "Kik vagyunk" },
     { "t": "p", "x": "A beeco magyar fenntarthatósági ökoplatform: app, webjátékok, partnerprogram és közösség. A név jelentése: **be-eco, bee-co** – légy öko, és méhecske, aki raj tagjaként dolgozik." },
     { "t": "hivatalos", "cim": "Létezésünk oka",

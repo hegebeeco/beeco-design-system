@@ -2,7 +2,7 @@
   "_readme": "A Brand Book menüje és olvasási sorrendje (a „Következő” lánc ebből jön). tervezett = a cél-struktúra még meg nem írt oldala. Oldal: docs-site/brand/<slug>.json.",
   "cim": "Brand Book",
   "csoportok": [
-    { "id": "kezdes", "cim": "Kezdőlap", "oldalak": [ { "slug": "index", "cim": "Kezdőlap" } ] },
+    { "id": "kezdes", "cim": "Kezdőlap", "oldalak": [ { "slug": "index", "cim": "Kezdőlap" }, { "slug": "szotar", "cim": "Szótár" } ] },
     { "id": "marka", "cim": "Márka", "oldalak": [
       { "slug": "marka-pozicio", "cim": "Pozíció" },
       { "slug": "marka-hang", "cim": "Hang és személyiség" }

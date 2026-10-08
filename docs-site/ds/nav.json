@@ -2,7 +2,7 @@
   "_readme": "A Design System menüje és olvasási sorrendje (a „Következő” lánc ebből jön). tervezett = a cél-struktúra még meg nem írt oldala (terv: Cél-struktúra 2, Carbon-minta). al = behúzott alpont (kategória alatti komponens). Oldal: docs-site/ds/<slug>.json. A Komponensek csoportot a motor tölti fel kategóriákkal.",
   "cim": "Design System",
   "csoportok": [
-    { "id": "kezdes", "cim": "Kezdés", "oldalak": [ { "slug": "index", "cim": "Kezdés" }, { "slug": "telepites", "cim": "Telepítés" }, { "slug": "szotar", "cim": "Szótár" } ] },
+    { "id": "kezdes", "cim": "Kezdés", "oldalak": [ { "slug": "index", "cim": "Kezdés" }, { "slug": "elso-nap", "cim": "Első nap" }, { "slug": "telepites", "cim": "Telepítés" }, { "slug": "szotar", "cim": "Szótár" } ] },
     { "id": "alapok", "cim": "Alapok", "oldalak": [
       { "slug": "szin", "cim": "Szín" },
       { "slug": "tipografia", "cim": "Tipográfia" },

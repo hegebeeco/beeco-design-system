@@ -1,0 +1,29 @@
+{
+  "id": "elso-nap",
+  "cim": "Első nap",
+  "alcim": "Húsz perc, hat lépés: a szavaktól az első komponensig és az első javaslatig.",
+  "csoport": "kezdes",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "lead",
+      "x": "Új vagy a csapatban? Ez az oldal sorba fűzi a legfontosabbat. Minden lépés egy meglévő oldalra mutat, itt nem ismételjük meg, amit ott leírtunk."
+    },
+    {
+      "t": "szamozott",
+      "elemek": [
+        "**Értsd a szavakat (3 perc).** A bőr, a szerep és a token pontos jelentése a [Szótárban](szotar.html) van.",
+        "**Telepítsd (5 perc).** A csomagot címkézett verzióval, git-függőségként veszed át; az első ellenőrzést az `npx beeco-ds-lint --init` állítja be. Lépések: [Telepítés](telepites.html).",
+        "**Próbálj ki egy komponenst (5 perc).** Nyisd meg a [Gomb](gomb.html) oldalt: jobbra a Kipróbálom panelen élőben használhatod, balra a Hozzáférhetőség fülön a billentyűtérkép van.",
+        "**Használj tokent (3 perc).** A felületen csak szerepet vagy tokent használsz, nyers színt, betűméretet vagy sarkot nem. A [Szín](szin.html) oldal mutatja a szerepeket, az [Eszközök](eszkozok.html) a kimeneteket.",
+        "**Mielőtt újat építesz (4 perc).** Előbb a meglévőt keresd: React-komponens, `bc-` elem, a projekt komponense. Új elem csak jóváhagyással kerül be: [Új elem kell?](kozremukodes.html#uj-elem).",
+        "**Ha van még időd.** A márkáról a [Brand Book](brand:index) hét oldala szól (jelszó kell hozzá, kb. 20 perc), a teljes választék a [Komponensek](komponensek.html) áttekintőn van."
+      ]
+    },
+    {
+      "t": "hianyzik",
+      "cim": "Kihez fordulj",
+      "x": "A kapcsolattartó (e-mail vagy csatorna) és az első feladat kijelölése még nincs megadva ezen az oldalon."
+    }
+  ]
+}

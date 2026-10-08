@@ -5,6 +5,7 @@
   "csoport": "vizualis",
   "statusz": "stabil",
   "blokkok": [
+    {"t": "roviden", "mi": "Két változat van, világos és sötét háttérre; a név mindig kisbetűs: beeco.", "hasznald": "A logó körül legalább a logó magasságának fele legyen üres (védőtér); legkisebb méret képernyőn 24 px, nyomtatásban 10 mm.", "ne": "A fájlt ne módosítsd, és külső anyagban a logó csak a beeco jóváhagyásával jelenhet meg."},
     { "t": "h2", "x": "A név írása" },
     { "t": "szabaly", "cim": "beeco – mindig kisbetűvel",
       "x": ["A „beeco” mondat elején, címben és logó mellett is kisbetűs. Ragozva: beecós, beecóval, a beeco-csapat."],
