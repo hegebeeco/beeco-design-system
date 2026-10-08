@@ -6,7 +6,7 @@
 > játékhoz a `beeco-arculat`. A `dist/` generált: `node tools/tokens-build.js`; minden változás után `npm test`.
 > Fogyasztók: `~/IdeaProjects/beeco-admin(-design-uplift)`, `~/IdeaProjects/beeco-partner` (git-függőség, címkével), Flutter app (Bence, `dist/dart`).
 > **Komponensek:** `docs/komponensek.md` – meglévőből dolgozz, atomic szintek, **kötelező öntesztek** (tesztlap + `check-komponensek`), szélső esetek, új elem csak Kristóf jóváhagyásával (javaslatlap: `docs/javaslatok/`).
-> **Ügynököknek (1.53.0):** először a `docs/AI.md` (generált index), a `dist/`-et ne nyisd meg; munka közben `npm run check:egy -- <lap>`, a végén egyszer `npm run build && npm test`; feature-ágon nincs verzióemelés. Munkamód, kiadás, API-őr: `docs/ai-munkamod.md`.
+> **Ügynököknek (1.54.0):** először a `docs/AI.md` (generált index), a `dist/`-et ne nyisd meg; munka közben `npm run check:egy -- <lap>`, a végén egyszer `npm run build && npm test`; feature-ágon nincs verzióemelés. Munkamód, kiadás, API-őr: `docs/ai-munkamod.md`.
 > **A helyi mappa neve marad `~/CLAUDE/beeco-jatek-kit`** (a játékok `kit-sync` útvonalai erre mutatnak).
 
 

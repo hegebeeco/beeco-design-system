@@ -62,7 +62,7 @@
 
     { "t": "h2", "x": "Partneri gyorscsomag" },
     { "t": "lead", "x": "Minden, ami a közös anyaghoz kell, egy helyen: logó, színek, a közös márkahasználat szabályai, egy nyomtatható összefoglaló és a partneri sablonok." },
-    { "t": "p", "x": "A csomagban: a két logó (WebP), a színkódok, az egyoldalas összefoglaló és a három partneri sablon szerkeszthető HTML-ként, a betűkkel együtt. Kicsomagolás után a sablon böngészőben nyílik; a szöveg átírható, a lap PDF-be menthető. A csomag lent és a [Letöltések](letoltesek.html) oldalon van." },
+    { "t": "p", "x": "A csomagban: a két logó (WebP), a színkódok, az egyoldalas összefoglaló és a {{szam:partner-sablonok}} partneri sablon szerkeszthető HTML-ként, a betűkkel együtt. Kicsomagolás után a sablon böngészőben nyílik; a szöveg átírható, a lap PDF-be menthető. A csomag lent és a [Letöltések](letoltesek.html) oldalon van." },
     { "t": "gen", "nev": "sablonletoltes", "csoport": "partner", "osszefoglalo": true },
     { "t": "h3", "x": "Logó és színek" },
     { "t": "gen", "nev": "partnerlogok" },

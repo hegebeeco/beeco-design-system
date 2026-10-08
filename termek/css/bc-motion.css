@@ -1,7 +1,8 @@
 /* ============================================================
    beeco TERMÉKBŐR – mozgás-készlet (Javaslat 05 + bővítés: neo-brutalista és méhecskés, 2026-10-01)
-   Szabály: UI ≤ 300 ms, ünnepi pillanat ≤ 600 ms és egyszer, végtelen mozgás nincs (a töltő 10 mp után megáll),
-   hover csak egérrel, csökkentett mozgásnál minden azonnali (bc-base.css).
+   Szabály (Javaslat 26, 2026-10-08): UI-visszajelzés ≤ 300 ms; belépő/dekoratív mozgás ≤ 900 ms (--bc-t-decor 600,
+   --bc-t-hero 900) és egyszer, végtelen mozgás nincs (a töltő 10 mp után megáll), hover csak egérrel, csökkentett
+   mozgásnál minden azonnali (bc-base.css). Nyers időérték itt nincs – csak --bc-t-* token (a check-tokens őrzi).
    ============================================================ */
 @keyframes bc-buzz { 25% { transform: rotate(-4deg) translateY(-1px); } 75% { transform: rotate(4deg) translateY(1px); } }
 @keyframes bc-rise { from { opacity: 0; transform: translateY(8px); } }
@@ -19,12 +20,13 @@
 @keyframes bc-stripes { to { background-position: 28px 0; } }
 
 .bc-anim-rise { animation: bc-rise var(--bc-t-base) var(--bc-ease-out) both; }
-.bc-anim-cheer { animation: bc-cheer 400ms var(--bc-ease-bounce) both; }
-.bc-anim-tick { animation: bc-tick 400ms var(--bc-ease-bounce) both; }
+.bc-anim-cheer { animation: bc-cheer var(--bc-t-slow) var(--bc-ease-bounce) both; }
+.bc-anim-tick { animation: bc-tick var(--bc-t-slow) var(--bc-ease-bounce) both; }
 .bc-anim-stamp { animation: bc-stamp var(--bc-t-slow) var(--bc-ease-bounce) both; }
-.bc-anim-shake { animation: bc-shake 240ms var(--bc-ease-out) 1; }
-/* Lista beúszás: soronként 30 ms késés, legfeljebb 6 sorig (a Stagger adja a --i-t) */
-.bc-stagger > * { animation: bc-rise var(--bc-t-base) var(--bc-ease-out) both; animation-delay: calc(min(var(--i, 0), 5) * 30ms); }
+/* rázás: 2 × nyomás = 240 ms */
+.bc-anim-shake { animation: bc-shake calc(var(--bc-t-fast) * 2) var(--bc-ease-out) 1; }
+/* Lista beúszás: soronként 30 ms (a nyomás negyede) késés, legfeljebb 6 sorig (a Stagger adja a --i-t) */
+.bc-stagger > * { animation: bc-rise var(--bc-t-base) var(--bc-ease-out) both; animation-delay: calc(min(var(--i, 0), 5) * var(--bc-t-fast) / 4); }
 
 /* Kártya-emelés: egérrel rámutatva a kemény árnyék nő (neo-brutalista „kiemelkedik”) */
 @media (hover: hover) and (pointer: fine) {
@@ -40,21 +42,22 @@
 
 /* Mézsejt-töltő (rövid töltéshez a pörgő helyett) */
 .bc-hexload { display: inline-flex; gap: 3px; }
-.bc-hexload > i { width: 14px; height: 16px; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); background: var(--bc-surface-2); animation: bc-hexfill 900ms var(--bc-ease-in-out) 11; }
-.bc-hexload > i:nth-child(2) { animation-delay: 150ms; } .bc-hexload > i:nth-child(3) { animation-delay: 300ms; }
+.bc-hexload > i { width: 14px; height: 16px; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); background: var(--bc-surface-2); animation: bc-hexfill var(--bc-t-hero) var(--bc-ease-in-out) 11; }
+/* a második és a harmadik hatszög a ciklus hatodával / harmadával (150 / 300 ms) később indul */
+.bc-hexload > i:nth-child(2) { animation-delay: calc(var(--bc-t-hero) / 6); } .bc-hexload > i:nth-child(3) { animation-delay: calc(var(--bc-t-hero) / 3); }
 .bc-hexload > i { outline: var(--bc-bw-hair) solid var(--bc-line); outline-offset: -1px; }
 
 /* Csíkos haladásjelző (neo-brutalista): fekete keret, méz csík; értéke a --v (0–1) */
 .bc-progress { position: relative; height: 16px; background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-pill); overflow: hidden; }
 .bc-progress > span { position: absolute; inset: 0 auto 0 0; width: calc(var(--v, 0) * 100%); background: repeating-linear-gradient(-45deg, var(--bc-accent) 0 7px, var(--bc-accent-press) 7px 14px);
   border-right: var(--bc-bw-base) solid var(--bc-line); transition: width var(--bc-t-base) var(--bc-ease-out); }
-.bc-progress.is-moving > span { animation: bc-stripes 600ms linear 17; }
+.bc-progress.is-moving > span { animation: bc-stripes var(--bc-t-decor) linear 17; }
 .bc-progress.is-done > span { background: var(--bc-success); border-right: 0; }
 
 /* Hatszög-konfetti darabok (a celebrate() teszi ki, 600 ms után eltávolítja) */
 .bc-hexpiece { position: fixed; z-index: var(--bc-z-toast); width: 12px; height: 14px; pointer-events: none; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-  background: var(--bc-accent); color: var(--bc-on-accent); animation: bc-hex 600ms var(--bc-ease-out) forwards; }
+  background: var(--bc-accent); color: var(--bc-on-accent); animation: bc-hex var(--bc-t-decor) var(--bc-ease-out) forwards; }
 .bc-hexpiece:nth-child(3n) { background: var(--bc-success); } .bc-hexpiece:nth-child(4n) { background: var(--bc-highlight); }
 
-/* Figyelem-zümmögés: egy elem (pl. az első súgó gomb) háromszor megrezdül */
-.bc-attention { animation: bc-buzz 180ms var(--bc-ease-out) 3; }
+/* Figyelem-zümmögés: egy elem (pl. az első súgó gomb) háromszor megrezdül (1,5 × nyomás = 180 ms) */
+.bc-attention { animation: bc-buzz calc(var(--bc-t-fast) * 1.5) var(--bc-ease-out) 3; }

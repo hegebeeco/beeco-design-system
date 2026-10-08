@@ -40,6 +40,7 @@
   --bc-night: #1F2615; --bc-night-rgb: 31 38 21;
   --bc-night-surface: #353F25; --bc-night-surface-rgb: 53 63 37;
   --bc-night-line: #B6C4A3; --bc-night-line-rgb: 182 196 163;
+  --bc-poppy: #EF6A60; --bc-poppy-rgb: 239 106 96;
 
   /* Betűk, méretek, térköz */
   --bc-font-display: Lalezar, "Arial Rounded MT Bold", system-ui, sans-serif;
@@ -57,6 +58,8 @@
   --bc-lh-tight: 1.15;
   --bc-lh-snug: 1.3;
   --bc-lh-normal: 1.5;
+  --bc-ls-normal: 0;
+  --bc-ls-display: 0.01em;
   --bc-sp-1: 4px;
   --bc-sp-2: 8px;
   --bc-sp-3: 12px;
@@ -66,11 +69,13 @@
   --bc-sp-7: 48px;
   --bc-sp-8: 64px;
 
-  /* Mozgás: UI ≤ 300 ms, ease-in tilos */
+  /* Mozgás: UI-visszajelzés ≤ 300 ms; slow (400) = fiók; decor (600) / hero (900) = csak animáció, csökkentett mozgásnál ki; ease-in tilos */
   --bc-t-fast: 120ms;
   --bc-t-base: 200ms;
   --bc-t-slow: 400ms;
   --bc-t-press: 120ms;
+  --bc-t-decor: 600ms;
+  --bc-t-hero: 900ms;
   --bc-ease-out: cubic-bezier(.23,1,.32,1);
   --bc-ease-in-out: cubic-bezier(.77,0,.175,1);
   --bc-ease-drawer: cubic-bezier(.32,.72,0,1);
@@ -140,6 +145,22 @@
   --bc-shadow-soft: 0 8px 28px color-mix(in srgb, var(--bc-shadow) 9%, transparent);
   --bc-scrim-opacity: 0.45;
 
+  /* 2. TERMÉKBŐR – fókuszgyűrű, ikonméret, állapot, szövegstílus (Javaslat 26). Töréspont: nincs CSS-változó (@media-ban nem működik) */
+  --bc-focus-w: 3px; --bc-focus-offset: 2px;
+  --bc-icon-s: 16px;
+  --bc-icon-m: 20px;
+  --bc-icon-l: 24px;
+  --bc-hover-mix: 88%; --bc-disabled-opacity: 0.55;
+  --bc-text-display: var(--bc-fw-regular) var(--bc-fs-3xl)/var(--bc-lh-tight) var(--bc-font-display); --bc-text-display-ls: var(--bc-ls-display);
+  --bc-text-heading-1: var(--bc-fw-regular) var(--bc-fs-2xl)/var(--bc-lh-tight) var(--bc-font-display); --bc-text-heading-1-ls: var(--bc-ls-display);
+  --bc-text-heading-2: var(--bc-fw-regular) var(--bc-fs-xl)/var(--bc-lh-tight) var(--bc-font-display); --bc-text-heading-2-ls: var(--bc-ls-display);
+  --bc-text-heading-3: var(--bc-fw-regular) var(--bc-fs-l)/var(--bc-lh-tight) var(--bc-font-display); --bc-text-heading-3-ls: var(--bc-ls-display);
+  --bc-text-heading-4: var(--bc-fw-bold) var(--bc-fs-m)/var(--bc-lh-normal) var(--bc-font-body); --bc-text-heading-4-ls: var(--bc-ls-normal);
+  --bc-text-body: var(--bc-fw-regular) var(--bc-fs-m)/var(--bc-lh-normal) var(--bc-font-body); --bc-text-body-ls: var(--bc-ls-normal);
+  --bc-text-body-s: var(--bc-fw-regular) var(--bc-fs-s)/var(--bc-lh-normal) var(--bc-font-body); --bc-text-body-s-ls: var(--bc-ls-normal);
+  --bc-text-label: var(--bc-fw-bold) var(--bc-fs-s)/var(--bc-lh-normal) var(--bc-font-body); --bc-text-label-ls: var(--bc-ls-normal);
+  --bc-text-caption: var(--bc-fw-regular) var(--bc-fs-xs)/var(--bc-lh-normal) var(--bc-font-body); --bc-text-caption-ls: var(--bc-ls-normal);
+
   /* 2. TERMÉKBŐR – szín-szerepek, világos */
   color-scheme: light;
   --bc-bg: var(--bc-cream); --bc-bg-rgb: var(--bc-cream-rgb);
@@ -169,6 +190,7 @@
   --bc-info-ink: var(--bc-navy); --bc-info-ink-rgb: var(--bc-navy-rgb);
   --bc-highlight: var(--bc-blossom); --bc-highlight-rgb: var(--bc-blossom-rgb);
   --bc-scrim: var(--bc-black); --bc-scrim-rgb: var(--bc-black-rgb);
+  --bc-focus-on-accent: var(--bc-focus); --bc-focus-on-accent-rgb: var(--bc-focus-rgb);
 }
 
 /* Sötét mód: <html data-theme="dark"> vagy <html class="dark"> (Tailwind), rendszer szerint: data-theme="auto" */
@@ -180,7 +202,7 @@
   --bc-surface-accent: var(--bc-olive-strong); --bc-surface-accent-rgb: var(--bc-olive-strong-rgb);
   --bc-ink: var(--bc-cream); --bc-ink-rgb: var(--bc-cream-rgb);
   --bc-ink-soft: var(--bc-sage); --bc-ink-soft-rgb: var(--bc-sage-rgb);
-  --bc-ink-muted: var(--bc-night-line); --bc-ink-muted-rgb: var(--bc-night-line-rgb);
+  --bc-ink-muted: var(--bc-silver); --bc-ink-muted-rgb: var(--bc-silver-rgb);
   --bc-line: var(--bc-night-line); --bc-line-rgb: var(--bc-night-line-rgb);
   --bc-line-soft: var(--bc-olive-soft); --bc-line-soft-rgb: var(--bc-olive-soft-rgb);
   --bc-accent: var(--bc-honey); --bc-accent-rgb: var(--bc-honey-rgb);
@@ -191,7 +213,7 @@
   --bc-success: var(--bc-lime); --bc-success-rgb: var(--bc-lime-rgb);
   --bc-success-bg: var(--bc-forest); --bc-success-bg-rgb: var(--bc-forest-rgb);
   --bc-success-ink: var(--bc-lime); --bc-success-ink-rgb: var(--bc-lime-rgb);
-  --bc-danger: var(--bc-red); --bc-danger-rgb: var(--bc-red-rgb);
+  --bc-danger: var(--bc-poppy); --bc-danger-rgb: var(--bc-poppy-rgb);
   --bc-danger-bg: var(--bc-berry); --bc-danger-bg-rgb: var(--bc-berry-rgb);
   --bc-danger-ink: var(--bc-blossom-bg); --bc-danger-ink-rgb: var(--bc-blossom-bg-rgb);
   --bc-warning: var(--bc-ember); --bc-warning-rgb: var(--bc-ember-rgb);
@@ -202,6 +224,7 @@
   --bc-info-ink: var(--bc-ice); --bc-info-ink-rgb: var(--bc-ice-rgb);
   --bc-highlight: var(--bc-blossom); --bc-highlight-rgb: var(--bc-blossom-rgb);
   --bc-scrim: var(--bc-black); --bc-scrim-rgb: var(--bc-black-rgb);
+  --bc-focus-on-accent: var(--bc-black); --bc-focus-on-accent-rgb: var(--bc-black-rgb);
 }
 @media (prefers-color-scheme: dark) {
   :root[data-theme="auto"] {
@@ -212,7 +235,7 @@
     --bc-surface-accent: var(--bc-olive-strong); --bc-surface-accent-rgb: var(--bc-olive-strong-rgb);
     --bc-ink: var(--bc-cream); --bc-ink-rgb: var(--bc-cream-rgb);
     --bc-ink-soft: var(--bc-sage); --bc-ink-soft-rgb: var(--bc-sage-rgb);
-    --bc-ink-muted: var(--bc-night-line); --bc-ink-muted-rgb: var(--bc-night-line-rgb);
+    --bc-ink-muted: var(--bc-silver); --bc-ink-muted-rgb: var(--bc-silver-rgb);
     --bc-line: var(--bc-night-line); --bc-line-rgb: var(--bc-night-line-rgb);
     --bc-line-soft: var(--bc-olive-soft); --bc-line-soft-rgb: var(--bc-olive-soft-rgb);
     --bc-accent: var(--bc-honey); --bc-accent-rgb: var(--bc-honey-rgb);
@@ -223,7 +246,7 @@
     --bc-success: var(--bc-lime); --bc-success-rgb: var(--bc-lime-rgb);
     --bc-success-bg: var(--bc-forest); --bc-success-bg-rgb: var(--bc-forest-rgb);
     --bc-success-ink: var(--bc-lime); --bc-success-ink-rgb: var(--bc-lime-rgb);
-    --bc-danger: var(--bc-red); --bc-danger-rgb: var(--bc-red-rgb);
+    --bc-danger: var(--bc-poppy); --bc-danger-rgb: var(--bc-poppy-rgb);
     --bc-danger-bg: var(--bc-berry); --bc-danger-bg-rgb: var(--bc-berry-rgb);
     --bc-danger-ink: var(--bc-blossom-bg); --bc-danger-ink-rgb: var(--bc-blossom-bg-rgb);
     --bc-warning: var(--bc-ember); --bc-warning-rgb: var(--bc-ember-rgb);
@@ -234,5 +257,6 @@
     --bc-info-ink: var(--bc-ice); --bc-info-ink-rgb: var(--bc-ice-rgb);
     --bc-highlight: var(--bc-blossom); --bc-highlight-rgb: var(--bc-blossom-rgb);
     --bc-scrim: var(--bc-black); --bc-scrim-rgb: var(--bc-black-rgb);
+    --bc-focus-on-accent: var(--bc-black); --bc-focus-on-accent-rgb: var(--bc-black-rgb);
   }
 }

@@ -53,7 +53,7 @@
 .bc-draw-kicker span { font-weight: var(--bc-fw-regular); color: var(--bc-ink-soft); }
 .bc-draw-name { margin: 0; font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-2xl); line-height: var(--bc-lh-tight); overflow-wrap: anywhere; }
 .bc-draw-name:focus { outline: none; }
-.bc-draw-name:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-draw-name:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); }
 .bc-draw-detail, .bc-draw-prize { margin: 0; color: var(--bc-ink-soft); overflow-wrap: anywhere; }
 .bc-draw-test { justify-self: start; margin: var(--bc-sp-1) 0 0; }
 @media (max-width: 420px) { .bc-draw-winner { grid-template-columns: minmax(0, 1fr); justify-items: start; } .bc-draw { padding: var(--bc-sp-4); } }
@@ -64,14 +64,14 @@
 .bc-draw-reroll-q { margin: 0; font-weight: var(--bc-fw-semibold); overflow-wrap: anywhere; }
 .bc-draw-log { font-size: var(--bc-fs-s); }
 .bc-draw-log summary { display: flex; align-items: center; min-height: var(--bc-tap); font-weight: var(--bc-fw-bold); cursor: pointer; }
-.bc-draw-log summary:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; border-radius: var(--bc-r-s); }
+.bc-draw-log summary:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); border-radius: var(--bc-r-s); }
 .bc-draw-log ol { margin: 0; padding-left: var(--bc-sp-5); display: grid; gap: var(--bc-sp-1); overflow-wrap: anywhere; }
 
 /* ---------- 15 · VideoPlayer / embed ---------- */
 .bc-video { margin: 0; display: grid; gap: var(--bc-sp-2); min-width: 0; }
 .bc-video-frame { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--bc-surface-2); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
 .bc-video-el { display: block; width: 100%; height: 100%; border: 0; background: var(--bc-black); }
-.bc-video-el:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: -3px; }
+.bc-video-el:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: -3px; }
 .bc-video-loading { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: var(--bc-sp-2); padding: var(--bc-sp-3); text-align: center;
   font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); color: var(--bc-ink); background: var(--bc-surface-2); }
 .bc-video[data-state="error"] .bc-video-frame { aspect-ratio: auto; min-height: 120px; display: grid; align-items: center; }
@@ -79,7 +79,7 @@
 .bc-video-title { font-size: var(--bc-fs-s); font-weight: var(--bc-fw-bold); color: var(--bc-ink); overflow-wrap: anywhere; }
 .bc-video-nocc { color: var(--bc-warning-ink); font-weight: var(--bc-fw-semibold); }
 .bc-video-link { justify-self: start; display: inline-flex; align-items: center; min-height: var(--bc-tap); color: var(--bc-ink); font-weight: var(--bc-fw-semibold); }
-.bc-video-link:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; border-radius: var(--bc-r-s); }
+.bc-video-link:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); border-radius: var(--bc-r-s); }
 .bc-video-empty { margin: 0; padding: var(--bc-sp-4); font-size: var(--bc-fs-s); color: var(--bc-ink-soft); background: var(--bc-surface-2); border: var(--bc-bw-hair) dashed var(--bc-line); border-radius: var(--bc-r-m); }
 /* Kattintásra betöltő beágyazás: harmadik féltől semmi (kép sem) a kattintás előtt */
 .bc-vembed-ph { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: var(--bc-sp-3); padding: var(--bc-sp-4); text-align: center;

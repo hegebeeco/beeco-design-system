@@ -43,16 +43,11 @@
     },
     {
       "t": "p",
-      "x": "A játékbőrnek saját, közös készlete van (`web/js/pics.js`, `pic('név')`): a dokumentáció szerint 60 saját ikon a vezérlőkre, az emoji helyett. Olíva vonallal (`#2F371E`) és a paletta színeivel rajzolt, lekerekített vonalas ikonok; a szabály 2–2,2 px vonal és legfeljebb két palettaszín. Új ikon ugyanebben a stílusban kerül a készletbe."
+      "x": "A játékbőrnek saját, közös készlete van (`web/js/pics.js`, `pic('név')`): 87 saját ikon a vezérlőkre, az emoji helyett (a `PIC_DEFS` kulcsainak megszámolva, 2026-10-08). Olíva vonallal (`#2F371E`) és a paletta színeivel rajzolt, lekerekített vonalas ikonok; a szabály 2–2,2 px vonal és legfeljebb két palettaszín. Új ikon ugyanebben a stílusban kerül a készletbe."
     },
     {
       "t": "p",
-      "x": "Forrás: `docs/arculat.md` (Piktogramok), `web/js/pics.js`."
-    },
-    {
-      "t": "hianyzik",
-      "cim": "A piktogramok pontos száma",
-      "x": "A dokumentáció 60 ikonról szól; a `pics.js` forrásának átnézésekor ennél több kulcsot találtunk, a CHANGELOG 1.49.0 pedig két újat ír le (`pont`, `cel`). A katalógus pontos darabszámát ellenőrizni kell, ezért nem adjuk meg számként."
+      "x": "Forrás: `web/js/pics.js` (`PIC_DEFS`, 87 kulcs). A `docs/arculat.md` még 60 ikont ír (35. és 168. sor); ez a szám elavult: azóta jött többek között a `pont`, `cel` (CHANGELOG 1.49.0), a `seta`, `ho` (1.49.1) és a `network`, `flow`, `source`."
     },
     {
       "t": "h2",

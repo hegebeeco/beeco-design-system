@@ -32,7 +32,7 @@
 
 /* Hibaösszesítő (szerkesztő) – ide kerül a fókusz sikertelen beküldéskor */
 .bc-sablon-summary { scroll-margin: var(--bc-sp-8); }
-.bc-sablon-summary:focus { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-sablon-summary:focus { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); }
 .bc-sablon-summary-title { margin: 0 0 var(--bc-sp-2); font-family: var(--bc-font-body); font-size: var(--bc-fs-m); font-weight: var(--bc-fw-bold); color: var(--bc-ink); }
 .bc-sablon-summary-list { margin: 0; padding-left: 1.2em; display: grid; gap: var(--bc-sp-1); }
 .bc-sablon-summary-list a { color: var(--bc-danger-ink); font-weight: var(--bc-fw-semibold); text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; }

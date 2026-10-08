@@ -1,16 +1,18 @@
-# beeco BRAND BOOK – Netlify (Javaslat 22). Csak a brand bookot teszi ki; a DS többi része a GitHub Pages-en marad.
-# A jelszó a Netlify környezeti változói között: BRANDBOOK_JELSZO (+ nem kötelező BRANDBOOK_TITOK) – soha nem a repóban, a repó nyilvános.
+# beeco BRAND BOOK – Netlify (25. javaslat: két külön oldal). Ez az aktív konfig a beeco-brandbook Netlify-oldalon.
+# A Design System külön oldal (beeco-design-system.netlify.app), annak konfigja: netlify.docs-ds.toml.
+# Jelszó: BRANDBOOK_JELSZO (+ nem kötelező BRANDBOOK_TITOK) a Netlify környezeti változói között – soha nem a repóban.
+# Az oldalak közti linkekhez: DOCS_DS_URL (abszolút cím) és a Netlify-ban beállított környezeti változók.
 [build]
-  command = "node tools/brandbook-build.js"
-  publish = "_brandbook"
-  # csak akkor épít (és fogyaszt kreditet), ha a brand book forrása változott
-  # közvetlen feltöltésnél (nincs CACHED_COMMIT_REF) mindig épít
-  ignore = "[ -n \"$CACHED_COMMIT_REF\" ] && git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- brandbook/ tokens/ termek/ dist/ docs/ web/css/ web/assets/ tools/brandbook-build.js netlify/ netlify.toml CHANGELOG.md DESIGN.md VERSION"
+  command = "node tools/docs-brand.js"
+  publish = "_site/brand"
+  # CSAK a Brand Book kapuja: a netlify/edge-functions/brand/ mappa (a régi kapu.js itt NEM fut – lásd kapu-brand.js fejléce)
+  edge_functions = "netlify/edge-functions/brand"
+  ignore = "[ -n \"$CACHED_COMMIT_REF\" ] && git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- docs-site/ tools/docs/ tools/docs-brand.js tokens/ termek/ dist/ web/css/ web/assets/ brandbook/ netlify/edge-functions/ netlify.toml VERSION"
 
 [build.environment]
   NODE_VERSION = "22"
 
-# a jelszókapu útvonalait a függvény maga adja meg (netlify/edge-functions/kapu.js → config)
+# a kapu útvonalai és szabad (belépő) útvonalai: netlify/edge-functions/brand/kapu-brand.js → config
 
 [[headers]]
   for = "/*"
@@ -22,6 +24,6 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
 [[headers]]
-  for = "/ds/*"
+  for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=3600"

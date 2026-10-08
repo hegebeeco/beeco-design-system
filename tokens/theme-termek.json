@@ -1,5 +1,5 @@
 {
-  "_readme": "TERMÉKBŐR – a beeco app, admin, partner és web felülete (Kristóf döntése, 2026-10-01): az app neo-brutalista vonala, finomítva. Fekete tinta és keret, kemény átlós árnyék (elmosás nélkül), kis sarkok, méz az egyetlen hangsúlyszín. A szín-szerepek a core.json primitívjeire mutatnak.",
+  "_readme": "TERMÉKBŐR – a beeco app, admin, partner és web felülete (Kristóf döntése, 2026-10-01): az app neo-brutalista vonala, finomítva. Fekete tinta és keret; kattintható és kiemelt elemen kemény, átlós árnyék (elmosás nélkül), nem kattintható információs dobozon puha (shadowSoft, docs/termek-arculat.md 6/A); kis sarkok, méz az egyetlen hangsúlyszín. A szín-szerepek a core.json primitívjeire mutatnak.",
   "color": {
     "light": {
       "bg": "cream",
@@ -29,7 +29,8 @@
       "info-bg": "ice",
       "info-ink": "navy",
       "highlight": "blossom",
-      "scrim": "black"
+      "scrim": "black",
+      "focus-on-accent": "focus"
     },
     "dark": {
       "bg": "night",
@@ -38,7 +39,7 @@
       "surface-accent": "olive-strong",
       "ink": "cream",
       "ink-soft": "sage",
-      "ink-muted": "night-line",
+      "ink-muted": "silver",
       "line": "night-line",
       "line-soft": "olive-soft",
       "accent": "honey",
@@ -49,7 +50,7 @@
       "success": "lime",
       "success-bg": "forest",
       "success-ink": "lime",
-      "danger": "red",
+      "danger": "poppy",
       "danger-bg": "berry",
       "danger-ink": "blossom-bg",
       "warning": "ember",
@@ -59,7 +60,8 @@
       "info-bg": "navy",
       "info-ink": "ice",
       "highlight": "blossom",
-      "scrim": "black"
+      "scrim": "black",
+      "focus-on-accent": "black"
     }
   },
   "radius": {
@@ -74,7 +76,7 @@
     "base": 2
   },
   "shadow": {
-    "_readme": "Kemény, átlós, elmosás nélküli árnyék: [x, y] px, színe a 'shadow' szerep. Lenyomáskor az elem az árnyék irányába csúszik, az árnyék eltűnik.",
+    "_readme": "Kemény, átlós, elmosás nélküli árnyék: [x, y] px, színe a 'shadow' szerep. A kattintható és kiemelt elemeké (gomb, kattintható kártya, csempe, aktív fül, bejelölt jelölő); lenyomáskor az elem az árnyék irányába csúszik, az árnyék eltűnik. Nem kattintható dobozon a shadowSoft (docs/termek-arculat.md 6/A).",
     "s": [
       2,
       2
@@ -179,6 +181,26 @@
       "ink",
       "surface-accent",
       4.5
+    ],
+    [
+      "danger",
+      "surface",
+      3
+    ],
+    [
+      "danger",
+      "bg",
+      3
+    ],
+    [
+      "ink-muted",
+      "surface-accent",
+      4.5
+    ],
+    [
+      "focus-on-accent",
+      "accent",
+      3
     ]
   ],
   "shadowSoft": {
@@ -186,5 +208,95 @@
     "y": 8,
     "blur": 28,
     "alpha": 9
+  },
+  "_color": "1.54.0 (Javaslat 26, 3.8 – döntés 2026-10-08): sötétben danger = poppy (red → 2,47:1 volt a surface-en), ink-muted = silver (night-line → 4,42:1 volt a surface-accent-en). Új szerep: focus-on-accent – a BEFELÉ futó fókuszgyűrű színe méz (accent) hátterű elemen (kijelölt fül, szegmens, szakaszváltó); világosban a focus kék (4,16:1 a mézen), sötétben fekete (14,2:1; a sky a mézen 1,04:1). A kifelé futó gyűrű (outline-offset ≥ 2px) az oldal- vagy felületháttéren fut, ott a focus marad. A line-soft csak díszítő elválasztó: vezérlő (gomb, mező) határát nem jelölheti – arra a line való (kivétel: tiltott állapot).",
+  "_contrast": "Kötelező párok [előtér, háttér, küszöb], mindkét módban ellenőrzi a tests/check-tokens.js. 4,5 = szöveg, 3 = ikon, keret, fókuszgyűrű (WCAG 1.4.3 / 1.4.11).",
+  "focusRing": {
+    "_readme": "Fókuszgyűrű (Javaslat 26, 3.7–3.8): --bc-focus-w vastagság, --bc-focus-offset távolság. Szabály: a gyűrű kifelé fut (outline-offset ≥ 2px), így az oldal- vagy felületháttéren látszik. Befelé (negatív offset) csak ott, ahol a kifelé futót a görgető szülő levágná (fül, szegmens, csempe, térkép); méz hátterű állapotban ilyenkor a színe focus-on-accent. A tests/check-tokens.js őrzi.",
+    "width": 3,
+    "offset": 2
+  },
+  "icon": {
+    "_readme": "Ikonméret px (Javaslat 26, 3.7): s 16 (sűrű sor, jelvény), m 20 (alap: gomb, mező – react/src/inputs/ikonok.tsx), l 24 (fejléc, üres állapot). Új kódban ezeket használd; a meglévő 18 px-es helyek (súgó, idővonal) migrációja külön.",
+    "s": 16,
+    "m": 20,
+    "l": 24
+  },
+  "breakpoint": {
+    "_readme": "Töréspontok px (Javaslat 26, 3.7): kanonikus ajánlás új kódhoz – sm 600 (telefon → kis tábla), md 900 (alkalmazásváz: fiók ↔ oldalsáv), lg 1200 (széles asztal). CSS-változó nincs belőle, mert @media-ban a var() nem működik: SCSS ($bc-bp-*), Tailwind (bc-sm/bc-md/bc-lg – a Tailwind saját sm/md/lg-je nem változik), Dart és tokens.json kapja. A termek/css mai értékei (szélesség: 420, 520, 600, 640, 767/768, 900, 992, 1200; magasság: 820) migrációja külön feladat. A Webflow saját, rögzített töréspontokat használ (991/767/479), oda nem kerül.",
+    "sm": 600,
+    "md": 900,
+    "lg": 1200
+  },
+  "state": {
+    "_readme": "Állapotok (Javaslat 26, 3.7), a CSS mai értékeiből: hoverMix = a gomb rámutatáskori színe: color-mix(in srgb, <háttér> 88%, var(--bc-ink)) – --bc-hover-mix; disabledOpacity = a kapcsoló (bc-switch) tiltott átlátszósága – --bc-disabled-opacity. A többi tiltott elem színnel jelez (surface-2 + ink-muted + line-soft), nem átlátszósággal; a naptárnap .6-os értéke ismert eltérés. Tailwindben a hover-keverés nem fejezhető ki (nincs color-mix segéd): ott a .bc-btn osztályt használd.",
+    "hoverMix": 88,
+    "disabledOpacity": 0.55
+  },
+  "textStyle": {
+    "_readme": "Szövegstílusok (Javaslat 26, 3.7) a docs/termek-arculat.md 4. táblázata és a termek/css/bc-base.css értékei szerint. Mezők: font (core.font), size (core.fontSize), weight (core.fontWeight), lineHeight (core.lineHeight), letterSpacing (core.letterSpacing). CSS: --bc-text-<név> (font rövidítés) + --bc-text-<név>-ls (betűköz) → font: var(--bc-text-heading-1); letter-spacing: var(--bc-text-heading-1-ls). Tailwind: text-<név> (méret, sormagasság, vastagság, betűköz – a betűcsaládot a font-display / font-body adja, a Tailwind fontSize nem tud családot). Dart: BeecoText.<név> (TextStyle). Webflow: nincs összetett változó – osztályszinten állítandó.",
+    "display": {
+      "font": "display",
+      "size": "3xl",
+      "weight": "regular",
+      "lineHeight": "tight",
+      "letterSpacing": "display"
+    },
+    "heading-1": {
+      "font": "display",
+      "size": "2xl",
+      "weight": "regular",
+      "lineHeight": "tight",
+      "letterSpacing": "display"
+    },
+    "heading-2": {
+      "font": "display",
+      "size": "xl",
+      "weight": "regular",
+      "lineHeight": "tight",
+      "letterSpacing": "display"
+    },
+    "heading-3": {
+      "font": "display",
+      "size": "l",
+      "weight": "regular",
+      "lineHeight": "tight",
+      "letterSpacing": "display"
+    },
+    "heading-4": {
+      "font": "body",
+      "size": "m",
+      "weight": "bold",
+      "lineHeight": "normal",
+      "letterSpacing": "normal"
+    },
+    "body": {
+      "font": "body",
+      "size": "m",
+      "weight": "regular",
+      "lineHeight": "normal",
+      "letterSpacing": "normal"
+    },
+    "body-s": {
+      "font": "body",
+      "size": "s",
+      "weight": "regular",
+      "lineHeight": "normal",
+      "letterSpacing": "normal"
+    },
+    "label": {
+      "font": "body",
+      "size": "s",
+      "weight": "bold",
+      "lineHeight": "normal",
+      "letterSpacing": "normal"
+    },
+    "caption": {
+      "font": "body",
+      "size": "xs",
+      "weight": "regular",
+      "lineHeight": "normal",
+      "letterSpacing": "normal"
+    }
   }
 }

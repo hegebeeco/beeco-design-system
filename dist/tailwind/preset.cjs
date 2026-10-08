@@ -42,6 +42,7 @@ module.exports = {
       "info-ink": "rgb(var(--bc-info-ink-rgb) / <alpha-value>)",
       "highlight": "rgb(var(--bc-highlight-rgb) / <alpha-value>)",
       "scrim": "rgb(var(--bc-scrim-rgb) / <alpha-value>)",
+      "focus-on-accent": "rgb(var(--bc-focus-on-accent-rgb) / <alpha-value>)",
       "c": {
         "honey": "rgb(var(--bc-honey-rgb) / <alpha-value>)",
         "honey-deep": "rgb(var(--bc-honey-deep-rgb) / <alpha-value>)",
@@ -80,7 +81,8 @@ module.exports = {
         "mist": "rgb(var(--bc-mist-rgb) / <alpha-value>)",
         "night": "rgb(var(--bc-night-rgb) / <alpha-value>)",
         "night-surface": "rgb(var(--bc-night-surface-rgb) / <alpha-value>)",
-        "night-line": "rgb(var(--bc-night-line-rgb) / <alpha-value>)"
+        "night-line": "rgb(var(--bc-night-line-rgb) / <alpha-value>)",
+        "poppy": "rgb(var(--bc-poppy-rgb) / <alpha-value>)"
       }
     },
     "fontFamily": {
@@ -136,6 +138,78 @@ module.exports = {
         {
           "lineHeight": "var(--bc-lh-tight)"
         }
+      ],
+      "display": [
+        "var(--bc-fs-3xl)",
+        {
+          "lineHeight": "var(--bc-lh-tight)",
+          "fontWeight": "var(--bc-fw-regular)",
+          "letterSpacing": "var(--bc-ls-display)"
+        }
+      ],
+      "heading-1": [
+        "var(--bc-fs-2xl)",
+        {
+          "lineHeight": "var(--bc-lh-tight)",
+          "fontWeight": "var(--bc-fw-regular)",
+          "letterSpacing": "var(--bc-ls-display)"
+        }
+      ],
+      "heading-2": [
+        "var(--bc-fs-xl)",
+        {
+          "lineHeight": "var(--bc-lh-tight)",
+          "fontWeight": "var(--bc-fw-regular)",
+          "letterSpacing": "var(--bc-ls-display)"
+        }
+      ],
+      "heading-3": [
+        "var(--bc-fs-l)",
+        {
+          "lineHeight": "var(--bc-lh-tight)",
+          "fontWeight": "var(--bc-fw-regular)",
+          "letterSpacing": "var(--bc-ls-display)"
+        }
+      ],
+      "heading-4": [
+        "var(--bc-fs-m)",
+        {
+          "lineHeight": "var(--bc-lh-normal)",
+          "fontWeight": "var(--bc-fw-bold)",
+          "letterSpacing": "var(--bc-ls-normal)"
+        }
+      ],
+      "body": [
+        "var(--bc-fs-m)",
+        {
+          "lineHeight": "var(--bc-lh-normal)",
+          "fontWeight": "var(--bc-fw-regular)",
+          "letterSpacing": "var(--bc-ls-normal)"
+        }
+      ],
+      "body-s": [
+        "var(--bc-fs-s)",
+        {
+          "lineHeight": "var(--bc-lh-normal)",
+          "fontWeight": "var(--bc-fw-regular)",
+          "letterSpacing": "var(--bc-ls-normal)"
+        }
+      ],
+      "label": [
+        "var(--bc-fs-s)",
+        {
+          "lineHeight": "var(--bc-lh-normal)",
+          "fontWeight": "var(--bc-fw-bold)",
+          "letterSpacing": "var(--bc-ls-normal)"
+        }
+      ],
+      "caption": [
+        "var(--bc-fs-xs)",
+        {
+          "lineHeight": "var(--bc-lh-normal)",
+          "fontWeight": "var(--bc-fw-regular)",
+          "letterSpacing": "var(--bc-ls-normal)"
+        }
       ]
     },
     "fontWeight": {
@@ -168,7 +242,25 @@ module.exports = {
     },
     "extend": {
       "spacing": {
-        "tap": "var(--bc-tap)"
+        "tap": "var(--bc-tap)",
+        "icon-s": "var(--bc-icon-s)",
+        "icon-m": "var(--bc-icon-m)",
+        "icon-l": "var(--bc-icon-l)"
+      },
+      "screens": {
+        "bc-sm": "600px",
+        "bc-md": "900px",
+        "bc-lg": "1200px"
+      },
+      "letterSpacing": {
+        "normal": "var(--bc-ls-normal)",
+        "display": "var(--bc-ls-display)"
+      },
+      "opacity": {
+        "disabled": "var(--bc-disabled-opacity)"
+      },
+      "outlineOffset": {
+        "focus": "var(--bc-focus-offset)"
       },
       "minHeight": {
         "tap": "var(--bc-tap)"
@@ -191,7 +283,9 @@ module.exports = {
         "fast": "var(--bc-t-fast)",
         "base": "var(--bc-t-base)",
         "slow": "var(--bc-t-slow)",
-        "press": "var(--bc-t-press)"
+        "press": "var(--bc-t-press)",
+        "decor": "var(--bc-t-decor)",
+        "hero": "var(--bc-t-hero)"
       },
       "transitionTimingFunction": {
         "out": "var(--bc-ease-out)",

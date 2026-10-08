@@ -6,9 +6,10 @@ Komponens-szabályok és öntesztek: `docs/komponensek.md`. Élő bemutató: `te
 
 ## 1. Elvek
 
-1. **Egy hangsúly: a méz.** A méz (`accent`) a fő művelet és a kijelölés színe – képernyőnként egy fő gomb.
-2. **Fekete vonal, kemény árnyék.** Keret 1–2 px fekete, árnyék átlós és éles (elmosás nélkül). Ez a beeco „kattanása”:
-   lenyomáskor az elem az árnyéka helyére csúszik.
+1. **Egy hangsúly: a méz.** A méz (`accent`) a fő művelet és a kijelölés színe (a gombszabály: 6/A).
+2. **Fekete vonal, kemény árnyék a kattinthatón.** Keret 1–2 px fekete; a kattintható és kiemelt elem árnyéka átlós és éles
+   (elmosás nélkül) – ez a beeco „kattanása”: lenyomáskor az elem az árnyéka helyére csúszik. A nem kattintható
+   információs doboz puha árnyékot kap, így a kemény árnyék azt jelzi: „ez megnyomható” (6/A).
 3. **Krém alap, fehér felület.** Az oldal krém (`bg`), a kártya és az űrlap fehér (`surface`) – így a tartalom kiemelkedik.
 4. **Lalezar a hangnak, Open Sans a munkának.** Cím, szám, gomb: Lalezar (egy vastagság). Minden más: Open Sans.
 5. **Tanítunk, nem szidunk.** A hibaüzenet megmondja, mi a következő lépés. Rossz választ, hibát sosem mérges méhecske kísér.
@@ -21,13 +22,14 @@ Komponens-szabályok és öntesztek: `docs/komponensek.md`. Élő bemutató: `te
 | `surface` | fehér | éjszakai kártya `#353F25` | kártya, űrlap, táblázat, ablak |
 | `surface-2` | `#F0F3EC` | olíva | csendes felület, tiltott mező, sor-kiemelés |
 | `surface-accent` | vaj `#FEEEBB` | `#48542D` | kiemelt kártya, mértékegység-doboz, kijelölt sor |
-| `ink` / `ink-soft` / `ink-muted` | fekete / `#505050` / `#676767` | krém / zsálya / `#B6C4A3` | szöveg: fő / másodlagos / helykitöltő |
-| `line` / `line-soft` | fekete / `#C6C6C6` | `#B6C4A3` / `#596B39` | keret / elválasztó |
+| `ink` / `ink-soft` / `ink-muted` | fekete / `#505050` / `#676767` | krém / zsálya / ezüst `#C6C6C6` (1.54.0 óta) | szöveg: fő / másodlagos / helykitöltő |
+| `line` / `line-soft` | fekete / `#C6C6C6` | `#B6C4A3` / `#596B39` | keret / elválasztó – a `line-soft` csak díszítő (≈ 1,7–1,9 : 1): vezérlő (gomb, mező) határa mindig `line`, kivéve a tiltott állapotot |
 | `accent`, `accent-press`, `on-accent` | méz, nyomott méz, **fekete** | ← | fő gomb, kijelölés; szöveg a mézen mindig `on-accent` |
 | `shadow` | fekete | fekete | kemény árnyék |
-| `focus` | kék `#2656D9` | égkék | billentyűzet-fókusz |
+| `focus` | kék `#2656D9` | égkék | billentyűzet-fókusz (a gyűrű kifelé fut, az oldal- vagy felületháttéren) |
+| `focus-on-accent` | kék `#2656D9` | fekete | befelé futó fókuszgyűrű méz hátterű elemen (kijelölt fül, szegmens) – 1.54.0 |
 | `success` · `-bg` · `-ink` | levél · zsálya · erdő | lime · erdő · lime | sikeres, aktív |
-| `danger` · `-bg` · `-ink` | `#DB3A34` · `#FDEEE6` · `#B3261E` | ← · bogyó · halvány rózsa | hiba, törlés |
+| `danger` · `-bg` · `-ink` | `#DB3A34` · `#FDEEE6` · `#B3261E` | pipacs `#EF6A60` (1.54.0 óta) · bogyó · halvány rózsa | hiba, törlés |
 | `warning` · `-bg` · `-ink` | parázs · vaj · rozsda | ← · rozsda · vaj | figyelmeztetés |
 | `info` · `-bg` · `-ink` | víz `#0083E4` · jég · tengerkék | égkék · tengerkék · jég | tájékoztatás, víz |
 | `highlight` | rózsa | ← | játékos kiemelés (ritkán) |
@@ -36,10 +38,14 @@ A kötelező kontraszt-párokat a `tokens/theme-termek.json` → `contrast` soro
 
 ## 3. Forma és mélység
 
-- **Sarok:** `r-s` 4 px (mező, kis gomb) · `r-m` 8 px (gomb, kártya, táblázat) · `r-l` 12 px (felugró ablak) · `r-pill` (címke, kapcsoló).
+- **Sarok (a hivatalos skála: 2 · 4 · 8 · 12 px + kapszula):** `r-xs` 2 px (apró jelölő, hőtérkép-sáv, szövegkülönbség-jel) · `r-s` 4 px (mező, kis gomb) · `r-m` 8 px (gomb, kártya, táblázat) · `r-l` 12 px (felugró ablak) · `r-pill` (címke, kapcsoló).
 - **Keret:** `bw-hair` 1 px (mező, csendes kártya) · `bw-base` 2 px (gomb, kártya, táblázat, ablak).
-- **Árnyék:** `shadow-s` 2 px (gomb, statisztika) · `shadow-m` 4 px (kártya, táblázat, értesítés) · `shadow-l` 6 px (felugró ablak).
-  Mindig a `shadow` szerep színével, elmosás nélkül. **Puha, elmosott árnyék a termékbőrben nincs.**
+- **Árnyék – kemény, átlós, elmosás nélkül, a `shadow` szerep színével:** `shadow-s` 2 px (gomb, aktív fül) · `shadow-m` 4 px (kattintható kártya, értesítés) · `shadow-l` 6 px (felugró ablak, rámutatott kattintható kártya).
+  Ez a **kattintható és kiemelt** elemeké. A **nem kattintható információs doboz** (kártya, panel, statisztika, táblázat) puha árnyékot kap: `shadow-soft`. A pontos lista: 6/A.
+- **Fókuszgyűrű:** `--bc-focus-w` 3 px, `--bc-focus-offset` 2 px – a gyűrű **mindig kifelé fut (`outline-offset ≥ 2px`)**, így az oldal- vagy felületháttéren látszik, nem a mézen.
+  Befelé (negatív offset) csak ott, ahol a görgető szülő levágná (fül, szegmens, csempe, térkép); méz hátterű állapotban ilyenkor a színe `focus-on-accent`. A `check-tokens` őrzi.
+- **Ikon:** `--bc-icon-s` 16 · `-m` 20 (alap) · `-l` 24 px. **Állapot:** rámutatáskor a gomb háttere 88 %-ban önmaga, 12 %-ban `ink` (`--bc-hover-mix`); tiltott kapcsoló `--bc-disabled-opacity` .55 (a többi tiltott elem színnel jelez).
+- **Töréspont (ajánlás új kódhoz):** `sm` 600 · `md` 900 (alkalmazásváz: 900 px alatt fiók) · `lg` 1200 px – SCSS `bc.bp(md)`, Tailwind `bc-md:`, Dart `BeecoTokens.bpMd`. A `termek/css` mai töréspontjai: 420 · 520 · 600 · 640 · 767/768 · 900 · 992 · 1200 px szélesség (+ egy 820 px-es magasság-lekérdezés az oldalsávban; egységesítés: külön feladat).
 - **Térköz:** 4 px rács (`sp-1` … `sp-8`). Kártya belső margó `sp-5` (24), űrlapmezők között `sp-4` (16).
 
 ## 4. Betűk
@@ -54,12 +60,19 @@ A kötelező kontraszt-párokat a `tokens/theme-termek.json` → `contrast` soro
 | `fs-s` | 14 | Open Sans | táblázat, címke, másodlagos |
 | `fs-xs` | 12 | Open Sans | segítő szöveg, jelvény – **ennél kisebb nincs** |
 
-Vastagság: 400 · 600 · 700 (a webes Open Sans 400–700 között változó; 800 nincs). A Lalezar egy vastagságú: a hierarchiát a méret adja.
+Vastagság (hivatalos): **400 · 600 · 700** (a webes Open Sans 400–700 között változó; 800 nincs). A Lalezar egy vastagságú: a hierarchiát a méret adja.
+Az app mai 500-as és 800-as vastagsága **eltérés**: a Flutter-átállásnál 800 → 700, 500 → 400 vagy 600 (képernyőnként, a hierarchia szerint; `docs/app-atallas.md`).
+
+**Szövegstílusok (1.54.0, `--bc-text-<név>` + `--bc-text-<név>-ls`; Tailwind `text-<név>`; Dart `BeecoText.<név>`):**
+`display` (3xl) · `heading-1` (2xl) · `heading-2` (xl) · `heading-3` (l) – Lalezar 400, `lh-tight`, betűköz `ls-display` .01em ·
+`heading-4` (m, Open Sans 700) · `body` (m, 400, `lh-normal`) · `body-s` (s, 400) · `label` (s, 700 – mint a `bc-label`) · `caption` (xs, 400 – mint a `bc-help`).
 
 ## 5. Mozgás
 
-- Nyomás: 120 ms, `ease-out` (`cubic-bezier(.23,1,.32,1)`); megjelenés 200 ms; fiók (mobil oldalsáv) 400 ms `ease-drawer`.
-- **UI-mozgás ≤ 300 ms**, `ease-in` tilos (lassan indul – késésnek érződik), `transition: all` kerülendő.
+- Nyomás: 120 ms, `ease-out` (`cubic-bezier(.23,1,.32,1)`); megjelenés 200 ms; fiók (mobil oldalsáv) 400 ms `ease-drawer` (`t-slow`).
+- **UI-visszajelzés ≤ 300 ms** (gomb, mező, fül, lenyíló, átmenet), `ease-in` tilos (lassan indul – késésnek érződik), `transition: all` kerülendő.
+- **Belépő / dekoratív mozgás ≤ 900 ms**, egyszer (vagy korlátozott ismétléssel): ünneplés és pecsét 400 (`t-slow`), konfetti és csík-ciklus 600 (`t-decor`), mézsejt-töltő ciklus 900 (`t-hero`). Csak animációban, átmenetben soha.
+- A `bc-motion.css`-ben nincs nyers időérték, csak `--bc-t-*` token (a `check-tokens` őrzi).
 - Rámutatás (hover) csak egérrel: `@media (hover: hover) and (pointer: fine)`.
 - Csökkentett mozgásnál minden azonnali (a `bc-base.css` intézi) – végtelen animáció (pörgő) is megáll.
 - Gyakori műveletet (listaszűrés, fülváltás) nem animálunk.
@@ -88,6 +101,8 @@ Vastagság: 400 · 600 · 700 (a webes Open Sans 400–700 között változó; 8
 | Váz | `bc-shell` › `bc-sidebar` (`bc-brand`, `bc-nav-group`, `bc-nav-link`) + `bc-main` › `bc-topbar` + `bc-content` | 900 px alatt fiók |
 
 ## 6/A. Gombok: piktogram és igazítás (Kristóf, 2026-10-01)
+*Ez a szakasz a **gombszabály egyetlen forrása** (Javaslat 26, 3.5); a többi dokumentum ide hivatkozik.*
+* **Egy fő gomb:** képernyőnként legfeljebb **egy méz (`accent`) fő gomb**; a többi művelet másodlagos, szellem vagy piktogram-gomb.
 * **Csak piktogram – kompakt helyeken:** táblázat-sor (`RowActions`), eszközsáv, kártya-fejléc, galéria-csempe. A mentés · törlés · új · info · szerkesztés · megnyitás gomb itt szöveg nélkül áll, **mindig `TooltipIconButton`-nal** (a `label` a képernyőolvasó neve és a súgó-buborék).
 * **Szöveg + piktogram:** az oldal fő gombja (pl. „Új partner”), az űrlap Mentése, a törlés megerősítése, az üres állapot teendője. Itt a félrekattintás drága – a szöveg a biztonság.
 * **Szöveges gombon is legyen piktogram**, ha kapcsolódik hozzá (Mentés → `IcSave`, Törlés → `IcTrash`, Új … → `IcNew`, Szerkesztés → `IcEdit`, Megnyitás/Részletek → `IcOpen`, Info → `IcInfo`). A DS maga ad piktogramot: EditPage mentés-gomb, ConfirmDialog megerősítő gombja.
@@ -106,9 +121,10 @@ Vastagság: 400 · 600 · 700 (a webes Open Sans 400–700 között változó; 8
 
 - Nyers szín (`#…`, `rgb()`, Tailwind `[#…]`), a Tailwind saját palettája (`bg-gray-100`) – csak szerep.
 - Idegen betű (Inria, Roboto, Inter, Arial, Helvetica) és `serif` tartalék.
-- Nyers betűméret, sarok, árnyék – csak token. 12 px alatti szöveg.
-- `ease-in`; a fókusz eltüntetése (`outline: none`) `:focus-visible` pótlás nélkül.
-- Puha, elmosott árnyék; egynél több méz fő gomb egy képernyőn; mérges méhecske.
+- Nyers betűméret, sarok, árnyék, időérték – csak token. 12 px alatti szöveg.
+- `ease-in`; UI-átmenet 300 ms fölött; a fókusz eltüntetése (`outline: none`) `:focus-visible` pótlás nélkül; befelé futó fókuszgyűrű méz háttéren `focus-on-accent` nélkül.
+- Puha árnyék **kattintható** elemen, kemény árnyék **nem kattintható** dobozon (6/A); a `line-soft` mint vezérlő határa.
+- A gombszabály megsértése (6/A); mérges méhecske.
 
 ## 8. Sötét mód
 

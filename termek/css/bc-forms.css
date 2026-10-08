@@ -20,7 +20,7 @@
 /* Fókusz: a keret vastagodik + kemény árnyék (a márka „kattanása” az inputon is) */
 .bc-input:focus-visible, .bc-select:focus-visible, .bc-textarea:focus-visible,
 .bc-input:focus, .bc-select:focus, .bc-textarea:focus { outline: none; border-color: var(--bc-line); box-shadow: var(--bc-shadow-s), 0 0 0 1px var(--bc-line) inset; }
-.bc-input:focus-visible, .bc-select:focus-visible, .bc-textarea:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-input:focus-visible, .bc-select:focus-visible, .bc-textarea:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); }
 .bc-input[aria-invalid="true"], .bc-select[aria-invalid="true"], .bc-textarea[aria-invalid="true"] { border-color: var(--bc-danger-ink); background: var(--bc-danger-bg); }
 .bc-input:disabled, .bc-select:disabled, .bc-textarea:disabled { background: var(--bc-surface-2); color: var(--bc-ink-muted); border-color: var(--bc-line-soft); cursor: not-allowed; }
 .bc-input[readonly] { background: var(--bc-surface-2); }
@@ -46,7 +46,7 @@
   cursor: pointer; transition: background-color var(--bc-t-fast) var(--bc-ease-out), box-shadow var(--bc-t-fast) var(--bc-ease-out); }
 :is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):checked { background-color: var(--bc-forest); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7'/%3E%3C/svg%3E"); box-shadow: var(--bc-shadow-s); }
 :is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):indeterminate { background-color: var(--bc-forest); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round'%3E%3Cpath d='M6 12h12'/%3E%3C/svg%3E"); box-shadow: var(--bc-shadow-s); }
-:is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+:is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); }
 :is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"])[aria-invalid="true"] { border-color: var(--bc-danger-ink); background-color: var(--bc-danger-bg); }
 :is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):disabled { background-color: var(--bc-surface-2); border-color: var(--bc-line-soft); box-shadow: none; cursor: not-allowed; }
 :is(.bc-checkbox, .bc-check > input[type="checkbox"], .bc-dt-check > input[type="checkbox"]):disabled:is(:checked, :indeterminate) { background-color: var(--bc-ink-muted); }
@@ -63,7 +63,7 @@
   background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); transition: transform var(--bc-t-base) var(--bc-ease-in-out); }
 .bc-switch[aria-checked="true"]::before { background: var(--bc-success); }
 .bc-switch[aria-checked="true"]::after { transform: translateX(22px); }
-.bc-switch:disabled { cursor: not-allowed; opacity: .55; }
+.bc-switch:disabled { cursor: not-allowed; opacity: var(--bc-disabled-opacity); }
 /* Tömör kapcsoló (Javaslat 20 – SwitchInput size="sm", táblázatsorba): 40×22 px-es sín, 14 px-es korong; a gomb 44×44 px-es
    érintési felület marad, de negatív margóval nem nyújtja a sort. Mellette az állapot szövegben is (.bc-switch-state). */
 .bc-switch.is-sm { width: var(--bc-tap); margin-block: calc((var(--bc-tap) - 22px) / -2); }

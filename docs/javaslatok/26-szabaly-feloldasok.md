@@ -1,7 +1,7 @@
 # Javaslat 26 – Szabály-feloldások: ellentmondások és hiányzó tokenek a design systemben
 
-*Állapot: **javaslat** · készítette: Claude (Kristóf kérésére) · dátum: 2026-10-08*
-*(Jóváhagyás után: **jóváhagyva** – lent a Döntés részben.)*
+*Állapot: **eldöntve, 1.54.0-ban kiadva** · készítette: Claude (Kristóf kérésére) · dátum: 2026-10-08*
+*Döntés: Claude, Kristóf megbízásából, 2026-10-08 (Kristóf a döntéseket szakmai mérlegelésre átadta; a sötét `danger` és `ink-muted` értékváltozását külön jóváhagyta). A döntések: 6. pont.*
 
 ## 1. Igény
 - Hol kell (projekt, képernyő): a két új dokumentációs oldal (Design System, F4 és F6) tartalmának összeállítása közben a repó dokumentumai, tokenjei és CSS-e több helyen ellentmondtak egymásnak, és több token hiányzik.
@@ -133,18 +133,22 @@ Nem komponens: nincs.
 ## 5. Hozzáférhetőség
 A 3.8 pont hozzáférhetőségi (WCAG 1.4.3, 1.4.11, 2.4.7/2.4.11) hiányokat ír le; a javításuk a döntés után a `contrast` lista bővítésével gépileg is őrizhető.
 
-## 6. Döntés (Kristóf tölti ki)
-| Pont | Választott opció | Megjegyzés |
+## 6. Döntés
+
+**Döntés: Claude, Kristóf megbízásából, 2026-10-08.** Kiadva: **1.54.0** (`CHANGELOG.md`). A számok a 3.8 képletével, a `tokens/*.json` értékeiből.
+
+| Pont | Választott opció | Döntés és indok (1–2 mondat) |
 |---|---|---|
-| 3.1 puha árnyék | | |
-| 3.2 sarok `xs` | | |
-| 3.3 betűvastagság | | |
-| 3.4 mozgás-idők | | |
-| 3.5 gombszabály egy helyen | | |
-| 3.6 játékbőr forrása | | |
-| 3.7 új tokenek (sorrend) | | |
-| 3.8 kontrasztok (1–4) | | |
-| 3.9 elavult részek | | |
-| 3.10 számozás | | |
-| 3.11 szavak | | |
-- Dátum: …
+| 3.1 puha árnyék | **A** (a 6/A az érvényes) | A kattintható és kiemelt elem kemény, átlós árnyékot kap; puha (`shadow-soft`) csak nem kattintható információs dobozon (kártya, panel, statisztika, táblázat). A `termek-arculat.md` 1., 3. és 7. pontja, a `DESIGN.md`, a `rendszer.md` 2. és az `AI.md` (generátor: `tools/ai-index.js`) szövege ehhez igazodott; a lista egy helyen, a 6/A-ban él (ezért nem C). |
+| 3.2 sarok `xs` | **A** | A hivatalos skála 2 · 4 · 8 · 12 px + kapszula (a token szerint); az `xs` dokumentált (apró jelölő, hőtérkép-sáv, szövegkülönbség-jel). `DESIGN.md` és `termek-arculat.md` 3. javítva. |
+| 3.3 betűvastagság | **A** | Hivatalos: 400 / 600 / 700. Az app 500-as és 800-as értéke eltérés, a Flutter-migrációban rendeződik (800 → 700, 500 → 400 vagy 600 képernyőnként); a `brandbook/feluletek/app.json` profilját a gazdája frissíti. |
+| 3.4 mozgás-idők | **A + B** | UI-visszajelzés ≤ 300 ms; fiók `slow` 400 ms marad; belépő/dekoratív mozgás ≤ 900 ms, csak animációban, csökkentett mozgásnál ki. Két új token: `t-decor` 600, `t-hero` 900; a `bc-motion.css` 10 literálja tokenre cserélve (400 → `t-slow`, 600 → `t-decor`, 900 → `t-hero`, 240 / 180 / 30 → a `t-fast` 2 / 1,5 / ¼-e, 150 / 300 → a `t-hero` ⅙ / ⅓-a), a kiszámolt érték azonos; a `check-tokens` tiltja a nyers időt a fájlban és a `decor`/`hero` időt átmenetben. |
+| 3.5 gombszabály egy helyen | **B** | Egyetlen forrás a `docs/termek-arculat.md` 6/A (bekerült az „egy méz fő gomb” sor is); a `termek-arculat.md` 1. és 7., a `DESIGN.md`, a `komponensek.md` 3.4/b és az `AI.md` csak hivatkozik. A komponensoldal (docs-site) a 6/A-t idézheti – az a docs-site gazdájáé. |
+| 3.6 játékbőr forrása | **B** | A `core.json` + `theme-jatek.json` lesz a forrás, a `web/css/tokens.css` ebből generálódik (a `kit-sync` ugyanazt a fájlt viszi, a kimenet formája változatlan). **1.55 teendő** – most csak a döntés; a `rendszer.md` 3. jelzi. |
+| 3.7 új tokenek | additív, átnevezés nincs | `breakpoint` sm 600 · md 900 · lg 1200 (ajánlás; a mai CSS-töréspontok migrációja külön); `focusRing` 3 / 2 px; `icon` 16 / 20 / 24; `textStyle` (display, heading-1…4, body, body-s, label, caption) + `letterSpacing` (display .01em); `state` hoverMix 88 %, disabledOpacity .55. Ami egy formátumban nem fejezhető ki, a `_readme` mondja (töréspont nincs CSS-változóként, hover-keverés nincs Tailwindben, Webflow-ba egyik sem kerül). A komponens-CSS-be csak a pixel-azonos cserék kerültek (fókuszgyűrű, hover-keverés, kapcsoló-átlátszóság, címsor-betűköz). Tónusskála: nincs döntés, marad a névvel adott néhány fok. |
+| 3.8 kontrasztok | 1: **B** · 2: szabály + **B** változat · 3: **új: meglévő primitív** · 4: **A** | 1) sötét `danger` = új `poppy` `#EF6A60` (a meglévő pirosas primitívek közül az `ember` a warning, a `blossom` a highlight): `surface`-en 2,47 → 3,65, `bg`-n 3,47 → 5,13, fekete rajta 6,90. 2) Szabály: a fókuszgyűrű kifelé fut (`outline-offset ≥ 2px`); a CSS-ben 11 befelé futó kivétel van (görgető sor, csempe, térkép) – ezek a `check-tokens` listáján, és a három méz hátterű (kijelölt fül, szegmens, szakaszváltó) új szerepet kap: `focus-on-accent` (világos: a mostani kék, 4,16; sötét: fekete, 14,20). 3) sötét `ink-muted` = `silver` `#C6C6C6` (meglévő): `surface-accent`-en 4,42 → 4,76, a hierarchia megmarad (a `sage` `ink-soft` világosabb). 4) `line-soft` csak díszítő; vezérlő határaként három helyen `line`-ra cserélve (`.bc-legend-btn`, `.bc-tl-toggle`, `.bc-crumb-more`), szándékos marad: `.bc-merge-opt` és `.bc-mcal-day` (a kijelölt állapot `line` keretet kap), a térkép-gombcsoport belső elválasztója, a tiltott állapotok. A kötelező listára került: `danger`/`surface`, `danger`/`bg` (3), `ink-muted`/`surface-accent` (4,5), `focus-on-accent`/`accent` (3) – mindkét módban. |
+| 3.9 elavult részek | javítva, ami a DS-repó dokumentuma | `rendszer.md`: telepítési példa `#v1.54.0`, töréspont-sor a tényleges CSS szerint (420 / 520 / 600 / 640 / 767–768 / 900 / 992 / 1200 px). `CHANGELOG.md` fejléc: a design system neve. A `brandbook/` profiljai (admin, kaptár, app, elemszám), a `docs/arculat.md` ikonszáma és a `weboldal.md` jsDelivr-sávja nem e kör része – a gazdájuk ellenőrzi. |
+| 3.10 számozás | **C** + index | Régi fájl nem kap új nevet (a hivatkozások nem törnek); a `docs/javaslatok/README.md` index mutatja, melyik szám mi, a kettőzött 10, 11, 12 jelölve, és hivatkozáskor a fájlnév az egyértelmű. A következő szabad szám: **27**. |
+| 3.11 szavak | szótár (docs-site) | „atom” = komponensszint, a `core.json` értékei „primitív”; „felület” = terméktípus, a vizuális sík „sík”; „téma” három jelentése a szótárban; a `jm-` előtag leírása nyitott. A szótár a docs-site gazdájáé. |
+
+- Dátum: 2026-10-08 · Döntés: Claude, Kristóf megbízásából.

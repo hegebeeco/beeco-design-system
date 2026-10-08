@@ -82,7 +82,11 @@ const paletta = {
 // az oldal fej-kódjába kerülnek. A forrás a DS saját CSS-e: itt csak a változóneveket
 // írjuk át a Webflow alakjára (--bc-ink  ->  --_beeco-ds---bc-ink), hogy ne legyen másolat.
 const WF = (nev) => `var(--_beeco-ds---${nev})`;
-const atir = (css) => css.replace(/var\(\s*--(bc-[a-z0-9-]+)\s*\)/g, (_, n) => WF(n));
+// Időtartam: a Webflow-ban nincs ms-es változó (3. pont), ezért a --bc-t-* tokenek ms-literálra oldódnak (1.54.0 óta;
+// addig a var(--_beeco-ds---bc-t-*) hivatkozás a Webflow-ban nem létező változóra mutatott).
+const atir = (css) => css
+  .replace(/var\(\s*--bc-t-([a-z0-9-]+)\s*\)/g, (m, n) => (T.duration[n] != null ? `${T.duration[n]}ms` : m))
+  .replace(/var\(\s*--(bc-[a-z0-9-]+)\s*\)/g, (_, n) => WF(n));
 
 // Legfelső szintű CSS-blokkokra bont. NEM `}` mentén vágunk: az kettévágná a @media és a
 // @keyframes blokkot (élesben kiderült: a kimenet szintaktikailag hibás lett).

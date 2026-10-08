@@ -21,21 +21,21 @@
 1. Meglévőből dolgozz: DS React-komponens → `bc-` CSS-elem → projekt-komponens → tokenekből. Új elem/változat csak Kristóf jóváhagyásával (`docs/javaslatok/`).
 2. Csak tokenek/szerepek (`var(--bc-ink)`, `bc.$bc-ink`, `text-ink`); nyers szín, px betűméret/sarok/árnyék tilos; a Tailwind alap-palettája nincs.
 3. Név soha nem változik és nem törlődik (token, osztály, export, prop) – csak bővíts. Az `api-check` megfogja.
-4. Szöveg a mézen (`accent`) mindig `on-accent`; árnyék kemény, átlós (`shadow-s/m/l`), elmosás nélkül.
+4. Szöveg a mézen (`accent`) mindig `on-accent`; kattintható és kiemelt elem: kemény, átlós árnyék (`shadow-s/m/l`), nem kattintható információs doboz: `shadow-soft` (`docs/termek-arculat.md` 6/A).
 5. Lalezar csak cím/szám/gomb, Open Sans minden más; 12 px alatt nincs szöveg.
-6. Mozgás ≤ 300 ms, `ease-out`; `ease-in` tilos; csökkentett mozgásnál nincs végtelen animáció.
-7. 44 px érintés, látható `:focus-visible`, ikongombon `aria-label`, kattintható elem `<a>`/`<button>`.
+6. UI-visszajelzés ≤ 300 ms, `ease-out`; fiók 400 ms; belépő/dekoratív animáció ≤ 900 ms (`t-decor`, `t-hero`), csak token; `ease-in` tilos; csökkentett mozgásnál nincs mozgás.
+7. 44 px érintés, látható `:focus-visible` (kifelé: `outline-offset ≥ 2px`), ikongombon `aria-label`, kattintható elem `<a>`/`<button>`.
 8. Minden állapot: töltés, üres, hiba (következő lépéssel), siker, tiltott. Szöveg magyarul, tegezve; feliratok `labels`-szel felülírhatók.
-9. Kompakt helyen ikon-gomb `TooltipIconButton`-nal; fő gomb szöveg + piktogram (`IcSave`, `IcTrash`, `IcNew`…).
+9. Gombszabály (egy forrás: `docs/termek-arculat.md` 6/A): egy méz fő gomb; kompakt helyen ikon-gomb `TooltipIconButton`-nal; fő gomb szöveg + piktogram (`IcSave`, `IcTrash`, `IcNew`…).
 10. Ne szerkeszd: `dist/`, `termek/tesztlapok/*.html`, `docs/AI.md`; feature-ágon ne emelj verziót; titok soha (publikus repó).
 
 ## Tokenek (termékbőr)
 
-- **Szín-szerepek** (`--bc-<szerep>`, Tailwind `bg-/text-/border-<szerep>`, sötét módban maguktól váltanak): `bg` `surface` `surface-2` `surface-accent` `ink` `ink-soft` `ink-muted` `line` `line-soft` `accent` `accent-press` `on-accent` `shadow` `focus` `success` `success-bg` `success-ink` `danger` `danger-bg` `danger-ink` `warning` `warning-bg` `warning-ink` `info` `info-bg` `info-ink` `highlight` `scrim`.
+- **Szín-szerepek** (`--bc-<szerep>`, Tailwind `bg-/text-/border-<szerep>`, sötét módban maguktól váltanak): `bg` `surface` `surface-2` `surface-accent` `ink` `ink-soft` `ink-muted` `line` `line-soft` `accent` `accent-press` `on-accent` `shadow` `focus` `success` `success-bg` `success-ink` `danger` `danger-bg` `danger-ink` `warning` `warning-bg` `warning-ink` `info` `info-bg` `info-ink` `highlight` `scrim` `focus-on-accent`.
 - Világos → sötét: bg cream→night · surface white→night-surface · ink black→cream · line black→night-line · accent honey→honey · on-accent black→black.
 - Betű `--bc-fs-*`: xs 12 · s 14 · m 16 · l 20 · xl 26 · 2xl 34 · 3xl 46 px; vastagság `--bc-fw-*`: regular, semibold, bold.
 - Térköz `--bc-sp-*`: 1=4 2=8 3=12 4=16 5=24 6=32 7=48 8=64 px · sarok `--bc-r-*`: xs=2 s=4 m=8 l=12 pill=999 · keret `--bc-bw-*`: hair, base.
-- Árnyék `--bc-shadow-*`: s, m, l (kemény) · idő `--bc-t-*`: fast 120ms, base 200ms, slow 400ms, press 120ms · `--bc-ease-out` · `--bc-tap` 44 px.
+- Árnyék `--bc-shadow-*`: s, m, l (kemény) · idő `--bc-t-*`: fast 120ms, base 200ms, slow 400ms, press 120ms, decor 600ms, hero 900ms · `--bc-ease-out` · `--bc-tap` 44 px.
 - Adatskálák: `--bc-data-seq-1…`, `div`, `-cb` (színtévesztő-barát), `allapot`, `cat-1…8`. Primitívek (`--bc-honey`…) csak adatvizualizációhoz.
 
 ## React-komponensek (149; mind: `@beeco/design-system/react`)
@@ -135,7 +135,7 @@ Sor: **Név** `forrás` — fő propok (`*` kötelező, `…attr` = natív attri
 - **MapPanel** `media/MapPanel` — label*:string, empty, error:string, height:string, legend, list:MapListItem[], listLabel:string, note, onRetry:fn, +6 · `.bc-map-panel` · organizmus · egységes térkép-keret a meglévő `.bc-map` Leaflet-öltözettel (bc-media-terkep.css).
 - **MonthCalendar** `media/MonthCalendar` — events*, kindDefs*, error:string, hidden:readonly K[], initialDate:string, kinds:readonly K[], labels, loading:bool, maxPerDay:number, +4 · `.bc-mcal` · organizmus · havi rács hétfővel; a fajtát bal csík + szerepszín + jelmagyarázat mondja (nem csak a szín).
 - **OpeningHoursEditor** `media/OpeningHoursEditor` — help*, onChange*:fn, value*:OpeningHours, disabled:bool, label:string, readOnly:bool · `.bc-hours` · organizmus · soronként egy nap – kapcsoló (nyitva/zárva), nyitás–zárás, „Hétfő másolása a hétköznapokra”.
-- **Progress** 🆕 `media/Stepper` — label*:string, max*:number, value*:number, valueText:string · `.bc-upbar` · Haladásjelző sáv (role="progressbar"); a szöveges állapotot (pl. „2,1/5 MB”) a hívó írja mellé.
+- **Progress** `media/Stepper` — label*:string, max*:number, value*:number, valueText:string · `.bc-upbar` · Haladásjelző sáv (role="progressbar"); a szöveges állapotot (pl. „2,1/5 MB”) a hívó írja mellé.
 - **Stepper** `media/Stepper` — label*:string, steps*, onSelect:fn · `.bc-steps` · molekula · lépésjelző – fájl → feltöltés → feldolgozás → kész.
 - **VideoUpload** `media/VideoUpload` — help*, label*:string, upload*:UploadFn<void>, disabled:bool, maxSizeMB:number, onDone:fn, process:fn · `.bc-video` · organizmus · fájl → feltöltés → feldolgozás → kész.
 
@@ -189,7 +189,7 @@ Sor: **Név** `forrás` — fő propok (`*` kötelező, `…attr` = natív attri
 - **ShellAccount** `sablon/ShellAccount` — items*:MenuEntry[], name*:string | null, avatarSrc:string, detail, loadingLabel:string, menuLabel:fn · `.bc-muted` · molekula · a felhasználó az AppShell oldalsávjának alján – avatar, név, szerep, menü (kijelentkezés).
 
 ### 06d Út (szakasztérkép)
-- **Utvonal** 🆕 `ut/Utvonal` — cimke*:string, szakaszok*, cimSzint:2 | 3 | 4, hatarido, kovetkezo:UtvonalLepes, labels, renderLink:RenderLink, segito, tomor:bool · `.bc-btn` · organizmus · egy út szakaszai + EGY következő lépés, a segítővel és a határidővel.
+- **Utvonal** `ut/Utvonal` — cimke*:string, szakaszok*, cimSzint:2 | 3 | 4, hatarido, kovetkezo:UtvonalLepes, labels, renderLink:RenderLink, segito, tomor:bool · `.bc-btn` · organizmus · egy út szakaszai + EGY következő lépés, a segítővel és a határidővel.
 
 ### 06e Csapat-egészség
 - **JelzoKartya** 🆕 `csapat/JelzoKartya` — cim*:string, ertek*:JelzoErtek, onValtozas*:fn, cimSzint:2 | 3 | 4, disabled:bool, hiba:string, irany:bool, kotelezo:bool, labels, +3 · `.bc-jelzo` · organizmus · egy terület szavazókártyája.
@@ -244,4 +244,4 @@ Fájlonként a `bc-` gyökérosztályok (a `bc-x-…` alosztályok a gyökér al
 
 - Nem ez a skill: töltsd be a `beeco-arculat`-ot. Közös fájlok a `tools/kit-sync.js`-sel (`KIT-FILES.json`); globális nevek (`DS`, `pic`, `ART`, `MODEL`…) és `ds-` osztályok: `api/api.json` → `jatekJs`, `css.jatek`.
 
-*149 komponens · 5 új · 17 hook. A verzió: `VERSION` (szándékosan nincs itt, hogy a verzióemelés ne írja át).*
+*149 komponens · 3 új · 17 hook. A verzió: `VERSION` (szándékosan nincs itt, hogy a verzióemelés ne írja át).*

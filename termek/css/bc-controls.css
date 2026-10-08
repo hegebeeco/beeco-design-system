@@ -26,7 +26,7 @@
 .bc-btn > span:has(> svg), .bc-seg-item > span:has(> svg), .bc-icon-btn > span:has(> svg) { display: inline-flex; align-items: center; }
 .bc-btn > svg, .bc-btn > span:has(> svg) { translate: 0 -.085em; }
 @media (hover: hover) and (pointer: fine) {
-  .bc-btn:hover:not(:disabled, [aria-disabled="true"]) { background: color-mix(in srgb, var(--_bg) 88%, var(--bc-ink)); }
+  .bc-btn:hover:not(:disabled, [aria-disabled="true"]) { background: color-mix(in srgb, var(--_bg) var(--bc-hover-mix), var(--bc-ink)); }
 }
 .bc-btn:active:not(:disabled, [aria-disabled="true"]) { transform: translate(var(--bc-shadow-s-x), var(--bc-shadow-s-y)); box-shadow: none; }
 

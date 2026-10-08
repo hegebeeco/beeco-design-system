@@ -1,4 +1,5 @@
 {
+ "statusz_szabaly": "stabil = a CHANGELOG szerint legalább három kiadással a mostani (1.53.0) előtt, vagyis az 1.50.x-ben vagy korábban jelent meg, van tesztlapja és React-forrása; béta = az 1.51–1.53 kiadásokban jelent meg, vagy nincs tesztlapja / React-forrása; elavult = a CHANGELOG vagy a docs ezt kimondja. Ha egy elem megjelenése a CHANGELOG-ból nem azonosítható, a statusz kimarad. A besorolás a CHANGELOG-ban elsőként azonosítható megjelenésre épül (a statusz_forras mutatja); felmérés: 2026-10-08.",
  "szintek": [
   {
    "id": "atom",
@@ -90,6 +91,8 @@
     "termek/bemutato.html Gombok"
    ],
    "kategoria": "gombok-es-jelolok",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („gomb”); React: Button 1.14.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Felirat",
@@ -263,6 +266,8 @@
     "docs/komponensek.md 3.3, 3.4/b"
    ],
    "kategoria": "gombok-es-jelolok",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („ikongomb”); React: IconButton 1.14.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Gomb (`bc-icon-btn`)",
@@ -439,6 +444,8 @@
     "docs/javaslatok/20-admin-ux-elemek.md 2"
    ],
    "kategoria": "gombok-es-jelolok",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.18.0 (2026-10-01): a gombok piktogram-szabályával (IcSave, IcTrash, IcNew, IcInfo, IcEdit…).",
    "anatomia": [
     {
      "resz": "Rajz (`svg`)",
@@ -550,6 +557,8 @@
     "termek/css/bc-forms.css"
    ],
    "kategoria": "mezok-es-urlap",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („űrlap”); React: TextArea 1.14.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Egysoros beviteli doboz",
@@ -601,6 +610,20 @@
    ],
    "a11y": {
     "szerep": "Natív `<input>` (`bc-input`) vagy `<textarea>` (`bc-textarea`).",
+    "billentyuk": [
+     [
+      "Tab",
+      "A fókusz a mezőre kerül (Shift + Tab: vissza az előzőre); a tiltott (`disabled`) mező kimarad a sorrendből."
+     ],
+     [
+      "Gépelés",
+      "A fókuszban lévő mezőbe szöveget visz be."
+     ],
+     [
+      "Enter (többsoros mező)",
+      "Új sort kezd a `<textarea>`-ban."
+     ]
+    ],
     "megjegyzes": "Az `id`, az `aria-describedby` (tartomány/hiba/jelzés) és az `aria-invalid` a `Field`-ből jön a `FieldInput` kontextuson át; a `required` és `disabled` natív attribútum. A doboz legalább `--bc-tap` (44 px) magas."
    },
    "kapcsolodo": [
@@ -691,6 +714,8 @@
     "termek/css/bc-adat.css (Szűrősáv)"
    ],
    "kategoria": "mezok-es-urlap",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („űrlap (legördülő)”); React: SelectField 1.14.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Natív lista",
@@ -737,7 +762,13 @@
    ],
    "a11y": {
     "szerep": "Natív `<select>`.",
-    "megjegyzes": "Az `id`, `aria-describedby` és `aria-invalid` a `Field` kontextusból jön. A forrás szerint rövid (kb. 15 elemű) listához való, hosszabbhoz a keresős legördülő (Combobox)."
+    "billentyuk": [
+     [
+      "Tab",
+      "A fókusz a legördülőre kerül; a tiltott (`disabled`) kimarad a sorrendből."
+     ]
+    ],
+    "megjegyzes": "Az `id`, `aria-describedby` és `aria-invalid` a `Field` kontextusból jön. A forrás szerint rövid (kb. 15 elemű) listához való, hosszabbhoz a keresős legördülő (Combobox). A natív `<select>` megnyitásának és az opciók közti léptetésnek a billentyűit a HTML-szabvány nem rögzíti, böngészőnként eltérnek, ezért itt nincsenek felsorolva."
    },
    "kapcsolodo": [
     "mezo",
@@ -819,6 +850,8 @@
     "docs/javaslatok/06-kiegeszitok.md 06a/11"
    ],
    "kategoria": "gombok-es-jelolok",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („űrlap (jelölő)”); React: Checkbox 1.14.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Jelölőnégyzet (`bc-checkbox` / `bc-check > input`)",
@@ -973,6 +1006,8 @@
     "termek/css/bc-forms.css (Kapcsoló)"
    ],
    "kategoria": "gombok-es-jelolok",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („űrlap (kapcsoló)”); React: Switch 1.14.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Sín (`bc-switch::before`)",
@@ -1140,6 +1175,8 @@
     "docs/komponensek.md 3.3"
    ],
    "kategoria": "gombok-es-jelolok",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („címke”); React: StatusBadge 1.31.0 (2026-10-02).",
    "anatomia": [
     {
      "resz": "Test (`bc-badge`)",
@@ -1239,6 +1276,8 @@
     "termek/css/bc-surfaces.css (Kattintható kártya)"
    ],
    "kategoria": "gombok-es-jelolok",
+   "statusz": "béta",
+   "statusz_forras": "CHANGELOG 1.33.0 (a fejléc nem ír dátumot; a szomszédos 1.32.0 és 1.33.1 is 2026-10-02): a bc-link megjelent a webes rétegben (bc-web.css); nincs React-komponense és tesztlapja.",
    "anatomia": [
     {
      "resz": "Link (`bc-link`)",
@@ -1267,6 +1306,16 @@
     }
    ],
    "a11y": {
+    "billentyuk": [
+     [
+      "Tab",
+      "A fókusz a `href`-fel rendelkező linkre kerül."
+     ],
+     [
+      "Enter",
+      "Követi a hivatkozást."
+     ]
+    ],
     "megjegyzes": "A mondatba ágyazott link a WCAG 2.5.8 szerint kivétel az érintési méret alól; a saját sorban álló link `is-standalone` osztályt kap (44 px). Az aláhúzás miatt a link nem csak színnel különül el (WCAG 1.4.1)."
    },
    "adat_forras": {
@@ -1344,6 +1393,8 @@
     "termek/css/bc-adat.css (Frissítés)"
    ],
    "kategoria": "visszajelzes",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („töltés”); React: HexLoader 1.15.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Pörgő",
@@ -1418,6 +1469,12 @@
    ],
    "a11y": {
     "szerep": "HexLoader és `bc-dt-progress`: `role=status` + `aria-label`. ProgressBar és Progress: `role=progressbar` `aria-valuemin=0`, `aria-valuemax=100`, `aria-valuenow`, `aria-label`. SkeletonRows: `aria-hidden`.",
+    "billentyuk": [
+     [
+      "(nincs)",
+      "Nem fókuszálható, billentyűt nem kezel: a töltés- és haladásjelző csak olvasható állapotjelzés."
+     ]
+    ],
     "megjegyzes": "A Progress `aria-valuetext`-je alapból „N%”, a `valueText` felülírja. A haladást szöveggel is ki kell írni (pl. „2,1/5 MB”). DataState csontvázzal `role=status` és `aria-label`: „Betöltöm …”; a töltő oldalfej címe `aria-busy`. A pörgő (`bc-spinner`) csak CSS: a szerepet a hívó adja, a szomszédos szövegnél `aria-hidden`. Nem interaktív elem, billentyűt nem kezel."
    },
    "kapcsolodo": [
@@ -1485,7 +1542,9 @@
    "nev": "Logó és méhsejt-háttér",
    "szint": "atom",
    "csoport": "05 – Méhecske, mozgás, szöveg",
-   "react": [],
+   "react": [
+    "Logo"
+   ],
    "css": [
     "bc-logo",
     "bc-logo is-s",
@@ -1525,6 +1584,8 @@
     "docs/javaslatok/11-evszakos-mehsejt.md"
    ],
    "kategoria": "meh-es-mozgas",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.25.0 (2026-10-02): a Logo React-elem és a .bc-logo (sötét módú logó, Javaslat 10).",
    "anatomia": [
     {
      "resz": "Logó",
@@ -1558,6 +1619,12 @@
    ],
    "a11y": {
     "szerep": "`role=\"img\"` + `aria-label` (alap: „beeco”); üres `label` esetén `aria-hidden` (díszítő).",
+    "billentyuk": [
+     [
+      "(nincs)",
+      "Nem fókuszálható, billentyűt nem kezel: a logó és a méhsejt-háttér csak díszítés."
+     ]
+    ],
     "megjegyzes": "A méhsejt-háttér tisztán díszítő: `pointer-events: none`, a tartalom mögött (`--bc-z-behind`); a tesztlap igazolja, hogy a kattintást nem fogja el. Nem interaktív, billentyűkezelése nincs."
    },
    "kapcsolodo": [
@@ -1645,6 +1712,8 @@
     "termek/css/bc-meh.css"
    ],
    "kategoria": "meh-es-mozgas",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): BeeSprite megjelent.",
    "anatomia": [
     {
      "resz": "Méhecske-kép",
@@ -1692,6 +1761,12 @@
    ],
    "a11y": {
     "szerep": "Díszítő: `aria-hidden=\"true\"`. Ha a méh olyat mond, amit a szöveg nem, a `label` prop `role=\"img\"` + `aria-label` értéket ad neki.",
+    "billentyuk": [
+     [
+      "(nincs)",
+      "Nem fókuszálható, billentyűt nem kezel: a méhecske-kép csak díszítés."
+     ]
+    ],
     "megjegyzes": "Képernyőnként legfeljebb egy méh. A tesztlap ellenőrzi, hogy nincs nem díszítő méh és nincs „mérges” szereplő. Nem interaktív, billentyűkezelése nincs."
    },
    "kapcsolodo": [
@@ -1781,6 +1856,8 @@
     "termek/css/bc-media-terkep.css (Avatar)"
    ],
    "kategoria": "media",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): Avatar megjelent.",
    "anatomia": [
     {
      "resz": "Keret",
@@ -1823,6 +1900,12 @@
    ],
    "a11y": {
     "szerep": "Nem interaktív. Monogramnál `role=\"img\"` + `aria-label` = név; képnél a natív `<img alt=\"név\">`; `decorative`-nál `aria-hidden` / üres `alt`.",
+    "billentyuk": [
+     [
+      "(nincs)",
+      "Nem fókuszálható, billentyűt nem kezel: az avatar csak megjelenít."
+     ]
+    ],
     "megjegyzes": "Nem fókuszálható, billentyűkezelése nincs. A tesztlap a monogramot ékezettel (KÁ, NÉ), kettős betűvel (Zs) és hibás képnél ellenőrzi."
    },
    "kapcsolodo": [
@@ -1920,6 +2003,8 @@
     "react/src/field/Field.tsx"
    ],
    "kategoria": "mezok-es-urlap",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („űrlap (mező)”); React: Field 1.14.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Keret",
@@ -1987,6 +2072,16 @@
    ],
    "a11y": {
     "szerep": "`<label for>` + a benne lévő mező; a hiba `role=\"alert\"`, a jelzés `role=\"status\"`.",
+    "billentyuk": [
+     [
+      "Tab",
+      "A fókusz a mezőre kerül, nem a címkére (a `<label>` nem fókuszálható); a súgó-gomb (ⓘ), ha van, külön Tab-megálló."
+     ],
+     [
+      "Enter / Szóköz",
+      "A fókuszban lévő súgó-gombot (natív `<button>`) aktiválja."
+     ]
+    ],
     "megjegyzes": "A `Field` `useId` azonosítót ad: a címke `htmlFor`-ja és a mező `id`-ja egyezik. Az `aria-describedby` a tartomány-sor, a hiba és a jelzés azonosítóira mutat; `aria-invalid` hibánál. `labelFor={false}` esetén `<span>` a címke (csoportoknál). Szöveges mezőn élő számláló; a határnál a `bc-sr` felirat szól."
    },
    "kapcsolodo": [
@@ -2085,6 +2180,8 @@
     "docs/javaslatok/21-admin-bekotes-finomitasok.md 3, 7"
    ],
    "kategoria": "mezok-es-urlap",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.14.0 (2026-10-01): HelpButton megjelent.",
    "anatomia": [
     {
      "resz": "Súgó-gomb",
@@ -2242,6 +2339,8 @@
     "termek/css/bc-field.css (Keresőmező)"
    ],
    "kategoria": "mezok-es-urlap",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.14.0 (2026-10-01): SearchBox megjelent.",
    "anatomia": [
     {
      "resz": "Keret",
@@ -2389,6 +2488,8 @@
     "termek/css/bc-field.css (Címkefelhő)"
    ],
    "kategoria": "mezok-es-urlap",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.14.0 (2026-10-01): Combobox megjelent.",
    "anatomia": [
     {
      "resz": "Mezőtest",
@@ -2633,6 +2734,8 @@
     "docs/javaslatok/09-tema-es-feliratok.md 3"
    ],
    "kategoria": "mezok-es-urlap",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.14.0 (2026-10-01): SegmentedControl megjelent.",
    "anatomia": [
     {
      "resz": "Csoport",
@@ -2788,6 +2891,8 @@
     "termek/tesztlapok/lista.json szam"
    ],
    "kategoria": "mezok-es-urlap",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.14.0 (2026-10-01): NumberField megjelent.",
    "anatomia": [
     {
      "resz": "Gépelős számmező (NumberField)",
@@ -2998,6 +3103,8 @@
     "termek/css/bc-picker.css"
    ],
    "kategoria": "mezok-es-urlap",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.14.0 (2026-10-01): DatePicker megjelent.",
    "anatomia": [
     {
      "resz": "Dátum-sor",
@@ -3228,6 +3335,8 @@
     "docs/javaslatok/20-admin-ux-elemek.md 1, 3"
    ],
    "kategoria": "retegek-es-navigacio",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („fülek”); React: Tabs 1.15.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Fülsor-burkoló",
@@ -3445,6 +3554,8 @@
     "termek/css/bc-surfaces.css"
    ],
    "kategoria": "adat-es-grafikon",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („kártya”); React: InfoCard 1.22.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Kártya doboz",
@@ -3629,6 +3740,8 @@
     "termek/bemutato.html Visszajelzés"
    ],
    "kategoria": "visszajelzes",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („sáv”); React: DraftNotice 1.31.0 (2026-10-02).",
    "anatomia": [
     {
      "resz": "Figyelmeztető sáv",
@@ -3689,6 +3802,20 @@
    ],
    "a11y": {
     "szerep": "DataNote: `aside` (`aria-label`: a cím, ennek híján „Megjegyzés az adatokhoz”). DraftNotice: `role=status`. Hibasáv: `role=alert` (a forrásban a hibasávok így jelennek meg).",
+    "billentyuk": [
+     [
+      "(nincs)",
+      "A sáv maga nem fókuszálható, billentyűt nem kezel."
+     ],
+     [
+      "Tab",
+      "A sávban lévő natív gombokra lép (pl. a piszkozat-sáv műveleteire)."
+     ],
+     [
+      "Enter / Szóköz",
+      "Aktiválja a fókuszban lévő gombot."
+     ]
+    ],
     "megjegyzes": "A hangnemet nem csak szín jelzi: ikon és szöveg is van. A piszkozat-sáv gombjai natív gombok, külön billentyűkezelő nincs."
    },
    "kapcsolodo": [
@@ -3789,6 +3916,8 @@
     "docs/termek-arculat.md 1.5"
    ],
    "kategoria": "visszajelzes",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („értesítés”); React: Toaster 1.15.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Értesítés-tár",
@@ -3887,6 +4016,20 @@
    ],
    "a11y": {
     "szerep": "`section` régió (`aria-label`); a hibák `role=alert` (assertive), a többi `role=status` (polite).",
+    "billentyuk": [
+     [
+      "(nincs)",
+      "Az értesítés maga nem fókuszálható, külön billentyűkezelője nincs."
+     ],
+     [
+      "Tab",
+      "Az értesítésben lévő natív gombokra lép (pl. Visszavonás)."
+     ],
+     [
+      "Enter / Szóköz",
+      "Aktiválja a fókuszban lévő gombot."
+     ]
+    ],
     "megjegyzes": "A hangnemet nem csak szín jelzi: ikon és a rejtett előtag („Kész:”, „Hiba:”, „Tájékoztatás:”, „Figyelem:”) is. Az élő régiók mindig a DOM-ban vannak, hogy az első üzenetet is felolvassa a képernyőolvasó. Az értesítés modális ablak fölött is látszik, és a „Visszavonás” nem zárja be az ablakot. A gombok natív `button`-ök, külön billentyűkezelő nincs. Mezőhiba nem ide való, a mező alá."
    },
    "kapcsolodo": [
@@ -3993,6 +4136,8 @@
     "docs/javaslatok/19-admin-ui-tisztitas.md 3"
    ],
    "kategoria": "adat-es-grafikon",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („statisztika”); React: StatTile 1.15.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Csempe",
@@ -4089,6 +4234,20 @@
    ],
    "a11y": {
     "szerep": "Nincs külön szerep: `div` szöveges tartalommal; a töltés `role=\"status\"`, a hiba `role=\"alert\"`.",
+    "billentyuk": [
+     [
+      "(nincs)",
+      "A csempe maga nem fókuszálható, billentyűt nem kezel (szöveges tartalom)."
+     ],
+     [
+      "Tab",
+      "A súgó-gombra (ⓘ) lép, ha a csempének van súgója."
+     ],
+     [
+      "Enter / Szóköz",
+      "Aktiválja a súgó natív `<button>`-jét."
+     ]
+    ],
     "megjegyzes": "A változás jelentését nyíl, előjel és szöveg is hordozza, nem csak a szín. A súgó (ⓘ) `HelpButton`: a tesztlap szerint megnyílik, Esc zárja (a gomb Radix Popoverre épül). A hiányzó értéknél a „—” `aria-hidden`, helyette rejtett „nincs adat” szöveg olvasódik."
    },
    "kapcsolodo": [
@@ -4187,6 +4346,8 @@
     "react/src/adat/DataState.tsx"
    ],
    "kategoria": "visszajelzes",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („üres állapot”).",
    "anatomia": [
     {
      "resz": "Üres állapot",
@@ -4251,6 +4412,20 @@
    ],
    "a11y": {
     "szerep": "Töltés: `role=status`. Hiba: `role=alert`. Az üres állapot sima blokk, a kép-hely `aria-hidden`; a jogosultság-doboz nem kap szerepet.",
+    "billentyuk": [
+     [
+      "(nincs)",
+      "Az üres, töltés és hiba állapot maga nem fókuszálható."
+     ],
+     [
+      "Tab",
+      "Az állapotban lévő natív gombokra lép (pl. „Szűrők törlése”, „Újrapróbálás”)."
+     ],
+     [
+      "Enter / Szóköz",
+      "Aktiválja a fókuszban lévő gombot."
+     ]
+    ],
     "megjegyzes": "A gombok natív `button`-ök, külön billentyűkezelő nincs. A szöveg tegeződő, a hiba megmondja a következő lépést. A táblázat üres állapotában a teendő gomb működik (pl. „Szűrők törlése”), a hiba `role=alert` alatt az „Újrapróbálás” betölti a sorokat."
    },
    "kapcsolodo": [
@@ -4355,6 +4530,8 @@
     "react/src/adat/Pagination.tsx"
    ],
    "kategoria": "adat-es-grafikon",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („lapozó”).",
    "anatomia": [
     {
      "resz": "Lapozó burok",
@@ -4410,6 +4587,16 @@
    ],
    "a11y": {
     "szerep": "Natív `nav` landmark, benne `ul` lista natív gombokkal.",
+    "billentyuk": [
+     [
+      "Tab",
+      "A lapozó gombjain halad; a tiltott (`disabled`) gomb kimarad a sorrendből."
+     ],
+     [
+      "Enter / Szóköz",
+      "Aktiválja a fókuszban lévő natív gombot (lapozás)."
+     ]
+    ],
     "megjegyzes": "Az aktuális oldalt `aria-current=\"page\"` jelöli; a tartomány-felirat `aria-live=\"polite\"`, így a lapozás után bemondódik. A gombok neve „Első lap”, „Előző lap”, „Következő lap”, „Utolsó lap”, illetve „N. lap”. Több lapozó esetén a `label` legyen egyedi."
    },
    "kapcsolodo": [
@@ -4496,6 +4683,8 @@
     "termek/bemutato.html Űrlap"
    ],
    "kategoria": "mezok-es-urlap",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.14.0 (2026-10-01): FormSection megjelent.",
    "anatomia": [
     {
      "resz": "Szakasz-kártya",
@@ -4520,6 +4709,16 @@
    ],
    "a11y": {
     "szerep": "`<section>` `aria-label`-lel (a cím szövegével), benne `<h2>`.",
+    "billentyuk": [
+     [
+      "(nincs)",
+      "A szakasz és a gombsor sima konténer: nem fókuszálható, billentyűt nem kezel."
+     ],
+     [
+      "Tab",
+      "A benne lévő mezőkön és gombokon a DOM-sorrendben halad."
+     ]
+    ],
     "megjegyzes": "Csak szerkezeti elem: nincs saját billentyű- vagy állapotkezelése, a mezők a `Field`-en át kezelik a saját aria-kapcsolataikat. A `FormActions` sima konténer, a gombok a `children`-ben vannak."
    },
    "kapcsolodo": [
@@ -4617,6 +4816,8 @@
     "docs/komponensek.md 3.4 (Táblázat, lista)"
    ],
    "kategoria": "adat-es-grafikon",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („táblázat”); React: DataTable 1.15.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Burok",
@@ -4910,6 +5111,8 @@
     "termek/css/bc-reteg.css (Oldalfej és morzsamenü)"
    ],
    "kategoria": "retegek-es-navigacio",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („oldalfej”); React: PageHeader 1.15.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Oldalfej",
@@ -4978,6 +5181,24 @@
    ],
    "a11y": {
     "szerep": "`header` az oldalfej; a morzsamenü `nav` (alap `aria-label`: „Hol vagy”) rendezett listával; a cím `h1`.",
+    "billentyuk": [
+     [
+      "(nincs)",
+      "Az oldalfej maga nem fókuszálható."
+     ],
+     [
+      "Tab",
+      "A morzsamenü linkjeire és a „…” gombra, majd a fejben lévő műveletekre lép, a DOM-sorrendben."
+     ],
+     [
+      "Enter",
+      "Követi a fókuszban lévő morzsa-linket."
+     ],
+     [
+      "Enter / Szóköz",
+      "A fókuszban lévő natív gombot (pl. a „…”) aktiválja."
+     ]
+    ],
     "megjegyzes": "A mostani szint `aria-current=page`. Hosszú név egy sorban levágva (28 ch), a teljes név a `title`-ben. A böngészőfül címét a `usePageTitle(title)` állítja: „Cím – beeco admin”, és leváláskor visszaállítja az előzőt. A teszt a morzsa „…” gombját kattintással ellenőrzi, külön billentyűkezelő nincs."
    },
    "kapcsolodo": [
@@ -5096,6 +5317,8 @@
     "docs/javaslatok/05-meh.md 2"
    ],
    "kategoria": "retegek-es-navigacio",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („alkalmazás-váz”); React: AppShell 1.15.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Váz",
@@ -5314,6 +5537,8 @@
     "termek/bemutato.html Felugró ablak"
    ],
    "kategoria": "retegek-es-navigacio",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.12.0 (2026-10-01): a termékbőr CSS-elemei között („felugró ablak”); React: Modal 1.15.0 (2026-10-01).",
    "anatomia": [
     {
      "resz": "Háttér-függöny",
@@ -5537,6 +5762,8 @@
     "termek/css/bc-reteg.css (Oldalpanel)"
    ],
    "kategoria": "retegek-es-navigacio",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): Drawer megjelent.",
    "anatomia": [
     {
      "resz": "Háttér-függöny",
@@ -5698,6 +5925,8 @@
     "termek/css/bc-reteg.css (Legördülő menü)"
    ],
    "kategoria": "retegek-es-navigacio",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): DropdownMenu megjelent.",
    "anatomia": [
     {
      "resz": "Nyitó gomb",
@@ -5904,6 +6133,8 @@
     "termek/css/bc-reteg.css (Kereső-paletta)"
    ],
    "kategoria": "retegek-es-navigacio",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.42.0 (2026-10-05): CommandPalette megjelent.",
    "anatomia": [
     {
      "resz": "Ablak",
@@ -6122,6 +6353,8 @@
     "docs/javaslatok/14-vonal-allapot-kapcsolo.md 3, 7"
    ],
    "kategoria": "adat-es-grafikon",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): ChartCard megjelent.",
    "anatomia": [
     {
      "resz": "Kártya",
@@ -6346,6 +6579,8 @@
     "termek/tesztlapok/lista.json kieg2-hely, media-terkep"
    ],
    "kategoria": "media",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): MapLegend megjelent.",
    "anatomia": [
     {
      "resz": "Térkép-panel",
@@ -6641,6 +6876,8 @@
     "termek/tesztlapok/lista.json kieg2-video, media-import"
    ],
    "kategoria": "media",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): ImageUploader megjelent.",
    "anatomia": [
     {
      "resz": "Mező-keret",
@@ -6974,6 +7211,8 @@
     "termek/tesztlapok/lista.json media-naptar"
    ],
    "kategoria": "media",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): MonthCalendar megjelent.",
    "anatomia": [
     {
      "resz": "Fej",
@@ -7118,8 +7357,7 @@
     "gomb",
     "ikongomb",
     "sugo",
-    "kapcsolo",
-    "datum"
+    "kapcsolo"
    ],
    "alapertek": {
     "maxPerDay": "3",
@@ -7204,6 +7442,8 @@
     "termek/css/bc-media.css (Lépésjelző)"
    ],
    "kategoria": "retegek-es-navigacio",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): Stepper megjelent.",
    "anatomia": [
     {
      "resz": "Lépéslista",
@@ -7361,6 +7601,8 @@
     "termek/css/bc-meh.css (BeeMoment)"
    ],
    "kategoria": "meh-es-mozgas",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): BeeMoment megjelent.",
    "anatomia": [
     {
      "resz": "Keret",
@@ -7407,6 +7649,20 @@
    ],
    "a11y": {
     "szerep": "A `live` propból: `role=\"status\"` vagy `role=\"alert\"`; alapból nincs szerep.",
+    "billentyuk": [
+     [
+      "(nincs)",
+      "A méhes pillanat maga nem interaktív, nem fókuszálható."
+     ],
+     [
+      "Tab",
+      "A `action` gombjára lép, ha van."
+     ],
+     [
+      "Enter / Szóköz",
+      "Aktiválja a gombot."
+     ]
+    ],
     "megjegyzes": "A méh díszítő (`aria-hidden`), a mondatot a szöveg mondja el. A tesztlap minden pillanatnál megköveteli a szóvicc-címet ÉS a sima mondatot, a szerverhibánál az `alert` szerepet. Képernyőnként legfeljebb egy. Nem interaktív maga; a `action` gombja a sajátja."
    },
    "kapcsolodo": [
@@ -7518,6 +7774,8 @@
     "termek/css/bc-kieg.css (App-előnézet)"
    ],
    "kategoria": "media",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): PreviewCard megjelent.",
    "anatomia": [
     {
      "resz": "Keret",
@@ -7591,6 +7849,16 @@
    ],
    "a11y": {
     "szerep": "A telefonkeret `role=\"group\"`; részletek nézetben a képernyő `role=\"region\"` + `tabIndex=0`, `aria-label`: „… – részletek, görgethető”; a jelzések `role=\"status\"`.",
+    "billentyuk": [
+     [
+      "Tab",
+      "Részletek nézetben a görgethető képernyőre (`tabindex=\"0\"`) lép; más nézetben az előnézet semmire sem."
+     ],
+     [
+      "(nincs)",
+      "A telefonkeret és a kártya (a `bc-pv-btn` is) nem kezelőelem, billentyűt nem kezel."
+     ]
+    ],
     "megjegyzes": "A kép `alt=\"\"` (díszítő). A `bc-pv-btn` nem kezelőelem, `pointer-events: none`. A részletek nézet görgethető képernyője billentyűzettel fókuszálható. Billentyűkezelés a komponensben nincs."
    },
    "kapcsolodo": [
@@ -7696,6 +7964,8 @@
     "termek/css/bc-kieg.css"
    ],
    "kategoria": "adat-es-grafikon",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): Timeline megjelent.",
    "anatomia": [
     {
      "resz": "Előzmények: napcsoport",
@@ -8044,6 +8314,8 @@
     "docs/termek-arculat.md 1.1"
    ],
    "kategoria": "meh-es-mozgas",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): PrizeDrawReveal megjelent.",
    "anatomia": [
     {
      "resz": "Keret",
@@ -8211,11 +8483,13 @@
    ],
    "css": [
     "bc-sablon",
+    "bc-sablon is-lista",
+    "bc-sablon-main",
+    "bc-skip",
+    "bc-sablon-filters",
     "bc-sablon-list",
-    "bc-page-header",
-    "bc-fb",
-    "bc-dt",
-    "bc-pager"
+    "bc-sablon-state",
+    "bc-card"
    ],
    "leiras": "Lista-oldal váza: oldalfej (cím, leírás, egy fő gomb) → szűrősáv → táblázat → lapozó. Állapotai: töltés, hiba, üres, nincs találat, kész.",
    "minta_html": "<div class=\"bc-sablon bc-card is-quiet\"><div class=\"bc-page-header bc-page-head\"><div class=\"bc-page-head-text\"><div class=\"bc-card-title\">Partnerek</div><p>Minden partner egy helyen.</p></div><div class=\"bc-row\"><button type=\"button\" class=\"bc-btn is-secondary\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 4v12M7 11l5 5 5-5M4 20h16\"/></svg>Exportálás</button><button type=\"button\" class=\"bc-btn\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg>Új partner</button></div></div><div class=\"bc-fb-row\"><div class=\"bc-fb-search\"><div class=\"bc-search\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M10.5 4a6.5 6.5 0 1 0 0 13a6.5 6.5 0 1 0 0-13M15.5 15.5L20 20\"/></svg><label class=\"bc-sr\" for=\"lista-q\">Partner keresése</label><input class=\"bc-input\" id=\"lista-q\" type=\"search\" placeholder=\"Partner keresése\"></div></div><p class=\"bc-fb-count\">312 partner</p></div><div class=\"bc-table-wrap\" aria-hidden=\"true\"><div class=\"bb-demo-oszlop\"><span class=\"bc-skeleton\"></span><span class=\"bc-skeleton\"></span><span class=\"bc-skeleton\"></span></div></div><nav class=\"bc-pager\" aria-label=\"Lapozás (minta)\"><p class=\"bc-pager-info\">1–25 / 312 partner · 1. oldal / 13</p></nav></div>",
@@ -8253,6 +8527,8 @@
     "termek/css/bc-sablon.css"
    ],
    "kategoria": "sablonok",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): ListPage megjelent.",
    "anatomia": [
     {
      "resz": "Sablon-keret",
@@ -8379,11 +8655,17 @@
    ],
    "css": [
     "bc-sablon",
+    "bc-sablon is-reszletek",
+    "bc-sablon-main",
+    "bc-skip",
+    "bc-sablon-summary-block",
+    "bc-card",
     "bc-sablon-cols",
     "bc-sablon-cols has-side",
-    "bc-sablon-summary-block",
-    "bc-info-grid",
-    "bc-info"
+    "bc-sablon-primary",
+    "bc-sablon-side",
+    "bc-sablon-skel",
+    "bc-skeleton"
    ],
    "leiras": "Egy elem adatlapja: oldalfej morzsával és műveletekkel, összegző blokk lapos csempékkel, fülek, adatlap-kártyák; széles nézetben oldalsó oszlop.",
    "minta_html": "<div class=\"bc-sablon\"><section class=\"bc-card bc-sablon-summary-block\" aria-label=\"Összegzés\"><div class=\"bc-row\"><p class=\"bc-card-title\">Példa Kávézó</p><span class=\"bc-badge bc-status is-success\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12.5l4.5 4.5L19 7\"/></svg>Aktív</span><span class=\"bc-badge is-tag\">Kávézó</span></div><div class=\"bc-stats\"><div class=\"bc-stat\"><span class=\"bc-stat-label\">Kupon</span><span class=\"bc-stat-value\">12</span></div><div class=\"bc-stat\"><span class=\"bc-stat-label\">Beváltás</span><span class=\"bc-stat-value\">340</span></div></div><p class=\"bc-help\">Mintaadat</p></section><div class=\"bc-tabs\" role=\"tablist\" aria-label=\"Partner nézetei (minta)\"><button type=\"button\" class=\"bc-tab\" role=\"tab\" aria-selected=\"true\">Részletek</button><button type=\"button\" class=\"bc-tab\" role=\"tab\" aria-selected=\"false\">Kuponok</button><button type=\"button\" class=\"bc-tab\" role=\"tab\" aria-selected=\"false\">Előzmények</button></div></div>",
@@ -8419,6 +8701,8 @@
     "docs/termek-arculat.md 6/A (Árnyék)"
    ],
    "kategoria": "sablonok",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): DetailPage megjelent.",
    "anatomia": [
     {
      "resz": "Sablon-keret",
@@ -8617,6 +8901,8 @@
     "termek/css/bc-sablon.css (Hibaösszesítő, Ragadós gombsor)"
    ],
    "kategoria": "sablonok",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): EditPage megjelent (FormSection: 1.14.0).",
    "anatomia": [
     {
      "resz": "Sablon-keret",
@@ -8813,6 +9099,8 @@
     "termek/css/bc-sablon.css (Szerkesztő lépés-módban)"
    ],
    "kategoria": "sablonok",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): EditPage megjelent.",
    "anatomia": [
     {
      "resz": "Lépés-burok",
@@ -8985,6 +9273,8 @@
     "termek/css/bc-sablon.css (Irányítópult, Nyomtatható oldal)"
    ],
    "kategoria": "sablonok",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): Dashboard megjelent.",
    "anatomia": [
     {
      "resz": "Sablon-keret",
@@ -9059,6 +9349,16 @@
    ],
    "a11y": {
     "szerep": "Az oldal egyetlen h1-e a cím; a számok és a grafikonok `<section aria-labelledby>` szakaszok rejtett h2-vel, így a `ChartCard` h3-a a helyes szinten van.",
+    "billentyuk": [
+     [
+      "(nincs)",
+      "A sablon maga nem kezel billentyűt, és nem fókuszálható."
+     ],
+     [
+      "Tab",
+      "A benne lévő vezérlőkön (időszakváltó, gombok) a DOM-sorrendben halad."
+     ]
+    ],
     "megjegyzes": "Legfeljebb egy méh-pillanat az oldalon. Az időszakváltás utáni újratöltés nem pörgeti újra a számokat. Billentyűkezelés a sablonban nincs, a vezérlők a saját komponenseikén."
    },
    "kapcsolodo": [
@@ -9155,6 +9455,8 @@
     "termek/tesztlapok/lista.json kieg-oldalak"
    ],
    "kategoria": "sablonok",
+   "statusz": "stabil",
+   "statusz_forras": "CHANGELOG 1.15.0 (2026-10-01): ErrorPage megjelent.",
    "anatomia": [
     {
      "resz": "Oldal",
@@ -9220,6 +9522,24 @@
    ],
    "a11y": {
     "szerep": "Az oldal `<section aria-labelledby>` a h1-re; az offline sáv `role=\"status\"`; a szerverhiba méh-pillanata `role=\"alert\"`.",
+    "billentyuk": [
+     [
+      "(nincs)",
+      "Az oldal maga nem fókuszálható, billentyűt nem kezel."
+     ],
+     [
+      "Tab",
+      "A teendők natív gombjaira és linkjeire lép."
+     ],
+     [
+      "Enter",
+      "Követi a fókuszban lévő linket, vagy aktiválja a gombot."
+     ],
+     [
+      "Szóköz",
+      "Aktiválja a fókuszban lévő gombot."
+     ]
+    ],
     "megjegyzes": "A cím mindig egyenesen mondja, mi történt; a szóvicc csak a méh mellett áll, a sima jelentéssel együtt. A szomorú méh csak a szerverhibánál jelenik meg (tesztlap). Billentyűkezelés az oldalban nincs; a teendők natív gombok és linkek."
    },
    "kapcsolodo": [
@@ -9318,6 +9638,8 @@
     "CHANGELOG.md 1.51.0"
    ],
    "kategoria": "retegek-es-navigacio",
+   "statusz": "béta",
+   "statusz_forras": "CHANGELOG 1.51.0 (2026-10-07): Utvonal megjelent.",
    "anatomia": [
     {
      "resz": "Doboz",
@@ -9517,6 +9839,8 @@
     "CHANGELOG.md 1.52.0"
    ],
    "kategoria": "adat-es-grafikon",
+   "statusz": "béta",
+   "statusz_forras": "CHANGELOG 1.52.0 (2026-10-07): KerekRadar megjelent.",
    "anatomia": [
     {
      "resz": "Fejléc",
@@ -9719,6 +10043,8 @@
     "CHANGELOG.md 1.52.0"
    ],
    "kategoria": "adat-es-grafikon",
+   "statusz": "béta",
+   "statusz_forras": "CHANGELOG 1.52.0 (2026-10-07): JelzoKartya megjelent.",
    "anatomia": [
     {
      "resz": "Kártya",
@@ -9899,6 +10225,8 @@
     "CHANGELOG.md 1.52.0"
    ],
    "kategoria": "adat-es-grafikon",
+   "statusz": "béta",
+   "statusz_forras": "CHANGELOG 1.52.0 (2026-10-07): RetroVaszon megjelent.",
    "anatomia": [
     {
      "resz": "Vászon",

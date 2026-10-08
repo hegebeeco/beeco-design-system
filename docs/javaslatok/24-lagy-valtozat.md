@@ -4,7 +4,7 @@
 
 ## 1. Igény
 - Kristóf, 2026-10-07: „Erre is kell megoldás a DS-be, most éles sarkok és a kemény árnyék van.”
-- A termékbőr neo-brutalista: fekete tinta, kemény, átlós árnyék elmosás nélkül, 8 px sarok. A Kaptár (a beeco HR- és önkéntesfelülete) puha, nagy sarkú elemekkel, elmosott árnyékkal és zöld alapművelettel fut, DS-kapcsolat nélkül.
+- A termékbőr neo-brutalista: fekete tinta, kemény, átlós árnyék elmosás nélkül, 8 px sarok. A Kaptár (a beeco HR- és önkéntesfelülete) puha, nagy sarkú elemekkel, elmosott árnyékkal és zöld alapművelettel futott a javaslat írásakor (2026-10-07), DS-kapcsolat nélkül; azóta (1.46–1.53) a Kaptár áttért a termékbőrre, a mai állapotot a `brandbook/feluletek/kaptar.json` rögzíti.
 - Cél: a DS-ben legyen hivatalos, lágyabb változat, amire a Kaptár (és később más belső felület, illetve a fotós, partneri anyagok) átállhat, anélkül hogy a termékbőr szabályai fellazulnának.
 
 ## 2. Mire épül

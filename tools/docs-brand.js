@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* ============================================================
    beeco BRAND BOOK – belépő a közös docs-motorhoz (tools/docs/). Játékbőr-karakter (Méhsejt-diorama), jelszókapu mögé kerül
-   (netlify.docs-brand.toml + netlify/edge-functions/brand/kapu-brand.js).
+   (netlify.toml + netlify/edge-functions/brand/kapu-brand.js).
 
    node tools/docs-brand.js          → _site/brand/ (+ belepes.html, _redirects a régi Brand Book címeiről)
    Forrás: docs-site/brand/ (nav.json + oldalanként <slug>.json). A régi tools/brandbook-build.js külön él tovább.
@@ -24,7 +24,7 @@ function szamok() {
   const H = A.json('tokens/hangnem.json');
   const fajl = cs => new Set(S.sablonok.filter(s => !cs || s.csoport === cs).map(s => s.file)).size;
   return {
-    sablonok: fajl(), 'sablonok-social': fajl('social'), 'sablonok-partner': fajl('partner'), 'sablon-csomagok': Object.keys(S.csomagok).length,
+    sablonok: fajl(), 'sablonok-social': fajl('social'), 'sablonok-partner': fajl('partner'), 'partner-sablonok': new Set(S.sablonok.filter(x => x.csoport === 'partner' && !/osszefoglalo/.test(x.file)).map(x => x.file)).size, 'sablon-csomagok': Object.keys(S.csomagok).length,
     madarkak: I.madarkak.length, madarrajzok: I.v4.length, mozgasmintak: I.anim.length,
     'meh-szerepek': Object.keys(H.szerepek || {}).length, feluletek: G.FELULETEK.length,
     komponensek: K.KOMP.komponensek.length,

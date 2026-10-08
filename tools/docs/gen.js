@@ -55,7 +55,7 @@ const SZINCSALAD = [
   ['Semlegesek', ['black', 'coal', 'graphite', 'slate', 'silver', 'mist']],
   ['Éjszaka (sötét mód)', ['night', 'night-surface', 'night-line']],
 ];
-const NEV_HU = { honey: 'méz', 'honey-deep': 'nyomott méz', butter: 'vaj', cream: 'krém', paper: 'papír', white: 'fehér', olive: 'olíva', 'olive-strong': 'erős olíva',
+const NEV_HU = { honey: 'méz', 'honey-deep': 'nyomott méz', butter: 'vaj', cream: 'krém', paper: 'papír', white: 'fehér', olive: 'olíva', poppy: 'pipacs', 'olive-strong': 'erős olíva',
   'olive-soft': 'halvány olíva', forest: 'erdő', leaf: 'levél', lime: 'lime', sage: 'zsálya', 'sage-bg': 'halvány zsálya', sprout: 'hajtás', blossom: 'rózsa',
   'blossom-bg': 'halvány rózsa', berry: 'bogyó', red: 'piros', crimson: 'bíbor', blush: 'pirosas', ember: 'parázs', rust: 'rozsda', sky: 'égkék', 'sky-bg': 'halvány égkék',
   ice: 'jég', water: 'víz', navy: 'mélykék', focus: 'fókuszkék', black: 'fekete', coal: 'szén', graphite: 'grafit', slate: 'pala', silver: 'ezüst', mist: 'köd',
@@ -278,7 +278,7 @@ reg('*', 'betuk', (b, ctx) => {
   return `<div class="bb-ket"><div class="bb-betukartya"><p class="bb-display bb-fs-2xl">Lalezar</p><p>Cím, szám, gomb – egyetlen vastagság. Hangos, barátságos.</p><p><code>--bc-font-display</code></p></div><div class="bb-betukartya"><p class="bb-fs-2xl bb-semibold">Open Sans</p><p>Minden más szöveg: 400 · 600 · 700. Nyugodt, jól olvasható.</p><p><code>--bc-font-body</code></p></div></div>${hx(ctx, L, 'Betűskála')}<ul class="bb-tipolista" role="list">${minta}</ul>`;
 });
 reg('*', 'mozgas', () => {
-  const d = Object.entries(core.duration).map(([k, v]) => [`\`--bc-t-${k}\``, `${v} ms`, { fast: 'gomb, kapcsoló, rámutatás', base: 'megjelenés, lenyíló', slow: 'fiók, nagyobb panel', press: 'lenyomás' }[k] || '']);
+  const d = Object.entries(core.duration).map(([k, v]) => [`\`--bc-t-${k}\``, `${v} ms`, { fast: 'gomb, kapcsoló, rámutatás', base: 'megjelenés, lenyíló', slow: 'fiók, nagyobb panel', decor: 'dekoratív belépő mozgás (csökkentett mozgásnál kikapcsol)', hero: 'hős-mozgás (csökkentett mozgásnál kikapcsol)', press: 'lenyomás' }[k] || '']);
   const e = Object.entries(core.easing).map(([k, v]) => [`\`--bc-ease-${k}\``, `\`${v}\``, { out: 'alapértelmezés', 'in-out': 'helyben átalakuló elem', drawer: 'fiók, lap', bounce: 'csak jutalom (csillag, jelvény)' }[k] || '']);
   return B.tabla(['Időtartam', 'Érték', 'Mire'], d, 'Időtartamok') + B.tabla(['Görbe', 'Érték', 'Mire'], e, 'Görbék');
 });
@@ -478,8 +478,8 @@ ${B.forrasLista(e.forras)}
 }, DS_MIERT);
 
 // ---------- DS kezdőlap: számok, változások, kód ----------
-reg('ds', 'valtozasok', () => {
-  const l = A.read('CHANGELOG.md').split('\n').filter(s => /^## \d/.test(s)).slice(0, 5).map(s => s.replace(/^## /, ''));
+reg('ds', 'valtozasok', (b) => {
+  const l = A.read('CHANGELOG.md').split('\n').filter(s => /^## \d/.test(s)).slice(0, (b && +b.db) || 5).map(s => s.replace(/^## /, ''));
   return `<ul class="bb-valtozasok">${l.map(s => { const [v, d, ...t] = s.split(' – '); return `<li><code>${esc(v)}</code> <span class="bb-kicsi">${d ? `<time datetime="${esc(d)}">${esc(d)}</time>` : ''}</span> ${inl(t.join(' – '))}</li>`; }).join('')}</ul><p class="bb-kicsi">A teljes lista: <a href="https://github.com/hegebeeco/beeco-design-system/blob/main/CHANGELOG.md" rel="noopener">CHANGELOG.md</a></p>`;
 }, 'fejlesztői változásnapló');
 

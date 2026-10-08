@@ -203,13 +203,22 @@
           "`bb-`",
           "Ennek a dokumentációs oldalnak a saját elrendezési osztályai (nem a csomag része).",
           "`tools/docs/`"
+        ],
+        [
+          "`jm-`",
+          "A brand book játékbőr-mintáinak (`minta/jatek-*.html`) elrendezési osztályai: `jm-wrap`, `jm-sor`, `jm-oszlop`, `jm-hud`, `jm-panel`, `jm-kartya` … Nem a csomag része. A fájlnév (`jatekminta`) alapján feltehetően a „játékminta” rövidítése, de ezt a repó sehol nem mondja ki.",
+          "`brandbook/css/jatekminta.css`, `tools/docs/gen.js`"
         ]
       ]
     },
     {
       "t": "hianyzik",
-      "cim": "A `jm-` előtag",
-      "x": "A repó dokumentumaiban nem találtunk meghatározást az `jm-` előtagra; amíg a jelentése nincs leírva, itt nem definiáljuk."
+      "cim": "A `jm-` előtag rövidítése",
+      "x": "Az előtag használata megvan (a `brandbook/css/jatekminta.css` a játékbőr élő mintáinak osztályai), de a rövidítés feloldása a repóban sehol nincs leírva. A „játékminta” csak a fájlnévből következtetett olvasat; amíg a szerző nem erősíti meg, nem tekintjük döntöttnek.",
+      "forras": [
+        "brandbook/css/jatekminta.css",
+        "tools/docs/gen.js"
+      ]
     }
   ]
 }

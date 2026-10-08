@@ -1,5 +1,5 @@
 {
-  "_readme": "A beeco design system KÖZÖS ATOMJAI – minden termék (app, admin, partner, web) és minden játék ebből épül. Csak nyers érték van itt (primitív); hogy mi mire való, azt a bőrök (theme-*.json) mondják meg. Szabály: név soha nem változik és nem törlődik, csak új jön (a játékok és az appok hivatkoznak rájuk). Új szín csak akkor, ha egy meglévő nem fedi le – és a CHANGELOG-ban indokolva.",
+  "_readme": "A beeco design system KÖZÖS ATOMJAI – minden termék (app, admin, partner, web) és minden játék ebből épül. Csak nyers érték van itt (primitív); hogy mi mire való, azt a bőrök (theme-*.json) mondják meg. Szabály: név soha nem változik és nem törlődik, csak új jön (a játékok és az appok hivatkoznak rájuk). Új szín csak akkor, ha egy meglévő nem fedi le – és a CHANGELOG-ban indokolva. A poppy (pipacs, #EF6A60) 1.54.0-ban jött: a sötét mód danger szerepe – a red a sötét felületen 2,47:1 volt (ikon/keret: 3:1 kell), a meglévő pirosas primitívek közül az ember a warning, a blossom a highlight szerepe, így új szín kellett.",
   "color": {
     "honey": "#FECF39",
     "honey-deep": "#D8A500",
@@ -38,7 +38,8 @@
     "mist": "#E6E6E6",
     "night": "#1F2615",
     "night-surface": "#353F25",
-    "night-line": "#B6C4A3"
+    "night-line": "#B6C4A3",
+    "poppy": "#EF6A60"
   },
   "font": {
     "display": [
@@ -75,6 +76,10 @@
     "snug": 1.3,
     "normal": 1.5
   },
+  "letterSpacing": {
+    "normal": 0,
+    "display": 0.01
+  },
   "space": {
     "1": 4,
     "2": 8,
@@ -89,7 +94,9 @@
     "fast": 120,
     "base": 200,
     "slow": 400,
-    "press": 120
+    "press": 120,
+    "decor": 600,
+    "hero": 900
   },
   "easing": {
     "out": "cubic-bezier(.23,1,.32,1)",
@@ -166,5 +173,7 @@
     "popover": 70,
     "toast": 80,
     "tooltip": 90
-  }
+  },
+  "_duration": "Mozgás (Javaslat 26, 3.4 – döntés 2026-10-08): fast/press 120 ms = nyomás, base 200 ms = megjelenés, slow 400 ms = fiók (ease-drawer) és ünnepi pecsét; UI-visszajelzés ≤ 300 ms. decor 600 ms = dekoratív mozgás (konfetti, csík-ciklus), hero 900 ms = hős-/belépő mozgás és a mézsejt-töltő ciklusa – ez a felső korlát. A decor és a hero csak animációban (soha transition), és csökkentett mozgásnál kikapcsol (bc-base.css).",
+  "_letterSpacing": "Betűköz em-ben (Javaslat 26, 3.7): display = a Lalezar címsoroké (bc-base.css h1–h3, .01em), normal = minden más."
 }

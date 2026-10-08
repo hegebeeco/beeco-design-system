@@ -20,7 +20,7 @@
 .bc-map .leaflet-bar a { display: grid; place-items: center; width: var(--bc-tap); height: var(--bc-tap); font-family: var(--bc-font-body); font-size: var(--bc-fs-l); font-weight: var(--bc-fw-bold); line-height: 1; color: var(--bc-ink); background: var(--bc-surface); text-decoration: none; }
 .bc-map .leaflet-bar a + a { border-top: var(--bc-bw-hair) solid var(--bc-line-soft); }
 .bc-map .leaflet-bar a.leaflet-disabled { color: var(--bc-ink-muted); cursor: not-allowed; }
-.bc-map .leaflet-bar a:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: -3px; }
+.bc-map .leaflet-bar a:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: -3px; }
 @media (hover: hover) and (pointer: fine) { .bc-map .leaflet-bar a:hover { background: var(--bc-surface-2); } }
 .bc-map .leaflet-popup-content-wrapper { color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-m); }
 .bc-map .leaflet-popup-tip { background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); }
@@ -74,7 +74,7 @@
 .bc-mcal-day.is-today { border: var(--bc-bw-base) solid var(--bc-line); }
 .bc-mcal-day.is-today > b { color: var(--bc-on-accent); background: var(--bc-accent); }
 .bc-mcal-day.is-selected { box-shadow: inset 0 0 0 var(--bc-bw-base) var(--bc-line); background: var(--bc-surface-accent); }
-.bc-mcal-day:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 1px; }
+.bc-mcal-day:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: 1px; }
 @media (hover: hover) and (pointer: fine) { .bc-mcal-day:not(.is-selected):hover { background: var(--bc-surface-2); } }
 .bc-mcal-evs { display: grid; gap: 2px; min-width: 0; }
 .bc-mcal-ev { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 1px var(--bc-sp-1); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold);
@@ -127,7 +127,7 @@
 .bc-avatar.is-square { border-radius: var(--bc-r-m); }
 .bc-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .bc-avatar > span { padding-top: .12em; }
-.bc-map .bc-map-icon:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; border-radius: var(--bc-r-s); }
+.bc-map .bc-map-icon:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); border-radius: var(--bc-r-s); }
 
 /* ---------- Térkép-panel (MapPanel, Javaslat 13/2) ---------- */
 .bc-map-panel { display: grid; gap: var(--bc-sp-3); min-width: 0; }
@@ -149,7 +149,7 @@
 .bc-map.bc-map .leaflet-popup-content-wrapper, .bc-map.bc-map .leaflet-popup-tip { color: var(--bc-ink); background: var(--bc-surface); }
 .bc-map.bc-map .leaflet-popup-content { margin-right: var(--bc-tap); }
 .bc-map.bc-map a.leaflet-popup-close-button { width: var(--bc-tap); height: var(--bc-tap); font: var(--bc-fw-bold) var(--bc-fs-l) / var(--bc-tap) var(--bc-font-body); color: var(--bc-ink); }
-.bc-map.bc-map a.leaflet-popup-close-button:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: -3px; }
+.bc-map.bc-map a.leaflet-popup-close-button:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: -3px; }
 .bc-map.bc-map a.bc-btn { color: var(--bc-on-accent); }
 .bc-map.bc-map a.bc-btn.is-secondary { color: var(--bc-ink); }
 .bc-map.bc-map .leaflet-control-zoom a, .bc-map.bc-map .leaflet-bar a { width: var(--bc-tap); height: var(--bc-tap); line-height: var(--bc-tap); font-family: var(--bc-font-body); color: var(--bc-ink); background: var(--bc-surface); }

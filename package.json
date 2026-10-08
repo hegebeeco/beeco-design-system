@@ -1,6 +1,6 @@
 {
   "name": "@beeco/design-system",
-  "version": "1.53.0",
+  "version": "1.54.0",
   "description": "A beeco egységes design systeme: közös atomok (tokens/), játékbőr (Méhsejt-diorama, web/) és termékbőr (app, admin, partner, web – termek/). Egy forrás, generált kimenetek (CSS, SCSS, Tailwind, Dart).",
   "license": "UNLICENSED",
   "private": true,

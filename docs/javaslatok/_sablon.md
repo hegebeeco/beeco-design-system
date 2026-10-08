@@ -2,6 +2,7 @@
 
 *Állapot: **javaslat** · készítette: … · dátum: …*
 *(Jóváhagyás után: **jóváhagyva** – lent a Döntés részben.)*
+*(Az NN egyedi szám: a következő szabadat a `README.md` index mondja meg; az új lapot ott is vedd fel.)*
 
 ## 1. Igény
 - Hol kell (projekt, képernyő): …

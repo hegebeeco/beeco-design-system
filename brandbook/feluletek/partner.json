@@ -22,8 +22,8 @@
   "QR-beváltás"
  ],
  "cel": [
-  "DS-verzió emelése (most `#v1.38.0`)",
-  "a régi `rounded-*`/`shadow-*` nevek kivezetése a DS-nevekre"
+  "DS-verzió emelése (a `package.json` és a lockfile 2026-10-08-án is `#v1.38.0`, a DS mai verziója `1.53.0`)",
+  "a régi `rounded-*` / `shadow-*` nevek kivezetése a DS-nevekre (a `src`-ben 74 fájl használja még a régi `rounded-sm…3xl` / `shadow-sm…xl` neveket, 65 már a DS-neveket: `rounded-s/m/l`, `shadow-s/m/l`)"
  ],
  "szabalykonyv": "`docs/termek-arculat.md` · `beeco_partner_app/CLAUDE.md`",
  "ertekek": {
@@ -68,12 +68,12 @@
    "forras": "AppShell"
   },
   "ds": {
-   "ertek": "git-függőség `#v1.38.0`: CSS + Tailwind-preset",
+   "ertek": "git-függőség `#v1.38.0`: CSS + Tailwind-preset (a DS mai verziója 1.53.0)",
    "jel": "reszben",
-   "forras": "package.json"
+   "forras": "package.json, package-lock.json"
   },
   "technika": {
-   "ertek": "React 19 · Vite · Tailwind 3 · Radix",
+   "ertek": "React 19 · Vite 6 · Tailwind 3 · Radix",
    "jel": "nincs",
    "forras": "package.json"
   }
@@ -85,11 +85,15 @@
   "kartyaSzoveg": "Kupon: −10% saját pohárral"
  },
  "felmeres": {
-  "datum": "2026-10-06",
+  "datum": "2026-10-08",
   "forras": [
    "beeco_partner_app/beeco-partner/package.json",
+   "package-lock.json",
    "tailwind.config.js",
-   "src/index.css"
+   "src/index.css",
+   "src/app.tsx (`ThemeProvider`)",
+   "src/i18n/ (hu.json, en.json)",
+   "CLAUDE.md 70. sor (a Tailwind-híd)"
   ],
   "mert": {
    "ds_verzio": "1.38.0"

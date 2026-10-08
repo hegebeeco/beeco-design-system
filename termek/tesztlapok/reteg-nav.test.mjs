@@ -26,6 +26,16 @@ export default async function ({ page, t }) {
     ok((await links.first().getAttribute('aria-current')) === 'page', 'nincs aria-current'); await links.nth(1).click();
     ok(page.url().endsWith('#esemenyek'), page.url());
   });
+  await t('linkes fülek: a mostani oldal füle rámutatáskor is méz marad (1.54.0 javítás)', async () => {
+    const cur = c('navtabs').locator('[aria-current="page"]');
+    const bg = () => cur.evaluate((e) => getComputedStyle(e).backgroundColor);
+    const elotte = await bg(); await cur.hover(); await page.waitForTimeout(50);
+    ok((await bg()) === elotte, `a háttér rámutatáskor megváltozott: ${elotte} → ${await bg()}`);
+    const masik = c('navtabs').locator('.bc-tab:not([aria-current])').first(); const m0 = await masik.evaluate((e) => getComputedStyle(e).backgroundColor);
+    await masik.hover(); await page.waitForTimeout(50);
+    ok((await masik.evaluate((e) => getComputedStyle(e).backgroundColor)) !== m0, 'a többi fül rámutatáskor nem jelez');
+    await page.mouse.move(0, 0);
+  });
   await t('oldalfej: a böngészőfül címe követi (… – beeco admin)', async () => {
     ok((await page.title()) === 'Nyári kávé 10% – beeco admin', await page.title());
     await c('ph-alap').getByRole('button', { name: 'Átnevezés' }).click(); await until(async () => (await page.title()).startsWith('Fenntartható'), await page.title());

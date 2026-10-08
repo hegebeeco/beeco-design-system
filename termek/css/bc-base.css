@@ -13,7 +13,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 /* Címek: Lalezar egyetlen vastagságban – a hierarchiát a méret adja, nem a vastagság */
-:where(h1, h2, h3, .bc-display) { font-family: var(--bc-font-display); font-weight: 400; line-height: var(--bc-lh-tight); margin: 0 0 var(--bc-sp-3); letter-spacing: .01em; }
+:where(h1, h2, h3, .bc-display) { font-family: var(--bc-font-display); font-weight: var(--bc-fw-regular); line-height: var(--bc-lh-tight); margin: 0 0 var(--bc-sp-3); letter-spacing: var(--bc-ls-display); }
 :where(h1) { font-size: var(--bc-fs-2xl); }
 :where(h2) { font-size: var(--bc-fs-xl); }
 :where(h3) { font-size: var(--bc-fs-l); }
@@ -25,8 +25,9 @@
 .bc-muted { color: var(--bc-ink-soft); }
 .bc-num { font-family: var(--bc-font-display); font-variant-numeric: tabular-nums; }
 
-/* Fókusz: mindig látható, billentyűzetnél; kék gyűrű, hogy a mézes felületen is kilógjon */
-:where(:focus-visible) { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+/* Fókusz: mindig látható, billentyűzetnél; kék gyűrű KIFELÉ (offset ≥ 2px), így az oldal- vagy felületháttéren fut, nem a mézen.
+   Befelé futó gyűrű csak görgető sorban / csempén; méz háttéren ott a színe --bc-focus-on-accent (Javaslat 26, 3.8) */
+:where(:focus-visible) { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); }
 :where(:focus:not(:focus-visible)) { outline: none; }
 ::selection { background: var(--bc-accent); color: var(--bc-on-accent); }
 

@@ -1,4 +1,4 @@
-# A beeco-jatek-kit változásai
+# A beeco design system változásai (régi neve: beeco-jatek-kit)
 
 A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (FŐ.MELLÉK.JAVÍTÁS):
 
@@ -10,6 +10,54 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 **Kiadás menete:** a lenti „Készül” rész tételei kerülnek az új verzió alá → `VERSION` átírása → commit + push a kitben →
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
+
+## 1.54.0 – 2026-10-08 – Szabály-feloldások (Javaslat 26): egységes árnyék-, sarok-, mozgás- és gombszabály, sötét módú kontrasztjavítás, új tokenek
+Döntés: Claude, Kristóf megbízásából, 2026-10-08 (`docs/javaslatok/26-szabaly-feloldasok.md` 6.). Nincs átnevezés, nincs törlés (`api-check` zöld).
+
+> **⚠ Figyelem – minden terméket érint (admin, partner, web, app):** a **sötét módú `danger` és `ink-muted` értéke megváltozik** (Kristóf jóváhagyta).
+> A hibaszín és a helykitöltő/tiltott szöveg sötétben világosabb lesz. A sötét módot képernyőképpel érdemes átnézni (hibasáv, törlés gomb, hibás mező, helykitöltő a kiemelt kártyán).
+> Flutter (Bence): a `dist/dart/beeco_tokens.dart` `BeecoRoles.dark` értékei is változnak.
+
+**Tokenérték-változások (régi → új, mért kontraszt a WCAG 2.x képletével):**
+
+| Mód | Szerep | Régi | Új | Miért |
+|---|---|---|---|---|
+| sötét | `danger` | `red` `#DB3A34` | **`poppy` `#EF6A60`** (új primitív) | ikon/keret a `surface`-en 2,47 → **3,65 : 1**, a `bg`-n 3,47 → **5,13 : 1** (küszöb 3 : 1); fekete szöveg rajta (törlés gomb) 4,67 → 6,90; a `danger-bg`-n 2,04 → 3,01. A meglévő pirosas primitívek foglaltak: `ember` = warning, `blossom` = highlight. |
+| sötét | `ink-muted` | `night-line` `#B6C4A3` | **`silver` `#C6C6C6`** (meglévő) | a `surface-accent`-en 4,42 → **4,76 : 1** (küszöb 4,5); `surface`-en 6,04 → 6,51, `bg`-n 8,48 → 9,13; az `ink-soft` (`sage`) továbbra is világosabb, a hierarchia marad. |
+| világos | – | – | – | **nem változik** (a `danger` és az `ink-muted` itt már megfelelt: 4,50 / 4,25 és 4,89 : 1) |
+
+**Új (additív) tokenek:**
+* Primitív: `poppy` `#EF6A60` (pipacs) – 39 primitív.
+* Szerep: `focus-on-accent` (világos `focus` kék, sötét `black`) – a **befelé** futó fókuszgyűrű színe méz hátterű elemen (kijelölt fül, szegmens, szakaszváltó): a sötét `focus` (égkék) a mézen 1,04 : 1 lenne, a fekete 14,20 : 1; világosban a kép nem változik (4,16 : 1). Dartban nem kötelező paraméter (alapértéke a világos szín), így a saját `BeecoRoles(...)` példány nem törik.
+* Mozgás: `--bc-t-decor` 600 ms (dekoratív: konfetti, csík-ciklus), `--bc-t-hero` 900 ms (hős-/belépő mozgás, mézsejt-töltő ciklus) – csak animációban.
+* Betűköz: `--bc-ls-normal` 0, `--bc-ls-display` .01em (a címsoroké). Szövegstílus: `--bc-text-{display, heading-1…4, body, body-s, label, caption}` (font-rövidítés) + `-ls`; Tailwind `text-heading-1` … (a családot a `font-display`/`font-body` adja), SCSS `@include bc.text(heading-1)`, Dart `BeecoText.heading1`.
+* Fókuszgyűrű: `--bc-focus-w` 3 px, `--bc-focus-offset` 2 px (SCSS `@include bc.focus-ring`, Tailwind `outline-offset-focus`, Dart `focusW`/`focusOffset`).
+* Ikonméret: `--bc-icon-s/m/l` 16 / 20 / 24 px (Tailwind `w-icon-m`, `size-icon-m`; Dart `iconM`).
+* Állapot: `--bc-hover-mix` 88 %, `--bc-disabled-opacity` .55 (Tailwind `opacity-disabled`; a hover-keverés Tailwindben nem fejezhető ki).
+* Töréspont (ajánlás új kódhoz): `sm` 600 · `md` 900 · `lg` 1200 px – **CSS-változó nincs** (`@media`-ban nem működik); SCSS `bc.bp(md)`, Tailwind `bc-sm:` / `bc-md:` / `bc-lg:` (a Tailwind saját `sm/md/lg`-je nem változik), Dart `bpMd`, `tokens.json` `breakpoint`. A mai CSS-töréspontok egységesítése külön feladat.
+* `dist/tokens.json` új kulcsai: `letterSpacing`, `focusRing`, `icon`, `state`, `breakpoint`, `textStyle` (a régiek változatlanok). Webflow-változó egyikből sem lesz (lásd a `_readme`-ket).
+
+**Szabályok egy helyen (dokumentum):**
+* **Árnyék:** kattintható és kiemelt elem → kemény, átlós; nem kattintható információs doboz (kártya, panel, statisztika, táblázat) → puha `shadow-soft`. A `termek-arculat.md` 1., 3., 7., a `DESIGN.md`, a `rendszer.md` és az `AI.md` már nem mondja, hogy „puha árnyék nincs”.
+* **Sarok:** hivatalos skála 2 · 4 · 8 · 12 px + kapszula (`DESIGN.md`, `termek-arculat.md` 3.).
+* **Betűvastagság:** hivatalos 400 / 600 / 700; az app 500/800-as értéke eltérés (a Flutter-átállásnál rendeződik).
+* **Mozgás:** UI-visszajelzés ≤ 300 ms; fiók 400 ms; belépő/dekoratív ≤ 900 ms, csökkentett mozgásnál ki.
+* **Gombszabály:** egyetlen forrás a `docs/termek-arculat.md` 6/A (bekerült az „egy méz fő gomb képernyőnként” is); a többi hivatkozik.
+* **Fókusz:** a gyűrű kifelé fut (`outline-offset ≥ 2px`); befelé csak a görgető sor / csempe / térkép 11 felsorolt helyén, méz háttéren `focus-on-accent` színnel.
+* **`line-soft`:** csak díszítő elválasztó; vezérlő határa `line` (kivétel: tiltott állapot).
+* Játékbőr forrása: döntés – a `core.json` + `theme-jatek.json` lesz a forrás, a `web/css/tokens.css` generált (**1.55-ös teendő**, most nincs kódváltozás).
+* `docs/javaslatok/README.md` (új): a javaslatlapok indexe, a kettőzött 10/11/12 jelölve, a következő szám: 27.
+* `docs/rendszer.md`: telepítési példa `#v1.54.0`, töréspont-sor a tényleges CSS szerint (420 / 520 / 600 / 640 / 767–768 / 900 / 992 / 1200 px).
+
+**CSS (`termek/css`) – a kinézet ugyanaz, kivéve a jelölt pontokat:**
+* `bc-motion.css`: a 10 nyers időérték tokenre cserélve (400 → `t-slow`, 600 → `t-decor`, 900 → `t-hero`, 240 / 180 / 30 ms → a `t-fast` 2 / 1,5 / ¼-e, 150 / 300 ms → a `t-hero` ⅙ / ⅓-a) – a kiszámolt idő azonos.
+* Fókuszgyűrű 32 helyen `var(--bc-focus-w)` / `var(--bc-focus-offset)` (pixel-azonos); `.bc-btn` rámutatás `var(--bc-hover-mix)`; `.bc-switch:disabled` `var(--bc-disabled-opacity)`; címsor `var(--bc-fw-regular)` / `var(--bc-ls-display)` – mind pixel-azonos.
+* **Változik:** sötét módban a kijelölt fül / szegmens / szakaszváltó befelé futó fókuszgyűrűje fekete (volt: égkék, a mézen láthatatlan).
+* **Változik:** `.bc-legend-btn`, `.bc-tl-toggle`, `.bc-crumb-more` kerete `line-soft` → `line` (gomb határa ≥ 3 : 1); a `.bc-legend-btn` rámutatáskor a hátterét színezi (eddig a keretét).
+* **Javítás:** `.bc-tab:hover` nem írja felül a NavTabs mostani oldalának mézét (`aria-current="page"`); forgatókönyv: `reteg-nav`.
+* Webflow-kimenet (`dist/weboldal/beeco-web*.css`): a `--bc-t-*` idők ms-literálra oldódnak (a Webflow-ban nincs ms-változó; eddig a `var(--_beeco-ds---bc-t-*)` nem létező változóra mutatott). Élesbe csak Kristóf engedélyével kerül.
+
+**Őrök (`tests/check-tokens.js`):** új kötelező kontrasztpárok mindkét módban: `danger`/`surface` és `danger`/`bg` (3 : 1), `ink-muted`/`surface-accent` (4,5 : 1), `focus-on-accent`/`accent` (3 : 1) – 44 pár. Új szabályok: nyers időérték a `bc-motion.css`-ben; `t-decor`/`t-hero` átmenetben; befelé futó fókuszgyűrű a listán kívül; méz hátterű befelé futó gyűrű `focus-on-accent` nélkül; `line-soft` vezérlő határaként.
 
 ## 1.53.0 – 2026-10-07 – AI-munkamód: verziómentes dist, API-őr, AI-index, stabil tesztek, egy-komponenses kör
 Fogyasztóknak **semmi teendő** (nincs törő változás; az `api-check` a v1.52.1-hez mérve zöld). Részletek: `docs/ai-munkamod.md`.

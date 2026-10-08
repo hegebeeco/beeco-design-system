@@ -92,12 +92,14 @@ a.bc-tab { text-decoration: none; }
 .bc-tab { display: inline-flex; align-items: center; white-space: nowrap; }
 .bc-tab-text { min-width: 0; max-width: 28ch; overflow: hidden; text-overflow: ellipsis; }
 .bc-tabs .bc-tab:focus-visible { outline-offset: -4px; }
+/* Befelé futó gyűrű méz háttéren: focus-on-accent (sötétben a sky a mézen 1,04:1 lenne) */
+.bc-tabs .bc-tab:is([aria-selected="true"], [aria-current="page"]):focus-visible { outline-color: var(--bc-focus-on-accent); }
 .bc-tab[aria-current="page"] { color: var(--bc-on-accent); background: var(--bc-accent); border-color: var(--bc-line); box-shadow: var(--bc-shadow-s-x) 0 0 0 var(--bc-shadow); }
 .bc-tab:disabled, .bc-tab[data-disabled] { color: var(--bc-ink-muted); cursor: not-allowed; }
 .bc-tab-count { display: inline-grid; place-items: center; min-width: 22px; height: 22px; margin-left: var(--bc-sp-2); padding: 0 var(--bc-sp-1);
   font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); }
 .bc-tab-panel { padding-top: var(--bc-sp-4); }
-.bc-tab-panel:focus-visible { outline-offset: 2px; }
+.bc-tab-panel:focus-visible { outline-offset: var(--bc-focus-offset); }
 
 /* ---- Lenyitható (Accordion) ---- */
 .bc-acc { background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); overflow: hidden; }
@@ -133,7 +135,7 @@ a.bc-tab { text-decoration: none; }
 .bc-crumb span[title] { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 28ch; }
 .bc-crumb.is-current { font-weight: var(--bc-fw-semibold); }
 .bc-crumb-more { min-height: 24px; padding: 0 var(--bc-sp-2); font: inherit; font-weight: var(--bc-fw-bold); color: var(--bc-ink); background: transparent;
-  border: var(--bc-bw-hair) solid var(--bc-line-soft); border-radius: var(--bc-r-s); cursor: pointer; }
+  border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-s); cursor: pointer; }
 @media (pointer: coarse) { .bc-crumb > a, .bc-crumb-more { min-height: var(--bc-tap); } }
 /* Telefonon csak a szülő marad: „‹ Sablonok” */
 @media (max-width: 600px) {
@@ -208,7 +210,8 @@ a.bc-tab { text-decoration: none; }
   transition: background-color var(--bc-t-fast) var(--bc-ease-out); }
 .bc-secsw-item + .bc-secsw-item { border-left: var(--bc-bw-base) solid var(--bc-line); }
 .bc-secsw-item[aria-current="page"] { color: var(--bc-on-accent); background: var(--bc-accent); }
-.bc-secsw-item:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: -3px; }
+.bc-secsw-item:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: -3px; }
+.bc-secsw-item[aria-current="page"]:focus-visible { outline-color: var(--bc-focus-on-accent); }
 .bc-secsw-ic { display: inline-flex; }
 .bc-secsw-ic svg { width: 1em; height: 1em; }
 @media (hover: hover) and (pointer: fine) { .bc-secsw-item:hover:not([aria-current="page"]) { background: var(--bc-surface-2); } }

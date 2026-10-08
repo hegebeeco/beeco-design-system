@@ -29,6 +29,7 @@ $bc-info-bg: var(--bc-info-bg);
 $bc-info-ink: var(--bc-info-ink);
 $bc-highlight: var(--bc-highlight);
 $bc-scrim: var(--bc-scrim);
+$bc-focus-on-accent: var(--bc-focus-on-accent);
 
 // Primitívek – csak adatvizualizációhoz és kivételhez
 $bc-c-honey: var(--bc-honey);
@@ -69,6 +70,7 @@ $bc-c-mist: var(--bc-mist);
 $bc-c-night: var(--bc-night);
 $bc-c-night-surface: var(--bc-night-surface);
 $bc-c-night-line: var(--bc-night-line);
+$bc-c-poppy: var(--bc-poppy);
 
 // Hex (fordítási idejű) – csak színfüggvényhez és régi kód áthidalásához; sötét módban nem vált!
 $bc-hex-honey: #FECF39;
@@ -109,6 +111,7 @@ $bc-hex-mist: #E6E6E6;
 $bc-hex-night: #1F2615;
 $bc-hex-night-surface: #353F25;
 $bc-hex-night-line: #B6C4A3;
+$bc-hex-poppy: #EF6A60;
 $bc-hex-role-bg: #FFF8E7;
 $bc-hex-role-surface: #FFFFFF;
 $bc-hex-role-surface-2: #F0F3EC;
@@ -137,6 +140,7 @@ $bc-hex-role-info-bg: #D3ECFF;
 $bc-hex-role-info-ink: #003E74;
 $bc-hex-role-highlight: #F5B4C7;
 $bc-hex-role-scrim: #000000;
+$bc-hex-role-focus-on-accent: #2656D9;
 
 $bc-font-display: var(--bc-font-display);
 $bc-font-body: var(--bc-font-body);
@@ -144,6 +148,9 @@ $bc-lh-tight: var(--bc-lh-tight);
 $bc-lh-snug: var(--bc-lh-snug);
 $bc-lh-normal: var(--bc-lh-normal);
 $bc-lh: ("tight": var(--bc-lh-tight), "snug": var(--bc-lh-snug), "normal": var(--bc-lh-normal));
+$bc-ls-normal: var(--bc-ls-normal);
+$bc-ls-display: var(--bc-ls-display);
+$bc-ls: ("normal": var(--bc-ls-normal), "display": var(--bc-ls-display));
 $bc-fs-xs: var(--bc-fs-xs);
 $bc-fs-s: var(--bc-fs-s);
 $bc-fs-m: var(--bc-fs-m);
@@ -183,7 +190,9 @@ $bc-t-fast: var(--bc-t-fast);
 $bc-t-base: var(--bc-t-base);
 $bc-t-slow: var(--bc-t-slow);
 $bc-t-press: var(--bc-t-press);
-$bc-t: ("fast": var(--bc-t-fast), "base": var(--bc-t-base), "slow": var(--bc-t-slow), "press": var(--bc-t-press));
+$bc-t-decor: var(--bc-t-decor);
+$bc-t-hero: var(--bc-t-hero);
+$bc-t: ("fast": var(--bc-t-fast), "base": var(--bc-t-base), "slow": var(--bc-t-slow), "press": var(--bc-t-press), "decor": var(--bc-t-decor), "hero": var(--bc-t-hero));
 $bc-z-behind: var(--bc-z-behind);
 $bc-z-sticky: var(--bc-z-sticky);
 $bc-z-header: var(--bc-z-header);
@@ -199,6 +208,28 @@ $bc-ease-in-out: var(--bc-ease-in-out);
 $bc-ease-drawer: var(--bc-ease-drawer);
 $bc-ease-bounce: var(--bc-ease-bounce);
 $bc-ease: ("out": var(--bc-ease-out), "in-out": var(--bc-ease-in-out), "drawer": var(--bc-ease-drawer), "bounce": var(--bc-ease-bounce));
+$bc-icon-s: var(--bc-icon-s);
+$bc-icon-m: var(--bc-icon-m);
+$bc-icon-l: var(--bc-icon-l);
+$bc-icon: ("s": var(--bc-icon-s), "m": var(--bc-icon-m), "l": var(--bc-icon-l));
+$bc-text-display: var(--bc-text-display);
+$bc-text-heading-1: var(--bc-text-heading-1);
+$bc-text-heading-2: var(--bc-text-heading-2);
+$bc-text-heading-3: var(--bc-text-heading-3);
+$bc-text-heading-4: var(--bc-text-heading-4);
+$bc-text-body: var(--bc-text-body);
+$bc-text-body-s: var(--bc-text-body-s);
+$bc-text-label: var(--bc-text-label);
+$bc-text-caption: var(--bc-text-caption);
+$bc-text: ("display": var(--bc-text-display), "heading-1": var(--bc-text-heading-1), "heading-2": var(--bc-text-heading-2), "heading-3": var(--bc-text-heading-3), "heading-4": var(--bc-text-heading-4), "body": var(--bc-text-body), "body-s": var(--bc-text-body-s), "label": var(--bc-text-label), "caption": var(--bc-text-caption));
+$bc-bp-sm: 600px;
+$bc-bp-md: 900px;
+$bc-bp-lg: 1200px;
+$bc-bp: ("sm": 600px, "md": 900px, "lg": 1200px);
+$bc-focus-w: var(--bc-focus-w);
+$bc-focus-offset: var(--bc-focus-offset);
+$bc-hover-mix: var(--bc-hover-mix);
+$bc-disabled-opacity: var(--bc-disabled-opacity);
 
 @function fs($k) { @return map-get($bc-fs, "#{$k}"); }
 @function sp($k) { @return map-get($bc-sp, "#{$k}"); }
@@ -206,3 +237,7 @@ $bc-ease: ("out": var(--bc-ease-out), "in-out": var(--bc-ease-in-out), "drawer":
 @function shadow($k) { @return map-get($bc-shadow, "#{$k}"); }
 @function fw($k) { @return map-get($bc-fw, "#{$k}"); }
 @function bw($k) { @return map-get($bc-bw, "#{$k}"); }
+@function bp($k) { @return map-get($bc-bp, "#{$k}"); }
+// Szövegstílus: @include bc.text(heading-1);  Töréspont: @media (min-width: bc.bp(md)) { … }
+@mixin text($k) { font: var(--bc-text-#{$k}); letter-spacing: var(--bc-text-#{$k}-ls); }
+@mixin focus-ring { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); }

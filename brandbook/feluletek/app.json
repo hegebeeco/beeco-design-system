@@ -38,8 +38,9 @@
   "a palettán kívüli színek összevonása a legközelebbi szerepre; új szín csak a DS-repón át, indoklással – döntés kell: kijelölt chip, `markerBlue`, a ranglista bronz sora",
   "betűskála 12 / 14 / 16 / 20 / 26 / 34 / 46 px, Open Sans 400 / 600 / 700",
   "minden érinthető elem legalább 48 dp (Material) – a térképvezérlő, a chipek és a profil-ikongombok is",
-  "a négy mobilminta (alsó navigáció, alsó lap, lebegő vezérlő, kuponjegy) DS-leírása – **Javaslat 23**, Kristóf jóváhagyására vár",
-  "racsni-teszt a `lib/` alatti `Color(0x…)` előfordulásokra (mint a weben a `ds-lint`): a szám csak csökkenhet"
+  "a négy mobilminta (alsó navigáció, alsó lap, lebegő vezérlő, kuponjegy) DS-leírása – **Javaslat 23**, jóváhagyva 2026-10-07 (`docs/javaslatok/23-mobil-mintak.md`); `bc-` elem és Flutter-widget még nincs hozzájuk",
+  "racsni-teszt a `lib/` alatti `Color(0x…)` előfordulásokra (mint a weben a `ds-lint`): a szám csak csökkenhet",
+  "a `lib/` alatt 128 `Color(0x…)` előfordulás van (77 az `app_colors.dart`-ban, 51 máshol): a racsni-teszt kiinduló értéke"
  ],
  "szabalykonyv": "`docs/app-atallas.md` · `docs/javaslatok/23-mobil-mintak.md` · `mobile-app/AGENTS.md`",
  "ertekek": {
@@ -84,9 +85,9 @@
    "forras": "—"
   },
   "ds": {
-   "ertek": "nincs bekötve: saját `AppColors` (77 szín), értékre egyezik; nincs `BeecoRoles`",
+   "ertek": "nincs bekötve: saját `AppColors` (77 szín), értékre egyezik; nincs `BeecoRoles`; a `pubspec.yaml`-ban nincs DS-függőség",
    "jel": "reszben",
-   "forras": "app_colors.dart"
+   "forras": "app_colors.dart, pubspec.yaml"
   },
   "technika": {
    "ertek": "Flutter · Riverpod · AutoRoute · flutter_map · easy_localization",
@@ -117,14 +118,16 @@
   }
  },
  "felmeres": {
-  "datum": "2026-10-07",
+  "datum": "2026-10-08",
   "forras": [
    "mobile-app/lib/presentation/theme/app_colors.dart",
    "lib/presentation/theme/text_styles.dart",
    "lib/presentation/utils/ui_constants.dart",
    "lib/presentation/widgets/buttons/button.dart",
    "lib/presentation/features/* (képernyők)",
-   "assets/translations/hu.json"
+   "assets/translations/hu.json",
+   "pubspec.yaml (1.4.5+2)",
+   "lib/ (`BeecoRoles`, `darkTheme` keresés: nincs találat)"
   ],
   "mert": {
    "szinek": 77,
@@ -141,14 +144,14 @@
   },
   {
    "t": "p",
-   "x": "Hat minta, ami csak telefonon fordul elő. Ahol a DS-ben van rá elem (térképjelölő, érintési felület), az **szabály**; ahol nincs (alsó navigáció, alsó lap, lebegő gomb, kuponjegy), ott az app mostani mintáját írjuk le, és **javaslatként** vár Kristóf jóváhagyására – új DS-elem csak így születhet."
+   "x": "Hat minta, ami csak telefonon fordul elő. Ahol a DS-ben van rá elem (térképjelölő, érintési felület), az **szabály**; ahol nincs (alsó navigáció, alsó lap, lebegő gomb, kuponjegy), ott az app mostani mintáját írjuk le, és **jóváhagyott javaslatként** (Javaslat 23, 2026-10-07) írjuk le – a `bc-` elem és a Flutter-widget még nem készült el."
   },
   {
-   "t": "javaslat",
-   "cim": "Javaslat – jóváhagyásra vár: négy mobilminta a DS-be",
+   "t": "szabaly",
+   "cim": "Javaslat 23 – jóváhagyva (2026-10-07): négy mobilminta a DS-be",
    "x": [
-    "Az **alsó navigáció**, az **alsó lap** (bottom sheet), a **lebegő gomb** és a **kuponjegy** ma csak az app saját widgetje; a DS-ben nincs `bc-` elemük. A brand book képernyői a képernyő saját CSS-ével rajzolják őket, tokenekből – ez nem DS-elem.",
-    "Javaslat: most csak a lenti szabályok (A), a Flutter-átállással együtt CSS-elem + Flutter-widget leírás (C). Részletek, állapotok, szélső esetek: `docs/javaslatok/23-mobil-mintak.md`."
+    "Az **alsó navigáció**, az **alsó lap** (bottom sheet), a **lebegő gomb** és a **kuponjegy** ma csak az app saját widgetje; a DS-ben nincs `bc-` elemük (ellenőrizve: `termek/css`, `react/src`, 2026-10-08). A brand book képernyői a képernyő saját CSS-ével rajzolják őket, tokenekből – ez nem DS-elem.",
+    "Jóváhagyott irány: most a lenti szabályok (A), a Flutter-átállással együtt CSS-elem + Flutter-widget leírás (C). Részletek, állapotok, szélső esetek, döntés: `docs/javaslatok/23-mobil-mintak.md`."
    ],
    "forras": [
     "felmérés: beeco_MOBILE_APP/mobile-app (2026-10-07)",
@@ -157,7 +160,7 @@
   },
   {
    "t": "dodont",
-   "allapot": "javaslat",
+   "allapot": "szabaly",
    "cim": "Alsó navigáció",
    "forras": [
     "felmérés: beeco_MOBILE_APP/mobile-app (2026-10-07)",
@@ -190,7 +193,7 @@
   },
   {
    "t": "dodont",
-   "allapot": "javaslat",
+   "allapot": "szabaly",
    "cim": "Alsó lap (bottom sheet)",
    "forras": [
     "felmérés: beeco_MOBILE_APP/mobile-app (2026-10-07)",
@@ -234,7 +237,7 @@
   },
   {
    "t": "dodont",
-   "allapot": "javaslat",
+   "allapot": "szabaly",
    "cim": "Kuponkártya",
    "forras": [
     "felmérés: beeco_MOBILE_APP/mobile-app (2026-10-07)",
@@ -257,7 +260,7 @@
   },
   {
    "t": "dodont",
-   "allapot": "javaslat",
+   "allapot": "szabaly",
    "cim": "Lebegő gomb",
    "forras": [
     "felmérés: beeco_MOBILE_APP/mobile-app (2026-10-07)",
