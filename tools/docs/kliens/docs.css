@@ -288,6 +288,9 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
 }
 
 /* ---- Röviden · Mérnököknek ---- */
+.bb-ut { flex: none; display: inline-flex; align-items: center; justify-content: center; min-width: 1.5rem; height: 1.5rem; padding: 0 var(--bc-sp-1); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink); background: var(--bc-surface-accent); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); }
+.is-brand .bb-sw-t code { display: none; }
+
 .bb-roviden { margin: 0 0 var(--bc-sp-6); padding: var(--bc-sp-4) var(--bc-sp-5); background: var(--bc-surface-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-l); }
 .bb-roviden-cim { margin: 0 0 var(--bc-sp-2); font-family: var(--bc-font-display); font-size: var(--bc-fs-l); }
 .bb-roviden dl { display: grid; gap: var(--bc-sp-2); margin: 0; }
