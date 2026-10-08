@@ -1,0 +1,302 @@
+{
+  "id": "szin",
+  "cim": "Szín",
+  "alcim": "Egy hangsúlyszín van, a méz. A felületen nem a nyers színt, hanem a szerepét használod – így a sötét mód és a két bőr magától működik.",
+  "csoport": "alapok",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "h2",
+      "x": "Paletta",
+      "id": "paletta"
+    },
+    {
+      "t": "p",
+      "x": "Egy hangsúlyszínünk van: a **méz**. Mellette krém és papír alapok, zöldek a természethez, és néhány jelzőszín. A nyers színek a `tokens/core.json`-ban vannak (primitívek)."
+    },
+    {
+      "t": "gen",
+      "nev": "paletta"
+    },
+    {
+      "t": "hianyzik",
+      "cim": "Tónusskála",
+      "x": "Nincs egységes, fokozatos tónusskála: a mézből három, névvel adott primitív van (méz `honey`, nyomott méz `honey-deep`, vaj `butter`), a többi színcsaládban is csak néhány névvel adott fok. Hogy kell-e 50–900-as skála, döntésre vár."
+    },
+    {
+      "t": "h2",
+      "x": "Színszerepek",
+      "id": "szerepek"
+    },
+    {
+      "t": "p",
+      "x": "Ezeket használd a kódban: `var(--bc-ink)`, Tailwindben `text-ink`, SCSS-ben `bc.$bc-ink`, Flutterben `BeecoRoles.light.ink`. Minden szerepnek van sötét párja."
+    },
+    {
+      "t": "gen",
+      "nev": "szerepek"
+    },
+    {
+      "t": "h3",
+      "x": "A szerepek csoportjai",
+      "id": "szerepcsoportok"
+    },
+    {
+      "t": "tabla",
+      "cim": "A szerepek csoportjai",
+      "fej": [
+        "Csoport",
+        "Szerepek",
+        "Mire"
+      ],
+      "sorok": [
+        [
+          "Háttér és felület",
+          "`bg`, `surface`, `surface-2`, `surface-accent`",
+          "oldal háttere · kártya, űrlap, táblázat, ablak · csendes felület (tiltott mező, sor-kiemelés) · kiemelt kártya, kijelölt sor"
+        ],
+        [
+          "Szöveg",
+          "`ink`, `ink-soft`, `ink-muted`, `on-accent`",
+          "fő · másodlagos · helykitöltő szöveg · szöveg a mézen"
+        ],
+        [
+          "Vonal és mélység",
+          "`line`, `line-soft`, `shadow`, `scrim`",
+          "keret · elválasztó · kemény árnyék · ablak mögötti takarás"
+        ],
+        [
+          "Hangsúly és fókusz",
+          "`accent`, `accent-press`, `focus`, `highlight`",
+          "fő gomb, kijelölés · lenyomott állapot · billentyűzet-fókusz · játékos kiemelés (ritkán)"
+        ],
+        [
+          "Jelzések",
+          "`success`, `warning`, `danger`, `info`",
+          "mindegyikhez három: alap (jel, ikon, keret), `-bg` (halvány háttér) és `-ink` (szöveg a háttéren)"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `docs/termek-arculat.md` 2., `tokens/theme-termek.json`."
+    },
+    {
+      "t": "szabaly",
+      "cim": "Szöveg a mézen",
+      "x": [
+        "A méz színű felületen a szöveg mindig `on-accent`, azaz fekete – sötét módban is. A fekete a mézen 14,2 : 1, a fehér csak 1,5 : 1."
+      ],
+      "forras": [
+        "docs/termek-arculat.md 2.",
+        "tokens/core.json (honey `#FECF39`)"
+      ]
+    },
+    {
+      "t": "p",
+      "x": "A gombszabályok (egy méz fő gomb képernyőnként) a [Gomb](gomb.html) oldalon vannak."
+    },
+    {
+      "t": "h2",
+      "x": "Kontraszt",
+      "id": "kontraszt"
+    },
+    {
+      "t": "p",
+      "x": "A mérce az AA: szövegnél legalább 4,5 : 1, nagy szövegnél (24 px vagy 19 px félkövér), keretnél és ikonnál 3 : 1 – világos és sötét módban is. Az alábbi értékeket a tokenekből számoltuk, nem böngészőben mértük."
+    },
+    {
+      "t": "p",
+      "x": "Képlet (WCAG 2.x): a csatornákat (R, G, B / 255) lineárisra alakítjuk (`c ≤ 0,03928` esetén `c / 12,92`, különben `((c + 0,055) / 1,055)^2,4`), `L = 0,2126·R + 0,7152·G + 0,0722·B`, a kontraszt `(L1 + 0,05) / (L2 + 0,05)`, ahol `L1` a világosabb szín."
+    },
+    {
+      "t": "h3",
+      "x": "A kötelező párok",
+      "id": "kotelezo-parok"
+    },
+    {
+      "t": "p",
+      "x": "A `npm test` (`check-tokens`) a `tokens/theme-termek.json` → `contrast` mind a 18 párját ellenőrzi világos és sötét módban."
+    },
+    {
+      "t": "tabla",
+      "cim": "Kötelező kontrasztpárok",
+      "fej": [
+        "Pár (előtér / háttér)",
+        "Elvárt",
+        "Világos",
+        "Sötét"
+      ],
+      "sorok": [
+        [
+          "`ink` / `bg`",
+          "4,5 : 1",
+          "19,83 : 1",
+          "14,73 : 1"
+        ],
+        [
+          "`ink` / `surface`",
+          "4,5 : 1",
+          "21,00 : 1",
+          "10,50 : 1"
+        ],
+        [
+          "`ink-soft` / `bg`",
+          "4,5 : 1",
+          "7,62 : 1",
+          "11,02 : 1"
+        ],
+        [
+          "`ink-soft` / `surface`",
+          "4,5 : 1",
+          "8,06 : 1",
+          "7,85 : 1"
+        ],
+        [
+          "`ink-muted` / `surface`",
+          "4,5 : 1",
+          "5,66 : 1",
+          "6,04 : 1"
+        ],
+        [
+          "`on-accent` / `accent`",
+          "4,5 : 1",
+          "14,20 : 1",
+          "14,20 : 1"
+        ],
+        [
+          "`on-accent` / `accent-press`",
+          "4,5 : 1",
+          "9,30 : 1",
+          "9,30 : 1"
+        ],
+        [
+          "`success-ink` / `success-bg`",
+          "4,5 : 1",
+          "7,40 : 1",
+          "6,87 : 1"
+        ],
+        [
+          "`danger-ink` / `danger-bg`",
+          "4,5 : 1",
+          "5,77 : 1",
+          "7,52 : 1"
+        ],
+        [
+          "`danger-ink` / `surface`",
+          "4,5 : 1",
+          "6,54 : 1",
+          "9,12 : 1"
+        ],
+        [
+          "`warning-ink` / `warning-bg`",
+          "4,5 : 1",
+          "6,63 : 1",
+          "6,63 : 1"
+        ],
+        [
+          "`info-ink` / `info-bg`",
+          "4,5 : 1",
+          "8,87 : 1",
+          "8,87 : 1"
+        ],
+        [
+          "`on-accent` / `danger`",
+          "4,5 : 1",
+          "4,67 : 1",
+          "4,67 : 1"
+        ],
+        [
+          "`line` / `surface`",
+          "3,0 : 1",
+          "21,00 : 1",
+          "6,04 : 1"
+        ],
+        [
+          "`focus` / `bg`",
+          "3,0 : 1",
+          "5,81 : 1",
+          "10,96 : 1"
+        ],
+        [
+          "`focus` / `surface`",
+          "3,0 : 1",
+          "6,15 : 1",
+          "7,81 : 1"
+        ],
+        [
+          "`ink` / `surface-2`",
+          "4,5 : 1",
+          "18,74 : 1",
+          "11,76 : 1"
+        ],
+        [
+          "`ink` / `surface-accent`",
+          "4,5 : 1",
+          "18,16 : 1",
+          "7,68 : 1"
+        ]
+      ]
+    },
+    {
+      "t": "h3",
+      "x": "Ismert eltérések",
+      "id": "ismert-elteresek"
+    },
+    {
+      "t": "p",
+      "x": "Ezek a párok nincsenek a kötelező listában, és a számolt értékük a küszöb alatt van. **Ismert eltérés** mindegyik: nem takarjuk el, a javításuk döntésre vár."
+    },
+    {
+      "t": "tabla",
+      "cim": "Ismert kontraszt-eltérések",
+      "fej": [
+        "Pár",
+        "Elvárt",
+        "Számolt",
+        "Megjegyzés"
+      ],
+      "sorok": [
+        [
+          "sötét `danger` / `surface`",
+          "ikon, keret: 3 : 1",
+          "2,47 : 1",
+          "Nincs a kötelező párok között. Sötét módban a `danger` színű ikon vagy keret a kártyán nem éri el a 3 : 1-et."
+        ],
+        [
+          "sötét `focus` / `accent`",
+          "fókuszgyűrű: 3 : 1",
+          "1,04 : 1",
+          "Sötét módban a fókusz égkék (`sky`), a méz háttéren (például a fő gombon) alig látszik. Világos módban ugyanez a pár 4,16 : 1."
+        ],
+        [
+          "sötét `ink-muted` / `surface-accent`",
+          "szöveg: 4,5 : 1",
+          "4,42 : 1",
+          "Kiemelt kártyán a helykitöltő szöveg kicsit a küszöb alatt marad. A kötelező pároknál az `ink-muted` csak a `surface`-en szerepel."
+        ],
+        [
+          "világos `line-soft` / `surface`",
+          "vezérlő határa: 3 : 1",
+          "1,71 : 1",
+          "Elválasztóként használt halvány vonal, nincs a kötelező párok között; vezérlő határát nem jelölheti (arra a `line` való)."
+        ],
+        [
+          "sötét `line-soft` / `surface`",
+          "vezérlő határa: 3 : 1",
+          "1,90 : 1",
+          "Ugyanez sötét módban."
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Adatszínek",
+      "id": "adatszinek"
+    },
+    {
+      "t": "p",
+      "x": "A grafikonok, térképek és hőtérképek színskáláiról az [Adatvizualizáció](adatvizualizacio.html) oldal szól."
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": "temak",
+  "cim": "Témák",
+  "alcim": "A két bőr (termékbőr, játékbőr) és a sötét mód: mikor melyik, és hogyan kapcsolod be.",
+  "csoport": "alapok",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "p",
+      "x": "A közös atomokra (színek, betűk, térköz, időzítés) két bőr épül. Ugyanaz a márka, más hangulat. A szakszavak: [Szótár](szotar.html#ber-tema-felulet)."
+    },
+    {
+      "t": "h2",
+      "x": "A két bőr",
+      "id": "ket-bor"
+    },
+    {
+      "t": "gen",
+      "nev": "borok"
+    },
+    {
+      "t": "h2",
+      "x": "Élő példa",
+      "id": "elo-pelda"
+    },
+    {
+      "t": "p",
+      "x": "Ugyanaz a gomb, kártya és mező a két bőrben."
+    },
+    {
+      "t": "gen",
+      "nev": "borminta"
+    },
+    {
+      "t": "h2",
+      "x": "Melyiket mikor?",
+      "id": "melyiket"
+    },
+    {
+      "t": "szabaly",
+      "cim": "A választás",
+      "elemek": [
+        "**Webjáték** → játékbőr (Méhsejt-diorama).",
+        "**Minden más** – app, admin, partner, weboldal, prototípus → termékbőr."
+      ],
+      "forras": [
+        "docs/rendszer.md 1–2.",
+        "DESIGN.md – Két bőr",
+        "docs/weboldal.md"
+      ]
+    },
+    {
+      "t": "p",
+      "x": "A bőrök forrása: a termékbőr a `tokens/theme-termek.json`, a játékbőr a kézzel írt `web/css/tokens.css`; a `tokens/theme-jatek.json` ennek tükre, a `check-tokens` veti össze."
+    },
+    {
+      "t": "h2",
+      "x": "Sötét mód",
+      "id": "sotet-mod"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Bekapcsolás: `<html data-theme=\"dark\">` vagy `<html class=\"dark\">` (Tailwind); rendszer szerint: `data-theme=\"auto\"`.",
+        "Csak a szerepek váltanak. Ha a felület csak szerepet használ, a sötét mód magától működik; új kódban `dark:` Tailwind-változat nem kell.",
+        "A méz sötétben is méz, rajta a szöveg fekete (`on-accent`).",
+        "React-appban a `ThemeProvider` az app gyökerében a `<html>` jelzőit írja és megjegyzi a választást; a `ThemeToggle` a kezelőfelületen váltja (kompakt helyen ikongomb, beállítás-oldalon: Világos · Sötét · Rendszer szerint). Villanásmentes induláshoz a `themeInitScript()` kimenete a `<head>`-be kerül.",
+        "A játékbőrben nincs teljes sötét mód: éjszakai jelenetek vannak (`ds-dark`).",
+        "A logó a témával magától vált (`logo.webp` ↔ `logo-sotet.webp`)."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `docs/termek-arculat.md` 8–9., `DESIGN.md`."
+    },
+    {
+      "t": "p",
+      "x": "A sötét mód kontrasztja: [Szín](szin.html#kontraszt). A felületek sötét módjának állapota: [Felületek](feluletek.html)."
+    }
+  ]
+}

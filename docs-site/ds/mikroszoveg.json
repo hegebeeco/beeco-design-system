@@ -1,0 +1,143 @@
+{
+  "id": "mikroszoveg",
+  "cim": "Mikroszöveg",
+  "alcim": "A felület rövid szövegei: szövegpillanatok, mezőszövegek és hívómondatok.",
+  "csoport": "mintak",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "p",
+      "x": "A felületi szövegek magyarul, tegezve, röviden készülnek. A hangnem alapja: **tanítunk, nem szidunk**."
+    },
+    {
+      "t": "h2",
+      "x": "Elvek",
+      "id": "elvek"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Minden szöveg magyar; angol változat csak kifejezett kérésre. A partner-app kétnyelvű, ezért a komponensek beépített feliratai felülírhatók (`labels`).",
+        "A hiba megmondja a következő lépést; a felhasználót nem szidjuk.",
+        "Szóvicc csak a lent felsorolt pillanatokban lehet – és mindig a sima jelentéssel együtt kiírva.",
+        "Szóvicc nem kerül gombfeliratba, hibaüzenet teendő-részébe, törlés-megerősítésbe, jogi szövegbe, és nem áll szám mellett.",
+        "Képernyőnként legfeljebb egy méhecske és egy szóvicc."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `tokens/hangnem.json` (_readme), `docs/komponensek.md` (Nyelv, 3.3), `docs/termek-arculat.md` 1."
+    },
+    {
+      "t": "dodont",
+      "allapot": "szabaly",
+      "forras": [
+        "brandbook/elemek/komponensek.json (Értesítés)"
+      ],
+      "parok": [
+        {
+          "jo": {
+            "felirat": "mi történt, és mi a teendő",
+            "html": "<div class=\"bc-alert is-danger\"><p>Nem sikerült menteni. Próbáld újra egy perc múlva.</p></div>"
+          },
+          "rossz": {
+            "felirat": "teendő nélkül",
+            "html": "<div class=\"bc-alert is-danger\"><p>Hoppá! Valami félrement.</p></div>"
+          },
+          "miert": "Mondd meg, mi történt és mi a teendő."
+        }
+      ],
+      "cim": "Hibaüzenet"
+    },
+    {
+      "t": "h2",
+      "x": "Szövegpillanatok",
+      "id": "pillanatok"
+    },
+    {
+      "t": "p",
+      "x": "Minden pillanathoz tartozik egy méhecske és néhány változat – szóviccel és simán. Új változat bármikor jöhet; új pillanat csak javaslattal."
+    },
+    {
+      "t": "gen",
+      "nev": "pillanatok"
+    },
+    {
+      "t": "p",
+      "x": "A méhecske-szereplők (házigazda, kalauz, futár, szurkoló…) bemutatása és a hang elvei a Brand Bookban vannak. Forrás: `tokens/hangnem.json`."
+    },
+    {
+      "t": "h2",
+      "x": "Mezők szövegei",
+      "id": "mezok"
+    },
+    {
+      "t": "tabla",
+      "cim": "Mezőszövegek példái",
+      "fej": [
+        "Hely",
+        "Példa"
+      ],
+      "sorok": [
+        [
+          "Súgó",
+          "„Így jelenik meg az appban a kupon kártyáján. Rövid, cselekvésre hívó név jó, pl. »10% kedvezmény kávéra«.”"
+        ],
+        [
+          "Tartomány",
+          "„3–60 karakter” · „0–100 %” · „legfeljebb 5 címke”"
+        ],
+        [
+          "Számláló",
+          "„213/255” · „2/5 címke” · „1,2/5 MB”"
+        ],
+        [
+          "Hiba",
+          "„Legalább 3 karakter kell – most 2.”"
+        ],
+        [
+          "Levágás jelzése",
+          "„A beillesztett szöveg végét levágtam: 255 karakter a határ.”"
+        ],
+        [
+          "Igazítás jelzése",
+          "„100-ra állítottam – legfeljebb 100 lehet.”"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `docs/komponensek.md` 3/A."
+    },
+    {
+      "t": "h2",
+      "x": "Hívómondatok",
+      "id": "hivomondatok"
+    },
+    {
+      "t": "hivatalos",
+      "cim": "A beeco.hu hívómondatai",
+      "elemek": [
+        "„beezz a rajban!”",
+        "„Maradj a rajban!”",
+        "„Hiszünk a közösség erejében. Apró lépésekkel csökkentjük a tehetetlenség érzését…”"
+      ],
+      "forras": [
+        "[beeco.hu](https://www.beeco.hu/) – főoldal"
+      ]
+    },
+    {
+      "t": "hivatalos",
+      "cim": "Szlogenjeink és hol használd őket",
+      "elemek": [
+        "Fő szlogen: **„Beezz a rajban!”** / angolul **„Bee the change!”**",
+        "Továbbiak: „Time to bee eco!”, „Legyünk együtt ökohősök!”, „Az ökos döntések sokszor a legokosabbak.”",
+        "Közösségi poszt, plakát, esemény-meghívó végén – egyszer, nem halmozva. Gombra és jogi szövegbe nem kerül szlogen."
+      ],
+      "forras": [
+        "beeco brandbook v2 (belső márkadokumentum, 2026) – Szlogenek",
+        "tokens/hangnem.json"
+      ]
+    }
+  ]
+}

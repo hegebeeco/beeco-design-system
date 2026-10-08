@@ -12,7 +12,7 @@
 /* Átlátszó PNG: sakktábla-háttér a kép mögött (tokenekből) */
 .bc-tile img { display: block; width: 100%; height: 100%; object-fit: cover; background: repeating-conic-gradient(var(--bc-surface-2) 0 25%, var(--bc-surface) 0 50%) 0 0 / 16px 16px; }
 .bc-tile-open { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
-.bc-tile-open:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: -3px; }
+.bc-tile-open:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: -3px; }
 .bc-tile-cover { position: absolute; left: var(--bc-sp-1); top: var(--bc-sp-1); pointer-events: none; }
 .bc-tile-noalt { position: absolute; left: var(--bc-sp-1); bottom: var(--bc-sp-1); max-width: calc(100% - 2 * var(--bc-sp-1)); pointer-events: none; }
 .bc-tile-noalt svg { width: 14px; height: 14px; flex: none; }
@@ -43,7 +43,7 @@
 .bc-tile.is-add svg { width: 26px; height: 26px; }
 .bc-tile-add-t { font-family: var(--bc-font-display); font-size: var(--bc-fs-l); line-height: 1; }
 .bc-tile-add-s { font-size: var(--bc-fs-xs); color: var(--bc-ink-soft); }
-.bc-tile.is-add:has(input:focus-visible) { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-tile.is-add:has(input:focus-visible) { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); }
 .bc-tile.is-add.is-empty { grid-column: 1 / -1; aspect-ratio: auto; min-height: 140px; }
 .bc-tile.is-add.is-disabled { background: var(--bc-surface-2); border-color: var(--bc-line-soft); }
 .bc-tile.is-add.is-disabled label { cursor: not-allowed; color: var(--bc-ink-soft); }
@@ -91,7 +91,7 @@
 .bc-cropper-stage { position: relative; height: clamp(200px, 50vh, 420px); overflow: hidden; background: var(--bc-surface-2); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
 .bc-cropper .bc-cropper-area { border: var(--bc-bw-base) solid var(--bc-surface); color: rgb(var(--bc-scrim-rgb) / .55); outline-offset: -6px; }
 .bc-cropper .bc-cropper-area::before, .bc-cropper .bc-cropper-area::after { border-color: rgb(var(--bc-surface-rgb) / .7); }
-.bc-cropper .bc-cropper-area:focus-visible { outline: 3px solid var(--bc-focus); }
+.bc-cropper .bc-cropper-area:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); }
 .bc-cropper-zoom { display: flex; align-items: center; gap: var(--bc-sp-3); }
 .bc-range { flex: 1; min-width: 0; min-height: var(--bc-tap); margin: 0; accent-color: var(--bc-ink); cursor: pointer; }
 .bc-cropper-out { min-width: 3.5em; font-family: var(--bc-font-display); font-size: var(--bc-fs-l); font-variant-numeric: tabular-nums; }
@@ -120,7 +120,7 @@
   border: var(--bc-bw-base) dashed var(--bc-line); border-radius: var(--bc-r-m); cursor: pointer; transition: background-color var(--bc-t-fast) var(--bc-ease-out); }
 .bc-dropzone strong { font-family: var(--bc-font-display); font-weight: 400; font-size: var(--bc-fs-l); color: var(--bc-ink); }
 .bc-dropzone svg { width: 28px; height: 28px; color: var(--bc-ink); }
-.bc-dropzone:has(input:focus-visible) { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-dropzone:has(input:focus-visible) { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); }
 .bc-dropzone:has(input:disabled) { background: var(--bc-surface-2); cursor: not-allowed; }
 @media (hover: hover) and (pointer: fine) { .bc-dropzone:not(:has(input:disabled)):hover { background: var(--bc-surface-accent); } }
 .bc-filecard { display: grid; gap: var(--bc-sp-2); padding: var(--bc-sp-3); font-size: var(--bc-fs-s); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-s); }

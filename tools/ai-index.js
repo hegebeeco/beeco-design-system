@@ -91,12 +91,12 @@ L.push('## Szabályok (top 10)', '',
   '1. Meglévőből dolgozz: DS React-komponens → `bc-` CSS-elem → projekt-komponens → tokenekből. Új elem/változat csak Kristóf jóváhagyásával (`docs/javaslatok/`).',
   '2. Csak tokenek/szerepek (`var(--bc-ink)`, `bc.$bc-ink`, `text-ink`); nyers szín, px betűméret/sarok/árnyék tilos; a Tailwind alap-palettája nincs.',
   '3. Név soha nem változik és nem törlődik (token, osztály, export, prop) – csak bővíts. Az `api-check` megfogja.',
-  '4. Szöveg a mézen (`accent`) mindig `on-accent`; árnyék kemény, átlós (`shadow-s/m/l`), elmosás nélkül.',
+  '4. Szöveg a mézen (`accent`) mindig `on-accent`; kattintható és kiemelt elem: kemény, átlós árnyék (`shadow-s/m/l`), nem kattintható információs doboz: `shadow-soft` (`docs/termek-arculat.md` 6/A).',
   '5. Lalezar csak cím/szám/gomb, Open Sans minden más; 12 px alatt nincs szöveg.',
-  '6. Mozgás ≤ 300 ms, `ease-out`; `ease-in` tilos; csökkentett mozgásnál nincs végtelen animáció.',
-  '7. 44 px érintés, látható `:focus-visible`, ikongombon `aria-label`, kattintható elem `<a>`/`<button>`.',
+  '6. UI-visszajelzés ≤ 300 ms, `ease-out`; fiók 400 ms; belépő/dekoratív animáció ≤ 900 ms (`t-decor`, `t-hero`), csak token; `ease-in` tilos; csökkentett mozgásnál nincs mozgás.',
+  '7. 44 px érintés, látható `:focus-visible` (kifelé: `outline-offset ≥ 2px`), ikongombon `aria-label`, kattintható elem `<a>`/`<button>`.',
   '8. Minden állapot: töltés, üres, hiba (következő lépéssel), siker, tiltott. Szöveg magyarul, tegezve; feliratok `labels`-szel felülírhatók.',
-  '9. Kompakt helyen ikon-gomb `TooltipIconButton`-nal; fő gomb szöveg + piktogram (`IcSave`, `IcTrash`, `IcNew`…).',
+  '9. Gombszabály (egy forrás: `docs/termek-arculat.md` 6/A): egy méz fő gomb; kompakt helyen ikon-gomb `TooltipIconButton`-nal; fő gomb szöveg + piktogram (`IcSave`, `IcTrash`, `IcNew`…).',
   '10. Ne szerkeszd: `dist/`, `termek/tesztlapok/*.html`, `docs/AI.md`; feature-ágon ne emelj verziót; titok soha (publikus repó).', '');
 
 /* --- tokenek --- */

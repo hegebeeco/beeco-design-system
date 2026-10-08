@@ -9,7 +9,7 @@
   "látogatók, leendő felhasználók, partnerek, önkéntesek, sajtó",
   "aki Webflow-ban oldalt épít"
  ],
- "hol": "Webflow – teszt: `beeco-weboldal.webflow.io`, éles: `www.beeco.hu` (élesbe csak Kristóf engedélyével)",
+ "hol": "Webflow – teszt: `beeco-weboldal.webflow.io`, éles: `www.beeco.hu` (élesbe csak kifejezett jóváhagyással)",
  "kozos": [
   "a termékbőr tokenjei Webflow-változóként (`bc-` gyűjtemény, 57 változó)",
   "az osztálynevek a DS-t tükrözik: `bc-btn`, `bc-card`, `bc-sec`, `bc-quote`…",
@@ -18,11 +18,12 @@
  "szandekos": [
   "marketing-elemek (`bc-web.css`), oldalankénti saját előtag (pl. `h26-`)",
   "mozgás csak egyszeri: a méhecske egyszer berepül, oldalanként 1–2 „matrica”",
-  "kampány-altéma saját gyűjteménnyel (CsicsergŐsz: `cs-`)"
+  "kampány-altéma saját gyűjteménnyel (CsicsergŐsz: `cs-`)",
+  "élő oldalmodulok adatból: a Csatlakozz oldal Kaptár-kapuja (`weboldal/csatlakozz/kk.js`, `kk.css`) és a CsicsergŐsz Raj modul (`weboldal/kampany-csicsergosz/cs-raj.js`, `cs-raj.css`) – jsDelivr verziósávról töltődnek; mintaadattal nem élesítünk"
  ],
  "cel": [
-  "a 2026-os főoldal (`weboldal/fooldal-2026.css`) élesítése",
-  "a „barna” nevű, de fekete változó rendbetétele"
+  "a 2026-os főoldal (`weboldal/fooldal-2026.css`) élesítése – az élő állapot nincs felmérve",
+  "a „barna” nevű, de fekete változó (`--barna-main-feka`) rendbetétele – az élő Webflow-ban nincs ellenőrizve"
  ],
  "szabalykonyv": "`docs/weboldal.md`",
  "ertekek": {
@@ -84,10 +85,13 @@
   "kartyaSzoveg": "Öntözz egy fát a környékeden"
  },
  "felmeres": {
-  "datum": "2026-10-06",
+  "datum": "2026-10-08",
   "forras": [
-   "dist/weboldal/webflow-valtozok.json",
-   "docs/weboldal.md"
+   "dist/weboldal/webflow-valtozok.json (57 változó)",
+   "docs/weboldal.md",
+   "weboldal/ (fooldal-2026.css, csatlakozz/, kampany-csicsergosz/)",
+   "CHANGELOG.md 1.44.0–1.48.2",
+   "az élő Webflow-oldalra a repóban nincs forrás: ellenőrizni kell"
   ],
   "mert": {
    "webflow_valtozok": 57
@@ -116,7 +120,7 @@
     "**Szín, méret, sarok:** a „beeco DS” kollekció változójából, nem beírt hex-kóddal vagy px-szel. A változó neve ugyanaz, mint a DS-tokené, csak `--` nélkül: `--bc-accent` → `bc-accent`.",
     "**Csak az oldalra szóló stílus** saját előtagot kap (pl. `h26-` a 2026-os főoldalon), hogy takarításkor látsszon, mi a DS és mi egyedi.",
     "**Ha nincs rá elem:** ne gyárts „ideiglenes” osztályt – szólj, és javaslatlap készül (`docs/javaslatok/_sablon.md`).",
-    "**Közzététel:** csak a tesztre (`beeco-weboldal.webflow.io`), és ott nézd meg – élesre (`www.beeco.hu`) semmi nem megy ki Kristóf kifejezett engedélye nélkül."
+    "**Közzététel:** csak a tesztre (`beeco-weboldal.webflow.io`), és ott nézd meg – élesre (`www.beeco.hu`) semmi nem megy ki kifejezett jóváhagyás nélkül."
    ]
   },
   {

@@ -28,13 +28,14 @@ térköz, időzítés), de két **bőrben** jelenik meg: a játékok játékosab
 | Betű | Lalezar (cím, szám, gomb) + Open Sans (szöveg) | ← | ← |
 | Betűskála | 12 · 14 · 16 · 20 · 26 · 34 · 46 px | ← | ← |
 | Térköz | 4 px rács: 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 | ← | ← |
-| Időzítés | 120 ms nyomás · 200 ms alap · `ease-out` görbe | ← | ← |
+| Időzítés | 120 ms nyomás · 200 ms alap · 400 ms fiók · 600 / 900 ms dekoratív / hős (csak animáció) · `ease-out` görbe; UI-visszajelzés ≤ 300 ms | ← | ← |
 | Érintés | min. 44 px | ← | ← (sűrű admin-gomb asztalon 36 px, érintésnél 44) |
 | Adatskálák | sorrendi, kétirányú, színtévesztő-barát, kategória | ← | ← |
 | Sarok | – | 12 · 18 · 24 · 32 · kapszula | 2 · 4 · **8** · 12 · kapszula |
 | Keret | – | 3 px | 1 px (hajszál) · 2 px (alap) |
-| Árnyék | – | puha, függőleges (kemény átlós: SOHA) | kemény, átlós, elmosás nélkül: 2 · 4 · 6 px |
+| Árnyék | – | puha, függőleges (kemény átlós: SOHA) | kattintható és kiemelt elemen kemény, átlós, elmosás nélkül: 2 · 4 · 6 px; nem kattintható információs dobozon (kártya, panel, statisztika, táblázat) puha `shadow-soft` (`docs/termek-arculat.md` 6/A) |
 | Sötét mód | – | éjszakai jelenetek (`ds-dark`) | minden szerepnek van sötét párja |
+| Töréspont | – | 700 px (alsó lap), fekvő + ≤ 500 px magas kijelző (képernyő-váz) – `docs/arculat.md` | ajánlás új kódhoz: `sm` 600 · `md` 900 (fiók ↔ oldalsáv) · `lg` 1200 px (token: SCSS, Tailwind `bc-*`, Dart); a `termek/css` ma: 420 · 520 · 600 · 640 · 767/768 · 900 · 992 · 1200 px |
 
 ## 3. A repó térképe (`hegebeeco/beeco-design-system`, helyben: `~/CLAUDE/beeco-jatek-kit`)
 
@@ -42,7 +43,7 @@ térköz, időzítés), de két **bőrben** jelenik meg: a játékok játékosab
 |---|---|---|
 | `tokens/core.json` | közös atomok | kézzel, CHANGELOG-bejegyzéssel |
 | `tokens/theme-termek.json` | termékbőr: szín-szerepek (világos + sötét), sarok, keret, árnyék, **kötelező kontraszt-párok** | kézzel |
-| `tokens/theme-jatek.json` | a játékbőr tükre (a forrás a `web/css/tokens.css`) | kézzel, a teszt összeveti |
+| `tokens/theme-jatek.json` | a játékbőr tükre (ma még a forrás a `web/css/tokens.css`; döntés 2026-10-08, Javaslat 26: a forrás a `core.json` + `theme-jatek.json` lesz, a `tokens.css` generált – 1.55-ös teendő) | kézzel, a teszt összeveti |
 | `dist/` | **generált** kimenetek: `css/beeco-tokens.css`, `css/beeco-fonts.css`, `scss/_beeco.scss`, `tailwind/preset.cjs`, `dart/beeco_tokens.dart`, `tokens.json` | `node tools/tokens-build.js` – kézzel SOHA |
 | `termek/css/bc-*.css` | termékbőr elemei (gomb, űrlap, kártya, ablak, táblázat, jelzés, váz) | kézzel, csak tokenekkel |
 | `termek/bemutato.html` | élő bemutató (világos/sötét) | |
@@ -59,13 +60,13 @@ térköz, időzítés), de két **bőrben** jelenik meg: a játékok játékosab
 
 **React-appok (admin, partner, web):** verziózott **git-függőség** – nincs npm-regisztráció, nincs költség:
 ```bash
-npm install github:hegebeeco/beeco-design-system#v1.15.0
+npm install github:hegebeeco/beeco-design-system#v1.54.0
 ```
 - CSS: `import '@beeco/design-system/termek.css'` (tokenek + betűk + minden elem)
 - SCSS (admin): `@use '@beeco/design-system/dist/scss/beeco' as bc;` → `bc.$bc-ink`, `bc.sp(4)`, `bc.r(m)`
 - Tailwind (partner): `presets: [require('@beeco/design-system/tailwind')]` – a Tailwind saját palettája **kikapcsol**,
   csak beeco-szín létezik (`bg-accent`, `text-ink`, `border-line`, `shadow-m`, `rounded-m`, `font-display`).
-- Frissítés: új verziónál a `#v1.x.y` címke átírása és `npm install`.
+- Frissítés: új verziónál a `#v1.x.y` címke átírása és `npm install` (a mostani verzió: `VERSION`; a fenti példa az 1.54.0-ra mutat).
 
 **Weboldal (Webflow):** nem tud `npm install`-t, ezért a tokenek Webflow-változóként élnek.
 `node tools/webflow-build.js` → `dist/weboldal/webflow-valtozok.json` → a Webflow MCP ebből viszi fel őket.

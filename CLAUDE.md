@@ -6,7 +6,7 @@
 > játékhoz a `beeco-arculat`. A `dist/` generált: `node tools/tokens-build.js`; minden változás után `npm test`.
 > Fogyasztók: `~/IdeaProjects/beeco-admin(-design-uplift)`, `~/IdeaProjects/beeco-partner` (git-függőség, címkével), Flutter app (Bence, `dist/dart`).
 > **Komponensek:** `docs/komponensek.md` – meglévőből dolgozz, atomic szintek, **kötelező öntesztek** (tesztlap + `check-komponensek`), szélső esetek, új elem csak Kristóf jóváhagyásával (javaslatlap: `docs/javaslatok/`).
-> **Ügynököknek (1.53.0):** először a `docs/AI.md` (generált index), a `dist/`-et ne nyisd meg; munka közben `npm run check:egy -- <lap>`, a végén egyszer `npm run build && npm test`; feature-ágon nincs verzióemelés. Munkamód, kiadás, API-őr: `docs/ai-munkamod.md`.
+> **Ügynököknek (1.54.0):** először a `docs/AI.md` (generált index), a `dist/`-et ne nyisd meg; munka közben `npm run check:egy -- <lap>`, a végén egyszer `npm run build && npm test`; feature-ágon nincs verzióemelés. Munkamód, kiadás, API-őr: `docs/ai-munkamod.md`.
 > **A helyi mappa neve marad `~/CLAUDE/beeco-jatek-kit`** (a játékok `kit-sync` útvonalai erre mutatnak).
 
 
@@ -28,13 +28,13 @@ A játékok külön tárolókban élnek (első: `~/CLAUDE/beeco-szelektalj`, él
   szimbolikus link ide), így minden Claude Code projekt látja őket.
 * A beeco méhecskék (`web/assets/brand/`) belső használatúak; külső partner anyagban a beeco jóváhagyása kell. **A tároló publikus** (Kristóf döntése, 2026-10-01) – titok, jelszó, kulcs soha ne kerüljön bele.
 
-## Brand Book (márkakönyv + design system, Javaslat 22)
-* Forrás: `brandbook/` (fejezetszövegek: `tartalom/*.json`, a hat felület profilja: `feluletek/*.json`, stílus `css/bb.css` – csak `--bc-` tokenek).
-  Építés: `node tools/brandbook-build.js` → `_brandbook/` (nem commitoljuk; a Netlify építi a gyökér `netlify.toml` szerint).
-* A felületek mért értékei helyben frissülnek: `node tools/brandbook-felmeres.js --forras ~/CLAUDE` (a kézi szövegekhez nem nyúl).
-* Jelszókapu: `netlify/edge-functions/kapu.js`; a jelszó és a titok CSAK a Netlify környezeti változóiban (`BRANDBOOK_JELSZO`, `BRANDBOOK_TITOK`).
+## Brand Book és Design System (két oldal, Javaslat 25; a 22. javaslat régi építőjét felváltotta)
+* Motor: `tools/docs/` (+ `tools/docs-brand.js`, `tools/docs-ds.js`). Tartalom: `docs-site/brand/`, `docs-site/ds/` (oldalanként JSON). Építés: `npm run docs:build` → `_site/brand`, `_site/ds` (nem commitoljuk; a Brand Bookot a gyökér `netlify.toml`, a DS-t a `netlify.docs-ds.toml` építi). Teszt: `npm run docs:test` (a `npm test` része).
+* Az új motor a repóból ezt olvassa: `brandbook/elemek/` (komponens-adatok), `brandbook/feluletek/*.json` (a hat felület profilja), `brandbook/illusztraciok/`, `brandbook/sablonok/`, `brandbook/kepernyok/` (a `.js`/`.html` a `tools/brandbook-kepernyok.js` kimenete), `brandbook/css/{minta,kepernyo,jatekminta}.css`, `brandbook/js/minta.js`. A régi `tools/brandbook-build.js`, a `brandbook/tartalom/` és a `bb.css` kikerült (a git-előzményben megvan; a régi fejezet → új oldal megfeleltetés: `docs-site/leltar.json`).
+* A felületek mért értékei helyben: `node tools/brandbook-felmeres.js --forras ~/CLAUDE` (csak olvas, eltérést jelez; írás: `--ir`; a kézi szövegekhez nem nyúl).
+* Jelszókapu (csak a Brand Book): `netlify/edge-functions/brand/kapu-brand.js`, a logikát a `netlify/edge-functions/kapu.js` adja (azt a kapu-brand importálja, ne töröld); a jelszó és a titok CSAK a Netlify környezeti változóiban (`BRANDBOOK_JELSZO`, `BRANDBOOK_TITOK`).
 * Tartalomszabály: tény csak forrással (`hivatalos`/`szabaly` blokk), Claude-javaslat `javaslat` blokkban („Jóváhagyásra vár”), ismeretlen → `hianyzik`.
-  A repó nyilvános: magánszemély elérhetősége, belső szerződéses adat nem kerülhet bele. Teszt: `node tests/check-brandbook.js`.
+  A repó nyilvános: magánszemély elérhetősége, belső szerződéses adat nem kerülhet bele. Teszt: `npm run docs:test` (`tests/docs-check.js`).
 
 ## Ismert játék-projektek
 * `~/CLAUDE/beeco-szelektalj` – Szelektálj!, Hűtő-mester, Greenwashing-vadász, Mi van mögötte?, 2075, Ökos-rejtély, párbaj, Fenntartható otthon.

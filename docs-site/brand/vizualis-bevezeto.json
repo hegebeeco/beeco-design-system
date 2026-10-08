@@ -1,0 +1,34 @@
+{
+  "id": "vizualis-bevezeto",
+  "cim": "Bevezető",
+  "alcim": "Hogyan néz ki a beeco: néhány egyszerű elv, amire minden képünk épül.",
+  "csoport": "vizualis",
+  "statusz": "stabil",
+  "blokkok": [
+    { "t": "h2", "x": "Az elvek" },
+    { "t": "szabaly", "cim": "Amiről felismernek",
+      "elemek": [
+        "**Egy hangsúly: a méz.** A méz a fő művelet és a kiemelés színe – egy képen, egy képernyőn egy fő hangsúly.",
+        "**Krém alap, fehér felület.** Az oldal krém, a kártya fehér, így a tartalom kiemelkedik.",
+        "**Lalezar a hangnak, Open Sans a munkának.** Cím, szám, gomb: Lalezar. Minden más: Open Sans.",
+        "**Tanítunk, nem szidunk.** A hibát soha nem mérges méhecske kíséri.",
+        "**Cuki és barátságos:** kerek formák, meleg fény; a beeco méhecskéi mindig a kész rajzok."
+      ],
+      "forras": ["docs/termek-arculat.md 1. (Elvek)", "docs/arculat.md 1. (Öt alapelv)"] },
+    { "t": "h2", "x": "Két stílus, egy márka" },
+    { "t": "p", "x": "Ugyanaz a márka két stílusban jelenik meg. A **termék-stílus** (app, admin, partner-felület, weboldal) fekete vonalat és kemény, átlós árnyékot használ. A **játék-stílus** (a webjátékok) a Méhsejt-diorama: olíva körvonal, puha árnyék, hatszög-motívum. A Brand Book maga is a játék-stílusban készült. A szín, a betű és a logó mindkettőben ugyanaz." },
+    { "t": "p", "x": "A két stílus pontos szabályai a [Design Systemben](ds:temak) vannak." },
+    { "t": "h2", "x": "Méhsejt-háttér" },
+    { "t": "szabaly", "cim": "Csak dísz, a tartalom alatt",
+      "elemek": [
+        "A méz színéből, halványan (alap átlátszatlanság 12 %), a tartalom alatt.",
+        "Nyomtatáskor rejtve; szöveg soha nem kerül közvetlenül a mintára kontraszt nélkül."
+      ],
+      "forras": ["docs/arculat.md – Méhsejt-diorama"] },
+    { "t": "h2", "x": "Kapcsolódó" },
+    { "t": "lista", "elemek": [
+      "[Logó](logo.html), [Szín](szin.html), [Tipográfia](tipografia.html)",
+      "[Méhecske és illusztráció](meh-illusztracio.html), [Képek és fotó](kepek-fotok.html), [Mozgás](mozgas.html)"
+    ] }
+  ]
+}

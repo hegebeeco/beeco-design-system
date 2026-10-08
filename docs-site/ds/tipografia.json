@@ -1,0 +1,169 @@
+{
+  "id": "tipografia",
+  "cim": "Tipográfia",
+  "alcim": "Két betű, hét méret: Lalezar a hangnak, Open Sans a munkának.",
+  "csoport": "alapok",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "h2",
+      "x": "Betűk",
+      "id": "betuk"
+    },
+    {
+      "t": "gen",
+      "nev": "betuk"
+    },
+    {
+      "t": "szabaly",
+      "cim": "Betűszabályok",
+      "elemek": [
+        "Lalezar csak címre, számra és gombra; minden más Open Sans.",
+        "Open Sans vastagságai: 400, 600, 700 (800 nincs; a webes betű változó, 400–700).",
+        "12 px alatt nincs szöveg.",
+        "A betűk saját szerverről töltődnek (adatvédelem, CSP) – Google Fontsról nem."
+      ],
+      "forras": [
+        "tokens/core.json",
+        "dist/css/beeco-fonts.css",
+        "docs/termek-arculat.md 4."
+      ]
+    },
+    {
+      "t": "dodont",
+      "allapot": "szabaly",
+      "forras": [
+        "docs/termek-arculat.md 4."
+      ],
+      "parok": [
+        {
+          "jo": {
+            "felirat": "Lalezar a címben, Open Sans a szövegben",
+            "html": "<div class=\"bb-demo-oszlop\"><h3>Öntözz egy fát</h3><p>Szombaton 10-től a Kert utcában találkozunk. Hozz kannát, ha van.</p></div>"
+          },
+          "rossz": {
+            "felirat": "hosszú szöveg Lalezarral",
+            "html": "<p class=\"bc-display\">Szombaton 10-től a Kert utcában találkozunk. Hozz kannát, ha van, és szólj a barátaidnak is, mert sok fa vár ránk.</p>"
+          },
+          "miert": "A Lalezar hangos – címre, számra, gombra való; hosszú szövegben fárasztó és nehezen olvasható."
+        }
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Szövegstílusok",
+      "id": "szovegstilusok"
+    },
+    {
+      "t": "p",
+      "x": "Melyik szerep milyen betűt, méretet, vastagságot és sormagasságot kap. A címsorok és a törzsszöveg értékei a `termek/css/bc-base.css`-ből valók (nulla specifitású alapstílus), a többi sor a `docs/termek-arculat.md` 4. szakasza szerint."
+    },
+    {
+      "t": "tabla",
+      "cim": "Szövegstílusok",
+      "fej": [
+        "Szerep",
+        "Token",
+        "Betű",
+        "Méret",
+        "Vastagság",
+        "Sormagasság"
+      ],
+      "sorok": [
+        [
+          "Nyitóoldal főcíme (ritkán)",
+          "`fs-3xl`",
+          "Lalezar",
+          "46 px",
+          "400",
+          "nincs rögzítve"
+        ],
+        [
+          "Oldalcím (`h1`)",
+          "`fs-2xl`",
+          "Lalezar",
+          "34 px",
+          "400",
+          "1,15 (`lh-tight`)"
+        ],
+        [
+          "Szakaszcím (`h2`)",
+          "`fs-xl`",
+          "Lalezar",
+          "26 px",
+          "400",
+          "1,15 (`lh-tight`)"
+        ],
+        [
+          "Kártyacím (`h3`), gomb felirata",
+          "`fs-l`",
+          "Lalezar",
+          "20 px",
+          "400",
+          "1,15 (`lh-tight`)"
+        ],
+        [
+          "Kisebb címsor (`h4`–`h6`)",
+          "`fs-m`",
+          "Open Sans",
+          "16 px",
+          "700 (`fw-bold`)",
+          "örökli a törzsszövegét"
+        ],
+        [
+          "Törzsszöveg, mező",
+          "`fs-m`",
+          "Open Sans",
+          "16 px",
+          "400 (`fw-regular`)",
+          "1,5 (`lh-normal`)"
+        ],
+        [
+          "Táblázat, címke, másodlagos szöveg",
+          "`fs-s`",
+          "Open Sans",
+          "14 px",
+          "nincs rögzítve",
+          "nincs rögzítve"
+        ],
+        [
+          "Segítő szöveg, jelvény",
+          "`fs-xs`",
+          "Open Sans",
+          "12 px",
+          "nincs rögzítve",
+          "nincs rögzítve"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "A címsorok betűközét az alapstílus `.01em`-re állítja; a számokhoz a `.bc-num` Lalezart és egyenlő szélességű számjegyeket ad."
+    },
+    {
+      "t": "hianyzik",
+      "cim": "Összetett szövegstílus-tokenek",
+      "x": [
+        "Nincsenek összetett szövegstílus-tokenek (heading, body, label…): a betű, a méret, a vastagság és a sormagasság külön token. A `lh-snug` (1,3) sormagasságot a dokumentumok egyik szerephez sem rendelik, és betűköz-token sincs.",
+        "A „nincs rögzítve” cellák (vastagság, sormagasság a 14 és a 12 px-es soron, sormagasság a 46 px-esen) a szövegstílus-tokenek bevezetésekor kapnak értéket."
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Betűméret és olvashatóság",
+      "id": "meret"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "12 px alatt nincs szöveg (`minTextSize` = 12): a segítő szöveg és a jelvény is 12 px.",
+        "Hosszú szöveget Open Sans-szal szedj, ne Lalezarral.",
+        "A hierarchiát a méret adja: a Lalezar egy vastagságú."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `tokens/core.json` (fontSize, fontWeight, lineHeight), `docs/termek-arculat.md` 4."
+    }
+  ]
+}

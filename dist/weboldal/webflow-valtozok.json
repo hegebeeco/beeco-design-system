@@ -46,7 +46,7 @@
       "nev": "bc-ink-muted",
       "tipus": "Color",
       "ertek": "#676767",
-      "sotet": "#B6C4A3"
+      "sotet": "#C6C6C6"
     },
     {
       "nev": "bc-line",
@@ -112,7 +112,7 @@
       "nev": "bc-danger",
       "tipus": "Color",
       "ertek": "#DB3A34",
-      "sotet": "#DB3A34"
+      "sotet": "#EF6A60"
     },
     {
       "nev": "bc-danger-bg",
@@ -172,6 +172,12 @@
       "nev": "bc-scrim",
       "tipus": "Color",
       "ertek": "#000000",
+      "sotet": "#000000"
+    },
+    {
+      "nev": "bc-focus-on-accent",
+      "tipus": "Color",
+      "ertek": "#2656D9",
       "sotet": "#000000"
     },
     {

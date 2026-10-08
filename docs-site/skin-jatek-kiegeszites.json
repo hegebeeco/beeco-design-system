@@ -1,0 +1,40 @@
+{
+  "_readme": "A Brand Book (docs-oldal) KIEGÉSZÍTÉSE a játékbőrhöz – NEM a játékbőr hivatalos tokenje. A tokens/theme-jatek.json csak 12 szerepet ad (bg, surface, ink, ink-soft, line, accent, on-accent, good/bad…), sötét témája nincs. A docs-oldal komponens-CSS-e (bc-) további szerepeket és sötét módot vár: ezeket itt pótoljuk a core.json primitíveiből, hogy a Brand Book a játékbőr karakterében, mindkét módban olvasható legyen. A tools/docs/css.js (skinJatek) olvassa; a webjátékokba (kit-sync) NEM kerül. Kristóf döntése (2026-10-08): a Brand Book sötét módja marad, a játékbőrhöz generált. Minden érték a tokens/core.json egy primitívének neve. Változtatás után: npm run docs:check (a kontrasztot a tests/docs-check.js méri).",
+  "vilagos_potlas": {
+    "_readme": "A theme-jatek.json-ból hiányzó szerepek világos módban – a legközelebbi játékbőr-érték (forrás: web/css/tokens.css megjegyzései).",
+    "ink-muted": "olive-soft",
+    "line-soft": "sage",
+    "surface-2": "sage-bg",
+    "surface-accent": "butter",
+    "shadow": "olive",
+    "scrim": "olive",
+    "accent-press": "honey-deep"
+  },
+  "sotet": {
+    "_readme": "Sötét mód: a játékbőrnek nincs sötét témája (csak „éjszakai jelenet”); a core.json éjszakai primitívjeiből. A line-soft (halvány vonal) csak díszítő elválasztó lehet – UI-határolóra és fókuszra a line (≥ 3:1) való.",
+    "bg": "night",
+    "surface": "night-surface",
+    "surface-2": "olive",
+    "surface-accent": "olive-strong",
+    "ink": "cream",
+    "ink-soft": "sage",
+    "ink-muted": "sage",
+    "line": "night-line",
+    "line-soft": "olive-soft",
+    "accent": "honey",
+    "accent-press": "honey-deep",
+    "on-accent": "olive",
+    "shadow": "black",
+    "scrim": "black",
+    "success-bg": "forest",
+    "success-ink": "lime",
+    "success": "lime",
+    "danger-bg": "berry",
+    "danger-ink": "blossom-bg"
+  },
+  "sotet_arnyek": {
+    "_readme": "Sötét módú árnyék: fekete, áttetsző (a puha, függőleges játékbőr-árnyék sötét párja). Alfa százalékban.",
+    "shadow-s": [{ "y": 3, "blur": 0, "szin": "black", "alfa": 40 }],
+    "shadow-m": [{ "y": 4, "blur": 0, "szin": "black", "alfa": 40 }, { "y": 10, "blur": 22, "szin": "black", "alfa": 30 }]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "id": "index",
+  "cim": "beeco Design System",
+  "alcim": "Közös alapok, komponensek és minták a beeco appjához, admin- és partnerfelületéhez és weboldalához – tervezőknek, fejlesztőknek és AI-eszközöknek.",
+  "csoport": "kezdes",
+  "statusz": "vázlat",
+  "hos": {},
+  "blokkok": [
+    {
+      "t": "gen",
+      "nev": "szamok"
+    },
+    {
+      "t": "h2",
+      "x": "Kezdés",
+      "id": "kezdes"
+    },
+    {
+      "t": "gen",
+      "nev": "kartyak",
+      "kartyak": [
+        {
+          "nev": "Tervezőknek",
+          "leiras": "Az alapok (szín, betű, tér, forma, mozgás) és a komponensek használati szabályai: mikor, mikor ne, így és ne így – élő mintával.",
+          "link": "Alapok: Szín",
+          "href": "szin.html"
+        },
+        {
+          "nev": "Fejlesztőknek",
+          "leiras": "React-komponensek, `bc-` CSS-osztályok és tokenek egy csomagban; SCSS, Tailwind és Dart is.",
+          "link": "Telepítés",
+          "href": "telepites.html"
+        },
+        {
+          "nev": "AI-eszközökkel",
+          "leiras": "Gépi index a csomag teljes felületéről: `llms.txt`, `docs/AI.md` és `api/api.json`.",
+          "link": "API és AI-index",
+          "href": "eszkozok.html#ai-index"
+        }
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Hogyan épül fel?",
+      "id": "felepites"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "**Alapok** – szín, tipográfia, tér, forma, mozgás, ikonok, adatvizualizáció, hozzáférhetőség és a [témák](temak.html).",
+        "**Komponensek** – egy oldal komponensenként, kategóriákba rendezve.",
+        "**Minták** – [űrlap](urlap.html), [lista–részlet–szerkesztő](lista-reszlet-szerkeszto.html), [irányítópult](minta-iranyitopult.html), [állapotok](allapotok.html), [mikroszöveg](mikroszoveg.html).",
+        "**Felületek** – [a hat termék állapota](feluletek.html).",
+        "**Eszközök**, **Változások** és **Közreműködés** – [tokenek, API](eszkozok.html), [kiadások](valtozasok.html), [javaslatfolyamat](kozremukodes.html)."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "A szakszavak (bőr, téma, felület, szerep) egyszer, pontosan a [Szótárban](szotar.html) vannak meghatározva."
+    },
+    {
+      "t": "h2",
+      "x": "Jelölések az oldalakon",
+      "id": "jelolesek"
+    },
+    {
+      "t": "p",
+      "x": "A tartalomblokkokon jelvény mutatja, mennyire végleges, amit olvasol."
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "**Szabály** – jóváhagyott, kötelező.",
+        "**Hivatalos szöveg** – a beeco nyilvános szövege, szó szerint, forrással.",
+        "**Jóváhagyásra vár** – javaslat; amíg el nem fogadták, ne használd véglegesként.",
+        "**Hiányzik** – erről még nincs döntés, adat vagy forrás; ide nem írunk ki semmit találgatásból.",
+        "**Korrigálandó** – vázlat, amelynek a javítása várat magára.",
+        "**Tilos** – soha ne csináld."
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Mi új",
+      "id": "mi-uj"
+    },
+    {
+      "t": "p",
+      "x": "A legfrissebb kiadások és a verziózás szabályai a [Változások](valtozasok.html) oldalon vannak."
+    }
+  ]
+}

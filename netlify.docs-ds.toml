@@ -1,0 +1,26 @@
+# beeco DESIGN SYSTEM – ÚJ docs-oldal (két oldal, 25. javaslat). NEM AKTÍV, jelszókapu NINCS (nyitott oldal).
+# Élesítés (Kristóf, külön „igen”): új Netlify-oldal, a konfig útvonala erre a fájlra mutasson.
+# A Brand Book címe: DOCS_BRAND_URL (abszolút, pl. https://beeco-brandbook.netlify.app/) – a fejléc „Brand Book” linkjéhez.
+[build]
+  command = "node tools/docs-ds.js"
+  publish = "_site/ds"
+  # nincs edge function: üres mappa helyett a nem létező alapértelmezést se olvassa be (a kapu.js itt NEM futhat)
+  edge_functions = "netlify/edge-functions-nincs"
+  # csak akkor épít, ha a DS forrása változott
+  ignore = "[ -n \"$CACHED_COMMIT_REF\" ] && git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- docs-site/ tools/docs/ tools/docs-ds.js tokens/ termek/ brandbook/elemek/ api/ dist/ web/assets/ netlify.docs-ds.toml VERSION CHANGELOG.md"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; frame-src 'self' https://beeco-szelektalj.netlify.app; frame-ancestors 'self'; form-action 'self'; base-uri 'none'; object-src 'none'"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "same-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

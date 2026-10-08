@@ -1,0 +1,181 @@
+{
+  "id": "ter-es-racs",
+  "cim": "Tér és rács",
+  "alcim": "4 px-es rács, érintési felületek, rétegsorrend – és a töréspontok, amelyek ma még nem tokenek.",
+  "csoport": "alapok",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "h2",
+      "x": "Térköz",
+      "id": "terkoz"
+    },
+    {
+      "t": "p",
+      "x": "4 px-es rács: minden térköz ennek többszöröse."
+    },
+    {
+      "t": "gen",
+      "nev": "terkoz"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Kártya belső margója `sp-5` (24 px).",
+        "Űrlapmezők között `sp-4` (16 px)."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `tokens/core.json` (space), `docs/termek-arculat.md` 3."
+    },
+    {
+      "t": "h2",
+      "x": "Érintési felület és sűrűség",
+      "id": "erintes"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Minden érinthető elem legalább 44 px (`--bc-tap`).",
+        "A sűrű admin-felületen egérrel 36 px-es gomb és menüsor is lehet (`AppShell density=\"compact\"`); érintőképernyőn marad a 44 px."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `tokens/core.json` (tap), `docs/rendszer.md` 2., `brandbook/feluletek/admin.json`."
+    },
+    {
+      "t": "h2",
+      "x": "Rétegsorrend",
+      "id": "retegek"
+    },
+    {
+      "t": "p",
+      "x": "Nyers z-index szám helyett ezeket a tokeneket használd (`--bc-z-…`):"
+    },
+    {
+      "t": "tabla",
+      "cim": "Rétegsorrend",
+      "fej": [
+        "Token",
+        "Érték"
+      ],
+      "sorok": [
+        [
+          "`z-behind`",
+          "-1"
+        ],
+        [
+          "`z-sticky`",
+          "10"
+        ],
+        [
+          "`z-header`",
+          "20"
+        ],
+        [
+          "`z-drawer`",
+          "40"
+        ],
+        [
+          "`z-overlay`",
+          "50"
+        ],
+        [
+          "`z-modal`",
+          "55"
+        ],
+        [
+          "`z-popover`",
+          "70"
+        ],
+        [
+          "`z-toast`",
+          "80"
+        ],
+        [
+          "`z-tooltip`",
+          "90"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Töréspontok",
+      "id": "torespontok"
+    },
+    {
+      "t": "hianyzik",
+      "cim": "A töréspontok nem tokenek",
+      "x": [
+        "A design systemnek nincs töréspont-tokenje: a szélességek a `termek/css/bc-*.css` `@media` szabályaiban élnek (a CSS-változó nem használható `@media` feltételben). Nincs egységes lista sem, hogy melyik érték mit jelent.",
+        "A 900 px a bizonyosan dokumentált: az alkalmazásváz (`bc-shell`) 900 px alatt fiók lesz. A többi érték a fájlokban van, jelentésük nincs leírva."
+      ]
+    },
+    {
+      "t": "tabla",
+      "cim": "A CSS-ben talált szélességi feltételek",
+      "fej": [
+        "Szélesség",
+        "Hol él"
+      ],
+      "sorok": [
+        [
+          "`max-width: 420px`",
+          "`bc-kieg2.css` (2 szabály)"
+        ],
+        [
+          "`max-width: 520px`",
+          "`bc-media.css`"
+        ],
+        [
+          "`max-width: 600px`",
+          "`bc-reteg.css` (4 szabály; az oldalpanel 600 px alatt teljes képernyő)"
+        ],
+        [
+          "`min-width: 640px`",
+          "`bc-csapat.css`"
+        ],
+        [
+          "`max-width: 767px` / `min-width: 768px`",
+          "`bc-web.css`"
+        ],
+        [
+          "`max-width: 900px` / `min-width: 900px`",
+          "`bc-shell.css` (fiók), `bc-web.css`, `bc-csapat.css`"
+        ],
+        [
+          "`min-width: 992px`",
+          "`bc-web.css`"
+        ],
+        [
+          "`min-width: 1200px`",
+          "`bc-csapat.css`"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Ellenőrzött nézetek (a komponens-tesztek mérete): telefon álló 320×640 és 390×844, telefon fekvő 844×390, tablet álló 768×1024, tablet fekvő 1024×768, asztal 1280×800 és 1440×900, érintő-TV 1920×1080 – világos és sötét módban, 200%-os nagyítással is. Forrás: `docs/komponensek.md` 3.2."
+    },
+    {
+      "t": "h2",
+      "x": "Rács",
+      "id": "racs"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Űrlapmezők rácsa: `bc-form-grid` (+ `is-wide`), telefonon egy oszlop.",
+        "Adatlap-kártyák rácsa: `InfoGrid` (a tartalom szélességéhez tördel, legalább 320 px-es oszlop).",
+        "Oldalváz: `AppShell` – oldalsáv és tartalom."
+      ]
+    },
+    {
+      "t": "hianyzik",
+      "cim": "Általános oldalrács",
+      "x": "Az oldal egészére vonatkozó oszlopos rács (oszlopszám, csatorna, margó) leírása nincs a dokumentumokban; a rácsok komponens szintűek."
+    }
+  ]
+}

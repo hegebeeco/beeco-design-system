@@ -1,0 +1,94 @@
+{
+  "id": "partnerarculat",
+  "cim": "Partnerarculat",
+  "alcim": "Ha együtt dolgozunk: így jelenik meg a beeco a te anyagaidban, és így jelensz meg te a beecónál.",
+  "csoport": "alkalmazas",
+  "statusz": "vázlat",
+  "blokkok": [
+    { "t": "h2", "x": "A partnerprogram" },
+    { "t": "hivatalos", "cim": "Mit ad a beeco",
+      "x": "„Egyedi megjelenés a térképen, kuponok, hűségprogram és havi analitika.”",
+      "forras": ["[beeco.hu/szolgaltatas/partner](https://www.beeco.hu/szolgaltatas/partner)"] },
+    { "t": "p", "x": "A **Zümi csomag** (elérhető): egyedi térképes megjelenés, profil a weben és az appban; egyszeri és gyűjtőkuponok; PartnerApp; havi analitika; ajtómatrica, plakát, támogató anyagok; nagyvállalati céges kiajánló. Forrás: [beeco.hu/szolgaltatas/partner](https://www.beeco.hu/szolgaltatas/partner)." },
+    { "t": "h3", "x": "Hogyan lesz valaki partner" },
+    { "t": "szamozott", "elemek": [
+      "**Jelentkezés** – miért ökos a vállalkozás, és mi a kuponajánlat.",
+      "**Beállítás** – profil, kuponok a PartnerAppban.",
+      "**Élesítés** – megjelenés a térképen és az appban."
+    ] },
+    { "t": "p", "x": "Hogy ki kerülhet a térképre, azt a beeco szakértő csapata értékelési rendszer alapján dönti el („beecompatibilitási teszt”)." },
+    { "t": "hivatalos", "cim": "Tipikus partnereink",
+      "elemek": ["csomagolásmentes boltok", "használt termékek üzletei", "javító- és szervizhelyek", "öko, zero waste webshopok", "helyi termelők", "kölcsönzők"],
+      "forras": ["beeco brandbook v2 (belső márkadokumentum, 2026) – Secunder célcsoportok"] },
+
+    { "t": "h2", "x": "Közös márkahasználat" },
+    { "t": "p", "x": "A beeco logója és méhecskéi belső használatúak: partner anyagában csak a beeco jóváhagyásával jelenhetnek meg. A szabályt és a fájlokat a [Logó](logo.html#ki-hasznalhatja) és a [Letöltések](letoltesek.html) oldal adja." },
+    { "t": "javaslat", "cim": "Közös márkahasználat – hat pont",
+      "elemek": [
+        "Csak a hivatalos logófájlokat használd, változtatás nélkül.",
+        "A két logó egyforma magas, egy vonalban, köztük legalább a logó magasságának megfelelő hely vagy egy vékony elválasztó vonal.",
+        "A beeco logó a saját színeiben marad – nem kap partner-színt, nem kerül a partner mintájára.",
+        "Szövegben: „a beeco partnere”, „beeco-partner”; a beeco mindig kisbetűvel.",
+        "Méhecske csak a beecótól kapott, kész képként – nem rajzolható át, nem öltöztethető a partner márkájába.",
+        "A kész anyagot megjelenés előtt küldd el a beeco kapcsolattartódnak; a jóváhagyásig ne jelenjen meg."
+      ],
+      "forras": ["a jóváhagyási szabály: docs/termek-arculat.md 9.", "a logószabályok: Logó oldal", "Szerkesztői javaslat – általános közös márkahasználati gyakorlat alapján"] },
+    { "t": "dodont", "cim": "Közös logósor és méhecske a partner anyagában", "allapot": "javaslat",
+      "forras": ["docs/termek-arculat.md 9. (jóváhagyás)", "Szerkesztői javaslat – általános közös márkahasználati gyakorlat"],
+      "parok": [
+        { "jo": { "felirat": "egyforma magas, elválasztó vonallal", "html": "<div class=\"bb-cobrand\"><img class=\"bb-logo-ok\" src=\"assets/brand/logo.webp\" alt=\"beeco logó\" width=\"160\" height=\"98\"><span class=\"bb-cobrand-valaszto\" aria-hidden=\"true\"></span><span class=\"bb-partner-logo\">PARTNER LOGÓ</span></div>" },
+          "rossz": { "felirat": "a beeco logó kicsi és átszínezett", "html": "<div class=\"bb-cobrand\"><span class=\"bb-partner-logo is-nagy\">PARTNER LOGÓ</span><img class=\"bb-logo-kicsi bb-logo-hiba is-szinezett\" src=\"assets/brand/logo.webp\" alt=\"beeco logó\" width=\"60\" height=\"37\"></div>" },
+          "miert": "A két márka egyenrangú; a beeco logó a saját színeiben marad." },
+        {
+        "jo": { "felirat": "a beecótól kapott méhecske", "html": "<img src=\"assets/brand/bee-cheer.webp\" alt=\"beeco méhecske\" width=\"96\" height=\"96\">" },
+        "rossz": { "felirat": "partnerszínre festett méhecske", "html": "<img class=\"bb-logo-hiba is-szinezett\" src=\"assets/brand/bee-cheer.webp\" alt=\"átszínezett méhecske\" width=\"96\" height=\"96\">" },
+        "miert": "A méhecske nem öltöztethető a partner márkájába." } ] },
+    { "t": "korrigalando", "cim": "A partner vállalásai és a jóváhagyás menete",
+      "elemek": [
+        "A partner a beeco logóját és méhecskéit csak a beeco jóváhagyásával, a Letöltések fájljaiból, változtatás nélkül használja.",
+        "A közös anyagot (plakát, poszt, sajtóanyag) megjelenés előtt elküldi a beecónak; a beeco **5 munkanapon belül** visszajelez.",
+        "A partner valós adatokat ad meg magáról (nyitvatartás, kínálat), és jelzi, ha ezek változnak.",
+        "A beecompatibilitási teszt szempontjait folyamatosan teljesíti."
+      ],
+      "forras": ["Szerkesztői vázlat – a végleges szöveg és a határidő a partnerszerződésből jön"] },
+    { "t": "korrigalando", "cim": "Sajtócsomag",
+      "elemek": [
+        "rövid leírás: a 40 szavas bemutatkozó ([Pozíció](marka-pozicio.html))",
+        "logók: [Letöltések](letoltesek.html) (a vektoros logó később)",
+        "képek: a beeco fotóbankja ([Képek és fotó](kepek-fotok.html))",
+        "kapcsolat: a beeco kommunikációs csapata"
+      ],
+      "forras": ["Szerkesztői vázlat – helyőrző, amíg a hivatalos csomag elkészül"] },
+
+    { "t": "h2", "x": "Partneri gyorscsomag" },
+    { "t": "lead", "x": "Minden, ami a közös anyaghoz kell, egy helyen: logó, színek, a közös márkahasználat szabályai, egy nyomtatható összefoglaló és a partneri sablonok." },
+    { "t": "p", "x": "A csomagban: a két logó (WebP), a színkódok, az egyoldalas összefoglaló és a {{szam:partner-sablonok}} partneri sablon szerkeszthető HTML-ként, a betűkkel együtt. Kicsomagolás után a sablon böngészőben nyílik; a szöveg átírható, a lap PDF-be menthető. A csomag lent és a [Letöltések](letoltesek.html) oldalon van." },
+    { "t": "gen", "nev": "sablonletoltes", "csoport": "partner", "osszefoglalo": true },
+    { "t": "h3", "x": "Logó és színek" },
+    { "t": "gen", "nev": "partnerlogok" },
+    { "t": "p", "x": "A két logóváltozat és a szabályaik a [Logó](logo.html) oldalon vannak." },
+    { "t": "gen", "nev": "partnerszinek" },
+    { "t": "szabaly", "cim": "A méz az egyetlen hangsúly",
+      "elemek": ["A méz (`--bc-honey`) a beeco hangsúlyszíne – rajta a szöveg mindig fekete.", "A beeco logója krém vagy fehér alapon áll; sötét alapon a sötét változat."],
+      "forras": ["docs/termek-arculat.md 1–2., 9."] },
+    { "t": "h3", "x": "Partneri sablonok" },
+    { "t": "gen", "nev": "sablonok", "csoport": "partner", "csak": ["partner-ajtomatrica", "partner-plakat-a4", "partner-poszt-1x1"] },
+    { "t": "h3", "x": "Egyoldalas összefoglaló" },
+    { "t": "gen", "nev": "sablonok", "csoport": "partner", "csak": ["partner-osszefoglalo"] },
+    { "t": "korrigalando", "cim": "Minta – korrigálandó",
+      "x": "Az ajtómatrica, a plakát és a közösségi poszt **placeholder**: a végleges szöveget, méretet és elrendezést a beeco adja. Az összefoglaló „jóváhagyásra váró” pontjait is a beeco véglegesíti.",
+      "forras": ["Szerkesztői vázlat – a partneri sablonok végleges szövege és mérete a beecótól jön"] },
+    { "t": "hianyzik", "cim": "Ami még nincs",
+      "elemek": [
+        "a partneri sablonok végleges szövege és mérete (most placeholder, „Minta – korrigálandó”)",
+        "a partner vállalásai és a jóváhagyás határideje véglegesen (fent vázlat, korrigálandó)",
+        "a hivatalos sajtócsomag (fent vázlat, korrigálandó)",
+        "vektoros logó (SVG vagy PDF) a gyorscsomagba"
+      ] },
+    { "t": "h2", "x": "Kapcsolódó" },
+    { "t": "lista", "elemek": [
+      "Kampány saját témával: [Kampány-altéma: Csicsergősz](kampany-altema.html)",
+      "Közösségi anyaghoz: [Social media](social.html)"
+    ] }
+  ]
+}

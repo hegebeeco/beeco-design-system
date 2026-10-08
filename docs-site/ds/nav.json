@@ -1,0 +1,30 @@
+{
+  "_readme": "A Design System menüje és olvasási sorrendje (a „Következő” lánc ebből jön). tervezett = a cél-struktúra még meg nem írt oldala (terv: Cél-struktúra 2, Carbon-minta). al = behúzott alpont (kategória alatti komponens). Oldal: docs-site/ds/<slug>.json. A Komponensek csoportot a motor tölti fel kategóriákkal.",
+  "cim": "Design System",
+  "csoportok": [
+    { "id": "kezdes", "cim": "Kezdés", "oldalak": [ { "slug": "index", "cim": "Kezdés" }, { "slug": "telepites", "cim": "Telepítés" }, { "slug": "szotar", "cim": "Szótár" } ] },
+    { "id": "alapok", "cim": "Alapok", "oldalak": [
+      { "slug": "szin", "cim": "Szín" },
+      { "slug": "tipografia", "cim": "Tipográfia" },
+      { "slug": "ter-es-racs", "cim": "Tér és rács" },
+      { "slug": "forma", "cim": "Forma" },
+      { "slug": "mozgas", "cim": "Mozgás" },
+      { "slug": "ikonok", "cim": "Ikonok" },
+      { "slug": "adatvizualizacio", "cim": "Adatvizualizáció" },
+      { "slug": "hozzaferhetoseg", "cim": "Hozzáférhetőség" },
+      { "slug": "temak", "cim": "Témák" }
+    ] },
+    { "id": "komponensek", "cim": "Komponensek", "oldalak": [ { "slug": "komponensek", "cim": "Áttekintés" } ] },
+    { "id": "mintak", "cim": "Minták", "oldalak": [
+      { "slug": "urlap", "cim": "Űrlap" },
+      { "slug": "lista-reszlet-szerkeszto", "cim": "Lista – részlet – szerkesztő" },
+      { "slug": "minta-iranyitopult", "cim": "Irányítópult" },
+      { "slug": "allapotok", "cim": "Üres, hiba és töltés állapotok" },
+      { "slug": "mikroszoveg", "cim": "Mikroszöveg" }
+    ] },
+    { "id": "feluletek", "cim": "Felületek", "oldalak": [ { "slug": "feluletek", "cim": "A hat felület állapota" }, { "slug": "migracio", "cim": "Migrációs út", "tervezett": true } ] },
+    { "id": "eszkozok", "cim": "Eszközök", "oldalak": [ { "slug": "eszkozok", "cim": "Eszközök" } ] },
+    { "id": "valtozasok", "cim": "Változások", "oldalak": [ { "slug": "valtozasok", "cim": "Változások" } ] },
+    { "id": "kozremukodes", "cim": "Közreműködés", "oldalak": [ { "slug": "kozremukodes", "cim": "Közreműködés" } ] }
+  ]
+}

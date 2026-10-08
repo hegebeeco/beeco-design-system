@@ -1,0 +1,195 @@
+{
+  "id": "allapotok",
+  "cim": "Üres, hiba és töltés állapotok",
+  "alcim": "Minden képernyő öt állapotra van megtervezve: töltés, üres, hiba, siker, tiltott.",
+  "csoport": "mintak",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "p",
+      "x": "Egy komponens vagy oldal addig nem kész, amíg minden állapota megvan. Az alábbi minták megmondják, melyik állapothoz milyen elem, milyen szöveg és hány méhecske való. A szövegpéldák: [Mikroszöveg](mikroszoveg.html)."
+    },
+    {
+      "t": "h2",
+      "x": "Töltés",
+      "id": "toltes"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Rövid várakozás: pörgő vagy mézsejt-töltő, `role=\"status\"` + `aria-label`.",
+        "Lista, táblázat, kártya töltése: csontváz a tartalom helyén (`SkeletonRows`).",
+        "1 másodpercnél hosszabb töltés, feltöltés, import: Futár méhecske és haladásjelző.",
+        "Frissítéskor, ha már van adat: a régi adat marad, felül vékony töltésjel.",
+        "A gombra nem külön pörgő kerül: a gomb kapja az `aria-busy=\"true\"`-t.",
+        "A töltő 10 másodperc után megáll; csökkentett mozgásnál semmi nem pörög."
+      ]
+    },
+    {
+      "t": "dodont",
+      "allapot": "szabaly",
+      "forras": [
+        "brandbook/elemek/komponensek.json (Töltésjelző)",
+        "docs/termek-arculat.md 6"
+      ],
+      "parok": [
+        {
+          "jo": {
+            "felirat": "csontváz hosszabb töltésnél",
+            "html": "<div class=\"bc-card\" aria-busy=\"true\" aria-label=\"Partnerek betöltése\"><div class=\"bb-demo-oszlop bb-demo-keskeny\"><span class=\"bc-skeleton\"></span><span class=\"bc-skeleton\"></span><span class=\"bc-skeleton\"></span></div></div>"
+          },
+          "rossz": {
+            "felirat": "pörgő a gomb mellett, a gomb aktív",
+            "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn\">Mentés</button><span class=\"bc-spinner\" role=\"status\" aria-label=\"Mentés folyamatban\"></span></div>"
+          },
+          "miert": "Hosszabb töltésnél a csontváz a tartalom helyét mutatja; a pörgő a rövid várakozásé. A pörgő mellett aktív gomb duplán menthet."
+        }
+      ],
+      "cim": "Csontváz a tartalom helyén"
+    },
+    {
+      "t": "h2",
+      "x": "Üres állapot",
+      "id": "ures"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Üres lista: Pihenő méhecske + egy mondat + az első teendő.",
+        "Nincs találat szűrés után: Gondolkodó méhecske + tipp + „Szűrők törlése” – ez nem „üres lista”.",
+        "Hálózati hibánál nem üres lista jelenik meg, hanem hibaállapot újrapróbálással.",
+        "Képernyőnként legfeljebb egy méhecske."
+      ]
+    },
+    {
+      "t": "dodont",
+      "allapot": "szabaly",
+      "forras": [
+        "brandbook/elemek/komponensek.json (Üres, töltés és hiba állapot)",
+        "tokens/hangnem.json"
+      ],
+      "parok": [
+        {
+          "jo": {
+            "felirat": "megmondja, miért üres, és mi a teendő",
+            "html": "<div class=\"bc-empty is-compact\"><img src=\"repo/web/assets/brand/moods/rest.webp\" alt=\"\"><strong>Még nincs esemény</strong><p class=\"bc-empty-text\">Az első eseményed itt jelenik meg.</p><div class=\"bc-row\"><button type=\"button\" class=\"bc-btn\">Új esemény</button></div></div>"
+          },
+          "rossz": {
+            "felirat": "csak „Nincs adat”",
+            "html": "<div class=\"bc-empty is-compact\"><strong>Nincs adat</strong></div>"
+          },
+          "miert": "A „Nincs adat” nem mondja meg, hogy üres, szűrt vagy hibás-e, és mit tehetsz."
+        }
+      ],
+      "cim": "Egy mondat, egy teendő"
+    },
+    {
+      "t": "h2",
+      "x": "Hiba",
+      "id": "hiba"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "A hiba megmondja, mi történt, és mi a következő lépés; sosem szidja a felhasználót.",
+        "Mezőhiba: a mező alatt. Tartós oldalszintű hiba: figyelmeztető sáv (`role=\"alert\"` csak hibánál). Egy művelet hibája: értesítés, amely nem tűnik el magától, amíg be nem zárják.",
+        "Hálózati hiba: hibaállapot újrapróbálással (`DataState`).",
+        "Szomorú méhecske csak a mi hibánknál (szerverhiba, leállás), soha a felhasználó hibájánál; mérges méhecske soha.",
+        "A hibaüzenet teendő-részében nincs szóvicc."
+      ]
+    },
+    {
+      "t": "dodont",
+      "allapot": "szabaly",
+      "forras": [
+        "brandbook/elemek/komponensek.json (Figyelmeztető sáv)",
+        "tokens/hangnem.json"
+      ],
+      "parok": [
+        {
+          "jo": {
+            "felirat": "megmondja, mi a következő lépés",
+            "html": "<div class=\"bc-alert is-danger\" role=\"alert\"><p><strong>Nem sikerült menteni.</strong> Ellenőrizd a weboldal címét, és próbáld újra.</p></div>"
+          },
+          "rossz": {
+            "felirat": "szóvicc a hibaüzenetben",
+            "html": "<div class=\"bc-alert is-danger\" role=\"alert\"><p><strong>Hoppá, elzümmögött!</strong> Valami nem jó.</p></div>"
+          },
+          "miert": "A hibaüzenet teendő-részében nincs szóvicc, és meg kell mondania a következő lépést."
+        }
+      ],
+      "cim": "Hiba a teendővel"
+    },
+    {
+      "t": "h2",
+      "x": "Siker",
+      "id": "siker"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Rövid visszajelzés egy művelet után: értesítés (`notify.success`). Egyszerre legfeljebb 3 látszik.",
+        "Tartós jó állapot: `bc-alert is-success`.",
+        "Sikeres mentésnél a Szurkoló méhecske jár; a Bajnok csak mérföldkőnél, ritkán.",
+        "Visszafordítható műveletnél megerősítés helyett utólagos „Visszavonás” az értesítésben."
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Tiltott és jogosultság",
+      "id": "tiltott"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Tiltott vezérlő: `disabled`, csendes felületszínnel (`surface-2`); a gomb ilyenkor nem kap árnyékot.",
+        "Jogosultság hiánya: teljes oldalon a 403-as állapot-oldal, listában a `DataState` „nincs jogosultság” állapota."
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Teljes oldalas állapotok",
+      "id": "oldalak"
+    },
+    {
+      "t": "tabla",
+      "cim": "Állapot-oldalak",
+      "fej": [
+        "Állapot",
+        "Méhecske",
+        "Megjegyzés"
+      ],
+      "sorok": [
+        [
+          "404",
+          "Kacsintó",
+          "nem Szomorú: a rossz link nem a felhasználó vétke"
+        ],
+        [
+          "Nincs jogosultság",
+          "Gondolkodó",
+          ""
+        ],
+        [
+          "Szerverhiba",
+          "Szomorú",
+          "csak a mi hibánk"
+        ],
+        [
+          "Lejárt munkamenet",
+          "Pihenő",
+          ""
+        ],
+        [
+          "Offline",
+          "Gondolkodó",
+          "az oldal tetején sáv, amely elmondja, mi lesz a mentéssel; a kapcsolat visszatérésekor eltűnik"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `brandbook/elemek/komponensek.json` (Állapot-oldalak és offline sáv), `tokens/hangnem.json` (szerepek, pillanatok)."
+    }
+  ]
+}

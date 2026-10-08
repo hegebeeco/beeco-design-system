@@ -7,7 +7,7 @@
  "rovid": "A beeco webjátékai (Méhesd 2050: Szelektálj!, Hűtő-mester, Greenwashing-vadász…) – meleg, puha, low-poly diorama.",
  "kinek": [
   "játékosok – iskolák, rendezvények (kioszk), az app felhasználói",
-  "aki játékot fejleszt (`beeco-jatek` skill)"
+  "aki játékot fejleszt (a kit `docs/jatektervezes.md`-je)"
  ],
  "hol": "`beeco-szelektalj` és társai – Netlify (`beeco-szelektalj.netlify.app`)",
  "kozos": [
@@ -67,9 +67,9 @@
    "forras": "docs/arculat.md"
   },
   "ds": {
-   "ertek": "a DS játékbőre, `kit-sync` másolja",
-   "jel": "kozos",
-   "forras": "KIT-FILES.json"
+   "ertek": "a DS játékbőre, `kit-sync` másolja; verziók: `beeco-szelektalj` 1.49.5 (2026-10-06), `beeco-okos-index` 1.3.0 (2026-09-18), a kit 1.53.0",
+   "jel": "reszben",
+   "forras": "KIT-FILES.json, <projekt>/KIT-VERZIO"
   },
   "technika": {
    "ertek": "statikus HTML · three.js r128 · service worker",
@@ -85,10 +85,13 @@
   "kartyaSzoveg": "Válogasd szét a hulladékot!"
  },
  "felmeres": {
-  "datum": "2026-10-06",
+  "datum": "2026-10-08",
   "forras": [
    "web/css/tokens.css",
-   "docs/arculat.md"
+   "docs/arculat.md",
+   "beeco-szelektalj/KIT-VERZIO",
+   "beeco-okos-index/KIT-VERZIO",
+   "`node tools/kit-sync.js ../beeco-szelektalj --check`"
   ],
   "mert": {
    "sarkok": [
@@ -155,8 +158,7 @@
      ],
      "forras": [
       "`docs/arculat.md` – 4. Elemkészlet, 5. Piktogramok, 5/b–5/d, 7. Szöveg",
-      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`",
-      "`beeco-arculat` skill – Szabályok (nem alkudható)"
+      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`"
      ]
     },
     {
@@ -200,8 +202,7 @@
      ],
      "forras": [
       "`docs/arculat.md` – 4. Elemkészlet, 5. Piktogramok, 5/b–5/d, 7. Szöveg",
-      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`",
-      "`beeco-arculat` skill – Szabályok (nem alkudható)"
+      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`"
      ]
     },
     {
@@ -245,8 +246,7 @@
      ],
      "forras": [
       "`docs/arculat.md` – 4. Elemkészlet, 5. Piktogramok, 5/b–5/d, 7. Szöveg",
-      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`",
-      "`beeco-arculat` skill – Szabályok (nem alkudható)"
+      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`"
      ]
     },
     {
@@ -290,8 +290,7 @@
      ],
      "forras": [
       "`docs/arculat.md` – 4. Elemkészlet, 5. Piktogramok, 5/b–5/d, 7. Szöveg",
-      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`",
-      "`beeco-arculat` skill – Szabályok (nem alkudható)"
+      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`"
      ]
     },
     {
@@ -330,8 +329,7 @@
      ],
      "forras": [
       "`docs/arculat.md` – 4. Elemkészlet, 5. Piktogramok, 5/b–5/d, 7. Szöveg",
-      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`",
-      "`beeco-arculat` skill – Szabályok (nem alkudható)"
+      "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`"
      ]
     },
     {
@@ -376,7 +374,6 @@
      "forras": [
       "`docs/arculat.md` – 4. Elemkészlet, 5. Piktogramok, 5/b–5/d, 7. Szöveg",
       "`web/css/ds.css`, `web/css/ds-game.css`, `web/css/ds-ext.css`",
-      "`beeco-arculat` skill – Szabályok (nem alkudható)",
       "`docs/grafika-spec.md`, `docs/rajzolas.md`"
      ]
     }
@@ -394,8 +391,7 @@
     "ellenőrzés: `node tests/check-arculat.js` és `node tests/check-art.js`"
    ],
    "forras": [
-    "`docs/arculat.md` 3–9.",
-    "`beeco-arculat` skill"
+    "`docs/arculat.md` 3–9."
    ]
   }
  ]

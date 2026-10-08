@@ -1,0 +1,53 @@
+{
+  "id": "sablonok",
+  "cim": "Sablonok és nyomtatvány",
+  "alcim": "Kész sablonok posztra, prezentációra, plakátra, aláírásra és névjegyre – és egy lista, amit anyagkészítés előtt végignézhetsz.",
+  "csoport": "alkalmazas",
+  "statusz": "vázlat",
+  "blokkok": [
+    { "t": "p", "x": "A sablonok élő HTML-oldalak a Design System tokenjeiből: a betű, a szín, a keret és az árnyék ugyanaz, mint az appban és a weben. A szövegük **minta** – írd át a sajátodra." },
+    { "t": "h2", "x": "Így használd" },
+    { "t": "szamozott", "elemek": [
+      "**Nyisd meg** a sablont – új lapon, az ablakhoz igazítva.",
+      "**Kattints a szövegre, és írd át.** A méret és az elrendezés marad.",
+      "**Mentsd PDF-be:** Nyomtatás → Mentés PDF-ként. A lap pontosan a kimeneti méret (pl. 1080 × 1080 px, A4), egy lap egy oldal.",
+      "A PDF-et a **Canva** és a **Figma** szerkeszthetően megnyitja – innen exportálhatsz PNG-t a posztokhoz."
+    ] },
+    { "t": "h2", "x": "A sablonok" },
+    { "t": "gen", "nev": "sablonok", "csoport": "social" },
+    { "t": "p", "x": "Ez {{szam:sablonok-social}} szerkeszthető HTML-sablon (a címdia és a tartalomdia egy fájlban van, a névjegy előlapja és hátlapja is). A csomag letöltése lent és a [Letöltések](letoltesek.html) oldalon van. A partneri sablonok a [Partnerarculat](partnerarculat.html) oldalon vannak." },
+    { "t": "h3", "x": "Mindet egyben" },
+    { "t": "gen", "nev": "sablonletoltes", "csoport": "social" },
+    { "t": "hianyzik", "cim": "Ami még nincs",
+      "elemek": [
+        "Canva- vagy Figma-változat a sablonokból (addig: PDF-ként menthető, és a Canva megnyitja)",
+        "nyilvános logó-cím az e-mail-aláíráshoz: a Brand Book jelszóval védett, a címzett levelezője innen nem tölti be a képet",
+        "videó-sablon (reels, TikTok: nyitó és záró kocka, feliratstílus)",
+        "saját story-matricák és kiemelt story-borítók"
+      ] },
+
+    { "t": "h2", "x": "Ha beecós anyagot készítesz" },
+    { "t": "szabaly", "cim": "Ellenőrzőlista",
+      "elemek": [
+        "**beeco** – kisbetűvel ([Logó](logo.html)).",
+        "Logó csak a [Letöltések](letoltesek.html) fájljaiból, torzítás nélkül.",
+        "Képernyőn vagy plakáton legfeljebb egy méhecske és egy szóvicc ([Méhecske és illusztráció](meh-illusztracio.html), [Hang és személyiség](marka-hang.html)).",
+        "Tegeződés, rövid mondatok; szám csak forrással.",
+        "Méz a hangsúly – egy fő gomb vagy egy kiemelés ([Szín](szin.html)).",
+        "Külső (partneri, nyilvános) anyagot a beeco hagy jóvá."
+      ],
+      "forras": ["Pozíció, Hang és személyiség oldal", "docs/termek-arculat.md"] },
+    { "t": "dodont", "cim": "Egy plakát, kétféleképpen", "allapot": "szabaly",
+      "forras": ["Pozíció, Hang és személyiség oldal", "tokens/hangnem.json"],
+      "parok": [
+        { "jo": {"felirat": "kisbetűs beeco, egy méh, tény", "html": "<div class=\"bc-card bb-demo-keskeny bb-demo-oszlop\"><img class=\"bb-logo-kicsi\" src=\"assets/brand/logo.webp\" alt=\"beeco\" width=\"60\" height=\"37\"><p class=\"bb-display bb-fs-xl\">Öntözz velünk szombaton!</p><p>Kert utca 12., 10 órától. Hozz kannát, ha van.</p><img src=\"assets/brand/bee-cheer.webp\" alt=\"\" width=\"56\" height=\"56\"></div>"},
+          "rossz": {"felirat": "nagybetűs név, forrás nélküli szám, túlzás", "html": "<div class=\"bc-card bb-demo-keskeny bb-demo-oszlop\"><p class=\"bb-display bb-fs-xl\">A BEECO 1 000 000 FÁT MENTETT MEG!!!</p><div class=\"bb-demo-sor\"><img src=\"assets/brand/bee-cheer.webp\" alt=\"\" width=\"40\" height=\"40\"><img src=\"assets/brand/bee-super.webp\" alt=\"\" width=\"40\" height=\"40\"><img src=\"assets/brand/bee-phone.webp\" alt=\"\" width=\"40\" height=\"40\"></div></div>"},
+          "miert": "Kisbetűs beeco, egy méhecske, tegező és tényszerű szöveg – szám csak forrással." }
+      ] },
+    { "t": "h2", "x": "Kapcsolódó" },
+    { "t": "lista", "elemek": [
+      "Méretek, zónák, hangnem csatornánként: [Social media](social.html)",
+      "Mindenkinek érthetően: [Hozzáférhető tartalom](hozzaferheto-tartalom.html)"
+    ] }
+  ]
+}

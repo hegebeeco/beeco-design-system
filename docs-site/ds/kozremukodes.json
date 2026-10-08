@@ -1,0 +1,127 @@
+{
+  "id": "kozremukodes",
+  "cim": "Közreműködés",
+  "alcim": "Mikor kell új elem, hogyan kerül be, és mi kell ahhoz, hogy kész legyen.",
+  "csoport": "kozremukodes",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "p",
+      "x": "Új komponens, új változat vagy új szabály csak jóváhagyással kerül a design systembe. Ennek az az oka, hogy a nevek soha nem változnak és nem törlődnek: amit egyszer bevezettünk, azt minden fogyasztónak tartanunk kell."
+    },
+    {
+      "t": "h2",
+      "x": "Új elem kell?",
+      "id": "uj-elem"
+    },
+    {
+      "t": "p",
+      "x": "Mielőtt bármit építesz, ebben a sorrendben keress:"
+    },
+    {
+      "t": "szamozott",
+      "elemek": [
+        "**DS React-komponens** (`@beeco/design-system/react`) – ha van, azt használd, ne írd újra.",
+        "**DS CSS-elem** (`bc-…`, `termek/css/`) – ha nincs React-változat, a `bc-` osztályokra építs.",
+        "**A projekt meglévő komponense** (például az admin `BeecoInput`-ja) – ha a DS-ben nincs, de a projektben van, azt használd, és jelezd: ez a DS-be való.",
+        "**Tokenekből, meglévő mintára** – csak ha a fentiek egyike sem fedi le, és a javaslatot jóváhagyták."
+      ]
+    },
+    {
+      "t": "tilos",
+      "cim": "Jóváhagyás nélkül nem",
+      "x": "Új vizuális mintát (új gombfajta, új kártya, új színhasználat, új ikonstílus) jóváhagyás nélkül kitalálni tilos. Ha egy feladathoz új elem kellene, állj meg és javasolj; ne építsd meg „ideiglenesen”.",
+      "forras": [
+        "docs/komponensek.md 1."
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Javaslatfolyamat",
+      "id": "javaslatfolyamat"
+    },
+    {
+      "t": "szamozott",
+      "elemek": [
+        "**Igény:** melyik képernyőn, mire kell; mely meglévő elemek fedik le részben.",
+        "**Javaslatlap** (`docs/javaslatok/NN-nev.md`, vizuális elemnél `.html` is): szint (atom / molekula / …), 2–3 változat képpel, állapotok, szélső esetek, API (props), hozzáférhetőség, mit vált ki a projektekben.",
+        "**Döntés:** a javaslatlap „Döntés” része: dátum, választott változat, megjegyzés.",
+        "**Építés** a jóváhagyott változat szerint, tesztlappal, `npm test` zölden.",
+        "**Kiadás:** `CHANGELOG.md` (hivatkozik a javaslatra), `VERSION`, címke; a projektekben verzió-emelés."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "A javaslatlapok a repóban vannak: [`docs/javaslatok/`](https://github.com/hegebeeco/beeco-design-system/tree/main/docs/javaslatok); a sablon a `_sablon.md`. Forrás: `docs/komponensek.md` 5., `docs/javaslatok/_sablon.md`."
+    },
+    {
+      "t": "p",
+      "x": "Ami **nem** kell javaslat: hibajavítás, a meglévő elem tokenhez igazítása, teszt és dokumentáció bővítése."
+    },
+    {
+      "t": "h2",
+      "x": "Státuszok",
+      "id": "statuszok"
+    },
+    {
+      "t": "tabla",
+      "cim": "Státuszok",
+      "fej": [
+        "Mi",
+        "Értékek",
+        "Jelentés"
+      ],
+      "sorok": [
+        [
+          "Javaslatlap",
+          "javaslat → jóváhagyva",
+          "a lap fejlécében áll; a jóváhagyás dátuma és a választott változat a „Döntés” részben"
+        ],
+        [
+          "Tartalomblokk ezen az oldalon",
+          "Szabály · Hivatalos szöveg · Jóváhagyásra vár · Hiányzik · Korrigálandó · Tilos",
+          "lásd: [Jelölések](index.html#jelolesek)"
+        ],
+        [
+          "Oldal vagy komponens",
+          "Stabil · Béta · Elavult · Vázlat",
+          "az oldal fejlécében jelvény; a pontos meghatározás nincs rögzítve"
+        ]
+      ]
+    },
+    {
+      "t": "hianyzik",
+      "cim": "Az életciklus-státuszok meghatározása",
+      "x": "Hogy a „stabil”, a „béta” és az „elavult” pontosan mit jelent (mikor lehet átnevezni, mennyi ideig marad egy elavult elem), nincs leírva; a komponensek státusza sincs kitöltve."
+    },
+    {
+      "t": "h2",
+      "x": "Kész, ha",
+      "id": "kesz"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "a tesztlap minden állapotot és a releváns szélső eseteket mutatja;",
+        "mezőnél: címke, súgó (ⓘ), tartomány, számláló, tiltás/levágás; grafikonnál: cím, egység, tengelyek, jelmagyarázat, súgó, „Hogyan olvasd?”, adattábla;",
+        "`npm test` zöld (benne a `check-komponensek`: 8 nézet × világos/sötét, konzolhiba, kilógás, 44 px, kontraszt, billentyűzet);",
+        "a képeket (legalább telefon + asztal, világos + sötét) ember is megnézte;",
+        "a bemutatóban (`termek/bemutato.html`) szerepel, használati példával;",
+        "`CHANGELOG.md` bejegyzés; új elemnél a jóváhagyott javaslatlap hivatkozása."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `docs/komponensek.md` 3.5. A gépi ellenőrzések: [Hozzáférhetőség](hozzaferhetoseg.html#gepi-ellenorzes); a szintek: [Szótár](szotar.html#szintek)."
+    },
+    {
+      "t": "h2",
+      "x": "Hibát találtál, vagy javítanál?",
+      "id": "szerkesztes"
+    },
+    {
+      "t": "p",
+      "x": "Minden oldal alján ott a „Szerkeszd GitHubon” hivatkozás, amely a forrásfájlra visz. A hiányzó adat helyén álló **Hiányzik** jelvények a pótlandó mezők nevét is mutatják."
+    }
+  ]
+}

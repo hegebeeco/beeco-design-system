@@ -14,7 +14,7 @@ a.bc-card, button.bc-card, .bc-card.is-interactive, .bc-card.is-link, .bc-card.b
 .bc-card.is-link .bc-card-link { color: inherit; text-decoration: none; }
 .bc-card.is-link .bc-card-link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
 .bc-card.is-link .bc-card-link:focus-visible { outline: none; }
-.bc-card.is-link:has(.bc-card-link:focus-visible) { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-card.is-link:has(.bc-card-link:focus-visible) { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); }
 .bc-card.is-link :is(a, button):not(.bc-card-link) { position: relative; } /* a kiterjesztett link UTÁN álló elemek így fölötte maradnak */
 .bc-card.is-link:active { transform: translate(var(--bc-shadow-m-x), var(--bc-shadow-m-y)); box-shadow: none; }
 a.bc-card, button.bc-card { display: block; width: 100%; text-align: left; font: inherit; color: inherit; text-decoration: none; }
@@ -35,7 +35,8 @@ a.bc-card, button.bc-card { display: block; width: 100%; text-align: left; font:
 .bc-tab { flex: none; min-height: var(--bc-tap); padding: 0 var(--bc-sp-4); font: inherit; font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft);
   background: transparent; border: var(--bc-bw-base) solid transparent; border-bottom: 0; border-radius: var(--bc-r-m) var(--bc-r-m) 0 0; cursor: pointer; margin-bottom: calc(-1 * var(--bc-bw-base)); }
 .bc-tab[aria-selected="true"] { color: var(--bc-on-accent); background: var(--bc-accent); border-color: var(--bc-line); box-shadow: var(--bc-shadow-s-x) 0 0 0 var(--bc-shadow); }
-@media (hover: hover) and (pointer: fine) { .bc-tab:hover:not([aria-selected="true"]) { color: var(--bc-ink); background: var(--bc-surface-2); } }
+/* A rámutatás csak a nem kijelölt fülre: a NavTabs linkjén a kijelölést az aria-current jelzi (1.54.0 javítás – addig a mostani oldal füle rámutatáskor elvesztette a mézet) */
+@media (hover: hover) and (pointer: fine) { .bc-tab:hover:not([aria-selected="true"], [aria-current="page"]) { color: var(--bc-ink); background: var(--bc-surface-2); } }
 
 /* Felugró ablak – natív <dialog class="bc-modal">: Esc-re zár, fókuszt tart. Háttér: ::backdrop */
 .bc-modal { width: min(560px, calc(100vw - 2 * var(--bc-sp-4))); max-height: calc(100dvh - 2 * var(--bc-sp-5)); padding: 0; overflow: auto;

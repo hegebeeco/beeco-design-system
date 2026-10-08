@@ -1,0 +1,39 @@
+{
+  "id": "csatlakozz",
+  "cim": "Önkénteseknek",
+  "alcim": "Üdv a kaptárban! Ami az első napokban jól jön: a rajok, a csatlakozás menete és hova nézz, ha beecós anyagot készítesz.",
+  "csoport": "csatlakozz",
+  "statusz": "vázlat",
+  "blokkok": [
+    { "t": "h2", "x": "A kaptár és a rajok" },
+    { "t": "p", "x": "A beeco önkéntesei rajokban dolgoznak. A Kaptár a belső önkéntes-platform: rajok, feladatok, Rajpont." },
+    { "t": "hivatalos", "cim": "A nyolc raj",
+      "elemek": ["Szoftveres raj", "Webes raj", "Kommunikációs raj", "Térképész raj", "UX/UI fejlesztő raj", "Kreatív raj", "Beeeznisz raj", "Marketing raj"],
+      "forras": ["[beeco.hu/csapat](https://www.beeco.hu/csapat)", "weboldal/csatlakozz/kapu-minta.json"] },
+    { "t": "h2", "x": "Mit kínálunk, kit várunk" },
+    { "t": "hivatalos", "cim": "Amit kínálunk",
+      "elemek": [
+        "közösségi iroda",
+        "rugalmas időbeosztás, home office",
+        "kapcsolati háló, betekintés a startup-szférába",
+        "gyakorlatigazolás, referencia – szakmai gyakorlat, portfólió, diplomamunka is"
+      ],
+      "forras": ["[beeco.hu/csapat](https://www.beeco.hu/csapat)"] },
+    { "t": "hivatalos", "cim": "Téged várunk, ha…",
+      "elemek": ["elkötelezett vagy a fenntarthatóság iránt", "aktív, fiatalos csapatba vágysz", "hiszel a társadalmi innovációban", "proaktív vagy"],
+      "forras": ["[beeco.hu/csapat](https://www.beeco.hu/csapat)"] },
+    { "t": "p", "x": "A szerepek heti 5–20 órásak. Jelentkezni a [beeco.hu/csapat](https://www.beeco.hu/csapat) űrlapján lehet (név, e-mail, „Milyen területen segítenéd a rajt?”)." },
+    { "t": "h2", "x": "Az első hét" },
+    { "t": "javaslat", "cim": "Bevezető lépések",
+      "elemek": [
+        "Járd végig ezt a márkakönyvet a menü sorrendjében: a Márka és a Vizuális identitás oldalak kb. 20 perc alatt elolvashatók.",
+        "A raj-vezetőd bemutatja a Kaptárt: a rajod, a nyitott feladatok, a Rajpont.",
+        "Válassz egy kezdő feladatot a rajod listájából.",
+        "Ha anyagot készítesz, nézd meg az ellenőrzőlistát (lent), és mutasd meg a raj-vezetődnek."
+      ],
+      "forras": ["weboldal/csatlakozz/README.md – a Kaptár-kapu terve (nyitott feladatok, raj-választó, Rajpont)", "Szerkesztői javaslat"] },
+    { "t": "hianyzik", "cim": "Kódex és kapcsolat", "x": "Az önkéntesek magatartási kódexe, a közös kapcsolati e-mail-cím és a Rajpont szabályai hamarosan a beeco HR-felületén (Kaptár) lesznek elérhetők; ide csak egy hivatkozás kerül." },
+    { "t": "h2", "x": "Ha beecós anyagot készítesz" },
+    { "t": "p", "x": "Az ellenőrzőlistát, a kész sablonokat és a logó fájljait itt találod: [Sablonok és nyomtatvány](sablonok.html), [Letöltések](letoltesek.html). A hangunkról a [Hang és személyiség](marka-hang.html) oldal szól." }
+  ]
+}

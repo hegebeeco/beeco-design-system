@@ -1,0 +1,36 @@
+{
+  "id": "szin",
+  "cim": "Szín",
+  "alcim": "Egy hangsúlyszín van: a méz. A többi szín azért van, hogy a méz kiemelkedjen.",
+  "csoport": "vizualis",
+  "statusz": "stabil",
+  "blokkok": [
+    { "t": "h2", "x": "A színeink és miért" },
+    { "t": "p", "x": "Egy hangsúlyszínünk van: a **méz**. Mellette krém és papír alapok, zöldek a természethez, és néhány jelzőszín." },
+    { "t": "gen", "nev": "paletta" },
+    { "t": "tabla", "cim": "A márka színei", "fej": ["Szín", "Kód", "Mire és miért"], "sorok": [
+      ["Méz", "`#FECF39`", "Az egyetlen hangsúlyszín: a fő gomb és a kiemelés. Ha minden kiemelt, semmi sem az – a méz mutatja meg, mi a következő lépés."],
+      ["Krém", "`#FFF8E7`", "Az alap: az oldal és a kép háttere."],
+      ["Papír", "`#FFFDF6`", "A játék-stílus felülete: kártya, panel."],
+      ["Vaj", "`#FEEEBB`", "Kiemelt, de csendes felület: kijelölt sor, kiemelt kártya."],
+      ["Olíva", "`#2F371E`", "A játék-stílus tintája és körvonala."],
+      ["Éjszaka-olíva", "`#1F2615`", "Sötét módban és sötét képen ez az alap, rajta krém szöveg."],
+      ["Fekete", "`#000000`", "A termék-stílus tintája: szöveg, keret, kemény árnyék. A mézen a szöveg mindig fekete."],
+      ["Levél, zsálya", "`#6E8947`, `#D3DDBB`", "A természet zöldjei: sikeres, aktív állapot."],
+      ["Rózsa, égkék", "`#F5B4C7`, `#B1DEFF`", "Kiegészítő színek: csak kis felületen, egyszerre legfeljebb egy."],
+      ["Parázs", "`#EA580C`", "Figyelmeztetés."]
+    ] },
+    { "t": "szabaly", "cim": "Szöveg a mézen",
+      "x": "A méz színű felületen a szöveg mindig fekete – sötét módban is. A fehér szöveg a mézen alig olvasható (kontraszt kb. 1,5 : 1).",
+      "forras": ["docs/termek-arculat.md 2."] },
+    { "t": "dodont", "cim": "Egy méz fő gomb képernyőnként", "allapot": "szabaly",
+      "forras": ["DESIGN.md – Nem alkudható", "docs/termek-arculat.md 7."],
+      "parok": [ {
+        "jo": { "felirat": "egy fő gomb, mellette másodlagos", "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn\">Mentés</button><button type=\"button\" class=\"bc-btn is-secondary\">Mégse</button></div>" },
+        "rossz": { "felirat": "három egyforma méz gomb", "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn\">Mentés</button><button type=\"button\" class=\"bc-btn\">Előnézet</button><button type=\"button\" class=\"bc-btn\">Mégse</button></div>" },
+        "miert": "Ha minden kiemelt, semmi sem az – a méz mutatja meg, mi a következő lépés." } ] },
+    { "t": "h2", "x": "Részletek" },
+    { "t": "p", "x": "A színkódok minden formátumban, a színszerepek (mire melyik szín való a felületen), a kontrasztpárok és a sötét mód a Design Systemben vannak: [Szín](ds:szin)." },
+    { "t": "p", "x": "Színt soha ne használj egyedül jelentés hordozására: lásd [Hozzáférhető tartalom](hozzaferheto-tartalom.html)." }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "index",
+  "cim": "A beeco márkakönyve",
+  "alcim": "Ki a beeco, hogyan szól, és hogyan néz ki – hogy amit a nevünkben készítesz, első ránézésre beeco legyen.",
+  "csoport": "kezdes",
+  "statusz": "vázlat",
+  "hos": { "kep": "bee-happy" },
+  "blokkok": [
+    { "t": "h2", "x": "Hol kezdjem?" },
+    { "t": "gen", "nev": "holKezdjem", "kartyak": [
+      { "nev": "Önkéntes vagy", "leiras": "Csatlakoztál a rajhoz: az első napod, a hangunk és a logónk.", "link": "Önkénteseknek", "href": "csatlakozz.html" },
+      { "nev": "Partner vagy", "leiras": "Közös anyagot készítesz velünk: így jelenhet meg a beeco logója melletted.", "link": "Partnerarculat", "href": "partnerarculat.html" },
+      { "nev": "Tervező, fejlesztő vagy", "leiras": "Képernyőt, oldalt vagy játékot építesz: színek, betűk és elemek a Design Systemben.", "link": "Design System", "href": "@masik" }
+    ] },
+    { "t": "h2", "x": "Mit találsz itt?" },
+    { "t": "gen", "nev": "fejezetek" },
+    { "t": "szabaly", "cim": "Jelölések az oldalakon", "elemek": [
+      "**Szabály** – jóváhagyott, kötelező.",
+      "**Hivatalos szöveg** – a beeco saját szövege, forrással.",
+      "**Jóváhagyásra vár** – javaslat; amíg a beeco jóvá nem hagyja, ne használd véglegesként.",
+      "**Korrigálandó** – vázlat forrás nélkül; a végleges szöveg még kell.",
+      "**Hiányzik** – erről még nincs döntés vagy forrás.",
+      "**Tilos** – soha ne csináld."
+    ] },
+    { "t": "h2", "x": "Legutóbbi változások" },
+    { "t": "hianyzik", "cim": "Változásnapló a márkakönyvhöz", "x": "Rövid, nem fejlesztői változáslista még nincs. A rendszer (színek, elemek) változásait a Design System sorolja." }
+  ]
+}

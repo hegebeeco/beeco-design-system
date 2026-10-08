@@ -1,5 +1,5 @@
 {
- "_readme": "Az Illusztrációk fejezet és a Letöltések madárkészletének leltára (tools/brandbook-build.js olvassa; nem kerül ki). A madárkák a Csicsergősz-csapat rajzai (Csicsergősz/madárkák, SVG). A v4 rajzok a Madárgyár motorjával renderelve (bird-catalog/madargyar, 2026-10-07), csak a rajz, fotó nélkül. Új rajz: render → WebP ide → új sor ebbe a fájlba.",
+ "_readme": "Az Illusztrációk fejezet és a Letöltések madárkészletének leltára (a tools/docs/gen.js olvassa; nem kerül ki). A madárkák a Csicsergősz-csapat rajzai (Csicsergősz/madárkák, SVG). A v4 rajzok a Madárgyár motorjával renderelve (bird-catalog/madargyar, 2026-10-07), csak a rajz, fotó nélkül. Új rajz: render → WebP ide → új sor ebbe a fájlba.",
  "madarkak": [
   { "id": "liba", "nev": "Liba", "file": "madarkak/liba.svg", "w": 223, "h": 329 },
   { "id": "rigo", "nev": "Rigó", "file": "madarkak/rigo.svg", "w": 249, "h": 223 },

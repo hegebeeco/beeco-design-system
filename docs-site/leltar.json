@@ -1,0 +1,955 @@
+{
+ "verzio": 1,
+ "datum": "2026-10-08",
+ "megjegyzes": "Régi brandbook-fejezetek h2-szakaszai → új oldal. muvelet: átvesz | összevon | áthelyez | átalakít | kivesz. A „kivesz” szakaszt a tartalom-átültetés elhagyja (ismétlődés vagy belső folyamat).",
+ "fejezetek": [
+  {
+   "regi": "alapok",
+   "cim": "Közös alapok",
+   "blokkok": 28,
+   "szakaszok": [
+    {
+     "cim": "Színek",
+     "blokkok": [
+      0,
+      2
+     ],
+     "cel": "ds/szin",
+     "muvelet": "átvesz",
+     "megjegyzes": "márka szinten rövid kivonat: brand/szin"
+    },
+    {
+     "cim": "Színszerepek (termékbőr)",
+     "blokkok": [
+      3,
+      8
+     ],
+     "cel": "ds/szin",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Betűk",
+     "blokkok": [
+      9,
+      12
+     ],
+     "cel": "ds/tipografia",
+     "muvelet": "átvesz",
+     "megjegyzes": "márka szinten rövid kivonat: brand/tipografia"
+    },
+    {
+     "cim": "Térköz",
+     "blokkok": [
+      13,
+      15
+     ],
+     "cel": "ds/ter-es-racs",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Sarok és árnyék",
+     "blokkok": [
+      16,
+      18
+     ],
+     "cel": "ds/forma",
+     "muvelet": "átvesz",
+     "megjegyzes": "az árnyék-ellentmondás feloldandó (F6)"
+    },
+    {
+     "cim": "Mozgás",
+     "blokkok": [
+      19,
+      21
+     ],
+     "cel": "ds/mozgas",
+     "muvelet": "átvesz",
+     "megjegyzes": "márka szinten rövid kivonat: brand/mozgas"
+    },
+    {
+     "cim": "Hozzáférhetőség",
+     "blokkok": [
+      22,
+      23
+     ],
+     "cel": "ds/hozzaferhetoseg",
+     "muvelet": "összevon",
+     "megjegyzes": "a hozzáférhetőség-fejezet DS-részével"
+    },
+    {
+     "cim": "Adatskálák",
+     "blokkok": [
+      24,
+      25
+     ],
+     "cel": "ds/adatvizualizacio",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Honnan veszed?",
+     "blokkok": [
+      26,
+      27
+     ],
+     "cel": "ds/telepites",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    }
+   ]
+  },
+  {
+   "regi": "borok",
+   "cim": "Két bőr",
+   "blokkok": 7,
+   "szakaszok": [
+    {
+     "cim": "(bevezető)",
+     "blokkok": [
+      0,
+      0
+     ],
+     "cel": "az adott fejezet első szakaszának oldala",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Élő példa",
+     "blokkok": [
+      1,
+      3
+     ],
+     "cel": "ds/temak",
+     "muvelet": "átvesz",
+     "megjegyzes": "a három ismétlődő mini-demó helyett egy"
+    },
+    {
+     "cim": "Melyiket mikor?",
+     "blokkok": [
+      4,
+      6
+     ],
+     "cel": "ds/temak",
+     "muvelet": "átvesz",
+     "megjegyzes": "szótárral: bőr/téma"
+    }
+   ]
+  },
+  {
+   "regi": "elemek",
+   "cim": "Elemek",
+   "blokkok": 14,
+   "szakaszok": [
+    {
+     "cim": "Szintek: atomtól az oldalsablonig",
+     "blokkok": [
+      0,
+      2
+     ],
+     "cel": "ds/komponensek",
+     "muvelet": "átvesz",
+     "megjegyzes": "áttekintő"
+    },
+    {
+     "cim": "Élő elemek",
+     "blokkok": [
+      3,
+      4
+     ],
+     "cel": "ds/komponensek",
+     "muvelet": "kivesz",
+     "megjegyzes": "a komponensoldalak élő demói váltják"
+    },
+    {
+     "cim": "Gombszabályok",
+     "blokkok": [
+      5,
+      6
+     ],
+     "cel": "ds/komponens-gomb",
+     "muvelet": "összevon",
+     "megjegyzes": "5 helyen élő szabály egy helyre"
+    },
+    {
+     "cim": "Komponens-katalógus",
+     "blokkok": [
+      7,
+      11
+     ],
+     "cel": "ds/komponens-*",
+     "muvelet": "átalakít",
+     "megjegyzes": "54 komponensoldal"
+    },
+    {
+     "cim": "Új elem kell?",
+     "blokkok": [
+      12,
+      13
+     ],
+     "cel": "ds/kozremukodes",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    }
+   ]
+  },
+  {
+   "regi": "feluletek",
+   "cim": "Hat felület",
+   "blokkok": 12,
+   "szakaszok": [
+    {
+     "cim": "(bevezető)",
+     "blokkok": [
+      0,
+      0
+     ],
+     "cel": "az adott fejezet első szakaszának oldala",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Összevető mátrix",
+     "blokkok": [
+      1,
+      3
+     ],
+     "cel": "ds/feluletek",
+     "muvelet": "átvesz",
+     "megjegyzes": "mobilon kártyás nézet"
+    },
+    {
+     "cim": "Ugyanaz az elem hat felületen",
+     "blokkok": [
+      4,
+      6
+     ],
+     "cel": "ds/feluletek",
+     "muvelet": "kivesz",
+     "megjegyzes": "ismétlődő mini-demó"
+    },
+    {
+     "cim": "Ami mindenhol közös",
+     "blokkok": [
+      7,
+      8
+     ],
+     "cel": "ds/feluletek",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Ahol döntés kell",
+     "blokkok": [
+      9,
+      11
+     ],
+     "cel": "ds/feluletek",
+     "muvelet": "átvesz",
+     "megjegyzes": "belső döntésnapló nélkül: a javaslatlapokra hivatkozva"
+    }
+   ]
+  },
+  {
+   "regi": "hang",
+   "cim": "Hang és szöveg",
+   "blokkok": 34,
+   "szakaszok": [
+    {
+     "cim": "Elvek",
+     "blokkok": [
+      0,
+      1
+     ],
+     "cel": "brand/marka-hang",
+     "muvelet": "átvesz",
+     "megjegyzes": "hangelvek példamondatokkal"
+    },
+    {
+     "cim": "Márkaszemélyiség",
+     "blokkok": [
+      2,
+      6
+     ],
+     "cel": "brand/marka-hang",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Szóvicc – mikor igen, mikor nem",
+     "blokkok": [
+      7,
+      11
+     ],
+     "cel": "brand/marka-hang",
+     "muvelet": "átvesz",
+     "megjegyzes": "humoradag: B2B ~4/100, fogyasztói ~10/100"
+    },
+    {
+     "cim": "Példák",
+     "blokkok": [
+      12,
+      16
+     ],
+     "cel": "brand/marka-hang",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "A méhecske szereplői",
+     "blokkok": [
+      17,
+      20
+     ],
+     "cel": "brand/marka-hang",
+     "muvelet": "átvesz",
+     "megjegyzes": "a mérges méhecske itt csak hivatkozás"
+    },
+    {
+     "cim": "Szövegpillanatok",
+     "blokkok": [
+      21,
+      23
+     ],
+     "cel": "ds/mikroszoveg",
+     "muvelet": "áthelyez",
+     "megjegyzes": "UX-szöveg: generált tábla a hangnem.json-ból"
+    },
+    {
+     "cim": "Hívómondatok",
+     "blokkok": [
+      24,
+      26
+     ],
+     "cel": "ds/mikroszoveg",
+     "muvelet": "áthelyez",
+     "megjegyzes": "CTA-szövegek"
+    },
+    {
+     "cim": "Kinek írunk",
+     "blokkok": [
+      27,
+      29
+     ],
+     "cel": "brand/marka-hang",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Vitás helyzetek",
+     "blokkok": [
+      30,
+      33
+     ],
+     "cel": "brand/marka-hang",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    }
+   ]
+  },
+  {
+   "regi": "hozzaferhetoseg",
+   "cim": "Hozzáférhetőség",
+   "blokkok": 26,
+   "szakaszok": [
+    {
+     "cim": "(bevezető)",
+     "blokkok": [
+      0,
+      0
+     ],
+     "cel": "az adott fejezet első szakaszának oldala",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Gyors ellenőrzőlista",
+     "blokkok": [
+      1,
+      2
+     ],
+     "cel": "brand/hozzaferheto-tartalom",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Kép és alt-szöveg",
+     "blokkok": [
+      3,
+      5
+     ],
+     "cel": "brand/hozzaferheto-tartalom",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Kontraszt és betűméret",
+     "blokkok": [
+      6,
+      9
+     ],
+     "cel": "ds/hozzaferhetoseg",
+     "muvelet": "áthelyez",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Szín – ne egyedül",
+     "blokkok": [
+      10,
+      12
+     ],
+     "cel": "brand/hozzaferheto-tartalom",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Videó",
+     "blokkok": [
+      13,
+      14
+     ],
+     "cel": "brand/hozzaferheto-tartalom",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Hashtag, emoji, link",
+     "blokkok": [
+      15,
+      18
+     ],
+     "cel": "brand/hozzaferheto-tartalom",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Érthető nyelv, egy gondolat",
+     "blokkok": [
+      19,
+      21
+     ],
+     "cel": "brand/hozzaferheto-tartalom",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Felületeken: a DS szabályai",
+     "blokkok": [
+      22,
+      25
+     ],
+     "cel": "ds/hozzaferhetoseg",
+     "muvelet": "áthelyez",
+     "megjegyzes": ""
+    }
+   ]
+  },
+  {
+   "regi": "illusztraciok",
+   "cim": "Illusztrációk",
+   "blokkok": 31,
+   "szakaszok": [
+    {
+     "cim": "(bevezető)",
+     "blokkok": [
+      0,
+      0
+     ],
+     "cel": "az adott fejezet első szakaszának oldala",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Mikor méhecske, mikor madár",
+     "blokkok": [
+      1,
+      2
+     ],
+     "cel": "brand/meh-illusztracio",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Csicsergősz-madárkák",
+     "blokkok": [
+      3,
+      6
+     ],
+     "cel": "brand/meh-illusztracio",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "A madárrajz-stílus (v4)",
+     "blokkok": [
+      7,
+      20
+     ],
+     "cel": "brand/meh-illusztracio",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Mozgás",
+     "blokkok": [
+      21,
+      23
+     ],
+     "cel": "brand/mozgas",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Méhecskék",
+     "blokkok": [
+      24,
+      26
+     ],
+     "cel": "brand/meh-illusztracio",
+     "muvelet": "összevon",
+     "megjegyzes": "a Képek fejezet Méhecskék szakaszával egy"
+    },
+    {
+     "cim": "Letöltés",
+     "blokkok": [
+      27,
+      30
+     ],
+     "cel": "brand/letoltesek",
+     "muvelet": "áthelyez",
+     "megjegyzes": ""
+    }
+   ]
+  },
+  {
+   "regi": "index",
+   "cim": "Egy méhecske, hat felület",
+   "blokkok": 3,
+   "szakaszok": [
+    {
+     "cim": "Hogyan olvasd ezt az oldalt?",
+     "blokkok": [
+      0,
+      2
+     ],
+     "cel": "brand/kezdolap+ds/kezdes",
+     "muvelet": "átalakít",
+     "megjegyzes": "jelvények magyarázata mindkét oldalon röviden"
+    }
+   ]
+  },
+  {
+   "regi": "kepek",
+   "cim": "Képek",
+   "blokkok": 15,
+   "szakaszok": [
+    {
+     "cim": "Méhecskék",
+     "blokkok": [
+      0,
+      2
+     ],
+     "cel": "brand/meh-illusztracio",
+     "muvelet": "összevon",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Matricák (illusztráció)",
+     "blokkok": [
+      3,
+      5
+     ],
+     "cel": "brand/meh-illusztracio",
+     "muvelet": "összevon",
+     "megjegyzes": "az illusztrációk fejezettel azonos téma"
+    },
+    {
+     "cim": "3D",
+     "blokkok": [
+      6,
+      7
+     ],
+     "cel": "brand/kepek-fotok",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Fotó",
+     "blokkok": [
+      8,
+      12
+     ],
+     "cel": "brand/kepek-fotok",
+     "muvelet": "átvesz",
+     "megjegyzes": "fotóbank-link, ha megvan"
+    },
+    {
+     "cim": "AI-val készült képek",
+     "blokkok": [
+      13,
+      14
+     ],
+     "cel": "brand/kepek-fotok",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    }
+   ]
+  },
+  {
+   "regi": "letoltesek",
+   "cim": "Letöltések",
+   "blokkok": 10,
+   "szakaszok": [
+    {
+     "cim": "(bevezető)",
+     "blokkok": [
+      0,
+      4
+     ],
+     "cel": "az adott fejezet első szakaszának oldala",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Madárkészlet",
+     "blokkok": [
+      5,
+      7
+     ],
+     "cel": "brand/letoltesek",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Fejlesztőknek: telepítés",
+     "blokkok": [
+      8,
+      9
+     ],
+     "cel": "ds/eszkozok",
+     "muvelet": "áthelyez",
+     "megjegyzes": ""
+    }
+   ]
+  },
+  {
+   "regi": "marka",
+   "cim": "Márka",
+   "blokkok": 43,
+   "szakaszok": [
+    {
+     "cim": "Kik vagyunk",
+     "blokkok": [
+      0,
+      3
+     ],
+     "cel": "brand/marka-pozicio",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Vízió, misszió, küldetés",
+     "blokkok": [
+      4,
+      7
+     ],
+     "cel": "brand/marka-pozicio",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Fő üzeneteink",
+     "blokkok": [
+      8,
+      11
+     ],
+     "cel": "brand/marka-pozicio",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Alapértékeink",
+     "blokkok": [
+      12,
+      18
+     ],
+     "cel": "brand/marka-pozicio",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Mit értünk fenntarthatóságon",
+     "blokkok": [
+      19,
+      21
+     ],
+     "cel": "brand/marka-pozicio",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Történetünk",
+     "blokkok": [
+      22,
+      27
+     ],
+     "cel": "brand/marka-pozicio",
+     "muvelet": "átvesz",
+     "megjegyzes": "rövidíthető"
+    },
+    {
+     "cim": "A név írása",
+     "blokkok": [
+      28,
+      29
+     ],
+     "cel": "brand/logo",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Logó",
+     "blokkok": [
+      30,
+      35
+     ],
+     "cel": "brand/logo",
+     "muvelet": "átvesz",
+     "megjegyzes": "a letöltés linkelve a Letöltésekre"
+    },
+    {
+     "cim": "A méhecske",
+     "blokkok": [
+      36,
+      39
+     ],
+     "cel": "brand/meh-illusztracio",
+     "muvelet": "összevon",
+     "megjegyzes": "a „mérges méhecske soha” itt él egyszer"
+    },
+    {
+     "cim": "Méhsejt-háttér",
+     "blokkok": [
+      40,
+      42
+     ],
+     "cel": "brand/vizualis-bevezeto",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    }
+   ]
+  },
+  {
+   "regi": "onkenteseknek",
+   "cim": "Önkénteseknek",
+   "blokkok": 15,
+   "szakaszok": [
+    {
+     "cim": "A kaptár és a rajok",
+     "blokkok": [
+      0,
+      2
+     ],
+     "cel": "brand/csatlakozz",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Mit kínálunk, kit várunk",
+     "blokkok": [
+      3,
+      6
+     ],
+     "cel": "brand/csatlakozz",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Az első hét",
+     "blokkok": [
+      7,
+      8
+     ],
+     "cel": "brand/csatlakozz",
+     "muvelet": "átvesz",
+     "megjegyzes": "kódex, e-mail → HR-felület"
+    },
+    {
+     "cim": "Ha beecós anyagot készítesz",
+     "blokkok": [
+      9,
+      14
+     ],
+     "cel": "brand/csatlakozz",
+     "muvelet": "átvesz",
+     "megjegyzes": "linkek a Brand oldalakra"
+    }
+   ]
+  },
+  {
+   "regi": "partnereknek",
+   "cim": "Partnereknek",
+   "blokkok": 35,
+   "szakaszok": [
+    {
+     "cim": "A partnerprogram",
+     "blokkok": [
+      0,
+      5
+     ],
+     "cel": "brand/partnerarculat",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Logó és méhecske a partner anyagában",
+     "blokkok": [
+      6,
+      9
+     ],
+     "cel": "brand/partnerarculat",
+     "muvelet": "átvesz",
+     "megjegyzes": "co-branding → közös márkahasználat"
+    },
+    {
+     "cim": "Kampány-altéma",
+     "blokkok": [
+      10,
+      14
+     ],
+     "cel": "brand/kampany-altema",
+     "muvelet": "átvesz",
+     "megjegyzes": "Csicsergősz példa"
+    },
+    {
+     "cim": "Partneri gyorscsomag",
+     "blokkok": [
+      15,
+      34
+     ],
+     "cel": "brand/partnerarculat",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    }
+   ]
+  },
+  {
+   "regi": "social",
+   "cim": "Social media és sablonok",
+   "blokkok": 47,
+   "szakaszok": [
+    {
+     "cim": "(bevezető)",
+     "blokkok": [
+      0,
+      0
+     ],
+     "cel": "az adott fejezet első szakaszának oldala",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Csatornák és hangnem",
+     "blokkok": [
+      1,
+      7
+     ],
+     "cel": "brand/social",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Formátumok",
+     "blokkok": [
+      8,
+      11
+     ],
+     "cel": "brand/social",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Biztonsági zónák",
+     "blokkok": [
+      12,
+      14
+     ],
+     "cel": "brand/social",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Tipográfia",
+     "blokkok": [
+      15,
+      18
+     ],
+     "cel": "brand/social",
+     "muvelet": "összevon",
+     "megjegyzes": "a Brand/Tipográfia oldalra hivatkozás"
+    },
+    {
+     "cim": "Színek és szerepek",
+     "blokkok": [
+      19,
+      22
+     ],
+     "cel": "brand/social",
+     "muvelet": "összevon",
+     "megjegyzes": "a Brand/Szín oldalra hivatkozás"
+    },
+    {
+     "cim": "Méhecske",
+     "blokkok": [
+      23,
+      25
+     ],
+     "cel": "brand/social",
+     "muvelet": "összevon",
+     "megjegyzes": "hivatkozás"
+    },
+    {
+     "cim": "Logó helye",
+     "blokkok": [
+      26,
+      28
+     ],
+     "cel": "brand/social",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Hashtag, emoji, CTA",
+     "blokkok": [
+      29,
+      35
+     ],
+     "cel": "brand/social",
+     "muvelet": "átvesz",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Sablonok",
+     "blokkok": [
+      36,
+      42
+     ],
+     "cel": "brand/sablonok",
+     "muvelet": "áthelyez",
+     "megjegyzes": ""
+    },
+    {
+     "cim": "Fotók",
+     "blokkok": [
+      43,
+      46
+     ],
+     "cel": "brand/kepek-fotok",
+     "muvelet": "összevon",
+     "megjegyzes": ""
+    }
+   ]
+  }
+ ]
+}

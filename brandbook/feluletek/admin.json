@@ -13,7 +13,8 @@
  "kozos": [
   "a termékbőr minden szerepe, betűje, sarka és árnyéka a DS-ből jön (`termek.css` + SCSS `@use`)",
   "DS React-komponensek: `AppShell`, `DataTable`, `FilterBar`, `PageHeader`, `ConfirmDialog`…",
-  "sötét mód a DS `ThemeProvider`-ével"
+  "sötét mód a DS `ThemeProvider`-ével",
+  "202 forrásfájl importál a `@beeco/design-system/react`-ből; a `termek.css` és a `ThemeProvider` a `src/main.tsx`-ben (felmérve 2026-10-08)"
  ],
  "szandekos": [
   "**tömör sűrűség**: `AppShell density=\"compact\"`, egérrel 36 px-es gomb és menüsor (érintőképernyőn marad a 44 px)",
@@ -22,8 +23,9 @@
   "méz csak a kijelölt állapoton és a fő gombon (`src/ds/szinSzabaly.ts`)"
  ],
  "cel": [
-  "DS-verzió emelése a legfrissebbre (most `#v1.43.1`, a DS `1.49.3`)",
-  "a `ds-lint` racsni szerint 14 nyers szín maradt – ezeket szerepre cserélni"
+  "DS-verzió emelése a legfrissebbre (a `package.json` és a lockfile 2026-10-08-án is `#v1.43.1`, a DS mai verziója `1.53.0`)",
+  "a `ds-lint` racsni szerint 14 nyers szín maradt (`HiveMap.scss` 1, `PrizeDraws.scss` 2, `getLabelStyle.ts` 11; `.beeco-ds-baseline.json`) – ezeket szerepre cserélni",
+  "a használaton kívüli régi függőségek kivezetése: a `react-select`, a `react-datepicker` és a `bootstrap` a `package.json`-ban van, de a `src`-ben sehol nincs importálva; a `primereact` csak a `src/App.tsx` `PrimeReactProvider`-ében él"
  ],
  "szabalykonyv": "`docs/termek-arculat.md` · `beeco_ADMIN_APP/CLAUDE.md` (Design system rész)",
  "ertekek": {
@@ -68,12 +70,12 @@
    "forras": "AppShell, Javaslat 17"
   },
   "ds": {
-   "ertek": "git-függőség `#v1.43.1`: CSS + SCSS + React",
+   "ertek": "git-függőség `#v1.43.1`: CSS + SCSS + React (a DS mai verziója 1.53.0)",
    "jel": "reszben",
-   "forras": "package.json"
+   "forras": "package.json, package-lock.json"
   },
   "technika": {
-   "ertek": "React 19 · Vite · SCSS · TanStack",
+   "ertek": "React 19 · Vite 4 · SCSS · TanStack",
    "jel": "nincs",
    "forras": "package.json"
   }
@@ -86,11 +88,15 @@
   "kartyaSzoveg": "Partner · aktív"
  },
  "felmeres": {
-  "datum": "2026-10-06",
+  "datum": "2026-10-08",
   "forras": [
    "beeco_ADMIN_APP/beeco-admin/package.json",
+   "package-lock.json",
    "src/main.tsx",
-   "src/ds/szinSzabaly.ts"
+   "src/ds/szinSzabaly.ts",
+   ".beeco-ds-baseline.json",
+   "src/components/AdminShell/AdminShell.tsx (`density=\"compact\"`)",
+   "src/App.tsx"
   ],
   "mert": {
    "ds_verzio": "1.43.1"

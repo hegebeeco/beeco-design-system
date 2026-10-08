@@ -12,6 +12,8 @@
    Használat:  node tools/tokens-build.js          (ír)
                node tools/tokens-build.js --check  (csak ellenőrzi, hogy a dist friss-e; CI)
    Függőség nincs. A dist/ be van commitolva, hogy a fogyasztó projektnek ne kelljen buildelni.
+   1.54.0 (Javaslat 26): betűköz, szövegstílus, fókuszgyűrű, ikonméret, állapot és töréspont is. Ami egy formátumban
+   nem fejezhető ki, azt a tokens/*.json _readme mezője mondja meg (pl. töréspont CSS-változóként, hover-keverés Tailwindben).
    ============================================================ */
 const fs = require('fs');
 const path = require('path');
@@ -34,6 +36,10 @@ const px = n => `${n}px`;
 const ms = n => `${n}ms`;
 // A kategória-skála elemei primitív nevek → feloldjuk hexre
 const categorical = core.data.categorical.map(hex);
+const nemRejtett = o => Object.entries(o || {}).filter(([k]) => !k.startsWith('_'));
+const em = n => `${n}em`;
+// Szövegstílus (theme-termek.json textStyle) → CSS font-rövidítés a meglévő tokenekből
+const textFont = t => `var(--bc-fw-${t.weight}) var(--bc-fs-${t.size})/var(--bc-lh-${t.lineHeight}) var(--bc-font-${t.font})`;
 
 /* ---------- 1. CSS-változók ---------- */
 function roleBlock(roles, mode) {
@@ -53,8 +59,9 @@ function buildCss() {
   for (const [n, v] of Object.entries(core.fontWeight)) L.push(`  --bc-fw-${n}: ${v};`);
   for (const [n, v] of Object.entries(core.fontSize)) L.push(`  --bc-fs-${n}: ${px(v)};`);
   for (const [n, v] of Object.entries(core.lineHeight)) L.push(`  --bc-lh-${n}: ${v};`);
+  for (const [n, v] of nemRejtett(core.letterSpacing)) L.push(`  --bc-ls-${n}: ${v ? em(v) : 0};`);
   for (const [n, v] of Object.entries(core.space)) L.push(`  --bc-sp-${n}: ${px(v)};`);
-  L.push('', '  /* Mozgás: UI ≤ 300 ms, ease-in tilos */');
+  L.push('', '  /* Mozgás: UI-visszajelzés ≤ 300 ms; slow (400) = fiók; decor (600) / hero (900) = csak animáció, csökkentett mozgásnál ki; ease-in tilos */');
   for (const [n, v] of Object.entries(core.duration)) L.push(`  --bc-t-${n}: ${ms(v)};`);
   for (const [n, v] of Object.entries(core.easing)) L.push(`  --bc-ease-${n}: ${v};`);
   L.push(`  --bc-tap: ${px(core.tap)};`);
@@ -71,6 +78,11 @@ function buildCss() {
   }
   { const sf = termek.shadowSoft; L.push(`  --bc-shadow-soft: 0 ${px(sf.y)} ${px(sf.blur)} color-mix(in srgb, var(--bc-shadow) ${sf.alpha}%, transparent);`); }
   L.push(`  --bc-scrim-opacity: ${termek.scrimOpacity};`);
+  L.push('', '  /* 2. TERMÉKBŐR – fókuszgyűrű, ikonméret, állapot, szövegstílus (Javaslat 26). Töréspont: nincs CSS-változó (@media-ban nem működik) */');
+  L.push(`  --bc-focus-w: ${px(termek.focusRing.width)}; --bc-focus-offset: ${px(termek.focusRing.offset)};`);
+  for (const [n, v] of nemRejtett(termek.icon)) L.push(`  --bc-icon-${n}: ${px(v)};`);
+  L.push(`  --bc-hover-mix: ${termek.state.hoverMix}%; --bc-disabled-opacity: ${termek.state.disabledOpacity};`);
+  for (const [n, t] of nemRejtett(termek.textStyle)) L.push(`  --bc-text-${n}: ${textFont(t)}; --bc-text-${n}-ls: var(--bc-ls-${t.letterSpacing});`);
   L.push('', '  /* 2. TERMÉKBŐR – szín-szerepek, világos */', '  color-scheme: light;');
   L.push(roleBlock(termek.color.light, 'light'), '}', '');
   L.push('/* Sötét mód: <html data-theme="dark"> vagy <html class="dark"> (Tailwind), rendszer szerint: data-theme="auto" */');
@@ -107,6 +119,7 @@ function buildScss() {
     L.push(`$bc-${name}: (${keys.map(k => `"${k}": ${fn(k)}`).join(', ')});`);
   };
   map('lh', core.lineHeight, k => `var(--bc-lh-${k})`);
+  map('ls', core.letterSpacing, k => `var(--bc-ls-${k})`);
   map('fs', core.fontSize, k => `var(--bc-fs-${k})`);
   map('fw', core.fontWeight, k => `var(--bc-fw-${k})`);
   map('sp', core.space, k => `var(--bc-sp-${k})`);
@@ -116,9 +129,18 @@ function buildScss() {
   map('t', core.duration, k => `var(--bc-t-${k})`);
   map('z', core.z, k => `var(--bc-z-${k})`);
   map('ease', core.easing, k => `var(--bc-ease-${k})`);
+  map('icon', termek.icon, k => `var(--bc-icon-${k})`);
+  map('text', termek.textStyle, k => `var(--bc-text-${k})`);
+  // Töréspont: valódi px (SCSS-ben @media-ban is használható – a CSS-változó ott nem működne)
+  map('bp', termek.breakpoint, k => px(termek.breakpoint[k]));
+  L.push(`$bc-focus-w: var(--bc-focus-w);`, `$bc-focus-offset: var(--bc-focus-offset);`, `$bc-hover-mix: var(--bc-hover-mix);`, `$bc-disabled-opacity: var(--bc-disabled-opacity);`);
   L.push('', '@function fs($k) { @return map-get($bc-fs, "#{$k}"); }', '@function sp($k) { @return map-get($bc-sp, "#{$k}"); }',
     '@function r($k) { @return map-get($bc-r, "#{$k}"); }', '@function shadow($k) { @return map-get($bc-shadow, "#{$k}"); }',
-    '@function fw($k) { @return map-get($bc-fw, "#{$k}"); }', '@function bw($k) { @return map-get($bc-bw, "#{$k}"); }', '');
+    '@function fw($k) { @return map-get($bc-fw, "#{$k}"); }', '@function bw($k) { @return map-get($bc-bw, "#{$k}"); }',
+    '@function bp($k) { @return map-get($bc-bp, "#{$k}"); }',
+    '// Szövegstílus: @include bc.text(heading-1);  Töréspont: @media (min-width: bc.bp(md)) { … }',
+    '@mixin text($k) { font: var(--bc-text-#{$k}); letter-spacing: var(--bc-text-#{$k}-ls); }',
+    '@mixin focus-ring { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); }', '');
   return L.join('\n');
 }
 
@@ -135,13 +157,22 @@ function buildTailwind() {
       // A Tailwind saját palettája KI – csak beeco szín létezik (így nyers szín nem csúszhat be)
       colors: { transparent: 'transparent', current: 'currentColor', inherit: 'inherit', ...col, c: prim },
       fontFamily: { display: ['var(--bc-font-display)'], body: ['var(--bc-font-body)'], sans: ['var(--bc-font-body)'] },
-      fontSize: obj(core.fontSize, k => [`var(--bc-fs-${k})`, { lineHeight: ['xl', '2xl', '3xl'].includes(k) ? `var(--bc-lh-tight)` : `var(--bc-lh-normal)` }]),
+      fontSize: {
+        ...obj(core.fontSize, k => [`var(--bc-fs-${k})`, { lineHeight: ['xl', '2xl', '3xl'].includes(k) ? `var(--bc-lh-tight)` : `var(--bc-lh-normal)` }]),
+        // Szövegstílus (text-heading-1…): méret + sormagasság + vastagság + betűköz; a családot a font-display / font-body adja
+        ...obj(termek.textStyle, (k, t) => [`var(--bc-fs-${t.size})`, { lineHeight: `var(--bc-lh-${t.lineHeight})`, fontWeight: `var(--bc-fw-${t.weight})`, letterSpacing: `var(--bc-ls-${t.letterSpacing})` }]),
+      },
       fontWeight: obj(core.fontWeight, k => `var(--bc-fw-${k})`),
       borderRadius: { none: '0', ...obj(termek.radius, k => `var(--bc-r-${k})`), DEFAULT: 'var(--bc-r-m)', full: '9999px' },
       borderWidth: { 0: '0', ...obj(termek.border, k => `var(--bc-bw-${k})`), DEFAULT: 'var(--bc-bw-hair)' },
       boxShadow: { none: 'none', ...obj({ ...termek.shadow, soft: 1 }, k => `var(--bc-shadow-${k})`) },
       extend: {
-        spacing: { tap: 'var(--bc-tap)' },
+        spacing: { tap: 'var(--bc-tap)', ...Object.fromEntries(nemRejtett(termek.icon).map(([k]) => [`icon-${k}`, `var(--bc-icon-${k})`])) },
+        // Töréspont: a Tailwind saját sm/md/lg-je NEM változik (a partner erre épít) – a DS-é bc-sm / bc-md / bc-lg
+        screens: Object.fromEntries(nemRejtett(termek.breakpoint).map(([k, v]) => [`bc-${k}`, px(v)])),
+        letterSpacing: obj(core.letterSpacing, k => `var(--bc-ls-${k})`),
+        opacity: { disabled: 'var(--bc-disabled-opacity)' },
+        outlineOffset: { focus: 'var(--bc-focus-offset)' },
         minHeight: { tap: 'var(--bc-tap)' }, minWidth: { tap: 'var(--bc-tap)' },
         zIndex: obj(core.z, k => `var(--bc-z-${k})`),
         transitionDuration: obj(core.duration, k => `var(--bc-t-${k})`),
@@ -163,7 +194,13 @@ function buildTwMerge() {
   const cfg = {
     extend: {
       classGroups: {
-        'font-size': [{ text: kulcsok(core.fontSize) }],
+        'font-size': [{ text: [...kulcsok(core.fontSize), ...kulcsok(termek.textStyle)] }],
+        'tracking': [{ tracking: kulcsok(core.letterSpacing) }],
+        'opacity': [{ opacity: ['disabled'] }],
+        'outline-offset': [{ 'outline-offset': ['focus'] }],
+        'w': [{ w: ['tap', ...kulcsok(termek.icon).map(k => `icon-${k}`)] }],
+        'h': [{ h: ['tap', ...kulcsok(termek.icon).map(k => `icon-${k}`)] }],
+        'size': [{ size: ['tap', ...kulcsok(termek.icon).map(k => `icon-${k}`)] }],
         'font-weight': [{ font: kulcsok(core.fontWeight) }],
         'font-family': [{ font: ['display', 'body', 'sans'] }],
         'shadow': [{ shadow: ['none', ...kulcsok(termek.shadow), 'soft'] }],
@@ -201,7 +238,9 @@ function buildDart() {
   L.push('}', '');
   L.push('/// Termékbőr szín-szerepei (világos / sötét).', 'class BeecoRoles {');
   const roles = Object.keys(termek.color.light);
-  L.push(`  const BeecoRoles({${roles.map(r => `required this.${camel(r)}`).join(', ')}});`);
+  // 1.54.0-tól jött szerepek nem kötelezők (alapérték: a világos primitív) – így a saját BeecoRoles(...) példány nem törik
+  const UJ_SZEREP = new Set(['focus-on-accent']);
+  L.push(`  const BeecoRoles({${roles.map(r => UJ_SZEREP.has(r) ? `this.${camel(r)} = BeecoPalette.${camel(termek.color.light[r])}` : `required this.${camel(r)}`).join(', ')}});`);
   roles.forEach(r => L.push(`  final Color ${camel(r)};`));
   ['light', 'dark'].forEach(m => {
     L.push(`  static const ${m} = BeecoRoles(`);
@@ -217,14 +256,31 @@ function buildDart() {
   Object.entries(termek.border).forEach(([n, v]) => L.push(`  static const bw${camel('-' + n)} = ${v}.0;`));
   Object.entries(termek.shadow).filter(([k]) => !k.startsWith('_')).forEach(([n, v]) => L.push(`  static const shadow${camel('-' + n)} = Offset(${v[0]}, ${v[1]});`));
   Object.entries(core.duration).forEach(([n, v]) => L.push(`  static const t${camel('-' + n)} = Duration(milliseconds: ${v});`));
-  L.push(`  static const easeOut = Cubic(.23, 1, .32, 1);`, `  static const tap = ${core.tap}.0;`, '}', '');
+  L.push(`  static const easeOut = Cubic(.23, 1, .32, 1);`, `  static const tap = ${core.tap}.0;`);
+  // 1.54.0 (Javaslat 26): fókuszgyűrű, ikonméret, állapot, töréspont
+  L.push(`  static const focusW = ${termek.focusRing.width}.0;`, `  static const focusOffset = ${termek.focusRing.offset}.0;`);
+  nemRejtett(termek.icon).forEach(([n, v]) => L.push(`  static const icon${camel('-' + n)} = ${v}.0;`));
+  L.push(`  static const hoverMix = ${termek.state.hoverMix / 100};`, `  static const disabledOpacity = ${termek.state.disabledOpacity};`);
+  nemRejtett(termek.breakpoint).forEach(([n, v]) => L.push(`  static const bp${camel('-' + n)} = ${v}.0;`));
+  L.push('}', '');
+  // Szövegstílus: a betűköz Flutterben px (em × méret)
+  const fw = w => `FontWeight.w${core.fontWeight[w]}`;
+  L.push('/// Szövegstílusok (termékbőr) – a családot a pubspec betűnevei adják (Lalezar, OpenSans).', 'abstract final class BeecoText {');
+  nemRejtett(termek.textStyle).forEach(([n, t]) => {
+    const size = core.fontSize[t.size], ls = Math.round(core.letterSpacing[t.letterSpacing] * size * 100) / 100;
+    L.push(`  static const ${camel(n.replace(/^/, 'x-')).slice(1).replace(/^./, c => c.toLowerCase())} = TextStyle(fontFamily: '${t.font === 'display' ? core.font.display[0] : 'OpenSans'}', fontSize: ${size}.0, fontWeight: ${fw(t.weight)}, height: ${core.lineHeight[t.lineHeight]}, letterSpacing: ${ls});`);
+  });
+  L.push('}', '');
   return L.join('\n');
 }
 
 /* ---------- 6. Lapos JSON ---------- */
 function buildJson() {
   const res = m => Object.fromEntries(Object.entries(termek.color[m]).map(([r, p]) => [r, hex(p)]));
-  return JSON.stringify({ version: VERSION, color: core.color, termek: { light: res('light'), dark: res('dark'), radius: termek.radius, border: termek.border, shadow: termek.shadow }, font: core.font, fontWeight: core.fontWeight, fontSize: core.fontSize, space: core.space, duration: core.duration, easing: core.easing, data: { ...core.data, categorical } }, null, 2) + '\n';
+  return JSON.stringify({ version: VERSION, color: core.color, termek: { light: res('light'), dark: res('dark'), radius: termek.radius, border: termek.border, shadow: termek.shadow }, font: core.font, fontWeight: core.fontWeight, fontSize: core.fontSize, space: core.space, duration: core.duration, easing: core.easing, data: { ...core.data, categorical },
+    // 1.54.0 (Javaslat 26) – a régi kulcsok változatlanok, ezek újak
+    letterSpacing: Object.fromEntries(nemRejtett(core.letterSpacing)), focusRing: Object.fromEntries(nemRejtett(termek.focusRing)), icon: Object.fromEntries(nemRejtett(termek.icon)),
+    state: Object.fromEntries(nemRejtett(termek.state)), breakpoint: Object.fromEntries(nemRejtett(termek.breakpoint)), textStyle: Object.fromEntries(nemRejtett(termek.textStyle)) }, null, 2) + '\n';
 }
 
 // Szerepek ellenőrzése: minden szerep létező primitívre mutasson (különben a build megáll)

@@ -1,0 +1,153 @@
+{
+  "id": "urlap",
+  "cim": "Űrlap",
+  "alcim": "Hogyan áll össze egy űrlap: a mező részei, a szakaszok, a hibák és a gombsor.",
+  "csoport": "mintak",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "p",
+      "x": "Az űrlap mintája a Mező (Field) molekulára, az Űrlapszakaszra és a Szerkesztő-oldal sablonra épül. Az egyes elemek használati szabályai a komponensoldalakon vannak; ez az oldal azt mutatja meg, hogyan fogod őket össze."
+    },
+    {
+      "t": "h2",
+      "x": "A mező részei",
+      "id": "mezo"
+    },
+    {
+      "t": "p",
+      "x": "Minden adatbeviteli mező (szöveg, szám, dátum, választó, címke, feltöltés) ugyanazt a keretet kapja:"
+    },
+    {
+      "t": "tabla",
+      "cim": "A mező kötelező részei",
+      "fej": [
+        "Rész",
+        "Mi",
+        "Példa"
+      ],
+      "sorok": [
+        [
+          "Címke",
+          "mindig látható, a helykitöltő nem címke",
+          "„Kupon neve”"
+        ],
+        [
+          "Súgó (ⓘ)",
+          "a címke mellett; elmondja, mit és miért kell megadni, és ha van, egy példát",
+          "„Így jelenik meg az appban a kupon kártyáján…”"
+        ],
+        [
+          "Érvényes tartomány",
+          "a mező alatt, mindig látható",
+          "„3–60 karakter”, „0–100 %”"
+        ],
+        [
+          "Aktuális állapot",
+          "élő számláló a tartomány mellett",
+          "„213/255”, „2/5 címke”"
+        ],
+        [
+          "Hiba",
+          "a mező alatt, szövegesen, a következő lépéssel",
+          "„Legalább 3 karakter kell – most 2.”"
+        ]
+      ]
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "A súgó kötelező (a `help` prop nélkül a komponens nem fordul). Kivétel: a keresőmező (címkéje csak képernyőolvasónak szól), a nézetváltó és a listaszűrők.",
+        "A számláló a határ közelében (90%) figyelmeztető színre vált, a határon hibaszínre – nem csak színnel, a szöveg is jelzi."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `docs/komponensek.md` 3/A."
+    },
+    {
+      "t": "dodont",
+      "allapot": "szabaly",
+      "forras": [
+        "docs/termek-arculat.md 1.5",
+        "docs/komponensek.md 3.3, 3/A"
+      ],
+      "parok": [
+        {
+          "jo": {
+            "felirat": "a hiba a mező alatt, a teendővel",
+            "html": "<div class=\"bc-field\"><label class=\"bc-label\" for=\"urlap-do-nev\">Partner neve</label><input class=\"bc-input\" id=\"urlap-do-nev\" value=\"PK\" aria-invalid=\"true\" aria-describedby=\"urlap-do-nev-err\"><p class=\"bc-error\" id=\"urlap-do-nev-err\">Legalább 3 karakter kell – most 2.</p></div>"
+          },
+          "rossz": {
+            "felirat": "csak „Hibás érték!”",
+            "html": "<div class=\"bc-field\"><label class=\"bc-label\" for=\"urlap-dont-web\">Weboldal</label><input class=\"bc-input\" id=\"urlap-dont-web\" value=\"pelda\" aria-invalid=\"true\" aria-describedby=\"urlap-dont-web-err\"><p class=\"bc-error\" id=\"urlap-dont-web-err\">Hibás érték!</p></div>"
+          },
+          "miert": "Nem derül ki, mit kell javítani. Tanítunk, nem szidunk: a hiba megmondja a teendőt."
+        }
+      ],
+      "cim": "A hiba megmondja a következő lépést"
+    },
+    {
+      "t": "h2",
+      "x": "Elrendezés",
+      "id": "elrendezes"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "**Mezők rácsa:** `bc-form-grid` (+ `is-wide`) – kétoszlopos, telefonon egy oszlop. Mezők között `sp-4` (16 px).",
+        "**Szakaszok:** hosszabb űrlapnál a mezőket témánként `FormSection`-ba rendezed: kártyán szakaszcím + rövid leírás + mezőrács; a kártya belső margója `sp-5` (24 px). Nincs kártya a kártyában.",
+        "**Gombsor:** `FormActions` az űrlap végén, jobbra: „Mégse” (másodlagos) és „Mentés” (méz, piktogrammal); telefonon egymás alatt, teljes szélességben.",
+        "**Egymás mellett álló mezők, szűrők:** az alsó élük egy vonalban van, eltérő címkemagasság mellett is."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `docs/termek-arculat.md` 3., 6., 6/A; `brandbook/elemek/komponensek.json` (Űrlapszakasz és gombsor)."
+    },
+    {
+      "t": "h2",
+      "x": "Hibák és tiltás",
+      "id": "hibak"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "A hiba a mező alatt áll, `aria-invalid=\"true\"` és `aria-describedby` jelzi; nem csak színnel.",
+        "Beküldéskor az érték megérkezik; hibánál a fókusz az első hibás mezőre ugrik. Szerkesztő-oldalon sikertelen mentésnél a tetején hibaösszesítő (`ErrorSummary`) van, ide kerül a fókusz, onnan linkek vezetnek a hibás mezőkhöz.",
+        "A helytelen érték letiltva vagy levágva: szövegnél a maximum hossznál a gépelés megáll, a hosszabb beillesztést levágja és jelzi; számnál betű, második tizedesjel nem írható be, a tartományon kívüli értéket a mezőből kilépéskor a határra igazítja és jelzi; dátumnál a tartományon kívüli nap nem választható.",
+        "Dupla kattintás és dupla beküldés ellen a gomb `aria-busy=\"true\"`-t kap, amíg a mentés tart."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "A szövegek mintái: [Mikroszöveg](mikroszoveg.html). Forrás: `docs/komponensek.md` 3.1, 3/A; `brandbook/elemek/komponensek.json` (Szerkesztő-oldal)."
+    },
+    {
+      "t": "h2",
+      "x": "Hosszú űrlap és piszkozat",
+      "id": "hosszu"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Hosszú felvételre a Szerkesztő-oldal sablon `steps` lépés-módja való (lépésjelző, Vissza / Tovább, az utolsó lépésen Mentés).",
+        "Mentetlen változásnál az oldal elhagyása előtt kérdez; lefagyás vagy lejárt belépés után a `DraftNotice` („Van egy be nem fejezett változat”) Visszaállítást és Elvetést ajánl.",
+        "Rövid, 1–2 mezős módosításra nem kell külön oldal: oldalpanel vagy sorbeli kapcsoló."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "A váz részletei: [Lista – részlet – szerkesztő](lista-reszlet-szerkeszto.html)."
+    },
+    {
+      "t": "h2",
+      "x": "Gombok az űrlapon",
+      "id": "gombok"
+    },
+    {
+      "t": "p",
+      "x": "Az űrlap Mentése szöveg + piktogram (`IcSave`); képernyőnként egy méz fő gomb. A teljes gombszabály egy helyen van: [Gomb](gomb.html)."
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "id": "adatvizualizacio",
+  "cim": "Adatvizualizáció",
+  "alcim": "Színskálák hőtérképhez, élőhelyhez, hálózati terheléshez – és a grafikonok kötelező részei.",
+  "csoport": "alapok",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "p",
+      "x": "Mennyiséget színnel mutatni csak úgy érdemes, ha minden nézőnek ugyanazt jelenti. Erre egységes, a beeco palettájához hangolt adatskálák vannak; mindkét bőr ugyanezt használja."
+    },
+    {
+      "t": "h2",
+      "x": "Három szabály",
+      "id": "szabalyok"
+    },
+    {
+      "t": "szamozott",
+      "elemek": [
+        "**A szín soha nem egyedül beszél.** Mellé mindig szám, jel (+ / −) vagy ikon kerül – a színtévesztő, a napfényben tükröző telefon és a fekete-fehér nyomat miatt.",
+        "**Szöveg bármelyik fokozaton ülhet:** az olíva szöveg (`--on-data`) mind a 20 színen eléri a 4,5 : 1 kontrasztot; ezt a `tests/check-arculat.js` ellenőrzi.",
+        "**A felület a szerep-tokent használja**, nem a nyers skálát (`--bc-data-…`). Így a színtévesztő-barát változat egy osztállyal átkapcsolható."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `docs/adatskala.md`."
+    },
+    {
+      "t": "h2",
+      "x": "Skálák",
+      "id": "skalak"
+    },
+    {
+      "t": "gen",
+      "nev": "adatskala"
+    },
+    {
+      "t": "tabla",
+      "cim": "Melyiket mikor?",
+      "fej": [
+        "Skála",
+        "Mikor",
+        "Példa"
+      ],
+      "sorok": [
+        [
+          "Egyirányú (szekvenciális), 5 fokozat: halvány zsálya → mély levél",
+          "Egy érték, amelynek csak „kevés–sok” iránya van, nincs rossz oldala.",
+          "élőhely-pont, forgalom egy úton"
+        ],
+        [
+          "Kétirányú (divergáló), 5 fokozat: rózsa ← krém → levél",
+          "Előjeles érték, van „jó” és „rossz” irány és egy semleges közép.",
+          "hűt/melegít, bevétel/kiadás"
+        ],
+        [
+          "Állapot (jó → rossz), 5 fokozat: levél → méz → piros",
+          "Minőség vagy egészség fokozatai, ahol a „rossz” irány is erős jelzés; térképjelölő fekete jellel.",
+          "öntözési szomjúság, POI-minőség"
+        ],
+        [
+          "Színtévesztő-barát párok (kék ↔ narancs)",
+          "Bekapcsolva (`.ds-cb` / `data-cb`) a `--data-*` szerepeket írja át; a paletta és a gombok változatlanok.",
+          "minden grafikon és hőtérkép"
+        ],
+        [
+          "Kategória: 8 szín (méz, levél, víz, rózsa, parázs, olíva, égkék, rozsda)",
+          "Egymástól független kategóriák.",
+          "sorozatok egy grafikonon"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "A tokenek: `--bc-data-seq-1…5`, `--bc-data-div-1…5`, `--bc-data-allapot-1…5`, a színtévesztő-barát párok `-cb` utótaggal (pl. `--bc-data-seq-cb-1…5`), a kategóriák `--bc-data-cat-1…8`. A kék ↔ narancs pár azért van, mert a leggyakoribb színtévesztés (vörös–zöld) mellett a rózsa és a levél is hasonló szürkének látszhat. Forrás: `docs/adatskala.md`, `docs/AI.md` (Tokenek), `tokens/core.json` → data."
+    },
+    {
+      "t": "h2",
+      "x": "A grafikonok kötelező részei",
+      "id": "grafikon"
+    },
+    {
+      "t": "p",
+      "x": "Egy mezei látogatónak is értenie kell, mit lát. Ezért a `ChartCard` ezek nélkül nem jelenik meg:"
+    },
+    {
+      "t": "tabla",
+      "cim": "Grafikon: kötelező részek",
+      "fej": [
+        "Rész",
+        "Mi"
+      ],
+      "sorok": [
+        [
+          "Cím",
+          "mit mutat, egyszerű nyelven („Beváltott kuponok hetente”)"
+        ],
+        [
+          "Alcím",
+          "egység és időszak („db, 2026. 07–09.”)"
+        ],
+        [
+          "Tengelyfeliratok, mezőnevek",
+          "mindkét tengely és minden kategória neve kiírva, rövidítés csak magyarázattal"
+        ],
+        [
+          "Jelmagyarázat",
+          "minden szín és minta jelentése; a vonalak végén közvetlen címke is lehet"
+        ],
+        [
+          "Súgó (ⓘ)",
+          "honnan jön az adat, hogyan számoljuk"
+        ],
+        [
+          "„Hogyan olvasd?”",
+          "lenyitható értelmezési segédlet 2–4 mondatban: mit jelent a magas/alacsony érték, mire figyelj, mi NEM következik belőle"
+        ],
+        [
+          "Adattábla",
+          "ugyanazok a számok táblázatban (képernyőolvasónak és ellenőrzésnek)"
+        ],
+        [
+          "Üres, töltés, hiba",
+          "„Ebben az időszakban nincs adat” + teendő"
+        ]
+      ]
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Szám csak valós adatból vagy forrással; becsült vagy vitatott érték jelölve. Egység és forrás mindig látszik.",
+        "Minden adatjel (oszlop, vonal, pont) `line` színű kontúrt kap, így a méz és a rózsa is elválik a háttértől (3 : 1), világosban és sötétben.",
+        "A sorozatok alakban is eltérnek (■ ●), nem csak színben."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `docs/komponensek.md` 3/B, 3.4 (Grafikon), 4."
+    }
+  ]
+}

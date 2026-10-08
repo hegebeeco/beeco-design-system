@@ -30,7 +30,7 @@
 .bc-kerek-cimke-hatter { fill: transparent; stroke: transparent; stroke-width: var(--bc-bw-base); transition: fill var(--bc-t-fast) var(--bc-ease-out); }
 .bc-kerek-cimke.is-valaszthato { cursor: pointer; }
 .bc-kerek-cimke.is-valaszthato:focus { outline: none; }
-.bc-kerek-cimke.is-valaszthato:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-kerek-cimke.is-valaszthato:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); }
 .bc-kerek-cimke.is-valaszthato:focus-visible .bc-kerek-cimke-hatter { stroke: var(--bc-focus); stroke-width: 3; }
 .bc-kerek-cimke.is-on .bc-kerek-cimke-hatter { fill: var(--bc-accent); stroke: var(--bc-line); }
 .bc-kerek-cimke.is-on text, .bc-kerek-cimke.is-on .bc-kerek-cimke-ertek { fill: var(--bc-on-accent); }
@@ -44,7 +44,7 @@
 button.bc-kerek-lista-elem { cursor: pointer; box-shadow: var(--bc-shadow-s);
   transition: transform var(--bc-t-press) var(--bc-ease-out), box-shadow var(--bc-t-press) var(--bc-ease-out), background-color var(--bc-t-fast) var(--bc-ease-out); }
 button.bc-kerek-lista-elem:active { transform: translate(var(--bc-shadow-s-x), var(--bc-shadow-s-y)); box-shadow: none; }
-button.bc-kerek-lista-elem:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+button.bc-kerek-lista-elem:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); }
 @media (hover: hover) and (pointer: fine) { button.bc-kerek-lista-elem:not(.is-on):hover { background: var(--bc-surface-2); } }
 .bc-kerek-lista-elem.is-on { color: var(--bc-on-accent); background: var(--bc-accent); }
 .bc-kerek-lista-nev { min-width: 0; font-weight: var(--bc-fw-semibold); overflow-wrap: anywhere; }
@@ -63,7 +63,7 @@ button.bc-kerek-lista-elem:focus-visible { outline: 3px solid var(--bc-focus); o
   color: inherit; background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
 .bc-kerek-sorgomb[aria-pressed="true"] { text-decoration-thickness: 3px; }
 .bc-kerek-sorgomb[aria-pressed="true"]::before { content: "▸ "; white-space: pre; }
-.bc-kerek-sorgomb:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; border-radius: var(--bc-r-s); }
+.bc-kerek-sorgomb:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); border-radius: var(--bc-r-s); }
 
 /* ======================= JelzoKartya ======================= */
 .bc-jelzo { display: grid; gap: var(--bc-sp-4); min-width: 0; padding: var(--bc-sp-4); color: var(--bc-ink); background: var(--bc-surface);
@@ -84,7 +84,7 @@ button.bc-kerek-lista-elem:focus-visible { outline: 3px solid var(--bc-focus); o
 .bc-jelzo-opcio.is-nagy { min-height: 64px; }
 /* A natív rádió láthatatlan, de fókuszálható (a nyilak léptetnek); a fókuszkeret a kártyán látszik */
 .bc-jelzo-radio { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
-.bc-jelzo-opcio:has(.bc-jelzo-radio:focus-visible) { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
+.bc-jelzo-opcio:has(.bc-jelzo-radio:focus-visible) { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); }
 .bc-jelzo-opcio:has(.bc-jelzo-radio:checked) { transform: translate(var(--bc-shadow-s-x), var(--bc-shadow-s-y)); box-shadow: none; border-width: 3px; }
 .bc-jelzo-opcio.is-zold:has(.bc-jelzo-radio:checked) { color: var(--bc-success-ink); background: var(--bc-success-bg); }
 .bc-jelzo-opcio.is-sarga:has(.bc-jelzo-radio:checked) { color: var(--bc-warning-ink); background: var(--bc-warning-bg); }
@@ -109,7 +109,7 @@ button.bc-kerek-lista-elem:focus-visible { outline: 3px solid var(--bc-focus); o
 .bc-jelzo-osszegzes::before { content: ""; flex: none; width: 8px; height: 8px; margin: 0 var(--bc-sp-3) 0 var(--bc-sp-1); border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
   transform: rotate(-45deg); transition: transform var(--bc-t-fast) var(--bc-ease-out); }
 .bc-jelzo-reszlet[open] > .bc-jelzo-osszegzes::before { transform: rotate(45deg); }
-.bc-jelzo-osszegzes:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; border-radius: var(--bc-r-s); }
+.bc-jelzo-osszegzes:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); border-radius: var(--bc-r-s); }
 .bc-jelzo-mezok { display: grid; gap: var(--bc-sp-3); margin-top: var(--bc-sp-2); min-width: 0; }
 
 /* ======================= RetroVaszon ======================= */

@@ -1,0 +1,123 @@
+{
+  "id": "mozgas",
+  "cim": "Mozgás",
+  "alcim": "Gyors, visszafogott, ease-out: a mozgás visszajelzés, nem dísz.",
+  "csoport": "alapok",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "h2",
+      "x": "Idők és görbék",
+      "id": "idok"
+    },
+    {
+      "t": "gen",
+      "nev": "mozgas"
+    },
+    {
+      "t": "szabaly",
+      "cim": "Mozgásszabályok",
+      "elemek": [
+        "Felületi animáció legfeljebb 300 ms, `ease-out` görbével; `ease-in` tilos (lassan indul, késésnek érződik); `transition: all` kerülendő.",
+        "Rámutatás-hatás csak egérrel (`(hover: hover) and (pointer: fine)`).",
+        "Csökkentett mozgás beállításnál minden azonnali, és a végtelen animáció is megáll (`bc-base.css`).",
+        "Ünnepi pillanat legfeljebb 600 ms és egyszer; végtelen mozgás nincs, a töltő 10 mp után megáll.",
+        "A `bounce` görbe csak jutalomra (csillag, jelvény, pecsét).",
+        "Gyakori műveletet (listaszűrés, fülváltás) nem animálunk."
+      ],
+      "forras": [
+        "tokens/core.json",
+        "docs/termek-arculat.md 5.",
+        "termek/css/bc-motion.css (fejléc)",
+        "termek/css/bc-base.css"
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Mozgáskészlet",
+      "id": "keszlet"
+    },
+    {
+      "t": "p",
+      "x": "A `termek/css/bc-motion.css` kész animációi:"
+    },
+    {
+      "t": "tabla",
+      "cim": "Mozgáskészlet",
+      "fej": [
+        "Osztály",
+        "Mire",
+        "Idő"
+      ],
+      "sorok": [
+        [
+          "`bc-anim-rise`",
+          "megjelenés (lentről, halványodva)",
+          "`t-base` (200 ms)"
+        ],
+        [
+          "`bc-anim-cheer`",
+          "ünneplés",
+          "400 ms, `bounce`"
+        ],
+        [
+          "`bc-anim-tick`",
+          "pipa megjelenése",
+          "400 ms, `bounce`"
+        ],
+        [
+          "`bc-anim-stamp`",
+          "pecsét: az új állapot odacsapódik",
+          "`t-slow` (400 ms), `bounce`"
+        ],
+        [
+          "`bc-anim-shake`",
+          "kíméletes „nem jó” rázás hibás beküldésnél",
+          "240 ms, egyszer"
+        ],
+        [
+          "`bc-stagger`",
+          "lista beúszása soronként",
+          "`t-base`, 30 ms késés soronként, legfeljebb 6 sorig"
+        ],
+        [
+          "`bc-lift`",
+          "kártya-emelés rámutatáskor (csak egérrel)",
+          "`t-fast` (120 ms)"
+        ],
+        [
+          "`bc-hexload`",
+          "mézsejt-töltő rövid töltéshez",
+          "900 ms, 11-szer ismétel"
+        ],
+        [
+          "`bc-progress`",
+          "csíkos haladásjelző",
+          "csúszás 600 ms, 17-szer ismétel, kész állapotban áll"
+        ],
+        [
+          "`bc-attention`",
+          "figyelem-zümmögés (egy elem háromszor megrezdül)",
+          "180 ms, 3-szor"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Nem tokenizált értékek",
+      "id": "literalok"
+    },
+    {
+      "t": "hianyzik",
+      "cim": "Literális időértékek a bc-motion.css-ben",
+      "x": [
+        "A `termek/css/bc-motion.css`-ben 10 időérték nyers szám, nem `--bc-t-…` token: 400 ms (kétszer: ünneplés, pipa), 240 ms (rázás), 30 ms (lista-késés), 900 ms (mézsejt-töltő), 150 ms és 300 ms (a mézsejt-töltő második és harmadik hatszögének késleltetése), 600 ms (haladásjelző csúszása és a konfetti-darabok), 180 ms (figyelem-zümmögés). Az ismétlések száma (11, 17, 3) is nyers szám.",
+        "A 300 ms-nál hosszabb értékek (400–900 ms) az „UI ≤ 300 ms” szabály kivételei: ünnepi pillanat és töltő. Hogy ezek legyenek-e tokenek, vagy a szabály legyen pontosabb, döntésre vár."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `termek/css/bc-motion.css`, `tokens/core.json` (duration, easing)."
+    }
+  ]
+}

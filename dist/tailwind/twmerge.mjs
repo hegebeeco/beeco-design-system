@@ -15,7 +15,68 @@ const beecoTwMerge = {
             "l",
             "xl",
             "2xl",
-            "3xl"
+            "3xl",
+            "display",
+            "heading-1",
+            "heading-2",
+            "heading-3",
+            "heading-4",
+            "body",
+            "body-s",
+            "label",
+            "caption"
+          ]
+        }
+      ],
+      "tracking": [
+        {
+          "tracking": [
+            "normal",
+            "display"
+          ]
+        }
+      ],
+      "opacity": [
+        {
+          "opacity": [
+            "disabled"
+          ]
+        }
+      ],
+      "outline-offset": [
+        {
+          "outline-offset": [
+            "focus"
+          ]
+        }
+      ],
+      "w": [
+        {
+          "w": [
+            "tap",
+            "icon-s",
+            "icon-m",
+            "icon-l"
+          ]
+        }
+      ],
+      "h": [
+        {
+          "h": [
+            "tap",
+            "icon-s",
+            "icon-m",
+            "icon-l"
+          ]
+        }
+      ],
+      "size": [
+        {
+          "size": [
+            "tap",
+            "icon-s",
+            "icon-m",
+            "icon-l"
           ]
         }
       ],

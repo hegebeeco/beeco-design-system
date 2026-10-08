@@ -1,0 +1,175 @@
+{
+  "id": "social",
+  "cim": "Social media",
+  "alcim": "A beeco a közösségi felületeken is ugyanaz a méhecske: laza, barátságos, a megoldásra figyel.",
+  "csoport": "alkalmazas",
+  "statusz": "vázlat",
+  "blokkok": [
+    { "t": "p", "x": "Ez az oldal megmutatja, milyen méretben, milyen hangon és hogyan posztolunk. A kész sablonok a [Sablonok](sablonok.html) oldalon vannak." },
+    { "t": "h2", "x": "Csatornák és hangnem" },
+    { "t": "szabaly", "cim": "A beeco hangja a közösségi felületeken",
+      "elemek": [
+        "**Laza, barátságos, inspiráló – néha provokatív.** Pozitív és motiváló: a hangsúly mindig a megoldáson van.",
+        "**Rövid és lényegre törő, játékos és szokatlan.** Tegeződünk.",
+        "**Megszólítás:** Kaptárs, Rajtárs – B2B-ben (LinkedIn, partneri levél): Partner.",
+        "**Szlogen:** „Beezz a rajban!” – angol nyelvű anyagban: „Bee the change!”.",
+        "**Csatornák:** Instagram, Facebook, TikTok, LinkedIn, hírlevél. Push értesítésből **naponta legfeljebb egy**.",
+        "**A story nagyon rövid:** „1 perc, 1 lépés”."
+      ],
+      "forras": ["A beeco döntése, 2026-10-07 – a beeco márkadokumentuma alapján", "tokens/hangnem.json – a szóvicc helye"] },
+    { "t": "p", "x": "A szóvicc aránya a [Hang és személyiség](marka-hang.html) oldalon van. A gyakorlatban: egy átlagos, 5–8 mondatos Instagram-posztban legfeljebb egy szóvicc lehet, és nem minden posztban kell. A szóvicc soha nem kerül számadat, jogi szöveg vagy a teendő mellé." },
+    { "t": "tabla", "cim": "Csatornák és hangnem", "fej": ["Csatorna", "Kinek", "Hangsúly", "Megszólítás"], "sorok": [
+      ["Instagram", "lakossági", "vizuális, inspiráló; story: 1 perc, 1 lépés", "Kaptárs, Rajtárs"],
+      ["Facebook", "lakossági", "közösség, esemény, hosszabb leírás is elfér", "Kaptárs, Rajtárs"],
+      ["TikTok", "lakossági", "rövid videó, játékos, néha provokatív", "Kaptárs, Rajtárs"],
+      ["LinkedIn", "B2B – partnerek, cégek", "barátságos, de szakmai: haszon és következő lépés", "Partner"],
+      ["Hírlevél", "lakossági", "egy téma, egy teendő, rövid bekezdések", "Kaptárs, Rajtárs"],
+      ["Push értesítés", "app-felhasználók", "egy mondat, egy teendő; a szóvicc mellett a sima párja is", "– (naponta legfeljebb egy push)"]
+    ] },
+    { "t": "p", "x": "A szóvicc-arány, a megszólítás és a push-korlát döntés; a „Hangsúly” oszlop szerkesztői javaslat a csatornák szokásai alapján." },
+    { "t": "dodont", "cim": "Hangnem – lakossági poszt", "allapot": "szabaly",
+      "forras": ["A beeco döntése, 2026-10-07 – a beeco márkadokumentuma alapján"],
+      "parok": [
+        { "jo": {"felirat": "tegez, a megoldásra figyel, egy szóvicc sem kell", "html": "<div class=\"bb-sm-felirat\"><p class=\"bb-sm-fiok\"><span class=\"bb-sm-avatar\" aria-hidden=\"true\"></span>beeco</p><p>Kaptárs, ma egyetlen lépés: tedd a kulacsot a táskádba. Holnap már szokás lesz. Beezz a rajban!</p></div>"},
+          "rossz": {"felirat": "szóvicc-áradat, nem derül ki, mit tegyél", "html": "<div class=\"bb-sm-felirat\"><p class=\"bb-sm-fiok\"><span class=\"bb-sm-avatar\" aria-hidden=\"true\"></span>beeco</p><p>Zümm-zümm, mézes hírünk van! Méhtett-kihívás a kaptárban: bezümmögünk, kimézelünk, szárnyra kapunk!</p></div>"},
+          "miert": "Egy posztban legfeljebb egy szóvicc van. A teendő mindig világos." }
+      ] },
+    { "t": "dodont", "cim": "Hangnem – LinkedIn (B2B)", "allapot": "szabaly",
+      "forras": ["A beeco döntése, 2026-10-07 – a beeco márkadokumentuma alapján", "a partnerprogram szövege: [beeco.hu/szolgaltatas/partner](https://www.beeco.hu/szolgaltatas/partner)"],
+      "parok": [
+        { "jo": {"felirat": "Partnernek szól: haszon és következő lépés", "html": "<div class=\"bb-sm-felirat\"><p class=\"bb-sm-fiok\"><span class=\"bb-sm-avatar\" aria-hidden=\"true\"></span>beeco</p><p>Partner, a beeco-partnerek egyedi megjelenést kapnak a térképen, kuponokat és havi analitikát. Így csatlakozhatsz: beeco.hu/szolgaltatas/partner</p></div>"},
+          "rossz": {"felirat": "szóvicc és túlzás B2B-ben", "html": "<div class=\"bb-sm-felirat\"><p class=\"bb-sm-fiok\"><span class=\"bb-sm-avatar\" aria-hidden=\"true\"></span>beeco</p><p>Zümmögő üzleti lehetőség! Legyél te is a kaptár királynője, és méhzd ki a bevételt!!!</p></div>"},
+          "miert": "B2B-ben a szóvicc nagyon ritka. A partner időt spórol: mit kap, és mi a következő lépés." }
+      ] },
+
+    { "t": "h2", "x": "Formátumok" },
+    { "t": "tabla", "cim": "Formátumok csatornánként", "fej": ["Csatorna", "Formátum", "Méret (px)", "Arány", "Sablon"], "sorok": [
+      ["Instagram", "hírfolyam – négyzet / álló", "1080 × 1080 · 1080 × 1350", "1:1 · 4:5", "Poszt 1:1, Poszt 4:5"],
+      ["Instagram", "story, reels", "1080 × 1920", "9:16", "Story"],
+      ["Facebook", "hírfolyam · story, reels", "1080 × 1080 · 1080 × 1350 · 1080 × 1920", "1:1 · 4:5 · 9:16", "ugyanazok, mint az Instagramon"],
+      ["TikTok", "videó, fotó-poszt", "1080 × 1920", "9:16", "Story (a zónák a TikTokra is jók)"],
+      ["LinkedIn", "linkes / képes poszt", "1200 × 627 (négyzet: 1080 × 1080)", "1,91:1", "LinkedIn-poszt"],
+      ["Prezentáció", "dia", "1920 × 1080", "16:9", "Címdia, Tartalomdia"]
+    ] },
+    { "t": "javaslat", "cim": "Melyik formátumot válaszd",
+      "elemek": [
+        "Hírfolyamba az **álló 4:5** a legjobb: a telefonon ez foglalja a legtöbb helyet. A négyzet (1:1) jó, ha ugyanazt a képet több csatornára teszed.",
+        "Story-ba, reelsbe, TikTokra mindig **9:16**-ban tervezz – a fekvő kép fekete sávokkal kicsi és elvész.",
+        "Minden kép a saját méretében készüljön; ne vágd ki utólag a négyzetből a story-t."
+      ],
+      "forras": ["Meta / Instagram súgó: story 1080 × 1920 px, felül és alul 250 px szabadon (hirdetésnél alul 340 px)", "TikTok alkotói ajánlás: jobb oldali gombsor kb. 120–160 px, alsó felirat- és zenesáv", "Szerkesztői összefoglaló, 2026-10 – a platformok gyakran változtatnak: évente nézd át"] },
+    { "t": "dodont", "cim": "Formátum", "allapot": "javaslat",
+      "forras": ["Meta / Instagram súgó: story 1080 × 1920 px, felül és alul 250 px szabadon (hirdetésnél alul 340 px)", "TikTok alkotói ajánlás: jobb oldali gombsor kb. 120–160 px, alsó felirat- és zenesáv", "Szerkesztői összefoglaló, 2026-10 – a platformok gyakran változtatnak: évente nézd át"],
+      "parok": [
+        { "jo": {"felirat": "a csatornához tervezve (story: 9:16)", "html": "<div class=\"bb-sm is-916\"><p class=\"bb-sm-felcim\">1 perc, 1 lépés</p><p class=\"bb-sm-cim\">Kulacs a táskában</p><div class=\"bb-sm-foto\"></div><div class=\"bb-sm-lab\"><span class=\"bb-sm-cta\">Beezz a rajban!</span><img class=\"bb-sm-logo\" src=\"assets/brand/logo.webp\" alt=\"beeco logó\" width=\"512\" height=\"313\"></div></div>"},
+          "rossz": {"felirat": "fekvő kép a story-ban, fekete sávokkal", "html": "<div class=\"bb-sm is-916 is-fekete\"><div class=\"bb-sm-fekvo\"><p class=\"bb-sm-cim\">Kulacs a táskában</p></div></div>"},
+          "miert": "A fekvő kép a story közepén apró lesz, a sávok pedig elviszik a figyelmet." }
+      ] },
+
+    { "t": "h2", "x": "Biztonsági zónák" },
+    { "t": "javaslat", "cim": "Story, reels, TikTok: hova ne kerüljön semmi fontos",
+      "elemek": [
+        "**Felső sáv – 250 px:** profilkép, név, időcsík.",
+        "**Alsó sáv – 250 px a story-ban, 420 px a reelsben és a TikTokon:** válaszmező, felirat, zene, gombok.",
+        "**Jobb sáv – kb. 160 px (reels, TikTok):** kedvelés, hozzászólás, megosztás.",
+        "Szöveg, logó, link és arc a középső részbe kerüljön. A Story-sablon a legszigorúbb zónákkal készült, így mindhárom felületen jó."
+      ],
+      "forras": ["Meta / Instagram súgó: story 1080 × 1920 px, felül és alul 250 px szabadon (hirdetésnél alul 340 px)", "TikTok alkotói ajánlás: jobb oldali gombsor kb. 120–160 px, alsó felirat- és zenesáv", "Szerkesztői összefoglaló, 2026-10 – a platformok gyakran változtatnak: évente nézd át"] },
+    { "t": "dodont", "cim": "Biztonsági zóna", "allapot": "javaslat",
+      "forras": ["Meta / Instagram súgó: story 1080 × 1920 px, felül és alul 250 px szabadon (hirdetésnél alul 340 px)", "TikTok alkotói ajánlás: jobb oldali gombsor kb. 120–160 px, alsó felirat- és zenesáv", "Szerkesztői összefoglaló, 2026-10 – a platformok gyakran változtatnak: évente nézd át"],
+      "parok": [
+        { "jo": {"felirat": "minden fontos a középső részben", "html": "<div class=\"bb-sm is-916\"><span class=\"bb-sm-zona is-fent\" aria-hidden=\"true\"></span><span class=\"bb-sm-zona is-lent\" aria-hidden=\"true\"></span><div class=\"bb-sm-belso\"><p class=\"bb-sm-cim\">1 perc, 1 lépés</p><p class=\"bb-sm-szoveg\">Kapcsold le a villanyt, ha kimész.</p><span class=\"bb-sm-cta\">Beezz a rajban!</span></div></div>"},
+          "rossz": {"felirat": "a cím és a CTA a platform sávjaiban", "html": "<div class=\"bb-sm is-916 is-szetszort\"><span class=\"bb-sm-zona is-fent\" aria-hidden=\"true\"></span><span class=\"bb-sm-zona is-lent\" aria-hidden=\"true\"></span><p class=\"bb-sm-cim\">1 perc, 1 lépés</p><p class=\"bb-sm-szoveg\">Kapcsold le a villanyt, ha kimész.</p><span class=\"bb-sm-cta\">Beezz a rajban!</span></div>"},
+          "miert": "A felső sávban a profil és az időcsík, az alsóban a válaszmező és a gombok takarja el a szöveget." }
+      ] },
+
+    { "t": "h2", "x": "Betű, szín, méhecske a képen" },
+    { "t": "p", "x": "A képen ugyanazok a szabályok élnek, mint máshol: a betűké a [Tipográfia](tipografia.html), a színeké a [Szín](szin.html), a méhecskéé a [Méhecske és illusztráció](meh-illusztracio.html) oldalon van. Itt csak ami a közösségi képre különösen igaz." },
+    { "t": "javaslat", "cim": "Méretek és sűrűség a képen",
+      "elemek": [
+        "A sablonok a Design System betűskáláját nagyítják fel (1080 px széles képen 2,5-szeresen): **cím kb. 115 px**, **szöveg 40 px**, CTA 50 px.",
+        "Egy képen legfeljebb **egy cím és két-három rövid mondat**; a részlet a poszt szövegébe kerül.",
+        "Egy képen legfeljebb egy méhecske, és az érzelme illik a pillanathoz.",
+        "Sötét képhez az éjszaka-olíva az alap, rajta krém szöveg; a mézen a szöveg fekete.",
+        "Telefonon nézd meg, mielőtt kiteszed: ha karnyújtásnyiról nem olvasható, túl kicsi."
+      ],
+      "forras": ["a Design System betűskálája (tokens/core.json → fontSize)", "docs/termek-arculat.md 1–2.", "Szerkesztői javaslat – a sablonok méretezése"] },
+    { "t": "dodont", "cim": "Tipográfia", "allapot": "szabaly",
+      "forras": ["docs/termek-arculat.md 4."],
+      "parok": [
+        { "jo": {"felirat": "rövid Lalezar cím, Open Sans szöveg", "html": "<div class=\"bb-sm is-11\"><p class=\"bb-sm-cim\">Kulacs a táskában</p><p class=\"bb-sm-szoveg\">Egy mondat arról, mit tehetsz ma.</p><div class=\"bb-sm-lab\"><span class=\"bb-sm-cta\">Beezz a rajban!</span><img class=\"bb-sm-logo\" src=\"assets/brand/logo.webp\" alt=\"beeco logó\" width=\"512\" height=\"313\"></div></div>"},
+          "rossz": {"felirat": "hosszú bekezdés Lalezarral, csupa nagybetűvel", "html": "<div class=\"bb-sm is-11\"><p class=\"bb-sm-hosszu\">MINTA: HOSSZÚ BEKEZDÉS LALEZARRAL, AMI TELE VAN INFORMÁCIÓVAL, ÉS A HÍRFOLYAMBAN SENKI NEM OLVASSA VÉGIG.</p></div>"},
+          "miert": "A Lalezar címbetű: rövid, hangos sorokra való. Hosszabb szöveg Open Sansszal, kis- és nagybetűvel." }
+      ] },
+
+    { "t": "h2", "x": "Logó helye" },
+    { "t": "javaslat", "cim": "A logó a sarokban, levegővel",
+      "elemek": [
+        "A logó a kép **alsó sarkában** áll (a sablonokban jobbra lent), körben a magasságának felével üresen.",
+        "1080 px széles képen kb. **240 px széles**; kisebb ne legyen, mint a [Logó](logo.html) oldalon megadott legkisebb méret.",
+        "Mindig krém vagy fehér alapon (sötét képen a sötét változat) – fotóra, mintára nem.",
+        "Story-n a biztonsági zónán belül; a felső sávba nem kerül."
+      ],
+      "forras": ["Logó oldal – logószabályok (védőtér, legkisebb méret)", "Szerkesztői javaslat – a logó helye a közösségi képeken"] },
+    { "t": "dodont", "cim": "Logó", "allapot": "javaslat",
+      "forras": ["Márka fejezet – logószabályok", "Szerkesztői javaslat"],
+      "parok": [
+        { "jo": {"felirat": "alsó sarokban, krém alapon, levegővel", "html": "<div class=\"bb-sm is-11\"><p class=\"bb-sm-cim\">Kulacs a táskában</p><div class=\"bb-sm-foto is-kicsi\"></div><div class=\"bb-sm-lab\"><span class=\"bb-sm-cta\">Beezz a rajban!</span><img class=\"bb-sm-logo\" src=\"assets/brand/logo.webp\" alt=\"beeco logó\" width=\"512\" height=\"313\"></div></div>"},
+          "rossz": {"felirat": "nyújtva, a fotóra téve, a sarokba szorítva", "html": "<div class=\"bb-sm is-11\"><div class=\"bb-sm-foto is-teli\"><img class=\"bb-sm-logo is-rossz\" src=\"assets/brand/logo.webp\" alt=\"beeco logó\" width=\"512\" height=\"313\"></div><p class=\"bb-sm-cim\">Kulacs a táskában</p></div>"},
+          "miert": "A logó levegőt kap, és nyugodt alapon áll – a fotón és torzítva elvész." }
+      ] },
+
+    { "t": "h2", "x": "Hashtag, emoji, CTA" },
+    { "t": "javaslat", "cim": "Hashtag",
+      "elemek": [
+        "**3–5 hashtag**, a poszt szövegének végén, külön sorban – a mondat közepébe nem.",
+        "Az első mindig **#beeco**; kampányban a kampány saját hashtagje (pl. #BeezzARajban).",
+        "Több szóból álló hashtag nagy kezdőbetűkkel (okát lásd: [Hozzáférhető tartalom](hozzaferheto-tartalom.html)).",
+        "Magyarul; angolul csak angol nyelvű posztban."
+      ],
+      "forras": ["Szerkesztői javaslat – általános közösségimédia-gyakorlat és akadálymentesség"] },
+    { "t": "dodont", "cim": "Hashtag", "allapot": "javaslat",
+      "forras": ["Szerkesztői javaslat"],
+      "parok": [
+        { "jo": {"felirat": "kevés, a végén, nagy kezdőbetűkkel", "html": "<div class=\"bb-sm-felirat\"><p class=\"bb-sm-fiok\"><span class=\"bb-sm-avatar\" aria-hidden=\"true\"></span>beeco</p><p>Kaptárs, a mai lépés: kulacs a táskában. Holnap már szokás lesz.<br><span class=\"bb-sm-tag\">#beeco</span> <span class=\"bb-sm-tag\">#BeezzARajban</span> <span class=\"bb-sm-tag\">#fenntarthatóság</span></p></div>"},
+          "rossz": {"felirat": "sok, a szövegbe keverve, angolul", "html": "<div class=\"bb-sm-felirat\"><p class=\"bb-sm-fiok\"><span class=\"bb-sm-avatar\" aria-hidden=\"true\"></span>beeco</p><p>Ma <span class=\"bb-sm-tag\">#zerowaste</span> <span class=\"bb-sm-tag\">#eco</span> kulacs <span class=\"bb-sm-tag\">#bottle</span> a <span class=\"bb-sm-tag\">#green</span> táskában <span class=\"bb-sm-tag\">#love</span> <span class=\"bb-sm-tag\">#instagood</span> <span class=\"bb-sm-tag\">#nature</span> <span class=\"bb-sm-tag\">#bee</span> <span class=\"bb-sm-tag\">#happy</span> <span class=\"bb-sm-tag\">#follow</span></p></div>"},
+          "miert": "A sok hashtag olvashatatlanná teszi a szöveget, és nem hoz több kaptárst." }
+      ] },
+    { "t": "javaslat", "cim": "Emoji",
+      "elemek": [
+        "Posztonként **legfeljebb 3 emoji**, a mondat végén vagy egy felsorolás elején – szót nem helyettesít.",
+        "Az emoji fűszer, mint a szóvicc: B2B-ben (LinkedIn) legfeljebb egy, vagy egy se.",
+        "A képre emoji nem kerül; a méhecske a rajzolt méhecske."
+      ],
+      "forras": ["Szerkesztői javaslat – a szóvicc-arány (2026-10-07) és a méhecske-szabály (tokens/hangnem.json) kiterjesztése"] },
+    { "t": "dodont", "cim": "Emoji", "allapot": "javaslat",
+      "forras": ["Szerkesztői javaslat"],
+      "parok": [
+        { "jo": {"felirat": "egy-két emoji, a mondat végén", "html": "<div class=\"bb-sm-felirat\"><p class=\"bb-sm-fiok\"><span class=\"bb-sm-avatar\" aria-hidden=\"true\"></span>beeco</p><p>Kulacs a táskában, villany lekapcsolva. Ennyi volt a mai lépés ✅</p></div>"},
+          "rossz": {"felirat": "emoji szavak helyett, halmozva", "html": "<div class=\"bb-sm-felirat\"><p class=\"bb-sm-fiok\"><span class=\"bb-sm-avatar\" aria-hidden=\"true\"></span>beeco</p><p>Ma 💧 vidd 👜 a 🍶-t 🌍🌱✨🔥💯</p></div>"},
+          "miert": "Az emoji nem helyettesít szót: a képernyőolvasó felolvassa a nevét, és a mondat értelmetlen lesz." }
+      ] },
+    { "t": "javaslat", "cim": "CTA – a teendő",
+      "elemek": [
+        "Posztonként **egy CTA**: ige elöl, tegezve, rövid („Töltsd le az appot”, „Nézd meg a térképen”).",
+        "A szlogen („Beezz a rajban!”) zárásnak jó, de nem helyettesíti a teendőt, ha van ilyen.",
+        "Story-n a CTA a biztonsági zónán belül, a link-matrica fölött.",
+        "B2B-ben a következő lépés konkrét: „Írj nekünk”, „Nézd meg a partnerprogramot”."
+      ],
+      "forras": ["Gombon nincs szóvicc, a gomb azt mondja, mi történik (Hang és személyiség)", "Szerkesztői javaslat"] },
+    { "t": "dodont", "cim": "CTA", "allapot": "javaslat",
+      "forras": ["Hang és személyiség oldal – gombfeliratok", "Szerkesztői javaslat"],
+      "parok": [
+        { "jo": {"felirat": "egy teendő, ige elöl", "html": "<div class=\"bb-sm-felirat\"><p class=\"bb-sm-fiok\"><span class=\"bb-sm-avatar\" aria-hidden=\"true\"></span>beeco</p><p>Kaptárs, a környékeden is vannak ökos helyek. Nézd meg a térképen – a link a bióban.</p></div>"},
+          "rossz": {"felirat": "öt teendő egyszerre", "html": "<div class=\"bb-sm-felirat\"><p class=\"bb-sm-fiok\"><span class=\"bb-sm-avatar\" aria-hidden=\"true\"></span>beeco</p><p>Kövess! Lájkolj! Oszd meg! Töltsd le! Iratkozz fel a hírlevélre!</p></div>"},
+          "miert": "Ha mindent kérünk, semmit nem kapunk: egy poszt, egy teendő." }
+      ] },
+
+    { "t": "h2", "x": "Kapcsolódó" },
+    { "t": "lista", "elemek": [
+      "Kész sablonok: [Sablonok és nyomtatvány](sablonok.html)",
+      "Fotók: [Képek és fotó](kepek-fotok.html)",
+      "Mindenkinek érthetően: [Hozzáférhető tartalom](hozzaferheto-tartalom.html)"
+    ] }
+  ]
+}

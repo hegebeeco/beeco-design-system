@@ -1,0 +1,166 @@
+{
+  "id": "eszkozok",
+  "cim": "Eszközök",
+  "alcim": "Token-letöltések, API és AI-index, ellenőrző parancsok – és a Figma-változók, amelyek még nem készültek el.",
+  "csoport": "eszkozok",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "h2",
+      "x": "Token-letöltések",
+      "id": "tokenek"
+    },
+    {
+      "t": "p",
+      "x": "A tokenek egyetlen forrásból (`tokens/*.json`) generálódnak; a kimeneteket kézzel sosem szerkesztjük (`node tools/tokens-build.js`). A letöltés a GitHubon a fájl megnyitása; a telepítésről a [Telepítés](telepites.html) szól."
+    },
+    {
+      "t": "tabla",
+      "cim": "Token-fájlok",
+      "fej": [
+        "Fájl",
+        "Formátum",
+        "Mire"
+      ],
+      "sorok": [
+        [
+          "[`dist/tokens.json`](https://github.com/hegebeeco/beeco-design-system/blob/main/dist/tokens.json)",
+          "JSON",
+          "minden érték gépi formában (a verzió is benne van)"
+        ],
+        [
+          "[`dist/css/beeco-tokens.css`](https://github.com/hegebeeco/beeco-design-system/blob/main/dist/css/beeco-tokens.css)",
+          "CSS-változók",
+          "web (termékbőr, `--bc-…`)"
+        ],
+        [
+          "[`dist/css/beeco-fonts.css`](https://github.com/hegebeeco/beeco-design-system/blob/main/dist/css/beeco-fonts.css)",
+          "CSS",
+          "a betűk betöltése (saját szerverről)"
+        ],
+        [
+          "[`dist/scss/_beeco.scss`](https://github.com/hegebeeco/beeco-design-system/blob/main/dist/scss/_beeco.scss)",
+          "SCSS",
+          "admin: `bc.$bc-ink`, `bc.sp(4)`"
+        ],
+        [
+          "[`dist/tailwind/preset.cjs`](https://github.com/hegebeeco/beeco-design-system/blob/main/dist/tailwind/preset.cjs)",
+          "Tailwind-preset",
+          "partner: `bg-accent`, `text-ink`"
+        ],
+        [
+          "[`dist/dart/beeco_tokens.dart`](https://github.com/hegebeeco/beeco-design-system/blob/main/dist/dart/beeco_tokens.dart)",
+          "Dart",
+          "Flutter: `BeecoPalette`, `BeecoRoles`, `BeecoTokens`"
+        ],
+        [
+          "[`dist/weboldal/webflow-valtozok.json`](https://github.com/hegebeeco/beeco-design-system/blob/main/dist/weboldal/webflow-valtozok.json)",
+          "JSON",
+          "Webflow-változók („beeco DS” gyűjtemény)"
+        ],
+        [
+          "[`dist/weboldal/paletta.json`](https://github.com/hegebeeco/beeco-design-system/blob/main/dist/weboldal/paletta.json)",
+          "JSON",
+          "mit szabad az élő weboldalon"
+        ],
+        [
+          "[`web/css/tokens.css`](https://github.com/hegebeeco/beeco-design-system/blob/main/web/css/tokens.css)",
+          "CSS",
+          "játékbőr (a `kit-sync` másolja a játékokba)"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "API és AI-index",
+      "id": "ai-index"
+    },
+    {
+      "t": "p",
+      "x": "A csomag teljes felülete gépi formában is elérhető, hogy az AI-eszközöknek ne kelljen a generált fájlokat átolvasniuk. Az ügynök menete: **először az `AI.md`**, a `dist/` mappát nem kell megnyitni."
+    },
+    {
+      "t": "tabla",
+      "cim": "Gépi indexek",
+      "fej": [
+        "Fájl",
+        "Mit tartalmaz"
+      ],
+      "sorok": [
+        [
+          "[`llms.txt`](https://github.com/hegebeeco/beeco-design-system/blob/main/llms.txt)",
+          "belépő az ügynököknek: hová nézzen először"
+        ],
+        [
+          "[`docs/AI.md`](https://github.com/hegebeeco/beeco-design-system/blob/main/docs/AI.md)",
+          "generált, tömör index: minden React-komponens egy sorban (import, fő propok, CSS-osztály, mire), tokenek, CSS-elemek, szabályok, tesztek"
+        ],
+        [
+          "[`api/api.json`](https://github.com/hegebeeco/beeco-design-system/blob/main/api/api.json)",
+          "a nyilvános felület gépi pillanatképe: React-exportok és propok, `bc-` és játék-osztályok, tokenek, játék-JS nevek"
+        ],
+        [
+          "[`docs/ai-munkamod.md`](https://github.com/hegebeeco/beeco-design-system/blob/main/docs/ai-munkamod.md)",
+          "munkamód, mi generált, kiadás, törő-változás-őr, szabályok ügynököknek"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Az `AI.md` és az `api.json` generált (`node tools/ai-index.js`, `node tools/api-check.js --write`), a CI ellenőrzi a frissességüket."
+    },
+    {
+      "t": "h2",
+      "x": "Ellenőrző parancsok",
+      "id": "parancsok"
+    },
+    {
+      "t": "tabla",
+      "cim": "Parancsok",
+      "fej": [
+        "Parancs",
+        "Mit csinál"
+      ],
+      "sorok": [
+        [
+          "`npm test`",
+          "a teljes kör (= CI): generált fájlok frissessége, API-őr, token-, kontraszt-, komponens- és repó-ellenőrzés"
+        ],
+        [
+          "`npm run check:egy -- <tesztlap vagy Komponens>`",
+          "munka közben csak egy komponens építése és tesztelése, 2 nézetben"
+        ],
+        [
+          "`npx beeco-ds-lint`",
+          "a fogyasztó projektben: nyers szín, idegen betű, nyers méret, eltüntetett fókusz… (racsni)"
+        ],
+        [
+          "`node tools/api-check.js`",
+          "eltűnő export, prop, osztály, token vagy globális név csak FŐ verzióval mehet"
+        ],
+        [
+          "`node tools/web-ellenor.js <URL>`",
+          "az élő weboldal átvizsgálása (Playwright + axe-core)"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Mit ellenőriznek ezek pontosan: [Hozzáférhetőség](hozzaferhetoseg.html#gepi-ellenorzes). Forrás: `docs/AI.md`, `docs/ai-munkamod.md`, `docs/rendszer.md` 5."
+    },
+    {
+      "t": "h2",
+      "x": "Figma és Code Connect",
+      "id": "figma"
+    },
+    {
+      "t": "hianyzik",
+      "cim": "Figma – hamarosan",
+      "x": [
+        "A Figma-könyvtár még nem érhető el. A tervezett változó-kollekciók nevei:",
+        "`core`, `termek-light`, `termek-dark`, `jatek`",
+        "A Code Connect-térkép (komponens ↔ Figma-elem) a Figma-könyvtár elkészülte után készül. Addig a kód a forrás: [Token-letöltések](#tokenek)."
+      ]
+    }
+  ]
+}

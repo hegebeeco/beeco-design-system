@@ -1,0 +1,53 @@
+{
+  "id": "kepek-fotok",
+  "cim": "Képek és fotó",
+  "alcim": "3D, fotó és AI-val készült képek: mit használhatsz, és mi a minőségi mérce.",
+  "csoport": "vizualis",
+  "statusz": "vázlat",
+  "blokkok": [
+    { "t": "p", "x": "A méhecske és a matricák a [Méhecske és illusztráció](meh-illusztracio.html) oldalon vannak. Itt a többi kép: a 3D, a fotó és az AI-val készült kép." },
+    { "t": "h2", "x": "3D" },
+    { "t": "szabaly", "cim": "Low-poly diorama",
+      "elemek": [
+        "Low-poly, 3 lépcsős cel-árnyalás, meleg napfény; méhsejt alakú lebegő szigetek.",
+        "300–1200 háromszög, 4–6 egyszínű felület, kódból épül.",
+        "Tilos: fotórealisztikus textúra, tiszta fekete."
+      ],
+      "forras": ["docs/3d-vilag.md", "docs/arculat.md"] },
+    { "t": "h2", "x": "Fotó" },
+    { "t": "szabaly", "cim": "Fotó a felületen",
+      "elemek": [
+        "Fotó kerettel és kemény árnyékkal, enyhén megdöntve is.",
+        "Szöveg soha nem kerül közvetlenül a fotóra.",
+        "Webjátékban nincs fotó – ott matrica és 3D van."
+      ],
+      "forras": ["termek/css/bc-web.css", "docs/arculat.md"] },
+    { "t": "dodont", "cim": "Felirat a fotó alatt", "allapot": "szabaly",
+      "forras": ["docs/javaslatok/11-weboldal-mozgas.md"],
+      "parok": [
+        { "jo": {"felirat": "a felirat a kép alatt", "html": "<div class=\"bb-demo-oszlop\"><div class=\"bb-foto\" role=\"img\" aria-label=\"fotó helye\"></div><p class=\"bb-foto-felirat\">Önkéntesek a Kert utcában</p></div>"},
+          "rossz": {"felirat": "szöveg a fotón", "html": "<div class=\"bb-foto\" role=\"img\" aria-label=\"fotó helye\"><p class=\"bb-foto-szoveg\">Öntözz velünk!</p></div>"},
+          "miert": "A fotón a szöveg kontrasztja kiszámíthatatlan – mindig a kép alá vagy mellé kerül." }
+      ] },
+    { "t": "javaslat", "cim": "Milyen fotó illik a beecóhoz",
+      "elemek": [
+        "Valódi emberek, cselekvés közben – öntözés, kertészkedés, esemény, csapatmunka.",
+        "Valódi hazai helyszínek, természetes fény; a kampányban csak hazai madárfaj.",
+        "Kerüld a „zöld levél a kézben”, „föld a tenyérben” típusú stockfotót.",
+        "Felismerhető emberről csak hozzájárulással; gyerekről csak szülői hozzájárulással."
+      ],
+      "forras": ["docs/weboldal.md – CsicsergŐsz kampány (hazai madár)", "Szerkesztői javaslat a beeco értékei alapján (közösség, hitelesség)"] },
+    { "t": "szabaly", "cim": "Fotóbank",
+      "x": "A beeco fotóbankja egy közös Drive-mappa. Fotót csak innen, illetve a beeco csapatától használj; felismerhető emberről csak hozzájárulással.",
+      "forras": ["A beeco döntése, 2026-10-07"] },
+    { "t": "hianyzik", "cim": "A fotóbank linkje", "x": "A Drive-mappa címe még nincs itt. Addig a sablonokban a fotó helyét egy csíkos doboz jelöli; a fotókat a beeco csapatától kérd." },
+    { "t": "h2", "x": "AI-val készült képek" },
+    { "t": "p", "x": "Ha AI-val készül illusztráció, a beeco méhecskét akkor sem rajzoljuk újra: a méhecske csak a meglévő, kész rajz lehet." },
+    { "t": "hianyzik", "cim": "Az AI-képek szabályai", "x": "A promptolás szabályai és mintái a Design Systemben vannak, de még nincs hozzájuk külön oldal. Addig kérdezz a beeco csapatától." },
+    { "t": "h2", "x": "Kapcsolódó" },
+    { "t": "lista", "elemek": [
+      "Hogyan legyen elérhető a kép: [Hozzáférhető tartalom](hozzaferheto-tartalom.html)",
+      "Képméretek a közösségi médiában: [Social media](social.html)"
+    ] }
+  ]
+}

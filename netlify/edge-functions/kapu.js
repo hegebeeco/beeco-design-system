@@ -1,5 +1,6 @@
 /* ============================================================
    beeco BRAND BOOK – jelszókapu (Netlify Edge Function, Javaslat 22)
+   MEGJEGYZÉS: önállóan már nem fut (a netlify.toml a brand/ mappát használja); a brand/kapu-brand.js és a tests/docs-check.js importálja.
 
    • A jelszó és a titok a Netlify környezeti változóiban él (Site configuration → Environment variables):
        BRANDBOOK_JELSZO  – a közös jelszó (ezt adod oda önkéntesnek, partnernek)

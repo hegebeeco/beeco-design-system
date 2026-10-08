@@ -1,0 +1,175 @@
+{
+  "id": "telepites",
+  "cim": "Telepítés",
+  "alcim": "Honnan veszed a design systemet, melyik verziót, és hogyan kötöd be React-ben, SCSS-ben, Tailwindben vagy Dartban.",
+  "csoport": "kezdes",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "p",
+      "x": "A design system egyetlen forrásból (`tokens/*.json`) generálja a kimeneteit; a fogyasztó projektek verziózott git-függőségként veszik át. Nincs npm-regisztráció és nincs költség."
+    },
+    {
+      "t": "h2",
+      "x": "Honnan veszed?",
+      "id": "honnan"
+    },
+    {
+      "t": "tabla",
+      "cim": "A tokenek platformonként",
+      "fej": [
+        "Platform",
+        "Fájl",
+        "Hogyan"
+      ],
+      "sorok": [
+        [
+          "Web (CSS)",
+          "`dist/css/beeco-tokens.css` + `termek/css/bc-all.css`",
+          "`import '@beeco/design-system/termek.css'`"
+        ],
+        [
+          "Admin (SCSS)",
+          "`dist/scss/_beeco.scss`",
+          "`@use '@beeco/design-system/dist/scss/beeco' as bc;`"
+        ],
+        [
+          "Partner (Tailwind)",
+          "`dist/tailwind/preset.cjs`",
+          "`presets: [require('@beeco/design-system/tailwind')]`"
+        ],
+        [
+          "Mobil app (Flutter)",
+          "`dist/dart/beeco_tokens.dart`",
+          "`BeecoRoles.light` / `.dark`"
+        ],
+        [
+          "Weboldal (Webflow)",
+          "`dist/weboldal/webflow-valtozok.json`",
+          "„beeco DS” változógyűjtemény"
+        ],
+        [
+          "Játékok",
+          "`web/css/tokens.css`",
+          "a `kit-sync` másolja"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "A `dist/` mappa generált (`node tools/tokens-build.js`), kézzel sosem szerkesztjük. Forrás: `docs/rendszer.md` 3–4., a korábbi Brand Book tartalom (git-előzmény) („Honnan veszed?”)."
+    },
+    {
+      "t": "h2",
+      "x": "Verzió",
+      "id": "verzio"
+    },
+    {
+      "t": "p",
+      "x": "Címkézett verzióval, a GitHubról. A parancs mindig az aktuális kiadás címkéjét mutatja (a `VERSION` fájlból), a csomag neve `@beeco/design-system`:"
+    },
+    {
+      "t": "gen",
+      "nev": "telepites"
+    },
+    {
+      "t": "p",
+      "x": "Frissítés: új verziónál a `#v…` címke átírása, majd `npm install`. Hogy mikor mit jelent a MELLÉK, a JAVÍTÁS és a FŐ verzió, és mit ígér az API-őr: [Változások](valtozasok.html#verziozas)."
+    },
+    {
+      "t": "h2",
+      "x": "React és CSS",
+      "id": "react"
+    },
+    {
+      "t": "p",
+      "x": "Egyszer a stílus (tokenek, betűk és minden elem), utána a komponensek:"
+    },
+    {
+      "t": "gen",
+      "nev": "kod",
+      "cimke": "React-import",
+      "x": "import '@beeco/design-system/termek.css';\nimport { Button, TextField } from '@beeco/design-system/react';"
+    },
+    {
+      "t": "p",
+      "x": "A CSS-fájlokat egyenként is importálhatod (`@beeco/design-system/termek/<bc-fájl>.css`). Ilyenkor az újabb fájlokat külön fel kell venned: a `bc-utvonal.css` az 1.51.0-tól, a `bc-csapat.css` az 1.52.0-tól van; a csapat-grafikonokhoz a `bc-adat.css`, a táblázathoz a `bc-data.css` is kell."
+    },
+    {
+      "t": "h2",
+      "x": "SCSS",
+      "id": "scss"
+    },
+    {
+      "t": "gen",
+      "nev": "kod",
+      "cimke": "SCSS",
+      "x": "@use '@beeco/design-system/dist/scss/beeco' as bc;"
+    },
+    {
+      "t": "p",
+      "x": "Utána a tokenek változóként és függvényként érhetők el: `bc.$bc-ink`, `bc.sp(4)`, `bc.r(m)`."
+    },
+    {
+      "t": "h2",
+      "x": "Tailwind",
+      "id": "tailwind"
+    },
+    {
+      "t": "gen",
+      "nev": "kod",
+      "cimke": "Tailwind",
+      "x": "presets: [require('@beeco/design-system/tailwind')]"
+    },
+    {
+      "t": "p",
+      "x": "A Tailwind saját palettája kikapcsol, csak beeco-szín létezik: `bg-accent`, `text-ink`, `border-line`, `shadow-m`, `rounded-m`, `font-display`. A sötét módhoz nem kell `dark:` változat: a szerepek maguktól váltanak."
+    },
+    {
+      "t": "h2",
+      "x": "Flutter (Dart)",
+      "id": "dart"
+    },
+    {
+      "t": "p",
+      "x": "A `dist/dart/beeco_tokens.dart` fájlt másold be a projektbe: `BeecoPalette`, `BeecoRoles.light` / `.dark` és `BeecoTokens` van benne. Az átállás lépései: `docs/app-atallas.md`. A mobil app ma még nem használja a csomagot: [Felületek](feluletek.html)."
+    },
+    {
+      "t": "h2",
+      "x": "Webflow",
+      "id": "webflow"
+    },
+    {
+      "t": "p",
+      "x": "A Webflow nem tud `npm install`-t, ezért a tokenek Webflow-változóként élnek: a `node tools/webflow-build.js` a `dist/weboldal/webflow-valtozok.json` fájlt állítja elő. Az élő oldal minőségét a `node tools/web-ellenor.js <URL>` méri. Részletek: `docs/weboldal.md`."
+    },
+    {
+      "t": "h2",
+      "x": "Webjátékok",
+      "id": "jatekok"
+    },
+    {
+      "t": "p",
+      "x": "A játékbőrt (Méhsejt-diorama) a webjátékok a `kit-sync` eszközzel másolják a projektjükbe. Hogy a két bőr mikor melyik, a [Témák](temak.html) oldalon van."
+    },
+    {
+      "t": "h2",
+      "x": "Első ellenőrzés",
+      "id": "ellenorzes"
+    },
+    {
+      "t": "gen",
+      "nev": "kod",
+      "cimke": "Ellenőrző beállítása",
+      "x": "npx beeco-ds-lint --init"
+    },
+    {
+      "t": "p",
+      "x": "A `ds-lint` a fogyasztó projektben keresi: nyers színt, a Tailwind alap-palettáját, idegen betűt, nyers betűméretet, 12 px alatti szöveget, nyers sarkot és árnyékot, `ease-in`-t, eltüntetett fókuszt. Racsni: a meglévő adósság fel van írva, új fájl tisztán indul, egyik szám sem nőhet."
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `docs/AI.md` – Használat a projektben; `docs/rendszer.md` 4–5."
+    }
+  ]
+}

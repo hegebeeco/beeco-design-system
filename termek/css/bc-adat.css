@@ -236,11 +236,12 @@
 .bc-swatch { flex: none; overflow: visible; }
 /* Sorozat-kapcsoló a jelmagyarázatban (ChartCard seriesToggle): kapcsológomb, a kikapcsolt áthúzva, halvány mintával (a szöveg kontrasztja marad) */
 .bc-legend-btn { display: inline-flex; align-items: center; gap: var(--bc-sp-1); min-height: 32px; padding: 0 var(--bc-sp-2);
-  font: inherit; color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line-soft); border-radius: var(--bc-r-pill); cursor: pointer; }
+  font: inherit; color: var(--bc-ink); background: var(--bc-surface); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); cursor: pointer; }
 .bc-legend-btn.is-off { text-decoration: line-through; color: var(--bc-ink-soft); background: transparent; border-style: dashed; }
 .bc-legend-btn.is-off .bc-swatch { opacity: .35; }
-.bc-legend-btn:focus-visible { outline: 3px solid var(--bc-focus); outline-offset: 2px; }
-@media (hover: hover) and (pointer: fine) { .bc-legend-btn:hover { border-color: var(--bc-line); } }
+.bc-legend-btn:focus-visible { outline: var(--bc-focus-w) solid var(--bc-focus); outline-offset: var(--bc-focus-offset); }
+/* 1.54.0: a keret line (a gomb határa ≥ 3:1, a line-soft csak díszítő), ezért a rámutatás a hátteret színezi */
+@media (hover: hover) and (pointer: fine) { .bc-legend-btn:hover { background: var(--bc-surface-2); } }
 @media (pointer: coarse) { .bc-legend-btn { min-height: var(--bc-tap); } }
 .bc-chart-body { min-width: 0; }
 .bc-chart-skel { height: 200px; }

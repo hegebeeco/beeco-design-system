@@ -1,0 +1,280 @@
+{
+  "id": "feluletek",
+  "cim": "A hat felület állapota",
+  "alcim": "Az ADMIN, a PARTNER, a MOBIL APP, a KAPTÁR, a WEBOLDAL és a JÁTÉKOK: mit vesz át a design systemből, mi tér el, és mi a teendő.",
+  "csoport": "feluletek",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "p",
+      "x": "A felületek profiljai a forráskódjukból felmért értékekből készültek; a fogyasztó repókat 2026-10-08-án újra felmértük (az admin, a partner, a Kaptár és a mobil app), a weboldal és a játékok profilja a DS-repó anyagaiból frissült. A design system verziója most 1.53.0 (a kiadások a [Változások](valtozasok.html) oldalon vannak); ahol egy állapot nem ellenőrizhető, azt **Hiányzik** jelvény jelzi, nem találgatunk."
+    },
+    {
+      "t": "h2",
+      "x": "Áttekintés",
+      "id": "attekintes"
+    },
+    {
+      "t": "tabla",
+      "cim": "A hat felület",
+      "fej": [
+        "Felület",
+        "Bőr",
+        "Technika",
+        "Kapcsolat a DS-sel (felmérés)",
+        "Sötét mód"
+      ],
+      "sorok": [
+        [
+          "ADMINAPP",
+          "termékbőr",
+          "React · SCSS",
+          "git-függőség `#v1.43.1`: CSS + SCSS + React; 202 fájl importál a React-csomagból (2026-10-08)",
+          "van (`ThemeProvider`)"
+        ],
+        [
+          "PARTNERAPP",
+          "termékbőr",
+          "React · Tailwind 3 · Radix",
+          "git-függőség `#v1.38.0`: CSS + Tailwind-preset; 45 fájl importál a React-csomagból (2026-10-08)",
+          "van (`ThemeProvider` + `themeInitScript`)"
+        ],
+        [
+          "MOBIL APP",
+          "termékbőr (értékre)",
+          "Flutter",
+          "nincs bekötve: saját `AppColors` (77 szín), értékre egyezik; nincs `BeecoRoles`, nincs DS-függőség a `pubspec.yaml`-ban (2026-10-08)",
+          "nincs"
+        ],
+        [
+          "KAPTÁR",
+          "termékbőr",
+          "React · Tailwind v4 · Supabase",
+          "bekötve: git-függőség `#v1.53.0`, a DS CSS-fájljai egyenként, DS `ThemeProvider` és React-komponensek (2026-10-08)",
+          "van (`ThemeProvider`)"
+        ],
+        [
+          "WEBOLDAL",
+          "termékbőr",
+          "Webflow",
+          "Webflow-változók + `bc-` osztálynevek; 57 változó (2026-10-08, a repó anyagaiból)",
+          "a változóknak van sötét értéke; az élő oldalon nincs felmérve"
+        ],
+        [
+          "JÁTÉKOK",
+          "játékbőr",
+          "HTML · three.js",
+          "a DS játékbőre, a `kit-sync` másolja; `beeco-szelektalj` kit 1.49.5, `beeco-okos-index` kit 1.3.0 (2026-10-08)",
+          "éjszakai jelenetek, nincs teljes sötét mód"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `brandbook/feluletek/*.json` (profilok és felmérési dátumok)."
+    },
+    {
+      "t": "h2",
+      "x": "Ami mindenhol közös",
+      "id": "kozos"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "a méz `#FECF39` – az egyetlen hangsúlyszín",
+        "Lalezar + Open Sans",
+        "a méhecske és a hangnem: tegeződés, tanítunk – nem szidunk",
+        "44 px-es érintési felület, AA kontraszt"
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Felületenként",
+      "id": "feluletenkent"
+    },
+    {
+      "t": "h3",
+      "x": "ADMINAPP",
+      "id": "admin"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Belső kezelőfelület: partnerek, helyszínek, kuponok, rajok, tartalom és statisztika – sűrű, adatközpontú képernyők.",
+        "Szándékos eltérés: tömör sűrűség (`AppShell density=\"compact\"`, egérrel 36 px-es gomb és menüsor, érintésen 44 px); méz csak a kijelölt állapoton és a fő gombon.",
+        "Teendő (a profil szerint): a DS-verzió emelése (a projekt `#v1.43.1`-en áll, a DS 1.53.0); a `ds-lint` racsni szerint 14 nyers szín maradt, ezeket szerepre kell cserélni; a használaton kívüli régi függőségek (`react-select`, `react-datepicker`, `bootstrap`) kivezetése."
+      ]
+    },
+    {
+      "t": "h3",
+      "x": "PARTNERAPP",
+      "id": "partner"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "A partnerek (ökos vállalkozások) felülete: profil a térképen, kuponok, beváltás, analitika – mobilelső, játékosabb.",
+        "Szándékos eltérés: kétnyelvű (magyar és angol, a komponensek feliratai `labels`-szel felülírhatók); játékos réteg (méz-mérő, jelvénypolc, Nektár-pontok); QR-beváltás.",
+        "Teendő (a profil szerint): a DS-verzió emelése (a projekt `#v1.38.0`-n áll, a DS 1.53.0); a régi `rounded-*` / `shadow-*` nevek kivezetése a DS-nevekre (74 fájl használja még a régi neveket)."
+      ]
+    },
+    {
+      "t": "h3",
+      "x": "MOBIL APP",
+      "id": "app"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "iOS és Android: ökotérkép, kezdőlap, kuponfüzet, nyereményjáték, Nektár, rajok és ranglista, lábnyomkalkulátor, faöntözés – térképközpontú, méhecskés.",
+        "Szándékos eltérés: egykezes használat (alsó navigáció, alsó lapok, lebegő térképvezérlő), a letéphető kuponjegy, ferde szélű és hatszöges díszítők.",
+        "Teendő (a profil szerint): a Flutter-átállás (`docs/app-atallas.md`): a `dist/dart/beeco_tokens.dart` beemelése, `BeecoRoles.light` / `.dark` (ezzel jön a sötét mód), a sarkok és árnyékok csak tokenből; a palettán kívüli színek összevonása; minden érinthető elem legalább 48 dp."
+      ]
+    },
+    {
+      "t": "szabaly",
+      "cim": "A mobil app sötét módja – lesz",
+      "x": "Az app is kap sötét módot. A design systemben minden színszerepnek megvan a sötét párja (`BeecoRoles.dark`), így a Flutter-átállással együtt jön.",
+      "forras": [
+        "docs/app-atallas.md"
+      ]
+    },
+    {
+      "t": "h3",
+      "x": "KAPTÁR",
+      "id": "kaptar"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Az önkéntes- és HR-platform: rajok, feladatok, Rajpont, jelentkezés.",
+        "Ma a termékbőrt használja: DS `#v1.53.0`, DS-gomb (méz fő gomb), DS `ThemeProvider` és sötét mód, a csapat-egészség és az `Utvonal` elemek. Szándékos eltérés: a mobilon saját alsó navigációs sáv (a DS-ben nincs ilyen elem).",
+        "Teendő (a profil szerint): a 2 megmaradt nyers szín szerepre cserélése (`AdminCampaigns.jsx`); a `.bc-empty svg` DS-hiba kerülőútjának törlése, ha a DS javítja."
+      ]
+    },
+    {
+      "t": "javaslat",
+      "cim": "A Kaptár iránya – lágyabb változat",
+      "x": [
+        "A Kaptár ma a termékbőrön fut (kemény, átlós árnyék, 8 px sarok, méz fő gomb). Ha a belső felületeknek lágyabb megjelenés kell, annak terve külön javaslatlapon van, jóváhagyásra vár; addig a Kaptár a termékbőrön marad."
+      ],
+      "forras": [
+        "docs/javaslatok/24-lagy-valtozat.md"
+      ]
+    },
+    {
+      "t": "h3",
+      "x": "WEBOLDAL",
+      "id": "weboldal"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "A beeco.hu: bemutatkozás, partnerprogram, kampányok (Vízadás, CsicsergŐsz), csatlakozás – levegős, marketing-oldalak.",
+        "Szándékos eltérés: marketing-elemek (`bc-web.css`), oldalankénti saját előtag (pl. `h26-`); mozgás csak egyszeri; a kampány-altéma saját gyűjteménnyel (CsicsergŐsz: `cs-`).",
+        "Teendő (a profil szerint): a 2026-os főoldal (`fooldal-2026.css`) élesítése; a „barna” nevű, de fekete változó rendbetétele."
+      ]
+    },
+    {
+      "t": "h3",
+      "x": "JÁTÉKOK",
+      "id": "jatekok"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "A beeco webjátékai (Méhesd 2050: Szelektálj!, Hűtő-mester, Greenwashing-vadász…) – meleg, puha, low-poly diorama.",
+        "Szándékos eltérés: olíva tinta és vonal, 3 px keret, nagy sarkok, puha függőleges árnyék; hatszög ikonok, matricák; kioszk mód, offline működés.",
+        "Teendő (a profil szerint): a régi játékok átállása az új bőrre (`kit-sync`)."
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Mi változott a legutóbbi felmérés óta?",
+      "id": "valtozott"
+    },
+    {
+      "t": "p",
+      "x": "A CHANGELOG 1.44.0–1.53.0 bejegyzései közül azok, amelyek egy felületet érintenek. A CHANGELOG önmagában nem mondja meg, hogy a felület átvette-e őket; a 2026-10-08-i felmérés szerint a Kaptár átvette az 1.51.0–1.52.0 elemeit (`Utvonal`, `KerekRadar`, `JelzoKartya`, `RetroVaszon`, `bc-utvonal.css`, `bc-csapat.css`), az admin (1.43.1) és a partner (1.38.0) még nem emelt verziót."
+    },
+    {
+      "t": "tabla",
+      "cim": "Változások felületenként",
+      "fej": [
+        "Verzió",
+        "Dátum",
+        "Mi",
+        "Felület"
+      ],
+      "sorok": [
+        [
+          "1.44.0 – 1.45.1",
+          "2026-10-05 – 10-06",
+          "CsicsergŐsz kampánytéma; Raj modul (számláló, közös cél, fotófal)",
+          "Weboldal"
+        ],
+        [
+          "1.46.0 – 1.48.2",
+          "2026-10-06",
+          "Kaptár-kapu: a Csatlakozz oldal élő modulja (`weboldal/csatlakozz/kk.js`, `kk.css`)",
+          "Weboldal"
+        ],
+        [
+          "1.49.0",
+          "2026-10-06",
+          "lusta matricák, ikon-szótár, betöltés-mérés; új piktogramok (`pont`, `cel`)",
+          "Játékok"
+        ],
+        [
+          "1.50.0",
+          "2026-10-07",
+          "Közösségi Kaptár 3D (`beecoKaptar`, rajsejtek, torony); a 3D futtatókörnyezet a csomag része",
+          "Játékok, Kaptár, Weboldal"
+        ],
+        [
+          "1.51.0",
+          "2026-10-07",
+          "`Utvonal`: szakasztérkép + egy következő lépés (`bc-utvonal.css`)",
+          "Kaptár, partner, weboldal"
+        ],
+        [
+          "1.52.0",
+          "2026-10-07",
+          "Csapat-egészség: `KerekRadar`, `JelzoKartya`, `RetroVaszon` (`bc-csapat.css`); `SegmentedControl` 44 px",
+          "Kaptár, partner, admin"
+        ],
+        [
+          "1.52.1",
+          "2026-10-07",
+          "`bc-link.is-standalone`: önálló link érintésre is elég nagy",
+          "termékbőr-felületek (web)"
+        ],
+        [
+          "1.53.0",
+          "2026-10-07",
+          "AI-munkamód, API-őr, AI-index; fogyasztóknak nincs teendő",
+          "mind"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `CHANGELOG.md`."
+    },
+    {
+      "t": "hianyzik",
+      "cim": "Ellenőrizni kell",
+      "elemek": [
+        "**Admin és partner:** a fenti adatok a repók aktuális checkoutjából valók (`package.json`, lockfile); az éles (telepített) verziójuk nincs felmérve.",
+        "**Weboldal:** az élő Webflow-oldal állapota (osztályok, sötét mód, a CsicsergŐsz-altéma, a Raj modul és a Kaptár-kapu élő használata) nincs felmérve; a repóban csak a kód (`weboldal/`) és az 57 változó van meg.",
+        "**Játékok:** két projekt `KIT-VERZIO`-ja ismert (`beeco-szelektalj` 1.49.5, `beeco-okos-index` 1.3.0); a többi játék kit-verziója nincs felmérve (`kit-sync <projekt> --check`)."
+      ],
+      "forras": [
+        "package.json és package-lock.json az admin, partner és Kaptár repóban",
+        "<projekt>/KIT-VERZIO",
+        "CHANGELOG.md 1.44.0–1.53.0",
+        "docs/javaslatok/23-mobil-mintak.md"
+      ]
+    }
+  ]
+}
