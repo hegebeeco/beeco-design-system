@@ -14,20 +14,41 @@
   // ---------- téma: auto → világos → sötét ----------
   var TEMA_NEV = { auto: 'rendszer szerint', light: 'világos', dark: 'sötét' };
   var KOV = { auto: 'light', light: 'dark', dark: 'auto' };
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  var feloldott = function (v) { return v === 'dark' || (v === 'auto' && mq && mq.matches) ? 'dark' : 'light'; };
+  /** az élő minták (iframe) a szülő feloldott témáját kapják (minta.js: bbMintaTema) */
+  function mintakTema() {
+    var t = d.getAttribute('data-tema-kesz') || 'light';
+    $$('iframe[data-minta], iframe[data-kepernyo]:not([data-kulso])').forEach(function (f) {
+      try { if (f.contentWindow && f.contentWindow.bbMintaTema) f.contentWindow.bbMintaTema(t); } catch (e) { /* még tölt */ }
+    });
+  }
   function tema(v) {
-    d.setAttribute('data-theme', v); d.setAttribute('data-tema-valasztas', v);
+    d.setAttribute('data-theme', v); d.setAttribute('data-tema-valasztas', v); d.setAttribute('data-tema-kesz', feloldott(v));
+    mintakTema();
     var g = $('[data-tema-gomb]');
     if (g) { var t = 'Téma: ' + TEMA_NEV[v] + ' – váltás erre: ' + TEMA_NEV[KOV[v]]; g.setAttribute('aria-label', t); g.title = t; }
   }
   tema(d.getAttribute('data-tema-valasztas') || 'auto');
   var tg = $('[data-tema-gomb]');
   if (tg) tg.addEventListener('click', function () { var v = KOV[d.getAttribute('data-tema-valasztas') || 'auto']; tarol.set('bb-tema', v); tema(v); });
+  if (mq && mq.addEventListener) mq.addEventListener('change', function () { tema(d.getAttribute('data-tema-valasztas') || 'auto'); });
 
   // ---------- akkordion: csak az aktív csoport nyitott ----------
   $$('.bb-nav-csoport[data-csoport]').forEach(function (cs) {
     var b = $('.bb-nav-fo', cs), ul = $('.bb-nav-al', cs);
     var allit = function (nyitva) { b.setAttribute('aria-expanded', nyitva ? 'true' : 'false'); ul.hidden = !nyitva; };
     allit(cs.classList.contains('is-aktiv'));
+    b.addEventListener('click', function () { allit(b.getAttribute('aria-expanded') !== 'true'); });
+  });
+
+  // 3. szint (kategória → elem): csak az aktív ág nyitott
+  $$('[data-ag]').forEach(function (ag) {
+    var b = $('.bb-nav-ag-gomb', ag), ul = $('.bb-nav-al2', ag);
+    if (!b || !ul) return;
+    var nev = b.getAttribute('aria-label').replace(/ – (lenyitás|becsukás)$/, '');
+    var allit = function (nyitva) { b.setAttribute('aria-expanded', nyitva ? 'true' : 'false'); ul.hidden = !nyitva; b.setAttribute('aria-label', nev + (nyitva ? ' – becsukás' : ' – lenyitás')); };
+    allit(ag.classList.contains('is-aktiv'));
     b.addEventListener('click', function () { allit(b.getAttribute('aria-expanded') !== 'true'); });
   });
 
@@ -203,6 +224,48 @@
   }
   // a mobil jegyzék kattintás után becsukódik; fülpanelben lévő célnál a fül vált
   $$('.bb-toc-mobil a').forEach(function (a) { a.addEventListener('click', function () { var dt = a.closest('details'); if (dt) dt.open = false; }); });
+
+  // ---------- színkód másolása (data-masol) ----------
+  var elo0 = el('p', 'bc-sr'); elo0.setAttribute('aria-live', 'polite'); document.body.appendChild(elo0);
+  $$('[data-masol]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-masol');
+      var kesz = function () { b.classList.add('is-masolva'); elo0.textContent = 'Kimásolva: ' + v; setTimeout(function () { b.classList.remove('is-masolva'); }, 1200); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(v).then(kesz, function () { elo0.textContent = 'Nem sikerült másolni – jelöld ki: ' + v; });
+      else elo0.textContent = 'Jelöld ki és másold: ' + v;
+    });
+  });
+
+  // ---------- élő minták (iframe): magasság a tartalomhoz, téma a szülőtől ----------
+  $$('iframe[data-minta]').forEach(function (f) {
+    var meret = function () { try { var h = f.contentDocument && f.contentDocument.documentElement.scrollHeight; if (h) f.style.height = (h + 4) + 'px'; } catch (e) { /* nem baj */ } };
+    f.addEventListener('load', function () { mintakTema(); meret(); });
+  });
+  // ---------- ikonikus képernyők: a keret szélességéhez méretezve (telefon 390 × 844, asztal 1280 × 800) ----------
+  var MERET = { telefon: [390, 844], asztal: [1280, 800] };
+  function meretez() {
+    $$('.bb-eszkoz').forEach(function (w) {
+      var m = MERET[w.classList.contains('is-telefon') ? 'telefon' : 'asztal'], f = $('iframe', w);
+      if (!f) return;
+      var k = Math.min(1, w.clientWidth / m[0]);
+      f.style.width = m[0] + 'px'; f.style.height = m[1] + 'px'; f.style.transform = 'scale(' + k + ')';
+      w.style.height = Math.round(m[1] * k) + 'px';
+    });
+  }
+  if ($('.bb-eszkoz')) { meretez(); window.addEventListener('resize', meretez); }
+  $$('[data-jelolo]').forEach(function (b) {
+    b.hidden = false;
+    b.addEventListener('click', function () {
+      var on = b.getAttribute('aria-pressed') !== 'true', f = $('iframe[data-kepernyo]', b.closest('.bb-kepernyo-sor'));
+      b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.textContent = on ? 'DS-jelölések elrejtése' : 'DS-jelölések mutatása';
+      try { var r = f.contentDocument.documentElement; r.classList.toggle('bb-jelolve', on); r.classList.toggle('bb-nagyjel', f.getBoundingClientRect().width / f.offsetWidth < 0.6); } catch (e) { /* még tölt */ }
+    });
+  });
+  $$('iframe[data-kepernyo]:not([data-kulso])').forEach(function (f) { f.addEventListener('load', mintakTema); });
+  // élő tesztlap lenyitáskor töltődik be (details.bb-teszt > iframe[data-src])
+  $$('details.bb-teszt').forEach(function (dt) {
+    dt.addEventListener('toggle', function () { var f = $('iframe[data-src]', dt); if (dt.open && f && !f.getAttribute('src')) f.setAttribute('src', f.getAttribute('data-src')); });
+  });
 
   // ---------- kód másolása ----------
   var elo = el('p', 'bc-sr'); elo.setAttribute('aria-live', 'polite'); document.body.appendChild(elo);

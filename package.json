@@ -66,14 +66,15 @@
   },
   "scripts": {
     "build": "node tools/tokens-build.js && node tools/react-build.js && node tools/webflow-build.js && node tools/api-check.js --write --nincs-ellen && node tools/ai-index.js",
-    "test": "node tools/tokens-build.js --check && node tools/react-build.js --check && node tools/webflow-build.js --check && node tools/ai-index.js --check && node tools/api-check.js && for t in tests/check-*.js; do node \"$t\" || exit 1; done",
+    "test": "node tools/tokens-build.js --check && node tools/react-build.js --check && node tools/webflow-build.js --check && node tools/ai-index.js --check && node tools/api-check.js && for t in tests/check-*.js; do node \"$t\" || exit 1; done && npm run --silent docs:test",
     "check:egy": "node tools/check-egy.js",
     "api:check": "node tools/api-check.js",
     "kiadas": "node tools/kiadas.js",
     "docs:brand": "node tools/docs-brand.js",
     "docs:ds": "node tools/docs-ds.js",
     "docs:build": "node tools/docs-brand.js && node tools/docs-ds.js",
-    "docs:check": "node tools/docs-brand.js && node tools/docs-ds.js && node tests/docs-check.js"
+    "docs:check": "node tools/docs-brand.js && node tools/docs-ds.js && node tests/docs-check.js",
+    "docs:test": "node tools/docs-brand.js --laza && node tools/docs-ds.js --laza && node tests/docs-check.js --laza"
   },
   "engines": {
     "node": ">=18"

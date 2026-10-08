@@ -42,15 +42,13 @@ function csomag(osztalyok, retegek) {
 // A theme-jatek.json szerepei → a termékbőr (--bc-*) szerepei. Ugyanaz a jelentés, más érték.
 const SZEREP_MAP = { bg: 'bg', surface: 'surface', ink: 'ink', 'ink-soft': 'ink-soft', line: 'line', accent: 'accent', 'on-accent': 'on-accent',
   'good-bg': 'success-bg', 'good-ink': 'success-ink', good: 'success', 'bad-bg': 'danger-bg', 'bad-ink': 'danger-ink' };
-// A játékbőrben nem szereplő szerepek: a legközelebbi játékbőr-érték (forrás: web/css/tokens.css megjegyzései). JAVASLAT – a theme-jatek.json-ba kellene.
-const POTLAS_VILAGOS = { 'ink-muted': 'olive-soft', 'line-soft': 'sage', 'surface-2': 'sage-bg', 'surface-accent': 'butter', shadow: 'olive', scrim: 'olive', 'accent-press': 'honey-deep' };
-// Sötét mód: a játékbőrnek nincs sötét témája (csak „éjszakai jelenet”). JAVASLAT a core.json éjszakai primitívjeiből – Kristóf jóváhagyása kell.
-const SOTET = { bg: 'night', surface: 'night-surface', 'surface-2': 'olive', 'surface-accent': 'olive-strong', ink: 'cream', 'ink-soft': 'sage', 'ink-muted': 'night-line',
-  line: 'night-line', 'line-soft': 'olive-soft', accent: 'honey', 'accent-press': 'honey-deep', 'on-accent': 'olive', shadow: 'black', scrim: 'black',
-  'success-bg': 'forest', 'success-ink': 'lime', success: 'lime', 'danger-bg': 'berry', 'danger-ink': 'blossom-bg' };
+// A játékbőrben nem szereplő szerepek és a sötét mód: docs-site/skin-jatek-kiegeszites.json (a docs-oldal kiegészítése, nem hivatalos token)
+const KIEG_F = 'docs-site/skin-jatek-kiegeszites.json';
+const adat = o => Object.fromEntries(Object.entries(o || {}).filter(([k]) => !k.startsWith('_')));
 
 function skinJatek() {
-  const core = json('tokens/core.json'), jatek = json('tokens/theme-jatek.json');
+  const core = json('tokens/core.json'), jatek = json('tokens/theme-jatek.json'), kieg = json(KIEG_F);
+  const POTLAS_VILAGOS = adat(kieg.vilagos_potlas), SOTET = adat(kieg.sotet), SA = adat(kieg.sotet_arnyek);
   const prim = n => { if (!core.color[n]) throw new Error(`skin: ismeretlen primitív: ${n}`); return `var(--bc-${n})`; };
   const hexNev = {}; for (const [n, h] of Object.entries(core.color)) hexNev[h.toUpperCase()] = n;
   // rgba(47,55,30,.18) → color-mix(in srgb, var(--bc-olive) 18%, transparent); var(--olive) → var(--bc-olive)
@@ -63,7 +61,7 @@ function skinJatek() {
   const L = jatek.color.light;
   const vil = [];
   for (const [j, b] of Object.entries(SZEREP_MAP)) if (L[j]) vil.push(sor(b, prim(L[j])) + ` /* theme-jatek: ${j} */`);
-  for (const [b, p] of Object.entries(POTLAS_VILAGOS)) vil.push(sor(b, prim(p)) + ' /* pótlás (javaslat) */');
+  for (const [b, p] of Object.entries(POTLAS_VILAGOS)) vil.push(sor(b, prim(p)) + ' /* kiegészítés: docs-site/skin-jatek-kiegeszites.json */');
   const r = jatek.radius, sh = jatek.shadow;
   const forma = [
     sor('bw-base', `${jatek.border.base}px`) + ' /* theme-jatek: border.base */',
@@ -75,10 +73,12 @@ function skinJatek() {
     sor('shadow-soft', arnyek(sh.soft)),
   ];
   const sot = Object.entries(SOTET).map(([b, p]) => sor(b, prim(p)));
-  const sotetArnyek = [sor('shadow-s', '0 3px 0 color-mix(in srgb, var(--bc-black) 40%, transparent)'), sor('shadow-m', '0 4px 0 color-mix(in srgb, var(--bc-black) 40%, transparent), 0 10px 22px color-mix(in srgb, var(--bc-black) 30%, transparent)'),
-    sor('shadow-l', 'var(--bc-shadow-m)'), sor('shadow-soft', 'var(--bc-shadow-m)')];
+  const arnyekSor = l => l.map(x => { if (!core.color[x.szin]) throw new Error(`skin: ismeretlen primitív: ${x.szin}`); return `0 ${Number(x.y)}px ${Number(x.blur) ? Number(x.blur) + 'px ' : '0 '}color-mix(in srgb, var(--bc-${x.szin}) ${Number(x.alfa)}%, transparent)`; }).join(', ');
+  if (!SA['shadow-s'] || !SA['shadow-m']) throw new Error(`${KIEG_F}: a sotet_arnyek shadow-s és shadow-m kell`);
+  const sotetArnyek = [sor('shadow-s', arnyekSor(SA['shadow-s'])), sor('shadow-m', arnyekSor(SA['shadow-m'])), sor('shadow-l', 'var(--bc-shadow-m)'), sor('shadow-soft', 'var(--bc-shadow-m)')];
   return `/* GENERÁLT (tools/docs/css.js) – JÁTÉKBŐR-SKIN a Brand Bookhoz: a --bc-* szerepek a theme-jatek.json + core.json értékeivel.
-   Forrás: tokens/theme-jatek.json (szerepek, sarok, keret, árnyék) · tokens/core.json (primitívek). A „pótlás” és a sötét mód JAVASLAT. */
+   Forrás: tokens/theme-jatek.json (szerepek, sarok, keret, árnyék) · tokens/core.json (primitívek) ·
+   ${KIEG_F} (a hiányzó szerepek és a sötét mód – a docs-oldal kiegészítése, nem a játékbőr hivatalos tokenje). */
 :root, :root[data-theme="light"] {
   color-scheme: light;
 ${vil.join('\n')}

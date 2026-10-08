@@ -1,0 +1,35 @@
+{
+  "id": "letoltesek",
+  "cim": "Letöltések",
+  "alcim": "Logó, méhecskék, madárkészlet, sablonok és betű – egy helyen, fájltípussal és darabszámmal.",
+  "csoport": "letoltesek",
+  "statusz": "vázlat",
+  "blokkok": [
+    { "t": "h2", "x": "Mielőtt letöltöd" },
+    { "t": "szabaly", "cim": "Belső használatú anyagok",
+      "x": "A logó és a méhecskék belső használatúak; külső anyagban a beeco jóváhagyása kell. A fájlokat ne módosítsd – ha más méret vagy formátum kell, szólj a csapatnak.",
+      "forras": ["CLAUDE.md – a repó szabályai", "docs/termek-arculat.md 9."] },
+    { "t": "h2", "x": "Mi van itt" },
+    { "t": "tabla", "cim": "A letölthető anyagok", "fej": ["Csomag", "Fájltípus", "Darab", "Mi ez", "Használat"], "sorok": [
+      ["Logó", "WebP (2), PNG (1)", "3", "`logo.webp` világos háttérre, `logo-sotet.webp` sötét háttérre, `ikon-512.png` app- és profilkép", "belső – külső anyagban jóváhagyás kell"],
+      ["Méhecskék", "WebP", "4", "házigazda, szurkoló, futár, hírvivő", "belső – külső anyagban jóváhagyás kell"],
+      ["Csicsergősz-madárkák", "SVG (vektoros)", "{{szam:madarkak}}", "liba, rigó, varjú, veréb", "belső, amíg a külső felhasználásról nincs döntés"],
+      ["Madárrajzok v4", "WebP, 600 px széles, átlátszó háttér", "{{szam:madarrajzok}}", "egerészölyv (2), tőkés réce (3), füsti fecske, ökörszem", "belső, amíg a külső felhasználásról nincs döntés"],
+      ["Madár-mozgásminták", "animált SVG + álló WebP", "{{szam:mozgasmintak}} minta, mindegyikhez álló kép", "egerészölyv, ökörszem, tőkés réce", "belső, amíg a külső felhasználásról nincs döntés"],
+      ["Social- és irodai sablonok", "ZIP, benne szerkeszthető HTML", "{{szam:sablonok-social}} sablon", "poszt 1:1 és 4:5, story, LinkedIn, dia, plakát A4, e-mail-aláírás, névjegy; betűk és képek a csomagban", "belső (logót és méhecskét tartalmaz)"],
+      ["Partneri gyorscsomag", "ZIP, szerkeszthető HTML + egyoldalas összefoglaló", "{{szam:sablonok-partner}} fájl (sablonok és összefoglaló)", "ajtómatrica, plakát A4, közösségi poszt 1:1, összefoglaló; a két logó és a színkódok", "partnernek átadható, a beeco jóváhagyásával; a sablonok minták (korrigálandó)"],
+      ["Betűk: Lalezar, Open Sans", "woff2", "2", "címbetű és szövegbetű, SIL Open Font License 1.1", "nyilvános (nyílt licenc)"]
+    ] },
+    { "t": "h2", "x": "A fájlok", "id": "fajlok" },
+    { "t": "gen", "nev": "letoltesek" },
+    { "t": "h3", "x": "Sablonok" },
+    { "t": "gen", "nev": "sablonletoltes", "osszefoglalo": true },
+    { "t": "h2", "x": "Madárkészlet", "id": "madarkeszlet" },
+    { "t": "p", "x": "A Csicsergősz-madárkák, a v4 madárrajzok és a mozgásminták. A stílus és a szabályok: [Méhecske és illusztráció](meh-illusztracio.html)." },
+    { "t": "gen", "nev": "madarkeszlet" },
+    { "t": "p", "x": "A darabszámok a mostani fájlkészletet mutatják. A sablonok leírása és a használatuk: [Sablonok és nyomtatvány](sablonok.html), [Partnerarculat](partnerarculat.html). A logó szabályai: [Logó](logo.html)." },
+    { "t": "hianyzik", "cim": "Vektoros logó", "x": "SVG vagy PDF logó nyomdához és nagy felülethez még nincs a készletben." },
+    { "t": "h2", "x": "Fejlesztőknek" },
+    { "t": "p", "x": "A tokenek (CSS, SCSS, Tailwind, Dart, Webflow, JSON), a telepítés és az API a Design Systemben vannak: [Eszközök](ds:eszkozok)." }
+  ]
+}

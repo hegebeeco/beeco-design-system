@@ -1,0 +1,88 @@
+{
+  "id": "valtozasok",
+  "cim": "Változások",
+  "alcim": "Dátumozott „Mi új”, a verziózás szabályai és a törő változások elleni őr.",
+  "csoport": "valtozasok",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "h2",
+      "x": "Mi új",
+      "id": "mi-uj"
+    },
+    {
+      "t": "p",
+      "x": "A legutóbbi kiadások a `CHANGELOG.md`-ből: verzió, dátum, rövid cím."
+    },
+    {
+      "t": "gen",
+      "nev": "valtozasok",
+      "db": 12
+    },
+    {
+      "t": "h2",
+      "x": "Verziózás",
+      "id": "verziozas"
+    },
+    {
+      "t": "p",
+      "x": "A verziószám szemantikus: FŐ.MELLÉK.JAVÍTÁS. A kiadás címkéje `vX.Y.Z`."
+    },
+    {
+      "t": "tabla",
+      "cim": "Verziólépések",
+      "fej": [
+        "Lépés",
+        "Mikor"
+      ],
+      "sorok": [
+        [
+          "JAVÍTÁS (1.0.**1**)",
+          "hibajavítás, új matrica vagy piktogram, szövegjavítás a szabálykönyvekben; semmi nem változik, amire egy fogyasztó épít"
+        ],
+        [
+          "MELLÉK (1.**1**.0)",
+          "új lehetőség (új eszköz, elem vagy token), ami a meglévő fogyasztókat nem érinti"
+        ],
+        [
+          "FŐ (**2**.0.0)",
+          "olyan változás, ami miatt a fogyasztókban is módosítani kell (átnevezés, törlés, más viselkedés); ezt kerüljük, csak bővítünk"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `CHANGELOG.md` (fejléc), `docs/rendszer.md` 7."
+    },
+    {
+      "t": "h2",
+      "x": "Törő változás elleni őr",
+      "id": "tori-valtozas"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Név soha nem változik és nem törlődik (token, szerep, osztály, export, prop) – csak új jön.",
+        "Az `api-check` a legutóbbi `v*` címkéhez méri az `api/api.json` pillanatképet: eltűnő export, prop, osztály, token vagy globális név, illetve új kötelező prop csak FŐ verzióval mehet.",
+        "Ha egy érték változik (például más zöld), az minden terméket érint: külön döntés kell hozzá."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `docs/rendszer.md` 7., `CHANGELOG.md` 1.53.0."
+    },
+    {
+      "t": "h2",
+      "x": "Migrációs útmutatók és elavult elemek",
+      "id": "migracio"
+    },
+    {
+      "t": "hianyzik",
+      "cim": "Verzióról verzióra szóló útmutató",
+      "x": [
+        "Önálló migrációs útmutató-gyűjtemény még nincs. A Flutter-átállás lépései a [`docs/app-atallas.md`](https://github.com/hegebeeco/beeco-design-system/blob/main/docs/app-atallas.md) fájlban vannak.",
+        "Elavult elemek listája sincs: a komponensadatok életciklus-státusza (stabil / béta / elavult) még nincs kitöltve."
+      ]
+    }
+  ]
+}

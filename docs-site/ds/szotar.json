@@ -1,0 +1,215 @@
+{
+  "id": "szotar",
+  "cim": "Szótár",
+  "alcim": "A design system szakszavai egy helyen: bőr, téma, felület, szerep, token, a komponensek szintjei és az előtagok.",
+  "csoport": "kezdes",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "p",
+      "x": "A Design System oldalon ezek a pontos szakszavak. Ahol a szó két dolgot is jelenthet, azt külön jelöljük."
+    },
+    {
+      "t": "h2",
+      "x": "Bőr, téma, felület",
+      "id": "ber-tema-felulet"
+    },
+    {
+      "t": "tabla",
+      "cim": "Bőr, téma, felület",
+      "fej": [
+        "Szó",
+        "Jelentés",
+        "Példa"
+      ],
+      "sorok": [
+        [
+          "Közös atom",
+          "Nyers érték, amelyből minden felület épül: színek, betűk, térköz, időzítés (`tokens/core.json`). Nem azonos a komponensek „atom” szintjével (lásd lent).",
+          "`honey`, `sp-4`, `fs-m`"
+        ],
+        [
+          "Bőr",
+          "A közös atomokra épülő megjelenési réteg. Kettő van: a termékbőr és a játékbőr.",
+          "termékbőr, játékbőr"
+        ],
+        [
+          "Termékbőr",
+          "A termékek bőre: fekete tinta és keret, kemény átlós árnyék, kis sarkok, sűrűbb elrendezés. Elemei a `bc-` osztályok.",
+          "admin, partner, weboldal"
+        ],
+        [
+          "Játékbőr",
+          "A webjátékok bőre (Méhsejt-diorama): olíva tinta, 3 px keret, nagy sarkok, puha függőleges árnyék. Elemei a `ds-` osztályok.",
+          "Szelektálj!, Hűtő-mester"
+        ],
+        [
+          "Téma",
+          "Egy bőr világos vagy sötét megjelenése. Váltása: `data-theme=\"dark\"` vagy `class=\"dark\"`, rendszer szerint `data-theme=\"auto\"`. A `tokens/theme-*.json` fájlnevekben a „theme” a bőrt jelenti.",
+          "világos, sötét, auto"
+        ],
+        [
+          "Kampány-altéma",
+          "Egy kampányhoz tartozó külön tokenkészlet a weboldal-rétegben, saját előtaggal.",
+          "CsicsergŐsz (`cs-`)"
+        ],
+        [
+          "Felület",
+          "A rendszert használó beeco-termék: admin, partner, mobil app, Kaptár, weboldal, játékok – „a hat felület”.",
+          "ADMINAPP, WEBOLDAL"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `docs/rendszer.md` 1–2., `DESIGN.md` (Két bőr), `docs/termek-arculat.md` 8., `docs/weboldal.md` (kampány-altéma), `brandbook/tartalom/feluletek.json`."
+    },
+    {
+      "t": "javaslat",
+      "cim": "Felület és sík – a szó két jelentése",
+      "x": [
+        "A „felület” szót a rendszer kétféle értelemben használja: terméktípusként (admin, partner…) és vizuális síkként (`surface`, `surface-2`, `surface-accent` szerepek). A javasolt cserék: a **felület** marad a terméktípus, a vizuális sík neve **sík**.",
+        "Amíg ez el nem dől, a szerepek neve (`surface`…) nem változik: a tokennevek soha nem változnak."
+      ],
+      "forras": [
+        "docs/javaslatok/25-ket-oldal-ia.md 3.4"
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Szerep és token",
+      "id": "szerep-token"
+    },
+    {
+      "t": "tabla",
+      "cim": "Szerep és token",
+      "fej": [
+        "Szó",
+        "Jelentés",
+        "Példa"
+      ],
+      "sorok": [
+        [
+          "Token",
+          "Névvel ellátott érték (szín, méret, idő…) a `tokens/*.json`-ban; belőle generálódik a CSS, SCSS, Tailwind, Dart és Webflow. A név soha nem változik és nem törlődik, csak új jön.",
+          "`--bc-ink`, `--bc-sp-4`"
+        ],
+        [
+          "Primitív",
+          "Nyers színérték névvel. A felületen nem használod; csak az adatvizualizáció veszi közvetlenül.",
+          "`--bc-honey`"
+        ],
+        [
+          "Szerep",
+          "Egy szín jelentés szerinti neve. A felület a szerepet használja, a szerep értéke bőrönként és témánként más lehet; ezért működik magától a sötét mód.",
+          "`ink`, `surface`, `accent`, `danger`"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "A szerepek neve bőrönként eltér: a termékbőrben `success` és `danger`, a játékbőrben `good` és `bad` (`tokens/theme-termek.json`, `tokens/theme-jatek.json`)."
+    },
+    {
+      "t": "h2",
+      "x": "A komponensek szintjei",
+      "id": "szintek"
+    },
+    {
+      "t": "tabla",
+      "cim": "Atomic design a beeco-ban",
+      "fej": [
+        "Szint",
+        "Mi ez",
+        "Példa"
+      ],
+      "sorok": [
+        [
+          "Token",
+          "Nyers érték és szerep; csak a `tokens/*.json`-ban születik.",
+          "`--bc-ink`, `sp-4`, `shadow-s`"
+        ],
+        [
+          "Atom",
+          "Egy feladatú, tovább nem bontható elem; csak tokent használ, saját állapotai vannak.",
+          "Button, Input, Checkbox, Badge"
+        ],
+        [
+          "Molekula",
+          "Néhány atom egy közös céllal; atomokból épül, nem nyúl a belsejükbe.",
+          "Field, SearchBox, Combobox, StatTile"
+        ],
+        [
+          "Organizmus",
+          "Önálló felületrész; molekulákból és atomokból épül, az üzleti adatot kívülről kapja.",
+          "DataTable, FilterBar, Modal"
+        ],
+        [
+          "Sablon",
+          "Oldalváz tartalom nélkül.",
+          "Lista-oldal, Irányítópult"
+        ],
+        [
+          "Oldal",
+          "Valódi képernyő valódi adattal. A design systemben nincs, a projektben él.",
+          "admin Partnerek"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Egy szint csak alatta lévő szintből épülhet. Forrás: `docs/komponensek.md` 2."
+    },
+    {
+      "t": "h2",
+      "x": "Előtagok",
+      "id": "elotagok"
+    },
+    {
+      "t": "tabla",
+      "cim": "Osztály- és tokenelőtagok",
+      "fej": [
+        "Előtag",
+        "Mit jelöl",
+        "Forrás"
+      ],
+      "sorok": [
+        [
+          "`bc-`",
+          "A termékbőr CSS-osztályai (`bc-btn`), tokenjei (`--bc-ink`) és a Webflow-változók.",
+          "`docs/rendszer.md`, `docs/weboldal.md`"
+        ],
+        [
+          "`is-`",
+          "Változat vagy állapot egy elemen (`bc-btn is-secondary`, `bc-badge is-success`).",
+          "`docs/termek-arculat.md` 6."
+        ],
+        [
+          "`ds-`",
+          "A játékbőr elemei és mozgáskészlete (`web/css/ds.css`, `ds-game.css`, `ds-motion.css`).",
+          "`docs/arculat.md`"
+        ],
+        [
+          "`h26-`",
+          "A 2026-os weboldal-főoldal saját, nem DS-eredetű osztályai.",
+          "`docs/weboldal.md`"
+        ],
+        [
+          "`cs-`",
+          "A CsicsergŐsz kampány-altéma változói és osztályai.",
+          "`docs/weboldal.md`"
+        ],
+        [
+          "`bb-`",
+          "Ennek a dokumentációs oldalnak a saját elrendezési osztályai (nem a csomag része).",
+          "`tools/docs/`"
+        ]
+      ]
+    },
+    {
+      "t": "hianyzik",
+      "cim": "A `jm-` előtag",
+      "x": "A repó dokumentumaiban nem találtunk meghatározást az `jm-` előtagra; amíg a jelentése nincs leírva, itt nem definiáljuk."
+    }
+  ]
+}

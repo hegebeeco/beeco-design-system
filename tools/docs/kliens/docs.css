@@ -132,6 +132,7 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
 .bb-tabla tbody th { color: var(--bc-ink); background: var(--bc-surface-2); white-space: normal; vertical-align: top; text-align: left; }
 .bb-tabla thead th { white-space: normal; }
 .bb-tabla td { vertical-align: top; }
+.bb-tabla td a, .bb-tabla th a { display: inline-flex; align-items: center; min-height: var(--bc-tap, 44px); }
 
 /* ---- DO / DON'T (képes) ---- */
 .bb-dodont { margin: var(--bc-sp-5) 0; }
@@ -253,7 +254,7 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
 /* ---- keresés oldal ---- */
 .bb-kereses-csoport h2 { margin: var(--bc-sp-6) 0 var(--bc-sp-2); font-size: var(--bc-fs-l); }
 .bb-kereses-ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--bc-sp-2); }
-.bb-kereses-ul .bb-talalat-elem { background: var(--bc-surface); border-color: var(--bc-line-soft); }
+.bb-kereses-ul .bb-talalat-elem { background: var(--bc-surface); border-color: var(--bc-line); }
 
 /* ---- karakter: Brand Book (játékbőr) – több levegő, méhsejt; Design System – tömörebb ---- */
 .is-brand .bb-fo { padding-top: var(--bc-sp-7); }
@@ -311,3 +312,5 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
   .bb-fejlec, .bb-nav, .bb-toc, .bb-toc-mobil, .bb-lanc, .bb-fulsor { display: none; }
   .bb-test, .bb-test.has-toc { display: block; }
 }
+
+.bb-katalogus a { display: inline-flex; align-items: center; min-height: var(--bc-tap); }

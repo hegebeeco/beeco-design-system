@@ -1,0 +1,120 @@
+{
+  "id": "ikonok",
+  "cim": "Ikonok",
+  "alcim": "Három ikonkészlet él a repóban: a termékbőr Ic* piktogramjai, a játékok saját piktogramjai és a dokumentációs oldalak ikonjai. Ez az oldal megmondja, melyik mire való, és miben tér el.",
+  "csoport": "alapok",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "h2",
+      "x": "A termékbőr piktogramjai (Ic*)",
+      "id": "ic"
+    },
+    {
+      "t": "p",
+      "x": "A kompakt helyek gombjai és az űrlap műveletei ezeket használják: `IcSave`, `IcTrash`, `IcNew`, `IcInfo`, `IcEdit`, `IcOpen`, `IcX`, `IcOk`, `IcLeft`, `IcRight` – a témaváltóhoz még az `IcAuto`, `IcSun`, `IcMoon`. Vonalas rajzok 24-es rácson, 20×20 px-en renderelve, `currentColor` színnel, kerekített vonalvéggel, 2,2 px vonalvastagsággal, díszítőek (`aria-hidden`): a jelentést a gomb neve viszi."
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `react/src/inputs/ikonok.tsx`, `docs/AI.md` (Piktogramok)."
+    },
+    {
+      "t": "szabaly",
+      "cim": "Piktogram a gombon",
+      "elemek": [
+        "Kompakt helyen (táblázat-sor, eszközsáv, kártya-fejléc, csempe) a mentés, törlés, új, info, szerkesztés és megnyitás gomb csak piktogram, mindig `TooltipIconButton`-nal: a `label` a képernyőolvasó neve és a súgó-buborék.",
+        "Az oldal fő gombja, az űrlap Mentése és a törlés megerősítése: szöveg + piktogram.",
+        "Szöveges gombon is legyen piktogram, ha kapcsolódik hozzá (Mentés → `IcSave`, Törlés → `IcTrash`, Új → `IcNew`).",
+        "Az ikongombnak kötelező az `aria-label`; emoji helyett rajzolt képet használj."
+      ],
+      "forras": [
+        "docs/termek-arculat.md 6/A és 9.",
+        "react/src/inputs/ikonok.tsx"
+      ]
+    },
+    {
+      "t": "p",
+      "x": "A gombok részletei: [Gomb](gomb.html)."
+    },
+    {
+      "t": "h2",
+      "x": "A játékok piktogramjai",
+      "id": "pic"
+    },
+    {
+      "t": "p",
+      "x": "A játékbőrnek saját, közös készlete van (`web/js/pics.js`, `pic('név')`): a dokumentáció szerint 60 saját ikon a vezérlőkre, az emoji helyett. Olíva vonallal (`#2F371E`) és a paletta színeivel rajzolt, lekerekített vonalas ikonok; a szabály 2–2,2 px vonal és legfeljebb két palettaszín. Új ikon ugyanebben a stílusban kerül a készletbe."
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `docs/arculat.md` (Piktogramok), `web/js/pics.js`."
+    },
+    {
+      "t": "hianyzik",
+      "cim": "A piktogramok pontos száma",
+      "x": "A dokumentáció 60 ikonról szól; a `pics.js` forrásának átnézésekor ennél több kulcsot találtunk, a CHANGELOG 1.49.0 pedig két újat ír le (`pont`, `cel`). A katalógus pontos darabszámát ellenőrizni kell, ezért nem adjuk meg számként."
+    },
+    {
+      "t": "h2",
+      "x": "A három készlet különbsége",
+      "id": "kulonbseg"
+    },
+    {
+      "t": "tabla",
+      "cim": "Ikonkészletek",
+      "fej": [
+        "",
+        "Termékbőr: Ic*",
+        "Játékbőr: pic()",
+        "Dokumentációs oldalak"
+      ],
+      "sorok": [
+        [
+          "Hol",
+          "`react/src/inputs/ikonok.tsx`",
+          "`web/js/pics.js`",
+          "`tools/docs/alap.js`, `brandbook/css/bb.css`"
+        ],
+        [
+          "Rács",
+          "24 × 24",
+          "24 × 24",
+          "24 × 24"
+        ],
+        [
+          "Vonalvastagság",
+          "2,2 px",
+          "2–2,2 px (szabály)",
+          "2 px"
+        ],
+        [
+          "Szín",
+          "`currentColor`",
+          "olíva vonal + palettaszínek kitöltés",
+          "`currentColor`"
+        ],
+        [
+          "Megjelenés",
+          "csak vonal",
+          "vonal és színes kitöltés",
+          "csak vonal"
+        ],
+        [
+          "Használat",
+          "gombok, űrlap, témaváltó",
+          "játék-vezérlők, HUD",
+          "ezen az oldalon: menü, keresés, téma"
+        ]
+      ]
+    },
+    {
+      "t": "hianyzik",
+      "cim": "Egységes ikonméret-skála",
+      "x": "Nincs ikonméret-token: az Ic* készlet 20 px-es, a játékpiktogramok és a dokumentációs ikonok mérete a használat helyén dől el. Hogy kell-e skála (például 16 / 20 / 24 px), döntésre vár."
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `react/src/inputs/ikonok.tsx` (strokeWidth 2.2), `web/js/pics.js`, `brandbook/css/bb.css` (`.bb-ic`, 2 px)."
+    }
+  ]
+}

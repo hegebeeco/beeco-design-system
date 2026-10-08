@@ -1,0 +1,38 @@
+{
+  "id": "mozgas",
+  "cim": "Mozgás",
+  "alcim": "A méhecske és a madarak apró, élő mozdulatokkal mozognak – és mindig megállnak.",
+  "csoport": "vizualis",
+  "statusz": "stabil",
+  "blokkok": [
+    { "t": "h2", "x": "A méhecske mozgása" },
+    { "t": "p", "x": "A méhecskét nem rajzoljuk újra, a mozgása a meglévő képből készül: a szárny és a test külön rétegen mozog, a test, az arc, a csíkok és a kellékek változatlanok." },
+    { "t": "tabla", "cim": "Mozgó szereplők", "fej": ["Szereplő", "Mozgás", "Mikor"], "sorok": [
+      ["Házigazda", "lebeg (szárnycsapás)", "üdvözlés, első használat"],
+      ["Szurkoló", "ujjong (ugrás)", "sikeres mentés"],
+      ["Gondolkodó", "tűnődik (fejbillentés)", "nincs találat, hiba"],
+      ["Pihenő", "alszik (lélegzés)", "üres lista, lejárt munkamenet"],
+      ["Futár", "repül", "1 mp-nél hosszabb töltés"],
+      ["Bajnok", "ünnepel", "mérföldkő – ritkán"]
+    ] },
+    { "t": "szabaly", "cim": "Végtelen mozgás nincs",
+      "elemek": [
+        "A megadott ismétlés után a mozgás az utolsó képkockán megáll. A Futár töltés közben legfeljebb 10 másodpercig repül, utána megáll.",
+        "Csökkentett mozgásnál (a telefon vagy a gép „Mozgás csökkentése” beállítása) az első képkocka áll."
+      ],
+      "forras": ["docs/meh-sprite.md"] },
+    { "t": "h2", "x": "A madarak mozgása" },
+    { "t": "szabaly", "cim": "Így mozog a madár",
+      "elemek": [
+        "**A talaj és a láb áll, a madár mozog rajta:** a test, a fej, a szárny és a farok mozog.",
+        "**Fejfordítás 2,5D-ben:** a fej felénk fordul, majd kicsit el. A fej körvonala keskenyedik, a csőr rövidül, a szem a fej közepe felé csúszik. A ¾ rajzon nem fordítunk még egyszer.",
+        "**Apró, élő mozdulatok:** lebegés, pislogás, szárny- és farokbillentés, csipogás. Egy ciklus 2,4 másodperc.",
+        "**Végtelen mozgás nincs,** és csökkentett mozgásnál az álló kép látszik – ugyanúgy, mint a méhecskéknél."
+      ],
+      "forras": ["bird-catalog: madargyar/RAJZ4_UTMUTATO.md (jóváhagyva, 2026-10-07)", "bird-catalog: madargyar (fejfordítás, lebegés, pislogás, szárny, farok)", "docs/meh-sprite.md"] },
+    { "t": "hianyzik", "cim": "Mozgásminták", "x": "A madarak animált mintái (egerészölyv, ökörszem, tőkés réce) még nem lejátszhatók ezen az oldalon." },
+    { "t": "h2", "x": "Részletek" },
+    { "t": "p", "x": "Az időzítés, a görbék és a fejlesztői szabályok a Design Systemben vannak: [Mozgás](ds:mozgas)." },
+    { "t": "p", "x": "A szereplők és a rajzolás szabályai: [Méhecske és illusztráció](meh-illusztracio.html)." }
+  ]
+}

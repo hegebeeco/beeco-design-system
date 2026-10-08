@@ -1,0 +1,157 @@
+{
+  "id": "forma",
+  "cim": "Forma",
+  "alcim": "Sarok, keret és árnyék: a termékbőr kemény és átlós, a játékbőr puha és lekerekített.",
+  "csoport": "alapok",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "h2",
+      "x": "Sarok és árnyék",
+      "id": "sarok-arnyek"
+    },
+    {
+      "t": "gen",
+      "nev": "forma"
+    },
+    {
+      "t": "h2",
+      "x": "Melyik elem mit kap?",
+      "id": "elemek"
+    },
+    {
+      "t": "tabla",
+      "cim": "Forma elemenként (termékbőr)",
+      "fej": [
+        "Token",
+        "Érték",
+        "Mire"
+      ],
+      "sorok": [
+        [
+          "`r-s`",
+          "4 px",
+          "mező, kis gomb"
+        ],
+        [
+          "`r-m`",
+          "8 px",
+          "gomb, kártya, táblázat"
+        ],
+        [
+          "`r-l`",
+          "12 px",
+          "felugró ablak"
+        ],
+        [
+          "`r-pill`",
+          "kapszula",
+          "címke, kapcsoló"
+        ],
+        [
+          "`bw-hair`",
+          "1 px",
+          "mező, csendes kártya"
+        ],
+        [
+          "`bw-base`",
+          "2 px",
+          "gomb, kártya, táblázat, ablak"
+        ],
+        [
+          "`shadow-s`",
+          "2 px",
+          "gomb, statisztika"
+        ],
+        [
+          "`shadow-m`",
+          "4 px",
+          "kártya, táblázat, értesítés"
+        ],
+        [
+          "`shadow-l`",
+          "6 px",
+          "felugró ablak"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Az árnyék színe a `shadow` szerep, elmosás nélkül; lenyomáskor az elem az árnyéka helyére csúszik. Forrás: `docs/termek-arculat.md` 3., `tokens/theme-termek.json`."
+    },
+    {
+      "t": "h2",
+      "x": "Kemény és puha árnyék",
+      "id": "puha-arnyek"
+    },
+    {
+      "t": "szabaly",
+      "cim": "Kemény árnyék csak arra, ami kattintható",
+      "x": [
+        "Kattintható elem (gomb, kattintható kártya, csempe, aktív fül, bejelölt jelölő): kemény, átlós árnyék. Nem kattintható doboz (kártya, statisztika, táblázat, mentés-sáv): puha, halvány árnyék (`--bc-shadow-soft`: `0 8px 28px`, a `shadow` szín 9%-a). Árnyék nélkül marad a mező, a szellem, a tiltott és a lenyomott gomb, az `is-flat` kártya."
+      ],
+      "forras": [
+        "docs/termek-arculat.md 6/A",
+        "tokens/theme-termek.json → shadowSoft",
+        "dist/css/beeco-tokens.css"
+      ]
+    },
+    {
+      "t": "dodont",
+      "allapot": "szabaly",
+      "forras": [
+        "docs/termek-arculat.md 6/A"
+      ],
+      "parok": [
+        {
+          "jo": {
+            "felirat": "gomb: kemény; info-doboz: puha",
+            "html": "<div class=\"bb-demo-sor\"><button type=\"button\" class=\"bc-btn\">Megnyitom</button><div class=\"bc-card\"><p>Nyitva: 8–18 óráig</p></div></div>"
+          },
+          "rossz": {
+            "felirat": "nem kattintható doboz kemény árnyékkal",
+            "html": "<div class=\"bc-card bc-lift\"><p>Nyitva: 8–18 óráig</p></div>"
+          },
+          "miert": "A kemény átlós árnyék azt ígéri: „nyomj meg”. Ha a doboz nem kattintható, puha árnyékot kap."
+        }
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Ismert eltérések a dokumentumok között",
+      "id": "elteresek"
+    },
+    {
+      "t": "p",
+      "x": "A szabály a fentiek szerint érvényes (a `docs/termek-arculat.md` 6/A szakasza, a legutóbbi döntés). A repó dokumentumai azonban nem mindenhol követik:"
+    },
+    {
+      "t": "tabla",
+      "cim": "Forma-eltérések",
+      "fej": [
+        "Téma",
+        "Mit mond az egyik hely",
+        "Mit a másik",
+        "Állapot"
+      ],
+      "sorok": [
+        [
+          "Puha árnyék",
+          "`docs/termek-arculat.md` 3. és 7.: a termékbőrben puha, elmosott árnyék nincs.",
+          "6/A és a `shadowSoft` token: nem kattintható dobozon puha árnyék van.",
+          "**Ismert eltérés**"
+        ],
+        [
+          "Sarok `xs`",
+          "`DESIGN.md`, `docs/termek-arculat.md` 3.: 4 · 8 · 12 px.",
+          "A token és a `docs/rendszer.md`: 2 · 4 · 8 · 12 px, kapszula. Az `r-xs` (2 px) használatban van (pl. `bc-kieg.css`).",
+          "**Ismert eltérés**"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Mindkettő feloldása döntésre vár."
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "id": "marka-pozicio",
+  "cim": "Pozíció",
+  "alcim": "Kik vagyunk, mit akarunk, miben hiszünk, és hogyan jutottunk idáig.",
+  "csoport": "marka",
+  "statusz": "vázlat",
+  "blokkok": [
+    { "t": "h2", "x": "Kik vagyunk" },
+    { "t": "p", "x": "A beeco magyar fenntarthatósági ökoplatform: app, webjátékok, partnerprogram és közösség. A név jelentése: **be-eco, bee-co** – légy öko, és méhecske, aki raj tagjaként dolgozik." },
+    { "t": "hivatalos", "cim": "Létezésünk oka",
+      "x": ["„Célunk, hogy motiváljuk és összekapcsoljuk az embereket és a zöld vállalkozásokat egy fenntartható, ökologikus életmód érdekében, hogy együtt zöldebb jövőt hagyhassunk a következő generációknak.”"],
+      "elemek": [
+        "**Tudatosság növelése:** olyan információkat és eszközöket adunk, amelyek humorosan, közérthetően segítenek megérteni, hogyan hatnak a döntéseink a természeti környezetünkre.",
+        "**Közösségépítés:** a közösségünkben tapasztalatot cserélhetsz, támogathatjátok egymást, és közösen tehettek a természeti és közösségi értékeinkért.",
+        "**Fenntartható életmód népszerűsítése:** környezetbarát termékeket, szolgáltatásokat és eseményeket mutatunk meg."
+      ],
+      "forras": ["beeco brandbook v2 (belső márkadokumentum, 2026) – 1. Alapértékek"] },
+    { "t": "hivatalos", "cim": "A méhraj-gondolat",
+      "x": "„Egy méh nem csinál csodát, de… egy egész raj felvirágoztatja a környezetét!”",
+      "forras": ["[beeco.hu](https://www.beeco.hu/) – főoldal", "[beeco.hu/tortenetunk](https://www.beeco.hu/tortenetunk)"] },
+
+    { "t": "h2", "x": "Vízió, misszió, küldetés" },
+    { "t": "hivatalos", "cim": "Víziónk",
+      "x": "„Egy tudatos társadalom, ahol nem a fogyasztás határozza meg az embereket, hanem az, hogy mennyit adnak vissza a természeti környezetnek életük során.”",
+      "forras": ["beeco brandbook v2 (belső márkadokumentum, 2026)", "[beeco.hu/rolunk](https://www.beeco.hu/rolunk)"] },
+    { "t": "hivatalos", "cim": "Missziónk",
+      "x": "„Egy játékos és motiváló ökoiránytűvel mutatjuk meg a fenntartható döntések széles választékát. Közösségi küldetésekkel könnyedén és hatékonyan segítünk csökkenteni ökológiai lábnyomunkat.”",
+      "forras": ["beeco brandbook v2 (belső márkadokumentum, 2026)"] },
+    { "t": "javaslat", "cim": "Küldetésünk (átgondolás alatt)",
+      "x": [
+        "„Teljes jogú polgárként mindannyiunknak kötelessége a társadalmi felelősségvállalás, a részvételi demokrácia támogatása és gyakorlása. Valódi hatást közösségi összefogással érhetünk el, ezért a beeco nem csak startup, hanem társadalmi kezdeményezés is, amelynek célja az emberek összefogása és mozgósítása egy fenntarthatóbb jövőért.”",
+        "A márkadokumentumban „átgondolni” jelöléssel szerepel – addig ne használd külső anyagban; helyette a missziót."
+      ],
+      "forras": ["beeco brandbook v2 (belső márkadokumentum, 2026)"] },
+
+    { "t": "h2", "x": "Fő üzeneteink" },
+    { "t": "hivatalos", "cim": "Három fő üzenet",
+      "elemek": [
+        "**Jövő:** az ökos döntések és a zöldebb jövő közelebb vannak, mint gondolnád!",
+        "**Közösség:** egy méh nem csinál csodát, de egy szorgos raj felvirágoztatja a környezetét.",
+        "**Egyszerűség:** a fenntartható döntések pár kattintásnyira vannak tőled."
+      ],
+      "forras": ["beeco brandbook v2 (belső márkadokumentum, 2026) – A beeco fő üzenete"] },
+    { "t": "korrigalando", "cim": "Márkaígéret egy mondatban",
+      "x": [
+        "„Apró lépésekkel, együtt: érthetővé tesszük a fenntarthatóságot, és megmutatjuk, mit tehetsz ma.”",
+        "Rövid bemutatkozáshoz, partneri anyagba, közösségi profilba. A fő üzenetekből és a misszióból összeállított vázlat – a végleges megfogalmazás még kell."
+      ],
+      "forras": ["Szerkesztői vázlat a fő üzenetekből és a misszióból"] },
+    { "t": "hivatalos", "cim": "Bemutatkozás 40 szóban",
+      "x": "„Képzelj el egy világot, ahol a fenntartható megoldások elérhetőbbek mindenki számára! Találd meg a legzöldebb helyeket a közelben, kedvezményeket fenntartható vállalkozásoknál, eseményeket, ahol kapcsolódhatsz ökos közösségekhez! Ne hagyd, hogy az ökológiai válság megbénítson, mert rád is szükség van! Ha úgy érzed, baj van, csatlakozz hozzánk, és beezz a rajban!”",
+      "forras": ["beeco brandbook v2 (belső márkadokumentum, 2026) – 40 szavas bemutatkozó"] },
+
+    { "t": "h2", "x": "Alapértékeink" },
+    { "t": "hivatalos", "cim": "Közösség",
+      "x": "„Kapcsolatot építünk az emberek között, és törődünk a természettel. Összetartó közösség erejével, a kis lépések és szárnycsapások hatásával dolgozunk a közös célokért.”",
+      "forras": ["beeco brandbook v2 (belső márkadokumentum, 2026)", "[beeco.hu/rolunk](https://www.beeco.hu/rolunk)"] },
+    { "t": "hivatalos", "cim": "Edukáció",
+      "x": "„Online tartalmainkkal és eseményeinken edukáljuk az embereket, ezzel csökkentve az ökoszorongásukat, és arra ösztönözve őket, hogy aktívan cselekedjenek a fenntarthatóságért.”",
+      "forras": ["beeco brandbook v2 (belső márkadokumentum, 2026)"] },
+    { "t": "hivatalos", "cim": "Hitelesség és őszinteség",
+      "x": [
+        "„Minden tevékenységünk és információnk a legmagasabb szintű megbízhatóságot képviseli.”",
+        "„Minden témában őszintén és tudományos alapokon nyugvó információkat osztunk meg. Ha valamiben nincs konszenzus, azt kommunikáljuk. Nem gond, ha valaki hibázik – akár mi is –, a lényeg, hogy mindig transzparensek legyünk.”"
+      ],
+      "forras": ["beeco brandbook v2 (belső márkadokumentum, 2026)"] },
+    { "t": "hivatalos", "cim": "Nyitottság",
+      "x": "„A beeco nyitott az új dolgokra, új nézőpontokra, a kritikákra és a fejlődési lehetőségekre, mert közösségi tudásra építkezik.”",
+      "forras": ["beeco brandbook v2 (belső márkadokumentum, 2026)"] },
+    { "t": "hivatalos", "cim": "Közösségi hatás és kapcsolatépítés",
+      "x": [
+        "„Kezdeményezéseink nemcsak a résztvevők tudatosságát növelik, hanem hozzájárulnak a helyi közösségek fejlődéséhez is.”",
+        "„Motiválunk, tanítunk, nyílt diskurzusokat folytatunk, megoldásokat keresünk, változtatunk, új perspektívákat adunk, inspirálunk.”"
+      ],
+      "forras": ["beeco brandbook v2 (belső márkadokumentum, 2026)"] },
+    { "t": "korrigalando", "cim": "Hidak építése",
+      "x": "„Hidakat építünk: generációk között és generációkon belül, magánemberek és önkormányzatok, üzleti és nonprofit szereplők között – mert a zöld jövő csak együtt épülhet.”",
+      "forras": ["Szerkesztői vázlat – a márkadokumentumban „kidolgozandó” jelöléssel, csak címszavakkal szerepel"] },
+
+    { "t": "h2", "x": "Mit értünk fenntarthatóságon" },
+    { "t": "hivatalos", "cim": "Fenntarthatóság – ökologikus élet",
+      "x": [
+        "„Ember és környezete harmonikus, hosszú távon is stabil és kiegyensúlyozott együttélése, amikor az emberek és társadalmuk ökolábnyoma nem haladja meg a Föld kapacitásait, és sem az emberek, sem a természet nem állnak egymás felett.”",
+        "Miért foglalkozunk vele: az éghajlatváltozás és az ökológiai válság sürgető ténye. Mire alapozunk: az UNFCCC, az IPCC, az MTVSZ és a WWF jelentéseire és a tudományos konszenzusra."
+      ],
+      "forras": ["beeco brandbook v2 (belső márkadokumentum, 2026) – Fenntarthatóság"] },
+    { "t": "korrigalando", "cim": "Miért pont mi?",
+      "x": "„Mert mi a hétköznapokból indulunk: egy appban, egy közösségben és a helyi zöld vállalkozásokkal együtt tesszük könnyűvé az első és a következő lépést – szorongás helyett jókedvvel.”",
+      "forras": ["Szerkesztői vázlat – a márkadokumentumban „(még meglássuk)” jelöléssel"] },
+
+    { "t": "h2", "x": "Történetünk" },
+    { "t": "tabla", "cim": "A beeco története", "fej": ["Mikor", "Mi történt"], "sorok": [
+      ["2022 ősze", "Megszületik az ötlet – „Egy ötlet a nyóckerből”."],
+      ["2023 tavasza", "Megvan a név; a méhraj 5–6 emberrel indul."],
+      ["2023 nyara", "10, majd nyár végére 20 fő; EFOTT, K&H Start It inkubátor."],
+      ["2023 ősze", "KlímaFreskó, UNICEF Klímahősök, KlímaEXPO."],
+      ["2024 tavasza", "Elérhető az app ökotérképe; az indulóeseményen több mint 120 fő."],
+      ["2024 ősze", "WebSummit Lisszabon, a BME első fenntarthatósági szakmai napja."],
+      ["2024 tele", "Vége a K&H programnak; a HUMUSZ, a Bolygó és a MUNCH fogadja be a csapatot."],
+      ["2025", "„A virágzás éve” – a fejezet a weboldalon még készül."]
+    ] },
+    { "t": "p", "x": "Forrás: [beeco.hu/tortenetunk](https://www.beeco.hu/tortenetunk). Az évek fejezetcímei: 2023 – a raj alakulásának éve, 2024 – a beporzás éve, 2025 – a virágzás éve." },
+    { "t": "hivatalos", "cim": "Elismeréseink",
+      "elemek": ["EIT ClimateLaunchpad", "K&H Start It", "MVM Edison", "Design Terminal", "Győri Klíma EXPO", "UNICEF Klímahősök"],
+      "forras": ["[beeco.hu/tortenetunk](https://www.beeco.hu/tortenetunk)", "beeco brandbook v2 (belső márkadokumentum, 2026) – Beeco sztori"] },
+    { "t": "hivatalos", "cim": "A jövő, amit megálmodtunk",
+      "x": [
+        "Rövid táv: minél több magyarnak csengjen ismerősen a beeco neve, aztán az Európai Unió, majd a világ.",
+        "2030-ig (5 éves terv): világszerte ismert márka, egy 20 milliós közösség, üzleti önfenntartás, elsődleges forrás a fenntarthatóság terén."
+      ],
+      "forras": ["beeco brandbook v2 (belső márkadokumentum, 2026) – Jövőképek és hosszú távú tervek"] },
+    { "t": "szabaly", "cim": "Számokat csak egy forrásból",
+      "elemek": [
+        "A letöltés-, partner-, ökospont-, csapat- és önkéntesszámok, az alapítási adatok és a cégadatok forrása a **beeco Power BI** felülete.",
+        "Külső anyagba csak onnan, a lekérdezés dátumával írj számot („2026. októberi adat”). A weboldal régi számai (pl. 20.000+ és 25.000+ letöltés) eltérnek – ne másold őket."
+      ],
+      "forras": ["A beeco döntése, 2026-10-07"] },
+
+    { "t": "h2", "x": "Kapcsolódó" },
+    { "t": "lista", "elemek": [
+      "A hangunk és a személyiségünk: [Hang és személyiség](marka-hang.html)",
+      "A név írása és a logó: [Logó](logo.html)"
+    ] }
+  ]
+}

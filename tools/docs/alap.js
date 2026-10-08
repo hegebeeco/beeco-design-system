@@ -14,26 +14,51 @@ const json = f => JSON.parse(read(f));
 const exists = f => fs.existsSync(path.join(ROOT, f));
 
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-/** Soron belüli jelölés: `kód`, **félkövér**, [szöveg](link) – minden más escape-elve. Link: http(s), mailto, helyi .html, #horgony. */
+/** Oldalak közti hivatkozás: a „brand:<slug>[#horgony]” és „ds:<slug>[#horgony]” linkcélt az épülő oldal (beallitLinkek) oldja fel:
+    saját oldalon <slug>.html, a másikon a DOCS_BRAND_URL / DOCS_DS_URL alapján (helyben ../brand/, ../ds/). */
+let LINK = { oldal: null, feloldo: null };
+function beallitLinkek(oldal, feloldo) { LINK = { oldal, feloldo }; }
+const OLDAL_LINK = /^(brand|ds):([a-z0-9-]+)(#[a-z0-9-]+)?$/;
+function href(h) {
+  const m = String(h).match(OLDAL_LINK);
+  if (!m) return h;
+  if (!LINK.feloldo) throw new Error(`oldalak közti link építő nélkül: ${h}`);
+  return LINK.feloldo(m[1], m[2], m[3] || '');
+}
+/** Soron belüli jelölés: `kód`, **félkövér**, [szöveg](link) – minden más escape-elve. Link: http(s), mailto, helyi .html, #horgony, brand:/ds:. */
 const inl = s => esc(s)
   .replace(/`([^`]+)`/g, '<code>$1</code>')
   .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
   .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, h) => {
+    if (OLDAL_LINK.test(h)) {
+      const u = href(h);
+      // a cél még tervezett (nincs kész) oldal: nem törött link, hanem jelölt szöveg
+      if (u == null) return `<span class="bb-link-hamarosan">${t} <span class="bb-soon">hamarosan</span></span>`;
+      return `<a href="${u}"${/^https?:/.test(u) ? ' rel="noopener"' : ''}>${t}</a>`;
+    }
     const ok = /^(https?:|mailto:|[a-z0-9-]+\.html(#[a-z0-9-]+)?$|#[a-z0-9-]+$)/.test(h);
     return `<a href="${ok ? h : '#'}"${/^https?:/.test(h) ? ' rel="noopener"' : ''}>${t}</a>`;
   });
 const slug = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const strip = h => String(h).replace(/<[^>]+>/g, ' ').replace(/&[a-z]+;/g, ' ').replace(/\s+/g, ' ').trim();
 
-/** A forrásfájlok git szerinti utolsó módosítása (YYYY-MM-DD); nincs git vagy nincs commit → null. */
+/** A forrásfájlok git szerinti utolsó módosítása (YYYY-MM-DD); nincs git vagy nincs commit → null.
+    Egyetlen `git log` futás az egész tárolóra (fájlonként külön hívás 50+ oldalnál perceket vinne). */
+let GIT = null;
+function gitTerkep() {
+  if (GIT) return GIT;
+  GIT = new Map();
+  try {
+    const ki = execFileSync('git', ['log', '--format=@%cs', '--name-only'], { cwd: ROOT, stdio: ['ignore', 'pipe', 'ignore'], maxBuffer: 512 * 1024 * 1024 }).toString();
+    let d = null;
+    for (const sor of ki.split('\n')) { if (sor.startsWith('@')) d = sor.slice(1); else if (sor && d && !GIT.has(sor)) GIT.set(sor, d); }
+  } catch (e) { /* nincs git (pl. letöltött zip) */ }
+  return GIT;
+}
 function gitDatum(fajlok) {
+  const t = gitTerkep();
   let leg = null;
-  for (const f of [].concat(fajlok)) {
-    try {
-      const d = execFileSync('git', ['log', '-1', '--format=%cs', '--', f], { cwd: ROOT, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
-      if (d && (!leg || d > leg)) leg = d;
-    } catch (e) { /* nincs git (pl. letöltött zip) */ }
-  }
+  for (const f of [].concat(fajlok)) { const d = t.get(f); if (d && (!leg || d > leg)) leg = d; }
   return leg;
 }
 const BUILD_IDO = process.env.SOURCE_DATE_EPOCH ? new Date(Number(process.env.SOURCE_DATE_EPOCH) * 1000) : new Date();
@@ -54,7 +79,9 @@ const IC = {
   le: '<path d="m6 9 6 6 6-6"/>',
   szerk: '<path d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/>',
   masol: '<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>',
+  letolt: '<path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>',
+  ki: '<path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4M10 17l5-5-5-5M15 12H3"/>',
 };
 const ic = (n, cls = '') => `<svg class="bb-ic${cls ? ' ' + cls : ''}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${IC[n]}</svg>`;
 
-module.exports = { ROOT, read, json, exists, esc, inl, slug, strip, gitDatum, BUILD_ISO, huDatum, ic };
+module.exports = { ROOT, read, json, exists, esc, inl, href, beallitLinkek, OLDAL_LINK, slug, strip, gitDatum, BUILD_ISO, huDatum, ic };

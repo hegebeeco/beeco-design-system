@@ -1,0 +1,75 @@
+{
+  "id": "minta-iranyitopult",
+  "cim": "Irányítópult",
+  "alcim": "Néhány kulcsszám, alatta trendek – forrással, egységgel, időszakkal.",
+  "csoport": "mintak",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "p",
+      "x": "Az irányítópult sablon (`Dashboard`) felépítése: eszközsor (időszak) → statisztika-csempék sora → grafikonkártyák rácsa. Nyomtatható riportként is használható."
+    },
+    {
+      "t": "h2",
+      "x": "Felépítés",
+      "id": "felepites"
+    },
+    {
+      "t": "tabla",
+      "cim": "Az irányítópult részei",
+      "fej": [
+        "Rész",
+        "Elem",
+        "Szabály"
+      ],
+      "sorok": [
+        [
+          "Eszközsor",
+          "időszak-választó",
+          "az időszak a nyomtatott riporton is megmarad szövegként"
+        ],
+        [
+          "Kulcsszámok",
+          "`StatTile` sora (`bc-stats`)",
+          "mindig egység, időszak, forrás; becsült érték jelölve; a változás színe a jelentésétől függ, nem az irányától"
+        ],
+        [
+          "Trendek",
+          "`ChartCard` rács",
+          "cím, egység + időszak, tengelyfeliratok, jelmagyarázat, súgó, „Hogyan olvasd?”, adattábla"
+        ]
+      ]
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Néhány kulcsszám egymás mellett, alatta trendek. Forrás és időszak nélküli szám nem kerülhet az oldalra.",
+        "Trend időben: vonal; kategóriák összevetése: oszlop vagy vízszintes sáv; összetétel: halmozott oszlop. Fánk- és tortadiagram helyett vízszintes sáv.",
+        "Egyetlen számra statisztika-csempe való, nem grafikon.",
+        "Az összegző blokkban a csempe lapos; nincs kártya a kártyában."
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Nyomtatás",
+      "id": "nyomtatas"
+    },
+    {
+      "t": "p",
+      "x": "Nyomtatáskor (`printable`) papíron világos téma van, a vezérlők rejtettek, az eszközsor szövege (időszak) megmarad."
+    },
+    {
+      "t": "h2",
+      "x": "Állapotok",
+      "id": "allapotok"
+    },
+    {
+      "t": "p",
+      "x": "Töltés, üres, hiba, tiltott: minden kártya és csempe külön megtervezett állapottal rendelkezik. A szabályok: [Állapotok](allapotok.html). A színek és a skálák: [Adatvizualizáció](adatvizualizacio.html)."
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `brandbook/elemek/komponensek.json` (Irányítópult, Statisztika-csempe, Grafikonkártya), `docs/komponensek.md` 3/B."
+    }
+  ]
+}

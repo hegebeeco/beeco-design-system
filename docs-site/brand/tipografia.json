@@ -1,0 +1,27 @@
+{
+  "id": "tipografia",
+  "cim": "Tipográfia",
+  "alcim": "Két betűtípus: a Lalezar a hangos címekhez, az Open Sans mindenhez, amit olvasni kell.",
+  "csoport": "vizualis",
+  "statusz": "stabil",
+  "blokkok": [
+    { "t": "h2", "x": "Mikor melyik betű" },
+    { "t": "szabaly", "cim": "Két betű, mindenhol",
+      "elemek": [
+        "**Lalezar** – cím, szám, rövid felirat és gomb. Egy vastagság van, a hierarchiát a méret adja.",
+        "**Open Sans** – minden más szöveg, 400, 600 és 700 vastagságban.",
+        "Más betűtípus nem kerül a képre.",
+        "A betűk saját szerverről töltődnek (adatvédelem), Google Fonts-ról nem."
+      ],
+      "forras": ["tokens/core.json", "docs/termek-arculat.md 4."] },
+    { "t": "p", "x": "A Lalezar hangos – címre, számra, gombra való; hosszú szövegben fárasztó és nehezen olvasható. A munka, vagyis a magyarázat, a tipp, a részlet Open Sans." },
+    { "t": "dodont", "cim": "Lalezar címben, Open Sans szövegben", "allapot": "szabaly",
+      "forras": ["docs/termek-arculat.md 4."],
+      "parok": [ {
+        "jo": { "felirat": "rövid Lalezar cím, Open Sans szöveg", "html": "<div class=\"bc-card\"><p class=\"bc-card-title\">Öntözz egy fát</p><p>Szombaton 10-től a Kert utcában találkozunk. Hozz kannát, ha van.</p></div>" },
+        "rossz": { "felirat": "hosszú szöveg Lalezarral", "html": "<div class=\"bc-card\"><p class=\"bc-card-title\">Szombaton 10-től a Kert utcában találkozunk. Hozz kannát, ha van, és szólj a barátaidnak is, mert sok fa vár ránk.</p></div>" },
+        "miert": "A Lalezar hangos – címre, számra, gombra való; hosszú szövegben fárasztó és nehezen olvasható." } ] },
+    { "t": "h2", "x": "Részletek" },
+    { "t": "p", "x": "A betűméretek, a szerepek (cím, törzs, felirat), a vastagságok és a betöltés a Design Systemben vannak: [Tipográfia](ds:tipografia). Képre, posztra szánt méretek: [Social media](social.html)." }
+  ]
+}

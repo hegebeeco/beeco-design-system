@@ -1,56 +1,30 @@
 {
-  "_readme": "A Design System menüje és olvasási sorrendje (a „Következő” lánc ebből jön). tervezett = a cél-struktúra még meg nem írt oldala (terv: Cél-struktúra 2, Carbon-minta). al = behúzott alpont (kategória alatti komponens). Oldal: docs-site/ds/<slug>.json.",
+  "_readme": "A Design System menüje és olvasási sorrendje (a „Következő” lánc ebből jön). tervezett = a cél-struktúra még meg nem írt oldala (terv: Cél-struktúra 2, Carbon-minta). al = behúzott alpont (kategória alatti komponens). Oldal: docs-site/ds/<slug>.json. A Komponensek csoportot a motor tölti fel kategóriákkal.",
   "cim": "Design System",
   "csoportok": [
-    { "id": "kezdes", "cim": "Kezdés", "oldalak": [ { "slug": "index", "cim": "Kezdés" } ] },
+    { "id": "kezdes", "cim": "Kezdés", "oldalak": [ { "slug": "index", "cim": "Kezdés" }, { "slug": "telepites", "cim": "Telepítés" }, { "slug": "szotar", "cim": "Szótár" } ] },
     { "id": "alapok", "cim": "Alapok", "oldalak": [
-      { "slug": "szin", "cim": "Szín", "tervezett": true },
-      { "slug": "tipografia", "cim": "Tipográfia", "tervezett": true },
-      { "slug": "ter-es-racs", "cim": "Tér és rács", "tervezett": true },
-      { "slug": "forma", "cim": "Forma", "tervezett": true },
-      { "slug": "mozgas", "cim": "Mozgás", "tervezett": true },
-      { "slug": "ikonok", "cim": "Ikonok", "tervezett": true },
-      { "slug": "adatvizualizacio", "cim": "Adatvizualizáció", "tervezett": true },
-      { "slug": "hozzaferhetoseg", "cim": "Hozzáférhetőség", "tervezett": true },
-      { "slug": "temak", "cim": "Témák", "tervezett": true }
+      { "slug": "szin", "cim": "Szín" },
+      { "slug": "tipografia", "cim": "Tipográfia" },
+      { "slug": "ter-es-racs", "cim": "Tér és rács" },
+      { "slug": "forma", "cim": "Forma" },
+      { "slug": "mozgas", "cim": "Mozgás" },
+      { "slug": "ikonok", "cim": "Ikonok" },
+      { "slug": "adatvizualizacio", "cim": "Adatvizualizáció" },
+      { "slug": "hozzaferhetoseg", "cim": "Hozzáférhetőség" },
+      { "slug": "temak", "cim": "Témák" }
     ] },
-    { "id": "komponensek", "cim": "Komponensek", "oldalak": [
-      { "slug": "komponensek", "cim": "Áttekintés", "tervezett": true },
-      { "slug": "kat-gombok", "cim": "Gombok és jelölők", "tervezett": true },
-      { "slug": "gomb", "cim": "Gomb", "al": true },
-      { "slug": "kat-mezok", "cim": "Mezők és űrlap", "tervezett": true },
-      { "slug": "kat-adat", "cim": "Adat és grafikon", "tervezett": true },
-      { "slug": "kat-retegek", "cim": "Rétegek és navigáció", "tervezett": true },
-      { "slug": "kat-media", "cim": "Média", "tervezett": true },
-      { "slug": "kat-meh", "cim": "Méhecske és mozgás", "tervezett": true },
-      { "slug": "kat-visszajelzes", "cim": "Visszajelzés", "tervezett": true },
-      { "slug": "kat-sablonok", "cim": "Sablonok", "tervezett": true }
-    ] },
+    { "id": "komponensek", "cim": "Komponensek", "oldalak": [ { "slug": "komponensek", "cim": "Áttekintés" } ] },
     { "id": "mintak", "cim": "Minták", "oldalak": [
-      { "slug": "minta-urlap", "cim": "Űrlap", "tervezett": true },
-      { "slug": "minta-lista", "cim": "Lista – részlet – szerkesztő", "tervezett": true },
-      { "slug": "minta-iranyitopult", "cim": "Irányítópult", "tervezett": true },
-      { "slug": "minta-allapotok", "cim": "Üres, hiba és töltés állapotok", "tervezett": true },
-      { "slug": "minta-mikroszoveg", "cim": "Mikroszöveg", "tervezett": true }
+      { "slug": "urlap", "cim": "Űrlap" },
+      { "slug": "lista-reszlet-szerkeszto", "cim": "Lista – részlet – szerkesztő" },
+      { "slug": "minta-iranyitopult", "cim": "Irányítópult" },
+      { "slug": "allapotok", "cim": "Üres, hiba és töltés állapotok" },
+      { "slug": "mikroszoveg", "cim": "Mikroszöveg" }
     ] },
-    { "id": "feluletek", "cim": "Felületek", "oldalak": [
-      { "slug": "feluletek", "cim": "A hat felület állapota", "tervezett": true },
-      { "slug": "migracio", "cim": "Migrációs út", "tervezett": true }
-    ] },
-    { "id": "eszkozok", "cim": "Eszközök", "oldalak": [
-      { "slug": "tokenek", "cim": "Tokenek", "tervezett": true },
-      { "slug": "figma", "cim": "Figma és Code Connect", "tervezett": true },
-      { "slug": "api", "cim": "API és AI-index", "tervezett": true }
-    ] },
-    { "id": "valtozasok", "cim": "Változások", "oldalak": [
-      { "slug": "mi-uj", "cim": "Mi új", "tervezett": true },
-      { "slug": "migracios-utmutatok", "cim": "Migrációs útmutatók", "tervezett": true },
-      { "slug": "elavult", "cim": "Elavult elemek", "tervezett": true }
-    ] },
-    { "id": "kozremukodes", "cim": "Közreműködés", "oldalak": [
-      { "slug": "javaslatfolyamat", "cim": "Javaslatfolyamat", "tervezett": true },
-      { "slug": "uj-elem", "cim": "Új elem kell?", "tervezett": true },
-      { "slug": "statuszok", "cim": "Státuszok", "tervezett": true }
-    ] }
+    { "id": "feluletek", "cim": "Felületek", "oldalak": [ { "slug": "feluletek", "cim": "A hat felület állapota" }, { "slug": "migracio", "cim": "Migrációs út", "tervezett": true } ] },
+    { "id": "eszkozok", "cim": "Eszközök", "oldalak": [ { "slug": "eszkozok", "cim": "Eszközök" } ] },
+    { "id": "valtozasok", "cim": "Változások", "oldalak": [ { "slug": "valtozasok", "cim": "Változások" } ] },
+    { "id": "kozremukodes", "cim": "Közreműködés", "oldalak": [ { "slug": "kozremukodes", "cim": "Közreműködés" } ] }
   ]
 }

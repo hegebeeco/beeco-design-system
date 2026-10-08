@@ -1,0 +1,131 @@
+{
+  "id": "lista-reszlet-szerkeszto",
+  "cim": "Lista – részlet – szerkesztő",
+  "alcim": "Három oldalváz, amelyek egymásba kapcsolódnak: a lista, az elem adatlapja és a szerkesztő.",
+  "csoport": "mintak",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "p",
+      "x": "Egy adatkezelő felület három alapképernyője. Mindhárom a DS sablonszintjén él (`ListPage`, `DetailPage`, `EditPage`), a projektekben ugyanaz a váz."
+    },
+    {
+      "t": "h2",
+      "x": "Lista-oldal",
+      "id": "lista"
+    },
+    {
+      "t": "p",
+      "x": "Oldalfej (cím, leírás, egy fő gomb) → szűrősáv → táblázat → lapozó. Állapotai: töltés, hiba, üres, nincs találat, kész."
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Bármely elemlista: partnerek, POI-k, kuponok, értesítések.",
+        "Szűrés után a 0. lapra ugrik; 0 találatnál „nincs találat” + Szűrők törlése, nem „üres lista”.",
+        "A nézetváltó, a találatszám és a sűrűség-kapcsoló egy sorban van."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Nem ide való: egy elem adataira (részletek-oldal), néhány kiemelt számra (irányítópult)."
+    },
+    {
+      "t": "h2",
+      "x": "Részletek-oldal",
+      "id": "reszletek"
+    },
+    {
+      "t": "p",
+      "x": "Egy elem adatlapja: oldalfej morzsával és műveletekkel, összegző blokk lapos csempékkel, fülek, adatlap-kártyák; széles nézetben oldalsó oszlop."
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Partner, POI, kupon adatlapja: összegzés, fülek (Részletek · Kuponok · Előzmények), szerkesztés gomb.",
+        "Az összegző blokk kártya, benne a csempék laposak, vonallal tagolva."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Nem ide való: sok mezős szerkesztés (szerkesztő-oldal), gyors betekintés a listából (oldalpanel)."
+    },
+    {
+      "t": "h2",
+      "x": "Szerkesztő-oldal",
+      "id": "szerkeszto"
+    },
+    {
+      "t": "p",
+      "x": "Szakaszos űrlap; sikertelen mentésnél hibaösszesítő a tetején (ide kerül a fókusz), alul ragadós gombsor a „nem mentett változás” jelzéssel."
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Új elem és szerkesztés: szakaszok (`FormSection`), alul ragadós gombsor.",
+        "Mentetlen változásnál oldalelhagyás előtt kérdez; piszkozatot ajánl fel lefagyás vagy lejárt belépés után.",
+        "Hosszú felvételre lépés-mód: „Tovább” után hibánál a fókusz az első hibás mezőre kerül."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Nem ide való: egy-két mező gyors módosítására (oldalpanel vagy sorbeli kapcsoló)."
+    },
+    {
+      "t": "h2",
+      "x": "Hogyan kapcsolódnak?",
+      "id": "kapcsolat"
+    },
+    {
+      "t": "tabla",
+      "cim": "Lista – részlet – szerkesztő",
+      "fej": [
+        "Cél",
+        "Eszköz",
+        "Mikor"
+      ],
+      "sorok": [
+        [
+          "Az elem részletei a lista mellett",
+          "oldalpanel (`Drawer`, 480 px, 600 px alatt teljes képernyő, saját URL-lel)",
+          "listából megnyitott részletek, gyors szerkesztés – a lista mögötte marad"
+        ],
+        [
+          "Az elem teljes adatlapja",
+          "részletek-oldal",
+          "összegzés, fülek, előzmények"
+        ],
+        [
+          "Sok mezős szerkesztés",
+          "szerkesztő-oldal",
+          "új elem, hosszú űrlap"
+        ],
+        [
+          "Rövid, fókuszált feladat",
+          "felugró ablak (`Modal`)",
+          "például címke létrehozása"
+        ],
+        [
+          "Megerősítés",
+          "`ConfirmDialog`",
+          "csak visszafordíthatatlan vagy másokat érintő műveletnél"
+        ]
+      ]
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Visszafordítható műveletnél („törlés”) nem megerősítő ablak, hanem „Visszavonás” az értesítésben (10 mp).",
+        "10+ elem végleges törlésénél vagy másokat érintő törlésnél a darabszámot (egy elemnél a nevet) be kell gépelni."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "A sorvégi műveletek (`RowActions`): legfeljebb két művelet ikongombként, felirattal; háromtól menüben. Kompakt helyen a mentés, törlés, új, info és szerkesztés csak piktogramos gomb, tooltippel: [Ikonok](ikonok.html). A kitöltött űrlap részletei: [Űrlap](urlap.html)."
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `brandbook/elemek/komponensek.json` (Lista-oldal, Részletek-oldal, Szerkesztő-oldal, Oldalpanel, Modal), `docs/termek-arculat.md` 6/A."
+    }
+  ]
+}

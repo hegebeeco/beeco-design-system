@@ -1,39 +1,44 @@
 #!/usr/bin/env node
 /* ============================================================
-   beeco BRAND BOOK – belépő a közös docs-motorhoz (tools/docs/). Játékbőr-karakter (Méhsejt-diorama), jelszókapu mögé kerül.
+   beeco BRAND BOOK – belépő a közös docs-motorhoz (tools/docs/). Játékbőr-karakter (Méhsejt-diorama), jelszókapu mögé kerül
+   (netlify.docs-brand.toml + netlify/edge-functions/brand/kapu-brand.js).
 
-   node tools/docs-brand.js          → _site/brand/
+   node tools/docs-brand.js          → _site/brand/ (+ belepes.html, _redirects a régi Brand Book címeiről)
    Forrás: docs-site/brand/ (nav.json + oldalanként <slug>.json). A régi tools/brandbook-build.js külön él tovább.
-   A másik oldal címe: DOCS_DS_URL környezeti változó (alap: ../ds/index.html – helyben a két kimenet egymás mellett van).
+   A DS címe: DOCS_DS_URL (alap: ../ds/ – helyben a két kimenet egymás mellett van). Abszolút DOCS_DS_URL mellett a régi
+   DS-tartalmú címek (alapok.html, elemek.html …) is átirányítódnak a DS-re.
+   A „gen” blokkok: tools/docs/gen.js (a régi építő nevei); a DS-be való generátor itt hibát ad.
    ============================================================ */
 'use strict';
 const { futtat } = require('./docs/motor');
-const { ic, esc, inl } = require('./docs/alap');
+const { GEN } = require('./docs/gen');
+const G = require('./docs/gen');
+const K = require('./docs/komponens');
+const A = require('./docs/alap');
 
-const GEN = {
-  /** A két logóváltozat, a valódi fájlokkal. */
-  logo() {
-    return `<div class="bb-logok"><figure class="bb-logo is-vilagos"><img src="assets/brand/logo.webp" alt="beeco logó, világos háttérre" width="240" height="147" loading="lazy"><figcaption>Világos háttérre: <code>logo.webp</code></figcaption></figure><figure class="bb-logo is-sotet"><img src="assets/brand/logo-sotet.webp" alt="beeco logó, sötét háttérre" width="240" height="147" loading="lazy"><figcaption>Sötét háttérre: <code>logo-sotet.webp</code></figcaption></figure></div>`;
-  },
-  /** A fejezetek a nav.json-ból (szám és sorrend adatból, nem kézzel). */
-  fejezetek(b, ctx) {
-    const cs = ctx.nav.csoportok.filter(c => c.id !== 'kezdes');
-    return `<p>${cs.length} fejezet, egy olvasási sorrendben: ${cs.map(c => esc(c.cim)).join(', ')}. Minden oldal alján a „Következő” visz tovább; a még készülő oldalak a menüben szürkén, „hamarosan” jelöléssel látszanak.</p>`;
-  },
-  /** Kezdőlap: „Hol kezdjem?” – csak a már létező oldalakra visz; a többi útra „hamarosan”. */
-  holKezdjem(b, ctx) {
-    return `<ul class="bb-kartyak" role="list">${b.kartyak.map(k => `<li><div class="bb-kartya"><p class="bb-kartya-nev">${esc(k.nev)}</p><p>${inl(k.leiras)}</p>${k.href
-      ? `<a class="bb-tovabb" href="${esc(k.href === '@masik' ? ctx.masikUrl : k.href)}">${esc(k.link)}${ic(/^https?:|^\.\.|^@/.test(k.href) ? 'kulso' : 'tovabb')}</a>`
-      : `<p class="bb-kicsi"><span class="bb-soon">hamarosan</span> ${esc(k.link)}</p>`}</div></li>`).join('')}</ul>`;
-  },
-};
+const opt = f => (A.exists(f) ? A.json(f) : null);
+/** {{szam:<kulcs>}} – a szövegben a számok adatból (nem kézzel). */
+function szamok() {
+  const S = opt('brandbook/sablonok/sablonok.json') || { sablonok: [], csomagok: {} };
+  const I = opt('brandbook/illusztraciok/keszlet.json') || { madarkak: [], v4: [], anim: [] };
+  const H = A.json('tokens/hangnem.json');
+  const fajl = cs => new Set(S.sablonok.filter(s => !cs || s.csoport === cs).map(s => s.file)).size;
+  return {
+    sablonok: fajl(), 'sablonok-social': fajl('social'), 'sablonok-partner': fajl('partner'), 'sablon-csomagok': Object.keys(S.csomagok).length,
+    madarkak: I.madarkak.length, madarrajzok: I.v4.length, mozgasmintak: I.anim.length,
+    'meh-szerepek': Object.keys(H.szerepek || {}).length, feluletek: G.FELULETEK.length,
+    komponensek: K.KOMP.komponensek.length,
+  };
+}
 
 futtat({
   id: 'brand', nev: 'Brand Book', skin: 'jatek',
-  forras: 'docs-site/brand', ki: '_site/brand',
+  forras: process.env.DOCS_FORRAS || 'docs-site/brand', ki: process.env.DOCS_KI || '_site/brand',   // DOCS_FORRAS / DOCS_KI: csak próbához
   robots: 'noindex, nofollow',
   leiras: 'A beeco márkakönyve: ki a beeco, hogyan szól, és hogyan néz ki – önkénteseknek, partnereknek, tervezőknek.',
   keresoPelda: 'Keresés: logó, védőtér, méhecske…',
-  masik: { nev: 'Design System', url: '../ds/index.html', env: 'DOCS_DS_URL' },
-  gen: GEN,
+  masik: { id: 'ds', nev: 'Design System', alap: '../ds/', env: 'DOCS_DS_URL', navAtalakit: K.navAtalakit },
+  labjegy: 'A beeco logója és méhecskéi belső használatúak; külső anyagban csak a beeco jóváhagyásával jelenhetnek meg.',
+  gen: GEN, szamok,
+  belepes: true, kilepes: '/kilepes', atiranyitas: true,
 });

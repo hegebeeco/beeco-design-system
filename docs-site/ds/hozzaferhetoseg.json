@@ -1,0 +1,133 @@
+{
+  "id": "hozzaferhetoseg",
+  "cim": "Hozzáférhetőség",
+  "alcim": "Amit a rendszer gépileg ellenőriz, és amit embernek kell megnéznie.",
+  "csoport": "alapok",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "p",
+      "x": "A mérce a WCAG 2.2 AA. A tartalom-hozzáférhetőség (posztok, képek alt-szövege, videófelirat, hashtag) a Brand Bookban van; ez az oldal a felületekre és a komponensekre vonatkozik."
+    },
+    {
+      "t": "h2",
+      "x": "Alapszabályok",
+      "id": "alapszabalyok"
+    },
+    {
+      "t": "szabaly",
+      "cim": "Nem alkudható",
+      "elemek": [
+        "Kontraszt AA, világos és sötét módban ([Szín](szin.html#kontraszt)).",
+        "Az érintési felület legalább **44 px** (`--bc-tap`).",
+        "Billentyűzettel minden elérhető, a fókusz látható (`:focus-visible`); a fókuszt eltüntetni tilos.",
+        "Az ikongombnak van neve (`aria-label`), a kattintható elem `<a>` vagy `<button>`, nem `div`.",
+        "Hibánál `aria-invalid` + `aria-describedby`, és az üzenet megmondja a következő lépést.",
+        "Ablak natív `<dialog>`, vagy fókuszcsapda + Esc.",
+        "Mozgás legfeljebb 300 ms; csökkentett mozgásnál minden azonnali, végtelen animáció nincs.",
+        "Minden állapot megtervezve: töltés, üres, hiba, siker, tiltott.",
+        "Weboldalon minden fejlesztéshez WCAG 2.2 AA-ellenőrzés (axe-core)."
+      ],
+      "forras": [
+        "DESIGN.md – Nem alkudható",
+        "docs/termek-arculat.md 5., 6., 7.",
+        "docs/weboldal.md 5/b"
+      ]
+    },
+    {
+      "t": "h3",
+      "x": "Fókusz",
+      "id": "fokusz"
+    },
+    {
+      "t": "p",
+      "x": "A közös alap (`termek/css/bc-base.css`) minden elemre 3 px-es, `--bc-focus` színű fókuszkeretet ad, 2 px-es eltolással; a nem billentyűs fókusz nem rajzol keretet. Sötét módban a fókusz színe égkék – méz háttéren ez gyenge: [Ismert eltérések](szin.html#ismert-elteresek)."
+    },
+    {
+      "t": "h2",
+      "x": "Gépi ellenőrzés",
+      "id": "gepi-ellenorzes"
+    },
+    {
+      "t": "tabla",
+      "cim": "Ami gépileg fut",
+      "fej": [
+        "Eszköz",
+        "Mit ellenőriz",
+        "Mikor fut"
+      ],
+      "sorok": [
+        [
+          "`check-tokens`",
+          "a kötelező kontrasztpárok (18 pár) világos és sötét módban, vagyis 36 mérés; a tokenek egyezése a játékokkal; nyers szín, nem létező token, `ease-in`, nyers betűméret, túl lassú átmenet, méz háttér rossz szövegszínnel a `bc-` elemekben",
+          "`npm test`"
+        ],
+        [
+          "`check-komponensek`",
+          "minden tesztlapot 8 nézetben × világos/sötét módban: kilógás, 44 px, szöveg-kontraszt, látható fókusz, konzolhiba, valamint **axe-core** (WCAG 2.0 A és AA, 2.1 AA, 2.2 AA szabályok + best-practice); súlyosság P0–P3",
+          "`npm test`"
+        ],
+        [
+          "Forgatókönyvek (`*.test.mjs`)",
+          "valódi gépelés, beillesztés, kattintás, billentyűzet; szélső esetek",
+          "`npm test`"
+        ],
+        [
+          "`ds-lint`",
+          "a fogyasztó projektben: nyers szín, idegen betű, 12 px alatti szöveg, eltüntetett fókusz…",
+          "a projektben, racsnival"
+        ],
+        [
+          "`web-ellenor`",
+          "az élő weboldal átvizsgálása (Playwright + axe-core)",
+          "éjszakai mérés"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `tests/check-tokens.js`, `tests/check-komponensek.js`, `docs/rendszer.md` 5., `docs/komponensek.md` 3."
+    },
+    {
+      "t": "hianyzik",
+      "cim": "Amit a gépi ellenőrzés nem fed",
+      "x": [
+        "A kontrasztlista 18 párja nem teljes: a [Szín](szin.html#ismert-elteresek) oldalon felsorolt párok (például sötét `danger` a `surface`-en) kívül esnek rajta.",
+        "Az axe-core a hozzáférhetőségi hibáknak csak egy részét találja meg. Képernyőolvasós vagy hangvezérléses próba menetét a repó nem rögzíti."
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Kézi szabályok",
+      "id": "kezi-szabalyok"
+    },
+    {
+      "t": "p",
+      "x": "Ezeket embernek kell megnéznie; a komponens addig nem kész, amíg a lista mind igaz:"
+    },
+    {
+      "t": "lista",
+      "elemek": [
+        "Minden mezőnek van **látható címkéje**; a helykitöltő nem címke.",
+        "A hiba a mező alatt van, szövegesen, és megmondja a következő lépést; nem csak színnel jelzett.",
+        "A jelentés nem csak színből derül ki: mellette szöveg, jel vagy ikon is van.",
+        "A súgó (ⓘ) billentyűzettel is elérhető.",
+        "A komponens képeit (legalább telefon + asztal, világos + sötét) ember is megnézte.",
+        "A szöveg tegeződő, rövid; a nyelv érthető, egy mondat egy gondolat."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Forrás: `docs/komponensek.md` 3.3, 3.5."
+    },
+    {
+      "t": "h2",
+      "x": "Csökkentett mozgás",
+      "id": "csokkentett-mozgas"
+    },
+    {
+      "t": "p",
+      "x": "Ha a rendszer „kevesebb mozgást” kér (`prefers-reduced-motion: reduce`), az átmenetek és animációk 1 ms-ra rövidülnek, és az animáció csak egyszer fut le (`bc-base.css`). A mozgásszabályok: [Mozgás](mozgas.html)."
+    }
+  ]
+}

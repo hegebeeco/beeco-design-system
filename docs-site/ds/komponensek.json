@@ -1,0 +1,140 @@
+{
+  "id": "komponensek",
+  "cim": "Komponensek",
+  "alcim": "Minden dokumentált elem saját oldallal: mikor használd, hogyan épül fel, hogyan kell kódból használni, és mit tud a hozzáférhetőség.",
+  "csoport": "komponensek",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "p",
+      "x": "A design system {{szam:komponensek}} dokumentált elemet tartalmaz, {{szam:kategoriak}} kategóriába rendezve. Egy elem több React-komponenst is lefedhet; a csomag {{szam:react-komponensek}} React-komponenst exportál, és {{szam:tesztlapok}} tesztlap mutatja őket élőben."
+    },
+    {
+      "t": "h2",
+      "x": "Szintek: atomtól az oldalsablonig",
+      "id": "szintek"
+    },
+    {
+      "t": "p",
+      "x": "Minden elemnek van szintje. Egy szint csak a nála alacsonyabb szintből épülhet: az organizmus például nem ír saját gombot, hanem a Gomb atomot használja."
+    },
+    {
+      "t": "tabla",
+      "cim": "A négy szint",
+      "fej": [
+        "Szint",
+        "Mi ez",
+        "Példa"
+      ],
+      "sorok": [
+        [
+          "Atom",
+          "Egy feladatú, tovább nem bontható elem. Csak tokeneket használ, és megvannak a saját állapotai.",
+          "[Gomb](gomb.html), [Szövegmező](szovegmezo.html), [Jelvény](jelveny.html)"
+        ],
+        [
+          "Molekula",
+          "Néhány atom egy közös céllal, például címke, mező, súgó és hiba. Atomokból épül, a belsejükhöz nem nyúl.",
+          "[Mező](mezo.html), [Kereső](kereso.html), [Szegmentált váltó](szegmentalt.html)"
+        ],
+        [
+          "Organizmus",
+          "Önálló felületrész molekulákból és atomokból. Az üzleti adatot kívülről kapja.",
+          "[Adattábla](adattabla.html), [Űrlapszakasz](urlapszakasz.html), [Modal](modal.html)"
+        ],
+        [
+          "Sablon",
+          "Oldalváz tartalom nélkül, minden projektben ugyanaz. A valódi adattal töltött oldal a projektben él, nem a design systemben.",
+          "[Lista-oldal](lista-oldal.html), [Irányítópult](iranyitopult.html)"
+        ]
+      ]
+    },
+    {
+      "t": "hivatalos",
+      "cim": "Honnan jön a szintbeosztás?",
+      "x": "A szintek (token, atom, molekula, organizmus, sablon, oldal) a komponens-szabálykönyvben vannak rögzítve. A design systembe az atom és a sablon közötti szintek kerülnek; valódi képernyő (oldal) soha.",
+      "forras": [
+        "docs/komponensek.md 2.",
+        "brandbook/elemek/komponensek.json (szintek)"
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "A kategóriák",
+      "id": "kategoriak"
+    },
+    {
+      "t": "p",
+      "x": "A kategóriák a használat szerint csoportosítanak, nem a szint szerint. Egy kategória oldala felsorolja az elemeit, és a menüben is ott vannak alatta."
+    },
+    {
+      "t": "gen",
+      "nev": "komponensKatalogus"
+    },
+    {
+      "t": "h2",
+      "x": "Hogyan olvasd a komponensoldalt?",
+      "id": "komponensoldal"
+    },
+    {
+      "t": "p",
+      "x": "Minden komponensoldal tetején a rövid leírás, az adatok (kategória, React-komponens, szint, életciklus) és az élő minta áll. Alatta négy fül van; a Kapcsolódó és a Tesztlapok szakasz a fülek alatt közös."
+    },
+    {
+      "t": "tabla",
+      "cim": "A komponensoldal négy füle",
+      "fej": [
+        "Fül",
+        "Kinek és mire"
+      ],
+      "sorok": [
+        [
+          "Irányelvek",
+          "Tervezőknek és szerkesztőknek: mikor használd, mikor ne és mit helyette, a változatok, az Így és ne így párok."
+        ],
+        [
+          "Specifikáció",
+          "Annotált anatómia, változat és állapot mátrix, és a használt tokenek (a CSS-ből kinyerve)."
+        ],
+        [
+          "Kód",
+          "Fejlesztőknek: importút, JSX-példák és a propok táblázata típussal, kötelezőséggel és alapértékkel."
+        ],
+        [
+          "Hozzáférhetőség",
+          "ARIA-szerep, billentyűtérkép, érintési méret és fókusz."
+        ]
+      ]
+    },
+    {
+      "t": "hivatalos",
+      "cim": "Mit jelent a „Hiányzik” jelvény?",
+      "x": [
+        "A „Hiányzik” jelvény azt mutatja, hogy a komponensadatból egy mező még nincs kitöltve: például az anatómia, a változat és állapot mátrix, az ARIA-szerep, az alapértékek vagy a kapcsolódó elemek. A jelvény a hely: oda kerül majd a tartalom.",
+        "Nem hiba és nem tiltás: az elem használható, csak az adott részletet még nem dokumentáltuk. Kitalált tartalom helyett inkább látszik a hiány. Minden oldal tetején egy „Adathiány” doboz is felsorolja, mi hiányzik."
+      ],
+      "forras": [
+        "tools/docs/komponens.js (UJ_MEZOK)",
+        "brandbook/elemek/komponensek.json"
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Tesztlapok",
+      "id": "tesztlapok"
+    },
+    {
+      "t": "p",
+      "x": "A komponensoldal mintája egyetlen állapotot mutat. Az összes állapot és szélső eset a tesztlapokon van, élő oldalként; minden komponensoldal „Tesztlapok” szakasza a hozzá tartozóra mutat."
+    },
+    {
+      "t": "h2",
+      "x": "Hiányzik valami, vagy új elem kell?",
+      "id": "kozremukodes"
+    },
+    {
+      "t": "p",
+      "x": "Először mindig a meglévő elemből dolgozz. Új elem, új változat vagy új szabály csak jóváhagyással kerül be, javaslatlapon: a [Közreműködés](kozremukodes.html) oldal leírja a sorrendet és a javaslatfolyamatot."
+    }
+  ]
+}

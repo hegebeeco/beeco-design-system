@@ -1,0 +1,114 @@
+{
+ "kategoriak": [
+  {
+   "id": "gombok-es-jelolok",
+   "nev": "Gombok és jelölők",
+   "leiras": "Műveletet indító vagy állapotot jelölő kis elemek: gombok, piktogramok, jelvények, kapcsolók.",
+   "elemek": [
+    "gomb",
+    "ikongomb",
+    "piktogram",
+    "link",
+    "jelveny",
+    "jelolo",
+    "kapcsolo"
+   ]
+  },
+  {
+   "id": "mezok-es-urlap",
+   "nev": "Mezők és űrlap",
+   "leiras": "Adatbevitel: mezők, választók, dátum- és számmezők, és az űrlapszakasz, amely összefogja őket.",
+   "elemek": [
+    "szovegmezo",
+    "legordulo",
+    "mezo",
+    "sugo",
+    "kereso",
+    "valaszto",
+    "szegmentalt",
+    "szammezo",
+    "datum",
+    "urlapszakasz"
+   ]
+  },
+  {
+   "id": "adat-es-grafikon",
+   "nev": "Adat és grafikon",
+   "leiras": "Adatok megjelenítése: kártyák, mutatók, táblázat, grafikonok, folyamat- és csapat-egészség nézetek.",
+   "elemek": [
+    "kartya",
+    "stat-csempe",
+    "lapozo",
+    "adattabla",
+    "grafikon-kartya",
+    "admin-folyamatok",
+    "kerek-radar",
+    "jelzo-kartya",
+    "retro-vaszon"
+   ]
+  },
+  {
+   "id": "retegek-es-navigacio",
+   "nev": "Rétegek és navigáció",
+   "leiras": "Eligazodás és rétegek: fülek, oldalváz, felugró ablakok, menük, kereső-paletta és lépés- vagy útvonaljelzők.",
+   "elemek": [
+    "fulek",
+    "oldalfej",
+    "alkalmazas-vaz",
+    "modal",
+    "oldalpanel",
+    "legordulo-menu",
+    "kereso-paletta",
+    "lepesjelzo",
+    "utvonal"
+   ]
+  },
+  {
+   "id": "media",
+   "nev": "Média",
+   "leiras": "Képek, fájlok, térkép, naptár és az app-előnézet: a tartalom látványos és feltölthető részei.",
+   "elemek": [
+    "avatar",
+    "feltoltok",
+    "naptar",
+    "terkep",
+    "app-elonezet"
+   ]
+  },
+  {
+   "id": "meh-es-mozgas",
+   "nev": "Méhecske és mozgás",
+   "leiras": "A márka karakteres elemei: logó, méhecske, méhes pillanatok és a sorsolás látványa.",
+   "elemek": [
+    "logo",
+    "meh-kep",
+    "meh-pillanat",
+    "sorsolas"
+   ]
+  },
+  {
+   "id": "visszajelzes",
+   "nev": "Visszajelzés",
+   "leiras": "Amivel a felület jelez a felhasználónak: sávok, értesítések, töltésjelzők és üres állapotok.",
+   "elemek": [
+    "sav",
+    "ertesites",
+    "toltes",
+    "ures-allapot"
+   ]
+  },
+  {
+   "id": "sablonok",
+   "nev": "Sablonok",
+   "leiras": "Oldalvázak tartalom nélkül, amelyek minden projektben ugyanúgy épülnek: lista, részletek, szerkesztő, irányítópult, állapot-oldalak.",
+   "elemek": [
+    "lista-oldal",
+    "reszletek-oldal",
+    "szerkeszto-oldal",
+    "lepesenkenti",
+    "iranyitopult",
+    "allapot-oldal"
+   ]
+  }
+ ]
+}

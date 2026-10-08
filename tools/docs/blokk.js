@@ -8,7 +8,7 @@
    • A „gen” blokkokat az oldal-építő adja (ctx.gen), a motor nem tud a tartalomról.
    ============================================================ */
 'use strict';
-const { esc, inl, slug } = require('./alap');
+const { esc, inl, slug, href, OLDAL_LINK } = require('./alap');
 
 /** Új renderelési környezet egy oldalhoz. */
 function kornyezet(oldalId, hibak, gen = {}) {
@@ -51,22 +51,30 @@ const statuszJelveny = s => STATUSZ[s] ? `<span class="bc-badge ${STATUSZ[s][0]}
 const hianyzikJel = (mezo, mit) => `<p class="bb-hiany"><span class="bc-badge is-muted">Hiányzik</span> <code>${esc(mezo)}</code>${mit ? ` – ${inl(mit)}` : ''}</p>`;
 
 function forrasLista(f) {
-  if (!f || (Array.isArray(f) && !f.length)) return '';
-  const l = (Array.isArray(f) ? f : [f]).map(x => `<li>${inl(x)}</li>`).join('');
-  return `<details class="bb-forras"><summary>Forrás</summary><ul>${l}</ul></details>`;
+  const tiszta = [].concat(f || []).filter(x => String(x || '').trim());
+  if (!tiszta.length) return '';   // üres forrásmező: nincs „Forrás” felirat
+  const l = tiszta.map(x => `<li>${inl(x)}</li>`).join('');
+  return `<details class="bb-forras"><summary>Forrás (${tiszta.length})</summary><ul>${l}</ul></details>`;
 }
 
 // ---------- DO / DON'T (Kristóf: „ha DO és DON'T, mindig legyen vizualizáció”) ----------
 function htmlEllenor(h, ctx, hol) {
   if (/\sstyle=|<script|\son[a-z]+=|<link|javascript:/i.test(h)) ctx.hibak.push(`${ctx.oldal}${hol ? ' / ' + hol : ''}: tiltott jelölés a minta-HTML-ben (style/script/on…/link)`);
   if (/bee-angry/.test(h)) ctx.hibak.push(`${ctx.oldal}: a mérges méhecske tilos`);
-  return h.replace(/<img(?![^>]*\sloading=)/g, '<img loading="lazy"');
+  // a régi Brand Book útvonalai (ds/web/assets/…) → az új kimenet assets/ mappája, hogy a régi blokk másolható legyen
+  return h.replace(/(\s(?:src|href|srcset)=")(?:\.\.\/)?ds\/web\/assets\//g, '$1assets/')
+    .replace(/<img(?![^>]*\sloading=)/g, '<img loading="lazy"')
+    .replace(/\shref="((?:brand|ds):[^"]*)"/g, (m, u) => OLDAL_LINK.test(u) ? ` href="${href(u) || '#'}"` : (ctx.hibak.push(`${ctx.oldal}: hibás oldalak közti link: ${u}`), ' href="#"'));
 }
 function vizual(o, ctx) {
   if (o.html) return htmlEllenor(o.html, ctx, o.cim || o.felirat);
   const t = inl(o.szoveg || '');
   switch (o.forma) {
     case 'gomb': return `<button type="button" class="bc-btn">${t}</button>`;
+    case 'gomb2': return `<div class="bb-demo-sor">${(o.szoveg || '').split(' | ').map(g => `<button type="button" class="bc-btn">${inl(g)}</button>`).join('')}</div>`;
+    case 'hiba': return `<div class="bc-field bb-demo-keskeny"><span class="bc-label">E-mail</span><input class="bc-input" value="nev@" aria-label="E-mail (minta)" aria-invalid="true" readonly><p class="bc-error">${t}</p></div>`;
+    case 'meh': return `<div class="bb-demo-sor bb-demo-meh"><img src="assets/brand/${esc(o.kep || 'bee-cheer')}.webp" alt="" width="56" height="56" loading="lazy"><p class="bb-vizual-szoveg">${t}</p></div>`;
+    case 'szam': return `<div class="bc-stat bb-demo-keskeny"><p class="bc-stat-value">${t}</p></div>`;
     case 'uzenet': return `<div class="bc-alert is-info"><p>${t}</p></div>`;
     case 'siker': return `<div class="bc-alert is-success"><p>${t}</p></div>`;
     default: return `<p class="bb-vizual-szoveg">${t}</p>`;
@@ -105,11 +113,19 @@ function blokk(b, ctx) {
     case 'pelda': return dodont({ parok: [{ jo: { szoveg: b.jo, forma: b.forma, felirat: b.jo_felirat }, rossz: { szoveg: b.rossz, forma: b.forma, felirat: b.rossz_felirat }, miert: b.miert }] }, ctx);
     case 'dodont': return dodont(b, ctx);
     case 'tabla': return tabla(b.fej, b.sorok, b.cim);
-    case 'kep': return `<figure class="bb-kep${b.sotet ? ' is-sotet' : ''}"><img src="${esc(b.src)}" alt="${esc(b.alt)}" loading="lazy"${b.w ? ` width="${b.w}" height="${b.h}"` : ''}>${b.felirat ? `<figcaption>${inl(b.felirat)}</figcaption>` : ''}</figure>`;
+    case 'kep': return `<figure class="bb-kep${b.sotet ? ' is-sotet' : ''}"><img src="${esc(String(b.src || '').replace(/^(?:\.\.\/)?ds\/web\/assets\//, 'assets/'))}" alt="${esc(b.alt)}" loading="lazy"${b.w ? ` width="${b.w}" height="${b.h}"` : ''}>${b.felirat ? `<figcaption>${inl(b.felirat)}</figcaption>` : ''}</figure>`;
     case 'gen': {
-      const g = ctx.gen[b.nev];
-      if (!g) { ctx.hibak.push(`${ctx.oldal}: ismeretlen generátor: ${b.nev}`); return ''; }
-      return g(b, ctx);
+      // a generátor neve: „nev” (a régi brandbook/tartalom/*.json így írja), tartalékként „id”
+      const nev = b.nev || b.id;
+      const g = ctx.gen[nev];
+      if (!g) { ctx.hibak.push(`${ctx.oldal}: ismeretlen generátor: ${nev}`); return ''; }
+      const fn = typeof g === 'function' ? g : g.fn;
+      const hol = typeof g === 'function' ? '*' : g.oldal;
+      if (hol !== '*' && ctx.cfg && hol !== ctx.cfg.id) {
+        ctx.hibak.push(`${ctx.oldal}: a „${nev}” generátor csak a ${hol === 'brand' ? 'Brand Bookba' : 'Design Systembe'} való (${g.miert || 'a másik oldal tartalma'})`);
+        return '';
+      }
+      return fn(b, ctx);
     }
     case 'tovabb': ctx.hibak.push(`${ctx.oldal}: a „tovabb” blokk megszűnt – a következő oldalt a nav.json sorrendje adja`); return '';
     default: ctx.hibak.push(`${ctx.oldal}: ismeretlen blokktípus: ${b.t}`); return '';
