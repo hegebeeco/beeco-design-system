@@ -5,7 +5,9 @@
 [id]{scroll-margin-top:96px}
 @media (max-width:767px){[id]{scroll-margin-top:16px}}
 
-/* Fejléc */
+/* Fejléc: a régi navbar 80 px-es body-margója itt nem kell */
+body{margin:0!important}
+.cs_fejlec{width:100%;margin:0}
 .cs_fejlec .cs_fejlec_link:hover{text-decoration:underline}
 .cs_fejlec a:focus-visible{outline:3px solid #6B3B16;outline-offset:2px;border-radius:8px}
 .cs_fejlec .button_main.cs_fejlec_cta{min-height:44px;padding:10px 16px 8px;text-decoration:none}
@@ -23,20 +25,21 @@
 .dia_ov_light.cs_horgony ._2_column_content_wrapper{display:block}
 .dia_ov_light.cs_horgony .main_text_content_block{max-width:860px;margin:0 auto;text-align:center;align-items:center}
 .dia_ov_light.cs_horgony .cs_kicker,.dia_ov_light.cs_horgony .cs_lead{text-align:center;margin-left:auto;margin-right:auto}
-.dia_ov_light.cs_horgony .cs_atkoto{font-family:Lalezar,sans-serif;font-size:clamp(28px,3.4vw,40px);line-height:1.1;font-weight:400;color:#6B3B16}
+.dia_ov_light.cs_horgony .cs_atkoto{font-family:Lalezar,sans-serif;font-size:clamp(28px,3.4vw,40px);line-height:1.1;font-weight:400;color:#FFAA2E;margin-top:24px}
 .dia_ov_light.cs_horgony .cs_tenyek{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;width:100%;margin:16px 0 8px}
 .dia_ov_light.cs_horgony .cs_teny{display:flex;flex-direction:column;align-items:center;gap:12px;padding:0;border:0!important;background:none!important;box-shadow:none!important}
 .dia_ov_light.cs_horgony .cs_teny_ikon{width:auto;height:120px;max-width:100%;object-fit:contain}
-.dia_ov_light.cs_horgony .cs_teny_szoveg{text-align:center;font-weight:700;font-size:18px}
-.dia_ov_light.cs_horgony .cs_szoveglink{display:inline-flex;align-items:center;min-height:44px;color:#1A1A1A}
+.dia_ov_light.cs_horgony .cs_teny_szoveg{text-align:center;font-weight:700;font-size:18px;color:#FEF7DE}
+.cs_szoveglink.w-button{background:none!important;padding:0!important;border:0;box-shadow:none}
+.dia_ov_light.cs_horgony .cs_szoveglink{display:inline-flex;align-items:center;min-height:44px;color:#FEF7DE!important;text-decoration:underline}
 .dia_ov_light.cs_horgony .cs_forras{display:inline-flex;margin-top:24px;font-size:13px;line-height:1.4;min-height:44px;align-items:center;text-align:center}
 @media (max-width:767px){.dia_ov_light.cs_horgony .cs_tenyek{grid-template-columns:1fr;gap:28px}}
 
 /* Mit tehetsz: két egészében kattintható kártya, az első hangsúlyosabb */
 .dia_green_ov.cs .div-block-564{display:grid!important;grid-template-columns:1.25fr 1fr;align-items:stretch}
-.dia_green_ov.cs .card.cs_link{position:relative;max-width:none}
+.dia_green_ov.cs .card.cs_link{position:relative;max-width:none;width:auto!important}
 .dia_green_ov.cs .card.cs_link:first-child .headline3{font-size:30px}
-.dia_green_ov.cs .cs_kartya_album{object-fit:contain;background:#FEF7DE}
+.dia_green_ov.cs img.cs_kartya_album{object-fit:contain!important;background:#FEF7DE}
 .cs_utvonal_nyil{transition:transform 160ms cubic-bezier(.23,1,.32,1)}
 .card.cs_link:hover .cs_utvonal_nyil,.card.cs_link:focus-visible .cs_utvonal_nyil{transform:translateX(4px)}
 .card.cs_link:focus-visible{outline:3px solid #6B3B16;outline-offset:4px}
@@ -47,9 +50,11 @@
 .cs_folyamat_cim{font-family:Lalezar,sans-serif;font-weight:400;font-size:clamp(24px,2.6vw,32px);line-height:1.1;color:#6B3B16}
 .cs_folyamat_mini{font-family:'Open Sans',sans-serif}
 .cs_folyamat_vizual{display:flex;flex-direction:column;align-items:flex-start}
-.cs_folyamat_lepes--zaro{padding:24px;border:2px solid #6B3B16;border-radius:24px 0 24px 0;background:#fff;box-shadow:6px 6px 0 #6B3B16}
+.cs_folyamat_lepes--zaro{padding:24px;border:2px solid #6B3B16;border-radius:24px 0 24px 0;background:#fff}
 .cs_folyamat_lepes--zaro .cs_folyamat_ui{max-width:480px}
-.cs_album_jelzes{box-shadow:3px 3px 0 #6B3B16}
+.cs_album_jelzes{background:#FFE2B5!important;color:#1A1A1A}
+.cs_mme_sor_txt,.cs_kiemelt,.cs_folyamat_mini,#fotofal .input_label{color:#1A1A1A}
+#fotofal .input_field{border-color:#6B3B16}
 @media (max-width:767px){.cs_folyamat_lepes{grid-template-columns:1fr;gap:12px}.cs_folyamat_ui{max-width:100%}.cs_folyamat_cta .button_main{text-align:center}}
 
 /* Gabee és közösség: hírlevél kb. kétharmad, social egyharmad */
@@ -60,10 +65,10 @@
 
 /* Partnerek: logóvédő távolság, MME jól látható */
 .cs_partnerek .cs_partner_logo{padding:16px 24px}
-.cs_partnerek .cs_partner_logo_kep{max-height:72px;width:auto}
+.cs_partnerek .cs_partner_logo_kep{height:72px;max-height:none;width:auto;max-width:100%;object-fit:contain}
 
 /* Záró blokk: hangsúlyos alcím */
-#download .headline3.cs{margin:8px 0 16px}
+#download .headline3.cs{margin:8px 0 16px;text-align:center;width:100%}
 
 /* Mobilos keskeny letöltősáv: ne takarja a tartalmat */
 .cs-ragados .button_main{flex:1 1 auto;text-align:center}
