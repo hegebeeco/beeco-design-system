@@ -1,0 +1,13 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "schedule": ["before 9am on monday"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["@beeco/design-system", "hegebeeco/beeco-design-system"],
+      "groupName": "beeco design system",
+      "labels": ["design-system"],
+      "prBodyNotes": ["Mielőtt merge-eled: nézd át a CHANGELOG ⚠ sorait (tokenérték-változás), és futtasd az `npx beeco-ds-lint`-et."]
+    }
+  ]
+}

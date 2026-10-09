@@ -181,11 +181,11 @@ function letoltSor(href, nev, le, ctx, src, letolt = true) {
 const LETOLT_BRAND = [
   ['Logó', [['logo.webp', 'web/assets/brand/logo.webp', 'világos háttérre'], ['logo-sotet.webp', 'web/assets/brand/logo-sotet.webp', 'sötét háttérre'], ['ikon-512.png', 'web/assets/brand/ikon-512.png', 'app- és profilkép']]],
   ['Méhecskék', [['bee-happy.webp', 'web/assets/brand/bee-happy.webp', 'házigazda'], ['bee-cheer.webp', 'web/assets/brand/bee-cheer.webp', 'szurkoló'], ['bee-super.webp', 'web/assets/brand/bee-super.webp', 'futár'], ['bee-phone.webp', 'web/assets/brand/bee-phone.webp', 'hírvivő']]],
-  ['Betűk', [['Lalezar (woff2)', 'web/assets/fonts/lalezar-latin-ext.woff2', 'címbetű – SIL Open Font License 1.1'], ['Open Sans (woff2)', 'web/assets/fonts/opensans-latin-ext.woff2', 'szövegbetű – SIL Open Font License 1.1']]],
+  ['Betűk', [['Lalezar (TTF)', 'web/assets/fonts/Lalezar-Regular.ttf', 'címbetű, telepíthető Figmába, Canvába, Wordbe – SIL Open Font License 1.1'], ['Lalezar (WOFF2)', 'web/assets/fonts/lalezar-latin.woff2', 'címbetű weboldalhoz (latin) – SIL Open Font License 1.1'], ['Open Sans (WOFF2)', 'web/assets/fonts/opensans-latin.woff2', 'szövegbetű weboldalhoz (latin) – SIL Open Font License 1.1']]],
 ];
 const LETOLT_DS = [
   ['Tokenek', [['beeco-tokens.css', 'dist/css/beeco-tokens.css', 'CSS-változók (web)'], ['tokens.json', 'dist/tokens.json', 'minden érték, gépi formában'], ['webflow-valtozok.json', 'dist/weboldal/webflow-valtozok.json', 'Webflow-változók'], ['beeco_tokens.dart', 'dist/dart/beeco_tokens.dart', 'Flutter (mobil app)'], ['preset.cjs', 'dist/tailwind/preset.cjs', 'Tailwind-preset (partner)'], ['_beeco.scss', 'dist/scss/_beeco.scss', 'SCSS (admin)']]],
-  ['Betűk', [['Lalezar (woff2)', 'web/assets/fonts/lalezar-latin-ext.woff2', 'SIL Open Font License 1.1'], ['beeco-fonts.css', 'dist/css/beeco-fonts.css', 'betűbetöltő']]],
+  ['Betűk', [['Lalezar (WOFF2)', 'web/assets/fonts/lalezar-latin.woff2', 'SIL Open Font License 1.1'], ['Lalezar (TTF)', 'web/assets/fonts/Lalezar-Regular.ttf', 'tervezőprogramhoz – SIL Open Font License 1.1'], ['beeco-fonts.css', 'dist/css/beeco-fonts.css', 'betűbetöltő']]],
 ];
 
 // ---------- sablonok (Brand): másolás tokenértékekkel, ZIP-csomag ----------
@@ -236,12 +236,12 @@ function sablonAlap(ctx) {
         + `1. Csomagold ki a mappát, és nyisd meg a sablonok/ alatti HTML-fájlt Chrome-ban vagy Edge-ben.\r\n`
         + `2. Kattints a szövegre, és írd át. A szövegek mintaszövegek${id === 'partner' ? ' – a partneri sablonok helyőrzők („Minta – korrigálandó”), a végleges változatot a beeco adja' : ''}.\r\n`
         + `3. Mentés: Nyomtatás → Mentés PDF-ként. A lap pontosan a kimeneti méret (pl. 1080 × 1080 px, A4). A PDF-et a Canva és a Figma szerkeszthetően megnyitja.\r\n\r\n`
-        + `Betűk: Lalezar és Open Sans (SIL Open Font License 1.1) – a ds/web/assets/fonts mappában; ha más programban dolgozol, telepítsd őket (Google Fonts).\r\n`
+        + `Betűk: Lalezar és Open Sans (SIL Open Font License 1.1) – a ds/web/assets/fonts mappában. A WOFF2 fájlok csak weboldalhoz valók; a Lalezar-Regular.ttf tervezőprogramba (Figma, Canva, Word) telepíthető. Az Open Sans TTF-je még nincs a készletben.\r\n`
         + `A beeco logója és méhecskéi belső használatúak; külső anyagban csak a beeco jóváhagyásával jelenhetnek meg.\r\n`
         + `Forrás: a beeco Brand Book (hegebeeco/beeco-design-system).\r\n`, 'utf8')],
       ...fajlok.concat(['sablon.css', 'sablon.js']).map(f => [`${m}/sablonok/${f}`, Buffer.from(kitoltott[f] || '', 'utf8')]),
       ...['dist/css/beeco-tokens.css', 'dist/css/beeco-fonts.css'].map(f => [`${m}/ds/${f}`, r(f)]),
-      ...fs.readdirSync(path.join(ROOT, 'web/assets/fonts')).filter(f => f.endsWith('.woff2')).map(f => [`${m}/ds/web/assets/fonts/${f}`, r(`web/assets/fonts/${f}`)]),
+      ...fs.readdirSync(path.join(ROOT, 'web/assets/fonts')).filter(f => /\.(woff2|ttf)$/.test(f)).map(f => [`${m}/ds/web/assets/fonts/${f}`, r(`web/assets/fonts/${f}`)]),
       ...c.kepek.map(k => [`${m}/ds/web/assets/brand/${k}.webp`, r(`web/assets/brand/${k}.webp`)]),
     ];
     if (c.logok) {

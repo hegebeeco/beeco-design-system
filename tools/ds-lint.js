@@ -11,6 +11,9 @@
      shadow-raw     nyers box-shadow token helyett
      ease-in        ease-in görbe (UI-n tilos)
      outline-none   fókusz-keret eltüntetése :focus-visible pótlás nélkül
+   Új (1.55, a régi racsni nem bukik tőlük, amíg --update fel nem veszi): named-color (color: red), motion-raw (nyers ms),
+     font-weight-off (500/800), z-raw (z-index: 9999), tw-missing (rounded-lg, shadow-lg, font-medium: a presetben nincs),
+     tw-arbitrary (p-[13px]), div-onclick (<div onClick>), img-no-alt
    RACSNI: az első futás felírja a mostani állapotot (.beeco-ds-baseline.json); utána egy fájl
    egy szabálya sem nőhet, új fájl pedig tisztán indul. Javítás után: --update (csak csökkenhet).
    Használat:  node ds-lint.js [projekt-mappa] [--update] [--init] [--json]
@@ -38,7 +41,18 @@ const RULES = {
   'shadow-raw': [/box-shadow\s*:\s*(?!none|var\(|inherit)[^;}]*\d|\bshadow-\[\d/g],
   'ease-in': [/\bease-in\b(?!-out)|\bCurves\.easeIn\b/g],
   'outline-none': [/outline\s*:\s*(?:none|0)\b|\boutline-none\b/g],
+  // ---- 2. hullám (1.55): új szabályok. A régi racsni NEM bukik tőlük, amíg a projekt `--update`-tel fel nem veszi őket (ÚJ_SZABALYOK). ----
+  'named-color': [/(?:^|[;{\s])(?:color|background(?:-color)?|border(?:-color)?|fill|stroke)\s*:\s*(?:white|black|red|blue|green|yellow|orange|gray|grey|purple|pink|brown|cyan|magenta)\b/gi],
+  'motion-raw': [/(?:transition|animation)(?:-duration)?\s*:\s*(?![^;}]*var\()[^;}]*\b\d*\.?\d+m?s\b/g],
+  'font-weight-off': [/font-weight\s*:\s*(?:100|200|300|500|800|900)\b/g],
+  'z-raw': [/z-index\s*:\s*\d{3,}|\bz-\[\d+\]/g],
+  'tw-missing': [/\brounded-(?:sm|md|lg|xl|2xl|3xl)\b|\bshadow-(?:sm|md|lg|xl|2xl|inner)\b|\bfont-(?:thin|extralight|light|normal|medium|extrabold|black)\b/g],
+  'tw-arbitrary': [/\b(?:p|m|px|py|pt|pb|pl|pr|mx|my|gap|w|h|min-h|min-w)-\[\d+(?:px|rem)\]/g],
+  'div-onclick': [/<div\b[^>]*\bonClick=/g],
+  'img-no-alt': [/<img\b(?![^>]*\balt=)[^>]*>/g],
 };
+/** Az 1.55-ös szabályok: a racsni-fájl `_szabalyok` listájában kell szerepelniük, különben csak tájékoztatnak. */
+const REGI_SZABALYOK = ['raw-color', 'tw-palette', 'font-foreign', 'font-size-raw', 'tiny-text', 'radius-raw', 'shadow-raw', 'ease-in', 'outline-none'];
 // Ezekben a fájlokban lakhat nyers érték (tokenfájl, generált kimenet)
 const TOKEN_FILE = /(beeco-tokens|_beeco|tokens?)\.(s?css|json|js|cjs|ts)$|preset\.cjs$/;
 
@@ -72,7 +86,7 @@ const total = r => Object.values(counts).reduce((s, c) => s + (c[r] || 0), 0);
 const base = fs.existsSync(BASE_FILE) ? JSON.parse(fs.readFileSync(BASE_FILE, 'utf8')) : null;
 const write = () => {
   if (!fs.existsSync(CFG_FILE)) fs.writeFileSync(CFG_FILE, JSON.stringify(DEFAULT_CFG, null, 2) + '\n');
-  fs.writeFileSync(BASE_FILE, JSON.stringify({ _readme: 'beeco ds-lint racsni – ennél TÖBB nem lehet. Csökkentés után: npx beeco-ds-lint --update', files: counts }, null, 1) + '\n');
+  fs.writeFileSync(BASE_FILE, JSON.stringify({ _readme: 'beeco ds-lint racsni – ennél TÖBB nem lehet. Csökkentés után: npx beeco-ds-lint --update', _szabalyok: Object.keys(RULES), files: counts }, null, 1) + '\n');
 };
 
 console.log(`beeco ds-lint (${cfg.skin}) – ${files.length} fájl, ${ROOT}`);
@@ -84,7 +98,10 @@ if (args.includes('--init') || !base) {
   process.exit(0);
 }
 const worse = [];
+const ervenyes = new Set(base._szabalyok || REGI_SZABALYOK);
+const ujak = Object.keys(RULES).filter(r => !ervenyes.has(r) && total(r) > 0);
 for (const [f, c] of Object.entries(counts)) for (const [r, n] of Object.entries(c)) {
+  if (!ervenyes.has(r)) continue;   // új szabály: nem buktat, amíg a racsni nem veszi fel
   const was = base.files[f]?.[r] || 0;
   if (n > was || (r === 'tiny-text' && n > was)) worse.push(`${f}: ${r} ${was} → ${n}`);
 }
@@ -96,4 +113,5 @@ if (worse.length) {
 const better = Object.entries(base.files).some(([f, c]) => Object.entries(c).some(([r, n]) => (counts[f]?.[r] || 0) < n));
 if (args.includes('--update')) { write(); console.log('\nRacsni frissítve (csökkent).'); }
 else if (better) console.log('\nJavult! Rögzítsd: npx beeco-ds-lint --update');
+if (ujak.length && !args.includes('--update')) console.log(`\nÚj szabály (még nem buktat): ${ujak.map(r => `${r} ${total(r)}`).join(', ')} – a racsni felvételéhez: npx beeco-ds-lint --update`);
 console.log('\nds-lint: rendben (nem romlott)');

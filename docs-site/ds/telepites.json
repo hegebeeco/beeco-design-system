@@ -76,6 +76,8 @@
       "t": "p",
       "x": "Frissítés: új verziónál a `#v…` címke átírása, majd `npm install`. Hogy mikor mit jelent a MELLÉK, a JAVÍTÁS és a FŐ verzió, és mit ígér az API-őr: [Változások](valtozasok.html#verziozas)."
     },
+    { "t": "h2", "x": "Automatikus frissítés", "id": "frissites" },
+    { "t": "p", "x": "A projektek gyakran lemaradnak a verzióval, mert senki nem szól. Másold a projektbe a [Renovate-beállítást és a ds-lint CI-lépést](https://github.com/hegebeeco/beeco-design-system/tree/main/docs/fogyaszto-sablonok): heti PR jön az új címkéről, a CHANGELOG ⚠ soraira (tokenérték-változás) figyelmeztetéssel." },
     {
       "t": "h2",
       "x": "React és CSS",

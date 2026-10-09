@@ -11,6 +11,21 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## Készül (következő verzió)
+
+* **Dokumentációs oldal – élő, kipróbálható komponensek** (MELLÉK): a komponensoldalon jobbra rögzített „Kipróbálom” panel (a tesztlap a komponens saját szakaszára ugrik, a téma követi az oldalt), balra rögzített fülek és szakaszgombok.
+* **Futtatható JSX-példa** minden komponensnél, az `api/api.json`-ból generálva (`tools/docs/jsx-pelda.js`); a teljes példákat a `tests/check-jsx-peldak.js` lefordítja a csomag típusaival.
+* **Komponens-galéria** előnézettel a Komponensek áttekintőn és a kategóriaoldalakon; a kereső a táblázatok celláit és a magyar/angol szinonimákat is indexeli (`brandbook/elemek/szinonimak.json`).
+* **Új közreműködők:** „Első nap” oldal, `CONTRIBUTING.md`, PR- és issue-sablonok; az `llms.txt` bekerül a csomagba és a dokumentációs oldal gyökerébe (a `docs/ai-munkamod.md` és a `docs/komponensek.md` is a csomagba kerül).
+* **CI:** egy PR-push egyszer fut (ágon csak `pull_request`, `main`-en `push`), új push megszakítja az előzőt, a komponens-önteszt három részre osztva (`--shard=i/n`, `npm run test:alap` + `test:komponens`).
+* **ds-lint (2. hullám):** 8 új szabály (`named-color`, `motion-raw`, `font-weight-off`, `z-raw`, `tw-missing`, `tw-arbitrary`, `div-onclick`, `img-no-alt`). A régi racsni-fájl nem bukik tőlük: csak tájékoztat, amíg a projekt `npx beeco-ds-lint --update`-tel fel nem veszi őket. Saját teszt: `tests/check-ds-lint.js`.
+* **API-őr:** a tokenek ÉRTÉKVÁLTOZÁSÁT is figyeli (`dist/tokens.json` az előző címkéhez képest); ha változott, a CHANGELOG mostani szakaszában kell egy ⚠ sor, különben bukik (az 1.54.0 sötét `danger`/`ink-muted` változása így nem mehetne ki szó nélkül).
+* **Szabály-szinkron teszt** (`tests/check-szabaly-szinkron.js`): az érintési méret és a mozgás-idők a szabálykönyvekben és a dokumentációban egyezzenek a tokenekkel.
+* **Dokumentáció:** a komponensoldalon „Dokumentáció: teljes / hiányos (N)” jelvény (a „Stabil” a kiadási kort jelzi, ez a teljességet); az érintési méret hiánya csak kezelhető elemnél számít hiánynak. A Jóváhagyott szabály dobozain nincs jelvény, csak a kivételeken (Jóváhagyásra vár, Korrigálandó, Hiányzik, Tilos).
+* **Fogyasztó-sablonok:** `docs/fogyaszto-sablonok/` (Renovate-beállítás, ds-lint CI-lépés); a Telepítés oldalon „Automatikus frissítés”.
+* Brand Book: „A márka 60 másodpercben”, „Másolható szövegek” (kattintásra másolható, forrással), Lalezar TTF a Letöltésekben (tervezőprogramba), a betűletöltés a teljes `latin` WOFF2-re mutat, „Nyomdai kimenet” hiányzik-jelzés.
+* Brand Book: „Röviden” doboz, Szótár, sorszám a menüben az önkéntes úton, a színkódok lenyitható „Mérnököknek” sorban.
+
 ## 1.54.0 – 2026-10-08 – Szabály-feloldások (Javaslat 26): egységes árnyék-, sarok-, mozgás- és gombszabály, sötét módú kontrasztjavítás, új tokenek
 Döntés: Claude, Kristóf megbízásából, 2026-10-08 (`docs/javaslatok/26-szabaly-feloldasok.md` 6.). Nincs átnevezés, nincs törlés (`api-check` zöld).
 
@@ -517,7 +532,7 @@ Javaslat 13 – működést javító elemek (Kristóf jóváhagyta 2026-10-02). 
 ## 1.21.0 – 2026-10-01
 - Új: **SectionSwitch** (nagyválasztó, `.bc-secsw`) – egy szakasz 2–5 fő nézete közti linkes váltó az oldal tetején középen, a cím fölött; telefonon 2 oszlopos rács. Első használat: admin Naptár (naptár · események · havi kampányok · speciális napok).
 
-## Készül (következő verzió)
+## Elmaradt tétel (1.20.x idejéből, a 1.20.3 előtt; a „Készül” szakasz mostantól a fájl elején van)
 
 * **`[WEB]` weboldal-réteg** (JAVÍTÁS, a játékokat nem érinti): `docs/weboldal.md`: a tokenek megfeleltetése a beeco.hu
   Webflow-osztályaira, a csak weboldalon használt minták listája `[WEB]` jellel; hivatkozás az `arculat.md` 2. és új 12. pontjában és a README-ben.

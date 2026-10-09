@@ -14,6 +14,7 @@ const fs = require('fs');
 const path = require('path');
 const A = require('./alap');
 const B = require('./blokk');
+const { futoPelda } = require('./jsx-pelda');
 const { esc, inl, ic } = A;
 
 const PKG = A.json('package.json');
@@ -23,6 +24,7 @@ const KOMP = A.json(KOMP_F);
 const API = A.json('api/api.json');
 const TESZT = A.json('termek/tesztlapok/lista.json');
 const TERMEK = A.json('tokens/theme-termek.json');
+const SZINONIMA = A.exists('brandbook/elemek/szinonimak.json') ? A.json('brandbook/elemek/szinonimak.json').szinonimak : {};
 const STATUSZOK = ['stabil', 'béta', 'elavult', 'vázlat'];
 const TUKOR = 'repo';
 
@@ -199,8 +201,10 @@ ${tokenek.length ? `<p class="bb-kicsi">A <code>.${esc(fo)}</code> szabályaibó
   const vanAlap = !!k.alapertek;
   const kod = `<h2 id="kod">Kód</h2>
 <h3 id="importut">Importút</h3>${vanReact ? kodBlokk(importKod, 'Import') : hj('exports ./react', 'a package.json-ban')}
-<h3 id="jsx">JSX-példák</h3>${importok.length ? `<p class="bb-kicsi">Az <code>api/api.json</code> propjaiból generálva: minden változat és kapcsoló egy sorban. A „…” helyére a saját értéked kerül.</p>
-${reactok.filter(([, d]) => d).map(([n, d]) => kodBlokk(jsxPelda(n, d).join('\n'), `${n} – JSX`)).join('')}` : `<p>Ennek az elemnek nincs React-komponense: a <code>bc-</code> osztályokkal, HTML-ben használd (lásd az élő mintát).</p>${kodBlokk(k.minta_html || '', `${k.nev} – HTML`)}`}
+<h3 id="jsx">JSX-példák</h3>${importok.length ? `<p class="bb-kicsi">Másold be, és fut: az importokkal és a kötelező propokkal együtt. A teljes példákat a <code>tests/check-jsx-peldak.js</code> lefordítja a csomag típusaival.</p>
+${reactok.filter(([, d]) => d).map(([n, d]) => { const f = futoPelda(n, d); const tl0 = (k.tesztlap || [])[0]; const forras = tl0 && A.exists(`react/tesztlapok/${tl0}.tsx`) ? `react/tesztlapok/${tl0}.tsx` : null;
+  return kodBlokk(f.kod, `${n} – ${f.teljes ? 'teljes példa' : 'vázlat'} (JSX)`) + (f.teljes ? '' : `<p class="bb-kicsi">A kötelező propok (${f.hianyzik.map(x => `<code>${esc(x)}</code>`).join(', ')}) összetett adatot kérnek, ezt nem találjuk ki.${forras ? ` Működő, teljes példa: <a href="https://github.com/hegebeeco/beeco-design-system/blob/main/${esc(forras)}" rel="noopener"><code>${esc(forras)}</code></a>.` : ''}</p>`) +
+  `<details class="bb-valtozat-sor"><summary>${esc(n)} – változatok egy sorban</summary>${kodBlokk(jsxPelda(n, d).join('\n'), `${n} – változatok`)}</details>`; }).join('')}` : `<p>Ennek az elemnek nincs React-komponense: a <code>bc-</code> osztályokkal, HTML-ben használd (lásd az élő mintát).</p>${kodBlokk(k.minta_html || '', `${k.nev} – HTML`)}`}
 <h3 id="propok">Propok</h3>${forrasSor(k, 'alapertek')}
 ${vanAlap ? '' : hj('alapertek', 'a propok alapértékei', 'kod')}
 ${reactok.filter(([, d]) => d).map(([n, d]) => `<h4 id="propok-${A.slug(n)}">${esc(n)}</h4>${d.props && Object.keys(d.props).length
@@ -208,14 +212,16 @@ ${reactok.filter(([, d]) => d).map(([n, d]) => `<h4 id="propok-${A.slug(n)}">${e
     : hj('props', `${n}`)}${d.htmlAttr ? '<p class="bb-kicsi">A natív HTML-attribútumokat is továbbadja (<code>htmlAttr</code>).</p>' : ''}`).join('') || '<p class="bb-kicsi">Nincs React-prop: az elemet a CSS-osztályai vezérlik.</p>'}`;
 
   // Hozzáférhetőség
-  const magassag = rules.flatMap(r => [...r.test.matchAll(/min-height\s*:\s*([^;]+)/g)].map(m => [`\`${r.sel.replace(/\s+/g, ' ')}\``, `\`${m[1].trim()}\``, `\`${r.fajl.replace('termek/css/', '')}:${r.sor}\``]));
+  const mindRules = [...new Set((k.css || []).map(c => c.split(' ')[0]))].flatMap(c => szabalyok(c));
+  const magassag = mindRules.flatMap(r => [...r.test.matchAll(/min-height\s*:\s*([^;]+)/g)].map(m => [`\`${r.sel.replace(/\s+/g, ' ')}\``, `\`${m[1].trim()}\``, `\`${r.fajl.replace('termek/css/', '')}:${r.sor}\``]));
   const fokusz = (A.read('termek/css/bc-base.css').match(/:where\(:focus-visible\)\s*\{[^}]*\}/) || [''])[0];
   const a = k.a11y || {};
+  const kezelheto = Array.isArray(a.billentyuk) && a.billentyuk.length > 0;
   const a11y = `<h2 id="hozzaferhetoseg">Hozzáférhetőség</h2>
 <h3 id="aria">ARIA-szerep</h3>${a.szerep ? `<p>${inl(a.szerep)}</p>` : hj('a11y.szerep', 'ARIA-szerep: a natív elem és a szükséges ARIA-attribútumok', 'a11y')}
 <h3 id="billentyuk">Billentyűtérkép</h3>${Array.isArray(a.billentyuk) && a.billentyuk.length ? B.tabla(['Billentyű', 'Mit csinál'], a.billentyuk.map(billSor), 'Billentyűk') : hj('a11y.billentyuk', 'billentyű → művelet táblázat', 'a11y')}
 ${a.megjegyzes ? `<p>${inl(a.megjegyzes)}</p>` : ''}${forrasSor(k, 'a11y')}
-<h3 id="erintes">Érintési méret (a CSS-ből)</h3>${magassag.length ? B.tabla(['Szabály', 'min-height', 'Hol'], magassag, 'Legkisebb magasság') + `<p class="bb-kicsi"><code>--bc-tap</code> = ${A.json('tokens/core.json').tap} px (<code>tokens/core.json</code>).</p>` : hj('min-height', 'legkisebb magasság a CSS-ben', 'a11y')}
+<h3 id="erintes">Érintési méret (a CSS-ből)</h3>${magassag.length ? B.tabla(['Szabály', 'min-height', 'Hol'], magassag, 'Legkisebb magasság') + `<p class="bb-kicsi"><code>--bc-tap</code> = ${A.json('tokens/core.json').tap} px (<code>tokens/core.json</code>).</p>` : kezelheto ? hj('min-height', 'legkisebb magasság a CSS-ben', 'a11y') : '<p class="bb-kicsi">Nem kezelhető elem (nincs billentyűtérképe): az érintési méret nem releváns.</p>'}
 <h3 id="fokusz">Fókusz</h3>${fokusz ? `<p class="bb-kicsi">A közös alap (<code>termek/css/bc-base.css</code>) minden elemre ad látható fókuszkeretet:</p>${kodBlokk(fokusz, 'Fókusz-szabály')}` : hj('focus-visible', 'fókusz-szabály', 'a11y')}`;
 
   const fulek = [['iranyelvek', 'Irányelvek', iranyelvek], ['specifikacio', 'Specifikáció', specifikacio], ['kod', 'Kód', kod], ['hozzaferhetoseg', 'Hozzáférhetőség', a11y]];
@@ -226,6 +232,7 @@ ${a.megjegyzes ? `<p>${inl(a.megjegyzes)}</p>` : ''}${forrasSor(k, 'a11y')}
   const osszegzo = ful => { const l = hianyok[ful]; return l.length ? `<p class="bb-hiany-osszeg"><span class="bc-badge is-muted">Még hiányzik ezen az oldalon</span> ${l.map(([m, t]) => `<span class="bb-hiany-nev" data-mezo="${esc(m)}">${esc(t || m)}</span>`).join(' · ')}</p>` : ''; };
   const elotag = id => (id === 'specifikacio' || id === 'hozzaferhetoseg') ? osszegzo(id) : '';
   const kat = ctx.navKategoriaOf ? ctx.navKategoriaOf[kSlug(k.id)] : null;
+  const hianySzam = hianyok.specifikacio.length + hianyok.hozzaferhetoseg.length;
   // al-gyorsmenü: az aktív fül h3-szakaszai (görgetés helyett egy kattintás)
   const alful = t => { const l = [...t.matchAll(/<h3[^>]*\sid="([^"]+)"[^>]*>([\s\S]*?)<\/h3>/g)].map(m => [m[1], A.strip ? A.strip(m[2]) : m[2].replace(/<[^>]+>/g, '')]); return l.length > 1 ? `<nav class="bb-alful" aria-label="Szakaszok ezen a fülön"><ul role="list">${l.map(([id, c]) => `<li><a href="#${esc(id)}">${esc(c)}</a></li>`).join('')}</ul></nav>` : ''; };
   // élő, kipróbálható rész: a komponens tesztlapja a jobb oldali, rögzített panelben (iframe, lusta betöltés)
@@ -233,12 +240,12 @@ ${a.megjegyzes ? `<p>${inl(a.megjegyzes)}</p>` : ''}${forrasSor(k, 'a11y')}
   const elo = `<aside class="bb-komp-jobb" aria-labelledby="elo-minta"><div class="bb-elo">
 <div class="bb-elo-fej"><p class="bb-elo-cim" id="elo-minta">Kipróbálom</p>${tl.length ? `<a class="bb-elo-uj" href="${tl[0].u}" target="_blank" rel="noopener" data-elo-uj>Új lapon${ic('kulso')}<span class="bc-sr"> (megnyílik egy új lapon)</span></a>` : ''}</div>
 ${tl.length > 1 ? `<nav class="bb-elo-valaszt" aria-label="Melyik tesztlap látsszon">${tl.map((x, i) => `<a href="${x.u}" target="komp-demo"${i ? '' : ' aria-current="true"'}>${esc(x.t ? x.t.cim : x.n)}</a>`).join('')}</nav>` : ''}
-${tl.length ? `<iframe class="bb-elo-keret" name="komp-demo" title="${esc(k.nev)} – élő, kipróbálható tesztlap" src="${tl[0].u}" loading="lazy"></iframe>
+${tl.length ? `<iframe class="bb-elo-keret" name="komp-demo" title="${esc(k.nev)} – élő, kipróbálható tesztlap" src="${tl[0].u}" loading="lazy" data-keres="${esc([String(k.nev).split(/\s+/)[0].slice(0, 6), ...(k.react || [])].join('|'))}"></iframe>
 <p class="bb-kicsi bb-elo-lab">Minden állapot és szélső eset él: kattints, írj, használd billentyűvel. A számok és nevek mintaadatok.</p>` : hj('tesztlap', 'élő tesztlap')}
 <details class="bb-elo-html"><summary>Egyszerű HTML-minta</summary><div class="bb-demo" role="group" aria-label="${esc(k.nev)} – HTML-minta">${B.htmlEllenor(k.minta_html || '', ctx, 'minta_html')}</div></details>
 </div></aside>`;
   const torzs = `<div class="bb-komp-osztas"><div class="bb-komp-bal">
-<dl class="bb-komp-meta">${kat ? `<div><dt>Kategória</dt><dd><a href="${esc(kat.slug)}.html">${esc(kat.cim)}</a></dd></div>` : ''}${(k.react || []).length ? `<div><dt>React</dt><dd>${k.react.map(x => `<code>${esc(x)}</code>`).join('')}</dd></div>` : ''}<div><dt>Szint</dt><dd>${esc((KOMP.szintek.find(s => s.id === k.szint) || { nev: k.szint }).nev)}</dd></div><div><dt>Életciklus</dt><dd>${k.statusz ? B.statuszJelveny(k.statusz) : '<span class="bc-badge is-muted">Státusz: nincs döntés</span>'}</dd></div></dl>
+<dl class="bb-komp-meta">${kat ? `<div><dt>Kategória</dt><dd><a href="${esc(kat.slug)}.html">${esc(kat.cim)}</a></dd></div>` : ''}${(k.react || []).length ? `<div><dt>React</dt><dd>${k.react.map(x => `<code>${esc(x)}</code>`).join('')}</dd></div>` : ''}<div><dt>Szint</dt><dd>${esc((KOMP.szintek.find(s => s.id === k.szint) || { nev: k.szint }).nev)}</dd></div><div><dt>Életciklus</dt><dd>${k.statusz ? B.statuszJelveny(k.statusz) : '<span class="bc-badge is-muted">Státusz: nincs döntés</span>'}</dd></div><div><dt>Dokumentáció</dt><dd>${hianySzam ? `<span class="bc-badge is-warning">Hiányos (${hianySzam})</span>` : '<span class="bc-badge is-success">Teljes</span>'}</dd></div></dl>
 <div class="bb-fulek" data-fulek>
 <div class="bb-fulsor" role="tablist" aria-label="${esc(k.nev)} – dokumentáció" hidden>${fulek.map(([id, cim], i) => `<button type="button" class="bb-ful" role="tab" id="ful-${id}" aria-controls="panel-${id}" aria-selected="${i ? 'false' : 'true'}"${i ? ' tabindex="-1"' : ''}>${cim}</button>`).join('')}</div>
 ${fulek.map(([id, , t]) => `<section class="bb-panel" id="panel-${id}" data-ful="ful-${id}">${t.replace(/^(<h2[^>]*>[\s\S]*?<\/h2>)/, m => m + alful(t) + elotag(id))}</section>`).join('\n')}
@@ -254,14 +261,20 @@ ${B.forrasLista(k.forras)}
   for (const [n, d] of reactok) if (d && d.props && Object.keys(d.props).length) kereso.push({ h: `Kód › Propok › ${n}`, id: `propok-${A.slug(n)}`, x: Object.entries(d.props).map(([p, v]) => `${p}: ${v.t}`).join(' · ') });
   const adatForras = [...new Set(adatForrasok(k, null, ctx.hibak))];
   return { torzs, nincsToc: true, extraForras: [KOMP_F, 'api/api.json', ...adatForras.filter(f => f !== KOMP_F)], kereso,
-    kulcsszavak: [...(k.react || []), ...(k.css || []), ...reactok.flatMap(([, d]) => Object.keys((d && d.props) || {}))].join(' ') };
+    kulcsszavak: [SZINONIMA[k.id] || '', ...(k.react || []), ...(k.css || []), ...reactok.flatMap(([, d]) => Object.keys((d && d.props) || {}))].join(' ') };
+}
+
+/** Kis, statikus előnézet a minta-HTML-ből (galéria): az azonosítókat és a név-csoportokat elhagyja, hogy az oldalon ne ütközzenek. */
+function mini(k, ctx) {
+  const h = B.htmlEllenor(String(k.minta_html || '').replace(/\s(?:id|name|for|aria-controls|aria-labelledby|aria-describedby)="[^"]*"/g, '').replace(/\shref="#[^"]*"/g, ' href="#"'), ctx, 'minta_html (galéria)');
+  return `<div class="bb-mini" aria-hidden="true" inert>${h}</div>`;
 }
 
 /** Kategóriaoldal: leírás + az elemek kártyái (név, szint, leírás, státusz) – a sorrend a kategóriafájlé. */
 function kategoriaOldal(o, ctx) {
   const c = o.kategoria;
   ctx.szint = 1;
-  const kartyak = `<ul class="bb-kartyak is-komp" role="list">${c.elemek.map(e => { const k = komp(e); return `<li><div class="bb-kartya"><p class="bb-kartya-nev"><a href="${esc(kSlug(k.id))}.html">${esc(k.nev)}</a></p><p class="bb-kicsi">${esc((KOMP.szintek.find(s => s.id === k.szint) || { nev: k.szint }).nev)}${k.statusz ? ` · ${esc(k.statusz)}` : ''}${(k.react || []).length ? ` · <code>${esc(k.react[0])}</code>` : ''}</p><p>${inl(k.leiras)}</p></div></li>`; }).join('')}</ul>`;
+  const kartyak = `<ul class="bb-kartyak is-komp" role="list">${c.elemek.map(e => { const k = komp(e); return `<li><div class="bb-kartya">${mini(k, ctx)}<p class="bb-kartya-nev"><a href="${esc(kSlug(k.id))}.html">${esc(k.nev)}</a></p><p class="bb-kicsi">${esc((KOMP.szintek.find(s => s.id === k.szint) || { nev: k.szint }).nev)}${k.statusz ? ` · ${esc(k.statusz)}` : ''}${(k.react || []).length ? ` · <code>${esc(k.react[0])}</code>` : ''}</p><p>${inl(k.leiras)}</p></div></li>`; }).join('')}</ul>`;
   const elo = (o.blokkok || []).length ? B.blokkok(o.blokkok, ctx) : '';
   return { torzs: `${elo}<h2 id="elemek">${c.elemek.length} elem ebben a kategóriában</h2>${kartyak}`, extraForras: [A.exists(KAT_F) ? KAT_F : KOMP_F] };
 }
@@ -272,7 +285,7 @@ function katalogusGen(b, ctx) {
   const L = Math.min(Math.max(ctx.szint + 1, 2), 4);
   return `<p>${KOMP.komponensek.length} dokumentált elem ${kat.lista.length} kategóriában.</p>` + kat.lista.map(c => {
     const id = B.egyediId(ctx, `katalogus-${c.id}`);
-    return `<section class="bb-katalogus" aria-labelledby="${id}"><h${L} id="${id}"><a href="${esc(katSlug(c.id))}.html">${esc(c.nev)}</a> <span class="bc-badge is-muted">${c.elemek.length}</span></h${L}>${c.leiras ? `<p class="bb-kicsi">${inl(c.leiras)}</p>` : ''}<ul class="bb-tagek" role="list">${c.elemek.map(e => `<li><a href="${esc(kSlug(e))}.html">${esc(komp(e).nev)}</a></li>`).join('')}</ul></section>`;
+    return `<section class="bb-katalogus" aria-labelledby="${id}"><h${L} id="${id}"><a href="${esc(katSlug(c.id))}.html">${esc(c.nev)}</a> <span class="bc-badge is-muted">${c.elemek.length}</span></h${L}>${c.leiras ? `<p class="bb-kicsi">${inl(c.leiras)}</p>` : ''}<ul class="bb-galeria" role="list">${c.elemek.map(e => { const x = komp(e); return `<li><a class="bb-galeria-kartya" href="${esc(kSlug(e))}.html">${mini(x, ctx)}<span class="bb-galeria-nev">${esc(x.nev)}</span></a></li>`; }).join('')}</ul></section>`;
   }).join('');
 }
 

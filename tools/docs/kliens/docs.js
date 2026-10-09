@@ -30,7 +30,24 @@
       try { f.contentDocument.documentElement.setAttribute('data-theme', v); } catch (e) { /* még tölt */ }
     });
   }
-  $$('iframe.bb-elo-keret').forEach(function (f) { f.addEventListener('load', eloTema); });
+  /** a tesztlap a komponens saját szakaszára ugrik (a szakasz- és esetcímekben keres; ha nincs találat, marad a tetején) */
+  function norm(t) { return String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+  function eloUgras(f) {
+    var kulcsok = (f.getAttribute('data-keres') || '').split('|').map(norm).filter(function (x) { return x.length > 2; });
+    if (!kulcsok.length) return;
+    try {
+      var doc = f.contentDocument, tobb = $$('.tl-group, .tl-case-title', doc), cel = null;
+      for (var j = 0; j < 2 && !cel; j++) {
+        cel = tobb.filter(function (e) { return (j === 0) === e.classList.contains('tl-group'); }).filter(function (e) {
+          var t = norm(e.textContent); return kulcsok.some(function (x) { return t.indexOf(x) !== -1; });
+        })[0] || null;
+      }
+      if (cel) f.contentWindow.scrollTo(0, Math.max(0, cel.getBoundingClientRect().top + f.contentWindow.scrollY - 8));
+    } catch (e) { /* még tölt vagy más eredet */ }
+  }
+  $$('iframe.bb-elo-keret').forEach(function (f) {
+    f.addEventListener('load', function () { eloTema(); setTimeout(function () { eloUgras(f); }, 250); setTimeout(function () { eloUgras(f); }, 1200); });
+  });
   $$('.bb-elo-valaszt a').forEach(function (a) {
     a.addEventListener('click', function () {
       $$('.bb-elo-valaszt a').forEach(function (b) { b.removeAttribute('aria-current'); });

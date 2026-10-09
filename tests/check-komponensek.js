@@ -20,6 +20,8 @@ const args = process.argv.slice(2);
 const gyors = args.includes('--gyors');
 const jsonOut = args.includes('--json') ? args[args.indexOf('--json') + 1] : null;
 const csak = args.filter((a) => !a.startsWith('--') && a !== jsonOut);
+// --shard=2/3: a tesztlapok i-edik harmada (a CI párhuzamos futtatásához: ~9 helyett ~3 perc)
+const shard = (args.find((a) => /^--shard=\d+\/\d+$/.test(a)) || '').match(/(\d+)\/(\d+)/);
 const NEZETEK = [
   { n: 'telefon 320', w: 320, h: 640, touch: true }, { n: 'telefon 390', w: 390, h: 844, touch: true },
   { n: 'telefon fekvő', w: 844, h: 390, touch: true }, { n: 'tablet álló', w: 768, h: 1024, touch: true },
@@ -49,7 +51,7 @@ function serve() {
 }
 
 async function main() {
-  const lapok = fs.readdirSync(DIR).filter((f) => f.endsWith('.html')).map((f) => f.replace('.html', '')).filter((n) => !csak.length || csak.includes(n));
+  const lapok = fs.readdirSync(DIR).filter((f) => f.endsWith('.html')).map((f) => f.replace('.html', '')).filter((n) => !csak.length || csak.includes(n)).filter((n, i) => !shard || i % +shard[2] === +shard[1] - 1);
   const srv = await serve(); const base = `http://127.0.0.1:${srv.address().port}`;
   const browser = await chromium.launch();
   const axeSrc = fs.readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8');

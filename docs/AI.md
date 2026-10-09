@@ -192,9 +192,9 @@ Sor: **Név** `forrás` — fő propok (`*` kötelező, `…attr` = natív attri
 - **Utvonal** `ut/Utvonal` — cimke*:string, szakaszok*, cimSzint:2 | 3 | 4, hatarido, kovetkezo:UtvonalLepes, labels, renderLink:RenderLink, segito, tomor:bool · `.bc-btn` · organizmus · egy út szakaszai + EGY következő lépés, a segítővel és a határidővel.
 
 ### 06e Csapat-egészség
-- **JelzoKartya** 🆕 `csapat/JelzoKartya` — cim*:string, ertek*:JelzoErtek, onValtozas*:fn, cimSzint:2 | 3 | 4, disabled:bool, hiba:string, irany:bool, kotelezo:bool, labels, +3 · `.bc-jelzo` · organizmus · egy terület szavazókártyája.
-- **KerekRadar** 🆕 `csapat/KerekRadar` — cim*:string, sorozatok*, tengelyek*, jelzes:fn, kijelolt:string | null, labels, lista:bool, max:number, nezet:KerekNezet, +5 · `.bc-kerek-delta` · organizmus · interaktív radar 3–12 tengellyel, 1–2 egymásra vetített sorozattal (most vs.
-- **RetroVaszon** 🆕 `csapat/RetroVaszon` — cetlik*, zonak*, cimSzint:2 | 3 | 4, csakOlvashato:bool, labels, maxHossz:number, moderator:bool, nagy:bool, onMozgat:fn, +4 · `.bc-retro` · organizmus · zónák cetlikkel (vitorlás, 4L, Start–Stop–Folytasd vagy saját).
+- **JelzoKartya** `csapat/JelzoKartya` — cim*:string, ertek*:JelzoErtek, onValtozas*:fn, cimSzint:2 | 3 | 4, disabled:bool, hiba:string, irany:bool, kotelezo:bool, labels, +3 · `.bc-jelzo` · organizmus · egy terület szavazókártyája.
+- **KerekRadar** `csapat/KerekRadar` — cim*:string, sorozatok*, tengelyek*, jelzes:fn, kijelolt:string | null, labels, lista:bool, max:number, nezet:KerekNezet, +5 · `.bc-kerek-delta` · organizmus · interaktív radar 3–12 tengellyel, 1–2 egymásra vetített sorozattal (most vs.
+- **RetroVaszon** `csapat/RetroVaszon` — cetlik*, zonak*, cimSzint:2 | 3 | 4, csakOlvashato:bool, labels, maxHossz:number, moderator:bool, nagy:bool, onMozgat:fn, +4 · `.bc-retro` · organizmus · zónák cetlikkel (vitorlás, 4L, Start–Stop–Folytasd vagy saját).
 
 ### Téma
 - **ThemeProvider** `tema/ThemeProvider` — defaultMode:ThemeMode, storageKey:string · sablon · a téma egy helyen él; a <html> data-theme / .dark jelzőit írja, a választást az eszköz megjegyzi, és más fülön történt váltást…
@@ -244,4 +244,4 @@ Fájlonként a `bc-` gyökérosztályok (a `bc-x-…` alosztályok a gyökér al
 
 - Nem ez a skill: töltsd be a `beeco-arculat`-ot. Közös fájlok a `tools/kit-sync.js`-sel (`KIT-FILES.json`); globális nevek (`DS`, `pic`, `ART`, `MODEL`…) és `ds-` osztályok: `api/api.json` → `jatekJs`, `css.jatek`.
 
-*149 komponens · 3 új · 17 hook. A verzió: `VERSION` (szándékosan nincs itt, hogy a verzióemelés ne írja át).*
+*149 komponens · 0 új · 17 hook. A verzió: `VERSION` (szándékosan nincs itt, hogy a verzióemelés ne írja át).*

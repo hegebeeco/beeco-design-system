@@ -1,0 +1,22 @@
+# Másold a fogyasztó projekt .github/workflows/ mappájába (admin, partner, Kaptár, weboldal).
+# A ds-lint racsni: a mostani adósság fel van írva (.beeco-ds-baseline.json), új hiba nem kerülhet be.
+name: ds-lint
+on:
+  pull_request:
+  push:
+    branches: [main]
+concurrency:
+  group: ds-lint-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: A beeco design system ellenőrzője (nem romolhat)
+        run: npx beeco-ds-lint

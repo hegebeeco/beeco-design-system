@@ -49,7 +49,7 @@
 .bb-sw-c { display: block; height: 72px; border-bottom: var(--bc-bw-base) solid var(--bc-line); }
 .bb-sw-c.is-kicsi { display: inline-block; width: 18px; height: 18px; margin-right: var(--bc-sp-2); vertical-align: -4px; border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-xs); }
 .bb-sw-t { display: grid; gap: 2px; padding: var(--bc-sp-2) var(--bc-sp-3); font-size: var(--bc-fs-s); }
-.bb-masol-szin { justify-self: start; display: inline-flex; align-items: center; gap: var(--bc-sp-1); min-height: var(--bc-tap); padding: 0 var(--bc-sp-2); margin-left: calc(-1 * var(--bc-sp-2));
+.bb-masol-szin { justify-self: start; min-width: var(--bc-tap); display: inline-flex; align-items: center; gap: var(--bc-sp-1); min-height: var(--bc-tap); padding: 0 var(--bc-sp-2); margin-left: calc(-1 * var(--bc-sp-2));
   font: inherit; color: var(--bc-ink); background: transparent; border: var(--bc-bw-base) solid transparent; border-radius: var(--bc-r-s); cursor: pointer; }
 .bb-masol-szin .bb-ic { width: 16px; height: 16px; color: var(--bc-ink-soft); }
 @media (hover: hover) and (pointer: fine) { .bb-masol-szin:hover { background: var(--bc-surface-2); border-color: var(--bc-line); } }
@@ -143,7 +143,7 @@
 .bbw-jatekelem .bb-dd-vizual { padding: 0; overflow: hidden; }
 .bbw-jatekelem .bb-dd-vizual .bbw-jm-keret { border-radius: var(--bc-r-s); }
 .bb-demo .bc-toast, .bb-dd-vizual .bc-toast { min-width: 0; max-width: 100%; }
-.bb-demo .bc-modal, .bb-dd-vizual .bc-modal { position: static; max-width: 100%; transform: none; }
+.bb-demo .bc-modal, .bb-dd-vizual .bc-modal, .bb-mini .bc-modal, .bb-mini .bc-drawer, .bb-mini .bc-palette { position: static; max-width: 100%; transform: none; }
 .bb-dd-vizual span.bc-btn, .bb-dd-vizual span.bc-icon-btn { cursor: default; }
 
 /* ---- letöltések ---- */
@@ -338,3 +338,22 @@
   font-size: var(--bc-fs-s); color: var(--bc-ink-soft); border-left: 4px solid var(--bc-line); background: var(--bc-surface-2); border-radius: var(--bc-r-s); }
 .bb-hiany-nev { white-space: nowrap; }
 .bb-hiany-kicsi { margin: 0 0 var(--bc-sp-3); font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+
+/* ---- komponens-galéria: kis előnézet + név ---- */
+.bb-mini { display: grid; place-items: center; height: 8rem; padding: var(--bc-sp-3); overflow: hidden; background: var(--bc-surface-2); border-bottom: var(--bc-bw-hair) solid var(--bc-line-soft); pointer-events: none; }
+.bb-mini > * { max-width: 100%; max-height: 100%; }
+.bb-mini .bc-toast { min-width: 0; max-width: 100%; }
+.bb-mini img { max-height: 6rem; width: auto; }
+.bb-galeria { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr)); gap: var(--bc-sp-3); margin: 0 0 var(--bc-sp-5); padding: 0; list-style: none; }
+.bb-galeria-kartya { display: flex; flex-direction: column; height: 100%; overflow: hidden; color: var(--bc-ink); text-decoration: none; background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
+.bb-galeria-nev { display: flex; align-items: center; min-height: var(--bc-tap); padding: var(--bc-sp-2) var(--bc-sp-3); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); line-height: var(--bc-lh-snug); }
+@media (hover: hover) and (pointer: fine) { .bb-galeria-kartya:hover { border-color: var(--bc-ink); box-shadow: var(--bc-shadow-s); } }
+.bb-kartya > .bb-mini { margin: calc(-1 * var(--bc-sp-5)) calc(-1 * var(--bc-sp-5)) var(--bc-sp-2); }
+
+/* ---- másolható szöveg ---- */
+.bb-masolhato { margin: var(--bc-sp-4) 0; }
+.bb-masolhato > figcaption { margin: 0 0 var(--bc-sp-2); font-weight: var(--bc-fw-bold); }
+.bb-masolhato-sor { display: flex; gap: var(--bc-sp-2); align-items: flex-start; }
+.bb-masolhato blockquote { flex: 1 1 auto; min-width: 0; margin: 0; padding: var(--bc-sp-3) var(--bc-sp-4); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-left-width: 8px; border-radius: var(--bc-r-m); }
+.bb-masolhato blockquote p { margin: 0; }
+.bb-masolhato blockquote p + p { margin-top: var(--bc-sp-2); }

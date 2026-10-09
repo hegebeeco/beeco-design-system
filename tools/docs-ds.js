@@ -15,6 +15,8 @@ const A = require('./docs/alap');
 const { GEN } = require('./docs/gen');
 const K = require('./docs/komponens');
 const { esc, inl, ic } = A;
+const fs = require('fs');
+const path = require('path');
 
 const API = A.json('api/api.json');
 let kodDb = 0;
@@ -65,3 +67,13 @@ futtat({
   tipusok: { komponens: K.komponensOldal, kategoria: K.kategoriaOldal },
   atiranyitas: true,
 });
+
+// llms.txt a dokumentációs oldal gyökerébe: a repó llms.txt-je abszolút (GitHub) linkekkel, hogy az ügynök az oldalról is elérje
+{
+  const ki = path.resolve(A.ROOT, process.env.DOCS_KI || '_site/ds');
+  const blob = 'https://github.com/hegebeeco/beeco-design-system/blob/main/';
+  const dsUrl = (process.env.DOCS_DS_URL || '').replace(/\/?$/, '/');
+  const szoveg = A.read('llms.txt').replace(/\]\((?!https?:)([^)]+)\)/g, (m, f) => `](${blob}${f})`)
+    .replace(/\n## Kezdd itt/, `\n## A dokumentációs oldal\n- [Első nap](${dsUrl}elso-nap.html): húsz perc, hat lépés új közreműködőknek\n- [Komponensek](${dsUrl}komponensek.html): minden elem saját oldalon, élő kipróbálással, JSX-példával, billentyűtérképpel\n- [Szótár](${dsUrl}szotar.html): bőr, téma, szerep, token\n\n## Kezdd itt`);
+  fs.writeFileSync(path.join(ki, 'llms.txt'), szoveg);
+}

@@ -30,6 +30,7 @@
     { "t": "gen", "nev": "madarkeszlet" },
     { "t": "p", "x": "A darabszámok a mostani fájlkészletet mutatják. A sablonok leírása és a használatuk: [Sablonok és nyomtatvány](sablonok.html), [Partnerarculat](partnerarculat.html). A logó szabályai: [Logó](logo.html)." },
     { "t": "hianyzik", "cim": "Vektoros logó", "x": "SVG vagy PDF logó nyomdához és nagy felülethez még nincs a készletben." },
+    { "t": "hianyzik", "cim": "Open Sans TTF", "x": "Az Open Sans szövegbetű TTF-je még nincs a készletben, így tervezőprogramba (Figma, Canva, Word) egyelőre nem telepíthető. A WOFF2 csak weboldalhoz való." },
     { "t": "h2", "x": "Fejlesztőknek" },
     { "t": "p", "x": "A tokenek (CSS, SCSS, Tailwind, Dart, Webflow, JSON), a telepítés és az API a Design Systemben vannak: [Eszközök](ds:eszkozok)." }
   ]

@@ -61,6 +61,7 @@
       "forras": ["CLAUDE.md – a repó szabályai", "docs/termek-arculat.md 9."] },
     { "t": "h2", "x": "Vektoros logó" },
     { "t": "hianyzik", "cim": "SVG vagy PDF nyomdához", "x": "A logó most csak WebP-ben van. Nyomdához és nagy felülethez vektoros fájl kell – addig nyomdai anyaghoz kérd a beeco csapatától." },
+    { "t": "hianyzik", "cim": "Nyomdai kimenet", "x": "Nyomdához nincs még jóváhagyott CMYK- vagy Pantone-érték, kifutó (spadás) szabály és vektoros logófájl. Ezt a beeco adja meg; addig nyomdai anyaghoz kérd a beeco csapatától." },
     { "t": "h2", "x": "Kapcsolódó" },
     { "t": "lista", "elemek": [
       "Partner anyagában: [Partnerarculat](partnerarculat.html)",

@@ -45,6 +45,8 @@ function masikAlap(cfg) {
   return cfg.masik.alap;
 }
 
+/** A szakasz táblázatainak cellaszövege (kereshető, de a találatban nem látszik): token- és értéktáblák is megtalálhatók legyenek. */
+const tablaSzoveg = h => (/<table/.test(h) ? [...h.matchAll(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/g)].map(c => strip(c[1])).join(' ').slice(0, 700) : '');
 /** A generátorok gyűjtője: CSS-szabály, fájl, másolás, repo-tükör, tesztlap – a kimenet törlése után íródik ki. */
 function gyujto() {
   const k = { css: new Set(), fajlok: new Map(), masolasok: [], tukrok: new Set(), tesztlapok: new Set(), latott: new Set() };
@@ -143,13 +145,13 @@ function build(cfg) {
     const toc = nincsToc ? [] : [...torzs.matchAll(/<h([23])[^>]*\sid="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>/g)].map(m => ({ szint: +m[1], id: m[2], cim: strip(m[3]) }));
     const file = `${n.slug}.html`;
     const csoportCim = szuloOf[n.slug] ? `${n.csoport.cim} › ${szuloOf[n.slug].cim}` : n.csoport.cim;
-    index.push({ u: file, c: o.cim, h: '', g: csoportCim, x: strip(o.alcim || '').slice(0, 160), k: kulcsszavak });
+    index.push({ u: file, c: o.cim, h: '', g: csoportCim, x: strip(o.alcim || '').slice(0, 160), k: [kulcsszavak, o.kulcsszavak].filter(Boolean).join(' ') });
     // h2/h3 szakaszok; a h3 a szülő h2 nevével („Védőtér › Legkisebb méret”), hogy a találatnál látsszon a szakasz
     let h2 = '';
     for (const m of torzs.matchAll(/<h([23])[^>]*\sid="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>([\s\S]*?)(?=<h[23][\s>]|$)/g)) {
       const cim = strip(m[3]);
       if (m[1] === '2') h2 = cim;
-      index.push({ u: `${file}#${m[2]}`, c: o.cim, h: m[1] === '3' && h2 ? `${h2} › ${cim}` : cim, g: csoportCim, x: strip(m[4].replace(/<span class="bb-dd-jel"[^>]*>[^<]*<\/span>/g, '')).slice(0, 160) });
+      index.push({ u: `${file}#${m[2]}`, c: o.cim, h: m[1] === '3' && h2 ? `${h2} › ${cim}` : cim, g: csoportCim, x: strip(m[4].replace(/<span class="bb-dd-jel"[^>]*>[^<]*<\/span>/g, '')).slice(0, 160), k: tablaSzoveg(m[4]) });
     }
     for (const t of kereso) index.push({ u: `${file}#${t.id}`, c: o.cim, h: t.h, g: csoportCim, x: String(t.x).slice(0, 220), k: t.k || '' });
     kesz.push({ n, o, file, torzs, toc, datum, datumForras, forras: vanJson ? forras : (extraForras[0] || ''), extraForras: vanJson ? extraForras : extraForras.slice(1), elozo: lanc[i - 1], kov: lanc[i + 1] });
