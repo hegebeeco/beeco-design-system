@@ -81,5 +81,6 @@
   }, { passive: true });
   var rt; w.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(epit, 150); });
   w.addEventListener('load', epit);
+  if ('ResizeObserver' in w) { var rm = 0; new ResizeObserver(function () { var m = d.documentElement.scrollHeight; if (m !== rm) { rm = m; clearTimeout(rt); rt = setTimeout(epit, 200); } }).observe(d.body); }
   epit(); allTimer = setTimeout(function () { CSI.poz(madar, ALLOMAS[akt].poz); }, 400);
 })();

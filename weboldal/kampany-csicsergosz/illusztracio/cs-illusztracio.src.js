@@ -58,12 +58,7 @@
       h1.appendChild(elem('<span class="cs_szalag cs_szalag--nagy"></span>')).textContent = t.slice(i + 2);
       h1.classList.add('cs_h1_szalag');
     }
-    var mme = hero.querySelector('.cs_mme_sor');
-    if (mme) {
-      mme.classList.add('cs_partnertabla');
-      mme.insertBefore(elem('<img class="cs_partnertabla_beeco" src="' + CDN + '655512ff22c587d4c7112378_linear%20logo.svg" alt="beeco" width="96" height="28">'), mme.firstChild);
-      mme.insertBefore(elem('<span class="cs_partnertabla_valaszto" aria-hidden="true"></span>'), mme.children[1]);
-    }
+    /* a partnertábla tisztán CSS-ből rajzolódik (.cs_mme_sor), hogy ne mozduljon el az oszlop */
     hero.classList.add('cs-taj');
     var taj = dekor(elem('<div class="cs-taj_hatter"></div>'));
     taj.appendChild(elem('<svg class="cs-taj_domb" viewBox="0 0 1440 220" preserveAspectRatio="none"><path d="M0 120 L180 70 L360 104 L560 52 L760 96 L980 60 L1200 98 L1440 58 V220 H0Z" fill="#FFE2B5"/><path d="M0 170 L220 130 L470 160 L720 118 L980 156 L1220 126 L1440 150 V220 H0Z" fill="#CB9C7E"/><path d="M0 196 L300 176 L640 200 L960 178 L1440 194 V220 H0Z" fill="#A87552"/></svg>'));
