@@ -73,3 +73,4 @@ body{margin:0!important}
 /* Mobilos keskeny letöltősáv: ne takarja a tartalmat */
 .cs-ragados .button_main{flex:1 1 auto;text-align:center}
 @media (max-width:767px){body{padding-bottom:76px}}
+#fotofal .input_field{min-height:44px}
