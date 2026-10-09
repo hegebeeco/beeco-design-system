@@ -108,14 +108,12 @@
       var sw = r.w * 0.34;
       hely(a, r.x + r.w * 0.56, r.y - sw * 0.82, sw);
       hely(b, r.x + r.w * 0.36, r.y + r.h * 0.40, sw * 0.95);
-      var toast = d.createElement('div'); toast.className = 'cs-hm-uzenet'; toast.setAttribute('role', 'status');
-      toast.style.left = Math.round(r.x + r.w * 0.1) + 'px'; toast.style.width = Math.round(r.w * 0.8) + 'px'; toast.style.top = Math.round(r.y + r.h * 0.62) + 'px';
-      mock.appendChild(a); mock.appendChild(b); mock.appendChild(toast);
+      /* Levi-változat: az albumjelzés a Megfigyelés 3. lépésénél van, a heróban nincs */
+      mock.appendChild(a); mock.appendChild(b);
       repul(a, [260, -200]);
       setTimeout(function () {
         repul(b, [320, -220], function () {
           if (csend) { b.remove(); } else { akcio(b, 'beszall'); b.firstChild.addEventListener('animationend', function () { b.remove(); }, { once: true }); }
-          setTimeout(function () { toast.textContent = 'Új madár a Madár albumodban: süvöltő!'; toast.classList.add('cs-lat'); setTimeout(function () { toast.classList.remove('cs-lat'); }, 3200); }, csend ? 0 : 420);
         });
       }, csend ? 0 : 650);
     }
@@ -206,7 +204,7 @@
     var ua = navigator.userAgent, ios = /iPhone|iPad|iPod/i.test(ua);
     var href = ios ? 'https://apps.apple.com/hu/app/beeco/id6478549279?l=hu' : (/Android/i.test(ua) ? 'https://play.google.com/store/apps/details?id=hu.beeco.app' : '#download');
     var s = d.createElement('div'); s.className = 'cs-ragados';
-    s.innerHTML = '<img src="' + MADAR.suvolto + '" alt="" width="40" height="38"><span class="cs-ragados_szoveg">CsicsergŐsz a beeco appban</span><a class="button_main cs-ragados_gomb" href="' + href + '" data-cs-event="primary_cta" data-cs-placement="ragados_sav"' + (href.charAt(0) === '#' ? '' : ' target="_blank" rel="noopener"') + '>Letöltöm</a>';
+    s.innerHTML = '<img src="' + MADAR.suvolto + '" alt="" width="40" height="38"><a class="button_main cs-ragados_gomb" href="' + href + '" data-cs-event="primary_cta" data-cs-placement="ragados_sav"' + (href.charAt(0) === '#' ? '' : ' target="_blank" rel="noopener"') + '>Töltsd le a beeco appot</a>';
     d.body.appendChild(s);
     var heroLat = true, zaroLat = false;
     function frissit() { s.classList.toggle('cs-lat', !heroLat && !zaroLat); }

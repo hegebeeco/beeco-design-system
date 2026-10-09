@@ -1,0 +1,70 @@
+/* Csicsergősz kampányoldal – Levi-változat (csicsergosz-levi ág). A cs-kampany.css UTÁN töltődik, csak az eltéréseket írja.
+   Forrás: Csicsergosz_AI_atadas_2026-10-09.docx. Oldal: /kampanyok/csicsergosz-levi */
+
+/* Horgonyok: a ragadós fejléc ne takarja a célcímet */
+[id]{scroll-margin-top:96px}
+@media (max-width:767px){[id]{scroll-margin-top:16px}}
+
+/* Fejléc */
+.cs_fejlec .cs_fejlec_link:hover{text-decoration:underline}
+.cs_fejlec a:focus-visible{outline:3px solid #6B3B16;outline-offset:2px;border-radius:8px}
+.cs_fejlec .button_main.cs_fejlec_cta{min-height:44px;padding:10px 16px 8px;text-decoration:none}
+@media (max-width:991px){.cs_fejlec_belso{flex-wrap:wrap;gap:8px 16px}.cs_fejlec_menu{order:3;width:100%;margin-left:0;overflow-x:auto;scrollbar-width:none}.cs_fejlec_cta{margin-left:auto}}
+@media (max-width:767px){.cs_fejlec{position:static}.cs_fejlec_cta{display:none!important}.cs_fejlec_belso{padding:8px 12px}.cs_fejlec_link{padding:0 10px;font-size:15px;white-space:nowrap}}
+
+/* Hero: szöveg balra, telefon jobbra, Gabee kicsi kiegészítő */
+.dia_kek_ov.cs .cs_mockup_kabala{width:30%!important;max-width:150px}
+.dia_kek_ov.cs .cs_szoveglink{display:inline-flex;align-items:center;min-height:44px;margin-top:8px;color:#1A1A1A}
+.dia_kek_ov.cs .cs_szoveglink:focus-visible{outline:3px solid #6B3B16;outline-offset:2px}
+.dia_kek_ov.cs .small_content_block>.button_main{align-self:flex-start;margin-top:8px}
+@media (max-width:767px){.dia_kek_ov.cs .small_content_block>.button_main{align-self:stretch;text-align:center}.cs_mme_sor_logo{height:36px}}
+
+/* Miért fontos: egy oszlop, középre */
+.dia_ov_light.cs_horgony ._2_column_content_wrapper{display:block}
+.dia_ov_light.cs_horgony .main_text_content_block{max-width:860px;margin:0 auto;text-align:center;align-items:center}
+.dia_ov_light.cs_horgony .cs_kicker,.dia_ov_light.cs_horgony .cs_lead{text-align:center;margin-left:auto;margin-right:auto}
+.dia_ov_light.cs_horgony .cs_atkoto{font-family:Lalezar,sans-serif;font-size:clamp(28px,3.4vw,40px);line-height:1.1;font-weight:400;color:#6B3B16}
+.dia_ov_light.cs_horgony .cs_tenyek{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;width:100%;margin:16px 0 8px}
+.dia_ov_light.cs_horgony .cs_teny{display:flex;flex-direction:column;align-items:center;gap:12px;padding:0;border:0!important;background:none!important;box-shadow:none!important}
+.dia_ov_light.cs_horgony .cs_teny_ikon{width:auto;height:120px;max-width:100%;object-fit:contain}
+.dia_ov_light.cs_horgony .cs_teny_szoveg{text-align:center;font-weight:700;font-size:18px}
+.dia_ov_light.cs_horgony .cs_szoveglink{display:inline-flex;align-items:center;min-height:44px;color:#1A1A1A}
+.dia_ov_light.cs_horgony .cs_forras{display:inline-flex;margin-top:24px;font-size:13px;line-height:1.4;min-height:44px;align-items:center;text-align:center}
+@media (max-width:767px){.dia_ov_light.cs_horgony .cs_tenyek{grid-template-columns:1fr;gap:28px}}
+
+/* Mit tehetsz: két egészében kattintható kártya, az első hangsúlyosabb */
+.dia_green_ov.cs .div-block-564{display:grid!important;grid-template-columns:1.25fr 1fr;align-items:stretch}
+.dia_green_ov.cs .card.cs_link{position:relative;max-width:none}
+.dia_green_ov.cs .card.cs_link:first-child .headline3{font-size:30px}
+.dia_green_ov.cs .cs_kartya_album{object-fit:contain;background:#FEF7DE}
+.cs_utvonal_nyil{transition:transform 160ms cubic-bezier(.23,1,.32,1)}
+.card.cs_link:hover .cs_utvonal_nyil,.card.cs_link:focus-visible .cs_utvonal_nyil{transform:translateX(4px)}
+.card.cs_link:focus-visible{outline:3px solid #6B3B16;outline-offset:4px}
+@media (max-width:767px){.dia_green_ov.cs .div-block-564{grid-template-columns:1fr}}
+
+/* Megfigyelés: lépésenként cím + mini szöveg + UI egyben; a 3. a legerősebb */
+.cs_folyamat_szoveg .cs_lepes_szam{display:inline-flex}
+.cs_folyamat_cim{font-family:Lalezar,sans-serif;font-weight:400;font-size:clamp(24px,2.6vw,32px);line-height:1.1;color:#6B3B16}
+.cs_folyamat_mini{font-family:'Open Sans',sans-serif}
+.cs_folyamat_vizual{display:flex;flex-direction:column;align-items:flex-start}
+.cs_folyamat_lepes--zaro{padding:24px;border:2px solid #6B3B16;border-radius:24px 0 24px 0;background:#fff;box-shadow:6px 6px 0 #6B3B16}
+.cs_folyamat_lepes--zaro .cs_folyamat_ui{max-width:480px}
+.cs_album_jelzes{box-shadow:3px 3px 0 #6B3B16}
+@media (max-width:767px){.cs_folyamat_lepes{grid-template-columns:1fr;gap:12px}.cs_folyamat_ui{max-width:100%}.cs_folyamat_cta .button_main{text-align:center}}
+
+/* Gabee és közösség: hírlevél kb. kétharmad, social egyharmad */
+#fotofal .cs_sziget{display:grid!important;grid-template-columns:2fr 1fr;align-items:start;gap:24px 40px}
+#fotofal .cs_sziget_resz{flex:none}
+#fotofal .cs_gabee_bemutat .cs_buborek{font-weight:700}
+@media (max-width:767px){#fotofal .cs_sziget{grid-template-columns:1fr}}
+
+/* Partnerek: logóvédő távolság, MME jól látható */
+.cs_partnerek .cs_partner_logo{padding:16px 24px}
+.cs_partnerek .cs_partner_logo_kep{max-height:72px;width:auto}
+
+/* Záró blokk: hangsúlyos alcím */
+#download .headline3.cs{margin:8px 0 16px}
+
+/* Mobilos keskeny letöltősáv: ne takarja a tartalmat */
+.cs-ragados .button_main{flex:1 1 auto;text-align:center}
+@media (max-width:767px){body{padding-bottom:76px}}
