@@ -13,12 +13,12 @@
       { "nev": "Tervező, fejlesztő vagy", "leiras": "Képernyőt, oldalt vagy játékot építesz: színek, betűk és elemek a Design Systemben.", "link": "Design System", "href": "@masik" }
     ] },
     {"t": "h2", "x": "Önkéntes fejlesztőként: hét oldal, kb. 30 perc", "id": "hetoldalas-ut"},
-    {"t": "p", "x": "Ez a hét oldal adja a márka alapjait. Mindegyik tetején egy „Röviden” doboz van: ha csak ennyit olvasol el, már tudod, mit használj és mit ne. A szavakat a [Szótár](szotar.html) magyarázza."},
+    {"t": "p", "x": "Ez a hét oldal adja a márka alapjait. Mindegyik tetején egy „Röviden” doboz van: ha csak ennyit olvasol el, már tudod, mit használj és mit ne. A szavakat a [Szótár](szotar.html) magyarázza. Ha csak egy percet szánsz rá: [A márka 60 másodpercben](hatvan-masodperc.html)."},
     {"t": "szamozott", "elemek": ["[Pozíció](marka-pozicio.html): ki a beeco és miben hisz.", "[Hang és személyiség](marka-hang.html): hogyan szólunk.", "[Logó](logo.html): két változat, védőtér, tiltások.", "[Szín](szin.html): a méz és a többi.", "[Tipográfia](tipografia.html): két betű.", "[Méhecske és illusztráció](meh-illusztracio.html): ki beszél és ki rajzol.", "[Letöltések](letoltesek.html): a fájlok egy helyen."]},
     { "t": "h2", "x": "Mit találsz itt?" },
     { "t": "gen", "nev": "fejezetek" },
     { "t": "szabaly", "cim": "Jelölések az oldalakon", "elemek": [
-      "**Szabály** – jóváhagyott, kötelező.",
+      "**Jelvény nélküli keretes doboz** – jóváhagyott szabály, kötelező.",
       "**Hivatalos szöveg** – a beeco saját szövege, forrással.",
       "**Jóváhagyásra vár** – javaslat; amíg a beeco jóvá nem hagyja, ne használd véglegesként.",
       "**Korrigálandó** – vázlat forrás nélkül; a végleges szöveg még kell.",

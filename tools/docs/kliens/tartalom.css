@@ -349,3 +349,11 @@
 .bb-galeria-nev { display: flex; align-items: center; min-height: var(--bc-tap); padding: var(--bc-sp-2) var(--bc-sp-3); font-size: var(--bc-fs-s); font-weight: var(--bc-fw-semibold); line-height: var(--bc-lh-snug); }
 @media (hover: hover) and (pointer: fine) { .bb-galeria-kartya:hover { border-color: var(--bc-ink); box-shadow: var(--bc-shadow-s); } }
 .bb-kartya > .bb-mini { margin: calc(-1 * var(--bc-sp-5)) calc(-1 * var(--bc-sp-5)) var(--bc-sp-2); }
+
+/* ---- másolható szöveg ---- */
+.bb-masolhato { margin: var(--bc-sp-4) 0; }
+.bb-masolhato > figcaption { margin: 0 0 var(--bc-sp-2); font-weight: var(--bc-fw-bold); }
+.bb-masolhato-sor { display: flex; gap: var(--bc-sp-2); align-items: flex-start; }
+.bb-masolhato blockquote { flex: 1 1 auto; min-width: 0; margin: 0; padding: var(--bc-sp-3) var(--bc-sp-4); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-left-width: 8px; border-radius: var(--bc-r-m); }
+.bb-masolhato blockquote p { margin: 0; }
+.bb-masolhato blockquote p + p { margin-top: var(--bc-sp-2); }

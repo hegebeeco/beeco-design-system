@@ -1,0 +1,106 @@
+{
+  "id": "masolhato-szovegek",
+  "cim": "Másolható szövegek",
+  "alcim": "A márkakönyv saját, hivatalos mondatai kattintásra másolhatóan: bemutatkozás, szlogenek, példamondatok.",
+  "csoport": "alkalmazas",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "p",
+      "x": "Ezek a márkakönyv meglévő szövegei, szó szerint. Hogyan szólunk, azt a [Hang és személyiség](marka-hang.html) oldal magyarázza."
+    },
+    {
+      "t": "h2",
+      "x": "Bemutatkozás"
+    },
+    {
+      "t": "masolhato",
+      "cim": "A beeco egy mondatban",
+      "szoveg": "A beeco magyar fenntarthatósági ökoplatform: app, webjátékok, partnerprogram és közösség.",
+      "forras": [
+        "A beeco márkakönyve: Pozíció, Kik vagyunk"
+      ]
+    },
+    {
+      "t": "masolhato",
+      "cim": "Bemutatkozás 40 szóban",
+      "szoveg": "„Képzelj el egy világot, ahol a fenntartható megoldások elérhetőbbek mindenki számára! Találd meg a legzöldebb helyeket a közelben, kedvezményeket fenntartható vállalkozásoknál, eseményeket, ahol kapcsolódhatsz ökos közösségekhez! Ne hagyd, hogy az ökológiai válság megbénítson, mert rád is szükség van! Ha úgy érzed, baj van, csatlakozz hozzánk, és beezz a rajban!”",
+      "forras": [
+        "beeco brandbook v2 (belső márkadokumentum, 2026) – 40 szavas bemutatkozó"
+      ]
+    },
+    {
+      "t": "masolhato",
+      "cim": "Létezésünk oka",
+      "szoveg": "„Célunk, hogy motiváljuk és összekapcsoljuk az embereket és a zöld vállalkozásokat egy fenntartható, ökologikus életmód érdekében, hogy együtt zöldebb jövőt hagyhassunk a következő generációknak.”",
+      "forras": [
+        "A beeco márkakönyve: Pozíció, Létezésünk oka"
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Szlogenek"
+    },
+    {
+      "t": "masolhato",
+      "cim": "Fő szlogen",
+      "szoveg": "„Beezz a rajban!”",
+      "forras": [
+        "beeco brandbook v2 (belső márkadokumentum, 2026) – Szlogenek"
+      ]
+    },
+    {
+      "t": "masolhato",
+      "cim": "Fő szlogen angolul",
+      "szoveg": "„Bee the change!”",
+      "forras": [
+        "beeco brandbook v2 (belső márkadokumentum, 2026) – Szlogenek"
+      ]
+    },
+    {
+      "t": "masolhato",
+      "cim": "További szlogenek",
+      "szoveg": "„Time to bee eco!” · „Legyünk együtt ökohősök!” · „Az ökos döntések sokszor a legokosabbak.”",
+      "forras": [
+        "beeco brandbook v2 (belső márkadokumentum, 2026) – Szlogenek"
+      ]
+    },
+    {
+      "t": "p",
+      "x": "A szlogen közösségi poszt, plakát vagy esemény-meghívó végén áll, egyszer, nem halmozva. Gombra és jogi szövegbe nem kerül."
+    },
+    {
+      "t": "h2",
+      "x": "Példamondatok"
+    },
+    {
+      "t": "masolhato",
+      "cim": "Tegeződünk",
+      "szoveg": "„Kaptárs, ma egyetlen lépés: tedd a kulacsot a táskádba. Holnap már szokás lesz.”",
+      "forras": [
+        "A beeco márkakönyve: Hang és személyiség, Így hangzik"
+      ]
+    },
+    {
+      "t": "masolhato",
+      "cim": "Röviden",
+      "szoveg": "„Szombaton 10-től öntözünk a Kert utcában. Hozz kannát, ha van.”",
+      "forras": [
+        "A beeco márkakönyve: Hang és személyiség, Így hangzik"
+      ]
+    },
+    {
+      "t": "masolhato",
+      "cim": "Bátorítunk",
+      "szoveg": "„Köszönjük a visszajelzést, Kaptárs! Ez segít, hogy jobbak legyünk.”",
+      "forras": [
+        "A beeco márkakönyve: Hang és személyiség, Így hangzik"
+      ]
+    },
+    {
+      "t": "hianyzik",
+      "cim": "Kész eseményposzt, partnerlevél, meghívó",
+      "x": "Jóváhagyott, kész minta még nincs. Ide csak olyan szöveg kerül, amelyet a beeco jóváhagyott."
+    }
+  ]
+}

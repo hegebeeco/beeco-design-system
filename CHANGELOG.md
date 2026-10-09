@@ -18,6 +18,12 @@ Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt>
 * **Komponens-galéria** előnézettel a Komponensek áttekintőn és a kategóriaoldalakon; a kereső a táblázatok celláit és a magyar/angol szinonimákat is indexeli (`brandbook/elemek/szinonimak.json`).
 * **Új közreműködők:** „Első nap” oldal, `CONTRIBUTING.md`, PR- és issue-sablonok; az `llms.txt` bekerül a csomagba és a dokumentációs oldal gyökerébe (a `docs/ai-munkamod.md` és a `docs/komponensek.md` is a csomagba kerül).
 * **CI:** egy PR-push egyszer fut (ágon csak `pull_request`, `main`-en `push`), új push megszakítja az előzőt, a komponens-önteszt három részre osztva (`--shard=i/n`, `npm run test:alap` + `test:komponens`).
+* **ds-lint (2. hullám):** 8 új szabály (`named-color`, `motion-raw`, `font-weight-off`, `z-raw`, `tw-missing`, `tw-arbitrary`, `div-onclick`, `img-no-alt`). A régi racsni-fájl nem bukik tőlük: csak tájékoztat, amíg a projekt `npx beeco-ds-lint --update`-tel fel nem veszi őket. Saját teszt: `tests/check-ds-lint.js`.
+* **API-őr:** a tokenek ÉRTÉKVÁLTOZÁSÁT is figyeli (`dist/tokens.json` az előző címkéhez képest); ha változott, a CHANGELOG mostani szakaszában kell egy ⚠ sor, különben bukik (az 1.54.0 sötét `danger`/`ink-muted` változása így nem mehetne ki szó nélkül).
+* **Szabály-szinkron teszt** (`tests/check-szabaly-szinkron.js`): az érintési méret és a mozgás-idők a szabálykönyvekben és a dokumentációban egyezzenek a tokenekkel.
+* **Dokumentáció:** a komponensoldalon „Dokumentáció: teljes / hiányos (N)” jelvény (a „Stabil” a kiadási kort jelzi, ez a teljességet); az érintési méret hiánya csak kezelhető elemnél számít hiánynak. A Jóváhagyott szabály dobozain nincs jelvény, csak a kivételeken (Jóváhagyásra vár, Korrigálandó, Hiányzik, Tilos).
+* **Fogyasztó-sablonok:** `docs/fogyaszto-sablonok/` (Renovate-beállítás, ds-lint CI-lépés); a Telepítés oldalon „Automatikus frissítés”.
+* Brand Book: „A márka 60 másodpercben”, „Másolható szövegek” (kattintásra másolható, forrással), Lalezar TTF a Letöltésekben (tervezőprogramba), a betűletöltés a teljes `latin` WOFF2-re mutat, „Nyomdai kimenet” hiányzik-jelzés.
 * Brand Book: „Röviden” doboz, Szótár, sorszám a menüben az önkéntes úton, a színkódok lenyitható „Mérnököknek” sorban.
 
 ## 1.54.0 – 2026-10-08 – Szabály-feloldások (Javaslat 26): egységes árnyék-, sarok-, mozgás- és gombszabály, sötét módú kontrasztjavítás, új tokenek

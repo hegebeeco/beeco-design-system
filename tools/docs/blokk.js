@@ -8,7 +8,7 @@
    • A „gen” blokkokat az oldal-építő adja (ctx.gen), a motor nem tud a tartalomról.
    ============================================================ */
 'use strict';
-const { esc, inl, slug, href, OLDAL_LINK } = require('./alap');
+const { esc, inl, slug, href, OLDAL_LINK, ic } = require('./alap');
 
 /** Új renderelési környezet egy oldalhoz. */
 function kornyezet(oldalId, hibak, gen = {}) {
@@ -88,7 +88,7 @@ function dodont(b, ctx) {
   if (b.allapot === 'javaslat' && !(b.forras && b.forras.length)) ctx.hibak.push(`${ctx.oldal}: javaslat-szintű DO/DON'T forrás nélkül („${b.cim || ''}”)`);
   const c = kartyaCim(ctx, b.cim);
   const parok = (b.parok || []).map(p => `<div class="bb-dd-par">${ddFig(p.jo, true, ctx)}${ddFig(p.rossz, false, ctx)}${p.miert ? `<p class="bb-dd-miert is-kozos">${inl(p.miert)}</p>` : ''}</div>`).join('');
-  return `<section class="bb-dodont"${c.id ? ` aria-labelledby="${esc(c.id)}"` : ''}>${c.html ? `<div class="bb-blokk-fej">${jelveny(b.allapot)}${c.html}</div>` : ''}${parok}${forrasLista(b.forras)}</section>`;
+  return `<section class="bb-dodont"${c.id ? ` aria-labelledby="${esc(c.id)}"` : ''}>${c.html ? `<div class="bb-blokk-fej">${b.allapot === 'szabaly' ? '' : jelveny(b.allapot)}${c.html}</div>` : ''}${parok}${forrasLista(b.forras)}</section>`;
 }
 
 function tabla(fej, sorok, cim) {
@@ -112,13 +112,20 @@ function blokk(b, ctx) {
       const tor = (b.x ? [].concat(b.x).map(x => `<p>${inl(x)}</p>`).join('') : '') + (b.tabla ? tabla(b.tabla.fej, b.tabla.sorok, b.tabla.cim) : '') + (b.elemek ? lista(b.elemek) : '');
       return `<details class="bb-merno"><summary>${inl(b.cim || 'Mérnököknek')}</summary>${tor}</details>`;
     }
+    case 'masolhato': {
+      // Kész, másolható szöveg (idézet a márkakönyv saját szövegéből): forrás kötelező, a másolás gomb JS-sel jelenik meg
+      if (!(b.forras && b.forras.length)) ctx.hibak.push(`${ctx.oldal}: másolható szöveg forrás nélkül („${b.cim || ''}”)`);
+      const id = egyediId(ctx, `masol-${b.cim || b.szoveg.slice(0, 20)}`);
+      const sz = [].concat(b.szoveg);
+      return `<figure class="bb-masolhato"><figcaption>${inl(b.cim || '')}</figcaption><div class="bb-masolhato-sor"><blockquote id="${esc(id)}">${sz.map(x => `<p>${esc(x)}</p>`).join('')}</blockquote><button type="button" class="bc-btn is-ghost is-icon bb-masol" data-masol-cel="${esc(id)}" aria-label="${esc((b.cim || 'Szöveg') + ' másolása')}" hidden>${ic('masol')}</button></div>${forrasLista(b.forras)}</figure>`;
+    }
     case 'lista': return lista(b.elemek);
     case 'szamozott': return `<ol class="bb-list">${b.elemek.map(e => `<li>${inl(e)}</li>`).join('')}</ol>`;
     case 'szabaly': case 'javaslat': case 'hianyzik': case 'tilos': case 'hivatalos': case 'korrigalando': {
       if (['javaslat', 'hivatalos', 'korrigalando'].includes(b.t) && !(b.forras && b.forras.length)) ctx.hibak.push(`${ctx.oldal}: ${b.t}-blokk forrás nélkül („${b.cim || ''}”)`);
       const c = kartyaCim(ctx, b.cim);
       const tor = (b.x ? [].concat(b.x).map(p => `<p>${inl(p)}</p>`).join('') : '') + (b.elemek ? lista(b.elemek) : '');
-      return `<section class="bb-blokk is-${b.t}"${c.id ? ` aria-labelledby="${esc(c.id)}"` : ''}><div class="bb-blokk-fej">${jelveny(b.t)}${c.html}</div>${tor}${forrasLista(b.forras)}</section>`;
+      return `<section class="bb-blokk is-${b.t}"${c.id ? ` aria-labelledby="${esc(c.id)}"` : ''}><div class="bb-blokk-fej">${b.t === 'szabaly' ? '' : jelveny(b.t)}${c.html}</div>${tor}${forrasLista(b.forras)}</section>`;
     }
     case 'pelda': return dodont({ parok: [{ jo: { szoveg: b.jo, forma: b.forma, felirat: b.jo_felirat }, rossz: { szoveg: b.rossz, forma: b.forma, felirat: b.rossz_felirat }, miert: b.miert }] }, ctx);
     case 'dodont': return dodont(b, ctx);

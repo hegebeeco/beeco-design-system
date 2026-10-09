@@ -212,14 +212,16 @@ ${reactok.filter(([, d]) => d).map(([n, d]) => `<h4 id="propok-${A.slug(n)}">${e
     : hj('props', `${n}`)}${d.htmlAttr ? '<p class="bb-kicsi">A natív HTML-attribútumokat is továbbadja (<code>htmlAttr</code>).</p>' : ''}`).join('') || '<p class="bb-kicsi">Nincs React-prop: az elemet a CSS-osztályai vezérlik.</p>'}`;
 
   // Hozzáférhetőség
-  const magassag = rules.flatMap(r => [...r.test.matchAll(/min-height\s*:\s*([^;]+)/g)].map(m => [`\`${r.sel.replace(/\s+/g, ' ')}\``, `\`${m[1].trim()}\``, `\`${r.fajl.replace('termek/css/', '')}:${r.sor}\``]));
+  const mindRules = [...new Set((k.css || []).map(c => c.split(' ')[0]))].flatMap(c => szabalyok(c));
+  const magassag = mindRules.flatMap(r => [...r.test.matchAll(/min-height\s*:\s*([^;]+)/g)].map(m => [`\`${r.sel.replace(/\s+/g, ' ')}\``, `\`${m[1].trim()}\``, `\`${r.fajl.replace('termek/css/', '')}:${r.sor}\``]));
   const fokusz = (A.read('termek/css/bc-base.css').match(/:where\(:focus-visible\)\s*\{[^}]*\}/) || [''])[0];
   const a = k.a11y || {};
+  const kezelheto = Array.isArray(a.billentyuk) && a.billentyuk.length > 0;
   const a11y = `<h2 id="hozzaferhetoseg">Hozzáférhetőség</h2>
 <h3 id="aria">ARIA-szerep</h3>${a.szerep ? `<p>${inl(a.szerep)}</p>` : hj('a11y.szerep', 'ARIA-szerep: a natív elem és a szükséges ARIA-attribútumok', 'a11y')}
 <h3 id="billentyuk">Billentyűtérkép</h3>${Array.isArray(a.billentyuk) && a.billentyuk.length ? B.tabla(['Billentyű', 'Mit csinál'], a.billentyuk.map(billSor), 'Billentyűk') : hj('a11y.billentyuk', 'billentyű → művelet táblázat', 'a11y')}
 ${a.megjegyzes ? `<p>${inl(a.megjegyzes)}</p>` : ''}${forrasSor(k, 'a11y')}
-<h3 id="erintes">Érintési méret (a CSS-ből)</h3>${magassag.length ? B.tabla(['Szabály', 'min-height', 'Hol'], magassag, 'Legkisebb magasság') + `<p class="bb-kicsi"><code>--bc-tap</code> = ${A.json('tokens/core.json').tap} px (<code>tokens/core.json</code>).</p>` : hj('min-height', 'legkisebb magasság a CSS-ben', 'a11y')}
+<h3 id="erintes">Érintési méret (a CSS-ből)</h3>${magassag.length ? B.tabla(['Szabály', 'min-height', 'Hol'], magassag, 'Legkisebb magasság') + `<p class="bb-kicsi"><code>--bc-tap</code> = ${A.json('tokens/core.json').tap} px (<code>tokens/core.json</code>).</p>` : kezelheto ? hj('min-height', 'legkisebb magasság a CSS-ben', 'a11y') : '<p class="bb-kicsi">Nem kezelhető elem (nincs billentyűtérképe): az érintési méret nem releváns.</p>'}
 <h3 id="fokusz">Fókusz</h3>${fokusz ? `<p class="bb-kicsi">A közös alap (<code>termek/css/bc-base.css</code>) minden elemre ad látható fókuszkeretet:</p>${kodBlokk(fokusz, 'Fókusz-szabály')}` : hj('focus-visible', 'fókusz-szabály', 'a11y')}`;
 
   const fulek = [['iranyelvek', 'Irányelvek', iranyelvek], ['specifikacio', 'Specifikáció', specifikacio], ['kod', 'Kód', kod], ['hozzaferhetoseg', 'Hozzáférhetőség', a11y]];
@@ -230,6 +232,7 @@ ${a.megjegyzes ? `<p>${inl(a.megjegyzes)}</p>` : ''}${forrasSor(k, 'a11y')}
   const osszegzo = ful => { const l = hianyok[ful]; return l.length ? `<p class="bb-hiany-osszeg"><span class="bc-badge is-muted">Még hiányzik ezen az oldalon</span> ${l.map(([m, t]) => `<span class="bb-hiany-nev" data-mezo="${esc(m)}">${esc(t || m)}</span>`).join(' · ')}</p>` : ''; };
   const elotag = id => (id === 'specifikacio' || id === 'hozzaferhetoseg') ? osszegzo(id) : '';
   const kat = ctx.navKategoriaOf ? ctx.navKategoriaOf[kSlug(k.id)] : null;
+  const hianySzam = hianyok.specifikacio.length + hianyok.hozzaferhetoseg.length;
   // al-gyorsmenü: az aktív fül h3-szakaszai (görgetés helyett egy kattintás)
   const alful = t => { const l = [...t.matchAll(/<h3[^>]*\sid="([^"]+)"[^>]*>([\s\S]*?)<\/h3>/g)].map(m => [m[1], A.strip ? A.strip(m[2]) : m[2].replace(/<[^>]+>/g, '')]); return l.length > 1 ? `<nav class="bb-alful" aria-label="Szakaszok ezen a fülön"><ul role="list">${l.map(([id, c]) => `<li><a href="#${esc(id)}">${esc(c)}</a></li>`).join('')}</ul></nav>` : ''; };
   // élő, kipróbálható rész: a komponens tesztlapja a jobb oldali, rögzített panelben (iframe, lusta betöltés)
@@ -242,7 +245,7 @@ ${tl.length ? `<iframe class="bb-elo-keret" name="komp-demo" title="${esc(k.nev)
 <details class="bb-elo-html"><summary>Egyszerű HTML-minta</summary><div class="bb-demo" role="group" aria-label="${esc(k.nev)} – HTML-minta">${B.htmlEllenor(k.minta_html || '', ctx, 'minta_html')}</div></details>
 </div></aside>`;
   const torzs = `<div class="bb-komp-osztas"><div class="bb-komp-bal">
-<dl class="bb-komp-meta">${kat ? `<div><dt>Kategória</dt><dd><a href="${esc(kat.slug)}.html">${esc(kat.cim)}</a></dd></div>` : ''}${(k.react || []).length ? `<div><dt>React</dt><dd>${k.react.map(x => `<code>${esc(x)}</code>`).join('')}</dd></div>` : ''}<div><dt>Szint</dt><dd>${esc((KOMP.szintek.find(s => s.id === k.szint) || { nev: k.szint }).nev)}</dd></div><div><dt>Életciklus</dt><dd>${k.statusz ? B.statuszJelveny(k.statusz) : '<span class="bc-badge is-muted">Státusz: nincs döntés</span>'}</dd></div></dl>
+<dl class="bb-komp-meta">${kat ? `<div><dt>Kategória</dt><dd><a href="${esc(kat.slug)}.html">${esc(kat.cim)}</a></dd></div>` : ''}${(k.react || []).length ? `<div><dt>React</dt><dd>${k.react.map(x => `<code>${esc(x)}</code>`).join('')}</dd></div>` : ''}<div><dt>Szint</dt><dd>${esc((KOMP.szintek.find(s => s.id === k.szint) || { nev: k.szint }).nev)}</dd></div><div><dt>Életciklus</dt><dd>${k.statusz ? B.statuszJelveny(k.statusz) : '<span class="bc-badge is-muted">Státusz: nincs döntés</span>'}</dd></div><div><dt>Dokumentáció</dt><dd>${hianySzam ? `<span class="bc-badge is-warning">Hiányos (${hianySzam})</span>` : '<span class="bc-badge is-success">Teljes</span>'}</dd></div></dl>
 <div class="bb-fulek" data-fulek>
 <div class="bb-fulsor" role="tablist" aria-label="${esc(k.nev)} – dokumentáció" hidden>${fulek.map(([id, cim], i) => `<button type="button" class="bb-ful" role="tab" id="ful-${id}" aria-controls="panel-${id}" aria-selected="${i ? 'false' : 'true'}"${i ? ' tabindex="-1"' : ''}>${cim}</button>`).join('')}</div>
 ${fulek.map(([id, , t]) => `<section class="bb-panel" id="panel-${id}" data-ful="ful-${id}">${t.replace(/^(<h2[^>]*>[\s\S]*?<\/h2>)/, m => m + alful(t) + elotag(id))}</section>`).join('\n')}

@@ -1,0 +1,76 @@
+{
+  "id": "hatvan-masodperc",
+  "cim": "A márka 60 másodpercben",
+  "alcim": "Ha csak egy percet szánsz rá: ez a hét dolog, amitől egy anyag beecós.",
+  "csoport": "kezdes",
+  "statusz": "vázlat",
+  "blokkok": [
+    {
+      "t": "lead",
+      "x": "Hét szabály, mindegyik mögött egy oldal. Ha elakadsz, kattints a megfelelőre."
+    },
+    {
+      "t": "tabla",
+      "cim": "A hét dolog",
+      "fej": [
+        "Mire figyelj",
+        "Röviden",
+        "Részletek"
+      ],
+      "sorok": [
+        [
+          "A név",
+          "A „beeco” mindig kisbetűs, mondat elején és címben is.",
+          "[Logó](logo.html)"
+        ],
+        [
+          "A színek",
+          "Egy hangsúlyszín van: a méz. A mézen a szöveg mindig fekete.",
+          "[Szín](szin.html)"
+        ],
+        [
+          "A betűk",
+          "Lalezar a címhez, számhoz, gombhoz; minden más szöveg Open Sans.",
+          "[Tipográfia](tipografia.html)"
+        ],
+        [
+          "A hang",
+          "Tegeződünk, röviden és bátorítóan szólunk: tanítunk, nem szidunk.",
+          "[Hang és személyiség](marka-hang.html)"
+        ],
+        [
+          "A méhecske",
+          "Csak a kész, meglévő képeket használd. Mérges méhecske soha.",
+          "[Méhecske és illusztráció](meh-illusztracio.html)"
+        ],
+        [
+          "A logó",
+          "Körülötte legalább a logó magasságának fele üres. Külső anyagban a beeco jóváhagyása kell.",
+          "[Logó](logo.html)"
+        ],
+        [
+          "A szlogen",
+          "„Beezz a rajban!” – egyszer, nem halmozva; gombra és jogi szövegbe nem kerül.",
+          "[Másolható szövegek](masolhato-szovegek.html)"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Mielőtt kiadod"
+    },
+    {
+      "t": "szamozott",
+      "elemek": [
+        "A logó vagy a méhecske külső anyagban van? Akkor kell a beeco jóváhagyása ([Letöltések](letoltesek.html)).",
+        "Szám áll benne (letöltés, partner, csapat)? Csak a beeco Power BI felületéről vehető ([Pozíció](marka-pozicio.html)).",
+        "A színt nem egyedül hordozza a jelentést, a szöveg olvasható? ([Hozzáférhető tartalom](hozzaferheto-tartalom.html))."
+      ]
+    },
+    {
+      "t": "hianyzik",
+      "cim": "Kihez fordulj jóváhagyásért",
+      "x": "A jóváhagyó személye, a kapcsolati e-mail-cím és a határidő még nincs megadva a márkakönyvben."
+    }
+  ]
+}

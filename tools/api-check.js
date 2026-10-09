@@ -165,6 +165,15 @@ function pillanatkep(root, opt) {
 module.exports = { pillanatkep, reactApi, osszevet };
 
 /* ---------- 5. Viszonyítási pont: a legutóbbi címke ---------- */
+/** A dist/tokens.json értékeinek összevetése a viszonyítási címkével (a verzió mezőt kihagyja). */
+function tokenErtekValtozas(ref) {
+  let regi; try { regi = JSON.parse(git(['show', `${ref}:dist/tokens.json`])); } catch { return []; }
+  const uj = JSON.parse(fs.readFileSync(path.join(ROOT, 'dist/tokens.json'), 'utf8'));
+  const lapit = (o, ut = '', ki = {}) => { for (const [k, v] of Object.entries(o)) { if ((!ut && k === 'version') || k === '_readme') continue; if (v && typeof v === 'object') lapit(v, `${ut}${k}.`, ki); else ki[`${ut}${k}`] = v; } return ki; };
+  const a = lapit(regi), b = lapit(uj), ki = [];
+  for (const k of Object.keys(b)) if (k in a && a[k] !== b[k]) ki.push(`${k}: ${a[k]} → ${b[k]}`);
+  return ki;
+}
 function git(args) { return execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 256 << 20 }).trim(); }
 function alapPillanatkep(ref) {
   try { return JSON.parse(git(['show', `${ref}:api/api.json`])); } catch { /* a címkében még nincs pillanatkép → a fájlaiból építjük */ }
@@ -225,5 +234,15 @@ if (require.main === module) {
     if (foEmeles) console.log(`  (FŐ verzióemelés ${ref} → ${verzio}: a törő változás megengedett – a CHANGELOG írja le, mit kell a fogyasztóknak átírni)`);
     else { console.log('  → törő változás FŐ verzióemelés nélkül. Csak bővíts (docs/rendszer.md 7.), vagy egyeztess Kristóffal a FŐ verzióról.'); hiba = 1; }
   } else console.log('  nincs törő változás');
+  // Tokenérték-őr (1.55): a nevek változatlanok, de az ÉRTÉKEK (színszerepek, árnyék, sarok, idő…) a fogyasztók kinézetét változtatják.
+  // Ha változott érték, a CHANGELOG mostani szakaszában kell egy ⚠ sor, amely leírja – különben bukik (az 1.54.0 sötét danger/ink-muted MELLÉK kiadásként ment ki, szó nélkül).
+  const ertekValtozas = tokenErtekValtozas(ref);
+  if (ertekValtozas.length) {
+    console.log(`  ⚠ ${ertekValtozas.length} tokenérték változott ${ref} óta (a fogyasztók kinézete változik):`);
+    ertekValtozas.slice(0, 12).forEach((v) => console.log(`    ${v}`)); if (ertekValtozas.length > 12) console.log(`    … és még ${ertekValtozas.length - 12}`);
+    const cl = fs.readFileSync(path.join(ROOT, 'CHANGELOG.md'), 'utf8');
+    const m = cl.match(new RegExp(`^## (?:Készül|${verzio.replace(/\./g, '\\.')})\\b[\\s\\S]*?(?=^## )`, 'm'));
+    if (!m || !m[0].includes('⚠')) { console.log('  → a CHANGELOG mostani szakaszában nincs ⚠ sor az értékváltozásról. Írd le, mit lát a fogyasztó, és tedd a sor elé: ⚠'); hiba = 1; }
+  }
   process.exit(hiba);
 }
