@@ -31,9 +31,9 @@ Index: **`docs/AI.md`** (először ezt); katalógus: `docs/komponens-katalogus.m
 - **Csak tokenek / szerepek:** CSS `var(--bc-ink)`, SCSS `bc.$bc-ink` / `bc.sp(4)`, Tailwind `text-ink bg-accent shadow-m rounded-m`,
   Dart `BeecoRoles.light.ink`. Nyers szín, nyers px betűméret/sarok/árnyék: tilos. A Tailwind alap-palettája (`gray-100`) nem létezik.
 - **Szöveg a mézen mindig `on-accent`** (sötét módban is fekete).
-- **Árnyék:** kemény, átlós, elmosás nélkül (`shadow-s/m/l`); puha árnyék a termékbőrben nincs.
+- **Árnyék:** kattintható és kiemelt elemen kemény, átlós, elmosás nélkül (`shadow-s/m/l`); nem kattintható információs dobozon (kártya, statisztika, táblázat) `shadow-soft` (`docs/termek-arculat.md` 6/A, DESIGN.md).
 - **Betű:** Lalezar csak cím/szám/gomb, Open Sans minden más; 12 px alatt nincs szöveg; vastagság 400/600/700.
-- **Mozgás:** ≤ 300 ms, `ease-out`; `ease-in` tilos; hover csak `(hover:hover) and (pointer:fine)`.
+- **Mozgás:** UI-visszajelzés ≤ 300 ms, `ease-out`; fiók 400 ms; belépő/dekoratív ≤ 900 ms, csökkentett mozgásnál ki (`--bc-t-*` tokenek); `ease-in` tilos; hover csak `(hover:hover) and (pointer:fine)`. A számok forrása: `docs/AI.md` 6. szabály.
 - **Hozzáférhetőség:** 44 px érintés, látható fókusz (`:focus-visible`), ikongombon `aria-label`, ablak natív `<dialog>` vagy fókuszcsapda + Esc,
   hibánál `aria-invalid` + `aria-describedby`, kattintható elem `<a>`/`<button>` (nem `div`).
 - **Gombok (6/A):** kompakt helyen (sor, eszközsáv, kártya-fejléc, csempe) mentés/törlés/új/info/szerkesztés csak piktogram `TooltipIconButton`-nal; az oldal fő gombja, az űrlap Mentése és a törlés megerősítése szöveg + piktogram. Szöveges gombon is piktogram (`IcSave`, `IcTrash`, `IcNew`, `IcEdit`, `IcOpen`, `IcInfo`). Piktogram és betű függőlegesen középen; mező-sorok alulra igazítva.
@@ -57,7 +57,7 @@ Tesztlap (`termek/tesztlapok/<komponens>.html`) minden állapottal és a széls�
 
 ## 6. Beépítés egy projektbe
 ```bash
-npm install github:hegebeeco/beeco-design-system#v1.15.0
+npm install github:hegebeeco/beeco-design-system#v<VERSION>   # a mostani címke: a repó VERSION fájlja / dokumentációs oldal Telepítés
 npx beeco-ds-lint --init        # racsni: a mostani állapot felírva
 ```
 CSS: `import '@beeco/design-system/termek.css'` · SCSS: `@use '@beeco/design-system/dist/scss/beeco' as bc;` ·

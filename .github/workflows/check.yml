@@ -1,9 +1,15 @@
 name: DS-ellenőrzés
+# Egy PR-push egyszer fusson: ágon csak a PR-ellenőrzés, a main-en a push. Új push megszakítja az előzőt.
 on:
   push:
+    branches: [main]
   pull_request:
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   check:
+    # alap: dist, types, weboldal, AI.md friss, API-őr, kontraszt, párosság, játékbőr, repó-higiénia, docs (a komponens-önteszt nélkül)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,7 +21,29 @@ jobs:
           cache: npm
       - name: Függőségek
         run: npm ci
-      - name: Chromium a komponens-önteszthez
+      - name: Tesztek (komponens-önteszt nélkül)
+        run: npm run test:alap
+  komponens:
+    # a komponens-önteszt (8 nézet × világos/sötét, axe, kontraszt, 44 px, billentyű) három részre osztva
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        resz: [1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Függőségek
+        run: npm ci
+      - name: Chromium (gyorsítótárból, ha van)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - name: Chromium telepítése
         run: npx playwright install --with-deps chromium
-      - name: Tesztek (dist + types + weboldal + AI.md friss, API-őr, kontraszt, párosság, elemek, komponens-önteszt, játékbőr, repó-higiénia)
-        run: npm test
+      - name: Komponens-önteszt (${{ matrix.resz }}/3)
+        run: node tests/check-komponensek.js --shard=${{ matrix.resz }}/3

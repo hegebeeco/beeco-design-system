@@ -261,7 +261,8 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
 .bb-cikk:has(.bb-komp-osztas) .bb-oldalfej { max-width: var(--bb-olvas); }
 .bb-komp-osztas { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: var(--bc-sp-6); align-items: start; }
 .bb-komp-bal { min-width: 0; }
-.bb-komp-bal .bb-fulsor { position: sticky; top: var(--bb-fej-h); z-index: var(--bc-z-sticky); margin-bottom: var(--bc-sp-4); padding-top: var(--bc-sp-1); background: var(--bc-bg); }
+.bb-komp-bal .bb-ful { padding: 0 var(--bc-sp-3); }
+.bb-komp-bal .bb-fulsor { flex-wrap: wrap; position: sticky; top: var(--bb-fej-h); z-index: var(--bc-z-sticky); margin-bottom: var(--bc-sp-4); padding-top: var(--bc-sp-1); background: var(--bc-bg); }
 .bb-komp-jobb { position: sticky; top: calc(var(--bb-fej-h) + var(--bc-sp-4)); min-width: 0; }
 .bb-elo { display: flex; flex-direction: column; gap: var(--bc-sp-2); height: calc(100dvh - var(--bb-fej-h) - var(--bc-sp-6)); min-height: 24rem; }
 .bb-elo-fej { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-3); }

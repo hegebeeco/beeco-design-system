@@ -3,6 +3,7 @@
   "cim": "Szín",
   "alcim": "Egy hangsúlyszín van, a méz. A felületen nem a nyers színt, hanem a szerepét használod – így a sötét mód és a két bőr magától működik.",
   "csoport": "alapok",
+  "kulcsszavak": "másodlagos szöveg szövegszín text color secondary text halvány szürke szöveg sötét mód dark mode ink-soft ink-muted danger piros hibaszín szín token",
   "statusz": "vázlat",
   "blokkok": [
     {
