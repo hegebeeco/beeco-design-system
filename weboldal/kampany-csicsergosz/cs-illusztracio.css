@@ -63,8 +63,8 @@
 /* Szalagcím: kakaó szalag fehér Lalezarral (kicker = kis szalag, hero H1 = két szint) */
 .cs_szalag{display:inline-block;background:var(--cs-c-kakao);color:#fff;font-family:Lalezar,sans-serif;font-weight:400;line-height:1;padding:.32em .7em .16em;clip-path:polygon(0 6%,100% 0,98.5% 100%,1.5% 94%)}
 .cs_h1_szalag{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin:12px 0 18px}
-.cs_szalag--kicsi{font-size:clamp(20px,2.2vw,30px);transform:rotate(-1.5deg)}
-.cs_szalag--nagy{font-size:clamp(38px,4.6vw,64px);margin-left:clamp(16px,4vw,64px);transform:rotate(-1deg)}
+.cs_szalag--kicsi{font-size:26px;transform:rotate(-1.5deg)}
+.cs_szalag--nagy{font-size:56px;margin-left:clamp(16px,4vw,64px);transform:rotate(-1deg)}
 section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!important;padding:.55em 1em .4em;clip-path:polygon(0 8%,100% 0,98% 100%,2% 92%);letter-spacing:.08em}
 .cs_horgony .cs_kicker,.cs_sotet .cs_kicker{background:var(--cs-c-mez);color:var(--cs-c-kakao)!important}
 
@@ -99,7 +99,7 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 .cs-panel-csicser--eteto{left:8%}
 
 /* Megfigyelés: döntött telefonkeret és összekötő szaggatott vonal */
-.cs_folyamat_ui{border:8px solid #1A1A1A!important;border-radius:26px!important;box-shadow:0 10px 24px rgba(107,59,22,.18)}
+.cs_folyamat_ui{border:8px solid #1A1A1A!important;border-radius:26px!important;box-shadow:none!important}
 .cs_folyamat_lepes:nth-child(1) .cs_folyamat_ui{transform:rotate(-3deg)}
 .cs_folyamat_lepes:nth-child(2) .cs_folyamat_ui{transform:rotate(2.5deg)}
 .cs_folyamat_lepes:not(:last-child){position:relative}
@@ -126,9 +126,10 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 .cs-utvonal_pont.cs-bejart::before{background:var(--cs-c-kakao);border-color:var(--cs-c-kakao)}
 .cs-utvonal_pont[aria-current]::before{background:var(--cs-c-mez);border-color:var(--cs-c-kakao)}
 .cs-utvonal_pont:focus-visible{outline:3px solid var(--cs-c-kakao);outline-offset:-4px}
-.cs-utvonal_cimke{position:absolute;right:44px;white-space:nowrap;padding:6px 10px 4px;background:var(--cs-c-kakao);color:#fff;font:400 15px/1 Lalezar,sans-serif;clip-path:polygon(0 8%,100% 0,98% 100%,2% 92%);opacity:0;transform:translateX(6px);transition:opacity 160ms ease-out,transform 160ms cubic-bezier(.23,1,.32,1);pointer-events:none}
+.cs-utvonal_cimke{position:absolute;right:44px;white-space:nowrap;padding:6px 10px 4px;background:var(--cs-c-kakao);color:#fff;font:400 16px/1 Lalezar,sans-serif;clip-path:polygon(0 8%,100% 0,98% 100%,2% 92%);opacity:0;transform:translateX(6px);transition:opacity 160ms ease-out,transform 160ms cubic-bezier(.23,1,.32,1);pointer-events:none}
 .cs-utvonal_pont:hover .cs-utvonal_cimke,.cs-utvonal_pont:focus-visible .cs-utvonal_cimke{opacity:1;transform:none}
 @media (max-width:767px){.cs-utvonal{display:none}}
 @media (min-width:768px){section .alap-blokk,section .w-container{padding-right:72px;padding-left:72px}}
 @media (prefers-reduced-motion:reduce){.cs-setalo{animation:none}}
 @media (max-width:767px){.cs_partnertabla{flex-wrap:wrap;gap:8px 12px;padding:12px 18px}.cs_partnertabla .cs_mme_sor_txt{flex:1 0 100%;max-width:none}}
+@media (max-width:767px){.cs_szalag--kicsi{font-size:20px}.cs_szalag--nagy{font-size:40px}}
