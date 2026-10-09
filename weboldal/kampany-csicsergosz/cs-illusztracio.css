@@ -1,0 +1,134 @@
+/* Csicsergősz illusztrációk és a madár pózai. Párja: cs-illusztracio.js (az SVG-ket ő fűzi be).
+   Póz: <svg class="cs-csicser" data-poz="alap|setalgat|eszeget|repdes|csicsereg">. A forgáspontok a madár viewBox-koordinátáiban. */
+.cs-csicser{display:block;width:100%;height:auto;overflow:visible}
+.cs-csicser g{transform-box:view-box}
+.cs-cs-csukott,.cs-cs-hang,.cs-cs-mag{opacity:0;transition:opacity 160ms ease-out}
+.cs-cs-szem{transition:opacity 120ms ease-out}
+
+/* alap: pislog */
+.cs-cs-szem-b{transform-origin:20px 44px}.cs-cs-szem-j{transform-origin:49px 46px}
+[data-poz="alap"] .cs-cs-szem{animation:cs-pislog 4.2s infinite}
+@keyframes cs-pislog{0%,93%,100%{transform:scaleY(1)}95.5%{transform:scaleY(.12)}}
+
+/* sétálgat: bólogat, lábat vált */
+.cs-cs-lab-b{transform-origin:41px 100px}.cs-cs-lab-j{transform-origin:70px 104px}
+[data-poz="setalgat"] .cs-cs-egesz{animation:cs-bolint .36s ease-in-out infinite alternate}
+[data-poz="setalgat"] .cs-cs-lab-b{animation:cs-lep .36s ease-in-out infinite alternate}
+[data-poz="setalgat"] .cs-cs-lab-j{animation:cs-lep .36s ease-in-out infinite alternate-reverse}
+@keyframes cs-bolint{from{transform:translateY(0)}to{transform:translateY(-3px)}}
+@keyframes cs-lep{from{transform:rotate(-14deg)}to{transform:rotate(12deg)}}
+
+/* eszeget: lehajol a magokhoz */
+.cs-cs-test{transform-origin:56px 104px}
+[data-poz="eszeget"] .cs-cs-mag{opacity:1}
+[data-poz="eszeget"] .cs-cs-test{animation:cs-csip 1.4s cubic-bezier(.23,1,.32,1) infinite}
+@keyframes cs-csip{0%,100%{transform:rotate(0)}28%{transform:rotate(-50deg)}40%{transform:rotate(-38deg)}52%{transform:rotate(-50deg)}70%{transform:rotate(-8deg)}}
+
+/* repdes: szárnycsapás, lebeg */
+.cs-cs-szarny-j{transform-origin:68px 68px}.cs-cs-szarny-b{transform-origin:10px 58px}
+[data-poz="repdes"] .cs-cs-szarny-j{animation:cs-csap-j .18s ease-in-out infinite alternate}
+[data-poz="repdes"] .cs-cs-szarny-b{animation:cs-csap-b .18s ease-in-out infinite alternate}
+[data-poz="repdes"] .cs-cs-egesz{animation:cs-lebeg .36s ease-in-out infinite alternate}
+[data-poz="repdes"] .cs-cs-lab{transform:rotate(22deg)}
+@keyframes cs-csap-j{from{transform:rotate(-64deg)}to{transform:rotate(10deg)}}
+@keyframes cs-csap-b{from{transform:rotate(46deg)}to{transform:rotate(-8deg)}}
+@keyframes cs-lebeg{from{transform:translateY(-6px)}to{transform:translateY(2px)}}
+
+/* csicsereg: lehunyt szem, hangjegyek */
+.cs-cs-csor{transform-origin:32px 56px}
+[data-poz="csicsereg"] .cs-cs-szem{opacity:0}
+[data-poz="csicsereg"] .cs-cs-csukott{opacity:1}
+[data-poz="csicsereg"] .cs-cs-csor{animation:cs-dalol .32s ease-in-out infinite alternate}
+[data-poz="csicsereg"] .cs-cs-hang{opacity:1;animation:cs-hang 1.6s ease-out infinite}
+@keyframes cs-dalol{from{transform:rotate(0)}to{transform:rotate(-7deg)}}
+@keyframes cs-hang{0%{transform:translateY(8px);opacity:0}25%{opacity:1}100%{transform:translateY(-14px);opacity:0}}
+
+/* Illusztrációk */
+.cs-illu{display:block;width:100%;height:auto}
+.cs-i-csepp{transform-box:view-box;transform-origin:862px 60px}
+
+/* Csak láthatóság alatt fusson; csökkentett mozgásnál csak a póz marad */
+.cs-csicser.cs-all *{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){.cs-csicser *,.cs-csicser{animation:none!important}}
+
+/* ===== Arculati réteg (brand board: 8 szín) ===== */
+:root{--cs-c-krem:#FEF7DE;--cs-c-barack:#FFE2B5;--cs-c-homok:#CB9C7E;--cs-c-barna:#A87552;--cs-c-dio:#905E39;--cs-c-kakao:#6B3B16;--cs-c-mez:#FFAA2E;--cs-c-narancs:#EA6C18}
+
+/* Dombok a ferde vágás helyett */
+.cs-van-domb[data-cs-ferde]::before{display:none}
+.cs-van-domb{position:relative}
+.cs-domb{position:absolute;left:0;top:-1px;width:100%;height:clamp(44px,5vw,84px);z-index:0;pointer-events:none}
+.cs-van-domb>*:not(.cs-domb):not(.cs-taj_hatter):not(.cs_dekor){position:relative;z-index:1}
+
+/* Szalagcím: kakaó szalag fehér Lalezarral (kicker = kis szalag, hero H1 = két szint) */
+.cs_szalag{display:inline-block;background:var(--cs-c-kakao);color:#fff;font-family:Lalezar,sans-serif;font-weight:400;line-height:1;padding:.32em .7em .16em;clip-path:polygon(0 6%,100% 0,98.5% 100%,1.5% 94%)}
+.cs_h1_szalag{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin:12px 0 18px}
+.cs_szalag--kicsi{font-size:clamp(20px,2.2vw,30px);transform:rotate(-1.5deg)}
+.cs_szalag--nagy{font-size:clamp(38px,4.6vw,64px);margin-left:clamp(16px,4vw,64px);transform:rotate(-1deg)}
+section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!important;padding:.55em 1em .4em;clip-path:polygon(0 8%,100% 0,98% 100%,2% 92%);letter-spacing:.08em}
+.cs_horgony .cs_kicker,.cs_sotet .cs_kicker{background:var(--cs-c-mez);color:var(--cs-c-kakao)!important}
+
+/* Partnertábla: fehér, szabálytalan sokszög */
+.cs_partnertabla{display:inline-flex!important;align-items:center;gap:14px;padding:14px 26px 14px 22px;background:#fff;clip-path:polygon(3% 10%,100% 0,97% 92%,0 100%);filter:drop-shadow(0 2px 0 rgba(107,59,22,.25))}
+.cs_partnertabla_beeco{height:28px;width:auto}
+.cs_partnertabla_valaszto{width:2px;align-self:stretch;background:var(--cs-c-kakao);opacity:.6}
+.cs_partnertabla .cs_mme_sor_txt{max-width:230px;font-size:13px;line-height:1.3;color:var(--cs-c-kakao)}
+
+/* Táj: dombok és fák a hero és a záró blokk alján */
+.cs-taj{position:relative;overflow:hidden}
+.dia_kek_ov.cs.cs-taj{background:linear-gradient(var(--cs-c-krem) 0 55%,var(--cs-c-barack) 100%)}
+.cs-taj_hatter{position:absolute;inset:0;z-index:0;pointer-events:none}
+.cs-taj_domb{position:absolute;left:0;bottom:0;width:100%;height:min(26%,220px)}
+.cs-taj_fa{position:absolute;bottom:4%;width:clamp(90px,11vw,170px);height:auto}
+.cs-taj_fa--bal{left:-2.5%}.cs-taj_fa--jobb{right:-2%}
+.cs-taj>*:not(.cs-taj_hatter){position:relative;z-index:1}
+@media (max-width:767px){.cs-taj_fa{width:80px;opacity:.9}.cs-taj_fa--bal{left:-30px}.cs-taj_fa--jobb{right:-30px}}
+
+/* Hero madár a telefon mellett */
+.cs_mockup{position:relative}
+.cs-hero-csicser{position:absolute;width:clamp(64px,7vw,96px);left:-14%;top:30%;z-index:3}
+
+/* Illusztrációs panelek a kártyákon (fotók helyett) */
+.cs_foto_rejtett{display:none!important}
+.cs_illu_panel{position:relative;display:flex;align-items:flex-end;justify-content:center;aspect-ratio:4/3;width:100%;border-radius:12px;background:linear-gradient(var(--cs-c-krem) 0 62%,var(--cs-c-barack) 62% 100%);overflow:hidden;margin-bottom:16px}
+.cs_illu_panel .cs-illu{width:auto;height:78%;max-width:80%}
+.dia_green_ov.cs .cs_illu_panel{aspect-ratio:16/10}
+.dia_green_ov.cs .cs_illu_panel .cs-illu{height:72%}
+.dia_kek_ov.cs .cs-hm1,.dia_kek_ov.cs .cs-hm2,.dia_kek_ov.cs .cs-hm-uzenet{display:none!important}
+.cs-panel-csicser{position:absolute;width:22%;left:10%;bottom:6%}
+.cs-panel-csicser--eteto{left:8%}
+
+/* Megfigyelés: döntött telefonkeret és összekötő szaggatott vonal */
+.cs_folyamat_ui{border:8px solid #1A1A1A!important;border-radius:26px!important;box-shadow:0 10px 24px rgba(107,59,22,.18)}
+.cs_folyamat_lepes:nth-child(1) .cs_folyamat_ui{transform:rotate(-3deg)}
+.cs_folyamat_lepes:nth-child(2) .cs_folyamat_ui{transform:rotate(2.5deg)}
+.cs_folyamat_lepes:not(:last-child){position:relative}
+.cs_folyamat_lepes:not(:last-child)::after{content:"";position:absolute;left:18%;right:18%;bottom:-38px;height:36px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 36' preserveAspectRatio='none'%3E%3Cpath d='M0 6 C120 40 280 -4 400 30' fill='none' stroke='%23A87552' stroke-width='2.5' stroke-dasharray='8 8'/%3E%3C/svg%3E") center/100% 100% no-repeat;pointer-events:none}
+.cs_folyamat_vizual{position:relative}
+.cs-lepes-csicser{position:absolute;width:76px;right:-18px;top:-46px}
+.cs_folyamat_szoveg .cs_folyamat_cim{display:inline-block}
+@media (max-width:767px){.cs_folyamat_lepes .cs_folyamat_ui{transform:none!important}.cs_folyamat_lepes:not(:last-child)::after{display:none}.cs-lepes-csicser{right:0}}
+
+/* Közösség: sétáló madár a sziget tetején */
+.cs-setalo_sav{position:relative;height:0;max-width:1100px;margin:0 auto}
+.cs-setalo{position:absolute;width:56px;bottom:-6px;left:0;animation:cs-setal 14s linear infinite}
+@keyframes cs-setal{0%{transform:translateX(24px)}48%{transform:translateX(calc(min(1100px,100vw) - 120px))}50%{transform:translateX(calc(min(1100px,100vw) - 120px)) scaleX(-1)}98%{transform:translateX(24px) scaleX(-1)}100%{transform:translateX(24px)}}
+.cs-setalo.cs-all{animation-play-state:paused}
+
+/* ===== Útvonal-jelző (asztali) ===== */
+.cs-utvonal{position:fixed;top:0;right:6px;width:64px;height:100vh;z-index:40;pointer-events:none}
+.cs-utvonal_svg{position:absolute;top:92px;left:0;width:64px;overflow:visible}
+.cs-utvonal_alap{fill:none;stroke:var(--cs-c-barna);stroke-width:2.5;stroke-dasharray:7 8;opacity:.85}
+.cs-utvonal_bejart{fill:none;stroke:var(--cs-c-kakao);stroke-width:3;stroke-linecap:round}
+.cs-utvonal_madar{position:absolute;top:0;left:0;width:44px;transform-origin:22px 0;will-change:transform}
+.cs-utvonal_pont{position:absolute;top:0;left:0;width:44px;height:44px;display:flex;align-items:center;justify-content:center;pointer-events:auto;border-radius:50%}
+.cs-utvonal_pont::before{content:"";width:12px;height:12px;border-radius:50%;background:#fff;border:2.5px solid var(--cs-c-barna);transition:background 160ms ease-out,border-color 160ms ease-out}
+.cs-utvonal_pont.cs-bejart::before{background:var(--cs-c-kakao);border-color:var(--cs-c-kakao)}
+.cs-utvonal_pont[aria-current]::before{background:var(--cs-c-mez);border-color:var(--cs-c-kakao)}
+.cs-utvonal_pont:focus-visible{outline:3px solid var(--cs-c-kakao);outline-offset:-4px}
+.cs-utvonal_cimke{position:absolute;right:44px;white-space:nowrap;padding:6px 10px 4px;background:var(--cs-c-kakao);color:#fff;font:400 15px/1 Lalezar,sans-serif;clip-path:polygon(0 8%,100% 0,98% 100%,2% 92%);opacity:0;transform:translateX(6px);transition:opacity 160ms ease-out,transform 160ms cubic-bezier(.23,1,.32,1);pointer-events:none}
+.cs-utvonal_pont:hover .cs-utvonal_cimke,.cs-utvonal_pont:focus-visible .cs-utvonal_cimke{opacity:1;transform:none}
+@media (max-width:767px){.cs-utvonal{display:none}}
+@media (min-width:768px){section .alap-blokk,section .w-container{padding-right:72px;padding-left:72px}}
+@media (prefers-reduced-motion:reduce){.cs-setalo{animation:none}}
+@media (max-width:767px){.cs_partnertabla{flex-wrap:wrap;gap:8px 12px;padding:12px 18px}.cs_partnertabla .cs_mme_sor_txt{flex:1 0 100%;max-width:none}}

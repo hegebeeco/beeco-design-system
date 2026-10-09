@@ -154,7 +154,7 @@
       var r = relativ(tel, mock); if (!r.w) return false;
       var k = r.w * 0.42, mw = mock.clientWidth;
       function sz(x, meret) { return Math.max(4, Math.min(mw - meret - 4, x)); } /* a kellék a képben marad */
-      function kell(nev, x, y, sz_) { var i = d.createElement('img'); i.className = 'cs-kellek cs-kellek--' + nev; i.src = KELLEK[nev]; i.alt = ''; i.setAttribute('aria-hidden', 'true'); i.style.left = Math.round(x) + 'px'; i.style.top = Math.round(y) + 'px'; i.style.width = Math.round(sz_) + 'px'; mock.appendChild(i); kellekek[nev] = { x: x, y: y, s: sz_ }; }
+      function kell(nev, x, y, sz_) { var i = d.createElement('img'); i.className = 'cs-kellek cs-kellek--' + nev; i.src = (w.CSI && w.CSI.dataUri && w.CSI.dataUri(nev)) || KELLEK[nev]; i.alt = ''; i.setAttribute('aria-hidden', 'true'); i.style.left = Math.round(x) + 'px'; i.style.top = Math.round(y) + 'px'; i.style.width = Math.round(sz_) + 'px'; mock.appendChild(i); kellekek[nev] = { x: x, y: y, s: sz_ }; }
       kell('odu', sz(r.x + r.w + k * 0.15, k * 0.8), r.y - k * 0.1, k * 0.8);
       kell('itato', sz(r.x + r.w + k * 0.1, k), r.y + r.h - k * 0.95, k);
       kell('eteto', sz(r.x - k * 1.15, k), r.y + r.h * 0.18, k);
