@@ -12,7 +12,7 @@ body{margin:0!important}
 .cs_fejlec a:focus-visible{outline:3px solid #6B3B16;outline-offset:2px;border-radius:8px}
 .cs_fejlec .button_main.cs_fejlec_cta{min-height:44px;padding:10px 16px 8px;text-decoration:none}
 @media (max-width:991px){.cs_fejlec_belso{flex-wrap:wrap;gap:8px 16px}.cs_fejlec_menu{order:3;width:100%;margin-left:0;overflow-x:auto;scrollbar-width:none}.cs_fejlec_cta{margin-left:auto}}
-@media (max-width:767px){.cs_fejlec{position:static}.cs_fejlec_cta{display:none!important}.cs_fejlec_belso{padding:8px 12px}.cs_fejlec_link{padding:0 10px;font-size:15px;white-space:nowrap}}
+@media (max-width:767px){.cs_fejlec{position:static}.cs_fejlec_cta{display:none!important}.cs_fejlec_belso{padding:8px 12px}.cs_fejlec_menu{flex-wrap:wrap;overflow:visible;gap:0}.cs_fejlec_link{padding:0 10px;font-size:15px;white-space:nowrap}.dia_kek_ov.cs .cs_mockup{margin-top:88px}}
 
 /* Hero: szöveg balra, telefon jobbra, Gabee kicsi kiegészítő */
 .dia_kek_ov.cs .cs_mockup_kabala{width:30%!important;max-width:150px}
