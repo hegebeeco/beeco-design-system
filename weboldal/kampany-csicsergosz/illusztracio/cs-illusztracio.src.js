@@ -72,17 +72,20 @@
     }
     return s + '</svg>';
   }
-  var KREM = '#FEF7DE', BARACK = '#FFE2B5', HOMOK = '#CB9C7E', BARNA = '#A87552', KAKAO = '#6B3B16', FEHER = '#FFFFFF';
+  /* Napszak-ív: a hero reggeli krémje után krém és barack váltakozik, a GYIK-kal alkonyodik, a záró jelenet alkonyati.
+     Minden határon az előző szekció színe nyúlik be dombgerincként (a hero alja Ági borítójának talaja). */
+  var KREM = '#FEF7DE', BARACK = '#FFE2B5', HOMOK = '#CB9C7E', BARNA = '#A87552', KAKAO = '#6B3B16', TALAJ = '#B7805C';
   [
-    ['.dia_ov_light.cs_horgony', [BARACK, BARNA]],
-    ['.dia_green_ov.cs', [KAKAO, BARNA]],
-    ['#HOWTO', [BARACK]],
-    ['#fotofal', [KREM]],
-    ['.dia_green_ov.cs_feher', [BARACK]],
-    ['#segits', [FEHER]],
+    ['.dia_ov_light.cs_horgony', [TALAJ]],
+    ['.dia_green_ov.cs', [KREM]],
+    ['.dia_kek.cs:not(#fotofal):not(#download)', [BARACK]],
+    ['#HOWTO', [KREM]],
+    ['#fotofal', [BARACK]],
+    ['.dia_green_ov.cs_feher', [KREM]],
+    ['#segits', [BARACK]],
     ['.dia_kek_ov.cs_sotet', [KREM, HOMOK, BARNA]],
     ['#download', [KAKAO, BARNA]],
-    ['.cs_lab', [BARACK]]
+    ['.cs_lab', [BARNA]]
   ].forEach(function (x) { var s = d.querySelector(x[0]); if (s) { s.classList.add('cs-van-domb'); s.insertBefore(elem(domb(x[1])), s.firstChild); } });
 
   function levelek(tartaly, db) {
@@ -131,6 +134,20 @@
           var p = rJobb.createSVGPoint(); p.x = 2317; p.y = 181; p = p.matrixTransform(ctm);
           dx = p.x - (r.left + r.width / 2); dy = p.y - (r.top + r.height * 0.6);
         }
+        /* Egy főszereplő: asztalon a madár az odúból egyenesen a jobb oldali útvonalra repül, és onnan kísér végig. */
+        var sin = d.querySelector('.cs-utvonal_madar');
+        if (sin && sin.offsetParent !== null) {
+          var sr = sin.getBoundingClientRect(), rx = sr.left + sr.width / 2 - (r.left + r.width / 2), ry = sr.top + sr.height * 0.5 - (r.top + r.height / 2), sk = sr.width / r.width;
+          hm.animate([
+            { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.14)', opacity: 0 },
+            { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.3)', opacity: 1, offset: 0.12 },
+            { transform: 'translate(' + ((dx + rx) / 2) + 'px,' + (Math.min(dy, ry) - 70) + 'px) scale(' + ((0.3 + sk) / 2) + ')', offset: 0.55 },
+            { transform: 'translate(' + rx + 'px,' + ry + 'px) scale(' + sk + ')', opacity: 1 }
+          ], { duration: 2100, easing: 'cubic-bezier(.45,0,.25,1)', fill: 'forwards' }).finished.then(function () {
+            hm.remove(); d.dispatchEvent(new CustomEvent('cs:atadas'));
+          });
+          return;
+        }
         hm.animate([
           { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.14)', opacity: 0 },
           { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.3)', opacity: 1, offset: 0.12 },
@@ -160,52 +177,18 @@
   var harmas = d.querySelectorAll('.cs_harmas > .card'), kellekek = [];
   if (harmas.length === 3) kellekek = [kepCsere(harmas[0].querySelector('img'), 'itato'), kepCsere(harmas[1].querySelector('img'), 'eteto'), kepCsere(harmas[2].querySelector('img'), 'odu')];
 
-  /* 5. Látogatások a Gondoskodás kártyáin. Pontok Ági rajzainak koordinátáiban; meret: a madár szélessége a kellék egységében.
-        Asztalon egy madár bejárja mindhármat; mobilon az épp látható kártyához repül. Egyszerre egy madár. */
+  /* 5. Gondoskodás: egy madár ül az itatón és iszik (álló póz). Repülés itt nincs: a főszereplő az útvonalon kísér.
+        Pont Ági itató-rajzának koordinátáiban; meret: a madár szélessége a kellék egységében. */
   var szek = kellekek.length === 3 && kellekek[0] && harmas[0].closest('section');
   if (szek) {
     szek.classList.add('cs-latogatas');
-    var CEL = [
-      { svg: kellekek[0], lab: [178, 40], meret: 210, tukor: false, tett: 'iszik', ido: 3600 },
-      { svg: kellekek[1], lab: [34, 156], meret: 128, tukor: true, tett: 'eszeget', ido: 3200 },
-      { svg: kellekek[2], lab: [166, 98], meret: 120, tukor: false, tett: 'odu', ido: 2400, lyuk: [166.6, 76.4] }
-    ];
-    var lm = CSI.madar('alap', 'cs-latogato'); szek.appendChild(lm);
-    var fut = false, lathato = false, asztal = w.matchMedia('(min-width: 768px)');
-    function meretez(c) { var p = pont(c.svg, 0, 0, szek); if (p) lm.style.width = (c.meret * p.s).toFixed(1) + 'px'; }
-    function kint(bal) { var r = szek.getBoundingClientRect(); return { x: bal ? -80 : r.width + 80, y: Math.max(-60, -r.top - 60) }; }
-    async function latogat(c) {
-      meretez(c); var p = pont(c.svg, c.lab[0], c.lab[1], szek); if (!p) return;
-      await repul(lm, p.x, p.y);
-      if (c.tett === 'odu') {
-        var ly = pont(c.svg, c.lyuk[0], c.lyuk[1], szek), mh = lm.offsetWidth * 220 / 240;
-        var be = lm.animate([{ transform: lm.style.transform, opacity: 1 }, { transform: 'translate(' + (ly.x - lm.offsetWidth / 2) + 'px,' + (ly.y - mh * 0.55) + 'px) scale(.12)', opacity: 0 }], { duration: 480, easing: 'cubic-bezier(.4,0,.6,1)', fill: 'forwards' });
-        await be.finished; await ido(c.ido); be.reverse(); await be.finished; be.cancel(); hely(lm, p.x, p.y, false);
-      } else {
-        hely(lm, p.x, p.y, c.tukor); CSI.poz(lm, 'alap'); await ido(260); CSI.poz(lm, c.tett); await ido(c.ido); CSI.poz(lm, 'alap'); await ido(300);
-      }
-    }
-    async function tura() {
-      if (fut) return; fut = true; lm.classList.add('cs-repul');
-      var k = kint(true); hely(lm, k.x, k.y);
-      if (asztal.matches) {
-        for (var j = 0; j < CEL.length && lathato; j++) await latogat(CEL[j]);
-      } else {
-        var r = szek.getBoundingClientRect(), kozep = innerHeight / 2, leg = null, legd = 1e9;
-        CEL.forEach(function (c) { var b = c.svg.getBoundingClientRect(), dd = Math.abs(b.top + b.height / 2 - kozep); if (dd < legd) { legd = dd; leg = c; } });
-        if (leg && legd < innerHeight / 2) await latogat(leg);
-      }
-      var ki = kint(false); await repul(lm, ki.x, ki.y);
-      lm.classList.remove('cs-repul'); fut = false;
-      if (lathato) setTimeout(tura, asztal.matches ? 4000 : 2500);
-    }
-    if (csend) {
-      lm.classList.add('cs-ul');
-      var allo = function () { meretez(CEL[1]); var p = pont(CEL[1].svg, CEL[1].lab[0], CEL[1].lab[1], szek); if (p) { hely(lm, p.x, p.y, true); CSI.poz(lm, 'eszeget'); } };
-      w.addEventListener('load', allo); w.addEventListener('resize', allo); allo();
-    } else if ('IntersectionObserver' in w) {
-      new IntersectionObserver(function (es) { lathato = es[0].isIntersecting; if (lathato) tura(); }, { threshold: 0.35 }).observe(harmas[0].parentNode);
-    }
+    var CEL = { svg: kellekek[0], lab: [178, 40], meret: 210 };
+    var lm = CSI.madar('alap', 'cs-latogato cs-ul'); szek.appendChild(lm);
+    var ulteti = function () {
+      var p0 = pont(CEL.svg, 0, 0, szek), p = pont(CEL.svg, CEL.lab[0], CEL.lab[1], szek); if (!p || !p0) return;
+      lm.style.width = (CEL.meret * p0.s).toFixed(1) + 'px'; hely(lm, p.x, p.y, false); CSI.poz(lm, csend ? 'alap' : 'iszik');
+    };
+    w.addEventListener('load', ulteti); w.addEventListener('resize', ulteti); ulteti();
   }
 
   /* 6. Megfigyelés: a Webflow a stílus nélküli osztályokat eldobta, ezért a lépések szöveg- és képrészét itt jelöljük meg. */
@@ -217,9 +200,9 @@
   var zaroLepes = d.querySelector('.cs_folyamat_lepes--zaro .cs_folyamat_vizual');
   if (zaroLepes) zaroLepes.appendChild(CSI.madar('csicsereg', 'cs-lepes-csicser'));
 
-  /* 7. Közösség: a hírlevél-sziget tetején sétáló madár */
+  /* 7. Közösség: a hírlevél-sziget tetején ülő madár (álló póz, pislog) */
   var sziget = d.querySelector('#fotofal .cs_sziget');
-  if (sziget) { var sm = CSI.madar('setalgat', 'cs-setalo'); var sav = elem('<div class="cs-setalo_sav" aria-hidden="true"></div>'); sav.appendChild(sm); sziget.parentNode.insertBefore(sav, sziget); }
+  if (sziget) { var sm = CSI.madar('alap', 'cs-setalo'); var sav = elem('<div class="cs-setalo_sav" aria-hidden="true"></div>'); sav.appendChild(sm); sziget.parentNode.insertBefore(sav, sziget); }
 
   /* 9. „Miért fontos” piktogramjai Ági stílusában (a régi matricák helyén, azonos magassággal) */
   var PIKTO = ['pikto_rovarok', 'pikto_vadvirag', 'pikto_elohely'];
@@ -258,15 +241,86 @@
   var gImg = d.querySelector('#fotofal .cs_gabee_kep');
   if (gImg && SVG.bor_gabee) { gImg.parentNode.insertBefore(CSI.illu('bor_gabee', 'cs_gabee_kep cs-gabee-szett'), gImg); gImg.classList.add('cs_foto_rejtett'); }
 
-  /* 8. Záró jelenet: dombos táj, Ági fái, hulló levelek */
+  /* 8. Záró jelenet: Ági borítójának tükörképe alkonyatban. A főszereplő az útvonalról leszáll a letöltés gombra,
+        csicsereg, majd hazarepül az odúba: így zárul a hero íve (kirepült, végigkísért, hazaért). */
   var zaro = d.getElementById('download');
   if (zaro) {
-    zaro.classList.add('cs-taj');
+    zaro.classList.add('cs-taj', 'cs-taj--alkony');
     var zt = dekor(elem('<div class="cs-taj_hatter cs-taj_hatter--zaro"></div>'));
     var zDomb = elem(SVG.bor_domb); zDomb.setAttribute('class', 'cs-bor cs-bor--domb cs-bor--zaro'); zt.appendChild(dekor(zDomb));
-    zt.appendChild(CSI.illu('fa_sarga', 'cs-taj_fa cs-taj_fa--bal'));
-    zt.appendChild(CSI.illu('fa_keskeny', 'cs-taj_fa cs-taj_fa--jobb'));
+    var zBal = CSI.illu('bor_fa_bal', 'cs-bor cs-bor--fa-bal'), zJobb = CSI.illu('bor_fa_jobb', 'cs-bor cs-bor--fa-jobb');
+    zt.appendChild(zBal); zt.appendChild(zJobb);
     levelek(zt, 2);
     zaro.insertBefore(zt, zaro.firstChild);
+    if (!csend && 'IntersectionObserver' in w && zaro.animate) {
+      var zKesz = false;
+      /* a bolti gomb látható doboza: az <a> inline és 0 magas, a kép adja a méretet */
+      var zGomb = function () { var a = [].filter.call(zaro.querySelectorAll('a[href*="play.google"], a[href*="apps.apple"]'), function (x) { return x.offsetParent !== null; })[0]; return a ? (a.querySelector('img') || a) : null; };
+      var hazater = async function () {
+        zKesz = true;
+        var zr = zaro.getBoundingClientRect(), sin = d.querySelector('.cs-utvonal_madar'), sx, sy;
+        var zm = CSI.madar('repdes', 'cs-zaro-csicser cs-ul'); zaro.appendChild(zm);
+        if (sin && sin.offsetParent !== null) {
+          var sr = sin.getBoundingClientRect(); sx = sr.left + sr.width / 2 - zr.left; sy = sr.bottom - zr.top;
+          d.documentElement.classList.add('cs-hazaer');
+        } else { sx = zr.width + 60; sy = Math.max(40, innerHeight * 0.25 - zr.top); }
+        hely(zm, sx, sy, false);
+        var gomb = zGomb();
+        if (gomb) {
+          var gr = gomb.getBoundingClientRect(), zr2 = zaro.getBoundingClientRect();
+          await repul(zm, gr.left + gr.width * 0.14 - zr2.left, gr.top - zr2.top + 3);
+          CSI.poz(zm, 'csicsereg'); await ido(2600);
+        }
+        var ly = pont(zJobb, 2317, 181, zaro), zw = zaro.clientWidth;
+        if (ly && ly.x > 24 && ly.x < zw - 24 && getComputedStyle(zJobb).display !== 'none') {
+          await repul(zm, ly.x, ly.y + zm.offsetWidth * 0.25);
+          var mh = zm.offsetWidth * 220 / 240;
+          var be = zm.animate([{ transform: zm.style.transform, opacity: 1 }, { transform: 'translate(' + (ly.x - zm.offsetWidth / 2) + 'px,' + (ly.y - mh * 0.55) + 'px) scale(.12)', opacity: 0 }], { duration: 480, easing: 'cubic-bezier(.4,0,.6,1)', fill: 'forwards' });
+          await be.finished;
+        } else { await repul(zm, zw + 90, -80); }
+        zm.style.visibility = 'hidden';
+      };
+      /* akkor indul, amikor a letöltés gomb már látszik (különben a leszállás a képernyőn kívül történne) */
+      var figyelt = zGomb() || zaro;
+      new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting && !zKesz) hazater();
+      }, { threshold: 0.9, rootMargin: '0px 0px -12% 0px' }).observe(figyelt);
+      new IntersectionObserver(function (es) {
+        if (!es[0].isIntersecting) d.documentElement.classList.remove('cs-hazaer');
+      }, { threshold: 0 }).observe(zaro);
+    }
+  }
+
+  /* 13. Csatlakozás: a fülek fotói helyett Ági elemeiből rakott képek (cég: odú és etető, önkormányzat: fa és etető, iskola: itató és madár) */
+  var KINEK = [['odu', 'eteto'], ['fa_sarga', 'eteto'], ['itato', 'poz_alap']];
+  [].forEach.call(d.querySelectorAll('.cs_kinek_panel'), function (pn, n) {
+    var img = pn.querySelector('.cs_kinek_foto'); if (!img || !KINEK[n]) return;
+    var kp = elem('<div class="cs_illu_panel cs-kinek-illu"></div>');
+    KINEK[n].forEach(function (nev) { kp.appendChild(CSI.illu(nev)); });
+    img.parentNode.insertBefore(kp, img); img.classList.add('cs_foto_rejtett');
+  });
+
+  /* 14. Belépés: szekciónként a szalag-kicker kibomlik (300 ms), utána a tartalom 12 px-et emelkedik, 60 ms-os lépcsővel.
+        Egyszer fut; a végén az osztályok lekerülnek, így a kártyák saját átmenetei érintetlenek. Csökkentett mozgásnál nincs. */
+  if (!csend && 'IntersectionObserver' in w) {
+    var BE = 'h2, .cs_lead, .main_text, .cs_atkoto, .cs_tenyek > *, .card, .cs_folyamat_lepes, .cs_folyamat_cta, .cs_sziget, .cs_kinek_valaszto, .gyik_item';
+    var beIo = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return; var el = e.target; beIo.unobserve(el);
+        if (el.classList.contains('cs-kibont')) { el.classList.add('cs-kibont-lat'); setTimeout(function () { el.classList.remove('cs-kibont', 'cs-kibont-lat'); }, 400); return; }
+        el.classList.add('cs-be-lat');
+        setTimeout(function () { el.classList.remove('cs-be', 'cs-be-lat'); el.style.removeProperty('--cs-i'); }, 360 + (parseInt(el.style.getPropertyValue('--cs-i'), 10) || 0) * 60);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    [].forEach.call(d.querySelectorAll('body > section, body > div.cs_lab'), function (sz) {
+      if (sz.matches('.dia_kek_ov.cs:not(.cs_sotet)')) return;
+      var k = 0;
+      [].forEach.call(sz.querySelectorAll('.cs_kicker'), function (kc) { kc.classList.add('cs-kibont'); beIo.observe(kc); k = 1; });
+      [].forEach.call(sz.querySelectorAll(BE), function (el) {
+        if (el.parentElement.closest('.cs-be') || el.closest('.cs-utvonal')) return;
+        el.classList.add('cs-be'); el.style.setProperty('--cs-i', Math.min(k++, 6)); beIo.observe(el);
+      });
+    });
+    d.documentElement.classList.add('cs-be-on');
   }
 })();

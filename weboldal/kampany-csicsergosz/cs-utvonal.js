@@ -28,6 +28,12 @@
   svg.appendChild(alap); svg.appendChild(bejart); doboz.appendChild(svg);
   var madarDoboz = d.createElement('div'); madarDoboz.className = 'cs-utvonal_madar';
   var madar = CSI.madar('alap'); madarDoboz.appendChild(madar); doboz.appendChild(madarDoboz);
+  /* Egy főszereplő: ha a hero madara épp kirepül az odúból, az útvonal madara csak az átadás után jelenik meg. */
+  if (!csend && d.querySelector('.cs-hero-csicser') && scrollY < innerHeight * 0.5) {
+    madarDoboz.classList.add('cs-var');
+    var mutat = function () { madarDoboz.classList.remove('cs-var'); };
+    d.addEventListener('cs:atadas', mutat, { once: true }); setTimeout(mutat, 6000);
+  }
   var linkek = ALLOMAS.map(function (a, i) {
     var l = d.createElement('a'); l.className = 'cs-utvonal_pont'; l.href = '#'; l.setAttribute('aria-label', 'Ugrás: ' + a.nev);
     l.innerHTML = '<span class="cs-utvonal_cimke">' + a.nev + '</span>';

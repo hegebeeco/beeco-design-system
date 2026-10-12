@@ -38,7 +38,7 @@ body:has(.cs_fejlec){margin:0!important}
 /* Mit tehetsz: két egészében kattintható kártya, az első hangsúlyosabb */
 .dia_green_ov.cs .div-block-564{display:grid!important;grid-template-columns:1.25fr 1fr;align-items:stretch}
 .dia_green_ov.cs .card.cs_link{position:relative;max-width:none;width:auto!important}
-.dia_green_ov.cs .card.cs_link:first-child .headline3{font-size:30px}
+.dia_green_ov.cs .card.cs_link:first-child .headline3{font-size:28px}
 .dia_green_ov.cs img.cs_kartya_album{object-fit:contain!important;background:#FEF7DE}
 .cs_utvonal_nyil{transition:transform 160ms cubic-bezier(.23,1,.32,1)}
 .card.cs_link:hover .cs_utvonal_nyil,.card.cs_link:focus-visible .cs_utvonal_nyil{transform:translateX(4px)}
@@ -84,3 +84,46 @@ body:has(.cs_fejlec){margin:0!important}
 .cs_partnerek .card:nth-child(2) .cs_kicker{text-transform:none;letter-spacing:.02em}
 /* A kampányoldalon nincs általános hírlevél-felugró (Sender): saját CsicsergŐsz-feliratkozás van a közösségi blokkban */
 .sender-popup,.sender-form-popup,[class*="sender"][class*="popup"],[id*="sender"][class*="popup"],[data-beeco-popup],[data-cs-nincs-popup]{display:none!important}
+
+/* ===== Arculati csiszolás (2026-10-12): napszak-ív, kártyacsalád, tipográfiai lépcső ===== */
+:root{--cs-papir:#FFFCF3}
+
+/* Napszak-ív: reggel (hero) → krém és barack váltakozik → alkony (GYIK, záró jelenet). A domb-átmeneteket a cs-illusztracio.js rajzolja. */
+.dia_ov_light.cs_horgony{background-color:var(--cs-c-krem)!important}
+.dia_green_ov.cs:not(.cs_feher){background-color:var(--cs-c-barack)!important}
+.dia_kek.cs:not(#fotofal):not(#download){background-color:var(--cs-c-krem)!important}
+#HOWTO{background-color:var(--cs-c-barack)!important}
+#fotofal{background-color:var(--cs-c-krem)!important}
+.dia_green_ov.cs_feher{background-color:var(--cs-c-barack)!important}
+#segits{background-color:var(--cs-c-krem)!important}
+#download.cs-taj--alkony{background:linear-gradient(var(--cs-c-barack) 0 36%,#EDC49B 72%,var(--cs-c-homok) 100%)!important}
+
+/* Miért fontos világos alapon: kakaó szöveg, narancs szám, alap kakaó szalag */
+.dia_ov_light.cs_horgony .cs_kicker{background:var(--cs-c-kakao)!important;color:#fff!important}
+.dia_ov_light.cs_horgony .cs_szam{color:var(--cs-c-narancs)!important}
+.dia_ov_light.cs_horgony .cs_lead,.dia_ov_light.cs_horgony .cs_teny_szoveg{color:#1A1A1A!important}
+.dia_ov_light.cs_horgony .cs_atkoto{color:var(--cs-c-kakao)!important}
+.dia_ov_light.cs_horgony .cs_szoveglink,.dia_ov_light.cs_horgony .cs_forras{color:var(--cs-c-kakao)!important}
+.dia_ov_light.cs_horgony .cs_szoveglink:focus-visible,.dia_ov_light.cs_horgony .cs_forras:focus-visible{outline-color:var(--cs-c-kakao)}
+
+/* Egy kártyacsalád: meleg papírlap, 2 px kakaó keret, aszimmetrikus sarok. Kemény árnyék csak a kattintható kártyán (.cs_link). */
+.card.cs_link,.card.cs_egyenlo,.cs_sziget,.cs_folyamat_lepes--zaro,.cs_kinek_panel{background-color:var(--cs-papir)!important;border:2px solid var(--cs-c-kakao)!important;border-radius:24px 0 24px 0!important}
+.card.cs_egyenlo,.cs_sziget,.cs_folyamat_lepes--zaro{box-shadow:none!important}
+.cs_sotet .home-faq-content{background:var(--cs-papir)!important;border:2px solid var(--cs-c-kakao)!important;border-radius:16px 0 16px 0!important}
+
+/* Tipográfiai lépcső: 14 / 16 / 20 / 24 / 28 / 40 / 56 / 80 px */
+section .cs_kicker,.cs_forras,section .cs_forras,.dia_ov_light.cs_horgony .cs_forras,.dia_kek_ov.cs .cs_mme_sor_txt,.cs_sziget form .input_label,#fotofal .input_label,.cs_lab_copy,.cs_lab_powered{font-size:14px!important}
+.cs_teny_szoveg,.dia_ov_light.cs_horgony .cs_teny_szoveg,.cs_kiemelt,.cs_album_jelzes,.dia_ov_light.cs_horgony .cs_szoveglink,.dia_kek_ov.cs .cs_szoveglink{font-size:20px!important}
+.cs_lab_link{font-size:16px!important}
+.cs_utvonal_nyil{font-size:24px!important}
+section .headline3.cs,.cs_zaro_cta{font-size:28px!important}
+.cs_sziget_resz .headline3,.cs_sziget form .headline3{font-size:24px!important}
+.cs_lepes_szam,.cs_buborek,#fotofal .cs_gabee_bemutat .cs_buborek{font-size:24px!important}
+.cs_folyamat_cim{font-size:clamp(24px,2.4vw,28px)!important}
+.cs_sotet .text-size-large{font-size:28px!important}
+.cs_szalag--kicsi{font-size:24px}
+@media (max-width:767px){section .headline3.cs,.cs_zaro_cta,.cs_sotet .text-size-large{font-size:24px!important}.cs_szalag--kicsi{font-size:20px}}
+
+/* Csatlakozás: a süvöltő a panel szélén ül (nem repül be, egy főszereplő), koppintásra ugrik és mesél */
+html.cs-js .cs-mh--suvolto .cs-madar img{opacity:1!important}
+.cs-mh--suvolto .cs-madar:not(.cs-ugrik) img{animation:none!important}

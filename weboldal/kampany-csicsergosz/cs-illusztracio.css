@@ -70,7 +70,7 @@
 .cs-van-domb[data-cs-ferde]::before{display:none}
 .cs-van-domb{position:relative}
 .cs-domb{position:absolute;left:0;top:-1px;width:100%;height:clamp(44px,5vw,84px);z-index:0;pointer-events:none}
-.cs-van-domb>*:not(.cs-domb):not(.cs-taj_hatter):not(.cs_dekor){position:relative;z-index:1}
+.cs-van-domb>*:not(.cs-domb):not(.cs-taj_hatter):not(.cs_dekor):not(.cs-pozmadar):not(.cs-hurok){position:relative;z-index:1}
 
 /* Szalagcím: kakaó szalag fehér Lalezarral (kicker = kis szalag, hero H1 = két szint) */
 .cs_szalag{display:inline-block;background:var(--cs-c-kakao);color:#fff;font-family:Lalezar,sans-serif;font-weight:400;line-height:1;padding:.32em .7em .16em;clip-path:polygon(0 6%,100% 0,98.5% 100%,1.5% 94%)}
@@ -92,7 +92,7 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 .cs-taj_domb{position:absolute;left:0;bottom:0;width:100%;height:min(26%,220px)}
 .cs-taj_fa{position:absolute;bottom:4%;width:clamp(90px,11vw,170px);height:auto}
 .cs-taj_fa--bal{left:-2.5%}.cs-taj_fa--jobb{right:-2%}
-.cs-taj>*:not(.cs-taj_hatter){position:relative;z-index:1}
+.cs-taj>*:not(.cs-taj_hatter):not(.cs-pozmadar):not(.cs-hurok){position:relative;z-index:1}
 @media (max-width:767px){.cs-taj_fa{width:80px;opacity:.9}.cs-taj_fa--bal{left:-30px}.cs-taj_fa--jobb{right:-30px}}
 
 /* Hero madár a telefon mellett */
@@ -120,9 +120,7 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 
 /* Közösség: sétáló madár a sziget tetején */
 .cs-setalo_sav{position:relative;height:0;max-width:1100px;margin:0 auto}
-.cs-setalo{position:absolute;width:92px;bottom:-8px;left:0;animation:cs-setal 14s linear infinite}
-@keyframes cs-setal{0%{transform:translateX(24px)}48%{transform:translateX(calc(min(1100px,100vw) - 120px))}50%{transform:translateX(calc(min(1100px,100vw) - 120px)) scaleX(-1)}98%{transform:translateX(24px) scaleX(-1)}100%{transform:translateX(24px)}}
-.cs-setalo.cs-all{animation-play-state:paused}
+.cs-setalo{position:absolute;width:84px;bottom:-6px;left:28px}
 
 /* ===== Útvonal-jelző (asztali) ===== */
 .cs-utvonal{position:fixed;top:0;right:6px;width:64px;height:100vh;z-index:40;pointer-events:none}
@@ -193,3 +191,33 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 @media (max-width:767px){#fotofal .cs-gabee-szett{width:140px}}
 @media (prefers-reduced-motion:reduce){.cs-ciklus img,.cs-kamera *{animation:none!important}.cs-ciklus img:first-child{opacity:1}.cs-kamera_s{opacity:1}}
 .cs_folyamat_vizual{width:fit-content;max-width:100%}
+
+/* ===== Egy főszereplő (2026-10-12) ===== */
+/* Útvonal: a madár a hero-átadás után jelenik meg, és a záró jelenet idejére pihen (ott ő száll le a letöltés gombra) */
+.cs-utvonal_madar{transition:opacity 160ms ease-out}
+.cs-utvonal_madar.cs-var,.cs-hazaer .cs-utvonal_madar{opacity:0}
+/* Záró jelenet: Ági borítójának tükörképe alkonyatban */
+.cs-taj_hatter--zaro{transform:scaleX(-1);filter:saturate(1.06) brightness(.9)}
+.cs-taj--alkony .cs-bor--fa-bal{height:96%}
+.cs-taj--alkony .cs-bor--fa-jobb{height:50%}
+@media (max-width:767px){.cs-taj--alkony .cs-bor--fa-bal{height:44%}.cs-taj--alkony .cs-bor--fa-jobb{height:32%}}
+.cs-zaro-csicser{position:absolute;left:0;top:0;width:84px;z-index:6;pointer-events:none;will-change:transform}
+@media (max-width:767px){.cs-zaro-csicser{width:64px}}
+/* Csatlakozás: Ági elemeiből rakott képek a fotók helyén */
+.cs-kinek-illu{aspect-ratio:4/3;gap:6%;margin:0;border-radius:16px}
+.cs-kinek-illu .cs-illu{width:auto;height:60%;max-width:44%}
+.cs-kinek-illu .cs-illu--fa_sarga{height:86%}
+.cs-kinek-illu .cs-illu--poz_alap{height:40%}
+/* Megfigyelés 1. lépés: a kamera-keret egyszer zárul rá, utána marad */
+.cs-kamera_s{animation:cs-sarok1 900ms cubic-bezier(.23,1,.32,1) both}
+@keyframes cs-sarok1{from{transform:translate(var(--x),var(--y));opacity:0}to{transform:none;opacity:1}}
+.cs-kamera_vaku{animation:cs-vaku1 700ms ease-out 650ms both}
+@keyframes cs-vaku1{0%{opacity:0}20%{opacity:.75}100%{opacity:0}}
+/* Díszítők: nem követik az egeret (kevesebb mozgás) */
+.cs_dekor{translate:none!important}
+/* Belépés: kicker-szalag kibomlik, a tartalom 12 px-et emelkedik, 60 ms-os lépcső */
+html.cs-be-on .cs-be{opacity:0;transform:translateY(12px)}
+html.cs-be-on .cs-be.cs-be-lat{opacity:1;transform:none;transition:opacity 300ms cubic-bezier(.23,1,.32,1),transform 300ms cubic-bezier(.23,1,.32,1);transition-delay:calc(var(--cs-i,0) * 60ms)}
+html.cs-be-on section .cs_kicker.cs-kibont{clip-path:polygon(0 8%,0 0,0 100%,0 92%)}
+html.cs-be-on section .cs_kicker.cs-kibont.cs-kibont-lat{clip-path:polygon(0 8%,100% 0,98% 100%,2% 92%);transition:clip-path 300ms cubic-bezier(.23,1,.32,1)}
+@media (prefers-reduced-motion:reduce){.cs-kamera_s,.cs-kamera_vaku{animation:none!important}.cs-kamera_vaku{opacity:0}}

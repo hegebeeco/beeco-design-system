@@ -148,6 +148,8 @@
 
   /* 5. Záró jelenet: ahogy a látogató legörget, egyre több madár repül az app elé: iszik, csipeget, rászáll, odúba bújik. */
   (function () {
+    /* A Levi-változatban a záró jelenetet a cs-illusztracio.js viszi (egy főszereplő), itt nincs külön madárcsapat. */
+    if (d.querySelector('script[src*="cs-illusztracio"]')) return;
     var szek = d.getElementById('download'), mock = szek && szek.querySelector('.cs_mockup'), tel = mock && mock.querySelector('.cs_mockup_telefon'); if (!tel) return;
     var kesz = false, kellekek = {}, lepesek;
     function epit() {
@@ -204,7 +206,7 @@
     var ua = navigator.userAgent, ios = /iPhone|iPad|iPod/i.test(ua);
     var href = ios ? 'https://apps.apple.com/hu/app/beeco/id6478549279?l=hu' : (/Android/i.test(ua) ? 'https://play.google.com/store/apps/details?id=hu.beeco.app' : '#download');
     var s = d.createElement('div'); s.className = 'cs-ragados';
-    s.innerHTML = '<img src="' + MADAR.suvolto + '" alt="" width="40" height="38"><a class="button_main cs-ragados_gomb" href="' + href + '" data-cs-event="primary_cta" data-cs-placement="ragados_sav"' + (href.charAt(0) === '#' ? '' : ' target="_blank" rel="noopener"') + '>Töltsd le a beeco appot</a>';
+    s.innerHTML = '<img src="' + MADAR.suvolto + '" alt="" width="40" height="38"><a class="button_main cs-ragados_gomb" href="' + href + '" data-cs-event="primary_cta" data-cs-placement="ragados_sav"' + (href.charAt(0) === '#' ? '' : ' target="_blank" rel="noopener"') + '>Töltsd le az appot</a>';
     d.body.appendChild(s);
     var heroLat = true, zaroLat = false;
     function frissit() { s.classList.toggle('cs-lat', !heroLat && !zaroLat); }
