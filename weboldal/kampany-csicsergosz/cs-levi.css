@@ -6,7 +6,7 @@
 @media (max-width:767px){[id]{scroll-margin-top:16px}}
 
 /* Fejléc: a régi navbar 80 px-es body-margója itt nem kell */
-body{margin:0!important}
+body:has(.cs_fejlec){margin:0!important}
 .cs_fejlec{width:100%;margin:0}
 .cs_fejlec .cs_fejlec_link:hover{text-decoration:underline}
 .cs_fejlec a:focus-visible{outline:3px solid #6B3B16;outline-offset:2px;border-radius:8px}
