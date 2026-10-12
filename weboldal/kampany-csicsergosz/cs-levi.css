@@ -83,7 +83,7 @@ body:has(.cs_fejlec){margin:0!important}
 /* A szakmai partner szerepe mondat: ne legyen csupa nagybetű */
 .cs_partnerek .card:nth-child(2) .cs_kicker{text-transform:none;letter-spacing:.02em}
 /* A kampányoldalon nincs általános hírlevél-felugró (Sender): saját CsicsergŐsz-feliratkozás van a közösségi blokkban */
-.sender-popup,.sender-form-popup,[class*="sender"][class*="popup"],[id*="sender"][class*="popup"],[data-beeco-popup],[data-cs-nincs-popup]{display:none!important}
+.sender-popup,.sender-form-popup,[class*="sender"][class*="popup"],[id*="sender"][class*="popup"],[data-beeco-popup],[data-cs-nincs-popup],iframe[title*="beeújság"],iframe[title*="Iratkozz fel"]{display:none!important}
 
 /* ===== Arculati csiszolás (2026-10-12): napszak-ív, kártyacsalád, tipográfiai lépcső ===== */
 :root{--cs-papir:#FFFCF3}
