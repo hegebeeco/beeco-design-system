@@ -108,7 +108,7 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 .dia_kek_ov.cs .cs-hm1,.dia_kek_ov.cs .cs-hm2,.dia_kek_ov.cs .cs-hm-uzenet{display:none!important}
 
 /* Megfigyelés: döntött telefonkeret és összekötő szaggatott vonal */
-.cs_folyamat_ui{border:0!important;border-radius:6px!important;padding:12px;background:#FFF5DD!important;box-shadow:0 8px 18px rgba(107,59,22,.16)!important}
+.cs_folyamat_ui{border:0!important;border-radius:6px!important;padding:12px;background:#FFF5DD!important;box-shadow:none!important;filter:drop-shadow(0 6px 10px rgba(107,59,22,.14))}
 .cs_folyamat_lepes:nth-child(1) .cs_folyamat_ui{transform:rotate(-3deg)}
 .cs_folyamat_lepes:nth-child(2) .cs_folyamat_ui{transform:rotate(2.5deg)}
 .cs_folyamat_lepes:not(:last-child){position:relative}
