@@ -162,6 +162,8 @@ html.cs-js .cs-madar:not(.cs-leszallt) img{opacity:0}
 .cs-mb:empty{display:none}
 .cs-mb b{display:block;color:var(--cs-kakao)}
 @media (max-width:767px){.cs-mh{width:56px}.cs-mh--suvolto{right:20px;bottom:calc(100% - 8px)}}
+/* Mobilon a fülek közvetlenül a panel fölött vannak: a buborék a madár alá, a panelre nyílik, és nem fogja el a koppintást */
+@media (max-width:767px){.cs-mh--suvolto .cs-mb{bottom:auto;top:calc(100% + 6px)}.cs-mh--suvolto .cs-mb.cs-lat{pointer-events:none}}
 
 /* ---------- Jelenet-madarak (hero, megfigyelés, záró): a csomagoló áll, a kép mozog ---------- */
 .cs-m{position:absolute;z-index:5;pointer-events:none}
