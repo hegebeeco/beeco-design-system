@@ -124,7 +124,7 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 
 /* ===== Útvonal-jelző (asztali) ===== */
 .cs-utvonal{position:fixed;top:0;right:6px;width:64px;height:100vh;z-index:40;pointer-events:none}
-.cs-utvonal_svg{position:absolute;top:92px;left:0;width:64px;overflow:visible}
+.cs-utvonal_svg{position:absolute;top:150px;left:0;width:64px;overflow:visible}
 .cs-utvonal_alap{fill:none;stroke:var(--cs-c-barna);stroke-width:2.5;stroke-dasharray:7 8;opacity:.85}
 .cs-utvonal_bejart{fill:none;stroke:var(--cs-c-kakao);stroke-width:3;stroke-linecap:round}
 .cs-utvonal_madar{position:absolute;top:0;left:0;width:72px;transform-origin:36px 0;will-change:transform}

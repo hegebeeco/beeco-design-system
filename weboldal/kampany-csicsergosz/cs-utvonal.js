@@ -20,7 +20,7 @@
   ].map(function (a) { return { el: d.querySelector(a[0]), nev: a[1], poz: a[2] }; }).filter(function (a) { return a.el; });
   if (ALLOMAS.length < 3) return;
 
-  var SZ = 64, FENT = 92, LENT = 28, HUROK = [0.27, 0.68];
+  var SZ = 64, FENT = 150, LENT = 28, HUROK = [0.27, 0.68];
   var doboz = d.createElement('nav'); doboz.className = 'cs-utvonal'; doboz.setAttribute('aria-label', 'Hol tartasz az oldalon');
   var svg = d.createElementNS(NS, 'svg'); svg.setAttribute('class', 'cs-utvonal_svg'); svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('focusable', 'false');
   var alap = d.createElementNS(NS, 'path'); alap.setAttribute('class', 'cs-utvonal_alap');
