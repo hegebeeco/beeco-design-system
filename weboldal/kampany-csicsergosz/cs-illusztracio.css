@@ -1,55 +1,67 @@
-/* Csicsergősz illusztrációk és a madár pózai. Párja: cs-illusztracio.js (az SVG-ket ő fűzi be).
-   Póz: <svg class="cs-csicser" data-poz="alap|setalgat|eszeget|repdes|csicsereg">. A forgáspontok a madár viewBox-koordinátáiban. */
-.cs-csicser{display:block;width:100%;height:auto;overflow:visible}
-.cs-csicser g{transform-box:view-box}
-.cs-cs-csukott,.cs-cs-hang,.cs-cs-mag{opacity:0;transition:opacity 160ms ease-out}
-.cs-cs-szem{transition:opacity 120ms ease-out}
+/* Csicsergősz illusztrációk és a madár pózai (Ági eredeti rajzai). Párja: cs-illusztracio.js.
+   Póz: <span class="cs-madar" data-poz="alap|repdes|setalgat|eszeget|iszik|csicsereg">, benne Ági pózrajza egy 240×220-as dobozban,
+   a láb alja a (120, 212) pontban. A forgáspontokat a build írja a csoportokra (view-box koordinátában). */
+.cs-madar{display:block;line-height:0}
+.cs-madar .cs-poz{display:block;width:100%;height:auto;overflow:visible}
+.cs-madar g{transform-box:view-box}
 
 /* alap: pislog */
-.cs-cs-szem-b{transform-origin:20px 44px}.cs-cs-szem-j{transform-origin:49px 46px}
-[data-poz="alap"] .cs-cs-szem{animation:cs-pislog 4.2s infinite}
+.cs-p-szem{transform-box:fill-box!important;transform-origin:50% 50%}
+[data-poz="alap"] .cs-p-szem,[data-poz="setalgat"] .cs-p-szem{animation:cs-pislog 4.2s infinite}
 @keyframes cs-pislog{0%,93%,100%{transform:scaleY(1)}95.5%{transform:scaleY(.12)}}
 
-/* sétálgat: bólogat, lábat vált */
-.cs-cs-lab-b{transform-origin:41px 100px}.cs-cs-lab-j{transform-origin:70px 104px}
-[data-poz="setalgat"] .cs-cs-egesz{animation:cs-bolint .36s ease-in-out infinite alternate}
-[data-poz="setalgat"] .cs-cs-lab-b{animation:cs-lep .36s ease-in-out infinite alternate}
-[data-poz="setalgat"] .cs-cs-lab-j{animation:cs-lep .36s ease-in-out infinite alternate-reverse}
-@keyframes cs-bolint{from{transform:translateY(0)}to{transform:translateY(-3px)}}
-@keyframes cs-lep{from{transform:rotate(-14deg)}to{transform:rotate(12deg)}}
+/* repdes: valódi szárnycsapás Ági repdeső rajzán, közben lebeg */
+[data-poz="repdes"] .cs-p-szarny-b{animation:cs-sz-b .17s ease-in-out infinite alternate}
+[data-poz="repdes"] .cs-p-szarny-j{animation:cs-sz-j .17s ease-in-out infinite alternate}
+[data-poz="repdes"] .cs-p-egesz{animation:cs-lebeg .34s ease-in-out infinite alternate}
+@keyframes cs-sz-b{from{transform:rotate(18deg)}to{transform:rotate(-14deg)}}
+@keyframes cs-sz-j{from{transform:rotate(-18deg)}to{transform:rotate(14deg)}}
+@keyframes cs-lebeg{from{transform:translateY(-5px)}to{transform:translateY(3px)}}
 
-/* eszeget: lehajol a magokhoz */
-.cs-cs-test{transform-origin:56px 104px}
-[data-poz="eszeget"] .cs-cs-mag{opacity:1}
-[data-poz="eszeget"] .cs-cs-test{animation:cs-csip 1.4s cubic-bezier(.23,1,.32,1) infinite}
-@keyframes cs-csip{0%,100%{transform:rotate(0)}28%{transform:rotate(-50deg)}40%{transform:rotate(-38deg)}52%{transform:rotate(-50deg)}70%{transform:rotate(-8deg)}}
+/* sétálgat: bólintva lép (a demó szerint) */
+[data-poz="setalgat"] .cs-p-egesz{animation:cs-bolint .3s ease-in-out infinite alternate}
+@keyframes cs-bolint{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(-4px) rotate(2deg)}}
 
-/* repdes: szárnycsapás, lebeg */
-.cs-cs-szarny-j{transform-origin:68px 68px}.cs-cs-szarny-b{transform-origin:10px 58px}
-[data-poz="repdes"] .cs-cs-szarny-j{animation:cs-csap-j .18s ease-in-out infinite alternate}
-[data-poz="repdes"] .cs-cs-szarny-b{animation:cs-csap-b .18s ease-in-out infinite alternate}
-[data-poz="repdes"] .cs-cs-egesz{animation:cs-lebeg .36s ease-in-out infinite alternate}
-[data-poz="repdes"] .cs-cs-lab{transform:rotate(22deg)}
-@keyframes cs-csap-j{from{transform:rotate(-64deg)}to{transform:rotate(10deg)}}
-@keyframes cs-csap-b{from{transform:rotate(46deg)}to{transform:rotate(-8deg)}}
-@keyframes cs-lebeg{from{transform:translateY(-6px)}to{transform:translateY(2px)}}
+/* eszeget: csak a madár hajol le, a magok a helyükön maradnak */
+[data-poz="eszeget"] .cs-p-test{animation:cs-csip 1.4s cubic-bezier(.23,1,.32,1) infinite}
+@keyframes cs-csip{0%,100%{transform:rotate(0)}26%{transform:rotate(9deg)}38%{transform:rotate(3deg)}50%{transform:rotate(9deg)}70%{transform:rotate(0)}}
 
-/* csicsereg: lehunyt szem, hangjegyek */
-.cs-cs-csor{transform-origin:32px 56px}
-[data-poz="csicsereg"] .cs-cs-szem{opacity:0}
-[data-poz="csicsereg"] .cs-cs-csukott{opacity:1}
-[data-poz="csicsereg"] .cs-cs-csor{animation:cs-dalol .32s ease-in-out infinite alternate}
-[data-poz="csicsereg"] .cs-cs-hang{opacity:1;animation:cs-hang 1.6s ease-out infinite}
-@keyframes cs-dalol{from{transform:rotate(0)}to{transform:rotate(-7deg)}}
-@keyframes cs-hang{0%{transform:translateY(8px);opacity:0}25%{opacity:1}100%{transform:translateY(-14px);opacity:0}}
+/* iszik: ugyanaz a rajz magok nélkül, lassabb kortyolás */
+[data-poz="iszik"] .cs-p-mag{display:none}
+[data-poz="iszik"] .cs-p-test{animation:cs-korty 1.8s cubic-bezier(.23,1,.32,1) infinite}
+@keyframes cs-korty{0%,100%{transform:rotate(0)}30%,48%{transform:rotate(12deg)}62%{transform:rotate(-4deg)}78%{transform:rotate(0)}}
 
-/* Illusztrációk */
+/* csicsereg: hangjegyek felúsznak, a madár dőlöngél */
+[data-poz="csicsereg"] .cs-p-hang{transform-box:fill-box!important;animation:cs-hang 1.6s ease-out infinite}
+[data-poz="csicsereg"] .cs-p-hang2{animation-delay:.5s}
+[data-poz="csicsereg"] .cs-p-test{animation:cs-dol 2.2s ease-in-out infinite alternate}
+@keyframes cs-hang{0%{transform:translateY(10px);opacity:0}25%{opacity:1}100%{transform:translateY(-16px);opacity:0}}
+@keyframes cs-dol{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+
+/* Kellékek: itató cseppjei és ringó levele, fák ringása, hulló levelek */
 .cs-illu{display:block;width:100%;height:auto}
-.cs-i-csepp{transform-box:view-box;transform-origin:862px 60px}
+.cs-i-csepp,.cs-i-level{transform-box:fill-box}
+.cs-i-csepp{transform-origin:50% 100%;animation:cs-csepp 2.4s cubic-bezier(.23,1,.32,1) infinite}
+.cs-i-csepp2{animation-delay:.25s}
+@keyframes cs-csepp{0%,55%{transform:translateY(14px) scale(.4);opacity:0}70%{opacity:1}100%{transform:translateY(-6px) scale(1);opacity:0}}
+.cs-i-level{transform-origin:50% 50%;animation:cs-ring 3s ease-in-out infinite alternate}
+@keyframes cs-ring{from{transform:rotate(-6deg) translateX(-3px)}to{transform:rotate(5deg) translateX(3px)}}
+.cs-taj_fa{transform-origin:50% 100%;animation:cs-fa 6s ease-in-out infinite alternate}
+.cs-taj_fa--jobb{animation-duration:7.2s;animation-delay:-2s}
+@keyframes cs-fa{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg)}}
+.cs-hullo{position:absolute;top:-24px;width:18px;height:11px;border-radius:0 100% 0 100%;background:#FFAA2E;animation:cs-hull 11s linear infinite;pointer-events:none}
+.cs-hullo--1{left:22%}.cs-hullo--2{left:55%;background:#EA6C18;animation-duration:13s;animation-delay:-5s}.cs-hullo--3{left:78%;background:#A87552;animation-duration:15s;animation-delay:-9s}
+@keyframes cs-hull{0%{transform:translate(0,0) rotate(0)}50%{transform:translate(30px,48vh) rotate(170deg)}100%{transform:translate(-10px,96vh) rotate(340deg)}}
+@media (max-width:767px){.cs-hullo--2,.cs-hullo--3{display:none}}
+
+/* Látogató madár a Gondoskodás kártyáin */
+.cs-latogatas{position:relative}
+.cs-latogato{position:absolute;left:0;top:0;width:90px;z-index:5;pointer-events:none;transform:translate(-200px,-200px);will-change:transform;transform-origin:50% 96%}
+.cs-latogato{opacity:0;transition:opacity 160ms ease-out}.cs-latogato.cs-repul,.cs-latogato.cs-ul{opacity:1}
 
 /* Csak láthatóság alatt fusson; csökkentett mozgásnál csak a póz marad */
-.cs-csicser.cs-all *{animation-play-state:paused!important}
-@media (prefers-reduced-motion:reduce){.cs-csicser *,.cs-csicser{animation:none!important}}
+.cs-madar.cs-all *,.cs-illu.cs-all *{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){.cs-madar *,.cs-madar,.cs-illu *,.cs-taj_fa,.cs-hullo{animation:none!important}.cs-hullo{display:none}}
 
 /* ===== Arculati réteg (brand board: 8 szín) ===== */
 :root{--cs-c-krem:#FEF7DE;--cs-c-barack:#FFE2B5;--cs-c-homok:#CB9C7E;--cs-c-barna:#A87552;--cs-c-dio:#905E39;--cs-c-kakao:#6B3B16;--cs-c-mez:#FFAA2E;--cs-c-narancs:#EA6C18}
@@ -85,7 +97,7 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 
 /* Hero madár a telefon mellett */
 .cs_mockup{position:relative}
-.cs-hero-csicser{position:absolute;width:clamp(64px,7vw,96px);left:-14%;top:30%;z-index:3}
+.cs-hero-csicser{position:absolute;width:clamp(110px,12vw,160px);left:-22%;top:24%;z-index:3}
 
 /* Illusztrációs panelek a kártyákon (fotók helyett) */
 .cs_foto_rejtett{display:none!important}
@@ -94,8 +106,6 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 .dia_green_ov.cs .cs_illu_panel{aspect-ratio:16/10}
 .dia_green_ov.cs .cs_illu_panel .cs-illu{height:72%}
 .dia_kek_ov.cs .cs-hm1,.dia_kek_ov.cs .cs-hm2,.dia_kek_ov.cs .cs-hm-uzenet{display:none!important}
-.cs-panel-csicser{position:absolute;width:22%;left:10%;bottom:6%}
-.cs-panel-csicser--eteto{left:8%}
 
 /* Megfigyelés: döntött telefonkeret és összekötő szaggatott vonal */
 .cs_folyamat_ui{border:8px solid #1A1A1A!important;border-radius:26px!important;box-shadow:none!important}
@@ -104,13 +114,13 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 .cs_folyamat_lepes:not(:last-child){position:relative}
 .cs_folyamat_lepes:not(:last-child)::after{content:"";position:absolute;left:18%;right:18%;bottom:-38px;height:36px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 36' preserveAspectRatio='none'%3E%3Cpath d='M0 6 C120 40 280 -4 400 30' fill='none' stroke='%23A87552' stroke-width='2.5' stroke-dasharray='8 8'/%3E%3C/svg%3E") center/100% 100% no-repeat;pointer-events:none}
 .cs_folyamat_vizual{position:relative}
-.cs-lepes-csicser{position:absolute;width:76px;right:-18px;top:-46px}
+.cs-lepes-csicser{position:absolute;width:126px;right:-34px;top:-78px}
 .cs_folyamat_szoveg .cs_folyamat_cim{display:inline-block}
 @media (max-width:767px){.cs_folyamat_lepes .cs_folyamat_ui{transform:none!important}.cs_folyamat_lepes:not(:last-child)::after{display:none}.cs-lepes-csicser{right:0}}
 
 /* Közösség: sétáló madár a sziget tetején */
 .cs-setalo_sav{position:relative;height:0;max-width:1100px;margin:0 auto}
-.cs-setalo{position:absolute;width:56px;bottom:-6px;left:0;animation:cs-setal 14s linear infinite}
+.cs-setalo{position:absolute;width:92px;bottom:-8px;left:0;animation:cs-setal 14s linear infinite}
 @keyframes cs-setal{0%{transform:translateX(24px)}48%{transform:translateX(calc(min(1100px,100vw) - 120px))}50%{transform:translateX(calc(min(1100px,100vw) - 120px)) scaleX(-1)}98%{transform:translateX(24px) scaleX(-1)}100%{transform:translateX(24px)}}
 .cs-setalo.cs-all{animation-play-state:paused}
 
@@ -119,7 +129,7 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 .cs-utvonal_svg{position:absolute;top:92px;left:0;width:64px;overflow:visible}
 .cs-utvonal_alap{fill:none;stroke:var(--cs-c-barna);stroke-width:2.5;stroke-dasharray:7 8;opacity:.85}
 .cs-utvonal_bejart{fill:none;stroke:var(--cs-c-kakao);stroke-width:3;stroke-linecap:round}
-.cs-utvonal_madar{position:absolute;top:0;left:0;width:44px;transform-origin:22px 0;will-change:transform}
+.cs-utvonal_madar{position:absolute;top:0;left:0;width:72px;transform-origin:36px 0;will-change:transform}
 .cs-utvonal_pont{position:absolute;top:0;left:0;width:44px;height:44px;display:flex;align-items:center;justify-content:center;pointer-events:auto;border-radius:50%}
 .cs-utvonal_pont::before{content:"";width:12px;height:12px;border-radius:50%;background:#fff;border:2.5px solid var(--cs-c-barna);transition:background 160ms ease-out,border-color 160ms ease-out}
 .cs-utvonal_pont.cs-bejart::before{background:var(--cs-c-kakao);border-color:var(--cs-c-kakao)}

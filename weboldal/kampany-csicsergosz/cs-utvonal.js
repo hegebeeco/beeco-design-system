@@ -64,7 +64,7 @@
   }
   function rajzol() {
     var q = alap.getPointAtLength(most), q2 = alap.getPointAtLength(Math.min(hossz, most + 2));
-    madarDoboz.style.transform = 'translate(' + (q.x - 22) + 'px,' + (q.y + FENT - 40) + 'px) scaleX(' + (q2.x < q.x ? -1 : 1) + ')';
+    madarDoboz.style.transform = 'translate(' + (q.x - 36) + 'px,' + (q.y + FENT - 62) + 'px)';
     bejart.style.strokeDasharray = most + ' ' + hossz;
     linkek.forEach(function (l, i) { l.classList.toggle('cs-bejart', allomasHossz[i] <= most + 1); });
   }
