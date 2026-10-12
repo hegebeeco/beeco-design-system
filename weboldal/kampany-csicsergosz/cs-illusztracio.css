@@ -144,3 +144,15 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 @media (max-width:767px){.cs_szalag--kicsi{font-size:20px}.cs_szalag--nagy{font-size:40px}}
 .dia_kek_ov.cs h1{height:127px;margin:12px 0 18px!important;overflow:visible}
 @media (max-width:767px){.dia_kek_ov.cs h1{height:95px}}
+
+/* Hero: Ági borítójának rétegei */
+.cs-taj--borito .cs-taj_hatter{overflow:hidden}
+.cs-bor{position:absolute;display:block;will-change:transform}
+.cs-bor--domb{left:0;bottom:0;width:100%;height:46%}
+.cs-bor--fa-bal{left:-110px;bottom:-2%;height:104%;width:auto}
+.cs-bor--fa-jobb{right:-34px;bottom:-2%;height:62%;width:auto}
+@media (min-width:1400px){.cs-bor--fa-bal{left:-30px}.cs-bor--fa-jobb{right:20px;height:72%}}
+@media (max-width:991px){.cs-bor--fa-bal{left:-40px;height:80%}.cs-bor--fa-jobb{right:-60px;height:52%}}
+@media (max-width:767px){.cs-bor--domb{height:30%}.cs-bor--fa-bal{left:-70px;height:46%;opacity:.95}.cs-bor--fa-jobb{right:-70px;height:34%}}
+.cs-bor--zaro{height:34%}
+@media (max-width:767px){.cs-bor--zaro{height:22%}}

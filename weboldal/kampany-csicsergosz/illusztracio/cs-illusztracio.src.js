@@ -100,20 +100,43 @@
       h1.setAttribute('aria-label', t);
     }
     /* a partnertábla tisztán CSS-ből rajzolódik (.cs_mme_sor), hogy ne mozduljon el az oszlop */
-    hero.classList.add('cs-taj');
+    hero.classList.add('cs-taj', 'cs-taj--borito');
+    /* Ági borítójának rétegei: domb és talaj, bal fa, jobb fa az odúval. Asztalon görgetésre eltérő mértékben mozdulnak. */
     var taj = dekor(elem('<div class="cs-taj_hatter"></div>'));
-    taj.appendChild(elem('<svg class="cs-taj_domb" viewBox="0 0 1440 220" preserveAspectRatio="none"><path d="M0 120 L180 70 L360 104 L560 52 L760 96 L980 60 L1200 98 L1440 58 V220 H0Z" fill="#FFE2B5"/><path d="M0 170 L220 130 L470 160 L720 118 L980 156 L1220 126 L1440 150 V220 H0Z" fill="#CB9C7E"/><path d="M0 196 L300 176 L640 200 L960 178 L1440 194 V220 H0Z" fill="#A87552"/></svg>'));
-    taj.appendChild(CSI.illu('fa_barna', 'cs-taj_fa cs-taj_fa--bal'));
-    taj.appendChild(CSI.illu('fa_narancs', 'cs-taj_fa cs-taj_fa--jobb'));
+    var rDomb = elem(SVG.bor_domb); rDomb.setAttribute('class', 'cs-bor cs-bor--domb'); taj.appendChild(dekor(rDomb));
+    var rBal = CSI.illu('bor_fa_bal', 'cs-bor cs-bor--fa-bal'), rJobb = CSI.illu('bor_fa_jobb', 'cs-bor cs-bor--fa-jobb');
+    taj.appendChild(rBal); taj.appendChild(rJobb);
     levelek(taj, 3);
     hero.insertBefore(taj, hero.firstChild);
+    if (!csend && w.matchMedia('(min-width: 768px)').matches) {
+      var pRaf = 0, retegek = [[rDomb, 0.06], [rBal, 0.16], [rJobb, 0.16]];
+      w.addEventListener('scroll', function () {
+        if (pRaf) return; pRaf = requestAnimationFrame(function () {
+          pRaf = 0; var y = Math.min(scrollY, hero.offsetHeight);
+          retegek.forEach(function (r) { r[0].style.transform = 'translate3d(0,' + (y * r[1]).toFixed(1) + 'px,0)'; });
+        });
+      }, { passive: true });
+    }
+    /* A madár a jobb fa odújából bújik ki, és a telefon mellé repül (odú-lyuk: 2317, 181 a borító koordinátáiban). */
     var mock = hero.querySelector('.cs_mockup');
     if (mock) {
       var hm = CSI.madar(csend ? 'alap' : 'repdes', 'cs-hero-csicser'); mock.appendChild(hm);
-      if (!csend && hm.animate) {
-        hm.animate([{ transform: 'translate(-260px,-220px)' }, { transform: 'translate(-120px,-150px)', offset: 0.5 }, { transform: 'translate(0,0)' }], { duration: 1500, easing: 'cubic-bezier(.23,1,.32,1)' })
-          .finished.then(function () { CSI.poz(hm, 'alap'); });
-      }
+      var kibuj = function () {
+        if (csend || !hm.animate) return;
+        var ctm = rJobb.getScreenCTM(), r = hm.getBoundingClientRect();
+        var dx = 0, dy = -200;
+        if (ctm && r.width && getComputedStyle(rJobb).display !== 'none') {
+          var p = rJobb.createSVGPoint(); p.x = 2317; p.y = 181; p = p.matrixTransform(ctm);
+          dx = p.x - (r.left + r.width / 2); dy = p.y - (r.top + r.height * 0.6);
+        }
+        hm.animate([
+          { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.14)', opacity: 0 },
+          { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.3)', opacity: 1, offset: 0.12 },
+          { transform: 'translate(' + (dx * 0.5) + 'px,' + (Math.min(dy, 0) * 0.5 - 90) + 'px) scale(.8)', offset: 0.55 },
+          { transform: 'translate(0,0) scale(1)', opacity: 1 }
+        ], { duration: 1900, easing: 'cubic-bezier(.45,0,.25,1)' }).finished.then(function () { CSI.poz(hm, 'alap'); });
+      };
+      if (d.readyState === 'complete') setTimeout(kibuj, 300); else w.addEventListener('load', function () { setTimeout(kibuj, 300); });
     }
   }
 
@@ -189,7 +212,7 @@
   if (zaro) {
     zaro.classList.add('cs-taj');
     var zt = dekor(elem('<div class="cs-taj_hatter cs-taj_hatter--zaro"></div>'));
-    zt.appendChild(elem('<svg class="cs-taj_domb" viewBox="0 0 1440 220" preserveAspectRatio="none"><path d="M0 130 L240 84 L520 118 L800 70 L1100 112 L1440 76 V220 H0Z" fill="#FEF7DE" opacity=".7"/><path d="M0 182 L360 150 L720 176 L1080 146 L1440 172 V220 H0Z" fill="#CB9C7E"/><path d="M0 204 L480 190 L960 206 L1440 192 V220 H0Z" fill="#A87552"/></svg>'));
+    var zDomb = elem(SVG.bor_domb); zDomb.setAttribute('class', 'cs-bor cs-bor--domb cs-bor--zaro'); zt.appendChild(dekor(zDomb));
     zt.appendChild(CSI.illu('fa_sarga', 'cs-taj_fa cs-taj_fa--bal'));
     zt.appendChild(CSI.illu('fa_keskeny', 'cs-taj_fa cs-taj_fa--jobb'));
     levelek(zt, 2);

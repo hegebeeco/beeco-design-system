@@ -44,7 +44,30 @@ const svg = {};
 for (const [n, p] of Object.entries(POZOK)) svg['poz_' + n] = poz(n, p);
 svg.itato = kellek('itato', [['cs-i-csepp', 0, 1], ['cs-i-csepp cs-i-csepp2', 2, 4], ['cs-i-level', 13, 14]]);
 svg.eteto = kellek('eteto'); svg.odu = kellek('odu');
-for (const f of ['fa-barna', 'fa-keskeny', 'fa-sarga', 'fa-narancs']) svg[f.replace('-', '_')] = kellek(f);
+for (const f of ['fa-keskeny', 'fa-sarga']) svg[f.replace('-', '_')] = kellek(f);  // a barna és a narancs fa a heróban a borító fáira cserélődött
+
+// Ági borítója (illusztracio/agi/borito.svg) egyetlen, réteg nélküli rajz. A hero rétegeit az elemek sorszáma alapján
+// vágjuk ki (0 = háttér-téglalap, utána az útvonalak rajzolási sorrendben); az átlátszósági csoportokat megtartjuk.
+// Térkép: 1–2 domb és talaj · 3–4, 61–70, 81–94 jobb fa az odúval · 152–171 bal fa (169 a méh szaggatott útja, kimarad)
+// · 23–36 itató · 37–60 madár · 95–151 Gabee · 172–202 könyvek · 5–22, 204–205 logó és szalagok · 206–226 partnertábla.
+function boritoElemek() {
+  const s = olvas('borito'), elemek = [], stack = [];
+  for (const m of s.matchAll(/<g([^>]*)>|<\/g>|<(?:path|rect)[^>]*\/>/g)) {
+    if (m[0].startsWith('</g')) { stack.pop(); continue; }
+    if (m[0].startsWith('<g')) { const op = (m[1].match(/opacity="([^"]+)"/) || [])[1]; stack.push(op || null); continue; }
+    const op = stack.filter(Boolean).pop();
+    elemek.push(op ? `<g opacity="${op}">${m[0]}</g>` : m[0]);
+  }
+  return elemek;
+}
+const BOR = boritoElemek();
+const tart = (a, b, ki = []) => Array.from({ length: b - a + 1 }, (_, k) => a + k).filter(i => !ki.includes(i));
+function boritoReteg(indexek, vb, par) {
+  return tomor(`<svg viewBox="${vb}" xmlns="http://www.w3.org/2000/svg"${par ? ` preserveAspectRatio="${par}"` : ''}>${indexek.map(i => BOR[i]).join('')}</svg>`);
+}
+svg.bor_domb = boritoReteg([1, 2], '0 330 2553 615', 'xMidYMax slice');
+svg.bor_fa_bal = boritoReteg(tart(152, 171, [169]), '-20 -50 250 995');
+svg.bor_fa_jobb = boritoReteg([...tart(61, 70), ...tart(81, 94), 3, 4], '2030 -50 570 995');
 
 const src = fs.readFileSync(path.join(D, 'cs-illusztracio.src.js'), 'utf8');
 if (!src.includes('/*SVG*/{}')) throw new Error('hiányzik a /*SVG*/{} jelölő');
