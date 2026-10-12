@@ -144,6 +144,9 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 @media (max-width:767px){.cs_szalag--kicsi{font-size:20px}.cs_szalag--nagy{font-size:40px}}
 .dia_kek_ov.cs h1{height:127px;margin:12px 0 18px!important;overflow:visible}
 @media (max-width:767px){.dia_kek_ov.cs h1{height:95px}}
+/* Kétoszlopos heróban (992–1279 px) a címoszlop keskeny: a nagy szalag egy sorban marad, a betűméret a szélességhez igazodik.
+   Törésnél a fix H1-magasság miatt rácsúszna a bevezetőre (pl. 1024 px-en). */
+@media (min-width:992px) and (max-width:1279px){.cs_szalag--nagy{white-space:nowrap;font-size:clamp(40px,4.6vw,56px)}}
 
 /* Hero: Ági borítójának rétegei */
 .cs-taj--borito .cs-taj_hatter{overflow:hidden}
