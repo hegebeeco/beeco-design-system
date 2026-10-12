@@ -18,8 +18,8 @@ const POZOK = {
   repdes:    { f: 'poz-repdes',    lab: [94, 170],  reszek: [['cs-p-szarny-b', 0, 0, [40, 104]], ['cs-p-szarny-j', 19, 20, [102, 96]], ['cs-p-szem', 11, 16]] },
   setalgat:  { f: 'poz-setalgat',  lab: [67, 160],  reszek: [['cs-p-szem', 11, 16]] },
   csicsereg: { f: 'poz-csicsereg', lab: [87, 206],  reszek: [['cs-p-hang', 0, 0], ['cs-p-hang cs-p-hang2', 1, 2], ['cs-p-test', 3, 22, [87, 200]]] },
-  eszeget:   { f: 'poz-eszeget',   lab: [128, 130], reszek: [['cs-p-mag', 0, 2], ['cs-p-test', 11, 24, [103, 124]]] }
-  // salas: { f: 'poz-salas', lab: [80, 162], reszek: [] }  (téli póz, dátumkapcsolóval később)
+  eszeget:   { f: 'poz-eszeget',   lab: [128, 130], reszek: [['cs-p-mag', 0, 2], ['cs-p-test', 11, 24, [103, 124]]] },
+  salas:     { f: 'poz-salas',     lab: [80, 162],  reszek: [['cs-p-szem', 11, 16]] }  // téli póz: dec. 1. és febr. vége között az alap helyett
 };
 function poz(nev, p) {
   const s = olvas(p.f), u = utak(s), dx = DOBOZ.x - p.lab[0], dy = DOBOZ.y - p.lab[1];
@@ -68,6 +68,23 @@ function boritoReteg(indexek, vb, par) {
 svg.bor_domb = boritoReteg([1, 2], '0 330 2553 615', 'xMidYMax slice');
 svg.bor_fa_bal = boritoReteg(tart(152, 171, [169]), '-20 -50 250 995');
 svg.bor_fa_jobb = boritoReteg([...tart(61, 70), ...tart(81, 94), 3, 4], '2030 -50 570 995');
+
+// Gabee teljes szettje a borítóból: távcsöves Gabee (95–151) és a könyvek (172–202), a könyvek közelebb tolva.
+svg.bor_gabee = tomor(`<svg viewBox="530 150 400 560" xmlns="http://www.w3.org/2000/svg">${tart(95, 151).map(i => BOR[i]).join('')}<g transform="translate(-10 -190)">${tart(172, 202).map(i => BOR[i]).join('')}</g></svg>`);
+// A borító két szaggatott repülési hurka: a méhé (169) és a madáré (203). A JS maszkkal rajzolja ki őket görgetésre.
+const dOf = h => h.match(/ d="([^"]+)"/)[1];
+svg.hurok_meh = JSON.stringify({ vb: '-60 120 690 655', d: dOf(BOR[169]) });
+svg.hurok_madar = JSON.stringify({ vb: '1950 165 310 410', d: dOf(BOR[203]) });
+
+// Piktogramok a „Miért fontos” blokkba: kettő saját rajz Ági stílusában (illusztracio/sajat), a harmadik Ági elemeiből.
+const sajat = f => fs.readFileSync(path.join(D, 'sajat', f + '.svg'), 'utf8').replace(/<!--[\s\S]*?-->/g, '');
+const belso = x => x.replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
+svg.pikto_rovarok = tomor(sajat('pikto-rovarok')); svg.pikto_vadvirag = tomor(sajat('pikto-vadvirag'));
+svg.pikto_elohely = tomor(`<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">` +
+  `<path d="M0 160 L0 132 L40 124 L100 130 L160 122 L200 130 L200 160Z" fill="#A87552"/><path d="M0 132 L40 124 L100 130 L160 122 L200 130 L200 138 L0 140Z" fill="#CB9C7E"/>` +
+  `<g transform="translate(4 8) scale(.66)">${belso(olvas('fa-sarga'))}</g>` +
+  `<g transform="translate(104 64) scale(.43)">${belso(olvas('poz-alap'))}</g>` +
+  `<path d="M181 134 L184 134 L185 102 L182 102Z" fill="#809D50"/><path d="M183 98 L183 86 L186 86Z M183 98 L194 92 L195 96Z M183 98 L194 104 L190 107Z M183 98 L176 108 L173 104Z M183 98 L171 96 L172 92Z M183 98 L174 86 L178 84Z" fill="#FFFFFF"/><path d="M180 95 L184 93 L187 96 L186 100 L181 101Z" fill="#FFAA2E"/></svg>`);
 
 const src = fs.readFileSync(path.join(D, 'cs-illusztracio.src.js'), 'utf8');
 if (!src.includes('/*SVG*/{}')) throw new Error('hiányzik a /*SVG*/{} jelölő');

@@ -8,6 +8,8 @@
   var d = document, w = window;
   var csend = w.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var SVG = /*SVG*/{};
+  var ALAP = ((d.currentScript && d.currentScript.src) || '').replace(/[^/?#]+(\?.*)?$/, '');
+  var mo = new Date().getMonth(), TEL = mo === 11 || mo === 0 || mo === 1 || /[?&]tel=1/.test(location.search);
 
   function elem(html) { var t = d.createElement('div'); t.innerHTML = html.trim(); return t.firstChild; }
   function dekor(el) { el.setAttribute('aria-hidden', 'true'); el.setAttribute('focusable', 'false'); return el; }
@@ -20,7 +22,7 @@
     madar: function (poz, osztaly) { var m = elem('<span class="cs-pozmadar' + (osztaly ? ' ' + osztaly : '') + '" aria-hidden="true"></span>'); CSI.poz(m, poz || 'alap'); return figyel(m); },
     poz: function (m, poz) {
       if (!m || m._poz === poz) return; m._poz = poz;
-      var rajz = poz === 'iszik' ? 'eszeget' : poz;
+      var rajz = poz === 'iszik' ? 'eszeget' : (poz === 'alap' && TEL ? 'salas' : poz);
       if (m._rajz !== rajz && SVG['poz_' + rajz]) { m.innerHTML = SVG['poz_' + rajz]; m._rajz = rajz; }
       m.setAttribute('data-poz', poz);
     },
@@ -147,7 +149,14 @@
     img.parentNode.insertBefore(p, img); img.classList.add('cs_foto_rejtett'); return s;
   }
   var utvonal = d.querySelector('.dia_green_ov.cs .card.cs_link');
-  if (utvonal) kepCsere(utvonal.querySelector('img'), 'itato');
+  if (utvonal) {
+    var uImg = utvonal.querySelector('img');
+    if (uImg) {
+      var ciklus = elem('<div class="cs_illu_panel cs-ciklus" aria-hidden="true"></div>');
+      [1, 2, 3].forEach(function (n) { var k = d.createElement('img'); k.src = ALAP + 'illusztracio/kepek/itatas-' + n + '.webp'; k.alt = ''; k.decoding = 'async'; ciklus.appendChild(k); });
+      uImg.parentNode.insertBefore(ciklus, uImg); uImg.classList.add('cs_foto_rejtett'); figyel(ciklus);
+    }
+  }
   var harmas = d.querySelectorAll('.cs_harmas > .card'), kellekek = [];
   if (harmas.length === 3) kellekek = [kepCsere(harmas[0].querySelector('img'), 'itato'), kepCsere(harmas[1].querySelector('img'), 'eteto'), kepCsere(harmas[2].querySelector('img'), 'odu')];
 
@@ -199,13 +208,55 @@
     }
   }
 
-  /* 6. Megfigyelés: a 3. lépésnél csicsergő madár */
+  /* 6. Megfigyelés: a Webflow a stílus nélküli osztályokat eldobta, ezért a lépések szöveg- és képrészét itt jelöljük meg. */
+  [].forEach.call(d.querySelectorAll('.cs_folyamat_lepes'), function (l) {
+    var ui = l.querySelector('.cs_folyamat_ui'); if (ui) ui.parentNode.classList.add('cs_folyamat_vizual');
+    if (l.firstElementChild && l.firstElementChild !== (ui && ui.parentNode)) l.firstElementChild.classList.add('cs_folyamat_szoveg');
+  });
+  /* a 3. lépésnél csicsergő madár */
   var zaroLepes = d.querySelector('.cs_folyamat_lepes--zaro .cs_folyamat_vizual');
   if (zaroLepes) zaroLepes.appendChild(CSI.madar('csicsereg', 'cs-lepes-csicser'));
 
   /* 7. Közösség: a hírlevél-sziget tetején sétáló madár */
   var sziget = d.querySelector('#fotofal .cs_sziget');
   if (sziget) { var sm = CSI.madar('setalgat', 'cs-setalo'); var sav = elem('<div class="cs-setalo_sav" aria-hidden="true"></div>'); sav.appendChild(sm); sziget.parentNode.insertBefore(sav, sziget); }
+
+  /* 9. „Miért fontos” piktogramjai Ági stílusában (a régi matricák helyén, azonos magassággal) */
+  var PIKTO = ['pikto_rovarok', 'pikto_vadvirag', 'pikto_elohely'];
+  [].forEach.call(d.querySelectorAll('.cs_horgony .cs_teny'), function (t, n) {
+    var img = t.querySelector('img'); if (!img || !PIKTO[n]) return;
+    img.parentNode.insertBefore(CSI.illu(PIKTO[n], 'cs_teny_ikon cs-pikto'), img); img.classList.add('cs_foto_rejtett');
+  });
+
+  /* 10. Ági szaggatott repülési hurkai: görgetésre rajzolódnak ki (maszkolt szaggatott vonal). */
+  var hurkok = [], hId = 0;
+  function hurok(kont, kulcs, osztaly) {
+    if (!kont || !SVG[kulcs]) return;
+    var o = JSON.parse(SVG[kulcs]), id = 'cs-hm-' + (++hId);
+    var s = dekor(elem('<svg class="cs-hurok ' + osztaly + '" viewBox="' + o.vb + '"><defs><mask id="' + id + '" maskUnits="userSpaceOnUse"><path class="cs-hurok_maszk" d="' + o.d + '" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round"/></mask></defs><path d="' + o.d + '" fill="none" stroke="#A87956" stroke-width="5" stroke-dasharray="13 10" stroke-linecap="round" mask="url(#' + id + ')"/></svg>'));
+    kont.classList.add('cs-van-hurok'); kont.appendChild(s);
+    var m = s.querySelector('.cs-hurok_maszk'), L = m.getTotalLength ? m.getTotalLength() : 0;
+    m.style.strokeDasharray = L + ' ' + L; m.style.strokeDashoffset = csend ? 0 : L;
+    hurkok.push({ s: s, m: m, L: L });
+  }
+  hurok(d.querySelector('#fotofal .cs_gabee_bemutat'), 'hurok_meh', 'cs-hurok--meh');
+  hurok(szek, 'hurok_madar', 'cs-hurok--gond');
+  hurok(d.querySelector('.dia_green_ov.cs .alap-blokk'), 'hurok_madar', 'cs-hurok--mit');
+  if (!csend && hurkok.length) {
+    var hRaf = 0, hFris = function () {
+      hRaf = 0; var vh = innerHeight;
+      hurkok.forEach(function (h) { var r = h.s.getBoundingClientRect(); var p = Math.max(0, Math.min(1, (vh * 0.92 - r.top) / (r.height + vh * 0.35))); h.m.style.strokeDashoffset = (h.L * (1 - p)).toFixed(1); });
+    };
+    w.addEventListener('scroll', function () { if (!hRaf) hRaf = requestAnimationFrame(hFris); }, { passive: true }); hFris();
+  }
+
+  /* 11. Megfigyelés 1. lépés: kamera-keret (Ági karuszelje, 4. panel) – a sarkok rázáródnak, „katt”. */
+  var elso = d.querySelector('.cs_folyamat_lepes .cs_folyamat_vizual');
+  if (elso) { var kam = figyel(dekor(elem('<div class="cs-kamera"><i class="cs-kamera_s cs-kamera_s--bf"></i><i class="cs-kamera_s cs-kamera_s--jf"></i><i class="cs-kamera_s cs-kamera_s--ba"></i><i class="cs-kamera_s cs-kamera_s--ja"></i><i class="cs-kamera_vaku"></i></div>'))); elso.appendChild(kam); }
+
+  /* 12. Gabee teljes szettje a borítóból: távcső és könyvek együtt (Levi kérése) */
+  var gImg = d.querySelector('#fotofal .cs_gabee_kep');
+  if (gImg && SVG.bor_gabee) { gImg.parentNode.insertBefore(CSI.illu('bor_gabee', 'cs_gabee_kep cs-gabee-szett'), gImg); gImg.classList.add('cs_foto_rejtett'); }
 
   /* 8. Záró jelenet: dombos táj, Ági fái, hulló levelek */
   var zaro = d.getElementById('download');

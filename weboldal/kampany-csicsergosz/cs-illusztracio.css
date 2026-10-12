@@ -108,7 +108,7 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 .dia_kek_ov.cs .cs-hm1,.dia_kek_ov.cs .cs-hm2,.dia_kek_ov.cs .cs-hm-uzenet{display:none!important}
 
 /* Megfigyelés: döntött telefonkeret és összekötő szaggatott vonal */
-.cs_folyamat_ui{border:8px solid #1A1A1A!important;border-radius:26px!important;box-shadow:none!important}
+.cs_folyamat_ui{border:0!important;border-radius:6px!important;padding:12px;background:#FFF5DD!important;box-shadow:0 8px 18px rgba(107,59,22,.16)!important}
 .cs_folyamat_lepes:nth-child(1) .cs_folyamat_ui{transform:rotate(-3deg)}
 .cs_folyamat_lepes:nth-child(2) .cs_folyamat_ui{transform:rotate(2.5deg)}
 .cs_folyamat_lepes:not(:last-child){position:relative}
@@ -156,3 +156,37 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 @media (max-width:767px){.cs-bor--domb{height:30%}.cs-bor--fa-bal{left:-70px;height:46%;opacity:.95}.cs-bor--fa-jobb{right:-70px;height:34%}}
 .cs-bor--zaro{height:34%}
 @media (max-width:767px){.cs-bor--zaro{height:22%}}
+
+/* Itatás-ciklus (Ági karuszelje, 3. panel): tedd ki, tartsd tisztán, töltsd újra */
+.cs-ciklus{position:relative;display:block}
+.cs-ciklus img{position:absolute;left:50%;top:50%;width:78%;height:auto;max-height:86%;object-fit:contain;transform:translate(-50%,-50%) rotate(-1deg);opacity:0;animation:cs-ciklus 6s infinite}
+.cs-ciklus img:nth-child(2){animation-delay:-4s}.cs-ciklus img:nth-child(3){animation-delay:-2s}
+@keyframes cs-ciklus{0%,31%{opacity:1}36%,95%{opacity:0}100%{opacity:1}}
+.cs-ciklus.cs-all img{animation-play-state:paused}
+
+/* „Miért fontos” piktogramok */
+.dia_ov_light.cs_horgony svg.cs-pikto{width:170px!important;height:136px!important;max-width:100%;display:block;flex:0 0 auto}
+
+/* Szaggatott repülési hurkok */
+.cs-van-hurok{position:relative}
+.cs-hurok{position:absolute;pointer-events:none;z-index:0;overflow:visible}
+.cs-hurok--meh{left:-40px;top:-60px;width:300px;height:auto}
+.cs-hurok--gond{right:4%;top:40px;width:150px;height:auto}
+.cs-hurok--mit{left:2%;top:10px;width:130px;height:auto;transform:scaleX(-1)}
+@media (max-width:767px){.cs-hurok--meh{width:200px;left:-60px}.cs-hurok--gond{width:100px;right:-10px}.cs-hurok--mit{width:90px;left:-14px}}
+
+/* Kamera-keret a Megfigyelés 1. lépésénél */
+.cs-kamera{position:absolute;inset:-14px;pointer-events:none}
+.cs-kamera_s{position:absolute;width:30px;height:30px;border:0 solid #6B3B16;animation:cs-sarok 4.5s cubic-bezier(.23,1,.32,1) infinite}
+.cs-kamera_s--bf{left:0;top:0;border-width:5px 0 0 5px;--x:-16px;--y:-16px}.cs-kamera_s--jf{right:0;top:0;border-width:5px 5px 0 0;--x:16px;--y:-16px}
+.cs-kamera_s--ba{left:0;bottom:0;border-width:0 0 5px 5px;--x:-16px;--y:16px}.cs-kamera_s--ja{right:0;bottom:0;border-width:0 5px 5px 0;--x:16px;--y:16px}
+@keyframes cs-sarok{0%,8%{transform:translate(var(--x),var(--y));opacity:0}22%,80%{transform:none;opacity:1}100%{transform:translate(var(--x),var(--y));opacity:0}}
+.cs-kamera_vaku{position:absolute;inset:14px;border-radius:6px;background:#fff;opacity:0;animation:cs-vaku 4.5s ease-out infinite}
+@keyframes cs-vaku{0%,30%{opacity:0}33%{opacity:.75}48%,100%{opacity:0}}
+.cs-kamera.cs-all *{animation-play-state:paused}
+
+/* Gabee teljes szettje */
+#fotofal .cs-gabee-szett{width:190px;height:auto}
+@media (max-width:767px){#fotofal .cs-gabee-szett{width:140px}}
+@media (prefers-reduced-motion:reduce){.cs-ciklus img,.cs-kamera *{animation:none!important}.cs-ciklus img:first-child{opacity:1}.cs-kamera_s{opacity:1}}
+.cs_folyamat_vizual{width:fit-content;max-width:100%}
