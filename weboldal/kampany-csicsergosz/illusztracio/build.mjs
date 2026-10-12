@@ -86,6 +86,25 @@ svg.pikto_elohely = tomor(`<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2
   `<g transform="translate(104 64) scale(.43)">${belso(olvas('poz-alap'))}</g>` +
   `<path d="M181 134 L184 134 L185 102 L182 102Z" fill="#809D50"/><path d="M183 98 L183 86 L186 86Z M183 98 L194 92 L195 96Z M183 98 L194 104 L190 107Z M183 98 L176 108 L173 104Z M183 98 L171 96 L172 92Z M183 98 L174 86 L178 84Z" fill="#FFFFFF"/><path d="M180 95 L184 93 L187 96 L186 100 L181 101Z" fill="#FFAA2E"/></svg>`);
 
+// ===== Statikus SVG-fájlok a Webflow Designerhez (illusztracio/statikus/) =====
+// A Designer nem futtat JS-t: ezek <img>-ként ülnek az oldalon (data-cs-illu / data-cs-poz jelölővel), élesben a JS
+// a helyükre teszi az animálható inline változatot. A dombokat ugyanazzal a véletlen-sorozattal rajzoljuk, mint a JS.
+const ST = path.join(D, 'statikus'); fs.mkdirSync(ST, { recursive: true });
+const meretes = x => x.replace(/^<svg([^>]*?)viewBox="([-\d.]+) ([-\d.]+) ([-\d.]+) ([-\d.]+)"/, (m, a, x0, y0, w, h) => '<svg' + a + 'viewBox="' + [x0, y0, w, h].join(' ') + '" width="' + Math.round(w) + '" height="' + Math.round(h) + '"');
+const ir = (nev, tart) => fs.writeFileSync(path.join(ST, nev + '.svg'), meretes(tart.replace(/^<svg(?![^>]*xmlns=)/, '<svg xmlns="http://www.w3.org/2000/svg"')));
+['itato', 'eteto', 'odu', 'fa_sarga', 'bor_domb', 'bor_fa_bal', 'bor_fa_jobb', 'bor_gabee', 'pikto_rovarok', 'pikto_vadvirag', 'pikto_elohely', 'poz_alap', 'poz_csicsereg', 'poz_repdes'].forEach(n => ir(n, svg[n]));
+ir('poz_iszik', svg.poz_eszeget.replace(/<g class="cs-p-mag">[\s\S]*?<\/g>/, ''));
+for (const k of ['hurok_meh', 'hurok_madar']) { const o = JSON.parse(svg[k]); ir(k, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${o.vb}"><path d="${o.d}" fill="none" stroke="#A87956" stroke-width="5" stroke-dasharray="13 10" stroke-linecap="round"/></svg>`); }
+{ // dombok: a cs-illusztracio.src.js 2. részének pontos másolata (azonos sorrend, azonos mag)
+  let x = 7; const vel = () => { x = (x * 9301 + 49297) % 233280; return x / 233280; };
+  const gerinc = (alap, ing, lepes) => { const p = []; let xx = 0; while (xx <= 1440) { p.push([xx, alap + (vel() * 2 - 1) * ing]); xx += lepes * (0.7 + vel() * 0.6); } p.push([1440, alap]); return p; };
+  const domb = szinek => { let s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">'; for (let i = szinek.length - 1; i >= 0; i--) { const g = gerinc(36 + i * 26, 12, 140); let dd = 'M0 0 H1440 V' + g[g.length - 1][1]; for (let k = g.length - 1; k >= 0; k--) dd += ' L' + g[k][0].toFixed(0) + ' ' + g[k][1].toFixed(1); s += '<path d="' + dd + ' Z" fill="' + szinek[i] + '"/>'; } return s + '</svg>'; };
+  const KREM = '#FEF7DE', BARACK = '#FFE2B5', HOMOK = '#CB9C7E', BARNA = '#A87552', KAKAO = '#6B3B16', TALAJ = '#B7805C';
+  [['miert', [TALAJ]], ['mit', [KREM]], ['gond', [BARACK]], ['howto', [KREM]], ['fotofal', [BARACK]], ['partner', [KREM]], ['segits', [BARACK]], ['gyik', [KREM, HOMOK, BARNA]], ['zaro', [KAKAO, BARNA]], ['lab', [BARNA]]]
+    .forEach(([n, sz]) => fs.writeFileSync(path.join(ST, 'domb_' + n + '.svg'), domb(sz)));
+}
+console.log('statikus:', fs.readdirSync(ST).length, 'fájl');
+
 const src = fs.readFileSync(path.join(D, 'cs-illusztracio.src.js'), 'utf8');
 if (!src.includes('/*SVG*/{}')) throw new Error('hiányzik a /*SVG*/{} jelölő');
 const out = src.replace('/*SVG*/{}', JSON.stringify(svg)).replace('GENERÁLT FÁJL FORRÁSA:', 'GENERÁLT FÁJL, ne szerkeszd kézzel. Forrás:');

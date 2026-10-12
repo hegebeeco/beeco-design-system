@@ -96,7 +96,7 @@ body:has(.cs_fejlec){margin:0!important}
 #fotofal{background-color:var(--cs-c-krem)!important}
 .dia_green_ov.cs_feher{background-color:var(--cs-c-barack)!important}
 #segits{background-color:var(--cs-c-krem)!important}
-#download.cs-taj--alkony{background:linear-gradient(var(--cs-c-barack) 0 36%,#EDC49B 72%,var(--cs-c-homok) 100%)!important}
+#download:has(>.cs-taj_hatter--zaro){background:linear-gradient(var(--cs-c-barack) 0 36%,#EDC49B 72%,var(--cs-c-homok) 100%)!important}
 
 /* Miért fontos világos alapon: kakaó szöveg, narancs szám, alap kakaó szalag */
 .dia_ov_light.cs_horgony .cs_kicker{background:var(--cs-c-kakao)!important;color:#fff!important}

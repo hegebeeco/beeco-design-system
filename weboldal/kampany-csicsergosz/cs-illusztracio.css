@@ -55,9 +55,10 @@
 @media (max-width:767px){.cs-hullo--2,.cs-hullo--3{display:none}}
 
 /* Látogató madár a Gondoskodás kártyáin */
-.cs-latogatas{position:relative}
+.cs-latogatas,.dia_kek.cs:not(#fotofal):not(#download){position:relative}
 .cs-latogato{position:absolute;left:0;top:0;width:90px;z-index:5;pointer-events:none;transform:translate(-200px,-200px);will-change:transform;transform-origin:50% 96%}
-.cs-latogato{opacity:0;transition:opacity 160ms ease-out}.cs-latogato.cs-repul,.cs-latogato.cs-ul{opacity:1}
+/* Designerben (és JS előtt) a madár az itató-panelen ül; élesben a JS a szekcióba teszi és Ági rajzához igazítja */
+.cs_illu_panel>.cs-latogato{left:52%;top:6%;width:62%;transform:none}
 
 /* Csak láthatóság alatt fusson; csökkentett mozgásnál csak a póz marad */
 .cs-pozmadar.cs-all *,.cs-illu.cs-all *{animation-play-state:paused!important}
@@ -67,10 +68,10 @@
 :root{--cs-c-krem:#FEF7DE;--cs-c-barack:#FFE2B5;--cs-c-homok:#CB9C7E;--cs-c-barna:#A87552;--cs-c-dio:#905E39;--cs-c-kakao:#6B3B16;--cs-c-mez:#FFAA2E;--cs-c-narancs:#EA6C18}
 
 /* Dombok a ferde vágás helyett */
-.cs-van-domb[data-cs-ferde]::before{display:none}
-.cs-van-domb{position:relative}
+:has(>.cs-domb)[data-cs-ferde]::before{display:none}
+:has(>.cs-domb){position:relative}
 .cs-domb{position:absolute;left:0;top:-1px;width:100%;height:clamp(44px,5vw,84px);z-index:0;pointer-events:none}
-.cs-van-domb>*:not(.cs-domb):not(.cs-taj_hatter):not(.cs_dekor):not(.cs-pozmadar):not(.cs-hurok){position:relative;z-index:1}
+:has(>.cs-domb)>*:not(.cs-domb):not(.cs-taj_hatter):not(.cs_dekor):not(.cs-pozmadar):not(.cs-hurok){position:relative;z-index:1}
 
 /* Szalagcím: kakaó szalag fehér Lalezarral (kicker = kis szalag, hero H1 = két szint) */
 .cs_szalag{display:inline-block;background:var(--cs-c-kakao);color:#fff;font-family:Lalezar,sans-serif;font-weight:400;line-height:1;padding:.32em .7em .16em;clip-path:polygon(0 6%,100% 0,98.5% 100%,1.5% 94%)}
@@ -86,13 +87,13 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 .dia_kek_ov.cs .cs_mme_sor_txt{max-width:230px;font-size:13px;line-height:1.3;color:var(--cs-c-kakao)}
 
 /* Táj: dombok és fák a hero és a záró blokk alján */
-.cs-taj{position:relative;overflow:hidden}
-.dia_kek_ov.cs.cs-taj{background:linear-gradient(var(--cs-c-krem) 0 55%,var(--cs-c-barack) 100%)}
+:has(>.cs-taj_hatter){position:relative;overflow:hidden}
+.dia_kek_ov.cs:not(.cs_sotet){background:linear-gradient(var(--cs-c-krem) 0 55%,var(--cs-c-barack) 100%)}
 .cs-taj_hatter{position:absolute;inset:0;z-index:0;pointer-events:none}
 .cs-taj_domb{position:absolute;left:0;bottom:0;width:100%;height:min(26%,220px)}
 .cs-taj_fa{position:absolute;bottom:4%;width:clamp(90px,11vw,170px);height:auto}
 .cs-taj_fa--bal{left:-2.5%}.cs-taj_fa--jobb{right:-2%}
-.cs-taj>*:not(.cs-taj_hatter):not(.cs-pozmadar):not(.cs-hurok){position:relative;z-index:1}
+:has(>.cs-taj_hatter)>*:not(.cs-taj_hatter):not(.cs-pozmadar):not(.cs-hurok){position:relative;z-index:1}
 @media (max-width:767px){.cs-taj_fa{width:80px;opacity:.9}.cs-taj_fa--bal{left:-30px}.cs-taj_fa--jobb{right:-30px}}
 
 /* Hero madár a telefon mellett */
@@ -147,7 +148,7 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 @media (min-width:992px) and (max-width:1279px){.cs_szalag--nagy{white-space:nowrap;font-size:clamp(40px,4.6vw,56px)}}
 
 /* Hero: Ági borítójának rétegei */
-.cs-taj--borito .cs-taj_hatter{overflow:hidden}
+.dia_kek_ov.cs .cs-taj_hatter{overflow:hidden}
 .cs-bor{position:absolute;display:block;will-change:transform}
 .cs-bor--domb{left:0;bottom:0;width:100%;height:46%}
 .cs-bor--fa-bal{left:-110px;bottom:-2%;height:104%;width:auto}
@@ -166,10 +167,10 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 .cs-ciklus.cs-all img{animation-play-state:paused}
 
 /* „Miért fontos” piktogramok */
-.dia_ov_light.cs_horgony svg.cs-pikto{width:170px!important;height:136px!important;max-width:100%;display:block;flex:0 0 auto}
+.dia_ov_light.cs_horgony .cs-pikto{width:170px!important;height:136px!important;max-width:100%;display:block;flex:0 0 auto}
 
 /* Szaggatott repülési hurkok */
-.cs-van-hurok{position:relative}
+:has(>.cs-hurok){position:relative}
 .cs-hurok{position:absolute;pointer-events:none;z-index:0;overflow:visible}
 .cs-hurok--meh{left:-40px;top:-60px;width:300px;height:auto}
 .cs-hurok--gond{right:4%;top:40px;width:150px;height:auto}
@@ -198,9 +199,9 @@ section .cs_kicker{display:inline-block;background:var(--cs-c-kakao);color:#fff!
 .cs-utvonal_madar.cs-var,.cs-hazaer .cs-utvonal_madar{opacity:0}
 /* Záró jelenet: Ági borítójának tükörképe alkonyatban */
 .cs-taj_hatter--zaro{transform:scaleX(-1);filter:saturate(1.06) brightness(.9)}
-.cs-taj--alkony .cs-bor--fa-bal{height:96%}
-.cs-taj--alkony .cs-bor--fa-jobb{height:50%}
-@media (max-width:767px){.cs-taj--alkony .cs-bor--fa-bal{height:44%}.cs-taj--alkony .cs-bor--fa-jobb{height:32%}}
+.cs-taj_hatter--zaro .cs-bor--fa-bal{height:96%}
+.cs-taj_hatter--zaro .cs-bor--fa-jobb{height:50%}
+@media (max-width:767px){.cs-taj_hatter--zaro .cs-bor--fa-bal{height:44%}.cs-taj_hatter--zaro .cs-bor--fa-jobb{height:32%}}
 .cs-zaro-csicser{position:absolute;left:0;top:0;width:84px;z-index:6;pointer-events:none;will-change:transform}
 @media (max-width:767px){.cs-zaro-csicser{width:64px}}
 /* Csatlakozás: Ági elemeiből rakott képek a fotók helyén */
@@ -221,3 +222,13 @@ html.cs-be-on .cs-be.cs-be-lat{opacity:1;transform:none;transition:opacity 300ms
 html.cs-be-on section .cs_kicker.cs-kibont{clip-path:polygon(0 8%,0 0,0 100%,0 92%)}
 html.cs-be-on section .cs_kicker.cs-kibont.cs-kibont-lat{clip-path:polygon(0 8%,100% 0,98% 100%,2% 92%);transition:clip-path 300ms cubic-bezier(.23,1,.32,1)}
 @media (prefers-reduced-motion:reduce){.cs-kamera_s,.cs-kamera_vaku{animation:none!important}.cs-kamera_vaku{opacity:0}}
+
+/* ===== Webflow Designer: a szerkesztőben valódi <img> elemek ülnek (data-cs-illu / data-cs-poz), élesben a JS cseréli inline-ra ===== */
+img.cs-pozmadar{display:block;height:auto}
+img.cs-illu{display:block;height:auto}
+.cs_illu_panel img.cs-illu{width:auto;height:78%;max-width:80%}
+.dia_green_ov.cs .cs_illu_panel img.cs-illu{height:72%}
+.cs-kinek-illu img.cs-illu{height:60%;max-width:44%}
+.cs-kinek-illu img.cs-illu--fa_sarga{height:86%}
+.cs-kinek-illu img.cs-illu--poz_alap{height:40%}
+img.cs-domb,img.cs-hurok{display:block}
