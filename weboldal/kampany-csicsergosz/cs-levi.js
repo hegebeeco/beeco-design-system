@@ -18,4 +18,9 @@
   });
 
   [].forEach.call(d.querySelectorAll('#fotofal input[type="submit"]'), function (b) { b.value = 'Feliratkozom a hírlevélre'; b.setAttribute('data-wait', 'Egy pillanat…'); });
+  /* Az általános hírlevél-felugró ezen az oldalon nem jelenik meg: a később beszúrt, rögzített „Iratkozz fel” ablakot elrejtjük. */
+  var felugro = /iratkozz fel|beeújság/i;
+  function rejt(n) { if (n.nodeType === 1 && !n.closest('#fotofal') && getComputedStyle(n).position === 'fixed' && felugro.test(n.textContent || '')) n.setAttribute('data-cs-nincs-popup', ''); }
+  new MutationObserver(function (m) { m.forEach(function (x) { [].forEach.call(x.addedNodes, rejt); }); }).observe(d.body, { childList: true, subtree: true });
+  [].forEach.call(d.body.children, rejt);
 })();
