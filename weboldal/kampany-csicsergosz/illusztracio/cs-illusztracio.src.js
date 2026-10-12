@@ -58,6 +58,7 @@
       h1.appendChild(d.createTextNode(' '));
       h1.appendChild(elem('<span class="cs_szalag cs_szalag--nagy"></span>')).textContent = t.slice(i + 2);
       h1.classList.add('cs_h1_szalag');
+      h1.setAttribute('aria-label', t);
     }
     /* a partnertábla tisztán CSS-ből rajzolódik (.cs_mme_sor), hogy ne mozduljon el az oszlop */
     hero.classList.add('cs-taj');
