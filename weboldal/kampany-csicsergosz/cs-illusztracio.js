@@ -55,6 +55,7 @@
     if (i > 0) {
       h1.textContent = '';
       h1.appendChild(elem('<span class="cs_szalag cs_szalag--kicsi"></span>')).textContent = t.slice(0, i + 1);
+      h1.appendChild(d.createTextNode(' '));
       h1.appendChild(elem('<span class="cs_szalag cs_szalag--nagy"></span>')).textContent = t.slice(i + 2);
       h1.classList.add('cs_h1_szalag');
     }
