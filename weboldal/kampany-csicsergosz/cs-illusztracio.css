@@ -1,9 +1,9 @@
 /* Csicsergősz illusztrációk és a madár pózai (Ági eredeti rajzai). Párja: cs-illusztracio.js.
-   Póz: <span class="cs-madar" data-poz="alap|repdes|setalgat|eszeget|iszik|csicsereg">, benne Ági pózrajza egy 240×220-as dobozban,
+   Póz: <span class="cs-pozmadar" data-poz="alap|repdes|setalgat|eszeget|iszik|csicsereg">, benne Ági pózrajza egy 240×220-as dobozban,
    a láb alja a (120, 212) pontban. A forgáspontokat a build írja a csoportokra (view-box koordinátában). */
-.cs-madar{display:block;line-height:0}
-.cs-madar .cs-poz{display:block;width:100%;height:auto;overflow:visible}
-.cs-madar g{transform-box:view-box}
+.cs-pozmadar{display:block;line-height:0}
+.cs-pozmadar .cs-poz{display:block;width:100%;height:auto;overflow:visible}
+.cs-pozmadar g{transform-box:view-box}
 
 /* alap: pislog */
 .cs-p-szem{transform-box:fill-box!important;transform-origin:50% 50%}
@@ -60,8 +60,8 @@
 .cs-latogato{opacity:0;transition:opacity 160ms ease-out}.cs-latogato.cs-repul,.cs-latogato.cs-ul{opacity:1}
 
 /* Csak láthatóság alatt fusson; csökkentett mozgásnál csak a póz marad */
-.cs-madar.cs-all *,.cs-illu.cs-all *{animation-play-state:paused!important}
-@media (prefers-reduced-motion:reduce){.cs-madar *,.cs-madar,.cs-illu *,.cs-taj_fa,.cs-hullo{animation:none!important}.cs-hullo{display:none}}
+.cs-pozmadar.cs-all *,.cs-illu.cs-all *{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){.cs-pozmadar *,.cs-pozmadar,.cs-illu *,.cs-taj_fa,.cs-hullo{animation:none!important}.cs-hullo{display:none}}
 
 /* ===== Arculati réteg (brand board: 8 szín) ===== */
 :root{--cs-c-krem:#FEF7DE;--cs-c-barack:#FFE2B5;--cs-c-homok:#CB9C7E;--cs-c-barna:#A87552;--cs-c-dio:#905E39;--cs-c-kakao:#6B3B16;--cs-c-mez:#FFAA2E;--cs-c-narancs:#EA6C18}

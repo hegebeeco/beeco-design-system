@@ -17,7 +17,7 @@
   /* 1. Madár: egy burkoló, amelyben Ági megfelelő pózrajza ül. Az „iszik” az eszegető rajzot használja, magok nélkül. */
   var CSI = w.CSI = {
     illu: function (nev, osztaly) { var s = dekor(elem(SVG[nev])); s.setAttribute('class', 'cs-illu cs-illu--' + nev + (osztaly ? ' ' + osztaly : '')); return s; },
-    madar: function (poz, osztaly) { var m = elem('<span class="cs-madar' + (osztaly ? ' ' + osztaly : '') + '" aria-hidden="true"></span>'); CSI.poz(m, poz || 'alap'); return figyel(m); },
+    madar: function (poz, osztaly) { var m = elem('<span class="cs-pozmadar' + (osztaly ? ' ' + osztaly : '') + '" aria-hidden="true"></span>'); CSI.poz(m, poz || 'alap'); return figyel(m); },
     poz: function (m, poz) {
       if (!m || m._poz === poz) return; m._poz = poz;
       var rajz = poz === 'iszik' ? 'eszeget' : poz;
