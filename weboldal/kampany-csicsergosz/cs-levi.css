@@ -78,7 +78,7 @@ body:has(.cs_fejlec){margin:0!important}
 /* Mobilos letöltősáv keskenyebbre (Levi: ne takarja a tartalmat) */
 .cs-ragados{padding:6px 8px 6px 10px;gap:8px}
 .cs-ragados img{width:30px}
-.cs-ragados .button_main{min-height:44px;padding:8px 12px 6px}
+.cs-ragados .button_main{min-height:44px;padding:8px 12px 6px;line-height:1.2}
 @media (max-width:767px){body{padding-bottom:84px}}
 /* A szakmai partner szerepe mondat: ne legyen csupa nagybetű */
 .cs_partnerek .card:nth-child(2) .cs_kicker{text-transform:none;letter-spacing:.02em}
