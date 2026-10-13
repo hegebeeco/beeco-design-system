@@ -468,9 +468,9 @@ html[data-theme="dark"] .fs-oldal .fs-hirlevel-uzenet.fs-hiba{color:#FFB4AB}
 .fs-hero .fs-qr-szoveg{max-width:22ch}
 /* ---------- Zöld 2050: illusztrált háttér a hero alján ---------- */
 .fs-hero{isolation:isolate}
-.fs-oldal img.fs-hero-taj{position:absolute;left:0;right:0;top:0;bottom:0;z-index:-1;display:block;width:100%;max-width:none;height:100%;object-fit:cover;object-position:50% 100%;pointer-events:none}
+.fs-oldal img.fs-hero-taj{opacity:.5;position:absolute;left:0;right:0;top:0;bottom:0;z-index:-1;display:block;width:100%;max-width:none;height:100%;object-fit:cover;object-position:50% 100%;pointer-events:none}
 @media (max-width:760px){.fs-oldal img.fs-hero-taj{top:auto;height:600px}}
-html[data-theme="dark"] .fs-hero-taj{filter:brightness(.6) saturate(.85)}
+html[data-theme="dark"] .fs-hero-taj{filter:brightness(.6) saturate(.85);opacity:.4}
 /* ---------- Megértés, cselekvés, megerősítés: hover-reakció ---------- */
 .fs-lepes{transition:transform .22s var(--ease),box-shadow .22s var(--ease),opacity .3s var(--ease)}
 .fs-lepes-ikon .fs-piko,.fs-lepes-ikon .fs-lepes-szam{transition:transform .25s var(--ease)}
@@ -483,14 +483,11 @@ html[data-theme="dark"] .fs-hero-taj{filter:brightness(.6) saturate(.85)}
 .fs-lepes:active{transform:translateY(-2px)}
 @media (prefers-reduced-motion:reduce){.fs-lepes:hover,.fs-lepes:nth-child(2):hover,.fs-lepes:active{transform:none}.fs-lepes:hover .fs-lepes-ikon .fs-piko,.fs-lepes:hover .fs-lepes-ikon .fs-lepes-szam{transform:none}}
 /* ---------- végtelen sáv (vélemények, sajtó) – a JS duplikálja a tartalmat ---------- */
-.fs-vegtelen{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.fs-vegtelen{position:relative;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain;cursor:grab;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
 .fs-oldal .fs-vegtelen{display:block}
-.fs-vegtelen-sav{display:flex;align-items:stretch;gap:16px;width:max-content;padding:6px 0 10px;animation:fs-vegtelen var(--ido,70s) linear infinite}
-.fs-vegtelen:hover .fs-vegtelen-sav,.fs-vegtelen:focus-within .fs-vegtelen-sav,.fs-vegtelen.fs-all .fs-vegtelen-sav{animation-play-state:paused}
-@keyframes fs-vegtelen{to{transform:translateX(calc(-50% - 8px))}}
+.fs-vegtelen-sav{display:flex;align-items:stretch;gap:16px;width:max-content;padding:6px 0 10px;}
 .fs-velemenyek .fs-velemeny{flex:none;width:min(340px,78vw)}
 .fs-sav-gomb{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;margin-top:8px;border:var(--bw) solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:700 var(--fs-14)/1 var(--body);cursor:pointer}
-@media (prefers-reduced-motion:reduce){.fs-vegtelen{overflow-x:auto}.fs-vegtelen-sav{animation:none}.fs-sav-gomb{display:none}}
 /* ---------- logók: finomított csempék ---------- */
 .fs-oldal .fs-logo-csempe{display:flex;flex-direction:column;align-items:center;gap:6px;height:auto;padding:0;background:none;border:0;border-radius:0;box-shadow:none;transform:none;color:var(--ink-soft);text-decoration:none}
 .fs-logo-keret{display:grid;place-items:center;width:100%;min-width:104px;height:56px;padding:8px 14px;background:var(--logo-tile);border:var(--bw) solid var(--line);border-radius:12px 4px 12px 4px;box-shadow:var(--sh-s);transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
@@ -530,3 +527,77 @@ html[data-theme="dark"] .fs-hero-taj{filter:brightness(.6) saturate(.85)}
 @media (hover:hover) and (pointer:fine){.fs-oldal .fs-beebolt .fs-termek:hover{transform:translate(-2px,-4px) rotate(-.6deg);box-shadow:var(--sh)}}
 @media (max-width:760px){.fs-bolt-fej{grid-template-columns:1fr;align-items:start}.fs-beebolt .fs-termekek{grid-template-columns:repeat(3,minmax(200px,1fr));overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}.fs-beebolt .fs-termek{scroll-snap-align:start}}
 .fs-pedia-szekcio{padding-block:48px}
+/* ---------- 4. kör (2026-10-13) ---------- */
+.fs-vegtelen::-webkit-scrollbar{display:none}
+.fs-vegtelen.fs-huz{cursor:grabbing;user-select:none}
+.fs-vegtelen.fs-huz a{pointer-events:none}
+/* hero: a felirat a telefon alatt */
+.fs-hero-jobb{display:grid;justify-items:center;min-width:0}
+.fs-hero-jobb .fs-kaptar-szin{width:100%}
+.fs-hero-jobb .fs-felirat{position:relative;z-index:3;width:min(460px,100%);margin-top:-6px;text-align:center;justify-items:center}
+@media (max-width:760px){.fs-hero-jobb{display:contents}.fs-hero-jobb .fs-felirat{width:auto;text-align:left;justify-items:start;margin-top:0}}
+/* jobb oldali sáv: ösvény alul, méhecske fölötte, feliratok legfelül */
+.fs-reteg{z-index:31}
+.fs-sin-nav{z-index:33}
+/* közösség: nagyobb képek, alattuk a közösség ereje */
+.fs-raj .fs-burok.fs-racs{grid-template-columns:.8fr 1.2fr}
+.fs-raj-fotok{height:580px}
+.fs-foto{width:min(310px,49%)}
+.fs-ereje{display:grid;grid-template-columns:1.15fr 1fr;gap:22px 36px;align-items:start;margin-top:56px;padding-top:32px;border-top:2px dashed rgba(211,221,187,.45)}
+.fs-ereje-cim{grid-column:1/-1;font-size:var(--fs-34);color:var(--cream)}
+.fs-ereje .fs-szamok{grid-template-columns:repeat(2,1fr);margin-top:0;padding-top:0;border-top:0;gap:26px 20px}
+.fs-ereje .fs-hatas{margin-top:0}
+@media (max-width:900px){.fs-raj-fotok{height:auto}.fs-ereje{grid-template-columns:1fr}}
+/* rólunk: csapat + slider, idővonal, partner-sáv */
+.fs-csapat-sor{display:grid;grid-template-columns:1fr 1.15fr;gap:32px;align-items:center;margin-top:8px}
+.fs-csapat-szoveg{display:grid;gap:12px;justify-items:start}
+.fs-csapat-szoveg h3{font-size:var(--fs-34)}
+.fs-csapat-slider{position:relative;border:var(--bw) solid var(--line);border-radius:var(--r-k);overflow:hidden;box-shadow:var(--sh);background:var(--surface)}
+.fs-diak{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.fs-diak::-webkit-scrollbar{display:none}
+.fs-oldal img.fs-dia{flex:0 0 100%;display:block;width:100%;max-width:none;aspect-ratio:16/10;object-fit:cover;scroll-snap-align:start}
+.fs-slider-vezer{position:absolute;left:0;right:0;bottom:8px;display:flex;justify-content:center;align-items:center;gap:6px}
+.fs-slider-gomb{display:grid;place-items:center;width:44px;height:44px;border:var(--bw) solid #000;border-radius:50%;background:#fff;color:#000;font:700 26px/1 var(--body);padding:0 0 3px;cursor:pointer;box-shadow:2px 2px 0 #000}
+.fs-slider-pontok{display:flex;background:rgba(255,255,255,.85);border-radius:999px;padding:0 4px}
+.fs-slider-pont{width:36px;height:44px;border:0;background:none;cursor:pointer;display:grid;place-items:center}
+.fs-slider-pont::before{content:"";width:10px;height:10px;border-radius:50%;border:2px solid #000;background:#fff}
+.fs-slider-pont[aria-current="true"]::before{background:#000}
+.fs-rolunk .fs-idovonal{margin-top:64px}
+.fs-ido-cim{display:block;margin-top:4px;font-weight:800;font-size:var(--fs-16);line-height:1.25}
+.fs-ido-cel .fs-ev{color:var(--accent-ink)}
+.fs-ido-cel .fs-lab{opacity:.45}
+.fs-ido-cel .fs-ido-szoveg{font-style:italic}
+.fs-rolunk .fs-partnerek{margin-top:64px;justify-items:start}
+.fs-partnerek .fs-partner-racs{justify-self:stretch;width:100%}
+.fs-partner-racs.fs-vegtelen .fs-logo-csempe{flex:none;width:176px}
+.fs-partner-racs.fs-vegtelen .fs-logo-keret{height:104px}
+.fs-partner-racs.fs-vegtelen .fs-logo-kep{height:64px;max-width:100%}
+@media (max-width:900px){.fs-csapat-sor{grid-template-columns:1fr}.fs-rolunk .fs-idovonal{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.fs-rolunk .fs-idovonal{grid-template-columns:1fr}.fs-partner-racs.fs-vegtelen .fs-logo-csempe{width:140px}.fs-partner-racs.fs-vegtelen .fs-logo-keret{height:86px}}
+/* beebolt: kompakt, egy sorban */
+.fs-beebolt{padding-block:48px}
+.fs-beebolt .fs-burok{display:grid;grid-template-columns:minmax(260px,.85fr) 1.6fr;gap:28px;align-items:center}
+.fs-bolt-fej{grid-template-columns:auto 1fr;gap:12px 16px;align-items:start}
+.fs-bolt-fej .fs-fej-piko{width:56px;height:56px}
+.fs-bolt-fej .fs-szekcio-fej{margin-bottom:0;gap:10px}
+.fs-bolt-fej .fs-bolt-gomb{grid-column:2;justify-self:start}
+.fs-beebolt h2{font-size:var(--fs-34)}
+.fs-beebolt .fs-termekek{margin-top:0;gap:14px}
+.fs-oldal .fs-beebolt .fs-termek{padding:8px}
+.fs-beebolt .fs-termek .fs-termek-nev{font-size:var(--fs-14);margin-top:6px}
+@media (max-width:900px){.fs-beebolt .fs-burok{grid-template-columns:1fr}}
+/* GYIK: középre zárt plusz, piktogram a címke mellett */
+.fs-kerdes summary::after{content:"";color:var(--on-accent);background:linear-gradient(currentColor,currentColor) center/12px 2.5px no-repeat,linear-gradient(currentColor,currentColor) center/2.5px 12px no-repeat,var(--accent)}
+.fs-gyik-fej{grid-template-columns:auto 1fr;column-gap:14px;align-items:center}
+.fs-gyik-fej .fs-fej-piko{margin:0}
+.fs-gyik-fej>h2,.fs-gyik-fej>p{grid-column:1/-1}
+/* záró: forgó kérdések */
+.fs-forgo{position:relative;height:1.75em;overflow:hidden;font-size:clamp(22px,3vw,34px)}
+.fs-forgo-lista{list-style:none;margin:0;padding:0}
+.fs-oldal .fs-forgo-elem{width:max-content;max-width:100%;margin:0;padding:.22em .5em .06em;background:var(--accent);color:#000;clip-path:var(--matrica);font-family:var(--display);font-weight:400;font-size:1em;line-height:1.3}
+.fs-forgo-js .fs-forgo-elem{position:absolute;left:0;top:0;opacity:0;transform:translateY(100%);transition:transform .45s var(--ease),opacity .45s var(--ease)}
+.fs-forgo-js .fs-forgo-elem.fs-forgo-akt{opacity:1;transform:none}
+.fs-forgo-js .fs-forgo-elem.fs-forgo-ki{opacity:0;transform:translateY(-100%)}
+.fs-zaro h2.fs-zaro-cim{margin-top:14px}
+@media (max-width:560px){.fs-forgo{height:3.1em}}
+@media (prefers-reduced-motion:reduce){.fs-forgo-js .fs-forgo-elem{transition:none}}
