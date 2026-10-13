@@ -1,4 +1,4 @@
-/* GENERÁLT – forrás: fs-alap.css, fs-ikonok.css, fs-extra.css, fs-extra-2.css; építés: node build.mjs */
+/* GENERÁLT – forrás: fs-alap.css, fs-ikonok.css, fs-extra.css, fs-extra-2.css, fs-extra-3.css; építés: node build.mjs */
 /* Elrendezés: egyetlen főoldal, a CsicsergŐsz-landing nyelvén: szalagcímek (az app-matricák rokonai), dombos átmenetek,
    szaggatott hurkok. A játékosságot a lábnyom- és app-piktogramok, meg a Szuperhős méhecske adja; méhsejt nincs.
    Termékbőr-tokenek (beeco DS): krém alap, fekete vonal, méz csak hangsúly és gomb. */
@@ -601,6 +601,8 @@ html[data-theme="dark"] .fs-hero-taj{filter:brightness(.6) saturate(.85);opacity
 .fs-zaro .fs-forgo+h2{margin-top:14px}
 @media (max-width:560px){.fs-forgo{height:3.1em}}
 @media (prefers-reduced-motion:reduce){.fs-forgo-js .fs-forgo-elem{transition:none}}
+
+/* 5. kör (2026-10-13): egységes elválasztók – külön embedbe (fs-5) */
 /* ---------- elválasztók: lágy domb (A) és matrica-szél (D) váltakozva ---------- */
 .fs-utak{--domb-h:var(--domb);--domb-e:var(--bg);padding-bottom:120px}
 .fs-oldal{--d-perem:#FFFFFF}
