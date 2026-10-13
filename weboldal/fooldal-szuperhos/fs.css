@@ -1,4 +1,4 @@
-/* GENERÁLT – forrás: fs-alap.css, fs-ikonok.css, fs-extra.css; építés: node build.mjs */
+/* GENERÁLT – forrás: fs-alap.css, fs-ikonok.css, fs-extra.css, fs-extra-2.css; építés: node build.mjs */
 /* Elrendezés: egyetlen főoldal, a CsicsergŐsz-landing nyelvén: szalagcímek (az app-matricák rokonai), dombos átmenetek,
    szaggatott hurkok. A játékosságot a lábnyom- és app-piktogramok, meg a Szuperhős méhecske adja; méhsejt nincs.
    Termékbőr-tokenek (beeco DS): krém alap, fekete vonal, méz csak hangsúly és gomb. */
@@ -385,6 +385,7 @@ html[data-theme="dark"] .fs-oldal .fs-hirlevel-uzenet.fs-hiba{color:#FFB4AB}
 .fs-miert{--domb-h:var(--leaf);--domb-e:var(--raj-bg)}
 .fs-raj{--domb-h:var(--olive);--domb-e:var(--bg)}
 .fs-gyik{--domb-h:var(--domb);--domb-e:var(--bg)}
+.fs-tobb{padding-block:64px}
 .fs-sor{display:block}
 /* maszkos piktogram: a szín a currentColor */
 .fs-ik{display:inline-block;width:24px;height:24px;flex:none;background-color:currentColor;-webkit-mask:var(--ik) center/contain no-repeat;mask:var(--ik) center/contain no-repeat}
@@ -439,6 +440,8 @@ html[data-theme="dark"] .fs-oldal .fs-hirlevel-uzenet.fs-hiba{color:#FFB4AB}
 .fs-oldal .fs-logo-csempe,.fs-oldal .fs-logo-csempe:hover{text-decoration:none}
 .fs-oldal .fs-utgomb[aria-pressed="true"]{color:var(--on-accent)}
 .fs-szoveglink{display:inline-flex;align-items:center;min-height:44px}
+
+/* 2. kör (2026-10-13): piktogramok, hero-boltgombok + QR, Zöld 2050, hover, végtelen sávok, logócsempék, közösségi fotók, beebolt – külön embedbe (fs-4) */
 /* ---------- kézzel rajzolt piktogramok (kétszínű svg-k a médiatárból) ---------- */
 .fs-oldal img.fs-piko{display:block;flex:none;max-width:none;height:auto;object-fit:contain}
 .fs-funk .fs-pin .fs-piko{width:50px;height:50px}

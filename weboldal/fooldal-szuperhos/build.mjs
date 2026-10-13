@@ -3,7 +3,8 @@
 import fs from 'fs'; import path from 'path'; import os from 'os';
 const D = path.dirname(new URL(import.meta.url).pathname);
 const css = ['fs-alap.css', 'fs-ikonok.css', 'fs-extra.css'].map(f => fs.readFileSync(path.join(D, f), 'utf8')).join('\n');
-fs.writeFileSync(path.join(D, 'fs.css'), '/* GENERÁLT – forrás: fs-alap.css, fs-ikonok.css, fs-extra.css; építés: node build.mjs */\n' + css);
+const css2 = fs.readFileSync(path.join(D, 'fs-extra-2.css'), 'utf8');
+fs.writeFileSync(path.join(D, 'fs.css'), '/* GENERÁLT – forrás: fs-alap.css, fs-ikonok.css, fs-extra.css, fs-extra-2.css; építés: node build.mjs */\n' + css + '\n' + css2);
 const min = css.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\n+/g, '').replace(/\s*([{};,>])\s*/g, '$1').replace(/;}/g, '}').trim();
 // zárójel-tudatos darabolás legfelső szintű blokkokra
 const blokkok = []; let mely = 0, kezd = 0;
@@ -12,6 +13,10 @@ if (mely !== 0 || kezd !== min.length) throw new Error('kiegyensúlyozatlan CSS'
 const darab = []; let cur = '';
 for (const b of blokkok) { if ((cur + b).length > 15000) { darab.push(cur); cur = ''; } cur += b; }
 if (cur) darab.push(cur);
+// a későbbi kiegészítések külön embedbe kerülnek, hogy a meglévő embedek változatlanok maradjanak
+const min2 = fs.readFileSync(path.join(D, 'fs-extra-2.css'), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/\n+/g, '').replace(/\s*([{};,>])\s*/g, '$1').replace(/;}/g, '}').trim();
+if (min2.length > 15000) throw new Error('fs-extra-2 túl nagy egy embedhez');
+darab.push(min2);
 fs.rmSync(path.join(D, 'embed'), { recursive: true, force: true }); fs.mkdirSync(path.join(D, 'embed'));
 darab.forEach((c, i) => fs.writeFileSync(path.join(D, 'embed', 'fs-' + (i + 1) + '.min.css'), '<style>' + c + '</style>'));
 let rig = fs.readFileSync(path.join(os.homedir(), 'CLAUDE/beeco-muhely/meh/mascotte/hos/rig/hos-rig.svg'), 'utf8').replace(/<\?xml[^>]*>\s*/, '').replace(/<!--[\s\S]*?-->/g, '').replace(/\s*\n\s*/g, ' ').trim();
