@@ -214,7 +214,8 @@
   /* 5. Gondoskodás: a madár görgetésre végiglátogatja a három csempét. Asztalon (egy sorban) a csempesor helye dönt:
         a képernyő alsó harmadában az itató, középen az etető, a felső harmadban az odú. Egymás alatt (mobil) az a csempe,
         amelyik a képernyő közepéhez a legközelebb van. Pontok Ági rajzainak koordinátáiban; a madár mérete mindenhol
-        ugyanaz (az itatónál mért 210 egység). Az aktív csempe kicsit megemelkedik, a kelléke megmozdul. */
+        ugyanaz (az itatónál mért 210 egység). A küszöbök korán vannak (a csempesor közepe a képernyő 72 és 50%-ánál),
+        hogy a sor elgörgetése előtt mindhárom látogatás lefusson. Az aktív csempe címkéje kiemelődik, a kelléke megmozdul. */
   var szek = kellekek.length === 3 && kellekek[0] && harmas[0].closest('section');
   if (szek) {
     szek.classList.add('cs-latogatas');
@@ -231,7 +232,7 @@
     };
     var melyik = function () {
       var r = [].map.call(harmas, function (c) { return c.getBoundingClientRect(); }), vh = innerHeight;
-      if (Math.abs(r[0].top - r[2].top) < 24) { var cy = (r[0].top + r[0].bottom) / 2; return cy > vh * 2 / 3 ? 0 : (cy > vh / 3 ? 1 : 2); }
+      if (Math.abs(r[0].top - r[2].top) < 24) { var cy = (r[0].top + r[0].bottom) / 2; return cy > vh * 0.72 ? 0 : (cy > vh * 0.5 ? 1 : 2); }
       var b = 0, bd = 1e9; r.forEach(function (x, i) { var dd = Math.abs((x.top + x.bottom) / 2 - vh / 2); if (dd < bd) { bd = dd; b = i; } }); return b;
     };
     var jelol = function (i) { [].forEach.call(harmas, function (c, j) { c.classList.toggle('cs-aktiv', j === i); }); };
@@ -434,6 +435,11 @@
       }, { threshold: 0 }).observe(zaro);
     }
   }
+
+  /* 13b. Csatlakozás: a fülek szélén ülő, koppintható madár a kabala (a cs-kampany.js tette ki képként). */
+  [].forEach.call(d.querySelectorAll('.cs-mh--suvolto .cs-madar > img'), function (img) {
+    img.parentNode.replaceChild(CSI.madar('alap', 'cs-kinek-kabala'), img);
+  });
 
   /* 13. Csatlakozás: a fülek fotói helyett Ági elemeiből rakott képek (cég: odú és etető, önkormányzat: fa és etető, iskola: itató és madár) */
   var KINEK = [['odu', 'eteto'], ['fa_sarga', 'eteto'], ['itato', 'poz_alap']];
