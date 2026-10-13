@@ -207,3 +207,8 @@ html[data-platform="android"] .ov-csak-ios,html[data-platform="ios"] .ov-csak-an
 @media (prefers-reduced-motion:reduce){
   .ov-oldal *,.ov-oldal *::after{animation:none!important;transition:none!important}
 }
+
+/* Elrendezés-ugrás ellen: a betöltődő képek helye előre foglalt (CLS) */
+.ov-oldal img.ov-logo{aspect-ratio:280/129}
+.ov-oldal img.ov-varos{aspect-ratio:1443/340}
+.ov-oldal img.ov-gyik-meh{aspect-ratio:103/104}
