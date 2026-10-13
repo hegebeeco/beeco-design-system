@@ -20,3 +20,12 @@ Webflow-oldal: **Főoldal Szuperhős (draft)** (`/fooldal-szuperhos-draft`, page
 
 ## Építés
 `node build.mjs` → `fs.css`, `embed/*.min.css`, `fs.js`. Embed-frissítés: `data_element_settings_tool` `set_settings`, kulcs `code`.
+
+## 2. kör (2026-10-13)
+- **CSS:** az új szabályok az `fs-extra-2.css`-ben vannak → `embed/fs-4.min.css` (4. HTML Embed az oldal tetején). Az 1–3. embed változatlan, így egy új kiegészítéshez csak a 4. embedet kell frissíteni.
+- **Piktogramok:** `piko/*.svg` (kézzel rajzolt: matrica-család fekete-fehér, sárga család fekete-sárga), a Webflow-médiatárban `fs-piko-*.svg` néven; natív Image elemek (`fs-piko`), a Designerben cserélhetők.
+- **Zöld 2050 háttér:** `kep/fs-zold-2050.svg` (médiatár: `fs-zold-2050.svg`), a hero első gyermeke (`fs-hero-taj`). Szélkerék, felhő, fa mozog benne; csökkentett mozgásnál áll.
+- **Vélemények:** 7 valódi, 5 csillagos App Store-értékelés (RSS, 2026-10-13). Végtelen sáv: a JS duplikálja (a másolatok `inert` + `aria-hidden`), szüneteltető gomb mellette.
+- **Közösség:** 4 fotó a médiatárból (polaroid), 4 nagy szám (felpörög, ha látszik). A 15 önkormányzat és a 12 partner a meglévő tartalomból jön – változáskor a szöveget kell átírni.
+- **beebolt:** saját szekció (`#beebolt`). **beecopedia:** egyelőre lekerült az oldalról; visszatenni: `python3 webflow-jeloles.py pedia` → a `pedia` szekció HTML-je a `wf_szekciok.json`-ban.
+- `lista.tsv`: a sajtó- és partnerlogók linkjei és képei (generátor-bemenet).
