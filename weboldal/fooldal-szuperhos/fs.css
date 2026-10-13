@@ -559,7 +559,7 @@ html[data-theme="dark"] .fs-hero-taj{filter:brightness(.6) saturate(.85);opacity
 .fs-slider-vezer{position:absolute;left:0;right:0;bottom:8px;display:flex;justify-content:center;align-items:center;gap:6px}
 .fs-slider-gomb{display:grid;place-items:center;width:44px;height:44px;border:var(--bw) solid #000;border-radius:50%;background:#fff;color:#000;font:700 26px/1 var(--body);padding:0 0 3px;cursor:pointer;box-shadow:2px 2px 0 #000}
 .fs-slider-pontok{display:flex;background:rgba(255,255,255,.85);border-radius:999px;padding:0 4px}
-.fs-slider-pont{width:36px;height:44px;border:0;background:none;cursor:pointer;display:grid;place-items:center}
+.fs-slider-pont{width:44px;height:44px;border:0;background:none;cursor:pointer;display:grid;place-items:center}
 .fs-slider-pont::before{content:"";width:10px;height:10px;border-radius:50%;border:2px solid #000;background:#fff}
 .fs-slider-pont[aria-current="true"]::before{background:#000}
 .fs-rolunk .fs-idovonal{margin-top:64px}
