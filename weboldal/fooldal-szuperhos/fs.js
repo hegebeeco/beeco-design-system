@@ -87,7 +87,14 @@ temaFrissit();
 /* ---------- díszítő svg-k (domb, hurok, szaggatott vonalak) ---------- */
 function svgElem(html) { const t = d.createElement('div'); t.innerHTML = html; return t.firstElementChild; }
 const DOMB = '<svg class="fs-domb" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 200 6, 380 8, 560 32 S 900 60, 1100 26 S 1340 6, 1440 30 V70 H0Z" style="fill:var(--domb-h)"/><path d="M0 56 C 240 30, 420 54, 640 48 S 1000 28, 1200 50 S 1380 62, 1440 54 V70 H0Z" style="fill:var(--domb-e)"/></svg>';
-['.fs-hero', '.fs-miert', '.fs-raj', '.fs-gyik'].forEach(s => { const sz = $(s, oldal); if (sz) sz.appendChild(svgElem(DOMB)); });
+['.fs-hero', '.fs-raj', '.fs-utak', '.fs-gyik'].forEach(s => { const sz = $(s, oldal); if (sz) sz.appendChild(svgElem(DOMB)); });
+/* matrica-szél: ferde, kézzel vágott él fehér peremmel; a szalagon (natív elem) mini idézet. Váltakozva lejt és emelkedik. */
+const MATRICA = [[24, 29.6, 28.8, 38.5, 39.7, 51.4, 52.1, 61.9, 61.6, 71.3, 76], [76, 74.4, 65.2, 63.5, 56.3, 54.6, 45.9, 42.1, 32.4, 30.7, 24]], MX = [0, 70, 150, 260, 340, 470, 560, 690, 780, 890, 1000];
+$$('.fs-szalag-idezet', oldal).forEach((sz, i) => {
+  const sec = sz.closest('section'); if (!sec) return; const Y = MATRICA[i % 2], ut = dy => 'M' + MX.map((x, k) => x + ' ' + (Y[k] + dy)).join(' L') + ' V100 H0Z';
+  sec.classList.add('fs-d'); if (i % 2) sz.classList.add('fs-bal');
+  sec.appendChild(svgElem('<svg class="fs-matrica-el" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true"><path d="' + ut(0) + '" style="fill:var(--d-perem)"/><path d="' + ut(9) + '" style="fill:var(--d-kov)"/></svg>'));
+});
 const kaptar = $('.fs-kaptar-szin', oldal);
 if (kaptar) kaptar.insertBefore(svgElem('<svg class="fs-hurok" viewBox="0 0 400 520" preserveAspectRatio="none" aria-hidden="true"><path d="M40 40 C 160 0, 240 90, 200 140 C 160 190, 110 130, 160 110 C 220 90, 360 160, 340 260 C 320 360, 60 330, 70 420 C 80 500, 300 520, 360 470" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="7 8"/></svg>'), kaptar.firstChild);
 const lepesek = $('.fs-lepesek', oldal);

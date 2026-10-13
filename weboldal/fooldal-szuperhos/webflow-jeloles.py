@@ -140,6 +140,10 @@ SZ.append(('letoltes', f'''<section class="fs-szekcio fs-zaro" id="letoltes"><di
 <div class="fs-hirlevel"><p class="fs-hirlevel-cim">{pk("posta")}Most nem töltenéd le? Maradj a rajban!</p><p class="fs-hirlevel-szoveg">Új funkciók, zöld tippek, események és kampányok a hírlevelünkben.</p><a class="fs-gomb fs-gomb-masod fs-hirlevel-gomb" href="/feliratkozas">Feliratkozom</a></div>
 </div><img class="fs-zaro-telefon" src="{S3}{APP["terkep"]}" alt="A beeco Zöld térképe a telefonon"></div></section>'''))
 
+# matrica-szél elválasztók szalagja: mini idézetek valódi App Store-véleményekből (a szekció végére kerül)
+IDEZET = {'miert': ('„Építi az emberi közösséget.”', 'gazdagergo'), 'rolunk': ('„Igazi kis oázis.”', 'holladri01'), 'beebolt': ('„Összehoz minket.”', 'Kriki21')}
+SZ = [(n, h[:h.rindex('</section>')] + f'<div class="fs-szalag-idezet"><span class="fs-szi-szoveg">{IDEZET[n][0]}</span><span class="fs-szi-nev">{IDEZET[n][1]}</span></div></section>') if n in IDEZET else (n, h) for n, h in SZ]
+
 # osztály-csonkok (a whtml csak CSS-sel együtt tartja meg az osztályt; az egyedi tulajdonság semmit nem befolyásol)
 def csonkok(h):
     out = []
