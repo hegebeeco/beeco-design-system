@@ -1,4 +1,6 @@
 /* 2. kör (2026-10-13): piktogramok, hero-boltgombok + QR, Zöld 2050, hover, végtelen sávok, logócsempék, közösségi fotók, beebolt – külön embedbe (fs-4) */
+/* a site body-ja flex oszlop, középre igazítva: a burok mindig teljes szélességű, és a tartalma nem szélesítheti */
+.fs-oldal{align-self:stretch;width:100%;min-width:0;max-width:100%}
 /* ---------- kézzel rajzolt piktogramok (kétszínű svg-k a médiatárból) ---------- */
 .fs-oldal img.fs-piko{display:block;flex:none;max-width:none;height:auto;object-fit:contain}
 .fs-funk .fs-pin .fs-piko{width:50px;height:50px}
