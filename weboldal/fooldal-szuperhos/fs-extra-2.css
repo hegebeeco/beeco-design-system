@@ -23,7 +23,8 @@
 .fs-hero .fs-qr-szoveg{max-width:22ch}
 /* ---------- Zöld 2050: illusztrált háttér a hero alján ---------- */
 .fs-hero{isolation:isolate}
-.fs-oldal img.fs-hero-taj{position:absolute;left:0;right:0;bottom:0;z-index:-1;display:block;width:100%;max-width:none;height:clamp(200px,30vw,420px);object-fit:cover;object-position:50% 100%;pointer-events:none}
+.fs-oldal img.fs-hero-taj{position:absolute;left:0;right:0;top:0;bottom:0;z-index:-1;display:block;width:100%;max-width:none;height:100%;object-fit:cover;object-position:50% 100%;pointer-events:none}
+@media (max-width:760px){.fs-oldal img.fs-hero-taj{top:auto;height:600px}}
 html[data-theme="dark"] .fs-hero-taj{filter:brightness(.6) saturate(.85)}
 /* ---------- Megértés, cselekvés, megerősítés: hover-reakció ---------- */
 .fs-lepes{transition:transform .22s var(--ease),box-shadow .22s var(--ease),opacity .3s var(--ease)}

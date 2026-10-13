@@ -9,7 +9,7 @@ APP = {'lab': '6acd9097b69b333eb9acc0de_fs-app-lab.webp', 'hir': '6acd9097b449df
 BOLT = ['6acd9098412cc0f2868b7720_fs-beebolt-0.webp', '6acd90980375343f3ac0c0f4_fs-beebolt-1.webp', '6acd90989cfe6a4a7e724c77_fs-beebolt-2.webp']
 HOS = '6acd90989cfe6a4a7e724c94_fs-hos-meh.webp'
 CSAPAT = '67a8acb53c7158693ab3ee84_Beeco%20csapatke%CC%81p%20%E2%80%93%20nagy.avif'
-TAJ = os.environ.get('FS_TAJ', S3 + '6acdd430c1a4bb2cf6170a51_fs-zold-2050.svg')
+TAJ = os.environ.get('FS_TAJ', S3 + '6acdd7d01adc944900c4d958_fs-zold-2050-v2.svg')
 QR = '69cd05a01e5ed130291d83f9_web%20qr%20leto%CC%88lte%CC%81s.png'
 # kézzel rajzolt piktogramok (piko/*.svg → Webflow-médiatár); matrica-család: fekete-fehér, sárga család: fekete-sárga
 PIKO = {'lab': '6acdcf5d31a1079e200f1faa', 'alma': '6acdcf7bdb31faba74106c65', 'csepp': '6acdcf7ba358827ed21560fa', 'doboz': '6acdcf7ba358827ed2156117',
@@ -70,7 +70,10 @@ VEL = [('„A legjobb dolog, amire okostelefont 2026-ban használni lehet. Épí
        ('„Igazi kis oázis a klímaszorongós mindennapok sivatagában :)”', 'holladri01, App Store'),
        ('„...egyre több és több ökos funkció érhető el az appban, a »zöld események« funkció a kedvencem, már számos klassz kezdeményezést innen ismertem meg!”', 'nillucska, App Store'),
        ('„Kutak, piacok, varroda és adományboltok. Mind igen hasznosak, hogy spóroljak és ökotudatosabb döntést hozzak! Ajánlom mindenkinek!”', 'hexpapa96, App Store'),
-       ('„Rendkívül hasznos és áldásos! Ezer hála annak aki kitalálta és azoknak akik megcsinálták és azoknak akik üzemeltetik!”', 'Sasadligeti Fák Őrzői, App Store')]
+       ('„Rendkívül hasznos és áldásos! Ezer hála annak aki kitalálta és azoknak akik megcsinálták és azoknak akik üzemeltetik!”', 'Sasadligeti Fák Őrzői, App Store'),
+       ('„Nagyon jól működik, igazán könnyen megtalálom az ökos pontokat”', 'sajtos.spangli, App Store'),
+       ('„Ez az app rengeteg hasznos infoval rendelkezik, vegre nem kell szupermarketekbe vasarolnom, siman talalok a kozelemben egszseges es kornyezetbarat uzleteket, piacokat, szelektiv gyujto helyseget stb”', 'CsClau1, App Store'),
+       ('„Tegyünk együtt a környezetünkért. :)”', 'ildiiiiiiiiiiiiiii, App Store')]
 LEP = [('otlet', 'Megértés', 'Számold ki a lábnyomod: nézd meg, miben vagy erős, és min érdemes javítani.'),
        ('katt', 'Cselekvés', 'Megmutatjuk a következő lépést, és hogy hol teheted meg a közeledben: zöld helyek, programok, kuponok.'),
        ('sziv', 'Megerősítés', 'Minden apró lépésedért nektár jár, és egy közösség, amelyben nem vagy egyedül.')]
