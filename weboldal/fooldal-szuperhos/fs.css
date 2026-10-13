@@ -598,6 +598,6 @@ html[data-theme="dark"] .fs-hero-taj{filter:brightness(.6) saturate(.85);opacity
 .fs-forgo-js .fs-forgo-elem{position:absolute;left:0;top:0;opacity:0;transform:translateY(100%);transition:transform .45s var(--ease),opacity .45s var(--ease)}
 .fs-forgo-js .fs-forgo-elem.fs-forgo-akt{opacity:1;transform:none}
 .fs-forgo-js .fs-forgo-elem.fs-forgo-ki{opacity:0;transform:translateY(-100%)}
-.fs-zaro h2.fs-zaro-cim{margin-top:14px}
+.fs-zaro .fs-forgo+h2{margin-top:14px}
 @media (max-width:560px){.fs-forgo{height:3.1em}}
 @media (prefers-reduced-motion:reduce){.fs-forgo-js .fs-forgo-elem{transition:none}}
