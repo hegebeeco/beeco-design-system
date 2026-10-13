@@ -440,3 +440,28 @@ html[data-theme="dark"] .fs-oldal .fs-hirlevel-uzenet.fs-hiba{color:#FFB4AB}
 .fs-oldal .fs-logo-csempe,.fs-oldal .fs-logo-csempe:hover{text-decoration:none}
 .fs-oldal .fs-utgomb[aria-pressed="true"]{color:var(--on-accent)}
 .fs-szoveglink{display:inline-flex;align-items:center;min-height:44px}
+/* ---------- kézzel rajzolt piktogramok (kétszínű svg-k a médiatárból) ---------- */
+.fs-oldal img.fs-piko{display:block;flex:none;max-width:none;height:auto;object-fit:contain}
+.fs-funk .fs-pin .fs-piko{width:50px;height:50px}
+.fs-utgomb .fs-pin,.fs-pedia-lista .fs-pin,.fs-utgomb[aria-pressed="true"] .fs-pin{background:none;border:0;border-radius:0;box-shadow:none}
+.fs-utgomb .fs-pin .fs-piko{width:48px;height:48px}
+.fs-pedia-lista .fs-pin .fs-piko{width:40px;height:40px}
+.fs-bolt .fs-piko{width:30px;height:30px}
+.fs-hero-sugo .fs-piko{width:32px;height:32px}
+.fs-most-fut .fs-most-piko{width:34px;height:34px}
+.fs-lepes-ikon{position:relative;flex:none;width:58px;height:58px}
+.fs-lepes-ikon .fs-piko{width:58px;height:58px}
+.fs-lepes-ikon .fs-lepes-szam{position:absolute;right:-6px;bottom:-4px;display:grid;place-items:center;width:26px;height:26px;padding-top:3px;border-radius:50%;border:2px solid var(--surface);background:var(--ink);color:var(--bg);font-family:var(--display);font-size:var(--fs-14);line-height:1}
+.fs-hatas-elem .fs-piko{width:40px;height:40px;margin-bottom:6px}
+.fs-raj-kozep .fs-piko{width:64px;height:64px;margin:0 auto 4px}
+.fs-bolt-kartya{position:relative}
+.fs-bolt-kartya .fs-kartya-piko{position:absolute;top:14px;right:16px;width:54px;height:54px;transform:rotate(8deg)}
+.fs-gyik-fej .fs-fej-piko{width:60px;height:60px;margin-bottom:10px;transform:rotate(-6deg)}
+.fs-hirlevel .fs-hirlevel-cim{display:flex;align-items:center;gap:10px}
+.fs-hirlevel-cim .fs-piko{width:34px;height:34px}
+/* hero: boltgombok + QR (telefonon csak a saját boltja, QR nélkül) */
+.fs-hero .fs-hero-letoltes{gap:14px 22px}
+.fs-hero .fs-qr{margin-top:0}
+.fs-hero .fs-qr img{width:84px;height:84px}
+.fs-hero .fs-qr-szoveg{max-width:22ch}
+.fs-bolt-kartya .fs-cim3{padding-right:64px}

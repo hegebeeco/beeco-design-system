@@ -72,8 +72,7 @@ function okosLetoltes(a, h) {
   a.addEventListener('click', e => { mer('letoltes_gomb', { hely: h, platform: platform }); if (platform === 'asztal') { e.preventDefault(); gorget($('#letoltes')); } });
 }
 $$('.fs-okos-letoltes', oldal).forEach(a => okosLetoltes(a, helyNev(a)));
-const qr = $('.fs-qr', oldal);
-if (qr && 'IntersectionObserver' in window) { let m = false; new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !m && platform === 'asztal') { m = true; mer('qr_megjelenes', {}); } }), { threshold: .8 }).observe(qr); }
+if ('IntersectionObserver' in window) $$('.fs-qr', oldal).forEach(qr => { let m = false; new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !m && platform === 'asztal') { m = true; mer('qr_megjelenes', { hely: helyNev(qr) }); } }), { threshold: .8 }).observe(qr); });
 
 /* ---------- téma-kapcsoló (alapból világos; a választás megmarad) ---------- */
 const tema = d.createElement('button'); tema.type = 'button'; tema.className = 'fs-tema';
