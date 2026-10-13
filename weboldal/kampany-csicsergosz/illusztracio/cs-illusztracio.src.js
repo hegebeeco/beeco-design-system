@@ -188,22 +188,63 @@
       uImg.parentNode.insertBefore(ciklus, uImg); uImg.classList.add('cs_foto_rejtett'); figyel(ciklus);
     }
   }
+  /* „Mit tehetsz”: a két csempe egyforma. A második (album) képe is ugyanolyan képpanelbe kerül, és mindkét
+     csempén a nyíl-gomb a kép jobb alsó sarkába ül (szögletes, 4 px lekerekítés). */
+  [].forEach.call(d.querySelectorAll('.dia_green_ov.cs .card.cs_link'), function (k) {
+    var panel = k.querySelector('.cs_illu_panel'), aImg = k.querySelector('img.cs_kartya_album:not(.cs_foto_rejtett)');
+    if (!panel && aImg) { panel = elem('<div class="cs_illu_panel cs-album-panel"></div>'); aImg.parentNode.insertBefore(panel, aImg); panel.appendChild(aImg); }
+    var ny = k.querySelector('.cs_utvonal_nyil');
+    if (panel && ny && ny.parentNode !== panel) { panel.appendChild(ny); ny.classList.add('cs-kep-gomb'); }
+  });
   var harmas = d.querySelectorAll('.cs_harmas > .card'), kellekek = [];
   var kell = function (k, nev) { var van = harmas[k].querySelector('.cs_illu_panel .cs-illu--' + nev); return van || kepCsere(harmas[k].querySelector('img:not(.cs-pozmadar)'), nev); };
   if (harmas.length === 3) kellekek = [kell(0, 'itato'), kell(1, 'eteto'), kell(2, 'odu')];
 
-  /* 5. Gondoskodás: egy madár ül az itatón és iszik (álló póz). Repülés itt nincs: a főszereplő az útvonalon kísér.
-        Pont Ági itató-rajzának koordinátáiban; meret: a madár szélessége a kellék egységében. */
+  /* A csempék címe (Itatás, Etetés, Madárodú) címkeként a képre kerül, mint a hero „Kövesd a csicsergést” szalagja. */
+  [].forEach.call(harmas, function (k) {
+    var p = k.querySelector('.cs_illu_panel'), h = k.querySelector('h3'); if (!p || !h || h.parentNode === p) return;
+    h.classList.add('cs_szalag', 'cs_szalag--kicsi', 'cs-csempe-cimke'); p.appendChild(h);
+  });
+
+  /* 5. Gondoskodás: a madár görgetésre végiglátogatja a három csempét. Asztalon (egy sorban) a csempesor helye dönt:
+        a képernyő alsó harmadában az itató, középen az etető, a felső harmadban az odú. Egymás alatt (mobil) az a csempe,
+        amelyik a képernyő közepéhez a legközelebb van. Pontok Ági rajzainak koordinátáiban; a madár mérete mindenhol
+        ugyanaz (az itatónál mért 210 egység). Az aktív csempe kicsit megemelkedik, a kelléke megmozdul. */
   var szek = kellekek.length === 3 && kellekek[0] && harmas[0].closest('section');
   if (szek) {
     szek.classList.add('cs-latogatas');
-    var CEL = { svg: kellekek[0], lab: [178, 40], meret: 210 };
+    var CELOK = [
+      { lab: [178, 40], poz: 'iszik' },
+      { lab: [34, 142], poz: 'eszeget' },
+      { lab: [74, 106], poz: 'csicsereg' }
+    ];
     var lm = szek.querySelector('.cs-latogato') || CSI.madar('alap', 'cs-latogato'); lm.classList.add('cs-ul'); szek.appendChild(lm);
-    var ulteti = function () {
-      var p0 = pont(CEL.svg, 0, 0, szek), p = pont(CEL.svg, CEL.lab[0], CEL.lab[1], szek); if (!p || !p0) return;
-      lm.style.width = (CEL.meret * p0.s).toFixed(1) + 'px'; hely(lm, p.x, p.y, false); CSI.poz(lm, csend ? 'alap' : 'iszik');
+    var lAkt = -1, lKert = 0, lRepul = false;
+    var celPont = function (i) {
+      var s0 = pont(kellekek[0], 0, 0, szek), p = kellekek[i] && pont(kellekek[i], CELOK[i].lab[0], CELOK[i].lab[1], szek);
+      return p && s0 ? { x: p.x, y: p.y, w: 210 * s0.s } : null;
     };
-    w.addEventListener('load', ulteti); w.addEventListener('resize', ulteti); ulteti();
+    var melyik = function () {
+      var r = [].map.call(harmas, function (c) { return c.getBoundingClientRect(); }), vh = innerHeight;
+      if (Math.abs(r[0].top - r[2].top) < 24) { var cy = (r[0].top + r[0].bottom) / 2; return cy > vh * 2 / 3 ? 0 : (cy > vh / 3 ? 1 : 2); }
+      var b = 0, bd = 1e9; r.forEach(function (x, i) { var dd = Math.abs((x.top + x.bottom) / 2 - vh / 2); if (dd < bd) { bd = dd; b = i; } }); return b;
+    };
+    var jelol = function (i) { [].forEach.call(harmas, function (c, j) { c.classList.toggle('cs-aktiv', j === i); }); };
+    var latogat = function (i, azonnal) {
+      lKert = i; if (lRepul || (i === lAkt && !azonnal)) return;
+      var p = celPont(i); if (!p) return;
+      lm.style.width = p.w.toFixed(1) + 'px'; jelol(i);
+      if (azonnal || csend || lAkt < 0) { lAkt = i; hely(lm, p.x, p.y, false); CSI.poz(lm, csend ? 'alap' : CELOK[i].poz); return; }
+      lAkt = i; lRepul = true;
+      repul(lm, p.x, p.y).then(function () {
+        lRepul = false; CSI.poz(lm, CELOK[i].poz);
+        if (lKert !== lAkt) latogat(lKert);
+      });
+    };
+    var lRaf = 0;
+    w.addEventListener('scroll', function () { if (!lRaf) lRaf = requestAnimationFrame(function () { lRaf = 0; latogat(melyik()); }); }, { passive: true });
+    var ujra = function () { if (!lRepul) latogat(lAkt < 0 ? melyik() : lAkt, true); };
+    w.addEventListener('load', ujra); w.addEventListener('resize', ujra); latogat(melyik(), true);
   }
 
   /* 6. Megfigyelés: a Webflow a stílus nélküli osztályokat eldobta, ezért a lépések szöveg- és képrészét itt jelöljük meg. */
@@ -211,9 +252,78 @@
     var ui = l.querySelector('.cs_folyamat_ui'); if (ui) ui.parentNode.classList.add('cs_folyamat_vizual');
     if (l.firstElementChild && l.firstElementChild !== (ui && ui.parentNode)) l.firstElementChild.classList.add('cs_folyamat_szoveg');
   });
-  /* a 3. lépésnél csicsergő madár */
-  var zaroLepes = d.querySelector('.cs_folyamat_lepes--zaro .cs_folyamat_vizual');
-  if (zaroLepes && !zaroLepes.querySelector('.cs-lepes-csicser')) zaroLepes.appendChild(CSI.madar('csicsereg', 'cs-lepes-csicser'));
+  /* 6b. Felfedezés-ösvény: a lépések között görgetésre kirajzolódó szaggatott vonal, rajta a madár útja.
+         1. lépés: fekete sziluett kérdőjellel  2. felismerjük: színes lesz, előjön a neve  3. a fotója bekerül a kis
+         Madár albumba, a könyv becsukódik, a madár a könyvön csicsereg. Visszagörgetésre visszafelé játszik. */
+  var fol = d.querySelector('#HOWTO .cs_folyamat'), fLep = fol ? fol.querySelectorAll(':scope > .cs_folyamat_lepes') : [];
+  if (fol && fLep.length === 3 && !fol.querySelector('.cs-ut')) {
+    fol.classList.add('cs-ut-van');
+    var uId = 'cs-ut-maszk';
+    var ut = dekor(elem('<div class="cs-ut"><svg class="cs-ut_svg"><defs><mask id="' + uId + '" maskUnits="userSpaceOnUse"><path class="cs-ut_maszk" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round"/></mask></defs>' +
+      '<path class="cs-ut_vonal" fill="none" stroke="#A87956" stroke-width="5" stroke-dasharray="13 10" stroke-linecap="round" mask="url(#' + uId + ')"/></svg>' +
+      '<div class="cs-ut_konyv"><div class="cs-ut_lap cs-ut_lap--bal"><span class="cs-ut_kep"></span></div>' +
+      '<div class="cs-ut_lap cs-ut_lap--jobb"><span class="cs-ut_lap-belso"></span><span class="cs-ut_borito"><b>Madár album</b></span></div></div>' +
+      '<div class="cs-ut_madar"><span class="cs-ut_kerdo">?</span><span class="cs-ut_nev">Vörösbegy</span></div></div>'));
+    fol.appendChild(ut);
+    var uMadar = CSI.madar('alap', 'cs-ut_csicser'); ut.querySelector('.cs-ut_madar').appendChild(uMadar);
+    var kepMadar = CSI.madar('alap', 'cs-ut_kep-madar'); ut.querySelector('.cs-ut_kep').appendChild(kepMadar);
+    var uSvg = ut.querySelector('svg'), uVonal = ut.querySelector('.cs-ut_vonal'), uMaszk = ut.querySelector('.cs-ut_maszk');
+    var uDoboz = ut.querySelector('.cs-ut_madar'), uKonyv = ut.querySelector('.cs-ut_konyv');
+    var uMinta = [], uHossz = 0, uHatar = [], uMost = -1, uCel = 0, uRaf = 0, uSzak = 0, uVegTimer = 0, uAllTimer = 0;
+    var uEpit = function () {
+      var W = fol.clientWidth, H = fol.clientHeight; if (!W || !H) return;
+      var keskeny = W < 700, cx = keskeny ? 18 : W / 2, A = keskeny ? 8 : 34;
+      var ys = [].map.call(fLep, function (l) { return l.offsetTop + l.offsetHeight / 2; });
+      var konyvY = fLep[2].offsetTop + fLep[2].offsetHeight + (keskeny ? 54 : 70);
+      var kx = keskeny ? 0 : cx - uKonyv.offsetWidth / 2; uKonyv.style.transform = 'translate(' + kx + 'px,' + konyvY + 'px)';
+      var cel = konyvY - 2, pts = [[cx, ys[0] - 40], [cx, ys[0]], [cx, ys[1]], [cx, ys[2]], [kx + uKonyv.offsetWidth / 2, cel]];
+      var dd = 'M' + pts[0][0] + ' ' + pts[0][1];
+      for (var k = 1; k < pts.length; k++) {
+        var a = pts[k - 1], b = pts[k], dy = b[1] - a[1], s = (k % 2 ? 1 : -1) * A;
+        dd += ' C' + (a[0] + s) + ' ' + (a[1] + dy / 3) + ' ' + (b[0] - s) + ' ' + (a[1] + 2 * dy / 3) + ' ' + b[0] + ' ' + b[1];
+      }
+      uSvg.setAttribute('viewBox', '0 0 ' + W + ' ' + (cel + 10)); uSvg.style.width = W + 'px'; uSvg.style.height = (cel + 10) + 'px';
+      uVonal.setAttribute('d', dd); uMaszk.setAttribute('d', dd);
+      uHossz = uVonal.getTotalLength(); uMinta = [];
+      for (var L = 0; L <= uHossz; L += uHossz / 400) uMinta.push([L, uVonal.getPointAtLength(L).y]);
+      uMaszk.style.strokeDasharray = uHossz + ' ' + uHossz;
+      uHatar = [(ys[0] + ys[1]) / 2, (ys[1] + ys[2]) / 2, (ys[2] + cel) / 2];
+      uFris(true);
+    };
+    var uHossza = function (y) { if (uMinta.length && y >= uMinta[uMinta.length - 1][1]) return uHossz; var b = uMinta[0]; for (var i = 0; i < uMinta.length; i++) { if (uMinta[i][1] <= y) b = uMinta[i]; else break; } return b ? b[0] : 0; };
+    var uSzakasz = function (y, vegen) { return vegen ? 4 : (y < uHatar[0] ? 1 : (y < uHatar[1] ? 2 : 3)); };
+    var uRajzol = function () {
+      var q = uVonal.getPointAtLength(uMost);
+      uDoboz.style.transform = 'translate(' + q.x.toFixed(1) + 'px,' + q.y.toFixed(1) + 'px)';
+      uMaszk.style.strokeDashoffset = (uHossz - uMost).toFixed(1);
+      var vegen = uMost >= uHossz - 3, sz = uSzakasz(q.y, vegen);
+      if (sz !== uSzak) {
+        clearTimeout(uVegTimer);
+        if (sz === 4) { ut.className = 'cs-ut cs-ut--3 cs-ut--fotozik'; uVegTimer = setTimeout(function () { ut.classList.add('cs-ut--csukva'); CSI.poz(uMadar, 'csicsereg'); }, csend ? 0 : 750); }
+        else ut.className = 'cs-ut cs-ut--' + sz;
+        uSzak = sz;
+      }
+    };
+    var uLep = function () {
+      uRaf = 0; var kul = uCel - uMost;
+      uMost = csend || Math.abs(kul) < 0.6 ? uCel : uMost + kul * 0.14;
+      uRajzol();
+      if (uMost !== uCel) { uRaf = requestAnimationFrame(uLep); if (!csend && uSzak !== 4) CSI.poz(uMadar, 'repdes'); }
+      else { clearTimeout(uAllTimer); uAllTimer = setTimeout(function () { if (uSzak !== 4) CSI.poz(uMadar, 'alap'); }, 250); }
+    };
+    var uFris = function (azonnal) {
+      if (!uHossz) return;
+      var r = fol.getBoundingClientRect(), y = innerHeight * 0.55 - r.top;
+      uCel = Math.max(0, Math.min(uHossz, uHossza(y)));
+      if (azonnal || uMost < 0) { uMost = uCel; uRajzol(); return; }
+      if (!uRaf) uRaf = requestAnimationFrame(uLep);
+    };
+    w.addEventListener('scroll', function () { uFris(false); }, { passive: true });
+    var uRt; w.addEventListener('resize', function () { clearTimeout(uRt); uRt = setTimeout(uEpit, 150); });
+    w.addEventListener('load', uEpit);
+    if ('ResizeObserver' in w) new ResizeObserver(function () { clearTimeout(uRt); uRt = setTimeout(uEpit, 120); }).observe(fol);
+    uEpit();
+  }
 
   /* 7. Közösség: a hírlevél-sziget tetején ülő madár (álló póz, pislog) */
   var sziget = d.querySelector('#fotofal .cs_sziget');
@@ -225,6 +335,14 @@
     var img = t.querySelector('img'); if (!img || !PIKTO[n] || t.querySelector('.cs-pikto')) return;
     img.parentNode.insertBefore(CSI.illu(PIKTO[n], 'cs_teny_ikon cs-pikto'), img); img.classList.add('cs_foto_rejtett');
   });
+
+  /* 9b. „600 millió”: mellette egy szomorú madár, fölötte kis esőfelhő. Dekoratív; a szám szövege érintetlen. */
+  var hatSzam = d.querySelector('.cs_horgony [data-cs-szamlal]');
+  if (hatSzam && !d.querySelector('.cs-szomoru')) {
+    var szomSor = elem('<div class="cs-szam-sor"></div>'); hatSzam.parentNode.insertBefore(szomSor, hatSzam); szomSor.appendChild(hatSzam);
+    var szom = dekor(elem('<span class="cs-szomoru"><span class="cs-szomoru_felho"><i></i><i></i><i></i></span></span>'));
+    szom.appendChild(CSI.madar('szomoru', 'cs-szomoru_madar')); szomSor.appendChild(figyel(szom));
+  }
 
   /* 10. Ági szaggatott repülési hurkai: görgetésre rajzolódnak ki (maszkolt szaggatott vonal). */
   var hurkok = [], hId = 0;

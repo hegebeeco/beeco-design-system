@@ -67,7 +67,7 @@
     var ut = 0;
     w.addEventListener('click', function (e) {
       var t = e.target; if (!t || !t.closest) return;
-      var g = t.closest('.cs_kinek_gomb'); if (g) { e.preventDefault(); val(G.indexOf(g), false, true); return; }
+      var g = t.closest('.cs_kinek_gomb'); if (g) { e.preventDefault(); e.stopImmediatePropagation(); var y = scrollY; val(G.indexOf(g), false, true); if (Math.abs(scrollY - y) > 1) scrollTo(0, y); return; }
       var a = t.closest('a[data-cs-csatlakozas]'); if (a) { var n = Date.now(); if (n - ut < 600) return; ut = n; kuld('campaign_join_click', { audience: a.getAttribute('data-cs-csatlakozas'), channel: a.href.indexOf('mailto:') ? 'pdf' : 'email' }); }
     }, true);
     sor.addEventListener('keydown', function (e) {

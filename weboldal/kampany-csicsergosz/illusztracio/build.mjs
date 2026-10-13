@@ -42,6 +42,12 @@ function kellek(f, csoport) {
 }
 const svg = {};
 for (const [n, p] of Object.entries(POZOK)) svg['poz_' + n] = poz(n, p);
+// Szomorú póz (a „600 millió” mellé): az alap póz lecsüngő szemhéjakkal és egy könnycseppel, Ági koordinátáiban.
+// A szemhéj a mell narancsa, alsó éle kakaó; a külső szemzug lejjebb van (szomorú tekintet).
+svg.poz_szomoru = svg.poz_alap.replace('data-poz-svg="alap"', 'data-poz-svg="szomoru"').replace('</g></g></svg>',
+  '<g class="cs-p-szemhej"><path d="M40 38 L94 38 L94 55 L40 68Z" fill="#EA6C18"/><path d="M40 68 L94 55" stroke="#6B3B16" stroke-width="3.5" stroke-linecap="round"/>' +
+  '<path d="M102 38 L128 38 L128 62 L102 51Z" fill="#EA6C18"/><path d="M102 51 L128 62" stroke="#6B3B16" stroke-width="3.5" stroke-linecap="round"/></g>' +
+  '<path class="cs-p-konny" d="M58 84 C52 94 50 100 55 104 C60 107 65 102 63 95 C62 91 60 88 58 84Z" fill="#8FD3F4" stroke="#4BA7D6" stroke-width="1.5"/></g></g></svg>');
 svg.itato = kellek('itato', [['cs-i-csepp', 0, 1], ['cs-i-csepp cs-i-csepp2', 2, 4], ['cs-i-level', 13, 14]]);
 svg.eteto = kellek('eteto'); svg.odu = kellek('odu');
 for (const f of ['fa-keskeny', 'fa-sarga']) svg[f.replace('-', '_')] = kellek(f);  // a barna és a narancs fa a heróban a borító fáira cserélődött
@@ -92,7 +98,7 @@ svg.pikto_elohely = tomor(`<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2
 const ST = path.join(D, 'statikus'); fs.mkdirSync(ST, { recursive: true });
 const meretes = x => x.replace(/^<svg([^>]*?)viewBox="([-\d.]+) ([-\d.]+) ([-\d.]+) ([-\d.]+)"/, (m, a, x0, y0, w, h) => '<svg' + a + 'viewBox="' + [x0, y0, w, h].join(' ') + '" width="' + Math.round(w) + '" height="' + Math.round(h) + '"');
 const ir = (nev, tart) => fs.writeFileSync(path.join(ST, nev + '.svg'), meretes(tart.replace(/^<svg(?![^>]*xmlns=)/, '<svg xmlns="http://www.w3.org/2000/svg"')));
-['itato', 'eteto', 'odu', 'fa_sarga', 'bor_domb', 'bor_fa_bal', 'bor_fa_jobb', 'bor_gabee', 'pikto_rovarok', 'pikto_vadvirag', 'pikto_elohely', 'poz_alap', 'poz_csicsereg', 'poz_repdes'].forEach(n => ir(n, svg[n]));
+['itato', 'eteto', 'odu', 'fa_sarga', 'bor_domb', 'bor_fa_bal', 'bor_fa_jobb', 'bor_gabee', 'pikto_rovarok', 'pikto_vadvirag', 'pikto_elohely', 'poz_alap', 'poz_csicsereg', 'poz_repdes', 'poz_szomoru'].forEach(n => ir(n, svg[n]));
 ir('poz_iszik', svg.poz_eszeget.replace(/<g class="cs-p-mag">[\s\S]*?<\/g>/, ''));
 for (const k of ['hurok_meh', 'hurok_madar']) { const o = JSON.parse(svg[k]); ir(k, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${o.vb}"><path d="${o.d}" fill="none" stroke="#A87956" stroke-width="5" stroke-dasharray="13 10" stroke-linecap="round"/></svg>`); }
 { // dombok: a cs-illusztracio.src.js 2. részének pontos másolata (azonos sorrend, azonos mag)
