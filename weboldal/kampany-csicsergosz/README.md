@@ -56,13 +56,16 @@ Szabályok: egyszer játszik le, csak `transform`/`opacity`/`clip-path`, ease-ou
 | Díszítő | `cs_dekor` + `jf` · `bf` · `jl` · `bl` · `ag` (tartalom mögött, kattintás átmegy) |
 | Számozott lépések | `cs_lepesek` > `cs_lepesek_bal` (`cs_lepes_lista` > `cs_lepes` > `cs_lepes_szam`) + `cs_lepesek_jobb` (`cs_folyamat_kep`) |
 | Kampánygomb | `BUTTON_MAIN` + `CS`, `BUTTON_TERC` + `CS` |
-| Kártya | `CARD` + `CS_LINK` (kattintható, árnyékkal) · `CARD` + `CS_EGYENLO` (árnyék nélkül) |
+| Kártya (Matrica, 2026-10-13) | `CARD` + `CS_LINK` (kattintható: −1°, levágott sarok, fehér matrica-körvonal, 5 px kakaó árnyék; hover egyenes + 7 px, lenyomva 1 px) · `CARD` + `CS_EGYENLO` (nem kattintható: egyenes, árnyék nélkül) · kiválasztott: méz körvonal. Forrás: `cs-kartya.css`, a Webflow-osztályokon is beállítva |
 | Fotó + matrica | `cs_kartya_foto` (a matrica a képbe égetve: fénykép + beeco-matrica) |
 
 ## Arculati szabályok (ellenőrizve a `review-szabalyok.json`-nal)
 
 - Tiszta fekete nincs: keret, árnyék, cím kakaó. Méz az egyetlen interaktív kiemelő, narancs csak jelzés.
 - Árnyék = kattintható. Statikus kártya, tényblokk, grafikon, buborék árnyék nélkül.
+- Kártyacsalád: **Matrica** (Kristóf döntése, 2026-10-13). Levágott sarok (kártya 16 px, kép 10 px), fehér matrica-körvonal
+  halvány kakaó éllel; kattintható −1°-ban dől és kakaó árnyékot kap; kiválasztott méz körvonalat; a képre tett címke kakaó
+  szalag bevágott véggel. Részletek és szabályok: `cs-kartya.css` fejléce.
 - Kabala: a madarász méhecske. A madárka (Csicser) csak indokolt helyen.
 - App-képernyő oldalanként legfeljebb 3.
 - Fotón csak hazai madárfaj (MME szakmai partner); ha a fotón idegen faj van, beeco-matrica takarja.

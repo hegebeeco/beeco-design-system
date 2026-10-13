@@ -327,6 +327,7 @@ Egy kampány saját arculatot kaphat (ősz, madarak: krém, barack, kakaó, méz
 | Tokenek | **külön Webflow-gyűjtemény** a kampány nevével (`Csicsergosz`), `cs-` előtagú változókkal; paletta → szerep-tokenek (felület, szöveg, kiemelés, keret) → osztályok. A kampány egy helyen átszínezhető. |
 | Osztályok | a meglévő site-osztályokra **kombó** (`DIA_KEK_OV` + `CS`, `BUTTON_MAIN` + `CS`), új elemhez kampány-előtag (`cs_`), ahogy a főoldal a `h26-`-öt |
 | Mozgás, díszítés | oldal fejkód + lábléc, `data-cs-*` jelölőkkel (nem osztállyal), így a Designerben bárki ráteheti |
+| Kártyák | kampányonként saját kártyacsalád a termékbőr logikájával (árnyék = kattintható; nem kattintható árnyék nélkül; kiválasztott külön jelölve). CsicsergŐsz: **Matrica** (levágott sarok, fehér körvonal, −1° a kattinthatón), `weboldal/kampany-csicsergosz/cs-kartya.css`; ugyanez a Webflow-osztályokon (`card` + `cs_link` / `cs_egyenlo`, `::before` és hover/lenyomott állapot), így a Designer eszköztárából húzott új kártya is ilyen. |
 | Mérés | `gtag('event')`, ablakszintű figyelő (lásd 3. fejezet) |
 | Ellenőrzés | `node tools/web-ellenor.js <staging> --oldalak /kampanyok/...` **és** a minőségkapu `landing_review.mjs` a kampány saját szabályfájljával (paletta, kabala, app-képernyő, események). A `web-ellenor` a termékbőr palettáját méri, ezért a kampányszíneket „DS-en kívüli”-nek jelzi: ez a kampányoldalon várt lelet. |
 

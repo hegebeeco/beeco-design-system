@@ -67,3 +67,6 @@ html.cs-js .cs-madar:not(.cs-leszallt) .cs-kinek-kabala{opacity:0}
 .cs-madar.cs-leszallt.cs-ugrik .cs-kinek-kabala{animation:cs-ugrik 260ms cubic-bezier(.23,1,.32,1)}
 @media (hover:hover) and (pointer:fine){.cs-madar.cs-leszallt .cs-kinek-kabala{transition:transform 160ms cubic-bezier(.23,1,.32,1)}.cs-madar.cs-leszallt:hover .cs-kinek-kabala{transform:translateY(-4px) rotate(-5deg)}}
 @media (prefers-reduced-motion:reduce){.cs-madar .cs-kinek-kabala{animation:none!important;opacity:1}}
+
+/* a CsicsergŐsz Facebook-csoport bélyege a sor teljes szélességében */
+.cs_belyeg_link.cs_belyeg_csoport{grid-column:1/-1;flex-direction:row;gap:12px;min-height:64px}

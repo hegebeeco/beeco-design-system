@@ -16,3 +16,4 @@ A rajzok (`../illusztracio/statikus/*.svg`) Webflow-assetként, valódi `<img>` 
 
 A 4. embed a 2026-10-13-i javításokat tartalmazza külön, hogy az első három bájtra változatlan maradjon.
 | 5. | `../cs-levelke.css` (Levélke hírlevél-blokk, kabala a Csatlakozásnál) | `cs-levelke.min.css` |
+| 6. | `../cs-kartya.css` (Matrica kártyacsalád) | `cs-kartya.min.css` |
