@@ -197,7 +197,12 @@
     if (panel && ny && ny.parentNode !== panel) { panel.appendChild(ny); ny.classList.add('cs-kep-gomb'); }
   });
   var harmas = d.querySelectorAll('.cs_harmas > .card'), kellekek = [];
-  var kell = function (k, nev) { var van = harmas[k].querySelector('.cs_illu_panel .cs-illu--' + nev); return van || kepCsere(harmas[k].querySelector('img:not(.cs-pozmadar)'), nev); };
+  var kell = function (k, nev) {
+    var van = harmas[k].querySelector('.cs_illu_panel .cs-illu--' + nev);
+    /* a Designerben elhelyezett kép jelölő nélkül is az animálható rajzra cserélődik (a madár csak SVG-n tud leszállni) */
+    if (van && van.tagName === 'IMG' && SVG[nev]) { var uj = CSI.illu(nev, van.className.replace(/\bcs-illu(--\S+)?\b/g, '').trim()); van.parentNode.replaceChild(uj, van); van = uj; }
+    return van || kepCsere(harmas[k].querySelector('img:not(.cs-pozmadar)'), nev);
+  };
   if (harmas.length === 3) kellekek = [kell(0, 'itato'), kell(1, 'eteto'), kell(2, 'odu')];
 
   /* A csempék címe (Itatás, Etetés, Madárodú) címkeként a képre kerül, mint a hero „Kövesd a csicsergést” szalagja. */

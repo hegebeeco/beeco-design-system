@@ -329,3 +329,6 @@ img.cs-domb,img.cs-hurok{display:block}
 .cs-ut_lap{transition:translate 520ms cubic-bezier(.65,0,.35,1)}
 .cs-ut_lap--jobb{transition:transform 520ms cubic-bezier(.65,0,.35,1),translate 520ms cubic-bezier(.65,0,.35,1)}
 .cs-ut--csukva .cs-ut_lap{translate:33px 0}
+/* a lépésképek tartója ne zsugorodjon a tartalmára (Designer-jelölésnél a kép 100% széles, a tartó fit-content volt) */
+#HOWTO .cs_folyamat_vizual{width:100%;max-width:460px}
+#HOWTO .cs_folyamat_ui{display:block;width:100%;max-width:440px;height:auto}
