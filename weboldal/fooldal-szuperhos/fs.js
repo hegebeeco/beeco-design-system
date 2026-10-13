@@ -50,7 +50,7 @@ if (naploKell) {
 const kattMer = (sel, esemeny, ertek) => $$(sel, oldal).forEach(a => a.addEventListener('click', () => mer(esemeny, ertek ? { ertek: ertek(a) } : {})));
 kattMer('.fs-most-fut', 'most_fut_kattintas', () => 'csicsergosz');
 kattMer('.fs-logo-csempe', 'logo_kattintas', a => (a.querySelector('img') || {}).alt || '');
-kattMer('.fs-bolt-kartya', 'beebolt_kattintas');
+kattMer('.fs-beebolt .fs-termek, .fs-bolt-gomb', 'beebolt_kattintas', a => (a.querySelector('.fs-termek-nev') || {}).textContent || 'gomb');
 kattMer('.fs-pedia-link', 'beecopedia_kattintas', a => (a.querySelector('.fs-pedia-cim') || {}).textContent || '');
 kattMer('.fs-csapat-gomb', 'csapat_csatlakozas');
 kattMer('.fs-hirlevel-gomb', 'hirlevel_kattintas');
@@ -307,64 +307,45 @@ ciklusok.push(function (dt, ts) {
 if (kaptar) { const heroIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { heroIO.disconnect(); turaIndit(); } }), { threshold: .5 }); heroIO.observe(kaptar); }
 
 /* =====================================================
-   Közösség: app-piktogramok lábnyommá állnak össze
+   Közösség: „Beállok a rajba”, felpörgő nagy számok
    ===================================================== */
 (function () {
-  const szin = $('.fs-raj-szin', oldal); if (!szin) return;
-  const cv = d.createElement('canvas'); cv.setAttribute('aria-hidden', 'true'); szin.insertBefore(cv, szin.firstChild);
-  const ctx = cv.getContext('2d');
-  const IKONOK = ['pin', 'kupon', 'nap', 'csepp', 'bicaj', 'level', 'csere', 'kosar', 'hir', 'raj'].map(id => { const im = new Image(), s = d.getElementById('fs-i-' + id); im.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="color:#000">' + (s ? s.innerHTML : '') + '</svg>'); return im; });
-  const SZINEK = ['#FECF39', '#F5B4C7', '#B1DEFF', '#FECF39', '#D3DDBB'];
-  const TALP = [[50, 140], [38, 136], [31, 124], [30, 106], [25, 86], [22, 64], [29, 47], [45, 39], [63, 40], [77, 51], [83, 70], [78, 92], [70, 110], [66, 126], [60, 136]];
-  const UJJAK = [[73, 10, 11], [54, 4, 9], [39, 8, 8], [27, 16, 7], [18, 28, 6]];
-  let W = 0, H = 0, pinek = [], te = null, csatl = false, lathato = false;
-  function talpPontok(n) {
-    const minta = [], P = TALP, m = P.length;
-    for (let i = 0; i < m; i++) { const p0 = P[(i - 1 + m) % m], p1 = P[i], p2 = P[(i + 1) % m], p3 = P[(i + 2) % m];
-      for (let t = 0; t < 1; t += 0.05) { const t2 = t * t, t3 = t2 * t; minta.push([0.5 * ((2 * p1[0]) + (-p0[0] + p2[0]) * t + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * t2 + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * t3), 0.5 * ((2 * p1[1]) + (-p0[1] + p2[1]) * t + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * t2 + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * t3)]); } }
-    const hs = [0]; for (let i = 1; i < minta.length; i++) hs.push(hs[i - 1] + Math.hypot(minta[i][0] - minta[i - 1][0], minta[i][1] - minta[i - 1][1]));
-    const ossz = hs[hs.length - 1], out = []; let j = 0;
-    for (let k = 0; k < n; k++) { const c = ossz * k / n; while (j < hs.length - 1 && hs[j + 1] < c) j++; out.push(minta[j]); }
-    return out;
-  }
-  function lepték() { const s = H / 165, sx = Math.min(s * 1.55, W / 110); return { s: s, sx: sx, ox: W / 2 - 52 * sx, oy: H / 2 - 75 * s }; }
-  function helyek() {
-    const { s, sx, ox, oy } = lepték(), tp = talpPontok(30);
-    const celok = tp.map(p => [ox + p[0] * sx, oy + p[1] * s, 13]).concat(UJJAK.map(u => [ox + u[0] * sx, oy + u[1] * s, Math.max(11, u[2] * s * 0.72)]));
-    pinek.filter(p => !p.te).forEach((p, i) => { const c = celok[i % celok.length]; p.cx = c[0]; p.cy = c[1]; p.r = c[2]; });
-    if (te) { te.cx = ox + 90 * sx; te.cy = oy + 2 * s; }
-  }
-  function uj(x, y, teVagy, i) { return { x: x, y: y, vx: 0, vy: 0, cx: x, cy: y, r: teVagy ? 18 : 13, f: Math.random() * 10, te: !!teVagy, ik: IKONOK[i % IKONOK.length], szin: teVagy ? '#FECF39' : SZINEK[i % SZINEK.length] }; }
-  function meret() { const r = szin.getBoundingClientRect(); W = r.width; H = r.height; const dpr = Math.min(2, devicePixelRatio || 1); cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); helyek(); }
-  meret(); for (let i = 0; i < 35; i++) pinek.push(uj(Math.random() * W, H + 20 + Math.random() * 80, false, i)); helyek();
-  if (kevesMozgas()) pinek.forEach(p => { p.x = p.cx; p.y = p.cy; });
-  addEventListener('resize', meret);
-  new IntersectionObserver(es => es.forEach(e => lathato = e.isIntersecting)).observe(szin);
-  function rajzol(dt, ts) {
-    ctx.clearRect(0, 0, W, H);
-    const t = ts / 1000, rm = kevesMozgas();
-    for (const p of pinek) {
-      if (!rm && dt) { const wx = Math.sin(t * 1.1 + p.f) * 2.5, wy = Math.cos(t * 1.4 + p.f) * 2.5, ax = (p.cx + wx - p.x) * 6 - p.vx * 3, ay = (p.cy + wy - p.y) * 6 - p.vy * 3; p.vx += ax * dt; p.vy += ay * dt; p.x += p.vx * dt; p.y += p.vy * dt; }
-      ctx.beginPath(); ctx.arc(p.x + 2, p.y + 2, p.r, 0, Math.PI * 2); ctx.fillStyle = '#000000'; ctx.fill();
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = p.szin; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = '#000000'; ctx.stroke();
-      const ik = p.r * 1.15; if (p.ik.complete) ctx.drawImage(p.ik, p.x - ik / 2, p.y - ik / 2, ik, ik);
-      if (p.te) { ctx.font = '700 13px "Open Sans", sans-serif'; ctx.fillStyle = '#FECF39'; ctx.textAlign = 'center'; ctx.fillText('Te', p.x, p.y + p.r + 16); }
-    }
-  }
-  ciklusok.push((dt, ts) => { if (lathato) rajzol(dt, ts); });
-  const gomb = $('.fs-csatlakoz', oldal), uzenet = $('.fs-raj-uzenet', oldal);
+  const gomb = $('.fs-csatlakoz', oldal), uzenet = $('.fs-raj-uzenet', oldal); let csatl = false;
   if (uzenet) uzenet.setAttribute('aria-live', 'polite');
   if (gomb) gombbaAlakit(gomb, () => {
     if (csatl) { mer('letoltes_gomb', { hely: 'raj', platform: platform }); if (platform === 'android') location.href = playUtm('raj'); else if (platform === 'ios') location.href = iosUtm('raj'); else gorget($('#letoltes')); return; }
     csatl = true; mer('raj_csatlakozas', {});
-    const br = gomb.getBoundingClientRect(), sr = szin.getBoundingClientRect();
-    te = uj(br.left - sr.left + br.width / 2, br.top - sr.top, true, 0); te.ik = IKONOK[3]; pinek.push(te); helyek();
-    if (kevesMozgas()) { te.x = te.cx; te.y = te.cy; }
     meh.arc('ujjongo'); meh.ugrik();
-    if (uzenet) uzenet.textContent = 'Üdv a rajban! Egy lépéssel több a közös lábnyomban.';
+    if (uzenet) uzenet.textContent = 'Üdv a rajban! Egy lépéssel közelebb a zöld 2050-hez.';
     gomb.textContent = 'Töltsd le az appot';
   });
+  const szamok = $$('.fs-szam-ertek', oldal);
+  if (!szamok.length || kevesMozgas() || !('IntersectionObserver' in window)) return;
+  szamok.forEach(el => {
+    const eredeti = el.textContent.trim(), m = eredeti.match(/^([\d.\s]+)(.*)$/); if (!m) return;
+    const cel = parseInt(m[1].replace(/\D/g, ''), 10), pont = /\./.test(m[1]), fmt = n => (pont ? n.toLocaleString('de-DE') : String(n)) + m[2];
+    el.setAttribute('aria-label', eredeti); el.textContent = fmt(0);
+    new IntersectionObserver((es, o) => es.forEach(e => { if (!e.isIntersecting) return; o.disconnect(); const t0 = performance.now(), T = 1300;
+      (function lep(t) { const k = Math.min(1, (t - t0) / T), ki = 1 - Math.pow(1 - k, 3); el.textContent = fmt(Math.round(cel * ki)); if (k < 1) requestAnimationFrame(lep); else el.textContent = eredeti; })(t0); }), { threshold: .6 }).observe(el);
+  });
 })();
+
+/* =====================================================
+   Végtelen sávok: vélemények, sajtó (a tartalom duplikálva; szüneteltethető)
+   ===================================================== */
+function vegtelen(el, ido, gombFelirat) {
+  if (!el || el.classList.contains('fs-vegtelen')) return;
+  const sav = d.createElement('div'); sav.className = 'fs-vegtelen-sav';
+  [...el.children].forEach(c => sav.appendChild(c));
+  [...sav.children].forEach(c => { const k = c.cloneNode(true); k.setAttribute('aria-hidden', 'true'); k.setAttribute('inert', ''); sav.appendChild(k); });
+  el.appendChild(sav); el.classList.add('fs-vegtelen'); el.style.setProperty('--ido', ido + 's');
+  const g = d.createElement('button'); g.type = 'button'; g.className = 'fs-sav-gomb'; g.setAttribute('aria-pressed', 'false');
+  const frissit = () => { const all = el.classList.contains('fs-all'); g.setAttribute('aria-pressed', all); g.textContent = all ? '▶ ' + gombFelirat[1] : '❚❚ ' + gombFelirat[0]; };
+  g.addEventListener('click', () => { el.classList.toggle('fs-all'); frissit(); mer('sav_szunet', { sav: el.className.split(' ')[0], all: el.classList.contains('fs-all') }); });
+  frissit(); el.insertAdjacentElement('afterend', g);
+}
+vegtelen($('.fs-velemenyek', oldal), 80, ['Vélemények megállítása', 'Vélemények indítása']);
+vegtelen($('.fs-sajto .fs-logosor', oldal), 60, ['Megállítás', 'Indítás']);
 
 /* =====================================================
    Kinek szól: B2C (lábnyom), B2G (polgármester), B2B (vállalkozás)

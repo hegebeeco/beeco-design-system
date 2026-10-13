@@ -9,6 +9,7 @@ APP = {'lab': '6acd9097b69b333eb9acc0de_fs-app-lab.webp', 'hir': '6acd9097b449df
 BOLT = ['6acd9098412cc0f2868b7720_fs-beebolt-0.webp', '6acd90980375343f3ac0c0f4_fs-beebolt-1.webp', '6acd90989cfe6a4a7e724c77_fs-beebolt-2.webp']
 HOS = '6acd90989cfe6a4a7e724c94_fs-hos-meh.webp'
 CSAPAT = '67a8acb53c7158693ab3ee84_Beeco%20csapatke%CC%81p%20%E2%80%93%20nagy.avif'
+TAJ = os.environ.get('FS_TAJ', S3 + '6acdd430c1a4bb2cf6170a51_fs-zold-2050.svg')
 QR = '69cd05a01e5ed130291d83f9_web%20qr%20leto%CC%88lte%CC%81s.png'
 # kézzel rajzolt piktogramok (piko/*.svg → Webflow-médiatár); matrica-család: fekete-fehér, sárga család: fekete-sárga
 PIKO = {'lab': '6acdcf5d31a1079e200f1faa', 'alma': '6acdcf7bdb31faba74106c65', 'csepp': '6acdcf7ba358827ed21560fa', 'doboz': '6acdcf7ba358827ed2156117',
@@ -31,8 +32,8 @@ pk = lambda n, extra='': f'<img class="fs-piko{(" " + extra) if extra else ""}" 
 def boltok(extra=''):
     return (f'<div class="fs-boltok{(" " + extra) if extra else ""}"><a class="fs-bolt fs-csak-android" href="https://play.google.com/store/apps/details?id=hu.beeco.app" target="_blank" rel="noopener">{pk("play")}<span class="fs-bolt-felirat"><span class="fs-bolt-kicsi">Szerezd meg:</span><span class="fs-bolt-nagy">Google Play</span></span></a>'
             f'<a class="fs-bolt fs-csak-ios" href="https://apps.apple.com/hu/app/beeco/id6478549279?l=hu" target="_blank" rel="noopener">{pk("alma")}<span class="fs-bolt-felirat"><span class="fs-bolt-kicsi">Letölthető az</span><span class="fs-bolt-nagy">App Store-ból</span></span></a></div>')
-def logok(t):
-    return ''.join(f'<a class="fs-logo-csempe" href="{e(L.get(t+"-"+str(i), ('#', ''))[0])}" target="_blank" rel="noopener"><img class="fs-logo-kep" src="{S3}{L.get(t+"-"+str(i), ('#', ''))[1]}" alt="{e(n)}"></a>' for i, n in enumerate(NEV[t]))
+def logok(t, nevvel=False):
+    return ''.join(f'<a class="fs-logo-csempe" href="{e(L.get(t+"-"+str(i), ('#', ''))[0])}" target="_blank" rel="noopener"><span class="fs-logo-keret"><img class="fs-logo-kep" src="{S3}{L.get(t+"-"+str(i), ('#', ''))[1]}" alt="{e(n)}"></span>' + (f'<span class="fs-logo-nev">{e(n)}</span>' if nevvel else '') + '</a>' for i, n in enumerate(NEV[t]))
 
 FUNK = [('lab', 'Lábnyom', 'lab', 'Kezdd a lábnyomoddal!', 'Számold ki a karbon-, szemét- és vízlábnyomod, és nézd meg, hol állsz másokhoz képest.'),
         ('terkep', 'Térkép', 'terkep', 'Nézz körül a közelben!', 'Zöld térkép: boltok, javítók, szelektív gyűjtők és ökos pontok a közeledben.'),
@@ -46,10 +47,10 @@ APP_ALT = {'lab': 'A beeco Lábnyomkalkulátor: a karbonlábnyomod tonnában, ö
            'nektar': 'A Ranglista: a legaktívabb zümmögők nektárja'}
 
 SZ = []
-SZ.append(('hero', f'''<section class="fs-hero" id="kezdes"><div class="fs-burok fs-hero-racs"><div class="fs-hero-szoveg">
+SZ.append(('hero', f'''<section class="fs-hero" id="kezdes"><img class="fs-hero-taj" src="{TAJ}" alt=""><div class="fs-burok fs-hero-racs"><div class="fs-hero-szoveg">
 <div class="fs-szalag">Ingyenes magyar app</div>
 <h1 class="fs-hero-cim">Zöld életmód app, ami megmutatja <span class="fs-szalag-nagy">a következő lépésed</span></h1>
-<p class="fs-lead">Számold ki a lábnyomod, találj zöld helyeket és programokat a közeledben, és gyűjts nektárt minden lépésért.</p>
+<p class="fs-lead">Úton egy zöld 2050 felé, napi kis lépésekkel: számold ki a lábnyomod, találj zöld helyeket és programokat a közeledben, és gyűjts nektárt minden lépésért.</p>
 <div class="fs-cta-sor fs-hero-letoltes">{boltok()}<div class="fs-qr fs-csak-asztal fs-hero-qr"><img class="fs-qr-kep" src="{S3}{QR}" alt="QR-kód a beeco app letöltéséhez"><p class="fs-qr-szoveg">Gépen olvasod? Olvasd be a telefonoddal.</p></div></div>
 <div class="fs-bizalom"><span class="fs-biz"><span class="fs-csillag">★</span> <strong class="fs-biz-szam">4,6</strong> App Store</span><span class="fs-biz"><span class="fs-csillag">★</span> <strong class="fs-biz-szam">4,2</strong> Google Play</span><span class="fs-biz"><strong class="fs-biz-szam">25.000+</strong> letöltés</span></div>
 <p class="fs-hero-sugo">{pk("telefon")}Nézz bele az appba: válassz egy funkciót.</p>
@@ -65,26 +66,36 @@ SZ.append(('mostfut', '<a class="fs-most-fut" href="https://www.beeco.hu/kampany
 
 VEL = [('„A legjobb dolog, amire okostelefont 2026-ban használni lehet. Építi az emberi közösséget és a természeti környezetet.”', 'gazdagergo, App Store'),
        ('„Nagyon kreatív app, összehoz minket, emellett jobbá teszi a környezetet, a programok miatt is csak jobb.”', 'Kriki21, App Store'),
-       ('„Szuper kezdeményezés, remélem egyre többen csatlakoznak!”', 'Bandaminta, App Store')]
+       ('„Szuper kezdeményezés, remélem egyre többen csatlakoznak!”', 'Bandaminta, App Store'),
+       ('„Igazi kis oázis a klímaszorongós mindennapok sivatagában :)”', 'holladri01, App Store'),
+       ('„...egyre több és több ökos funkció érhető el az appban, a »zöld események« funkció a kedvencem, már számos klassz kezdeményezést innen ismertem meg!”', 'nillucska, App Store'),
+       ('„Kutak, piacok, varroda és adományboltok. Mind igen hasznosak, hogy spóroljak és ökotudatosabb döntést hozzak! Ajánlom mindenkinek!”', 'hexpapa96, App Store'),
+       ('„Rendkívül hasznos és áldásos! Ezer hála annak aki kitalálta és azoknak akik megcsinálták és azoknak akik üzemeltetik!”', 'Sasadligeti Fák Őrzői, App Store')]
 LEP = [('otlet', 'Megértés', 'Számold ki a lábnyomod: nézd meg, miben vagy erős, és min érdemes javítani.'),
        ('katt', 'Cselekvés', 'Megmutatjuk a következő lépést, és hogy hol teheted meg a közeledben: zöld helyek, programok, kuponok.'),
        ('sziv', 'Megerősítés', 'Minden apró lépésedért nektár jár, és egy közösség, amelyben nem vagy egyedül.')]
-SZ.append(('miert', '<section class="fs-szekcio fs-miert" id="miert"><div class="fs-burok"><div class="fs-szekcio-fej fs-be"><div class="fs-szalag">Miért a beeco?</div><h2 class="fs-cim2"><span class="fs-sor">A klímaváltozás nagy.</span> A te lépéseid is számítanak.</h2><p class="fs-lead">Sokan érezzük, hogy kevés, amit egyedül tehetünk. Ezt a tehetetlenséget apró, konkrét lépésekre bontjuk, és végig melletted vagyunk.</p></div>'
+SZ.append(('miert', '<section class="fs-szekcio fs-miert" id="miert"><div class="fs-burok"><div class="fs-szekcio-fej fs-be"><div class="fs-szalag">Miért a beeco?</div><h2 class="fs-cim2"><span class="fs-sor">A klímaváltozás nagy.</span> A te lépéseid is számítanak.</h2><p class="fs-lead">Sokan érezzük, hogy kevés, amit egyedül tehetünk. Pedig egy zöld 2050 napi kis lépésekből épül: ezeket bontjuk le neked, és végig melletted vagyunk.</p></div>'
  '<div class="fs-lepesek">' + ''.join(f'<div class="fs-kartya fs-lepes fs-be"><div class="fs-lepes-fej"><div class="fs-lepes-ikon">{pk(k)}<span class="fs-lepes-szam">{i+1}</span></div><h3 class="fs-lepes-cim">{c}</h3></div><p class="fs-lepes-szoveg">{t}</p></div>' for i, (k, c, t) in enumerate(LEP)) + '</div>'
  '<div class="fs-velemeny-fej fs-be"><h3 class="fs-velemeny-cim">Akik már használják</h3><div class="fs-ertekeles"><span class="fs-csillag">★</span> <strong>4,6</strong> App Store, 70 értékelés</div><div class="fs-ertekeles"><span class="fs-csillag">★</span> <strong>4,2</strong> Google Play, 106 értékelés</div></div>'
  '<div class="fs-velemenyek">' + ''.join(f'<figure class="fs-kartya fs-velemeny fs-be"><div class="fs-csillag fs-csillagok">★★★★★</div><blockquote class="fs-idezet">{q}</blockquote><figcaption class="fs-forras">{c}</figcaption></figure>' for q, c in VEL) + '</div></div></section>'))
 
+FOTO = [('68fe983b78497fc77257e71b_MM__6338%20(1).avif', 'Két önkéntes háttal, „bee the change” feliratú beeco pólóban egy szabadtéri eseményen', 'Zöld programokon'),
+        ('67f3ffeed85bf54ccc01433d_IMG_20250302_190221%20%E2%80%93%20nagy.avif', 'Tizenhárom fiatal túrázó egy kilátóponton, mögöttük zöld hegyek', 'Közös túrán'),
+        ('67a8c4089a2e5a49b5f5f39e_70461148_2417314075012536_5042379678103371776_n.avif', 'Emberek ruhákat válogatnak egy szabadtéri csere-bere vásáron', 'Csere-berén'),
+        ('67f3ffef809e550e5264fb50_IMG_20250320_180444%20%E2%80%93%20nagy.avif', 'Tizenegy ember egy asztal körül egy kreatív műhelyen', 'Műhelyeken')]
+SZAM = [('telefon', '25.000+', 'letöltés'), ('telepules', '15', 'partner-önkormányzat'), ('naptar', '100+', 'zöld program havonta'), ('sziv', '12', 'szakmai partner')]
 SZ.append(('raj', '<section class="fs-szekcio fs-raj" id="raj"><div class="fs-burok fs-racs"><div class="fs-raj-szoveg"><div class="fs-szalag fs-szalag-mez">Közösség</div><h2 class="fs-cim2"><span class="fs-halk">Egy méh nem csinál csodát, de...</span> egy egész raj felvirágoztatja a környezetét!</h2><p class="fs-lead">Apró lépésekkel csökkentjük a tehetetlenség érzését, és támogatjuk egymást. Ne csüggedj, nem vagy egyedül!</p>'
  '<div class="fs-hatas"><div class="fs-hatas-cim">Önkéntes vízadás, 2025 nyara</div><div class="fs-hatas-racs"><div class="fs-hatas-elem">' + pk('fa') + '<strong class="fs-hatas-szam">7 000</strong><span class="fs-hatas-mi">fa kapott inni</span></div><div class="fs-hatas-elem">' + pk('csepp') + '<strong class="fs-hatas-szam">400 000</strong><span class="fs-hatas-mi">liter víz</span></div><div class="fs-hatas-elem">' + pk('kanna') + '<strong class="fs-hatas-szam">1 500</strong><span class="fs-hatas-mi">aktív locsoló</span></div></div><a class="fs-hatas-forras" href="https://telex.hu/belfold/2025/09/21/aszaly-onkentes-vizadas-locsolakoma-fokert-beeco-10-millio-fa-eredmenyek" target="_blank" rel="noopener">Telex, 2025. szeptember 21.</a></div>'
  '<div class="fs-cta-sor"><a class="fs-gomb fs-csatlakoz" href="#raj">Beállok a rajba</a></div><p class="fs-raj-uzenet"></p></div>'
- '<div class="fs-raj-szin"><div class="fs-raj-kozep">' + pk('raj') + '<strong class="fs-raj-szam">25.000+</strong><span class="fs-raj-mi">letöltés</span></div></div></div></section>'))
+ '<div class="fs-raj-fotok">' + ''.join(f'<figure class="fs-foto fs-foto-{i+1}"><img class="fs-foto-kep" src="{S3}{f}" alt="{e(a)}"><figcaption class="fs-foto-felirat">{c}</figcaption></figure>' for i, (f, a, c) in enumerate(FOTO)) + pk('raj', 'fs-raj-piko') + '</div></div>'
+ '<div class="fs-burok"><div class="fs-szamok">' + ''.join(f'<div class="fs-szam">{pk(k)}<strong class="fs-szam-ertek">{v}</strong><span class="fs-szam-mi">{m}</span></div>' for k, v, m in SZAM) + '</div></div></section>'))
 
 IDO = [('2023', 'Climate Launchpad, magyar döntő'), ('2023', 'MVM Edison, 3. hely'), ('2024', 'Elindult az ország legnagyobb zöld platformja'), ('2025', 'WebSummit Lisszabon, startup-kiállítás'), ('2025', 'ONE Digitális díj, zöld kategória, 1. hely')]
 SZ.append(('rolunk', '<section class="fs-szekcio fs-rolunk" id="rolunk"><div class="fs-burok"><div class="fs-szekcio-fej fs-be"><div class="fs-szalag">Rólunk</div><h2 class="fs-cim2">Kik állnak a beeco mögött?</h2><p class="fs-szekcio-lead">Többszörösen elismert magyar startup, önkéntesekből és szakemberekből, egyetemi és civil partnerekkel.</p></div>'
  '<div class="fs-idovonal">' + ''.join(f'<div class="fs-ido fs-be{" fs-ido-fo" if i == 4 else ""}">{ik("lab", "fs-lab")}<div class="fs-ev">{y}</div><p class="fs-ido-szoveg">{t}</p></div>' for i, (y, t) in enumerate(IDO)) + '</div>'
  f'<div class="fs-rolunk-racs"><div class="fs-kartya fs-csapat fs-be"><img class="fs-csapat-kep" src="{S3}{CSAPAT}" alt="A beeco 29 fős csapata bézs pólóban, középen egy méhjelmezes taggal"><div class="fs-csapat-test"><div class="fs-szalag">A csapat</div><h3 class="fs-cim3">Nyolc szakcsapat, egy cél</h3><p class="fs-csapat-szoveg">Tinédzserek, egyetemisták, friss pályakezdők és tapasztalt szakemberek. Városiak és vidékiek, közgazdászok, mérnökök és grafikusok dolgoznak együtt.</p>'
  '<div class="fs-chipek">' + ''.join(f'<span class="fs-chip">{c}</span>' for c in ['Szoftveres', 'Webes', 'Térképész', 'Kreatív', 'Marketing', '+3 csapat']) + '</div><a class="fs-gomb fs-gomb-masod fs-csapat-gomb" href="https://www.beeco.hu/csapat" target="_blank" rel="noopener">Csatlakozz a csapathoz</a></div></div>'
- f'<div class="fs-partnerek fs-be"><div class="fs-szalag">Szakmai partnereink</div><h3 class="fs-cim3">Mert a fenntarthatóság egyedül nem megy</h3><div class="fs-partner-racs">{logok("partner")}</div></div></div></div></section>'))
+ f'<div class="fs-partnerek fs-be"><div class="fs-szalag">Szakmai partnereink</div><h3 class="fs-cim3">Mert a fenntarthatóság egyedül nem megy</h3><div class="fs-partner-racs">{logok("partner", True)}</div></div></div></div></section>'))
 
 UT = [('haz', 'Magánszemély vagyok', 'Számold ki a lábnyomod, töltsd le az appot.'), ('telepules', 'Polgármester vagyok', 'Már 15 önkormányzat dolgozik velünk.'), ('taska', 'Vállalkozásom van', 'Új vásárlók, zöld programok, ESG.')]
 SZ.append(('utak', '<section class="fs-szekcio fs-utak" id="utak"><div class="fs-burok"><div class="fs-szekcio-fej fs-be"><div class="fs-szalag">Kinek szól?</div><h2 class="fs-cim2">Neked, a településednek és a cégednek is</h2><p class="fs-szekcio-lead">Válaszd ki, ki vagy, és a méhecske két-három kérdés után megmutatja a következő lépést.</p></div>'
@@ -94,11 +105,9 @@ SZ.append(('utak', '<section class="fs-szekcio fs-utak" id="utak"><div class="fs
 TERMEK = [('Locsoljunk együtt! póló', '5 990 Ft', 'Kék beeco póló „Locsoljunk együtt!” felirattal'), ('Locsoló trikó, férfi', '5 490 Ft', 'Kék beeco férfi trikó'), ('Nyomtatott infografika', '4 900 Ft', 'Színes, méhecskés nyomtatott infografika')]
 PEDIA = [('play', 'Tartalomajánló', 'Film, könyv, app, tipp, podcast, petíció', 'https://www.beeco.hu/beecopedia/okos-tartalmak'), ('kesvilla', 'Ökos étkezés', 'Helyi, szezonális alapanyagok és növényi receptek', 'https://www.beeco.hu/beecopedia/szezonalis-etkezes'),
          ('olvas', 'Blogcikkek', 'Gazdaság, természetvédelem, technológia, hírek', 'https://www.beeco.hu/beecopedia/blog'), ('kuka', 'Hulladék', 'Ne csak szelektálj, fogj diétára a kukádat!', 'https://www.beeco.hu/beecopedia/szemet-csokkento-kisokos')]
-SZ.append(('tobb', '<section class="fs-szekcio fs-tobb" id="tobb"><div class="fs-burok fs-tobb-racs">'
- '<a class="fs-kartya fs-kartya-link fs-bolt-kartya fs-be" href="https://www.beeco.hu/beebolt" target="_blank" rel="noopener">' + pk('doboz', 'fs-kartya-piko') + '<div class="fs-szalag">beebolt</div><h3 class="fs-cim3">Támogasd ökosságokkal a munkánkat!</h3><div class="fs-termekek">' +
- ''.join(f'<div class="fs-termek"><img class="fs-termek-kep" src="{S3}{BOLT[i]}" alt="{e(a)}"><strong class="fs-termek-nev">{n}</strong><span class="fs-termek-ar">{p}</span></div>' for i, (n, p, a) in enumerate(TERMEK)) +
- '</div><p class="fs-bolt-szoveg">Fenntartható, edukatív és cuki termékek. Minden vásárlással az app fejlesztését támogatod.</p><div class="fs-gomb">Irány a beebolt</div></a>'
- '<div class="fs-kartya fs-pedia fs-be"><div class="fs-szalag">beecopedia</div><h3 class="fs-cim3">Ha tanulnál, akkor beecopedia!</h3><div class="fs-pedia-lista">' +
+SZ.append(('beebolt', '<section class="fs-szekcio fs-beebolt" id="beebolt"><div class="fs-burok"><div class="fs-bolt-fej fs-be">' + pk('doboz', 'fs-fej-piko') + '<div class="fs-szekcio-fej"><div class="fs-szalag">beebolt</div><h2 class="fs-cim2">Támogasd ökosságokkal a munkánkat!</h2><p class="fs-szekcio-lead">Fenntartható, edukatív és cuki termékek. Minden vásárlással az app fejlesztését támogatod.</p></div><a class="fs-gomb fs-bolt-gomb" href="https://www.beeco.hu/beebolt" target="_blank" rel="noopener">Irány a beebolt</a></div>'
+ '<div class="fs-termekek">' + ''.join(f'<a class="fs-kartya fs-termek fs-be" href="https://www.beeco.hu/beebolt" target="_blank" rel="noopener"><img class="fs-termek-kep" src="{S3}{BOLT[i]}" alt="{e(a)}"><strong class="fs-termek-nev">{n}</strong><span class="fs-termek-ar">{p}</span></a>' for i, (n, p, a) in enumerate(TERMEK)) + '</div></div></section>'))
+SZ.append(('pedia', '<section class="fs-szekcio fs-pedia-szekcio" id="beecopedia"><div class="fs-burok"><div class="fs-kartya fs-pedia fs-be"><div class="fs-szalag">beecopedia</div><h3 class="fs-cim3">Ha tanulnál, akkor beecopedia!</h3><div class="fs-pedia-lista">' +
  ''.join(f'<a class="fs-pedia-link" href="{u}" target="_blank" rel="noopener"><span class="fs-pin">{pk(i)}</span><span class="fs-pedia-szoveg"><strong class="fs-pedia-cim">{c}</strong><span class="fs-pedia-mi">{d}</span></span><span class="fs-pedia-nyil">›</span></a>' for i, c, d, u in PEDIA) +
  '</div></div></div></section>'))
 

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 420" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Zöld 2050: dombok, fák, szélkerekek, napelemes ház és egy gyalogút lábnyomokkal">
+<style>
+.k{stroke:#000;stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.lap{transform-origin:0 0;animation:forog 9s linear infinite}
+.lap2{animation-duration:12s}.lap3{animation-duration:7s}
+.felho{animation:usz 26s ease-in-out infinite alternate}
+.fa{transform-box:fill-box;transform-origin:50% 100%;animation:ring 5s ease-in-out infinite alternate}
+.fa2{animation-delay:-2s}.fa3{animation-delay:-3.5s}
+@keyframes forog{to{transform:rotate(360deg)}}
+@keyframes usz{to{transform:translateX(36px)}}
+@keyframes ring{from{transform:rotate(-1.5deg)}to{transform:rotate(1.5deg)}}
+@media (prefers-reduced-motion:reduce){.lap,.felho,.fa{animation:none}}
+</style>
+<g class="felho"><path class="k" fill="#fff" d="M820 150c0-12 11-20 22-17 5-11 24-12 30 0 12-3 22 6 19 17z"/><path class="k" fill="#fff" d="M640 64c0-12 11-20 22-17 5-11 24-12 30 0 12-3 22 6 19 17z"/></g>
+<circle class="k" cx="1010" cy="96" r="40" fill="#FECF39"/>
+<path fill="#E6ECD5" d="M0 250C180 196 330 206 520 236S880 196 1060 214 1330 178 1440 196V420H0Z"/>
+<g><path class="k" fill="#fff" d="M1185 96l-4 150h14l-4 -150z"/><g transform="translate(1188 96)"><g class="lap "><path class="k" fill="#fff" d="M0 0L-4 -7L-2.5 -72L2.5 -72L4 -7Z"/><g transform="rotate(120)"><path class="k" fill="#fff" d="M0 0L-4 -7L-2.5 -72L2.5 -72L4 -7Z"/></g><g transform="rotate(240)"><path class="k" fill="#fff" d="M0 0L-4 -7L-2.5 -72L2.5 -72L4 -7Z"/></g></g></g><circle class="k" cx="1188" cy="96" r="6" fill="#fff"/></g>
+<g><path class="k" fill="#fff" d="M1315 128l-4 112h14l-4 -112z"/><g transform="translate(1318 128)"><g class="lap lap2"><path class="k" fill="#fff" d="M0 0L-4 -7L-2.5 -56L2.5 -56L4 -7Z"/><g transform="rotate(120)"><path class="k" fill="#fff" d="M0 0L-4 -7L-2.5 -56L2.5 -56L4 -7Z"/></g><g transform="rotate(240)"><path class="k" fill="#fff" d="M0 0L-4 -7L-2.5 -56L2.5 -56L4 -7Z"/></g></g></g><circle class="k" cx="1318" cy="128" r="6" fill="#fff"/></g>
+<g><path class="k" fill="#fff" d="M1089 160l-4 80h14l-4 -80z"/><g transform="translate(1092 160)"><g class="lap lap3"><path class="k" fill="#fff" d="M0 0L-4 -7L-2.5 -42L2.5 -42L4 -7Z"/><g transform="rotate(120)"><path class="k" fill="#fff" d="M0 0L-4 -7L-2.5 -42L2.5 -42L4 -7Z"/></g><g transform="rotate(240)"><path class="k" fill="#fff" d="M0 0L-4 -7L-2.5 -42L2.5 -42L4 -7Z"/></g></g></g><circle class="k" cx="1092" cy="160" r="6" fill="#fff"/></g>
+<path class="k" fill="#D3DDBB" d="M-10 300C160 250 300 262 470 290S760 300 920 276 1250 250 1450 272V440H-10Z"/>
+<g transform="translate(150 214)"><path class="k" fill="#fff" d="M0 40h96v52H0z"/><path class="k" fill="#2F4A6B" d="M-10 42L48 4l58 38z"/><g stroke="#B1DEFF" stroke-width="1.6" opacity=".9"><path d="M8 32h80M20 22h56M32 14h32"/><path d="M28 40l10-30M48 40V8M68 40L58 10"/></g><path class="k" fill="#FECF39" d="M38 62h20v30H38z"/><path class="k" fill="#B1DEFF" d="M10 56h18v16H10zM68 56h18v16H68z"/><path class="k" fill="#6E8947" d="M-6 92c10-10 18-10 26 0M80 92c8-10 18-10 26 0"/></g>
+<g class="fa"><path class="k" fill="#8B5A2B" d="M58 300l6-60h8l6 60z"/><circle class="k" cx="68" cy="222" r="34" fill="#6E8947"/><circle class="k" cx="44" cy="244" r="18" fill="#8FB35A"/></g>
+<g class="fa fa2"><path class="k" fill="#8B5A2B" d="M318 296l4-46h7l4 46z"/><circle class="k" cx="325" cy="234" r="26" fill="#8FB35A"/></g>
+<g class="fa fa3"><path class="k" fill="#8B5A2B" d="M378 300l4-36h6l4 36z"/><circle class="k" cx="385" cy="254" r="19" fill="#6E8947"/></g>
+<g class="fa fa2"><path class="k" fill="#8B5A2B" d="M972 286l5-50h8l5 50z"/><circle class="k" cx="981" cy="222" r="30" fill="#6E8947"/><circle class="k" cx="1006" cy="240" r="16" fill="#8FB35A"/></g>
+<g class="fa"><path class="k" fill="#8B5A2B" d="M1394 278l4-40h7l4 40z"/><circle class="k" cx="1401" cy="226" r="24" fill="#8FB35A"/></g>
+<path class="k" fill="#B9CC8A" d="M-10 352C200 318 380 330 560 346S920 362 1110 336 1330 318 1450 330V440H-10Z"/>
+<path d="M40 392C260 368 420 384 620 380S980 368 1200 376 1380 366 1440 362" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="2 16" stroke-linecap="round" opacity=".95"/>
+<g fill="#000" opacity=".8"><g transform="translate(500 376.0) rotate(82)"><path d="M0 -9c4 0 6 4 5 9s-2 9-5 9-5-4-5-9 1-9 5-9z"/><circle cx="-3" cy="-13" r="1.8"/><circle cx="0.5" cy="-14.5" r="2"/><circle cx="4" cy="-13" r="1.8"/></g><g transform="translate(534 384.8) rotate(82)"><path d="M0 -9c4 0 6 4 5 9s-2 9-5 9-5-4-5-9 1-9 5-9z"/><circle cx="-3" cy="-13" r="1.8"/><circle cx="0.5" cy="-14.5" r="2"/><circle cx="4" cy="-13" r="1.8"/></g><g transform="translate(568 373.6) rotate(82)"><path d="M0 -9c4 0 6 4 5 9s-2 9-5 9-5-4-5-9 1-9 5-9z"/><circle cx="-3" cy="-13" r="1.8"/><circle cx="0.5" cy="-14.5" r="2"/><circle cx="4" cy="-13" r="1.8"/></g><g transform="translate(602 382.4) rotate(82)"><path d="M0 -9c4 0 6 4 5 9s-2 9-5 9-5-4-5-9 1-9 5-9z"/><circle cx="-3" cy="-13" r="1.8"/><circle cx="0.5" cy="-14.5" r="2"/><circle cx="4" cy="-13" r="1.8"/></g><g transform="translate(636 371.2) rotate(82)"><path d="M0 -9c4 0 6 4 5 9s-2 9-5 9-5-4-5-9 1-9 5-9z"/><circle cx="-3" cy="-13" r="1.8"/><circle cx="0.5" cy="-14.5" r="2"/><circle cx="4" cy="-13" r="1.8"/></g><g transform="translate(670 380.0) rotate(82)"><path d="M0 -9c4 0 6 4 5 9s-2 9-5 9-5-4-5-9 1-9 5-9z"/><circle cx="-3" cy="-13" r="1.8"/><circle cx="0.5" cy="-14.5" r="2"/><circle cx="4" cy="-13" r="1.8"/></g></g>
+<g class="k" fill="#FECF39"><circle cx="250" cy="344" r="5"/><circle cx="268" cy="352" r="4"/><circle cx="840" cy="356" r="5"/><circle cx="1240" cy="346" r="5"/><circle cx="1256" cy="354" r="4"/></g>
+<g class="k" fill="#F5B4C7"><circle cx="702" cy="350" r="4"/><circle cx="1162" cy="356" r="4"/></g>
+</svg>
