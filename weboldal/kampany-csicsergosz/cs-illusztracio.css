@@ -250,7 +250,7 @@ img.cs-domb,img.cs-hurok{display:block}
 .cs_harmas .cs_illu_panel{overflow:visible}
 .cs_harmas .cs_illu_panel>.cs-illu{position:relative;z-index:0}
 .cs_harmas h3.cs-csempe-cimke{position:absolute;left:12px;top:12px;z-index:2;margin:0;font-size:22px!important;color:#fff!important;transform:rotate(-2deg);transition:transform 200ms cubic-bezier(.23,1,.32,1),background-color 200ms}
-.cs_harmas>.card.cs-aktiv h3.cs-csempe-cimke{transform:rotate(-2deg) scale(1.08);background-color:var(--cs-c-narancs)}
+.cs_harmas>.card.cs-aktiv h3.cs-csempe-cimke{transform:rotate(-2deg) scale(1.08);background-color:#A8470C}
 .cs_harmas>.card.cs-aktiv .cs-illu--eteto{animation:cs-leng 1.6s ease-in-out 1}
 .cs_harmas>.card.cs-aktiv .cs-illu--odu{animation:cs-bic .5s ease-out 1}
 @keyframes cs-leng{30%{transform:rotate(-2.5deg)}60%{transform:rotate(1.5deg)}100%{transform:none}}
@@ -291,7 +291,7 @@ img.cs-domb,img.cs-hurok{display:block}
 .cs-ut_lap--bal{border-radius:6px 0 0 6px;border-right-width:1px;display:grid;place-items:center}
 .cs-ut_lap--jobb{border-radius:0 6px 6px 0;border-left-width:1px;transform-origin:0 50%;transform-style:preserve-3d;transition:transform 520ms cubic-bezier(.65,0,.35,1)}
 .cs-ut_lap-belso{position:absolute;inset:8px;background:repeating-linear-gradient(transparent 0 9px,#EAD9BE 9px 10px)}
-.cs-ut_borito{position:absolute;inset:-2px;display:grid;place-items:center;padding:6px;background:var(--cs-c-narancs);border:2px solid var(--cs-c-kakao);border-radius:6px 0 0 6px;color:#fff;font-family:Lalezar,sans-serif;font-size:14px;line-height:1.05;text-align:center;transform:rotateY(180deg);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.cs-ut_borito{position:absolute;inset:-2px;display:grid;place-items:center;padding:6px;background:#A8470C;border:2px solid var(--cs-c-kakao);border-radius:6px 0 0 6px;color:#fff;font-family:Lalezar,sans-serif;font-size:14px;line-height:1.05;text-align:center;transform:rotateY(180deg);backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .cs-ut_borito b{font-weight:400}
 .cs-ut_kep{display:block;width:48px;height:58px;padding:4px 4px 10px;background:#fff;border:1.5px solid var(--cs-c-kakao);transform:translate(-30px,-90px) rotate(-14deg) scale(.6);opacity:0;transition:transform 560ms cubic-bezier(.23,1,.32,1),opacity 200ms ease-out}
 .cs-ut_kep .cs-pozmadar{display:block;width:100%}
