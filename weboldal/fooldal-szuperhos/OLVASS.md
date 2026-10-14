@@ -29,3 +29,8 @@ Webflow-oldal: **Főoldal Szuperhős (draft)** (`/fooldal-szuperhos-draft`, page
 - **Közösség:** 4 fotó a médiatárból (polaroid), 4 nagy szám (felpörög, ha látszik). A 15 önkormányzat és a 12 partner a meglévő tartalomból jön – változáskor a szöveget kell átírni.
 - **beebolt:** saját szekció (`#beebolt`). **beecopedia:** egyelőre lekerült az oldalról; visszatenni: `python3 webflow-jeloles.py pedia` → a `pedia` szekció HTML-je a `wf_szekciok.json`-ban.
 - `lista.tsv`: a sajtó- és partnerlogók linkjei és képei (generátor-bemenet).
+
+## 6. kör (2026-10-14)
+- A Designerben közvetlenül módosítva (eredeti DOWNLOAD_BLOCK a hero-ban és a záróban, értékelés-linkek, 8 közösségi adat, chipek ki, beebolt-jel). **A `webflow-jeloles.py` ettől a körtől nem tükrözi a Designert**: új szekció-generáláskor előbb vissza kell vezetni ezeket.
+- CSS: `fs-extra-3.css` → 5. embed. JS: jobb sávon lábnyom-jel (`fs-sin-jel`), kézi véleménysor (`fs-kezi`), a záró leszállási célja a `.footer_download` is.
+- Fejléc-kód: `../kozos/horgony.js` (horgonygombok előzmény nélkül).
