@@ -1,5 +1,5 @@
 /* Csicsergősz kampányoldal – Levi-változat viselkedése (csicsergosz-levi ág). A cs-kampany.js mellett fut.
-   1. horgonycélok (miert, gyik)  2. letöltés-CTA: mobilon áruház, asztalon a záró blokk  3. Play-link listing-paraméter le
+   1. horgonycélok (miert, gyik); a horgonykattintást a fejléc-kód kezeli  2. letöltés-CTA: mobilon áruház, asztalon a záró blokk  3. Play-link listing-paraméter le
    4. hírlevél gombfelirat (a Webflow API nem írja a FormButton értékét) */
 (function () {
   var d = document;
@@ -7,27 +7,9 @@
   cel('.dia_ov_light.cs_horgony', 'miert');
   cel('.dia_kek_ov.cs_sotet', 'gyik');
 
-  /* Oldalon belüli horgonyok („Nézd meg, hogyan segíthetsz”, kártyák): a görgetést mi végezzük. A Webflow saját sima
-     görgetése és a site-szintű Trustindex (megállítja, majd 150 ms múlva újrakattint) együtt visszarántotta az oldalt
-     oda, ahonnan a látogató jött. Ablakszinten, capture fázisban fogjuk el, a mérés (cs-meres.js) ennél korábban fut.
-     Ha a cél elérése után 2 mp-en belül valami felhasználói mozdulat nélkül elviszi az oldalt, visszaállítjuk. */
-  var csend = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches, hUtolso = 0;
-  function horgonyra(cel, id) {
-    var nav = d.querySelector('.cs_fejlec, .navbar, nav.w-nav'), fent = nav && getComputedStyle(nav).position.match(/fixed|sticky/) ? nav.offsetHeight : 0;
-    var y = Math.max(0, cel.getBoundingClientRect().top + scrollY - fent - 8), sajat = false;
-    window.scrollTo({ top: y, behavior: csend ? 'auto' : 'smooth' });
-    try { history.replaceState(null, '', '#' + id); } catch (e) {}
-    var vege = Date.now() + 2600; function kez() { sajat = true; }
-    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) { window.addEventListener(ev, kez, { once: true, passive: true }); });
-    [1300, 2100].forEach(function (ms) { setTimeout(function () { if (!sajat && Date.now() < vege && Math.abs(scrollY - y) > 160) window.scrollTo({ top: y, behavior: 'auto' }); }, ms); });
-  }
-  window.addEventListener('click', function (e) {
-    var a = e.target && e.target.closest && e.target.closest('a[href^="#"]'); if (!a || a.classList.contains('cs_kinek_gomb') || a.classList.contains('cs-utvonal_pont')) return;
-    var id = decodeURIComponent(a.getAttribute('href').slice(1)), cel = id && d.getElementById(id); if (!cel) return;
-    e.preventDefault(); e.stopImmediatePropagation();
-    var most = Date.now(); if (!e.isTrusted && most - hUtolso < 1200) return; hUtolso = most;
-    horgonyra(cel, id);
-  }, true);
+  /* Oldalon belüli horgonyok: a kezelő a lap fejléc-kódjában fut (fej/horgony.js), hogy a szkriptek
+     megérkezése előtt is működjön. Különben a korai kattintás böngésző-előzményt írt, és a Mac trackpad
+     „Vissza” mozdulata a gombhoz dobta vissza a látogatót. */
 
   var ua = navigator.userAgent;
   var IOS = 'https://apps.apple.com/hu/app/beeco/id6478549279?l=hu';

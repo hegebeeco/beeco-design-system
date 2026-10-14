@@ -81,23 +81,7 @@
     if (talalt) { var sz = d.getElementById('segits'); if (sz) setTimeout(function () { sz.scrollIntoView(); }, 300); }
   })();
 
-  /* 2. Süvöltő a „Hogyan segítheted” panel szélén: koppintásra ugrik és mesél; fülváltáskor átül. */
-  (function () {
-    function panel() { return d.querySelector('.cs_kinek_panel:not([hidden])'); }
-    var p = panel(); if (!p) return;
-    var h = d.createElement('div'); h.className = 'cs-mh cs-mh--suvolto';
-    h.innerHTML = '<button type="button" class="cs-madar" aria-label="Kismadár, koppints rám"><img src="' + MADAR.suvolto + '" alt=""></button><span class="cs-mb" role="status"></span>';
-    p.appendChild(h);
-    var b = h.firstChild, u = h.lastChild, t;
-    function mut(x, ms) { u.innerHTML = x; u.classList.add('cs-lat'); clearTimeout(t); t = setTimeout(function () { u.classList.remove('cs-lat'); }, ms); }
-    b.addEventListener('click', function () {
-      b.classList.remove('cs-ugrik'); void b.offsetWidth; b.classList.add('cs-ugrik');
-      mut('<b>Csip!</b>Csapatban könnyebb: egy odút vagy etetőt együtt is kihelyezhettek. Válasszatok fület, és megmutatom, mivel kezdjétek!', 7000);
-      kuld('campaign_bird_tap', { bird: 'kabala' });
-    });
-    latszik(p, function () { b.classList.add('cs-repul'); setTimeout(function () { b.classList.add('cs-leszallt'); mut('Csip! Koppints rám!', 2600); }, csend ? 250 : 950); }, 0.35);
-    d.addEventListener('cs:kinek', function (e) { if (e.detail && h.parentNode !== e.detail) e.detail.appendChild(h); });
-  })();
+  /* 2. (2026-10-14) A Csatlakozás-fülek melletti kabala kikerült (Kristóf kérése). */
 
   /* 3. Hero: egy veréb rászáll a telefonra, egy süvöltő „beszáll az appba”, és a képernyőn felvillan: új madár az albumban. */
   (function () {

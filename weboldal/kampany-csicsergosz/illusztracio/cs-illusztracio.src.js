@@ -436,10 +436,6 @@
     }
   }
 
-  /* 13b. Csatlakozás: a fülek szélén ülő, koppintható madár a kabala (a cs-kampany.js tette ki képként). */
-  [].forEach.call(d.querySelectorAll('.cs-mh--suvolto .cs-madar > img'), function (img) {
-    img.parentNode.replaceChild(CSI.madar('alap', 'cs-kinek-kabala'), img);
-  });
 
   /* 13. Csatlakozás: a fülek fotói helyett Ági elemeiből rakott képek (cég: odú és etető, önkormányzat: fa és etető, iskola: itató és madár) */
   var KINEK = [['odu', 'eteto'], ['fa_sarga', 'eteto'], ['itato', 'poz_alap']];

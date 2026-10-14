@@ -15,5 +15,5 @@ A rajzok (`../illusztracio/statikus/*.svg`) Webflow-assetként, valódi `<img>` 
 | 4. | `../cs-illusztracio.css` „2026-10-13 javítások” blokkja (a fájl vége) | `cs-illusztracio-2.min.css` |
 
 A 4. embed a 2026-10-13-i javításokat tartalmazza külön, hogy az első három bájtra változatlan maradjon.
-| 5. | `../cs-levelke.css` (Levélke hírlevél-blokk, kabala a Csatlakozásnál) | `cs-levelke.min.css` |
-| 6. | `../cs-kartya.css` (Matrica kártyacsalád) | `cs-kartya.min.css` |
+| 5. | `../cs-levelke.css` (Levélke hírlevél-blokk) | `cs-levelke.min.css` |
+| 6. | `../cs-kartya.css` (Matrica kártyacsalád, 9-szeletes keret szűrő nélkül; generálja: `../cs-kartya.gen.mjs`) | `cs-kartya.min.css` |
