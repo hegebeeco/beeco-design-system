@@ -221,6 +221,8 @@ const sin = d.createElement('div'); sin.className = 'fs-sin';
 sin.innerHTML = '<svg class="fs-ut" aria-hidden="true"><path class="fs-ut-alap"/><path class="fs-ut-halvany"/><path class="fs-ut-teli"/></svg>';
 const sinNav = d.createElement('div'); sinNav.className = 'fs-sin fs-sin-nav'; sinNav.innerHTML = '<nav aria-label="Hol tartasz az oldalon"></nav>';
 oldal.appendChild(sin); oldal.appendChild(sinNav);
+const labKep = ($('img.fs-piko[src*="fs-piko-lab"]', oldal) || {}).src || 'https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcf5d31a1079e200f1faa_fs-piko-lab.svg';
+const sinJel = d.createElement('img'); sinJel.className = 'fs-sin-jel'; sinJel.src = labKep; sinJel.alt = ''; sinJel.setAttribute('aria-hidden', 'true'); sinNav.appendChild(sinJel);
 const sinSvg = $('svg', sin), halv = $('.fs-ut-halvany', sin), teli = $('.fs-ut-teli', sin), alapUt = $('.fs-ut-alap', sin), allNav = $('nav', sinNav);
 const ALL = [['kezdes', 'Kezdés', 'vidam'], ['miert', 'Miért?', 'figyelmes'], ['raj', 'Közösség', 'meleg'], ['rolunk', 'Rólunk', 'buszke'], ['utak', 'Kinek szól?', 'vidam'], ['gyik', 'GYIK', 'figyelmes'], ['letoltes', 'Letöltés', 'ujjongo']].filter(a => d.getElementById(a[0]));
 let pontok = [], hossz = [], L = 0, allT = [];
@@ -281,8 +283,8 @@ $('button', tura).addEventListener('click', turaAll);
 valaszt(0);
 
 let allapot = 'hero', leszallIdo = 0, playLat = false;
-const leszallo = () => $$('.fs-zaro .fs-bolt', oldal).find(b => b.offsetParent !== null) || $('.fs-zaro .fs-bolt', oldal);
-const boltok = $('.fs-zaro .fs-boltok', oldal);
+const leszallo = () => $$('.fs-zaro .fs-bolt, .fs-zaro .footer_download', oldal).find(b => b.offsetParent !== null) || $('.fs-zaro .fs-bolt, .fs-zaro .footer_download', oldal) || zaro;
+const boltok = $('.fs-zaro .fs-boltok, .fs-zaro .download_block', oldal);
 if (boltok) new IntersectionObserver(es => es.forEach(e => { playLat = e.intersectionRatio >= 0.9; }), { threshold: [0, 0.9, 1] }).observe(boltok);
 const zaroTelefon = $('.fs-zaro-telefon', oldal);
 ciklusok.push(function (dt, ts) {
@@ -294,6 +296,7 @@ ciklusok.push(function (dt, ts) {
   else ALL.forEach(([id], i) => { if (d.getElementById(id).getBoundingClientRect().top < innerHeight * 0.5) akt = i; });
   gombok.forEach((b, i) => { b.classList.toggle('fs-bejart', i <= akt); if (i === akt) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
   if (L) teli.style.strokeDasharray = (prog * L).toFixed(1) + ' ' + L;
+  if (L && szeles()) { const p = pontHossznal(prog * L), q = pontHossznal(Math.min(L, prog * L + 6)), sz = Math.atan2(q[1] - p[1], q[0] - p[0]) * 180 / Math.PI + 90; sinJel.style.left = p[0] + 'px'; sinJel.style.top = p[1] + 'px'; sinJel.style.setProperty('--fs-jel-sz', sz.toFixed(1) + 'deg'); }
   if (playLat) { if (allapot !== 'leszall' && allapot !== 'haza' && allapot !== 'otthon') { allapot = 'leszall'; leszallIdo = ts; meh.ul = false; } }
   else if (allapot === 'leszall' || allapot === 'haza' || allapot === 'otthon') { allapot = 'ut'; meh.ul = false; }
   if (allapot === 'leszall') { meh.host.classList.remove('fs-rejt'); const p = relHely(leszallo(), 0.86, -0.05); meh.cel(p[0], p[1] - 22, 0.55); meh.arc('ujjongo'); if (meh.tav() < 6) meh.ul = true; if (ts - leszallIdo > 2600) { allapot = 'haza'; meh.ul = false; } return; }
@@ -307,7 +310,7 @@ ciklusok.push(function (dt, ts) {
   } else {
     if (allapot === 'hero' && turaFut) turaAll();
     allapot = 'ut';
-    if (szeles()) { meh.host.classList.remove('fs-rejt'); const sr = sin.getBoundingClientRect(), pr = reteg.getBoundingClientRect(), p = pontHossznal(prog * L); meh.cel(sr.left - pr.left + p[0], sr.top - pr.top + p[1] - 18, 0.5); }
+    if (szeles()) { const sr = sin.getBoundingClientRect(), pr = reteg.getBoundingClientRect(), p = pontHossznal(prog * L); meh.cel(sr.left - pr.left + p[0], sr.top - pr.top + p[1] - 18, 0.5); meh.host.classList.add('fs-rejt'); }
     else { const pr = reteg.getBoundingClientRect(); meh.cel(innerWidth - 50 - pr.left, 110 - pr.top, 0.4); meh.host.classList.add('fs-rejt'); }
     meh.arc(ALL[akt][2]);
   }
@@ -379,7 +382,17 @@ function vegtelen(el, seb, cimke, gombFelirat) {
     frissit(); el.insertAdjacentElement('afterend', g);
   }
 }
-vegtelen($('.fs-velemenyek', oldal), 34, 'Vélemények', ['Vélemények megállítása', 'Vélemények indítása']);
+/* Vélemények: kézzel görgethető sor (Kristóf, 2026-10-14: nem kell automata mozgás és megállító gomb).
+   Egérrel húzható, görgővel és billentyűvel is mozgatható. */
+(function kezi(el, cimke) {
+  if (!el) return;
+  el.classList.add('fs-kezi'); el.setAttribute('tabindex', '0'); el.setAttribute('role', 'region'); el.setAttribute('aria-label', cimke + ' (vízszintesen görgethető)');
+  let huz = null;
+  el.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' || e.button !== 0) return; huz = { x: e.clientX, s: el.scrollLeft, mozgott: false }; el.classList.add('fs-huz'); });
+  addEventListener('pointermove', e => { if (!huz) return; const dx = e.clientX - huz.x; if (Math.abs(dx) > 4) huz.mozgott = true; if (huz.mozgott) { e.preventDefault(); el.scrollLeft = huz.s - dx; } });
+  addEventListener('pointerup', () => { if (!huz) return; el.classList.remove('fs-huz'); if (huz.mozgott) mer('sav_huzas', { sav: cimke }); huz = null; });
+  el.addEventListener('dragstart', e => e.preventDefault());
+})($('.fs-velemenyek', oldal), 'Vélemények');
 vegtelen($('.fs-sajto .fs-logosor', oldal), 40, 'Írtak rólunk');
 vegtelen($('.fs-partner-racs', oldal), 40, 'Szakmai partnereink');
 

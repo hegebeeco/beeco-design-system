@@ -617,3 +617,68 @@ html[data-theme="dark"] .fs-oldal{--d-perem:var(--surface)}
 .fs-szi-szoveg{font-family:var(--display);font-size:var(--fs-20);line-height:1;padding-top:3px}
 .fs-szi-nev{font-size:var(--fs-12);font-weight:700;letter-spacing:.04em}
 @media (max-width:640px){.fs-szalag-idezet,.fs-szalag-idezet.fs-bal{left:50%;max-width:calc(100% - 40px);white-space:normal;flex-wrap:wrap;justify-content:center;text-align:center;row-gap:2px}}
+
+/* ===== 6. kör (2026-10-14, Kristóf) ===== */
+/* Hero: a 6 téma szorosabb gyűrűben a telefon körül, hogy a témához tartozó felirat a telefon alatt az első képernyőn látsszon */
+@media (min-width:761px){
+.fs-oldal .fs-hero-jobb .fs-kaptar-szin{min-height:470px;width:min(520px,100%)}
+.fs-oldal .fs-hero-jobb .fs-app-kepek{width:228px;max-width:44%}
+.fs-oldal .fs-hero-jobb .fs-kaptar-szin .fs-hurok{inset:4% 16%;width:68%;height:92%}
+.fs-oldal .fs-hero-jobb .fs-funk{width:96px;gap:4px}
+.fs-oldal .fs-hero-jobb .fs-funk .fs-pin{width:68px;height:68px}
+.fs-oldal .fs-hero-jobb .fs-funk .fs-pin .fs-piko{width:42px;height:42px}
+.fs-oldal .fs-hero-jobb .fs-funk .fs-nev{font-size:var(--fs-14)}
+.fs-oldal .fs-hero-jobb .fs-f-1{left:4%;top:2%}.fs-oldal .fs-hero-jobb .fs-f-2{left:0;top:36%}.fs-oldal .fs-hero-jobb .fs-f-3{left:4%;top:70%}
+.fs-oldal .fs-hero-jobb .fs-f-4{right:4%;top:2%}.fs-oldal .fs-hero-jobb .fs-f-5{right:0;top:36%}.fs-oldal .fs-hero-jobb .fs-f-6{right:4%;top:70%}
+.fs-oldal .fs-hero-jobb .fs-felirat{margin-top:6px;min-height:0;padding:10px 18px}
+.fs-oldal .fs-hero-jobb .fs-felirat h2{font-size:var(--fs-20)}
+.fs-oldal .fs-hero-jobb .fs-tura{margin-top:6px}
+}
+/* Letöltés: az oldal eredeti DOWNLOAD_BLOCK komponense (Google Play, App Store, QR) */
+.fs-oldal .fs-hero-letoltes .download_block,.fs-oldal .fs-zaro-szoveg .download_block{margin:0;justify-content:flex-start}
+.fs-oldal .fs-zaro-szoveg .download_block{margin-top:20px}
+
+/* Jobb sáv: a lábnyom-piktogram mutatja, hol tartasz */
+.fs-sin-jel{position:absolute;left:0;top:0;width:28px;height:auto;transform:translate(-50%,-50%) rotate(var(--fs-jel-sz,0deg));pointer-events:none;z-index:2}
+@media (prefers-reduced-motion:reduce){.fs-sin-jel{transition:none}}
+
+/* Akik már használják: kompakt fejléc, az értékelések az áruházoldalra visznek, mellettük a letöltők száma */
+.fs-oldal .fs-velemeny-fej{align-items:center;gap:8px 10px;margin-top:40px}
+.fs-oldal .fs-velemeny-fej h3{font-size:var(--fs-20);margin-right:6px}
+.fs-oldal .fs-ertekeles{display:inline-flex;align-items:baseline;gap:5px;min-height:44px;align-items:center;padding:4px 14px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font-size:var(--fs-14);text-decoration:none;line-height:1}
+.fs-oldal .fs-ertekeles strong{font-size:var(--fs-16)}
+.fs-oldal a.fs-ertekeles::after{content:"↗";font-size:12px;opacity:.65}
+@media (hover:hover) and (pointer:fine){.fs-oldal a.fs-ertekeles:hover{background:var(--accent);color:#000}.fs-oldal a.fs-ertekeles:hover strong{color:#000}}
+.fs-oldal a.fs-ertekeles:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+/* a véleménysor kézzel görgethető: nincs automata mozgás, nincs gomb */
+.fs-oldal .fs-velemenyek.fs-kezi{display:flex;gap:12px;margin-top:12px;padding:4px 2px 12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin;cursor:grab}
+.fs-oldal .fs-velemenyek.fs-kezi.fs-huz{cursor:grabbing;user-select:none;scroll-snap-type:none}
+.fs-oldal .fs-velemenyek.fs-kezi .fs-velemeny{flex:none;width:min(290px,78vw);padding:14px 16px;gap:6px;scroll-snap-align:start}
+.fs-oldal .fs-velemenyek.fs-kezi .fs-idezet{font-size:var(--fs-14);line-height:1.45}
+.fs-oldal .fs-velemenyek.fs-kezi .fs-csillagok{font-size:13px}
+.fs-oldal .fs-velemenyek.fs-kezi .fs-forras{font-size:var(--fs-12)}
+.fs-oldal .fs-velemenyek.fs-kezi:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.fs-oldal .fs-sav-gomb{display:none}
+
+/* A közösség ereje: 8 egyforma adat (piktogram, szám, mini leírás) */
+.fs-oldal .fs-ereje{display:block}
+.fs-oldal .fs-ereje .fs-szamok{grid-template-columns:repeat(4,minmax(0,1fr));gap:30px 24px;margin-top:20px}
+.fs-oldal .fs-ereje .fs-szam .fs-piko{width:40px;height:40px;margin-bottom:6px}
+.fs-oldal .fs-ereje .fs-szam-ertek{font-size:clamp(30px,3.4vw,44px)}
+.fs-oldal .fs-ereje .fs-szam-mi{margin-top:4px;font-size:var(--fs-14);font-weight:600;letter-spacing:0;text-transform:none;line-height:1.35}
+.fs-oldal .fs-ereje .fs-hatas-forras{display:inline-block;margin-top:22px;font-size:var(--fs-12);color:var(--cream)}
+@media (max-width:760px){.fs-oldal .fs-ereje .fs-szamok{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}}
+
+/* Évsor: kézzel rajzolt lábnyom-piktogram (ugyanaz, mint a jobb sávon) */
+.fs-oldal .fs-ido .fs-lab{-webkit-mask:none;mask:none;background:url("https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcf5d31a1079e200f1faa_fs-piko-lab.svg") center/contain no-repeat;width:24px;height:40px;top:-54px}
+.fs-oldal .fs-ido-fo .fs-lab{width:28px;height:46px;top:-58px}
+@media (max-width:760px){.fs-oldal .fs-ido .fs-lab,.fs-oldal .fs-ido-fo .fs-lab{top:0}}
+
+/* beebolt: csomag-piktogram + név egy fekete dobozban, alatta szöveg és gomb */
+.fs-oldal .fs-bolt-fej{display:block}
+.fs-oldal .fs-bolt-fej .fs-szekcio-fej{display:grid;justify-items:start;gap:12px}
+.fs-oldal .fs-bolt-fej .fs-bolt-gomb{grid-column:auto;margin-top:4px}
+.fs-bolt-jel{display:inline-flex;align-items:center;gap:10px;padding:8px 18px 8px 10px;background:#000;color:#fff;border:2px solid #000;border-radius:14px 4px 14px 4px;box-shadow:4px 4px 0 var(--accent);transform:rotate(-2deg)}
+html[data-theme="dark"] .fs-bolt-jel{border-color:var(--line)}
+.fs-oldal .fs-bolt-jel .fs-bolt-jel-kep{width:46px;height:46px;margin:0;transform:rotate(-6deg)}
+.fs-bolt-jel-szo{font-family:var(--display);font-size:var(--fs-34);line-height:1;padding-top:5px;letter-spacing:.01em}
