@@ -621,18 +621,29 @@ html[data-theme="dark"] .fs-oldal{--d-perem:var(--surface)}
 /* ===== 6. kör (2026-10-14, Kristóf) ===== */
 /* Hero: a 6 téma szorosabb gyűrűben a telefon körül, hogy a témához tartozó felirat a telefon alatt az első képernyőn látsszon */
 @media (min-width:761px){
-.fs-oldal .fs-hero-jobb .fs-kaptar-szin{min-height:470px;width:min(520px,100%)}
-.fs-oldal .fs-hero-jobb .fs-app-kepek{width:228px;max-width:44%}
+.fs-oldal .fs-hero-jobb .fs-kaptar-szin{min-height:440px;width:min(440px,100%)}
+.fs-oldal .fs-hero-jobb .fs-app-kepek{width:206px;max-width:47%}
 .fs-oldal .fs-hero-jobb .fs-kaptar-szin .fs-hurok{inset:4% 16%;width:68%;height:92%}
-.fs-oldal .fs-hero-jobb .fs-funk{width:96px;gap:4px}
+.fs-oldal .fs-hero-jobb .fs-funk{width:88px;gap:4px}
 .fs-oldal .fs-hero-jobb .fs-funk .fs-pin{width:68px;height:68px}
 .fs-oldal .fs-hero-jobb .fs-funk .fs-pin .fs-piko{width:42px;height:42px}
 .fs-oldal .fs-hero-jobb .fs-funk .fs-nev{font-size:var(--fs-14)}
 .fs-oldal .fs-hero-jobb .fs-f-1{left:4%;top:2%}.fs-oldal .fs-hero-jobb .fs-f-2{left:0;top:36%}.fs-oldal .fs-hero-jobb .fs-f-3{left:4%;top:70%}
 .fs-oldal .fs-hero-jobb .fs-f-4{right:4%;top:2%}.fs-oldal .fs-hero-jobb .fs-f-5{right:0;top:36%}.fs-oldal .fs-hero-jobb .fs-f-6{right:4%;top:70%}
-.fs-oldal .fs-hero-jobb .fs-felirat{margin-top:6px;min-height:0;padding:10px 18px}
+.fs-oldal .fs-hero-jobb .fs-felirat{width:min(440px,100%);margin-top:6px;min-height:0;padding:10px 18px}
 .fs-oldal .fs-hero-jobb .fs-felirat h2{font-size:var(--fs-20)}
 .fs-oldal .fs-hero-jobb .fs-tura{margin-top:6px}
+}
+/* Mobil: a 6 téma egy sorban a telefon alatt, így a felirat is a képernyőn marad */
+@media (max-width:760px){
+.fs-oldal .fs-kaptar-szin{grid-template-columns:repeat(6,minmax(0,1fr));gap:6px 2px;padding-top:372px}
+.fs-oldal .fs-kaptar-szin .fs-app-kepek{width:206px}
+.fs-oldal .fs-funk{gap:4px}
+.fs-oldal .fs-funk .fs-pin{width:48px;height:48px;box-shadow:2px 2px 0 var(--line)}
+.fs-oldal .fs-funk .fs-pin .fs-piko{width:30px;height:30px}
+.fs-oldal .fs-funk .fs-nev{font-size:11px;padding:4px 5px 2px;border-width:1px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fs-oldal .fs-felirat{margin-top:4px;padding:10px 14px;min-height:0}
+.fs-oldal .fs-felirat h2{font-size:var(--fs-20)}
 }
 /* Letöltés: az oldal eredeti DOWNLOAD_BLOCK komponense (Google Play, App Store, QR) */
 .fs-oldal .fs-hero-letoltes .download_block,.fs-oldal .fs-zaro-szoveg .download_block{margin:0;justify-content:flex-start}
@@ -653,7 +664,7 @@ html[data-theme="dark"] .fs-oldal{--d-perem:var(--surface)}
 /* a véleménysor kézzel görgethető: nincs automata mozgás, nincs gomb */
 .fs-oldal .fs-velemenyek.fs-kezi{display:flex;gap:12px;margin-top:12px;padding:4px 2px 12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin;cursor:grab}
 .fs-oldal .fs-velemenyek.fs-kezi.fs-huz{cursor:grabbing;user-select:none;scroll-snap-type:none}
-.fs-oldal .fs-velemenyek.fs-kezi .fs-velemeny{flex:none;width:min(290px,78vw);padding:14px 16px;gap:6px;scroll-snap-align:start}
+.fs-oldal .fs-velemenyek.fs-kezi .fs-velemeny{flex:none;min-height:0;align-self:flex-start;width:min(290px,78vw);padding:14px 16px;gap:6px;scroll-snap-align:start}
 .fs-oldal .fs-velemenyek.fs-kezi .fs-idezet{font-size:var(--fs-14);line-height:1.45}
 .fs-oldal .fs-velemenyek.fs-kezi .fs-csillagok{font-size:13px}
 .fs-oldal .fs-velemenyek.fs-kezi .fs-forras{font-size:var(--fs-12)}
