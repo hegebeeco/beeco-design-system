@@ -1,8 +1,8 @@
 /* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   HelpButton
-} from "../reszek/chunk-2BUAG7XU.js";
-import "../reszek/chunk-GQKKPGX5.js";
+} from "../reszek/chunk-DTHBZG56.js";
+import "../reszek/chunk-XZKUYHQO.js";
 export {
   HelpButton
 };

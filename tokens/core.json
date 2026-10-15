@@ -1,9 +1,10 @@
 {
-  "_readme": "A beeco design system KÖZÖS ATOMJAI – minden termék (app, admin, partner, web) és minden játék ebből épül. Csak nyers érték van itt (primitív); hogy mi mire való, azt a bőrök (theme-*.json) mondják meg. Szabály: név soha nem változik és nem törlődik, csak új jön (a játékok és az appok hivatkoznak rájuk). Új szín csak akkor, ha egy meglévő nem fedi le – és a CHANGELOG-ban indokolva. A poppy (pipacs, #EF6A60) 1.54.0-ban jött: a sötét mód danger szerepe – a red a sötét felületen 2,47:1 volt (ikon/keret: 3:1 kell), a meglévő pirosas primitívek közül az ember a warning, a blossom a highlight szerepe, így új szín kellett.",
+  "_readme": "A beeco design system KÖZÖS ATOMJAI – minden termék (app, admin, partner, web) és minden játék ebből épül. Csak nyers érték van itt (primitív); hogy mi mire való, azt a bőrök (theme-*.json) mondják meg. Szabály: név soha nem változik és nem törlődik, csak új jön (a játékok és az appok hivatkoznak rájuk). Új szín csak akkor, ha egy meglévő nem fedi le – és a CHANGELOG-ban indokolva. A poppy (pipacs, #EF6A60) 1.54.0-ban jött: a sötét mód danger szerepe – a red a sötét felületen 2,47:1 volt (ikon/keret: 3:1 kell), a meglévő pirosas primitívek közül az ember a warning, a blossom a highlight szerepe, így új szín kellett. A honey-soft (#FEE79C, a Figma HL/Yellow, 4. sárga), a honey-night (#5C4A12, a halvány méz sötét párja) és a rank-bronze (#EFC2A6, ranglista 3. hely) 1.55.0-ban jött (Javaslat 27): a mobil app (Flutter, beeco_ds) igénye, Kristóf döntése 2026-10-15 (C-6 B).",
   "color": {
     "honey": "#FECF39",
     "honey-deep": "#D8A500",
     "butter": "#FEEEBB",
+    "honey-soft": "#FEE79C",
     "cream": "#FFF8E7",
     "paper": "#FFFDF6",
     "white": "#FFFFFF",
@@ -39,7 +40,9 @@
     "night": "#1F2615",
     "night-surface": "#353F25",
     "night-line": "#B6C4A3",
-    "poppy": "#EF6A60"
+    "poppy": "#EF6A60",
+    "honey-night": "#5C4A12",
+    "rank-bronze": "#EFC2A6"
   },
   "font": {
     "display": [
@@ -107,7 +110,7 @@
   "tap": 44,
   "minTextSize": 12,
   "data": {
-    "_readme": "Adatskálák (grafikon, térkép, hőtérkép) – mindkét bőr ugyanezt használja. Részletek: docs/adatskala.md. Az „állapot” skála (jó → rossz, 5 fok; Javaslat 12): térképjelölő, minőség, szomjúság – mindegyik fokozaton olvasható a fekete jel; színtévesztő-barát párja: allapot-cb (kék → narancs).",
+    "_readme": "Adatskálák (grafikon, térkép, hőtérkép) – mindkét bőr ugyanezt használja. Részletek: docs/adatskala.md. Az „állapot” skála (jó → rossz, 5 fok; Javaslat 12): térképjelölő, minőség, szomjúság – mindegyik fokozaton olvasható a fekete jel; színtévesztő-barát párja: allapot-cb (kék → narancs). 1.55.0 (Javaslat 27): sötét felületre az állapot-skálák emelt végű párja: allapot-dark (lime … poppy) és allapot-cb-dark (sky … ember) – a világos skálák változatlanok; mind az 5 fok ≥ 3:1 a sötét felületen (night-surface), fekete jel rajtuk ≥ 4,5:1.",
     "seq": [
       "#EEF3DE",
       "#D8E4BC",
@@ -145,6 +148,20 @@
     ],
     "allapot-cb": [
       "#0083E4",
+      "#80B5E6",
+      "#FEEEBB",
+      "#F0A35E",
+      "#EA580C"
+    ],
+    "allapot-dark": [
+      "#CDEC82",
+      "#A6BF7B",
+      "#FECF39",
+      "#EA580C",
+      "#EF6A60"
+    ],
+    "allapot-cb-dark": [
+      "#B1DEFF",
       "#80B5E6",
       "#FEEEBB",
       "#F0A35E",

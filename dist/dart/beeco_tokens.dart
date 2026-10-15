@@ -7,6 +7,7 @@ abstract final class BeecoPalette {
   static const honey = Color(0xFFFECF39);
   static const honeyDeep = Color(0xFFD8A500);
   static const butter = Color(0xFFFEEEBB);
+  static const honeySoft = Color(0xFFFEE79C);
   static const cream = Color(0xFFFFF8E7);
   static const paper = Color(0xFFFFFDF6);
   static const white = Color(0xFFFFFFFF);
@@ -43,11 +44,13 @@ abstract final class BeecoPalette {
   static const nightSurface = Color(0xFF353F25);
   static const nightLine = Color(0xFFB6C4A3);
   static const poppy = Color(0xFFEF6A60);
+  static const honeyNight = Color(0xFF5C4A12);
+  static const rankBronze = Color(0xFFEFC2A6);
 }
 
 /// Termékbőr szín-szerepei (világos / sötét).
 class BeecoRoles {
-  const BeecoRoles({required this.bg, required this.surface, required this.surface2, required this.surfaceAccent, required this.ink, required this.inkSoft, required this.inkMuted, required this.line, required this.lineSoft, required this.accent, required this.accentPress, required this.onAccent, required this.shadow, required this.focus, required this.success, required this.successBg, required this.successInk, required this.danger, required this.dangerBg, required this.dangerInk, required this.warning, required this.warningBg, required this.warningInk, required this.info, required this.infoBg, required this.infoInk, required this.highlight, required this.scrim, this.focusOnAccent = BeecoPalette.focus});
+  const BeecoRoles({required this.bg, required this.surface, required this.surface2, required this.surfaceAccent, required this.ink, required this.inkSoft, required this.inkMuted, required this.line, required this.lineSoft, required this.accent, required this.accentPress, this.accentSoft = BeecoPalette.honeySoft, required this.onAccent, required this.shadow, required this.focus, required this.success, required this.successBg, required this.successInk, required this.danger, required this.dangerBg, required this.dangerInk, required this.warning, required this.warningBg, required this.warningInk, required this.info, required this.infoBg, required this.infoInk, required this.highlight, required this.scrim, this.focusOnAccent = BeecoPalette.focus});
   final Color bg;
   final Color surface;
   final Color surface2;
@@ -59,6 +62,7 @@ class BeecoRoles {
   final Color lineSoft;
   final Color accent;
   final Color accentPress;
+  final Color accentSoft;
   final Color onAccent;
   final Color shadow;
   final Color focus;
@@ -89,6 +93,7 @@ class BeecoRoles {
     lineSoft: BeecoPalette.silver,
     accent: BeecoPalette.honey,
     accentPress: BeecoPalette.honeyDeep,
+    accentSoft: BeecoPalette.honeySoft,
     onAccent: BeecoPalette.black,
     shadow: BeecoPalette.black,
     focus: BeecoPalette.focus,
@@ -120,6 +125,7 @@ class BeecoRoles {
     lineSoft: BeecoPalette.oliveSoft,
     accent: BeecoPalette.honey,
     accentPress: BeecoPalette.honeyDeep,
+    accentSoft: BeecoPalette.honeyNight,
     onAccent: BeecoPalette.black,
     shadow: BeecoPalette.black,
     focus: BeecoPalette.sky,
@@ -177,6 +183,9 @@ abstract final class BeecoTokens {
   static const tHero = Duration(milliseconds: 900);
   static const easeOut = Cubic(.23, 1, .32, 1);
   static const tap = 44.0;
+  static const shadowSoftMobile = Offset(2, 2);
+  static const shadowSoftMobileBlur = 10.0;
+  static const shadowSoftMobileAlpha = 0.4;
   static const focusW = 3.0;
   static const focusOffset = 2.0;
   static const iconS = 16.0;

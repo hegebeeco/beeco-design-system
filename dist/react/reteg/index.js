@@ -5,7 +5,7 @@ import {
 } from "../reszek/chunk-KIIEXD6O.js";
 import {
   TypeToConfirm
-} from "../reszek/chunk-HW5ZCL3K.js";
+} from "../reszek/chunk-NQ2XT4HR.js";
 import {
   PageHeader,
   usePageTitle
@@ -13,13 +13,13 @@ import {
 import {
   MoreIcon,
   RowActions
-} from "../reszek/chunk-SMVXUEEP.js";
+} from "../reszek/chunk-FDWXCOA2.js";
 import {
   SectionSwitch
 } from "../reszek/chunk-32MFVAT3.js";
 import {
   StageDialog
-} from "../reszek/chunk-4RRTTZ7R.js";
+} from "../reszek/chunk-KEMZM7DT.js";
 import {
   Toaster
 } from "../reszek/chunk-L45ZKJFR.js";
@@ -32,7 +32,7 @@ import {
 import {
   APP_SHELL_LABELS_HU,
   AppShell
-} from "../reszek/chunk-HEKPQHDX.js";
+} from "../reszek/chunk-3XJXA6CY.js";
 import {
   useShellNav
 } from "../reszek/chunk-EGYETTL4.js";
@@ -44,10 +44,10 @@ import {
   CommandPalette,
   commandHotkeyLabel,
   useCommandHotkey
-} from "../reszek/chunk-DITHLNBN.js";
+} from "../reszek/chunk-63HEZP74.js";
 import {
   Drawer
-} from "../reszek/chunk-N55DSSYS.js";
+} from "../reszek/chunk-ZFU5V7LA.js";
 import {
   DropdownMenu
 } from "../reszek/chunk-Y332IVBZ.js";
@@ -62,30 +62,30 @@ import "../reszek/chunk-CBDZNT5J.js";
 import {
   Modal,
   ModalCancel
-} from "../reszek/chunk-AR3MUHW3.js";
+} from "../reszek/chunk-H5TV6GF6.js";
 import {
   useLayerClose
-} from "../reszek/chunk-43GDBKDB.js";
+} from "../reszek/chunk-R55UW4RC.js";
 import {
   ConfirmDialog
-} from "../reszek/chunk-ZQBU4M7V.js";
+} from "../reszek/chunk-TCORQVHZ.js";
 import "../reszek/chunk-FJZZDQUQ.js";
 import "../reszek/chunk-HOI6WE7L.js";
 import "../reszek/chunk-PG7BSDOS.js";
 import {
   TooltipIconButton
-} from "../reszek/chunk-LPUWHIAA.js";
-import "../reszek/chunk-UAF6X222.js";
+} from "../reszek/chunk-VGLEX443.js";
+import "../reszek/chunk-Z7UNPN7P.js";
 import "../reszek/chunk-TRQYNXV6.js";
 import "../reszek/chunk-CZEMGI7F.js";
 import "../reszek/chunk-OCOEHCOY.js";
-import "../reszek/chunk-U5OFI6TE.js";
+import "../reszek/chunk-IHBMBV76.js";
 import "../reszek/chunk-B6IOV2EK.js";
 import "../reszek/chunk-MFUVLMMM.js";
-import "../reszek/chunk-2BUAG7XU.js";
+import "../reszek/chunk-DTHBZG56.js";
 import "../reszek/chunk-76XJSA3J.js";
-import "../reszek/chunk-ERIU5VPQ.js";
-import "../reszek/chunk-GQKKPGX5.js";
+import "../reszek/chunk-ADNFGZJR.js";
+import "../reszek/chunk-XZKUYHQO.js";
 import "../reszek/chunk-PFNFGQD5.js";
 export {
   APP_SHELL_LABELS_HU,

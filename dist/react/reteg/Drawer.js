@@ -1,14 +1,14 @@
 /* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   Drawer
-} from "../reszek/chunk-N55DSSYS.js";
-import "../reszek/chunk-AR3MUHW3.js";
-import "../reszek/chunk-43GDBKDB.js";
-import "../reszek/chunk-ZQBU4M7V.js";
+} from "../reszek/chunk-ZFU5V7LA.js";
+import "../reszek/chunk-H5TV6GF6.js";
+import "../reszek/chunk-R55UW4RC.js";
+import "../reszek/chunk-TCORQVHZ.js";
 import "../reszek/chunk-FJZZDQUQ.js";
 import "../reszek/chunk-HOI6WE7L.js";
-import "../reszek/chunk-ERIU5VPQ.js";
-import "../reszek/chunk-GQKKPGX5.js";
+import "../reszek/chunk-ADNFGZJR.js";
+import "../reszek/chunk-XZKUYHQO.js";
 import "../reszek/chunk-PFNFGQD5.js";
 export {
   Drawer

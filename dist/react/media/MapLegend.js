@@ -2,9 +2,9 @@
 import {
   HeatScale,
   MapLegend
-} from "../reszek/chunk-4D6HJRVW.js";
-import "../reszek/chunk-2BUAG7XU.js";
-import "../reszek/chunk-GQKKPGX5.js";
+} from "../reszek/chunk-WMY6SZRX.js";
+import "../reszek/chunk-DTHBZG56.js";
+import "../reszek/chunk-XZKUYHQO.js";
 import "../reszek/chunk-PFNFGQD5.js";
 export {
   HeatScale,

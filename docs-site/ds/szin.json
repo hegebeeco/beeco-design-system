@@ -68,8 +68,8 @@
         ],
         [
           "Hangsúly és fókusz",
-          "`accent`, `accent-press`, `focus`, `highlight`",
-          "fő gomb, kijelölés · lenyomott állapot · billentyűzet-fókusz · játékos kiemelés (ritkán)"
+          "`accent`, `accent-press`, `accent-soft`, `focus`, `highlight`",
+          "fő gomb, kijelölés · lenyomott állapot · halvány méz háttér (kijelölt elem, jutalom-blokk; 1.55.0) · billentyűzet-fókusz · játékos kiemelés (ritkán)"
         ],
         [
           "Jelzések",

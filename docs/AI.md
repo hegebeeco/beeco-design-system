@@ -31,14 +31,14 @@
 
 ## Tokenek (termékbőr)
 
-- **Szín-szerepek** (`--bc-<szerep>`, Tailwind `bg-/text-/border-<szerep>`, sötét módban maguktól váltanak): `bg` `surface` `surface-2` `surface-accent` `ink` `ink-soft` `ink-muted` `line` `line-soft` `accent` `accent-press` `on-accent` `shadow` `focus` `success` `success-bg` `success-ink` `danger` `danger-bg` `danger-ink` `warning` `warning-bg` `warning-ink` `info` `info-bg` `info-ink` `highlight` `scrim` `focus-on-accent`.
+- **Szín-szerepek** (`--bc-<szerep>`, Tailwind `bg-/text-/border-<szerep>`, sötét módban maguktól váltanak): `bg` `surface` `surface-2` `surface-accent` `ink` `ink-soft` `ink-muted` `line` `line-soft` `accent` `accent-press` `accent-soft` `on-accent` `shadow` `focus` `success` `success-bg` `success-ink` `danger` `danger-bg` `danger-ink` `warning` `warning-bg` `warning-ink` `info` `info-bg` `info-ink` `highlight` `scrim` `focus-on-accent`.
 - Világos → sötét: bg cream→night · surface white→night-surface · ink black→cream · line black→night-line · accent honey→honey · on-accent black→black.
 - Betű `--bc-fs-*`: xs 12 · s 14 · m 16 · l 20 · xl 26 · 2xl 34 · 3xl 46 px; vastagság `--bc-fw-*`: regular, semibold, bold.
 - Térköz `--bc-sp-*`: 1=4 2=8 3=12 4=16 5=24 6=32 7=48 8=64 px · sarok `--bc-r-*`: xs=2 s=4 m=8 l=12 pill=999 · keret `--bc-bw-*`: hair, base.
 - Árnyék `--bc-shadow-*`: s, m, l (kemény) · idő `--bc-t-*`: fast 120ms, base 200ms, slow 400ms, press 120ms, decor 600ms, hero 900ms · `--bc-ease-out` · `--bc-tap` 44 px.
 - Adatskálák: `--bc-data-seq-1…`, `div`, `-cb` (színtévesztő-barát), `allapot`, `cat-1…8`. Primitívek (`--bc-honey`…) csak adatvizualizációhoz.
 
-## React-komponensek (149; mind: `@beeco/design-system/react`)
+## React-komponensek (181; mind: `@beeco/design-system/react`)
 
 Sor: **Név** `forrás` — fő propok (`*` kötelező, `…attr` = natív attribútumok is) · `.bc-osztály` · szint · mire. 🆕 = a legutóbbi 3 mellékverzióban jött.
 
@@ -68,7 +68,7 @@ Sor: **Név** `forrás` — fő propok (`*` kötelező, `…attr` = natív attri
 - **TagPicker** `pickers/TagPicker` — help*, label*:string, onChange*:fn, options*, value*:string[], cloudLimit:number, count, disabled:bool, error:string, +5 · `.bc-tagcloud` · molekula · ≤ 20 címkénél kattintható felhő, fölötte a Combobox többes módja – egy API.
 - **TextArea** `inputs/TextArea` — help*, label*:string, count, disabled:bool, error:string, notice:string, range:string, required:bool, …attr · `.bc-textarea` · atom · mint a TextField, többsoros; élő számláló, levágás-jelzés.
 - **TextField** `inputs/TextField` — help*, label*:string, count, disabled:bool, error:string, notice:string, range:string, required:bool, type:'tel'|'text'|'email'|…, …attr · `.bc-input` · atom · címke, súgó, tartomány, élő számláló (pl. 213/255), a max. hossznál a gépelés megáll, a túl hosszú beillesztést levágja és jelzi.
-- Piktogramok: `IcEdit` `IcInfo` `IcLeft` `IcNew` `IcOk` `IcOpen` `IcRight` `IcSave` `IcTrash` `IcX`
+- Piktogramok: `IcBell` `IcBookmark` `IcCalendar` `IcCamera` `IcChevronDown` `IcChevronLeft` `IcChevronRight` `IcChevronUp` `IcClear` `IcClock` `IcEdit` `IcError` `IcExternalLink` `IcEyeOff` `IcFavorite` `IcFilter` `IcImage` `IcInfo` `IcLeft` `IcLocation` `IcMail` `IcMap` `IcMenu` `IcMore` `IcNew` `IcOk` `IcOpen` `IcPhone` `IcRefresh` `IcRight` `IcSave` `IcSearch` `IcSettings` `IcShare` `IcSort` `IcStar` `IcTrash` `IcUpload` `IcUser` `IcWarning` `IcWeb` `IcX`
 
 ### 02 Adat és grafikon
 - **BarChart** `adat/chart/BarChart` — data*:ChartData, clipOutlier:bool, height:number, label:string, orientation:'vertical'|'horizontal', valueLabels:bool · `.bc-mark-zero` · molekula · oszlop vagy vízszintes sáv, 0-tól induló tengellyel, kontúrral, negatív értékkel, kiugró- és hiány-kezeléssel.
@@ -244,4 +244,4 @@ Fájlonként a `bc-` gyökérosztályok (a `bc-x-…` alosztályok a gyökér al
 
 - Nem ez a skill: töltsd be a `beeco-arculat`-ot. Közös fájlok a `tools/kit-sync.js`-sel (`KIT-FILES.json`); globális nevek (`DS`, `pic`, `ART`, `MODEL`…) és `ds-` osztályok: `api/api.json` → `jatekJs`, `css.jatek`.
 
-*149 komponens · 0 új · 17 hook. A verzió: `VERSION` (szándékosan nincs itt, hogy a verzióemelés ne írja át).*
+*181 komponens · 30 új · 17 hook. A verzió: `VERSION` (szándékosan nincs itt, hogy a verzióemelés ne írja át).*

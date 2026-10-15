@@ -105,7 +105,8 @@ const beecoTwMerge = {
             "s",
             "m",
             "l",
-            "soft"
+            "soft",
+            "soft-mobile"
           ]
         }
       ],
