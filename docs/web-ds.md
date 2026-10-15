@@ -61,7 +61,7 @@ python3 weboldal/web-ds/katalogus.py --check                                 # a
 | Komponens | Azonosító | Variánsok és propok |
 |---|---|---|
 | `NAVBAR_OT_AJTO` (fejléc, „Öt ajtó”) | `8eb38c4b-2278-3b97-c382-2cb50492d4ca` | **Alap** és **Egyszerű** (`2de06495…`, vissza-link + egy gomb). Propok („Egyszerű sáv” csoport): Vissza link, Gomb szöveg, Gomb link, Egyedi vissza szöveg (be/ki), Vissza szöveg, Alap vissza szöveg (be/ki). „Nyelv” csoport: **EN gomb** (be/ki). ≥ 768 px-en a sávban (`menu-gomb.nyelv-sav`), alatta a lenyíló menü alján „English” (`menu-gomb.nyelv-lista`). Minden alapérték a magyar oldalak mostani szövege. |
-| `LABLEC_ZARO` (lábléc, „Záró jelenet”) | `31f70823-de1d-bba6-2378-48e1cdcfdf78` | **Alap** és **Egyszerű** (`4ef4336d…`, csak az alsó sáv). Szövegei magyarok, propok még nincsenek. |
+| `LABLEC_ZARO` (lábléc, „Záró jelenet”) | `31f70823-de1d-bba6-2378-48e1cdcfdf78` | **Alap** és **Egyszerű** (`4ef4336d…`, csak az alsó sáv). „Nyelv” csoport: **Magyar alsó sáv** (be, alapérték) és **Angol alsó sáv** (ki). Az angol sáv („Alsó sáv (EN)”, ugyanazok az osztályok) az /en szekcióira mutat (Why now, Offers, Impact, Contact) és a magyar főoldalra; angol aria-label a közösségi ikonokon. Csak az /en-en van bekapcsolva. |
 | `DS · Szakmai partnerek` | `cdfb35c0-e352-6c29-76b4-fc2abedce5a9` | Partnerlogó-szekció, a Rólunk- és a B2B-oldalakon. |
 | `DS · Csatlakozz a rajhoz` | `ac7611cf-d666-f84b-d349-16271a460e0b` | Önkéntes-toborzó zárószekció. |
 | `Tag manager` | `d4c0e15b-b38a-a06a-05f3-a8e1bfbb7f14` | GA4 (`gtag`). Minden oldalra kell. |
