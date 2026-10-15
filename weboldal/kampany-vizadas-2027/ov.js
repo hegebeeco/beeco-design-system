@@ -34,8 +34,8 @@ $$('[data-ov-cta]', oldal).forEach(a => a.addEventListener('click', () => {
   mer('cta_kattintas', { hely, cel });
   window.dataLayer.push({ event: 'campaign_activity_select', campaign: 'onkentes-vizadas', activity: hely, target: cel }); // közös kampány-esemény (a CsicsergŐsszel egy riportban)
 }));
-$$('.ov-kerdes', oldal).forEach(k => k.addEventListener('toggle', () => { if (k.open) mer('gyik_nyitas', { kerdes: $('summary', k).textContent }); }));
-const elso = $('.ov-kerdes', oldal); if (elso) elso.open = true;
+const elso = $('.ov-kerdes', oldal); if (elso) { elso.dataset.auto = '1'; elso.open = true; } // az automatikus nyitás nem mért esemény
+$$('.ov-kerdes', oldal).forEach(k => k.addEventListener('toggle', () => { if (k.dataset.auto) { delete k.dataset.auto; return; } if (k.open) mer('gyik_nyitas', { kerdes: $('summary', k).textContent }); }));
 
 /* ---------- QR-érkezés: plakátról, matricáról, szórólapról jövőknek egy rövid sáv a hero fölött ---------- */
 (function () {
