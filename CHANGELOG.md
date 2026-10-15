@@ -11,7 +11,18 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
-## Készül (következő verzió)
+## 1.55.0 – 2026-10-15 – Mobil visszaírás (Javaslat 27): közös ikonkészlet (42), halvány méz, bronz rangszín, mobil puha árnyék, sötét állapot-skála
+
+**Mobil visszaírás (Javaslat 27, `docs/javaslatok/27-mobil-visszairas.md`)** – Kristóf döntése 2026-10-15 (C-27 B, C-6 B, C-3 A, adatszínek). MELLÉK, csak bővítés: nincs átnevezés, nincs törlés, nincs értékváltozás (`api-check` zöld). A mobil app (Flutter, privát `beeco_ds` csomag) ezeket a `dist/dart/beeco_tokens.dart` szinkronjával veszi át.
+
+* **Közös ikonkészlet – 42 ikon webre és mobilra** (C-27 B): 24-es rács, 2,2 px vonal, `currentColor`. Az első tíz (`IcSave` … `IcRight`) már megvolt; **32 új `Ic*` komponens** a `@beeco/design-system/react`-ben (`IcSearch`, `IcBell`, `IcMap`, `IcCalendar`, `IcCamera`, `IcChevronUp/Down/Left/Right`, `IcClear`, `IcClock`, `IcError`, `IcExternalLink`, `IcEyeOff`, `IcFavorite`, `IcFilter`, `IcImage`, `IcLocation`, `IcMail`, `IcMenu`, `IcMore`, `IcPhone`, `IcRefresh`, `IcSettings`, `IcShare`, `IcSort`, `IcStar`, `IcUpload`, `IcUser`, `IcWarning`, `IcWeb`, `IcBookmark`), és mind a 42 **SVG-fájlként** a `termek/ikonok/` mappában (`@beeco/design-system/ikonok/<név>.svg`, jegyzék: `ikonok.json`). Márkalogó nincs benne. Új őr: `tests/check-ikonok.js` (az SVG és az `Ic*` rajza karakterre egyezik).
+* **Halvány méz** (C-6 B, a 4. sárga): új primitívek `honey-soft` `#FEE79C` és `honey-night` `#5C4A12`; új szerep **`accent-soft`** (világos `honey-soft`, sötét `honey-night`) – CSS `--bc-accent-soft`, SCSS `bc.$bc-accent-soft`, Tailwind `bg-accent-soft`, Dart `BeecoRoles.accentSoft` (a `focus-on-accent`-hoz hasonlóan nem kötelező paraméter, alapértéke `honeySoft` – a meglévő `BeecoRoles(...)` példányok nem törnek). Kontraszt (új párok a `check-tokens.js`-ben): `ink` rajta 17,1 : 1 / 8,1 : 1.
+* **Bronz rangszín:** új primitív `rank-bronze` `#EFC2A6` (ranglista 3. hely; fekete jel rajta 12,9 : 1).
+* **Mobil puha árnyék** (C-3 A): `shadowSoftMobile` – eltolás 2 / 2, elmosás 10, 40 % a `shadow` szerepből. CSS `--bc-shadow-soft-mobile`, SCSS `bc.shadow(soft-mobile)`, Tailwind `shadow-soft-mobile` (a tailwind-merge kiegészítés is ismeri), Dart `BeecoTokens.shadowSoftMobile` + `shadowSoftMobileBlur` + `shadowSoftMobileAlpha`, `dist/tokens.json` `shadowSoftMobile`. A weben a `shadow-soft` marad.
+* **Állapot-skála sötét párja:** `--bc-data-allapot-dark-1…5` (lime · levélzöld · méz · parázs · pipacs) és `--bc-data-allapot-cb-dark-1…5` (égkék · … · parázs, színtévesztő-barát); a két vég emelt, így mind az 5 fok ≥ 3 : 1 a sötét `surface`-en. A meglévő `--bc-data-allapot-*` és a sötét mód **nem változik** – a váltás a fogyasztó döntése. Új ellenőrzés a `check-tokens.js`-ben.
+* **Dokumentáció:** Javaslat 27, `docs/adatskala.md`, `docs/termek-arculat.md` (szerepek), Ikonok, Forma, Szín és Adatvizualizáció oldal; a Brand Book színlistája és a `docs/AI.md` újragenerálva.
+
+**Korábban, a 2026-10-08 utáni dokumentációs hullámokból:**
 
 * **Dokumentációs oldal – élő, kipróbálható komponensek** (MELLÉK): a komponensoldalon jobbra rögzített „Kipróbálom” panel (a tesztlap a komponens saját szakaszára ugrik, a téma követi az oldalt), balra rögzített fülek és szakaszgombok.
 * **Futtatható JSX-példa** minden komponensnél, az `api/api.json`-ból generálva (`tools/docs/jsx-pelda.js`); a teljes példákat a `tests/check-jsx-peldak.js` lefordítja a csomag típusaival.

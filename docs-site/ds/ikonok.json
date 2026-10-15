@@ -12,7 +12,7 @@
     },
     {
       "t": "p",
-      "x": "A kompakt helyek gombjai és az űrlap műveletei ezeket használják: `IcSave`, `IcTrash`, `IcNew`, `IcInfo`, `IcEdit`, `IcOpen`, `IcX`, `IcOk`, `IcLeft`, `IcRight` – a témaváltóhoz még az `IcAuto`, `IcSun`, `IcMoon`. Vonalas rajzok 24-es rácson, 20×20 px-en renderelve, `currentColor` színnel, kerekített vonalvéggel, 2,2 px vonalvastagsággal, díszítőek (`aria-hidden`): a jelentést a gomb neve viszi."
+      "x": "A kompakt helyek gombjai és az űrlap műveletei ezeket használják: `IcSave`, `IcTrash`, `IcNew`, `IcInfo`, `IcEdit`, `IcOpen`, `IcX`, `IcOk`, `IcLeft`, `IcRight` – a témaváltóhoz még az `IcAuto`, `IcSun`, `IcMoon`. Vonalas rajzok 24-es rácson, 20×20 px-en renderelve, `currentColor` színnel, kerekített vonalvéggel, 2,2 px vonalvastagsággal, díszítőek (`aria-hidden`): a jelentést a gomb neve viszi. 1.55.0-tól a készlet 42 ikonos (Javaslat 27): a mobil appal közös, lásd lent."
     },
     {
       "t": "p",
@@ -30,6 +30,240 @@
       "forras": [
         "docs/termek-arculat.md 6/A és 9.",
         "react/src/inputs/ikonok.tsx"
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "A közös készlet: 42 ikon webre és mobilra",
+      "id": "kozos"
+    },
+    {
+      "t": "p",
+      "x": "Egy készlet van a weben és a mobil appban (Flutter, `beeco_ds`): ugyanaz a 24-es rács, 2,2 px-es vonal, kerek vég és csatlakozás, `currentColor`. A React-csomagban `Ic*` komponensként (`@beeco/design-system/react`), mindenki másnak (Flutter, Figma, Webflow, nyomtatás) SVG-fájlként a `termek/ikonok/` mappában (`@beeco/design-system/ikonok/<név>.svg`), a jegyzékkel (`ikonok.json`) együtt. A kettő egyezését a `tests/check-ikonok.js` őrzi."
+    },
+    {
+      "t": "p",
+      "x": "Márkalogó nincs a készletben: ahol valódi márkajel kell (például Google- vagy Apple-bejelentkezés), a szolgáltató hivatalos megoldását használd. Új ikon ugyanebben a stílusban, javaslattal kerülhet be."
+    },
+    {
+      "t": "tabla",
+      "cim": "A 42 ikon",
+      "fej": [
+        "React",
+        "SVG-fájl",
+        "Mire való"
+      ],
+      "sorok": [
+        [
+          "`IcNew`",
+          "`termek/ikonok/add.svg`",
+          "Plusz: új elem létrehozása, hozzáadás"
+        ],
+        [
+          "`IcLeft`",
+          "`termek/ikonok/back.svg`",
+          "Nyíl a sor eleje felé: vissza (jobbról balra író nyelven tükrözendő)"
+        ],
+        [
+          "`IcBell`",
+          "`termek/ikonok/bell.svg`",
+          "Harang: értesítések"
+        ],
+        [
+          "`IcBookmark`",
+          "`termek/ikonok/bookmark.svg`",
+          "Könyvjelző: mentés későbbre"
+        ],
+        [
+          "`IcCalendar`",
+          "`termek/ikonok/calendar.svg`",
+          "Naptár: dátum, esemény"
+        ],
+        [
+          "`IcCamera`",
+          "`termek/ikonok/camera.svg`",
+          "Fényképezőgép: fotó készítése"
+        ],
+        [
+          "`IcOk`",
+          "`termek/ikonok/check.svg`",
+          "Pipa: kész, kijelölt, mentve"
+        ],
+        [
+          "`IcChevronDown`",
+          "`termek/ikonok/chevron-down.svg`",
+          "Lefelé nyíl: lenyitás, legördülő"
+        ],
+        [
+          "`IcChevronLeft`",
+          "`termek/ikonok/chevron-left.svg`",
+          "Balra nyíl: előző (tükrözendő)"
+        ],
+        [
+          "`IcChevronRight`",
+          "`termek/ikonok/chevron-right.svg`",
+          "Jobbra nyíl: következő, sor megnyitása (tükrözendő)"
+        ],
+        [
+          "`IcChevronUp`",
+          "`termek/ikonok/chevron-up.svg`",
+          "Felfelé nyíl: összecsukás, görgetés fel"
+        ],
+        [
+          "`IcClear`",
+          "`termek/ikonok/clear.svg`",
+          "Körbe zárt kereszt: mező törlése"
+        ],
+        [
+          "`IcClock`",
+          "`termek/ikonok/clock.svg`",
+          "Óra: idő, nyitvatartás"
+        ],
+        [
+          "`IcX`",
+          "`termek/ikonok/close.svg`",
+          "Kereszt: bezárás, elvetés, eltávolítás"
+        ],
+        [
+          "`IcTrash`",
+          "`termek/ikonok/delete.svg`",
+          "Kuka: törlés"
+        ],
+        [
+          "`IcEdit`",
+          "`termek/ikonok/edit.svg`",
+          "Ceruza: szerkesztés"
+        ],
+        [
+          "`IcError`",
+          "`termek/ikonok/error.svg`",
+          "Kör felkiáltójellel: hiba, valami nem sikerült"
+        ],
+        [
+          "`IcExternalLink`",
+          "`termek/ikonok/external-link.svg`",
+          "Doboz kilépő nyíllal: az appon kívül nyílik meg"
+        ],
+        [
+          "`IcOpen`",
+          "`termek/ikonok/eye.svg`",
+          "Nyitott szem: megjelenítés, megnyitás, megtekintés"
+        ],
+        [
+          "`IcEyeOff`",
+          "`termek/ikonok/eye-off.svg`",
+          "Áthúzott szem: elrejtés, rejtett"
+        ],
+        [
+          "`IcFavorite`",
+          "`termek/ikonok/favorite.svg`",
+          "Szív: kedvenc, tetszik"
+        ],
+        [
+          "`IcFilter`",
+          "`termek/ikonok/filter.svg`",
+          "Tölcsér: szűrés"
+        ],
+        [
+          "`IcRight`",
+          "`termek/ikonok/forward.svg`",
+          "Nyíl a sor vége felé: tovább (tükrözendő)"
+        ],
+        [
+          "`IcImage`",
+          "`termek/ikonok/image.svg`",
+          "Képkeret hegyekkel: fotó, kép kiválasztása"
+        ],
+        [
+          "`IcInfo`",
+          "`termek/ikonok/info.svg`",
+          "Kör i betűvel: tájékoztatás"
+        ],
+        [
+          "`IcLocation`",
+          "`termek/ikonok/location.svg`",
+          "Térképtű: hely"
+        ],
+        [
+          "`IcMail`",
+          "`termek/ikonok/mail.svg`",
+          "Boríték: e-mail"
+        ],
+        [
+          "`IcMap`",
+          "`termek/ikonok/map.svg`",
+          "Hajtogatott térkép: térkép nézet"
+        ],
+        [
+          "`IcMenu`",
+          "`termek/ikonok/menu.svg`",
+          "Három vonal: menü"
+        ],
+        [
+          "`IcMore`",
+          "`termek/ikonok/more.svg`",
+          "Három pont: további műveletek"
+        ],
+        [
+          "`IcPhone`",
+          "`termek/ikonok/phone.svg`",
+          "Telefonkagyló: telefonszám, hívás"
+        ],
+        [
+          "`IcRefresh`",
+          "`termek/ikonok/refresh.svg`",
+          "Környíl: újratöltés, újrapróbálás"
+        ],
+        [
+          "`IcSave`",
+          "`termek/ikonok/save.svg`",
+          "Mentés (hajlékonylemez)"
+        ],
+        [
+          "`IcSearch`",
+          "`termek/ikonok/search.svg`",
+          "Nagyító: keresés"
+        ],
+        [
+          "`IcSettings`",
+          "`termek/ikonok/settings.svg`",
+          "Fogaskerék: beállítások"
+        ],
+        [
+          "`IcShare`",
+          "`termek/ikonok/share.svg`",
+          "Doboz felfelé nyíllal: megosztás"
+        ],
+        [
+          "`IcSort`",
+          "`termek/ikonok/sort.svg`",
+          "Két ellentétes nyíl: rendezés"
+        ],
+        [
+          "`IcStar`",
+          "`termek/ikonok/star.svg`",
+          "Csillag: értékelés, kiemelés"
+        ],
+        [
+          "`IcUpload`",
+          "`termek/ikonok/upload.svg`",
+          "Tálca felfelé nyíllal: feltöltés"
+        ],
+        [
+          "`IcUser`",
+          "`termek/ikonok/user.svg`",
+          "Fej és váll: profil, személy"
+        ],
+        [
+          "`IcWarning`",
+          "`termek/ikonok/warning.svg`",
+          "Háromszög felkiáltójellel: figyelmeztetés"
+        ],
+        [
+          "`IcWeb`",
+          "`termek/ikonok/web.svg`",
+          "Földgömb: weboldal"
+        ]
       ]
     },
     {

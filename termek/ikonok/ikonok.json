@@ -1,0 +1,257 @@
+{
+  "_readme": "A termékbőr és a mobil app (Flutter, beeco_ds) KÖZÖS vonalas ikonkészlete (Javaslat 27, Kristóf döntése 2026-10-15, C-27 B): 24-es rács, 2,2 px vonal, kerek vég és csatlakozás, currentColor, díszítő. Egy forrás: a React-oldalon react/src/inputs/ikonok.tsx (Ic*), minden más felhasználónak (Flutter, Figma, Webflow, nyomtatás) az itt lévő SVG-fájlok. A kettő egyezését a tests/check-ikonok.js őrzi. Márkalogó (Google, Apple stb.) nincs benne: ahol valódi márkajel kell, a szolgáltató hivatalos megoldását használd. A tükrözendő ikonok (back, forward, chevron-left, chevron-right) jobbról balra író nyelven tükrözendők.",
+  "ikonok": [
+    {
+      "fajl": "add.svg",
+      "export": "IcNew",
+      "leiras": "Plusz: új elem létrehozása, hozzáadás",
+      "uj": false
+    },
+    {
+      "fajl": "back.svg",
+      "export": "IcLeft",
+      "leiras": "Nyíl a sor eleje felé: vissza (jobbról balra író nyelven tükrözendő)",
+      "uj": false
+    },
+    {
+      "fajl": "bell.svg",
+      "export": "IcBell",
+      "leiras": "Harang: értesítések",
+      "uj": true
+    },
+    {
+      "fajl": "bookmark.svg",
+      "export": "IcBookmark",
+      "leiras": "Könyvjelző: mentés későbbre",
+      "uj": true
+    },
+    {
+      "fajl": "calendar.svg",
+      "export": "IcCalendar",
+      "leiras": "Naptár: dátum, esemény",
+      "uj": true
+    },
+    {
+      "fajl": "camera.svg",
+      "export": "IcCamera",
+      "leiras": "Fényképezőgép: fotó készítése",
+      "uj": true
+    },
+    {
+      "fajl": "check.svg",
+      "export": "IcOk",
+      "leiras": "Pipa: kész, kijelölt, mentve",
+      "uj": false
+    },
+    {
+      "fajl": "chevron-down.svg",
+      "export": "IcChevronDown",
+      "leiras": "Lefelé nyíl: lenyitás, legördülő",
+      "uj": true
+    },
+    {
+      "fajl": "chevron-left.svg",
+      "export": "IcChevronLeft",
+      "leiras": "Balra nyíl: előző (tükrözendő)",
+      "uj": true
+    },
+    {
+      "fajl": "chevron-right.svg",
+      "export": "IcChevronRight",
+      "leiras": "Jobbra nyíl: következő, sor megnyitása (tükrözendő)",
+      "uj": true
+    },
+    {
+      "fajl": "chevron-up.svg",
+      "export": "IcChevronUp",
+      "leiras": "Felfelé nyíl: összecsukás, görgetés fel",
+      "uj": true
+    },
+    {
+      "fajl": "clear.svg",
+      "export": "IcClear",
+      "leiras": "Körbe zárt kereszt: mező törlése",
+      "uj": true
+    },
+    {
+      "fajl": "clock.svg",
+      "export": "IcClock",
+      "leiras": "Óra: idő, nyitvatartás",
+      "uj": true
+    },
+    {
+      "fajl": "close.svg",
+      "export": "IcX",
+      "leiras": "Kereszt: bezárás, elvetés, eltávolítás",
+      "uj": false
+    },
+    {
+      "fajl": "delete.svg",
+      "export": "IcTrash",
+      "leiras": "Kuka: törlés",
+      "uj": false
+    },
+    {
+      "fajl": "edit.svg",
+      "export": "IcEdit",
+      "leiras": "Ceruza: szerkesztés",
+      "uj": false
+    },
+    {
+      "fajl": "error.svg",
+      "export": "IcError",
+      "leiras": "Kör felkiáltójellel: hiba, valami nem sikerült",
+      "uj": true
+    },
+    {
+      "fajl": "external-link.svg",
+      "export": "IcExternalLink",
+      "leiras": "Doboz kilépő nyíllal: az appon kívül nyílik meg",
+      "uj": true
+    },
+    {
+      "fajl": "eye.svg",
+      "export": "IcOpen",
+      "leiras": "Nyitott szem: megjelenítés, megnyitás, megtekintés",
+      "uj": false
+    },
+    {
+      "fajl": "eye-off.svg",
+      "export": "IcEyeOff",
+      "leiras": "Áthúzott szem: elrejtés, rejtett",
+      "uj": true
+    },
+    {
+      "fajl": "favorite.svg",
+      "export": "IcFavorite",
+      "leiras": "Szív: kedvenc, tetszik",
+      "uj": true
+    },
+    {
+      "fajl": "filter.svg",
+      "export": "IcFilter",
+      "leiras": "Tölcsér: szűrés",
+      "uj": true
+    },
+    {
+      "fajl": "forward.svg",
+      "export": "IcRight",
+      "leiras": "Nyíl a sor vége felé: tovább (tükrözendő)",
+      "uj": false
+    },
+    {
+      "fajl": "image.svg",
+      "export": "IcImage",
+      "leiras": "Képkeret hegyekkel: fotó, kép kiválasztása",
+      "uj": true
+    },
+    {
+      "fajl": "info.svg",
+      "export": "IcInfo",
+      "leiras": "Kör i betűvel: tájékoztatás",
+      "uj": false
+    },
+    {
+      "fajl": "location.svg",
+      "export": "IcLocation",
+      "leiras": "Térképtű: hely",
+      "uj": true
+    },
+    {
+      "fajl": "mail.svg",
+      "export": "IcMail",
+      "leiras": "Boríték: e-mail",
+      "uj": true
+    },
+    {
+      "fajl": "map.svg",
+      "export": "IcMap",
+      "leiras": "Hajtogatott térkép: térkép nézet",
+      "uj": true
+    },
+    {
+      "fajl": "menu.svg",
+      "export": "IcMenu",
+      "leiras": "Három vonal: menü",
+      "uj": true
+    },
+    {
+      "fajl": "more.svg",
+      "export": "IcMore",
+      "leiras": "Három pont: további műveletek",
+      "uj": true
+    },
+    {
+      "fajl": "phone.svg",
+      "export": "IcPhone",
+      "leiras": "Telefonkagyló: telefonszám, hívás",
+      "uj": true
+    },
+    {
+      "fajl": "refresh.svg",
+      "export": "IcRefresh",
+      "leiras": "Környíl: újratöltés, újrapróbálás",
+      "uj": true
+    },
+    {
+      "fajl": "save.svg",
+      "export": "IcSave",
+      "leiras": "Mentés (hajlékonylemez)",
+      "uj": false
+    },
+    {
+      "fajl": "search.svg",
+      "export": "IcSearch",
+      "leiras": "Nagyító: keresés",
+      "uj": true
+    },
+    {
+      "fajl": "settings.svg",
+      "export": "IcSettings",
+      "leiras": "Fogaskerék: beállítások",
+      "uj": true
+    },
+    {
+      "fajl": "share.svg",
+      "export": "IcShare",
+      "leiras": "Doboz felfelé nyíllal: megosztás",
+      "uj": true
+    },
+    {
+      "fajl": "sort.svg",
+      "export": "IcSort",
+      "leiras": "Két ellentétes nyíl: rendezés",
+      "uj": true
+    },
+    {
+      "fajl": "star.svg",
+      "export": "IcStar",
+      "leiras": "Csillag: értékelés, kiemelés",
+      "uj": true
+    },
+    {
+      "fajl": "upload.svg",
+      "export": "IcUpload",
+      "leiras": "Tálca felfelé nyíllal: feltöltés",
+      "uj": true
+    },
+    {
+      "fajl": "user.svg",
+      "export": "IcUser",
+      "leiras": "Fej és váll: profil, személy",
+      "uj": true
+    },
+    {
+      "fajl": "warning.svg",
+      "export": "IcWarning",
+      "leiras": "Háromszög felkiáltójellel: figyelmeztetés",
+      "uj": true
+    },
+    {
+      "fajl": "web.svg",
+      "export": "IcWeb",
+      "leiras": "Földgömb: weboldal",
+      "uj": true
+    }
+  ]
+}

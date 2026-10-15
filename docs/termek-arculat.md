@@ -25,6 +25,7 @@ Komponens-szabályok és öntesztek: `docs/komponensek.md`. Élő bemutató: `te
 | `ink` / `ink-soft` / `ink-muted` | fekete / `#505050` / `#676767` | krém / zsálya / ezüst `#C6C6C6` (1.54.0 óta) | szöveg: fő / másodlagos / helykitöltő |
 | `line` / `line-soft` | fekete / `#C6C6C6` | `#B6C4A3` / `#596B39` | keret / elválasztó – a `line-soft` csak díszítő (≈ 1,7–1,9 : 1): vezérlő (gomb, mező) határa mindig `line`, kivéve a tiltott állapotot |
 | `accent`, `accent-press`, `on-accent` | méz, nyomott méz, **fekete** | ← | fő gomb, kijelölés; szöveg a mézen mindig `on-accent` |
+| `accent-soft` | halvány méz `#FEE79C` (`honey-soft`) | éjszakai méz `#5C4A12` (`honey-night`) | a 4. sárga: halvány hangsúly-háttér (kijelölt elem, jutalom-blokk, kiemelt chip) – szöveg rajta `ink` (17,1 : 1 / 8,1 : 1); nem helyettesíti az `accent`-et – 1.55.0 (Javaslat 27, a mobil app igénye) |
 | `shadow` | fekete | fekete | kemény árnyék |
 | `focus` | kék `#2656D9` | égkék | billentyűzet-fókusz (a gyűrű kifelé fut, az oldal- vagy felületháttéren) |
 | `focus-on-accent` | kék `#2656D9` | fekete | befelé futó fókuszgyűrű méz hátterű elemen (kijelölt fül, szegmens) – 1.54.0 |

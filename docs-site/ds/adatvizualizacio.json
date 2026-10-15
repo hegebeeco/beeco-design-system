@@ -73,7 +73,7 @@
     },
     {
       "t": "p",
-      "x": "A tokenek: `--bc-data-seq-1…5`, `--bc-data-div-1…5`, `--bc-data-allapot-1…5`, a színtévesztő-barát párok `-cb` utótaggal (pl. `--bc-data-seq-cb-1…5`), a kategóriák `--bc-data-cat-1…8`. A kék ↔ narancs pár azért van, mert a leggyakoribb színtévesztés (vörös–zöld) mellett a rózsa és a levél is hasonló szürkének látszhat. Forrás: `docs/adatskala.md`, `docs/AI.md` (Tokenek), `tokens/core.json` → data."
+      "x": "A tokenek: `--bc-data-seq-1…5`, `--bc-data-div-1…5`, `--bc-data-allapot-1…5`, a színtévesztő-barát párok `-cb` utótaggal (pl. `--bc-data-seq-cb-1…5`), a kategóriák `--bc-data-cat-1…8`; sötét felületre az állapot-skála emelt végű párja: `--bc-data-allapot-dark-1…5` és `--bc-data-allapot-cb-dark-1…5` (1.55.0). A kék ↔ narancs pár azért van, mert a leggyakoribb színtévesztés (vörös–zöld) mellett a rózsa és a levél is hasonló szürkének látszhat. Forrás: `docs/adatskala.md`, `docs/AI.md` (Tokenek), `tokens/core.json` → data."
     },
     {
       "t": "h2",

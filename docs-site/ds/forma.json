@@ -88,7 +88,7 @@
       "t": "szabaly",
       "cim": "Kemény árnyék csak arra, ami kattintható",
       "x": [
-        "Kattintható elem (gomb, kattintható kártya, csempe, aktív fül, bejelölt jelölő): kemény, átlós árnyék. Nem kattintható doboz (kártya, statisztika, táblázat, mentés-sáv): puha, halvány árnyék (`--bc-shadow-soft`: `0 8px 28px`, a `shadow` szín 9%-a). Árnyék nélkül marad a mező, a szellem, a tiltott és a lenyomott gomb, az `is-flat` kártya."
+        "Kattintható elem (gomb, kattintható kártya, csempe, aktív fül, bejelölt jelölő): kemény, átlós árnyék. Nem kattintható doboz (kártya, statisztika, táblázat, mentés-sáv): puha, halvány árnyék (`--bc-shadow-soft`: `0 8px 28px`, a `shadow` szín 9%-a; a mobil appban (Flutter) a kisebb `--bc-shadow-soft-mobile`: `2px 2px 10px`, 40%, 1.55.0 óta – a weben a `shadow-soft` marad). Árnyék nélkül marad a mező, a szellem, a tiltott és a lenyomott gomb, az `is-flat` kártya."
       ],
       "forras": [
         "docs/termek-arculat.md 6/A",

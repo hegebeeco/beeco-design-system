@@ -47,19 +47,19 @@ function hx(ctx, szint, szoveg, alapId, cls) {
 
 // ---------- színek ----------
 const SZINCSALAD = [
-  ['Méz', ['honey', 'honey-deep', 'butter']],
+  ['Méz', ['honey', 'honey-deep', 'honey-soft', 'butter']],
   ['Krém és papír', ['cream', 'paper', 'white']],
   ['Zöldek', ['olive', 'olive-strong', 'olive-soft', 'forest', 'leaf', 'lime', 'sage', 'sage-bg', 'sprout']],
-  ['Meleg színek', ['blossom', 'blossom-bg', 'berry', 'red', 'crimson', 'blush', 'ember', 'rust']],
+  ['Meleg színek', ['blossom', 'blossom-bg', 'berry', 'red', 'crimson', 'blush', 'ember', 'rust', 'rank-bronze']],
   ['Hideg színek', ['sky', 'sky-bg', 'ice', 'water', 'navy', 'focus']],
   ['Semlegesek', ['black', 'coal', 'graphite', 'slate', 'silver', 'mist']],
-  ['Éjszaka (sötét mód)', ['night', 'night-surface', 'night-line']],
+  ['Éjszaka (sötét mód)', ['night', 'night-surface', 'night-line', 'honey-night']],
 ];
 const NEV_HU = { honey: 'méz', 'honey-deep': 'nyomott méz', butter: 'vaj', cream: 'krém', paper: 'papír', white: 'fehér', olive: 'olíva', poppy: 'pipacs', 'olive-strong': 'erős olíva',
   'olive-soft': 'halvány olíva', forest: 'erdő', leaf: 'levél', lime: 'lime', sage: 'zsálya', 'sage-bg': 'halvány zsálya', sprout: 'hajtás', blossom: 'rózsa',
   'blossom-bg': 'halvány rózsa', berry: 'bogyó', red: 'piros', crimson: 'bíbor', blush: 'pirosas', ember: 'parázs', rust: 'rozsda', sky: 'égkék', 'sky-bg': 'halvány égkék',
   ice: 'jég', water: 'víz', navy: 'mélykék', focus: 'fókuszkék', black: 'fekete', coal: 'szén', graphite: 'grafit', slate: 'pala', silver: 'ezüst', mist: 'köd',
-  night: 'éjszaka', 'night-surface': 'éjszakai felület', 'night-line': 'éjszakai vonal' };
+  'honey-soft': 'halvány méz', 'honey-night': 'éjszakai méz', 'rank-bronze': 'bronz', night: 'éjszaka', 'night-surface': 'éjszakai felület', 'night-line': 'éjszakai vonal' };
 function swatch(n, ctx) {
   ctx.ki.css.add(`.bb-sw-c[data-c="${n}"] { background: var(--bc-${n}); }`);
   return `<li class="bb-sw"><span class="bb-sw-c" data-c="${esc(n)}"></span><span class="bb-sw-t"><strong>${esc(NEV_HU[n] || n)}</strong><code>--bc-${esc(n)}</code><button type="button" class="bb-masol-szin" data-masol="${hex(n)}" aria-label="${esc((NEV_HU[n] || n) + ' színkód másolása: ' + hex(n))}"><code>${hex(n)}</code>${ic('masol')}</button></span></li>`;

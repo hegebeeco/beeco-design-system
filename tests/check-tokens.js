@@ -43,10 +43,18 @@ for (const mode of ['light', 'dark']) {
 }
 
 // 2/b. Az „állapot” adatskála (Javaslat 12): a fekete jel/szám minden fokozaton olvasható (≥ 4,5:1), és 5 különböző fokozat
-for (const k of ['allapot', 'allapot-cb']) {
+for (const k of ['allapot', 'allapot-cb', 'allapot-dark', 'allapot-cb-dark']) {
   const arr = core.data[k] || [];
   if (arr.length !== 5 || new Set(arr).size !== 5) hiba(`data.${k}: 5 különböző szín kell (${arr.join(', ')})`);
   for (const c of arr) { const r = ratio(c, '#000000'); if (r < 4.5) hiba(`data.${k}: fekete jel a ${c}-on = ${r.toFixed(2)}:1 < 4.5:1`); }
+}
+
+// 2/c. Az „állapot” skála SÖTÉT párja (Javaslat 27): mind az 5 fok ≥ 3:1 a sötét felületen (jelölő, ikon – WCAG 1.4.11);
+// a világos skálák ne változzanak (a sötét pár külön név: allapot-dark, allapot-cb-dark)
+{
+  const sotetFelulet = core.color[termek.color.dark.surface];
+  for (const k of ['allapot-dark', 'allapot-cb-dark'])
+    for (const c of core.data[k] || []) { const r = ratio(c, sotetFelulet); if (r < 3) hiba(`data.${k}: ${c} a sötét felületen (${sotetFelulet}) = ${r.toFixed(2)}:1 < 3:1`); }
 }
 
 // 3. Párosság a játékok tokens.css-ével

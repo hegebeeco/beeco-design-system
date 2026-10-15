@@ -5,6 +5,7 @@
   --bc-honey: #FECF39; --bc-honey-rgb: 254 207 57;
   --bc-honey-deep: #D8A500; --bc-honey-deep-rgb: 216 165 0;
   --bc-butter: #FEEEBB; --bc-butter-rgb: 254 238 187;
+  --bc-honey-soft: #FEE79C; --bc-honey-soft-rgb: 254 231 156;
   --bc-cream: #FFF8E7; --bc-cream-rgb: 255 248 231;
   --bc-paper: #FFFDF6; --bc-paper-rgb: 255 253 246;
   --bc-white: #FFFFFF; --bc-white-rgb: 255 255 255;
@@ -41,6 +42,8 @@
   --bc-night-surface: #353F25; --bc-night-surface-rgb: 53 63 37;
   --bc-night-line: #B6C4A3; --bc-night-line-rgb: 182 196 163;
   --bc-poppy: #EF6A60; --bc-poppy-rgb: 239 106 96;
+  --bc-honey-night: #5C4A12; --bc-honey-night-rgb: 92 74 18;
+  --bc-rank-bronze: #EFC2A6; --bc-rank-bronze-rgb: 239 194 166;
 
   /* Betűk, méretek, térköz */
   --bc-font-display: Lalezar, "Arial Rounded MT Bold", system-ui, sans-serif;
@@ -122,6 +125,16 @@
   --bc-data-allapot-cb-3: #FEEEBB;
   --bc-data-allapot-cb-4: #F0A35E;
   --bc-data-allapot-cb-5: #EA580C;
+  --bc-data-allapot-dark-1: #CDEC82;
+  --bc-data-allapot-dark-2: #A6BF7B;
+  --bc-data-allapot-dark-3: #FECF39;
+  --bc-data-allapot-dark-4: #EA580C;
+  --bc-data-allapot-dark-5: #EF6A60;
+  --bc-data-allapot-cb-dark-1: #B1DEFF;
+  --bc-data-allapot-cb-dark-2: #80B5E6;
+  --bc-data-allapot-cb-dark-3: #FEEEBB;
+  --bc-data-allapot-cb-dark-4: #F0A35E;
+  --bc-data-allapot-cb-dark-5: #EA580C;
   --bc-data-cat-1: #FECF39;
   --bc-data-cat-2: #6E8947;
   --bc-data-cat-3: #0083E4;
@@ -143,6 +156,7 @@
   --bc-shadow-m: 4px 4px 0 var(--bc-shadow); --bc-shadow-m-x: 4px; --bc-shadow-m-y: 4px;
   --bc-shadow-l: 6px 6px 0 var(--bc-shadow); --bc-shadow-l-x: 6px; --bc-shadow-l-y: 6px;
   --bc-shadow-soft: 0 8px 28px color-mix(in srgb, var(--bc-shadow) 9%, transparent);
+  --bc-shadow-soft-mobile: 2px 2px 10px color-mix(in srgb, var(--bc-shadow) 40%, transparent);
   --bc-scrim-opacity: 0.45;
 
   /* 2. TERMÉKBŐR – fókuszgyűrű, ikonméret, állapot, szövegstílus (Javaslat 26). Töréspont: nincs CSS-változó (@media-ban nem működik) */
@@ -174,6 +188,7 @@
   --bc-line-soft: var(--bc-silver); --bc-line-soft-rgb: var(--bc-silver-rgb);
   --bc-accent: var(--bc-honey); --bc-accent-rgb: var(--bc-honey-rgb);
   --bc-accent-press: var(--bc-honey-deep); --bc-accent-press-rgb: var(--bc-honey-deep-rgb);
+  --bc-accent-soft: var(--bc-honey-soft); --bc-accent-soft-rgb: var(--bc-honey-soft-rgb);
   --bc-on-accent: var(--bc-black); --bc-on-accent-rgb: var(--bc-black-rgb);
   --bc-shadow: var(--bc-black); --bc-shadow-rgb: var(--bc-black-rgb);
   --bc-success: var(--bc-leaf); --bc-success-rgb: var(--bc-leaf-rgb);
@@ -207,6 +222,7 @@
   --bc-line-soft: var(--bc-olive-soft); --bc-line-soft-rgb: var(--bc-olive-soft-rgb);
   --bc-accent: var(--bc-honey); --bc-accent-rgb: var(--bc-honey-rgb);
   --bc-accent-press: var(--bc-honey-deep); --bc-accent-press-rgb: var(--bc-honey-deep-rgb);
+  --bc-accent-soft: var(--bc-honey-night); --bc-accent-soft-rgb: var(--bc-honey-night-rgb);
   --bc-on-accent: var(--bc-black); --bc-on-accent-rgb: var(--bc-black-rgb);
   --bc-shadow: var(--bc-black); --bc-shadow-rgb: var(--bc-black-rgb);
   --bc-focus: var(--bc-sky); --bc-focus-rgb: var(--bc-sky-rgb);
@@ -240,6 +256,7 @@
     --bc-line-soft: var(--bc-olive-soft); --bc-line-soft-rgb: var(--bc-olive-soft-rgb);
     --bc-accent: var(--bc-honey); --bc-accent-rgb: var(--bc-honey-rgb);
     --bc-accent-press: var(--bc-honey-deep); --bc-accent-press-rgb: var(--bc-honey-deep-rgb);
+    --bc-accent-soft: var(--bc-honey-night); --bc-accent-soft-rgb: var(--bc-honey-night-rgb);
     --bc-on-accent: var(--bc-black); --bc-on-accent-rgb: var(--bc-black-rgb);
     --bc-shadow: var(--bc-black); --bc-shadow-rgb: var(--bc-black-rgb);
     --bc-focus: var(--bc-sky); --bc-focus-rgb: var(--bc-sky-rgb);

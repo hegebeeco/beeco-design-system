@@ -13,6 +13,7 @@
       "line-soft": "silver",
       "accent": "honey",
       "accent-press": "honey-deep",
+      "accent-soft": "honey-soft",
       "on-accent": "black",
       "shadow": "black",
       "focus": "focus",
@@ -44,6 +45,7 @@
       "line-soft": "olive-soft",
       "accent": "honey",
       "accent-press": "honey-deep",
+      "accent-soft": "honey-night",
       "on-accent": "black",
       "shadow": "black",
       "focus": "sky",
@@ -201,6 +203,26 @@
       "focus-on-accent",
       "accent",
       3
+    ],
+    [
+      "ink",
+      "accent-soft",
+      4.5
+    ],
+    [
+      "ink-soft",
+      "accent-soft",
+      4.5
+    ],
+    [
+      "ink-muted",
+      "accent-soft",
+      4.5
+    ],
+    [
+      "line",
+      "accent-soft",
+      3
     ]
   ],
   "shadowSoft": {
@@ -209,7 +231,14 @@
     "blur": 28,
     "alpha": 9
   },
-  "_color": "1.54.0 (Javaslat 26, 3.8 – döntés 2026-10-08): sötétben danger = poppy (red → 2,47:1 volt a surface-en), ink-muted = silver (night-line → 4,42:1 volt a surface-accent-en). Új szerep: focus-on-accent – a BEFELÉ futó fókuszgyűrű színe méz (accent) hátterű elemen (kijelölt fül, szegmens, szakaszváltó); világosban a focus kék (4,16:1 a mézen), sötétben fekete (14,2:1; a sky a mézen 1,04:1). A kifelé futó gyűrű (outline-offset ≥ 2px) az oldal- vagy felületháttéren fut, ott a focus marad. A line-soft csak díszítő elválasztó: vezérlő (gomb, mező) határát nem jelölheti – arra a line való (kivétel: tiltott állapot).",
+  "shadowSoftMobile": {
+    "_readme": "Mobil (Flutter) puha árnyék – Kristóf, 2026-10-15 (C-3 A): a nem kattintható doboz a mobilon kisebb, élesebb árnyékot kap, mint a weben (shadowSoft): x 2 · y 2 · elmosás 10 · 40 % a 'shadow' szerepből. Csak az app használja; a weben a shadowSoft marad.",
+    "x": 2,
+    "y": 2,
+    "blur": 10,
+    "alpha": 40
+  },
+  "_color": "1.54.0 (Javaslat 26, 3.8 – döntés 2026-10-08): sötétben danger = poppy (red → 2,47:1 volt a surface-en), ink-muted = silver (night-line → 4,42:1 volt a surface-accent-en). Új szerep: focus-on-accent – a BEFELÉ futó fókuszgyűrű színe méz (accent) hátterű elemen (kijelölt fül, szegmens, szakaszváltó); világosban a focus kék (4,16:1 a mézen), sötétben fekete (14,2:1; a sky a mézen 1,04:1). A kifelé futó gyűrű (outline-offset ≥ 2px) az oldal- vagy felületháttéren fut, ott a focus marad. A line-soft csak díszítő elválasztó: vezérlő (gomb, mező) határát nem jelölheti – arra a line való (kivétel: tiltott állapot). 1.55.0 (Javaslat 27): új szerep accent-soft – a halvány méz (világos honey-soft #FEE79C, sötét honey-night #5C4A12): kijelölt elem, jutalom-blokk, kiemelt chip. A szöveg rajta az ink (világos 17,1:1, sötét 8,1:1). Nem helyettesíti az accent-et (az egyetlen hangsúlyszín marad): a halvány méz a háttér-árnyalat.",
   "_contrast": "Kötelező párok [előtér, háttér, küszöb], mindkét módban ellenőrzi a tests/check-tokens.js. 4,5 = szöveg, 3 = ikon, keret, fókuszgyűrű (WCAG 1.4.3 / 1.4.11).",
   "focusRing": {
     "_readme": "Fókuszgyűrű (Javaslat 26, 3.7–3.8): --bc-focus-w vastagság, --bc-focus-offset távolság. Szabály: a gyűrű kifelé fut (outline-offset ≥ 2px), így az oldal- vagy felületháttéren látszik. Befelé (negatív offset) csak ott, ahol a kifelé futót a görgető szülő levágná (fül, szegmens, csempe, térkép); méz hátterű állapotban ilyenkor a színe focus-on-accent. A tests/check-tokens.js őrzi.",

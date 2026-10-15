@@ -73,6 +73,12 @@
       "sotet": "#D8A500"
     },
     {
+      "nev": "bc-accent-soft",
+      "tipus": "Color",
+      "ertek": "#FEE79C",
+      "sotet": "#5C4A12"
+    },
+    {
       "nev": "bc-on-accent",
       "tipus": "Color",
       "ertek": "#000000",
