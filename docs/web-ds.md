@@ -66,6 +66,8 @@ python3 weboldal/web-ds/katalogus.py --check                                 # a
 | `DS · Csatlakozz a rajhoz` | `ac7611cf-d666-f84b-d349-16271a460e0b` | Önkéntes-toborzó zárószekció. |
 | `Tag manager` | `d4c0e15b-b38a-a06a-05f3-a8e1bfbb7f14` | GA4 (`gtag`). Minden oldalra kell. |
 | `DOWNLOAD_BLOCK` | `53f370d6…` | Letöltés-blokk, Link 1 és Link 2 prop (alapérték: kanonikus áruházlink). |
+| `DS · Ajánlatkérés` | `18b953bc-5dbc-c820-52fc-b872c83459cb` | B2B-ajánlatkérő szekció natív űrlappal (`#ajanlatkeres`). Minden B2B- és eseményoldal alján. A legördülők opcióit és a helyőrzőket csak a Designerben lehet beállítani (az API nem tudja). A beküldésnél a Webflow rögzíti az oldal címét. |
+| `DS · Céges ajánlatok` | `4a8cf67e-8a4c-11c0-c7b0-d9ee058d623c` | A hét B2B-ajánlat és az egyedi csomag kártyái. Ár vagy link csak itt változik. |
 
 ## 5. Oldalak (teszt-URL, mind draft-jelöltek)
 
@@ -79,6 +81,22 @@ python3 weboldal/web-ds/katalogus.py --check                                 # a
 | Cégeknek és településeknek | `/szolgaltatas/cegeknek-draft` | `6ad0f0145b8b8edbcc1a2f43` |
 | CsicsergŐsz, natív másolat | `/kampanyok/csicsergosz-nativ-draft` | `6ad09c29e9ef90da22dce85e` |
 | Önkéntes Vízadás 2027 | `/kampanyok/onkentes-vizadas-2027-draft` | `6acdf9170a36762817c460e6` |
+| Önkormányzatoknak | `/szolgaltatas/onkormanyzatoknak-draft` (végleges: `/szolgaltatas/onkormanyzatoknak`) | `6ad0fec68742368ed2447e50` |
+| beeco@work | `/szolgaltatas/beeco-at-work-draft` (végleges: `/szolgaltatas/beeco-at-work`) | `6ad0ff9da66ec70398bb646a` |
+| Madárraj | `/szolgaltatas/madarraj-draft` (végleges: `/szolgaltatas/madarraj`) | `6ad10049bbf6b6a670d07af4` |
+| Locsolóraj | `/szolgaltatas/locsoloraj-draft` (végleges: `/szolgaltatas/locsoloraj`) | `6ad101368f61d11fe50780f6` |
+| Zöld programok | `/szolgaltatas/zold-esemeny-szervezes-draft` (végleges: `/szolgaltatas/zold-esemeny-szervezes`) | `6ad1024116b88b9e111d33d1` |
+| Partnerprogram | `/szolgaltatas/partner-draft` (végleges: `/szolgaltatas/partner`) | `6ad10346d3b34b78cda5ded0` |
+| Zöld marketing | `/szolgaltatas/zold-marketing-draft` (végleges: `/szolgaltatas/zold-marketing`) | `6ad1041116b88b9e111e42bc` |
+| Klímafreskó (esemény) | `/szolgaltatas/klimafresko-draft` (végleges: `/szolgaltatas/klimafresko`) | `6ad104c7f554be485482b7ce` |
+| 3D zöld játékok (esemény) | `/szolgaltatas/3d-zold-jatekok-draft` (végleges: `/szolgaltatas/3d-zold-jatekok`) | `6ad1012a4d7cdc05c06650e2` |
+| Kézműves workshop (esemény) | `/szolgaltatas/kezmuves-workshop-draft` (végleges: `/szolgaltatas/kezmuves-workshop`) | `6ad10253fd54269db0a667b7` |
+| Zöld kvíz és ÖkoMuki (esemény) | `/szolgaltatas/zold-kviz-okomuki-draft` (végleges: `/szolgaltatas/zold-kviz-okomuki`) | `6ad10331eff45bdd57013307` |
+| Csere-bere (esemény) | `/szolgaltatas/csere-bere-szervezes-draft` (végleges: `/szolgaltatas/csere-bere-szervezes`) | `6ad103e616b88b9e111e2d5e` |
+| Előadás, filmklub, kerekasztal (esemény) | `/szolgaltatas/zold-eloadas-filmklub-draft` (végleges: `/szolgaltatas/zold-eloadas-filmklub`) | `6ad104a32d16062d8a5d2d98` |
+
+A B2B-oldalak tartalma a `weboldal/b2b/oldalak.py`-ban van (sales- és eseménysablon, SEO: cím, leírás, Service + FAQPage + BreadcrumbList JSON-LD),
+a végleges és a draft címek listája a `weboldal/b2b/ki/oldalterkep.json`-ban. Az oldalak egymásra a **végleges** címmel hivatkoznak, ezek az élesítésig 404-et adnak.
 
 ## 6. Buktatók (élesben derültek ki)
 
@@ -89,6 +107,10 @@ python3 weboldal/web-ds/katalogus.py --check                                 # a
 - A `bulk_update_pages` a `draft`-ot nem állította. Ehhez oldalanként `update_page_settings` kell.
 - Komponens-propot közös elemre kötni minden példányt érint. Ha a mobil más szöveget mutat (például `‹ főoldal`), a prop
   helyett egy kapcsolható második elem a biztonságos megoldás.
+- Komponenspéldányt nem lehet egy másik példány (például a lábléc) **elé** beszúrni: az előző szekció **után** kell, két egymást követő példánynál fordított sorrendben.
+- A `jsonLdSchema` az `update_page_settings`-ben nem mentődik, a `bulk_update_pages_schema_markup` igen.
+- A site globális `a:hover` szabálya más betűre vált: minden link-osztály hover-állapota saját betűt kapjon (a `ds-gomb` így kapta meg).
+- A whtml egy hívásban legfeljebb 5 akciót fogad.
 - A Designerben Kristóf is dolgozik. Ha váratlan értéket látsz, kérdezz, ne állítsd vissza.
 
 ## 7. Döntésre vár

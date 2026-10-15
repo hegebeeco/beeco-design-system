@@ -1,0 +1,12 @@
+{
+ "slug_vegleges": "madarraj",
+ "slug_draft": "madarraj-draft",
+ "cim": "Madárraj: céges csapatnap odúkészítéssel és madársétával | beeco",
+ "leiras": "Odú- és etetőkészítés, madárbarát telephely és madárséta szakmai vezetővel, októbertől márciusig. Csapatnap, amiből a madarak is profitálnak.",
+ "jsonld": "{\"@context\": \"https://schema.org\", \"@graph\": [{\"@type\": \"Service\", \"name\": \"Madárraj céges csapatnap\", \"description\": \"Odú- és etetőkészítés, madárbarát telephely és madárséta szakmai vezetővel, októbertől márciusig. Csapatnap, amiből a madarak is profitálnak.\", \"serviceType\": \"B2B\", \"areaServed\": {\"@type\": \"Country\", \"name\": \"Magyarország\"}, \"provider\": {\"@type\": \"Organization\", \"name\": \"beeco\", \"url\": \"https://www.beeco.hu\", \"logo\": \"https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/655512ff22c587d4c7112378_linear%20logo.svg\"}, \"url\": \"https://www.beeco.hu/szolgaltatas/madarraj\"}, {\"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Hol tartjuk?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Nálatok, ha van udvar vagy kert, vagy egy partner-településen, ahová az odúk kerülnek.\"}}, {\"@type\": \"Question\", \"name\": \"Kell hozzá ügyesség?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Nem. Előkészített elemekből dolgozunk, és végig segítünk.\"}}, {\"@type\": \"Question\", \"name\": \"Miért ősszel és télen?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Az odúkat a költési időszak előtt érdemes kihelyezni, az etetés pedig a hideg hónapokban segít a madaraknak.\"}}, {\"@type\": \"Question\", \"name\": \"Mennyibe kerül?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"A létszámtól és a helyszíntől függ, erre egyedi ajánlatot adunk.\"}}]}, {\"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"beeco\", \"item\": \"https://www.beeco.hu/\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Cégeknek és településeknek\", \"item\": \"https://www.beeco.hu/szolgaltatas/cegeknek\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Madárraj céges csapatnap\", \"item\": \"https://www.beeco.hu/szolgaltatas/madarraj\"}]}]}",
+ "kihagy": [
+  "Velünk dolgoznak",
+  "Kérj ajánlatot, és indítsuk el a rajt",
+  "Hét ajánlat, egy közös mérce"
+ ]
+}

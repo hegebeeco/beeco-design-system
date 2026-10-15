@@ -17,6 +17,12 @@ BP = [(G.T, 'alap', ''), (G.M, '≤991 px', G.M), (G.S, '≤767 px', G.S), (G.X,
 CSOPORT = [('Közös alap', G.KOZOS), ('Rólunk-blokkok', G.A_CSS), ('Hatás-blokkok', G.C_CSS), ('Csapat-blokkok', G.B_CSS), ('B2B-blokkok', B.B2B_CSS)]
 OLDAL = {'rolunk': ('Rólunk', '/rolunk-uj-draft', G.A), 'hatasunk': ('Hatásunk', '/hatasunk-draft', G.C), 'csapatunk': ('Csapatunk', '/csapatunk-uj-draft', G.B),
          'en': ('English (Web Summit)', '/en', G.E), 'cegeknek': ('Cégeknek és településeknek', '/szolgaltatas/cegeknek-draft', B.osszeallit(B.HUB))}
+try:  # B2B sales- és esemény-oldalak (weboldal/b2b/oldalak.py)
+    import oldalak as _O, json as _J
+    for _c in _O.SALES + _O.ESEMENY:
+        OLDAL[_c['k']] = (_c['cim'].split(' | ')[0], '/szolgaltatas/' + _c['slug'] + '-draft', _J.load(open(os.path.join(D, '..', 'b2b', 'ki', _c['k'] + '.json'))))
+except ImportError:
+    pass
 CSALAD = [  # (név, mire való, előtagok)
  ('Szekció és keret', 'Oldalszekció háttérváltozatokkal, tartalmi keret, szekciófej.', ['ds-szekcio', 'ds-hatter', 'ds-burok', 'ds-hero', 'ds-ketto', 'ds-harom', 'ds-negy', 'ds-zaro']),
  ('Tipográfia', 'Szalagcím, címszintek, kiemelés, bevezető, folyószöveg, forrássor, szöveglink.', ['ds-szalag', 'ds-cim', 'ds-kiemel', 'ds-lead', 'ds-szoveg', 'ds-forras', 'ds-szoveglink', 'ds-megjegyzes']),

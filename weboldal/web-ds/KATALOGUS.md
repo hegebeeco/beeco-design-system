@@ -2,7 +2,7 @@
 
 > Kézzel ne szerkeszd: `python3 weboldal/web-ds/katalogus.py`. A leírás: [docs/web-ds.md](../../docs/web-ds.md).
 
-136 osztály, 13 változó, 5 oldal.
+136 osztály, 13 változó, 18 oldal.
 
 ## Oldalak
 
@@ -13,6 +13,19 @@
 | `csapatunk` | Csapatunk | `/csapatunk-uj-draft` |
 | `en` | English (Web Summit) | `/en` |
 | `cegeknek` | Cégeknek és településeknek | `/szolgaltatas/cegeknek-draft` |
+| `onk` | Önkormányzatoknak: lakossági faöntözés és zöld programok | `/szolgaltatas/onkormanyzatoknak-draft` |
+| `work` | beeco@work: munkahelyi zöld program havi Hatásjelentéssel | `/szolgaltatas/beeco-at-work-draft` |
+| `madar` | Madárraj: céges csapatnap odúkészítéssel és madársétával | `/szolgaltatas/madarraj-draft` |
+| `locsolo` | Locsolóraj: céges faöntöző csapatnap az Önkéntes Vízadásban | `/szolgaltatas/locsoloraj-draft` |
+| `programok` | Zöld céges programok és csapatépítők nagyvállalatoknak | `/szolgaltatas/zold-esemeny-szervezes-draft` |
+| `partner` | Partnerprogram zöld vállalkozásoknak: térkép, kupon, analitika | `/szolgaltatas/partner-draft` |
+| `marketing` | Zöld marketing fenntartható márkáknak, igazolt állításokkal | `/szolgaltatas/zold-marketing-draft` |
+| `fresk` | Klímafreskó workshop cégeknek és csapatoknak | `/szolgaltatas/klimafresko-draft` |
+| `jatek` | 3D zöld játékok rendezvényre, standra, csapatnapra | `/szolgaltatas/3d-zold-jatekok-draft` |
+| `diy` | Kézműves és DIY workshop cégeknek | `/szolgaltatas/kezmuves-workshop-draft` |
+| `kviz` | Zöld kvíz és ÖkoMuki csapatjáték cégeknek | `/szolgaltatas/zold-kviz-okomuki-draft` |
+| `csere` | Csere-bere szervezés cégeknek és közösségeknek | `/szolgaltatas/csere-bere-szervezes-draft` |
+| `eloadas` | Fenntarthatósági előadás, filmklub, kerekasztal cégeknek | `/szolgaltatas/zold-eloadas-filmklub-draft` |
 
 ## Változók
 
@@ -38,19 +51,19 @@ Oldalszekció háttérváltozatokkal, tartalmi keret, szekciófej.
 
 | Osztály | Töréspontok | Oldalak |
 |---|---|---|
-| `.ds-burok` | alap, ≤767 px | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-harom` | alap, ≤991 px | rolunk, csapatunk, en, cegeknek |
-| `.ds-hatter-feher` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-hatter-sotet` | alap | rolunk, hatasunk, en, cegeknek |
-| `.ds-hatter-vaj` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-hatter-zold` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-hero-foto` | alap | rolunk, csapatunk, en, cegeknek |
-| `.ds-hero-racs` | alap, ≤991 px | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-hero-szoveg` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-ketto` | alap, ≤991 px | hatasunk, csapatunk, en, cegeknek |
+| `.ds-burok` | alap, ≤767 px | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-harom` | alap, ≤991 px | rolunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-hatter-feher` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-hatter-sotet` | alap | rolunk, hatasunk, en, cegeknek, onk, work, locsolo, programok, partner |
+| `.ds-hatter-vaj` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-hatter-zold` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-hero-foto` | alap | rolunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-hero-racs` | alap, ≤991 px | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-hero-szoveg` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-ketto` | alap, ≤991 px | hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
 | `.ds-negy` | alap, ≤991 px, ≤767 px | cegeknek |
-| `.ds-szekcio` | alap, ≤991 px, ≤767 px | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-szekcio-fej` | alap, ≤767 px | rolunk, hatasunk, csapatunk, en, cegeknek |
+| `.ds-szekcio` | alap, ≤991 px, ≤767 px | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-szekcio-fej` | alap, ≤767 px | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
 | `.ds-zaro` | alap | rolunk, csapatunk, en, cegeknek |
 | `.ds-zaro-lead` | alap | rolunk, csapatunk, en, cegeknek |
 
@@ -60,19 +73,19 @@ Szalagcím, címszintek, kiemelés, bevezető, folyószöveg, forrássor, szöve
 
 | Osztály | Töréspontok | Oldalak |
 |---|---|---|
-| `.ds-cim1` | alap, ≤991 px, ≤767 px | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-cim2` | alap, ≤991 px, ≤767 px | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-cim3` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
+| `.ds-cim1` | alap, ≤991 px, ≤767 px | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-cim2` | alap, ≤991 px, ≤767 px | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-cim3` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
 | `.ds-cimke` | alap | cegeknek |
-| `.ds-forras` | alap | rolunk, hatasunk, en, cegeknek |
-| `.ds-forras-sotet` | alap | rolunk, hatasunk, en, cegeknek |
-| `.ds-kiemel` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-lead` | alap, ≤767 px | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-megjegyzes` | alap | hatasunk, cegeknek |
-| `.ds-szalag` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-szoveg` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
+| `.ds-forras` | alap | rolunk, hatasunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing |
+| `.ds-forras-sotet` | alap | rolunk, hatasunk, en, cegeknek, onk, work, locsolo, programok, partner |
+| `.ds-kiemel` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-lead` | alap, ≤767 px | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-megjegyzes` | alap | hatasunk, cegeknek, onk, partner, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-szalag` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-szoveg` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
 | `.ds-szovegdoboz` | alap | cegeknek |
-| `.ds-szoveglink` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
+| `.ds-szoveglink` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, locsolo, marketing, fresk, jatek, diy, kviz, csere, eloadas |
 
 ## Gomb és chip
 
@@ -80,11 +93,11 @@ Elsődleges és másodlagos gomb, gombsor, chip-címke.
 
 | Osztály | Töréspontok | Oldalak |
 |---|---|---|
-| `.ds-chip` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-chipsor` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-gomb` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-gombsor` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
-| `.ds-masod` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
+| `.ds-chip` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-chipsor` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-gomb` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-gombsor` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-masod` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
 
 ## Kártyák és utak
 
@@ -92,18 +105,18 @@ Ikonos kártya, link-kártya (út), tovább-kártya képpel, ár- és nyílsor.
 
 | Osztály | Töréspontok | Oldalak |
 |---|---|---|
-| `.ds-kartya` | alap | rolunk, csapatunk, en, cegeknek |
-| `.ds-kartya-piko` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
+| `.ds-kartya` | alap | rolunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-kartya-piko` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
 | `.ds-tovabb` | alap, ≤767 px | rolunk, csapatunk |
 | `.ds-tovabb-kartya` | alap | rolunk, csapatunk |
 | `.ds-tovabb-kep` | alap | rolunk, csapatunk |
-| `.ds-tovabb-nyil` | alap | rolunk, hatasunk, csapatunk, en, cegeknek |
+| `.ds-tovabb-nyil` | alap | rolunk, hatasunk, csapatunk, en, cegeknek, programok, fresk, jatek, diy, kviz, csere, eloadas |
 | `.ds-tovabb-test` | alap | rolunk, csapatunk |
-| `.ds-ut` | alap | hatasunk, csapatunk, en, cegeknek |
-| `.ds-ut-ar` | alap | cegeknek |
+| `.ds-ut` | alap | hatasunk, csapatunk, en, cegeknek, programok, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-ut-ar` | alap | cegeknek, programok |
 | `.ds-ut-ar.ds-tinta` | alap | cegeknek |
 | `.ds-ut-kiemelt` | alap | hatasunk, csapatunk, en, cegeknek |
-| `.ds-utak` | alap, ≤991 px | hatasunk, en, cegeknek |
+| `.ds-utak` | alap, ≤991 px | hatasunk, en, cegeknek, programok, fresk, jatek, diy, kviz, csere, eloadas |
 
 ## Fotó
 
@@ -111,10 +124,10 @@ Keretes fotó felirattal, hero- és idővonal-arányok.
 
 | Osztály | Töréspontok | Oldalak |
 |---|---|---|
-| `.ds-foto` | alap | rolunk, csapatunk, en, cegeknek |
-| `.ds-foto-felirat` | alap | rolunk, csapatunk, en, cegeknek |
-| `.ds-foto-kep` | alap | rolunk, csapatunk, en, cegeknek |
-| `.ds-hogyan-foto` | alap | csapatunk |
+| `.ds-foto` | alap | rolunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-foto-felirat` | alap | rolunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-foto-kep` | alap | rolunk, csapatunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-hogyan-foto` | alap | csapatunk, fresk, jatek, eloadas |
 | `.ds-ido-foto` | alap | rolunk |
 | `.ds-ido-fotok` | alap | rolunk |
 
@@ -139,9 +152,9 @@ Számsáv sötét háttéren, méretarányos sávdiagram.
 | Osztály | Töréspontok | Oldalak |
 |---|---|---|
 | `.ds-grafikon` | alap | hatasunk, en |
-| `.ds-grafikon-felirat` | alap | hatasunk, en, cegeknek |
-| `.ds-grafikon-felirat.ds-forras-sotet` | alap | cegeknek |
-| `.ds-grafikon-felirat.ds-tinta` | alap | cegeknek |
+| `.ds-grafikon-felirat` | alap | hatasunk, en, cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-grafikon-felirat.ds-forras-sotet` | alap | cegeknek, onk, locsolo |
+| `.ds-grafikon-felirat.ds-tinta` | alap | cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
 | `.ds-sav` | alap | hatasunk, en |
 | `.ds-sav-100` | alap | hatasunk, en |
 | `.ds-sav-51` | alap | hatasunk, en |
@@ -149,10 +162,10 @@ Számsáv sötét háttéren, méretarányos sávdiagram.
 | `.ds-sav-elozo` | alap | hatasunk, en |
 | `.ds-sav-ev` | alap | hatasunk, en |
 | `.ds-sav-sor` | alap | hatasunk, en |
-| `.ds-szam` | alap | rolunk, hatasunk, en, cegeknek |
-| `.ds-szam-ertek` | alap, ≤767 px | rolunk, hatasunk, en, cegeknek |
-| `.ds-szam-felirat` | alap | rolunk, hatasunk, en, cegeknek |
-| `.ds-szamsav` | alap, ≤991 px, ≤479 px | rolunk, hatasunk, en, cegeknek |
+| `.ds-szam` | alap | rolunk, hatasunk, en, cegeknek, onk, work, locsolo, programok, partner |
+| `.ds-szam-ertek` | alap, ≤767 px | rolunk, hatasunk, en, cegeknek, onk, work, locsolo, programok, partner |
+| `.ds-szam-felirat` | alap | rolunk, hatasunk, en, cegeknek, onk, work, locsolo, programok, partner |
+| `.ds-szamsav` | alap, ≤991 px, ≤479 px | rolunk, hatasunk, en, cegeknek, onk, work, locsolo, programok, partner |
 
 ## Logók, sajtó, idézet
 
@@ -183,7 +196,7 @@ Helyezés-korong díjsorral.
 | `.ds-dij-cim` | alap | hatasunk |
 | `.ds-dij-helyezes` | alap | hatasunk |
 | `.ds-dij-szoveg` | alap | hatasunk |
-| `.ds-dij-test` | alap | hatasunk, csapatunk |
+| `.ds-dij-test` | alap | hatasunk, csapatunk, programok, fresk |
 | `.ds-dijak` | alap | hatasunk |
 
 ## Emberek és rajok
@@ -196,8 +209,8 @@ Portré saját méhecskével, raj-kártya taglistával, tanácsadó, alapítói 
 | `.ds-ember-foto` | alap | csapatunk |
 | `.ds-ember-kepek` | alap | csapatunk |
 | `.ds-ember-meh` | alap | csapatunk |
-| `.ds-ember-nev` | alap | csapatunk |
-| `.ds-ember-szerep` | alap | csapatunk |
+| `.ds-ember-nev` | alap | csapatunk, programok, fresk |
+| `.ds-ember-szerep` | alap | csapatunk, programok, fresk |
 | `.ds-emberek` | alap, ≤991 px, ≤767 px | csapatunk |
 | `.ds-level` | alap, ≤767 px | csapatunk |
 | `.ds-level-alairas` | alap | csapatunk |
@@ -208,8 +221,8 @@ Portré saját méhecskével, raj-kártya taglistával, tanácsadó, alapítói 
 | `.ds-raj-tagok` | alap | csapatunk |
 | `.ds-raj-test` | alap | csapatunk |
 | `.ds-rajok` | alap, ≤991 px, ≤767 px | csapatunk |
-| `.ds-tanacsado` | alap, ≤767 px | csapatunk |
-| `.ds-tanacsado-foto` | alap, ≤767 px | csapatunk |
+| `.ds-tanacsado` | alap, ≤767 px | csapatunk, programok, fresk |
+| `.ds-tanacsado-foto` | alap, ≤767 px | csapatunk, programok, fresk |
 
 ## Csomagok (B2B)
 
@@ -217,13 +230,13 @@ Belépő / Mag / Partnerség ajánlati létra, kiemelt középső szinttel.
 
 | Osztály | Töréspontok | Oldalak |
 |---|---|---|
-| `.ds-csomag` | alap | cegeknek |
-| `.ds-csomag-ar` | alap | cegeknek |
-| `.ds-csomag-elem` | alap | cegeknek |
-| `.ds-csomag-kiemelt` | alap, ≤991 px | cegeknek |
-| `.ds-csomag-lista` | alap | cegeknek |
-| `.ds-csomag-pipa` | alap | cegeknek |
-| `.ds-csomagok` | alap, ≤991 px | cegeknek |
+| `.ds-csomag` | alap | cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-csomag-ar` | alap | cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-csomag-elem` | alap | cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-csomag-kiemelt` | alap, ≤991 px | cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-csomag-lista` | alap | cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-csomag-pipa` | alap | cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-csomagok` | alap, ≤991 px | cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
 
 ## Lépések és eset (B2B)
 
@@ -231,12 +244,12 @@ Számozott folyamat, esettanulmány kihívás–megoldás–eredmény bontásban
 
 | Osztály | Töréspontok | Oldalak |
 |---|---|---|
-| `.ds-eset` | alap, ≤991 px | cegeknek |
-| `.ds-eset-eredmeny` | alap | cegeknek |
-| `.ds-eset-resz` | alap | cegeknek |
-| `.ds-lepes` | alap | cegeknek |
-| `.ds-lepes-szam` | alap | cegeknek |
-| `.ds-lepesek` | alap, ≤991 px, ≤767 px | cegeknek |
+| `.ds-eset` | alap, ≤991 px | cegeknek, onk, locsolo |
+| `.ds-eset-eredmeny` | alap | cegeknek, onk, locsolo |
+| `.ds-eset-resz` | alap | cegeknek, onk, locsolo |
+| `.ds-lepes` | alap | cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-lepes-szam` | alap | cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
+| `.ds-lepesek` | alap, ≤991 px, ≤767 px | cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
 
 ## Hatásjelentés (B2B)
 
@@ -244,13 +257,13 @@ Jelentésminta: fej, számrács, mondhatod / kerüld állítás.
 
 | Osztály | Töréspontok | Oldalak |
 |---|---|---|
-| `.ds-allitas` | alap | cegeknek |
-| `.ds-allitas-kerul` | alap | cegeknek |
-| `.ds-jelentes` | alap, ≤767 px | cegeknek |
-| `.ds-jelentes-ertek` | alap | cegeknek |
-| `.ds-jelentes-fej` | alap | cegeknek |
-| `.ds-jelentes-szam` | alap | cegeknek |
-| `.ds-jelentes-szamok` | alap, ≤767 px | cegeknek |
+| `.ds-allitas` | alap | cegeknek, onk, work, madar, locsolo, programok, partner, marketing |
+| `.ds-allitas-kerul` | alap | cegeknek, onk, work, madar, locsolo, programok, partner, marketing |
+| `.ds-jelentes` | alap, ≤767 px | cegeknek, onk, work, madar, locsolo, programok, partner, marketing |
+| `.ds-jelentes-ertek` | alap | cegeknek, onk, work, madar, locsolo, programok, partner, marketing |
+| `.ds-jelentes-fej` | alap | cegeknek, onk, work, madar, locsolo, programok, partner, marketing |
+| `.ds-jelentes-szam` | alap | cegeknek, onk, work, madar, locsolo, programok, partner, marketing |
+| `.ds-jelentes-szamok` | alap, ≤767 px | cegeknek, onk, work, madar, locsolo, programok, partner, marketing |
 
 ## Űrlap (B2B)
 

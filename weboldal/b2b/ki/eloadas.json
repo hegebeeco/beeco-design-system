@@ -1,0 +1,56 @@
+[
+ {
+  "nev": "eloadas-hero",
+  "html": "<section class=\"ds-szekcio ds-hatter-vaj\" id=\"kezdes\"><div class=\"ds-burok ds-hero-racs\"><div class=\"ds-hero-szoveg\"><div class=\"ds-szalag\">Előadás, filmklub, kerekasztal</div><h1 class=\"ds-cim1\">Előadás, amin <span class=\"ds-kiemel\">senki nem alszik el</span></h1><p class=\"ds-lead\">Unjátok a frontális előadásokat? Interaktív előadással, filmklubbal és szakértői kerekasztallal mozgatjuk meg az agytekervényeket: praktikusan, humorosan, kérdésekkel és vitával.</p><div class=\"ds-gombsor\"><a class=\"ds-gomb\" href=\"#ajanlatkeres\" data-b2b-cta=\"hero\">Ajánlatot kérek</a><a class=\"ds-gomb ds-masod\" href=\"#menet\" data-b2b-cta=\"hero-2\">Így zajlik</a></div><div class=\"ds-chipsor\"><div class=\"ds-chip\">45 perctől</div><div class=\"ds-chip\">8 témakör</div><div class=\"ds-chip\">Filmklub 10–100 főnek</div></div></div><figure class=\"ds-foto ds-hero-foto\"><img class=\"ds-foto-kep\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6802602137134cce14cd8b6c_DSC_0470.avif\" alt=\"Fiatalok egy teremben, egy férfi jegyzetekkel magyaráz egy kék poszter előtt\" loading=\"lazy\"><figcaption class=\"ds-foto-felirat\">Interaktív előadás</figcaption></figure></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "eloadas-mi",
+  "html": "<section class=\"ds-szekcio ds-hatter-feher\" id=\"mi-ez\"><div class=\"ds-burok ds-ketto\"><div class=\"ds-hero-szoveg\"><div class=\"ds-szalag\">Három formátum</div><h2 class=\"ds-cim2\">Válaszd ki a nektek valót</h2><p class=\"ds-szoveg\"><strong>Interaktív előadás</strong> (45–120 perc): fenntartható mindennapok, közlekedés, étkezés, vásárlás és további témák, játékosítva.</p><p class=\"ds-szoveg\"><strong>Filmklub és vitaest</strong> (2–3 óra): környezeti és társadalmi témájú film, utána nyitott beszélgetés vagy vezetett vita, 10–100 résztvevőnek.</p><p class=\"ds-szoveg\"><strong>Kerekasztal-beszélgetés:</strong> szakértői hálózatunkból összeállított panel aktuális témákban, 350 000 Ft-tól.</p></div><figure class=\"ds-foto\"><img class=\"ds-foto-kep\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/67a8c2dfe9b5b1a4141afdd9_P1240455-Enhanced-NR%20%E2%80%93%20nagy.avif\" alt=\"Hat fiatal felnőtt egy színpadon panelbeszélgetésen, egy nő mikrofonnal beszél\" loading=\"lazy\"></figure></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "eloadas-kap",
+  "html": "<section class=\"ds-szekcio\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Mit ad a csapatodnak</div><h2 class=\"ds-cim2\">Mit ad a közönségnek?</h2></div><div class=\"ds-harom\"><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfafdf4b15324ccb4a5b_fs-piko-olvas.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Gondolkodás, nem jegyzetelés</h3><p class=\"ds-szoveg\">Kérdések, szavazás és játékos feladatok az előadás közben.</p></div><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfb0356d56416f62a171_fs-piko-sziv.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Párbeszéd</h3><p class=\"ds-szoveg\">A filmklub és a kerekasztal után a közönség is szót kap.</p></div><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcf7cab88aba1da6f3a0e_fs-piko-konyv.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Hiteles tudás</h3><p class=\"ds-szoveg\">Szakértőink tudományos forrásokra építenek, érthetően.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "eloadas-menet",
+  "html": "<section class=\"ds-szekcio ds-hatter-zold\" id=\"menet\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Így zajlik</div><h2 class=\"ds-cim2\">Az ötlettől az összefoglalóig</h2></div><div class=\"ds-lepesek\"><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">1</div><h3 class=\"ds-cim3\">Témaválasztás</h3><p class=\"ds-szoveg\">Kiválasztjuk a formátumot és a témát a közönségetekhez.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">2</div><h3 class=\"ds-cim3\">Előkészítés</h3><p class=\"ds-szoveg\">Szakértő, film vagy panel: mi szervezzük.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">3</div><h3 class=\"ds-cim3\">Esemény</h3><p class=\"ds-szoveg\">Interaktív előadás, vetítés vagy beszélgetés, moderálással.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">4</div><h3 class=\"ds-cim3\">Összefoglaló</h3><p class=\"ds-szoveg\">Rövid összefoglaló a résztvevőkről és a felmerült kérdésekről.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "eloadas-galeria",
+  "html": "<section class=\"ds-szekcio ds-hatter-feher\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Galéria</div><h2 class=\"ds-cim2\">Így néz ki élőben</h2></div><div class=\"ds-harom\"><figure class=\"ds-foto ds-hogyan-foto\"><img class=\"ds-foto-kep\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/67a8c31387b2fcd70fa60277_clubs2.avif\" alt=\"Diákok egy osztályteremben egy erdőről szóló videót néznek\" loading=\"lazy\"></figure><figure class=\"ds-foto ds-hogyan-foto\"><img class=\"ds-foto-kep\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/67a8b4ab90f9609066b667bd_Darab_Zsuzsa_DT_NTK_A38_high_res_074.avif\" alt=\"Előadó mikrofonnal, a kivetítőn fenntartható termékek piacáról szóló dia\" loading=\"lazy\"></figure><figure class=\"ds-foto ds-hogyan-foto\"><img class=\"ds-foto-kep\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/67a8b4abcb94fb7296b55d9d__DSC4125.avif\" alt=\"Emberek egy kávézóban tapsolnak egy prezentáció közben\" loading=\"lazy\"></figure></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "eloadas-csomag",
+  "html": "<section class=\"ds-szekcio\" id=\"arak\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Árak</div><h2 class=\"ds-cim2\">Előadás, filmklub vagy kerekasztal</h2></div><div class=\"ds-csomagok\"><div class=\"ds-csomag\"><div class=\"ds-grafikon-felirat\">Belépő</div><h3 class=\"ds-cim3\">Interaktív előadás</h3><div class=\"ds-csomag-ar\">Kérj ajánlatot</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>45–120 perc</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>8 témakör</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Kérdések és játékos feladatok</span></li></ul><a class=\"ds-gomb ds-masod\" href=\"#ajanlatkeres\" data-b2b-cta=\"eloadas-belépő\">Ajánlatot kérek</a></div><div class=\"ds-csomag ds-csomag-kiemelt\"><div class=\"ds-grafikon-felirat ds-tinta\">Mag</div><h3 class=\"ds-cim3\">Filmklub és vitaest</h3><div class=\"ds-csomag-ar\">Kérj ajánlatot</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>2–3 óra, 10–100 fő</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Film és vezetett vita</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Szakértő vendég</span></li></ul><a class=\"ds-gomb\" href=\"#ajanlatkeres\" data-b2b-cta=\"eloadas-mag\">Ajánlatot kérek</a></div><div class=\"ds-csomag\"><div class=\"ds-grafikon-felirat\">Partnerség</div><h3 class=\"ds-cim3\">Kerekasztal-beszélgetés</h3><div class=\"ds-csomag-ar\">350 000 Ft-tól</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Szakértői panel</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Moderálás</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Több generáció bevonása</span></li></ul><a class=\"ds-gomb ds-masod\" href=\"#ajanlatkeres\" data-b2b-cta=\"eloadas-partnerség\">Ajánlatot kérek</a></div></div><p class=\"ds-megjegyzes\"><strong>Hatásjelentés:</strong> minden programhoz jár egy rövid jelentés a résztvevők számával, a témákkal és kész mondatokkal a belső kommunikációhoz. <a class=\"ds-szoveglink\" href=\"/szolgaltatas/cegeknek#hatasjelentes\">Mintajelentés ›</a></p></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "eloadas-gyik",
+  "html": "<section class=\"ds-szekcio ds-hatter-feher\" id=\"gyik\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Gyakori kérdések</div><h2 class=\"ds-cim2\">Amit a szervezők kérdezni szoktak</h2></div><div class=\"ds-ketto\"><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Milyen témák közül választhatunk?</h3><p class=\"ds-szoveg\">Fenntartható mindennapok, közlekedés, étkezés, vásárlás és további témák, összesen 8 témakörben.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Mennyi ideig tart?</h3><p class=\"ds-szoveg\">Az előadás 45–120 perc, a filmklub 2–3 óra.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Kinek ajánljátok?</h3><p class=\"ds-szoveg\">Céges csapatoknak, iskoláknak és közösségeknek, kis és nagy létszámmal is.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Mennyibe kerül?</h3><p class=\"ds-szoveg\">A kerekasztal 350 000 Ft-tól, az előadás és a filmklub ára a témától és a létszámtól függ.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "eloadas-tobbi",
+  "html": "<section class=\"ds-szekcio ds-hatter-zold\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">További programjaink</div><h2 class=\"ds-cim2\">Ezeket is meghozhatjuk hozzátok</h2></div><div class=\"ds-utak\"><a class=\"ds-ut\" href=\"/szolgaltatas/klimafresko\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfaf356d56416f62a0d9_fs-piko-otlet.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Klímafreskó</h3><p class=\"ds-szoveg\">Tudományos alapú csapatjáték a klímaváltozásról, 3 órában.</p><div class=\"ds-tovabb-nyil\">Megnézem ›</div></a><a class=\"ds-ut\" href=\"/szolgaltatas/zold-kviz-okomuki\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcf7d46bae73bbde8f3de_fs-piko-kupa.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Zöld kvíz és ÖkoMuki</h3><p class=\"ds-szoveg\">Humoros, versengő csapatjáték 10–250 főnek, Kahoot alapon.</p><div class=\"ds-tovabb-nyil\">Megnézem ›</div></a><a class=\"ds-ut\" href=\"/szolgaltatas/csere-bere-szervezes\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfb0356d56416f62a171_fs-piko-sziv.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Csere-bere</h3><p class=\"ds-szoveg\">Ruha-, könyv-, palánta- és játékcsere, családbarát hangulatban.</p><div class=\"ds-tovabb-nyil\">Megnézem ›</div></a></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "komp:ajanlatkeres",
+  "html": "",
+  "css": "",
+  "komponens": "ajanlatkeres",
+  "komponens_id": "18b953bc-5dbc-c820-52fc-b872c83459cb"
+ },
+ {
+  "nev": "komp:ajanlatok",
+  "html": "",
+  "css": "",
+  "komponens": "ajanlatok",
+  "komponens_id": "4a8cf67e-8a4c-11c0-c7b0-d9ee058d623c"
+ }
+]

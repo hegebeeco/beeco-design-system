@@ -234,7 +234,140 @@ H_URLAP = ('<section class="ds-szekcio ds-hatter-vaj" id="ajanlatkeres"><div cla
 
 HUB = [('h-hero', H_HERO), ('h-miert', H_MIERT), ('h-piller', H_PILLER), ('h-melyik', H_MELYIK), ('h-ajanlat', H_AJANLAT), ('h-letra', H_LETRA),
        ('h-lepes', H_LEPES), ('h-jelentes', H_JELENTES), ('h-szam', H_SZAM), ('h-eset', H_ESET), ('h-gyik', H_GYIK), ('h-urlap', H_URLAP)]
+# 2026-10-15 óta: a h-ajanlat a „DS · Céges ajánlatok”, a h-urlap a „DS · Ajánlatkérés” komponens forrása (a Hubon is példányként él);
+# a h-eset után a „DS · Szakmai partnerek” példánya áll. Komponens-tartalom módosítása: a Designerben a komponensen, és itt is.
 # a „Szakmai partnerek” a h-eset után a meglévő DS · Szakmai partnerek komponens példánya (nem generált HTML)
+
+
+# ---------------- KOMPONENSEK ÉS OLDALSABLONOK (sales + esemény) ----------------
+KOMP = {'ajanlatkeres': '18b953bc-5dbc-c820-52fc-b872c83459cb',   # DS · Ajánlatkérés (natív űrlap, #ajanlatkeres)
+        'ajanlatok': '4a8cf67e-8a4c-11c0-c7b0-d9ee058d623c',      # DS · Céges ajánlatok (hét ajánlat + egyedi)
+        'partnerek': 'cdfb35c0-e352-6c29-76b4-fc2abedce5a9'}      # DS · Szakmai partnerek
+MIND = {}
+KOMP_CIM = {'ajanlatkeres': 'Kérj ajánlatot, és indítsuk el a rajt', 'ajanlatok': 'Hét ajánlat, egy közös mérce', 'partnerek': 'Velünk dolgoznak'}
+komp = lambda k: ('komp:' + k, '')  # a beszúró ügynök ide a komponens példányát teszi
+
+def fotourl(url, alt, felirat='', extra=''):
+    return (f'<figure class="ds-foto{extra}"><img class="ds-foto-kep" src="{G.cdn2s3(url)}" alt="{e(alt)}" loading="lazy">'
+            + (f'<figcaption class="ds-foto-felirat">{e(felirat)}</figcaption>' if felirat else '') + '</figure>')
+def kep(k, alt, felirat='', extra=''):
+    return foto(k, alt, felirat, extra) if k in G.KEP else fotourl(k, alt, felirat, extra)
+
+def jelentes_kartya(cim, alcim, szamok, modszer, mondhatod, keruld, cimke='Hatásjelentés · Minta'):
+    return (f'<div class="ds-jelentes"><div class="ds-jelentes-fej"><div class="ds-grafikon-felirat">{e(cimke)}</div>'
+            f'<h3 class="ds-cim3">{e(cim)}</h3><p class="ds-szoveg">{e(alcim)}</p></div>'
+            '<div class="ds-jelentes-szamok">' + ''.join(f'<div class="ds-jelentes-szam"><div class="ds-jelentes-ertek">{a}</div><div class="ds-szoveg">{e(b)}</div></div>' for a, b in szamok) + '</div>'
+            f'<p class="ds-szoveg"><strong>Módszer:</strong> {e(modszer)}</p>'
+            f'<p class="ds-allitas"><strong>Mondhatod:</strong> „{e(mondhatod)}”</p>'
+            f'<p class="ds-allitas ds-allitas-kerul"><strong>Kerüld:</strong> {e(keruld)}</p>'
+            '<p class="ds-forras">A számok mintaadatok, nem valódi ügyfél eredményei.</p></div>')
+
+def hero(c):
+    gombok = gomb(AJ, 'Ajánlatot kérek', 'hero') + (gomb(c['gomb2'][0], c['gomb2'][1], 'hero-2', True) if c.get('gomb2') else '')
+    return ('<section class="ds-szekcio ds-hatter-vaj" id="kezdes"><div class="ds-burok ds-hero-racs"><div class="ds-hero-szoveg">'
+            f'<div class="ds-szalag">{e(c["szalag"])}</div><h1 class="ds-cim1">{c["h1"]}</h1><p class="ds-lead">{e(c["lead"])}</p>'
+            f'<div class="ds-gombsor">{gombok}</div>'
+            '<div class="ds-chipsor">' + ''.join(f'<div class="ds-chip">{e(x)}</div>' for x in c['chipek']) + '</div>'
+            '</div>' + kep(*c['foto'], extra=' ds-hero-foto') + '</div></section>')
+
+def szekcio(hatter, fejresz, tartalom, sid=''):
+    return (f'<section class="ds-szekcio{(" ds-hatter-" + hatter) if hatter else ""}"{(" id=" + chr(34) + sid + chr(34)) if sid else ""}><div class="ds-burok">'
+            + fej(*fejresz) + tartalom + '</div></section>')
+
+def jelentes_szekcio(j, hatter='feher'):
+    pontok = j.get('pontok', ['Mért adatok, forrással és módszerrel', 'Kapcsolódás az SDG-khez és a VSME-adatpontokhoz', 'Kész mondatok, amiket jogszerűen használhatsz'])
+    return (f'<section class="ds-szekcio ds-hatter-{hatter}" id="hatasjelentes"><div class="ds-burok ds-ketto"><div class="ds-hero-szoveg">'
+            f'<div class="ds-szalag">{e(j.get("szalag", "Hatásjelentés"))}</div><h2 class="ds-cim2">{e(j.get("h2", "Ezt kapod a végén"))}</h2><p class="ds-lead">{e(j["lead"])}</p>'
+            '<ul class="ds-csomag-lista">' + ''.join(f'<li class="ds-csomag-elem"><span class="ds-csomag-pipa">✓</span><span>{e(x)}</span></li>' for x in pontok) + '</ul></div>'
+            + jelentes_kartya(j['cim'], j['alcim'], j['szamok'], j['modszer'], j['mondhatod'], j['keruld'], j.get('cimke', 'Hatásjelentés · Minta')) + '</div></section>')
+
+def szamsav(kulcsok, h2='Amit eddig közösen elértünk'):
+    return ('<section class="ds-szekcio ds-hatter-sotet"><div class="ds-burok"><div class="ds-szekcio-fej"><div class="ds-szalag">Bizonyíték</div>'
+            f'<h2 class="ds-cim2">{e(h2)}</h2></div><div class="ds-szamsav">'
+            + ''.join(f'<div class="ds-szam"><div class="ds-szam-ertek">{e(N(k))}</div><div class="ds-szam-felirat">{e(N(k, "felirat"))}</div></div>' for k in kulcsok)
+            + '</div><p class="ds-forras ds-forras-sotet">Források: ' + e('; '.join(dict.fromkeys(SZAM[k]['forras'] for k in kulcsok))) + '.</p></div></section>')
+
+VELEMENY = {  # nyilvános vélemények a Zöld programok oldalról (szó szerint, rövidítve teljes mondatoknál)
+ 'bdo': ('67475aeb8c6df902b90dc8ae_1611324326865.avif', 'Veisz Ákos', 'BDO Magyarország', 'A csapatunk fantasztikusan érezte magát ezen az inspiráló workshopon! ESG szakértőként is gazdagodtunk új értékes információval és összefüggéssel, amelyek még inkább elmélyítették a témával kapcsolatos tudásunkat.'),
+ 'kh': ('67475685bb98093ff6c4fd28_1659097332559.avif', 'Suba Levente', 'K&H Csoport, fenntarthatósági vezető', 'A Klímafreskó egy sokkal alaposabb megértést adott nekünk a téma hátteréről, ami egyértelműen hasznunkra vált, közben pedig jól szórakoztunk, ami legalább olyan fontos volt, mint a tudományos ismeretterjesztés.'),
+ 'unicef': ('691fafe7a046c18000bd6c53_Ke%CC%81pernyo%CC%8Bfoto%CC%81%202025-11-21%20-%201.18.31.avif', 'Makara Eszter', 'UNICEF, Klímahősök program', 'Nem száraz, egyoldalú, hanem humoros és interaktív foglalkozásokkal segíti a zöldebb, ökologikusabb életmód bemutatását. Segítik aktivizálni a hallgatóságot.'),
+ 'obuda': ('67d859012b7d3ebb3141c233_00231670.avif', 'Nagy Réka', 'ÖkoAnyu, Óbudai Egyetem', 'Kristóf csapata csodásan megtartotta a Klíma Freskót, holott talán még sosem dolgoztak ennyi fiatallal egyszerre, de sikerült jó emléket hagyniuk a hallgatókban.'),
+}
+def velemenyek(kulcsok, h2='Akik már játszottak velünk'):
+    return szekcio('feher', ('Rólunk mondták', h2), '<div class="ds-ketto">' + ''.join(
+        f'<div class="ds-kartya ds-tanacsado"><img class="ds-tanacsado-foto" src="{G.S3}{VELEMENY[k][0]}" alt="{e(VELEMENY[k][1])} portréja" loading="lazy"><div class="ds-dij-test">'
+        f'<div class="ds-ember-nev">{e(VELEMENY[k][1])}</div><div class="ds-ember-szerep">{e(VELEMENY[k][2])}</div><p class="ds-szoveg">„{e(VELEMENY[k][3])}”</p></div></div>' for k in kulcsok) + '</div>', 'velemenyek')
+
+def programkartyak(c, mind):
+    return szekcio('', ('Programjaink', c['programok_h2'], c.get('programok_lead', '')), '<div class="ds-utak">' + ''.join(
+        ajanlat(SZ + mind[k]['slug'], mind[k]['piko'], mind[k]['rovidnev'], mind[k]['kartya'], mind[k].get('ar_kartya', 'Kérj ajánlatot'), 'Megnézem', 'program-' + k) for k in c['programok']) + '</div>', 'programok')
+
+def sales_oldal(c):
+    sz = [(c['k'] + '-hero', hero(c))]
+    if c.get('miert'):
+        m = c['miert']
+        sz.append((c['k'] + '-miert', szekcio('feher', ('Miért most', m['h2'], m.get('lead', '')),
+            '<div class="ds-ketto">' + ''.join(f'<div class="ds-kartya"><h3 class="ds-cim3">{e(t)}</h3><p class="ds-szoveg">{e(x)}</p>'
+            + (f'<p class="ds-forras"><a class="ds-szoveglink" href="{u}" target="_blank" rel="noopener">{e(f)} ›</a></p>' if u else '') + '</div>' for t, x, u, f in m['kartyak']) + '</div>', 'miert')))
+    if c.get('programok'): sz.append((c['k'] + '-programok', programkartyak(c, MIND)))
+    k = c['kap']; sz.append((c['k'] + '-kap', szekcio('', ('Mit kapsz', k['h2'], k.get('lead', '')), kartya3(k['items']))))
+    l = c['lepes']; sz.append((c['k'] + '-lepes', szekcio('zold', ('Hogyan működik', l['h2']), lepesek(l['items']))))
+    cs = c['csomag']; sz.append((c['k'] + '-csomag', szekcio('', ('Csomagok', cs['h2'], cs.get('lead', '')),
+        '<div class="ds-csomagok">' + ''.join(csomag(*x[:4], c['k'] + '-' + x[0].lower(), kiem=(i == 1)) for i, x in enumerate(cs['items'])) + '</div>'
+        + (f'<p class="ds-megjegyzes">{cs["megjegyzes"]}</p>' if cs.get('megjegyzes') else ''), 'csomagok')))
+    sz.append((c['k'] + '-jelentes', jelentes_szekcio(c['jelentes'])))
+    if c.get('szamok'): sz.append((c['k'] + '-szam', szamsav(c['szamok'])))
+    for x in c.get('extra', []):  # 'eset' = Vízadás-esettanulmány, 'velemenyek', 'partnerek' = DS · Szakmai partnerek komponens
+        if x == 'eset': sz.append((c['k'] + '-eset', H_ESET))
+        elif x == 'velemenyek': sz.append((c['k'] + '-velemeny', velemenyek(c['velemenyek'])))
+        else: sz.append(komp(x))
+    sz.append((c['k'] + '-gyik', szekcio('feher', ('Gyakori kérdések', c.get('gyik_h2', 'Mielőtt ajánlatot kérsz')), gyik(c['gyik']), 'gyik')))
+    return sz + [komp('ajanlatkeres'), komp('ajanlatok')]
+
+def esemeny_oldal(c, mind):
+    sz = [(c['k'] + '-hero', hero(c))]
+    m = c['mi']
+    sz.append((c['k'] + '-mi', '<section class="ds-szekcio ds-hatter-feher" id="mi-ez"><div class="ds-burok ds-ketto"><div class="ds-hero-szoveg">'
+        f'<div class="ds-szalag">{e(m.get("szalag", "Mi ez?"))}</div><h2 class="ds-cim2">{e(m["h2"])}</h2>'
+        + ''.join(f'<p class="ds-szoveg">{x}</p>' for x in m['bekezdesek']) + '</div>' + kep(*m['foto']) + '</div></section>'))
+    sz.append((c['k'] + '-kap', szekcio('', ('Mit ad a csapatodnak', c['kap']['h2']), kartya3(c['kap']['items']))))
+    sz.append((c['k'] + '-menet', szekcio('zold', ('Így zajlik', c['menet']['h2'], c['menet'].get('lead', '')), lepesek(c['menet']['items']), 'menet')))
+    if c.get('galeria'):
+        sz.append((c['k'] + '-galeria', szekcio('feher', ('Galéria', c.get('galeria_h2', 'Így néz ki élőben')),
+            '<div class="ds-harom">' + ''.join(kep(u, a, '', ' ds-hogyan-foto') for u, a in c['galeria']) + '</div>')))
+    if c.get('velemenyek'): sz.append((c['k'] + '-velemeny', velemenyek(c['velemenyek'])))
+    if c.get('csomag'):
+        cs = c['csomag']; sz.append((c['k'] + '-csomag', szekcio('', ('Árak', cs['h2'], cs.get('lead', '')),
+            '<div class="ds-csomagok">' + ''.join(csomag(*x[:4], c['k'] + '-' + x[0].lower(), kiem=(i == 1)) for i, x in enumerate(cs['items'])) + '</div>'
+            + '<p class="ds-megjegyzes"><strong>Hatásjelentés:</strong> minden programhoz jár egy rövid jelentés a résztvevők számával, a témákkal és kész mondatokkal a belső kommunikációhoz. <a class="ds-szoveglink" href="/szolgaltatas/cegeknek#hatasjelentes">Mintajelentés ›</a></p>', 'arak')))
+    sz.append((c['k'] + '-gyik', szekcio('feher', ('Gyakori kérdések', c.get('gyik_h2', 'Amit a szervezők kérdezni szoktak')), gyik(c['gyik']), 'gyik')))
+    tobbi = [mind[x] for x in c['kapcsolodo']]
+    sz.append((c['k'] + '-tobbi', szekcio('zold', ('További programjaink', 'Ezeket is meghozhatjuk hozzátok'),
+        '<div class="ds-utak">' + ''.join(ut(SZ + t['slug'], t['piko'], t['rovidnev'], t['kartya'], 'Megnézem') for t in tobbi) + '</div>')))
+    return sz + [komp('ajanlatkeres'), komp('ajanlatok')]
+
+def seo(c, tipus):
+    import json as J
+    faq = [{'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': re.sub(r'<[^>]+>', '', a)}} for q, a in c['gyik']]
+    szolg = {'@type': 'Service', 'name': c['seo_nev'], 'description': c['leiras'], 'serviceType': c.get('tipus', tipus), 'areaServed': {'@type': 'Country', 'name': 'Magyarország'},
+             'provider': {'@type': 'Organization', 'name': 'beeco', 'url': 'https://www.beeco.hu', 'logo': 'https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/655512ff22c587d4c7112378_linear%20logo.svg'},
+             'url': 'https://www.beeco.hu/szolgaltatas/' + c['slug']}
+    if c.get('ar_tol'): szolg['offers'] = {'@type': 'Offer', 'priceCurrency': 'HUF', 'price': str(c['ar_tol']), 'description': f'{c["ar_tol"]:,} Ft-tól'.replace(',', ' ')}
+    morzsa = {'@type': 'BreadcrumbList', 'itemListElement': [
+        {'@type': 'ListItem', 'position': 1, 'name': 'beeco', 'item': 'https://www.beeco.hu/'},
+        {'@type': 'ListItem', 'position': 2, 'name': 'Cégeknek és településeknek', 'item': 'https://www.beeco.hu/szolgaltatas/cegeknek'},
+        {'@type': 'ListItem', 'position': 3, 'name': c['seo_nev'], 'item': 'https://www.beeco.hu/szolgaltatas/' + c['slug']}]}
+    return {'slug_vegleges': c['slug'], 'slug_draft': c['slug'] + '-draft', 'cim': c['cim'], 'leiras': c['leiras'],
+            'jsonld': J.dumps({'@context': 'https://schema.org', '@graph': [szolg, {'@type': 'FAQPage', 'mainEntity': faq}, morzsa]}, ensure_ascii=False)}
+
+def kiir(nev, szekciok, meta):
+    ki = ellenoriz(nev, szekciok)
+    for a in ki:
+        if a['nev'].startswith('komp:'):
+            kk = a['nev'][5:]; a.update({'komponens': kk, 'komponens_id': KOMP[kk], 'html': '', 'css': ''})
+    meta['kihagy'] = [KOMP_CIM[a['komponens']] for a in ki if a.get('komponens')]
+    json.dump(ki, open(os.path.join(OUT, nev + '.json'), 'w'), ensure_ascii=False, indent=1)
+    json.dump(meta, open(os.path.join(OUT, nev + '-meta.json'), 'w'), ensure_ascii=False, indent=1)
 
 # ---------------- ELLENŐRZÉS ----------------
 def ellenoriz(nev, szekciok):
@@ -258,3 +391,15 @@ def ellenoriz(nev, szekciok):
 
 if __name__ == '__main__':
     ellenoriz('hub', HUB)
+    # a Hub óta minden B2B-osztály létezik a Webflow-ban: az új oldalak CSS-t már nem küldenek (különben felülírnák a kézi javításokat)
+    LETEZO.update(c for _, h in HUB for x in re.findall(r'class="([^"]+)"', h) for c in x.split())
+    try:
+        import oldalak as O
+    except ImportError:
+        O = None
+    if O:
+        mind = {c['k']: c for c in O.ESEMENY}; MIND.update(mind)
+        for c in O.SALES: kiir(c['k'], sales_oldal(c), seo(c, 'B2B'))
+        for c in O.ESEMENY: kiir(c['k'], esemeny_oldal(c, mind), seo(c, 'Céges program'))
+        json.dump([{'oldal': c['k'], 'slug_vegleges': '/szolgaltatas/' + c['slug'], 'slug_draft': '/szolgaltatas/' + c['slug'] + '-draft', 'cim': c['cim']}
+                   for c in O.SALES + O.ESEMENY], open(os.path.join(OUT, 'oldalterkep.json'), 'w'), ensure_ascii=False, indent=1)

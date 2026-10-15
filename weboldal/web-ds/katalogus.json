@@ -100,6 +100,58 @@
   "cegeknek": {
    "nev": "Cégeknek és településeknek",
    "url": "/szolgaltatas/cegeknek-draft"
+  },
+  "onk": {
+   "nev": "Önkormányzatoknak: lakossági faöntözés és zöld programok",
+   "url": "/szolgaltatas/onkormanyzatoknak-draft"
+  },
+  "work": {
+   "nev": "beeco@work: munkahelyi zöld program havi Hatásjelentéssel",
+   "url": "/szolgaltatas/beeco-at-work-draft"
+  },
+  "madar": {
+   "nev": "Madárraj: céges csapatnap odúkészítéssel és madársétával",
+   "url": "/szolgaltatas/madarraj-draft"
+  },
+  "locsolo": {
+   "nev": "Locsolóraj: céges faöntöző csapatnap az Önkéntes Vízadásban",
+   "url": "/szolgaltatas/locsoloraj-draft"
+  },
+  "programok": {
+   "nev": "Zöld céges programok és csapatépítők nagyvállalatoknak",
+   "url": "/szolgaltatas/zold-esemeny-szervezes-draft"
+  },
+  "partner": {
+   "nev": "Partnerprogram zöld vállalkozásoknak: térkép, kupon, analitika",
+   "url": "/szolgaltatas/partner-draft"
+  },
+  "marketing": {
+   "nev": "Zöld marketing fenntartható márkáknak, igazolt állításokkal",
+   "url": "/szolgaltatas/zold-marketing-draft"
+  },
+  "fresk": {
+   "nev": "Klímafreskó workshop cégeknek és csapatoknak",
+   "url": "/szolgaltatas/klimafresko-draft"
+  },
+  "jatek": {
+   "nev": "3D zöld játékok rendezvényre, standra, csapatnapra",
+   "url": "/szolgaltatas/3d-zold-jatekok-draft"
+  },
+  "diy": {
+   "nev": "Kézműves és DIY workshop cégeknek",
+   "url": "/szolgaltatas/kezmuves-workshop-draft"
+  },
+  "kviz": {
+   "nev": "Zöld kvíz és ÖkoMuki csapatjáték cégeknek",
+   "url": "/szolgaltatas/zold-kviz-okomuki-draft"
+  },
+  "csere": {
+   "nev": "Csere-bere szervezés cégeknek és közösségeknek",
+   "url": "/szolgaltatas/csere-bere-szervezes-draft"
+  },
+  "eloadas": {
+   "nev": "Fenntarthatósági előadás, filmklub, kerekasztal cégeknek",
+   "url": "/szolgaltatas/zold-eloadas-filmklub-draft"
   }
  },
  "osztalyok": {
@@ -107,7 +159,14 @@
    "csoport": "B2B-blokkok",
    "csalad": "Hatásjelentés (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
    ],
    "css": {
     "alap": {
@@ -119,7 +178,14 @@
    "csoport": "B2B-blokkok",
    "csalad": "Hatásjelentés (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
    ],
    "css": {
     "alap": {
@@ -148,7 +214,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -167,7 +246,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -183,7 +275,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -251,7 +356,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -273,7 +391,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -295,7 +426,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -319,7 +463,20 @@
    "csoport": "B2B-blokkok",
    "csalad": "Csomagok (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -331,7 +488,20 @@
    "csoport": "B2B-blokkok",
    "csalad": "Csomagok (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -343,7 +513,20 @@
    "csoport": "B2B-blokkok",
    "csalad": "Csomagok (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -355,7 +538,20 @@
    "csoport": "B2B-blokkok",
    "csalad": "Csomagok (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -370,7 +566,20 @@
    "csoport": "B2B-blokkok",
    "csalad": "Csomagok (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -382,7 +591,20 @@
    "csoport": "B2B-blokkok",
    "csalad": "Csomagok (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -394,7 +616,20 @@
    "csoport": "B2B-blokkok",
    "csalad": "Csomagok (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -458,7 +693,9 @@
    "csalad": "Díjak",
    "oldalak": [
     "hatasunk",
-    "csapatunk"
+    "csapatunk",
+    "programok",
+    "fresk"
    ],
    "css": {
     "alap": {
@@ -530,7 +767,9 @@
    "csoport": "Csapat-blokkok",
    "csalad": "Emberek és rajok",
    "oldalak": [
-    "csapatunk"
+    "csapatunk",
+    "programok",
+    "fresk"
    ],
    "css": {
     "alap": {
@@ -542,7 +781,9 @@
    "csoport": "Csapat-blokkok",
    "csalad": "Emberek és rajok",
    "oldalak": [
-    "csapatunk"
+    "csapatunk",
+    "programok",
+    "fresk"
    ],
    "css": {
     "alap": {
@@ -572,7 +813,9 @@
    "csoport": "B2B-blokkok",
    "csalad": "Lépések és eset (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "locsolo"
    ],
    "css": {
     "alap": {
@@ -587,7 +830,9 @@
    "csoport": "B2B-blokkok",
    "csalad": "Lépések és eset (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "locsolo"
    ],
    "css": {
     "alap": {
@@ -599,7 +844,9 @@
    "csoport": "B2B-blokkok",
    "csalad": "Lépések és eset (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "locsolo"
    ],
    "css": {
     "alap": {
@@ -614,7 +861,14 @@
     "rolunk",
     "hatasunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
    ],
    "css": {
     "alap": {
@@ -629,7 +883,12 @@
     "rolunk",
     "hatasunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "locsolo",
+    "programok",
+    "partner"
    ],
    "css": {
     "alap": {
@@ -644,7 +903,20 @@
     "rolunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -659,7 +931,20 @@
     "rolunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -674,7 +959,20 @@
     "rolunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -690,7 +988,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -708,7 +1019,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -735,7 +1059,20 @@
    "oldalak": [
     "hatasunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -747,7 +1084,9 @@
    "csoport": "B2B-blokkok",
    "csalad": "Számok és grafikon",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "locsolo"
    ],
    "css": {
     "alap": {
@@ -759,7 +1098,20 @@
    "csoport": "B2B-blokkok",
    "csalad": "Számok és grafikon",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -774,7 +1126,20 @@
     "rolunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -793,7 +1158,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -808,7 +1186,12 @@
     "rolunk",
     "hatasunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "locsolo",
+    "programok",
+    "partner"
    ],
    "css": {
     "alap": {
@@ -824,7 +1207,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -840,7 +1236,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -855,7 +1264,20 @@
     "rolunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -871,7 +1293,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -890,7 +1325,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -902,7 +1350,10 @@
    "csoport": "Csapat-blokkok",
    "csalad": "Fotó",
    "oldalak": [
-    "csapatunk"
+    "csapatunk",
+    "fresk",
+    "jatek",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1091,7 +1542,14 @@
    "csoport": "B2B-blokkok",
    "csalad": "Hatásjelentés (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
    ],
    "css": {
     "alap": {
@@ -1106,7 +1564,14 @@
    "csoport": "B2B-blokkok",
    "csalad": "Hatásjelentés (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
    ],
    "css": {
     "alap": {
@@ -1118,7 +1583,14 @@
    "csoport": "B2B-blokkok",
    "csalad": "Hatásjelentés (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
    ],
    "css": {
     "alap": {
@@ -1130,7 +1602,14 @@
    "csoport": "B2B-blokkok",
    "csalad": "Hatásjelentés (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
    ],
    "css": {
     "alap": {
@@ -1142,7 +1621,14 @@
    "csoport": "B2B-blokkok",
    "csalad": "Hatásjelentés (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
    ],
    "css": {
     "alap": {
@@ -1172,7 +1658,20 @@
     "rolunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1188,7 +1687,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1203,7 +1715,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1222,7 +1747,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1238,7 +1776,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1253,7 +1804,20 @@
    "csoport": "B2B-blokkok",
    "csalad": "Lépések és eset (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1265,7 +1829,20 @@
    "csoport": "B2B-blokkok",
    "csalad": "Lépések és eset (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1277,7 +1854,20 @@
    "csoport": "B2B-blokkok",
    "csalad": "Lépések és eset (B2B)",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1408,7 +1998,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1421,7 +2024,15 @@
    "csalad": "Tipográfia",
    "oldalak": [
     "hatasunk",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "partner",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1651,7 +2262,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1666,7 +2290,12 @@
     "rolunk",
     "hatasunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "locsolo",
+    "programok",
+    "partner"
    ],
    "css": {
     "alap": {
@@ -1681,7 +2310,12 @@
     "rolunk",
     "hatasunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "locsolo",
+    "programok",
+    "partner"
    ],
    "css": {
     "alap": {
@@ -1699,7 +2333,12 @@
     "rolunk",
     "hatasunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "locsolo",
+    "programok",
+    "partner"
    ],
    "css": {
     "alap": {
@@ -1714,7 +2353,12 @@
     "rolunk",
     "hatasunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "locsolo",
+    "programok",
+    "partner"
    ],
    "css": {
     "alap": {
@@ -1736,7 +2380,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1758,7 +2415,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1777,7 +2447,20 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1805,7 +2488,17 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "onk",
+    "work",
+    "locsolo",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1818,7 +2511,9 @@
    "csoport": "Csapat-blokkok",
    "csalad": "Emberek és rajok",
    "oldalak": [
-    "csapatunk"
+    "csapatunk",
+    "programok",
+    "fresk"
    ],
    "css": {
     "alap": {
@@ -1833,7 +2528,9 @@
    "csoport": "Csapat-blokkok",
    "csalad": "Emberek és rajok",
    "oldalak": [
-    "csapatunk"
+    "csapatunk",
+    "programok",
+    "fresk"
    ],
    "css": {
     "alap": {
@@ -1895,7 +2592,14 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "programok",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1965,7 +2669,14 @@
     "hatasunk",
     "csapatunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "programok",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
@@ -1978,7 +2689,8 @@
    "csoport": "B2B-blokkok",
    "csalad": "Kártyák és utak",
    "oldalak": [
-    "cegeknek"
+    "cegeknek",
+    "programok"
    ],
    "css": {
     "alap": {
@@ -2019,7 +2731,14 @@
    "oldalak": [
     "hatasunk",
     "en",
-    "cegeknek"
+    "cegeknek",
+    "programok",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
    ],
    "css": {
     "alap": {
