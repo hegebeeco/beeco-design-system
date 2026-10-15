@@ -20,7 +20,8 @@ R4 = lambda a, b: f'border-top-left-radius:{a};border-top-right-radius:{b};borde
 P4 = lambda t, r, b, l: f'padding-top:{t};padding-right:{r};padding-bottom:{b};padding-left:{l};'
 
 # ---- képek (a Webflow-médiatárban lévők) ----
-FORRAS = json.load(open('/private/tmp/claude-501/-Users-hexymekszi-Library-Application-Support-Claude-scratch-workspaces-3b732aa3-d8da-433f-bbbd-17160424a82b-6645bbbc-eae3-43ac-8ac0-e996f66bbd87-scratch-2026-09-09-abf9d1/ce8b1005-f489-44d2-97e0-4ccad978e140/scratchpad/rolunk/forras.json'))
+ADAT = os.path.join(D, '..', 'web-ds', 'adat')
+FORRAS = json.load(open(os.path.join(ADAT, 'kepek.json')))  # a Webflow-médiatár képei (kulcs → CDN-URL)
 KEP = {k: cdn2s3(v) for k, v in FORRAS.items()}
 KEP['one-dij'] = S3 + '6ad0cd23743dc00b7ce65c3b_rolunk-one-dij-2025.webp'
 PIKO = {'lab': '6acdcf5d31a1079e200f1faa', 'csepp': '6acdcf7ba358827ed21560fa', 'otlet': None, 'sziv': None}
@@ -28,11 +29,8 @@ NAVGEN = open(os.path.join(D, '..', 'kozos', 'navigacio', 'gen.py')).read()
 PIKO = dict(re.findall(r"'([a-z]+)': '([0-9a-f]{24})'", NAVGEN.split('PIKO = {', 1)[1].split('}', 1)[0]))
 PIKO['raj'] = '6acdcfb0f2f41b180badebb7'
 pk = lambda n, c: f'<img class="{c}" src="{S3}{PIKO[n]}_fs-piko-{n}.svg" alt="" loading="lazy">'
-# partner- és sajtólogók a főoldal-draft HTML-jéből
-FO = open('/tmp/fs/nat/eredeti.html').read()
-LOGO = {}
-for m in re.finditer(r'<img[^>]*class="[^"]*fs-logo-kep[^"]*"[^>]*>', FO):
-    t = m.group(0); LOGO[H.unescape(re.search(r'alt="([^"]*)"', t).group(1))] = cdn2s3(H.unescape(re.search(r'src="([^"]+)"', t).group(1)))
+# partner- és sajtólogók (alt → URL), a főoldal-draft logósorából kigyűjtve
+LOGO = {k: cdn2s3(v) for k, v in json.load(open(os.path.join(ADAT, 'logok.json'))).items()}
 
 def css(sz):
     ki = []

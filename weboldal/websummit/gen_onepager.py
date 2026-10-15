@@ -6,10 +6,7 @@ g = open(os.path.join(D, '..', 'kozos', 'navigacio', 'gen.py')).read()
 PIKO = dict(re.findall(r"'([a-z]+)': '([0-9a-f]{24})'", g.split('PIKO = {', 1)[1].split('}', 1)[0])); PIKO['raj'] = '6acdcfb0f2f41b180badebb7'
 pk = lambda n: f'{CDN}{PIKO[n]}_fs-piko-{n}.svg'
 LOGO_BEECO = CDN + '655512ff22c587d4c7112378_linear%20logo.svg'
-FO = open('/tmp/fs/nat/eredeti.html').read()
-LOGO = {}
-for m in re.finditer(r'<img[^>]*class="[^"]*fs-logo-kep[^"]*"[^>]*>', FO):
-    t = m.group(0); LOGO[H.unescape(re.search(r'alt="([^"]*)"', t).group(1))] = H.unescape(re.search(r'src="([^"]+)"', t).group(1))
+LOGO = json.load(open(os.path.join(D, '..', 'web-ds', 'adat', 'logok.json')))  # alt → URL, a főoldal logósorából
 QR = open(os.path.join(D, 'qr-en.svg')).read()
 e = lambda s: H.escape(s)
 AJANLAT = [('telefon', 'beeco@work', 'Your team in the app: green challenges, shared footprint, nectar competitions, monthly Impact Report.'),

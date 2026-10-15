@@ -11,6 +11,14 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## Készül
+
+* **Web DS – natív Webflow-blokkok** (`docs/web-ds.md`, `weboldal/web-ds/`): a beeco.hu új oldalainak (Főoldal Szuperhős, Rólunk, Csapatunk, Hatásunk, /en, Cégeknek és településeknek) 133 `ds-` osztálya egy katalógusban (`KATALOGUS.md`, `katalogus.json`, önálló `ds-blokkok.css`), generálva a `katalogus.py`-val (`--check` mód). Webflow-komponensek és propjaik (NAVBAR_OT_AJTO Egyszerű variáns + nyelvi és EN gomb propok, LABLEC_ZARO, DS · Szakmai partnerek, DS · Csatlakozz a rajhoz), oldal-azonosítók, buktatók, döntésre váró pontok (`ds-` és `bc-` átfedés, hat csak-Webflow változó).
+* **B2B-generátor** (`weboldal/b2b/gen_b2b.py`, `szamok.json`): új blokkok `ds-csomag` (Belépő / Mag / Partnerség), `ds-lepesek`, `ds-eset`, `ds-jelentes` (Hatásjelentés-minta), natív ajánlatkérő űrlap (`ds-urlap`); egyetlen számforrás gépi ellenőrzéssel. Első oldal: Cégeknek és településeknek (hub).
+* **Web Summit:** angol /en oldal (E szekciók), egyoldalas PDF (`weboldal/websummit/`).
+* **Tesztek** (`weboldal/web-ds/teszt/`): `gombteszt.cjs` (horgony, előzmény, linkek; Chromium + WebKit, asztal + mobil), `oldalkep.cjs` (képernyőkép, kilógás, törött kép, JS-hiba), `szovegdiff.cjs` (élő szöveg ↔ generátor).
+* A generátorok a repóból futnak: a kép- és logólista `weboldal/web-ds/adat/` alá került (eddig ideiglenes fájlokból olvastak).
+
 ## 1.55.0 – 2026-10-15 – Mobil visszaírás (Javaslat 27): közös ikonkészlet (42), halvány méz, bronz rangszín, mobil puha árnyék, sötét állapot-skála
 
 **Mobil visszaírás (Javaslat 27, `docs/javaslatok/27-mobil-visszairas.md`)** – Kristóf döntése 2026-10-15 (C-27 B, C-6 B, C-3 A, adatszínek). MELLÉK, csak bővítés: nincs átnevezés, nincs törlés, nincs értékváltozás (`api-check` zöld). A mobil app (Flutter, privát `beeco_ds` csomag) ezeket a `dist/dart/beeco_tokens.dart` szinkronjával veszi át.
