@@ -132,7 +132,7 @@ SALES += [
   szalag='Locsolóraj · júniustól szeptemberig', h1=K('Csapatnap, ami [fákat ment]'),
   lead='Öntözzétek a környék fiatal fáit a kollégákkal munka előtt, közben vagy után, az ország első közösségi faöntöző kampányában. Az appban látjátok a szomjas fákat, minden mást mi készítünk elő.',
   gomb2=('#csomagok', 'Csomagok'), chipek=['Júniustól szeptemberig', N('vizadas_liter') + ' liter víz 2026-ban', 'Névadó támogató 2026: E.ON'],
-  foto=(CDN + '68fe93f9435fbeb9f73fcd83_552734046_785087530829592_1133945939025093519_n.avif', 'Vidám csoport zöld fák alatt egy locsolónapon', 'Önkéntes Vízadás'),
+  foto=(CDN + '6ad10e53219a8f817905a826_vizadas-csoportkep-1200.webp', 'Vidám csoport zöld fák alatt egy locsolónapon', 'Önkéntes Vízadás'),
   miert=dict(h2='Egy fa, egy kanna, egy csapat', kartyak=[
     ('A fiatal fák nyáron szomjaznak', 'Egy fiatal fa egy öntözéskor körülbelül 50 liter vizet kér. Csapatban, több körben ez könnyű, és közösségi élmény is.', None, None),
     ('Legyen a telephelyed vízvételi hely', 'Kevés a csap és a kút faöntözéshez. Ha van nálatok egy csap, a környék fáinak gondozói nálatok tölthetnek.', None, None)]),
@@ -287,7 +287,7 @@ ESEMENY = [
     'A workshop az Éghajlat-változási Kormányközi Testület (IPCC) jelentéseinek eredményein vezet végig. Ma ' + N('fresk_orszag') + ' országban játsszák, és ' + N('fresk_resztvevo') + ' résztvevője volt világszerte.',
     'Hegedűs Kristóf, a beeco alapítója eddig ' + N('klimafresko_alkalom') + ' alkalmat facilitált ' + N('klimafresko_fo') + ' résztvevőnek, vidéken és városban, kicsiknek és nagyoknak.',
     'A végén nem csak tudás marad: a csapat a saját működésére szabott, konkrét lépésekkel áll fel az asztaltól.'],
-   foto=(CDN + '67f3fff53f155df35b6f7ac3_IMG_9026.avif', 'Nyolc ember egy asztal körül, papírra ragasztott kártyákkal és rajzokkal')),
+   foto=(CDN + '6ad10e52219a8f817905a78e_fresk-IMG_9026-1200.webp', 'Nyolc ember egy asztal körül, papírra ragasztott kártyákkal és rajzokkal')),
   kap=dict(h2='Mit ad a csapatodnak?', items=[
     ('konyv', 'Mélyebb megértés', 'A klímaváltozás összefüggései tudományos alapon, közérthetően.'),
     ('raj', 'Csapatépítés', 'Mindenki elmondja, hogyan látja a témát, és együtt keresitek a megoldást.'),
@@ -297,9 +297,9 @@ ESEMENY = [
     ('Kapcsolódás', 'Teret adunk az érzéseknek: megosztjátok, mit váltott ki belőletek a játék.'),
     ('A tettek mezejére', 'Csoportos ötletbörze egyéni és közös lépésekről, a ti környezetetekre szabva.'),
     ('Összefoglaló', 'Rövid jelentés a résztvevőkről és a vállalt lépésekről, a belső kommunikációhoz.')]),
-  galeria=[(CDN + '67484bef8d3f906ad9853936_Beeco%201.avif', 'Hét ember egy asztal mögött, nagy barna papírra ragasztott kártyákkal'),
-           (CDN + '674756e56d1b0cb67b9b63d7_IMG_7690.avif', 'Négy ember egy asztal körül színes cetlikkel dolgozik'),
-           (CDN + '67f3fff51a6e4baffcabe801_IMG_9622.avif', 'Tizenegy ember egy nagy asztal mögött, papírokkal és képekkel')],
+  galeria=[(CDN + '6ad10e51a8e88fa986c6eddb_fresk-Beeco1-900.webp', 'Hét ember egy asztal mögött, nagy barna papírra ragasztott kártyákkal'),
+           (CDN + '6ad10e51c47a5a4283798283_fresk-IMG_7690-900.webp', 'Négy ember egy asztal körül színes cetlikkel dolgozik'),
+           (CDN + '6ad10e52f27016a754c9219e_fresk-IMG_9622-900.webp', 'Tizenegy ember egy nagy asztal mögött, papírokkal és képekkel')],
   velemenyek=['bdo', 'kh', 'obuda', 'unicef'],
   csomag=dict(h2='Válaszd a nektek valót', items=[
     ('Belépő', 'Klímafreskó workshop', N('ar_klimafresko'), ['3 óra, 8–50 fő', 'Tapasztalt facilitátor', 'Minden eszköz']),
@@ -320,7 +320,7 @@ ESEMENY = [
   szalag='3D zöld játékok', h1=K('Játszva tanul, aki [megáll a standnál]'),
   lead='A beeco saját fejlesztésű 3D játékaiban hulladékot szelektáltok, hűtőt rendeztek, vagy egy egész házat tesztek energiatakarékossá. Rövid körök, ranglista, kioszk mód: rendezvényre, csapatnapra és iskolába is.',
   gomb2=('https://beeco-szelektalj.netlify.app', 'Kipróbálom'), chipek=['5 perces körök', 'Kioszk mód standra', 'Ranglista', 'Magyarul és angolul'],
-  foto=(CDN + '67a89e2375dac32a2d4a57c8_IMG_8599.avif', 'Három kiállító zöld pólóban egy fa pult előtt egy rendezvényen, méhfigurákkal', 'beeco stand egy rendezvényen'),
+  foto=(CDN + '6ad10e51a8e88fa986c6edf8_websummit-stand-IMG_8599-1200.webp', 'Három kiállító zöld pólóban egy fa pult előtt egy rendezvényen, méhfigurákkal', 'beeco stand egy rendezvényen'),
   mi=dict(szalag='A játékok', h2='Válogass a játékok közül', bekezdesek=[
     '<strong>Szelektálj!</strong> Hulladékot válogattok a megfelelő kukába kertben, utcán és futószalagon. Egy szint körülbelül 5 perc.',
     '<strong>Hűtő-mester</strong> Mi kerül a hűtőbe, mi a fagyasztóba, mi járt le és mi jó még? Ketten is játszható egy képernyőn.',
@@ -336,7 +336,7 @@ ESEMENY = [
     ('Telepítés nélkül', 'Böngészőben futnak, tableten, laptopon vagy nagy kijelzőn.'),
     ('Kioszk mód', 'A stand gépein egymás után játszhatnak a látogatók.'),
     ('Eredmények', 'A nap végén összesítő a játékosokról és az eredményekről.')]),
-  galeria=[(CDN + '67a8ac788ef2d529f3a36ad5_Ke%CC%81pernyo%CC%8Bfelve%CC%81tel%20(62).avif', 'Emberek egy beltéri rendezvényen, asztalokkal és italokkal'),
+  galeria=[(CDN + '6ad10e52c4b2dd71c239a916_rendezveny-kepernyofelvetel62-900.webp', 'Emberek egy beltéri rendezvényen, asztalokkal és italokkal'),
            (CDN + '67f3fff72342139a7391bb3b_DSC_6781.avif', 'Három férfi egy asztal mögött cetlikkel, előtte beeco molinók'),
            (CDN + '67a8aadc19fcdda4383c2568_36F1F668-245B-4DF5-8E71-00CB8883E958_1_102_o.avif', 'Hat mosolygó férfi egy közös étkezésen')],
   csomag=dict(h2='Játékpont, verseny vagy saját esemény', items=[
