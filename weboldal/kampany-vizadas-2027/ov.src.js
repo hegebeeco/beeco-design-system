@@ -28,7 +28,11 @@ const helyNev = el => { const s = el.closest('section'); return (s && s.id) || '
 const kattMer = (sel, esemeny) => $$(sel, oldal).forEach(a => a.addEventListener('click', () => mer(esemeny, { hely: helyNev(a), szoveg: a.textContent.trim().slice(0, 40) })));
 kattMer('.ov-ertesito', 'ertesito_kattintas');
 /* CTA-k: a data-ov-cta érték a hely (hero, hero-b2b, csatlakozz-…, partner-…, otlet, qr) */
-$$('[data-ov-cta]', oldal).forEach(a => a.addEventListener('click', () => mer('cta_kattintas', { hely: a.getAttribute('data-ov-cta'), cel: a.getAttribute('href') || '' })));
+$$('[data-ov-cta]', oldal).forEach(a => a.addEventListener('click', () => {
+  const hely = a.getAttribute('data-ov-cta'), cel = a.getAttribute('href') || '';
+  mer('cta_kattintas', { hely, cel });
+  window.dataLayer.push({ event: 'campaign_activity_select', campaign: 'onkentes-vizadas', activity: hely, target: cel }); // közös kampány-esemény (a CsicsergŐsszel egy riportban)
+}));
 $$('.ov-kerdes', oldal).forEach(k => k.addEventListener('toggle', () => { if (k.open) mer('gyik_nyitas', { kerdes: $('summary', k).textContent }); }));
 const elso = $('.ov-kerdes', oldal); if (elso) elso.open = true;
 

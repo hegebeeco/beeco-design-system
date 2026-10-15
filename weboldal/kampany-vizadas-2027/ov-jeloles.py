@@ -33,8 +33,8 @@ SZ.append(('hero', f'''<section class="ov-hero" id="kezdes"><img class="ov-hero-
 <div class="ov-allapot"><span class="ov-allapot-pont"></span>A 2026-os szezon lezárult. Köszönjük!</div>
 <h1 class="ov-hero-cim"><span class="ov-hero-elo">Önkéntes Vízadás 2026</span><span class="ov-hero-szam">1 000 000+</span><span class="ov-kiemel">liter víz egyetlen szezon alatt</span></h1>
 <p class="ov-lead">Több mint 2 200 vízadó, több mint 7 500 fiatal fa, 15 önkormányzat. <strong>És ez csak a kezdet: 2027 májusában újra indulunk.</strong></p>
-<p class="ov-hero-berlin">Berlinben 2020 óta 2,4 millió liter gyűlt össze. Nálunk egyetlen szezon alatt több mint egymillió. <a class="ov-hero-forras" href="{GIESS}" target="_blank" rel="noopener">Forrás ›</a></p>
 <div class="ov-cta-sor"><a class="ov-gomb ov-ertesito" href="#levelke" data-ov-cta="hero">Szólj, ha indulunk!</a><a class="ov-gomb ov-gomb-masod" href="#csatlakozz-2027" data-ov-cta="hero-b2b">Hozd el hozzátok 2027-ben</a></div>
+<p class="ov-hero-berlin">Berlinben 2020 óta 2,4 millió liter gyűlt össze. Nálunk egyetlen szezon alatt több mint egymillió. <a class="ov-hero-forras" href="{GIESS}" target="_blank" rel="noopener">Forrás ›</a></p>
 <div class="ov-pecset-sor"><img class="ov-pecset" src="{A('ov-pecset.svg')}" alt=""><p class="ov-pecset-szoveg">Újra indul<strong class="ov-pecset-ev">2027 májusában</strong></p></div>
 </div>
 <div class="ov-fotok ov-hero-fotok">{''.join(f'<figure class="ov-foto ov-foto-{i+1}"><img class="ov-foto-kep" src="{S3}{f}" alt="{e(a)}"></figure>' for i, (f, a) in enumerate(HFOTO))}<img class="ov-fotok-meh" src="{A("ov-meh-baratsagos.svg")}" alt=""></div>
