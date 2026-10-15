@@ -212,3 +212,24 @@ html[data-platform="android"] .ov-csak-ios,html[data-platform="ios"] .ov-csak-an
 .ov-oldal img.ov-logo{aspect-ratio:280/129}
 .ov-oldal img.ov-varos{aspect-ratio:1443/340}
 .ov-oldal img.ov-gyik-meh{aspect-ratio:103/104}
+
+/* ---------- 2026-os záró közlemény szekciói (2026-10-15): az év vízadója, veletek tervezzük, sajtó ---------- */
+/* a szekciósorrend miatt a fogazott él színe a következő szekcióé */
+.ov-eredmeny{--kov:var(--feher)}.ov-partner{--kov:var(--feher)}.ov-addig{--kov:var(--feher)}
+.ov-hos,.ov-terv,.ov-sajto{--fog:14px;background:var(--feher)}
+.ov-hos{--kov:var(--menta)}.ov-terv{--kov:var(--kek)}.ov-sajto{--kov:var(--egkek-h)}
+.ov-hos::after,.ov-terv::after,.ov-sajto::after{content:"";position:absolute;left:0;right:0;bottom:-1px;z-index:2;height:var(--fog);background:conic-gradient(from -45deg at bottom,transparent 0deg,var(--kov) 1deg 90deg,transparent 91deg) 50%/calc(var(--fog) * 2) 100%;pointer-events:none}
+.ov-szoveg{margin-top:12px;max-width:56ch}
+.ov-hos-jobb{display:grid;gap:22px;min-width:0}
+.ov-hos-jobb .ov-idezet{margin-top:0}
+.ov-berlin{margin-top:30px;padding:18px 22px;max-width:none;background:var(--menta);border-left:6px solid var(--fazold);border-radius:6px;font-size:15px}
+.ov-otletek{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.ov-otlet{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--feher);border:2px solid var(--navy);border-radius:var(--r-k);box-shadow:4px 4px 0 var(--navy);font-weight:700}
+.ov-otlet .ov-csepp{flex:none;width:24px;height:32px}
+.ov-otlet .ov-csepp-4{background:var(--kek)}
+.ov-sajto-kartya{display:grid;justify-items:start;gap:4px;padding:24px;background:var(--egkek-h);border:2px solid var(--navy);border-radius:var(--r-k);box-shadow:5px 5px 0 var(--navy)}
+.ov-sajto-nev{font-family:var(--display);font-size:26px;line-height:1.1;color:var(--kek)}
+.ov-sajto-kartya .ov-szoveg{margin-top:0}
+.ov-eredmeny .ov-megj{color:var(--egkek-h)}
+@media (max-width:900px){.ov-hos-jobb{margin-top:8px}}
+@media (max-width:560px){.ov-berlin{padding:16px}.ov-otlet{padding:12px 14px}}

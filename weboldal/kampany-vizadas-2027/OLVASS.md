@@ -1,6 +1,6 @@
-# Önkéntes vízadás – szezonzáró oldal (2026 → 2027 tavasz)
+# Önkéntes vízadás – szezonzáró oldal (2026 → 2027 május)
 
-A 2026-os kampány lezárult (2026.06.01.–09.30.), a kampány 2027 tavaszán indul újra. Ez az oldal a köszönetet, az eredményeket és a „szólj, ha indulunk” feliratkozást viszi.
+A 2026-os szezon 2026. október 13-án zárult, a kampány 2027 májusában indul újra. Ez az oldal a köszönetet, az eredményeket (a 2026. októberi záró közlemény végleges számaival), az év vízadóját, a 2027-es tervezést, a sajtóblokkot és a „szólj, ha indulunk” feliratkozást (#levelke, a lábléc hírlevél-blokkja) viszi.
 
 ## Felépítés (Designer-barát, mint a CsicsergŐsz és az új főoldal)
 - Natív Webflow-elemek `ov-` előtagú osztályokkal, a `.ov-oldal` burkolón belül. Minden szöveg, kép, logó, címer és GYIK-elem a Designerben szerkeszthető.
