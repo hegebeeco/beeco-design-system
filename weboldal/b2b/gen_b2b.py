@@ -59,6 +59,10 @@ B2B_CSS = {
   '.ds-bemenet:focus': f'border-top-color:#000000;border-right-color:#000000;border-bottom-color:#000000;border-left-color:#000000;box-shadow:0 0 0 3px {V("bc-accent")};outline-style:none',
   '.ds-szovegdoboz': 'min-height:120px',
   '.ds-jelolo': f'display:flex;align-items:flex-start;column-gap:10px;min-height:44px;margin-bottom:0px;padding-left:0px;color:{V("bc-ink-soft")};font-size:14.5px;line-height:1.5',
+  # combók: a whtml nem hoz létre combót, ezeket data_style_tool create_style + parent_style_names viszi fel
+  '.ds-ut-ar.ds-tinta': f'color:{V("bc-ink")}',  # sárga (kiemelt) kártyán a mézsárga tinta 3,4:1 lenne
+  '.ds-grafikon-felirat.ds-tinta': f'color:{V("bc-ink")}',
+  '.ds-grafikon-felirat.ds-forras-sotet': f'color:{V("bc-on-olive")}',  # fekete eredménydobozban
   '.ds-urlap-uzenet': f'{P4("18px", "20px", "18px", "20px")}{B4("2px", "solid", "#000000")}{R4("14px", "4px")}background-color:{V("bc-surface-2")};color:{V("bc-ink")};font-size:16px;line-height:1.5',
  },
  M: {
@@ -85,10 +89,10 @@ def gomb(href, szoveg, hely, masod=False):
     return f'<a class="ds-gomb{" ds-masod" if masod else ""}" href="{href}" data-b2b-cta="{hely}">{e(szoveg)}</a>'
 def ajanlat(href, piko, cim, szov, ar, nyil, hely, kiem=False):
     return (f'<a class="ds-ut{" ds-ut-kiemelt" if kiem else ""}" href="{href}" data-b2b-cta="{hely}">{pk(piko, "ds-kartya-piko")}<h3 class="ds-cim3">{e(cim)}</h3>'
-            f'<p class="ds-szoveg">{e(szov)}</p><div class="ds-ut-ar">{e(ar)}</div><div class="ds-tovabb-nyil">{e(nyil)} ›</div></a>')
+            f'<p class="ds-szoveg">{e(szov)}</p><div class="ds-ut-ar{" ds-tinta" if kiem else ""}">{e(ar)}</div><div class="ds-tovabb-nyil">{e(nyil)} ›</div></a>')
 def csomag(szint, cim, ar, elemek, hely, kiem=False):
     lista = ''.join(f'<li class="ds-csomag-elem"><span class="ds-csomag-pipa">✓</span><span>{e(x)}</span></li>' for x in elemek)
-    return (f'<div class="ds-csomag{" ds-csomag-kiemelt" if kiem else ""}"><div class="ds-grafikon-felirat">{e(szint)}</div><h3 class="ds-cim3">{e(cim)}</h3>'
+    return (f'<div class="ds-csomag{" ds-csomag-kiemelt" if kiem else ""}"><div class="ds-grafikon-felirat{" ds-tinta" if kiem else ""}">{e(szint)}</div><h3 class="ds-cim3">{e(cim)}</h3>'
             f'<div class="ds-csomag-ar">{e(ar)}</div><ul class="ds-csomag-lista">{lista}</ul>{gomb(AJ, "Ajánlatot kérek", hely, not kiem)}</div>')
 def lepesek(items):
     return '<div class="ds-lepesek">' + ''.join(f'<div class="ds-lepes"><div class="ds-lepes-szam">{i}</div><h3 class="ds-cim3">{e(c)}</h3><p class="ds-szoveg">{e(s)}</p></div>'
@@ -136,7 +140,7 @@ H_HERO = ('<section class="ds-szekcio ds-hatter-vaj" id="kezdes"><div class="ds-
   '<p class="ds-lead">A beeco valódi zöld tetteket ad a munkatársaidnak, lakóidnak és vásárlóidnak, megméri őket, és kész, igazolható mondatokat ad a kommunikációdhoz.</p>'
   '<div class="ds-gombsor">' + gomb(AJ, 'Ajánlatot kérek', 'hero') + gomb('#melyik', 'Melyik vagy?', 'hero-valaszto', True) + '</div>'
   f'<div class="ds-chipsor"><div class="ds-chip">{N("onkormanyzat")} {N("onkormanyzat", "felirat")}</div><div class="ds-chip">{N("vizadas_liter")} liter víz 2026-ban</div><div class="ds-chip">ONE Digitális Díj 2025: 1. hely</div></div>'
-  '</div>' + foto('fresk', 'Tízfős csapat egy nagy asztal körül, rajta Klímafreskó-kártyák', 'Klímafreskó egy céges csapattal', ' ds-hero-foto') +
+  '</div>' + foto('fresk', 'Tízfős csapat egy nagy asztal körül, rajta Klímafreskó-kártyák', 'Klímafreskó egy csapattal', ' ds-hero-foto') +
   '</div></section>')
 H_MIERT = ('<section class="ds-szekcio ds-hatter-feher" id="miert"><div class="ds-burok">'
   + fej('Miért most', 'A szabályozás a valódi tettek mellé állt')
@@ -239,7 +243,8 @@ def ellenoriz(nev, szekciok):
     h = ''.join(a['html'] for a in ki)
     hasz = {c for x in re.findall(r'class="([^"]+)"', h) for c in x.split() if c.startswith('ds-')}
     defi = set(re.findall(r'\.(ds-[a-z0-9-]+)', ''.join(a['css'] for a in ki)))
-    hiany = sorted(hasz - defi - LETEZO)
+    combo = {k.split('.')[2].split(':')[0] for m in B2B_CSS.values() for k in m if k.count('.') == 2}  # data_style_tool-lal felvitt combók
+    hiany = sorted(hasz - defi - LETEZO - combo)
     uj = sorted(defi - LETEZO)
     # számellenőrzés: minden szám a szamok.json-ból, évszám, SDG, mintaadat vagy űrlap-sáv lehet
     szoveg = re.sub(r'<[^>]+>', ' ', re.sub(r'href="[^"]*"|src="[^"]*"|value="[^"]*"', '', h))

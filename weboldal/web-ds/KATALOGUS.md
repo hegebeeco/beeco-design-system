@@ -2,7 +2,7 @@
 
 > Kézzel ne szerkeszd: `python3 weboldal/web-ds/katalogus.py`. A leírás: [docs/web-ds.md](../../docs/web-ds.md).
 
-133 osztály, 13 változó, 5 oldal.
+136 osztály, 13 változó, 5 oldal.
 
 ## Oldalak
 
@@ -101,6 +101,7 @@ Ikonos kártya, link-kártya (út), tovább-kártya képpel, ár- és nyílsor.
 | `.ds-tovabb-test` | alap | rolunk, csapatunk |
 | `.ds-ut` | alap | hatasunk, csapatunk, en, cegeknek |
 | `.ds-ut-ar` | alap | cegeknek |
+| `.ds-ut-ar.ds-tinta` | alap | cegeknek |
 | `.ds-ut-kiemelt` | alap | hatasunk, csapatunk, en, cegeknek |
 | `.ds-utak` | alap, ≤991 px | hatasunk, en, cegeknek |
 
@@ -139,6 +140,8 @@ Számsáv sötét háttéren, méretarányos sávdiagram.
 |---|---|---|
 | `.ds-grafikon` | alap | hatasunk, en |
 | `.ds-grafikon-felirat` | alap | hatasunk, en, cegeknek |
+| `.ds-grafikon-felirat.ds-forras-sotet` | alap | cegeknek |
+| `.ds-grafikon-felirat.ds-tinta` | alap | cegeknek |
 | `.ds-sav` | alap | hatasunk, en |
 | `.ds-sav-100` | alap | hatasunk, en |
 | `.ds-sav-51` | alap | hatasunk, en |

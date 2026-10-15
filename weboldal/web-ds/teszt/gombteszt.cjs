@@ -23,7 +23,7 @@ const KIZAR = /sender|universal\.js|stripe/;  // harmadik fél, a teszt szempont
       for (const h of horgonyok) {
         await p.evaluate(() => scrollTo(0, 0)); await p.waitForTimeout(300);
         const a = p.locator(`section a[href="${h}"]`).first(); await a.scrollIntoViewIfNeeded();
-        mobil ? await a.tap() : await a.click(); await p.waitForTimeout(1300);
+        mobil ? await a.tap() : await a.click(); await p.waitForTimeout(2000);  // a horgonykezelő 1,7 s-ig utánigazít
         const r = await p.evaluate(h => { const c = document.querySelector(h); if (!c) return null;
           const veg = Math.abs(scrollY - (document.documentElement.scrollHeight - innerHeight)) < 4;
           return { top: Math.round(c.getBoundingClientRect().top), veg }; }, h);
@@ -39,7 +39,7 @@ const KIZAR = /sender|universal\.js|stripe/;  // harmadik fél, a teszt szempont
   }
   for (const u of linkek) {
     let s = 0; try { s = (await fetch(u, { method: 'HEAD', redirect: 'follow' })).status; if (s >= 400) s = (await fetch(u, { redirect: 'follow' })).status; } catch (e) { s = 'HIBA ' + e.message; }
-    if (s !== 200) { hibak++; console.log(`link ${s}  ${u}`); }
+    if (!(s >= 200 && s < 300)) { hibak++; console.log(`link ${s}  ${u}`); }
   }
   console.log(`${linkek.size} link ellenőrizve. ${hibak ? hibak + ' hiba' : 'Minden rendben.'}`);
   process.exit(hibak ? 1 : 0);

@@ -58,7 +58,7 @@ KOZOS = {
   '.ds-szoveg': f'margin-top:0px;margin-bottom:0px;color:{V("bc-ink-soft")};font-size:16px;line-height:1.6',
   '.ds-gombsor': 'display:flex;flex-wrap:wrap;align-items:center;column-gap:14px;row-gap:12px',
   '.ds-gomb': f'display:inline-flex;align-items:center;justify-content:center;min-height:48px;{P4("13px", "22px", "10px", "22px")}{B4("2px", "solid", "#000000")}{R4("14px", "4px")}background-color:{V("bc-accent")};box-shadow:3px 3px 0 0 #000000;color:#000000;font-family:{DISP};font-size:19px;line-height:1;text-decoration:none;transition:transform 160ms {EASE}, box-shadow 160ms {EASE}',
-  '.ds-gomb:hover': 'color:#000000;text-decoration:none;transform:translate(-1px,-2px);box-shadow:4px 5px 0 0 #000000',
+  '.ds-gomb:hover': f'color:#000000;font-family:{DISP};text-decoration:none;transform:translate(-1px,-2px);box-shadow:4px 5px 0 0 #000000',  # a site globális a:hover-e Open Sansra váltana → szélesedő gomb, mobilon elcsúszó koppintás
   '.ds-gomb:active': 'transform:translate(2px,2px);box-shadow:1px 1px 0 0 #000000',
   '.ds-masod': 'background-color:#ffffff',
   '.ds-chipsor': 'display:flex;flex-wrap:wrap;column-gap:10px;row-gap:10px;margin-top:22px',
@@ -100,7 +100,7 @@ A_CSS = {
   '.ds-ido-fotok': 'display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:16px;row-gap:16px',
   '.ds-ido-foto': 'aspect-ratio:4/3',
   '.ds-szoveglink': f'display:inline-flex;align-items:center;min-height:44px;color:{V("bc-ink")};font-weight:800;text-decoration:underline',
-  '.ds-szoveglink:hover': f'color:{V("bc-ink")};text-decoration:none',
+  '.ds-szoveglink:hover': f'color:{V("bc-ink")};font-weight:800;text-decoration:none',
   '.ds-szamsav': 'display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:22px;row-gap:22px',
   '.ds-szam': f'display:flex;flex-direction:column;row-gap:6px;{P4("22px", "22px", "20px", "22px")}border-top-style:solid;border-top-width:3px;border-top-color:{V("bc-accent")}',
   '.ds-szam-ertek': f'color:{V("bc-accent")};font-family:{DISP};font-size:46px;line-height:1',

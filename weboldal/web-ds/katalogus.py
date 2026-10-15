@@ -40,7 +40,7 @@ CSAK_WEBFLOW = ['bc-accent-ink', 'bc-raj-bg', 'bc-on-olive', 'bc-vaj', 'bc-domb'
 
 def csalad(o):
     for nev, _, elotag in CSALAD:
-        if any(o == p or o.startswith(p + '-') or o.startswith(p) for p in elotag): return nev
+        if any(o == p or o.startswith(p + '-') or o.startswith(p) for p in elotag): return nev  # combónál az alaposztály dönt
     return 'Egyéb'
 
 def epit():
@@ -57,7 +57,8 @@ def epit():
                 x['css'].setdefault(cimke, {})[sel] = decl
     for k, (nev, url, akciok) in OLDAL.items():
         h = ''.join(a['html'] for a in akciok)
-        for o in {c for x in re.findall(r'class="([^"]+)"', h) for c in x.split()}:
+        egyutt = [set(x.split()) for x in re.findall(r'class="([^"]+)"', h)]
+        for o in {c for x in egyutt for c in x} | {o for o in oszt if '.' in o and any(set(o.split('.')) <= x for x in egyutt)}:
             if o in oszt and k not in oszt[o]['oldalak']: oszt[o]['oldalak'].append(k)
     kat = {'_leiras': 'Generált (weboldal/web-ds/katalogus.py). Kézzel ne szerkeszd.',
            'valtozok': {n: {'webflow_id': ids[n], 'css': f'--_beeco-ds---{n}', 'alap': VALTOZO_ERTEK[n], 'csak_webflow': n in CSAK_WEBFLOW} for n in ids},
