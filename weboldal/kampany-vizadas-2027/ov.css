@@ -292,3 +292,59 @@ html[data-platform="android"] .ov-csak-ios,html[data-platform="ios"] .ov-csak-an
   .ov-hero-fotok{height:330px}
   .ov-sav{font-size:17px}
 }
+
+/* ---------- cuki mini-animációk (2026-10-15 c): repülő méhecske, idővonal-méhecske, mini-térkép kúttal, hulló cseppek ----------
+   Csak transform és opacity; az ov.js a látható [data-ov-anim] elemekre teszi az .ov-fut osztályt (képernyőn kívül áll),
+   JS nélkül és csökkentett mozgásnál nyugodt, statikus kép marad. */
+.ov-oldal .ov-hullo{position:absolute;width:9px;height:12px;grid-row:auto;background:var(--egkek);opacity:0;pointer-events:none}
+.ov-fut .ov-hullo{animation:ov-hullas 1.3s ease-in infinite}
+.ov-fut .ov-hullo:nth-of-type(2){animation-delay:.43s}.ov-fut .ov-hullo:nth-of-type(3){animation-delay:.86s}
+@keyframes ov-hullas{0%{opacity:0;transform:translateY(0) scale(.5)}15%{opacity:1}100%{opacity:0;transform:translateY(54px) scale(1)}}
+/* hero: kannás méhecske átrepül a város fölött */
+.ov-repulo{position:absolute;left:0;bottom:27%;z-index:1;width:96px;opacity:0;pointer-events:none}
+.ov-oldal img.ov-repulo-meh{display:block;width:100%;height:auto}
+.ov-repulo.ov-fut{animation:ov-repul 24s linear infinite}
+.ov-repulo.ov-fut .ov-repulo-meh{animation:ov-lebeg 2.4s ease-in-out infinite}
+.ov-repulo .ov-hullo{left:86%;top:78%}
+@keyframes ov-repul{0%{opacity:1;transform:translateX(-140px)}100%{opacity:1;transform:translateX(calc(100vw + 40px))}}
+/* 2027: méhecske tipeg a vonalon a májusi indulásig */
+.ov-ido-keret{position:relative}
+.ov-ido-meh{position:absolute;left:0;top:-16px;z-index:2;width:58px;opacity:0;pointer-events:none}
+.ov-oldal img.ov-ido-meh-kep{display:block;width:100%;height:auto}
+.ov-ido-keret.ov-fut .ov-ido-meh{animation:ov-tipeg 9s ease-in-out infinite}
+.ov-ido-keret.ov-fut .ov-ido-meh-kep{animation:ov-lebeg 1.6s ease-in-out infinite}
+@keyframes ov-tipeg{0%{opacity:0;left:0}6%{opacity:1}55%,92%{opacity:1;left:calc(50% + 10px)}100%{opacity:0;left:calc(50% + 10px)}}
+/* így működik: mini-térkép, a méhecske a kúttól a szomjas fához viszi a vizet */
+.ov-terkep-sor{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:stretch;margin-top:28px}
+.ov-terkep-sor .ov-jelek{flex-direction:column;flex-wrap:nowrap;align-items:flex-start;justify-content:center;margin-top:0}.ov-terkep-sor .ov-jelek-cim{flex-basis:auto}
+.ov-terkep{position:relative;min-height:290px;overflow:hidden;border:2px solid var(--navy);border-radius:var(--r-k);box-shadow:5px 5px 0 var(--navy);
+  background:linear-gradient(90deg,transparent 29%,#fff 29%,#fff calc(29% + 12px),transparent 0),linear-gradient(0deg,transparent 47%,#fff 47%,#fff calc(47% + 12px),transparent 0),
+  linear-gradient(90deg,transparent 74%,#fff 74%,#fff calc(74% + 8px),transparent 0),linear-gradient(0deg,transparent 82%,#fff 82%,#fff calc(82% + 8px),transparent 0),var(--egkek-h)}
+.ov-terkep-park{position:absolute;left:36%;top:6%;width:34%;height:36%;background:var(--menta);border-radius:40% 55% 45% 50%}
+.ov-terkep-to{position:absolute;right:-6%;bottom:-18%;width:30%;height:44%;background:var(--egkek);opacity:.55;border-radius:50% 40% 0 60%}
+.ov-pin-hely{position:absolute;width:40px;height:40px;transform:translate(-50%,-50%)}
+.ov-oldal img.ov-pin{position:absolute;inset:0;width:100%;height:100%}
+.ov-ph-k1{left:16%;top:66%}.ov-ph-k2{left:86%;top:24%}.ov-ph-s1{left:40%;top:24%}.ov-ph-z1{left:48%;top:78%}.ov-ph-z2{left:90%;top:68%}.ov-ph-cel{left:64%;top:32%}.ov-ph-z3{left:8%;top:22%}.ov-ph-s2{left:68%;top:84%}
+.ov-ph-kut::before{content:"";position:absolute;inset:-6px;border:3px solid var(--kek);border-radius:50%;opacity:0}
+.ov-fut .ov-ph-kut::before{animation:ov-gyuru 2.4s ease-out infinite}
+@keyframes ov-gyuru{0%{opacity:.7;transform:scale(.7)}100%{opacity:0;transform:scale(1.5)}}
+.ov-oldal img.ov-pin-zold{opacity:0}
+.ov-fut img.ov-pin-piros{animation:ov-piros 12s ease infinite}.ov-fut img.ov-pin-zold{animation:ov-zold 12s ease infinite}
+@keyframes ov-piros{0%,56%{opacity:1;transform:none}62%{opacity:0;transform:scale(.6)}94%{opacity:0;transform:scale(.6)}100%{opacity:1;transform:none}}
+@keyframes ov-zold{0%,56%{opacity:0;transform:scale(.6)}62%{opacity:1;transform:scale(1.15)}66%,94%{opacity:1;transform:none}100%{opacity:0}}
+.ov-terkep-plusz{position:absolute;left:calc(100% + 6px);top:6px;padding:2px 8px 0;background:var(--sarga);border:2px solid var(--navy);border-radius:999px;font-family:var(--display);font-size:16px;white-space:nowrap;opacity:0}
+.ov-fut .ov-terkep-plusz{animation:ov-plusz 12s ease infinite}
+@keyframes ov-plusz{0%,60%{opacity:0;transform:translateY(8px)}64%,78%{opacity:1;transform:none}84%,100%{opacity:0;transform:translateY(-10px)}}
+.ov-terkep-meh{position:absolute;left:16%;top:66%;z-index:3;width:62px;transform:translate(-35%,-92%)}
+.ov-oldal img.ov-terkep-meh-kep{display:block;width:100%;height:auto;transform-origin:70% 80%}
+.ov-terkep-meh .ov-hullo{left:88%;top:78%;width:7px;height:10px}
+.ov-fut .ov-terkep-meh{animation:ov-repul-terkep 12s ease-in-out infinite}
+.ov-fut .ov-terkep-meh-kep{animation:ov-locsol 12s ease infinite}
+@keyframes ov-repul-terkep{0%,12%{left:16%;top:66%}26%{left:38%;top:40%}40%,70%{left:57%;top:34%}82%{left:38%;top:58%}95%,100%{left:16%;top:66%}}
+@keyframes ov-locsol{0%,42%{transform:none}46%,66%{transform:rotate(14deg)}70%,100%{transform:none}}
+/* záró: a lebegő méhecske kannájából csepeg a víz */
+.ov-zaro-meh-keret{position:absolute;left:4%;top:0;z-index:2;width:190px;animation:ov-lebeg 4.5s ease-in-out infinite}
+.ov-oldal .ov-zaro-meh-keret img.ov-zaro-meh{position:static;width:100%;animation:none}
+.ov-zaro-meh-keret .ov-hullo{left:90%;top:80%;width:11px;height:15px;background:var(--kek)}
+@media (max-width:900px){.ov-terkep-sor{grid-template-columns:1fr}.ov-ido-meh{display:none}}
+@media (max-width:560px){.ov-repulo{width:72px;bottom:9%}.ov-terkep{min-height:240px}.ov-pin-hely{width:34px;height:34px}.ov-terkep-meh{width:52px}.ov-zaro-meh-keret{width:150px}}

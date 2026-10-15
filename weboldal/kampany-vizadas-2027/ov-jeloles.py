@@ -38,7 +38,7 @@ SZ.append(('hero', f'''<section class="ov-hero" id="kezdes"><img class="ov-hero-
 <div class="ov-pecset-sor"><img class="ov-pecset" src="{A('ov-pecset.svg')}" alt=""><p class="ov-pecset-szoveg">Újra indul<strong class="ov-pecset-ev">2027 májusában</strong></p></div>
 </div>
 <div class="ov-fotok ov-hero-fotok">{''.join(f'<figure class="ov-foto ov-foto-{i+1}"><img class="ov-foto-kep" src="{S3}{f}" alt="{e(a)}"></figure>' for i, (f, a) in enumerate(HFOTO))}<img class="ov-fotok-meh" src="{A("ov-meh-baratsagos.svg")}" alt=""></div>
-</div><img class="ov-varos" src="{A('ov-varos-szeles.svg')}" alt=""></section>'''))
+</div><div class="ov-repulo" data-ov-anim aria-hidden="true"><img class="ov-repulo-meh" src="{A('ov-meh-kannas.webp')}" alt=""><span class="ov-csepp ov-hullo ov-h1"></span><span class="ov-csepp ov-hullo ov-h2"></span><span class="ov-csepp ov-hullo ov-h3"></span></div><img class="ov-varos" src="{A('ov-varos-szeles.svg')}" alt=""></section>'''))
 
 # 1b. 2027: előre hozva – idővonal (szám nélküli ambíció) + ötletgyűjtés
 VISSZA = 'mailto:hello@beeco.hu?subject=%C3%96nk%C3%A9ntes%20V%C3%ADzad%C3%A1s%202027%20%C3%B6tlet'
@@ -47,7 +47,7 @@ IDO = [('2026. október', 'Zárás és közös tervezés', 'Az október 13-i kam
        ('2027 május', 'Újra indulunk', 'A szomjas fák újra megjelennek a térképen. Akik feliratkoztak, elsőként tudják meg.', True),
        ('2027 nyár', 'Még több település és cég', 'Új települések fái, céges locsolónapok és csapatversenyek. A tiétek is lehet köztük.', False)]
 SZ.append(('jovo', '<section class="ov-szekcio ov-jovo" id="terv-2027"><div class="ov-burok"><div class="ov-szekcio-fej"><div class="ov-szalag ov-szalag-sarga">2027</div><h2 class="ov-cim2">Jövőre még nagyobbat locsolunk</h2><p class="ov-szekcio-lead">Több település, több fa, több locsolócsapat. Az idei tapasztalatokból és a ti ötleteitekből építjük a következő szezont.</p></div>'
- '<ol class="ov-ido2027">' + ''.join(f'<li class="ov-ido-lepes{" ov-ido-kiemelt" if k else ""}"><span class="ov-ido-mikor">{m}</span><h3 class="ov-ido-cim">{c}</h3><p class="ov-ido-szoveg">{t}</p></li>' for m, c, t, k in IDO) + '</ol>'
+ '<div class="ov-ido-keret" data-ov-anim><span class="ov-ido-meh" aria-hidden="true"><img class="ov-ido-meh-kep" src="' + A('ov-meh-baratsagos.svg') + '" alt=""></span><ol class="ov-ido2027">' + ''.join(f'<li class="ov-ido-lepes{" ov-ido-kiemelt" if k else ""}"><span class="ov-ido-mikor">{m}</span><h3 class="ov-ido-cim">{c}</h3><p class="ov-ido-szoveg">{t}</p></li>' for m, c, t, k in IDO) + '</ol></div>'
  f'<div class="ov-onk-cta"><p class="ov-onk-cta-szoveg"><strong>Neked mi hiányzott idén?</strong> Írd meg, mitől lenne még jobb a Vízadás 2027-ben.</p><a class="ov-gomb" href="{VISSZA}" data-ov-cta="otlet">Elmondom az ötletem</a></div></div></section>'))
 
 # 1c. Csatlakozz 2027-ben: 3 út (lakos, település, cég) + ajánlatkérés (a DS · Ajánlatkérés komponens a partnerek után áll, #ajanlatkeres)
@@ -87,11 +87,16 @@ LEPES = [('Keress egy szomjas fát', 'Nyisd meg a beeco appot: a térképen piro
          ('Töltsd meg a vödröt', 'A legközelebbi vízvételi ponton, kútnál vagy otthon. A térképen a kutakat is megtalálod.'),
          ('Locsolj, és regisztráld', 'Öntsd a vizet lassan a tövéhez, aztán jelöld az appban, hogy mások is lássák.'),
          ('Gyűjts nektárt, csapatban', 'Alkoss locsolócsapatot: együtt több fát érünk el, és a nektárt kuponokra váltod.')]
-JEL = [('ov-fa-piros.svg', 'Piros', 'Nagyon szomjas: 100 liter'), ('ov-fa-sarga.svg', 'Sárga', 'Szomjas: legalább 50 liter'), ('ov-fa-zold.svg', 'Zöld', 'Nemrég kapott vizet')]
+JEL = [('ov-kut.svg', 'Kút', 'Itt töltheted meg a vödröt'), ('ov-fa-piros.svg', 'Piros', 'Nagyon szomjas: 100 liter'), ('ov-fa-sarga.svg', 'Sárga', 'Szomjas: legalább 50 liter'), ('ov-fa-zold.svg', 'Zöld', 'Nemrég kapott vizet')]
+TERKEP_PIN = [('ov-kut.svg', 'ov-ph-kut ov-ph-k1'), ('ov-kut.svg', 'ov-ph-kut ov-ph-k2'), ('ov-fa-sarga.svg', 'ov-ph-s1'), ('ov-fa-zold.svg', 'ov-ph-z1'), ('ov-fa-zold.svg', 'ov-ph-z2'), ('ov-fa-zold.svg', 'ov-ph-z3'), ('ov-fa-sarga.svg', 'ov-ph-s2')]
+TERKEP = ('<div class="ov-terkep" data-ov-anim aria-hidden="true"><span class="ov-terkep-park"></span><span class="ov-terkep-to"></span>'
+ + ''.join(f'<span class="ov-pin-hely {o}"><img class="ov-pin" src="{A(k)}" alt=""></span>' for k, o in TERKEP_PIN)
+ + f'<span class="ov-pin-hely ov-ph-cel"><img class="ov-pin ov-pin-piros" src="{A("ov-fa-piros.svg")}" alt=""><img class="ov-pin ov-pin-zold" src="{A("ov-fa-zold.svg")}" alt=""><span class="ov-terkep-plusz">+50 l</span></span>'
+ + f'<span class="ov-terkep-meh"><img class="ov-terkep-meh-kep" src="{A("ov-meh-kannas.webp")}" alt=""><span class="ov-csepp ov-hullo ov-t1"></span><span class="ov-csepp ov-hullo ov-t2"></span></span></div>')
 SZ.append(('igy', '<section class="ov-szekcio ov-igy" id="igy"><div class="ov-burok"><div class="ov-szekcio-fej"><div class="ov-szalag">Így működik</div><h2 class="ov-cim2">2027-ben is így locsolunk</h2><p class="ov-szekcio-lead">Négy lépés, egy vödör víz és egy kis séta. Próbáld ki most, májusban pedig élesben!</p></div>'
  '<div class="ov-igy-racs"><ol class="ov-lepesek">' + ''.join(f'<li class="ov-lepes"><span class="ov-lepes-szam">{i+1}</span><h3 class="ov-lepes-cim">{c}</h3><p class="ov-lepes-szoveg">{t}</p></li>' for i, (c, t) in enumerate(LEPES)) + '</ol>'
  f'''<div class="ov-jatek" id="ontozo"><div class="ov-szalag">Próbáld ki!</div><h3 class="ov-jatek-cim">Öntözd meg ezt a fiatal fát!</h3><div class="ov-jatek-szin"><img class="ov-jatek-fa ov-jf-piros" src="{A('ov-fa-piros.svg')}" alt="Piros jelölő a térképen: nagyon szomjas fa"><img class="ov-jatek-fa ov-jf-sarga" src="{A('ov-fa-sarga.svg')}" alt="Sárga jelölő: szomjas fa"><img class="ov-jatek-fa ov-jf-zold" src="{A('ov-fa-zold.svg')}" alt="Zöld jelölő: megöntözött fa"><img class="ov-jatek-meh" src="{A('ov-meh-kannas.webp')}" alt="Szuperhős méhecske locsolókannával"></div><p class="ov-jatek-allapot">Piros a térképen: nagyon szomjas, 100 liter kell neki.</p><div class="ov-jatek-sav"><span class="ov-jatek-toltes"></span></div><p class="ov-jatek-liter">0 / 100 liter</p><a class="ov-gomb ov-ontoz" href="#ontozo">Öntözök 50 litert</a></div></div>'''
- '<div class="ov-jelek"><p class="ov-jelek-cim">Mit jelentenek a színek a térképen?</p>' + ''.join(f'<div class="ov-jel"><img class="ov-jel-kep" src="{A(k)}" alt=""><span class="ov-jel-szoveg"><strong class="ov-jel-nev">{n}</strong>{t}</span></div>' for k, n, t in JEL) + '</div></div></section>'))
+ '<div class="ov-terkep-sor">' + TERKEP + '<div class="ov-jelek"><p class="ov-jelek-cim">Mit jelentenek a jelek a térképen?</p>' + ''.join(f'<div class="ov-jel"><img class="ov-jel-kep" src="{A(k)}" alt=""><span class="ov-jel-szoveg"><strong class="ov-jel-nev">{n}</strong>{t}</span></div>' for k, n, t in JEL) + '</div></div></div></section>'))
 
 # 5. Önkormányzatok
 ONK = [('Budapest', [('6849f2ed38308d6227b98396_fo%CC%8Bkert.avif', 'FŐKERT'), ('6a2ae39e9e28ee8ae43ceeb8_Group%201000005737.webp', 'Budavár'), ('6a69c97927b93a1b6d352bc2_image%201394.webp', '2. kerület'),
@@ -147,7 +152,7 @@ SZ.append(('zaro', f'''<section class="ov-szekcio ov-zaro" id="letoltes"><div cl
 {boltok()}
 <div class="ov-qr ov-csak-asztal"><img class="ov-qr-kep" src="{S3}{QR}" alt="QR-kód a beeco app letöltéséhez"><p class="ov-qr-szoveg">Gépen olvasod? Olvasd be a telefonoddal.</p></div>
 <a class="ov-gomb ov-ertesito" href="#levelke">Szólj, ha indulunk!</a>
-</div><div class="ov-zaro-kep"><img class="ov-zaro-varos" src="{A('ov-varos-kicsi.svg')}" alt=""><img class="ov-zaro-meh" src="{A('ov-meh-kannas.webp')}" alt="Szuperhős méhecske locsolókannával"></div></div><img class="ov-cikcakk" src="{A('ov-cikcakk.svg')}" alt=""></section>'''))
+</div><div class="ov-zaro-kep"><img class="ov-zaro-varos" src="{A('ov-varos-kicsi.svg')}" alt=""><div class="ov-zaro-meh-keret" data-ov-anim><img class="ov-zaro-meh" src="{A('ov-meh-kannas.webp')}" alt="Szuperhős méhecske locsolókannával"><span class="ov-csepp ov-hullo ov-z1" aria-hidden="true"></span><span class="ov-csepp ov-hullo ov-z2" aria-hidden="true"></span><span class="ov-csepp ov-hullo ov-z3" aria-hidden="true"></span></div></div></div><img class="ov-cikcakk" src="{A('ov-cikcakk.svg')}" alt=""></section>'''))
 
 SORREND = ['qr', 'hero', 'jovo', 'csatlakozz', 'eredmeny', 'partner', 'hos', 'onk', 'miert', 'igy', 'sajto', 'gyik', 'zaro']  # partner után: DS · Ajánlatkérés
 SZ.sort(key=lambda x: SORREND.index(x[0]))

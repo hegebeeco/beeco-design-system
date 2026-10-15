@@ -37,6 +37,17 @@ $$('[data-ov-cta]', oldal).forEach(a => a.addEventListener('click', () => {
 const elso = $('.ov-kerdes', oldal); if (elso) { elso.dataset.auto = '1'; elso.open = true; } // az automatikus nyitás nem mért esemény
 $$('.ov-kerdes', oldal).forEach(k => k.addEventListener('toggle', () => { if (k.dataset.auto) { delete k.dataset.auto; return; } if (k.open) mer('gyik_nyitas', { kerdes: $('summary', k).textContent }); }));
 
+/* ---------- mini-animációk: csak a látható [data-ov-anim] elemek mozognak (.ov-fut), csökkentett mozgásnál semmi ---------- */
+(function () {
+  const el = $$('[data-ov-anim]', oldal); if (!el.length) return;
+  if (!('IntersectionObserver' in window)) { el.forEach(e => e.classList.add('ov-latszik')); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('ov-latszik');
+    e.target.classList.toggle('ov-fut', e.isIntersecting && !kevesMozgas());
+  }), { threshold: .15 });
+  el.forEach(e => io.observe(e));
+})();
+
 /* ---------- QR-érkezés: plakátról, matricáról, szórólapról jövőknek egy rövid sáv a hero fölött ---------- */
 (function () {
   const sav = $('.ov-qr-sav', oldal); if (!sav) return;
