@@ -16,7 +16,7 @@ AJANLAT = [('telefon', 'beeco@work', 'Your team in the app: green challenges, sh
            ('taska', 'Partner program', 'Green shops on the map, with coupons that bring conscious customers through the door.'),
            ('otlet', 'Green marketing', 'Campaigns and content built only on verified claims, plus campaign sponsorship.')]
 SZAM = [('25,000+', 'downloads'), ('4.6', 'App Store rating'), ('23,000+', 'green spots on the map'),
-        ('15', 'partner municipalities'), ('784,352', 'litres of water to young trees, 2026'), ('2,162', 'active volunteers, 2026')]
+        ('15', 'partner municipalities'), ('1M+', 'litres of water to young trees, 2026'), ('2,200+', 'tree-watering volunteers, 2026')]
 LOGOK = ['Telex', 'Trade magazin', 'Marie Claire', 'Startuponline', 'BME', 'Budapesti Corvinus Egyetem', 'ELTE TáTK', '10 millió fa', 'Élhető Települések Országos Szövetsége', 'Humusz Szövetség']
 html = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>beeco · Web Summit one-pager</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&family=Open+Sans:wght@400;600;700;800&display=swap">
@@ -81,7 +81,7 @@ h2{{font-size:12.5pt;margin-bottom:1.6mm}}
 <li>ONE Digital Award 2025, 1st place (green category)</li><li>F6S 2025: 2nd most outstanding sustainability startup in Hungary</li>
 <li>EIT Climate Launchpad international finalist · MVM Edison 3rd place</li><li>Partners: E.ON, FŐKERT, BirdLife Hungary (MME), 10 Million Trees</li></ul></div></div>
 <div class="logok">{''.join(f'<img src="{LOGO[l]}" alt="{e(l)}">' for l in LOGOK if l in LOGO)}</div>
-<p class="forras">Sources: App Store and Google Play listings; beeco campaign close, Oct 2026; Telex, 21 Sept 2025. The app is currently available in Hungarian.</p>
+<p class="forras">Sources: App Store and Google Play listings; Volunteer Tree Watering 2026 closing release, Oct 2026. The app is currently available in Hungarian.</p>
 </main>
 <footer class="lab"><div><h3>Meet us at Web Summit in Lisbon</h3><p><b>Kristóf Hegedűs</b>, co-founder and CEO · kristof.hegedus@beeco.hu</p><p>Read more and get the app: beeco.hu/en</p></div><div class="qr">{QR}</div></footer>
 </body></html>'''

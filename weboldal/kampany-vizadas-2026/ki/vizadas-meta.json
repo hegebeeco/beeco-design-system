@@ -1,0 +1,9 @@
+{
+ "slug_draft": "onkentes-vizadas-szezonzaro-draft",
+ "slug_vegleges": "/kampanyok/onkentes-vizadas",
+ "mappa": "6977b8f5595d1bedf549ff3b",
+ "cim": "Önkéntes Vízadás 2026: több mint egymillió liter víz a fáknak | beeco",
+ "leiras": "Köszönjük! 2 200+ vízadó, 33 000+ locsolás, 7 500+ fiatal fa országszerte. A szezon lezárult, 2027 májusában újra indulunk. Szólunk, ha kezdünk.",
+ "jsonld": "{\"@context\": \"https://schema.org\", \"@graph\": [{\"@type\": \"Event\", \"name\": \"Önkéntes Vízadás 2026\", \"description\": \"Köszönjük! 2 200+ vízadó, 33 000+ locsolás, 7 500+ fiatal fa országszerte. A szezon lezárult, 2027 májusában újra indulunk. Szólunk, ha kezdünk.\", \"startDate\": \"2026-06\", \"endDate\": \"2026-10-13\", \"eventStatus\": \"https://schema.org/EventScheduled\", \"location\": {\"@type\": \"Place\", \"name\": \"Magyarország\", \"address\": \"Budapest, Pécs, Veszprém, Kecskemét, Székesfehérvár\"}, \"organizer\": [{\"@type\": \"Organization\", \"name\": \"beeco\"}, {\"@type\": \"Organization\", \"name\": \"FŐKERT\"}, {\"@type\": \"Organization\", \"name\": \"Budapest Főváros Önkormányzata\"}], \"sponsor\": [{\"@type\": \"Organization\", \"name\": \"E.ON\"}, {\"@type\": \"Organization\", \"name\": \"GARDENA\"}, {\"@type\": \"Organization\", \"name\": \"Dreher\"}]}, {\"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Mikor indul újra a Vízadás?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"2027 májusában.\"}}, {\"@type\": \"Question\", \"name\": \"Hogyan csatlakozhat a településünk?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"A csatlakozás ingyenes, a beeco önkormányzati oldalán lehet jelentkezni.\"}}]}]}",
+ "kihagy": []
+}

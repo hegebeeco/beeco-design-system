@@ -206,7 +206,7 @@ H_SZAM = ('<section class="ds-szekcio ds-hatter-sotet"><div class="ds-burok">'
   + '<div class="ds-szekcio-fej"><div class="ds-szalag">Bizonyíték</div><h2 class="ds-cim2">Amit eddig közösen elértünk</h2></div>'
   + '<div class="ds-szamsav">' + ''.join(f'<div class="ds-szam"><div class="ds-szam-ertek">{e(N(k))}</div><div class="ds-szam-felirat">{e(N(k, "felirat"))}</div></div>'
                                      for k in ('onkormanyzat', 'vizadas_liter', 'vizadas_fo', 'esemeny_resztvevo', 'klimafresko_fo', 'letoltes')) + '</div>'
-  + '<p class="ds-forras ds-forras-sotet">Források: beeco kampányzárás (Vízadás 2026), beeco belső adatok, App Store és Google Play adatlap, 2026. október.</p>'
+  + '<p class="ds-forras ds-forras-sotet">Források: Önkéntes Vízadás 2026 záró közlemény, beeco belső adatok, App Store és Google Play adatlap, 2026. október.</p>'
   + '</div></section>')
 H_ESET = ('<section class="ds-szekcio"><div class="ds-burok">'
   + fej('Esettanulmány', 'Önkéntes Vízadás: egy város, egy nyár, sok kanna')

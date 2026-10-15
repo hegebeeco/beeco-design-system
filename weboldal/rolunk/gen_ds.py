@@ -170,7 +170,7 @@ EVEK = [
   [('websummit', 'Három csapattag egy világító Web Summit felirat előtt éjszaka', 'Web Summit, Lisszabon'), ('bme-nap', 'Pódiumbeszélgetés a BME fenntarthatósági napján', 'BME fenntarthatósági nap')]),
  ('2025', 'A virágzás éve', [('Február', 'Sikeres közösségi finanszírozás a Brancson'), ('Április', 'F6S: 2. hely, fenntarthatósági kategória'), ('Nyár', 'Az ország első közösségi faöntöző kampánya: 7 000 fa, 400 000 liter'), ('November', 'ONE Digitális Díj: 1. hely, zöld kategória')],
   [('one-dij', 'A csapat a ONE Digitális Díj 2025 átadóján', 'ONE Digitális Díj, 1. hely'), ('bee-change', 'Két önkéntes háttal, bee the change feliratú beeco pólóban', 'Önkéntes Vízadás')]),
- ('2026', 'A terjeszkedés éve', [('Nyár', 'Önkéntes Vízadás: 784 352 liter víz, 2 162 vízadó, 15 partner-önkormányzat'), ('Ősz', 'CsicsergŐsz: madárbarát kampány az appban'), ('November', 'Újra a Web Summiton, Lisszabonban')],
+ ('2026', 'A terjeszkedés éve', [('Nyár', 'Önkéntes Vízadás országosan: 1 millió+ liter víz, 2 200+ vízadó, 7 500+ fiatal fa, 15 önkormányzat'), ('Ősz', 'CsicsergŐsz: madárbarát kampány az appban'), ('November', 'Újra a Web Summiton, Lisszabonban')],
   [('csapat-asztal', 'A beeco csapat egy asztal körül dolgozik', 'A raj munkában'), ('lisboa', 'Csapattagok Lisszabonban', 'Irány Lisszabon')]),
  ('2027', 'Cél: határok nélkül', [('Terv', 'A beeco külföldön is: még több település, közösség és ökohős')], []),
 ]
@@ -186,7 +186,7 @@ A_IDO = ('<section class="ds-szekcio" id="tortenet"><div class="ds-burok">'
   + '</div></section>')
 
 SZAMOK = [('25.000+', 'letöltés'), ('23.000+', 'zöld pont a térképen'), ('15', 'partner-önkormányzat'),
-          ('784 352', 'liter víz a fiatal fáknak 2026 nyarán'), ('100+', 'zöld program havonta'), ('12', 'szakmai partner')]
+          ('1 millió+', 'liter víz a fiatal fáknak 2026-ban'), ('100+', 'zöld program havonta'), ('12', 'szakmai partner')]
 A_SZAM = ('<section class="ds-szekcio ds-hatter-sotet"><div class="ds-burok">'
   + '<div class="ds-szekcio-fej"><div class="ds-szalag">A közösség ereje</div><h2 class="ds-cim2">Ennyien és ennyit tettünk eddig</h2></div>'
   + '<div class="ds-szamsav">' + ''.join(f'<div class="ds-szam"><div class="ds-szam-ertek">{e(a)}</div><div class="ds-szam-felirat">{e(b)}</div></div>' for a, b in SZAMOK) + '</div>'
@@ -263,7 +263,7 @@ C_CSS = {
   '.ds-sav-ev': 'font-size:15px;font-weight:800',
   '.ds-sav': f'display:flex;align-items:center;justify-content:flex-end;height:36px;{P4("0px", "10px", "0px", "10px")}{B4("2px", "solid", "#000000")}{R4("4px", "10px")}background-color:{V("bc-accent")};color:#000000;font-size:14px;font-weight:800;white-space:nowrap',
   '.ds-sav-elozo': f'background-color:{V("bc-domb")}',
-  '.ds-sav-100': 'width:100%', '.ds-sav-51': 'width:51%', '.ds-sav-69': 'width:69%',
+  '.ds-sav-100': 'width:100%', '.ds-sav-40': 'width:40%', '.ds-sav-68': 'width:68%',
   '.ds-cikkek': 'display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:22px;row-gap:22px',
   '.ds-cikk': f'display:flex;flex-direction:column;row-gap:12px;{P4("22px", "22px", "22px", "22px")}{B4("2px", "solid", "#000000")}{R4("18px", "6px")}background-color:{V("bc-surface")};box-shadow:4px 4px 0 0 #000000;color:{V("bc-ink")};text-decoration:none;transition:transform 160ms {EASE}, box-shadow 160ms {EASE}',
   '.ds-cikk:hover': f'color:{V("bc-ink")};text-decoration:none;transform:translate(-2px,-3px);box-shadow:6px 7px 0 0 #000000',
@@ -309,13 +309,13 @@ C_SZAM = ('<section class="ds-szekcio ds-hatter-sotet"><div class="ds-burok">'
   + '</div></section>')
 sav = lambda ev, ertek, szel, elozo: f'<div class="ds-sav-sor"><div class="ds-sav-ev">{ev}</div><div class="ds-sav{" ds-sav-elozo" if elozo else ""} ds-sav-{szel}">{ertek}</div></div>'
 C_VIZ = ('<section class="ds-szekcio ds-hatter-feher" id="vizadas"><div class="ds-burok ds-ketto"><div class="ds-hero-szoveg">'
-  '<div class="ds-szalag">Mérhető hatás</div><h2 class="ds-cim2">Egy év alatt majdnem duplájára nőtt a vízadás</h2>'
-  '<p class="ds-lead">Az Önkéntes Vízadás az ország első közösségi faöntöző kampánya. 2026 nyarán a fiatal fák 784 352 liter vizet kaptak a lakóktól, 15 önkormányzat fáinál.</p>'
+  '<div class="ds-szalag">Mérhető hatás</div><h2 class="ds-cim2">Egy év alatt két és félszeresére nőtt a vízadás</h2>'
+  '<p class="ds-lead">Az Önkéntes Vízadás az ország első közösségi faöntöző kampánya. 2026-ban több mint 2 200 vízadó több mint egymillió liter vizet adott a fiatal fáknak, és több mint 7 500 fát öntözött meg 15 önkormányzat területén.</p>'
   '<a class="ds-szoveglink" href="/kampanyok/onkentes-vizadas">A kampány oldala ›</a></div>'
   '<div class="ds-grafikon"><div class="ds-cim3">Önkéntes Vízadás, 2025 és 2026</div>'
-  '<div><div class="ds-grafikon-felirat">Kiöntött víz (liter)</div>' + sav('2025', '400 000', '51', True) + sav('2026', '784 352', '100', False) + '</div>'
-  '<div><div class="ds-grafikon-felirat">Aktív önkéntesek (fő)</div>' + sav('2025', '1 500', '69', True) + sav('2026', '2 162', '100', False) + '</div>'
-  '<p class="ds-forras">Források: Telex, 2025. szeptember 21. (2025); beeco kampányzárás, 2026. október (2026). Egy soron belül a sávok méretarányosak.</p>'
+  '<div><div class="ds-grafikon-felirat">Kiöntött víz (liter)</div>' + sav('2025', '400 000', '40', True) + sav('2026', '1 millió+', '100', False) + '</div>'
+  '<div><div class="ds-grafikon-felirat">Aktív önkéntesek (fő)</div>' + sav('2025', '1 500', '68', True) + sav('2026', '2 200+', '100', False) + '</div>'
+  '<p class="ds-forras">Források: Telex, 2025. szeptember 21. (2025); Önkéntes Vízadás 2026 záró közlemény, 2026. október (2026). Egy soron belül a sávok méretarányosak.</p>'
   '</div></div></section>')
 ELISMERESEK = [('2025', 'ONE Digitális Díj: 1. hely, zöld kategória'), ('2025', 'F6S: 2. hely, fenntarthatósági kategória'),
                ('2025', 'Sikeres közösségi finanszírozás a Brancson'), ('2024', 'Web Summit, Lisszabon: bemutatkozás nemzetközi közönségnek'),
@@ -522,21 +522,21 @@ E_AJANLAT = ('<section class="ds-szekcio ds-hatter-zold" id="offers"><div class=
   + ut('#contact', 'otlet', 'Green marketing', 'Campaigns, content and video built only on verified claims, and sponsorship of beeco campaigns.', 'Talk to us')
   + '</div></div></section>')
 E_HATAS = ('<section class="ds-szekcio ds-hatter-feher" id="impact"><div class="ds-burok ds-ketto"><div class="ds-hero-szoveg">'
-  '<div class="ds-szalag">Measured impact</div><h2 class="ds-cim2">Tree watering almost doubled in one year</h2>'
-  '<p class="ds-lead">In summer 2026, residents gave 784,352 litres of water to young trees in 15 municipalities. This is the kind of number every partner gets in its Impact Report.</p></div>'
+  '<div class="ds-szalag">Measured impact</div><h2 class="ds-cim2">Tree watering grew two and a half times in one year</h2>'
+  '<p class="ds-lead">In 2026, more than 2,200 volunteers gave over 1 million litres of water to more than 7,500 young trees in 15 municipalities. This is the kind of number every partner gets in its Impact Report.</p></div>'
   '<div class="ds-grafikon"><div class="ds-cim3">Volunteer Tree Watering, 2025 and 2026</div>'
-  '<div><div class="ds-grafikon-felirat">Water given (litres)</div>' + sav('2025', '400,000', '51', True) + sav('2026', '784,352', '100', False) + '</div>'
-  '<div><div class="ds-grafikon-felirat">Active volunteers</div>' + sav('2025', '1,500', '69', True) + sav('2026', '2,162', '100', False) + '</div>'
-  '<p class="ds-forras">Sources: Telex, 21 September 2025 (2025); beeco campaign close, October 2026 (2026). Bars are to scale within each row.</p>'
+  '<div><div class="ds-grafikon-felirat">Water given (litres)</div>' + sav('2025', '400,000', '40', True) + sav('2026', '1 million+', '100', False) + '</div>'
+  '<div><div class="ds-grafikon-felirat">Active volunteers</div>' + sav('2025', '1,500', '68', True) + sav('2026', '2,200+', '100', False) + '</div>'
+  '<p class="ds-forras">Sources: Telex, 21 September 2025 (2025); Volunteer Tree Watering 2026 closing release, October 2026 (2026). Bars are to scale within each row.</p>'
   '</div></div></section>')
 E_SZAMOK = [('25,000+', 'downloads'), ('23,000+', 'green spots on the map'), ('15', 'partner municipalities'),
-            ('2,162', 'active tree-watering volunteers in 2026'), ('100+', 'green events every month'), ('12', 'professional partners')]
+            ('1 million+', 'litres of water to young trees in 2026'), ('100+', 'green events every month'), ('12', 'professional partners')]
 E_SZAM = ('<section class="ds-szekcio ds-hatter-sotet"><div class="ds-burok">'
   + '<div class="ds-szekcio-fej"><div class="ds-szalag">Traction</div><h2 class="ds-cim2">A national community in three years</h2></div>'
   + '<div class="ds-szamsav">' + ''.join(f'<div class="ds-szam"><div class="ds-szam-ertek">{e(a)}</div><div class="ds-szam-felirat">{e(b)}</div></div>' for a, b in E_SZAMOK) + '</div>'
   + '<p class="ds-forras ds-forras-sotet">Sources: App Store and Google Play listings, beeco internal data, October 2026.</p>'
   + '</div></section>')
-E_TORT = [('2026', 'Volunteer Tree Watering: 784,352 litres, 2,162 volunteers, 15 municipalities. CsicsergŐsz bird campaign. Back at Web Summit.'),
+E_TORT = [('2026', 'Volunteer Tree Watering goes national: 1 million+ litres, 2,200+ volunteers, 7,500+ young trees, 15 municipalities. CsicsergŐsz bird campaign. Back at Web Summit.'),
           ('2025', 'ONE Digital Award, 1st place (green category). F6S: 2nd most outstanding sustainability startup in Hungary. First community tree-watering campaign.'),
           ('2024', 'App and Hungary\'s largest green map launched. Web Summit, Lisbon. NTK and Design Terminal Start: top 20 of 250 teams.'),
           ('2023', 'beeco is born. EIT Climate Launchpad international final. MVM Edison startup competition, 3rd place.')]

@@ -157,8 +157,8 @@ Számsáv sötét háttéren, méretarányos sávdiagram.
 | `.ds-grafikon-felirat.ds-tinta` | alap | cegeknek, onk, work, madar, locsolo, programok, partner, marketing, fresk, jatek, diy, kviz, csere, eloadas |
 | `.ds-sav` | alap | hatasunk, en |
 | `.ds-sav-100` | alap | hatasunk, en |
-| `.ds-sav-51` | alap | hatasunk, en |
-| `.ds-sav-69` | alap | hatasunk, en |
+| `.ds-sav-40` | alap | hatasunk, en |
+| `.ds-sav-68` | alap | hatasunk, en |
 | `.ds-sav-elozo` | alap | hatasunk, en |
 | `.ds-sav-ev` | alap | hatasunk, en |
 | `.ds-sav-sor` | alap | hatasunk, en |

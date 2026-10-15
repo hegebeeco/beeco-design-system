@@ -2189,7 +2189,7 @@
     }
    }
   },
-  "ds-sav-51": {
+  "ds-sav-40": {
    "csoport": "Hatás-blokkok",
    "csalad": "Számok és grafikon",
    "oldalak": [
@@ -2198,11 +2198,11 @@
    ],
    "css": {
     "alap": {
-     ".ds-sav-51": "width:51%"
+     ".ds-sav-40": "width:40%"
     }
    }
   },
-  "ds-sav-69": {
+  "ds-sav-68": {
    "csoport": "Hatás-blokkok",
    "csalad": "Számok és grafikon",
    "oldalak": [
@@ -2211,7 +2211,7 @@
    ],
    "css": {
     "alap": {
-     ".ds-sav-69": "width:69%"
+     ".ds-sav-68": "width:68%"
     }
    }
   },

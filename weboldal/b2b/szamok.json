@@ -23,22 +23,27 @@
  "onkormanyzat": {
   "ertek": "15",
   "felirat": "partner-önkormányzat",
-  "forras": "Önkéntes Vízadás 2026"
+  "forras": "Önkéntes Vízadás 2026 záró közlemény, 2026. október"
  },
  "vizadas_liter": {
-  "ertek": "784 352",
-  "felirat": "liter víz a fiatal fáknak 2026 nyarán",
-  "forras": "beeco kampányzárás, 2026. október"
+  "ertek": "1 millió+",
+  "felirat": "liter víz a fiatal fáknak 2026-ban",
+  "forras": "Önkéntes Vízadás 2026 záró közlemény, 2026. október"
  },
  "vizadas_fo": {
-  "ertek": "2 162",
+  "ertek": "2 200+",
   "felirat": "vízadó 2026-ban",
-  "forras": "beeco kampányzárás, 2026. október"
+  "forras": "Önkéntes Vízadás 2026 záró közlemény, 2026. október"
  },
  "vizadas_ontozes": {
-  "ertek": "24 693",
-  "felirat": "rögzített öntözés 2026-ban",
-  "forras": "beeco kampányzárás, 2026. október"
+  "ertek": "33 000+",
+  "felirat": "rögzített locsolás 2026-ban",
+  "forras": "Önkéntes Vízadás 2026 záró közlemény, 2026. október"
+ },
+ "vizadas_fa": {
+  "ertek": "7 500+",
+  "felirat": "megöntözött fiatal fa 2026-ban",
+  "forras": "Önkéntes Vízadás 2026 záró közlemény, 2026. október"
  },
  "esemeny_resztvevo": {
   "ertek": "1.200+",

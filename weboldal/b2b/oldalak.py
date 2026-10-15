@@ -13,7 +13,7 @@ SALES = [
   leiras='Mozgósítsd a lakókat: önkéntes faöntözés, madárbarát kertek, helyi zöld térkép, éves Hatásjelentéssel. A Vízadás-csatlakozás ingyenes.',
   szalag='Önkormányzatoknak', h1=K('Lakók, akik [megmentik a fákat]'),
   lead='A beeco mozgósítja a lakóidat: fiatal fákat öntöznek, madárbarát kerteket építenek, zöld programokra járnak. Te pedig év végén számokkal mutatod meg az eredményt.',
-  gomb2=('#csomagok', 'Csomagok'), chipek=['15 partner-önkormányzat', '784 352 liter víz 2026 nyarán', 'Szakmai partner: ÉTOSZ'],
+  gomb2=('#csomagok', 'Csomagok'), chipek=['15 partner-önkormányzat', '1 millió+ liter víz 2026-ban', 'Szakmai partner: ÉTOSZ'],
   foto=('bee-change', 'Két önkéntes háttal, bee the change feliratú beeco pólóban', 'Önkéntes Vízadás'),
   miert=dict(h2='A fiatal fák a lakókon múlnak', kartyak=[
     ('Az első nyarak a legnehezebbek', 'A frissen ültetett fák az első években a legsérülékenyebbek. Ha aszályban nem kapnak vizet, a telepítés munkája és költsége is elvész.', None, None),

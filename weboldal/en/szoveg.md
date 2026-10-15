@@ -29,7 +29,7 @@ Hossz: 5 szekció, egy képernyőnyi olvasás szekciónként. A magyar főoldalo
   - 12 professional partners
   - 7,000 trees watered in summer 2025 · 400,000 litres of water · 1,500 volunteer waterers
 - Forrás-sor: Tree-watering data: Telex, 21 September 2025.
-- (Döntés kell: a 2026-os szezonzáró számai frissebbek – 784,352 litres, 2,162 active waterers, 15 municipalities –, de az az oldal még draft.)
+- 2026-os számok a záró közleményből (2026. október): 1 million+ litres, 2,200+ volunteers, 7,500+ young trees, 15 municipalities.
 
 ## 4. Our story
 - H2: **Who is behind beeco?**
