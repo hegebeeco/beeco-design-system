@@ -330,7 +330,7 @@ if (kaptar) { const heroIO = new IntersectionObserver(es => es.forEach(e => { if
     if (uzenet) uzenet.textContent = 'Üdv a rajban! Egy lépéssel közelebb a zöld 2050-hez.';
     gomb.textContent = 'Töltsd le az appot';
   });
-  const szamok = $$('.fs-szam-ertek', oldal);
+  const szamok = $$('.fs-szam-ertek, .fo-ereje-szam', oldal);
   if (!szamok.length || kevesMozgas() || !('IntersectionObserver' in window)) return;
   szamok.forEach(el => {
     const eredeti = el.textContent.trim(), m = eredeti.match(/^([\d.\s]+)(.*)$/); if (!m) return;
