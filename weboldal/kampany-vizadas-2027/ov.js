@@ -28,11 +28,18 @@ if (teszt) {
 const helyNev = el => { const s = el.closest('section'); return (s && s.id) || 'ismeretlen'; };
 const kattMer = (sel, esemeny) => $$(sel, oldal).forEach(a => a.addEventListener('click', () => mer(esemeny, { hely: helyNev(a), szoveg: a.textContent.trim().slice(0, 40) })));
 kattMer('.ov-ertesito', 'ertesito_kattintas');
-kattMer('.ov-kartya', 'tavaszig_kattintas');
-kattMer('.ov-onk-cta .ov-gomb', 'onkormanyzat_kattintas');
-kattMer('.ov-gomb-masod', 'eredmenyek_kattintas');
+/* CTA-k: a data-ov-cta érték a hely (hero, hero-b2b, csatlakozz-…, partner-…, otlet, qr) */
+$$('[data-ov-cta]', oldal).forEach(a => a.addEventListener('click', () => mer('cta_kattintas', { hely: a.getAttribute('data-ov-cta'), cel: a.getAttribute('href') || '' })));
 $$('.ov-kerdes', oldal).forEach(k => k.addEventListener('toggle', () => { if (k.open) mer('gyik_nyitas', { kerdes: $('summary', k).textContent }); }));
 const elso = $('.ov-kerdes', oldal); if (elso) elso.open = true;
+
+/* ---------- QR-érkezés: plakátról, matricáról, szórólapról jövőknek egy rövid sáv a hero fölött ---------- */
+(function () {
+  const sav = $('.ov-qr-sav', oldal); if (!sav) return;
+  const q = new URLSearchParams(location.search), med = (q.get('utm_medium') || '').toLowerCase(), forras = (q.get('utm_source') || '').toLowerCase();
+  if (!/^(qr|print|offline|plakat|matrica|szorolap)$/.test(med) && !/qr|plakat|matrica|szorolap/.test(forras)) return;
+  sav.classList.add('ov-lathato'); mer('qr_erkezes', { forras: forras || med, kampany: q.get('utm_campaign') || '' });
+})();
 
 /* ---------- okos boltgombok: platform + UTM ---------- */
 const ua = navigator.userAgent;
@@ -88,7 +95,7 @@ function gombbaAlakit(a, katt) {
 
 /* ---------- felpörgő számok az eredményeknél ---------- */
 (function () {
-  const szamok = $$('.ov-stat-szam', oldal);
+  const szamok = $$('.ov-stat-szam, .ov-hero-szam', oldal);
   if (!szamok.length || kevesMozgas() || !('IntersectionObserver' in window)) return;
   szamok.forEach(el => {
     const eredeti = el.textContent.trim(), cel = parseInt(eredeti.replace(/\D/g, ''), 10); if (!cel) return;
