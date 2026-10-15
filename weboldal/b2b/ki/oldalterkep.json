@@ -1,0 +1,80 @@
+[
+ {
+  "oldal": "onk",
+  "slug_vegleges": "/szolgaltatas/onkormanyzatoknak",
+  "slug_draft": "/szolgaltatas/onkormanyzatoknak-draft",
+  "cim": "Önkormányzatoknak: lakossági faöntözés és zöld programok | beeco"
+ },
+ {
+  "oldal": "work",
+  "slug_vegleges": "/szolgaltatas/beeco-at-work",
+  "slug_draft": "/szolgaltatas/beeco-at-work-draft",
+  "cim": "beeco@work: munkahelyi zöld program havi Hatásjelentéssel | beeco"
+ },
+ {
+  "oldal": "madar",
+  "slug_vegleges": "/szolgaltatas/madarraj",
+  "slug_draft": "/szolgaltatas/madarraj-draft",
+  "cim": "Madárraj: céges csapatnap odúkészítéssel és madársétával | beeco"
+ },
+ {
+  "oldal": "locsolo",
+  "slug_vegleges": "/szolgaltatas/locsoloraj",
+  "slug_draft": "/szolgaltatas/locsoloraj-draft",
+  "cim": "Locsolóraj: céges faöntöző csapatnap az Önkéntes Vízadásban | beeco"
+ },
+ {
+  "oldal": "programok",
+  "slug_vegleges": "/szolgaltatas/zold-esemeny-szervezes",
+  "slug_draft": "/szolgaltatas/zold-esemeny-szervezes-draft",
+  "cim": "Zöld céges programok és csapatépítők nagyvállalatoknak | beeco"
+ },
+ {
+  "oldal": "partner",
+  "slug_vegleges": "/szolgaltatas/partner",
+  "slug_draft": "/szolgaltatas/partner-draft",
+  "cim": "Partnerprogram zöld vállalkozásoknak: térkép, kupon, analitika | beeco"
+ },
+ {
+  "oldal": "marketing",
+  "slug_vegleges": "/szolgaltatas/zold-marketing",
+  "slug_draft": "/szolgaltatas/zold-marketing-draft",
+  "cim": "Zöld marketing fenntartható márkáknak, igazolt állításokkal | beeco"
+ },
+ {
+  "oldal": "fresk",
+  "slug_vegleges": "/szolgaltatas/klimafresko",
+  "slug_draft": "/szolgaltatas/klimafresko-draft",
+  "cim": "Klímafreskó workshop cégeknek és csapatoknak | beeco"
+ },
+ {
+  "oldal": "jatek",
+  "slug_vegleges": "/szolgaltatas/3d-zold-jatekok",
+  "slug_draft": "/szolgaltatas/3d-zold-jatekok-draft",
+  "cim": "3D zöld játékok rendezvényre, standra, csapatnapra | beeco"
+ },
+ {
+  "oldal": "diy",
+  "slug_vegleges": "/szolgaltatas/kezmuves-workshop",
+  "slug_draft": "/szolgaltatas/kezmuves-workshop-draft",
+  "cim": "Kézműves és DIY workshop cégeknek | beeco"
+ },
+ {
+  "oldal": "kviz",
+  "slug_vegleges": "/szolgaltatas/zold-kviz-okomuki",
+  "slug_draft": "/szolgaltatas/zold-kviz-okomuki-draft",
+  "cim": "Zöld kvíz és ÖkoMuki csapatjáték cégeknek | beeco"
+ },
+ {
+  "oldal": "csere",
+  "slug_vegleges": "/szolgaltatas/csere-bere-szervezes",
+  "slug_draft": "/szolgaltatas/csere-bere-szervezes-draft",
+  "cim": "Csere-bere szervezés cégeknek és közösségeknek | beeco"
+ },
+ {
+  "oldal": "eloadas",
+  "slug_vegleges": "/szolgaltatas/zold-eloadas-filmklub",
+  "slug_draft": "/szolgaltatas/zold-eloadas-filmklub-draft",
+  "cim": "Fenntarthatósági előadás, filmklub, kerekasztal cégeknek | beeco"
+ }
+]

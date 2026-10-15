@@ -1,0 +1,128 @@
+[
+{
+"osztaly": "ds-ut-ar",
+"toreshely": "main",
+"tulajdonsag": "color",
+"valtozo": "variable-10cbaccf-3573-03c9-0be2-92ef17e74ec6",
+"nev": "bc-accent-ink"
+},
+{
+"osztaly": "ds-csomag",
+"toreshely": "main",
+"tulajdonsag": "background-color",
+"valtozo": "variable-aae1fb72-7619-cc28-913a-61e2f6790b23",
+"nev": "bc-surface"
+},
+{
+"osztaly": "ds-csomag",
+"toreshely": "main",
+"tulajdonsag": "color",
+"valtozo": "variable-d3d6924e-2c21-4e75-4deb-736700c62a62",
+"nev": "bc-ink"
+},
+{
+"osztaly": "ds-csomag-kiemelt",
+"toreshely": "main",
+"tulajdonsag": "background-color",
+"valtozo": "variable-2d4b8a06-c629-0806-4bf2-c2e6cfbbb115",
+"nev": "bc-accent"
+},
+{
+"osztaly": "ds-lepes-szam",
+"toreshely": "main",
+"tulajdonsag": "color",
+"valtozo": "variable-2d4b8a06-c629-0806-4bf2-c2e6cfbbb115",
+"nev": "bc-accent"
+},
+{
+"osztaly": "ds-jelentes",
+"toreshely": "main",
+"tulajdonsag": "background-color",
+"valtozo": "variable-5de3c308-7929-9eb7-ed60-04cc76d07316",
+"nev": "bc-paper"
+},
+{
+"osztaly": "ds-jelentes-szam",
+"toreshely": "main",
+"tulajdonsag": "border-left-color",
+"valtozo": "variable-2d4b8a06-c629-0806-4bf2-c2e6cfbbb115",
+"nev": "bc-accent"
+},
+{
+"osztaly": "ds-jelentes-szam",
+"toreshely": "main",
+"tulajdonsag": "background-color",
+"valtozo": "variable-aae1fb72-7619-cc28-913a-61e2f6790b23",
+"nev": "bc-surface"
+},
+{
+"osztaly": "ds-allitas",
+"toreshely": "main",
+"tulajdonsag": "background-color",
+"valtozo": "variable-c792337d-a371-9744-8f2c-37ff2564bc37",
+"nev": "bc-surface-2"
+},
+{
+"osztaly": "ds-allitas-kerul",
+"toreshely": "main",
+"tulajdonsag": "background-color",
+"valtozo": "variable-aae1fb72-7619-cc28-913a-61e2f6790b23",
+"nev": "bc-surface"
+},
+{
+"osztaly": "ds-allitas-kerul",
+"toreshely": "main",
+"tulajdonsag": "color",
+"valtozo": "variable-9c201171-9318-d317-4036-5aeee1162eea",
+"nev": "bc-ink-soft"
+},
+{
+"osztaly": "ds-eset",
+"toreshely": "main",
+"tulajdonsag": "background-color",
+"valtozo": "variable-aae1fb72-7619-cc28-913a-61e2f6790b23",
+"nev": "bc-surface"
+},
+{
+"osztaly": "ds-urlap-doboz",
+"toreshely": "main",
+"tulajdonsag": "background-color",
+"valtozo": "variable-aae1fb72-7619-cc28-913a-61e2f6790b23",
+"nev": "bc-surface"
+},
+{
+"osztaly": "ds-cimke",
+"toreshely": "main",
+"tulajdonsag": "color",
+"valtozo": "variable-d3d6924e-2c21-4e75-4deb-736700c62a62",
+"nev": "bc-ink"
+},
+{
+"osztaly": "ds-bemenet",
+"toreshely": "main",
+"tulajdonsag": "color",
+"valtozo": "variable-d3d6924e-2c21-4e75-4deb-736700c62a62",
+"nev": "bc-ink"
+},
+{
+"osztaly": "ds-jelolo",
+"toreshely": "main",
+"tulajdonsag": "color",
+"valtozo": "variable-9c201171-9318-d317-4036-5aeee1162eea",
+"nev": "bc-ink-soft"
+},
+{
+"osztaly": "ds-urlap-uzenet",
+"toreshely": "main",
+"tulajdonsag": "background-color",
+"valtozo": "variable-c792337d-a371-9744-8f2c-37ff2564bc37",
+"nev": "bc-surface-2"
+},
+{
+"osztaly": "ds-urlap-uzenet",
+"toreshely": "main",
+"tulajdonsag": "color",
+"valtozo": "variable-d3d6924e-2c21-4e75-4deb-736700c62a62",
+"nev": "bc-ink"
+}
+]

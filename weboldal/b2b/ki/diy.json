@@ -1,0 +1,51 @@
+[
+ {
+  "nev": "diy-hero",
+  "html": "<section class=\"ds-szekcio ds-hatter-vaj\" id=\"kezdes\"><div class=\"ds-burok ds-hero-racs\"><div class=\"ds-hero-szoveg\"><div class=\"ds-szalag\">Kézműves workshop</div><h1 class=\"ds-cim1\">Két kéz, jó társaság, <span class=\"ds-kiemel\">valami, ami megmarad</span></h1><p class=\"ds-lead\">A legjobb módja a tanulásnak, amikor pár óra alatt alkottok valamit. Varrás, upcycling, méhviaszos kendő, fermentálás vagy natúr tisztítószer: mindenki egy saját, használható darabbal megy haza.</p><div class=\"ds-gombsor\"><a class=\"ds-gomb\" href=\"#ajanlatkeres\" data-b2b-cta=\"hero\">Ajánlatot kérek</a><a class=\"ds-gomb ds-masod\" href=\"#menet\" data-b2b-cta=\"hero-2\">Így zajlik</a></div><div class=\"ds-chipsor\"><div class=\"ds-chip\">1–3 óra</div><div class=\"ds-chip\">8–30 fő</div><div class=\"ds-chip\">180 000 Ft-tól</div></div></div><figure class=\"ds-foto ds-hero-foto\"><img class=\"ds-foto-kep\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/67f3ffef809e550e5264fb50_IMG_20250320_180444%20%E2%80%93%20nagy.avif\" alt=\"Tizenegy ember egy műhelyasztal körül színes anyagokkal, háttérben könyvcsere-polc\" loading=\"lazy\"><figcaption class=\"ds-foto-felirat\">Csináld magad műhely</figcaption></figure></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "diy-mi",
+  "html": "<section class=\"ds-szekcio ds-hatter-feher\" id=\"mi-ez\"><div class=\"ds-burok ds-ketto\"><div class=\"ds-hero-szoveg\"><div class=\"ds-szalag\">A témák</div><h2 class=\"ds-cim2\">Válaszd ki, mit készítetek</h2><p class=\"ds-szoveg\"><strong>Varrás és upcycling:</strong> régi textilből új, használható darab.</p><p class=\"ds-szoveg\"><strong>Méhviaszos kendő:</strong> fólia helyett, újra és újra használható.</p><p class=\"ds-szoveg\"><strong>Fermentálás:</strong> savanyú zöldség és ital, amit otthon is el tudtok készíteni.</p><p class=\"ds-szoveg\"><strong>Natúr tisztítószer:</strong> egyszerű alapanyagokból, kevesebb vegyszerrel.</p><p class=\"ds-szoveg\"><strong>Barkácsolás:</strong> kisebb tárgyak, amik a hétköznapokban is kellenek.</p></div><figure class=\"ds-foto\"><img class=\"ds-foto-kep\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/67f3fff2e3522b119d468715_P1240510-Enhanced-NR-1%20%E2%80%93%20nagy.avif\" alt=\"Emberek egy világos teremben asztalok körül, előtérben gyümölcs és italok\" loading=\"lazy\"></figure></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "diy-kap",
+  "html": "<section class=\"ds-szekcio\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Mit ad a csapatodnak</div><h2 class=\"ds-cim2\">Mit ad a csapatodnak?</h2></div><div class=\"ds-harom\"><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfb0f2f41b180badebb7_fs-piko-raj.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Kibillent a mókuskerékből</h3><p class=\"ds-szoveg\">Pár óra kézzel végzett munka, ami összehozza a csapatot.</p></div><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcf7ba358827ed2156117_fs-piko-doboz.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Hazavihető eredmény</h3><p class=\"ds-szoveg\">Mindenki egy saját, használható darabbal megy haza.</p></div><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfaf356d56416f62a0d9_fs-piko-otlet.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Szokás, ami megmarad</h3><p class=\"ds-szoveg\">Egyszerű, otthon is ismételhető zöld megoldások.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "diy-menet",
+  "html": "<section class=\"ds-szekcio ds-hatter-zold\" id=\"menet\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Így zajlik</div><h2 class=\"ds-cim2\">Egy workshop menete</h2></div><div class=\"ds-lepesek\"><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">1</div><h3 class=\"ds-cim3\">Témaválasztás</h3><p class=\"ds-szoveg\">Kiválasztjátok a workshopot, mi hozzuk az anyagot és az eszközt.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">2</div><h3 class=\"ds-cim3\">Bevezetés</h3><p class=\"ds-szoveg\">Rövid háttér: miért jó ez a környezetnek és a pénztárcának.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">3</div><h3 class=\"ds-cim3\">Alkotás</h3><p class=\"ds-szoveg\">Lépésről lépésre, segítséggel, mindenkinek sikerül.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">4</div><h3 class=\"ds-cim3\">Összefoglaló</h3><p class=\"ds-szoveg\">Fotók és rövid jelentés a belső kommunikációhoz.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "diy-csomag",
+  "html": "<section class=\"ds-szekcio\" id=\"arak\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Árak</div><h2 class=\"ds-cim2\">Egy workshoptól a sorozatig</h2></div><div class=\"ds-csomagok\"><div class=\"ds-csomag\"><div class=\"ds-grafikon-felirat\">Belépő</div><h3 class=\"ds-cim3\">Egy workshop</h3><div class=\"ds-csomag-ar\">180 000 Ft-tól</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>1–3 óra, 8–30 fő</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Anyag és eszköz</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Vezetett alkotás</span></li></ul><a class=\"ds-gomb ds-masod\" href=\"#ajanlatkeres\" data-b2b-cta=\"diy-belépő\">Ajánlatot kérek</a></div><div class=\"ds-csomag ds-csomag-kiemelt\"><div class=\"ds-grafikon-felirat ds-tinta\">Mag</div><h3 class=\"ds-cim3\">Workshop és csere-bere</h3><div class=\"ds-csomag-ar\">Kérj ajánlatot</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Alkotás és csere egy napon</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Családbarát program</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Rövid jelentés</span></li></ul><a class=\"ds-gomb\" href=\"#ajanlatkeres\" data-b2b-cta=\"diy-mag\">Ajánlatot kérek</a></div><div class=\"ds-csomag\"><div class=\"ds-grafikon-felirat\">Partnerség</div><h3 class=\"ds-cim3\">Workshop-sorozat</h3><div class=\"ds-csomag-ar\">Kérj ajánlatot</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Havonta más téma</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Közös tervezés</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Éves összesítő</span></li></ul><a class=\"ds-gomb ds-masod\" href=\"#ajanlatkeres\" data-b2b-cta=\"diy-partnerség\">Ajánlatot kérek</a></div></div><p class=\"ds-megjegyzes\"><strong>Hatásjelentés:</strong> minden programhoz jár egy rövid jelentés a résztvevők számával, a témákkal és kész mondatokkal a belső kommunikációhoz. <a class=\"ds-szoveglink\" href=\"/szolgaltatas/cegeknek#hatasjelentes\">Mintajelentés ›</a></p></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "diy-gyik",
+  "html": "<section class=\"ds-szekcio ds-hatter-feher\" id=\"gyik\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Gyakori kérdések</div><h2 class=\"ds-cim2\">Amit a szervezők kérdezni szoktak</h2></div><div class=\"ds-ketto\"><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Mennyibe kerül?</h3><p class=\"ds-szoveg\">180 000 Ft-tól, a témától, a létszámtól és az anyagigénytől függően.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Kell hozzá ügyesség?</h3><p class=\"ds-szoveg\">Nem. Lépésről lépésre haladunk, és végig segítünk.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Hol tartjátok?</h3><p class=\"ds-szoveg\">Nálatok vagy egy általatok választott helyszínen.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Több témát is választhatunk?</h3><p class=\"ds-szoveg\">Igen, egy alkalmon belül vagy sorozatban is, a csapat érdeklődése szerint.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "diy-tobbi",
+  "html": "<section class=\"ds-szekcio ds-hatter-zold\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">További programjaink</div><h2 class=\"ds-cim2\">Ezeket is meghozhatjuk hozzátok</h2></div><div class=\"ds-utak\"><a class=\"ds-ut\" href=\"/szolgaltatas/csere-bere-szervezes\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfb0356d56416f62a171_fs-piko-sziv.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Csere-bere</h3><p class=\"ds-szoveg\">Ruha-, könyv-, palánta- és játékcsere, családbarát hangulatban.</p><div class=\"ds-tovabb-nyil\">Megnézem ›</div></a><a class=\"ds-ut\" href=\"/szolgaltatas/klimafresko\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfaf356d56416f62a0d9_fs-piko-otlet.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Klímafreskó</h3><p class=\"ds-szoveg\">Tudományos alapú csapatjáték a klímaváltozásról, 3 órában.</p><div class=\"ds-tovabb-nyil\">Megnézem ›</div></a><a class=\"ds-ut\" href=\"/szolgaltatas/zold-kviz-okomuki\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcf7d46bae73bbde8f3de_fs-piko-kupa.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Zöld kvíz és ÖkoMuki</h3><p class=\"ds-szoveg\">Humoros, versengő csapatjáték 10–250 főnek, Kahoot alapon.</p><div class=\"ds-tovabb-nyil\">Megnézem ›</div></a></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "komp:ajanlatkeres",
+  "html": "",
+  "css": "",
+  "komponens": "ajanlatkeres",
+  "komponens_id": "18b953bc-5dbc-c820-52fc-b872c83459cb"
+ },
+ {
+  "nev": "komp:ajanlatok",
+  "html": "",
+  "css": "",
+  "komponens": "ajanlatok",
+  "komponens_id": "4a8cf67e-8a4c-11c0-c7b0-d9ee058d623c"
+ }
+]

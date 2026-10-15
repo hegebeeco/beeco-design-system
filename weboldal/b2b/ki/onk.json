@@ -1,0 +1,68 @@
+[
+ {
+  "nev": "onk-hero",
+  "html": "<section class=\"ds-szekcio ds-hatter-vaj\" id=\"kezdes\"><div class=\"ds-burok ds-hero-racs\"><div class=\"ds-hero-szoveg\"><div class=\"ds-szalag\">Önkormányzatoknak</div><h1 class=\"ds-cim1\">Lakók, akik <span class=\"ds-kiemel\">megmentik a fákat</span></h1><p class=\"ds-lead\">A beeco mozgósítja a lakóidat: fiatal fákat öntöznek, madárbarát kerteket építenek, zöld programokra járnak. Te pedig év végén számokkal mutatod meg az eredményt.</p><div class=\"ds-gombsor\"><a class=\"ds-gomb\" href=\"#ajanlatkeres\" data-b2b-cta=\"hero\">Ajánlatot kérek</a><a class=\"ds-gomb ds-masod\" href=\"#csomagok\" data-b2b-cta=\"hero-2\">Csomagok</a></div><div class=\"ds-chipsor\"><div class=\"ds-chip\">15 partner-önkormányzat</div><div class=\"ds-chip\">1 millió+ liter víz 2026-ban</div><div class=\"ds-chip\">Szakmai partner: ÉTOSZ</div></div></div><figure class=\"ds-foto ds-hero-foto\"><img class=\"ds-foto-kep\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/68fe983b78497fc77257e71b_MM__6338%20(1).avif\" alt=\"Két önkéntes háttal, bee the change feliratú beeco pólóban\" loading=\"lazy\"><figcaption class=\"ds-foto-felirat\">Önkéntes Vízadás</figcaption></figure></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "onk-miert",
+  "html": "<section class=\"ds-szekcio ds-hatter-feher\" id=\"miert\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Miért most</div><h2 class=\"ds-cim2\">A fiatal fák a lakókon múlnak</h2></div><div class=\"ds-ketto\"><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Az első nyarak a legnehezebbek</h3><p class=\"ds-szoveg\">A frissen ültetett fák az első években a legsérülékenyebbek. Ha aszályban nem kapnak vizet, a telepítés munkája és költsége is elvész.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">A lakók szívesen segítenek</h3><p class=\"ds-szoveg\">Csak tudniuk kell, hol és mikor. Az appban látják a szomjas fákat, rögzítik az öntözést, és nektárt kapnak érte.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "onk-kap",
+  "html": "<section class=\"ds-szekcio\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Mit kapsz</div><h2 class=\"ds-cim2\">Egy csomag, egész évre</h2></div><div class=\"ds-harom\"><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcf7cf2f41b180badc6a6_fs-piko-kanna.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Önkéntes Vízadás</h3><p class=\"ds-szoveg\">Nyáron a lakók a térképen találják meg a szomjas fákat. Te látod, hol, mennyit és kik öntöztek.</p></div><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfae356d56416f62a05f_fs-piko-madarpont.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Madárbarát település</h3><p class=\"ds-szoveg\">Ősszel és télen odúk, etetők és madárbarát kertek a CsicsergŐsz-kampányban, szakmai segítséggel.</p></div><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfb146bae73bbde923f6_fs-piko-terkep.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Helyi zöld térkép</h3><p class=\"ds-szoveg\">A településed zöld pontjai, programjai és kuponjai egy helyen, az appban.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "onk-lepes",
+  "html": "<section class=\"ds-szekcio ds-hatter-zold\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Hogyan működik</div><h2 class=\"ds-cim2\">Négy lépés a csatlakozástól a jelentésig</h2></div><div class=\"ds-lepesek\"><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">1</div><h3 class=\"ds-cim3\">Bemutatkozunk</h3><p class=\"ds-szoveg\">Online vagy személyesen megmutatjuk az appot és a kampányokat.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">2</div><h3 class=\"ds-cim3\">Felkerülnek a fák</h3><p class=\"ds-szoveg\">A településed fái és vízvételi helyei bekerülnek a térképre.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">3</div><h3 class=\"ds-cim3\">Szólunk a lakóknak</h3><p class=\"ds-szoveg\">Közösen hirdetjük a kampányt a település csatornáin és az appban.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">4</div><h3 class=\"ds-cim3\">Megkapod a jelentést</h3><p class=\"ds-szoveg\">Szezon végén liter, fa és vízadó, forrással, a testületnek is érthetően.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "onk-csomag",
+  "html": "<section class=\"ds-szekcio\" id=\"csomagok\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Csomagok</div><h2 class=\"ds-cim2\">Kezdd ingyen, építkezz évről évre</h2><p class=\"ds-lead\">A belépő ingyenes. Ha működik, egész évre bővítjük, majd saját kampánnyá.</p></div><div class=\"ds-csomagok\"><div class=\"ds-csomag\"><div class=\"ds-grafikon-felirat\">Belépő</div><h3 class=\"ds-cim3\">Csatlakozás a Vízadáshoz</h3><div class=\"ds-csomag-ar\">Ingyenes</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>A településed fái a térképen</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Lakossági öntözés az appban</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Szezonzáró összesítő</span></li></ul><a class=\"ds-gomb ds-masod\" href=\"#ajanlatkeres\" data-b2b-cta=\"onk-belépő\">Ajánlatot kérek</a></div><div class=\"ds-csomag ds-csomag-kiemelt\"><div class=\"ds-grafikon-felirat ds-tinta\">Mag</div><h3 class=\"ds-cim3\">Éves Települési csomag</h3><div class=\"ds-csomag-ar\">Kérj ajánlatot</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Vízadás és CsicsergŐsz egész évben</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Helyi zöld térkép és programok</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Éves Hatásjelentés</span></li></ul><a class=\"ds-gomb\" href=\"#ajanlatkeres\" data-b2b-cta=\"onk-mag\">Ajánlatot kérek</a></div><div class=\"ds-csomag\"><div class=\"ds-grafikon-felirat\">Partnerség</div><h3 class=\"ds-cim3\">Saját helyi kampány</h3><div class=\"ds-csomag-ar\">Kérj ajánlatot</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>A település nevével futó kampány</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Lakossági programok és díjazás</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Közös sajtó és megjelenés</span></li></ul><a class=\"ds-gomb ds-masod\" href=\"#ajanlatkeres\" data-b2b-cta=\"onk-partnerség\">Ajánlatot kérek</a></div></div><p class=\"ds-megjegyzes\"><strong>Pályázathoz:</strong> a Hatásjelentés számai eredménymutatóként is használhatók.</p></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "onk-jelentes",
+  "html": "<section class=\"ds-szekcio ds-hatter-feher\" id=\"hatasjelentes\"><div class=\"ds-burok ds-ketto\"><div class=\"ds-hero-szoveg\"><div class=\"ds-szalag\">Hatásjelentés</div><h2 class=\"ds-cim2\">Ezt kapod a végén</h2><p class=\"ds-lead\">Szezon végén egy jelentést kapsz, amit a testület, a lakók és a pályázat is megért.</p><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Mért adatok, forrással és módszerrel</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Kapcsolódás az SDG-khez és a VSME-adatpontokhoz</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Kész mondatok, amiket jogszerűen használhatsz</span></li></ul></div><div class=\"ds-jelentes\"><div class=\"ds-jelentes-fej\"><div class=\"ds-grafikon-felirat\">Hatásjelentés · Minta</div><h3 class=\"ds-cim3\">Önkéntes Vízadás 2026 · Mintaváros</h3><p class=\"ds-szoveg\">egy nyári szezon</p></div><div class=\"ds-jelentes-szamok\"><div class=\"ds-jelentes-szam\"><div class=\"ds-jelentes-ertek\">18 600</div><div class=\"ds-szoveg\">liter víz a fiatal fáknak</div></div><div class=\"ds-jelentes-szam\"><div class=\"ds-jelentes-ertek\">210</div><div class=\"ds-szoveg\">megöntözött fa</div></div><div class=\"ds-jelentes-szam\"><div class=\"ds-jelentes-ertek\">96</div><div class=\"ds-szoveg\">lakó vízadó</div></div><div class=\"ds-jelentes-szam\"><div class=\"ds-jelentes-ertek\">640</div><div class=\"ds-szoveg\">rögzített öntözés</div></div></div><p class=\"ds-szoveg\"><strong>Módszer:</strong> öntözések az appban rögzítve, fotóval; a fák a település fakataszteréből.</p><p class=\"ds-allitas\"><strong>Mondhatod:</strong> „Mintaváros lakói 2026 nyarán 18 600 liter vizet adtak 210 fiatal fának.”</p><p class=\"ds-allitas ds-allitas-kerul\"><strong>Kerüld:</strong> „Klímasemleges település vagyunk.” Ezt egy öntözési kampány nem igazolja.</p><p class=\"ds-forras\">A számok mintaadatok, nem valódi ügyfél eredményei.</p></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "onk-szam",
+  "html": "<section class=\"ds-szekcio ds-hatter-sotet\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Bizonyíték</div><h2 class=\"ds-cim2\">Amit eddig közösen elértünk</h2></div><div class=\"ds-szamsav\"><div class=\"ds-szam\"><div class=\"ds-szam-ertek\">15</div><div class=\"ds-szam-felirat\">partner-önkormányzat</div></div><div class=\"ds-szam\"><div class=\"ds-szam-ertek\">1 millió+</div><div class=\"ds-szam-felirat\">liter víz a fiatal fáknak 2026-ban</div></div><div class=\"ds-szam\"><div class=\"ds-szam-ertek\">2 200+</div><div class=\"ds-szam-felirat\">vízadó 2026-ban</div></div><div class=\"ds-szam\"><div class=\"ds-szam-ertek\">33 000+</div><div class=\"ds-szam-felirat\">rögzített locsolás 2026-ban</div></div></div><p class=\"ds-forras ds-forras-sotet\">Források: Önkéntes Vízadás 2026 záró közlemény, 2026. október.</p></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "onk-eset",
+  "html": "<section class=\"ds-szekcio\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Esettanulmány</div><h2 class=\"ds-cim2\">Önkéntes Vízadás: egy város, egy nyár, sok kanna</h2></div><div class=\"ds-eset\"><div class=\"ds-eset-resz\"><div class=\"ds-grafikon-felirat\">Kihívás</div><p class=\"ds-szoveg\">Aszályos nyarak, kiszáradó fiatal fák, és kevés eszköz arra, hogy a lakók bekapcsolódjanak.</p></div><div class=\"ds-eset-resz\"><div class=\"ds-grafikon-felirat\">Megoldás</div><p class=\"ds-szoveg\">A beeco appban a lakók a térképen találják meg a szomjas fákat, rögzítik az öntözést, és nektárt gyűjtenek érte. Partnereink a FŐKERT és a 10 millió Fa.</p><a class=\"ds-szoveglink\" href=\"https://telex.hu/belfold/2025/09/21/aszaly-onkentes-vizadas-locsolakoma-fokert-beeco-10-millio-fa-eredmenyek\" target=\"_blank\" rel=\"noopener\">Telex: az első év eredményei ›</a></div><div class=\"ds-eset-eredmeny\"><div class=\"ds-grafikon-felirat ds-forras-sotet\">Eredmény, 2026</div><div><div class=\"ds-szam-ertek\">1 millió+</div><div class=\"ds-szam-felirat\">liter víz</div></div><div><div class=\"ds-szam-ertek\">2 200+</div><div class=\"ds-szam-felirat\">vízadó, 15 településen</div></div></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "komp:partnerek",
+  "html": "",
+  "css": "",
+  "komponens": "partnerek",
+  "komponens_id": "cdfb35c0-e352-6c29-76b4-fc2abedce5a9"
+ },
+ {
+  "nev": "onk-gyik",
+  "html": "<section class=\"ds-szekcio ds-hatter-feher\" id=\"gyik\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Gyakori kérdések</div><h2 class=\"ds-cim2\">Mielőtt ajánlatot kérsz</h2></div><div class=\"ds-ketto\"><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Mennyibe kerül?</h3><p class=\"ds-szoveg\">A csatlakozás az Önkéntes Vízadáshoz ingyenes. Az éves Települési csomag és a saját kampány ára a település méretétől és a választott programoktól függ, erre egyedi ajánlatot adunk.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Kell hozzá saját munkatárs?</h3><p class=\"ds-szoveg\">Egy kapcsolattartó elég, aki megadja a fák adatait és segít a lakossági hirdetésben. A kampányt mi visszük.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Kik öntöznek?</h3><p class=\"ds-szoveg\">A település lakói, önkéntesen, az appon keresztül. Céges csapatok is beszállhatnak a Locsolóraj programmal.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Mire használható a jelentés?</h3><p class=\"ds-szoveg\">Testületi beszámolóhoz, lakossági kommunikációhoz és pályázatok eredménymutatójaként.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "komp:ajanlatkeres",
+  "html": "",
+  "css": "",
+  "komponens": "ajanlatkeres",
+  "komponens_id": "18b953bc-5dbc-c820-52fc-b872c83459cb"
+ },
+ {
+  "nev": "komp:ajanlatok",
+  "html": "",
+  "css": "",
+  "komponens": "ajanlatok",
+  "komponens_id": "4a8cf67e-8a4c-11c0-c7b0-d9ee058d623c"
+ }
+]

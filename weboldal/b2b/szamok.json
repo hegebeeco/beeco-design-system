@@ -1,0 +1,118 @@
+{
+ "_leiras": "Egyetlen számforrás a B2B-oldalakhoz (és később a /hatasunk-hoz). null = döntés kell, az oldal nem írhatja ki.",
+ "letoltes": {
+  "ertek": "25.000+",
+  "felirat": "letöltés",
+  "forras": "App Store és Google Play adatlap, 2026. október"
+ },
+ "ertekeles_ios": {
+  "ertek": "4,6",
+  "felirat": "App Store, 70 értékelés",
+  "forras": "App Store adatlap, 2026. október"
+ },
+ "ertekeles_android": {
+  "ertek": "4,2",
+  "felirat": "Google Play, 106 értékelés",
+  "forras": "Google Play adatlap, 2026. október"
+ },
+ "zold_pont": {
+  "ertek": "23.000+",
+  "felirat": "zöld pont a térképen",
+  "forras": "beeco belső adat, 2026. október"
+ },
+ "onkormanyzat": {
+  "ertek": "15",
+  "felirat": "partner-önkormányzat",
+  "forras": "Önkéntes Vízadás 2026 záró közlemény, 2026. október"
+ },
+ "vizadas_liter": {
+  "ertek": "1 millió+",
+  "felirat": "liter víz a fiatal fáknak 2026-ban",
+  "forras": "Önkéntes Vízadás 2026 záró közlemény, 2026. október"
+ },
+ "vizadas_fo": {
+  "ertek": "2 200+",
+  "felirat": "vízadó 2026-ban",
+  "forras": "Önkéntes Vízadás 2026 záró közlemény, 2026. október"
+ },
+ "vizadas_ontozes": {
+  "ertek": "33 000+",
+  "felirat": "rögzített locsolás 2026-ban",
+  "forras": "Önkéntes Vízadás 2026 záró közlemény, 2026. október"
+ },
+ "vizadas_fa": {
+  "ertek": "7 500+",
+  "felirat": "megöntözött fiatal fa 2026-ban",
+  "forras": "Önkéntes Vízadás 2026 záró közlemény, 2026. október"
+ },
+ "esemeny_resztvevo": {
+  "ertek": "1.200+",
+  "felirat": "résztvevő a programjainkon",
+  "forras": "beeco belső adat, 2026. október"
+ },
+ "klimafresko_alkalom": {
+  "ertek": "30+",
+  "felirat": "Klímafreskó-alkalom",
+  "forras": "beeco belső adat, 2026. október"
+ },
+ "klimafresko_fo": {
+  "ertek": "400+",
+  "felirat": "Klímafreskó-résztvevő",
+  "forras": "beeco belső adat, 2026. október"
+ },
+ "szakmai_partner": {
+  "ertek": "12",
+  "felirat": "szakmai partner",
+  "forras": "beeco belső adat, 2026. október"
+ },
+ "kuponos_partner": {
+  "ertek": null,
+  "felirat": "kuponos partner",
+  "forras": "ütközik: 35+, 40+, 50+ a mostani oldalakon"
+ },
+ "ceges_esemeny": {
+  "ertek": null,
+  "felirat": "céges program",
+  "forras": "ütközik: 18+ (szöveg) és 60+ (számláló)"
+ },
+ "ar_zold_program": {
+  "ertek": "160 000 Ft-tól",
+  "felirat": "Ökos kvíz, 1–2 óra, 10–250 fő",
+  "forras": "Zöld esemény szervezés oldal, 2026. október"
+ },
+ "ar_klimafresko": {
+  "ertek": "220 000 Ft-tól",
+  "felirat": "Klímafreskó, 3 óra, 8–50 fő",
+  "forras": "beeco Zöld programok oldal, 2026. október"
+ },
+ "ar_diy": {
+  "ertek": "180 000 Ft-tól",
+  "felirat": "Csináld magad workshop, 1–3 óra, 8–30 fő",
+  "forras": "beeco Zöld programok oldal, 2026. október"
+ },
+ "ar_csere": {
+  "ertek": "150 000 Ft-tól",
+  "felirat": "Csere-bere, 30–90 perc",
+  "forras": "beeco Zöld programok oldal, 2026. október"
+ },
+ "ar_kerekasztal": {
+  "ertek": "350 000 Ft-tól",
+  "felirat": "Kerekasztal-beszélgetés",
+  "forras": "beeco Zöld programok oldal, 2026. október"
+ },
+ "elegedett_ugyfel": {
+  "ertek": "10+",
+  "felirat": "elégedett céges ügyfél",
+  "forras": "beeco Zöld programok oldal, 2026. október"
+ },
+ "fresk_orszag": {
+  "ertek": "160+",
+  "felirat": "országban játsszák a Klímafreskót",
+  "forras": "Climate Fresk, climatefresk.org"
+ },
+ "fresk_resztvevo": {
+  "ertek": "2.000.000+",
+  "felirat": "résztvevő világszerte",
+  "forras": "Climate Fresk, climatefresk.org"
+ }
+}

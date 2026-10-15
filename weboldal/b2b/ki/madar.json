@@ -1,0 +1,53 @@
+[
+ {
+  "nev": "madar-hero",
+  "html": "<section class=\"ds-szekcio ds-hatter-vaj\" id=\"kezdes\"><div class=\"ds-burok ds-hero-racs\"><div class=\"ds-hero-szoveg\"><div class=\"ds-szalag\">Madárraj · októbertől márciusig</div><h1 class=\"ds-cim1\">Csapatnap <span class=\"ds-kiemel\">a madarakért</span></h1><p class=\"ds-lead\">Odút és etetőt készítetek, kihelyezitek a telephelyen vagy egy partner-településen, és madársétán megismeritek a lakóit. Szakmai segítséggel, a CsicsergŐsz-kampány részeként.</p><div class=\"ds-gombsor\"><a class=\"ds-gomb\" href=\"#ajanlatkeres\" data-b2b-cta=\"hero\">Ajánlatot kérek</a><a class=\"ds-gomb ds-masod\" href=\"#csomagok\" data-b2b-cta=\"hero-2\">Csomagok</a></div><div class=\"ds-chipsor\"><div class=\"ds-chip\">Októbertől márciusig</div><div class=\"ds-chip\">Fél napos program</div><div class=\"ds-chip\">Szakmai partner: MME</div></div></div><figure class=\"ds-foto ds-hero-foto\"><img class=\"ds-foto-kep\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6ac9369469460ac020d27540_cs-app-terkep.webp\" alt=\"A beeco app térképe madármegfigyelésekkel, itatókkal és odúkkal\" loading=\"lazy\"><figcaption class=\"ds-foto-felirat\">Odúk és etetők a térképen</figcaption></figure></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "madar-kap",
+  "html": "<section class=\"ds-szekcio\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Mit kapsz</div><h2 class=\"ds-cim2\">Mit csinál a csapatod?</h2></div><div class=\"ds-harom\"><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfae356d56416f62a05f_fs-piko-madarpont.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Odú és etető saját kézzel</h3><p class=\"ds-szoveg\">Előkészített elemekből, szerszámmal és segítséggel. Mindenkinek sikerül.</p></div><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcf7bf218d7e862748bce_fs-piko-fa.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Madárbarát telephely</h3><p class=\"ds-szoveg\">Az odúk és etetők a ti udvarotokba vagy egy partner-településre kerülnek, a térképen jelölve.</p></div><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfb0356d56416f62a171_fs-piko-sziv.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Madárséta</h3><p class=\"ds-szoveg\">Szakmai vezetővel megismeritek, kik költözhetnek be az odúkba.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "madar-lepes",
+  "html": "<section class=\"ds-szekcio ds-hatter-zold\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Hogyan működik</div><h2 class=\"ds-cim2\">Fél nap, előkészítve</h2></div><div class=\"ds-lepesek\"><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">1</div><h3 class=\"ds-cim3\">Egyeztetünk</h3><p class=\"ds-szoveg\">Létszám, időpont, helyszín: nálatok vagy egy partner-településen.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">2</div><h3 class=\"ds-cim3\">Mi készülünk</h3><p class=\"ds-szoveg\">Anyag, szerszám, szakmai vezető: minden a helyszínre érkezik.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">3</div><h3 class=\"ds-cim3\">Építetek és kihelyeztek</h3><p class=\"ds-szoveg\">Csapatban készülnek az odúk és az etetők, majd a helyükre kerülnek.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">4</div><h3 class=\"ds-cim3\">Megkapod a jelentést</h3><p class=\"ds-szoveg\">Hány odú, etető, résztvevő és óra, fotókkal és kész mondatokkal.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "madar-csomag",
+  "html": "<section class=\"ds-szekcio\" id=\"csomagok\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Csomagok</div><h2 class=\"ds-cim2\">Egy délutántól a névadó támogatásig</h2></div><div class=\"ds-csomagok\"><div class=\"ds-csomag\"><div class=\"ds-grafikon-felirat\">Belépő</div><h3 class=\"ds-cim3\">Odú- és etetőkészítő délután</h3><div class=\"ds-csomag-ar\">Kérj ajánlatot</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Anyag és szerszám</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Szakmai vezetés</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Rövid jelentés</span></li></ul><a class=\"ds-gomb ds-masod\" href=\"#ajanlatkeres\" data-b2b-cta=\"madar-belépő\">Ajánlatot kérek</a></div><div class=\"ds-csomag ds-csomag-kiemelt\"><div class=\"ds-grafikon-felirat ds-tinta\">Mag</div><h3 class=\"ds-cim3\">Madárbarát telephely</h3><div class=\"ds-csomag-ar\">Kérj ajánlatot</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Odúk és etetők a telephelyen</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Madárséta szakmai vezetővel</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Hatásjelentés</span></li></ul><a class=\"ds-gomb\" href=\"#ajanlatkeres\" data-b2b-cta=\"madar-mag\">Ajánlatot kérek</a></div><div class=\"ds-csomag\"><div class=\"ds-grafikon-felirat\">Partnerség</div><h3 class=\"ds-cim3\">CsicsergŐsz-támogató</h3><div class=\"ds-csomag-ar\">Kérj ajánlatot</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Névadó támogatás a kampányban</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Megjelenés az appban</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Közös sajtó</span></li></ul><a class=\"ds-gomb ds-masod\" href=\"#ajanlatkeres\" data-b2b-cta=\"madar-partnerség\">Ajánlatot kérek</a></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "madar-jelentes",
+  "html": "<section class=\"ds-szekcio ds-hatter-feher\" id=\"hatasjelentes\"><div class=\"ds-burok ds-ketto\"><div class=\"ds-hero-szoveg\"><div class=\"ds-szalag\">Hatásjelentés</div><h2 class=\"ds-cim2\">Ezt kapod a végén</h2><p class=\"ds-lead\">A nap végén nem csak élmény marad: számok, fotók és mondatok, amiket bátran használhatsz.</p><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Mért adatok, forrással és módszerrel</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Kapcsolódás az SDG-khez és a VSME-adatpontokhoz</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Kész mondatok, amiket jogszerűen használhatsz</span></li></ul></div><div class=\"ds-jelentes\"><div class=\"ds-jelentes-fej\"><div class=\"ds-grafikon-felirat\">Hatásjelentés · Minta</div><h3 class=\"ds-cim3\">Madárraj 2026 · Minta Példa Kft.</h3><p class=\"ds-szoveg\">egy délután, budapesti telephely</p></div><div class=\"ds-jelentes-szamok\"><div class=\"ds-jelentes-szam\"><div class=\"ds-jelentes-ertek\">24</div><div class=\"ds-szoveg\">kihelyezett odú</div></div><div class=\"ds-jelentes-szam\"><div class=\"ds-jelentes-ertek\">12</div><div class=\"ds-szoveg\">madáretető</div></div><div class=\"ds-jelentes-szam\"><div class=\"ds-jelentes-ertek\">31</div><div class=\"ds-szoveg\">résztvevő munkatárs</div></div><div class=\"ds-jelentes-szam\"><div class=\"ds-jelentes-ertek\">93</div><div class=\"ds-szoveg\">önkéntes óra</div></div></div><p class=\"ds-szoveg\"><strong>Módszer:</strong> odúk és etetők a helyszínen fotózva és a térképen jelölve; a résztvevők a jelenléti ív alapján.</p><p class=\"ds-allitas\"><strong>Mondhatod:</strong> „31 munkatársunk 24 madárodút és 12 etetőt készített és helyezett ki a telephelyünkön.”</p><p class=\"ds-allitas ds-allitas-kerul\"><strong>Kerüld:</strong> „Megmentettük a madarakat.” Túlzó, nem mérhető állítás.</p><p class=\"ds-forras\">A számok mintaadatok, nem valódi ügyfél eredményei.</p></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "komp:partnerek",
+  "html": "",
+  "css": "",
+  "komponens": "partnerek",
+  "komponens_id": "cdfb35c0-e352-6c29-76b4-fc2abedce5a9"
+ },
+ {
+  "nev": "madar-gyik",
+  "html": "<section class=\"ds-szekcio ds-hatter-feher\" id=\"gyik\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Gyakori kérdések</div><h2 class=\"ds-cim2\">Mielőtt ajánlatot kérsz</h2></div><div class=\"ds-ketto\"><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Hol tartjuk?</h3><p class=\"ds-szoveg\">Nálatok, ha van udvar vagy kert, vagy egy partner-településen, ahová az odúk kerülnek.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Kell hozzá ügyesség?</h3><p class=\"ds-szoveg\">Nem. Előkészített elemekből dolgozunk, és végig segítünk.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Miért ősszel és télen?</h3><p class=\"ds-szoveg\">Az odúkat a költési időszak előtt érdemes kihelyezni, az etetés pedig a hideg hónapokban segít a madaraknak.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Mennyibe kerül?</h3><p class=\"ds-szoveg\">A létszámtól és a helyszíntől függ, erre egyedi ajánlatot adunk.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "komp:ajanlatkeres",
+  "html": "",
+  "css": "",
+  "komponens": "ajanlatkeres",
+  "komponens_id": "18b953bc-5dbc-c820-52fc-b872c83459cb"
+ },
+ {
+  "nev": "komp:ajanlatok",
+  "html": "",
+  "css": "",
+  "komponens": "ajanlatok",
+  "komponens_id": "4a8cf67e-8a4c-11c0-c7b0-d9ee058d623c"
+ }
+]

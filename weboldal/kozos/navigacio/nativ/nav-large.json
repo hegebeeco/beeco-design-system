@@ -1,0 +1,19 @@
+{
+ "menu-most": {
+  "padding-right": "12px"
+ },
+ "menu-most-szoveg": {
+  "display": "block"
+ },
+ "menu-gomb": {
+  "font-size": "18px",
+  "padding-right": "12px",
+  "padding-left": "12px"
+ },
+ "menu-bolt": {
+  "padding-right": "12px"
+ },
+ "menu-bolt-szo": {
+  "display": "block"
+ }
+}
