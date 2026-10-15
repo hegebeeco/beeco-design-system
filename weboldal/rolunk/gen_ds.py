@@ -486,6 +486,85 @@ json.dump([{'nev': 'c-tovabb', 'html': C_TOVABB, 'css': ''}], open(os.path.join(
 EXTRA_ELISM = [('2024', 'NTK és Design Terminal Start: TOP20, 250 csapatból'), ('2024', 'Bridge to Benefits mesterkurzus a felelős vállalkozásokért')]
 json.dump([f'<li class="ds-ido-elem"><span class="ds-ido-ho">{e(ev)}</span><span>{e(sz)}</span></li>' for ev, sz in EXTRA_ELISM], open(os.path.join(OUT, 'c-elism-extra.json'), 'w'), ensure_ascii=False, indent=1)
 
+
+# ---------------- E · /en (Web Summit) ----------------
+MAIL = 'kristof.hegedus@beeco.hu'
+UTME = lambda hely: f'https://www.beeco.hu/letoltes?utm_source=websummit&amp;utm_medium=en&amp;utm_campaign={hely}'
+E_HERO = ('<section class="ds-szekcio ds-hatter-vaj" id="kezdes"><div class="ds-burok ds-hero-racs"><div class="ds-hero-szoveg">'
+  '<div class="ds-szalag">Green lifestyle app from Hungary</div>'
+  '<h1 class="ds-cim1">Don\'t just claim it. <span class="ds-kiemel">Do it, measure it,</span> show it.</h1>'
+  '<p class="ds-lead">beeco is a green lifestyle app and community. We help companies and cities turn people into a swarm of real, measurable green action, and we hand you the numbers to prove it.</p>'
+  f'<div class="ds-gombsor"><a class="ds-gomb" href="#contact">Talk to us</a><a class="ds-gomb ds-masod" href="{UTME("hero")}">Get the app</a><a class="ds-gomb ds-masod" href="/">Magyarul</a></div>'
+  '<div class="ds-chipsor"><div class="ds-chip">ONE Digital Award 2025: 1st place</div><div class="ds-chip">25,000+ downloads</div><div class="ds-chip">4.6 on the App Store</div></div>'
+  '<p class="ds-forras">The app is currently available in Hungarian.</p>'
+  '</div>' + foto('csapat-nagy', 'The beeco team in beige t-shirts, with one member in a bee costume', 'The swarm, all hands', ' ds-hero-foto') +
+  '</div></section>')
+E_MIERT = ('<section class="ds-szekcio ds-hatter-feher" id="why"><div class="ds-burok">'
+  + fej('Why now', 'Green claims need proof now')
+  + '<div class="ds-ketto">'
+  '<div class="ds-kartya"><h3 class="ds-cim3">Generic green claims are banned</h3><p class="ds-szoveg">Since 27 September 2026, EU law bans unproven generic environmental claims such as “eco-friendly company”, and claims based on offsetting. Companies need concrete, verified action instead.</p>'
+  '<p class="ds-forras"><a class="ds-szoveglink" href="https://transition-pathways.europa.eu/legislation/directive-eu-2024825-empowering-consumer-green-transition" target="_blank" rel="noopener">Directive (EU) 2024/825 ›</a></p></div>'
+  '<div class="ds-kartya"><h3 class="ds-cim3">Reporting got simpler, not optional</h3><p class="ds-szoveg">After Omnibus I, CSRD applies to companies above 1,000 employees and EUR 450 million turnover. Most others report voluntarily with the simpler VSME standard, and they need simple, credible social and community data.</p>'
+  '<p class="ds-forras"><a class="ds-szoveglink" href="https://www.aoshearman.com/en/insights/agreement-on-the-csrd-cs3d-omnibus-package-key-changes-and-implications" target="_blank" rel="noopener">CSRD Omnibus I summary ›</a></p></div>'
+  '</div></div></section>')
+E_PILLER = ('<section class="ds-szekcio"><div class="ds-burok">'
+  + fej('How it works', 'Engage. Measure. Show.')
+  + kartya3([('raj', 'Engage', 'Your people take real action, playfully: they water young trees, build nest boxes, complete challenges in the app and collect nectar.'),
+             ('kupa', 'Measure', 'Every paid package comes with an Impact Report: measured data, sources and method, linked to the SDGs and VSME data points.'),
+             ('sziv', 'Show', 'Campaigns, press and in-app visibility, plus ready-made, verified sentences you can use in your communication.')])
+  + '</div></section>')
+E_AJANLAT = ('<section class="ds-szekcio ds-hatter-zold" id="offers"><div class="ds-burok">'
+  + fej('For companies & cities', 'Six ways to work with the swarm', 'Every offer comes in three steps: a low-risk starter, a core subscription and a named partnership.')
+  + '<div class="ds-utak">'
+  + ut('#contact', 'telefon', 'beeco@work', 'Your team in the app: internal green challenges, a shared footprint, nectar competitions and a monthly Impact Report.', 'Ask for a demo', True)
+  + ut('#contact', 'kanna', 'Watering Swarm', 'Corporate tree-watering days with Hungary\'s first community tree-watering campaign, June to September.', 'Book a day')
+  + ut('#contact', 'madarpont', 'Bird Swarm', 'Build nest boxes and feeders, bird walks with BirdLife Hungary (MME), October to March.', 'Book a day')
+  + ut('#contact', 'telepules', 'City package', 'Tree watering, bird protection, a local green map and resident programmes, with a yearly Impact Report.', 'Talk to us')
+  + ut('#contact', 'taska', 'Partner program', 'Green shops and producers on the map, with coupons that bring conscious customers through the door.', 'Join')
+  + ut('#contact', 'otlet', 'Green marketing', 'Campaigns, content and video built only on verified claims, and sponsorship of beeco campaigns.', 'Talk to us')
+  + '</div></div></section>')
+E_HATAS = ('<section class="ds-szekcio ds-hatter-feher" id="impact"><div class="ds-burok ds-ketto"><div class="ds-hero-szoveg">'
+  '<div class="ds-szalag">Measured impact</div><h2 class="ds-cim2">Tree watering almost doubled in one year</h2>'
+  '<p class="ds-lead">In summer 2026, residents gave 784,352 litres of water to young trees in 15 municipalities. This is the kind of number every partner gets in its Impact Report.</p></div>'
+  '<div class="ds-grafikon"><div class="ds-cim3">Volunteer Tree Watering, 2025 and 2026</div>'
+  '<div><div class="ds-grafikon-felirat">Water given (litres)</div>' + sav('2025', '400,000', '51', True) + sav('2026', '784,352', '100', False) + '</div>'
+  '<div><div class="ds-grafikon-felirat">Active volunteers</div>' + sav('2025', '1,500', '69', True) + sav('2026', '2,162', '100', False) + '</div>'
+  '<p class="ds-forras">Sources: Telex, 21 September 2025 (2025); beeco campaign close, October 2026 (2026). Bars are to scale within each row.</p>'
+  '</div></div></section>')
+E_SZAMOK = [('25,000+', 'downloads'), ('23,000+', 'green spots on the map'), ('15', 'partner municipalities'),
+            ('2,162', 'active tree-watering volunteers in 2026'), ('100+', 'green events every month'), ('12', 'professional partners')]
+E_SZAM = ('<section class="ds-szekcio ds-hatter-sotet"><div class="ds-burok">'
+  + '<div class="ds-szekcio-fej"><div class="ds-szalag">Traction</div><h2 class="ds-cim2">A national community in three years</h2></div>'
+  + '<div class="ds-szamsav">' + ''.join(f'<div class="ds-szam"><div class="ds-szam-ertek">{e(a)}</div><div class="ds-szam-felirat">{e(b)}</div></div>' for a, b in E_SZAMOK) + '</div>'
+  + '<p class="ds-forras ds-forras-sotet">Sources: App Store and Google Play listings, beeco internal data, October 2026.</p>'
+  + '</div></section>')
+E_TORT = [('2026', 'Volunteer Tree Watering: 784,352 litres, 2,162 volunteers, 15 municipalities. CsicsergŐsz bird campaign. Back at Web Summit.'),
+          ('2025', 'ONE Digital Award, 1st place (green category). F6S: 2nd most outstanding sustainability startup in Hungary. First community tree-watering campaign.'),
+          ('2024', 'App and Hungary\'s largest green map launched. Web Summit, Lisbon. NTK and Design Terminal Start: top 20 of 250 teams.'),
+          ('2023', 'beeco is born. EIT Climate Launchpad international final. MVM Edison startup competition, 3rd place.')]
+E_TORTENET = ('<section class="ds-szekcio"><div class="ds-burok ds-ketto"><div class="ds-hero-szoveg">'
+  '<div class="ds-szalag">Our story</div><h2 class="ds-cim2">Award-winning, volunteer-powered</h2>'
+  '<p class="ds-lead">An award-winning Hungarian startup built by 29 volunteers and professionals in 7 squads, with university and civic partners. Next goal: beeco beyond borders.</p></div>'
+  '<ul class="ds-ido-lista">' + ''.join(f'<li class="ds-ido-elem"><span class="ds-ido-ho">{ev}</span><span>{e(sz)}</span></li>' for ev, sz in E_TORT) + '</ul>'
+  '</div></section>')
+E_SAJTO = ('<section class="ds-szekcio ds-hatter-feher"><div class="ds-burok">'
+  + fej('Featured in', 'Press and professional partners')
+  + '<div class="ds-logosor">' + ''.join(f'<div class="ds-logo"><img class="ds-logo-kep" src="{LOGO[p]}" alt="{e(p)}" loading="lazy"></div>' for p in ['Telex', 'Trade magazin', 'Marie Claire', 'Startuponline', 'We Love Budapest', 'Daily News Hungary'] if p in LOGO) + '</div>'
+  + '<div class="ds-logosor ds-logosor-sajto">' + ''.join(f'<div class="ds-logo"><img class="ds-logo-kep" src="{LOGO[p]}" alt="{e(p)}" loading="lazy"></div>' for p in PARTNER if p in LOGO) + '</div>'
+  + '</div></section>')
+E_KAPCS = ('<section class="ds-szekcio ds-hatter-vaj" id="contact"><div class="ds-burok ds-zaro">'
+  '<div class="ds-szalag">Let\'s talk</div><h2 class="ds-cim2">Meet us in Lisbon, or write to us</h2>'
+  f'<p class="ds-lead ds-zaro-lead">Bring beeco to your company, city or community. Write to Kristóf Hegedűs, co-founder and CEO: <strong>{MAIL}</strong></p>'
+  f'<div class="ds-gombsor"><a class="ds-gomb" href="mailto:{MAIL}?subject=Web%20Summit%20%E2%80%93%20beeco">Email us</a><a class="ds-gomb ds-masod" href="{UTME("zaro")}">Get the app</a><a class="ds-gomb ds-masod" href="/">Magyarul</a></div>'
+  '</div></section>')
+ELOZO_E = ELOZO | {c for h in (B_HERO, B_LEVEL, B_VEZ, B_RAJOK, B_TANACS, B_HOGYAN, B_TOVABB, B_ZARO) for x in re.findall(r'class="([^"]+)"', h) for c in x.split()}
+E = osszeallit([('e-hero', E_HERO), ('e-miert', E_MIERT), ('e-piller', E_PILLER), ('e-ajanlat', E_AJANLAT), ('e-hatas', E_HATAS), ('e-szam', E_SZAM),
+                ('e-tortenet', E_TORTENET), ('e-sajto', E_SAJTO), ('e-kapcs', E_KAPCS)], KOZOS, A_CSS, C_CSS, B_CSS, kesz0=ELOZO_E)
+json.dump(E, open(os.path.join(OUT, 'e.json'), 'w'), ensure_ascii=False, indent=1)
+hE = {c for x in re.findall(r'class="([^"]+)"', ''.join(a['html'] for a in E)) for c in x.split()}
+dE = set(re.findall(r'\.(ds-[a-z0-9-]+)', ''.join(a['css'] for a in E)))
+print('E:', [(a['nev'], len(a['html']), len(a['css'])) for a in E], '| új CSS kellene:', sorted(hE - dE - ELOZO_E))
+
 # ellenőrzés: minden használt osztálynak van CSS-e valahol
 hasznalt = set(re.findall(r'class="([^"]+)"', ''.join(a['html'] for a in A)))
 hasznalt = {c for x in hasznalt for c in x.split()}
