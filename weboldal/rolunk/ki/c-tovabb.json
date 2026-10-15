@@ -1,0 +1,7 @@
+[
+ {
+  "nev": "c-tovabb",
+  "html": "<section class=\"ds-szekcio ds-hatter-feher\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Még többet rólunk</div><h2 class=\"ds-cim2\">A történetünk és a csapatunk</h2></div><div class=\"ds-tovabb\"><a class=\"ds-tovabb-kartya\" href=\"/rolunk\"><img class=\"ds-tovabb-kep\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6988c3b79cfd66da67446360_F67FF104-81A1-4F7E-BE2D-D4ABA12B9A58_1_105_c.webp\" alt=\"Három csapattag a Web Summit felirat előtt\" loading=\"lazy\"><div class=\"ds-tovabb-test\"><h3 class=\"ds-cim3\">A történetünk</h3><p class=\"ds-szoveg\">Vízió, küldetés és öt év, öt állomás: 2023-tól a határokon túlig.</p><div class=\"ds-tovabb-nyil\">Olvasd el ›</div></div></a><a class=\"ds-tovabb-kartya\" href=\"/csapatunk\"><img class=\"ds-tovabb-kep\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6988c4803892804bbb14364c_64C6E2BA-BF85-4726-A676-3D37C5105116_1_105_c.webp\" alt=\"A beeco csapat egy asztal körül\" loading=\"lazy\"><div class=\"ds-tovabb-test\"><h3 class=\"ds-cim3\">A csapat</h3><p class=\"ds-szoveg\">29 ember, 7 raj: ismerd meg, kik dolgoznak a beecón, és hogyan csatlakozhatsz önkéntesként.</p><div class=\"ds-tovabb-nyil\">Ismerd meg a rajt ›</div></div></a></div></div></section>",
+  "css": ""
+ }
+]
