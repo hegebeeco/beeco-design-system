@@ -1,5 +1,5 @@
 {
-  "_readme": "A termékbőr és a mobil app (Flutter, beeco_ds) KÖZÖS vonalas ikonkészlete (Javaslat 27, Kristóf döntése 2026-10-15, C-27 B): 24-es rács, 2,2 px vonal, kerek vég és csatlakozás, currentColor, díszítő. Egy forrás: a React-oldalon react/src/inputs/ikonok.tsx (Ic*), minden más felhasználónak (Flutter, Figma, Webflow, nyomtatás) az itt lévő SVG-fájlok. A kettő egyezését a tests/check-ikonok.js őrzi. Márkalogó (Google, Apple stb.) nincs benne: ahol valódi márkajel kell, a szolgáltató hivatalos megoldását használd. A tükrözendő ikonok (back, forward, chevron-left, chevron-right) jobbról balra író nyelven tükrözendők.",
+  "_readme": "A termékbőr és a mobil app (Flutter, beeco_ds) KÖZÖS vonalas ikonkészlete (Javaslat 27, Kristóf döntése 2026-10-15, C-27 B): 24-es rács, 2,2 px vonal, kerek vég és csatlakozás, currentColor, díszítő. Egy forrás: a React-oldalon react/src/inputs/ikonok.tsx (Ic*), minden más felhasználónak (Flutter, Figma, Webflow, nyomtatás) az itt lévő SVG-fájlok. A kettő egyezését a tests/check-ikonok.js őrzi. Márkalogó (Google, Apple stb.) nincs benne: ahol valódi márkajel kell, a szolgáltató hivatalos megoldását használd. A tükrözendő ikonok (back, forward, chevron-left, chevron-right) jobbról balra író nyelven tükrözendők. 1.56.0-tól a készlet 55 tagú: 52 vonalas ikon és 3 kétszínű piktogram (tipus: \"piktogram\", az SVG gyökerén data-pictogram=\"true\"): fekete (currentColor) vonal, a kitöltés a honey (= --bc-accent) vagy a paper (= --bc-surface) szerepnév. A piktogram nem tükröződik.",
   "ikonok": [
     {
       "fajl": "add.svg",
@@ -8,10 +8,32 @@
       "uj": false
     },
     {
+      "fajl": "arrow-down.svg",
+      "export": "IcArrowDown",
+      "leiras": "Lefelé mutató nyíl: az érték csökkent",
+      "uj": true,
+      "kiadas": "1.56.0"
+    },
+    {
+      "fajl": "arrow-up.svg",
+      "export": "IcArrowUp",
+      "leiras": "Felfelé mutató nyíl: az érték nőtt",
+      "uj": true,
+      "kiadas": "1.56.0"
+    },
+    {
       "fajl": "back.svg",
       "export": "IcLeft",
       "leiras": "Nyíl a sor eleje felé: vissza (jobbról balra író nyelven tükrözendő)",
       "uj": false
+    },
+    {
+      "fajl": "bee.svg",
+      "export": "IcBee",
+      "leiras": "Méhecske: a hiányzó profilkép helyettesítője (kétszínű piktogram: méz test, papír szárnyak, fekete vonal)",
+      "uj": true,
+      "kiadas": "1.56.0",
+      "tipus": "piktogram"
     },
     {
       "fajl": "bell.svg",
@@ -86,6 +108,13 @@
       "uj": false
     },
     {
+      "fajl": "compass.svg",
+      "export": "IcCompass",
+      "leiras": "Iránytű: a térkép visszafordítása északra",
+      "uj": true,
+      "kiadas": "1.56.0"
+    },
+    {
       "fajl": "delete.svg",
       "export": "IcTrash",
       "leiras": "Kuka: törlés",
@@ -110,16 +139,16 @@
       "uj": true
     },
     {
-      "fajl": "eye.svg",
-      "export": "IcOpen",
-      "leiras": "Nyitott szem: megjelenítés, megnyitás, megtekintés",
-      "uj": false
-    },
-    {
       "fajl": "eye-off.svg",
       "export": "IcEyeOff",
       "leiras": "Áthúzott szem: elrejtés, rejtett",
       "uj": true
+    },
+    {
+      "fajl": "eye.svg",
+      "export": "IcOpen",
+      "leiras": "Nyitott szem: megjelenítés, megnyitás, megtekintés",
+      "uj": false
     },
     {
       "fajl": "favorite.svg",
@@ -134,10 +163,24 @@
       "uj": true
     },
     {
+      "fajl": "flag.svg",
+      "export": "IcFlag",
+      "leiras": "Zászló rúdon: jelentés, megjelölés",
+      "uj": true,
+      "kiadas": "1.56.0"
+    },
+    {
       "fajl": "forward.svg",
       "export": "IcRight",
       "leiras": "Nyíl a sor vége felé: tovább (tükrözendő)",
       "uj": false
+    },
+    {
+      "fajl": "home.svg",
+      "export": "IcHome",
+      "leiras": "Ház: a kezdőképernyő",
+      "uj": true,
+      "kiadas": "1.56.0"
     },
     {
       "fajl": "image.svg",
@@ -152,10 +195,31 @@
       "uj": false
     },
     {
+      "fajl": "layers.svg",
+      "export": "IcLayers",
+      "leiras": "Egymásra rakott rétegek: a térképrétegek kiválasztása",
+      "uj": true,
+      "kiadas": "1.56.0"
+    },
+    {
+      "fajl": "locate.svg",
+      "export": "IcLocate",
+      "leiras": "Célkereszt: saját pozíció, a térkép ráközpontosítása",
+      "uj": true,
+      "kiadas": "1.56.0"
+    },
+    {
       "fajl": "location.svg",
       "export": "IcLocation",
       "leiras": "Térképtű: hely",
       "uj": true
+    },
+    {
+      "fajl": "lock.svg",
+      "export": "IcLock",
+      "leiras": "Lakat: zárolt, még nem elérhető",
+      "uj": true,
+      "kiadas": "1.56.0"
     },
     {
       "fajl": "mail.svg",
@@ -176,10 +240,25 @@
       "uj": true
     },
     {
+      "fajl": "minus.svg",
+      "export": "IcMinus",
+      "leiras": "Mínusz: elvétel, csökkentés",
+      "uj": true,
+      "kiadas": "1.56.0"
+    },
+    {
       "fajl": "more.svg",
       "export": "IcMore",
       "leiras": "Három pont: további műveletek",
       "uj": true
+    },
+    {
+      "fajl": "nectar.svg",
+      "export": "IcNectar",
+      "leiras": "Nektárcsepp: a beeco pénzneme (kétszínű piktogram: méz kitöltés, fekete vonal)",
+      "uj": true,
+      "kiadas": "1.56.0",
+      "tipus": "piktogram"
     },
     {
       "fajl": "phone.svg",
@@ -224,6 +303,14 @@
       "uj": true
     },
     {
+      "fajl": "star-filled.svg",
+      "export": "IcStarFilled",
+      "leiras": "Kitöltött csillag: megadott értékelés (kétszínű piktogram: méz kitöltés, fekete vonal); az üres párja a star.svg",
+      "uj": true,
+      "kiadas": "1.56.0",
+      "tipus": "piktogram"
+    },
+    {
       "fajl": "star.svg",
       "export": "IcStar",
       "leiras": "Csillag: értékelés, kiemelés",
@@ -252,6 +339,13 @@
       "export": "IcWeb",
       "leiras": "Földgömb: weboldal",
       "uj": true
+    },
+    {
+      "fajl": "wifi-off.svg",
+      "export": "IcWifiOff",
+      "leiras": "Áthúzott Wi-Fi-ívek: nincs kapcsolat",
+      "uj": true,
+      "kiadas": "1.56.0"
     }
   ]
 }

@@ -12,7 +12,7 @@
     },
     {
       "t": "p",
-      "x": "A kompakt helyek gombjai és az űrlap műveletei ezeket használják: `IcSave`, `IcTrash`, `IcNew`, `IcInfo`, `IcEdit`, `IcOpen`, `IcX`, `IcOk`, `IcLeft`, `IcRight` – a témaváltóhoz még az `IcAuto`, `IcSun`, `IcMoon`. Vonalas rajzok 24-es rácson, 20×20 px-en renderelve, `currentColor` színnel, kerekített vonalvéggel, 2,2 px vonalvastagsággal, díszítőek (`aria-hidden`): a jelentést a gomb neve viszi. 1.55.0-tól a készlet 42 ikonos (Javaslat 27): a mobil appal közös, lásd lent."
+      "x": "A kompakt helyek gombjai és az űrlap műveletei ezeket használják: `IcSave`, `IcTrash`, `IcNew`, `IcInfo`, `IcEdit`, `IcOpen`, `IcX`, `IcOk`, `IcLeft`, `IcRight` – a témaváltóhoz még az `IcAuto`, `IcSun`, `IcMoon`. Vonalas rajzok 24-es rácson, 20×20 px-en renderelve, `currentColor` színnel, kerekített vonalvéggel, 2,2 px vonalvastagsággal, díszítőek (`aria-hidden`): a jelentést a gomb neve viszi. 1.55.0-tól a készlet a mobil appal közös (Javaslat 27), 1.56.0-tól 55 tagú: 52 vonalas ikon és 3 kétszínű piktogram, lásd lent."
     },
     {
       "t": "p",
@@ -34,12 +34,12 @@
     },
     {
       "t": "h2",
-      "x": "A közös készlet: 42 ikon webre és mobilra",
+      "x": "A közös készlet: 55 ikon webre és mobilra",
       "id": "kozos"
     },
     {
       "t": "p",
-      "x": "Egy készlet van a weben és a mobil appban (Flutter, `beeco_ds`): ugyanaz a 24-es rács, 2,2 px-es vonal, kerek vég és csatlakozás, `currentColor`. A React-csomagban `Ic*` komponensként (`@beeco/design-system/react`), mindenki másnak (Flutter, Figma, Webflow, nyomtatás) SVG-fájlként a `termek/ikonok/` mappában (`@beeco/design-system/ikonok/<név>.svg`), a jegyzékkel (`ikonok.json`) együtt. A kettő egyezését a `tests/check-ikonok.js` őrzi."
+      "x": "Egy készlet van a weben és a mobil appban (Flutter, `beeco_ds`): ugyanaz a 24-es rács, 2,2 px-es vonal, kerek vég és csatlakozás, `currentColor`. A React-csomagban `Ic*` komponensként (`@beeco/design-system/react`), mindenki másnak (Flutter, Figma, Webflow, nyomtatás) SVG-fájlként a `termek/ikonok/` mappában (`@beeco/design-system/ikonok/<név>.svg`), a jegyzékkel (`ikonok.json`) együtt. A kettő egyezését a `tests/check-ikonok.js` őrzi. A készlet az 1.55.0-ban 42 ikonnal indult; az 1.56.0 a mobil csomag további 13 tagját (10 vonalas ikon és 3 piktogram) adta vissza a közös készletbe."
     },
     {
       "t": "p",
@@ -47,7 +47,7 @@
     },
     {
       "t": "tabla",
-      "cim": "A 42 ikon",
+      "cim": "A 52 vonalas ikon",
       "fej": [
         "React",
         "SVG-fájl",
@@ -58,6 +58,16 @@
           "`IcNew`",
           "`termek/ikonok/add.svg`",
           "Plusz: új elem létrehozása, hozzáadás"
+        ],
+        [
+          "`IcArrowDown`",
+          "`termek/ikonok/arrow-down.svg`",
+          "Lefelé mutató nyíl: az érték csökkent"
+        ],
+        [
+          "`IcArrowUp`",
+          "`termek/ikonok/arrow-up.svg`",
+          "Felfelé mutató nyíl: az érték nőtt"
         ],
         [
           "`IcLeft`",
@@ -125,6 +135,11 @@
           "Kereszt: bezárás, elvetés, eltávolítás"
         ],
         [
+          "`IcCompass`",
+          "`termek/ikonok/compass.svg`",
+          "Iránytű: a térkép visszafordítása északra"
+        ],
+        [
           "`IcTrash`",
           "`termek/ikonok/delete.svg`",
           "Kuka: törlés"
@@ -145,14 +160,14 @@
           "Doboz kilépő nyíllal: az appon kívül nyílik meg"
         ],
         [
-          "`IcOpen`",
-          "`termek/ikonok/eye.svg`",
-          "Nyitott szem: megjelenítés, megnyitás, megtekintés"
-        ],
-        [
           "`IcEyeOff`",
           "`termek/ikonok/eye-off.svg`",
           "Áthúzott szem: elrejtés, rejtett"
+        ],
+        [
+          "`IcOpen`",
+          "`termek/ikonok/eye.svg`",
+          "Nyitott szem: megjelenítés, megnyitás, megtekintés"
         ],
         [
           "`IcFavorite`",
@@ -165,9 +180,19 @@
           "Tölcsér: szűrés"
         ],
         [
+          "`IcFlag`",
+          "`termek/ikonok/flag.svg`",
+          "Zászló rúdon: jelentés, megjelölés"
+        ],
+        [
           "`IcRight`",
           "`termek/ikonok/forward.svg`",
           "Nyíl a sor vége felé: tovább (tükrözendő)"
+        ],
+        [
+          "`IcHome`",
+          "`termek/ikonok/home.svg`",
+          "Ház: a kezdőképernyő"
         ],
         [
           "`IcImage`",
@@ -180,9 +205,24 @@
           "Kör i betűvel: tájékoztatás"
         ],
         [
+          "`IcLayers`",
+          "`termek/ikonok/layers.svg`",
+          "Egymásra rakott rétegek: a térképrétegek kiválasztása"
+        ],
+        [
+          "`IcLocate`",
+          "`termek/ikonok/locate.svg`",
+          "Célkereszt: saját pozíció, a térkép ráközpontosítása"
+        ],
+        [
           "`IcLocation`",
           "`termek/ikonok/location.svg`",
           "Térképtű: hely"
+        ],
+        [
+          "`IcLock`",
+          "`termek/ikonok/lock.svg`",
+          "Lakat: zárolt, még nem elérhető"
         ],
         [
           "`IcMail`",
@@ -198,6 +238,11 @@
           "`IcMenu`",
           "`termek/ikonok/menu.svg`",
           "Három vonal: menü"
+        ],
+        [
+          "`IcMinus`",
+          "`termek/ikonok/minus.svg`",
+          "Mínusz: elvétel, csökkentés"
         ],
         [
           "`IcMore`",
@@ -263,8 +308,56 @@
           "`IcWeb`",
           "`termek/ikonok/web.svg`",
           "Földgömb: weboldal"
+        ],
+        [
+          "`IcWifiOff`",
+          "`termek/ikonok/wifi-off.svg`",
+          "Áthúzott Wi-Fi-ívek: nincs kapcsolat"
         ]
       ]
+    },
+    {
+      "t": "h2",
+      "x": "Kétszínű piktogramok a közös készletben",
+      "id": "ketszinu"
+    },
+    {
+      "t": "p",
+      "x": "1.56.0-tól három kétszínű piktogram is a közös készlet tagja: `IcBee`, `IcNectar`, `IcStarFilled`. Ugyanaz a 24-es rács és a 2,2 px-es, kerek végű fekete vonal (`currentColor`), mint a vonalas ikonoknál, de van kitöltésük: a méz (`--bc-accent`) és a papír (`--bc-surface`) szerep. A szín soha nem beszél egyedül: a piktogramnak a rajza is egyértelmű, a jelentést a gomb vagy a szöveg neve viszi."
+    },
+    {
+      "t": "p",
+      "x": "Az SVG-fájlban a gyökéren `data-pictogram=\"true\"` áll, a kitöltés pedig szerepnév: `fill=\"honey\"` (a méz, a webes `Ic*` komponensben `var(--bc-accent)`) és `fill=\"paper\"` (a papír, `var(--bc-surface)`). Más kitöltés vagy nyers szín nem lehet bennük, a vonal mindig `currentColor`; a piktogram nem tükröződik. A fájlok nem a böngészőben nyílnak meg közvetlenül: a Flutter-csomag, a tervezőprogramok és a Webflow importja a két szerepnevet a saját tokenjére cseréli. A weben használd az `Ic*` komponenst."
+    },
+    {
+      "t": "tabla",
+      "cim": "A 3 piktogram",
+      "fej": [
+        "React",
+        "SVG-fájl",
+        "Mire való"
+      ],
+      "sorok": [
+        [
+          "`IcBee`",
+          "`termek/ikonok/bee.svg`",
+          "Méhecske: a hiányzó profilkép helyettesítője"
+        ],
+        [
+          "`IcNectar`",
+          "`termek/ikonok/nectar.svg`",
+          "Nektárcsepp: a beeco pénzneme"
+        ],
+        [
+          "`IcStarFilled`",
+          "`termek/ikonok/star-filled.svg`",
+          "Kitöltött csillag: megadott értékelés"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "A játékbőr saját `pic('név')` készlete (alább) ettől független: más névtér, olíva vonal, nyers palettaszínek. Ugyanaz a név (`bee`, `star`, `home`, `compass`) a két készletben két külön rajz."
     },
     {
       "t": "p",
@@ -318,13 +411,13 @@
         ],
         [
           "Szín",
-          "`currentColor`",
+          "`currentColor` (a piktogram kitöltése: `--bc-accent`, `--bc-surface`)",
           "olíva vonal + palettaszínek kitöltés",
           "`currentColor`"
         ],
         [
           "Megjelenés",
-          "csak vonal",
+          "csak vonal (a 3 kétszínű piktogram kivétel)",
           "vonal és színes kitöltés",
           "csak vonal"
         ],

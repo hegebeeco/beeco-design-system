@@ -2263,7 +2263,19 @@
   "HU_CENTER": {
    "fajta": "ertek"
   },
+  "IcArrowDown": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcArrowUp": {
+   "fajta": "komponens",
+   "props": {}
+  },
   "IcAuto": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcBee": {
    "fajta": "komponens",
    "props": {}
   },
@@ -2307,6 +2319,10 @@
    "fajta": "komponens",
    "props": {}
   },
+  "IcCompass": {
+   "fajta": "komponens",
+   "props": {}
+  },
   "IcEdit": {
    "fajta": "komponens",
    "props": {}
@@ -2331,6 +2347,14 @@
    "fajta": "komponens",
    "props": {}
   },
+  "IcFlag": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcHome": {
+   "fajta": "komponens",
+   "props": {}
+  },
   "IcImage": {
    "fajta": "komponens",
    "props": {}
@@ -2339,11 +2363,23 @@
    "fajta": "komponens",
    "props": {}
   },
+  "IcLayers": {
+   "fajta": "komponens",
+   "props": {}
+  },
   "IcLeft": {
    "fajta": "komponens",
    "props": {}
   },
+  "IcLocate": {
+   "fajta": "komponens",
+   "props": {}
+  },
   "IcLocation": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcLock": {
    "fajta": "komponens",
    "props": {}
   },
@@ -2359,11 +2395,19 @@
    "fajta": "komponens",
    "props": {}
   },
+  "IcMinus": {
+   "fajta": "komponens",
+   "props": {}
+  },
   "IcMoon": {
    "fajta": "komponens",
    "props": {}
   },
   "IcMore": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcNectar": {
    "fajta": "komponens",
    "props": {}
   },
@@ -2424,6 +2468,10 @@
    "fajta": "komponens",
    "props": {}
   },
+  "IcStarFilled": {
+   "fajta": "komponens",
+   "props": {}
+  },
   "IcSun": {
    "fajta": "komponens",
    "props": {}
@@ -2445,6 +2493,10 @@
    "props": {}
   },
   "IcWeb": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcWifiOff": {
    "fajta": "komponens",
    "props": {}
   },

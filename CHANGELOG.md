@@ -11,6 +11,15 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.56.0 – 2026-10-16 – Mobil visszaírás, 2. kör (Javaslat 27, 1.56 kiegészítés): 13 további közös ikon
+
+**A közös ikonkészlet 42-ről 55-re bővül** (C-27 B, `docs/javaslatok/27-mobil-visszairas.md` „1.56 kiegészítés”). MELLÉK, csak bővítés: nincs átnevezés, nincs törlés, nincs értékváltozás (`api-check` zöld). A mobil csomag (`beeco_ds`) az 1.55.0 óta 13 ikonnal bővült; ezek mennek vissza a közös készletbe, karakterre azonos rajzzal.
+
+* **10 új vonalas ikon** (`Ic*` a `@beeco/design-system/react`-ben + SVG a `termek/ikonok/` mappában): `IcArrowUp`, `IcArrowDown` (trend), `IcMinus`, `IcHome`, `IcLock`, `IcFlag`, `IcWifiOff`, `IcLayers`, `IcCompass`, `IcLocate`.
+* **3 új kétszínű piktogram:** `IcBee`, `IcNectar`, `IcStarFilled`. Fekete (`currentColor`) vonal, méz (`--bc-accent`) és papír (`--bc-surface`) kitöltés; az SVG-fájlban `data-pictogram="true"` a gyökéren és `fill="honey"` / `fill="paper"` szerepnév (a Flutter-csomag és a tervezőprogramok így olvassák), a React-komponensben a szerep CSS-változója. Ugyanabban a mappában és jegyzékben élnek (`ikonok.json`, `"tipus": "piktogram"`), mert a termékbőrnek eddig nem volt kétszínű piktogram-helye (a `web/js/pics.js` a játékbőr készlete, más névtér).
+* **Őr:** a `tests/check-ikonok.js` a piktogramot is ellenőrzi (fejléc + `data-pictogram`, csak `honey` / `paper` kitöltés, SVG ↔ `Ic*` karakterre azonos a szerep-megfeleltetéssel).
+* **Dokumentáció:** Javaslat 27 „1.56 kiegészítés”, Ikonok oldal (55 tag, „Kétszínű piktogramok a közös készletben”), Piktogram-elem leírása, `docs/AI.md` újragenerálva.
+
 ## 1.55.0 – 2026-10-15 – Mobil visszaírás (Javaslat 27): közös ikonkészlet (42), halvány méz, bronz rangszín, mobil puha árnyék, sötét állapot-skála
 
 **Mobil visszaírás (Javaslat 27, `docs/javaslatok/27-mobil-visszairas.md`)** – Kristóf döntése 2026-10-15 (C-27 B, C-6 B, C-3 A, adatszínek). MELLÉK, csak bővítés: nincs átnevezés, nincs törlés, nincs értékváltozás (`api-check` zöld). A mobil app (Flutter, privát `beeco_ds` csomag) ezeket a `dist/dart/beeco_tokens.dart` szinkronjával veszi át.
