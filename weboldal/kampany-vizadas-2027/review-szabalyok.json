@@ -1,0 +1,65 @@
+{
+  "nev": "Önkéntes Vízadás emlékoldal",
+  "hatokor": ".ov-oldal",
+  "paletta": [
+    "#0A0AF2",
+    "#060077",
+    "#64C4FF",
+    "#DCF1FF",
+    "#00BA96",
+    "#00A585",
+    "#D4F4EA",
+    "#FECF39",
+    "#FFFFFF",
+    "#000000",
+    "#FEEEBB"
+  ],
+  "szinTures": 14,
+  "betuk": [
+    "Lalezar",
+    "Open Sans"
+  ],
+  "maxBetumeret": 10,
+  "primerCta": "a[href=\"#levelke\"],a[href=\"#csatlakozz-2027\"],a[href=\"#ajanlatkeres\"]",
+  "gombSelector": ".ov-gomb",
+  "gombMaxKar": 28,
+  "gombMaxSzo": 4,
+  "appKepernyo": {
+    "selector": ".ov-mockup",
+    "max": 3
+  },
+  "kabala": [],
+  "helyesiras": [
+    {
+      "rossz": "Önkéntes vízadás 2026",
+      "jo": "Önkéntes Vízadás 2026"
+    },
+    {
+      "rossz": "784 352",
+      "jo": "1 000 000+ (záró közlemény, 2026. október)"
+    },
+    {
+      "rossz": "2027 tavaszán",
+      "jo": "2027 májusában"
+    }
+  ],
+  "javaslatJelolo": "[data-ov-javaslat]",
+  "esemenyek": [
+    "ov_eredmenyek_megjelenes"
+  ],
+  "tevekenysegKattintas": "a[data-ov-cta]",
+  "szekcio": "section",
+  "anim": "[data-ov-anim]",
+  "animLathato": "ov-latszik",
+  "kepMaxKB": 300,
+  "kivetel": ".download_block, .footer, footer, .nav, .w-nav, .lablec, #ajanlatkeres",
+  "kivetelIndok": "Site-szintű komponensek (menü, lábléc, DS · Ajánlatkérés): nem a kampányoldal saját része, a saját DS-ükben kezelendők.",
+  "palettaMegjegyzes": "A Vízadás-arculat színei; a #FEEEBB a DS · Ajánlatkérés vaj háttere (bc-vaj), a fogazott él színe miatt.",
+  "tiltott": [
+    {
+      "selector": "[data-ov-minta]",
+      "sulyossag": "P1",
+      "uzenet": "Mintaadat van az oldalon: élesítés előtt valós adat kell"
+    }
+  ]
+}
