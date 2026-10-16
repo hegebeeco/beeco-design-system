@@ -79,7 +79,7 @@ Sor: **Név** `forrás` — fő propok (`*` kötelező, `…attr` = natív attri
 - **ColumnResizer** `adat/DataTableParts` — header*, label*:string · `.bc-dt-resizer` · atom · oszlopszélesség húzással (egér, érintés) ÉS billentyűzettel (← → 16 px, Home = alapméret).
 - **DataNote** `adat/DataState` — title:string, tone:'info'|'warning' · `.bc-alert` · molekula · oldalszintű adat-megjegyzés (mit számol az oldal, mi hiányzik) – `bc-alert is-info`.
 - **DataState** `adat/DataState` — status*:DataStatus, empty, error:string, onRetry:fn, retrying:bool, skeleton, what:string · `.bc-state` · molekula · töltés / üres / hiba (újrapróbálás) / nincs jogosultság / kész – egy kapcsoló.
-- **DataTable** `adat/DataTable` — caption*:string, columns*, data*:T[], getRowId*:fn, rowLabel*:fn, bare:bool, bulkActions:fn, canExpand:fn, captionVisible:bool, +25
+- **DataTable** 🆕 `adat/DataTable` — caption*:string, columns*, data*:T[], getRowId*:fn, rowLabel*:fn, bare:bool, bulkActions:fn, canExpand:fn, captionVisible:bool, +25
 - **EmptyState** `adat/EmptyState` — title*:string, action, compact:bool, illustration · `.bc-empty` · molekula · kép-hely + egy mondat + magyarázat + egy teendő.
 - **ExpandToggle** `adat/DataTableParts` — controls*:string, expanded*:bool, label*:string, onToggle*:fn · `.bc-dt-expand` · atom · sor lenyitása – aria-expanded + aria-controls a részletek sorára.
 - **FilterBar** `adat/FilterBar` — filters*:FilterDef[], onChange*:fn, values*:FilterValues, extra, itemLabel:string, narrowBelow:number, resultCount:number | null, search · `.bc-fb-count` · organizmus · kereső + szűrők + aktív-szűrő címkék + „Szűrők törlése” + találatszám.
@@ -244,4 +244,4 @@ Fájlonként a `bc-` gyökérosztályok (a `bc-x-…` alosztályok a gyökér al
 
 - Nem ez a skill: töltsd be a `beeco-arculat`-ot. Közös fájlok a `tools/kit-sync.js`-sel (`KIT-FILES.json`); globális nevek (`DS`, `pic`, `ART`, `MODEL`…) és `ds-` osztályok: `api/api.json` → `jatekJs`, `css.jatek`.
 
-*194 komponens · 43 új · 17 hook. A verzió: `VERSION` (szándékosan nincs itt, hogy a verzióemelés ne írja át).*
+*194 komponens · 44 új · 17 hook. A verzió: `VERSION` (szándékosan nincs itt, hogy a verzióemelés ne írja át).*

@@ -11,6 +11,15 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## 1.57.0 – 2026-10-16
+
+**DataTable: a „Kényelmes / Sűrű” kapcsoló alapból nincs, az alapsűrűség „sűrű”** (Kristóf kérése 2026-10-16: sehol nincs sűrűség-kapcsoló, a táblák mindig sűrűek). MELLÉK a Kristóf-féle döntés szerint, de **alapérték-változás** – a fogyasztóknál ezt kell tudni:
+
+* `densityToggle` alapértéke **`false`** (eddig `true`): a kapcsoló csak kifejezett `densityToggle` (`densityToggle={true}`) mellett jelenik meg. Aki eddig `densityToggle={false}`-t írt, annak nincs teendője (a prop marad, hatástalanul).
+* `defaultDensity` alapértéke **`'dense'`** (eddig `'comfortable'`): a nem vezérelt tábla sűrűn indul. Kényelmes kezdőnézet: `defaultDensity="comfortable"` (érdemes kapcsolóval együtt).
+* **Mit érint:** minden `DataTable`, amelyik eddig nem adta meg ezt a két propot – megszűnik a kapcsoló, és sűrű lesz. A vezérelt `density` / `onDensityChange` változatlan. Név nem tűnt el, nem változott (`api-check` zöld).
+* Teszt: az `adat-tabla` tesztlap – alapból sűrű; kapcsoló kifejezett `densityToggle` mellett vált (Kényelmes ↔ Sűrű); kártyába ágyazott `bare` tábla kapcsoló nélkül, sűrűn. Dokumentáció: a komponens leírása (mikor / mikor ne), állapotok, alapértékek.
+
 ## 1.56.0 – 2026-10-16 – Mobil visszaírás, 2. kör (Javaslat 27, 1.56 kiegészítés): 13 további közös ikon
 
 **A közös ikonkészlet 42-ről 55-re bővül** (C-27 B, `docs/javaslatok/27-mobil-visszairas.md` „1.56 kiegészítés”). MELLÉK, csak bővítés: nincs átnevezés, nincs törlés, nincs értékváltozás (`api-check` zöld). A mobil csomag (`beeco_ds`) az 1.55.0 óta 13 ikonnal bővült; ezek mennek vissza a közös készletbe, karakterre azonos rajzzal.

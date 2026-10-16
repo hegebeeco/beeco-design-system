@@ -51,7 +51,7 @@ function Teljes() {
   const [uzenet, setUzenet] = useState('');
   return (
     <>
-      <DataTable data={SOK} columns={poiOszlopok} caption="POI-k (mintaadat)" getRowId={ID} rowLabel={NEV} itemLabel="POI"
+      <DataTable data={SOK} columns={poiOszlopok} caption="POI-k (mintaadat)" getRowId={ID} rowLabel={NEV} itemLabel="POI" densityToggle
         selectable maxSelection={200} selection={sel} onSelectionChange={setSel} renderExpanded={(p) => <PoiReszletek p={p} />} resizable
         bulkActions={(ids) => (<>
           <Button variant="secondary" size="sm" onClick={() => setUzenet(`módosítás: ${ids.length}`)}>Tömeges módosítás</Button>
@@ -119,7 +119,7 @@ function Oldal() {
             columns={[{ accessorKey: 'nev', header: 'Név', cell: ({ row }) => <a href="#rovid">{row.original.nev}</a> }]} />
         </Case>
         <Case id="tabla-kartya-sav" title="Kártyanézet sűrűség-kapcsoló nélkül: széles nézetben nincs üres eszközsáv (Javaslat 18)" wide><DataTable data={pois(3)} columns={poiOszlopok} caption="POI-k – kártyanézet" getRowId={ID} rowLabel={NEV} itemLabel="POI" mobile="cards" densityToggle={false} /></Case>
-        <Case id="tabla-bare" title="Kártyába ágyazva: keret nélkül (bare), alapból sűrű (defaultDensity) – Javaslat 19" wide><section className="bc-card"><h3 className="bc-card-title">Kártyában</h3><DataTable data={pois(3)} columns={poiOszlopok} caption="POI-k – kártyában" getRowId={ID} rowLabel={NEV} itemLabel="POI" bare defaultDensity="dense" /></section></Case>
+        <Case id="tabla-bare" title="Kártyába ágyazva: keret nélkül (bare); alapból sűrű, sűrűség-kapcsoló nélkül (1.57)" wide><section className="bc-card"><h3 className="bc-card-title">Kártyában</h3><DataTable data={pois(3)} columns={poiOszlopok} caption="POI-k – kártyában" getRowId={ID} rowLabel={NEV} itemLabel="POI" bare /></section></Case>
         <Case id="tabla-sugo" title="Oszlopfejléc-súgó (meta.help, Javaslat 21): rendezhető és nem rendezhető oszlopon, szám-oszlopon is" wide>
           <DataTable data={pois(3)} columns={SUGOS} caption="POI-k – fejléc-súgóval" getRowId={ID} rowLabel={NEV} itemLabel="POI" densityToggle={false} />
         </Case>
