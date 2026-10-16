@@ -19,6 +19,7 @@
     { "t": "hianyzik", "cim": "Kampányarculat-szabályok", "x": "Az altéma használatának részletes szabályai (mikor kaphat egy kampány saját palettát, ki hagyja jóvá) még nincsenek leírva. Új kampányarculatot előbb egyeztess a beeco csapatával." },
     { "t": "h2", "x": "Kapcsolódó" },
     { "t": "lista", "elemek": [
+      "A másik kampány-altéma: [Önkéntes Vízadás](kampany-altema-vizadas.html)",
       "A beeco alap színei: [Szín](szin.html)",
       "Partnerrel közös kampány: [Partnerarculat](partnerarculat.html)"
     ] }
