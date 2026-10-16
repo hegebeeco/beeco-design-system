@@ -59,9 +59,6 @@ Névszabály: minden Webflow-változó `bc-` előtagú, csak ASCII és kötőjel
 A Webflow-nak nincs komponens-CSS-e, ezért a `termek/css/bc-*.css` elemeit **osztálynévben** tükrözzük:
 ugyanaz a név, ugyanaz a szerep. Így aki a DS-t ismeri, a Designerben is eligazodik.
 
-A Webflow-nak nincs komponens-CSS-e, ezért a `termek/css/bc-*.css` elemeit **osztálynévben** tükrözzük:
-ugyanaz a név, ugyanaz a szerep.
-
 **Már a Webflow-ban (mind változóra kötve):**
 
 | Csoport | Osztályok |
@@ -85,8 +82,9 @@ ugyanaz a név, ugyanaz a szerep.
 **Szabály:** új `bc-` osztály a Webflow-ban csak akkor, ha a DS-ben is van hozzá elem. Ha nincs, előbb
 javaslatlap (`docs/javaslatok/_sablon.md`), nem „ideiglenes” osztály a Designerben.
 
-A nem DS-eredetű, oldalspecifikus osztályok külön előtagot kapnak (pl. `h26-` a 2026-os főoldalon), hogy
-takarításkor egy pillantásra látszódjon, mi a DS és mi az egyedi.
+A nem DS-eredetű, oldalspecifikus osztályok külön előtagot kapnak, hogy takarításkor egy pillantásra látszódjon, mi a DS
+és mi az egyedi: `fs-` (Szuperhős főoldal), `ov-` (Önkéntes vízadás), `cs_`/`cs-` (CsicsergŐsz), `rl-` (Rólunk),
+`h26-` (a korábbi 2026-os főoldal-vázlat). Az aktuális oldalakat a 14. fejezet sorolja fel.
 
 ## 3. Amit a Webflow API nem tud (tanult korlátok)
 
@@ -115,6 +113,25 @@ Ezek nem hibák, hanem a tervezést befolyásoló tények. Mindegyik élesben de
   ablakszintű kétszer. Mérést egyetlen ablakszintű, capture fázisú figyelővel, elemenkénti 600 ms-os szűréssel írunk.
 - **GA4 közvetlenül, GTM nélkül:** a „Tag manager” komponens `gtag` (G-6KVDRD0YQF). Egyedi esemény csak
   `gtag('event', …)`-tel jut a GA4-be; a `dataLayer.push({event})` önmagában nem.
+- **A teszt-publikálás az egész site-ot újrapublikálja**, és ami közben `draft`, az **lekerül** a stagingről (404).
+  Ezért minden staging-körben az összes stagingen tartott draftot egyszerre nyitjuk ki, publikálunk, megvárjuk a 200-at
+  mindegyikre, és mind visszakerül draftba (2026-10-13-án így esett le a főoldal-vázlat).
+- **Éles publikálás csak az egyedi domainekre:** `customDomains` a két domain-azonosítóval, `publishToWebflowSubdomain:
+  false`, így a staging és rajta a draftok érintetlenek. Az éles publikálás is **az egész site**: minden addig ki nem tett,
+  nem draft változás kimegy vele. Oldalankénti publikálás (`pageId`) a csomagban nincs.
+- **HTML Embed legfeljebb 15 000 karakter.** Ha egy oldal CSS-e nő, az új rész **új embedbe** megy a meglévők után; a
+  meglévőkhöz nem nyúlunk, így azok bájtra egyeznek a repóval (ezt a stagingen ellenőrizzük).
+- **Az embedek a `<body>`-ban vannak**, tehát a fejkódnál később érvényesülnek. Ha teszteléskor CSS-t injektálunk,
+  a törzs végére kell tenni, különben az embedek `!important` szabályai felülírják.
+- **`whtml`:** egy hívásban legfeljebb 5 beszúrás; az osztályok csak akkor maradnak meg, ha a `css` mezőben van rájuk
+  szabály (osztálycsonk: `.fs-x{--fs:1}`); a `target`, `rel`, `data-*` attribútum leeshet, ezért utána
+  `set_attributes`, illetve linknél `set_settings` → `static_link.open_in_new_tab`.
+- **`update_style`:** a kombó szülőjét pontos néven kell megadni (a `card` osztály a Webflow-ban `CARD`). Ha ugyanabban
+  a hívásban egy tulajdonságot törlünk (`remove_properties`) és újra beállítunk, az új érték elveszhet: külön hívásban.
+  A stíluseszköz tudja a `::before`/`::after` pszeudoelemet és a `hover`/`active` állapotot.
+- **`set_visibility` és `set_attributes` szekción** néha `MPS Conflict` hibát ad; ilyenkor az elem eltávolítása működik.
+- **Új oldal másolással** (`create_page` + `duplicateOf`) megtartja a NAVBAR, Tag manager és lábléc komponenst, de az
+  oldal egyedi kódját nem másolja.
 
 ## 3/b. Hogyan kötjük a stílust a változóra (ez a lényeg)
 
@@ -315,8 +332,9 @@ a szöveg beszél. Ezeket a `minosegkapu` jelentésében kell kimondani, nem elh
 3. Építés a Designerben vagy MCP-vel, **meglévő `bc-` osztályból**.
 4. `node tools/web-ellenor.js <staging>` → javítás → újra.
 5. `minosegkapu` kapu, képernyőképekkel.
-6. Teszt-publikálás, és a jelentés átadása.
-7. **Élesítés: csak Kristóf kifejezett engedélyével.** Alapértelmezésben nem történik meg.
+6. Teszt-publikálás (a 11. fejezet staging-köre: minden draft együtt), és a jelentés átadása.
+7. **Élesítés: csak Kristóf kifejezett engedélyével.** Alapértelmezésben nem történik meg. Utána az éles oldalon újra
+   mérünk (`ui_audit`, horgonyok, fülek), mert az élesítés az egész site-ot viszi.
 
 ## 9. Kampánytémák (pl. CsicsergŐsz)
 
@@ -328,9 +346,13 @@ Egy kampány saját arculatot kaphat (ősz, madarak: krém, barack, kakaó, méz
 | Osztályok | a meglévő site-osztályokra **kombó** (`DIA_KEK_OV` + `CS`, `BUTTON_MAIN` + `CS`), új elemhez kampány-előtag (`cs_`), ahogy a főoldal a `h26-`-öt |
 | Mozgás, díszítés | oldal fejkód + lábléc, `data-cs-*` jelölőkkel (nem osztállyal), így a Designerben bárki ráteheti |
 | Mérés | `gtag('event')`, ablakszintű figyelő (lásd 3. fejezet) |
+| Kártyák | kampányonként saját kártyacsalád, de a termékbőr logikájával (árnyék = kattintható, a nem kattintható árnyék nélküli, a kiválasztott külön jelölt). CsicsergŐsz: **Matrica** (12. fejezet) |
+| Hírlevél, közösség | egy blokk, egy ígérettel (milyen gyakran, mit kapsz), egy mezővel és látható címkével; a közösségi linkek másodlagosak. CsicsergŐsz: „Levélke” képeslap, kéthetente, a meglévő Webflow-űrlap átköltöztetve |
 | Ellenőrzés | `node tools/web-ellenor.js <staging> --oldalak /kampanyok/...` **és** a minőségkapu `landing_review.mjs` a kampány saját szabályfájljával (paletta, kabala, app-képernyő, események). A `web-ellenor` a termékbőr palettáját méri, ezért a kampányszíneket „DS-en kívüli”-nek jelzi: ez a kampányoldalon várt lelet. |
 
 Minta és beilleszthető kód: **`weboldal/kampany-csicsergosz/`** (README, `tokens.json`, `head.html`, `footer.html`).
+Az élő változat kódja a `csicsergosz-levi` ágon van (14. fejezet); ott a CSS már embedekben, a rajzok a Designerben is
+látható `<img data-cs-illu>` képek.
 
 ## 10. Élő oldalmodulok (pl. Csatlakozz: Kaptár-kapu)
 
@@ -341,3 +363,81 @@ jelölővel és egy betöltés-szöveggel; a modul helyet foglal, amíg betölt.
 Az adatforrás és a mezők leírása a modul `*-szerzodes.md` fájljában van, a backend fejlesztőjének.
 
 Minta: **`weboldal/csatlakozz/`** (Kaptár-kapu: nyitott feladatok szűrővel, raj-választó, szintek, ranglista, helyi csapatok).
+
+## 11. Oldalépítés: a bevált, Designer-barát felépítés (2026-10-13)
+
+A Szuperhős főoldal, a vízadás szezonzáró és a CsicsergŐsz ugyanígy épült. A cél, hogy a Designerben minden látható
+és szerkeszthető maradjon, a kód pedig a repóban éljen, verzióval.
+
+| Réteg | Hol él | Szabály |
+|---|---|---|
+| Szerkezet | natív Webflow-elemek, oldal-előtagú osztállyal (`fs-`, `ov-`, `cs_`, `rl-`) | egy burkoló az oldal tetején (`.fs-oldal`, `.ov-oldal`); a NAVBAR, a Tag manager és a lábléc a meglévő komponens marad |
+| Szöveg és kép | a Designerben, natív elemként | a rajzok `<img data-…-illu>` képek, hogy a Designer is mutassa őket; élesben a JS cseréli animálható SVG-re |
+| CSS | HTML Embedek a burkoló elején (embedenként ≤ 15 000 karakter) | forrás a repóban (`*.css`), tömörítve `embed/*.min.css`; új CSS új embedbe |
+| JS | jsDelivr, **commit-SHA-ra rögzítve** az oldal láblécében | `https://cdn.jsdelivr.net/gh/hegebeeco/beeco-design-system@<sha>/weboldal/<oldal>/<fájl>.js` |
+| Generátor | `weboldal/<oldal>/*-jeloles.py` | a szekciók HTML-je egy JSON-ba, onnan `whtml`-lel kerül a Webflow-ba (≤ 5 szekció hívásonként, osztálycsonkokkal) |
+
+**A burkoló szélessége.** A site `body.main_body` eleme flex oszlop, középre igazítva, ezért a burkoló kapja:
+`align-self:stretch; width:100%; min-width:0; max-width:100%`. Enélkül egy széles elem (például végtelen sáv)
+kiszélesíti az egész oldalt mobilon.
+
+**Staging-kör (minden változás után):**
+
+1. A repóban commit és push; a JS-t jsDelivr-ről ellenőrizzük az új SHA-n (200 és benne a változás).
+2. A Webflow-ban: embed-tartalom (`set_settings` → `code`), lábléc SHA (`set_page_freeform_code`).
+3. **Minden** stagingen tartott draft oldalt `draft:false`-ra teszünk (3. fejezet).
+4. `publish_site`: `publishToWebflowSubdomain:true`, üres `customDomains`.
+5. curl cache-törő queryvel, amíg 200 és benne az új tartalom; az embedek bájtra egyeznek a repó `embed/*.min.css` fájljaival.
+6. Minden draft vissza `draft:true`-ra.
+7. Mérés a staging URL-en: `ui_audit.mjs` (asztal és mobil), kampány- és landingoldalnál `landing_review.mjs`, és a
+   saját funkcionális próba (horgonyok, fülek, animációk végállapota).
+
+**Éles kör** (csak engedéllyel): ugyanez, de `customDomains` a két éles domain, `publishToWebflowSubdomain:false`,
+utána a mérés az éles URL-en.
+
+**Helyi próba élesítés előtt.** Az élő oldal HTML-jét betöltjük, és a jsDelivr-hívásokat Playwrighttal a helyi fájlokra
+irányítjuk (`page.route`). Így a kódot a valódi jelölésen próbáljuk ki, mielőtt bármi kikerül.
+
+## 12. Közös vizuális nyelv a weboldalon
+
+A főoldal és a kampányoldalak ugyanazt a nyelvet beszélik. A kampány a színeket és a kártyák formáját cserélheti, a
+szerkezetet nem.
+
+| Elem | Leírás |
+|---|---|
+| **Szalagcím** (kicker) | rövid címke a cím fölött: tinta háttér, világos Lalezar, enyhén elforgatva, matrica-vágással (`clip-path: polygon(0 7%,100% 0,99% 93%,1% 100%)`) |
+| **Elválasztó** | két fajta, váltakozva: **A lágy domb** (két réteg SVG-domb, a következő szekció színével) és **D matrica-szél** (ferde, kézzel vágott él fehér peremmel), a D szalagján **mini idézet** valódi véleményből (név is) |
+| **Gomb** | méz alap, fekete 2 px keret, 8 px sarok, 4 px kemény árnyék; hover felemelkedik, lenyomva lesüllyed; a felirat legfeljebb 3 szó |
+| **Kártya, termékbőr** | `bc-card`: 2 px tinta keret, 12 px sarok, kemény árnyék csak kattinthatón |
+| **Kártya, Szuperhős főoldal** | 16 / 4 / 16 / 4 px sarok, 4 px kemény árnyék kattinthatón, matrica-szalagok |
+| **Kártya, CsicsergŐsz (Matrica)** | levágott sarok (kártya 16 px, kép 10 px), fehér matrica-körvonal halvány kakaó éllel; kattintható −1°, kakaó árnyék (hover 7 px, lenyomva 1 px); nem kattintható egyenes, árnyék nélkül; kiválasztott méz körvonal. Forrás: `weboldal/kampany-csicsergosz/cs-kartya.css`, és ugyanez a Webflow `CARD + CS_LINK` / `CARD + CS_EGYENLO` osztályain (`::before`, hover, active) |
+| **Boltgombok** | platform szerint (iOS-en csak App Store, Androidon csak Google Play, asztalon mindkettő és QR-kód); minden letöltés-link UTM-mel (`utm_source=beeco.hu&utm_medium=<oldal>&utm_campaign=<hely>`, App Store-nál `ct=`) |
+| **Számok** | nyugalmi állapotban a végérték látszik; görgetésre egyszer felpörög; csak valós, forrásolt szám |
+| **Kabala** | szereplő, nem tapéta: akkor mozdul, amikor történik valami. A főoldalon a Szuperhős méhecske (Kristóf: „ne legyen túl méhecskés”), a CsicsergŐsz-oldalon a kismadár és Gabee; a madár neve nem jelenik meg |
+| **Piktogramok** | a kézzel rajzolt beeco-piktogramok (matrica, sárga család), egy szekcióban egy stílus |
+| **Háttér** | a „zöld 2050” táj körvonal nélkül, halványan (opacity ~0,5), a tartalom mögött |
+
+## 13. Viselkedés-minták és ismert buktatók
+
+| Helyzet | Megoldás |
+|---|---|
+| Oldalon belüli horgony („Nézd meg…”) visszaugrik | a Webflow sima görgetése és a Trustindex újrakattintása összeakad. Ablakszintű, capture fázisú kattintásfigyelő: `preventDefault` + `stopImmediatePropagation`, saját görgetés (a rögzített menü magasságával), `history.replaceState`, és 1,3, illetve 2,1 mp-nél visszaállítás, ha felhasználói mozdulat nélkül elvitték az oldalt (`weboldal/kampany-csicsergosz/cs-levi.js`) |
+| Fül kattintásra görget | a fülkezelő `stopImmediatePropagation`-t hív, hogy a Webflow horgonygörgetése ne fusson le |
+| Elrendezés-ugrás (CLS) betöltéskor | minden képnek, amelynek magassága `auto`, `aspect-ratio` a rajz arányával (vízadás: 0,19 → 0) |
+| Fehér szöveg narancson | a `#EA6C18` fehérrel 3,15:1, AA alatt. Helyette `#A8470C` (5,9:1) |
+| Apró szöveg | 11 px alá nem megyünk (bélyegfelirat, címke sem) |
+| Görgetésre animált szereplő | a pozíciót a képernyőhöz viszonyítva számoljuk (például a csempesor közepe a képernyő 72, illetve 50%-ánál vált), hogy a teljes animáció lefusson, mielőtt a látogató továbbgörget; csökkentett mozgásnál a végállapot látszik |
+| Mérés | GA4 `gtag('event')`, oldal-előtagú eseménynevek (`ov_…`, `campaign_…`); a teszt-domainen kis napló-panel mutatja, mi ment ki |
+| A minőségkapu site-szintű leletei | `window.Stripe is not a function`, NAVBAR és lábléc 44 px alatti linkjei, a GreenGeeks-pecsét alt nélkül és név nélküli linkje. Ezek minden oldalon ott vannak; külön feladat a javításuk |
+
+## 14. Oldalak állapota (2026-10-13)
+
+| Oldal | Webflow | Kód (ág, mappa) | Állapot |
+|---|---|---|---|
+| CsicsergŐsz | `/kampanyok/csicsergosz` | `csicsergosz-levi`, `weboldal/kampany-csicsergosz/` (6 CSS-embed, lábléc-JS rögzített SHA-n) | **élő** |
+| Főoldal, Szuperhős | `/fooldal-szuperhos-draft` | `fooldal-szuperhos`, `weboldal/fooldal-szuperhos/` | draft, stagingen; angol változat később (WebSummit) |
+| Önkéntes vízadás, szezonzáró | `/kampanyok/onkentes-vizadas-2027-draft` | `vizadas-kivezetes`, `weboldal/kampany-vizadas-2027/` | draft, stagingen; a régi oldal kiváltása döntésre vár |
+| Csatlakozz hub | `/csatlakozz-2026-draft` | `weboldal/csatlakozz/` | draft |
+| Rólunk | terv, három változat | | döntésre vár |
+
+Az ágak a `main`-be olvasztásra várnak; addig a fenti ágakon élő mappák a hitelesek.
