@@ -360,3 +360,5 @@ html[data-platform="android"] .ov-csak-ios,html[data-platform="ios"] .ov-csak-an
 .ov-oldal .ov-pol-allo img.ov-polaroid-kep{aspect-ratio:3/4}
 .ov-polaroid-felirat{padding:8px 2px 6px;font-family:var(--display);font-size:18px;line-height:1.15;color:var(--navy)}
 @media (max-width:560px){.ov-galeria{columns:2 140px;column-gap:14px}.ov-polaroid{padding:6px 6px 2px}.ov-polaroid-felirat{font-size:15px}}
+/* a repülő méhecske alapból (JS nélkül, csökkentett mozgásnál, képernyőn kívül) a város jobb oldala fölött ül; csak .ov-fut alatt repül */
+.ov-repulo{opacity:1;left:auto;right:7%}.ov-repulo.ov-fut{left:0;right:auto}
