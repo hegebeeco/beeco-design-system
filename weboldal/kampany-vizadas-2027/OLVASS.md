@@ -13,6 +13,13 @@ Mérés: `ov_cta_kattintas` (`data-ov-cta` = hely), `ov_qr_erkezes`, `ov_eredmen
 ## Felépítés (Designer-barát, mint a CsicsergŐsz és az új főoldal)
 - Natív Webflow-elemek `ov-` előtagú osztályokkal, a `.ov-oldal` burkolón belül. Minden szöveg, kép, logó, címer és GYIK-elem a Designerben szerkeszthető.
 - CSS: az oldal tetején lévő HTML Embed-ekben (`embed/ov-N.min.css`), forrás: `ov.css`.
+  - A `/*!embed-break*/` jelölő rögzíti a darabhatárt, így egy módosítás csak a saját embedjét változtatja.
+  - Natívra költöztetve (2026-10-16, Ági arculata szerint világoskék hero): a hero színei a Webflow-osztályokon élnek, az `OV_BLUE_*` változókra kötve. Ezeket a Designerben kell szerkeszteni, az embed már nem írja felül őket:
+    - `ov-hero`: háttér és szöveg;
+    - `ov-allapot`, `ov-allapot-pont`, `ov-pecset-ev`, `ov-lead-kiemelt`;
+    - combo: `ov-kiemel ov-kiemel-feher`, `ov-hero-szam ov-szam-kek`, `ov-gomb ov-gomb-masod ov-gomb-sotet` (hover is);
+    - `ov-forras-link`.
+  - A városkép a hero alján fehér talajjal fut ki a következő (fehér) szekcióba: `kep/ov-varos-feher-talaj.svg`.
 - JS: `ov.js` a lábléc kódjában, jsDelivr-ről, commit-SHA-ra rögzítve. Nélküle is teljes az oldal.
 - Képek: `kep/` (arculati SVG-k a Vízadás-arculatból), a Webflow-médiatárban ugyanezen a néven; `feltoltott.json` = név → médiatár-fájlnév.
 
