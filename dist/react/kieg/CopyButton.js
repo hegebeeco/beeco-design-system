@@ -2,10 +2,10 @@
 import {
   CopyButton,
   copyText
-} from "../reszek/chunk-VYWGK2UW.js";
+} from "../reszek/chunk-JGHMXCA4.js";
 import "../reszek/chunk-CARXS6OD.js";
-import "../reszek/chunk-ERIU5VPQ.js";
-import "../reszek/chunk-GQKKPGX5.js";
+import "../reszek/chunk-2YVHXFJT.js";
+import "../reszek/chunk-LBNKNKCI.js";
 import "../reszek/chunk-PFNFGQD5.js";
 export {
   CopyButton,

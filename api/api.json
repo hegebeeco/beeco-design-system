@@ -2263,7 +2263,63 @@
   "HU_CENTER": {
    "fajta": "ertek"
   },
+  "IcArrowDown": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcArrowUp": {
+   "fajta": "komponens",
+   "props": {}
+  },
   "IcAuto": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcBee": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcBell": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcBookmark": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcCalendar": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcCamera": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcChevronDown": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcChevronLeft": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcChevronRight": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcChevronUp": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcClear": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcClock": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcCompass": {
    "fajta": "komponens",
    "props": {}
   },
@@ -2271,7 +2327,43 @@
    "fajta": "komponens",
    "props": {}
   },
+  "IcError": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcExternalLink": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcEyeOff": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcFavorite": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcFilter": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcFlag": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcHome": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcImage": {
+   "fajta": "komponens",
+   "props": {}
+  },
   "IcInfo": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcLayers": {
    "fajta": "komponens",
    "props": {}
   },
@@ -2279,7 +2371,43 @@
    "fajta": "komponens",
    "props": {}
   },
+  "IcLocate": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcLocation": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcLock": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcMail": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcMap": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcMenu": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcMinus": {
+   "fajta": "komponens",
+   "props": {}
+  },
   "IcMoon": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcMore": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcNectar": {
    "fajta": "komponens",
    "props": {}
   },
@@ -2304,6 +2432,14 @@
    "fajta": "komponens",
    "props": {}
   },
+  "IcPhone": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcRefresh": {
+   "fajta": "komponens",
+   "props": {}
+  },
   "IcRight": {
    "fajta": "komponens",
    "props": {}
@@ -2312,11 +2448,55 @@
    "fajta": "komponens",
    "props": {}
   },
+  "IcSearch": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcSettings": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcShare": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcSort": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcStar": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcStarFilled": {
+   "fajta": "komponens",
+   "props": {}
+  },
   "IcSun": {
    "fajta": "komponens",
    "props": {}
   },
   "IcTrash": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcUpload": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcUser": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcWarning": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcWeb": {
+   "fajta": "komponens",
+   "props": {}
+  },
+  "IcWifiOff": {
    "fajta": "komponens",
    "props": {}
   },
@@ -6472,6 +6652,8 @@
    "--bc-accent-press",
    "--bc-accent-press-rgb",
    "--bc-accent-rgb",
+   "--bc-accent-soft",
+   "--bc-accent-soft-rgb",
    "--bc-berry",
    "--bc-berry-rgb",
    "--bc-bg",
@@ -6510,6 +6692,16 @@
    "--bc-data-allapot-cb-3",
    "--bc-data-allapot-cb-4",
    "--bc-data-allapot-cb-5",
+   "--bc-data-allapot-cb-dark-1",
+   "--bc-data-allapot-cb-dark-2",
+   "--bc-data-allapot-cb-dark-3",
+   "--bc-data-allapot-cb-dark-4",
+   "--bc-data-allapot-cb-dark-5",
+   "--bc-data-allapot-dark-1",
+   "--bc-data-allapot-dark-2",
+   "--bc-data-allapot-dark-3",
+   "--bc-data-allapot-dark-4",
+   "--bc-data-allapot-dark-5",
    "--bc-data-cat-1",
    "--bc-data-cat-2",
    "--bc-data-cat-3",
@@ -6572,7 +6764,11 @@
    "--bc-honey",
    "--bc-honey-deep",
    "--bc-honey-deep-rgb",
+   "--bc-honey-night",
+   "--bc-honey-night-rgb",
    "--bc-honey-rgb",
+   "--bc-honey-soft",
+   "--bc-honey-soft-rgb",
    "--bc-hover-mix",
    "--bc-ice",
    "--bc-ice-rgb",
@@ -6631,6 +6827,8 @@
    "--bc-r-pill",
    "--bc-r-s",
    "--bc-r-xs",
+   "--bc-rank-bronze",
+   "--bc-rank-bronze-rgb",
    "--bc-red",
    "--bc-red-rgb",
    "--bc-rust",
@@ -6654,6 +6852,7 @@
    "--bc-shadow-s-x",
    "--bc-shadow-s-y",
    "--bc-shadow-soft",
+   "--bc-shadow-soft-mobile",
    "--bc-silver",
    "--bc-silver-rgb",
    "--bc-sky",
@@ -6850,6 +7049,7 @@
   "scss": [
    "bc-accent",
    "bc-accent-press",
+   "bc-accent-soft",
    "bc-bg",
    "bc-bp",
    "bc-bp-lg",
@@ -6873,6 +7073,8 @@
    "bc-c-graphite",
    "bc-c-honey",
    "bc-c-honey-deep",
+   "bc-c-honey-night",
+   "bc-c-honey-soft",
    "bc-c-ice",
    "bc-c-leaf",
    "bc-c-lime",
@@ -6886,6 +7088,7 @@
    "bc-c-olive-strong",
    "bc-c-paper",
    "bc-c-poppy",
+   "bc-c-rank-bronze",
    "bc-c-red",
    "bc-c-rust",
    "bc-c-sage",
@@ -6939,6 +7142,8 @@
    "bc-hex-graphite",
    "bc-hex-honey",
    "bc-hex-honey-deep",
+   "bc-hex-honey-night",
+   "bc-hex-honey-soft",
    "bc-hex-ice",
    "bc-hex-leaf",
    "bc-hex-lime",
@@ -6952,9 +7157,11 @@
    "bc-hex-olive-strong",
    "bc-hex-paper",
    "bc-hex-poppy",
+   "bc-hex-rank-bronze",
    "bc-hex-red",
    "bc-hex-role-accent",
    "bc-hex-role-accent-press",
+   "bc-hex-role-accent-soft",
    "bc-hex-role-bg",
    "bc-hex-role-danger",
    "bc-hex-role-danger-bg",
@@ -7026,6 +7233,7 @@
    "bc-shadow-m",
    "bc-shadow-s",
    "bc-shadow-soft",
+   "bc-shadow-soft-mobile",
    "bc-sp",
    "bc-sp-1",
    "bc-sp-2",
@@ -7097,8 +7305,10 @@
    "boxShadow.none",
    "boxShadow.s",
    "boxShadow.soft",
+   "boxShadow.soft-mobile",
    "colors.accent",
    "colors.accent-press",
+   "colors.accent-soft",
    "colors.bg",
    "colors.c.berry",
    "colors.c.black",
@@ -7115,6 +7325,8 @@
    "colors.c.graphite",
    "colors.c.honey",
    "colors.c.honey-deep",
+   "colors.c.honey-night",
+   "colors.c.honey-soft",
    "colors.c.ice",
    "colors.c.leaf",
    "colors.c.lime",
@@ -7128,6 +7340,7 @@
    "colors.c.olive-strong",
    "colors.c.paper",
    "colors.c.poppy",
+   "colors.c.rank-bronze",
    "colors.c.red",
    "colors.c.rust",
    "colors.c.sage",
@@ -7239,6 +7452,8 @@
    "BeecoPalette.graphite",
    "BeecoPalette.honey",
    "BeecoPalette.honeyDeep",
+   "BeecoPalette.honeyNight",
+   "BeecoPalette.honeySoft",
    "BeecoPalette.ice",
    "BeecoPalette.leaf",
    "BeecoPalette.lime",
@@ -7252,6 +7467,7 @@
    "BeecoPalette.oliveStrong",
    "BeecoPalette.paper",
    "BeecoPalette.poppy",
+   "BeecoPalette.rankBronze",
    "BeecoPalette.red",
    "BeecoPalette.rust",
    "BeecoPalette.sage",
@@ -7265,6 +7481,7 @@
    "BeecoPalette.white",
    "BeecoRoles.accent",
    "BeecoRoles.accentPress",
+   "BeecoRoles.accentSoft",
    "BeecoRoles.bg",
    "BeecoRoles.danger",
    "BeecoRoles.dangerBg",
@@ -7333,6 +7550,9 @@
    "BeecoTokens.shadowL",
    "BeecoTokens.shadowM",
    "BeecoTokens.shadowS",
+   "BeecoTokens.shadowSoftMobile",
+   "BeecoTokens.shadowSoftMobileAlpha",
+   "BeecoTokens.shadowSoftMobileBlur",
    "BeecoTokens.sp1",
    "BeecoTokens.sp2",
    "BeecoTokens.sp3",

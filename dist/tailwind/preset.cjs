@@ -25,6 +25,7 @@ module.exports = {
       "line-soft": "rgb(var(--bc-line-soft-rgb) / <alpha-value>)",
       "accent": "rgb(var(--bc-accent-rgb) / <alpha-value>)",
       "accent-press": "rgb(var(--bc-accent-press-rgb) / <alpha-value>)",
+      "accent-soft": "rgb(var(--bc-accent-soft-rgb) / <alpha-value>)",
       "on-accent": "rgb(var(--bc-on-accent-rgb) / <alpha-value>)",
       "shadow": "rgb(var(--bc-shadow-rgb) / <alpha-value>)",
       "focus": "rgb(var(--bc-focus-rgb) / <alpha-value>)",
@@ -47,6 +48,7 @@ module.exports = {
         "honey": "rgb(var(--bc-honey-rgb) / <alpha-value>)",
         "honey-deep": "rgb(var(--bc-honey-deep-rgb) / <alpha-value>)",
         "butter": "rgb(var(--bc-butter-rgb) / <alpha-value>)",
+        "honey-soft": "rgb(var(--bc-honey-soft-rgb) / <alpha-value>)",
         "cream": "rgb(var(--bc-cream-rgb) / <alpha-value>)",
         "paper": "rgb(var(--bc-paper-rgb) / <alpha-value>)",
         "white": "rgb(var(--bc-white-rgb) / <alpha-value>)",
@@ -82,7 +84,9 @@ module.exports = {
         "night": "rgb(var(--bc-night-rgb) / <alpha-value>)",
         "night-surface": "rgb(var(--bc-night-surface-rgb) / <alpha-value>)",
         "night-line": "rgb(var(--bc-night-line-rgb) / <alpha-value>)",
-        "poppy": "rgb(var(--bc-poppy-rgb) / <alpha-value>)"
+        "poppy": "rgb(var(--bc-poppy-rgb) / <alpha-value>)",
+        "honey-night": "rgb(var(--bc-honey-night-rgb) / <alpha-value>)",
+        "rank-bronze": "rgb(var(--bc-rank-bronze-rgb) / <alpha-value>)"
       }
     },
     "fontFamily": {
@@ -238,7 +242,8 @@ module.exports = {
       "s": "var(--bc-shadow-s)",
       "m": "var(--bc-shadow-m)",
       "l": "var(--bc-shadow-l)",
-      "soft": "var(--bc-shadow-soft)"
+      "soft": "var(--bc-shadow-soft)",
+      "soft-mobile": "var(--bc-shadow-soft-mobile)"
     },
     "extend": {
       "spacing": {

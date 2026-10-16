@@ -67,7 +67,7 @@ function buildCss() {
   L.push(`  --bc-tap: ${px(core.tap)};`);
   for (const [n, v] of Object.entries(core.z)) if (!n.startsWith('_')) L.push(`  --bc-z-${n}: ${v};`);
   L.push('', '  /* Adatskálák (grafikon, térkép) */');
-  ['seq', 'div', 'seq-cb', 'div-cb', 'allapot', 'allapot-cb'].forEach(k => core.data[k].forEach((v, i) => L.push(`  --bc-data-${k}-${i + 1}: ${v};`)));
+  ['seq', 'div', 'seq-cb', 'div-cb', 'allapot', 'allapot-cb', 'allapot-dark', 'allapot-cb-dark'].forEach(k => core.data[k].forEach((v, i) => L.push(`  --bc-data-${k}-${i + 1}: ${v};`)));
   categorical.forEach((v, i) => L.push(`  --bc-data-cat-${i + 1}: ${v};`));
   L.push('', '  /* 2. TERMÉKBŐR – forma */');
   for (const [n, v] of Object.entries(termek.radius)) L.push(`  --bc-r-${n}: ${px(v)};`);
@@ -77,6 +77,8 @@ function buildCss() {
     L.push(`  --bc-shadow-${n}: ${px(v[0])} ${px(v[1])} 0 var(--bc-shadow); --bc-shadow-${n}-x: ${px(v[0])}; --bc-shadow-${n}-y: ${px(v[1])};`);
   }
   { const sf = termek.shadowSoft; L.push(`  --bc-shadow-soft: 0 ${px(sf.y)} ${px(sf.blur)} color-mix(in srgb, var(--bc-shadow) ${sf.alpha}%, transparent);`); }
+  // 1.55.0 (Javaslat 27): a mobil app puha árnyéka – a weben a shadow-soft marad
+  { const sm = termek.shadowSoftMobile; L.push(`  --bc-shadow-soft-mobile: ${px(sm.x)} ${px(sm.y)} ${px(sm.blur)} color-mix(in srgb, var(--bc-shadow) ${sm.alpha}%, transparent);`); }
   L.push(`  --bc-scrim-opacity: ${termek.scrimOpacity};`);
   L.push('', '  /* 2. TERMÉKBŐR – fókuszgyűrű, ikonméret, állapot, szövegstílus (Javaslat 26). Töréspont: nincs CSS-változó (@media-ban nem működik) */');
   L.push(`  --bc-focus-w: ${px(termek.focusRing.width)}; --bc-focus-offset: ${px(termek.focusRing.offset)};`);
@@ -125,7 +127,7 @@ function buildScss() {
   map('sp', core.space, k => `var(--bc-sp-${k})`);
   map('r', termek.radius, k => `var(--bc-r-${k})`);
   map('bw', termek.border, k => `var(--bc-bw-${k})`);
-  map('shadow', { ...termek.shadow, soft: 1 }, k => `var(--bc-shadow-${k})`);
+  map('shadow', { ...termek.shadow, soft: 1, 'soft-mobile': 1 }, k => `var(--bc-shadow-${k})`);
   map('t', core.duration, k => `var(--bc-t-${k})`);
   map('z', core.z, k => `var(--bc-z-${k})`);
   map('ease', core.easing, k => `var(--bc-ease-${k})`);
@@ -165,7 +167,7 @@ function buildTailwind() {
       fontWeight: obj(core.fontWeight, k => `var(--bc-fw-${k})`),
       borderRadius: { none: '0', ...obj(termek.radius, k => `var(--bc-r-${k})`), DEFAULT: 'var(--bc-r-m)', full: '9999px' },
       borderWidth: { 0: '0', ...obj(termek.border, k => `var(--bc-bw-${k})`), DEFAULT: 'var(--bc-bw-hair)' },
-      boxShadow: { none: 'none', ...obj({ ...termek.shadow, soft: 1 }, k => `var(--bc-shadow-${k})`) },
+      boxShadow: { none: 'none', ...obj({ ...termek.shadow, soft: 1, 'soft-mobile': 1 }, k => `var(--bc-shadow-${k})`) },
       extend: {
         spacing: { tap: 'var(--bc-tap)', ...Object.fromEntries(nemRejtett(termek.icon).map(([k]) => [`icon-${k}`, `var(--bc-icon-${k})`])) },
         // Töréspont: a Tailwind saját sm/md/lg-je NEM változik (a partner erre épít) – a DS-é bc-sm / bc-md / bc-lg
@@ -203,7 +205,7 @@ function buildTwMerge() {
         'size': [{ size: ['tap', ...kulcsok(termek.icon).map(k => `icon-${k}`)] }],
         'font-weight': [{ font: kulcsok(core.fontWeight) }],
         'font-family': [{ font: ['display', 'body', 'sans'] }],
-        'shadow': [{ shadow: ['none', ...kulcsok(termek.shadow), 'soft'] }],
+        'shadow': [{ shadow: ['none', ...kulcsok(termek.shadow), 'soft', 'soft-mobile'] }],
         'rounded': [{ rounded: kulcsok(termek.radius).filter(k => k !== 'l') }],
         'z': [{ z: kulcsok(core.z) }],
         'min-h': [{ 'min-h': ['tap'] }],
@@ -239,7 +241,7 @@ function buildDart() {
   L.push('/// Termékbőr szín-szerepei (világos / sötét).', 'class BeecoRoles {');
   const roles = Object.keys(termek.color.light);
   // 1.54.0-tól jött szerepek nem kötelezők (alapérték: a világos primitív) – így a saját BeecoRoles(...) példány nem törik
-  const UJ_SZEREP = new Set(['focus-on-accent']);
+  const UJ_SZEREP = new Set(['focus-on-accent', 'accent-soft']);
   L.push(`  const BeecoRoles({${roles.map(r => UJ_SZEREP.has(r) ? `this.${camel(r)} = BeecoPalette.${camel(termek.color.light[r])}` : `required this.${camel(r)}`).join(', ')}});`);
   roles.forEach(r => L.push(`  final Color ${camel(r)};`));
   ['light', 'dark'].forEach(m => {
@@ -257,6 +259,7 @@ function buildDart() {
   Object.entries(termek.shadow).filter(([k]) => !k.startsWith('_')).forEach(([n, v]) => L.push(`  static const shadow${camel('-' + n)} = Offset(${v[0]}, ${v[1]});`));
   Object.entries(core.duration).forEach(([n, v]) => L.push(`  static const t${camel('-' + n)} = Duration(milliseconds: ${v});`));
   L.push(`  static const easeOut = Cubic(.23, 1, .32, 1);`, `  static const tap = ${core.tap}.0;`);
+  { const sm = termek.shadowSoftMobile; L.push(`  static const shadowSoftMobile = Offset(${sm.x}, ${sm.y});`, `  static const shadowSoftMobileBlur = ${sm.blur}.0;`, `  static const shadowSoftMobileAlpha = ${sm.alpha / 100};`); }
   // 1.54.0 (Javaslat 26): fókuszgyűrű, ikonméret, állapot, töréspont
   L.push(`  static const focusW = ${termek.focusRing.width}.0;`, `  static const focusOffset = ${termek.focusRing.offset}.0;`);
   nemRejtett(termek.icon).forEach(([n, v]) => L.push(`  static const icon${camel('-' + n)} = ${v}.0;`));
@@ -280,7 +283,7 @@ function buildJson() {
   return JSON.stringify({ version: VERSION, color: core.color, termek: { light: res('light'), dark: res('dark'), radius: termek.radius, border: termek.border, shadow: termek.shadow }, font: core.font, fontWeight: core.fontWeight, fontSize: core.fontSize, space: core.space, duration: core.duration, easing: core.easing, data: { ...core.data, categorical },
     // 1.54.0 (Javaslat 26) – a régi kulcsok változatlanok, ezek újak
     letterSpacing: Object.fromEntries(nemRejtett(core.letterSpacing)), focusRing: Object.fromEntries(nemRejtett(termek.focusRing)), icon: Object.fromEntries(nemRejtett(termek.icon)),
-    state: Object.fromEntries(nemRejtett(termek.state)), breakpoint: Object.fromEntries(nemRejtett(termek.breakpoint)), textStyle: Object.fromEntries(nemRejtett(termek.textStyle)) }, null, 2) + '\n';
+    state: Object.fromEntries(nemRejtett(termek.state)), shadowSoftMobile: Object.fromEntries(nemRejtett(termek.shadowSoftMobile)), breakpoint: Object.fromEntries(nemRejtett(termek.breakpoint)), textStyle: Object.fromEntries(nemRejtett(termek.textStyle)) }, null, 2) + '\n';
 }
 
 // Szerepek ellenőrzése: minden szerep létező primitívre mutasson (különben a build megáll)

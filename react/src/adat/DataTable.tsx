@@ -52,9 +52,9 @@ export type DataTableProps<T> = {
   serverRowCount?: number;
   density?: 'comfortable' | 'dense';
   onDensityChange?: (d: 'comfortable' | 'dense') => void;
-  /** Sűrűség-kapcsoló a sávban (alap: igen) */
+  /** Sűrűség-kapcsoló a sávban (alap: nincs – Kristóf 2026-10-16: mindig sűrű; csak kifejezett `densityToggle` mellett jelenik meg) */
   densityToggle?: boolean;
-  /** Kezdő sűrűség, ha nem vezérelt (Javaslat 19) – pl. admin-táblákon 'dense' */
+  /** Kezdő sűrűség, ha nem vezérelt (alap: 'dense') */
   defaultDensity?: 'comfortable' | 'dense';
   /** Keret és árnyék nélkül – kártyába, panelbe ágyazva (Javaslat 19) */
   bare?: boolean;
@@ -104,7 +104,7 @@ export function DataTable<T>(p: DataTableProps<T>) {
   const [sorting, setSorting] = useCtl(p.sorting, p.onSortingChange, []);
   const [selection, setSelection] = useCtl(p.selection, p.onSelectionChange, {});
   const [pagination, setPagination] = useCtl(p.pagination, p.onPaginationChange, { pageIndex: 0, pageSize: (p.pageSizes ?? [10, 25, 100])[1] ?? 25 });
-  const [density, setDensity] = useCtl(p.density, p.onDensityChange, p.defaultDensity ?? 'comfortable');
+  const [density, setDensity] = useCtl(p.density, p.onDensityChange, p.defaultDensity ?? 'dense');
   const [expanded, setExpanded] = useState<ExpandedState>({});
   const [notice, setNotice] = useState<string>();
   const server = p.serverRowCount !== undefined;
@@ -168,14 +168,14 @@ export function DataTable<T>(p: DataTableProps<T>) {
   return (
     <div ref={gyoker} className={cx('bc-dt', p.bare && 'is-bare', density === 'dense' && 'is-dense', mobile === 'cards' && 'is-cards', rejtett.length > 0 && 'has-hidden')}>
       <p className="bc-sr" aria-live="polite">{selIds.length ? `${selIds.length} kijelölt ${itemLabel}` : ''}</p>
-      {(selectable || p.densityToggle !== false || p.toolbar || p.captionVisible || mobile === 'cards') && <div className="bc-dt-bar">
+      {(selectable || p.densityToggle === true || p.toolbar || p.captionVisible || mobile === 'cards') && <div className="bc-dt-bar">
         {selIds.length ? (
           <BulkBar count={selIds.length} max={maxSelection} itemLabel={itemLabel} notice={notice} onClear={clear}>{p.bulkActions?.(selIds, clear)}</BulkBar>
         ) : (
           <div className="bc-dt-tools">
             {p.captionVisible && <h3 className="bc-dt-title" aria-hidden="true">{caption}</h3>}
             {mobile === 'cards' && <SortSelect table={table} />}
-            {p.densityToggle !== false && (
+            {p.densityToggle === true && (
               <SegmentedControl label="Sűrűség" value={density} onChange={setDensity} items={[{ value: 'comfortable', label: 'Kényelmes' }, { value: 'dense', label: 'Sűrű' }]} />
             )}
             {p.toolbar}

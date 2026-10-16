@@ -2,22 +2,22 @@
 import {
   DataTable,
   rejtettOszlopok
-} from "../reszek/chunk-BL22H6JN.js";
+} from "../reszek/chunk-J53PSSKQ.js";
 import "../reszek/chunk-DAIZZ6QY.js";
 import "../reszek/chunk-YUMMGPIQ.js";
-import "../reszek/chunk-Y4BBS3P3.js";
-import "../reszek/chunk-BIFGXHD3.js";
-import "../reszek/chunk-VY47U3JM.js";
-import "../reszek/chunk-IMUVPVDX.js";
+import "../reszek/chunk-VWN2SRDC.js";
+import "../reszek/chunk-CDAL6LX5.js";
+import "../reszek/chunk-BHDC3RQE.js";
+import "../reszek/chunk-OY44WQZL.js";
 import "../reszek/chunk-FMQGC4VY.js";
 import "../reszek/chunk-5UB4PBZJ.js";
-import "../reszek/chunk-2BUAG7XU.js";
-import "../reszek/chunk-SS2RPLKH.js";
+import "../reszek/chunk-VID7HW6L.js";
+import "../reszek/chunk-T27L4SAF.js";
 import "../reszek/chunk-4B2TW2CC.js";
 import "../reszek/chunk-ODKPT4AU.js";
 import "../reszek/chunk-76XJSA3J.js";
-import "../reszek/chunk-ERIU5VPQ.js";
-import "../reszek/chunk-GQKKPGX5.js";
+import "../reszek/chunk-2YVHXFJT.js";
+import "../reszek/chunk-LBNKNKCI.js";
 import "../reszek/chunk-PFNFGQD5.js";
 export {
   DataTable,

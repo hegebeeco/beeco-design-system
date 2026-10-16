@@ -4,6 +4,8 @@ export { useFieldContext, type FieldCtx } from './field/FieldContext';
 export { HelpButton } from './field/HelpButton';
 export { Button, IconButton, type ButtonProps } from './inputs/Button';
 export { IcSave, IcTrash, IcNew, IcInfo, IcEdit, IcOpen, IcX, IcOk, IcLeft, IcRight } from './inputs/ikonok';
+export { IcBell, IcBookmark, IcCalendar, IcCamera, IcChevronDown, IcChevronLeft, IcChevronRight, IcChevronUp, IcClear, IcClock, IcError, IcExternalLink, IcEyeOff, IcFavorite, IcFilter, IcImage, IcLocation, IcMail, IcMap, IcMenu, IcMore, IcPhone, IcRefresh, IcSearch, IcSettings, IcShare, IcSort, IcStar, IcUpload, IcUser, IcWarning, IcWeb } from './inputs/ikonok';
+export { IcArrowDown, IcArrowUp, IcCompass, IcFlag, IcHome, IcLayers, IcLocate, IcLock, IcMinus, IcWifiOff, IcBee, IcNectar, IcStarFilled } from './inputs/ikonok';
 export { TextField, lengthRange } from './inputs/TextField';
 export { TextArea } from './inputs/TextArea';
 export { NumberField } from './inputs/NumberField';

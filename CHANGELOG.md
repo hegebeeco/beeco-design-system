@@ -11,7 +11,36 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
-## Készül (következő verzió)
+## 1.57.0 – 2026-10-16
+
+**DataTable: a „Kényelmes / Sűrű” kapcsoló alapból nincs, az alapsűrűség „sűrű”** (Kristóf kérése 2026-10-16: sehol nincs sűrűség-kapcsoló, a táblák mindig sűrűek). MELLÉK a Kristóf-féle döntés szerint, de **alapérték-változás** – a fogyasztóknál ezt kell tudni:
+
+* `densityToggle` alapértéke **`false`** (eddig `true`): a kapcsoló csak kifejezett `densityToggle` (`densityToggle={true}`) mellett jelenik meg. Aki eddig `densityToggle={false}`-t írt, annak nincs teendője (a prop marad, hatástalanul).
+* `defaultDensity` alapértéke **`'dense'`** (eddig `'comfortable'`): a nem vezérelt tábla sűrűn indul. Kényelmes kezdőnézet: `defaultDensity="comfortable"` (érdemes kapcsolóval együtt).
+* **Mit érint:** minden `DataTable`, amelyik eddig nem adta meg ezt a két propot – megszűnik a kapcsoló, és sűrű lesz. A vezérelt `density` / `onDensityChange` változatlan. Név nem tűnt el, nem változott (`api-check` zöld).
+* Teszt: az `adat-tabla` tesztlap – alapból sűrű; kapcsoló kifejezett `densityToggle` mellett vált (Kényelmes ↔ Sűrű); kártyába ágyazott `bare` tábla kapcsoló nélkül, sűrűn. Dokumentáció: a komponens leírása (mikor / mikor ne), állapotok, alapértékek.
+
+## 1.56.0 – 2026-10-16 – Mobil visszaírás, 2. kör (Javaslat 27, 1.56 kiegészítés): 13 további közös ikon
+
+**A közös ikonkészlet 42-ről 55-re bővül** (C-27 B, `docs/javaslatok/27-mobil-visszairas.md` „1.56 kiegészítés”). MELLÉK, csak bővítés: nincs átnevezés, nincs törlés, nincs értékváltozás (`api-check` zöld). A mobil csomag (`beeco_ds`) az 1.55.0 óta 13 ikonnal bővült; ezek mennek vissza a közös készletbe, karakterre azonos rajzzal.
+
+* **10 új vonalas ikon** (`Ic*` a `@beeco/design-system/react`-ben + SVG a `termek/ikonok/` mappában): `IcArrowUp`, `IcArrowDown` (trend), `IcMinus`, `IcHome`, `IcLock`, `IcFlag`, `IcWifiOff`, `IcLayers`, `IcCompass`, `IcLocate`.
+* **3 új kétszínű piktogram:** `IcBee`, `IcNectar`, `IcStarFilled`. Fekete (`currentColor`) vonal, méz (`--bc-accent`) és papír (`--bc-surface`) kitöltés; az SVG-fájlban `data-pictogram="true"` a gyökéren és `fill="honey"` / `fill="paper"` szerepnév (a Flutter-csomag és a tervezőprogramok így olvassák), a React-komponensben a szerep CSS-változója. Ugyanabban a mappában és jegyzékben élnek (`ikonok.json`, `"tipus": "piktogram"`), mert a termékbőrnek eddig nem volt kétszínű piktogram-helye (a `web/js/pics.js` a játékbőr készlete, más névtér).
+* **Őr:** a `tests/check-ikonok.js` a piktogramot is ellenőrzi (fejléc + `data-pictogram`, csak `honey` / `paper` kitöltés, SVG ↔ `Ic*` karakterre azonos a szerep-megfeleltetéssel).
+* **Dokumentáció:** Javaslat 27 „1.56 kiegészítés”, Ikonok oldal (55 tag, „Kétszínű piktogramok a közös készletben”), Piktogram-elem leírása, `docs/AI.md` újragenerálva.
+
+## 1.55.0 – 2026-10-15 – Mobil visszaírás (Javaslat 27): közös ikonkészlet (42), halvány méz, bronz rangszín, mobil puha árnyék, sötét állapot-skála
+
+**Mobil visszaírás (Javaslat 27, `docs/javaslatok/27-mobil-visszairas.md`)** – Kristóf döntése 2026-10-15 (C-27 B, C-6 B, C-3 A, adatszínek). MELLÉK, csak bővítés: nincs átnevezés, nincs törlés, nincs értékváltozás (`api-check` zöld). A mobil app (Flutter, privát `beeco_ds` csomag) ezeket a `dist/dart/beeco_tokens.dart` szinkronjával veszi át.
+
+* **Közös ikonkészlet – 42 ikon webre és mobilra** (C-27 B): 24-es rács, 2,2 px vonal, `currentColor`. Az első tíz (`IcSave` … `IcRight`) már megvolt; **32 új `Ic*` komponens** a `@beeco/design-system/react`-ben (`IcSearch`, `IcBell`, `IcMap`, `IcCalendar`, `IcCamera`, `IcChevronUp/Down/Left/Right`, `IcClear`, `IcClock`, `IcError`, `IcExternalLink`, `IcEyeOff`, `IcFavorite`, `IcFilter`, `IcImage`, `IcLocation`, `IcMail`, `IcMenu`, `IcMore`, `IcPhone`, `IcRefresh`, `IcSettings`, `IcShare`, `IcSort`, `IcStar`, `IcUpload`, `IcUser`, `IcWarning`, `IcWeb`, `IcBookmark`), és mind a 42 **SVG-fájlként** a `termek/ikonok/` mappában (`@beeco/design-system/ikonok/<név>.svg`, jegyzék: `ikonok.json`). Márkalogó nincs benne. Új őr: `tests/check-ikonok.js` (az SVG és az `Ic*` rajza karakterre egyezik).
+* **Halvány méz** (C-6 B, a 4. sárga): új primitívek `honey-soft` `#FEE79C` és `honey-night` `#5C4A12`; új szerep **`accent-soft`** (világos `honey-soft`, sötét `honey-night`) – CSS `--bc-accent-soft`, SCSS `bc.$bc-accent-soft`, Tailwind `bg-accent-soft`, Dart `BeecoRoles.accentSoft` (a `focus-on-accent`-hoz hasonlóan nem kötelező paraméter, alapértéke `honeySoft` – a meglévő `BeecoRoles(...)` példányok nem törnek). Kontraszt (új párok a `check-tokens.js`-ben): `ink` rajta 17,1 : 1 / 8,1 : 1.
+* **Bronz rangszín:** új primitív `rank-bronze` `#EFC2A6` (ranglista 3. hely; fekete jel rajta 12,9 : 1).
+* **Mobil puha árnyék** (C-3 A): `shadowSoftMobile` – eltolás 2 / 2, elmosás 10, 40 % a `shadow` szerepből. CSS `--bc-shadow-soft-mobile`, SCSS `bc.shadow(soft-mobile)`, Tailwind `shadow-soft-mobile` (a tailwind-merge kiegészítés is ismeri), Dart `BeecoTokens.shadowSoftMobile` + `shadowSoftMobileBlur` + `shadowSoftMobileAlpha`, `dist/tokens.json` `shadowSoftMobile`. A weben a `shadow-soft` marad.
+* **Állapot-skála sötét párja:** `--bc-data-allapot-dark-1…5` (lime · levélzöld · méz · parázs · pipacs) és `--bc-data-allapot-cb-dark-1…5` (égkék · … · parázs, színtévesztő-barát); a két vég emelt, így mind az 5 fok ≥ 3 : 1 a sötét `surface`-en. A meglévő `--bc-data-allapot-*` és a sötét mód **nem változik** – a váltás a fogyasztó döntése. Új ellenőrzés a `check-tokens.js`-ben.
+* **Dokumentáció:** Javaslat 27, `docs/adatskala.md`, `docs/termek-arculat.md` (szerepek), Ikonok, Forma, Szín és Adatvizualizáció oldal; a Brand Book színlistája és a `docs/AI.md` újragenerálva.
+
+**Korábban, a 2026-10-08 utáni dokumentációs hullámokból:**
 
 * **Dokumentációs oldal – élő, kipróbálható komponensek** (MELLÉK): a komponensoldalon jobbra rögzített „Kipróbálom” panel (a tesztlap a komponens saját szakaszára ugrik, a téma követi az oldalt), balra rögzített fülek és szakaszgombok.
 * **Futtatható JSX-példa** minden komponensnél, az `api/api.json`-ból generálva (`tools/docs/jsx-pelda.js`); a teljes példákat a `tests/check-jsx-peldak.js` lefordítja a csomag típusaival.

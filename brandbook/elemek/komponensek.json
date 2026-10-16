@@ -401,10 +401,55 @@
     "IcX",
     "IcOk",
     "IcLeft",
-    "IcRight"
+    "IcRight",
+    "IcBell",
+    "IcBookmark",
+    "IcCalendar",
+    "IcCamera",
+    "IcChevronDown",
+    "IcChevronLeft",
+    "IcChevronRight",
+    "IcChevronUp",
+    "IcClear",
+    "IcClock",
+    "IcError",
+    "IcExternalLink",
+    "IcEyeOff",
+    "IcFavorite",
+    "IcFilter",
+    "IcImage",
+    "IcLocation",
+    "IcMail",
+    "IcMap",
+    "IcMenu",
+    "IcMore",
+    "IcPhone",
+    "IcRefresh",
+    "IcSearch",
+    "IcSettings",
+    "IcShare",
+    "IcSort",
+    "IcStar",
+    "IcUpload",
+    "IcUser",
+    "IcWarning",
+    "IcWeb",
+    "IcArrowDown",
+    "IcArrowUp",
+    "IcCompass",
+    "IcFlag",
+    "IcHome",
+    "IcLayers",
+    "IcLocate",
+    "IcLock",
+    "IcMinus",
+    "IcWifiOff",
+    "IcBee",
+    "IcNectar",
+    "IcStarFilled"
    ],
    "css": [],
-   "leiras": "A termékbőr közös, vonalas piktogramjai (24-es rács, currentColor). Díszítők: a jelentést a gomb neve viszi.",
+   "leiras": "A termékbőr és a mobil app közös piktogramjai (55 db: 52 vonalas ikon és 3 kétszínű piktogram – IcBee, IcNectar, IcStarFilled: fekete vonal, méz/papír kitöltés; 24-es rács, 2,2 px vonal, currentColor; az SVG-k: termek/ikonok/). Díszítők: a jelentést a gomb neve viszi.",
    "minta_html": "<div class=\"bb-demo-sor\"><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h11l3 3v13H5zM8 4v5h7V4M8 20v-6h8v6\"/></svg>Mentés</span><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6\"/></svg>Törlés</span><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg>Új</span><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 11v6M12 7.5v.5\"/></svg>Info</span><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 20h4L19 9l-4-4L4 16zM13 7l4 4\"/></svg>Szerkesztés</span><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7S2.5 12 2.5 12zM12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6\"/></svg>Megnyitás</span><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg>Bezárás</span><span class=\"bc-badge is-tag\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg>Tovább</span></div>",
    "mikor": [
     "Mentés → IcSave, Törlés → IcTrash, Új … → IcNew, Szerkesztés → IcEdit, Megnyitás/Részletek → IcOpen, Info → IcInfo.",
@@ -466,7 +511,7 @@
    ],
    "a11y": {
     "szerep": "Díszítő kép (`aria-hidden=\"true\"`), nem szerepel a hozzáférhetőségi fában.",
-    "megjegyzes": "A jelentést a gomb neve viszi: szöveges gombnál a felirat, csak-piktogramos gombnál a `TooltipIconButton` `label`-je. A tíz piktogram: IcSave, IcTrash, IcNew, IcInfo, IcEdit, IcOpen, IcX, IcOk, IcLeft, IcRight.",
+    "megjegyzes": "A jelentést a gomb neve viszi: szöveges gombnál a felirat, csak-piktogramos gombnál a `TooltipIconButton` `label`-je. Az első tíz piktogram (1.18.0 óta): IcSave, IcTrash, IcNew, IcInfo, IcEdit, IcOpen, IcX, IcOk, IcLeft, IcRight; 1.55.0-tól további 32 (Javaslat 27, a mobil appal közös): IcBell, IcBookmark, IcCalendar, IcCamera, IcChevronDown, IcChevronLeft, IcChevronRight, IcChevronUp, IcClear, IcClock, IcError, IcExternalLink, IcEyeOff, IcFavorite, IcFilter, IcImage, IcLocation, IcMail, IcMap, IcMenu, IcMore, IcPhone, IcRefresh, IcSearch, IcSettings, IcShare, IcSort, IcStar, IcUpload, IcUser, IcWarning, IcWeb.",
     "billentyuk": [
      [
       "–",
@@ -4811,14 +4856,15 @@
    "leiras": "Rendezhető, kijelölhető táblázat méz fejléccel; fölötte szűrősáv (kereső, szűrők, találatszám), a sor végén ikongombos műveletek.",
    "minta_html": "<div class=\"bb-demo-oszlop\"><div class=\"bc-fb-row\"><div class=\"bc-fb-search\"><div class=\"bc-search\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M10.5 4a6.5 6.5 0 1 0 0 13a6.5 6.5 0 1 0 0-13M15.5 15.5L20 20\"/></svg><label class=\"bc-sr\" for=\"tabla-q\">Partner keresése</label><input class=\"bc-input\" id=\"tabla-q\" type=\"search\"></div></div><div class=\"bc-filter\"><label class=\"bc-label\" for=\"tabla-f\">Állapot</label><select class=\"bc-select\" id=\"tabla-f\"><option>Mind</option></select></div><p class=\"bc-fb-count\">2 találat</p></div><div class=\"bc-table-wrap\"><table class=\"bc-table\"><thead><tr><th aria-sort=\"ascending\"><button type=\"button\" class=\"bc-sort\">Név</button></th><th>Állapot</th><th class=\"is-num\">Kupon</th><th><span class=\"bc-sr\">Műveletek</span></th></tr></thead><tbody><tr><td>Példa Kávézó</td><td><span class=\"bc-badge bc-status is-success\">Aktív</span></td><td class=\"is-num\">12</td><td><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Példa Kávézó szerkesztése\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 20h4L19 9l-4-4L4 16zM13 7l4 4\"/></svg></button></td></tr><tr><td>Példa Bolt</td><td><span class=\"bc-badge bc-status is-warning\">Függőben</span></td><td class=\"is-num\">3</td><td><button type=\"button\" class=\"bc-icon-btn\" aria-label=\"Példa Bolt szerkesztése\"><svg class=\"bb-ic\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 20h4L19 9l-4-4L4 16zM13 7l4 4\"/></svg></button></td></tr></tbody></table></div></div>",
    "mikor": [
-    "Listák (partnerek, POI-k, kuponok): rendezés, kijelölés + tömeges sáv, lenyitható sor, lapozás, sűrűség.",
+    "Listák (partnerek, POI-k, kuponok): rendezés, kijelölés + tömeges sáv, lenyitható sor, lapozás; alapból sűrű nézet (a Kényelmes ↔ Sűrű kapcsoló nincs, csak kifejezett `densityToggle` mellett).",
     "Szűrősáv: széles képernyőn soros, keskenyen „Szűrők (N)” gomb + panel; aktív-szűrő címkék, „Szűrők törlése”, találatszám.",
     "Sorműveletek: legfeljebb 2 ikongomb, 3+ esetén a fő látszik, a többi „⋯” menüben; a műveletoszlop jobbra rögzíthető.",
     "0 sor: üres állapot teendővel; töltés: csontváz; hiba: újrapróbálás."
    ],
    "mikor_ne": [
     "Telefonon partner-listához vízszintes görgetés helyett kártyanézet (mobile=\"cards\").",
-    "Kártyába ágyazva saját kerettel – ott keret nélküli (bare), sűrű változat."
+    "Kártyába ágyazva saját kerettel – ott keret nélküli (bare) változat.",
+    "Sűrűség-kapcsoló kirakása „mert jó, ha van” alapon – az alap a kapcsoló nélküli, mindig sűrű nézet; csak akkor `densityToggle`, ha a felhasználónak tényleg két nézet kell."
    ],
    "do": [
     {
@@ -4858,7 +4904,7 @@
     },
     {
      "resz": "Eszközsáv",
-     "leiras": "`bc-dt-bar` / `bc-dt-tools`: látható cím (`captionVisible`, `bc-dt-title`), rendezés-választó kártyanézetben, sűrűség-kapcsoló, a `toolbar` prop tartalma."
+     "leiras": "`bc-dt-bar` / `bc-dt-tools`: látható cím (`captionVisible`, `bc-dt-title`), rendezés-választó kártyanézetben, sűrűség-kapcsoló (csak `densityToggle` mellett), a `toolbar` prop tartalma."
     },
     {
      "resz": "Tömeges sáv",
@@ -4976,7 +5022,7 @@
     {
      "allapot": "sűrű",
      "megjelenes": "Kisebb cellatér (`--bc-sp-2` függőlegesen).",
-     "megjegyzes": "`density=\"dense\"` → `is-dense`; a kapcsolóval váltható"
+     "megjegyzes": "Az alapértelmezett (`defaultDensity=\"dense\"`) → `is-dense`; kapcsoló csak `densityToggle` mellett, azzal váltható"
     },
     {
      "allapot": "kártyanézet",
@@ -5048,7 +5094,8 @@
     "itemLabel": "sor",
     "status": "ready",
     "mobile": "scroll",
-    "defaultDensity": "comfortable",
+    "defaultDensity": "dense",
+    "densityToggle": "false",
     "pageSizes": "10, 25, 100",
     "FilterBar.itemLabel": "találat",
     "FilterBar.narrowBelow": "640"
