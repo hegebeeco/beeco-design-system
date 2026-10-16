@@ -27,9 +27,9 @@ B2B_CEG = '#ajanlatkeres'  # élesítés után: '/szolgaltatas/locsoloraj'
 SZ.append(('qr', '<div class="ov-qr-sav"><p class="ov-qr-szoveg"><strong>Plakátról vagy matricáról jöttél?</strong> A 2026-os szezon lezárult, 2027 májusában újra locsolunk.</p><a class="ov-qr-link" href="#levelke" data-ov-cta="qr">Szólj, ha indulunk ›</a></div>'))
 
 # 1. Hero: emlékoldal, óriás szám, Berlin-összevetés (forrással), két CTA: lakos (#levelke) és település/cég (#csatlakozz-2027)
-HFOTO = [('6ad12c6f9456e90e23e6ba45_ov-vf3-640.webp', 'Vidám locsolócsapat csoportképe a fák alatt'),
-         ('6ad12c6f5dbe06b475299c84_ov-vf2-640.webp', 'Négy önkéntes vödrökkel indul a parkban a fákhoz'),
-         ('6ad12c6e14daa9eed21bcbc5_ov-vf1-640.webp', 'Egy önkéntes vödörből öntözi a fát, mögötte sorban várnak a többiek')]
+HFOTO = [('6ad229f17e7aceec83be0c44_ov-hero-c.webp', 'Kislány kannával és egy kutya a szezonnyitón, körülöttük vödrök'),
+         ('6ad229f0990a196d65dac169_ov-hero-b.webp', 'Két kutya a szájában vödröt hoz a járdán'),
+         ('6ad22acc376c910235b72a8d_ov-hero-a2.webp', 'Önkéntes háttal, a pólóján a felirat: Locsol a város!')]
 GIESS = 'https://www.giessdenkiez.de/stats?lang=en'
 SZ.append(('hero', f'''<section class="ov-hero" id="kezdes"><img class="ov-hero-minta" src="{A('ov-minta.svg')}" alt=""><div class="ov-burok ov-hero-racs"><div class="ov-hero-szoveg">
 <img class="ov-logo" src="{A('ov-logo-feher.svg')}" alt="Önkéntes vízadás, powered by E.ON">
@@ -77,6 +77,22 @@ SZ.append(('hos', '<section class="ov-szekcio ov-hos" id="az-ev-vizadoja"><div c
  '<p class="ov-szoveg">Különösen megszerette a Kucorgó tér, a Pesti út és Cinkota fáit. Locsolás közben sokan megszólították és megköszönték a munkáját, többen pedig maguk is elkezdtek öntözni. „Én azóta szemmel tartom a fáimat, örömmel látom, hogy jól vannak.”</p></div>'
  '<div class="ov-hos-jobb"><div class="ov-tenyek">' + ''.join(f'<div class="ov-teny"><strong class="ov-teny-szam">{v}</strong><p class="ov-teny-szoveg">{t}</p></div>' for v, t in HOS) + '</div>'
  '<figure class="ov-idezet"><blockquote class="ov-idezet-szoveg">„Elég, ha mindenki csak egy kicsit vállal, a sok összeadódik, és nagy eredményt lehet elérni.”</blockquote><figcaption class="ov-idezet-forras">Hegyaljai Melinda, az év vízadója</figcaption></figure></div></div></section>'))
+
+# 2b. A nyár képekben: polaroid-galéria (szezonnyitó, a vízadók saját fotói, kampányzáró)
+GAL = [('6ad229f17e7aceec83be0c66_ov-gal-01.webp', 'Színes locsolókannák a fűben', 'Sorakoznak a kannák a szezonnyitón', False),
+       ('6ad22a2b901739990602ca8c_ov-gal-03.webp', 'Méhecske-jelmezes vízadó biciklivel és vödörrel egy parkban', 'Méhecske-jelmezben, biciklivel', True),
+       ('6ad229f1c250f39d198130a8_ov-gal-02.webp', 'Vízadók csoportképe kannákkal egy tűzoltóautó előtt', 'Csapatfotó a tűzoltóautó előtt', False),
+       ('6ad22a2dc4f538cbe9d0cd4a_ov-gal-06.webp', 'Locsol a város! plakát egy esti buszmegállóban', 'Locsol a város! a megállókban', True),
+       ('6ad22a2c990a196d65dace19_ov-gal-04.webp', 'Fekete vödör az Önkéntes Vízadás matricájával', 'Indul a vízadás!', False),
+       ('6ad22a2c5ae31a08e75a4dd8_ov-gal-05.webp', 'Vidám csapat esti locsolás közben, vödrökkel', 'Esti locsolás csapatban', False),
+       ('6ad22a514348bd6b5d67e902_ov-gal-08.webp', 'Piros bicikli zöld kannával egy fa mellett', 'Biciklivel a fákhoz', True),
+       ('6ad22a2d0161dc2bd803bca4_ov-gal-07.webp', 'Kislány narancssárga kannával, mellette locsolótömlő', 'A legkisebbek is locsoltak', False),
+       ('6ad22a516821cb6068a17cbb_ov-gal-09.webp', 'Sok piros locsolókanna, tömlőből töltik őket', 'Piros kannák, sok kéz', True),
+       ('6ad22a516821cb6068a17cd8_ov-gal-10.webp', 'Tömlőből zubog a víz egy fekete vödörbe', 'Vízvétel a szezonnyitón', False),
+       ('6ad22a51c4f538cbe9d0e00a_ov-gal-11.webp', 'Vödrökből épített piramis plüssfigurákkal', 'Vödörpiramis a kampányzárón', True),
+       ('6ad22a52354ecc8f2155ff36_ov-gal-12.webp', 'Önkéntesek beszélgetnek egy őszi téren a kampányzárón', 'Kampányzáró, október 13.', False)]
+SZ.append(('kepek', '<section class="ov-szekcio ov-kepek" id="kepekben"><div class="ov-burok"><div class="ov-szekcio-fej"><div class="ov-szalag ov-szalag-sarga">A nyár képekben</div><h2 class="ov-cim2">Így locsolt a város</h2><p class="ov-szekcio-lead">A szezonnyitótól a kampányzáróig. Köszönjük a fotókat a vízadóknak!</p></div>'
+ '<div class="ov-galeria">' + ''.join(f'<figure class="ov-polaroid{" ov-pol-allo" if allo else ""}"><img class="ov-polaroid-kep" src="{S3}{f}" alt="{e(a)}" loading="lazy"><figcaption class="ov-polaroid-felirat">{e(c)}</figcaption></figure>' for f, a, c, allo in GAL) + '</div></div></section>'))
 
 # 3. Miért fontos?
 TENY = [('3–5 év', 'Az ültetés utáni első évek kritikusak: ekkor még gyengék a gyökerek, a fa nehezen jut vízhez.'),
@@ -157,7 +173,7 @@ SZ.append(('zaro', f'''<section class="ov-szekcio ov-zaro" id="letoltes"><div cl
 <a class="ov-gomb ov-ertesito" href="#levelke">Szólj, ha indulunk!</a>
 </div><div class="ov-zaro-kep"><img class="ov-zaro-varos" src="{A('ov-varos-kicsi.svg')}" alt=""><div class="ov-zaro-meh-keret" data-ov-anim><img class="ov-zaro-meh" src="{A('ov-meh-kannas.webp')}" alt="Szuperhős méhecske locsolókannával"><span class="ov-csepp ov-hullo ov-z1" aria-hidden="true"></span><span class="ov-csepp ov-hullo ov-z2" aria-hidden="true"></span><span class="ov-csepp ov-hullo ov-z3" aria-hidden="true"></span></div></div></div><img class="ov-cikcakk" src="{A('ov-cikcakk.svg')}" alt=""></section>'''))
 
-SORREND = ['qr', 'hero', 'jovo', 'csatlakozz', 'eredmeny', 'partner', 'hos', 'onk', 'miert', 'igy', 'sajto', 'gyik', 'zaro']  # partner után: DS · Ajánlatkérés
+SORREND = ['qr', 'hero', 'jovo', 'csatlakozz', 'eredmeny', 'kepek', 'partner', 'hos', 'onk', 'miert', 'igy', 'sajto', 'gyik', 'zaro']  # partner után: DS · Ajánlatkérés
 SZ.sort(key=lambda x: SORREND.index(x[0]))
 
 def csonkok(h):
