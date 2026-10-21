@@ -11,6 +11,15 @@ A kit verziószáma a `VERSION` fájlban van, **szemantikus verziózással** (F�
 a játékokban `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ez beírja a projekt `KIT-VERZIO` fájljába az új verziót).
 Hol tart egy játék? `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js <projekt> --check` – kiírja a projekt és a kit verzióját.
 
+## Készül
+
+* **Web DS – natív Webflow-blokkok** (`docs/web-ds.md`, `weboldal/web-ds/`): a beeco.hu új oldalainak (Főoldal Szuperhős, Rólunk, Csapatunk, Hatásunk, /en, Cégeknek és településeknek) 133 `ds-` osztálya egy katalógusban (`KATALOGUS.md`, `katalogus.json`, önálló `ds-blokkok.css`), generálva a `katalogus.py`-val (`--check` mód). Webflow-komponensek és propjaik (NAVBAR_OT_AJTO Egyszerű variáns + nyelvi és EN gomb propok, LABLEC_ZARO, DS · Szakmai partnerek, DS · Csatlakozz a rajhoz), oldal-azonosítók, buktatók, döntésre váró pontok (`ds-` és `bc-` átfedés, hat csak-Webflow változó).
+* **B2B-generátor** (`weboldal/b2b/gen_b2b.py`, `szamok.json`): új blokkok `ds-csomag` (Belépő / Mag / Partnerség), `ds-lepesek`, `ds-eset`, `ds-jelentes` (Hatásjelentés-minta), natív ajánlatkérő űrlap (`ds-urlap`); egyetlen számforrás gépi ellenőrzéssel. Első oldal: Cégeknek és településeknek (hub).
+* **Web Summit:** angol /en oldal (E szekciók), egyoldalas PDF (`weboldal/websummit/`).
+* **13 új B2B- és esemény-aloldal** (statikus, natív, `weboldal/b2b/oldalak.py`): Önkormányzatoknak, beeco@work, Locsolóraj, Madárraj, Zöld programok, Partnerprogram, Zöld marketing; Klímafreskó, 3D zöld játékok, Kézműves workshop, Zöld kvíz és ÖkoMuki, Csere-bere, Előadás/filmklub/kerekasztal. Oldalanként SEO-cím, leírás és JSON-LD (Service, FAQPage, BreadcrumbList). Új komponensek: `DS · Ajánlatkérés`, `DS · Céges ajánlatok`.
+* **Tesztek** (`weboldal/web-ds/teszt/`): `gombteszt.cjs` (horgony, előzmény, linkek; Chromium + WebKit, asztal + mobil), `oldalkep.cjs` (képernyőkép, kilógás, törött kép, JS-hiba), `szovegdiff.cjs` (élő szöveg ↔ generátor).
+* A generátorok a repóból futnak: a kép- és logólista `weboldal/web-ds/adat/` alá került (eddig ideiglenes fájlokból olvastak).
+
 ## 1.57.0 – 2026-10-16
 
 **DataTable: a „Kényelmes / Sűrű” kapcsoló alapból nincs, az alapsűrűség „sűrű”** (Kristóf kérése 2026-10-16: sehol nincs sűrűség-kapcsoló, a táblák mindig sűrűek). MELLÉK a Kristóf-féle döntés szerint, de **alapérték-változás** – a fogyasztóknál ezt kell tudni:

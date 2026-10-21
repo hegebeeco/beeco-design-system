@@ -1,0 +1,2783 @@
+{
+ "_leiras": "Generált (weboldal/web-ds/katalogus.py). Kézzel ne szerkeszd.",
+ "valtozok": {
+  "bc-bg": {
+   "webflow_id": "variable-45adb35e-55d0-2393-0ae2-089cb6b7f962",
+   "css": "--_beeco-ds---bc-bg",
+   "alap": "#FFF8E7",
+   "csak_webflow": false
+  },
+  "bc-surface": {
+   "webflow_id": "variable-aae1fb72-7619-cc28-913a-61e2f6790b23",
+   "css": "--_beeco-ds---bc-surface",
+   "alap": "#FFFFFF",
+   "csak_webflow": false
+  },
+  "bc-surface-2": {
+   "webflow_id": "variable-c792337d-a371-9744-8f2c-37ff2564bc37",
+   "css": "--_beeco-ds---bc-surface-2",
+   "alap": "#F0F3EC",
+   "csak_webflow": false
+  },
+  "bc-ink": {
+   "webflow_id": "variable-d3d6924e-2c21-4e75-4deb-736700c62a62",
+   "css": "--_beeco-ds---bc-ink",
+   "alap": "#000000",
+   "csak_webflow": false
+  },
+  "bc-ink-soft": {
+   "webflow_id": "variable-9c201171-9318-d317-4036-5aeee1162eea",
+   "css": "--_beeco-ds---bc-ink-soft",
+   "alap": "#505050",
+   "csak_webflow": false
+  },
+  "bc-ink-muted": {
+   "webflow_id": "variable-e364b328-5b39-20e1-c71a-f90de5a987d0",
+   "css": "--_beeco-ds---bc-ink-muted",
+   "alap": "#676767",
+   "csak_webflow": false
+  },
+  "bc-accent": {
+   "webflow_id": "variable-2d4b8a06-c629-0806-4bf2-c2e6cfbbb115",
+   "css": "--_beeco-ds---bc-accent",
+   "alap": "#FECF39",
+   "csak_webflow": false
+  },
+  "bc-accent-ink": {
+   "webflow_id": "variable-10cbaccf-3573-03c9-0be2-92ef17e74ec6",
+   "css": "--_beeco-ds---bc-accent-ink",
+   "alap": "#8A6A00",
+   "csak_webflow": true
+  },
+  "bc-raj-bg": {
+   "webflow_id": "variable-b5a8a215-62d0-588c-878c-00bf1be2caff",
+   "css": "--_beeco-ds---bc-raj-bg",
+   "alap": "#2F371E",
+   "csak_webflow": true
+  },
+  "bc-on-olive": {
+   "webflow_id": "variable-2fa026be-cbcd-5368-7899-874c2aa91a8e",
+   "css": "--_beeco-ds---bc-on-olive",
+   "alap": "#D3DDBB",
+   "csak_webflow": true
+  },
+  "bc-vaj": {
+   "webflow_id": "variable-ff7da342-4bb2-6969-32ae-c3ad2525735f",
+   "css": "--_beeco-ds---bc-vaj",
+   "alap": "#FEEEBB",
+   "csak_webflow": true
+  },
+  "bc-domb": {
+   "webflow_id": "variable-a452db77-ce29-23cd-9bf5-9435bcc63cbe",
+   "css": "--_beeco-ds---bc-domb",
+   "alap": "#D3DDBB",
+   "csak_webflow": true
+  },
+  "bc-paper": {
+   "webflow_id": "variable-5de3c308-7929-9eb7-ed60-04cc76d07316",
+   "css": "--_beeco-ds---bc-paper",
+   "alap": "#FFFDF6",
+   "csak_webflow": true
+  }
+ },
+ "oldalak": {
+  "rolunk": {
+   "nev": "Rólunk",
+   "url": "/rolunk-uj-draft"
+  },
+  "hatasunk": {
+   "nev": "Hatásunk",
+   "url": "/hatasunk-draft"
+  },
+  "csapatunk": {
+   "nev": "Csapatunk",
+   "url": "/csapatunk-uj-draft"
+  },
+  "en": {
+   "nev": "English (Web Summit)",
+   "url": "/en"
+  },
+  "cegeknek": {
+   "nev": "Cégeknek és településeknek",
+   "url": "/szolgaltatas/cegeknek-draft"
+  },
+  "onk": {
+   "nev": "Önkormányzatoknak: lakossági faöntözés és zöld programok",
+   "url": "/szolgaltatas/onkormanyzatoknak-draft"
+  },
+  "work": {
+   "nev": "beeco@work: munkahelyi zöld program havi Hatásjelentéssel",
+   "url": "/szolgaltatas/beeco-at-work-draft"
+  },
+  "madar": {
+   "nev": "Madárraj: céges csapatnap odúkészítéssel és madársétával",
+   "url": "/szolgaltatas/madarraj-draft"
+  },
+  "locsolo": {
+   "nev": "Locsolóraj: céges faöntöző csapatnap az Önkéntes Vízadásban",
+   "url": "/szolgaltatas/locsoloraj-draft"
+  },
+  "programok": {
+   "nev": "Zöld céges programok és csapatépítők nagyvállalatoknak",
+   "url": "/szolgaltatas/zold-esemeny-szervezes-draft"
+  },
+  "partner": {
+   "nev": "Partnerprogram zöld vállalkozásoknak: térkép, kupon, analitika",
+   "url": "/szolgaltatas/partner-draft"
+  },
+  "marketing": {
+   "nev": "Zöld marketing fenntartható márkáknak, igazolt állításokkal",
+   "url": "/szolgaltatas/zold-marketing-draft"
+  },
+  "fresk": {
+   "nev": "Klímafreskó workshop cégeknek és csapatoknak",
+   "url": "/szolgaltatas/klimafresko-draft"
+  },
+  "jatek": {
+   "nev": "3D zöld játékok rendezvényre, standra, csapatnapra",
+   "url": "/szolgaltatas/3d-zold-jatekok-draft"
+  },
+  "diy": {
+   "nev": "Kézműves és DIY workshop cégeknek",
+   "url": "/szolgaltatas/kezmuves-workshop-draft"
+  },
+  "kviz": {
+   "nev": "Zöld kvíz és ÖkoMuki csapatjáték cégeknek",
+   "url": "/szolgaltatas/zold-kviz-okomuki-draft"
+  },
+  "csere": {
+   "nev": "Csere-bere szervezés cégeknek és közösségeknek",
+   "url": "/szolgaltatas/csere-bere-szervezes-draft"
+  },
+  "eloadas": {
+   "nev": "Fenntarthatósági előadás, filmklub, kerekasztal cégeknek",
+   "url": "/szolgaltatas/zold-eloadas-filmklub-draft"
+  }
+ },
+ "osztalyok": {
+  "ds-allitas": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Hatásjelentés (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
+   ],
+   "css": {
+    "alap": {
+     ".ds-allitas": "padding-top:12px;padding-right:14px;padding-bottom:12px;padding-left:14px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:12px;border-top-right-radius:4px;border-bottom-right-radius:12px;border-bottom-left-radius:4px;background-color:var(--_beeco-ds---bc-surface-2);font-size:15px;line-height:1.5"
+    }
+   }
+  },
+  "ds-allitas-kerul": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Hatásjelentés (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
+   ],
+   "css": {
+    "alap": {
+     ".ds-allitas-kerul": "border-top-style:dashed;border-right-style:dashed;border-bottom-style:dashed;border-left-style:dashed;background-color:var(--_beeco-ds---bc-surface);color:var(--_beeco-ds---bc-ink-soft)"
+    }
+   }
+  },
+  "ds-bemenet": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Űrlap (B2B)",
+   "oldalak": [
+    "cegeknek"
+   ],
+   "css": {
+    "alap": {
+     ".ds-bemenet": "width:100%;min-height:48px;margin-bottom:0px;padding-top:12px;padding-right:14px;padding-bottom:12px;padding-left:14px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:12px;border-top-right-radius:4px;border-bottom-right-radius:12px;border-bottom-left-radius:4px;background-color:#ffffff;color:var(--_beeco-ds---bc-ink);font-size:16px;line-height:1.4",
+     ".ds-bemenet:focus": "border-top-color:#000000;border-right-color:#000000;border-bottom-color:#000000;border-left-color:#000000;box-shadow:0 0 0 3px var(--_beeco-ds---bc-accent);outline-style:none"
+    }
+   }
+  },
+  "ds-burok": {
+   "csoport": "Közös alap",
+   "csalad": "Szekció és keret",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-burok": "width:100%;max-width:1200px;margin-left:auto;margin-right:auto;padding-top:0px;padding-right:24px;padding-bottom:0px;padding-left:24px;"
+    },
+    "≤767 px": {
+     ".ds-burok": "padding-top:0px;padding-right:16px;padding-bottom:0px;padding-left:16px;"
+    }
+   }
+  },
+  "ds-chip": {
+   "csoport": "Közös alap",
+   "csalad": "Gomb és chip",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-chip": "padding-top:7px;padding-right:12px;padding-bottom:6px;padding-left:12px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:999px;border-top-right-radius:999px;border-bottom-right-radius:999px;border-bottom-left-radius:999px;background-color:#ffffff;color:#000000;font-size:14px;font-weight:700;line-height:1.2"
+    }
+   }
+  },
+  "ds-chipsor": {
+   "csoport": "Közös alap",
+   "csalad": "Gomb és chip",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-chipsor": "display:flex;flex-wrap:wrap;column-gap:10px;row-gap:10px;margin-top:22px"
+    }
+   }
+  },
+  "ds-cikk": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Logók, sajtó, idézet",
+   "oldalak": [
+    "hatasunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-cikk": "display:flex;flex-direction:column;row-gap:12px;padding-top:22px;padding-right:22px;padding-bottom:22px;padding-left:22px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:18px;border-top-right-radius:6px;border-bottom-right-radius:18px;border-bottom-left-radius:6px;background-color:var(--_beeco-ds---bc-surface);box-shadow:4px 4px 0 0 #000000;color:var(--_beeco-ds---bc-ink);text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1), box-shadow 160ms cubic-bezier(.23,1,.32,1)",
+     ".ds-cikk:hover": "color:var(--_beeco-ds---bc-ink);text-decoration:none;transform:translate(-2px,-3px);box-shadow:6px 7px 0 0 #000000"
+    }
+   }
+  },
+  "ds-cikk-forras": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Logók, sajtó, idézet",
+   "oldalak": [
+    "hatasunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-cikk-forras": "margin-top:auto;color:var(--_beeco-ds---bc-accent-ink);font-size:14px;font-weight:800"
+    }
+   }
+  },
+  "ds-cikk-logo": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Logók, sajtó, idézet",
+   "oldalak": [
+    "hatasunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-cikk-logo": "height:40px;width:auto;max-width:160px;object-fit:contain;align-self:flex-start"
+    }
+   }
+  },
+  "ds-cikkek": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Logók, sajtó, idézet",
+   "oldalak": [
+    "hatasunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-cikkek": "display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:22px;row-gap:22px"
+    },
+    "≤991 px": {
+     ".ds-cikkek": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-cim1": {
+   "csoport": "Közös alap",
+   "csalad": "Tipográfia",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-cim1": "margin-top:0px;margin-bottom:0px;color:inherit;font-family:Lalezar, \"Arial Black\", sans-serif;font-size:58px;line-height:1.02;font-weight:400"
+    },
+    "≤991 px": {
+     ".ds-cim1": "font-size:48px"
+    },
+    "≤767 px": {
+     ".ds-cim1": "font-size:40px"
+    }
+   }
+  },
+  "ds-cim2": {
+   "csoport": "Közös alap",
+   "csalad": "Tipográfia",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-cim2": "margin-top:0px;margin-bottom:0px;color:inherit;font-family:Lalezar, \"Arial Black\", sans-serif;font-size:42px;line-height:1.05;font-weight:400"
+    },
+    "≤991 px": {
+     ".ds-cim2": "font-size:36px"
+    },
+    "≤767 px": {
+     ".ds-cim2": "font-size:31px"
+    }
+   }
+  },
+  "ds-cim3": {
+   "csoport": "Közös alap",
+   "csalad": "Tipográfia",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-cim3": "margin-top:0px;margin-bottom:0px;color:inherit;font-family:Lalezar, \"Arial Black\", sans-serif;font-size:24px;line-height:1.1;font-weight:400"
+    }
+   }
+  },
+  "ds-cimke": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Tipográfia",
+   "oldalak": [
+    "cegeknek"
+   ],
+   "css": {
+    "alap": {
+     ".ds-cimke": "margin-bottom:0px;color:var(--_beeco-ds---bc-ink);font-size:14px;font-weight:800;line-height:1.3"
+    }
+   }
+  },
+  "ds-csomag": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Csomagok (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-csomag": "display:flex;flex-direction:column;align-items:flex-start;row-gap:12px;padding-top:28px;padding-right:26px;padding-bottom:28px;padding-left:26px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:18px;border-top-right-radius:6px;border-bottom-right-radius:18px;border-bottom-left-radius:6px;background-color:var(--_beeco-ds---bc-surface);box-shadow:4px 4px 0 0 #000000;color:var(--_beeco-ds---bc-ink)"
+    }
+   }
+  },
+  "ds-csomag-ar": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Csomagok (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-csomag-ar": "font-family:Lalezar, \"Arial Black\", sans-serif;font-size:30px;line-height:1.05"
+    }
+   }
+  },
+  "ds-csomag-elem": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Csomagok (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-csomag-elem": "display:grid;grid-template-columns:22px minmax(0,1fr);column-gap:6px"
+    }
+   }
+  },
+  "ds-csomag-kiemelt": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Csomagok (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-csomag-kiemelt": "background-color:var(--_beeco-ds---bc-accent);box-shadow:6px 6px 0 0 #000000;transform:translate(0px,-8px)"
+    },
+    "≤991 px": {
+     ".ds-csomag-kiemelt": "transform:none"
+    }
+   }
+  },
+  "ds-csomag-lista": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Csomagok (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-csomag-lista": "display:flex;flex-direction:column;row-gap:8px;margin-top:4px;margin-bottom:0px;padding-left:0px;list-style-type:none;font-size:16px;line-height:1.5"
+    }
+   }
+  },
+  "ds-csomag-pipa": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Csomagok (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-csomag-pipa": "font-weight:800"
+    }
+   }
+  },
+  "ds-csomagok": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Csomagok (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-csomagok": "display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:22px;row-gap:22px;align-items:stretch"
+    },
+    "≤991 px": {
+     ".ds-csomagok": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-dij": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Díjak",
+   "oldalak": [
+    "hatasunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-dij": "display:flex;align-items:center;column-gap:16px;padding-top:16px;padding-right:18px;padding-bottom:16px;padding-left:16px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:16px;border-top-right-radius:5px;border-bottom-right-radius:16px;border-bottom-left-radius:5px;background-color:var(--_beeco-ds---bc-surface);box-shadow:4px 4px 0 0 #000000"
+    }
+   }
+  },
+  "ds-dij-cim": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Díjak",
+   "oldalak": [
+    "hatasunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-dij-cim": "font-family:Lalezar, \"Arial Black\", sans-serif;font-size:21px;line-height:1.15"
+    }
+   }
+  },
+  "ds-dij-helyezes": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Díjak",
+   "oldalak": [
+    "hatasunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-dij-helyezes": "display:flex;align-items:center;justify-content:center;flex-grow:0;flex-shrink:0;width:60px;height:60px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:999px;border-top-right-radius:999px;border-bottom-right-radius:999px;border-bottom-left-radius:999px;background-color:var(--_beeco-ds---bc-accent);color:#000000;font-family:Lalezar, \"Arial Black\", sans-serif;font-size:28px;line-height:1"
+    }
+   }
+  },
+  "ds-dij-szoveg": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Díjak",
+   "oldalak": [
+    "hatasunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-dij-szoveg": "color:var(--_beeco-ds---bc-ink-soft);font-size:14.5px;line-height:1.45"
+    }
+   }
+  },
+  "ds-dij-test": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Díjak",
+   "oldalak": [
+    "hatasunk",
+    "csapatunk",
+    "programok",
+    "fresk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-dij-test": "display:flex;flex-direction:column;row-gap:2px"
+    }
+   }
+  },
+  "ds-dijak": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Díjak",
+   "oldalak": [
+    "hatasunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-dijak": "display:flex;flex-direction:column;row-gap:14px"
+    }
+   }
+  },
+  "ds-ember": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ember": "display:flex;flex-direction:column;row-gap:6px"
+    }
+   }
+  },
+  "ds-ember-foto": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ember-foto": "display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-top-style:solid;border-top-width:3px;border-top-color:#000000;border-right-style:solid;border-right-width:3px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:3px;border-bottom-color:#000000;border-left-style:solid;border-left-width:3px;border-left-color:#000000;border-top-left-radius:18px;border-top-right-radius:6px;border-bottom-right-radius:18px;border-bottom-left-radius:6px;box-shadow:4px 4px 0 0 #000000;background-color:var(--_beeco-ds---bc-surface-2)"
+    }
+   }
+  },
+  "ds-ember-kepek": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ember-kepek": "position:relative;margin-bottom:10px"
+    }
+   }
+  },
+  "ds-ember-meh": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ember-meh": "position:absolute;right:-10px;bottom:-14px;width:64px;height:64px;object-fit:contain;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:999px;border-top-right-radius:999px;border-bottom-right-radius:999px;border-bottom-left-radius:999px;background-color:var(--_beeco-ds---bc-accent)"
+    }
+   }
+  },
+  "ds-ember-nev": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk",
+    "programok",
+    "fresk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ember-nev": "font-family:Lalezar, \"Arial Black\", sans-serif;font-size:21px;line-height:1.1"
+    }
+   }
+  },
+  "ds-ember-szerep": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk",
+    "programok",
+    "fresk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ember-szerep": "color:var(--_beeco-ds---bc-ink-soft);font-size:14.5px;line-height:1.4"
+    }
+   }
+  },
+  "ds-emberek": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-emberek": "display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:22px;row-gap:28px"
+    },
+    "≤991 px": {
+     ".ds-emberek": "grid-template-columns:repeat(3,minmax(0,1fr))"
+    },
+    "≤767 px": {
+     ".ds-emberek": "grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px"
+    }
+   }
+  },
+  "ds-eset": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Lépések és eset (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "locsolo"
+   ],
+   "css": {
+    "alap": {
+     ".ds-eset": "display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,0.8fr);column-gap:28px;row-gap:24px;padding-top:28px;padding-right:28px;padding-bottom:28px;padding-left:28px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:20px;border-top-right-radius:6px;border-bottom-right-radius:20px;border-bottom-left-radius:6px;background-color:var(--_beeco-ds---bc-surface);box-shadow:6px 6px 0 0 #000000"
+    },
+    "≤991 px": {
+     ".ds-eset": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-eset-eredmeny": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Lépések és eset (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "locsolo"
+   ],
+   "css": {
+    "alap": {
+     ".ds-eset-eredmeny": "display:flex;flex-direction:column;row-gap:14px;padding-top:22px;padding-right:22px;padding-bottom:22px;padding-left:22px;border-top-left-radius:16px;border-top-right-radius:5px;border-bottom-right-radius:16px;border-bottom-left-radius:5px;background-color:#000000;color:#ffffff"
+    }
+   }
+  },
+  "ds-eset-resz": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Lépések és eset (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "locsolo"
+   ],
+   "css": {
+    "alap": {
+     ".ds-eset-resz": "display:flex;flex-direction:column;row-gap:8px"
+    }
+   }
+  },
+  "ds-forras": {
+   "csoport": "Közös alap",
+   "csalad": "Tipográfia",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
+   ],
+   "css": {
+    "alap": {
+     ".ds-forras": "margin-top:22px;color:var(--_beeco-ds---bc-ink-muted);font-size:13px;line-height:1.5"
+    }
+   }
+  },
+  "ds-forras-sotet": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Tipográfia",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "locsolo",
+    "programok",
+    "partner"
+   ],
+   "css": {
+    "alap": {
+     ".ds-forras-sotet": "color:var(--_beeco-ds---bc-on-olive)"
+    }
+   }
+  },
+  "ds-foto": {
+   "csoport": "Közös alap",
+   "csalad": "Fotó",
+   "oldalak": [
+    "rolunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-foto": "position:relative;margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;border-top-style:solid;border-top-width:3px;border-top-color:#000000;border-right-style:solid;border-right-width:3px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:3px;border-bottom-color:#000000;border-left-style:solid;border-left-width:3px;border-left-color:#000000;border-top-left-radius:18px;border-top-right-radius:6px;border-bottom-right-radius:18px;border-bottom-left-radius:6px;overflow:hidden;background-color:#ffffff;box-shadow:6px 6px 0 0 #000000"
+    }
+   }
+  },
+  "ds-foto-felirat": {
+   "csoport": "Közös alap",
+   "csalad": "Fotó",
+   "oldalak": [
+    "rolunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-foto-felirat": "position:absolute;left:12px;bottom:12px;padding-top:6px;padding-right:10px;padding-bottom:4px;padding-left:10px;background-color:#000000;color:#ffffff;font-size:13px;font-weight:700;line-height:1.2"
+    }
+   }
+  },
+  "ds-foto-kep": {
+   "csoport": "Közös alap",
+   "csalad": "Fotó",
+   "oldalak": [
+    "rolunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-foto-kep": "display:block;width:100%;height:100%;object-fit:cover"
+    }
+   }
+  },
+  "ds-gomb": {
+   "csoport": "Közös alap",
+   "csalad": "Gomb és chip",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-gomb": "display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding-top:13px;padding-right:22px;padding-bottom:10px;padding-left:22px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:14px;border-top-right-radius:4px;border-bottom-right-radius:14px;border-bottom-left-radius:4px;background-color:var(--_beeco-ds---bc-accent);box-shadow:3px 3px 0 0 #000000;color:#000000;font-family:Lalezar, \"Arial Black\", sans-serif;font-size:19px;line-height:1;text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1), box-shadow 160ms cubic-bezier(.23,1,.32,1)",
+     ".ds-gomb:hover": "color:#000000;font-family:Lalezar, \"Arial Black\", sans-serif;text-decoration:none;transform:translate(-1px,-2px);box-shadow:4px 5px 0 0 #000000",
+     ".ds-gomb:active": "transform:translate(2px,2px);box-shadow:1px 1px 0 0 #000000"
+    }
+   }
+  },
+  "ds-gombsor": {
+   "csoport": "Közös alap",
+   "csalad": "Gomb és chip",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-gombsor": "display:flex;flex-wrap:wrap;align-items:center;column-gap:14px;row-gap:12px"
+    }
+   }
+  },
+  "ds-grafikon": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Számok és grafikon",
+   "oldalak": [
+    "hatasunk",
+    "en"
+   ],
+   "css": {
+    "alap": {
+     ".ds-grafikon": "display:flex;flex-direction:column;row-gap:22px;padding-top:26px;padding-right:26px;padding-bottom:26px;padding-left:26px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:18px;border-top-right-radius:6px;border-bottom-right-radius:18px;border-bottom-left-radius:6px;background-color:var(--_beeco-ds---bc-surface);box-shadow:4px 4px 0 0 #000000"
+    }
+   }
+  },
+  "ds-grafikon-felirat": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Számok és grafikon",
+   "oldalak": [
+    "hatasunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-grafikon-felirat": "margin-bottom:6px;color:var(--_beeco-ds---bc-ink-muted);font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase"
+    }
+   }
+  },
+  "ds-grafikon-felirat.ds-forras-sotet": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Számok és grafikon",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "locsolo"
+   ],
+   "css": {
+    "alap": {
+     ".ds-grafikon-felirat.ds-forras-sotet": "color:var(--_beeco-ds---bc-on-olive)"
+    }
+   }
+  },
+  "ds-grafikon-felirat.ds-tinta": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Számok és grafikon",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-grafikon-felirat.ds-tinta": "color:var(--_beeco-ds---bc-ink)"
+    }
+   }
+  },
+  "ds-harom": {
+   "csoport": "Közös alap",
+   "csalad": "Szekció és keret",
+   "oldalak": [
+    "rolunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-harom": "display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:22px;row-gap:22px"
+    },
+    "≤991 px": {
+     ".ds-harom": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-hatter-feher": {
+   "csoport": "Közös alap",
+   "csalad": "Szekció és keret",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-hatter-feher": "background-color:var(--_beeco-ds---bc-surface)"
+    }
+   }
+  },
+  "ds-hatter-sotet": {
+   "csoport": "Közös alap",
+   "csalad": "Szekció és keret",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "locsolo",
+    "programok",
+    "partner"
+   ],
+   "css": {
+    "alap": {
+     ".ds-hatter-sotet": "background-color:var(--_beeco-ds---bc-raj-bg);color:var(--_beeco-ds---bc-on-olive)"
+    }
+   }
+  },
+  "ds-hatter-vaj": {
+   "csoport": "Közös alap",
+   "csalad": "Szekció és keret",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-hatter-vaj": "background-color:var(--_beeco-ds---bc-vaj)"
+    }
+   }
+  },
+  "ds-hatter-zold": {
+   "csoport": "Közös alap",
+   "csalad": "Szekció és keret",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-hatter-zold": "background-color:var(--_beeco-ds---bc-surface-2)"
+    }
+   }
+  },
+  "ds-hero-foto": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Szekció és keret",
+   "oldalak": [
+    "rolunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-hero-foto": "aspect-ratio:4/3;transform:rotate(1.5deg)"
+    }
+   }
+  },
+  "ds-hero-racs": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Szekció és keret",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-hero-racs": "display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);column-gap:56px;row-gap:40px;align-items:center"
+    },
+    "≤991 px": {
+     ".ds-hero-racs": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-hero-szoveg": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Szekció és keret",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-hero-szoveg": "display:flex;flex-direction:column;align-items:flex-start;row-gap:20px"
+    }
+   }
+  },
+  "ds-hogyan-foto": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Fotó",
+   "oldalak": [
+    "csapatunk",
+    "fresk",
+    "jatek",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-hogyan-foto": "aspect-ratio:4/3"
+    }
+   }
+  },
+  "ds-idezet": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Logók, sajtó, idézet",
+   "oldalak": [
+    "hatasunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-idezet": "display:flex;flex-direction:column;row-gap:8px;padding-top:22px;padding-right:22px;padding-bottom:20px;padding-left:22px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:18px;border-top-right-radius:6px;border-bottom-right-radius:18px;border-bottom-left-radius:6px;background-color:var(--_beeco-ds---bc-accent);color:#000000;transform:rotate(-1deg)"
+    }
+   }
+  },
+  "ds-idezet-nev": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Logók, sajtó, idézet",
+   "oldalak": [
+    "hatasunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-idezet-nev": "font-size:14px;font-weight:700"
+    }
+   }
+  },
+  "ds-idezet-szoveg": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Logók, sajtó, idézet",
+   "oldalak": [
+    "hatasunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-idezet-szoveg": "font-family:Lalezar, \"Arial Black\", sans-serif;font-size:26px;line-height:1.1"
+    },
+    "≤767 px": {
+     ".ds-idezet-szoveg": "font-size:22px"
+    }
+   }
+  },
+  "ds-idezetek": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Logók, sajtó, idézet",
+   "oldalak": [
+    "hatasunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-idezetek": "display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:22px;row-gap:22px;margin-top:40px"
+    },
+    "≤991 px": {
+     ".ds-idezetek": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-ido": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Idővonal és lista",
+   "oldalak": [
+    "rolunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ido": "display:flex;flex-direction:column;row-gap:56px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:36px;border-left-style:dashed;border-left-width:3px;border-left-color:#000000"
+    },
+    "≤767 px": {
+     ".ds-ido": "padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:20px;"
+    }
+   }
+  },
+  "ds-ido-elem": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Idővonal és lista",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "en"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ido-elem": "display:grid;grid-template-columns:86px minmax(0,1fr);column-gap:12px;color:var(--_beeco-ds---bc-ink);font-size:16px;line-height:1.5"
+    },
+    "≤767 px": {
+     ".ds-ido-elem": "grid-template-columns:minmax(0,1fr);row-gap:0px"
+    }
+   }
+  },
+  "ds-ido-ev": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Idővonal és lista",
+   "oldalak": [
+    "rolunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ido-ev": "position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:40px;row-gap:24px;align-items:start"
+    },
+    "≤991 px": {
+     ".ds-ido-ev": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-ido-foto": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Fotó",
+   "oldalak": [
+    "rolunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ido-foto": "aspect-ratio:4/3"
+    }
+   }
+  },
+  "ds-ido-fotok": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Fotó",
+   "oldalak": [
+    "rolunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ido-fotok": "display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:16px;row-gap:16px"
+    }
+   }
+  },
+  "ds-ido-ho": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Idővonal és lista",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "en"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ido-ho": "color:var(--_beeco-ds---bc-accent-ink);font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;line-height:1.9"
+    }
+   }
+  },
+  "ds-ido-lista": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Idővonal és lista",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "en"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ido-lista": "display:flex;flex-direction:column;row-gap:10px;margin-top:4px;margin-bottom:0px;padding-left:0px;list-style-type:none"
+    }
+   }
+  },
+  "ds-ido-szam": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Idővonal és lista",
+   "oldalak": [
+    "rolunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ido-szam": "align-self:flex-start;padding-top:4px;padding-right:12px;padding-bottom:0px;padding-left:12px;background-color:#000000;color:var(--_beeco-ds---bc-accent);font-family:Lalezar, \"Arial Black\", sans-serif;font-size:30px;line-height:1.1;transform:rotate(-2deg)"
+    }
+   }
+  },
+  "ds-ido-szoveg": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Idővonal és lista",
+   "oldalak": [
+    "rolunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ido-szoveg": "display:flex;flex-direction:column;row-gap:12px"
+    }
+   }
+  },
+  "ds-jelentes": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Hatásjelentés (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
+   ],
+   "css": {
+    "alap": {
+     ".ds-jelentes": "display:flex;flex-direction:column;row-gap:16px;padding-top:28px;padding-right:28px;padding-bottom:28px;padding-left:28px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:18px;border-top-right-radius:6px;border-bottom-right-radius:18px;border-bottom-left-radius:6px;background-color:var(--_beeco-ds---bc-paper);box-shadow:6px 6px 0 0 #000000;transform:rotate(0.6deg)"
+    },
+    "≤767 px": {
+     ".ds-jelentes": "transform:none"
+    }
+   }
+  },
+  "ds-jelentes-ertek": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Hatásjelentés (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
+   ],
+   "css": {
+    "alap": {
+     ".ds-jelentes-ertek": "font-family:Lalezar, \"Arial Black\", sans-serif;font-size:32px;line-height:1"
+    }
+   }
+  },
+  "ds-jelentes-fej": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Hatásjelentés (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
+   ],
+   "css": {
+    "alap": {
+     ".ds-jelentes-fej": "display:flex;flex-direction:column;row-gap:4px;padding-bottom:14px;border-bottom-style:dashed;border-bottom-width:2px;border-bottom-color:#000000"
+    }
+   }
+  },
+  "ds-jelentes-szam": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Hatásjelentés (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
+   ],
+   "css": {
+    "alap": {
+     ".ds-jelentes-szam": "display:flex;flex-direction:column;row-gap:2px;padding-top:12px;padding-right:14px;padding-bottom:12px;padding-left:14px;border-left-style:solid;border-left-width:4px;border-left-color:var(--_beeco-ds---bc-accent);background-color:var(--_beeco-ds---bc-surface)"
+    }
+   }
+  },
+  "ds-jelentes-szamok": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Hatásjelentés (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing"
+   ],
+   "css": {
+    "alap": {
+     ".ds-jelentes-szamok": "display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px;row-gap:14px"
+    },
+    "≤767 px": {
+     ".ds-jelentes-szamok": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-jelolo": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Űrlap (B2B)",
+   "oldalak": [
+    "cegeknek"
+   ],
+   "css": {
+    "alap": {
+     ".ds-jelolo": "display:flex;align-items:flex-start;column-gap:10px;min-height:44px;margin-bottom:0px;padding-left:0px;color:var(--_beeco-ds---bc-ink-soft);font-size:14.5px;line-height:1.5"
+    }
+   }
+  },
+  "ds-kartya": {
+   "csoport": "Közös alap",
+   "csalad": "Kártyák és utak",
+   "oldalak": [
+    "rolunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-kartya": "display:flex;flex-direction:column;row-gap:10px;padding-top:26px;padding-right:24px;padding-bottom:26px;padding-left:24px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:18px;border-top-right-radius:6px;border-bottom-right-radius:18px;border-bottom-left-radius:6px;background-color:var(--_beeco-ds---bc-surface);box-shadow:4px 4px 0 0 #000000;color:var(--_beeco-ds---bc-ink)"
+    }
+   }
+  },
+  "ds-kartya-piko": {
+   "csoport": "Közös alap",
+   "csalad": "Kártyák és utak",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-kartya-piko": "width:56px;height:56px"
+    }
+   }
+  },
+  "ds-ketto": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Szekció és keret",
+   "oldalak": [
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ketto": "display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:40px;row-gap:32px;align-items:start"
+    },
+    "≤991 px": {
+     ".ds-ketto": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-kiemel": {
+   "csoport": "Közös alap",
+   "csalad": "Tipográfia",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-kiemel": "background-color:var(--_beeco-ds---bc-accent);color:#000000;padding-top:0px;padding-right:8px;padding-bottom:0px;padding-left:8px;"
+    }
+   }
+  },
+  "ds-lead": {
+   "csoport": "Közös alap",
+   "csalad": "Tipográfia",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-lead": "margin-top:0px;margin-bottom:0px;max-width:640px;color:var(--_beeco-ds---bc-ink-soft);font-size:19px;line-height:1.55"
+    },
+    "≤767 px": {
+     ".ds-lead": "font-size:17px"
+    }
+   }
+  },
+  "ds-lepes": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Lépések és eset (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-lepes": "display:flex;flex-direction:column;align-items:flex-start;row-gap:10px"
+    }
+   }
+  },
+  "ds-lepes-szam": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Lépések és eset (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-lepes-szam": "display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-top-left-radius:999px;border-top-right-radius:999px;border-bottom-right-radius:999px;border-bottom-left-radius:999px;background-color:#000000;color:var(--_beeco-ds---bc-accent);font-family:Lalezar, \"Arial Black\", sans-serif;font-size:26px;line-height:1"
+    }
+   }
+  },
+  "ds-lepesek": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Lépések és eset (B2B)",
+   "oldalak": [
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-lepesek": "display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:22px;row-gap:28px"
+    },
+    "≤991 px": {
+     ".ds-lepesek": "grid-template-columns:repeat(2,minmax(0,1fr))"
+    },
+    "≤767 px": {
+     ".ds-lepesek": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-level": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-level": "display:flex;flex-direction:column;row-gap:16px;padding-top:32px;padding-right:34px;padding-bottom:30px;padding-left:34px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:20px;border-top-right-radius:6px;border-bottom-right-radius:20px;border-bottom-left-radius:6px;background-color:var(--_beeco-ds---bc-paper);box-shadow:6px 6px 0 0 #000000;transform:rotate(-0.6deg)"
+    },
+    "≤767 px": {
+     ".ds-level": "padding-top:24px;padding-right:22px;padding-bottom:22px;padding-left:22px;"
+    }
+   }
+  },
+  "ds-level-alairas": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-level-alairas": "font-family:Lalezar, \"Arial Black\", sans-serif;font-size:24px;line-height:1.1"
+    }
+   }
+  },
+  "ds-level-szoveg": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-level-szoveg": "margin-top:0px;margin-bottom:0px;color:var(--_beeco-ds---bc-ink);font-size:18px;line-height:1.65"
+    },
+    "≤767 px": {
+     ".ds-level-szoveg": "font-size:17px"
+    }
+   }
+  },
+  "ds-logo": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Logók, sajtó, idézet",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "en"
+   ],
+   "css": {
+    "alap": {
+     ".ds-logo": "display:flex;align-items:center;justify-content:center;height:96px;padding-top:14px;padding-right:14px;padding-bottom:14px;padding-left:14px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:14px;border-top-right-radius:4px;border-bottom-right-radius:14px;border-bottom-left-radius:4px;background-color:#ffffff"
+    },
+    "≤767 px": {
+     ".ds-logo": "height:80px"
+    }
+   }
+  },
+  "ds-logo-kep": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Logók, sajtó, idézet",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "en"
+   ],
+   "css": {
+    "alap": {
+     ".ds-logo-kep": "max-width:100%;max-height:64px;width:auto;height:auto;object-fit:contain"
+    }
+   }
+  },
+  "ds-logosor": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Logók, sajtó, idézet",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "en"
+   ],
+   "css": {
+    "alap": {
+     ".ds-logosor": "display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:14px;row-gap:14px"
+    },
+    "≤991 px": {
+     ".ds-logosor": "grid-template-columns:repeat(4,minmax(0,1fr))"
+    },
+    "≤767 px": {
+     ".ds-logosor": "grid-template-columns:repeat(3,minmax(0,1fr))"
+    },
+    "≤479 px": {
+     ".ds-logosor": "grid-template-columns:repeat(2,minmax(0,1fr))"
+    }
+   }
+  },
+  "ds-logosor-sajto": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Logók, sajtó, idézet",
+   "oldalak": [
+    "hatasunk",
+    "en"
+   ],
+   "css": {
+    "alap": {
+     ".ds-logosor-sajto": "margin-top:32px"
+    }
+   }
+  },
+  "ds-masod": {
+   "csoport": "Közös alap",
+   "csalad": "Gomb és chip",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-masod": "background-color:#ffffff"
+    }
+   }
+  },
+  "ds-megjegyzes": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Tipográfia",
+   "oldalak": [
+    "hatasunk",
+    "cegeknek",
+    "onk",
+    "partner",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-megjegyzes": "margin-top:28px;padding-top:18px;padding-right:22px;padding-bottom:18px;padding-left:22px;border-top-style:dashed;border-top-width:2px;border-top-color:#000000;border-right-style:dashed;border-right-width:2px;border-right-color:#000000;border-bottom-style:dashed;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:dashed;border-left-width:2px;border-left-color:#000000;border-top-left-radius:14px;border-top-right-radius:4px;border-bottom-right-radius:14px;border-bottom-left-radius:4px;background-color:var(--_beeco-ds---bc-surface);font-size:16px;line-height:1.55"
+    }
+   }
+  },
+  "ds-mezo": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Űrlap (B2B)",
+   "oldalak": [
+    "cegeknek"
+   ],
+   "css": {
+    "alap": {
+     ".ds-mezo": "display:flex;flex-direction:column;row-gap:6px"
+    }
+   }
+  },
+  "ds-mezo-teljes": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Űrlap (B2B)",
+   "oldalak": [
+    "cegeknek"
+   ],
+   "css": {
+    "alap": {
+     ".ds-mezo-teljes": "grid-column-start:span 2;grid-column-end:span 2"
+    },
+    "≤767 px": {
+     ".ds-mezo-teljes": "grid-column-start:span 1;grid-column-end:span 1"
+    }
+   }
+  },
+  "ds-negy": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Szekció és keret",
+   "oldalak": [
+    "cegeknek"
+   ],
+   "css": {
+    "alap": {
+     ".ds-negy": "display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:22px;row-gap:22px"
+    },
+    "≤991 px": {
+     ".ds-negy": "grid-template-columns:repeat(2,minmax(0,1fr))"
+    },
+    "≤767 px": {
+     ".ds-negy": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-raj": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-raj": "display:flex;flex-direction:column;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:18px;border-top-right-radius:6px;border-bottom-right-radius:18px;border-bottom-left-radius:6px;overflow:hidden;background-color:var(--_beeco-ds---bc-surface);box-shadow:4px 4px 0 0 #000000"
+    }
+   }
+  },
+  "ds-raj-kep": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-raj-kep": "display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;background-color:var(--_beeco-ds---bc-surface-2)"
+    }
+   }
+  },
+  "ds-raj-tag-szerep": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-raj-tag-szerep": "color:var(--_beeco-ds---bc-ink-muted)"
+    }
+   }
+  },
+  "ds-raj-tagok": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-raj-tagok": "display:flex;flex-direction:column;row-gap:4px;margin-top:6px;margin-bottom:0px;padding-left:0px;list-style-type:none;color:var(--_beeco-ds---bc-ink);font-size:14.5px;line-height:1.45"
+    }
+   }
+  },
+  "ds-raj-test": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-raj-test": "display:flex;flex-direction:column;row-gap:8px;padding-top:20px;padding-right:22px;padding-bottom:22px;padding-left:22px;"
+    }
+   }
+  },
+  "ds-rajok": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-rajok": "display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:22px;row-gap:22px"
+    },
+    "≤991 px": {
+     ".ds-rajok": "grid-template-columns:repeat(2,minmax(0,1fr))"
+    },
+    "≤767 px": {
+     ".ds-rajok": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-sav": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Számok és grafikon",
+   "oldalak": [
+    "hatasunk",
+    "en"
+   ],
+   "css": {
+    "alap": {
+     ".ds-sav": "display:flex;align-items:center;justify-content:flex-end;height:36px;padding-top:0px;padding-right:10px;padding-bottom:0px;padding-left:10px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:4px;border-top-right-radius:10px;border-bottom-right-radius:4px;border-bottom-left-radius:10px;background-color:var(--_beeco-ds---bc-accent);color:#000000;font-size:14px;font-weight:800;white-space:nowrap"
+    }
+   }
+  },
+  "ds-sav-100": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Számok és grafikon",
+   "oldalak": [
+    "hatasunk",
+    "en"
+   ],
+   "css": {
+    "alap": {
+     ".ds-sav-100": "width:100%"
+    }
+   }
+  },
+  "ds-sav-40": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Számok és grafikon",
+   "oldalak": [
+    "hatasunk",
+    "en"
+   ],
+   "css": {
+    "alap": {
+     ".ds-sav-40": "width:40%"
+    }
+   }
+  },
+  "ds-sav-68": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Számok és grafikon",
+   "oldalak": [
+    "hatasunk",
+    "en"
+   ],
+   "css": {
+    "alap": {
+     ".ds-sav-68": "width:68%"
+    }
+   }
+  },
+  "ds-sav-elozo": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Számok és grafikon",
+   "oldalak": [
+    "hatasunk",
+    "en"
+   ],
+   "css": {
+    "alap": {
+     ".ds-sav-elozo": "background-color:var(--_beeco-ds---bc-domb)"
+    }
+   }
+  },
+  "ds-sav-ev": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Számok és grafikon",
+   "oldalak": [
+    "hatasunk",
+    "en"
+   ],
+   "css": {
+    "alap": {
+     ".ds-sav-ev": "font-size:15px;font-weight:800"
+    }
+   }
+  },
+  "ds-sav-sor": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Számok és grafikon",
+   "oldalak": [
+    "hatasunk",
+    "en"
+   ],
+   "css": {
+    "alap": {
+     ".ds-sav-sor": "display:grid;grid-template-columns:56px minmax(0,1fr);column-gap:12px;align-items:center;margin-bottom:10px"
+    }
+   }
+  },
+  "ds-szalag": {
+   "csoport": "Közös alap",
+   "csalad": "Tipográfia",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-szalag": "display:inline-block;padding-top:6px;padding-right:12px;padding-bottom:3px;padding-left:12px;background-color:var(--_beeco-ds---bc-accent);color:#000000;font-family:Lalezar, \"Arial Black\", sans-serif;font-size:16px;line-height:1.1;transform:rotate(-2deg)"
+    }
+   }
+  },
+  "ds-szam": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Számok és grafikon",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "locsolo",
+    "programok",
+    "partner"
+   ],
+   "css": {
+    "alap": {
+     ".ds-szam": "display:flex;flex-direction:column;row-gap:6px;padding-top:22px;padding-right:22px;padding-bottom:20px;padding-left:22px;border-top-style:solid;border-top-width:3px;border-top-color:var(--_beeco-ds---bc-accent)"
+    }
+   }
+  },
+  "ds-szam-ertek": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Számok és grafikon",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "locsolo",
+    "programok",
+    "partner"
+   ],
+   "css": {
+    "alap": {
+     ".ds-szam-ertek": "color:var(--_beeco-ds---bc-accent);font-family:Lalezar, \"Arial Black\", sans-serif;font-size:46px;line-height:1"
+    },
+    "≤767 px": {
+     ".ds-szam-ertek": "font-size:38px"
+    }
+   }
+  },
+  "ds-szam-felirat": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Számok és grafikon",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "locsolo",
+    "programok",
+    "partner"
+   ],
+   "css": {
+    "alap": {
+     ".ds-szam-felirat": "color:#ffffff;font-size:16px;font-weight:700;line-height:1.35"
+    }
+   }
+  },
+  "ds-szamsav": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Számok és grafikon",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "locsolo",
+    "programok",
+    "partner"
+   ],
+   "css": {
+    "alap": {
+     ".ds-szamsav": "display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:22px;row-gap:22px"
+    },
+    "≤991 px": {
+     ".ds-szamsav": "grid-template-columns:repeat(2,minmax(0,1fr))"
+    },
+    "≤479 px": {
+     ".ds-szamsav": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-szekcio": {
+   "csoport": "Közös alap",
+   "csalad": "Szekció és keret",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-szekcio": "padding-top:96px;padding-right:0px;padding-bottom:96px;padding-left:0px;position:relative;background-color:var(--_beeco-ds---bc-bg);color:var(--_beeco-ds---bc-ink)"
+    },
+    "≤991 px": {
+     ".ds-szekcio": "padding-top:72px;padding-right:0px;padding-bottom:72px;padding-left:0px;"
+    },
+    "≤767 px": {
+     ".ds-szekcio": "padding-top:56px;padding-right:0px;padding-bottom:56px;padding-left:0px;"
+    }
+   }
+  },
+  "ds-szekcio-fej": {
+   "csoport": "Közös alap",
+   "csalad": "Szekció és keret",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-szekcio-fej": "display:flex;flex-direction:column;align-items:flex-start;row-gap:14px;max-width:760px;margin-bottom:44px"
+    },
+    "≤767 px": {
+     ".ds-szekcio-fej": "margin-bottom:32px"
+    }
+   }
+  },
+  "ds-szoveg": {
+   "csoport": "Közös alap",
+   "csalad": "Tipográfia",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "madar",
+    "locsolo",
+    "programok",
+    "partner",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-szoveg": "margin-top:0px;margin-bottom:0px;color:var(--_beeco-ds---bc-ink-soft);font-size:16px;line-height:1.6"
+    }
+   }
+  },
+  "ds-szovegdoboz": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Tipográfia",
+   "oldalak": [
+    "cegeknek"
+   ],
+   "css": {
+    "alap": {
+     ".ds-szovegdoboz": "min-height:120px"
+    }
+   }
+  },
+  "ds-szoveglink": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Tipográfia",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "onk",
+    "work",
+    "locsolo",
+    "marketing",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-szoveglink": "display:inline-flex;align-items:center;min-height:44px;color:var(--_beeco-ds---bc-ink);font-weight:800;text-decoration:underline",
+     ".ds-szoveglink:hover": "color:var(--_beeco-ds---bc-ink);font-weight:800;text-decoration:none"
+    }
+   }
+  },
+  "ds-tanacsado": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk",
+    "programok",
+    "fresk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-tanacsado": "display:grid;grid-template-columns:96px minmax(0,1fr);column-gap:18px;align-items:start"
+    },
+    "≤767 px": {
+     ".ds-tanacsado": "grid-template-columns:72px minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-tanacsado-foto": {
+   "csoport": "Csapat-blokkok",
+   "csalad": "Emberek és rajok",
+   "oldalak": [
+    "csapatunk",
+    "programok",
+    "fresk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-tanacsado-foto": "display:block;width:96px;height:96px;object-fit:cover;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:999px;border-top-right-radius:999px;border-bottom-right-radius:999px;border-bottom-left-radius:999px;"
+    },
+    "≤767 px": {
+     ".ds-tanacsado-foto": "width:72px;height:72px"
+    }
+   }
+  },
+  "ds-tovabb": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Kártyák és utak",
+   "oldalak": [
+    "rolunk",
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-tovabb": "display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px;row-gap:28px"
+    },
+    "≤767 px": {
+     ".ds-tovabb": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-tovabb-kartya": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Kártyák és utak",
+   "oldalak": [
+    "rolunk",
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-tovabb-kartya": "display:flex;flex-direction:column;border-top-style:solid;border-top-width:3px;border-top-color:#000000;border-right-style:solid;border-right-width:3px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:3px;border-bottom-color:#000000;border-left-style:solid;border-left-width:3px;border-left-color:#000000;border-top-left-radius:20px;border-top-right-radius:6px;border-bottom-right-radius:20px;border-bottom-left-radius:6px;overflow:hidden;background-color:var(--_beeco-ds---bc-surface);box-shadow:6px 6px 0 0 #000000;color:var(--_beeco-ds---bc-ink);text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1), box-shadow 160ms cubic-bezier(.23,1,.32,1)",
+     ".ds-tovabb-kartya:hover": "color:var(--_beeco-ds---bc-ink);text-decoration:none;transform:translate(-2px,-3px);box-shadow:8px 9px 0 0 #000000"
+    }
+   }
+  },
+  "ds-tovabb-kep": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Kártyák és utak",
+   "oldalak": [
+    "rolunk",
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-tovabb-kep": "display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-bottom-style:solid;border-bottom-width:3px;border-bottom-color:#000000"
+    }
+   }
+  },
+  "ds-tovabb-nyil": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Kártyák és utak",
+   "oldalak": [
+    "rolunk",
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "programok",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-tovabb-nyil": "margin-top:6px;padding-top:8px;padding-right:14px;padding-bottom:6px;padding-left:14px;background-color:var(--_beeco-ds---bc-accent);border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:10px;border-top-right-radius:3px;border-bottom-right-radius:10px;border-bottom-left-radius:3px;color:#000000;font-family:Lalezar, \"Arial Black\", sans-serif;font-size:17px;line-height:1"
+    }
+   }
+  },
+  "ds-tovabb-test": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Kártyák és utak",
+   "oldalak": [
+    "rolunk",
+    "csapatunk"
+   ],
+   "css": {
+    "alap": {
+     ".ds-tovabb-test": "display:flex;flex-direction:column;align-items:flex-start;row-gap:10px;padding-top:24px;padding-right:26px;padding-bottom:28px;padding-left:26px;"
+    }
+   }
+  },
+  "ds-urlap": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Űrlap (B2B)",
+   "oldalak": [
+    "cegeknek"
+   ],
+   "css": {
+    "alap": {
+     ".ds-urlap": "display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px;row-gap:18px"
+    },
+    "≤767 px": {
+     ".ds-urlap": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-urlap-doboz": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Űrlap (B2B)",
+   "oldalak": [
+    "cegeknek"
+   ],
+   "css": {
+    "alap": {
+     ".ds-urlap-doboz": "width:100%;max-width:820px;margin-left:auto;margin-right:auto;padding-top:32px;padding-right:32px;padding-bottom:32px;padding-left:32px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:20px;border-top-right-radius:6px;border-bottom-right-radius:20px;border-bottom-left-radius:6px;background-color:var(--_beeco-ds---bc-surface);box-shadow:6px 6px 0 0 #000000;text-align:left"
+    },
+    "≤767 px": {
+     ".ds-urlap-doboz": "padding-top:22px;padding-right:18px;padding-bottom:22px;padding-left:18px;"
+    }
+   }
+  },
+  "ds-urlap-uzenet": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Űrlap (B2B)",
+   "oldalak": [
+    "cegeknek"
+   ],
+   "css": {
+    "alap": {
+     ".ds-urlap-uzenet": "padding-top:18px;padding-right:20px;padding-bottom:18px;padding-left:20px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:14px;border-top-right-radius:4px;border-bottom-right-radius:14px;border-bottom-left-radius:4px;background-color:var(--_beeco-ds---bc-surface-2);color:var(--_beeco-ds---bc-ink);font-size:16px;line-height:1.5"
+    }
+   }
+  },
+  "ds-ut": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Kártyák és utak",
+   "oldalak": [
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek",
+    "programok",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ut": "display:flex;flex-direction:column;align-items:flex-start;row-gap:10px;padding-top:24px;padding-right:24px;padding-bottom:26px;padding-left:24px;border-top-style:solid;border-top-width:2px;border-top-color:#000000;border-right-style:solid;border-right-width:2px;border-right-color:#000000;border-bottom-style:solid;border-bottom-width:2px;border-bottom-color:#000000;border-left-style:solid;border-left-width:2px;border-left-color:#000000;border-top-left-radius:18px;border-top-right-radius:6px;border-bottom-right-radius:18px;border-bottom-left-radius:6px;background-color:var(--_beeco-ds---bc-surface);box-shadow:4px 4px 0 0 #000000;color:var(--_beeco-ds---bc-ink);text-decoration:none;transition:transform 160ms cubic-bezier(.23,1,.32,1), box-shadow 160ms cubic-bezier(.23,1,.32,1)",
+     ".ds-ut:hover": "color:var(--_beeco-ds---bc-ink);text-decoration:none;transform:translate(-2px,-3px);box-shadow:6px 7px 0 0 #000000"
+    }
+   }
+  },
+  "ds-ut-ar": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Kártyák és utak",
+   "oldalak": [
+    "cegeknek",
+    "programok"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ut-ar": "color:var(--_beeco-ds---bc-accent-ink);font-size:14px;font-weight:800;line-height:1.3"
+    }
+   }
+  },
+  "ds-ut-ar.ds-tinta": {
+   "csoport": "B2B-blokkok",
+   "csalad": "Kártyák és utak",
+   "oldalak": [
+    "cegeknek"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ut-ar.ds-tinta": "color:var(--_beeco-ds---bc-ink)"
+    }
+   }
+  },
+  "ds-ut-kiemelt": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Kártyák és utak",
+   "oldalak": [
+    "hatasunk",
+    "csapatunk",
+    "en",
+    "cegeknek"
+   ],
+   "css": {
+    "alap": {
+     ".ds-ut-kiemelt": "background-color:var(--_beeco-ds---bc-accent)"
+    }
+   }
+  },
+  "ds-utak": {
+   "csoport": "Hatás-blokkok",
+   "csalad": "Kártyák és utak",
+   "oldalak": [
+    "hatasunk",
+    "en",
+    "cegeknek",
+    "programok",
+    "fresk",
+    "jatek",
+    "diy",
+    "kviz",
+    "csere",
+    "eloadas"
+   ],
+   "css": {
+    "alap": {
+     ".ds-utak": "display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:22px;row-gap:22px"
+    },
+    "≤991 px": {
+     ".ds-utak": "grid-template-columns:minmax(0,1fr)"
+    }
+   }
+  },
+  "ds-zaro": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Szekció és keret",
+   "oldalak": [
+    "rolunk",
+    "csapatunk",
+    "en",
+    "cegeknek"
+   ],
+   "css": {
+    "alap": {
+     ".ds-zaro": "display:flex;flex-direction:column;align-items:center;row-gap:18px;text-align:center"
+    }
+   }
+  },
+  "ds-zaro-lead": {
+   "csoport": "Rólunk-blokkok",
+   "csalad": "Szekció és keret",
+   "oldalak": [
+    "rolunk",
+    "csapatunk",
+    "en",
+    "cegeknek"
+   ],
+   "css": {
+    "alap": {
+     ".ds-zaro-lead": "max-width:620px"
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,51 @@
+[
+ {
+  "nev": "kviz-hero",
+  "html": "<section class=\"ds-szekcio ds-hatter-vaj\" id=\"kezdes\"><div class=\"ds-burok ds-hero-racs\"><div class=\"ds-hero-szoveg\"><div class=\"ds-szalag\">Zöld kvíz és ÖkoMuki</div><h1 class=\"ds-cim1\">Ki a <span class=\"ds-kiemel\">legökosabb</span> a csapatban?</h1><p class=\"ds-lead\">Választható témájú, humoros fenntarthatósági kvíz, vagy az ÖkoMuki: zöld activity, mini kártyajátékok és egy mindent eldöntő döntő. Kicsiknek és nagyoknak, bármilyen tudásszinten.</p><div class=\"ds-gombsor\"><a class=\"ds-gomb\" href=\"#ajanlatkeres\" data-b2b-cta=\"hero\">Ajánlatot kérek</a><a class=\"ds-gomb ds-masod\" href=\"#menet\" data-b2b-cta=\"hero-2\">Így zajlik</a></div><div class=\"ds-chipsor\"><div class=\"ds-chip\">1–2 óra</div><div class=\"ds-chip\">10–250 fő</div><div class=\"ds-chip\">160 000 Ft-tól</div><div class=\"ds-chip\">Kahoot alap</div></div></div><figure class=\"ds-foto ds-hero-foto\"><img class=\"ds-foto-kep\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/68b7726b2cae6213af1c802d_O%CC%81buda%20Group_Szakmai%20Nap_2025.05.17_Bo%CC%81dis%20Krisztia%CC%81n_222.avif\" alt=\"Egy férfi mikrofonnal előadást tart, a kivetítőn Kahoot játék résztvevői\" loading=\"lazy\"><figcaption class=\"ds-foto-felirat\">Kvíz egy szakmai napon</figcaption></figure></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "kviz-mi",
+  "html": "<section class=\"ds-szekcio ds-hatter-feher\" id=\"mi-ez\"><div class=\"ds-burok ds-ketto\"><div class=\"ds-hero-szoveg\"><div class=\"ds-szalag\">Két formátum</div><h2 class=\"ds-cim2\">Kvíz vagy ÖkoMuki?</h2><p class=\"ds-szoveg\"><strong>Ökos kvíz:</strong> választható témakörökben, Kahoot alapon, telefonnal játszható. Humorosan és élményszerűen teszi próbára a csapat tudását, nagy létszámnál is.</p><p class=\"ds-szoveg\"><strong>ÖkoMuki:</strong> a zöld activity feloldja a hangulatot, a mini kártyajátékok megmutatják a mindennapjaink környezeti hatását, a döntő kvíz pedig kideríti, kik az igazi ÖkoMukik. 10–100 főnek, családbarát.</p></div><figure class=\"ds-foto\"><img class=\"ds-foto-kep\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/68b7727709a130e8245663b5_O%CC%81buda%20Group_Szakmai%20Nap_2025.05.17_Bo%CC%81dis%20Krisztia%CC%81n_227.avif\" alt=\"Közönség figyel egy előadót, aki környezeti lábnyomról szóló diát mutat be\" loading=\"lazy\"></figure></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "kviz-kap",
+  "html": "<section class=\"ds-szekcio\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Mit ad a csapatodnak</div><h2 class=\"ds-cim2\">Mit ad a csapatodnak?</h2></div><div class=\"ds-harom\"><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcf7d46bae73bbde8f3de_fs-piko-kupa.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Verseny</h3><p class=\"ds-szoveg\">Csapatok vagy egyéni játékosok, ranglistával és eredményhirdetéssel.</p></div><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfb0356d56416f62a171_fs-piko-sziv.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Jó hangulat</h3><p class=\"ds-szoveg\">Humoros kérdések, amik után mindenki beszélget.</p></div><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcf7cab88aba1da6f3a0e_fs-piko-konyv.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Tudás, ami megmarad</h3><p class=\"ds-szoveg\">Hasznos tippek a hétköznapokra, forrásolt válaszokkal.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "kviz-menet",
+  "html": "<section class=\"ds-szekcio ds-hatter-zold\" id=\"menet\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Így zajlik</div><h2 class=\"ds-cim2\">Egy kvízest menete</h2></div><div class=\"ds-lepesek\"><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">1</div><h3 class=\"ds-cim3\">Témaválasztás</h3><p class=\"ds-szoveg\">Közlekedés, étkezés, vásárlás, hulladék: a ti érdeklődésetek szerint.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">2</div><h3 class=\"ds-cim3\">Felkészülés</h3><p class=\"ds-szoveg\">Mi hozzuk a kérdéseket és a játékot, nektek csak kivetítő kell.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">3</div><h3 class=\"ds-cim3\">Játék</h3><p class=\"ds-szoveg\">1–2 óra pörgős verseny, moderálással.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">4</div><h3 class=\"ds-cim3\">Eredményhirdetés</h3><p class=\"ds-szoveg\">Győztesek, tanulságok és rövid összefoglaló.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "kviz-csomag",
+  "html": "<section class=\"ds-szekcio\" id=\"arak\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Árak</div><h2 class=\"ds-cim2\">Kvíz, ÖkoMuki vagy saját témájú játék</h2></div><div class=\"ds-csomagok\"><div class=\"ds-csomag\"><div class=\"ds-grafikon-felirat\">Belépő</div><h3 class=\"ds-cim3\">Ökos kvíz</h3><div class=\"ds-csomag-ar\">160 000 Ft-tól</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>1–2 óra, 10–250 fő</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Választható témák</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Moderálás</span></li></ul><a class=\"ds-gomb ds-masod\" href=\"#ajanlatkeres\" data-b2b-cta=\"kviz-belépő\">Ajánlatot kérek</a></div><div class=\"ds-csomag ds-csomag-kiemelt\"><div class=\"ds-grafikon-felirat ds-tinta\">Mag</div><h3 class=\"ds-cim3\">ÖkoMuki csapatjáték</h3><div class=\"ds-csomag-ar\">Kérj ajánlatot</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Zöld activity és kártyajátékok</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Döntő kvíz</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>10–100 fő</span></li></ul><a class=\"ds-gomb\" href=\"#ajanlatkeres\" data-b2b-cta=\"kviz-mag\">Ajánlatot kérek</a></div><div class=\"ds-csomag\"><div class=\"ds-grafikon-felirat\">Partnerség</div><h3 class=\"ds-cim3\">Saját témájú kvíz</h3><div class=\"ds-csomag-ar\">Kérj ajánlatot</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>A cégetek témáira írt kérdések</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Arculati megjelenés</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Rövid jelentés</span></li></ul><a class=\"ds-gomb ds-masod\" href=\"#ajanlatkeres\" data-b2b-cta=\"kviz-partnerség\">Ajánlatot kérek</a></div></div><p class=\"ds-megjegyzes\"><strong>Hatásjelentés:</strong> minden programhoz jár egy rövid jelentés a résztvevők számával, a témákkal és kész mondatokkal a belső kommunikációhoz. <a class=\"ds-szoveglink\" href=\"/szolgaltatas/cegeknek#hatasjelentes\">Mintajelentés ›</a></p></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "kviz-gyik",
+  "html": "<section class=\"ds-szekcio ds-hatter-feher\" id=\"gyik\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Gyakori kérdések</div><h2 class=\"ds-cim2\">Amit a szervezők kérdezni szoktak</h2></div><div class=\"ds-ketto\"><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Mi kell hozzá?</h3><p class=\"ds-szoveg\">Kivetítő vagy nagy kijelző, és a résztvevők telefonja.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Milyen témák vannak?</h3><p class=\"ds-szoveg\">Választható témakörök, például közlekedés, étkezés, vásárlás és hulladék. Saját témára is írunk kérdéseket.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Családi napra is jó?</h3><p class=\"ds-szoveg\">Igen, az ÖkoMuki családbarát, a kvízt pedig kicsik és nagyok is élvezik.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Mennyibe kerül?</h3><p class=\"ds-szoveg\">Az ökos kvíz 160 000 Ft-tól, az ÖkoMuki ára a létszámtól függ.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "kviz-tobbi",
+  "html": "<section class=\"ds-szekcio ds-hatter-zold\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">További programjaink</div><h2 class=\"ds-cim2\">Ezeket is meghozhatjuk hozzátok</h2></div><div class=\"ds-utak\"><a class=\"ds-ut\" href=\"/szolgaltatas/klimafresko\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfaf356d56416f62a0d9_fs-piko-otlet.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Klímafreskó</h3><p class=\"ds-szoveg\">Tudományos alapú csapatjáték a klímaváltozásról, 3 órában.</p><div class=\"ds-tovabb-nyil\">Megnézem ›</div></a><a class=\"ds-ut\" href=\"/szolgaltatas/3d-zold-jatekok\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfb031a1079e200f5490_fs-piko-play.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">3D zöld játékok</h3><p class=\"ds-szoveg\">Böngészős 3D játékok standra, csapatnapra, iskolába, ranglistával.</p><div class=\"ds-tovabb-nyil\">Megnézem ›</div></a><a class=\"ds-ut\" href=\"/szolgaltatas/zold-eloadas-filmklub\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfafdf4b15324ccb4a5b_fs-piko-olvas.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Előadás, filmklub, kerekasztal</h3><p class=\"ds-szoveg\">Interaktív előadás 8 témában, filmklub vitaesttel, szakértői kerekasztal.</p><div class=\"ds-tovabb-nyil\">Megnézem ›</div></a></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "komp:ajanlatkeres",
+  "html": "",
+  "css": "",
+  "komponens": "ajanlatkeres",
+  "komponens_id": "18b953bc-5dbc-c820-52fc-b872c83459cb"
+ },
+ {
+  "nev": "komp:ajanlatok",
+  "html": "",
+  "css": "",
+  "komponens": "ajanlatok",
+  "komponens_id": "4a8cf67e-8a4c-11c0-c7b0-d9ee058d623c"
+ }
+]

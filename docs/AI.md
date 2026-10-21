@@ -244,4 +244,4 @@ Fájlonként a `bc-` gyökérosztályok (a `bc-x-…` alosztályok a gyökér al
 
 - Nem ez a skill: töltsd be a `beeco-arculat`-ot. Közös fájlok a `tools/kit-sync.js`-sel (`KIT-FILES.json`); globális nevek (`DS`, `pic`, `ART`, `MODEL`…) és `ds-` osztályok: `api/api.json` → `jatekJs`, `css.jatek`.
 
-*194 komponens · 44 új · 17 hook. A verzió: `VERSION` (szándékosan nincs itt, hogy a verzióemelés ne írja át).*
+*194 komponens · 14 új · 17 hook. A verzió: `VERSION` (szándékosan nincs itt, hogy a verzióemelés ne írja át).*

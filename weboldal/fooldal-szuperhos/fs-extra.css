@@ -1,0 +1,64 @@
+/* ============================================================
+   Webflow-kiegészítés: ami a natív Webflow-jelöléshez kell
+   (a prototípusban gomb/svg volt, itt link/span; a JS nélküli Designer-nézet is ebből jön)
+   ============================================================ */
+.fs-oldal section{scroll-margin-top:90px}
+.fs-hero{--domb-h:var(--domb);--domb-e:var(--surface)}
+.fs-miert{--domb-h:var(--leaf);--domb-e:var(--raj-bg)}
+.fs-raj{--domb-h:var(--olive);--domb-e:var(--bg)}
+.fs-gyik{--domb-h:var(--domb);--domb-e:var(--bg)}
+.fs-tobb{padding-block:64px}
+.fs-sor{display:block}
+/* maszkos piktogram: a szín a currentColor */
+.fs-ik{display:inline-block;width:24px;height:24px;flex:none;background-color:currentColor;-webkit-mask:var(--ik) center/contain no-repeat;mask:var(--ik) center/contain no-repeat}
+/* linkek, amik gombként viselkednek */
+.fs-funk,.fs-utgomb,.fs-most-fut,.fs-pedia-link,.fs-logo-csempe,.fs-gomb,.fs-bolt,.fs-kartya-link{text-decoration:none}
+.fs-funk,.fs-utgomb,.fs-pedia-link,.fs-kartya-link{color:inherit}
+.fs-most-fut{color:var(--ink)}
+.fs-funk-cim,.fs-funk-szoveg{display:none}
+/* app-képernyők: JS nélkül az első látszik, JS-sel a kiválasztott */
+.fs-app-kep{display:none}
+.fs-app-kep:first-child{display:block}
+.fs-app-kepek.fs-js .fs-app-kep{display:none}
+.fs-app-kepek.fs-js .fs-app-kep.fs-aktiv{display:block}
+.fs-felirat-szoveg{font-size:var(--fs-16)}
+.fs-bizalom .fs-biz{display:inline-flex;align-items:baseline;gap:2px}
+.fs-ertekeles{font-size:var(--fs-14);color:var(--ink-soft)}
+.fs-ertekeles strong{font-family:var(--display);font-weight:400;font-size:var(--fs-20);color:var(--ink)}
+.fs-velemeny .fs-idezet{margin:0;padding:0;border:0;font-size:var(--fs-16);line-height:1.45;font-weight:600}
+.fs-velemeny .fs-forras{font-size:var(--fs-14);color:var(--ink-soft)}
+.fs-hatas-racs .fs-hatas-mi,.fs-raj-kozep .fs-raj-mi{display:block}
+.fs-ut-cim,.fs-ut-szoveg,.fs-termek-nev,.fs-termek-ar,.fs-pedia-cim,.fs-pedia-mi,.fs-bolt-felirat,.fs-bolt-kicsi,.fs-bolt-nagy{display:block}
+.fs-bolt .fs-bolt-nagy{font-family:var(--display);font-size:var(--fs-20);padding-top:3px}
+.fs-bolt .fs-bolt-kicsi{font-size:var(--fs-12)}
+.fs-hirlevel .fs-hirlevel-cim{font-weight:700}
+.fs-hirlevel-szoveg{font-size:var(--fs-14);color:var(--ink-soft)}
+.fs-hirlevel-gomb{justify-self:start;font-size:var(--fs-16)}
+.fs-qr-szoveg{max-width:20ch}
+.fs-csapat-gomb{justify-self:start;margin-top:4px}
+.fs-kviz-mehhely .fs-meh-kep{position:absolute;left:0;top:8px;width:124px;height:auto}
+.fs-kviz-hely{color:var(--ink-soft);font-size:var(--fs-14)}
+.fs-kerdes summary{color:var(--ink)}
+/* téma-kapcsoló és mérési napló (JS teszi ki) */
+.fs-tema{position:fixed;right:12px;bottom:12px;z-index:46;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:4px 12px 4px 4px;border:var(--bw) solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);cursor:pointer;font-weight:700;font-size:var(--fs-14);box-shadow:var(--sh-s)}
+.fs-tema-sin{position:relative;width:44px;height:26px;border-radius:999px;background:var(--surface-accent);border:1.5px solid var(--line);flex:none}
+.fs-tema-sin::after{content:"";position:absolute;top:2px;left:2px;width:19px;height:19px;border-radius:50%;background:var(--accent);border:1.5px solid var(--line);transition:transform .2s var(--ease)}
+.fs-tema[aria-pressed="true"] .fs-tema-sin::after{transform:translateX(18px)}
+.fs-tema svg{width:18px;height:18px}
+.fs-meres-gomb{position:fixed;left:12px;bottom:64px;z-index:46;min-height:44px;padding:4px 12px;border:var(--bw) solid var(--line);border-radius:var(--r);background:var(--ink);color:var(--bg);font-weight:700;font-size:var(--fs-14);cursor:pointer}
+.fs-oldal [hidden]{display:none!important}
+.fs-naplo{position:fixed;left:12px;top:auto;bottom:116px;z-index:60;width:min(360px,calc(100vw - 24px));max-height:50vh;overflow:auto;background:var(--surface);color:var(--ink);border:var(--bw) solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:12px 14px;font-size:var(--fs-14)}
+.fs-naplo h2{font-size:var(--fs-20)}
+.fs-naplo ol{margin:8px 0 0;padding-left:20px;display:grid;gap:4px}
+.fs-naplo code{font-size:12px;background:var(--surface-2);padding:1px 4px;border-radius:3px}
+@media (max-width:760px){.fs-tema{bottom:88px}.fs-tema .fs-tema-felirat{display:none}.fs-tema{padding-right:4px}.fs-meres-gomb{bottom:140px}.fs-naplo{bottom:192px}}
+@media (prefers-reduced-motion:reduce){.fs-tema-sin::after{transition:none}}
+/* a site globális link-stílusa (hover/focus) ne írja felül a gombként viselkedő linkeket */
+.fs-oldal .fs-funk,.fs-oldal .fs-funk:hover,.fs-oldal .fs-utgomb,.fs-oldal .fs-utgomb:hover,.fs-oldal .fs-pedia-link,.fs-oldal .fs-pedia-link:hover,.fs-oldal .fs-kartya-link,.fs-oldal .fs-kartya-link:hover{color:inherit;text-decoration:none}
+.fs-oldal .fs-most-fut,.fs-oldal .fs-most-fut:hover{color:var(--ink);text-decoration:none}
+.fs-oldal .fs-gomb,.fs-oldal .fs-gomb:hover{color:var(--on-accent);text-decoration:none}
+.fs-oldal .fs-gomb-masod,.fs-oldal .fs-gomb-masod:hover{color:var(--ink)}
+.fs-oldal .fs-bolt,.fs-oldal .fs-bolt:hover{color:var(--bg);text-decoration:none}
+.fs-oldal .fs-logo-csempe,.fs-oldal .fs-logo-csempe:hover{text-decoration:none}
+.fs-oldal .fs-utgomb[aria-pressed="true"]{color:var(--on-accent)}
+.fs-szoveglink{display:inline-flex;align-items:center;min-height:44px}

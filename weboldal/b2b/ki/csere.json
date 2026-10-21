@@ -1,0 +1,51 @@
+[
+ {
+  "nev": "csere-hero",
+  "html": "<section class=\"ds-szekcio ds-hatter-vaj\" id=\"kezdes\"><div class=\"ds-burok ds-hero-racs\"><div class=\"ds-hero-szoveg\"><div class=\"ds-szalag\">Csere-bere</div><h1 class=\"ds-cim1\">Új kedvencek, <span class=\"ds-kiemel\">vásárlás nélkül</span></h1><p class=\"ds-lead\">Minek újat venni, ha az újdonság élménye ingyen is megvan? Ruha-, könyv-, palánta- vagy játékcsere teljes szervezéssel: családbarát, zenés, nassolós, könnyed hangulatú esemény.</p><div class=\"ds-gombsor\"><a class=\"ds-gomb\" href=\"#ajanlatkeres\" data-b2b-cta=\"hero\">Ajánlatot kérek</a><a class=\"ds-gomb ds-masod\" href=\"#menet\" data-b2b-cta=\"hero-2\">Így zajlik</a></div><div class=\"ds-chipsor\"><div class=\"ds-chip\">30–90 perc</div><div class=\"ds-chip\">Szabad létszám</div><div class=\"ds-chip\">150 000 Ft-tól</div><div class=\"ds-chip\">Családbarát</div></div></div><figure class=\"ds-foto ds-hero-foto\"><img class=\"ds-foto-kep\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/67a8c4089a2e5a49b5f5f39e_70461148_2417314075012536_5042379678103371776_n.avif\" alt=\"Emberek egy szabadtéri vásáron ruhákat nézegetnek és válogatnak\" loading=\"lazy\"><figcaption class=\"ds-foto-felirat\">Közösségi csere-bere</figcaption></figure></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "csere-mi",
+  "html": "<section class=\"ds-szekcio ds-hatter-feher\" id=\"mi-ez\"><div class=\"ds-burok ds-ketto\"><div class=\"ds-hero-szoveg\"><div class=\"ds-szalag\">Témák</div><h2 class=\"ds-cim2\">Mit cserélhettek?</h2><p class=\"ds-szoveg\">Ruha, könyv, játék, növény és palánta, hobbieszköz: a téma a közösségetektől függ. Magbörzét és közösségi vásárt is szervezünk.</p><p class=\"ds-szoveg\">Mi visszük a lebonyolítást a meghirdetéstől a csere végéig, ti csak hozzátok, amit továbbadnátok.</p></div><figure class=\"ds-foto\"><img class=\"ds-foto-kep\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6988c48191bc7a59096f26b7_P1250793-Enhanced-NR.webp\" alt=\"Fiatalok ruhákat és könyveket válogatnak egy csere-berén\" loading=\"lazy\"></figure></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "csere-kap",
+  "html": "<section class=\"ds-szekcio\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Mit ad a csapatodnak</div><h2 class=\"ds-cim2\">Mit ad a közösségnek?</h2></div><div class=\"ds-harom\"><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfb0356d56416f62a171_fs-piko-sziv.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Közösségi élmény</h3><p class=\"ds-szoveg\">Beszélgetés, zene, nassolás: a kollégák és a családjaik is jól érzik magukat.</p></div><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcf7c1adc944900c3696a_fs-piko-kuka.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Kevesebb hulladék</h3><p class=\"ds-szoveg\">A tárgyak körforgásban maradnak, nem a kukában végzik.</p></div><div class=\"ds-kartya\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcf7d46bae73bbde8f3de_fs-piko-kupa.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Könnyű siker</h3><p class=\"ds-szoveg\">Rövid, kötetlen program, amire mindenki szívesen hoz valamit.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "csere-menet",
+  "html": "<section class=\"ds-szekcio ds-hatter-zold\" id=\"menet\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Így zajlik</div><h2 class=\"ds-cim2\">Egy csere-bere menete</h2></div><div class=\"ds-lepesek\"><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">1</div><h3 class=\"ds-cim3\">Meghirdetés</h3><p class=\"ds-szoveg\">Kész szöveget és szabályokat adunk a belső kommunikációhoz.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">2</div><h3 class=\"ds-cim3\">Gyűjtés</h3><p class=\"ds-szoveg\">A résztvevők elhozzák, amit továbbadnának.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">3</div><h3 class=\"ds-cim3\">Csere</h3><p class=\"ds-szoveg\">30–90 perc kötetlen válogatás, zenével.</p></div><div class=\"ds-lepes\"><div class=\"ds-lepes-szam\">4</div><h3 class=\"ds-cim3\">Összefoglaló</h3><p class=\"ds-szoveg\">Résztvevők és fotók egy rövid összefoglalóban.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "csere-csomag",
+  "html": "<section class=\"ds-szekcio\" id=\"arak\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Árak</div><h2 class=\"ds-cim2\">Irodai cserétől a közösségi vásárig</h2></div><div class=\"ds-csomagok\"><div class=\"ds-csomag\"><div class=\"ds-grafikon-felirat\">Belépő</div><h3 class=\"ds-cim3\">Csere-bere</h3><div class=\"ds-csomag-ar\">150 000 Ft-tól</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>30–90 perc</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Teljes lebonyolítás</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Szabad létszám</span></li></ul><a class=\"ds-gomb ds-masod\" href=\"#ajanlatkeres\" data-b2b-cta=\"csere-belépő\">Ajánlatot kérek</a></div><div class=\"ds-csomag ds-csomag-kiemelt\"><div class=\"ds-grafikon-felirat ds-tinta\">Mag</div><h3 class=\"ds-cim3\">Csere-bere és workshop</h3><div class=\"ds-csomag-ar\">Kérj ajánlatot</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Csere és kézműves workshop egy napon</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Családbarát program</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Rövid jelentés</span></li></ul><a class=\"ds-gomb\" href=\"#ajanlatkeres\" data-b2b-cta=\"csere-mag\">Ajánlatot kérek</a></div><div class=\"ds-csomag\"><div class=\"ds-grafikon-felirat\">Partnerség</div><h3 class=\"ds-cim3\">Közösségi vásár</h3><div class=\"ds-csomag-ar\">Kérj ajánlatot</div><ul class=\"ds-csomag-lista\"><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Nagyobb közösségi esemény</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Helyi termelők és partnerek</span></li><li class=\"ds-csomag-elem\"><span class=\"ds-csomag-pipa\">✓</span><span>Közös kommunikáció</span></li></ul><a class=\"ds-gomb ds-masod\" href=\"#ajanlatkeres\" data-b2b-cta=\"csere-partnerség\">Ajánlatot kérek</a></div></div><p class=\"ds-megjegyzes\"><strong>Hatásjelentés:</strong> minden programhoz jár egy rövid jelentés a résztvevők számával, a témákkal és kész mondatokkal a belső kommunikációhoz. <a class=\"ds-szoveglink\" href=\"/szolgaltatas/cegeknek#hatasjelentes\">Mintajelentés ›</a></p></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "csere-gyik",
+  "html": "<section class=\"ds-szekcio ds-hatter-feher\" id=\"gyik\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">Gyakori kérdések</div><h2 class=\"ds-cim2\">Amit a szervezők kérdezni szoktak</h2></div><div class=\"ds-ketto\"><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Mennyibe kerül?</h3><p class=\"ds-szoveg\">150 000 Ft-tól, a mérettől és a helyszíntől függően.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Hány ember jöhet?</h3><p class=\"ds-szoveg\">A létszám szabad: a kis irodai cserétől a közösségi vásárig.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Mi kell a helyszínen?</h3><p class=\"ds-szoveg\">Asztalok, néhány fogas vagy polc, és egy kis hely a válogatáshoz.</p></div><div class=\"ds-kartya\"><h3 class=\"ds-cim3\">Családtagok is jöhetnek?</h3><p class=\"ds-szoveg\">Igen, a csere-bere családbarát program.</p></div></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "csere-tobbi",
+  "html": "<section class=\"ds-szekcio ds-hatter-zold\"><div class=\"ds-burok\"><div class=\"ds-szekcio-fej\"><div class=\"ds-szalag\">További programjaink</div><h2 class=\"ds-cim2\">Ezeket is meghozhatjuk hozzátok</h2></div><div class=\"ds-utak\"><a class=\"ds-ut\" href=\"/szolgaltatas/kezmuves-workshop\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcf7ba358827ed2156117_fs-piko-doboz.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Kézműves workshop</h3><p class=\"ds-szoveg\">Varrás, méhviaszos kendő, upcycling, fermentálás, natúr tisztítószer.</p><div class=\"ds-tovabb-nyil\">Megnézem ›</div></a><a class=\"ds-ut\" href=\"/szolgaltatas/zold-eloadas-filmklub\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcfafdf4b15324ccb4a5b_fs-piko-olvas.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Előadás, filmklub, kerekasztal</h3><p class=\"ds-szoveg\">Interaktív előadás 8 témában, filmklub vitaesttel, szakértői kerekasztal.</p><div class=\"ds-tovabb-nyil\">Megnézem ›</div></a><a class=\"ds-ut\" href=\"/szolgaltatas/zold-kviz-okomuki\"><img class=\"ds-kartya-piko\" src=\"https://s3.amazonaws.com/webflow-prod-assets/648ebb1f9ae84f3d530e2f2d/6acdcf7d46bae73bbde8f3de_fs-piko-kupa.svg\" alt=\"\" loading=\"lazy\"><h3 class=\"ds-cim3\">Zöld kvíz és ÖkoMuki</h3><p class=\"ds-szoveg\">Humoros, versengő csapatjáték 10–250 főnek, Kahoot alapon.</p><div class=\"ds-tovabb-nyil\">Megnézem ›</div></a></div></div></section>",
+  "css": ""
+ },
+ {
+  "nev": "komp:ajanlatkeres",
+  "html": "",
+  "css": "",
+  "komponens": "ajanlatkeres",
+  "komponens_id": "18b953bc-5dbc-c820-52fc-b872c83459cb"
+ },
+ {
+  "nev": "komp:ajanlatok",
+  "html": "",
+  "css": "",
+  "komponens": "ajanlatok",
+  "komponens_id": "4a8cf67e-8a4c-11c0-c7b0-d9ee058d623c"
+ }
+]

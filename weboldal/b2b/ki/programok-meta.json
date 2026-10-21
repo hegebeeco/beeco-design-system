@@ -1,0 +1,12 @@
+{
+ "slug_vegleges": "zold-esemeny-szervezes",
+ "slug_draft": "zold-esemeny-szervezes-draft",
+ "cim": "Zöld céges programok és csapatépítők nagyvállalatoknak | beeco",
+ "leiras": "Klímafreskó, zöld kvíz, kézműves workshop, csere-bere, előadás és 3D játékok: élményalapú céges programok teljes szervezéssel, 150 000 Ft-tól.",
+ "jsonld": "{\"@context\": \"https://schema.org\", \"@graph\": [{\"@type\": \"Service\", \"name\": \"Zöld céges programok és csapatépítők\", \"description\": \"Klímafreskó, zöld kvíz, kézműves workshop, csere-bere, előadás és 3D játékok: élményalapú céges programok teljes szervezéssel, 150 000 Ft-tól.\", \"serviceType\": \"B2B\", \"areaServed\": {\"@type\": \"Country\", \"name\": \"Magyarország\"}, \"provider\": {\"@type\": \"Organization\", \"name\": \"beeco\", \"url\": \"https://www.beeco.hu\", \"logo\": \"https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/655512ff22c587d4c7112378_linear%20logo.svg\"}, \"url\": \"https://www.beeco.hu/szolgaltatas/zold-esemeny-szervezes\"}, {\"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Hol tartjátok a programokat?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Nálatok vagy egy általatok választott helyszínen, Budapesten és vidéken is.\"}}, {\"@type\": \"Question\", \"name\": \"Mennyi előkészítést kér tőlünk?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Egy kapcsolattartót és a helyszínt. Minden mást mi szervezünk.\"}}, {\"@type\": \"Question\", \"name\": \"Kombinálhatók a programok?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Igen, egy programnapon több formátum is lehet, például Klímafreskó és csere-bere.\"}}, {\"@type\": \"Question\", \"name\": \"Mennyibe kerül?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"A programok 150 000 Ft-tól indulnak. A pontos ár a programtól, a létszámtól és a helyszíntől függ.\"}}]}, {\"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"beeco\", \"item\": \"https://www.beeco.hu/\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Cégeknek és településeknek\", \"item\": \"https://www.beeco.hu/szolgaltatas/cegeknek\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"Zöld céges programok és csapatépítők\", \"item\": \"https://www.beeco.hu/szolgaltatas/zold-esemeny-szervezes\"}]}]}",
+ "kihagy": [
+  "Velünk dolgoznak",
+  "Kérj ajánlatot, és indítsuk el a rajt",
+  "Hét ajánlat, egy közös mérce"
+ ]
+}

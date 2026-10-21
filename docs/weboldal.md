@@ -20,6 +20,9 @@ A játékbőr (Méhsejt-diorama, puha árnyék, olíva tinta) a weboldalon **nem
 > **Új oldal alapból `draft`**, amíg nincs róla döntés. A site csomagja nem engedi API-ból a
 > sitemapből kivenni (403), tehát egy nem draft oldal publikáláskor bekerül a sitemapbe.
 
+> **Web DS:** a natív Webflow-blokkok (`ds-` osztályok, komponensek, generátorok, tesztek) leírása a
+> [web-ds.md](web-ds.md)-ben, a teljes osztálykatalógus a `weboldal/web-ds/KATALOGUS.md`-ben.
+
 A beeco.hu Webflow-ban készül. Ez a réteg azért külön, mert a Webflow három dologban más, mint a többi fogyasztó:
 
 | | admin · partner · app | **weboldal (Webflow)** |
