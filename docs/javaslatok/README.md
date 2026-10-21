@@ -40,6 +40,6 @@ mindig a **fájlnevet** írd, ne csak a számot. Új lap mindig egyedi számot k
 | 24 | [`24-lagy-valtozat.md`](24-lagy-valtozat.md) | Lágy (belső) változat a termékbőrhöz | javaslat |
 | 25 | [`25-ket-oldal-ia.md`](25-ket-oldal-ia.md) | Brand Book és Design System két külön oldalon, új információs architektúra | javaslat |
 | 26 | [`26-szabaly-feloldasok.md`](26-szabaly-feloldasok.md) | Szabály-feloldások: ellentmondások és hiányzó tokenek | eldöntve, 1.54.0-ban kiadva |
-| 27 | [`27-mobil-visszairas.md`](27-mobil-visszairas.md) | Mobil visszaírás: közös ikonkészlet (42), halvány méz (`accent-soft`), bronz rangszín, mobil puha árnyék, sötét állapot-skála | jóváhagyva, 1.55.0-ban kiadva |
+| 27 | [`27-mobil-visszairas.md`](27-mobil-visszairas.md) | Mobil visszaírás: közös ikonkészlet (42, az 1.56.0-ban 55), halvány méz (`accent-soft`), bronz rangszín, mobil puha árnyék, sötét állapot-skála | jóváhagyva, 1.55.0-ban kiadva (ikonok bővítése: 1.56.0) |
 
 Új lap: másold a `_sablon.md`-t `28-<rovid-nev>.md` néven, és vedd fel ebbe a táblázatba.

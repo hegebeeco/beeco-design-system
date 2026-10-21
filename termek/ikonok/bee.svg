@@ -1,0 +1,2 @@
+<!-- Bee: the stand-in for a missing profile picture (pictogram: honey body, light wings, black line). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-pictogram="true"><ellipse cx="9" cy="7.5" rx="3.6" ry="2.6" fill="paper" transform="rotate(-25 9 7.5)"/><ellipse cx="14.2" cy="7" rx="3.2" ry="2.4" fill="paper" transform="rotate(20 14.2 7)"/><path d="M5 14.5 9 10h7l3.5 4.5-3.5 4.5H9L5 14.5Z" fill="honey"/><path d="M10.6 10.3v8.4M13.8 10.3v8.4"/></svg>

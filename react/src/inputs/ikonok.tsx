@@ -49,3 +49,20 @@ export const IcUpload = () => <svg {...S}><path d="M12 16V4M7 9l5-5 5 5M4 15v4a1
 export const IcUser = () => <svg {...S}><circle cx="12" cy="8" r="4" /><path d="M4.5 20a7.5 7.5 0 0 1 15 0" /></svg>;
 export const IcWarning = () => <svg {...S}><path d="M12 4L2.8 20h18.4z" /><path d="M12 10v4.5M12 17.3v.2" /></svg>;
 export const IcWeb = () => <svg {...S}><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3 2.7 4.5 5.7 4.5 9s-1.5 6.3-4.5 9c-3-2.7-4.5-5.7-4.5-9S9 5.7 12 3z" /></svg>;
+// Javaslat 27, 1.56 kiegészítés (2026-10-16): a mobil csomag 10 további vonalas ikonja – az SVG-párjuk: termek/ikonok/*.svg
+export const IcArrowDown = () => <svg {...S}><path d="M12 5v14M6 13l6 6 6-6" /></svg>;
+export const IcArrowUp = () => <svg {...S}><path d="M12 19V5M6 11l6-6 6 6" /></svg>;
+export const IcCompass = () => <svg {...S}><circle cx="12" cy="12" r="9" /><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z" /></svg>;
+export const IcFlag = () => <svg {...S}><path d="M6 21V4" /><path d="M6 5h11l-2.5 4 2.5 4H6" /></svg>;
+export const IcHome = () => <svg {...S}><path d="M3.5 11.5 12 4l8.5 7.5" /><path d="M5.5 10v9.5h13V10" /><path d="M10 19.5v-5.5h4v5.5" /></svg>;
+export const IcLayers = () => <svg {...S}><path d="M12 3.5 3.5 8 12 12.5 20.5 8 12 3.5Z" /><path d="M3.5 12 12 16.5 20.5 12" /><path d="M3.5 16 12 20.5 20.5 16" /></svg>;
+export const IcLocate = () => <svg {...S}><circle cx="12" cy="12" r="2.5" /><circle cx="12" cy="12" r="7.5" /><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22" /></svg>;
+export const IcLock = () => <svg {...S}><rect x="5" y="11" width="14" height="9" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /><path d="M12 15v2" /></svg>;
+export const IcMinus = () => <svg {...S}><path d="M5 12h14" /></svg>;
+export const IcWifiOff = () => <svg {...S}><path d="M2.5 9.2a15 15 0 0 1 19 0" /><path d="M5.6 12.6a10.5 10.5 0 0 1 12.8 0" /><path d="M8.8 16a6 6 0 0 1 6.4 0" /><path d="M12 19.6v.1" /><path d="M4 3.5l16 17" /></svg>;
+// Kétszínű piktogramok (data-pictogram): fekete (currentColor) vonal + méz (--bc-accent) és papír (--bc-surface) kitöltés.
+// Az SVG-fájlban a kitöltés a `honey` / `paper` szerepnév (a Flutter-csomag és a tervezőprogramok így olvassák); itt a szerep CSS-változója.
+const P = { ...S, 'data-pictogram': 'true' };
+export const IcBee = () => <svg {...P}><ellipse cx="9" cy="7.5" rx="3.6" ry="2.6" fill="var(--bc-surface)" transform="rotate(-25 9 7.5)" /><ellipse cx="14.2" cy="7" rx="3.2" ry="2.4" fill="var(--bc-surface)" transform="rotate(20 14.2 7)" /><path d="M5 14.5 9 10h7l3.5 4.5-3.5 4.5H9L5 14.5Z" fill="var(--bc-accent)" /><path d="M10.6 10.3v8.4M13.8 10.3v8.4" /></svg>;
+export const IcNectar = () => <svg {...P}><path d="M12 3s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10 12 3 12 3Z" fill="var(--bc-accent)" /><path d="M9 15a3 3 0 0 0 2.5 2.8" /></svg>;
+export const IcStarFilled = () => <svg {...P}><path d="m12 2.8 2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.6l-5.4 2.9 1.1-6.1-4.5-4.2 6.1-.8L12 2.8Z" fill="var(--bc-accent)" /></svg>;

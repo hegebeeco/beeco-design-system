@@ -37,9 +37,9 @@ export type DataTableProps<T> = {
     serverRowCount?: number;
     density?: 'comfortable' | 'dense';
     onDensityChange?: (d: 'comfortable' | 'dense') => void;
-    /** Sűrűség-kapcsoló a sávban (alap: igen) */
+    /** Sűrűség-kapcsoló a sávban (alap: nincs – Kristóf 2026-10-16: mindig sűrű; csak kifejezett `densityToggle` mellett jelenik meg) */
     densityToggle?: boolean;
-    /** Kezdő sűrűség, ha nem vezérelt (Javaslat 19) – pl. admin-táblákon 'dense' */
+    /** Kezdő sűrűség, ha nem vezérelt (alap: 'dense') */
     defaultDensity?: 'comfortable' | 'dense';
     /** Keret és árnyék nélkül – kártyába, panelbe ágyazva (Javaslat 19) */
     bare?: boolean;

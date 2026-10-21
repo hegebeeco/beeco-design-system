@@ -21,7 +21,8 @@
       { "slug": "sablonok", "cim": "Sablonok és nyomtatvány" },
       { "slug": "hozzaferheto-tartalom", "cim": "Hozzáférhető tartalom" },
       { "slug": "partnerarculat", "cim": "Partnerarculat" },
-      { "slug": "kampany-altema", "cim": "Kampány-altéma: Csicsergősz" }
+      { "slug": "kampany-altema", "cim": "Kampány-altéma: Csicsergősz" },
+      { "slug": "kampany-altema-vizadas", "cim": "Kampány-altéma: Önkéntes Vízadás" }
     ] },
     { "id": "csatlakozz", "cim": "Csatlakozz", "oldalak": [ { "slug": "csatlakozz", "cim": "Önkénteseknek" } ] },
     { "id": "letoltesek", "cim": "Letöltések", "oldalak": [ { "slug": "letoltesek", "cim": "Letöltések", "ut": 7 } ] }

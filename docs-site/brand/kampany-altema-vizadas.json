@@ -1,0 +1,44 @@
+{
+  "id": "kampany-altema-vizadas",
+  "cim": "Kampány-altéma: Önkéntes Vízadás",
+  "alcim": "A nyári faöntöző kampány saját kék arculatot kapott. A méhecske és a hang a beecóé marad.",
+  "csoport": "alkalmazas",
+  "statusz": "vázlat",
+  "blokkok": [
+    { "t": "roviden", "mi": "Az Önkéntes Vízadás (powered by E.ON) kampányarculata: öt szín, a Figtree betű, városkép, csepp, fűrészfog-él.", "hasznald": "A vízadás kampányoldalain, plakátjain, közösségi posztjain.", "ne": "Más beeco-oldalra ne vidd át, és égkéken vagy zöldön ne írj fehér szöveget." },
+    { "t": "h2", "x": "Mi ez?" },
+    { "t": "p", "x": "Az **Önkéntes Vízadás** a beeco nyári kampánya: a lakók vizet visznek a szomjas fiatal fáknak, és a beeco appban rögzítik. Ági saját arculatot tervezett hozzá. Ez **kampányarculat**, mint a [CsicsergŐsz](kampany-altema.html): a saját színei csak a kampány felületein élnek." },
+    { "t": "tabla", "cim": "A Vízadás kampány színei", "fej": ["Szín", "Szerep"], "sorok": [["Villanykék", "fő szín: kék felület, kiemelt szám és cím"], ["Mélykék", "szöveg, keret, sötét felület (a „fekete”)"], ["Égkék", "világos felület (nyitókép), díszítő"], ["Zöld", "jelzés, fa, díszítő felület; szövegnek nem"], ["Fehér", "kártya, chip, szöveg sötét felületen"], ["Halvány égkék", "segédárnyalat hosszabb szöveges sávokhoz (nem Ági palettája, az oldal használja)"]] },
+    { "t": "merno", "cim": "Mérnököknek: színkódok és Webflow-változók", "tabla": { "cim": "A Vízadás kampány színei – kódok", "fej": ["Szín", "Kód", "Webflow-változó"], "sorok": [["Villanykék", "`#0A0AF2`", "`ov-kek`"], ["Mélykék", "`#060077`", "`ov-melykek`"], ["Égkék", "`#64C4FF`", "`ov-egkek`"], ["Zöld", "`#00BA96`", "`ov-zold`"], ["Fehér", "`#FFFFFF`", "`ov-feher`"], ["Halvány égkék", "`#DCF1FF`", "`ov-egkek-halvany`"]] } },
+    { "t": "szabaly", "cim": "Kontraszt: mi mire mehet", "elemek": [
+      "Égkéken a szöveg **mélykék** (8,5:1) vagy villanykék (4,65:1). Fehér szöveg égkéken nem olvasható (1,9:1).",
+      "Villanykéken és mélykéken a szöveg fehér (9:1, 16,5:1).",
+      "A zöld csak felület és ikon: fehér szöveg rajta és zöld szöveg fehéren is 2,5:1."
+    ] },
+    { "t": "hivatalos", "cim": "Mi változik, mi marad",
+      "elemek": [
+        "**Változik:** a paletta (villanykék, mélykék, égkék, zöld, fehér) és a betű: az arculat a **Figtree** betűt írja elő (Black a címhez, Bold az alcímhez, Medium a szöveghez).",
+        "**Marad:** a beeco hangja ([Hang és személyiség](marka-hang.html)) és a méhecske ([Méhecske és illusztráció](meh-illusztracio.html))."
+      ],
+      "forras": ["Vizadas_Arculati_összefoglalo.pdf (Ági, 2026-06)", "weboldal/kampany-vizadas-2027/tokens.json"] },
+    { "t": "korrigalando", "cim": "Betű a weboldalon", "x": ["A kampányoldal (`/kampanyok/onkentes-vizadas`) még a beeco betűivel (Lalezar, Open Sans) fut. Ez eltér a CsicsergŐsz szabályától („a betű a beecóé marad”), mert a Vízadás arculata saját betűt ír elő.", "Arról, hogy a weboldal Figtree-re vált-e, a beeco dönt."], "forras": ["weboldal/kampany-vizadas-2027/tokens.json (betu)"] },
+    { "t": "h2", "x": "Arculati elemek" },
+    { "t": "lista", "elemek": [
+      "**Városkép:** kék házak, zöld fák. A nyitókép alján kifutó elválasztó, fehér talajjal fut át a következő fehér szekcióba.",
+      "**Csepp:** a négy szín cseppként (ikon, felsorolásjel, idővonal-pont).",
+      "**Fűrészfog-él:** szekcióhatár háromszögsorral; **cikcakk-jel:** két cikcakkvonal felirat előtt.",
+      "**Térkép-minta:** városi tömbök halványan a háttérben.",
+      "**Szám-chip:** fehér doboz, kék szám, ikon balra (az eredménykommunikációs plakátokról).",
+      "**Logó:** fehér változat kék alapon, kék változat világos alapon, és egy kör alakú pecsét."
+    ] },
+    { "t": "masolhato", "cim": "Zárás utáni fő üzenet", "szoveg": "Már ennyit locsoltunk! …de még nincs vége!", "forras": ["Ági eredménykommunikációs plakátja (ÖV_Eredménykommunikáció)"] },
+    { "t": "lista", "elemek": ["Szlogenek az arculati lapról: „Locsoljunk EGYÜTT!”, „Szeretnél Te is locsolni? Megmutatjuk, hogyan vehetsz részt benne!”, „Te hol szoktál locsolni?”, „Locsol a város!”"] },
+    { "t": "hianyzik", "cim": "Ferde fotókeret", "x": "A közösségi kártyák szabálytalan négyszögű fotókerete még nincs a weboldalon, és rögzített formája sincs. Ági döntése kell." },
+    { "t": "h2", "x": "Kapcsolódó" },
+    { "t": "lista", "elemek": [
+      "A másik kampány-altéma: [CsicsergŐsz](kampany-altema.html)",
+      "A beeco alap színei: [Szín](szin.html)",
+      "Partnerrel közös kampány (E.ON névadó): [Partnerarculat](partnerarculat.html)"
+    ] }
+  ]
+}

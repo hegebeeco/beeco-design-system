@@ -45,8 +45,10 @@ export default async function ({ page, t }) {
     await r.focus(); await page.keyboard.press('ArrowRight'); await page.keyboard.press('ArrowRight');
     ok(Number(await r.getAttribute('aria-valuenow')) === w0 + 32, `${w0} → ${await r.getAttribute('aria-valuenow')}`);
   });
-  await t('sűrűség: Sűrű → is-dense', async () => {
-    await c('tabla-teljes').getByRole('radio', { name: 'Sűrű' }).click(); ok(await c('tabla-teljes').locator('table.is-dense').count() === 1, 'nem sűrű');
+  await t('sűrűség (1.57): alapból sűrű; a kapcsoló csak kifejezett densityToggle mellett van; Kényelmes ↔ Sűrű vált', async () => {
+    ok(await c('tabla-teljes').locator('table.is-dense').count() === 1, 'nem sűrű alapból');
+    await c('tabla-teljes').getByRole('radio', { name: 'Kényelmes' }).click(); ok(await c('tabla-teljes').locator('table.is-dense').count() === 0, 'nem váltott kényelmesre');
+    await c('tabla-teljes').getByRole('radio', { name: 'Sűrű' }).click(); ok(await c('tabla-teljes').locator('table.is-dense').count() === 1, 'nem váltott vissza sűrűre');
   });
   await t('hiányzó érték rendezéskor a végén marad (növekvő és csökkenő)', async () => {
     const b = th('tabla-hianyzo', 'Képek').locator('button'); await b.click();
@@ -122,13 +124,12 @@ export default async function ({ page, t }) {
     if (w > 640) ok(h === 0, `széles nézetben a sáv ${h}px magas`);
     else ok(h > 0, 'keskeny nézetben a Rendezés-sáv eltűnt');
   });
-  await t('bare + defaultDensity (Javaslat 19): a tábla burkán nincs keret és árnyék; alapból sűrű, a kapcsolóval váltható', async () => {
+  await t('bare (Javaslat 19) + alap sűrűség (1.57): a tábla burkán nincs keret és árnyék; alapból sűrű, sűrűség-kapcsoló nincs', async () => {
     const box = c('tabla-bare');
     const w = await box.locator('.bc-dt-wrap').evaluate((e) => { const s = getComputedStyle(e); return [s.boxShadow, s.borderTopWidth]; });
     ok(w[0] === 'none' && w[1] === '0px', `keret/árnyék: ${w}`);
     ok((await box.locator('.bc-dt.is-dense').count()) === 1, 'nem sűrű alapból');
-    await box.locator('.bc-seg-item', { hasText: 'Kényelmes' }).click();
-    await until(async () => (await box.locator('.bc-dt.is-dense').count()) === 0, 'nem váltott kényelmesre');
+    ok((await box.locator('.bc-seg-item', { hasText: 'Kényelmes' }).count()) === 0, 'a sűrűség-kapcsoló kifejezett densityToggle nélkül is megjelent');
   });
   await t('oszlopfejléc-súgó (Javaslat 21): ⓘ a fejlécben „<oszlop> – súgó” névvel, 44 px; kattintásra nyílik és NEM rendez; a rendezés-gomb rendez', async () => {
     const box = c('tabla-sugo');
