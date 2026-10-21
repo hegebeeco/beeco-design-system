@@ -1,0 +1,59 @@
+{
+  "_about": "CsicsergŐsz kampányoldal – feladatkönyvtár. A feladatszöveget a perszóna a saját szavaival kapja; a siker gépi feltétele a futtatóé, a „judge” típusú sikert az összegző ügynök dönti el a válasz alapján.",
+  "page": "CsicsergŐsz kampányoldal",
+  "url": "https://www.beeco.hu/kampanyok/csicsergosz",
+  "allowedHosts": ["www.beeco.hu", "beeco.hu", "beeco-weboldal.webflow.io"],
+  "scenarios": [
+    {
+      "id": "five-second",
+      "title": "5 másodperces teszt",
+      "mode": "fiveSecond",
+      "task": "Nézd meg az oldal első képernyőjét 5 másodpercig, görgetés nélkül. Utána mondd el: mi ez, kinek szól, és mit kellene tenned?",
+      "budget": { "seconds": 5, "actions": 1 },
+      "success": { "type": "judge", "rubric": "A válaszból kiderül: (1) madárvédelmi/madárbarát kampány, (2) a beeco appról vagy a beecóról szól, (3) van egy konkrét első lépés (pl. app letöltése, madárbarát tett). 3/3 = siker, 2/3 = részben." }
+    },
+    {
+      "id": "what-can-i-do",
+      "title": "Mit tehetek most a madarakért?",
+      "task": "Tudd meg, mit tehetsz most, ezen a héten a madarakért otthon vagy a környékeden. Ha megvan legalább két konkrét dolog, mondd el őket.",
+      "budget": { "seconds": 180, "actions": 15 },
+      "success": { "type": "judge", "rubric": "Legalább két konkrét, az oldalon található tett (pl. itatás, etetés, odú kihelyezése, megfigyelés rögzítése) a perszóna saját szavaival, az oldal tartalmával egyezően." }
+    },
+    {
+      "id": "get-the-app",
+      "title": "Töltsd le az appot",
+      "task": "Ha meggyőzött, töltsd le az appot a telefonodra (a letöltő oldalig vagy az alkalmazásboltig jutni elég).",
+      "budget": { "seconds": 90, "actions": 8 },
+      "success": { "type": "externalUrl", "pattern": "apps\\.apple\\.com|play\\.google\\.com|/letoltes" }
+    },
+    {
+      "id": "school-join",
+      "title": "Hogyan vehet részt az osztályom?",
+      "task": "Tudd meg, hogyan vehet részt az osztályod vagy az iskolád, mi a menete, és kinek kell írnod.",
+      "budget": { "seconds": 240, "actions": 20 },
+      "success": { "type": "judge", "rubric": "Eljutott az iskoláknak szóló részhez, és meg tudja mondani a következő lépést (kapcsolatfelvétel módja vagy űrlap). Ha csak a szekciót találta meg, de a következő lépést nem: részben." }
+    },
+    {
+      "id": "credibility",
+      "title": "Szakmailag hiteles ez?",
+      "task": "Döntsd el, szakmailag megbízható-e, amit az oldal a madarak etetéséről, itatásáról és az odúkról mond, és ki áll mögötte. Írd le, mit találtál pontatlannak vagy hiányzónak.",
+      "budget": { "seconds": 300, "actions": 25 },
+      "success": { "type": "judge", "rubric": "Megtalálta a szakmai partnert vagy forrást (pl. MME), és indokolt bizalmi ítéletet hoz. A talált szakmai pontatlanságok külön leletként kerüljenek a jelentésbe." }
+    },
+    {
+      "id": "newsletter",
+      "title": "Kérek értesítést",
+      "task": "Szeretnél e-mailben értesítést kapni a kampány híreiről. Keresd meg, hol iratkozhatsz fel. (Adatot ne írj be, és semmit ne küldj el: elég, ha megtalálod az űrlapot.)",
+      "budget": { "seconds": 120, "actions": 12 },
+      "success": { "type": "elementSeen", "selector": "#wf-form-csicsergosz-hirlevel, #csicsergosz-email" }
+    }
+  ],
+  "firstRound": [
+    { "persona": "busy-pragmatic", "scenarios": ["five-second", "get-the-app", "what-can-i-do"] },
+    { "persona": "quiet-unsure", "scenarios": ["five-second", "what-can-i-do", "newsletter"], "lens": "zoom-elderly" },
+    { "persona": "family-bird-beginner", "scenarios": ["five-second", "what-can-i-do", "get-the-app"] },
+    { "persona": "school-teacher", "scenarios": ["five-second", "school-join", "newsletter"], "lens": "keyboard-only" },
+    { "persona": "skeptical-birder", "scenarios": ["five-second", "credibility", "what-can-i-do"] },
+    { "persona": "qr-passerby", "scenarios": ["five-second", "get-the-app", "what-can-i-do"], "lens": "slow-network" }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "_about": "Hozzáférhetőségi lencsék: bármely perszónára ráhúzhatók, a futtató (tools/persona-test/browser.mjs) alkalmazza őket.",
+  "lenses": [
+    {
+      "id": "zoom-elderly",
+      "label": "200%-os nagyítás, idősebb szem",
+      "effect": "a nézet fele akkora CSS-szélességű (200%-os nagyítás), az olvasási sebesség 60%, kis szöveget és halvány kontrasztot nehezen olvas",
+      "browser": { "zoom": 2, "readingFactor": 0.6 }
+    },
+    {
+      "id": "slow-network",
+      "label": "Lassú mobilnet (3G)",
+      "effect": "kb. 400 kbit/s és 400 ms késleltetés; a betöltési idő beszámít a szimulált időbe",
+      "browser": { "network": "3g" }
+    },
+    {
+      "id": "keyboard-only",
+      "label": "Csak billentyűzet",
+      "effect": "egeret nem használ: csak Tab, Shift+Tab, Enter, Szóköz, Esc; a fókusz láthatóságát és sorrendjét figyeli",
+      "browser": { "keyboardOnly": true }
+    }
+  ]
+}

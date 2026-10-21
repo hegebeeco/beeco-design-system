@@ -1,0 +1,38 @@
+{
+  "_about": "beeco mobilapp – első belépés. iOS-szimulátorban fut (Claude Code iOS Simulator eszköz, képernyőkép: xcrun simctl io booted screenshot). Jelszót, tokent a perszóna-ügynök nem kezel: a bejelentkezett feladatok előtt Kristóf lép be egy friss teszt-felhasználóval (requiresLogin).",
+  "page": "beeco app – első belépés",
+  "platform": "ios-simulator",
+  "launch": "~/CLAUDE/beeco_MOBILE_APP: ./app-indit.sh (fejlesztői flavor, teszt API)",
+  "scenarios": [
+    {
+      "id": "pre-login-tour",
+      "title": "Első megnyitás a bejelentkezésig",
+      "requiresLogin": false,
+      "requiresFreshInstall": true,
+      "task": "Most töltötted le az appot, és először nyitod meg. Nézz körül, és mondd el, mire jó. Jutsz el a regisztráció első képernyőjéig, de ott állj meg: adatot ne írj be.",
+      "budget": { "seconds": 120, "actions": 12 },
+      "success": { "type": "judge", "rubric": "Elérte a regisztráció/bejelentkezés képernyőjét, és saját szavaival el tudja mondani az app értékét (legalább két konkrét funkció)." }
+    },
+    {
+      "id": "first-green-step",
+      "title": "Az első zöld lépés",
+      "requiresLogin": true,
+      "task": "Az első öt percben tegyél egy konkrét zöld lépést az appban (bármit, ami szerinted ide tartozik).",
+      "budget": { "seconds": 300, "actions": 25 },
+      "success": { "type": "judge", "rubric": "Az app visszaigazolta egy tett rögzítését vagy egy kihívás/lépés elindítását (pl. Nektár, pipa, köszönő képernyő)." }
+    },
+    {
+      "id": "bird-friendly-place",
+      "title": "Madárbarát hely a közelben",
+      "requiresLogin": true,
+      "task": "Keress a közeledben egy madárbarát helyet vagy madárpontot a térképen, és nézd meg a részleteit.",
+      "budget": { "seconds": 180, "actions": 15 },
+      "success": { "type": "judge", "rubric": "Megnyitotta egy madárbarát hely vagy madárpont részletes nézetét a térképről." }
+    }
+  ],
+  "firstRound": [
+    { "persona": "busy-pragmatic", "scenarios": ["pre-login-tour", "first-green-step"] },
+    { "persona": "quiet-unsure", "scenarios": ["pre-login-tour", "first-green-step"] },
+    { "persona": "family-bird-beginner", "scenarios": ["pre-login-tour", "bird-friendly-place"] }
+  ]
+}
