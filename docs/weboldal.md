@@ -345,6 +345,7 @@ Egy kampány saját arculatot kaphat (ősz, madarak: krém, barack, kakaó, méz
 | Tokenek | **külön Webflow-gyűjtemény** a kampány nevével (`Csicsergosz`), `cs-` előtagú változókkal; paletta → szerep-tokenek (felület, szöveg, kiemelés, keret) → osztályok. A kampány egy helyen átszínezhető. |
 | Osztályok | a meglévő site-osztályokra **kombó** (`DIA_KEK_OV` + `CS`, `BUTTON_MAIN` + `CS`), új elemhez kampány-előtag (`cs_`), ahogy a főoldal a `h26-`-öt |
 | Mozgás, díszítés | oldal fejkód + lábléc, `data-cs-*` jelölőkkel (nem osztállyal), így a Designerben bárki ráteheti |
+| Kártyák | kampányonként saját kártyacsalád a termékbőr logikájával (árnyék = kattintható; nem kattintható árnyék nélkül; kiválasztott külön jelölve). CsicsergŐsz: **Matrica** (levágott sarok, fehér körvonal, −1° a kattinthatón), `weboldal/kampany-csicsergosz/cs-kartya.css`; ugyanez a Webflow-osztályokon (`card` + `cs_link` / `cs_egyenlo`, `::before` és hover/lenyomott állapot), így a Designer eszköztárából húzott új kártya is ilyen. |
 | Mérés | `gtag('event')`, ablakszintű figyelő (lásd 3. fejezet) |
 | Kártyák | kampányonként saját kártyacsalád, de a termékbőr logikájával (árnyék = kattintható, a nem kattintható árnyék nélküli, a kiválasztott külön jelölt). CsicsergŐsz: **Matrica** (12. fejezet) |
 | Hírlevél, közösség | egy blokk, egy ígérettel (milyen gyakran, mit kapsz), egy mezővel és látható címkével; a közösségi linkek másodlagosak. CsicsergŐsz: „Levélke” képeslap, kéthetente, a meglévő Webflow-űrlap átköltöztetve |

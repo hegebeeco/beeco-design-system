@@ -13,7 +13,8 @@
     "#FFFFFF",
     "#1A1A1A",
     "#FFD08A",
-    "#FFBE5C"
+    "#FFBE5C",
+    "#FECF39"
   ],
   "szinTures": 14,
   "betuk": [
@@ -57,9 +58,9 @@
   "anim": "[data-cs-anim],[data-cs-gyerekek]",
   "animLathato": "cs-latszik",
   "kepMaxKB": 300,
-  "kivetel": ".download_block, .footer, footer, .nav, .w-nav",
-  "kivetelIndok": "Site-szintű komponensek (letöltésblokk QR-kódja, lábléc, menü): nem a kampányoldal része, külön jegyben kezelendők.",
-  "palettaMegjegyzes": "A két méz-tónus a kerületi térkép skálája (cs-raj.css).",
+  "kivetel": ".download_block, .footer, footer, .nav, .w-nav, .button_main, .button_sec, .cs_raj_megoszt, .cs-ragados",
+  "kivetelIndok": "Site-szintű komponensek (letöltésblokk QR-kódja, lábléc, menü): nem a kampányoldal része, külön jegyben kezelendők. A beeco fő gombjai (button_main sárga, button_sec fehér, fekete keret és kemény árnyék) a felhasználó döntése alapján (2026-10-07) a kampányoldalon is az eredeti formájukban maradnak.",
+  "palettaMegjegyzes": "A két méz-tónus a kerületi térkép skálája (cs-raj.css). A #FECF39 a beeco fő gomb sárgája (felhasználói döntés, 2026-10-07).",
   "tiltott": [
     {
       "selector": "[data-cs-raj-allapot=\"minta\"]",

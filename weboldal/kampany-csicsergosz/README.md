@@ -56,13 +56,16 @@ Szabályok: egyszer játszik le, csak `transform`/`opacity`/`clip-path`, ease-ou
 | Díszítő | `cs_dekor` + `jf` · `bf` · `jl` · `bl` · `ag` (tartalom mögött, kattintás átmegy) |
 | Számozott lépések | `cs_lepesek` > `cs_lepesek_bal` (`cs_lepes_lista` > `cs_lepes` > `cs_lepes_szam`) + `cs_lepesek_jobb` (`cs_folyamat_kep`) |
 | Kampánygomb | `BUTTON_MAIN` + `CS`, `BUTTON_TERC` + `CS` |
-| Kártya | `CARD` + `CS_LINK` (kattintható, árnyékkal) · `CARD` + `CS_EGYENLO` (árnyék nélkül) |
+| Kártya (Matrica, 2026-10-13) | `CARD` + `CS_LINK` (kattintható: −1°, levágott sarok, fehér matrica-körvonal, 5 px kakaó árnyék; hover egyenes + 7 px, lenyomva 1 px) · `CARD` + `CS_EGYENLO` (nem kattintható: egyenes, árnyék nélkül) · kiválasztott: méz körvonal. Forrás: `cs-kartya.css`, a Webflow-osztályokon is beállítva |
 | Fotó + matrica | `cs_kartya_foto` (a matrica a képbe égetve: fénykép + beeco-matrica) |
 
 ## Arculati szabályok (ellenőrizve a `review-szabalyok.json`-nal)
 
 - Tiszta fekete nincs: keret, árnyék, cím kakaó. Méz az egyetlen interaktív kiemelő, narancs csak jelzés.
 - Árnyék = kattintható. Statikus kártya, tényblokk, grafikon, buborék árnyék nélkül.
+- Kártyacsalád: **Matrica** (Kristóf döntése, 2026-10-13). Levágott sarok (kártya 16 px, kép 10 px), fehér matrica-körvonal
+  halvány kakaó éllel; kattintható −1°-ban dől és kakaó árnyékot kap; kiválasztott méz körvonalat; a képre tett címke kakaó
+  szalag bevágott véggel. Részletek és szabályok: `cs-kartya.css` fejléce.
 - Kabala: a madarász méhecske. A madárka (Csicser) csak indokolt helyen.
 - App-képernyő oldalanként legfeljebb 3.
 - Fotón csak hazai madárfaj (MME szakmai partner); ha a fotón idegen faj van, beeco-matrica takarja.
@@ -89,3 +92,16 @@ betöltés-szöveg (JS nélkül ez látszik). A forrás a számláló gyökér `
 | Közös cél | haladásjelző (`role=progressbar`), kitöltődik | |
 | Kerületi verseny | sematikus méhsejt-térkép (23 kerület), kattintás/Enter, választólista, Budapest/Városok fül (nyilakkal) | `campaign_district_select`, `campaign_leaderboard_tab` |
 | Fotófal | legfeljebb 8 kép, fókuszpont szerinti kivágás | |
+
+## v1.50: egy helyen az oldal kódja
+
+A Webflow-oldal fejkódja csak a `cs-kampany.css` és `cs-raj.css`, a lábkódja a `cs-meres.js`, `cs-mozgas.js`, `cs-raj.js`
+és `cs-kampany.js` fájlokra hivatkozik (most a `csicsergosz-v3` ág: `@csicsergosz-v3`; a main-be olvasztás és kiadás után verziósáv). Javítás menete: a fájl módosítása helyben, Playwright-teszt
+a jsDelivr-címek helyi fájlra irányításával, majd push az ágra és jsDelivr-purge. A Webflow-ban csak szerkezeti változáshoz kell nyúlni.
+
+| Fájl | Mit csinál |
+|---|---|
+| `cs-kampany.css` | az oldal teljes stílusa (tokenek, tipográfia, gombok, szekciók, madarak, ragadós sáv) |
+| `cs-kampany.js` | fülek, süvöltő, hero-madarak, szállingózó madarak, záró jelenet, interaktív háttér, ragadós letöltősáv |
+| `cs-raj.js` / `.css` | országos számok, számláló, közös cél, verseny minitérképpel, fotófal |
+| `cs-terkep.json` | Budapest kerületei (OSM, ODbL) és Magyarország körvonala (Natural Earth), egyszerűsített SVG-útvonalak |

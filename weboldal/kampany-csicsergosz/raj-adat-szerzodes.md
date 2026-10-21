@@ -45,3 +45,14 @@
 A fájlban nincs személyes adat: csak összesítések, kerület- és városnevek, becenév és moderált fotó.
 Pontos helyet (koordinátát, utcát) **ne** tegyél bele: a fotóknál a `hely` legfeljebb kerület vagy település.
 A fotófalhoz az appban kell egy hozzájárulás-kapcsoló („a fotóm megjelenhet a beeco oldalain”); enélkül nem kerülhet fel kép.
+
+## v1.50 kiegészítés (2026-10-07)
+
+| Mező | Jelentés | Forrás az élő végpontnál |
+|---|---|---|
+| `orszagos.letoltes` | összes letöltés (a hero „A raj országosan” blokkja) | az áruházak összesítője; addig a főoldalon publikált szám |
+| `orszagos.heti.itato/eteto/odu` | az elmúlt 7 napban felrajzolt pontok | `kiallitott_pontok` ahol `letrehozva >= now() - 7 nap` |
+| `varosok[].lat`, `varosok[].lon` | a település középpontja (WGS84) | a települések törzsadata |
+
+A kerületi térkép geometriája nem az adatból jön: `cs-terkep.json` (OpenStreetMap-határok, egyszerűsítve; Natural Earth országkörvonal).
+A kiválasztott kerület linkelhető: `?kerulet=XI` (a megosztás gomb ezt küldi tovább).
