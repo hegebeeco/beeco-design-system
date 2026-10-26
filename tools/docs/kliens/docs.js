@@ -269,7 +269,7 @@
         clearTimeout(idozito);
         idozito = setTimeout(function () { b.classList.remove('is-masolva'); elo0.textContent = ''; }, 1500);
       };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(v).then(kesz, function () { elo0.textContent = 'Nem sikerült másolni – jelöld ki: ' + v; });
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(v).then(kesz, function () { clearTimeout(idozito); b.classList.remove('is-masolva'); elo0.textContent = 'Nem sikerült másolni – jelöld ki: ' + v; });
       else elo0.textContent = 'Jelöld ki és másold: ' + v;
     });
   });
