@@ -257,13 +257,19 @@
   // a mobil jegyzék kattintás után becsukódik; fülpanelben lévő célnál a fül vált
   $$('.bb-toc-mobil a').forEach(function (a) { a.addEventListener('click', function () { var dt = a.closest('details'); if (dt) dt.open = false; }); });
 
-  // ---------- színkód másolása (data-masol) ----------
+  // ---------- színkód másolása (data-masol): látható „Másolva” a gombon + felolvasott visszajelzés, ~1,5 mp-ig ----------
   var elo0 = el('p', 'bc-sr'); elo0.setAttribute('aria-live', 'polite'); document.body.appendChild(elo0);
   $$('[data-masol]').forEach(function (b) {
+    var idozito = null;
     b.addEventListener('click', function () {
       var v = b.getAttribute('data-masol');
-      var kesz = function () { b.classList.add('is-masolva'); elo0.textContent = 'Kimásolva: ' + v; setTimeout(function () { b.classList.remove('is-masolva'); }, 1200); };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(v).then(kesz, function () { elo0.textContent = 'Nem sikerült másolni – jelöld ki: ' + v; });
+      var kesz = function () {
+        b.classList.add('is-masolva');
+        elo0.textContent = ''; setTimeout(function () { elo0.textContent = 'Másolva: ' + v; }, 50);   // az ismételt kattintás is felolvasódik
+        clearTimeout(idozito);
+        idozito = setTimeout(function () { b.classList.remove('is-masolva'); elo0.textContent = ''; }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(v).then(kesz, function () { clearTimeout(idozito); b.classList.remove('is-masolva'); elo0.textContent = 'Nem sikerült másolni – jelöld ki: ' + v; });
       else elo0.textContent = 'Jelöld ki és másold: ' + v;
     });
   });
@@ -297,6 +303,26 @@
   // élő tesztlap lenyitáskor töltődik be (details.bb-teszt > iframe[data-src])
   $$('details.bb-teszt').forEach(function (dt) {
     dt.addEventListener('toggle', function () { var f = $('iframe[data-src]', dt); if (dt.open && f && !f.getAttribute('src')) f.setAttribute('src', f.getAttribute('data-src')); });
+  });
+
+  // ---------- fejléc valódi magassága: a ragadós mobil jegyzék ez alá igazodik (keskeny képernyőn a fejléc két sorba törik) ----------
+  var fejlec = $('.bb-fejlec');
+  if (fejlec) {
+    var fejMeres = function () { d.style.setProperty('--bb-fej-valos', fejlec.offsetHeight + 'px'); };
+    fejMeres();
+    if (window.ResizeObserver) new ResizeObserver(fejMeres).observe(fejlec); else window.addEventListener('resize', fejMeres);
+  }
+
+  // ---------- táblázatok: halványodó él jelzi, merre görgethető (is-balra / is-jobbra) ----------
+  $$('.bb-tabla-burok').forEach(function (burok) {
+    var w = $('.bb-tabla', burok); if (!w) return;
+    var allit = function () {
+      burok.classList.toggle('is-balra', w.scrollLeft > 1);
+      burok.classList.toggle('is-jobbra', w.scrollLeft + w.clientWidth < w.scrollWidth - 1);
+    };
+    allit();
+    w.addEventListener('scroll', allit, { passive: true });
+    if (window.ResizeObserver) { var ro = new ResizeObserver(allit); ro.observe(w); var t = $('table', w); if (t) ro.observe(t); } else window.addEventListener('resize', allit);
   });
 
   // ---------- kód másolása ----------

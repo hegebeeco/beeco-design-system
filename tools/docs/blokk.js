@@ -6,6 +6,8 @@
      szintjéhez igazodik: h2 után h3, h3 után h4; ha az oldalon még nincs h2, a cím nem címsor (nem ugrik szintet).
    • A képek lusta betöltésűek, a hiányzó adat látható „Hiányzik” jelvénnyel és a mező nevével jelenik meg.
    • A „gen” blokkokat az oldal-építő adja (ctx.gen), a motor nem tud a tartalomról.
+   • Ha ugyanaz a jelvény 3-nál többször követi egymást, a 4. és a további kisebb, halványabb (kontúros) jelvényt kap
+     (bb-jelveny-ism) – a szöveg és a képernyőolvasó-név megmarad, csak a vizuális ismétlés csendesedik.
    ============================================================ */
 'use strict';
 const { esc, inl, slug, href, OLDAL_LINK, ic } = require('./alap');
@@ -42,9 +44,10 @@ const JELVENY = {
   hivatalos: ['is-info', 'Hivatalos szöveg'],
   hianyzik: ['is-muted', 'Hiányzik'],
   tilos: ['is-danger', 'Tilos'],
-  korrigalando: ['is-warning', 'Korrigálandó – vázlat, forrás nélkül'],
+  korrigalando: ['is-warning', 'Helyőrző szöveg'],   // a JSON blokk-típus neve (korrigalando) marad; csak a látható felirat érthetőbb
 };
-const jelveny = t => JELVENY[t] ? `<span class="bc-badge ${JELVENY[t][0]}">${JELVENY[t][1]}</span>` : '';
+/** ism = az egymás utáni azonos jelvények 4. és további példánya: kisebb, kontúros (lásd blokkok()). */
+const jelveny = (t, ism) => JELVENY[t] ? `<span class="bc-badge ${JELVENY[t][0]}${ism ? ' bb-jelveny-ism' : ''}">${JELVENY[t][1]}</span>` : '';
 const STATUSZ = { stabil: ['is-success', 'Stabil'], 'béta': ['is-info', 'Béta'], elavult: ['is-danger', 'Elavult'], 'vázlat': ['is-warning', 'Vázlat'] };
 const statuszJelveny = s => STATUSZ[s] ? `<span class="bc-badge ${STATUSZ[s][0]}">${STATUSZ[s][1]}</span>` : '';
 /** Látható „hiányzik” jelzés: a mező nevével, hogy a szerkesztő tudja, mit kell pótolni. */
@@ -88,11 +91,15 @@ function dodont(b, ctx) {
   if (b.allapot === 'javaslat' && !(b.forras && b.forras.length)) ctx.hibak.push(`${ctx.oldal}: javaslat-szintű DO/DON'T forrás nélkül („${b.cim || ''}”)`);
   const c = kartyaCim(ctx, b.cim);
   const parok = (b.parok || []).map(p => `<div class="bb-dd-par">${ddFig(p.jo, true, ctx)}${ddFig(p.rossz, false, ctx)}${p.miert ? `<p class="bb-dd-miert is-kozos">${inl(p.miert)}</p>` : ''}</div>`).join('');
-  return `<section class="bb-dodont"${c.id ? ` aria-labelledby="${esc(c.id)}"` : ''}>${c.html ? `<div class="bb-blokk-fej">${b.allapot === 'szabaly' ? '' : jelveny(b.allapot)}${c.html}</div>` : ''}${parok}${forrasLista(b.forras)}</section>`;
+  return `<section class="bb-dodont"${c.id ? ` aria-labelledby="${esc(c.id)}"` : ''}>${c.html ? `<div class="bb-blokk-fej">${b.allapot === 'szabaly' ? '' : jelveny(b.allapot, ctx.jelvenyIsm)}${c.html}</div>` : ''}${parok}${forrasLista(b.forras)}</section>`;
 }
 
+/** A táblázat burka: oldalra görgethető (bc-table-wrap), billentyűzettel elérhető, a nevét a címéből kapja
+    (cím nélkül az első oszlopfejlécekből). A külső .bb-tabla-burok nem görög: a két szélén halványodó árnyék jelzi, hogy van még tartalom
+    (az is-balra / is-jobbra osztályt a docs.js állítja a görgetés szerint). */
 function tabla(fej, sorok, cim) {
-  return `<div class="bc-table-wrap bb-tabla" tabindex="0" role="region" aria-label="${esc(cim || 'Táblázat')}"><table class="bc-table">${cim ? `<caption class="bc-sr">${esc(cim)}</caption>` : ''}<thead><tr>${fej.map(h => `<th scope="col">${inl(h)}</th>`).join('')}</tr></thead><tbody>${sorok.map(r => `<tr>${r.map((c, i) => i === 0 ? `<th scope="row">${inl(c)}</th>` : `<td>${inl(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  const nev = cim || `Táblázat: ${fej.slice(0, 3).map(h => strip0(h)).join(', ')}`;
+  return `<div class="bb-tabla-burok"><div class="bc-table-wrap bb-tabla" tabindex="0" role="region" aria-label="${esc(nev)}"><table class="bc-table">${cim ? `<caption class="bc-sr">${esc(cim)}</caption>` : ''}<thead><tr>${fej.map(h => `<th scope="col">${inl(h)}</th>`).join('')}</tr></thead><tbody>${sorok.map(r => `<tr>${r.map((c, i) => i === 0 ? `<th scope="row">${inl(c)}</th>` : `<td>${inl(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`;
 }
 const lista = (l, cls = 'bb-list') => `<ul class="${cls}">${(l || []).map(e => `<li>${inl(e)}</li>`).join('')}</ul>`;
 
@@ -125,7 +132,7 @@ function blokk(b, ctx) {
       if (['javaslat', 'hivatalos', 'korrigalando'].includes(b.t) && !(b.forras && b.forras.length)) ctx.hibak.push(`${ctx.oldal}: ${b.t}-blokk forrás nélkül („${b.cim || ''}”)`);
       const c = kartyaCim(ctx, b.cim);
       const tor = (b.x ? [].concat(b.x).map(p => `<p>${inl(p)}</p>`).join('') : '') + (b.elemek ? lista(b.elemek) : '');
-      return `<section class="bb-blokk is-${b.t}"${c.id ? ` aria-labelledby="${esc(c.id)}"` : ''}><div class="bb-blokk-fej">${b.t === 'szabaly' ? '' : jelveny(b.t)}${c.html}</div>${tor}${forrasLista(b.forras)}</section>`;
+      return `<section class="bb-blokk is-${b.t}"${c.id ? ` aria-labelledby="${esc(c.id)}"` : ''}><div class="bb-blokk-fej">${b.t === 'szabaly' ? '' : jelveny(b.t, ctx.jelvenyIsm)}${c.html}</div>${tor}${forrasLista(b.forras)}</section>`;
     }
     case 'pelda': return dodont({ parok: [{ jo: { szoveg: b.jo, forma: b.forma, felirat: b.jo_felirat }, rossz: { szoveg: b.rossz, forma: b.forma, felirat: b.rossz_felirat }, miert: b.miert }] }, ctx);
     case 'dodont': return dodont(b, ctx);
@@ -148,6 +155,21 @@ function blokk(b, ctx) {
     default: ctx.hibak.push(`${ctx.oldal}: ismeretlen blokktípus: ${b.t}`); return '';
   }
 }
-const blokkok = (l, ctx) => (l || []).map(b => blokk(b, ctx)).join('\n');
+/** Melyik jelvényt viseli a blokk (nincs jelvény → null) – az egymás utáni azonosak számlálásához. */
+const jelvenyTipus = b => {
+  const t = b.t === 'dodont' ? (b.cim ? b.allapot : null) : (['javaslat', 'hianyzik', 'tilos', 'hivatalos', 'korrigalando'].includes(b.t) ? b.t : null);
+  return t && t !== 'szabaly' && JELVENY[t] ? t : null;
+};
+const blokkok = (l, ctx) => {
+  let elozo = null, db = 0;
+  const ki = (l || []).map(b => {
+    const t = jelvenyTipus(b);
+    db = t ? (t === elozo ? db + 1 : 1) : 0; elozo = t;
+    ctx.jelvenyIsm = db > 3;
+    return blokk(b, ctx);
+  }).join('\n');
+  ctx.jelvenyIsm = false;
+  return ki;
+};
 
 module.exports = { kornyezet, blokk, blokkok, cimsor, kartyaCim, egyediId, tabla, lista, forrasLista, dodont, ddFig, htmlEllenor, jelveny, statuszJelveny, hianyzikJel };
