@@ -86,6 +86,11 @@ for (const [nev, forras] of OLDALAK) {
     for (const m of h.matchAll(/href="([^"]+)" rel="(?:prev|next)"/g)) if (tervezett.includes(m[1])) hiba(`${hol}: a láncban tervezett oldal: ${m[1]}`);
     for (const m of h.matchAll(/aria-(?:controls|labelledby|describedby)="([^"]+)"/g)) for (const id of m[1].split(/\s+/)) if (!idkOf(p).has(id)) hiba(`${hol}: ARIA-hivatkozás nem létező id-re: ${id}`);
     if (/href="(?:brand|ds):/.test(h)) hiba(`${hol}: feloldatlan brand:/ds: link`);
+    // görgethető táblázat: külső .bb-tabla-burok (görgetés-jelzés) + billentyűzettel elérhető, nevesített régió
+    for (const m of h.matchAll(/<div class="bc-table-wrap bb-tabla[^"]*"([^>]*)>/g)) if (!/\stabindex="0"/.test(m[1]) || !/\srole="region"/.test(m[1]) || !/\saria-label="[^"]+"/.test(m[1])) hiba(`${hol}: a görgethető táblázat burka nem elérhető régió (tabindex=0, role=region, aria-label kell)`);
+    if ((h.match(/class="bc-table-wrap bb-tabla/g) || []).length !== (h.match(/class="bb-tabla-burok"/g) || []).length) hiba(`${hol}: .bb-tabla a .bb-tabla-burok nélkül (nincs görgetés-jelzés)`);
+    if (f !== 'belepes.html' && !/<p class="bb-tetejere"><a href="#tartalom">/.test(h)) hiba(`${hol}: nincs „Vissza a tetejére” link`);
+    if (/Korrigálandó – vázlat/.test(h)) hiba(`${hol}: a „Korrigálandó” blokk látható felirata „Helyőrző szöveg” kell legyen`);
   }
   // linkek és horgonyok: a fő oldalakon és a minta-, képernyő-, sablon-oldalakon is (a kimenetben a repo/ tükör kivételével)
   for (const p of bejar(dir).filter(f => f.endsWith('.html') && !f.includes(`${path.sep}repo${path.sep}`))) {

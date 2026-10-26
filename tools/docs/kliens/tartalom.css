@@ -54,6 +54,12 @@
 .bb-masol-szin .bb-ic { width: 16px; height: 16px; color: var(--bc-ink-soft); }
 @media (hover: hover) and (pointer: fine) { .bb-masol-szin:hover { background: var(--bc-surface-2); border-color: var(--bc-line); } }
 .bb-masol-szin.is-masolva { border-color: var(--bc-success); background: var(--bc-success-bg); }
+/* a HEX-kód és a „Másolva” visszajelzés ugyanazon a helyen áll (rács), így másoláskor nem ugrik a csempe */
+.bb-masol-txt { display: inline-grid; align-items: center; justify-items: start; }
+.bb-masol-txt > * { grid-area: 1 / 1; }
+.bb-masolva-jel { visibility: hidden; font-weight: var(--bc-fw-bold); color: var(--bc-success-ink); }
+.bb-masol-szin.is-masolva .bb-sw-hex { visibility: hidden; }
+.bb-masol-szin.is-masolva .bb-masolva-jel { visibility: visible; }
 .bb-betukartya { padding: var(--bc-sp-4); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
 .bb-betukartya p { margin: 0 0 var(--bc-sp-2); }
 .bb-tipolista { list-style: none; margin: 0; padding: 0; }
@@ -193,8 +199,15 @@
 .bb-sablon-info .bc-btn { gap: var(--bc-sp-2); }
 
 /* ---- régi Do/Don't-minták: partner, fotó, szövegminta, méz-felület ---- */
-.bb-cobrand { display: flex; align-items: center; gap: var(--bc-sp-5); padding: var(--bc-sp-4); background: var(--bc-white); }
-.bb-cobrand-valaszto { width: 2px; align-self: stretch; background: var(--bc-silver); }
+/* Közös logósor: a két logó közti távolság legalább a logó magasságának fele (--bb-cobrand-logo-h: a beeco logó 98 px), az elválasztó vonal mindkét oldalán is;
+   keskeny dobozban (container query a sor saját szélességére) a vonal vízszintessé válik, és a partner-logó új sorba kerül. */
+.bb-cobrand { --bb-cobrand-logo-h: 98px; --bb-cobrand-tav: calc(var(--bb-cobrand-logo-h) / 2); container-type: inline-size; box-sizing: border-box; width: 100%;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--bb-cobrand-tav); padding: var(--bc-sp-4); background: var(--bc-white); }
+.bb-cobrand-valaszto { flex: none; width: 2px; align-self: stretch; background: var(--bc-silver); }
+.bb-cobrand .bb-partner-logo { box-sizing: border-box; max-width: 100%; height: auto; min-height: 58px; padding: var(--bc-sp-2) var(--bc-sp-4); text-align: center; overflow-wrap: anywhere; }
+.bb-cobrand .bb-partner-logo:not(.is-nagy) { min-height: var(--bb-cobrand-logo-h); }   /* a látható magasság egyezik a beeco logóéval */
+.bb-cobrand .bb-partner-logo.is-nagy { min-height: 96px; }
+@container (max-width: 28rem) { .bb-cobrand-valaszto { flex: 0 0 100%; width: auto; height: 2px; align-self: center; } }
 .bb-partner-logo { display: grid; place-items: center; height: 58px; padding: 0 var(--bc-sp-4); font-family: var(--bc-font-display); font-size: var(--bc-fs-l); color: var(--bc-white); background: var(--bc-navy); border-radius: var(--bc-r-s); }
 .bb-partner-logo.is-nagy { height: 96px; font-size: var(--bc-fs-2xl); }
 .bb-logo-kicsi { width: 60px; height: auto; }
