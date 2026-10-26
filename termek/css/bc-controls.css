@@ -32,7 +32,7 @@
 
 /* Változatok: fő (méz) · másodlagos (fehér) · szellem (keret és árnyék nélkül) · veszély (piros) */
 .bc-btn.is-secondary { --_bg: var(--bc-surface); --_ink: var(--bc-ink); }
-.bc-btn.is-danger { --_bg: var(--bc-danger); --_ink: var(--bc-on-accent); }
+.bc-btn.is-danger { --_bg: var(--bc-danger); --_ink: var(--bc-black); }
 .bc-btn.is-ghost { --_bg: transparent; --_ink: var(--bc-ink); --_sh: none; border-color: transparent; }
 .bc-btn.is-ghost:active { transform: none; }
 
