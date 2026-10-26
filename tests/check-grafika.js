@@ -8,6 +8,8 @@
      érték nem tűnhet el, nem nevezhető át, új csak a listába felvéve jöhet;
    - a tokens/hangnem.json minden szerep-képe és tiltott képe feloldható a katalógusból, és fordítva: a katalógusban csak
      létező szerep áll, egy szerep egy tételé; a tiltott tétel forbidden: true, nincs szerepe és nincs kimenete;
+   - a grafika/mesterek.json minden sora létező tételre és létező, szabályos SVG-mesterre mutat (viewBox, nincs Figma-oldalszemét,
+     legfeljebb 600 kB), és a grafika/mester/ minden fájlja szerepel benne;
    - ha van infografika-generátor (tools/infografika/src/figures.js), a figurái a katalógusban vannak, és nem tiltottak
      (ha a fájl megvan, de egy figurát sem talál benne, az is hiba: valószínűleg megváltozott a formátuma).
    ============================================================ */
@@ -93,6 +95,28 @@ for (const kep of hang.tiltott_kepek || []) {
   else if (!byId.get(id).forbidden) hiba(`${id}: a tokens/hangnem.json tiltja, a katalógusban is forbidden: true kell`);
 }
 
+// Nagy felbontású mesterek (Javaslat 28, 4. lépés)
+let mesterek = 0;
+if (fs.existsSync(path.join(ROOT, 'grafika/mesterek.json'))) {
+  const sorok = JSON.parse(rd('grafika/mesterek.json')).items || [];
+  const lista = new Set();
+  for (const m of sorok) {
+    if (!byId.has(m.id)) { hiba(`mesterek.json: ${m.id} nincs a katalógusban`); continue; }
+    if (lista.has(m.master)) hiba(`mesterek.json: a ${m.master} kétszer szerepel`);
+    lista.add(m.master);
+    const hely = path.join(ROOT, m.master || '');
+    if (!m.master || !fs.existsSync(hely)) { hiba(`${m.id}: a mester fájlja nincs meg (${m.master})`); continue; }
+    const t = fs.readFileSync(hely, 'utf8');
+    if (Buffer.byteLength(t) > 600 * 1024) hiba(`${m.id}: a mester ${Math.round(Buffer.byteLength(t) / 1024)} kB (legfeljebb 600)`);
+    if (!/^<svg[^>]*viewBox="[^"]+"/.test(t)) hiba(`${m.id}: a mester SVG-gyökerén nincs viewBox`);
+    const gyoker = (t.match(/^<svg[^>]*>/) || [''])[0];
+    if (/APP DS/.test(t) || /preserveAspectRatio="none"/.test(gyoker)) hiba(`${m.id}: Figma-oldalszemét vagy torzító gyökér-attribútum maradt a mesterben`);
+    mesterek++;
+  }
+  const dir = path.join(ROOT, 'grafika/mester');
+  if (fs.existsSync(dir)) for (const f of fs.readdirSync(dir)) if (!lista.has('grafika/mester/' + f)) hiba(`grafika/mester/${f}: nincs a mesterek.json-ban`);
+}
+
 // Az infografika-generátor figurái (ha a generátor már a repóban van)
 const FIG = 'tools/infografika/src/figures.js';
 let figurak = 0;
@@ -109,4 +133,4 @@ if (fs.existsSync(path.join(ROOT, FIG))) {
 if (hibak.length) { console.log(`check-grafika: ${hibak.length} hiba\n- ` + hibak.join('\n- ')); process.exit(1); }
 const csalad = items.reduce((m, it) => (m[it.family] = (m[it.family] || 0) + 1, m), {});
 console.log(`check-grafika: rendben – ${items.length} tétel (${Object.entries(csalad).map(([k, v]) => `${k} ${v}`).join(', ')}), `
-  + `${byApi.size} apiKey, ${Object.keys(hang.szerepek || {}).length} hangnem-szerep feloldva` + (figurak ? `, ${figurak} infografika-figura` : ''));
+  + `${byApi.size} apiKey, ${Object.keys(hang.szerepek || {}).length} hangnem-szerep feloldva` + (mesterek ? `, ${mesterek} vektoros mester` : '') + (figurak ? `, ${figurak} infografika-figura` : ''));
