@@ -67,6 +67,8 @@ for (const [f, tartalom] of Object.entries(kimenet)) {
   if (most !== szoveg) fs.writeFileSync(hely, szoveg);
 }
 if (check) {
+  const vart = new Set(Object.keys(kimenet));
+  if (fs.existsSync(OUT)) for (const f of fs.readdirSync(OUT)) if (!vart.has(f)) elavult.push(`${f} (nem a generátoré – töröld)`);
   if (elavult.length) { console.log(`grafika-build: elavult a grafika/gen/ (${elavult.join(', ')}) – futtasd: node tools/grafika-build.js`); process.exit(1); }
   console.log('grafika-build: a grafika/gen/ friss');
 } else {
