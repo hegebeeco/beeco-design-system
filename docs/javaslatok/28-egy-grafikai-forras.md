@@ -164,15 +164,15 @@ Flutter-DS fájlnév: `bee_<x>.webp` (Dart-asset, aláhúzással), manifest-név
 | 0 | Ez a lap + leltár; Kristóf döntött (2026-10-26, 8. pont) | – | Kristóf | ✓ |
 | 0b | `LICENSE` a DS-be (a tároló nyilvánosan olvasható, a márkagrafika minden joga fenntartva); a DS `CLAUDE.md` „belső használatú” mondatának átírása erre | DS | Claude → Kristóf jóváhagy | ✓ (ez a PR) |
 | 1 | `grafika/katalogus.json` séma + `check-grafika.js`, feltöltve a méhekkel, madarakkal (a Csicsergősz-figurákkal együtt) és a logóval a leltárból; **fájl nem mozdul** | DS | Claude → Kristóf jóváhagy | ✓ (ez a PR) |
-| 2 | Az ART 619 matricája és az 55 ikon belép a katalógusba (a meglévő metaadatból generálva, nem kézzel) | DS | Claude | 1 |
+| 2 | Az ART 619 matricája és az 55 ikon belép a katalógusba (a meglévő metaadatból generálva, nem kézzel) | DS | Claude | ✓ (2. kör) |
 | 3 | A `hangnem.json` szerepei és az infografika `figures.js` a katalógusból; nincs vizuális változás | DS | Claude | 1 |
 | 4 | Az eredeti, nagy felbontású méhek exportja a beeco Figmájából (SVG vagy ≥ 1024 px), a 61 Figma-változat párosítása az `id`-khez | DS `grafika/` | Claude (Figma-olvasás) + Kristóf átnézi | 0, 1 |
-| 5 | A 34 Figma-jel visszaírása a DS-be (mint a Javaslat 27-ben az ikonoké), `compare` őrrel | DS ← Flutter-DS | Claude, Bence átnézi | 1 |
+| 5 | A 34 Figma-jel visszaírása a DS-be (mint a Javaslat 27-ben az ikonoké), `compare` őrrel | DS ← Flutter-DS | Claude, Bence átnézi | ✓ (2. kör): a DS-ben formai őr (`check-jelek`); a Flutter-DS-oldali egyezés-őr Bence lépése |
 | 6 | A Flutter-DS manifest a katalógusból; a hiányzó 8 app-méh (pl. `inbox_motivation` = `bee-super`) felvétele; formátum; D14 nagy felbontás | Flutter-DS | **Bence** | 1, 4 |
 | 7 | Az app átáll a `beeco_ds` illusztrációira; a duplikált `assets/images/bees/` PNG-k kivezetése; a `ProfilePictureType` és a backend-értékek változatlanok | app | **Bence** | 6 |
 | 8 | Figma „Grafika” oldal a katalógusból (nevek a változatokon) | Figma `APP_PROD` | Claude + a UX-tervező | 1, 4 |
 | 9 | Webflow-képek leltára és átnevezése (`bee-simple.webp`, alt = `hu`); a nyilvános rész jsDelivr-ről | Webflow | Kristóf jóváhagy | 1 |
-| 10 | Csicsergősz-figurák (GaBee, a vörösbegy-pózok, madárkák) a katalógusba (Kristóf: igen) | DS | Claude | 1 |
+| 10 | Csicsergősz-figurák (GaBee, a vörösbegy-pózok, madárkák) a katalógusba (Kristóf: igen) | DS | Claude | ✓ (2. kör) |
 | 11 | A mérges méh kivezetése a profilkép-választóból (Kristóf: nem kell). Átadás Bencének: a `selectableValues` zárja ki az `angry`-t, a backendben meglévő `ANGRY` felhasználók képe továbbra is jelenjen meg (vagy kapjanak alapméhet – az ő döntése); a backend-enumérték nem törlődik | app (+ backend, ha migráció kell) | **Bence** | – |
 | 12 | Az egyszerűsítés a „mosolygós” döntés szerint: a szomorú méh szerepét (`szomoru`, Flutter-DS `systemError`) mosolygós méh veszi át; a nem mosolygós változatok `status: kivezetendo` | DS `hangnem.json` + Flutter-DS alias | Claude (DS), Bence (Flutter-DS) | 1 |
 

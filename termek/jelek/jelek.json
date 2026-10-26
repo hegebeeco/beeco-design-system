@@ -1,0 +1,213 @@
+{
+ "_readme": "A termékbőr és a mobil app (Flutter, beeco_ds) KÖZÖS kétszínű jelkészlete (Javaslat 28, 5. lépés; Kristóf döntése 2026-10-26). Forrás: a beeco Figma APP_PROD fájlja, DS 2.0 oldal, a 2026-10-20-i átadás; a Flutter-DS stickers/ mappájából bájtra azonosan átvéve (beeco-ds-flutter 6b2793e). Szabály (a tests/check-jelek.js őrzi): négyzetes viewBox, data-sticker=\"true\" a gyökéren, csak <path d fill [fill-rule]>, a kitöltés csak ink / honey / paper szerepnév (ink = --bc-ink, honey = --bc-accent, paper = --bc-surface), egy jel legfeljebb 20 000 bájt. Az első sor egy <!-- leírás --> megjegyzés. Új jel előbb a Figmában, aztán ide ÉS a Flutter-DS-be; a két mappa egyezzen.",
+ "jelek": [
+  {
+   "fajl": "house.svg",
+   "nev": "house",
+   "leiras": "Ház (a Kezdőlap jele): fekete ház mézsárga tetővel és ajtóval",
+   "forras": "figma:APP_PROD DS 2.0, D1-house"
+  },
+  {
+   "fajl": "book.svg",
+   "nev": "book",
+   "leiras": "Könyv: nyitott könyv",
+   "forras": "figma:APP_PROD DS 2.0, D2-book"
+  },
+  {
+   "fajl": "ticket.svg",
+   "nev": "ticket",
+   "leiras": "Jegy, kupon: százalékjeles jegy",
+   "forras": "figma:APP_PROD DS 2.0, D3-ticket"
+  },
+  {
+   "fajl": "calendar.svg",
+   "nev": "calendar",
+   "leiras": "Naptár",
+   "forras": "figma:APP_PROD DS 2.0, D4a-calendar"
+  },
+  {
+   "fajl": "droplet.svg",
+   "nev": "droplet",
+   "leiras": "Csepp",
+   "forras": "figma:APP_PROD DS 2.0, D4b-droplet"
+  },
+  {
+   "fajl": "nectar.svg",
+   "nev": "nectar",
+   "leiras": "Nektár: csepp fényfolttal",
+   "forras": "figma:APP_PROD DS 2.0, D6-nectar"
+  },
+  {
+   "fajl": "footprint.svg",
+   "nev": "footprint",
+   "leiras": "Lábnyom",
+   "forras": "figma:APP_PROD DS 2.0, LAB-footprint"
+  },
+  {
+   "fajl": "message.svg",
+   "nev": "message",
+   "leiras": "Üzenet: beszélő buborék szívvel",
+   "forras": "figma:APP_PROD DS 2.0, UZE-message"
+  },
+  {
+   "fajl": "idea.svg",
+   "nev": "idea",
+   "leiras": "Ötlet: villanykörte",
+   "forras": "figma:APP_PROD DS 2.0, OTL-idea"
+  },
+  {
+   "fajl": "pik-apple.svg",
+   "nev": "pik-apple",
+   "leiras": "Alma",
+   "forras": "figma:APP_PROD DS 2.0, pik-apple"
+  },
+  {
+   "fajl": "pik-bag.svg",
+   "nev": "pik-bag",
+   "leiras": "Táska",
+   "forras": "figma:APP_PROD DS 2.0, pik-bag"
+  },
+  {
+   "fajl": "pik-bird-poi.svg",
+   "nev": "pik-bird-poi",
+   "leiras": "Madaras hely: térképtű madárral",
+   "forras": "figma:APP_PROD DS 2.0, pik-bird-poi"
+  },
+  {
+   "fajl": "pik-book-birddex.svg",
+   "nev": "pik-book-birddex",
+   "leiras": "Madárkönyv",
+   "forras": "figma:APP_PROD DS 2.0, pik-book-birddex"
+  },
+  {
+   "fajl": "pik-book.svg",
+   "nev": "pik-book",
+   "leiras": "Könyv (a szögletes készletből)",
+   "forras": "figma:APP_PROD DS 2.0, pik-book"
+  },
+  {
+   "fajl": "pik-box.svg",
+   "nev": "pik-box",
+   "leiras": "Doboz",
+   "forras": "figma:APP_PROD DS 2.0, pik-box"
+  },
+  {
+   "fajl": "pik-click.svg",
+   "nev": "pik-click",
+   "leiras": "Koppintás: kéz és telefon",
+   "forras": "figma:APP_PROD DS 2.0, pik-click"
+  },
+  {
+   "fajl": "competition.svg",
+   "nev": "competition",
+   "leiras": "Verseny, nyereményjáték: serleg csillaggal",
+   "forras": "figma:APP_PROD DS 2.0, pik-competition"
+  },
+  {
+   "fajl": "pik-coupon.svg",
+   "nev": "pik-coupon",
+   "leiras": "Kupon: százalékjeles jegy (a szögletes készletből)",
+   "forras": "figma:APP_PROD DS 2.0, pik-coupon"
+  },
+  {
+   "fajl": "pik-cutlery.svg",
+   "nev": "pik-cutlery",
+   "leiras": "Evőeszköz: kés és villa",
+   "forras": "figma:APP_PROD DS 2.0, pik-cutlery"
+  },
+  {
+   "fajl": "pik-dollar.svg",
+   "nev": "pik-dollar",
+   "leiras": "Dollár",
+   "forras": "figma:APP_PROD DS 2.0, pik-dollar"
+  },
+  {
+   "fajl": "pik-energy-a-plus-plus-plus.svg",
+   "nev": "pik-energy-a-plus-plus-plus",
+   "leiras": "Energiaosztály: A+++",
+   "forras": "figma:APP_PROD DS 2.0, pik-energy-a-plus-plus-plus"
+  },
+  {
+   "fajl": "pik-how-to.svg",
+   "nev": "pik-how-to",
+   "leiras": "Hogyan: kérdőjeles buborék",
+   "forras": "figma:APP_PROD DS 2.0, pik-how-to"
+  },
+  {
+   "fajl": "pik-leaf.svg",
+   "nev": "pik-leaf",
+   "leiras": "Falevél",
+   "forras": "figma:APP_PROD DS 2.0, pik-leaf"
+  },
+  {
+   "fajl": "pik-lightbulb.svg",
+   "nev": "pik-lightbulb",
+   "leiras": "Villanykörte",
+   "forras": "figma:APP_PROD DS 2.0, pik-lightbulb"
+  },
+  {
+   "fajl": "pik-map.svg",
+   "nev": "pik-map",
+   "leiras": "Térkép: Magyarország körvonala tűvel",
+   "forras": "figma:APP_PROD DS 2.0, pik-map"
+  },
+  {
+   "fajl": "pik-message.svg",
+   "nev": "pik-message",
+   "leiras": "Üzenet: buborék szívvel (a szögletes készletből)",
+   "forras": "figma:APP_PROD DS 2.0, pik-message"
+  },
+  {
+   "fajl": "pik-plane.svg",
+   "nev": "pik-plane",
+   "leiras": "Repülő",
+   "forras": "figma:APP_PROD DS 2.0, pik-plane"
+  },
+  {
+   "fajl": "pik-play.svg",
+   "nev": "pik-play",
+   "leiras": "Lejátszás",
+   "forras": "figma:APP_PROD DS 2.0, pik-play"
+  },
+  {
+   "fajl": "pik-post.svg",
+   "nev": "pik-post",
+   "leiras": "Posta: boríték",
+   "forras": "figma:APP_PROD DS 2.0, pik-post"
+  },
+  {
+   "fajl": "pik-recycled.svg",
+   "nev": "pik-recycled",
+   "leiras": "Újrahasznosított",
+   "forras": "figma:APP_PROD DS 2.0, pik-recycled"
+  },
+  {
+   "fajl": "pik-share.svg",
+   "nev": "pik-share",
+   "leiras": "Megosztás: három pont összekötve",
+   "forras": "figma:APP_PROD DS 2.0, pik-share"
+  },
+  {
+   "fajl": "pik-snowflake.svg",
+   "nev": "pik-snowflake",
+   "leiras": "Hópehely",
+   "forras": "figma:APP_PROD DS 2.0, pik-snowflake"
+  },
+  {
+   "fajl": "pik-train.svg",
+   "nev": "pik-train",
+   "leiras": "Vonat",
+   "forras": "figma:APP_PROD DS 2.0, pik-train"
+  },
+  {
+   "fajl": "pik-trash-bin.svg",
+   "nev": "pik-trash-bin",
+   "leiras": "Kuka",
+   "forras": "figma:APP_PROD DS 2.0, pik-trash-bin"
+  }
+ ],
+ "regi_nevek": {
+  "pik-competition": "competition",
+  "sweepstakes": "competition"
+ }
+}
