@@ -1,0 +1,2439 @@
+{
+ "_readme": "A beeco grafikai katalógusa (Javaslat 28, 1. lépés, Kristóf döntése 2026-10-26: a mester a publikus DS). Egy tétel = egy rajz. Az id soha nem változik; a régi nevek az aliases-ban élnek, a fogyasztóknál nem kell átnevezni. Mezők és szabályok: grafika/README.md. Őr: tests/check-grafika.js. A kódból rajzolt matricák (ART, 619) és az 55 ikon a 2. lépésben jönnek.",
+ "version": 1,
+ "items": [
+  {
+   "id": "bee-angry",
+   "family": "bee",
+   "hu": "Mérges méh",
+   "en": "Angry bee",
+   "forbidden": true,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/angry",
+    "web": "web/assets/brand/bee-angry.webp",
+    "apiKey": "ANGRY"
+   },
+   "outputs": [],
+   "status": "kivezetendo",
+   "note": "Tiltott (tokens/hangnem.json). Kristóf 2026-10-26: kikerül az app profilkép-választójából (Bence végzi; a backend-érték marad)."
+  },
+  {
+   "id": "bee-baby",
+   "family": "bee",
+   "hu": "Kölyökméh",
+   "en": "Baby bee",
+   "roles": [
+    "szurkolo"
+   ],
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/baby",
+    "web": "web/assets/brand/bee-cheer.webp",
+    "flutter": "bee-baby",
+    "apiKey": "BABY",
+    "sprite": "dist/meh/szurkolo",
+    "infografika": "bee-cheer"
+   },
+   "outputs": [
+    "flutter",
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv",
+   "note": "A bee-cheer párja szemre hasonló, de nem biztosan azonos rajz."
+  },
+  {
+   "id": "bee-beer",
+   "family": "bee",
+   "hu": "Söröskorsó-méh",
+   "en": "Beer mug bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/beer",
+    "flutter": "bee-beer",
+    "apiKey": "BEER"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-belt-bag",
+   "family": "bee",
+   "hu": "Övtáskás méh",
+   "en": "Bee with belt bag",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/belt_bag",
+    "flutter": "bee-belt-bag",
+    "apiKey": "BELT_BAG"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-big-flower",
+   "family": "bee",
+   "hu": "Nagy virágban ülő méh",
+   "en": "Bee in a big flower",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/big_flower",
+    "flutter": "bee-big-flower",
+    "apiKey": "BIG_FLOWER"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-birthday",
+   "family": "bee",
+   "hu": "Szülinapos méh",
+   "en": "Birthday bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/birthday",
+    "flutter": "bee-birthday",
+    "apiKey": "BIRTHDAY"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-black-glasses",
+   "family": "bee",
+   "hu": "Fekete szemüveges méh",
+   "en": "Bee with black glasses",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/black_glasses",
+    "web": "web/assets/brand/roles/greenwash.webp",
+    "flutter": "bee-black-glasses",
+    "apiKey": "BLACK_GLASSES"
+   },
+   "outputs": [
+    "flutter",
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-blink",
+   "family": "bee",
+   "hu": "Kacsintó méh",
+   "en": "Winking bee",
+   "roles": [
+    "kacsinto"
+   ],
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/blink",
+    "web": "web/assets/brand/roles/kacsint.webp",
+    "flutter": "bee-blink",
+    "apiKey": "BLINK"
+   },
+   "outputs": [
+    "flutter",
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-book-flower",
+   "family": "bee",
+   "hu": "Könyves, virágos méh",
+   "en": "Bee with book and flower",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/book_flower",
+    "flutter": "bee-book-flower",
+    "apiKey": "BOOK_FLOWER"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-book-glasses",
+   "family": "bee",
+   "hu": "Olvasó, szemüveges méh",
+   "en": "Reading bee with glasses",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/book_glasses",
+    "web": "web/assets/brand/roles/impact.webp",
+    "flutter": "bee-book-glasses",
+    "apiKey": "BOOK_GLASSES"
+   },
+   "outputs": [
+    "flutter",
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-book-hat",
+   "family": "bee",
+   "hu": "Tekercses tudós méh",
+   "en": "Scholar bee with scroll",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/book_hat",
+    "flutter": "bee-book-hat",
+    "apiKey": "BOOK_HAT"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-boxing",
+   "family": "bee",
+   "hu": "Bokszoló méh",
+   "en": "Boxing bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/boxing",
+    "flutter": "bee-boxing",
+    "apiKey": "BOXING"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-cap",
+   "family": "bee",
+   "hu": "Sapkás méh",
+   "en": "Bee with cap",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/cap",
+    "web": "web/assets/brand/roles/szelektalj.webp",
+    "flutter": "bee-cap",
+    "apiKey": "CAP"
+   },
+   "outputs": [
+    "flutter",
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-carrot",
+   "family": "bee",
+   "hu": "Répás méh",
+   "en": "Bee with carrot",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/carrot",
+    "flutter": "bee-carrot",
+    "apiKey": "CARROT"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-cartographer",
+   "family": "bee",
+   "hu": "Térképész méh",
+   "en": "Cartographer bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/cartographer",
+    "web": "web/assets/brand/roles/rezsi.webp",
+    "flutter": "bee-cartographer",
+    "apiKey": "CARTOGRAPHER"
+   },
+   "outputs": [
+    "flutter",
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-chemical",
+   "family": "bee",
+   "hu": "Vegyész méh",
+   "en": "Chemist bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/chemical",
+    "flutter": "bee-chemical",
+    "apiKey": "CHEMICAL"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-computer",
+   "family": "bee",
+   "hu": "Laptopos méh",
+   "en": "Bee with laptop",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/computer",
+    "flutter": "bee-computer",
+    "apiKey": "COMPUTER"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-cook",
+   "family": "bee",
+   "hu": "Szakács méh",
+   "en": "Chef bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/cook",
+    "web": "web/assets/brand/roles/huto.webp",
+    "flutter": "bee-cook",
+    "apiKey": "COOK"
+   },
+   "outputs": [
+    "flutter",
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-cook-knife",
+   "family": "bee",
+   "hu": "Késes szakács méh",
+   "en": "Chef bee with knife",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/cook_knife",
+    "flutter": "bee-cook-knife",
+    "apiKey": "COOK_KNIFE"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-cook-read",
+   "family": "bee",
+   "hu": "Receptet olvasó szakács méh",
+   "en": "Chef bee reading a recipe",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/cook_read",
+    "flutter": "bee-cook-read",
+    "apiKey": "COOK_READ"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-cooking-bowl",
+   "family": "bee",
+   "hu": "Habverős szakács méh",
+   "en": "Chef bee with bowl and whisk",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/cooking_bowl",
+    "flutter": "bee-cooking-bowl",
+    "apiKey": "COOKING_BOWL"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-cool-white-blue",
+   "family": "bee",
+   "hu": "Menő kék-fehér méh",
+   "en": "Cool blue-and-white bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/cool_white_blue",
+    "web": "web/assets/brand/roles/jovo.webp",
+    "flutter": "bee-cool-white-blue",
+    "apiKey": "COOL_WHITE_BLUE"
+   },
+   "outputs": [
+    "flutter",
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-coupon",
+   "family": "bee",
+   "hu": "Kuponos méh",
+   "en": "Bee with coupons",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/coupon",
+    "flutter": "bee-coupon",
+    "apiKey": "COUPON"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-cowboy",
+   "family": "bee",
+   "hu": "Cowboy méh",
+   "en": "Cowboy bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/cowboy",
+    "flutter": "bee-cowboy",
+    "apiKey": "COWBOY"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-crown",
+   "family": "bee",
+   "hu": "Koronás méh",
+   "en": "Crowned bee",
+   "roles": [
+    "bajnok"
+   ],
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/crown",
+    "web": "web/assets/brand/moods/rank.webp",
+    "flutter": "bee-crown",
+    "apiKey": "CROWN",
+    "sprite": "dist/meh/bajnok",
+    "infografika": "bee-rank"
+   },
+   "outputs": [
+    "flutter",
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-cry-with-trees",
+   "family": "bee",
+   "hu": "Síró méh fákkal",
+   "en": "Crying bee with trees",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/cry_with_trees"
+   },
+   "outputs": [],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-crying",
+   "family": "bee",
+   "hu": "Síró méh",
+   "en": "Crying bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/crying",
+    "flutter": "bee-crying",
+    "apiKey": "CRYING"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv",
+   "note": "A Flutter-DS systemError aliasa; Kristóf 2026-10-26: szerepben mosolygós méh kell (Javaslat 28, 12. lépés)."
+  },
+  {
+   "id": "bee-diva",
+   "family": "bee",
+   "hu": "Díva méh",
+   "en": "Diva bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/diva",
+    "flutter": "bee-diva",
+    "apiKey": "DIVA"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-eco-compass",
+   "family": "bee",
+   "hu": "Ökoiránytűs méh",
+   "en": "Bee with eco compass",
+   "roles": [
+    "kalauz"
+   ],
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/eco_compass",
+    "web": "web/assets/brand/moods/help.webp",
+    "flutter": "bee-eco-compass",
+    "apiKey": "ECO_COMPASS",
+    "infografika": "bee-help"
+   },
+   "outputs": [
+    "flutter",
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-farmer-hat",
+   "family": "bee",
+   "hu": "Szalmakalapos méh",
+   "en": "Bee with straw hat",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/farmer_hat",
+    "flutter": "bee-farmer-hat",
+    "apiKey": "FARMER_HAT"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-flower-background",
+   "family": "bee",
+   "hu": "Virágok közti méh",
+   "en": "Bee among flowers",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/flower_background",
+    "flutter": "bee-flower-background",
+    "apiKey": "FLOWER_BACKGROUND"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-flower-haired",
+   "family": "bee",
+   "hu": "Virághajú méh",
+   "en": "Flower-haired bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/flower_haired",
+    "flutter": "bee-flower-haired",
+    "apiKey": "FLOWER_HAIRED"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-flower-shaped-sunglasses",
+   "family": "bee",
+   "hu": "Virág alakú napszemüveges méh",
+   "en": "Bee with flower-shaped sunglasses",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/flower_shaped_sunglasses",
+    "flutter": "bee-flower-shaped-sunglasses",
+    "apiKey": "FLOWER_SHAPED_SUNGLASSES"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-flower-sunglasses",
+   "family": "bee",
+   "hu": "Virágos napszemüveges méh",
+   "en": "Bee with floral sunglasses",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/flower_sunglasses",
+    "flutter": "bee-flower-sunglasses",
+    "apiKey": "FLOWER_SUNGLASSES"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-full-green",
+   "family": "bee",
+   "hu": "Zöld leveles méh növénnyel",
+   "en": "Leafy green bee with plant",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/full_green",
+    "flutter": "bee-full-green",
+    "apiKey": "FULL_GREEN"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-glasses",
+   "family": "bee",
+   "hu": "Szemüveges méh",
+   "en": "Bee with glasses",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/glasses",
+    "flutter": "bee-glasses",
+    "apiKey": "GLASSES"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-green-glasses",
+   "family": "bee",
+   "hu": "Zöld szemüveges méh",
+   "en": "Bee with green glasses",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/green_glasses",
+    "flutter": "bee-green-glasses",
+    "apiKey": "GREEN_GLASSES"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-green-heart",
+   "family": "bee",
+   "hu": "Szerelmes méh",
+   "en": "Bee in love",
+   "roles": [
+    "halas"
+   ],
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "style": "barna-csik",
+   "aliases": {
+    "app": "bees/green_heart",
+    "web": "web/assets/brand/moods/love.webp",
+    "flutter": "bee-green-heart",
+    "apiKey": "GREEN_HEART",
+    "infografika": "bee-love"
+   },
+   "outputs": [
+    "flutter",
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv",
+   "note": "A hivatalos szerelmes méh (barna csík, Kristóf 2026-10-26). Vigyázat: az infografika „bee-love” neve ezt jelenti, nem a bee-love tételt (a régi, fekete csíkos változatot)."
+  },
+  {
+   "id": "bee-hat",
+   "family": "bee",
+   "hu": "Diplomasapkás méh",
+   "en": "Graduate bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/hat",
+    "flutter": "bee-hat",
+    "apiKey": "HAT"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-hat-flowers",
+   "family": "bee",
+   "hu": "Kalapos méh virágokkal",
+   "en": "Bee with hat and flowers",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/hat_flowers",
+    "flutter": "bee-hat-flowers",
+    "apiKey": "HAT_FLOWERS"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-hat-glasses",
+   "family": "bee",
+   "hu": "Diplomasapkás, szemüveges méh",
+   "en": "Graduate bee with glasses",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/hat_glasses",
+    "flutter": "bee-hat-glasses",
+    "apiKey": "HAT_GLASSES"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-hat-mustache",
+   "family": "bee",
+   "hu": "Cilinderes, bajuszos méh",
+   "en": "Top-hat bee with moustache",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/hat_mustache",
+    "flutter": "bee-hat-mustache",
+    "apiKey": "HAT_MUSTACHE"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-hat-sunglasses",
+   "family": "bee",
+   "hu": "Bukósisakos, napszemüveges méh",
+   "en": "Bee with helmet and sunglasses",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/hat_sunglasses",
+    "flutter": "bee-hat-sunglasses",
+    "apiKey": "HAT_SUNGLASSES"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-headphones-sunglasses",
+   "family": "bee",
+   "hu": "Fejhallgatós méh",
+   "en": "Bee with headphones",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/headphones_sunglasses",
+    "flutter": "bee-headphones-sunglasses",
+    "apiKey": "HEADPHONES_SUNGLASSES"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-hungry",
+   "family": "bee",
+   "hu": "Éhes méh",
+   "en": "Hungry bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/hungry",
+    "flutter": "bee-hungry",
+    "apiKey": "HUNGRY"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-inbox-motivation",
+   "family": "bee",
+   "hu": "Hős méh",
+   "en": "Superhero bee",
+   "roles": [
+    "futar"
+   ],
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "style": "barna-csik",
+   "aliases": {
+    "app": "bees/inbox_motivation",
+    "web": "web/assets/brand/bee-super.webp",
+    "sprite": "dist/meh/futar",
+    "infografika": "bee-super"
+   },
+   "outputs": [
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv",
+   "note": "A hivatalos hős méh (Kristóf 2026-10-26). A neve használatot ír le: vizuális id-ről Kristóf dönt. A Flutter-DS-ből hiányzik."
+  },
+  {
+   "id": "bee-inbox-news",
+   "family": "bee",
+   "hu": "Hírhozó méh tekerccsel",
+   "en": "News bee with scroll",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/inbox_news"
+   },
+   "outputs": [],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-laugh-cry",
+   "family": "bee",
+   "hu": "Könnyesre nevető méh",
+   "en": "Bee laughing to tears",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/laugh_cry",
+    "flutter": "bee-laugh-cry",
+    "apiKey": "LAUGH_CRY"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-love",
+   "family": "bee",
+   "hu": "Szerelmes méh, régi (piros szív)",
+   "en": "Bee with red heart (old)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "style": "fekete-csik",
+   "aliases": {
+    "app": "bees/love",
+    "flutter": "bee-love",
+    "apiKey": "LOVE"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "kivezetendo",
+   "note": "A hivatalos szerelmes méh a bee-green-heart (barna csík, Kristóf 2026-10-26). Ez szerepben kivezetendő; profilképként Bence dönt."
+  },
+  {
+   "id": "bee-math",
+   "family": "bee",
+   "hu": "Számoló méh",
+   "en": "Maths bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/math",
+    "flutter": "bee-math",
+    "apiKey": "MATH"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-mobile",
+   "family": "bee",
+   "hu": "Telefonos méh",
+   "en": "Bee with phone",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/mobile",
+    "flutter": "bee-mobile",
+    "apiKey": "MOBILE"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-mobile-glasses",
+   "family": "bee",
+   "hu": "Szemüveges, telefonos méh",
+   "en": "Bee with phone and glasses",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/mobile_glasses",
+    "flutter": "bee-mobile-glasses",
+    "apiKey": "MOBILE_GLASSES"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-mobile-sad",
+   "family": "bee",
+   "hu": "Szomorú telefonos méh",
+   "en": "Sad bee with phone",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/mobile_sad"
+   },
+   "outputs": [],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-non-selected",
+   "family": "bee",
+   "hu": "Nincs kiválasztva (helyőrző)",
+   "en": "Not selected (placeholder)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/non_selected"
+   },
+   "outputs": [],
+   "status": "aktiv",
+   "note": "Helyőrző, nem méhrajz."
+  },
+  {
+   "id": "bee-old",
+   "family": "bee",
+   "hu": "Idős méh",
+   "en": "Old bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/old",
+    "flutter": "bee-old",
+    "apiKey": "OLD"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-paint",
+   "family": "bee",
+   "hu": "Festő méh",
+   "en": "Painter bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/paint",
+    "flutter": "bee-paint",
+    "apiKey": "PAINT"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-plant-scissors",
+   "family": "bee",
+   "hu": "Kertész méh ollóval",
+   "en": "Gardener bee with scissors",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/plant_scissors",
+    "flutter": "bee-plant-scissors",
+    "apiKey": "PLANT_SCISSORS"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-potted-flower-boy",
+   "family": "bee",
+   "hu": "Cserepes virágos méh (fiú)",
+   "en": "Bee with potted flower (boy)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/potted_flower_boy",
+    "flutter": "bee-potted-flower-boy",
+    "apiKey": "POTTED_FLOWER_BOY"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-potted-flower-girl",
+   "family": "bee",
+   "hu": "Cserepes virágos méh (lány)",
+   "en": "Bee with potted flower (girl)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/potted_flower_girl",
+    "flutter": "bee-potted-flower-girl",
+    "apiKey": "POTTED_FLOWER_GIRL"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-question-mark",
+   "family": "bee",
+   "hu": "Gondolkodó méh",
+   "en": "Thinking bee",
+   "roles": [
+    "gondolkodo"
+   ],
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/question_mark",
+    "web": "web/assets/brand/moods/think.webp",
+    "sprite": "dist/meh/gondolkodo",
+    "infografika": "bee-think"
+   },
+   "outputs": [
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv",
+   "note": "Az app profilkép-enumjában van, de nem választható, és mentéskor SIMPLE-ként megy a backendre: nincs saját apiKey-e."
+  },
+  {
+   "id": "bee-rasta",
+   "family": "bee",
+   "hu": "Raszta méh",
+   "en": "Rasta bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/rasta",
+    "flutter": "bee-rasta",
+    "apiKey": "RASTA"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-red-phone",
+   "family": "bee",
+   "hu": "Piros telefonos méh",
+   "en": "Bee with red phone",
+   "roles": [
+    "hirvivo"
+   ],
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/red_phone",
+    "web": "web/assets/brand/bee-phone.webp",
+    "flutter": "bee-red-phone",
+    "apiKey": "RED_PHONE",
+    "infografika": "bee-phone"
+   },
+   "outputs": [
+    "flutter",
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-robot",
+   "family": "bee",
+   "hu": "Robotméh",
+   "en": "Robot bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/robot",
+    "flutter": "bee-robot",
+    "apiKey": "ROBOT"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-rock",
+   "family": "bee",
+   "hu": "Kőméh",
+   "en": "Rock bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/rock",
+    "flutter": "bee-rock",
+    "apiKey": "ROCK"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-rolled-up-sunglasses",
+   "family": "bee",
+   "hu": "Feltolt napszemüveges méh",
+   "en": "Bee with sunglasses pushed up",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/rolled_up_sunglasses",
+    "flutter": "bee-rolled-up-sunglasses",
+    "apiKey": "ROLLED_UP_SUNGLASSES"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-sick",
+   "family": "bee",
+   "hu": "Beteg méh",
+   "en": "Sick bee",
+   "roles": [
+    "szomoru"
+   ],
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/sick",
+    "web": "web/assets/brand/bee-sad.webp",
+    "flutter": "bee-sick",
+    "apiKey": "SICK",
+    "infografika": "bee-sad"
+   },
+   "outputs": [
+    "flutter",
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv",
+   "note": "A szomoru szerep képe; Kristóf 2026-10-26: szerepben mosolygós méh kell (Javaslat 28, 12. lépés)."
+  },
+  {
+   "id": "bee-simple",
+   "family": "bee",
+   "hu": "Egyszerű méh",
+   "en": "Plain bee",
+   "roles": [
+    "hazigazda"
+   ],
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/simple",
+    "web": "web/assets/brand/bee-happy.webp",
+    "flutter": "bee-simple",
+    "apiKey": "SIMPLE",
+    "sprite": "dist/meh/hazigazda",
+    "infografika": "bee-happy"
+   },
+   "outputs": [
+    "flutter",
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-skateboard",
+   "family": "bee",
+   "hu": "Gördeszkás méh",
+   "en": "Skateboarding bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/skateboard",
+    "flutter": "bee-skateboard",
+    "apiKey": "SKATEBOARD"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-sleepy",
+   "family": "bee",
+   "hu": "Álmos méh",
+   "en": "Sleepy bee",
+   "roles": [
+    "piheno"
+   ],
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/sleepy",
+    "web": "web/assets/brand/moods/rest.webp",
+    "flutter": "bee-sleepy",
+    "apiKey": "SLEEPY",
+    "sprite": "dist/meh/piheno",
+    "infografika": "bee-rest"
+   },
+   "outputs": [
+    "flutter",
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-snapback",
+   "family": "bee",
+   "hu": "Baseballsapkás méh",
+   "en": "Bee with snapback",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/snapback",
+    "flutter": "bee-snapback",
+    "apiKey": "SNAPBACK"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-sunglasses",
+   "family": "bee",
+   "hu": "Piros napszemüveges méh",
+   "en": "Bee with red sunglasses",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/sunglasses",
+    "flutter": "bee-sunglasses",
+    "apiKey": "SUNGLASSES"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-sunglasses-beard",
+   "family": "bee",
+   "hu": "Szakállas, napszemüveges méh",
+   "en": "Bearded bee with sunglasses",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/sunglasses_beard",
+    "flutter": "bee-sunglasses-beard",
+    "apiKey": "SUNGLASSES_BEARD"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-superhero",
+   "family": "bee",
+   "hu": "Hős méh, régi (fekete csík)",
+   "en": "Superhero bee (old)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "style": "fekete-csik",
+   "aliases": {
+    "app": "bees/superhero",
+    "flutter": "bee-superhero",
+    "apiKey": "SUPERHERO"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "kivezetendo",
+   "note": "A hivatalos hős méh a bee-inbox-motivation (barna csík, Kristóf 2026-10-26). Ez szerepben kivezetendő; profilképként Bence dönt."
+  },
+  {
+   "id": "bee-superhero-group",
+   "family": "bee",
+   "hu": "Hősméh-raj",
+   "en": "Superhero bee swarm",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/superhero_group"
+   },
+   "outputs": [],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-superhero-mask",
+   "family": "bee",
+   "hu": "Álarcos hős méh",
+   "en": "Masked superhero bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/superhero_mask",
+    "flutter": "bee-superhero-mask",
+    "apiKey": "SUPERHERO_MASK"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-ticket-inspector",
+   "family": "bee",
+   "hu": "Jegyellenőr méh",
+   "en": "Ticket inspector bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/ticket_inspector",
+    "flutter": "bee-ticket-inspector",
+    "apiKey": "TICKET_INSPECTOR"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-tie",
+   "family": "bee",
+   "hu": "Csokornyakkendős méh",
+   "en": "Bee with bow tie",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/tie",
+    "flutter": "bee-tie",
+    "apiKey": "TIE"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-transparent-sunglasses",
+   "family": "bee",
+   "hu": "Barna napszemüveges méh",
+   "en": "Bee with tinted glasses",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/transparent_sunglasses",
+    "flutter": "bee-transparent-sunglasses",
+    "apiKey": "TRANSPARENT_SUNGLASSES"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-two-flowers",
+   "family": "bee",
+   "hu": "Kétvirágos méh",
+   "en": "Bee with two flowers",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/two_flowers",
+    "flutter": "bee-two-flowers",
+    "apiKey": "TWO_FLOWERS"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-unshaven-laptop",
+   "family": "bee",
+   "hu": "Borostás, laptopos méh",
+   "en": "Stubbly bee with laptop",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/unshaven_laptop",
+    "flutter": "bee-unshaven-laptop",
+    "apiKey": "UNSHAVEN_LAPTOP"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-violin",
+   "family": "bee",
+   "hu": "Hegedűs méh",
+   "en": "Violinist bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/violin",
+    "flutter": "bee-violin",
+    "apiKey": "VIOLIN"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-watering-plants",
+   "family": "bee",
+   "hu": "Locsoló méh",
+   "en": "Watering bee",
+   "roles": [
+    "tevekeny"
+   ],
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/watering_plants",
+    "web": "web/assets/brand/moods/action.webp",
+    "flutter": "bee-watering-plants",
+    "apiKey": "WATERING_PLANTS",
+    "infografika": "bee-action"
+   },
+   "outputs": [
+    "flutter",
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-whale-socks-computer",
+   "family": "bee",
+   "hu": "Bálnás zoknis, laptopos méh",
+   "en": "Bee with whale socks and laptop",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/whale_socks_computer",
+    "flutter": "bee-whale-socks-computer",
+    "apiKey": "WHALE_SOCKS_COMPUTER"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-whitened-flowers",
+   "family": "bee",
+   "hu": "Halvány méh virággal",
+   "en": "Pale bee with flowers",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "beeco csapat",
+    "figma": "APP_PROD – Bee profile picture (new)"
+   },
+   "aliases": {
+    "app": "bees/whitened_flowers",
+    "flutter": "bee-whitened-flowers",
+    "apiKey": "WHITENED_FLOWERS"
+   },
+   "outputs": [
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-role-pollinator",
+   "family": "bee-role",
+   "hu": "Beporzó méh",
+   "en": "Pollinator bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "tools/meh-szerepek/beporzo.html",
+    "note": "bee-happy + kódból rajzolt kellék"
+   },
+   "aliases": {
+    "web": "web/assets/brand/roles/beporzo.webp"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-role-living-garden",
+   "family": "bee-role",
+   "hu": "Élő kert méhe",
+   "en": "Living garden bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "tools/meh-szerepek/elo-kert.html",
+    "note": "bee-happy + kódból rajzolt kellék"
+   },
+   "aliases": {
+    "web": "web/assets/brand/roles/elo-kert.webp"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-role-food-rescue",
+   "family": "bee-role",
+   "hu": "Ételmentő méh",
+   "en": "Food rescue bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "tools/meh-szerepek/etelmento.html",
+    "note": "bee-happy + kódból rajzolt kellék"
+   },
+   "aliases": {
+    "web": "web/assets/brand/roles/etelmento.webp"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-role-circular-economy",
+   "family": "bee-role",
+   "hu": "Körforgó méh",
+   "en": "Circular economy bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "tools/meh-szerepek/korforgo.html",
+    "note": "bee-happy + kódból rajzolt kellék"
+   },
+   "aliases": {
+    "web": "web/assets/brand/roles/korforgo.webp"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bee-role-mayor",
+   "family": "bee-role",
+   "hu": "Polgármester méh",
+   "en": "Mayor bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "tools/meh-szerepek/polgarmester.html",
+    "note": "bee-happy + kódból rajzolt kellék"
+   },
+   "aliases": {
+    "web": "web/assets/brand/roles/polgarmester.webp"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "gabee",
+   "family": "gabee",
+   "hu": "GaBee, a Csicsergősz méhe",
+   "en": "GaBee, the Csicsergősz bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-csapat"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/bor_gabee.svg",
+    "app": "csicsergosz/onboarding_gabee"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "note": "Kristóf 2026-10-26: a Csicsergősz-figurák a közös katalógusba kerülnek. Az app további kivágásai (wizard_book_gabee, care_success_bee, autumn_bee_reader) külön Figma-exportok."
+  },
+  {
+   "id": "bird-goose",
+   "family": "bird-madarka",
+   "hu": "Liba (madárka)",
+   "en": "Goose (polygon style)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-csapat"
+   },
+   "aliases": {
+    "web": "brandbook/illusztraciok/madarkak/liba.svg",
+    "infografika": "bird-goose"
+   },
+   "outputs": [
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bird-blackbird",
+   "family": "bird-madarka",
+   "hu": "Rigó (madárka)",
+   "en": "Blackbird (polygon style)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-csapat"
+   },
+   "aliases": {
+    "web": "brandbook/illusztraciok/madarkak/rigo.svg",
+    "infografika": "bird-blackbird",
+    "app": "csicsergosz/bird_wizard_blackbird"
+   },
+   "outputs": [
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bird-crow",
+   "family": "bird-madarka",
+   "hu": "Varjú (madárka)",
+   "en": "Crow (polygon style)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-csapat"
+   },
+   "aliases": {
+    "web": "brandbook/illusztraciok/madarkak/varju.svg",
+    "infografika": "bird-crow"
+   },
+   "outputs": [
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bird-sparrow",
+   "family": "bird-madarka",
+   "hu": "Veréb (madárka)",
+   "en": "Sparrow (polygon style)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-csapat"
+   },
+   "aliases": {
+    "web": "brandbook/illusztraciok/madarkak/vereb.svg",
+    "infografika": "bird-sparrow"
+   },
+   "outputs": [
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bird-robin",
+   "family": "bird-robin",
+   "hu": "Vörösbegy",
+   "en": "Robin",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/poz_alap.svg",
+    "infografika": "bird-robin",
+    "app": "csicsergosz/observation_count_robin"
+   },
+   "outputs": [
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bird-robin-sing",
+   "family": "bird-robin",
+   "hu": "Vörösbegy – csicsereg",
+   "en": "Robin singing",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/poz_csicsereg.svg",
+    "infografika": "bird-robin-sing"
+   },
+   "outputs": [
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bird-robin-drink",
+   "family": "bird-robin",
+   "hu": "Vörösbegy – iszik",
+   "en": "Robin drinking",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/poz_iszik.svg",
+    "infografika": "bird-robin-drink"
+   },
+   "outputs": [
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bird-robin-fly",
+   "family": "bird-robin",
+   "hu": "Vörösbegy – repdes",
+   "en": "Robin flying",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/poz_repdes.svg",
+    "infografika": "bird-robin-fly"
+   },
+   "outputs": [
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bird-robin-sad",
+   "family": "bird-robin",
+   "hu": "Vörösbegy – szomorú",
+   "en": "Robin sad",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/poz_szomoru.svg",
+    "infografika": "bird-robin-sad"
+   },
+   "outputs": [
+    "web",
+    "infografika"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "bird-render-buzzard-side",
+   "family": "bird-species",
+   "hu": "Egerészölyv (oldalnézet, ágon)",
+   "en": "Buzzard side",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "madargyar",
+    "source": "bird-catalog/madargyar"
+   },
+   "aliases": {
+    "web": "brandbook/illusztraciok/v4/egereszolyv-oldal.webp"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "note": "A Madárgyár kimenetének másolata; a fajképek mestere a Madárgyár (Bence repója, backend-export)."
+  },
+  {
+   "id": "bird-render-buzzard-34",
+   "family": "bird-species",
+   "hu": "Egerészölyv (félig felénk fordulva)",
+   "en": "Buzzard (three quarter view)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "madargyar",
+    "source": "bird-catalog/madargyar"
+   },
+   "aliases": {
+    "web": "brandbook/illusztraciok/v4/egereszolyv-34.webp"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "note": "A Madárgyár kimenetének másolata; a fajképek mestere a Madárgyár (Bence repója, backend-export)."
+  },
+  {
+   "id": "bird-render-mallard-male",
+   "family": "bird-species",
+   "hu": "Tőkés réce hím (oldalnézet, áll)",
+   "en": "Mallard male",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "madargyar",
+    "source": "bird-catalog/madargyar"
+   },
+   "aliases": {
+    "web": "brandbook/illusztraciok/v4/tokes-rece-him.webp"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "note": "A Madárgyár kimenetének másolata; a fajképek mestere a Madárgyár (Bence repója, backend-export)."
+  },
+  {
+   "id": "bird-render-mallard-male-34",
+   "family": "bird-species",
+   "hu": "Tőkés réce hím (félig felénk fordulva)",
+   "en": "Mallard male (three quarter view)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "madargyar",
+    "source": "bird-catalog/madargyar"
+   },
+   "aliases": {
+    "web": "brandbook/illusztraciok/v4/tokes-rece-him-34.webp"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "note": "A Madárgyár kimenetének másolata; a fajképek mestere a Madárgyár (Bence repója, backend-export)."
+  },
+  {
+   "id": "bird-render-mallard-female",
+   "family": "bird-species",
+   "hu": "Tőkés réce tojó (oldalnézet, áll)",
+   "en": "Mallard female",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "madargyar",
+    "source": "bird-catalog/madargyar"
+   },
+   "aliases": {
+    "web": "brandbook/illusztraciok/v4/tokes-rece-tojo.webp"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "note": "A Madárgyár kimenetének másolata; a fajképek mestere a Madárgyár (Bence repója, backend-export)."
+  },
+  {
+   "id": "bird-render-barn-swallow",
+   "family": "bird-species",
+   "hu": "Füsti fecske (vezetéken)",
+   "en": "Barn swallow",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "madargyar",
+    "source": "bird-catalog/madargyar"
+   },
+   "aliases": {
+    "web": "brandbook/illusztraciok/v4/fusti-fecske.webp"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "note": "A Madárgyár kimenetének másolata; a fajképek mestere a Madárgyár (Bence repója, backend-export)."
+  },
+  {
+   "id": "bird-render-wren",
+   "family": "bird-species",
+   "hu": "Ökörszem (tönkön)",
+   "en": "Wren",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "madargyar",
+    "source": "bird-catalog/madargyar"
+   },
+   "aliases": {
+    "web": "brandbook/illusztraciok/v4/okorszem.webp"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "note": "A Madárgyár kimenetének másolata; a fajképek mestere a Madárgyár (Bence repója, backend-export)."
+  },
+  {
+   "id": "logo",
+   "family": "logo",
+   "hu": "beeco logó",
+   "en": "beeco logo",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma"
+   },
+   "aliases": {
+    "web": "web/assets/brand/logo.webp",
+    "app": "beeco_logo",
+    "flutter": "assets/brand/logo.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "note": "Vektoros mester még nincs a repóban (Flutter-DS A-12)."
+  },
+  {
+   "id": "logo-dark",
+   "family": "logo",
+   "hu": "beeco logó sötét háttérre",
+   "en": "beeco logo for dark backgrounds",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma"
+   },
+   "aliases": {
+    "web": "web/assets/brand/logo-sotet.webp",
+    "flutter": "assets/brand/logo-sotet.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  }
+ ]
+}

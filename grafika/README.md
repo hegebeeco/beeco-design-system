@@ -1,0 +1,70 @@
+# Grafikai katalógus (Javaslat 28)
+
+Egy forrás, sok kimenet – ugyanaz a minta, mint a tokeneknél. Kristóf döntése (2026-10-26):
+- a mester és a katalógus itt, a publikus DS-ben él;
+- új rajz előbb a beeco Figmájában születik, aztán kerül ide;
+- a márkagrafika a beeco tulajdona (`LICENSE`).
+
+Indoklás és lépések: [`docs/javaslatok/28-egy-grafikai-forras.md`](../docs/javaslatok/28-egy-grafikai-forras.md).
+
+## Mi van benne most (1. lépés)
+
+[`katalogus.json`](katalogus.json): 108 tétel.
+
+| Család | Darab | Mi |
+|---|---|---|
+| `bee` | 84 | a beeco méhecskék (az app 84 méhe; ebből 76 a Flutter-DS-ben, 19 a DS `web/assets/brand/`-ben is) |
+| `bee-role` | 5 | szerepes méhek, kódból összerakva (`tools/meh-szerepek/`) |
+| `gabee` | 1 | a Csicsergősz méhe |
+| `bird-madarka` | 4 | „madárkák” (sokszög stílus) |
+| `bird-robin` | 5 | a vörösbegy pózai (kampány-weboldal, infografika) |
+| `bird-species` | 7 | a Madárgyár renderjei a brandbookban |
+| `logo` | 2 | logó, világos és sötét |
+
+Fájl nem mozdult, és semmi nincs átnevezve: a tételek a meglévő fájlokra mutatnak.
+Még nincs benne: a Flutter-DS 7 nem méh illusztrációja (`sign-*`, `onboarding-*`, `swarm`), a 34 Figma-jel, a Csicsergősz díszletei.
+- **2. lépés:** a 619 kódmatrica (`art`) és az 55 ikon (`icon`), a meglévő metaadatukból generálva.
+- **4. lépés:** a nagy felbontású mesterek a Figmából, a `master` mezőbe.
+
+## Egy tétel
+
+```json
+{ "id": "bee-simple", "family": "bee", "hu": "Egyszerű méh", "en": "Plain bee",
+  "roles": ["hazigazda"], "forbidden": false, "license": "beeco-marka",
+  "origin": { "kind": "illusztrator", "author": "beeco csapat", "figma": "APP_PROD – Bee profile picture (new)" },
+  "aliases": { "app": "bees/simple", "web": "web/assets/brand/bee-happy.webp", "flutter": "bee-simple",
+               "apiKey": "SIMPLE", "sprite": "dist/meh/hazigazda", "infografika": "bee-happy" },
+  "outputs": ["flutter", "web", "infografika"], "status": "aktiv" }
+```
+
+| Mező | Szabály |
+|---|---|
+| `id` | a rajzot írja le, angolul, kebab-case; **soha nem változik**. Méhnél az app vizuális neve (`bee-<app-név>`), mert az egyezik a Flutter-DS-sel és a backenddel; madárnál az infografika neve (`bird-robin-sing`); Madárgyár-rendernél `bird-render-<faj>` |
+| `family` | `bee` · `bee-role` · `gabee` · `bird-madarka` · `bird-robin` · `bird-species` · `sticker` · `icon` · `art` · `ill` · `logo` |
+| `hu`, `en` | a név; ebből lesz az alt-szöveg és a Flutter `semanticLabel` |
+| `roles` | a `tokens/hangnem.json` szerepei, amelyek ezt a képet használják (az őr ellenőrzi) |
+| `forbidden` | tiltott kép (ma: a mérges méh). Nincs szerepe, nincs kimenete |
+| `license` | `beeco-marka` · `nyilvanos` · `harmadik-fel` · `mi-generalt` (MI-kép csak jelölve, Kristóf 2026-10-26) |
+| `origin.kind` | `illusztrator` · `figma` · `kod` · `madargyar` · `mi` |
+| `style` | ahol ugyanaz a figura két stílusban van: `barna-csik` (hivatalos) / `fekete-csik` (régi) |
+| `aliases` | a régi nevek fogyasztónként. `web` = fájl ebben a repóban (az őr megnézi, hogy létezik). `app` = a mobilapp `assets/images/` alatti neve. `flutter` = a Flutter-DS manifest-neve (logónál az asset-útvonala). `apiKey` = a backend profilkép-értéke (**szerződés, nem változhat**, a befagyasztott lista: [`api-kulcsok.json`](api-kulcsok.json)). `sprite`, `infografika`. Minden alias egyetlen név; a további előfordulások a `note`-ban |
+| `outputs` | mely generátor adja ki: `flutter` · `web` · `infografika` · `figma` · `webflow` |
+| `status` | `aktiv` · `kivezetendo` (szerepben már nem használjuk) · `csak-api` |
+| `note` | szabad megjegyzés |
+
+## Döntések, amiket a katalógus már tükröz (Kristóf, 2026-10-26)
+
+- **Szerepekben csak mosolygós méh.** A szomorú szerep (`szomoru` → `bee-sick`) és a Flutter-DS `systemError` (`bee-crying`) képe a 12. lépésben cserélődik.
+- **A szerelmes és a hős méhnél a barna csíkos a hivatalos:** `bee-green-heart` (= `moods/love`; az infografikában „bee-love”) és `bee-inbox-motivation` (= `bee-super`).
+  A fekete csíkos `bee-love` és `bee-superhero` állapota `kivezetendo`.
+- **A mérges méh** (`bee-angry`) tiltott, és kikerül az app profilkép-választójából (Bence végzi; a backend `ANGRY` értéke marad).
+
+## Ellenőrzés
+
+`node tests/check-grafika.js` (az `npm test` része). Ezt nézi:
+- az id-k egyediek;
+- minden web-alias fájlja megvan;
+- az `apiKey`-ek egyediek, és pontosan az `api-kulcsok.json` 77 értéke (érték nem tűnhet el, új csak oda is felvéve);
+- a `tokens/hangnem.json` minden szerep-képe és tiltott képe feloldható, és egy szerep csak egy tételé;
+- a tiltott tételnek nincs szerepe és kimenete;
+- ha az infografika-generátor a repóban van, a figurái is a katalógusban vannak (0 talált figura = hiba).
