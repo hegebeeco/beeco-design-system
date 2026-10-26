@@ -1,11 +1,11 @@
 {
- "_readme": "A grafikai katalógus nagy felbontású mesterei (Javaslat 28, 4. lépés; 2026-10-26). A méhek vektoros SVG-ként, a beeco Figmájából (APP_PROD, „Bee profile picture (new)”, 61 változat), a profilkör és a vágás nélkül: tetszőleges méretben élesek. Egy sor = egy katalógus-id → a mester fájlja és a Figma-forrás. A párosítást képen ellenőriztük (póz, kellék, csíkszín). A nem_parositott lista a Figma-változatok közül azokat sorolja, amelyekhez nincs biztos app-pár (más rajz, tükrözött, duplikátum). Őr: tests/check-grafika.js. PNG-export (pl. Flutter 1/2/3x): macOS-en sips -s format png <mester.svg> --out <kimenet.png> (a gyökér width/height-ját előbb a kívánt méretre állítsd).",
+ "_readme": "A grafikai katalógus nagy felbontású mesterei (Javaslat 28, 4. lépés; 2026-10-26). A méhek SVG-ként (54 tiszta vektor, 1 beágyazott raszterrel – raster: true), a beeco Figmájából (APP_PROD, „Bee profile picture (new)”, 61 változat), a profilkör és a vágás nélkül: tetszőleges méretben élesek. Egy sor = egy katalógus-id → a mester fájlja és a Figma-forrás. A párosítást képen ellenőriztük (póz, kellék, csíkszín). A nem_parositott lista a Figma-változatok közül azokat sorolja, amelyekhez nincs biztos app-pár (más rajz, tükrözött, duplikátum). Őr: tests/check-grafika.js. PNG-export (pl. Flutter 1/2/3x): macOS-en sips -s format png <mester.svg> --out <kimenet.png> (a gyökér width/height-ját előbb a kívánt méretre állítsd). Az SVG-k rétegazonosítói fájlonként egyediek (<fájlnév>-<n>), a nem hivatkozottak törölve, így több mester egy oldalra ágyazva sem ütközik.",
  "items": [
   {
    "id": "bee-angry",
    "master": "grafika/mester/bee-angry.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:61554",
     "node": "1010:61555",
@@ -16,7 +16,7 @@
    "id": "bee-baby",
    "master": "grafika/mester/bee-baby.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:60664",
     "node": "1010:60665",
@@ -27,7 +27,7 @@
    "id": "bee-belt-bag",
    "master": "grafika/mester/bee-belt-bag.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58552",
     "node": "1010:58553",
@@ -38,7 +38,7 @@
    "id": "bee-birthday",
    "master": "grafika/mester/bee-birthday.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:59167",
     "node": "1010:59168",
@@ -49,7 +49,7 @@
    "id": "bee-black-glasses",
    "master": "grafika/mester/bee-black-glasses.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58254",
     "node": "1010:58255",
@@ -60,7 +60,7 @@
    "id": "bee-book-flower",
    "master": "grafika/mester/bee-book-flower.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58845",
     "node": "1010:58846",
@@ -71,7 +71,7 @@
    "id": "bee-book-glasses",
    "master": "grafika/mester/bee-book-glasses.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:57745",
     "node": "1010:57746",
@@ -82,7 +82,7 @@
    "id": "bee-boxing",
    "master": "grafika/mester/bee-boxing.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:59289",
     "node": "1010:59290",
@@ -93,7 +93,7 @@
    "id": "bee-cap",
    "master": "grafika/mester/bee-cap.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:62122",
     "node": "1010:62123",
@@ -104,7 +104,7 @@
    "id": "bee-carrot",
    "master": "grafika/mester/bee-carrot.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:57617",
     "node": "1010:57618",
@@ -115,7 +115,7 @@
    "id": "bee-chemical",
    "master": "grafika/mester/bee-chemical.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:59341",
     "node": "1010:59342",
@@ -126,7 +126,7 @@
    "id": "bee-computer",
    "master": "grafika/mester/bee-computer.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:57871",
     "node": "1010:57872",
@@ -138,7 +138,7 @@
    "id": "bee-cook-read",
    "master": "grafika/mester/bee-cook-read.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:61320",
     "node": "1010:61321",
@@ -149,7 +149,7 @@
    "id": "bee-cooking-bowl",
    "master": "grafika/mester/bee-cooking-bowl.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:60766",
     "node": "1010:60767",
@@ -160,7 +160,7 @@
    "id": "bee-cool-white-blue",
    "master": "grafika/mester/bee-cool-white-blue.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:59494",
     "node": "1010:59495",
@@ -171,7 +171,7 @@
    "id": "bee-cowboy",
    "master": "grafika/mester/bee-cowboy.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:62084",
     "node": "1010:62085",
@@ -182,7 +182,7 @@
    "id": "bee-crown",
    "master": "grafika/mester/bee-crown.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:61891",
     "node": "1010:61892",
@@ -193,7 +193,7 @@
    "id": "bee-diva",
    "master": "grafika/mester/bee-diva.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:60694",
     "node": "1010:60695",
@@ -204,7 +204,7 @@
    "id": "bee-farmer-hat",
    "master": "grafika/mester/bee-farmer-hat.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:62010",
     "node": "1010:62011",
@@ -215,7 +215,7 @@
    "id": "bee-flower-background",
    "master": "grafika/mester/bee-flower-background.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58592",
     "node": "1010:58593",
@@ -226,7 +226,7 @@
    "id": "bee-flower-haired",
    "master": "grafika/mester/bee-flower-haired.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:61006",
     "node": "1010:61007",
@@ -237,7 +237,7 @@
    "id": "bee-flower-shaped-sunglasses",
    "master": "grafika/mester/bee-flower-shaped-sunglasses.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:61938",
     "node": "1010:61939",
@@ -248,7 +248,7 @@
    "id": "bee-full-green",
    "master": "grafika/mester/bee-full-green.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:61244",
     "node": "1010:61245",
@@ -259,7 +259,7 @@
    "id": "bee-glasses",
    "master": "grafika/mester/bee-glasses.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:57827",
     "node": "1010:57828",
@@ -271,7 +271,7 @@
    "id": "bee-green-glasses",
    "master": "grafika/mester/bee-green-glasses.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58217",
     "node": "1010:58218",
@@ -282,7 +282,7 @@
    "id": "bee-green-heart",
    "master": "grafika/mester/bee-green-heart.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:61979",
     "node": "1010:61980",
@@ -293,7 +293,7 @@
    "id": "bee-hat-glasses",
    "master": "grafika/mester/bee-hat-glasses.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58102",
     "node": "1010:58103",
@@ -304,7 +304,7 @@
    "id": "bee-hat-mustache",
    "master": "grafika/mester/bee-hat-mustache.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:62043",
     "node": "1010:62044",
@@ -315,7 +315,7 @@
    "id": "bee-hat-sunglasses",
    "master": "grafika/mester/bee-hat-sunglasses.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58324",
     "node": "1010:58325",
@@ -326,7 +326,7 @@
    "id": "bee-headphones-sunglasses",
    "master": "grafika/mester/bee-headphones-sunglasses.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58369",
     "node": "1010:58370",
@@ -337,7 +337,7 @@
    "id": "bee-inbox-motivation",
    "master": "grafika/mester/bee-inbox-motivation.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:57709",
     "node": "1010:57710",
@@ -348,18 +348,20 @@
    "id": "bee-inbox-news",
    "master": "grafika/mester/bee-inbox-news.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58043",
     "node": "1010:58044",
     "variant": "Variant9"
-   }
+   },
+   "raster": true,
+   "note": "Nem tiszta vektor: a papirusz-tekercs egy beágyazott 4096 px-es PNG (a Figmában is így van). Nagyításnál ez a rész a 4096 px-ig éles."
   },
   {
    "id": "bee-laugh-cry",
    "master": "grafika/mester/bee-laugh-cry.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:60563",
     "node": "1010:60564",
@@ -370,7 +372,7 @@
    "id": "bee-math",
    "master": "grafika/mester/bee-math.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:57911",
     "node": "1010:57912",
@@ -381,7 +383,7 @@
    "id": "bee-non-selected",
    "master": "grafika/mester/bee-non-selected.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:57584",
     "node": "1010:57585 (+1010:57614 Kérdőjel)",
@@ -392,7 +394,7 @@
    "id": "bee-old",
    "master": "grafika/mester/bee-old.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58894",
     "node": "1010:58895",
@@ -403,7 +405,7 @@
    "id": "bee-paint",
    "master": "grafika/mester/bee-paint.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:61812",
     "node": "1010:61813",
@@ -414,7 +416,7 @@
    "id": "bee-plant-scissors",
    "master": "grafika/mester/bee-plant-scissors.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:59218",
     "node": "1010:59219",
@@ -425,7 +427,7 @@
    "id": "bee-rasta",
    "master": "grafika/mester/bee-rasta.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58417",
     "node": "1010:58418",
@@ -436,7 +438,7 @@
    "id": "bee-red-phone",
    "master": "grafika/mester/bee-red-phone.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58149",
     "node": "1010:58150",
@@ -447,7 +449,7 @@
    "id": "bee-robot",
    "master": "grafika/mester/bee-robot.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:59450",
     "node": "1010:59451",
@@ -458,7 +460,7 @@
    "id": "bee-rolled-up-sunglasses",
    "master": "grafika/mester/bee-rolled-up-sunglasses.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58289",
     "node": "1010:58290",
@@ -469,7 +471,7 @@
    "id": "bee-sick",
    "master": "grafika/mester/bee-sick.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:61586",
     "node": "1010:61587",
@@ -480,7 +482,7 @@
    "id": "bee-simple",
    "master": "grafika/mester/bee-simple.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:57679",
     "node": "1010:57680",
@@ -491,7 +493,7 @@
    "id": "bee-skateboard",
    "master": "grafika/mester/bee-skateboard.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:59048",
     "node": "1010:59049",
@@ -502,7 +504,7 @@
    "id": "bee-sleepy",
    "master": "grafika/mester/bee-sleepy.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:61618",
     "node": "1010:61619",
@@ -513,7 +515,7 @@
    "id": "bee-snapback",
    "master": "grafika/mester/bee-snapback.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:59418",
     "node": "1010:59419",
@@ -524,7 +526,7 @@
    "id": "bee-sunglasses-beard",
    "master": "grafika/mester/bee-sunglasses-beard.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58942",
     "node": "1010:58943",
@@ -535,7 +537,7 @@
    "id": "bee-superhero-mask",
    "master": "grafika/mester/bee-superhero-mask.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:57791",
     "node": "1010:57792",
@@ -546,7 +548,7 @@
    "id": "bee-ticket-inspector",
    "master": "grafika/mester/bee-ticket-inspector.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:60595",
     "node": "1010:60596",
@@ -557,7 +559,7 @@
    "id": "bee-transparent-sunglasses",
    "master": "grafika/mester/bee-transparent-sunglasses.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:61084",
     "node": "1010:61085",
@@ -568,7 +570,7 @@
    "id": "bee-two-flowers",
    "master": "grafika/mester/bee-two-flowers.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58701",
     "node": "1010:58702",
@@ -579,7 +581,7 @@
    "id": "bee-unshaven-laptop",
    "master": "grafika/mester/bee-unshaven-laptop.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:58991",
     "node": "1010:58992",
@@ -590,7 +592,7 @@
    "id": "bee-watering-plants",
    "master": "grafika/mester/bee-watering-plants.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:61126",
     "node": "1010:61127",
@@ -601,7 +603,7 @@
    "id": "bee-whale-socks-computer",
    "master": "grafika/mester/bee-whale-socks-computer.svg",
    "figma": {
-    "file": "APP_PROD (DQpJNVpXLDsnCZ9CknN9HT)",
+    "file": "APP_PROD (a beeco Figmája)",
     "frame": "Others/Bee_profile_picture (new) 1010:57583",
     "symbol": "1010:61431",
     "node": "1010:61432",

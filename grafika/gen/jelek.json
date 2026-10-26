@@ -10,7 +10,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, D1-house"
+    "source": "figma:APP_PROD DS 2.0, D1-house"
    },
    "aliases": {
     "web": "termek/jelek/house.svg",
@@ -31,7 +31,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, D2-book"
+    "source": "figma:APP_PROD DS 2.0, D2-book"
    },
    "aliases": {
     "web": "termek/jelek/book.svg",
@@ -52,7 +52,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, D3-ticket"
+    "source": "figma:APP_PROD DS 2.0, D3-ticket"
    },
    "aliases": {
     "web": "termek/jelek/ticket.svg",
@@ -73,7 +73,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, D4a-calendar"
+    "source": "figma:APP_PROD DS 2.0, D4a-calendar"
    },
    "aliases": {
     "web": "termek/jelek/calendar.svg",
@@ -94,7 +94,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, D4b-droplet"
+    "source": "figma:APP_PROD DS 2.0, D4b-droplet"
    },
    "aliases": {
     "web": "termek/jelek/droplet.svg",
@@ -115,7 +115,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, D6-nectar"
+    "source": "figma:APP_PROD DS 2.0, D6-nectar"
    },
    "aliases": {
     "web": "termek/jelek/nectar.svg",
@@ -136,7 +136,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, LAB-footprint"
+    "source": "figma:APP_PROD DS 2.0, LAB-footprint"
    },
    "aliases": {
     "web": "termek/jelek/footprint.svg",
@@ -157,7 +157,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, UZE-message"
+    "source": "figma:APP_PROD DS 2.0, UZE-message"
    },
    "aliases": {
     "web": "termek/jelek/message.svg",
@@ -178,7 +178,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, OTL-idea"
+    "source": "figma:APP_PROD DS 2.0, OTL-idea"
    },
    "aliases": {
     "web": "termek/jelek/idea.svg",
@@ -199,7 +199,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-apple"
+    "source": "figma:APP_PROD DS 2.0, pik-apple"
    },
    "aliases": {
     "web": "termek/jelek/pik-apple.svg",
@@ -220,7 +220,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-bag"
+    "source": "figma:APP_PROD DS 2.0, pik-bag"
    },
    "aliases": {
     "web": "termek/jelek/pik-bag.svg",
@@ -241,7 +241,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-bird-poi"
+    "source": "figma:APP_PROD DS 2.0, pik-bird-poi"
    },
    "aliases": {
     "web": "termek/jelek/pik-bird-poi.svg",
@@ -262,7 +262,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-book-birddex"
+    "source": "figma:APP_PROD DS 2.0, pik-book-birddex"
    },
    "aliases": {
     "web": "termek/jelek/pik-book-birddex.svg",
@@ -283,7 +283,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-book"
+    "source": "figma:APP_PROD DS 2.0, pik-book"
    },
    "aliases": {
     "web": "termek/jelek/pik-book.svg",
@@ -304,7 +304,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-box"
+    "source": "figma:APP_PROD DS 2.0, pik-box"
    },
    "aliases": {
     "web": "termek/jelek/pik-box.svg",
@@ -325,7 +325,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-click"
+    "source": "figma:APP_PROD DS 2.0, pik-click"
    },
    "aliases": {
     "web": "termek/jelek/pik-click.svg",
@@ -346,7 +346,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-competition"
+    "source": "figma:APP_PROD DS 2.0, pik-competition"
    },
    "aliases": {
     "web": "termek/jelek/competition.svg",
@@ -367,7 +367,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-coupon"
+    "source": "figma:APP_PROD DS 2.0, pik-coupon"
    },
    "aliases": {
     "web": "termek/jelek/pik-coupon.svg",
@@ -388,7 +388,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-cutlery"
+    "source": "figma:APP_PROD DS 2.0, pik-cutlery"
    },
    "aliases": {
     "web": "termek/jelek/pik-cutlery.svg",
@@ -409,7 +409,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-dollar"
+    "source": "figma:APP_PROD DS 2.0, pik-dollar"
    },
    "aliases": {
     "web": "termek/jelek/pik-dollar.svg",
@@ -430,7 +430,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-energy-a-plus-plus-plus"
+    "source": "figma:APP_PROD DS 2.0, pik-energy-a-plus-plus-plus"
    },
    "aliases": {
     "web": "termek/jelek/pik-energy-a-plus-plus-plus.svg",
@@ -451,7 +451,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-how-to"
+    "source": "figma:APP_PROD DS 2.0, pik-how-to"
    },
    "aliases": {
     "web": "termek/jelek/pik-how-to.svg",
@@ -472,7 +472,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-leaf"
+    "source": "figma:APP_PROD DS 2.0, pik-leaf"
    },
    "aliases": {
     "web": "termek/jelek/pik-leaf.svg",
@@ -493,7 +493,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-lightbulb"
+    "source": "figma:APP_PROD DS 2.0, pik-lightbulb"
    },
    "aliases": {
     "web": "termek/jelek/pik-lightbulb.svg",
@@ -514,7 +514,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-map"
+    "source": "figma:APP_PROD DS 2.0, pik-map"
    },
    "aliases": {
     "web": "termek/jelek/pik-map.svg",
@@ -535,7 +535,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-message"
+    "source": "figma:APP_PROD DS 2.0, pik-message"
    },
    "aliases": {
     "web": "termek/jelek/pik-message.svg",
@@ -556,7 +556,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-plane"
+    "source": "figma:APP_PROD DS 2.0, pik-plane"
    },
    "aliases": {
     "web": "termek/jelek/pik-plane.svg",
@@ -577,7 +577,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-play"
+    "source": "figma:APP_PROD DS 2.0, pik-play"
    },
    "aliases": {
     "web": "termek/jelek/pik-play.svg",
@@ -598,7 +598,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-post"
+    "source": "figma:APP_PROD DS 2.0, pik-post"
    },
    "aliases": {
     "web": "termek/jelek/pik-post.svg",
@@ -619,7 +619,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-recycled"
+    "source": "figma:APP_PROD DS 2.0, pik-recycled"
    },
    "aliases": {
     "web": "termek/jelek/pik-recycled.svg",
@@ -640,7 +640,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-share"
+    "source": "figma:APP_PROD DS 2.0, pik-share"
    },
    "aliases": {
     "web": "termek/jelek/pik-share.svg",
@@ -661,7 +661,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-snowflake"
+    "source": "figma:APP_PROD DS 2.0, pik-snowflake"
    },
    "aliases": {
     "web": "termek/jelek/pik-snowflake.svg",
@@ -682,7 +682,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-train"
+    "source": "figma:APP_PROD DS 2.0, pik-train"
    },
    "aliases": {
     "web": "termek/jelek/pik-train.svg",
@@ -703,7 +703,7 @@
    "license": "beeco-marka",
    "origin": {
     "kind": "figma",
-    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-trash-bin"
+    "source": "figma:APP_PROD DS 2.0, pik-trash-bin"
    },
    "aliases": {
     "web": "termek/jelek/pik-trash-bin.svg",

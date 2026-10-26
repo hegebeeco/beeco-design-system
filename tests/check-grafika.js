@@ -96,7 +96,7 @@ for (const kep of hang.tiltott_kepek || []) {
 }
 
 // Nagy felbontású mesterek (Javaslat 28, 4. lépés)
-let mesterek = 0;
+let mesterek = 0, raszteres = 0;
 if (fs.existsSync(path.join(ROOT, 'grafika/mesterek.json'))) {
   const sorok = JSON.parse(rd('grafika/mesterek.json')).items || [];
   const lista = new Set();
@@ -110,11 +110,13 @@ if (fs.existsSync(path.join(ROOT, 'grafika/mesterek.json'))) {
     if (Buffer.byteLength(t) > 600 * 1024) hiba(`${m.id}: a mester ${Math.round(Buffer.byteLength(t) / 1024)} kB (legfeljebb 600)`);
     if (!/^<svg[^>]*viewBox="[^"]+"/.test(t)) hiba(`${m.id}: a mester SVG-gyökerén nincs viewBox`);
     const gyoker = (t.match(/^<svg[^>]*>/) || [''])[0];
+    if (/Ã|Â/.test(t)) hiba(`${m.id}: elrontott ékezet (kétszeres UTF-8) a mesterben`);
+    if (/<image[\s>]/.test(t) && !m.raster) hiba(`${m.id}: beágyazott raszterkép van benne – jelöld raster: true-val`);
     if (/APP DS/.test(t) || /preserveAspectRatio="none"/.test(gyoker)) hiba(`${m.id}: Figma-oldalszemét vagy torzító gyökér-attribútum maradt a mesterben`);
-    mesterek++;
+    mesterek++; if (m.raster) raszteres++;
   }
   const dir = path.join(ROOT, 'grafika/mester');
-  if (fs.existsSync(dir)) for (const f of fs.readdirSync(dir)) if (!lista.has('grafika/mester/' + f)) hiba(`grafika/mester/${f}: nincs a mesterek.json-ban`);
+  if (fs.existsSync(dir)) for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.svg'))) if (!lista.has('grafika/mester/' + f)) hiba(`grafika/mester/${f}: nincs a mesterek.json-ban`);
 }
 
 // Az infografika-generátor figurái (ha a generátor már a repóban van)
@@ -133,4 +135,4 @@ if (fs.existsSync(path.join(ROOT, FIG))) {
 if (hibak.length) { console.log(`check-grafika: ${hibak.length} hiba\n- ` + hibak.join('\n- ')); process.exit(1); }
 const csalad = items.reduce((m, it) => (m[it.family] = (m[it.family] || 0) + 1, m), {});
 console.log(`check-grafika: rendben – ${items.length} tétel (${Object.entries(csalad).map(([k, v]) => `${k} ${v}`).join(', ')}), `
-  + `${byApi.size} apiKey, ${Object.keys(hang.szerepek || {}).length} hangnem-szerep feloldva` + (mesterek ? `, ${mesterek} vektoros mester` : '') + (figurak ? `, ${figurak} infografika-figura` : ''));
+  + `${byApi.size} apiKey, ${Object.keys(hang.szerepek || {}).length} hangnem-szerep feloldva` + (mesterek ? `, ${mesterek} mester (${raszteres} beágyazott raszterrel)` : '') + (figurak ? `, ${figurak} infografika-figura` : ''));

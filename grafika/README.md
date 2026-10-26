@@ -30,11 +30,10 @@ Két rész, együtt 838 tétel:
 
 Fájl nem mozdult, és semmi nincs átnevezve: a tételek a meglévő fájlokra mutatnak.
 Még nincs benne: a Flutter-DS 7 nem méh illusztrációja (`sign-*`, `onboarding-*`, `swarm`) és a 3D-modellek.
-- **4. lépés:** a nagy felbontású mesterek a Figmából, a `master` mezőbe.
 
 ## Nagy felbontású mesterek
 
-A [`mester/`](mester/) mappában 55 méh van, vektoros SVG-ként, a beeco Figmájából (APP_PROD, „Bee profile picture (new)”). Profilkör és vágás nincs rajtuk, így tetszőleges méretben élesek (D14: a mobilon ≥ 540 px kell). A [`mesterek.json`](mesterek.json) mondja meg, melyik katalógus-id melyik fájl és melyik Figma-node.
+A [`mester/`](mester/) mappában 55 méh van SVG-ként (54 tiszta vektor; a `bee-inbox-news` papirusza beágyazott 4096 px-es kép, `raster: true`), a beeco Figmájából (APP_PROD, „Bee profile picture (new)”). Profilkör és vágás nincs rajtuk, így tetszőleges méretben élesek (D14: a mobilon ≥ 540 px kell). A [`mesterek.json`](mesterek.json) mondja meg, melyik katalógus-id melyik fájl és melyik Figma-node.
 - A `glasses` és a `computer` mestere barna csíkos; az app PNG-je ezeknél a régi, fekete csíkos változat.
 - A `nem_parositott` lista 6 Figma-változatot sorol fel: más rajz, tükrözött vagy duplikátum. Ezekhez nincs biztos app-pár.
 - 29 app-méhnek még nincs Figma-mestere: ezeknél a Figmában kell előbb megrajzolni vagy megkeresni a vektort.

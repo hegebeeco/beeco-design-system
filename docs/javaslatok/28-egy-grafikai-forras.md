@@ -167,7 +167,7 @@ Flutter-DS fájlnév: `bee_<x>.webp` (Dart-asset, aláhúzással), manifest-név
 | 2 | Az ART 619 matricája és az 55 ikon belép a katalógusba (a meglévő metaadatból generálva, nem kézzel) | DS | Claude | ✓ (2. kör) |
 | 3 | A `hangnem.json` szerepei és az infografika `figures.js` a katalógusból; nincs vizuális változás | DS | Claude | 1 |
 | 4 | Az eredeti, nagy felbontású méhek exportja a beeco Figmájából (SVG vagy ≥ 1024 px), a 61 Figma-változat párosítása az `id`-khez | DS `grafika/` | Claude (Figma-olvasás) + Kristóf átnézi | ✓ 55 mester (4. kör); 29 méhnek még nincs Figma-vektora |
-| 5 | A 34 Figma-jel visszaírása a DS-be (mint a Javaslat 27-ben az ikonoké), `compare` őrrel | DS ← Flutter-DS | Claude, Bence átnézi | ✓ (2. kör) |
+| 5 | A 34 Figma-jel visszaírása a DS-be (mint a Javaslat 27-ben az ikonoké), `compare` őrrel | DS ← Flutter-DS | Claude, Bence átnézi | ✓ (2. kör): a DS-ben formai őr (`check-jelek`); a Flutter-DS-oldali egyezés-őr Bence lépése |
 | 6 | A Flutter-DS manifest a katalógusból; a hiányzó 8 app-méh (pl. `inbox_motivation` = `bee-super`) felvétele; formátum; D14 nagy felbontás | Flutter-DS | **Bence** | 1, 4 |
 | 7 | Az app átáll a `beeco_ds` illusztrációira; a duplikált `assets/images/bees/` PNG-k kivezetése; a `ProfilePictureType` és a backend-értékek változatlanok | app | **Bence** | 6 |
 | 8 | Figma „Grafika” oldal a katalógusból (nevek a változatokon) | Figma `APP_PROD` | Claude + a UX-tervező | 1, 4 |
