@@ -5,7 +5,7 @@ import {
 } from "../reszek/chunk-FTET6P3Y.js";
 import {
   BeeMoment
-} from "../reszek/chunk-UA4AGC45.js";
+} from "../reszek/chunk-MJV6G5BP.js";
 import {
   Bee
 } from "../reszek/chunk-DCNIJFGI.js";
@@ -13,8 +13,8 @@ import {
   pillanatok,
   say,
   szerepek
-} from "../reszek/chunk-4TWKO3ZO.js";
-import "../reszek/chunk-5CMHQUNX.js";
+} from "../reszek/chunk-2GH7AOMI.js";
+import "../reszek/chunk-FLE624AN.js";
 import {
   HexLoader,
   ProgressBar,

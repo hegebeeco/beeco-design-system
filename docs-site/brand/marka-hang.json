@@ -101,9 +101,9 @@
     { "t": "dodont", "cim": "Ha mi hibáztunk", "allapot": "szabaly",
       "forras": ["tokens/hangnem.json → szerepek (szomorú)"],
       "parok": [ {
-        "jo": { "felirat": "ha mi hibáztunk, kimondjuk", "html": "<div class=\"bb-demo-sor bb-demo-meh\"><img src=\"assets/brand/bee-sad.webp\" alt=\"\" width=\"56\" height=\"56\"><p class=\"bb-vizual-szoveg\">Valami nálunk romlott el. Próbáld újra pár perc múlva.</p></div>" },
+        "jo": { "felirat": "ha mi hibáztunk, kimondjuk", "html": "<div class=\"bb-demo-sor bb-demo-meh\"><img src=\"assets/brand/bee-happy.webp\" alt=\"\" width=\"56\" height=\"56\"><p class=\"bb-vizual-szoveg\">Valami nálunk romlott el. Próbáld újra pár perc múlva.</p></div>" },
         "rossz": { "felirat": "semmitmondó, és a felhasználóra hárít", "html": "<div class=\"bc-alert is-danger\"><p>Hiba történt.</p></div>" },
-        "miert": "A szomorú méhecske csak a mi hibánknál jelenik meg – és megmondjuk, mi a következő lépés." } ] },
+        "miert": "Ha mi hibáztunk, kimondjuk – mosolygós méhecskével, mert szomorú méh nincs (2026-10-26) –, és megmondjuk, mi a következő lépés." } ] },
 
     { "t": "h2", "x": "A méhecske szereplői" },
     { "t": "p", "x": "{{szam:meh-szerepek}} szereplő, mindegyiknek megvan, mikor jelenik meg. A képek a Design Systemből jönnek; újat rajzolni nem kell és nem szabad. A méhecskéről, a rajzolásról és a képek használatáról a [Méhecske és illusztráció](meh-illusztracio.html) oldal szól." },

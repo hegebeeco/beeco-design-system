@@ -14,7 +14,7 @@
         "A beeco méhecskéje kész rajz: a csapat rajzolta, csak a meglévő képeket használd ([Letöltések](letoltesek.html)).",
         "Képernyőnként, képenként legfeljebb egy méhecske és egy szóvicc.",
         "Emoji-méh (🐝) helyett mindig a rajzolt méhecske.",
-        "A szomorú méhecske csak akkor jelenik meg, ha mi hibáztunk – soha nem a felhasználó hibájánál.",
+        "Szomorú méhecske nincs: ha mi hibáztunk, akkor is mosolygós méhecske kér bocsánatot (Kristóf döntése, 2026-10-26). A felhasználó hibájánál méh nem hibáztat.",
         "A beeco méhecskét nem rajzoljuk újra, AI-val sem: a test, az arc és a kellékek változatlanok."
       ],
       "forras": ["tokens/hangnem.json", "docs/termek-arculat.md 9.", "docs/meh-sprite.md"] },

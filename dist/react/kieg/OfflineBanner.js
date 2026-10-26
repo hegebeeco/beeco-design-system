@@ -2,11 +2,11 @@
 import {
   OfflineBanner,
   useOnline
-} from "../reszek/chunk-4DHTQEGO.js";
-import "../reszek/chunk-UA4AGC45.js";
+} from "../reszek/chunk-KWDHSI2Y.js";
+import "../reszek/chunk-MJV6G5BP.js";
 import "../reszek/chunk-DCNIJFGI.js";
-import "../reszek/chunk-4TWKO3ZO.js";
-import "../reszek/chunk-5CMHQUNX.js";
+import "../reszek/chunk-2GH7AOMI.js";
+import "../reszek/chunk-FLE624AN.js";
 import "../reszek/chunk-2YVHXFJT.js";
 import "../reszek/chunk-LBNKNKCI.js";
 import "../reszek/chunk-PFNFGQD5.js";

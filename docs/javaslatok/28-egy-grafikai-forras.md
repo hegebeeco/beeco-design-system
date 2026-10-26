@@ -174,7 +174,7 @@ Flutter-DS fájlnév: `bee_<x>.webp` (Dart-asset, aláhúzással), manifest-név
 | 9 | Webflow-képek leltára és átnevezése (`bee-simple.webp`, alt = `hu`); a nyilvános rész jsDelivr-ről | Webflow | Kristóf jóváhagy | 1 |
 | 10 | Csicsergősz-figurák (GaBee, a vörösbegy-pózok, madárkák) a katalógusba (Kristóf: igen) | DS | Claude | 1 |
 | 11 | A mérges méh kivezetése a profilkép-választóból (Kristóf: nem kell). Átadás Bencének: a `selectableValues` zárja ki az `angry`-t, a backendben meglévő `ANGRY` felhasználók képe továbbra is jelenjen meg (vagy kapjanak alapméhet – az ő döntése); a backend-enumérték nem törlődik | app (+ backend, ha migráció kell) | **Bence** | – |
-| 12 | Az egyszerűsítés a „mosolygós” döntés szerint: a szomorú méh szerepét (`szomoru`, Flutter-DS `systemError`) mosolygós méh veszi át; a nem mosolygós változatok `status: kivezetendo` | DS `hangnem.json` + Flutter-DS alias | Claude (DS), Bence (Flutter-DS) | 1 |
+| 12 | Az egyszerűsítés a „mosolygós” döntés szerint: a szomorú méh szerepét (`szomoru`, Flutter-DS `systemError`) mosolygós méh veszi át; a nem mosolygós változatok `status: kivezetendo` | DS `hangnem.json` + Flutter-DS alias | Claude (DS), Bence (Flutter-DS) | ✓ DS-rész (3. kör); Flutter-DS: Bence |
 
 A madár-fajképek csővezetéke (Madárgyár → backend) nem változik. A brandbook `v4/` képei a 2. vagy 3. lépésben a Madárgyárból generált kimenetté válnak, nem kézi másolattá.
 

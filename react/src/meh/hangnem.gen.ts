@@ -53,7 +53,7 @@ export default {
       "mikor": "visszavonás, 404, apró meglepetés"
     },
     "szomoru": {
-      "kep": "bee-sad",
+      "kep": "bee-happy",
       "erzelem": "bocsánatkérő",
       "mikor": "CSAK a mi hibánk (szerverhiba, leállás) – soha a felhasználóé"
     },

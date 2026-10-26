@@ -141,7 +141,7 @@ Sor: **Név** `forrás` — fő propok (`*` kötelező, `…attr` = natív attri
 
 ### 05 Méhecske, mozgás, szöveg
 - **Bee** `meh/Bee` — szerep*:'hazigazda'|'kalauz'|'futar'|…, buzz:bool, label:string, size:'s'|'m'|'l' · `.bc-bee` · atom · a meglévő márka-méhecskék szerep szerint.
-- **BeeMoment** `meh/BeeMoment` — action, inline:bool, live:'status'|'alert', pillanat, poen:string, sima, szerep:'hazigazda'|'kalauz'|'futar'|…, valtozat:number · `.bc-moment` · molekula · méh + szóvicc-cím + sima mondat + egy teendő.
+- **BeeMoment** 🆕 `meh/BeeMoment` — action, inline:bool, live:'status'|'alert', pillanat, poen:string, sima, szerep:'hazigazda'|'kalauz'|'futar'|…, valtozat:number · `.bc-moment` · molekula · méh + szóvicc-cím + sima mondat + egy teendő.
 - **BeeSprite** `meh/BeeSprite` — szereplo*:SpriteSzereplo, label:string, replay:unknown, size:'s'|'m'|'l' · `.bc-sprite` · atom · a meglévő méhecske kódból animált mozgása.
 - **HexLoader** `meh/motion` — label:string · `.bc-hexload` · Mézsejt-töltő: rövid töltéshez; 10 mp után megáll (a hívó ekkor írja ki a „toltes-hosszu” mondatot).
 - **ProgressBar** `meh/motion` — label*:string, value*:number, moving:bool · `.bc-progress` · Csíkos haladásjelző (0–1).
@@ -153,7 +153,7 @@ Sor: **Név** `forrás` — fő propok (`*` kötelező, `…attr` = natív attri
 - **CompareMerge** `kieg/CompareMerge` — choices*, fields*, onChoicesChange*:fn, onMerge*:fn, records*:MergeRecord[], consequence, onSurvivorChange:fn, survivor:string · `.bc-merge` · organizmus · rekordok egymás mellett, mezőnként rádiós választás, eltérések kiemelve (szöveggel is: „eltér”), javaslat a kitöltött…
 - **CopyButton** `kieg/CopyButton` — value*:string, what*:string, disabled:bool, showValue:bool, variant:'button'|'icon' · `.bc-copy-tick` · atom · másol + „Másolva” pipa (05: mentve-pipa) + képernyőolvasó-bejelentés.
 - **DownloadButton** `kieg/DownloadButton` — fileName*:string, label*:string, onDownload*:fn, disabled:bool, sizeHint:string, variant:'primary'|'secondary' · `.bc-copy-tick` · molekula · kész → készül (haladás, megszakítható) → letöltve (pipa, méret) → hiba (újra).
-- **ErrorPage** `kieg/StatusPages` — action, errorId:string, homeHref:string, onRetry:fn, retrying:bool · `.bc-status-code` · ErrorPage: szerverhiba – a szomorú méh CSAK itt (a mi hibánk), újrapróbálás + másolható hibakód.
+- **ErrorPage** 🆕 `kieg/StatusPages` — action, errorId:string, homeHref:string, onRetry:fn, retrying:bool · `.bc-status-code` · ErrorPage: szerverhiba (a mi hibánk) – a `szomoru` szerep méhe, 2026-10-26 óta mosolygós; újrapróbálás + másolható hibakód.
 - **ForbiddenPage** `kieg/StatusPages` — action, homeHref:string, onRequestAccess:fn, requested:bool · `.bc-btn` · a gondolkodó méh (nem szid); kezdőlap + opcionális „Hozzáférés kérése”.
 - **NotFoundPage** `kieg/StatusPages` — action, homeHref:string · `.bc-btn` · a kacsintó méh; kezdőlap + vissza az előző oldalra.
 - **OfflineBanner** `kieg/OfflineBanner` — backMs:number, bee:bool, online:bool, onRetry:fn, pending:number, saveText · `.bc-offline` · molekula · az oldal tetejére tapadó sáv, ha nincs hálózat – „Nincs térerő a kaptárban.” (05 offline pillanat) + mi lesz a mentéssel.
@@ -244,4 +244,4 @@ Fájlonként a `bc-` gyökérosztályok (a `bc-x-…` alosztályok a gyökér al
 
 - Nem ez a skill: töltsd be a `beeco-arculat`-ot. Közös fájlok a `tools/kit-sync.js`-sel (`KIT-FILES.json`); globális nevek (`DS`, `pic`, `ART`, `MODEL`…) és `ds-` osztályok: `api/api.json` → `jatekJs`, `css.jatek`.
 
-*194 komponens · 14 új · 17 hook. A verzió: `VERSION` (szándékosan nincs itt, hogy a verzióemelés ne írja át).*
+*194 komponens · 16 új · 17 hook. A verzió: `VERSION` (szándékosan nincs itt, hogy a verzióemelés ne írja át).*
