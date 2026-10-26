@@ -11,7 +11,7 @@
     "hirvivo": { "kep": "bee-phone", "erzelem": "figyelmes", "mikor": "értesítések, üzenet-előnézet, e-mail-küldés" },
     "halas": { "kep": "moods/love", "erzelem": "meleg", "mikor": "jóváhagyás, visszajelzés, partner aktiválása" },
     "kacsinto": { "kep": "roles/kacsint", "erzelem": "játékos", "mikor": "visszavonás, 404, apró meglepetés" },
-    "szomoru": { "kep": "bee-sad", "erzelem": "bocsánatkérő", "mikor": "CSAK a mi hibánk (szerverhiba, leállás) – soha a felhasználóé" },
+    "szomoru": { "kep": "bee-happy", "erzelem": "bocsánatkérő", "mikor": "CSAK a mi hibánk (szerverhiba, leállás) – soha a felhasználóé" },
     "tevekeny": { "kep": "moods/action", "erzelem": "tettre kész", "mikor": "valódi teendő a világban (pl. „nézd meg az appban”)" }
   },
   "tiltott_kepek": ["bee-angry"],

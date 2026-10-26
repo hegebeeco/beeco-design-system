@@ -1494,9 +1494,6 @@
    "family": "bee",
    "hu": "Beteg méh",
    "en": "Sick bee",
-   "roles": [
-    "szomoru"
-   ],
    "forbidden": false,
    "license": "beeco-marka",
    "origin": {
@@ -1517,7 +1514,7 @@
     "infografika"
    ],
    "status": "aktiv",
-   "note": "A szomoru szerep képe; Kristóf 2026-10-26: szerepben mosolygós méh kell (Javaslat 28, 12. lépés)."
+   "note": "2026-10-26 óta nincs szerepe: a szomoru szerep is mosolygós méhet kap (bee-simple). Profilképként marad."
   },
   {
    "id": "bee-simple",
@@ -1525,7 +1522,8 @@
    "hu": "Egyszerű méh",
    "en": "Plain bee",
    "roles": [
-    "hazigazda"
+    "hazigazda",
+    "szomoru"
    ],
    "forbidden": false,
    "license": "beeco-marka",

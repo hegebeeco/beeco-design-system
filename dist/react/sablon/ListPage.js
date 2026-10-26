@@ -2,7 +2,7 @@
 import {
   ListPage,
   useDetailParam
-} from "../reszek/chunk-D2RWPIKF.js";
+} from "../reszek/chunk-IMUNQ42E.js";
 import "../reszek/chunk-E5UNLYGT.js";
 import "../reszek/chunk-KIIEXD6O.js";
 import "../reszek/chunk-YZ47UMY2.js";
@@ -16,10 +16,10 @@ import "../reszek/chunk-B4QYJ2CO.js";
 import "../reszek/chunk-NKCUUFGK.js";
 import "../reszek/chunk-FJZZDQUQ.js";
 import "../reszek/chunk-HOI6WE7L.js";
-import "../reszek/chunk-UA4AGC45.js";
+import "../reszek/chunk-MJV6G5BP.js";
 import "../reszek/chunk-DCNIJFGI.js";
-import "../reszek/chunk-4TWKO3ZO.js";
-import "../reszek/chunk-5CMHQUNX.js";
+import "../reszek/chunk-2GH7AOMI.js";
+import "../reszek/chunk-FLE624AN.js";
 import "../reszek/chunk-BHDC3RQE.js";
 import "../reszek/chunk-FMQGC4VY.js";
 import "../reszek/chunk-2YVHXFJT.js";

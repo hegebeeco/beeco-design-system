@@ -65,7 +65,7 @@ export declare const szerepek: {
         readonly mikor: "visszavonás, 404, apró meglepetés";
     };
     readonly szomoru: {
-        readonly kep: "bee-sad";
+        readonly kep: "bee-happy";
         readonly erzelem: "bocsánatkérő";
         readonly mikor: "CSAK a mi hibánk (szerverhiba, leállás) – soha a felhasználóé";
     };

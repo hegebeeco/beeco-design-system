@@ -3,8 +3,8 @@ import {
   pillanatok,
   say,
   szerepek
-} from "../reszek/chunk-4TWKO3ZO.js";
-import "../reszek/chunk-5CMHQUNX.js";
+} from "../reszek/chunk-2GH7AOMI.js";
+import "../reszek/chunk-FLE624AN.js";
 export {
   pillanatok,
   say,

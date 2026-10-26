@@ -55,7 +55,7 @@ export type ErrorPageProps = {
   className?: string;
 };
 
-/** ErrorPage: szerverhiba – a szomorú méh CSAK itt (a mi hibánk), újrapróbálás + másolható hibakód. */
+/** ErrorPage: szerverhiba (a mi hibánk) – a `szomoru` szerep méhe, 2026-10-26 óta mosolygós; újrapróbálás + másolható hibakód. */
 export function ErrorPage({ onRetry, retrying, homeHref = '/', errorId, action, className }: ErrorPageProps) {
   return (
     <StatusPage kind="szerverhiba" className={className}

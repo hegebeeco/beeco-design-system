@@ -16,7 +16,7 @@
 .bc-bee[data-szerep="hirvivo"] { background-image: url("../../web/assets/brand/bee-phone.webp"); }
 .bc-bee[data-szerep="halas"] { background-image: url("../../web/assets/brand/moods/love.webp"); }
 .bc-bee[data-szerep="kacsinto"] { background-image: url("../../web/assets/brand/roles/kacsint.webp"); }
-.bc-bee[data-szerep="szomoru"] { background-image: url("../../web/assets/brand/bee-sad.webp"); }
+.bc-bee[data-szerep="szomoru"] { background-image: url("../../web/assets/brand/bee-happy.webp"); } /* mosolygós: Javaslat 28, 2026-10-26 */
 .bc-bee[data-szerep="tevekeny"] { background-image: url("../../web/assets/brand/moods/action.webp"); }
 /* Megjelenéskor egyszer zümmög (3 × 180 ms), aztán nyugton van */
 .bc-bee.is-buzz { animation: bc-buzz 180ms var(--bc-ease-out) 3; transform-origin: 50% 70%; }

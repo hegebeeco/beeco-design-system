@@ -24,7 +24,7 @@ export type ErrorPageProps = {
     action?: ReactNode;
     className?: string;
 };
-/** ErrorPage: szerverhiba – a szomorú méh CSAK itt (a mi hibánk), újrapróbálás + másolható hibakód. */
+/** ErrorPage: szerverhiba (a mi hibánk) – a `szomoru` szerep méhe, 2026-10-26 óta mosolygós; újrapróbálás + másolható hibakód. */
 export declare function ErrorPage({ onRetry, retrying, homeHref, errorId, action, className }: ErrorPageProps): import("react").JSX.Element;
 export type NotFoundPageProps = {
     homeHref?: string;

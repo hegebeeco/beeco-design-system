@@ -94,7 +94,7 @@
         "A hiba megmondja, mi történt, és mi a következő lépés; sosem szidja a felhasználót.",
         "Mezőhiba: a mező alatt. Tartós oldalszintű hiba: figyelmeztető sáv (`role=\"alert\"` csak hibánál). Egy művelet hibája: értesítés, amely nem tűnik el magától, amíg be nem zárják.",
         "Hálózati hiba: hibaállapot újrapróbálással (`DataState`).",
-        "Szomorú méhecske csak a mi hibánknál (szerverhiba, leállás), soha a felhasználó hibájánál; mérges méhecske soha.",
+        "Szerverhibánál és leállásnál (a mi hibánk) mosolygós méhecske kér bocsánatot – szomorú méhecske nincs (2026-10-26); mérges méhecske soha.",
         "A hibaüzenet teendő-részében nincs szóvicc."
       ]
     },
