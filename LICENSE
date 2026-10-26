@@ -1,0 +1,33 @@
+beeco design system – felhasználási feltételek
+
+Copyright © beeco (beeco.hu). Minden jog fenntartva.
+
+1. A tároló nyilvánosan olvasható, hogy a beeco termékei (mobilapp, admin, partnerfelület, weboldal,
+   játékok) és a rajtuk dolgozók elérjék. A nyilvánosság nem ad felhasználási engedélyt: a tartalom
+   másolásához, módosításához, terjesztéséhez vagy más termékben való felhasználásához a beeco írásos
+   engedélye kell. Kivételek a 3. pontban.
+
+2. Márkagrafika: a beeco neve, logója, méhecskéi, madarai, illusztrációi és a grafika/katalogus.json-ban
+   „beeco-marka” licenccel felsorolt rajzok a beeco tulajdonát képezik, vagy a beeco felhasználási joga alá
+   tartoznak. Külső partner anyagában csak a beeco jóváhagyásával használhatók.
+
+3. Harmadik fél: a tárolóban lévő külső elemek (például a web/assets/fonts/ betűtípusai, a partnerlogók,
+   a node-csomagok) a saját licencük alá tartoznak, és nem a beeco tulajdonai.
+
+---
+
+beeco design system – terms of use
+
+Copyright © beeco (beeco.hu). All rights reserved.
+
+1. This repository is publicly readable so that beeco's products (mobile app, admin, partner portal,
+   website, games) and the people working on them can reach it. Public visibility grants no licence:
+   copying, modifying, distributing or using the content in other products requires beeco's written
+   permission, except as stated in point 3.
+
+2. Brand assets: the beeco name, logo, bees, birds, illustrations and the drawings listed in
+   grafika/katalogus.json with the "beeco-marka" licence are the property of beeco or are used under
+   beeco's licence. They may be used in partner material only with beeco's approval.
+
+3. Third parties: external items in this repository (for example the fonts in web/assets/fonts/, partner
+   logos and node packages) remain under their own licences and are not beeco's property.

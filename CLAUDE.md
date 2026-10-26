@@ -26,7 +26,8 @@ A játékok külön tárolókban élnek (első: `~/CLAUDE/beeco-szelektalj`, él
 * **Terjesztés:** commit + push után a projektekben `node ~/CLAUDE/beeco-jatek-kit/tools/kit-sync.js .` (ezt szólj Kristófnak / a projekt Claude-jának).
 * A skillek (`.claude/skills/`) a felhasználói szinten is telepítve vannak (`~/.claude/skills/beeco-arculat`, `beeco-jatek`, `beeco-ds` →
   szimbolikus link ide), így minden Claude Code projekt látja őket.
-* A beeco méhecskék (`web/assets/brand/`) belső használatúak; külső partner anyagban a beeco jóváhagyása kell. **A tároló publikus** (Kristóf döntése, 2026-10-01) – titok, jelszó, kulcs soha ne kerüljön bele.
+* A márkagrafika (méhek, logó, madarak, illusztrációk) a beeco tulajdona, minden jog fenntartva (`LICENSE`); külső partner anyagában a beeco jóváhagyása kell. **A tároló publikus** (Kristóf döntése, 2026-10-01) – titok, jelszó, kulcs soha ne kerüljön bele.
+* **Grafikai katalógus** (Javaslat 28, Kristóf döntése 2026-10-26): `grafika/katalogus.json` – egy rajz = egy `id`, a régi nevek aliasok (ne nevezz át fájlt); új grafika előbb a Figmában, aztán ide. Őr: `tests/check-grafika.js`. Cél: a szerepekben csak mosolygós méh (a `szomoru` szerep képcseréje a 12. lépés); a mérges méh tiltott. A profilkép-értékek (`grafika/api-kulcsok.json`) backend-szerződés: nem tűnhetnek el.
 
 ## Brand Book és Design System (két oldal, Javaslat 25; a 22. javaslat régi építőjét felváltotta)
 * Motor: `tools/docs/` (+ `tools/docs-brand.js`, `tools/docs-ds.js`). Tartalom: `docs-site/brand/`, `docs-site/ds/` (oldalanként JSON). Építés: `npm run docs:build` → `_site/brand`, `_site/ds` (nem commitoljuk; a Brand Bookot a gyökér `netlify.toml`, a DS-t a `netlify.docs-ds.toml` építi). Teszt: `npm run docs:test` (a `npm test` része).
