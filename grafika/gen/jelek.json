@@ -1,0 +1,719 @@
+{
+ "_readme": "GENERÁLT FÁJL – ne szerkeszd kézzel: node tools/grafika-build.js (forrás: termek/jelek/jelek.json). Mezők: grafika/README.md.",
+ "items": [
+  {
+   "id": "sticker-house",
+   "family": "sticker",
+   "hu": "Ház (a Kezdőlap jele): fekete ház mézsárga tetővel és ajtóval",
+   "en": "House",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, D1-house"
+   },
+   "aliases": {
+    "web": "termek/jelek/house.svg",
+    "flutter": "stickers/house.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-book",
+   "family": "sticker",
+   "hu": "Könyv: nyitott könyv",
+   "en": "Book",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, D2-book"
+   },
+   "aliases": {
+    "web": "termek/jelek/book.svg",
+    "flutter": "stickers/book.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-ticket",
+   "family": "sticker",
+   "hu": "Jegy, kupon: százalékjeles jegy",
+   "en": "Ticket",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, D3-ticket"
+   },
+   "aliases": {
+    "web": "termek/jelek/ticket.svg",
+    "flutter": "stickers/ticket.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-calendar",
+   "family": "sticker",
+   "hu": "Naptár",
+   "en": "Calendar",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, D4a-calendar"
+   },
+   "aliases": {
+    "web": "termek/jelek/calendar.svg",
+    "flutter": "stickers/calendar.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-droplet",
+   "family": "sticker",
+   "hu": "Csepp",
+   "en": "Droplet",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, D4b-droplet"
+   },
+   "aliases": {
+    "web": "termek/jelek/droplet.svg",
+    "flutter": "stickers/droplet.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-nectar",
+   "family": "sticker",
+   "hu": "Nektár: csepp fényfolttal",
+   "en": "Nectar",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, D6-nectar"
+   },
+   "aliases": {
+    "web": "termek/jelek/nectar.svg",
+    "flutter": "stickers/nectar.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-footprint",
+   "family": "sticker",
+   "hu": "Lábnyom",
+   "en": "Footprint",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, LAB-footprint"
+   },
+   "aliases": {
+    "web": "termek/jelek/footprint.svg",
+    "flutter": "stickers/footprint.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-message",
+   "family": "sticker",
+   "hu": "Üzenet: beszélő buborék szívvel",
+   "en": "Message",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, UZE-message"
+   },
+   "aliases": {
+    "web": "termek/jelek/message.svg",
+    "flutter": "stickers/message.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-idea",
+   "family": "sticker",
+   "hu": "Ötlet: villanykörte",
+   "en": "Idea",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, OTL-idea"
+   },
+   "aliases": {
+    "web": "termek/jelek/idea.svg",
+    "flutter": "stickers/idea.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-apple",
+   "family": "sticker",
+   "hu": "Alma",
+   "en": "Apple",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-apple"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-apple.svg",
+    "flutter": "stickers/pik-apple.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-bag",
+   "family": "sticker",
+   "hu": "Táska",
+   "en": "Bag",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-bag"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-bag.svg",
+    "flutter": "stickers/pik-bag.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-bird-poi",
+   "family": "sticker",
+   "hu": "Madaras hely: térképtű madárral",
+   "en": "Bird poi",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-bird-poi"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-bird-poi.svg",
+    "flutter": "stickers/pik-bird-poi.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-book-birddex",
+   "family": "sticker",
+   "hu": "Madárkönyv",
+   "en": "Book birddex",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-book-birddex"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-book-birddex.svg",
+    "flutter": "stickers/pik-book-birddex.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-book",
+   "family": "sticker",
+   "hu": "Könyv (a szögletes készletből)",
+   "en": "Book",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-book"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-book.svg",
+    "flutter": "stickers/pik-book.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-box",
+   "family": "sticker",
+   "hu": "Doboz",
+   "en": "Box",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-box"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-box.svg",
+    "flutter": "stickers/pik-box.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-click",
+   "family": "sticker",
+   "hu": "Koppintás: kéz és telefon",
+   "en": "Click",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-click"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-click.svg",
+    "flutter": "stickers/pik-click.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-competition",
+   "family": "sticker",
+   "hu": "Verseny, nyereményjáték: serleg csillaggal",
+   "en": "Competition",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-competition"
+   },
+   "aliases": {
+    "web": "termek/jelek/competition.svg",
+    "flutter": "stickers/competition.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-coupon",
+   "family": "sticker",
+   "hu": "Kupon: százalékjeles jegy (a szögletes készletből)",
+   "en": "Coupon",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-coupon"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-coupon.svg",
+    "flutter": "stickers/pik-coupon.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-cutlery",
+   "family": "sticker",
+   "hu": "Evőeszköz: kés és villa",
+   "en": "Cutlery",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-cutlery"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-cutlery.svg",
+    "flutter": "stickers/pik-cutlery.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-dollar",
+   "family": "sticker",
+   "hu": "Dollár",
+   "en": "Dollar",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-dollar"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-dollar.svg",
+    "flutter": "stickers/pik-dollar.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-energy-a-plus-plus-plus",
+   "family": "sticker",
+   "hu": "Energiaosztály: A+++",
+   "en": "Energy a plus plus plus",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-energy-a-plus-plus-plus"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-energy-a-plus-plus-plus.svg",
+    "flutter": "stickers/pik-energy-a-plus-plus-plus.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-how-to",
+   "family": "sticker",
+   "hu": "Hogyan: kérdőjeles buborék",
+   "en": "How to",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-how-to"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-how-to.svg",
+    "flutter": "stickers/pik-how-to.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-leaf",
+   "family": "sticker",
+   "hu": "Falevél",
+   "en": "Leaf",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-leaf"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-leaf.svg",
+    "flutter": "stickers/pik-leaf.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-lightbulb",
+   "family": "sticker",
+   "hu": "Villanykörte",
+   "en": "Lightbulb",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-lightbulb"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-lightbulb.svg",
+    "flutter": "stickers/pik-lightbulb.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-map",
+   "family": "sticker",
+   "hu": "Térkép: Magyarország körvonala tűvel",
+   "en": "Map",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-map"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-map.svg",
+    "flutter": "stickers/pik-map.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-message",
+   "family": "sticker",
+   "hu": "Üzenet: buborék szívvel (a szögletes készletből)",
+   "en": "Message",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-message"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-message.svg",
+    "flutter": "stickers/pik-message.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-plane",
+   "family": "sticker",
+   "hu": "Repülő",
+   "en": "Plane",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-plane"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-plane.svg",
+    "flutter": "stickers/pik-plane.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-play",
+   "family": "sticker",
+   "hu": "Lejátszás",
+   "en": "Play",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-play"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-play.svg",
+    "flutter": "stickers/pik-play.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-post",
+   "family": "sticker",
+   "hu": "Posta: boríték",
+   "en": "Post",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-post"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-post.svg",
+    "flutter": "stickers/pik-post.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-recycled",
+   "family": "sticker",
+   "hu": "Újrahasznosított",
+   "en": "Recycled",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-recycled"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-recycled.svg",
+    "flutter": "stickers/pik-recycled.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-share",
+   "family": "sticker",
+   "hu": "Megosztás: három pont összekötve",
+   "en": "Share",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-share"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-share.svg",
+    "flutter": "stickers/pik-share.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-snowflake",
+   "family": "sticker",
+   "hu": "Hópehely",
+   "en": "Snowflake",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-snowflake"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-snowflake.svg",
+    "flutter": "stickers/pik-snowflake.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-train",
+   "family": "sticker",
+   "hu": "Vonat",
+   "en": "Train",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-train"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-train.svg",
+    "flutter": "stickers/pik-train.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "sticker-pik-trash-bin",
+   "family": "sticker",
+   "hu": "Kuka",
+   "en": "Trash bin",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "figma",
+    "source": "figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, pik-trash-bin"
+   },
+   "aliases": {
+    "web": "termek/jelek/pik-trash-bin.svg",
+    "flutter": "stickers/pik-trash-bin.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  }
+ ]
+}

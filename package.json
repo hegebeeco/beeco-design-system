@@ -69,7 +69,7 @@
     "beeco-ds-lint": "tools/ds-lint.js"
   },
   "scripts": {
-    "build": "node tools/tokens-build.js && node tools/react-build.js && node tools/webflow-build.js && node tools/api-check.js --write --nincs-ellen && node tools/ai-index.js",
+    "build": "node tools/tokens-build.js && node tools/react-build.js && node tools/webflow-build.js && node tools/api-check.js --write --nincs-ellen && node tools/ai-index.js && node tools/grafika-build.js",
     "test": "node tools/tokens-build.js --check && node tools/react-build.js --check && node tools/webflow-build.js --check && node tools/ai-index.js --check && node tools/api-check.js && for t in tests/check-*.js; do node \"$t\" || exit 1; done && npm run --silent docs:test",
     "test:alap": "node tools/tokens-build.js --check && node tools/react-build.js --check && node tools/webflow-build.js --check && node tools/ai-index.js --check && node tools/api-check.js && for t in tests/check-*.js; do [ \"$t\" = tests/check-komponensek.js ] && continue; node \"$t\" || exit 1; done && npm run --silent docs:test",
     "test:komponens": "node tests/check-komponensek.js",
