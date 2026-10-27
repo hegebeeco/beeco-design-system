@@ -127,7 +127,9 @@ async function serve(o) {
     return null; // judge: decided by the synthesizer from the answer
   };
   const snapshot = async () => page.evaluate(() => {
-    const vis = e => { const r = e.getBoundingClientRect(), cs = getComputedStyle(e); return r.width > 2 && r.height > 2 && cs.visibility !== 'hidden' && cs.display !== 'none' && +cs.opacity > 0.05; };
+    // A zárt <details> tartalma nem látszik, ezért nem kattintható: csak a saját <summary>-ja marad (különben téves „halott kattintás” lelet lesz).
+    const inClosedDetails = e => { const d = e.closest('details'); return !!d && !d.open && !(e.tagName === 'SUMMARY' && e.parentElement === d); };
+    const vis = e => { const r = e.getBoundingClientRect(), cs = getComputedStyle(e); return r.width > 2 && r.height > 2 && cs.visibility !== 'hidden' && cs.display !== 'none' && +cs.opacity > 0.05 && !inClosedDetails(e); };
     const inView = e => { const r = e.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth; };
     document.querySelectorAll('[data-pt-ref]').forEach(e => e.removeAttribute('data-pt-ref'));
     const sel = 'a[href],button,input:not([type=hidden]),select,textarea,summary,[role=button],[role=link],[tabindex]:not([tabindex="-1"])';
