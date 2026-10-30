@@ -6,4 +6,10 @@
 @media screen and (max-width:991px){.fs-oldal .fs-hero-letoltes .img_qr{display:none}}
 @keyframes fs-gorog{0%{transform:translateY(0);opacity:1}70%{transform:translateY(12px);opacity:0}100%{opacity:0}}
 @keyframes fs-nyil{0%,100%{transform:translateY(0) rotate(45deg);opacity:.4}50%{transform:translateY(4px) rotate(45deg);opacity:1}}
-@media (prefers-reduced-motion:reduce){.fs-gorgess-pont,.fs-gorgess-nyil{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.fs-gorgess-pont::after,.fs-gorgess-nyil{animation:none!important}}
+/* funkció-lépcső: a szaggatott vonal CSAK a pontokat köti össze, a kiválasztottig kitelik */
+.fs-oldal .fs-funk .fs-pin{width:54px;height:54px;position:relative;z-index:1}
+.fs-oldal .fs-funk .fs-pin .fs-piko{width:40px;height:40px}
+.fs-oldal .fs-funk:not(.fs-f-1)::before{content:"";position:absolute;top:27px;right:50%;width:100%;border-top:3px dashed var(--_beeco-ds---bc-line);opacity:.45;z-index:0;pointer-events:none}
+.fs-oldal .fs-funk:not(.fs-f-1):is([aria-pressed="true"],:has(~ .fs-funk[aria-pressed="true"]))::before{border-top-style:solid;opacity:1}
+@media screen and (max-width:479px){.fs-oldal .fs-funk .fs-pin{width:44px;height:44px}.fs-oldal .fs-funk .fs-pin .fs-piko{width:32px;height:32px}.fs-oldal .fs-funk:not(.fs-f-1)::before{top:22px}}
