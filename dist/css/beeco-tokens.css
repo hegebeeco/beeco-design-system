@@ -43,6 +43,7 @@
   --bc-night-line: #B6C4A3; --bc-night-line-rgb: 182 196 163;
   --bc-poppy: #EF6A60; --bc-poppy-rgb: 239 106 96;
   --bc-honey-night: #5C4A12; --bc-honey-night-rgb: 92 74 18;
+  --bc-honey-ink: #8A6A00; --bc-honey-ink-rgb: 138 106 0;
   --bc-rank-bronze: #EFC2A6; --bc-rank-bronze-rgb: 239 194 166;
 
   /* Betűk, méretek, térköz */
@@ -175,6 +176,18 @@
   --bc-text-label: var(--bc-fw-bold) var(--bc-fs-s)/var(--bc-lh-normal) var(--bc-font-body); --bc-text-label-ls: var(--bc-ls-normal);
   --bc-text-caption: var(--bc-fw-regular) var(--bc-fs-xs)/var(--bc-lh-normal) var(--bc-font-body); --bc-text-caption-ls: var(--bc-ls-normal);
 
+  /* Reszponzív betűméret – mobile first: az alap a telefon, a lépcsők lent (@media min-width) */
+  --bc-type-display: 36px;
+  --bc-type-title-1: 30px;
+  --bc-type-title-2: 24px;
+  --bc-type-title-3: 20px;
+  --bc-type-lead: 16px;
+  --bc-type-article: 16px;
+  --bc-type-body: 16px;
+  --bc-type-body-s: 14px;
+  --bc-type-caption: 12px;
+  --bc-type-icon: 22px;
+
   /* 2. TERMÉKBŐR – szín-szerepek, világos */
   color-scheme: light;
   --bc-bg: var(--bc-cream); --bc-bg-rgb: var(--bc-cream-rgb);
@@ -206,6 +219,12 @@
   --bc-highlight: var(--bc-blossom); --bc-highlight-rgb: var(--bc-blossom-rgb);
   --bc-scrim: var(--bc-black); --bc-scrim-rgb: var(--bc-black-rgb);
   --bc-focus-on-accent: var(--bc-focus); --bc-focus-on-accent-rgb: var(--bc-focus-rgb);
+  --bc-surface-deep: var(--bc-olive); --bc-surface-deep-rgb: var(--bc-olive-rgb);
+  --bc-surface-deeper: var(--bc-night); --bc-surface-deeper-rgb: var(--bc-night-rgb);
+  --bc-on-deep: var(--bc-sage); --bc-on-deep-rgb: var(--bc-sage-rgb);
+  --bc-line-deep: var(--bc-olive-soft); --bc-line-deep-rgb: var(--bc-olive-soft-rgb);
+  --bc-accent-ink: var(--bc-honey-ink); --bc-accent-ink-rgb: var(--bc-honey-ink-rgb);
+  --bc-surface-paper: var(--bc-paper); --bc-surface-paper-rgb: var(--bc-paper-rgb);
 }
 
 /* Sötét mód: <html data-theme="dark"> vagy <html class="dark"> (Tailwind), rendszer szerint: data-theme="auto" */
@@ -241,6 +260,12 @@
   --bc-highlight: var(--bc-blossom); --bc-highlight-rgb: var(--bc-blossom-rgb);
   --bc-scrim: var(--bc-black); --bc-scrim-rgb: var(--bc-black-rgb);
   --bc-focus-on-accent: var(--bc-black); --bc-focus-on-accent-rgb: var(--bc-black-rgb);
+  --bc-surface-deep: var(--bc-olive); --bc-surface-deep-rgb: var(--bc-olive-rgb);
+  --bc-surface-deeper: var(--bc-night); --bc-surface-deeper-rgb: var(--bc-night-rgb);
+  --bc-on-deep: var(--bc-sage); --bc-on-deep-rgb: var(--bc-sage-rgb);
+  --bc-line-deep: var(--bc-olive-soft); --bc-line-deep-rgb: var(--bc-olive-soft-rgb);
+  --bc-accent-ink: var(--bc-honey); --bc-accent-ink-rgb: var(--bc-honey-rgb);
+  --bc-surface-paper: var(--bc-night-surface); --bc-surface-paper-rgb: var(--bc-night-surface-rgb);
 }
 @media (prefers-color-scheme: dark) {
   :root[data-theme="auto"] {
@@ -275,5 +300,16 @@
     --bc-highlight: var(--bc-blossom); --bc-highlight-rgb: var(--bc-blossom-rgb);
     --bc-scrim: var(--bc-black); --bc-scrim-rgb: var(--bc-black-rgb);
     --bc-focus-on-accent: var(--bc-black); --bc-focus-on-accent-rgb: var(--bc-black-rgb);
+    --bc-surface-deep: var(--bc-olive); --bc-surface-deep-rgb: var(--bc-olive-rgb);
+    --bc-surface-deeper: var(--bc-night); --bc-surface-deeper-rgb: var(--bc-night-rgb);
+    --bc-on-deep: var(--bc-sage); --bc-on-deep-rgb: var(--bc-sage-rgb);
+    --bc-line-deep: var(--bc-olive-soft); --bc-line-deep-rgb: var(--bc-olive-soft-rgb);
+    --bc-accent-ink: var(--bc-honey); --bc-accent-ink-rgb: var(--bc-honey-rgb);
+    --bc-surface-paper: var(--bc-night-surface); --bc-surface-paper-rgb: var(--bc-night-surface-rgb);
   }
 }
+
+/* Reszponzív betűméret – lépcsők (a töréspontok: breakpoint tokenek) */
+@media (min-width: 600px) { :root { --bc-type-display: 40px; --bc-type-title-1: 36px; --bc-type-title-2: 28px; --bc-type-title-3: 22px; --bc-type-lead: 18px; --bc-type-article: 17px; } }
+@media (min-width: 900px) { :root { --bc-type-display: 48px; --bc-type-title-1: 40px; --bc-type-title-2: 30px; --bc-type-article: 18px; --bc-type-icon: 24px; } }
+@media (min-width: 1200px) { :root { --bc-type-display: 64px; --bc-type-title-1: 48px; --bc-type-title-2: 32px; --bc-type-title-3: 24px; --bc-type-lead: 20px; --bc-type-icon: 26px; } }

@@ -1,5 +1,5 @@
 {
-  "_readme": "GENERÁLT (tools/webflow-build.js) – kézzel ne szerkeszd. Ez a Webflow „beeco DS” változó-kollekció teljes tartalma. A `sotet` mező a kollekció „Sötét” módjának értéke (null = nincs külön sötét érték).",
+  "_readme": "GENERÁLT (tools/webflow-build.js) – kézzel ne szerkeszd. Ez a Webflow „beeco DS” változó-kollekció teljes tartalma. A `sotet` mező a kollekció „Sötét” módjának értéke (null = nincs külön sötét érték). `aliasok`: régi nevek, amelyek ma egy szerepre mutatnak. `tipografia`: a „Tipográfia” kollekció (reszponzív betűméretek, módonként).",
   "kollekcio": "beeco DS",
   "modok": [
     "Base mode",
@@ -185,6 +185,42 @@
       "tipus": "Color",
       "ertek": "#2656D9",
       "sotet": "#000000"
+    },
+    {
+      "nev": "bc-surface-deep",
+      "tipus": "Color",
+      "ertek": "#2F371E",
+      "sotet": "#2F371E"
+    },
+    {
+      "nev": "bc-surface-deeper",
+      "tipus": "Color",
+      "ertek": "#1F2615",
+      "sotet": "#1F2615"
+    },
+    {
+      "nev": "bc-on-deep",
+      "tipus": "Color",
+      "ertek": "#D3DDBB",
+      "sotet": "#D3DDBB"
+    },
+    {
+      "nev": "bc-line-deep",
+      "tipus": "Color",
+      "ertek": "#596B39",
+      "sotet": "#596B39"
+    },
+    {
+      "nev": "bc-accent-ink",
+      "tipus": "Color",
+      "ertek": "#8A6A00",
+      "sotet": "#FECF39"
+    },
+    {
+      "nev": "bc-surface-paper",
+      "tipus": "Color",
+      "ertek": "#FFFDF6",
+      "sotet": "#353F25"
     },
     {
       "nev": "bc-r-xs",
@@ -447,5 +483,308 @@
       },
       "sotet": null
     }
-  ]
+  ],
+  "aliasok": [
+    {
+      "nev": "bc-olive",
+      "tipus": "Color",
+      "alias": "bc-surface-deep"
+    },
+    {
+      "nev": "bc-lablec-zold",
+      "tipus": "Color",
+      "alias": "bc-surface-deep"
+    },
+    {
+      "nev": "bc-raj-bg",
+      "tipus": "Color",
+      "alias": "bc-surface-deep"
+    },
+    {
+      "nev": "bc-olive-deep",
+      "tipus": "Color",
+      "alias": "bc-surface-deeper"
+    },
+    {
+      "nev": "bc-on-olive",
+      "tipus": "Color",
+      "alias": "bc-on-deep"
+    },
+    {
+      "nev": "bc-domb",
+      "tipus": "Color",
+      "alias": "bc-on-deep"
+    },
+    {
+      "nev": "bc-olive-soft",
+      "tipus": "Color",
+      "alias": "bc-line-deep"
+    },
+    {
+      "nev": "bc-paper",
+      "tipus": "Color",
+      "alias": "bc-surface-paper"
+    },
+    {
+      "nev": "bc-krem",
+      "tipus": "Color",
+      "alias": "bc-bg"
+    },
+    {
+      "nev": "bc-vaj",
+      "tipus": "Color",
+      "alias": "bc-surface-accent"
+    },
+    {
+      "nev": "bc-raj-line",
+      "tipus": "Color",
+      "alias": "bc-line"
+    },
+    {
+      "nev": "bc-d-perem",
+      "tipus": "Color",
+      "alias": "bc-surface"
+    }
+  ],
+  "tipografia": {
+    "kollekcio": "Tipográfia",
+    "modok": [
+      "Base mode",
+      "Tablet",
+      "Mobil fekvő",
+      "Mobil"
+    ],
+    "valtozok": [
+      {
+        "nev": "cim-xl",
+        "ds": "display",
+        "tipus": "Size",
+        "ertekek": {
+          "Mobil": {
+            "value": 36,
+            "unit": "px"
+          },
+          "Mobil fekvő": {
+            "value": 40,
+            "unit": "px"
+          },
+          "Tablet": {
+            "value": 48,
+            "unit": "px"
+          },
+          "Base mode": {
+            "value": 64,
+            "unit": "px"
+          }
+        }
+      },
+      {
+        "nev": "cim-l",
+        "ds": "title-1",
+        "tipus": "Size",
+        "ertekek": {
+          "Mobil": {
+            "value": 30,
+            "unit": "px"
+          },
+          "Mobil fekvő": {
+            "value": 36,
+            "unit": "px"
+          },
+          "Tablet": {
+            "value": 40,
+            "unit": "px"
+          },
+          "Base mode": {
+            "value": 48,
+            "unit": "px"
+          }
+        }
+      },
+      {
+        "nev": "cim-m",
+        "ds": "title-2",
+        "tipus": "Size",
+        "ertekek": {
+          "Mobil": {
+            "value": 24,
+            "unit": "px"
+          },
+          "Mobil fekvő": {
+            "value": 28,
+            "unit": "px"
+          },
+          "Tablet": {
+            "value": 30,
+            "unit": "px"
+          },
+          "Base mode": {
+            "value": 32,
+            "unit": "px"
+          }
+        }
+      },
+      {
+        "nev": "cim-s",
+        "ds": "title-3",
+        "tipus": "Size",
+        "ertekek": {
+          "Mobil": {
+            "value": 20,
+            "unit": "px"
+          },
+          "Mobil fekvő": {
+            "value": 22,
+            "unit": "px"
+          },
+          "Tablet": {
+            "value": 22,
+            "unit": "px"
+          },
+          "Base mode": {
+            "value": 24,
+            "unit": "px"
+          }
+        }
+      },
+      {
+        "nev": "szoveg-l",
+        "ds": "lead",
+        "tipus": "Size",
+        "ertekek": {
+          "Mobil": {
+            "value": 16,
+            "unit": "px"
+          },
+          "Mobil fekvő": {
+            "value": 18,
+            "unit": "px"
+          },
+          "Tablet": {
+            "value": 18,
+            "unit": "px"
+          },
+          "Base mode": {
+            "value": 20,
+            "unit": "px"
+          }
+        }
+      },
+      {
+        "nev": "szoveg-cikk",
+        "ds": "article",
+        "tipus": "Size",
+        "ertekek": {
+          "Mobil": {
+            "value": 16,
+            "unit": "px"
+          },
+          "Mobil fekvő": {
+            "value": 17,
+            "unit": "px"
+          },
+          "Tablet": {
+            "value": 18,
+            "unit": "px"
+          },
+          "Base mode": {
+            "value": 18,
+            "unit": "px"
+          }
+        }
+      },
+      {
+        "nev": "szoveg-m",
+        "ds": "body",
+        "tipus": "Size",
+        "ertekek": {
+          "Mobil": {
+            "value": 16,
+            "unit": "px"
+          },
+          "Mobil fekvő": {
+            "value": 16,
+            "unit": "px"
+          },
+          "Tablet": {
+            "value": 16,
+            "unit": "px"
+          },
+          "Base mode": {
+            "value": 16,
+            "unit": "px"
+          }
+        }
+      },
+      {
+        "nev": "szoveg-s",
+        "ds": "body-s",
+        "tipus": "Size",
+        "ertekek": {
+          "Mobil": {
+            "value": 14,
+            "unit": "px"
+          },
+          "Mobil fekvő": {
+            "value": 14,
+            "unit": "px"
+          },
+          "Tablet": {
+            "value": 14,
+            "unit": "px"
+          },
+          "Base mode": {
+            "value": 14,
+            "unit": "px"
+          }
+        }
+      },
+      {
+        "nev": "szoveg-xs",
+        "ds": "caption",
+        "tipus": "Size",
+        "ertekek": {
+          "Mobil": {
+            "value": 12,
+            "unit": "px"
+          },
+          "Mobil fekvő": {
+            "value": 12,
+            "unit": "px"
+          },
+          "Tablet": {
+            "value": 12,
+            "unit": "px"
+          },
+          "Base mode": {
+            "value": 12,
+            "unit": "px"
+          }
+        }
+      },
+      {
+        "nev": "ikon",
+        "ds": "icon",
+        "tipus": "Size",
+        "ertekek": {
+          "Mobil": {
+            "value": 22,
+            "unit": "px"
+          },
+          "Mobil fekvő": {
+            "value": 22,
+            "unit": "px"
+          },
+          "Tablet": {
+            "value": 24,
+            "unit": "px"
+          },
+          "Base mode": {
+            "value": 26,
+            "unit": "px"
+          }
+        }
+      }
+    ]
+  }
 }

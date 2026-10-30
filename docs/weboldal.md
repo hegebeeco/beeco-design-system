@@ -37,9 +37,10 @@ Ezért itt a bemenetet (változók) generáljuk, a kimenetet (élő oldal) pedig
 
 A `node tools/webflow-build.js` állítja elő a teljes listát:
 
-- `dist/weboldal/webflow-valtozok.json` – a Webflow „beeco DS” változó-kollekció tartalma (56 változó),
-  mindegyiknél a világos érték és a „Sötét” mód értéke.
-- `dist/weboldal/paletta.json` – mit szabad az élő oldalon látni (38 szín, sarkok, keretek, betűk).
+- `dist/weboldal/webflow-valtozok.json` – a Webflow „beeco DS” változó-kollekció tartalma (65 változó),
+  mindegyiknél a világos érték és a „Sötét” mód értéke. Mellette `aliasok` (a régi, csak-Webflow nevek, ma egy szerepre mutatnak)
+  és `tipografia` (a „Tipográfia” kollekció, módonként).
+- `dist/weboldal/paletta.json` – mit szabad az élő oldalon látni (43 szín, sarkok, keretek, betűk).
   Ebből mér a `tools/web-ellenor.js`.
 
 Mindkettő **generált**, kézzel soha nem szerkesztjük. Ha egy token változik, újra kell futtatni, és a Webflow-ban
@@ -47,6 +48,49 @@ frissíteni a változókat – a `tests/check-weboldal.js` jelzi, ha elcsúsztak
 
 Névszabály: minden Webflow-változó `bc-` előtagú, csak ASCII és kötőjel. **Ékezetes változónév tilos**
 (a Webflow a CSS-névbe is átviszi, és `--sárga` törékeny). A kollekció neve: `beeco DS`.
+
+### Szín-szerepek a weboldalra (2026-10-30)
+
+A weboldalnak hat olyan szerepe van, ami addig csak a Webflow-ban élt. Mostantól a `tokens/theme-termek.json` része (világos + sötét + kontrasztpár):
+
+| Szerep (`bc-…`) | Világos / sötét | Mire való |
+|---|---|---|
+| `surface-deep` | olive / olive | sötét sáv: lábléc, „raj” szekció |
+| `surface-deeper` | night / night | még sötétebb sáv, a `surface-deep` mellett |
+| `on-deep` | sage / sage | szöveg és dísz a sötét sávon (domb-díszítés is) |
+| `line-deep` | olive-soft / olive-soft | halvány elválasztó a sötét sávon (díszvonal, nem kötelező 3:1) |
+| `accent-ink` | honey-ink (#8A6A00) / honey | mézszínű SZÖVEG világos alapon (ár, kiemelés); 4,8:1 a krémen, 5,1:1 a fehéren; vaj (`surface-accent`) háttéren NEM jó (4,4:1) |
+| `surface-paper` | paper / night-surface | papírfehér felület a kártyák mögött |
+
+Az egyetlen új primitív a `honey-ink` (#8A6A00): a `honey-deep` (#D8A500) szövegnek kevés (2,1:1). A többi meglévő primitívre épül.
+
+**Régi nevek (aliasok).** A Webflow osztályai még ezeket használják, ezért megmaradtak, de a szerepre mutatnak. Új munkához a szerepet használd:
+`bc-olive`, `bc-lablec-zold`, `bc-raj-bg` → `bc-surface-deep` · `bc-olive-deep` → `bc-surface-deeper` · `bc-on-olive`, `bc-domb` → `bc-on-deep` · `bc-olive-soft` → `bc-line-deep` · `bc-paper` → `bc-surface-paper` · `bc-krem` → `bc-bg` · `bc-vaj` → `bc-surface-accent` · `bc-raj-line` → `bc-line` · `bc-d-perem` → `bc-surface`.
+Egyetlen értékváltozás: a `bc-olive-deep` #232A16 volt, most `bc-surface-deeper` = #1F2615 (a `night`; 4 árnyalatnyi különbség).
+Ha egy alias sehol sem használt, a Designerben törölhető; a DS nem hivatkozik rájuk.
+
+### Reszponzív tipó – mobile first (2026-10-30)
+
+Egy közös betűméret-lépcső a DS-ben és a weboldalon (`typeScale` a `theme-termek.json`-ban, CSS: `--bc-type-<név>`). Az alap a telefon, felfelé nő:
+
+| DS-név | Webflow („Tipográfia”) | telefon | sm 600+ | md 900+ | lg 1200+ |
+|---|---|---|---|---|---|
+| `display` | `cim-xl` | 36 | 40 | 48 | 64 |
+| `title-1` | `cim-l` | 30 | 36 | 40 | 48 |
+| `title-2` | `cim-m` | 24 | 28 | 30 | 32 |
+| `title-3` | `cim-s` | 20 | 22 | 22 | 24 |
+| `lead` | `szoveg-l` | 16 | 18 | 18 | 20 |
+| `article` | `szoveg-cikk` | 16 | 17 | 18 | 18 |
+| `body` | `szoveg-m` | 16 | 16 | 16 | 16 |
+| `body-s` | `szoveg-s` | 14 | 14 | 14 | 14 |
+| `caption` | `szoveg-xs` | 12 | 12 | 12 | 12 |
+| `icon` | `ikon` | 22 | 22 | 24 | 26 |
+
+- A mai értékek **nem változtak**: a Webflow „Tipográfia” kollekció tartalmát rögzítettük, innentől innen jön. A Webflow módjai: telefon = **Mobil**, sm = **Mobil fekvő**, md = **Tablet**, lg = **Base mode**.
+- A Webflow saját töréspontjai (479 / 767 / 991 px) mások, mint a DS-é (600 / 900 / 1200), és nem állíthatók: a négy lépcső ugyanaz, az átváltási szélesség eltér.
+- Szabály (`tests/check-weboldal.js` őrzi): a méret felfelé nem csökkenhet, a törzs/lead/cikk telefonon legalább 16 px, semmi sem kisebb 12 px-nél.
+- A termék szövegstílusai (`textStyle`, `bc-fs-*`) érintetlenek: az app és az admin fix méretet használ.
+- Webflow-ban a címeket és szövegeket a „Tipográfia” változókra kösd (ne `bc-fs-*`-ra), hogy a mobil nézet magától kisebb legyen.
 
 | Csoport | Változók | Megjegyzés |
 |---|---|---|
