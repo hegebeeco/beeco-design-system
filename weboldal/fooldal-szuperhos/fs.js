@@ -74,15 +74,9 @@ function okosLetoltes(a, h) {
 $$('.fs-okos-letoltes', oldal).forEach(a => okosLetoltes(a, helyNev(a)));
 if ('IntersectionObserver' in window) $$('.fs-qr', oldal).forEach(qr => { let m = false; new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !m && platform === 'asztal') { m = true; mer('qr_megjelenes', { hely: helyNev(qr) }); } }), { threshold: .8 }).observe(qr); });
 
-/* ---------- téma-kapcsoló (alapból világos; a választás megmarad) ---------- */
-const tema = d.createElement('button'); tema.type = 'button'; tema.className = 'fs-tema';
-tema.innerHTML = '<span class="fs-tema-sin" aria-hidden="true"></span>' + ikon('hold') + '<span class="fs-tema-felirat">Sötét mód</span>';
-oldal.appendChild(tema);
-const sotetE = () => d.documentElement.getAttribute('data-theme') === 'dark';
-function temaFrissit() { const s = sotetE(); tema.setAttribute('aria-pressed', s); $('use', tema).setAttribute('href', s ? '#fs-i-nap-ikon' : '#fs-i-hold'); $('.fs-tema-felirat', tema).textContent = s ? 'Világos mód' : 'Sötét mód'; tema.setAttribute('aria-label', s ? 'Sötét mód bekapcsolva, váltás világosra' : 'Világos mód bekapcsolva, váltás sötétre'); }
-try { if (localStorage.getItem('beeco-tema') === 'dark') d.documentElement.setAttribute('data-theme', 'dark'); } catch (e) { }
-tema.addEventListener('click', () => { const uj = sotetE() ? 'light' : 'dark'; d.documentElement.setAttribute('data-theme', uj); try { localStorage.setItem('beeco-tema', uj); } catch (e) { } temaFrissit(); mer('tema_valtas', { tema: uj }); });
-temaFrissit();
+/* ---------- sötét mód: nincs kapcsoló (Kristóf, 2026-10-30); az oldal mindig világos, a régi mentett választás törlődik ---------- */
+try { localStorage.removeItem('beeco-tema'); } catch (e) { }
+d.documentElement.removeAttribute('data-theme');
 
 /* ---------- díszítő svg-k (domb, hurok, szaggatott vonalak) ---------- */
 function svgElem(html) { const t = d.createElement('div'); t.innerHTML = html; return t.firstElementChild; }

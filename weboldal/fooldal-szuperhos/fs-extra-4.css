@@ -1,0 +1,9 @@
+/* fs-extra-4 (2026-10-30): ami natívan nem fejezhető ki. A 4. HTML Embedbe kézzel kerül (nincs a build.mjs-ben),
+   a Webflow-oldalon: Főoldal Szuperhős (draft), az első három CSS-embed után. */
+.fs-oldal .fs-hero-letoltes .download_block{align-items:stretch;column-gap:14px}
+.fs-oldal .fs-hero-letoltes .div-block-237{row-gap:10px}
+.fs-oldal .fs-hero-letoltes .img_qr{align-self:stretch;height:auto;width:auto;max-width:none;max-height:none;aspect-ratio:1/1;padding:5px;object-fit:contain;box-shadow:2px 2px 0 0 var(--_beeco-ds---bc-shadow)}
+@media screen and (max-width:991px){.fs-oldal .fs-hero-letoltes .img_qr{display:none}}
+@keyframes fs-gorog{0%{transform:translateY(0);opacity:1}70%{transform:translateY(12px);opacity:0}100%{opacity:0}}
+@keyframes fs-nyil{0%,100%{transform:translateY(0) rotate(45deg);opacity:.4}50%{transform:translateY(4px) rotate(45deg);opacity:1}}
+@media (prefers-reduced-motion:reduce){.fs-gorgess-pont,.fs-gorgess-nyil{animation:none!important}}

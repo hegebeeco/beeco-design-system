@@ -34,3 +34,7 @@ Webflow-oldal: **Főoldal Szuperhős (draft)** (`/fooldal-szuperhos-draft`, page
 - A Designerben közvetlenül módosítva (eredeti DOWNLOAD_BLOCK a hero-ban és a záróban, értékelés-linkek, 8 közösségi adat, chipek ki, beebolt-jel). **A `webflow-jeloles.py` ettől a körtől nem tükrözi a Designert**: új szekció-generáláskor előbb vissza kell vezetni ezeket.
 - CSS: `fs-extra-3.css` → 5. embed. JS: jobb sávon lábnyom-jel (`fs-sin-jel`), kézi véleménysor (`fs-kezi`), a záró leszállási célja a `.footer_download` is.
 - Fejléc-kód: `../kozos/horgony.js` (horgonygombok előzmény nélkül).
+
+## 7. kör (2026-10-30)
+- **Sötét mód kapcsoló kivéve** (Kristóf döntése): a `fs.src.js` már nem hoz létre kapcsolót, az oldal mindig világos; a régi mentett `beeco-tema` érték törlődik. A `tema_valtas` mérési esemény megszűnt.
+- **4. embed** (`fs-extra-4.css`, kézzel, nincs a build-ben): QR-magasság a két letöltő gombbal egyenlő (a megosztott DOWNLOAD_BLOCK komponens belseje csak itt írható felül, így nem érinti a többi oldalt), `@keyframes` a legörgetés-jelzőhöz.
