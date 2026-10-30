@@ -93,6 +93,42 @@ for (const v of V.valtozok) {
   if (!cssNevek.has(v.nev)) baj(`a(z) "${v.nev}" változónév nem szerepel a dist/css/beeco-tokens.css-ben – a Webflow és a DS CSS elcsúszna`);
 }
 
+// 8/d. Régi nevek (aliasok): létező szerepre mutatnak, nem ütköznek a szerepek nevével, és nincs köztük lánc
+const aliasNevek = new Set();
+for (const a of V.aliasok || []) {
+  if (!/^bc-[a-z0-9-]+$/.test(a.nev)) baj(`szabálytalan alias-név: "${a.nev}"`);
+  if (aliasNevek.has(a.nev)) baj(`kétszer szereplő alias: ${a.nev}`);
+  aliasNevek.add(a.nev);
+  if (nevek.has(a.nev)) baj(`az alias ("${a.nev}") ütközik egy DS-szerep nevével`);
+  if (!nevek.has(a.alias)) baj(`az alias ("${a.nev}") nem létező szerepre mutat: ${a.alias}`);
+}
+
+// 8/e. Reszponzív tipó (mobile first): négy lépcső, felfelé nem csökkenhet, a törzs telefonon ≥ 16 px, semmi sem kisebb a minimumnál
+const TS = T.typeScale;
+if (!TS || !TS.scale) baj('hiányzik a typeScale a dist/tokens.json-ból');
+else {
+  if (TS.steps.join() !== 'base,sm,md,lg') baj(`a typeScale lépcsői: ${TS.steps.join()} (várt: base,sm,md,lg)`);
+  const MIN = JSON.parse(fs.readFileSync(path.join(ROOT, 'tokens/core.json'), 'utf8')).minTextSize;
+  const wfNevek = new Set();
+  for (const [n, t] of Object.entries(TS.scale)) {
+    if (t.sizes.length !== 4) baj(`typeScale.${n}: ${t.sizes.length} lépcső (négy kell)`);
+    for (let i = 1; i < t.sizes.length; i++) if (t.sizes[i] < t.sizes[i - 1]) baj(`typeScale.${n}: a méret felfelé csökken (${t.sizes.join(' → ')}) – mobile first: az alap a legkisebb`);
+    if (n !== 'icon' && Math.min(...t.sizes) < MIN) baj(`typeScale.${n}: ${Math.min(...t.sizes)} px a minimum (${MIN}) alatt`);
+    if (['body', 'lead', 'article'].includes(n) && t.sizes[0] < 16) baj(`typeScale.${n}: telefonon ${t.sizes[0]} px – a törzsszöveg legalább 16`);
+    if (wfNevek.has(t.webflow)) baj(`typeScale: kétszer szereplő Webflow-név: ${t.webflow}`);
+    wfNevek.add(t.webflow);
+  }
+  const tipo = V.tipografia || { valtozok: [] };
+  if (tipo.valtozok.length !== Object.keys(TS.scale).length) baj('a webflow-valtozok.json tipografia listája nem egyezik a typeScale-lel');
+  for (const v of tipo.valtozok) {
+    const t = TS.scale[v.ds];
+    if (!t) { baj(`tipografia: ismeretlen DS-név ${v.ds}`); continue; }
+    const vart = { 'Mobil': t.sizes[0], 'Mobil fekvő': t.sizes[1], 'Tablet': t.sizes[2], 'Base mode': t.sizes[3] };
+    for (const [mod, px] of Object.entries(vart)) if (!v.ertekek[mod] || v.ertekek[mod].value !== px) baj(`tipografia ${v.nev} / ${mod}: ${v.ertekek[mod] && v.ertekek[mod].value} ≠ ${px}`);
+  }
+  for (const n of Object.keys(TS.scale)) if (!cssNevek.has(`bc-type-${n}`)) baj(`a bc-type-${n} nincs a dist/css/beeco-tokens.css-ben`);
+}
+
 // 9. A dokumentáció megvan
 if (!fs.existsSync(path.join(ROOT, 'docs/weboldal.md'))) baj('hiányzik a docs/weboldal.md');
 
@@ -110,4 +146,4 @@ if (hibak.length) {
   hibak.forEach((h) => console.error(`  · ${h}`));
   process.exit(1);
 }
-console.log(`✓ weboldal rendben (${V.valtozok.length} Webflow-változó, ${P.szinek.length} szín, ${Object.keys(T.termek.light).length} szerep, beillesztendő CSS ${minCss.length} karakter)`);
+console.log(`✓ weboldal rendben (${V.valtozok.length} Webflow-változó, ${(V.aliasok || []).length} alias, ${(V.tipografia || { valtozok: [] }).valtozok.length} tipó-változó, ${P.szinek.length} szín, ${Object.keys(T.termek.light).length} szerep, beillesztendő CSS ${minCss.length} karakter)`);

@@ -138,6 +138,5 @@ a végleges és a draft címek listája a `weboldal/b2b/ki/oldalterkep.json`-ban
 - **Névütközés a játék-kittel:** a kit (`web/`, játékok) is `ds-` előtagot használ; két név egyezik: `ds-chip` és `ds-lead`.
   Futásidőben nem ütköznek (a beeco.hu nem tölti be a kit CSS-ét), de egy közös előtag-döntés (például `web-`)
   a `bc-` takarítással együtt érdemes.
-- **Hat változó csak a Webflow-ban él:** `bc-accent-ink`, `bc-raj-bg`, `bc-on-olive`, `bc-vaj`, `bc-domb`, `bc-paper`
-  (értékük a katalógusban). A `tokens/` forrásba fel kell venni őket, különben a `webflow-build` nem tud róluk.
+- ~~Hat változó csak a Webflow-ban él~~ **Megoldva (2026-10-30):** mind a 13 csak-Webflow változó a DS-ben van; hat szerep lett belőlük, a többi alias ([weboldal.md 1.](weboldal.md)). A `bc-accent-ink` ugyanazon a néven maradt.
 - **A GYIK** most nyitott kártyák (`ds-ketto` + `ds-kartya`). A harmonika (`bc-acc`) akkor jön, ha a Webflow-ba átvisszük.
