@@ -1,0 +1,75 @@
+/* beeco régi stílusú oldalak DS-bőre (2026-11-02, élesítés előtti audit, UI-szakasz):
+   /gyik, /letoltes, /kapcsolat, /beebolt (és a webshop-sablonok). Az oldal fejkódja tölti be, csak ott.
+   A régi site-osztályokat (dia_*, headline*, main_text, button_main, tab_button, gyik_item, input_field, text_chip…)
+   az új oldalak ds- elemeinek kinézetére hozza: DS-szekcióháttér, Lalezar címskála a Tipográfia-változókból,
+   DS-gomb (14/4 px sarok, 48 px, 3 px árnyék), keretes GYIK-sorok, 48 px-es mezők, 44 px-es érintési felület.
+   A fejléc (menu-*) és a lábléc (lablec-*) komponenst nem érinti. Ugyanez a minta a Csatlakozz oldalon: csatlakozz/kk-ds.css. */
+:root{
+  --rd-ink:var(--_beeco-ds---bc-ink,#000);
+  --rd-soft:var(--_beeco-ds---bc-ink-soft,#505050);
+  --rd-bg:var(--_beeco-ds---bc-bg,#fff8e7);
+  --rd-surface:var(--_beeco-ds---bc-surface,#fff);
+  --rd-s2:var(--_beeco-ds---bc-surface-2,#f0f3ec);
+  --rd-vaj:var(--_beeco-ds---bc-vaj,#feeebb);
+  --rd-acc:var(--_beeco-ds---bc-accent,#fecf39);
+  --rd-line:var(--_beeco-ds---bc-line,#000);
+  --rd-r:var(--_beeco-ds---bc-r-l,12px) var(--_beeco-ds---bc-r-s,4px);
+  --rd-display:Lalezar,"Arial Rounded MT Bold",system-ui,sans-serif;
+  --rd-ease:cubic-bezier(.23,1,.32,1)
+}
+
+/* ---- szekcióháttér: a régi áttetsző zöld/sárga/kék helyett DS-színek ---- */
+section.dia_zold,div.dia_zold{background-color:var(--rd-s2)}
+section.dia_sarga,div.dia_sarga{background-color:var(--rd-vaj)}
+section.dia_kek,div.dia_kek{background-color:var(--rd-bg)}
+section.dia_feher,div.dia_feher,section.gyik{background-color:var(--rd-surface)}
+
+/* ---- címek és szöveg ---- */
+.huge-heading,section .headline1{font-family:var(--rd-display);font-size:var(--_tipográfia---cim-xl,64px);font-weight:400;line-height:1.14;text-wrap:balance;color:var(--rd-ink)}
+section .headline2,.gyik_blokk>h2{font-family:var(--rd-display);font-size:var(--_tipográfia---cim-l,48px);font-weight:400;line-height:1.08;text-wrap:balance;color:var(--rd-ink)}
+.gyik_blokk>h2{font-size:var(--_tipográfia---cim-m,32px)}
+section .headline3,section .main_heading{font-family:var(--rd-display);font-size:var(--_tipográfia---cim-s,24px);font-weight:400;line-height:1.1;color:var(--rd-ink)}
+section .main_text,section .main-text{color:var(--rd-soft);line-height:1.55}
+
+/* ---- gombok (ds-gomb) ---- */
+section .button_main,section .button_sec,section .button_terc,form .button_main,a.w-commerce-commercecartopenlink.button_main{min-height:48px;padding:13px 22px 10px;border:2px solid var(--rd-line);border-radius:14px 4px;background-color:var(--rd-acc);color:var(--rd-ink);font-family:var(--rd-display);font-size:19px;font-weight:400;line-height:1;text-decoration:none;box-shadow:3px 3px 0 0 var(--rd-line);display:inline-flex;align-items:center;justify-content:center;transition:transform 160ms var(--rd-ease),box-shadow 160ms var(--rd-ease)}
+section .button_sec,section .button_terc{background-color:var(--rd-surface)}
+@media (hover:hover) and (pointer:fine){
+  section .button_main:hover,section .button_sec:hover,section .button_terc:hover,form .button_main:hover{transform:translate(-1px,-2px);box-shadow:4px 5px 0 0 var(--rd-line);color:var(--rd-ink)}
+}
+section .button_main:active,section .button_sec:active,form .button_main:active{transform:translate(2px,2px);box-shadow:1px 1px 0 0 var(--rd-line)}
+
+/* ---- számcímkék (ds-chip): a fehér szöveg zöldön 3,9:1 volt ---- */
+.text_chip,.text_chip.zold{padding:7px 12px 6px;border:2px solid var(--rd-line);border-radius:999px;background-color:var(--rd-surface);color:var(--rd-ink)}
+.text_chip .main-text,.text_chip .main_text,.text_chip div{color:var(--rd-ink);font-size:14px;font-weight:700;line-height:1.2}
+
+/* ---- GYIK: fülek és lenyílók ---- */
+.tab_button{min-height:44px;display:inline-flex;align-items:center;padding:8px 16px;border:2px solid var(--rd-line);border-radius:999px;background-color:var(--rd-surface);color:var(--rd-ink);font-weight:800}
+.tab_button.w--current{background-color:var(--rd-acc)}
+.gyik_item .home-faq-top{min-height:56px;border:2px solid var(--rd-line);border-radius:var(--rd-r);background-color:var(--rd-surface);color:var(--rd-ink)}
+.gyik_item .home-faq-text a,.home-faq-text a{color:var(--rd-ink);font-weight:800;text-decoration:underline;display:inline-flex;align-items:center;min-height:44px}
+
+/* ---- kártyák és fotók ---- */
+section .card,section .r-lunk_textblokk{border:2px solid var(--rd-line);border-radius:var(--rd-r);box-shadow:4px 4px 0 0 var(--rd-line);overflow:hidden}
+
+/* ---- logósor: 44 px-es érintési felület ---- */
+.t-mogat-_link{min-height:44px}
+
+/* ---- űrlap (Kapcsolat): DS-mezők ---- */
+.input_field{min-height:48px;border:2px solid var(--rd-line);border-radius:10px 4px;background-color:var(--rd-surface);color:var(--rd-ink);font-size:16px}
+textarea.input_field{min-height:120px}
+
+/* ---- csúszkapöttyök: 12 px-es pötty, 44 px-es érintési felület ---- */
+.w-slider .w-slider-nav .w-slider-dot,.w-slider .w-slider-nav.w-shadow>div,.w-slider .w-slider-nav.w-round>div{width:44px;height:44px;margin:0;padding:16px;box-sizing:border-box;background-clip:content-box;background-color:var(--_beeco-ds---bc-ink-muted,#676767);box-shadow:none}
+.w-slider .w-slider-nav .w-slider-dot.w-active{background-color:var(--rd-ink)}
+.w-slider-nav{display:flex;flex-wrap:wrap;justify-content:center;height:auto}
+
+/* ---- mobil ---- */
+@media (max-width:767px){
+  .huge-heading,section .headline1{font-size:40px}
+  section .headline2{font-size:32px}
+  .gyik_blokk>h2{font-size:26px}
+}
+@media (prefers-reduced-motion:reduce){
+  section .button_main,section .button_sec,section .button_terc,form .button_main{transition:none}
+}
