@@ -22,3 +22,12 @@
 .fs-oldal .fs-d{padding-bottom:104px}
 .fs-oldal .fs-u-zaro .img_qr{display:none}
 @media (prefers-reduced-motion:reduce){.fs-gorgess-pont::after,.fs-gorgess-nyil,.fs-oldal .fs-funk::after{animation:none!important}}
+/* 2026-11-02: a következő lap domb-elválasztója (56 px) ne lógjon rá a tartalomra */
+.fs-oldal section.fs-beebolt,.fs-oldal section.fs-gyik,.fs-oldal section.fs-rolunk{padding-bottom:120px}
+/* méhecske-kaland: buborék a 8. lépésnél, felvillanó villanykörte a 3.-nál (a JS építi, a rétegben ül) */
+.fs-oldal .fs-buborek{position:absolute;left:0;top:0;z-index:6;max-width:220px;padding:10px 14px 8px;background:var(--_beeco-ds---bc-surface);color:var(--_beeco-ds---bc-ink);border:2px solid var(--_beeco-ds---bc-ink);border-radius:12px 4px;box-shadow:4px 4px 0 var(--_beeco-ds---bc-ink);font-weight:700;font-size:16px;line-height:1.3;opacity:0;transition:opacity .2s ease-out;pointer-events:none}
+.fs-oldal .fs-buborek.fs-lat{opacity:1}
+.fs-oldal .fs-buborek::after{content:"";position:absolute;left:var(--fs-csucs,30%);bottom:-9px;width:14px;height:14px;background:inherit;border-right:2px solid var(--_beeco-ds---bc-ink);border-bottom:2px solid var(--_beeco-ds---bc-ink);transform:rotate(45deg)}
+@keyframes fs-villan{0%,100%{opacity:.12}40%,60%{opacity:.75}}
+.fs-oldal .fs-kv-feny{animation:fs-villan 1.4s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.fs-oldal .fs-kv-feny{animation:none;opacity:.5}}

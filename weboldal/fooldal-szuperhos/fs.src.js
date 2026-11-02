@@ -114,6 +114,15 @@ function gombbaAlakit(a, katt) {
    Szuperhős méhecske: a hivatalos csontváz-rig klónja
    ===================================================== */
 const PISLOGHAT = new Set(['alap', 'vidam', 'figyelmes', 'kivancsi', 'meleg', 'nyugodt']);
+/* kellékek az App útja lépéseihez (2026-11-02, Kristóf): a 170×170-es vászon koordinátáiban, a méh jobbra néz; színek a márka primitívjei */
+const KELLEKEK = [
+  '<g data-kellek="telefon" display="none"><path d="M135 133q9 3 18-2" fill="none" stroke="#000" stroke-width="2.6" stroke-linecap="round"/><g transform="translate(6 14) rotate(-12 158 119)"><rect x="149" y="103" width="18" height="31" rx="3.6" fill="#000"/><rect x="151.4" y="107" width="13.2" height="21.5" rx="1.6" fill="#FECF39"/><path d="M155 114l3 3 4-5" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="158" cy="131" r="1.1" fill="#FFF8E7"/></g></g>',
+  '<g data-kellek="szamologep" display="none"><path d="M135 133q9 3 17-2" fill="none" stroke="#000" stroke-width="2.6" stroke-linecap="round"/><g transform="translate(6 14) rotate(-8 158 120)"><rect x="147" y="103" width="22" height="31" rx="3" fill="#FECF39" stroke="#000" stroke-width="2"/><rect x="150" y="106.5" width="16" height="7" rx="1" fill="#FFF8E7" stroke="#000" stroke-width="1.3"/>' + [0, 1, 2].map(r => [0, 1, 2].map(c => '<rect x="' + (150.5 + c * 5.3) + '" y="' + (117 + r * 5.2) + '" width="3.6" height="3.4" rx=".6" fill="#000"/>').join('')).join('') + '</g></g>',
+  '<g data-kellek="villanykorte" display="none"><circle class="fs-kv-feny" cx="152" cy="38" r="17" fill="#FECF39" opacity=".45"/><g class="fs-kv-sugar" stroke="#000" stroke-width="2" stroke-linecap="round"><path d="M152 15v-5M135 22l-3.5-3.5M169 22l3.5-3.5M130 38h-5M174 38h5"/></g><path d="M152 27a10 10 0 0 1 6 18v4h-12v-4a10 10 0 0 1 6-18z" class="fs-kv-test" fill="#FFF8E7" stroke="#000" stroke-width="2" stroke-linejoin="round"/><path d="M149 41l3 3 3-3" fill="none" stroke="#000" stroke-width="1.4" stroke-linecap="round"/><path d="M146.5 52h11M148 55.5h8" stroke="#000" stroke-width="2" stroke-linecap="round"/></g>',
+  '<g data-kellek="sapka" display="none"><path d="M121 75q2-19 20-20 18 1 19 18z" fill="#E3ECCD" stroke="#000" stroke-width="2" stroke-linejoin="round"/><path d="M121.5 70q19-5 38-2" fill="none" stroke="#2F371E" stroke-width="3.4"/><path d="M114 76q26-7 52-1" fill="none" stroke="#000" stroke-width="4.6" stroke-linecap="round"/><path d="M114 76q26-7 52-1" fill="none" stroke="#2F371E" stroke-width="2.2" stroke-linecap="round"/><path d="M141 57.5a4.2 4.2 0 0 1 4.2 4.2c0 3-4.2 7-4.2 7s-4.2-4-4.2-7a4.2 4.2 0 0 1 4.2-4.2z" fill="#FECF39" stroke="#000" stroke-width="1.4"/><circle cx="141" cy="61.8" r="1.3" fill="#000"/></g>',
+  '<g data-kellek="kuponok" display="none"><path d="M135 133q9 3 17-2" fill="none" stroke="#000" stroke-width="2.6" stroke-linecap="round"/><g transform="translate(7 12)">' + [[-22, '#FFF8E7'], [-6, '#E3ECCD'], [10, '#FFF8E7']].map(([r, f]) => '<g transform="rotate(' + r + ' 155 133)"><rect x="148" y="103" width="15" height="24" rx="2" fill="' + f + '" stroke="#000" stroke-width="1.8"/><rect x="148" y="103" width="15" height="6" rx="2" fill="#FECF39" stroke="#000" stroke-width="1.8"/><path d="M151 118h9" stroke="#000" stroke-width="1.3" stroke-dasharray="2 1.6"/></g>').join('') + '</g></g>',
+  '<g data-kellek="serleg" display="none"><path d="M135 133q9 3 17-2" fill="none" stroke="#000" stroke-width="2.6" stroke-linecap="round"/><g transform="translate(8 12)"><path d="M146 101h16v10a8 8 0 0 1-16 0z" fill="#FECF39" stroke="#000" stroke-width="2" stroke-linejoin="round"/><path d="M146 104h-3.5a4.5 4.5 0 0 0 4 7M162 104h3.5a4.5 4.5 0 0 1-4 7" fill="none" stroke="#000" stroke-width="2"/><path d="M154 119v6M149 126h10" stroke="#000" stroke-width="2.6" stroke-linecap="round"/><path d="M150 104v5" stroke="#FFF8E7" stroke-width="1.8" stroke-linecap="round"/></g></g>'
+].join('');
 const mehek = [];
 class Meh {
   constructor(host, o) {
@@ -133,8 +142,13 @@ class Meh {
     this.ido = Math.random() * 10; this.kovPislog = 1.5 + Math.random() * 3; this.pislogVege = 0;
     this.ugrasT = -1; this.nez = { x: 0, y: 0 }; this.nezCel = { x: 0, y: 0 }; this.K = 38; this.D = 11;
     this.w = host.offsetWidth || 160;
+    // kellékek a gyökércsontban, így együtt lebegnek és dőlnek a méhvel; a mátrix a 170×170-es vászon koordinátáit váltja a rajz terére
+    const gyoker = svg.querySelector('[data-csont="root"]');
+    if (gyoker) { const k = d.createElementNS(NS, 'g'); k.setAttribute('transform', 'matrix(1.72 0 0 1.72 5.177 -43.257)'); k.innerHTML = KELLEKEK; gyoker.appendChild(k); }
+    this.kellekek = $$('[data-kellek]', svg); this.kell = null;
     mehek.push(this);
   }
+  kellek(n) { if (n === this.kell) return; this.kell = n; for (const g of this.kellekek) g.setAttribute('display', g.getAttribute('data-kellek') === n ? 'inline' : 'none'); }
   hely(x, y, s) { this.p.x = this.t.x = x; this.p.y = this.t.y = y; if (s != null) this.p.s = this.t.s = s; this.v = { x: 0, y: 0, s: 0 }; this.rajzol(0); }
   cel(x, y, s) { this.t.x = x; this.t.y = y; if (s != null) this.t.s = s; }
   tav() { return Math.hypot(this.p.x - this.t.x, this.p.y - this.t.y); }
@@ -157,6 +171,7 @@ class Meh {
   rajzol(dt) {
     const rm = kevesMozgas(), seb = Math.hypot(this.v.x, this.v.y), repul = seb > 45;
     if (this.v.x > 70) this.irany = 1; else if (this.v.x < -70) this.irany = -1;
+    else if (this.iranyKell && seb < 45) this.irany = this.iranyKell;
     const half = this.w / 2;
     this.host.style.transform = 'translate3d(' + (this.p.x - half).toFixed(1) + 'px,' + (this.p.y - half).toFixed(1) + 'px,0) scale(' + (this.p.s * this.irany).toFixed(3) + ',' + this.p.s.toFixed(3) + ')';
     const t = this.ido, dol = rm ? 0 : clamp(Math.abs(this.v.x) * 0.011 + this.v.y * 0.009, -20, 20);
@@ -303,10 +318,76 @@ ciklusok.push(function (dt, ts) {
   } else {
     if (allapot === 'hero' && turaFut) turaAll();
     allapot = 'ut';
+    const k = kalandCel();
+    if (k) {
+      kaland = k; meh.host.classList.remove('fs-rejt'); meh.cel(k.p[0], k.p[1], k.s); meh.iranyKell = k.ir;
+      const uj = k.hol + k.i; if (uj !== kalandElozo) { kalandElozo = uj; if (k.hol === 'ut' && k.i >= 6) meh.ugrik(); }
+      meh.arc(k.hol === 'ut' ? UT_ARC[k.i] : MIERT_ARC[k.i]); meh.kellek(k.hol === 'ut' ? UT_KELLEK[k.i] : null);
+      return;
+    }
+    kalandElozo = ''; meh.iranyKell = 0;
     if (szeles()) { const sr = sin.getBoundingClientRect(), pr = reteg.getBoundingClientRect(), p = pontHossznal(prog * L); meh.cel(sr.left - pr.left + p[0], sr.top - pr.top + p[1] - 18, 0.5); meh.host.classList.add('fs-rejt'); }
     else { const pr = reteg.getBoundingClientRect(); meh.cel(innerWidth - 50 - pr.left, 110 - pr.top, 0.4); meh.host.classList.add('fs-rejt'); }
     meh.arc(ALL[akt][2]);
   }
+});
+
+/* ---------- kaland (2026-11-02, Kristóf): a méhecske végigrepüli a „Miért a beeco?” kártyáit és az App útja 8 lépését ----------
+   1 telefon, 2 számológép, 3 felvillanó villanykörte, 4 térképész sapka, 5 kuponok, 6 barátok csatlakoznak,
+   7 egyikük serleget kap, 8 balra érkeznek: „Ez te is lehetsz, a barátaiddal!” Csökkentett mozgásnál a helyükre ugranak. */
+const miertKartyak = $$('#miert .fs-lepes', oldal), utLepesek = $$('.fs-u-lepes', oldal);
+const UT_KELLEK = ['telefon', 'szamologep', 'villanykorte', 'sapka', 'kuponok', null, null, null];
+const UT_ARC = ['vidam', 'figyelmes', 'meglepett', 'kivancsi', 'ujjongo', 'meleg', 'ujjongo', 'vidam'];
+const MIERT_ARC = ['figyelmes', 'kivancsi', 'ujjongo'];
+const buborek = d.createElement('div'); buborek.className = 'fs-buborek'; buborek.textContent = 'Ez te is lehetsz, a barátaiddal!'; reteg.appendChild(buborek);
+let kaland = null, kalandElozo = '';
+function lathato(lista) { if (!lista.length) return false; const a = lista[0].getBoundingClientRect(), z = lista[lista.length - 1].getBoundingClientRect(); return a.top < innerHeight * 0.7 && z.bottom > innerHeight * 0.3; }
+function kozel(lista) {
+  let best = 0, bd = 1e9;
+  lista.forEach((el, i) => { const r = el.getBoundingClientRect(), c = Math.abs(r.top + Math.min(r.height, 240) / 2 - innerHeight * 0.45); if (c < bd) { bd = c; best = i; } });
+  return best;
+}
+function kalandCel() {
+  const mob = innerWidth < 768;
+  if (lathato(utLepesek)) {
+    const i = kozel(utLepesek), el = utLepesek[i], szam = $('.fs-u-szam', el) || el, torzs = $('.fs-u-torzs', el) || el, bal = el.classList.contains('fs-u-bal');
+    let p, ir;
+    if (mob) { p = relHely(torzs, 0.86, -0.08); ir = -1; }
+    else if (i === utLepesek.length - 1) { p = relHely(el, 0.3, 0.62); ir = 1; }
+    else { p = relHely(szam, 0.5 + (bal ? 1 : -1) * 110 / (szam.offsetWidth || 56), 0.45); ir = bal ? -1 : 1; }
+    // a barátok a középvonaltól kifelé sorakoznak (mobilon a kártya teteje mentén balra)
+    return { hol: 'ut', i: i, p: p, s: mob ? 0.5 : 0.62, ir: ir, kifele: mob || i === utLepesek.length - 1 || !bal ? -1 : 1 };
+  }
+  if (lathato(miertKartyak)) {
+    const r0 = miertKartyak[0].getBoundingClientRect(), egySor = miertKartyak.length > 1 && Math.abs(miertKartyak[1].getBoundingClientRect().top - r0.top) < 4;
+    const i = egySor ? clamp(Math.floor(clamp((innerHeight * 0.8 - r0.top) / (innerHeight * 0.55), 0, 0.999) * miertKartyak.length), 0, miertKartyak.length - 1) : kozel(miertKartyak);
+    return { hol: 'miert', i: i, p: relHely(miertKartyak[i], 0.86, -0.06), s: mob ? 0.46 : 0.5, ir: -1, kifele: -1 };
+  }
+  return null;
+}
+const baratok = [], BARAT = [[1.2, 0.22, 'meleg'], [2.25, -0.08, 'kivancsi']];
+function barat(i) {
+  if (!baratok[i]) { const h = d.createElement('div'); h.className = 'fs-meh fs-meh-barat fs-rejt'; reteg.appendChild(h); baratok[i] = new Meh(h, { arc: BARAT[i][2], s: 0.4 }); baratok[i].latszik = false; }
+  return baratok[i];
+}
+ciklusok.unshift(function () { kaland = null; });
+ciklusok.push(function () {
+  if (!kaland) meh.kellek(null);
+  const ut = kaland && kaland.hol === 'ut', vele = ut && kaland.i >= 5, vege = ut && kaland.i === utLepesek.length - 1;
+  BARAT.forEach(([fx, fy, arc], i) => {
+    if (!vele && !baratok[i]) return;
+    const m = barat(i), w = meh.w * meh.t.s;
+    if (vele) {
+      if (!m.latszik) { m.latszik = true; m.host.classList.remove('fs-rejt'); m.hely(meh.p.x - innerWidth * 0.6, meh.p.y + fy * w * 2, meh.t.s * 0.8); }
+      m.cel(meh.p.x + kaland.kifele * fx * w, meh.p.y + fy * w, meh.t.s * 0.8); m.iranyKell = meh.iranyKell;
+      const serleg = kaland.i === 6 && i === 0;
+      m.arc(kaland.i >= 6 ? 'ujjongo' : arc); m.kellek(serleg ? 'serleg' : null);
+      if (kaland.i === 6 && !m.ugrott) { m.ugrott = true; m.ugrik(); } else if (kaland.i !== 6) m.ugrott = false;
+    } else if (m.latszik) { m.latszik = false; m.host.classList.add('fs-rejt'); m.kellek(null); }
+  });
+  const lat = vege && meh.tav() < 40;
+  buborek.classList.toggle('fs-lat', lat);
+  if (lat) { const bw = buborek.offsetWidth, x = clamp(meh.p.x - bw * 0.35, 8, reteg.offsetWidth - bw - 8); buborek.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + (meh.p.y - meh.w * meh.p.s * 0.5 - buborek.offsetHeight - 12).toFixed(1) + 'px,0)'; buborek.style.setProperty('--fs-csucs', clamp(meh.p.x - x - 7, 16, bw - 30).toFixed(0) + 'px'); }
 });
 if (kaptar) { const heroIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { heroIO.disconnect(); turaIndit(); } }), { threshold: .5 }); heroIO.observe(kaptar); }
 
