@@ -31,3 +31,13 @@
 @keyframes fs-villan{0%,100%{opacity:.12}40%,60%{opacity:.75}}
 .fs-oldal .fs-kv-feny{animation:fs-villan 1.4s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.fs-oldal .fs-kv-feny{animation:none;opacity:.5}}
+/* 2026-11-02 (Kristóf: „egységesíts”): a főoldal is a DS-mércét követi: gombsarok 14/4 px, 3 px kemény árnyék, szürke lead,
+   a hero-cím a DS cím-l lépcsőjén (48 px; a 64 px-es cím-xl a háromhasábos heróban 4 sorra törne, és a letöltőgombok a hajtás alá csúsznának) */
+.fs-oldal .fs-hero-cim{font-size:clamp(36px,4vw,48px)}
+.fs-oldal .fs-gomb{border-radius:14px 4px;box-shadow:3px 3px 0 var(--_beeco-ds---bc-ink)}
+@media (hover:hover) and (pointer:fine){.fs-oldal .fs-gomb:hover{transform:translate(-1px,-2px);box-shadow:4px 5px 0 var(--_beeco-ds---bc-ink)}}
+.fs-oldal .fs-gomb:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--_beeco-ds---bc-ink)}
+.fs-oldal .fs-lead:not(.fs-raj *){color:var(--_beeco-ds---bc-ink-soft)}
+/* 2026-11-02 (audit, CLS 0,164): a hero méret nélküli képei helyet foglalnak, mielőtt betöltenek */
+.fs-oldal .img_qr{aspect-ratio:auto 1/1;height:auto}
+.fs-oldal .fs-app-kep{aspect-ratio:auto 640/1110;height:auto}
