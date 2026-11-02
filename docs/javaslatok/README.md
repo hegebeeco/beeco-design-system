@@ -7,7 +7,7 @@ Sablon: [`_sablon.md`](_sablon.md).
 (CHANGELOG, tokenek, tesztek) rájuk mutatnak. A **10, 11 és 12 kétszer szerepel** (⚠ alább): ezeknél hivatkozáskor
 mindig a **fájlnevet** írd, ne csak a számot. Új lap mindig egyedi számot kap.
 
-**A következő szabad szám: 28.**
+**A következő szabad szám: 30.**
 
 | Szám | Fájl | Tárgy | Állapot (a lap fejléce szerint) |
 |---|---|---|---|
@@ -42,5 +42,6 @@ mindig a **fájlnevet** írd, ne csak a számot. Új lap mindig egyedi számot k
 | 26 | [`26-szabaly-feloldasok.md`](26-szabaly-feloldasok.md) | Szabály-feloldások: ellentmondások és hiányzó tokenek | eldöntve, 1.54.0-ban kiadva |
 | 27 | [`27-mobil-visszairas.md`](27-mobil-visszairas.md) | Mobil visszaírás: közös ikonkészlet (42, az 1.56.0-ban 55), halvány méz (`accent-soft`), bronz rangszín, mobil puha árnyék, sötét állapot-skála | jóváhagyva, 1.55.0-ban kiadva (ikonok bővítése: 1.56.0) |
 | 28 | [`28-egy-grafikai-forras.md`](28-egy-grafikai-forras.md) | Egy grafikai forrás, sok kimenet: grafikai katalógus (`grafika/katalogus.json`), a méhek, madarak, logó egységes azonosítója, LICENSE | jóváhagyva (A változat, 2026-10-26); 1. lépés: katalógus + őr |
+| 29 | [`29-jatekos-weboldal-elemek.md`](29-jatekos-weboldal-elemek.md) | Játékos Web DS-elemek: domb, polaroid, piktogramkör, tájképes hero, lebegő méh, idővonal-út (natív osztály + közös CSS a pszeudoelemekre) | jóváhagyva elvben (A, 2026-11-03) |
 
 Új lap: másold a `_sablon.md`-t `29-<rovid-nev>.md` néven, és vedd fel ebbe a táblázatba.
