@@ -51,13 +51,15 @@
 
 /* ---- címek és szöveg (ds-cim1/2/3, ds-lead, ds-szoveg) ---- */
 #udv .headline1{font-family:var(--kd-display);font-size:var(--_tipográfia---cim-xl,64px);font-weight:400;line-height:1.14;text-wrap:balance}
-.headline2,#sikereink .headline1.mid_pos{font-family:var(--kd-display);font-size:var(--_tipográfia---cim-l,48px);font-weight:400;line-height:1.08;text-wrap:balance;color:inherit}
-.headline3,.main_heading,.kk_ajanlat .headline2,#partnerek .egy-ttm-k-d-s .headline2{font-family:var(--kd-display);font-size:var(--_tipográfia---cim-s,24px);font-weight:400;line-height:1.1;color:inherit}
+.headline2,#sikereink .headline1.mid_pos{font-family:var(--kd-display);font-size:var(--_tipográfia---cim-l,48px);font-weight:400;line-height:1.08;text-wrap:balance;color:var(--kd-ink)}
+.headline3,.main_heading,.kk_ajanlat .headline2,#partnerek .egy-ttm-k-d-s .headline2{font-family:var(--kd-display);font-size:var(--_tipográfia---cim-s,24px);font-weight:400;line-height:1.1;color:var(--kd-ink)}
 #partnerek .egy-ttm-k-d-s .headline2{margin-bottom:16px}
 .kk_blokk>.main_text,#udv .kk_hero2_lead{color:var(--kd-soft);font-size:var(--_tipográfia---szoveg-l,20px);line-height:1.55}
 .card .main_text,.r-lunk_textblokk .main_text,.uui-career02_item .main_text,.uui-career02_item .main-text,.kk_ajanlat li,.kk_ertek_szoveg,.kk_ido_szoveg,.kk_galeria_felirat{color:var(--kd-soft);font-size:16px;line-height:1.6}
 .kk_ertek_cim,.kk_ido_cim{font-family:var(--kd-display);font-size:20px;font-weight:400;line-height:1.15;color:var(--kd-ink)}
 .kk_ido_ev{color:var(--_beeco-ds---bc-accent-ink,#8a6a00);font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+/* a jövő-kártya mézszínű: ott a sötétmézes felirat kevés (3,4:1), fekete kell */
+.kk_ido_jovo .kk_ido_ev{color:var(--kd-ink)}
 #sikereink .headline1.mid_pos{color:var(--kd-on-deep)}
 
 /* ---- gombok (ds-gomb, ds-masod) és szöveglink ---- */
