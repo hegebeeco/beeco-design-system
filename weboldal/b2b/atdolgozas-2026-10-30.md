@@ -26,3 +26,11 @@ Forrás: Üzleti terv 2027 artifact (v3.3), 2–3. fejezet és a beeco@WORK / Ö
 - **Zöld marketing:** „Audittól a havi riportig”; a „2026-os szabályokhoz igazodik” helyett „hogy a zöld üzeneted hiteles és alátámasztható legyen”.
 - **Menü:** a „Partnereknek” lenyíló alján „Cégeknek és településeknek: minden ajánlat ›”, Webflow-oldallinkként a hubra (slugcsere után is jó).
 - **Megosztási képek:** oldalanként 1200×630-as JPG (`beeco-og-<oldal>.jpg` a Webflow-eszközök között), a hero-fotóból középre vágva. A Madárrajhoz márkás kártya készült (krém háttér, Lalezar, az app madártérképe), a hubhoz a meglévő kártya „Hatásjelentéssel” sora nélkül. Ok: az AVIF/WebP előnézetet a Facebook és a LinkedIn nem mindig mutatja.
+
+## Élesítés előtti audit (2026-11-02 este)
+Öt független ellenőrzés (UX, UI, marketing, termék és üzlet, technika); a jelentés és a fejlesztési javaslat Kristóf Claude Docs dokumentumában van. A teszt-oldalon javítva:
+- **Űrlap:** a szövegmezők címkéi a mezőkhöz kötve (`for`); „Mikor indulátok?”; közös kiegészítő szkript (`weboldal/kozos/ajanlatkeres.js`): `generate_lead` a sikeres küldéskor, rejtett forrás- és UTM-mezők, termék-előválasztás.
+- **Hub:** az ESG-csempe a Locsolórajra visz („Locsolóraj, Hatásjelentéssel”), a szövege „kisebb greenwashing-kockázattal”.
+- **Fejléc a 14 céges oldalon:** a sárga gomb „Ajánlat” → `#ajanlatkeres` (a „Töltsd le!” elvitte a céges látogatót).
+- **Menü és lábléc:** oldal-linkek az új Rólunk, Csapat, Hatásunk és céges oldalakra (a slugcsere után is jók); a Rólunk csoportban a Hatásunk a duplikált GYIK helyén.
+- **Hero-címek:** `ds-cim1` sortáv 1,02 → 1,14, mert a `ds-kiemel` háttere levágta az előző sor betűinek alját.
