@@ -34,3 +34,9 @@ Forrás: Üzleti terv 2027 artifact (v3.3), 2–3. fejezet és a beeco@WORK / Ö
 - **Fejléc a 14 céges oldalon:** a sárga gomb „Ajánlat” → `#ajanlatkeres` (a „Töltsd le!” elvitte a céges látogatót).
 - **Menü és lábléc:** oldal-linkek az új Rólunk, Csapat, Hatásunk és céges oldalakra (a slugcsere után is jók); a Rólunk csoportban a Hatásunk a duplikált GYIK helyén.
 - **Hero-címek:** `ds-cim1` sortáv 1,02 → 1,14, mert a `ds-kiemel` háttere levágta az előző sor betűinek alját.
+
+## Minimum árak és számok (2026-11-02 délután, Kristóf: „minimum árakat írj oda”, „a többségi számokra javíts”)
+- A 10.30-i „nincs ár” döntést Kristóf felülírta: a belépő csomagkártyán, a „Mennyibe kerül?” GYIK-ban és a JSON-LD-ben (`Offer`) minimum ár áll, ahol van forrás (a repó októberi árai: `szamok.json` előzménye, `oldalak.py` `ar_tol`, és a beeco@work-létra fent):
+  Klímafreskó 220 000, Kézműves 180 000, Kvíz 160 000 (az ÖkoMuki a létszámtól függ), Csere-bere 150 000, Zöld programok 150 000, kerekasztal 350 000 Ft-tól; beeco@work belépő (céges csapat a kampányban) 100 főig 250 000 Ft, 100 fő felett 490 000 Ft + ÁFA; a hub GYIK-ja a kettőt összegzi.
+- Forrás nélkül nem írtunk árat: Locsolóraj, Madárraj, 3D játékok, Zöld marketing, Partnerprogram, Önkormányzat → „Kérj ajánlatot” marad, amíg Kristóf meg nem adja. Az ÁFA csak a beeco@work-nél van kiírva (a többi forrás „Ft-tól”).
+- Számok a többségi értékre: 25.000+ letöltés, több mint egymillió liter és 2 200+ vízadó (2026), 7 500+ fa (2026), 23.000+ zöld pont, 35+ partner (kuponos), 70 App Store-értékelés, indulás 2023 (az ötlet 2022 őszi). A 2025-ös adatok (7 000 fa, 400 000 liter) a történeti helyükön maradnak.
