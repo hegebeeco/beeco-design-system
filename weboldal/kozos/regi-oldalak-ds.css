@@ -45,7 +45,7 @@ section .button_main:active,section .button_sec:active,form .button_main:active{
 
 /* ---- GYIK: fülek és lenyílók ---- */
 .tab_button{min-height:44px;display:inline-flex;align-items:center;padding:8px 16px;border:2px solid var(--rd-line);border-radius:999px;background-color:var(--rd-surface);color:var(--rd-ink);font-weight:800}
-.tab_button.w--current{background-color:var(--rd-acc)}
+.tab_button.w--current,.w-tab-link.tab_button.w--current{border:2px solid var(--rd-line);border-radius:999px;background-color:var(--rd-acc);color:var(--rd-ink)}
 .gyik_item .home-faq-top{min-height:56px;border:2px solid var(--rd-line);border-radius:var(--rd-r);background-color:var(--rd-surface);color:var(--rd-ink)}
 .gyik_item .home-faq-text a,.home-faq-text a{color:var(--rd-ink);font-weight:800;text-decoration:underline;display:inline-flex;align-items:center;min-height:44px}
 
