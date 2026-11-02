@@ -70,6 +70,12 @@ textarea.input_field{min-height:120px}
 .w-slider .w-slider-nav .w-slider-dot.w-active{background-color:var(--rd-ink)}
 .w-slider-nav{display:flex;flex-wrap:wrap;justify-content:center;height:auto}
 
+/* ---- teljesítmény (2026-11-02 esti mérés) ----
+   /letoltes: a telefonkép (lustán tölt) helyét előre lefoglaljuk, mobilon 300 px-es ugrás volt (CLS 0,31);
+   /gyik, /kapcsolat: a hajtás feletti blokk ne várja meg a beúszó interakciót (mobil LCP ~10 s volt). */
+.image-181{aspect-ratio:500/672;height:auto}
+.div-block-77,.irodabal,.zenj_nek-nk.contact-us{opacity:1!important}
+
 /* ---- mobil ---- */
 @media (max-width:767px){
   .huge-heading,section .headline1{font-size:40px}
