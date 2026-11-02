@@ -2,7 +2,8 @@
    - „Ugrás a tartalomra” link a menü előtt (csak billentyűfókuszra látszik);
    - a régi GYIK-lenyílók (.gyik_item .home-faq-top: /gyik, /letoltes és a régi oldalak) billentyűzettel is nyílnak,
      képernyőolvasónak gombként, nyitott/zárt állapottal; a Csatlakozz oldalon ezt a kk.js végzi, ott nem fut;
-   - sötét, jól látható fókuszgyűrű az űrlapmezőkön (a sárga gyűrű krém alapon kb. 1,5:1 volt). */
+   - sötét, jól látható fókuszgyűrű az űrlapmezőkön (a sárga gyűrű krém alapon kb. 1,5:1 volt);
+   - a felső hírsáv bezáró X-e billentyűzettel is működik (1.1.0). */
 (function () {
   'use strict';
   var FOCUS = 'var(--_beeco-ds---bc-focus, #2656d9)';
@@ -16,7 +17,7 @@
       'background:var(--_beeco-ds---bc-accent,#fecf39);color:#000;font-weight:800;text-decoration:none}' +
       '.beeco-ugras:focus{top:12px;outline:3px solid ' + FOCUS + ';outline-offset:2px}' +
       'input:not([type=hidden]):focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid ' + FOCUS + ' !important;outline-offset:2px}' +
-      '.gyik_item .home-faq-top:focus-visible{outline:3px solid ' + FOCUS + ';outline-offset:3px}';
+      '.gyik_item .home-faq-top:focus-visible,.brix---icon-small-hover:focus-visible{outline:3px solid ' + FOCUS + ';outline-offset:3px}';
     document.head.appendChild(s);
   }
 
@@ -46,6 +47,19 @@
     })(headers[i]);
   }
 
-  function init() { style(); skipLink(); faq(); }
+  // A felső sáv (brix top bar) bezáró X-e egy kép a kattintható div-ben: gombként, billentyűzettel is zárjon.
+  function topBarClose() {
+    var icons = document.querySelectorAll('.brix---top-bar-close-icon .brix---icon-small-hover');
+    for (var i = 0; i < icons.length; i++) (function (icon) {
+      if (icon.hasAttribute('role')) return;
+      icon.setAttribute('role', 'button');
+      icon.setAttribute('tabindex', '0');
+      icon.setAttribute('aria-label', 'Sáv bezárása');
+      icon.setAttribute('alt', '');
+      icon.addEventListener('keydown', function (ev) { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); icon.click(); } });
+    })(icons[i]);
+  }
+
+  function init() { style(); skipLink(); faq(); topBarClose(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
