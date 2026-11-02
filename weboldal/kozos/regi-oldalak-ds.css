@@ -49,6 +49,12 @@ section .button_main:active,section .button_sec:active,form .button_main:active{
 .gyik_item .home-faq-top{min-height:56px;border:2px solid var(--rd-line);border-radius:var(--rd-r);background-color:var(--rd-surface);color:var(--rd-ink)}
 .gyik_item .home-faq-text a,.home-faq-text a{color:var(--rd-ink);font-weight:800;text-decoration:underline;display:inline-flex;align-items:center;min-height:44px}
 
+/* a lenyíló sor fejléce a gomb (billentyűzettel is, lásd kozos/akadalymentes.js), nem az egész doboz */
+.gyik_item{cursor:auto}
+.gyik_item .home-faq-top{cursor:pointer}
+/* közösségi ikonok: 44 px-es érintési felület */
+.brix---icon-square-36px{min-width:44px;min-height:44px}
+
 /* ---- kártyák és fotók ---- */
 section .card,section .r-lunk_textblokk{border:2px solid var(--rd-line);border-radius:var(--rd-r);box-shadow:4px 4px 0 0 var(--rd-line);overflow:hidden}
 
