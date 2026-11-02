@@ -1,0 +1,158 @@
+/* beeco /en (Web Summit) – a főoldal (fs-) és a CsicsergŐsz vizuális nyelve a meglévő ds- elemeken (2026-11-03, Kristóf:
+   „csináld meg olyan színesre és szagosra, mint a főoldalt vagy a csicsergőszt”).
+   Csak az /en oldal fejkódja tölti be, ezért a ds- osztályokat a site többi oldalán nem érinti.
+   Elemek: Zöld 2050 táj a hero mögött, szalagcím, polaroid fotó ragasztószalaggal, szuperhős-méhraj, piktogramok
+   sárga körben, lágy domb a szekciók alján (a következő szekció színében), sötét számtábla, szaggatott idővonal.
+   Színek, sarkok, árnyékok: csak DS-változók (Webflow: --_beeco-ds---bc-*). A rajzok a Webflow-médiatárból jönnek. */
+:root{
+  --en-ink:var(--_beeco-ds---bc-ink,#000);
+  --en-soft:var(--_beeco-ds---bc-ink-soft,#505050);
+  --en-bg:var(--_beeco-ds---bc-bg,#fff8e7);
+  --en-surface:var(--_beeco-ds---bc-surface,#fff);
+  --en-s2:var(--_beeco-ds---bc-surface-2,#f0f3ec);
+  --en-zold:var(--_beeco-ds---bc-success-bg,#e3eccd);
+  --en-deep:var(--_beeco-ds---bc-surface-deep,#2f371e);
+  --en-on-deep:var(--_beeco-ds---bc-on-deep,#d3ddbb);
+  --en-acc:var(--_beeco-ds---bc-accent,#fecf39);
+  --en-acc-soft:var(--_beeco-ds---bc-accent-soft,#fee79c);
+  --en-line:var(--_beeco-ds---bc-line,#000);
+  --en-r:var(--_beeco-ds---bc-r-l,12px) var(--_beeco-ds---bc-r-s,4px);
+  --en-display:Lalezar,"Arial Rounded MT Bold",system-ui,sans-serif;
+  --en-ease:cubic-bezier(.23,1,.32,1);
+  --en-cdn:"https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/";
+  --en-taj:url("https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/6acdd7d01adc944900c4d958_fs-zold-2050-v2.svg");
+  --en-raj:url("https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/6ae8586a54d2db5656399651_fs-meh-raj.png");
+  --en-beela:url("https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/69958ad111b6a3c7275accc0_ME%CC%81H_Beela.png")
+}
+body{background-color:var(--en-bg)}
+
+/* ---- szekciók: lágy domb az alján, a következő szekció színében ---- */
+.ds-szekcio{position:relative;padding-top:88px;padding-bottom:136px;overflow-x:clip}
+.ds-szekcio::after{content:"";position:absolute;left:-10%;right:-10%;bottom:-1px;height:56px;border-radius:50% 50% 0 0/100% 100% 0 0;background-color:var(--en-domb,transparent);pointer-events:none;z-index:1}
+.ds-szekcio>.ds-burok{position:relative;z-index:2}
+/* sorrend: hero (krém + táj) → Why now (világoszöld) → How it works (krém) → ajánlatok (sötét) → mért hatás (zöld)
+   → számok (sötét) → történet (krém) → sajtó (fehér) → kapcsolat (méz) → lábléc */
+#kezdes{background-color:var(--en-bg);--en-domb:var(--en-s2)}
+#why{background-color:var(--en-s2);--en-domb:var(--en-bg)}
+#why+.ds-szekcio{background-color:var(--en-bg);--en-domb:var(--en-deep)}
+#offers{background-color:var(--en-deep);color:var(--en-bg);--en-domb:var(--en-zold)}
+#impact{background-color:var(--en-zold);--en-domb:var(--en-deep)}
+#impact+.ds-szekcio{background-color:var(--en-deep);color:var(--en-bg);--en-domb:var(--en-bg)}
+#impact+.ds-szekcio+.ds-szekcio{background-color:var(--en-bg);--en-domb:var(--en-surface)}
+#contact{background-color:var(--en-acc-soft);--en-domb:var(--en-deep)}
+#contact{padding-bottom:120px}
+section.ds-szekcio.ds-hatter-feher:not(#why):not(#impact){background-color:var(--en-surface);--en-domb:var(--en-acc-soft)}
+
+/* ---- szalagcím (fs-szalag): fekete ragasztócsík, enyhén ferdén; sötét alapon sárga ---- */
+.ds-szalag{display:inline-block;width:auto;padding:8px 12px 5px;border:0;border-radius:0;background-color:var(--en-ink);color:var(--en-bg);font-family:var(--en-display);font-size:16px;line-height:1;letter-spacing:.01em;transform:rotate(-2deg);clip-path:polygon(0 7%,100% 0,99% 93%,1% 100%);box-shadow:none}
+#offers .ds-szalag,#impact+.ds-szekcio .ds-szalag{background-color:var(--en-acc);color:var(--en-ink)}
+
+/* ---- címek, szöveg ---- */
+.ds-cim1{font-family:var(--en-display);font-size:clamp(40px,5vw,60px);line-height:1.05;text-wrap:balance;color:var(--en-ink)}
+.ds-kiemel{background:linear-gradient(transparent 12%,var(--en-acc) 12%,var(--en-acc) 88%,transparent 88%);padding:0 .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.ds-cim2{font-family:var(--en-display);font-size:var(--_tipográfia---cim-l,48px);line-height:1.08;text-wrap:balance}
+#offers .ds-cim2,#impact+.ds-szekcio .ds-cim2{color:var(--en-bg)}
+#offers .ds-szekcio-fej .ds-lead,#impact+.ds-szekcio .ds-forras{color:var(--en-on-deep)}
+.ds-lead{color:var(--en-soft)}
+
+/* ---- gombok (fs-gomb) ---- */
+.ds-gomb{min-height:48px;padding:13px 22px 9px;border:2px solid var(--en-line);border-radius:14px 4px;background-color:var(--en-acc);color:var(--en-ink);font-family:var(--en-display);font-size:20px;line-height:1;box-shadow:3px 3px 0 0 var(--en-line);transition:transform 160ms var(--en-ease),box-shadow 160ms var(--en-ease)}
+.ds-gomb.ds-masod{background-color:var(--en-surface)}
+@media (hover:hover) and (pointer:fine){.ds-gomb:hover{transform:translate(-1px,-2px);box-shadow:4px 5px 0 0 var(--en-line)}}
+.ds-gomb:active{transform:translate(2px,2px);box-shadow:1px 1px 0 0 var(--en-line)}
+.ds-chip{border:2px solid var(--en-line);background-color:var(--en-surface);color:var(--en-ink);font-weight:700}
+.ds-chip:first-child{background-color:var(--en-acc)}
+
+/* ---- hero: Zöld 2050 táj, polaroid fotó, szuperhős-méhraj ---- */
+#kezdes{padding-top:120px;padding-bottom:220px;background-image:var(--en-taj);background-repeat:no-repeat;background-position:center bottom;background-size:max(1440px,100%) auto}
+#kezdes .ds-hero-racs{align-items:center}
+#kezdes .ds-hero-szoveg{position:relative;padding:28px 28px 24px;border:2px solid var(--en-line);border-radius:var(--en-r);background-color:var(--en-bg);box-shadow:5px 5px 0 0 var(--en-line)}
+.ds-hero-foto{position:relative;padding:10px 10px 44px;border:2px solid var(--en-line);border-radius:4px;background-color:var(--en-surface);box-shadow:6px 6px 0 0 var(--en-line);transform:rotate(2.5deg);overflow:visible}
+.ds-hero-foto::before{content:"";position:absolute;top:-14px;left:50%;width:120px;height:26px;margin-left:-60px;background-color:var(--en-acc);opacity:.88;transform:rotate(-3deg);z-index:3}
+.ds-hero-foto::after{content:"";position:absolute;right:-64px;bottom:-62px;width:190px;height:165px;background:var(--en-raj) center/contain no-repeat;z-index:4;animation:en-lebeg 3.2s ease-in-out infinite alternate}
+.ds-hero-foto .ds-foto-kep{border-radius:2px}
+.ds-hero-foto .ds-foto-felirat{left:auto;right:auto;bottom:8px;position:absolute;width:auto;background-color:transparent;color:var(--en-ink);font-family:var(--en-display);font-size:20px;padding:0;margin:0 0 0 6px}
+@keyframes en-lebeg{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(-10px) rotate(2deg)}}
+
+/* ---- kártyák: fehér, kemény árnyék, enyhe dőlés; piktogram sárga körben ---- */
+.ds-kartya,.ds-grafikon{border:2px solid var(--en-line);border-radius:var(--en-r);background-color:var(--en-surface);box-shadow:4px 4px 0 0 var(--en-line)}
+.ds-ketto>.ds-kartya:nth-child(odd),.ds-harom>.ds-kartya:nth-child(odd){transform:rotate(-.8deg)}
+.ds-ketto>.ds-kartya:nth-child(even),.ds-harom>.ds-kartya:nth-child(even){transform:rotate(.8deg)}
+.ds-kartya-piko{width:64px;height:64px;padding:10px;box-sizing:border-box;border:2px solid var(--en-line);border-radius:50%;background-color:var(--en-acc)}
+/* Why now: matrica-piktogram a sarokban */
+#why .ds-kartya{position:relative;padding-top:28px}
+#why .ds-kartya .ds-cim3{padding-right:56px}
+#why .ds-kartya::before{content:"";position:absolute;top:-22px;right:18px;width:56px;height:56px;border:2px solid var(--en-line);border-radius:50%;background:var(--en-acc) center/60% no-repeat;box-shadow:2px 2px 0 0 var(--en-line)}
+#why .ds-kartya:nth-child(1)::before{background-image:url("https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/6acdcfafdf4b15324ccb4a5b_fs-piko-olvas.svg")}
+#why .ds-kartya:nth-child(2)::before{background-image:url("https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/6acdcfaf356d56416f62a0d9_fs-piko-otlet.svg")}
+/* How it works: a három lépés között szaggatott út */
+#why+.ds-szekcio .ds-harom{position:relative}
+#why+.ds-szekcio .ds-harom::before{content:"";position:absolute;left:8%;right:8%;top:44px;border-top:3px dashed var(--en-line);z-index:0}
+#why+.ds-szekcio .ds-kartya{position:relative;z-index:1}
+
+/* ---- ajánlatok (sötét alapon világos csempék) ---- */
+.ds-ut{border:2px solid var(--en-line);border-radius:var(--en-r);background-color:var(--en-bg);color:var(--en-ink);box-shadow:5px 5px 0 0 var(--en-line);transition:transform 160ms var(--en-ease),box-shadow 160ms var(--en-ease)}
+.ds-ut.ds-ut-kiemelt{background-color:var(--en-acc)}
+@media (hover:hover) and (pointer:fine){.ds-ut:hover{transform:translate(-2px,-3px) rotate(-.5deg);box-shadow:7px 8px 0 0 var(--en-line)}}
+.ds-ut .ds-tovabb-nyil{font-family:var(--en-display);font-size:18px;color:var(--en-ink)}
+
+/* ---- mért hatás: sávok kerettel ---- */
+.ds-grafikon{transform:rotate(.6deg)}
+.ds-sav{border:2px solid var(--en-line);font-weight:700;color:var(--en-ink)}
+.ds-sav.ds-sav-elozo{background-color:var(--en-surface)}
+
+/* ---- számok: sötét tábla, piktogram világos körben, sárga szám ---- */
+.ds-szamsav{gap:16px}
+.ds-szam{position:relative;padding:20px 20px 18px 92px;border:2px solid var(--en-line-deep,var(--_beeco-ds---bc-line-deep,#596b39));border-radius:var(--en-r);background-color:var(--_beeco-ds---bc-surface-deeper,#1f2615)}
+.ds-szam::before{content:"";position:absolute;left:18px;top:50%;width:58px;height:58px;margin-top:-29px;border-radius:50%;background:var(--en-on-deep) center/62% no-repeat}
+.ds-szam:nth-child(1)::before{background-image:url("https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/6acdcfb16b9d194eb04d6ec1_fs-piko-telefon.svg")}
+.ds-szam:nth-child(2)::before{background-image:url("https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/6acdcfb146bae73bbde923f6_fs-piko-terkep.svg")}
+.ds-szam:nth-child(3)::before{background-image:url("https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/6acdcfb1a57f9d8d1eba51c5_fs-piko-telepules.svg")}
+.ds-szam:nth-child(4)::before{background-image:url("https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/6acdcf7ba358827ed21560fa_fs-piko-csepp.svg")}
+.ds-szam:nth-child(5)::before{background-image:url("https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/6acdcfae02624ee83fb9c137_fs-piko-naptar.svg")}
+.ds-szam:nth-child(6)::before{background-image:url("https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/6acdcfb0f2f41b180badebb7_fs-piko-raj.svg")}
+.ds-szam-ertek{font-family:var(--en-display);color:var(--en-acc)}
+.ds-szam-felirat{color:var(--en-on-deep)}
+
+/* ---- történet: szaggatott idővonal, fekete évszám-pirula, a végén Beela ---- */
+.ds-ido-lista{position:relative;padding-left:0;padding-bottom:120px}
+.ds-ido-lista::before{content:"";position:absolute;left:42px;top:12px;bottom:120px;border-left:3px dashed var(--en-line)}
+.ds-ido-lista::after{content:"";position:absolute;left:-6px;bottom:-8px;width:120px;height:126px;background:var(--en-beela) center/contain no-repeat;animation:en-lebeg 3.6s ease-in-out infinite alternate}
+.ds-ido-elem{position:relative;border:0}
+.ds-ido-ho{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;min-width:84px;height:40px;padding:5px 10px 0;border:2px solid var(--en-line);border-radius:999px;background-color:var(--en-ink);color:var(--en-acc);font-family:var(--en-display);font-size:22px;line-height:1}
+.ds-ido-elem:first-child .ds-ido-ho{background-color:var(--en-acc);color:var(--en-ink)}
+
+/* ---- sajtó és partnerek: matrica-csempék ---- */
+.ds-logo{border:2px solid var(--en-line);border-radius:var(--en-r);background-color:var(--en-surface);box-shadow:3px 3px 0 0 var(--en-line)}
+
+/* ---- kapcsolat: méhraj a cím fölött, sárga alapon ---- */
+#contact .ds-zaro{position:relative;padding-top:150px}
+#contact .ds-zaro::before{content:"";position:absolute;top:0;left:50%;width:170px;height:148px;margin-left:-85px;background:var(--en-raj) center/contain no-repeat;animation:en-lebeg 3s ease-in-out infinite alternate}
+#contact .ds-zaro-lead strong{background-color:var(--en-surface);padding:0 6px;border:2px solid var(--en-line);border-radius:6px}
+
+/* ---- tablet, mobil ---- */
+@media (max-width:991px){
+  #kezdes{background-size:max(1100px,100%) auto;padding-bottom:180px}
+  .ds-hero-foto{margin-top:24px}
+  #why+.ds-szekcio .ds-harom::before{display:none}
+}
+@media (max-width:767px){
+  .ds-szekcio{padding-top:64px;padding-bottom:104px}
+  .ds-szekcio::after{height:36px}
+  #kezdes{padding-top:96px;padding-bottom:150px;background-size:900px auto}
+  #kezdes .ds-hero-szoveg{padding:20px 16px 18px}
+  .ds-hero-foto{transform:rotate(1.5deg)}
+  .ds-hero-foto::after{right:-8px;bottom:-56px;width:130px;height:113px}
+  .ds-ketto>.ds-kartya,.ds-harom>.ds-kartya,.ds-grafikon{transform:none}
+  .ds-szam{padding-left:84px}
+  .ds-ido-lista::before{display:none}
+  .ds-ido-elem{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+  .ds-ido-ho{width:auto;min-width:0}
+  #contact .ds-zaro::before{left:0;margin-left:0}
+  #contact .ds-zaro{padding-top:124px}
+  #contact .ds-zaro::before{width:140px;height:122px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ds-hero-foto::after,.ds-ido-lista::after,#contact .ds-zaro::before{animation:none}
+  .ds-gomb,.ds-ut{transition:none}
+}
