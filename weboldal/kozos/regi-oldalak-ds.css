@@ -26,8 +26,8 @@ section.dia_feher,div.dia_feher,section.gyik{background-color:var(--rd-surface)}
 
 /* ---- címek és szöveg ---- */
 .huge-heading,section .headline1{font-family:var(--rd-display);font-size:var(--_tipográfia---cim-xl,64px);font-weight:400;line-height:1.14;text-wrap:balance;color:var(--rd-ink)}
-section .headline2,.gyik_blokk>h2{font-family:var(--rd-display);font-size:var(--_tipográfia---cim-l,48px);font-weight:400;line-height:1.08;text-wrap:balance;color:var(--rd-ink)}
-.gyik_blokk>h2{font-size:var(--_tipográfia---cim-m,32px)}
+section .headline2,.gyik_blokk>h2:not(.main_text){font-family:var(--rd-display);font-size:var(--_tipográfia---cim-l,48px);font-weight:400;line-height:1.08;text-wrap:balance;color:var(--rd-ink)}
+.gyik_blokk>h2:not(.main_text){font-size:var(--_tipográfia---cim-m,32px)}
 section .headline3,section .main_heading{font-family:var(--rd-display);font-size:var(--_tipográfia---cim-s,24px);font-weight:400;line-height:1.1;color:var(--rd-ink)}
 section .main_text,section .main-text{color:var(--rd-soft);line-height:1.55}
 
@@ -118,7 +118,7 @@ textarea.input_field{min-height:120px}
 @media (max-width:767px){
   .huge-heading,section .headline1{font-size:40px}
   section .headline2{font-size:32px}
-  .gyik_blokk>h2{font-size:26px}
+  .gyik_blokk>h2:not(.main_text){font-size:26px}
 }
 @media (prefers-reduced-motion:reduce){
   section .button_main,section .button_sec,section .button_terc,form .button_main,.card_negyzet{transition:none}
