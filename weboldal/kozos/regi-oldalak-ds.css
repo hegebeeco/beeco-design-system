@@ -89,6 +89,11 @@ textarea.input_field{min-height:120px}
   .kategoria_blokk{gap:12px;justify-content:center}
   .card_negyzet{width:calc(50% - 6px);max-width:200px;height:auto;aspect-ratio:1/1;margin:0}
 }
+/* szekción kívüli (div-konténeres) gombok és a hírsáv gombja is 44 px; a hírsáv X-e 44 px-es érintési felületet kap,
+   és csak az X mutat kattinthatónak (a billentyűzetes gombot a kozos/akadalymentes.js adja) */
+.alap-blokk .hero_column_content .button_main,.brix---top-bar-close-icon .button_main{min-height:44px;display:inline-flex;align-items:center}
+.brix---top-bar-close-icon{cursor:auto}
+.brix---top-bar-close-icon .brix---icon-small-hover{box-sizing:content-box;padding:12px;margin:-12px;cursor:pointer}
 /* Eseménynaptár: üres (kép nélküli) partnerlink ne legyen név nélküli fókuszpont */
 .t-mogat-_link:empty{display:none}
 
