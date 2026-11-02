@@ -51,3 +51,12 @@ Hossz: 5 szekció, egy képernyőnyi olvasás szekciónként. A magyar főoldalo
 1. Melyik e-mail/kapcsolat legyen a Web Summit-oldalon (és kell-e pitch deck letöltés)?
 2. 2025-ös vagy 2026-os vízadás-számok?
 3. Az angol szövegeket lektorálja-e valaki (anyanyelvi)?
+
+## Megjelenés (2026-11-03, Kristóf: „olyan színesre és szagosra, mint a főoldalt vagy a csicsergőszt”)
+A tartalom és a ds- szerkezet a Designerben változatlan; a főoldal vizuális nyelvét egy oldal-szintű réteg adja:
+`en-szines.css` (jsDelivr, commitra rögzítve, csak az /en fejkódja tölti be). Benne: Zöld 2050 táj a hero mögött
+(`fs-zold-2050-v2.svg`), krém hero-kártya, polaroid csapatfotó ragasztószalaggal és a szuperhős-méhrajjal (`fs-meh-raj.png`),
+fekete ferde szalagcímek (sötét alapon sárga), lágy domb minden szekció alján a következő szekció színében, matrica-piktogramok
+sárga körben, szaggatott út a három lépés között, sötét zöld ajánlat- és számtábla piktogramokkal, szaggatott idővonal
+Beelával a végén, matrica-logócsempék, a kapcsolatnál méhraj. Színek: csak DS-változók. A méhek lebegnek, csökkentett mozgásnál állnak.
+Kapu (teszt-domain, 390/320/1440): nincs lelet, nincs kilógás; mobil LCP 2,3 s, CLS 0. Az oldal már nem piszkozat (az éles publikálással kimegy).
