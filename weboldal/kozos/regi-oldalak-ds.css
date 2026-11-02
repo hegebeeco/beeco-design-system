@@ -78,6 +78,10 @@ textarea.input_field{min-height:120px}
 .div-block-77,.irodabal,.zenj_nek-nk.contact-us{opacity:1!important}
 
 /* ---- mobil ---- */
+/* beebolt: a fix kosárgomb telefonon rácsúszott a „‹ főoldal” linkre (320 és 390 px) → tömörebb gomb */
+@media (max-width:479px){
+  a.w-commerce-commercecartopenlink.button_main{padding:11px 12px 8px;font-size:16px}
+}
 @media (max-width:767px){
   .huge-heading,section .headline1{font-size:40px}
   section .headline2{font-size:32px}
