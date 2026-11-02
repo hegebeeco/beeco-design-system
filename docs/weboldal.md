@@ -454,7 +454,7 @@ szerkezetet nem.
 | Elem | Leírás |
 |---|---|
 | **Szalagcím** (kicker) | rövid címke a cím fölött: tinta háttér, világos Lalezar, enyhén elforgatva, matrica-vágással (`clip-path: polygon(0 7%,100% 0,99% 93%,1% 100%)`). Szekciónként egy; sötét háttéren a sárga változat (Web DS: `ds-szalag` + `ds-szalag-vilagos`, landing: `fs-szalag` + `fs-szalag-mez`) |
-| **Elválasztó** | *(2026-11-02, Kristóf: egyszerűsítve)* egyetlen fajta: **lágy domb**, egy réteg, a szekció `::after` pszeudoeleme a következő szekció színével (56 px, `border-radius: 50% 100%` felül). A régi kétrétegű SVG-domb, a matrica-szél és a rajta ülő mini idézet kikerült. |
+| **Elválasztó** | *(2026-11-02, Kristóf: egyszerűsítve)* egyetlen fajta: **lágy domb**, egy réteg, a szekció `::after` pszeudoeleme a következő szekció színével (56 px, `border-radius: 50% 100%` felül), felfelé eső lágy árnyékkal (`0 -6px 14px -4px`, világoson 16 %, sötéten 30 % fekete), hogy a szekciók egymásra csúszó lapnak hassanak. A régi kétrétegű SVG-domb, a matrica-szél és a rajta ülő mini idézet kikerült. |
 | **Gomb** | méz alap, fekete 2 px keret, 8 px sarok, 4 px kemény árnyék; hover felemelkedik, lenyomva lesüllyed; a felirat legfeljebb 3 szó |
 | **Kártya, termékbőr** | `bc-card`: 2 px tinta keret, 12 px sarok, kemény árnyék csak kattinthatón |
 | **Kártya, Szuperhős főoldal** | *(2026-11-02)* ugyanaz, mint a Web DS `ds-kartya`: 2 px tinta keret (`bc-bw-base`, `bc-line`), sarok 12 / 4 / 12 / 4 px (`bc-r-l` és `bc-r-s` változó), 4 px kemény árnyék; a régi 16 / 4 px sarok kivezetve |

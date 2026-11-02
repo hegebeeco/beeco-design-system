@@ -128,7 +128,7 @@ A Szuperhős landing és a Web DS (`ds-`) ugyanarra a mércére került, változ
 | Bevezető | `szoveg-l` (20 / 18 / 16 px) | `ds-lead` | `fs-lead`, `fs-szekcio-lead`, `fs-u-lead`, `fs-lp-lead`, `fs-alcim` |
 | Kártyaszöveg | `szoveg-m` (16 px), normál vastagság | – | pl. `fs-ut-szoveg` |
 | Kártya | 2 px `bc-line` keret (`bc-bw-base`), sarok `bc-r-l` / `bc-r-s` / `bc-r-l` / `bc-r-s`, 4 px kemény árnyék | `ds-kartya` | `fs-kartya` (+ `fs-lepes`, `fs-velemeny`, `fs-termek`), `fs-u-torzs`, `fs-utgomb`, `fs-h-miert`, `fs-kerdes` |
-| Elválasztó | egy réteg domb, `::after`, a következő szekció színe | – | minden `fs-` szekció |
+| Elválasztó | egy réteg domb, `::after`, a következő szekció színe, felfelé eső lágy árnyék (`0 -6px 14px -4px`, 16 % / sötéten 30 %) | – | minden `fs-` szekció |
 
 A `ds-szalag` sötét háttéren 7 helyen kapta meg a `ds-szalag-vilagos` combót (hub: Víziónk, Bizonyíték; Önkormányzatoknak,
 beeco@work, Locsolóraj, Zöld céges programok, Partnerprogram: Bizonyíték). Új sötét szekcióban (`ds-hatter-sotet`) a címke
