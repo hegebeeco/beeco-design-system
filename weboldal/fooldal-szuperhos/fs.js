@@ -32,6 +32,8 @@ let naploDb = 0, naploLista = null, naploSzam = null;
 function mer(esemeny, adat) {
   const e = Object.assign({ event: 'beeco_' + esemeny }, adat || {});
   window.dataLayer.push(e);
+  // az oldalon nincs GTM, csak gtag: a dataLayer-esemény magától nem jut el a GA4-be (2026-11-02 audit)
+  if (typeof window.gtag === 'function') window.gtag('event', 'beeco_' + esemeny, Object.assign({ oldal: location.pathname }, adat || {}));
   if (!naploLista) return;
   naploDb++; naploSzam.textContent = naploDb;
   const li = d.createElement('li'); li.innerHTML = '<code>' + e.event + '</code> ' + Object.entries(adat || {}).map(([k, v]) => k + ': ' + v).join(', ');
