@@ -1,0 +1,127 @@
+/* beeco Csatlakozz-hub: DS-bőr (v3, 2026-11-02, Kristóf kérése: „frissítsd meg az új DS kinézetre”).
+   A kk.css UTÁN töltődik, csak ezen az oldalon. A régi site-osztályokat (headline2, main_text, button_main, card…)
+   az új Rólunk/Csapat oldalak ds- elemeinek kinézetére hozza: szekcióháttér a DS-ből, fekete szalagcím, Lalezar
+   címskála a Tipográfia-változókból, 2 px keret + 12/4 px sarok + kemény árnyék, keretezett fotók, csempés logósor.
+   A jelölést (data-kk-*, űrlapmezők, szakasz-azonosítók) nem érinti; a kk.js változatlanul fut rajta.
+   Teljes újraépítés (natív ds- elemekkel): docs a fejlesztési javaslatban. */
+:root{
+  --kd-ink:var(--_beeco-ds---bc-ink,#000);
+  --kd-soft:var(--_beeco-ds---bc-ink-soft,#505050);
+  --kd-muted:var(--_beeco-ds---bc-ink-muted,#676767);
+  --kd-bg:var(--_beeco-ds---bc-bg,#fff8e7);
+  --kd-surface:var(--_beeco-ds---bc-surface,#fff);
+  --kd-s2:var(--_beeco-ds---bc-surface-2,#f0f3ec);
+  --kd-vaj:var(--_beeco-ds---bc-vaj,#feeebb);
+  --kd-deep:var(--_beeco-ds---bc-raj-bg,#2f371e);
+  --kd-on-deep:var(--_beeco-ds---bc-on-olive,#d3ddbb);
+  --kd-acc:var(--_beeco-ds---bc-accent,#fecf39);
+  --kd-line:var(--_beeco-ds---bc-line,#000);
+  --kd-r:var(--_beeco-ds---bc-r-l,12px) var(--_beeco-ds---bc-r-s,4px);
+  --kd-display:Lalezar,"Arial Rounded MT Bold",system-ui,sans-serif;
+  --kd-ease:cubic-bezier(.23,1,.32,1)
+}
+
+/* ---- szekciók: DS-háttér és -térköz (96 / 72 / 56 px) ---- */
+#udv,#sajto,#rolunk,#mit-csinalunk,#tortenetunk,#sikereink,#partnerek,#igy-mukodik,#rajok,#kozosseg,#jelentkezes,#gyik{padding-top:96px;padding-bottom:96px;color:var(--kd-ink)}
+#udv{background-color:var(--kd-vaj);padding-top:56px}
+#sajto{background-color:var(--kd-surface);padding-top:56px;padding-bottom:56px}
+#rolunk{background-color:var(--kd-bg)}
+#mit-csinalunk{background-color:var(--kd-s2)}
+#tortenetunk{background-color:var(--kd-surface)}
+#sikereink{background-color:var(--kd-deep);color:var(--kd-on-deep)}
+#partnerek{background-color:var(--kd-bg)}
+#igy-mukodik{background-color:var(--kd-vaj)}
+#rajok{background-color:var(--kd-surface);max-width:none}
+#kozosseg{background-color:var(--kd-s2)}
+#jelentkezes{background-color:var(--kd-bg)}
+#gyik{background-color:var(--kd-surface)}
+@media (max-width:991px){
+  #udv,#rolunk,#mit-csinalunk,#tortenetunk,#sikereink,#partnerek,#igy-mukodik,#rajok,#kozosseg,#jelentkezes,#gyik{padding-top:72px;padding-bottom:72px}
+}
+@media (max-width:767px){
+  #udv,#rolunk,#mit-csinalunk,#tortenetunk,#sikereink,#partnerek,#igy-mukodik,#rajok,#kozosseg,#jelentkezes,#gyik{padding-top:56px;padding-bottom:56px}
+  #udv{padding-top:28px}
+  #sajto{padding-top:40px;padding-bottom:40px}
+}
+
+/* ---- szalagcím (ds-szalag) ---- */
+.kk_felcim{display:inline-block;align-self:center;max-width:100%;margin:0 0 14px;padding:.5em .75em .3em;background-color:var(--kd-ink);color:var(--kd-bg);font-family:var(--kd-display);font-size:16px;font-weight:400;line-height:1;letter-spacing:normal;text-transform:none;clip-path:polygon(0 7%,100% 0,99% 93%,1% 100%);transform:rotate(-2deg)}
+#udv .kk_felcim{align-self:flex-start}
+#sikereink .kk_felcim{background-color:var(--kd-acc);color:var(--kd-ink)}
+
+/* ---- címek és szöveg (ds-cim1/2/3, ds-lead, ds-szoveg) ---- */
+#udv .headline1{font-family:var(--kd-display);font-size:var(--_tipográfia---cim-xl,64px);font-weight:400;line-height:1.14;text-wrap:balance}
+.headline2,#sikereink .headline1.mid_pos{font-family:var(--kd-display);font-size:var(--_tipográfia---cim-l,48px);font-weight:400;line-height:1.08;text-wrap:balance;color:inherit}
+.headline3,.main_heading,.kk_ajanlat .headline2,#partnerek .egy-ttm-k-d-s .headline2{font-family:var(--kd-display);font-size:var(--_tipográfia---cim-s,24px);font-weight:400;line-height:1.1;color:inherit}
+#partnerek .egy-ttm-k-d-s .headline2{margin-bottom:16px}
+.kk_blokk>.main_text,#udv .kk_hero2_lead{color:var(--kd-soft);font-size:var(--_tipográfia---szoveg-l,20px);line-height:1.55}
+.card .main_text,.r-lunk_textblokk .main_text,.uui-career02_item .main_text,.uui-career02_item .main-text,.kk_ajanlat li,.kk_ertek_szoveg,.kk_ido_szoveg,.kk_galeria_felirat{color:var(--kd-soft);font-size:16px;line-height:1.6}
+.kk_ertek_cim,.kk_ido_cim{font-family:var(--kd-display);font-size:20px;font-weight:400;line-height:1.15;color:var(--kd-ink)}
+.kk_ido_ev{color:var(--_beeco-ds---bc-accent-ink,#8a6a00);font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+#sikereink .headline1.mid_pos{color:var(--kd-on-deep)}
+
+/* ---- gombok (ds-gomb, ds-masod) és szöveglink ---- */
+#udv .button_main,#udv .button_terc,main .button_main,section .button_main,section .button_terc,#jelentkezes input[type=submit],.kk_gomb{min-height:48px;padding:13px 22px 10px;border:2px solid var(--kd-line);border-radius:14px 4px;background-color:var(--kd-acc);color:var(--kd-ink);font-family:var(--kd-display);font-size:19px;font-weight:400;line-height:1;text-decoration:none;box-shadow:3px 3px 0 0 var(--kd-line);transition:transform 160ms var(--kd-ease),box-shadow 160ms var(--kd-ease)}
+section .button_terc{background-color:var(--kd-surface)}
+@media (hover:hover) and (pointer:fine){
+  section .button_main:hover,section .button_terc:hover,#jelentkezes input[type=submit]:hover,.kk_gomb:hover{transform:translate(-1px,-2px);box-shadow:4px 5px 0 0 var(--kd-line);color:var(--kd-ink)}
+}
+section .button_main:active,section .button_terc:active,#jelentkezes input[type=submit]:active,.kk_gomb:active{transform:translate(2px,2px);box-shadow:1px 1px 0 0 var(--kd-line)}
+.kk_hero2_link,.kk_belepes_link{color:var(--kd-ink);font-weight:800;text-decoration:underline}
+.kk_hero2_link:hover,.kk_belepes_link:hover{text-decoration:none}
+
+/* ---- számcímkék (ds-chip) ---- */
+.kk_chipek .text_chip,.kk_chipek .text_chip.zold{padding:7px 12px 6px;border:2px solid var(--kd-line);border-radius:999px;background-color:var(--kd-surface);color:var(--kd-ink)}
+.kk_chipek .kk_chip_szoveg{color:var(--kd-ink);font-size:14px;font-weight:700;line-height:1.2}
+
+/* ---- kártyák (ds-kartya): 2 px keret, 12/4 px sarok, kemény árnyék ---- */
+.r-lunk_textblokk,#igy-mukodik .card,.kk_ajanlat>.div-block-240,#rajok .uui-career02_item,.kk_kiemelt,#sikereink .verseny_kartya,.kk_galeria_keret{border:2px solid var(--kd-line);border-radius:var(--kd-r);box-shadow:4px 4px 0 0 var(--kd-line)}
+#igy-mukodik .card,#sikereink .verseny_kartya{overflow:hidden}
+#sikereink .verseny_kartya{background-color:var(--kd-surface);color:var(--kd-ink)}
+#sikereink .verseny_kartya .idezet{color:var(--kd-soft)}
+.kk_ertek{padding:20px;border:2px solid var(--kd-line);border-radius:var(--kd-r);background-color:var(--kd-surface);line-height:1.5}
+/* GYIK: keretes sor, kemény árnyék nélkül (nem kártya, hanem lenyíló) */
+#gyik .home-faq-top{border:2px solid var(--kd-line);border-radius:var(--kd-r);background-color:var(--kd-surface);min-height:56px}
+#gyik .gyik_item{color:var(--kd-ink)}
+
+/* ---- fotók (ds-foto): 3 px keret, 18/6 px sarok, 6 px árnyék ---- */
+#udv .slider,#kozosseg .slider{border:3px solid var(--kd-line);border-radius:18px 6px;overflow:hidden;background-color:var(--kd-surface);box-shadow:6px 6px 0 0 var(--kd-line)}
+#tortenetunk .kk_tortenet_kep{border:3px solid var(--kd-line);border-radius:18px 6px;box-shadow:6px 6px 0 0 var(--kd-line)}
+.kk_tortenet_felirat{color:var(--kd-muted);font-size:13px;line-height:1.5}
+.r-lunk_textblokk~.img,[data-kk-hely="vizio"] .div-block-238>.img{border:3px solid var(--kd-line);border-radius:18px 6px;box-shadow:6px 6px 0 0 var(--kd-line)}
+
+/* ---- csúszkapöttyök: 12 px-es pötty, 44 px-es érintési felület ---- */
+.w-slider-nav .w-slider-dot{width:12px;height:12px;margin:0;padding:16px;box-sizing:content-box;background-clip:content-box;background-color:var(--kd-muted);box-shadow:none}
+.w-slider-nav .w-slider-dot.w-active{background-color:var(--kd-ink)}
+#sikereink .w-slider-nav .w-slider-dot{background-color:var(--kd-on-deep);opacity:.55}
+#sikereink .w-slider-nav .w-slider-dot.w-active{opacity:1}
+
+/* ---- logósor (ds-logosor / ds-logo): csempék rácsban, nem lóg ki ---- */
+#sajto .logo_wrapper,#partnerek .logo_wrapper{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;width:100%;max-width:100%}
+#sajto .uui-logos03_wrapper,#partnerek .logo_wrapper>a{display:flex;align-items:center;justify-content:center;height:96px;min-width:0;padding:14px;border:2px solid var(--kd-line);border-radius:14px 4px;background-color:var(--kd-surface)}
+#sajto .press_img,#partnerek .logo_wrapper>a img{width:auto;max-width:100%;height:auto;max-height:64px;object-fit:contain}
+@media (max-width:991px){#sajto .logo_wrapper,#partnerek .logo_wrapper{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:767px){
+  #sajto .logo_wrapper,#partnerek .logo_wrapper{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #sajto .uui-logos03_wrapper,#partnerek .logo_wrapper>a{height:80px}
+}
+@media (max-width:479px){#sajto .logo_wrapper,#partnerek .logo_wrapper{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---- űrlap: DS-mezők (2 px keret, 48 px magas, 16 px betű: iOS nem nagyít) ---- */
+#jelentkezes input[type=text],#jelentkezes input[type=email],#jelentkezes input[type=tel],#jelentkezes input[type=url],#jelentkezes select,#jelentkezes textarea{min-height:48px;border:2px solid var(--kd-line);border-radius:10px 4px;background-color:var(--kd-surface);color:var(--kd-ink);font-size:16px}
+#jelentkezes textarea{min-height:120px;padding-top:12px}
+#jelentkezes .w-form{border:2px solid var(--kd-line);border-radius:var(--kd-r);background-color:var(--kd-surface);box-shadow:4px 4px 0 0 var(--kd-line)}
+
+/* ---- mobil: nem lóghat ki semmi 320 px-en ---- */
+@media (max-width:767px){
+  #udv .headline1{font-size:40px}
+  .headline2,#sikereink .headline1.mid_pos{font-size:32px}
+  .kk_blokk{padding-left:16px;padding-right:16px;max-width:100%}
+  .kk_galeria,.kk_galeria_sav{max-width:100%}
+  .kk_galeria_dia{min-width:0}
+}
+
+@media (prefers-reduced-motion:reduce){
+  section .button_main,section .button_terc,#jelentkezes input[type=submit],.kk_gomb{transition:none}
+  .kk_felcim{transform:none}
+}
