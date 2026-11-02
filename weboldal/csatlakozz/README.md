@@ -60,3 +60,14 @@ elemenkénti ismétlésszűréssel, mert a Trustindex a horgonykattintást megá
 - Fekete tinta és keret, méz kiemelés, kemény árnyék csak kattinthatón (gomb, választógomb).
 - 44 px-es érintési felület, látható fókusz (`--bc-focus`), csökkentett mozgásnál nincs számláló-animáció és átmenet.
 - Mintaadat élesben tilos (a `review-szabalyok.json` P1-et ad, amíg `[data-kk-allapot="minta"]` van az oldalon).
+
+## DS-bőr (v3, 2026-11-02)
+
+Kristóf kérésére a hub az új Rólunk/Csapat oldalak kinézetét kapta, átépítés nélkül: a `kk-ds.css` a `kk.css` **után**
+töltődik (oldal fejkód, jsDelivr, commit-SHA-ra rögzítve). A régi site-osztályokat (headline1/2/3, main_text, button_main,
+button_terc, text_chip, card, verseny_kartya, logósorok, űrlapmezők) a ds- elemek kinézetére hozza: DS-szekcióháttér
+(vaj, krém, fehér, zöld, sötét raj), fekete szalagcím, Lalezar címskála a Tipográfia-változókból, 2 px keret + 12/4 px
+sarok + kemény árnyék, keretezett fotók, csempés logósor, 44 px-es csúszkapöttyök, 16 px-es űrlapmezők. A `data-kk-*`
+jelölést, az űrlapmezőket és a szakasz-azonosítókat nem érinti. Ütközés: a `review-szabalyok.json` régi szabálya
+(„kemény árnyék csak kattinthatón”, „kakaó a fekete”) a mostani DS-sel (ds-kartya, ds-foto, fekete tinta) ellentétes;
+a DS az erősebb, a szabályfájl frissítése Kristóf döntése. Teljes, natív ds- elemes újraépítés: fejlesztési javaslat.

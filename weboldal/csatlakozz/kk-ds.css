@@ -97,6 +97,8 @@ section .button_main:active,section .button_terc:active,#jelentkezes input[type=
 .w-slider .w-slider-nav .w-slider-dot.w-active{background-color:var(--kd-ink)}
 #sikereink .w-slider .w-slider-nav .w-slider-dot{background-color:var(--kd-on-deep);opacity:.55}
 #sikereink .w-slider .w-slider-nav .w-slider-dot.w-active{opacity:1}
+/* mobilon a 10 pötty a kártyákra csúszna: ott a két 48 px-es nyíl lapoz */
+@media (max-width:767px){#sikereink .w-slider-nav{display:none}}
 
 /* ---- logósor (ds-logosor / ds-logo): csempék rácsban, nem lóg ki ---- */
 #sajto .logo_wrapper,#partnerek .logo_wrapper{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;width:100%;max-width:100%}
