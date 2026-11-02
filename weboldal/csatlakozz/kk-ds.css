@@ -91,10 +91,10 @@ section .button_main:active,section .button_terc:active,#jelentkezes input[type=
 .r-lunk_textblokk~.img,[data-kk-hely="vizio"] .div-block-238>.img{border:3px solid var(--kd-line);border-radius:18px 6px;box-shadow:6px 6px 0 0 var(--kd-line)}
 
 /* ---- csúszkapöttyök: 12 px-es pötty, 44 px-es érintési felület ---- */
-.w-slider-nav .w-slider-dot{width:12px;height:12px;margin:0;padding:16px;box-sizing:content-box;background-clip:content-box;background-color:var(--kd-muted);box-shadow:none}
-.w-slider-nav .w-slider-dot.w-active{background-color:var(--kd-ink)}
-#sikereink .w-slider-nav .w-slider-dot{background-color:var(--kd-on-deep);opacity:.55}
-#sikereink .w-slider-nav .w-slider-dot.w-active{opacity:1}
+.w-slider .w-slider-nav .w-slider-dot,.w-slider .w-slider-nav.w-shadow>div,.w-slider .w-slider-nav.w-round>div{width:44px;height:44px;margin:0;padding:16px;box-sizing:border-box;background-clip:content-box;background-color:var(--kd-muted);box-shadow:none}
+.w-slider .w-slider-nav .w-slider-dot.w-active{background-color:var(--kd-ink)}
+#sikereink .w-slider .w-slider-nav .w-slider-dot{background-color:var(--kd-on-deep);opacity:.55}
+#sikereink .w-slider .w-slider-nav .w-slider-dot.w-active{opacity:1}
 
 /* ---- logósor (ds-logosor / ds-logo): csempék rácsban, nem lóg ki ---- */
 #sajto .logo_wrapper,#partnerek .logo_wrapper{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;width:100%;max-width:100%}
@@ -105,7 +105,16 @@ section .button_main:active,section .button_terc:active,#jelentkezes input[type=
   #sajto .logo_wrapper,#partnerek .logo_wrapper{grid-template-columns:repeat(3,minmax(0,1fr))}
   #sajto .uui-logos03_wrapper,#partnerek .logo_wrapper>a{height:80px}
 }
-@media (max-width:479px){#sajto .logo_wrapper,#partnerek .logo_wrapper{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* mobilon az „Írtak rólunk” két vízszintesen görgethető sor marad (mint a kk.css-ben), csak csempékkel */
+@media (max-width:767px){
+  #sajto .sziget_blokk{flex-direction:column;overflow:visible}
+  #sajto .logo_wrapper{display:flex;flex-wrap:nowrap;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 2px 12px}
+  #sajto .uui-logos03_wrapper{flex:0 0 120px;height:72px;scroll-snap-align:start}
+}
+@media (max-width:479px){
+  #partnerek .logo_wrapper{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  #partnerek .logo_wrapper>a{height:64px;padding:8px}
+}
 
 /* ---- űrlap: DS-mezők (2 px keret, 48 px magas, 16 px betű: iOS nem nagyít) ---- */
 #jelentkezes input[type=text],#jelentkezes input[type=email],#jelentkezes input[type=tel],#jelentkezes input[type=url],#jelentkezes select,#jelentkezes textarea{min-height:48px;border:2px solid var(--kd-line);border-radius:10px 4px;background-color:var(--kd-surface);color:var(--kd-ink);font-size:16px}
@@ -119,7 +128,6 @@ section .button_main:active,section .button_terc:active,#jelentkezes input[type=
   .kk_blokk{padding-left:16px;padding-right:16px;max-width:100%}
   .kk_galeria,.kk_galeria_sav{max-width:100%}
   .kk_galeria_dia{min-width:0}
-  #udv{padding-left:0;padding-right:0}
   .kk_hero2{grid-template-columns:minmax(0,1fr)}
   .kk_hero2_bal,.kk_hero2_jobb{min-width:0}
 }
