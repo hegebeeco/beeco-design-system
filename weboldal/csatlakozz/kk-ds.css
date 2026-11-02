@@ -107,7 +107,7 @@ section .button_main:active,section .button_terc:active,#jelentkezes input[type=
 }
 /* mobilon az „Írtak rólunk” két vízszintesen görgethető sor marad (mint a kk.css-ben), csak csempékkel */
 @media (max-width:767px){
-  #sajto .sziget_blokk{flex-direction:column;overflow:visible}
+  #sajto .sziget_blokk{flex-direction:column;overflow:visible;align-self:stretch;width:100%;min-width:0}
   #sajto .logo_wrapper{display:flex;flex-wrap:nowrap;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 2px 12px}
   #sajto .uui-logos03_wrapper{flex:0 0 120px;height:72px;scroll-snap-align:start}
 }
