@@ -12,7 +12,9 @@ Ez a fájl a projekt állandó kontextusa (a Claude Code minden munkamenet elej�
 
 ## 2. Mit építünk
 {{LEIRAS}}
-Játékterv: `docs/jatekterv.md`. Tervezési elvek (kötelező): `docs/jatektervezes.md` – 30 mp alatt érthető, a rendszer tanít
+Játékterv: `docs/jatekterv.md`, döntésnapló: `docs/dontesek.md`. A tervezés fázisai és kapui (brief → koncepció → játékterv (GDD) →
+prototípus → vertical slice → gyártás → játékteszt → kiadás → utóélet): a `beeco-jatektervezes` skill – fázist csak Kristóf kapudöntése után váltunk.
+Tervezési elvek (kötelező): `docs/jatektervezes.md` – 30 mp alatt érthető, a rendszer tanít
 (nem a szöveg), több szempont ütközik, rövid és újrajátszható, a végén **profil** és nem egyetlen „zöld pontszám”, mobilon is megy.
 
 ## 3. Technikai keretek
