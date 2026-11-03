@@ -11,6 +11,9 @@ eszközök (jatek-foto, smoke, sw-lista, art-*), szabálykönyvek (`docs/`), és
 Az első, élő játékgyűjtemény: `~/CLAUDE/beeco-szelektalj` (https://beeco-szelektalj.netlify.app) – mintának jó.
 
 ## Új játék indítása
+0. **Előbb a terv:** a `beeco-jatektervezes` skill 0–2. fázisa (brief → koncepció → játékterv), Kristóf kapudöntéseivel.
+   Projektet az 1. kapu (jóváhagyott koncepció) után indítunk; a prototípus a projekt `prototipus/` mappájába kerül
+   (a pontos szabály: `beeco-jatektervezes` skill, „Mikor indul a projekt és a prototípus”).
 1. Olvasd el: `~/CLAUDE/beeco-jatek-kit/docs/jatektervezes.md` (elvek) és a felhasználó koncepcióját.
 2. `node ~/CLAUDE/beeco-jatek-kit/tools/uj-jatek.js ~/CLAUDE/<mappa> "<Játék neve>" "<egy mondat>"`
    → kész, futó projekt (mintajáték, tesztek, offline, CI, CLAUDE.md), git init + első commit.
