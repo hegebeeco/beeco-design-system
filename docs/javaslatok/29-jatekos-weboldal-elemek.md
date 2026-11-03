@@ -35,6 +35,7 @@
 | **Lebegő méh** | `ds-meh` (Image, `alt=""`, abszolút helyzet) + helyzet-combók: `ds-meh-jobb-lent`, `ds-meh-kozep-fent` | `@keyframes` lebegés 3,2 s, csökkentett mozgásnál áll |
 | **Idővonal-út** | combó: `ds-ido-lista.ds-ido-ut`; az évszám `ds-ido-ho.ds-ido-pirula` (tinta pirula, sárga szám; az első sárga) | `::before`: szaggatott függőleges út (mobilon nincs) |
 | **Szaggatott lépéssor** | combó: `ds-harom.ds-lepes-ut` | `::before`: vízszintes szaggatott vonal a kártyák mögött (tablet alatt nincs) |
+| **Morzsamenü** (Kristóf kérése, 2026-11-03; **kész**) | `DS · Morzsamenü` komponens (Web DS csoport): `nav.ds-morzsa` > `ol.ds-morzsa-lista` > `li.ds-morzsa-elem`; linkek `ds-morzsa-link` (44 px magas, `bc-ink-soft`, rámutatásra `bc-ink`), elválasztó `ds-morzsa-jel` (`aria-hidden`), aktuális oldal `ds-morzsa-aktualis` (`aria-current="page"`). Propok: Középső szint, Középső link (URL), Középső szint látszik, Oldal neve. A hero-szöveg első eleme. Kint: hub + 13 céges oldal, Rólunk, Csapatunk, Hatásunk | – (natív; a BreadcrumbList JSON-LD külön, oldalanként) |
 
 Minden szín, sarok és árnyék változóból (`--_beeco-ds---bc-*`). Új változó nem kell.
 
