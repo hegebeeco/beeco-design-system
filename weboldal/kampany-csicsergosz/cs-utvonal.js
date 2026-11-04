@@ -35,7 +35,8 @@
     d.addEventListener('cs:atadas', mutat, { once: true }); setTimeout(mutat, 6000);
   }
   var linkek = ALLOMAS.map(function (a, i) {
-    var l = d.createElement('a'); l.className = 'cs-utvonal_pont'; l.href = '#'; l.setAttribute('aria-label', 'Ugrás: ' + a.nev);
+    if (!a.el.id) a.el.id = 'cs-allomas-' + (i + 1);
+    var l = d.createElement('a'); l.className = 'cs-utvonal_pont'; l.href = '#' + a.el.id; l.setAttribute('aria-label', 'Ugrás: ' + a.nev);
     l.innerHTML = '<span class="cs-utvonal_cimke">' + a.nev + '</span>';
     l.addEventListener('click', function (e) { e.preventDefault(); a.el.scrollIntoView({ behavior: csend ? 'auto' : 'smooth', block: 'start' }); });
     doboz.appendChild(l); return l;

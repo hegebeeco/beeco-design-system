@@ -4,8 +4,10 @@
    4. kártyák illusztrációi  5. látogatások: itatóra száll és iszik, etetőre száll és eszik, berepül az odúba
    6. megfigyelés: csicsergő madár  7. közösség: sétáló madár  8. záró jelenet.
    A madár neve nem jelenik meg; minden illusztráció dekoratív (aria-hidden). */
-(function () {
+(async function () {
   var d = document, w = window;
+  /* a szakaszok között átadjuk a vezérlést a böngészőnek (2026-11-04): így nincs egy hosszú, a görgetést és kattintást blokkoló feladat */
+  var szunet = function () { return (w.scheduler && w.scheduler.yield) ? w.scheduler.yield() : new Promise(function (r) { setTimeout(r, 0); }); };
   var csend = w.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var SVG = /*SVG*/{};
   var ALAP = ((d.currentScript && d.currentScript.src) || '').replace(/[^/?#]+(\?.*)?$/, '');
@@ -172,6 +174,7 @@
     }
   }
 
+  await szunet();
   /* 4. Kártyák: a fotók helyén Ági illusztrációi (itatás, etetés, odú) */
   function kepCsere(img, nev) {
     if (!img) return null;
@@ -253,11 +256,13 @@
     w.addEventListener('load', ujra); w.addEventListener('resize', ujra); latogat(melyik(), true);
   }
 
+  await szunet();
   /* 6. Megfigyelés: a Webflow a stílus nélküli osztályokat eldobta, ezért a lépések szöveg- és képrészét itt jelöljük meg. */
   [].forEach.call(d.querySelectorAll('.cs_folyamat_lepes'), function (l) {
     var ui = l.querySelector('.cs_folyamat_ui'); if (ui) ui.parentNode.classList.add('cs_folyamat_vizual');
     if (l.firstElementChild && l.firstElementChild !== (ui && ui.parentNode)) l.firstElementChild.classList.add('cs_folyamat_szoveg');
   });
+  await szunet();
   /* 6b. Felfedezés-ösvény: a lépések között görgetésre kirajzolódó szaggatott vonal, rajta a madár útja.
          1. lépés: fekete sziluett kérdőjellel  2. felismerjük: színes lesz, előjön a neve  3. a fotója bekerül a kis
          Madár albumba, a könyv becsukódik, a madár a könyvön csicsereg. Visszagörgetésre visszafelé játszik. */
@@ -331,6 +336,7 @@
     uEpit();
   }
 
+  await szunet();
   /* 7. Közösség: a hírlevél-sziget tetején ülő madár (álló póz, pislog) */
   var sziget = d.querySelector('#fotofal .cs_sziget');
   if (sziget && !d.querySelector('#fotofal .cs-setalo')) { var sm = CSI.madar('alap', 'cs-setalo'); var sav = elem('<div class="cs-setalo_sav" aria-hidden="true"></div>'); sav.appendChild(sm); sziget.parentNode.insertBefore(sav, sziget); }
@@ -350,6 +356,7 @@
     szom.appendChild(CSI.madar('szomoru', 'cs-szomoru_madar')); szomSor.appendChild(figyel(szom));
   }
 
+  await szunet();
   /* 10. Ági szaggatott repülési hurkai: görgetésre rajzolódnak ki (maszkolt szaggatott vonal). */
   var hurkok = [], hId = 0;
   function hurok(kont, kulcs, osztaly) {
@@ -373,6 +380,7 @@
     w.addEventListener('scroll', function () { if (!hRaf) hRaf = requestAnimationFrame(hFris); }, { passive: true }); hFris();
   }
 
+  await szunet();
   /* 11. Megfigyelés 1. lépés: kamera-keret (Ági karuszelje, 4. panel) – a sarkok rázáródnak, „katt”. */
   var elso = d.querySelector('.cs_folyamat_lepes .cs_folyamat_vizual');
   var vanKam = elso && elso.querySelector('.cs-kamera'); if (vanKam) figyel(dekor(vanKam));
@@ -382,6 +390,7 @@
   var gImg = d.querySelector('#fotofal .cs_gabee_kep');
   if (gImg && SVG.bor_gabee && !d.querySelector('#fotofal .cs-gabee-szett')) { gImg.parentNode.insertBefore(CSI.illu('bor_gabee', 'cs_gabee_kep cs-gabee-szett'), gImg); gImg.classList.add('cs_foto_rejtett'); }
 
+  await szunet();
   /* 8. Záró jelenet: Ági borítójának tükörképe alkonyatban. A főszereplő az útvonalról leszáll a letöltés gombra,
         csicsereg, majd hazarepül az odúba: így zárul a hero íve (kirepült, végigkísért, hazaért). */
   var zaro = d.getElementById('download');
@@ -437,6 +446,7 @@
   }
 
 
+  await szunet();
   /* 13. Csatlakozás: a fülek fotói helyett Ági elemeiből rakott képek (cég: odú és etető, önkormányzat: fa és etető, iskola: itató és madár) */
   var KINEK = [['odu', 'eteto'], ['fa_sarga', 'eteto'], ['itato', 'poz_alap']];
   [].forEach.call(d.querySelectorAll('.cs_kinek_panel'), function (pn, n) {
@@ -446,6 +456,7 @@
     img.parentNode.insertBefore(kp, img); img.classList.add('cs_foto_rejtett');
   });
 
+  await szunet();
   /* 14. Belépés: szekciónként a szalag-kicker kibomlik (300 ms), utána a tartalom 12 px-et emelkedik, 60 ms-os lépcsővel.
         Egyszer fut; a végén az osztályok lekerülnek, így a kártyák saját átmenetei érintetlenek. Csökkentett mozgásnál nincs. */
   if (!csend && 'IntersectionObserver' in w) {
