@@ -204,13 +204,11 @@ function indit() { if (!fut) { fut = true; utolso = performance.now(); requestAn
 d.addEventListener('visibilitychange', () => { if (!d.hidden) indit(); });
 
 await szunet();
-/* ---------- ragadós letöltősáv (mobil) ---------- */
-const ragados = d.createElement('div'); ragados.className = 'fs-ragados'; ragados.setAttribute('aria-hidden', 'true');
-ragados.innerHTML = ikon('lab', 'fs-lab') + '<p><b>beeco app</b>Ingyenes, 4,6 ★</p><a class="fs-gomb fs-okos-letoltes" href="#letoltes" tabindex="-1">Töltsd le az appot</a>';
-oldal.appendChild(ragados); okosLetoltes($('a', ragados), 'ragados');
-d.body.classList.add('fs-van-ragados');
+/* ---------- ragadós letöltősáv (mobil): natív Webflow-elem (2026-11-04), a szkript csak ki-be kapcsolja ---------- */
+const ragados = $('.fs-ragados', oldal);
+if (ragados) { okosLetoltes($('a', ragados), 'ragados'); d.body.classList.add('fs-van-ragados'); }
 let heroLat = true, zaroLat = false;
-function ragadosFrissit() { const lat = !heroLat && !zaroLat; ragados.classList.toggle('fs-lat', lat); ragados.setAttribute('aria-hidden', !lat); $('a', ragados).tabIndex = lat ? 0 : -1; }
+function ragadosFrissit() { if (!ragados) return; const lat = !heroLat && !zaroLat; ragados.classList.toggle('fs-lat', lat); ragados.setAttribute('aria-hidden', !lat); $('a', ragados).tabIndex = lat ? 0 : -1; }
 const heroCta = $('.fs-hero .fs-cta-sor', oldal), zaro = $('#letoltes');
 if (heroCta) new IntersectionObserver(es => es.forEach(e => { heroLat = e.isIntersecting; ragadosFrissit(); })).observe(heroCta);
 if (zaro) new IntersectionObserver(es => es.forEach(e => { zaroLat = e.isIntersecting; ragadosFrissit(); }), { threshold: .15 }).observe(zaro);
