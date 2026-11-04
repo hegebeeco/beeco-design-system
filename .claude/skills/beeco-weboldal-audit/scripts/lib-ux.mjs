@@ -44,7 +44,8 @@ export function uxExtract(cfg) {
   // ---- 1. első benyomás
   const h1 = [...document.querySelectorAll('h1')].find(h => vis(h) && !h.closest(ZONE));
   const vp = body.find(b => b.fold && !b.head && !b.link && b.words >= 8 && b.fs >= 13);
-  const heroCtas = ctaEls.filter(c => c.fold && c.zone === 'main');
+  // a szöveglinkek (ds-szoveglink, aláhúzott link) harmadlagos utak, nem számítanak a hero gombjai közé
+  const heroCtas = ctaEls.filter(c => c.fold && c.zone === 'main' && !/(^|\s)(ds-szoveglink|w-inline-link)(\s|$)/.test(c.el.className || ''));
   let visual = false, visualWhat = '';
   for (const im of document.querySelectorAll('img,svg,video,canvas,picture,lottie-player,[data-animation-type="lottie"]')) {
     if (im.closest(ZONE) || !vis(im)) continue; const r = im.getBoundingClientRect();

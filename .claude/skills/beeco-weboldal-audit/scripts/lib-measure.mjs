@@ -155,8 +155,10 @@ function pageProbe() {
     const generic = subIdx.some(i => /(gtag|dataLayer\.push|clarity\()/.test(win(i)) && /(form|urlap|űrlap)/i.test(win(i)));
     const wfTrack = /w-form-done/.test(code) && /(gtag|dataLayer)/.test(code) && /MutationObserver/.test(code);
     const attrHook = !!f.querySelector('[data-b2b-cta],[data-kk-cta]') && /submit/.test(code);
-    const tracked = hit || wfTrack || attrHook || (generic && !names.length);
-    return { id: f.id || '', name: f.getAttribute('data-name') || f.getAttribute('name') || '', lead, visible: r.width > 0 && r.height > 0, tracked, evidence: hit ? 'submit-figyelő hivatkozik az űrlapra' : wfTrack ? 'Webflow siker-megfigyelő + gtag' : attrHook ? 'data-*-cta a gombon + szkript' : generic ? 'általános submit-figyelő mérőhívással' : 'nincs egyedi küldés-mérési horog a kódban' };
+    // a közös beeco mérőszkriptek (külön fájlként töltődnek, ezért a beágyazott kódban nem látszanak) a küldést is mérik
+    const sharedHook = srcs.some(s => /beeco(kkmeres|ajanlatkeres)/i.test(s));
+    const tracked = hit || wfTrack || attrHook || sharedHook || (generic && !names.length);
+    return { id: f.id || '', name: f.getAttribute('data-name') || f.getAttribute('name') || '', lead, visible: r.width > 0 && r.height > 0, tracked, evidence: hit ? 'submit-figyelő hivatkozik az űrlapra' : sharedHook ? 'közös beeco mérőszkript (beecokkmeres / beecoajanlatkeres)' : wfTrack ? 'Webflow siker-megfigyelő + gtag' : attrHook ? 'data-*-cta a gombon + szkript' : generic ? 'általános submit-figyelő mérőhívással' : 'nincs egyedi küldés-mérési horog a kódban' };
   });
   return out;
 }
@@ -174,6 +176,8 @@ function ctaEnumerate() {
   for (const el of document.querySelectorAll('a[href],button,[role=button],input[type=button]')) {
     if (!vis(el)) continue;
     if (el.closest('[class*="cky"],[class*="cookie"],[id*="cookie"],[class*="sender"],.w-form-done,.w-form-fail')) continue;
+    // végtelen sávok másolatai és rejtett ismétlések: a látogató nem kattinthat rájuk, a mérésük téves lelet lenne
+    if (el.closest('[inert],[aria-hidden="true"]')) continue;
     if (/\bw-(nav-button|dropdown-toggle|tab-link|slider-arrow|slider-dot|lightbox)/.test(el.className || '') || el.hasAttribute('aria-expanded') || el.hasAttribute('aria-haspopup')) continue;
     if (el.closest('form') && (el.tagName === 'BUTTON' || el.tagName === 'INPUT')) continue;
     const href = el.tagName === 'A' ? (el.getAttribute('href') || '') : '';

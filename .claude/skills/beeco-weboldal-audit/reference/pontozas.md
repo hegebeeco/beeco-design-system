@@ -133,6 +133,16 @@ Egy oldal PASS, ha **összpont ≥ 85**, **nincs P0**, és **nincs P1** – kiv�
 | Vizuál és UX (10 %) | QA böngészők (webkit, firefox, ha telepítve): kilógás / JS-hiba / nincs H1 (nem telepített böngészőnél: „nem mérve”) | −10, max −20 (P1) / −3 (P2) / −4 (P2), max −12 |
 | Vizuál és UX (10 %) | Konzol: JS-hiba / első fél JS-, CSS-, betűtípus-erőforrás 4xx-5xx / egyéb hibás válasz | −3 (P2) / −6 / db, max −12 (P1) / −2, max −6 (P2) |
 | Teljesítmény (10 %) | QA lassú 4G (1,6 Mbit/s, 150 ms RTT, 4× CPU, 390 px): a hero (H1) > 4 s / > 8 s; LCP > 4 s / > 8 s | −6 (P2) / −12 (P1, Vizuál) · −6 (P2) / −12 (P1) |
+| Teljesítmény (10 %) | Az LCP-elem `<img loading="lazy">` (a mért LCP-csomópont attribútuma; mobil 4× CPU és asztali nézet) | −12 (P1) `perf.lcp-lazy` |
+| Vizuál és UX (10 %) | Túlméretes kép: természetes szélesség > 2 × (megjelenített CSS-szélesség × dpr) és > 50 kB | −2 / kép, max −8 (P2) `visual.oversized-image|<fájl>` |
+| Vizuál és UX (10 %) | Tartalmi raszterkép width/height és CSS aspect-ratio nélkül, a magasság a képből adódik (CLS-kockázat) | −0,5 / kép, max −4 (P3) `visual.img-no-dimensions` |
+| Teljesítmény (10 %) | Képek összsúlya a legnagyobb nézeten > 1 MB | −6 (P2) `perf.image-weight` |
+| Vizuál és UX (10 %) | Nagy (> 100 kB) JPEG/PNG kép (WebP/AVIF helyett) | −1 / kép, max −4 (P3) `visual.legacy-format|<fájl>` |
+| Teljesítmény (10 %) | Terepi adat (CrUX, mobil, p75; URL-szint, ennek hiányában origin-szint; `CRUX_API_KEY`): LCP > 2,5 s / > 4 s · INP > 200 / > 500 ms · CLS > 0,1 / > 0,25 | javítandó −6 (P2) · rossz −15 (P1) metrikánként; origin-szintű adatnál egy lépéssel enyhébb (P3 / P2), összesen max −25 `perf.field-lcp|inp|cls` |
+| Teljesítmény (10 %) | Harmadik fél gazda: > 150 kB vagy > 150 ms főszál-idő (mobil, 4× CPU, hozzájárulás előtt) | −3 / gazda, max −9 (P2) `perf.third-party|<gazda>` |
+| Teljesítmény (10 %) | Stripe-szkript betöltődik a /beebolt, /product, /checkout útvonalakon kívül | −4 (P2) `perf.stripe-outside-shop` |
+| Teljesítmény (10 %) | Weboldal-lábnyom > 0,5 g CO2e / megtekintés (Sustainable Web Design v4, első látogatás) | −1 (P3) `perf.carbon` |
+| UX és felhasználói út (10 %) | Clarity (`CLARITY_API_TOKEN` vagy `--clarity-file`, ≥ 30 munkamenet): dühös kattintás > 2 % · halott kattintás > 10 % · gyors visszalépés > 15 % · görgetési mélység < 30 % (hosszú oldalon) | −4 / mutató, összesen max −12 (P2) `ux.clarity-rage|dead|quickback|scroll` |
 | Önálló szakasz (nem pontozott) | Site-szint: a nem létező oldal nem 404-et ad / nincs benne főoldal-link, kapcsolat vagy keresés (sitemap mód vagy teljes futás) | nem pontoz: külön szakasz; P2 |
 | Önálló szakasz (nem pontozott) | CTA-következetesség oldalak között (azonos felirat, eltérő cél) | nem pontoz: külön szakasz; P3 (2 cél) / P2 (≥ 3) |
 | Önálló szakasz (nem pontozott) | Élesítési kapu (`--gate`) | PASS, ha összpont ≥ 85, nincs P0, nincs nem engedélyezett P1 (reference/kivetelek.json); kilépési kód 3, ha bármely oldal FAIL |
@@ -154,3 +164,53 @@ A tiltólista (elírások, általános feliratok, helyőrzők) a `tiltolista.jso
 - **Nem pontozó szakaszok** (v3): „Mérési térkép” (`measureMap`), „CTA-következetesség oldalak között” (`ctaConsistency`), „Site-szintű ellenőrzések” (404) és a kapu (`gate`). A kapu nem pontszám, hanem döntés.
 - **Kapcsolótól függő**: `--fast` mellett a mátrix, a böngészők és a módok nem futnak (a hozzájuk tartozó leletek nincsenek, a jelentés „nem mérve”-t ír), ezért a `--fast` pontszám nem hasonlítható a teljes futáséhoz; élesítési döntéshez **teljes** futás kell.
 - **Csoport-plafonok**: a CTA-leletek (`ctaP1` 36, `ctaP2` 24, közösségi 4), az űrlap-leletek (30), az axe (P1 20, P2 8, P3 3) és a böngésző-leletek külön plafonnal vannak, hogy egy hibaforrás ne nullázza a dimenziót.
+
+## v3.1: kép-mélyellenőrzés, terepi adat, harmadik fél, Clarity-viselkedés, lábnyom
+- **Csak leletek jönnek hozzá**; a kapu logikája (≥ 85 pont, 0 P0, 0 nem engedélyezett P1) változatlan. Új P1 kettő van: `perf.lcp-lazy` és (rossz terepi értéknél) `perf.field-lcp|inp|cls`.
+- **Plafonok** (hogy egy terület ne omoljon össze): túlméretes kép −8 összesen, régi formátum −4, nehéz harmadik fél −9, terepi adat (CrUX) −25, Clarity-viselkedés −12; `perf.lcp-lazy` egyszer −12 (több nézeten is csak egy lelet).
+- **`perf.lcp-lazy`**: a mért LCP-csomópont (`PerformanceObserver` `element`) `<img>`, és a `loading` attribútuma `lazy` (mobil 4× CPU mérésnél és az asztali nézetnél, a görgetés előtti LCP-vel). Osztálynév nem számít, háttérkép/szöveg LCP nem lelet. A `fetchpriority` a bizonyítékban látszik, de a lazy ettől még lelet.
+- **`visual.oversized-image`**: természetes szélesség > 2 × (megjelenített CSS-szélesség × dpr) és letöltött bájt > 50 kB. A mérés dpr = 1, ezért a küszöb a „retina-kész” (2×) méret fölötti képet jelzi. Becsült felesleg = bájt × (1 − (2 × megjelenített szélesség × dpr / természetes szélesség)²). Az SVG és a 20 px-nél keskenyebb kép kimarad.
+- **`visual.img-no-dimensions`**: látható, nem a menüben/láblécben lévő raszterkép ≥ 48 px, nincs egyszerre `width` és `height` attribútuma, a számított `aspect-ratio` `auto`, nem abszolút pozíciójú, és a megjelenített arány a természetes arányhoz illik (± 4 %): tehát a magassága a betöltött képből adódik (tipikus CLS-forrás). Rögzített dobozban `object-fit` mellett nem lelet. A Webflow alapból nem ír `width/height` attribútumot, ezért ez a lelet gyakori.
+- **`perf.image-weight`**: a legnagyobb nézeten az egyedi képkérések összes átvitt bájtja (a teljes oldal legörgetve) > 1 MB.
+- **`visual.legacy-format`**: JPEG/PNG > 100 kB. A régi `visual.not-webp` (> 8 kB, összegző) mellett fut, ezért a levonása kicsi.
+- **Terepi adat (CrUX)**: `CRUX_API_KEY` környezeti változóból; `POST chromeuxreport.googleapis.com/v1/records:queryRecord`, `formFactor: PHONE`, előbb `url`, 404 esetén `origin`; p75 LCP/INP/CLS (+FCP, TTFB a jelentésben). Küszöbök: LCP 2,5 / 4 s, INP 200 / 500 ms, CLS 0,1 / 0,25: javítandó = P2, rossz = P1. Az origin-szintű adat (nincs URL-szintű rekord) az egész webhelyre vonatkozik, ezért **egy lépéssel enyhébb**: rossz = P2, javítandó = P3, a cím „origin-szintű adat”-ot ír, így egy webhely-szintű érték nem buktatja minden oldal kapuját; az URL-szintű adat marad P1 / P2. Kulcs nélkül vagy adat nélkül tájékoztató sor, levonás nélkül. Gyorsítótár: `data/cache` (24 óra, gitignore-olt).
+- **Harmadik fél költsége**: gazdánként letöltött kB, kérésszám (a teljesítmény-mérés hálózati naplójából) és főszál-idő (külön 4× lassított mobil betöltés CDP CPU-profilerrel, mintavétel 0,5 ms, szkript önidő gazdánként; `--no-trace` kihagyja). Lelet: > 150 kB vagy > 150 ms. A főszál-idő a lassított CPU-n mért érték; az iframe-ek (pl. reCAPTCHA) külön folyamatban futnak, azok ideje nincs benne. A mérés hozzájárulás előtti állapotot ír le. `perf.stripe-outside-shop`: Stripe-gazda a `/beebolt`, `/product`, `/checkout` útvonalakon kívül.
+- **Clarity-viselkedés**: ≥ 30 munkamenet esetén dühös kattintás > 2 %, halott kattintás > 10 %, gyors visszalépés > 15 % a munkamenetekből, átlagos görgetési mélység < 30 % (csak hosszú oldalon: az oldal magassága ≥ 3 képernyő). A `--clarity-file` egyszerű alakja: `{ "<url vagy útvonal>": { "sessions", "rageClicks", "deadClicks", "quickBacks", "scrollDepth" } }`, ahol a három kattintás-mutató az ilyen munkamenetek **száma** (vagy `…Pct` néven a %-os aránya), a `scrollDepth` az átlagos mélység %-ban. Az API-alak (`project-live-insights`, `dimension1=URL`, `numOfDays=3`) is jó. A régi `--field` (Clarity MCP, abszolút szám) változatlan, ettől független.
+- **Weboldal-lábnyom** (`perf.carbon`, P3, −1): Sustainable Web Design v4 (https://sustainablewebdesign.org/estimating-digital-emissions/; a CO2.js is ezt használja). Letöltött bájt a legnagyobb nézeten, első látogatás, gyorsítótár nélkül, zöld tárhely-korrekció nélkül × 148,2 g CO2e/GB. Együtthatók (kWh/GB, üzemi + beépített): adatközpont 0,055 + 0,012; hálózat 0,059 + 0,013; eszköz 0,080 + 0,081; összesen 0,300 kWh/GB × 494 g/kWh (Ember világátlag) = 148,2 g/GB; 1 GB = 10⁹ bájt. Sávok (https://sustainablewebdesign.org/digital-carbon-ratings/, HTTP Archive 2023 percentilisek): A+ ≤ 0,040 · A ≤ 0,079 · B ≤ 0,145 · C ≤ 0,209 · D ≤ 0,278 · E ≤ 0,359 · F ≥ 0,360 g. A medián weboldal ≈ 2,4 MB ≈ 0,36 g. Lelet, ha > 0,5 g (≈ 3,4 MB, a medián ≈ 1,4-szerese). A szám becslés, nem hitelesített mérés; a képernyőképes környezetben a sender.net blokkolva van, ezért az adat kissé alulbecsülhet.
+
+
+## Navigáció (kötelező, 2026-11-04 – Kristóf: „a tesztekbe kötelezően”)
+
+Minden mérőfutás része (`lib-nav.mjs`): ha nincs 24 óránál frissebb eredmény, a mérő lefuttatja a teljes webhelyre a bejárást
+(`nav-crawl.py`), az elemzést (`nav-analyze.py`) és a valódi kattintástesztet (`nav-journeys.mjs`). Ha nem fut le
+(nincs hálózat, python3 vagy Playwright, vagy `--no-nav`), a kapu **FAIL** (`nav.missing`, P1). Friss futás: `--nav-fresh`;
+kész eredmény: `--nav <nav-adat.json>`. A látogatói utak listája: `reference/nav-utak.json` (új kulcsoldal = új sor).
+
+**Kattintásteszt** (asztal 1440×900 valós hálózaton; telefon 390×844, hamburgermenü, lassú 4G 1,6 Mbit/s, 150 ms + 4× CPU):
+minden út lépésenként végigkattintva (menünél a csoport lenyitása, fülön rejtett linknél a fül is), a sütisávon „Elutasítom”.
+
+| Szabály | Határ | Súlyosság (kulcs) |
+|---|---|---|
+| A kattintás nem a céloldalra visz, vagy a link nem található | – | P1 `nav.journey-fail\|<cél>` (a kaput megállítja) |
+| A céloldal megjelenése (LCP) a kattintás után | asztal ≤ 2,5 s · telefon ≤ 4 s | > cél: P3 · asztal > 4 s / telefon > 6 s: P2 `nav.journey-slow\|d\|m\|<cél>` |
+| Mozdulatok telefonon a célig | ≤ 4 | P3 `nav.journey-taps\|<cél>` |
+| Telefonon a /letoltes linkje egyenesen az áruházba visz | szándékos (site-kód 2/5) | nem lelet |
+
+**Gomb- és link-szabályok** (oldalanként; a menüt és a láblécet nem számolja; közös plafon a „Linkek” területen −12):
+
+| Szabály | Határ | Súlyosság (kulcs), levonás | Forrás / indok |
+|---|---|---|---|
+| Gomb az első (hero) szekcióban | ≤ 2 (1 elsődleges + 1 másodlagos) | 3: P3 −1 · ≥ 4: P2 −4 `nav.hero-buttons` | NN/g: egy elsődleges cselekvés nézetenként; Hick-törvény |
+| Nincs gomb az első szekcióban (fő oldalon, nem jogi) | ≥ 1 | P3 −1 `nav.hero-no-button` | a látogató ne keresse a következő lépést |
+| Gomb egy szekcióban | ≤ 2–3 (kártyarácsnál elfogadható) | > 4: P3 −1 `nav.section-buttons` | versengő gombok elbizonytalanítanak |
+| Tartalmi link (nem listaoldalon) | ≤ 60 | > 60: P3 −2 · > 100: P2 −4 `nav.too-many-links` | információtúlterhelés; listaoldal = a belső célok ≥ 60%-a CMS-elem |
+| Kimenő link a tartalomban | < 40% és < 6 db | P3 −2 `nav.external-heavy` | a fő út maradjon a beeco-n; forrás/sajtó külön blokkban |
+| Ugyanoda mutató link a tartalomban | ≤ 3 | ≥ 4: P3 −1 `nav.duplicate-links\|<cél>` (oldalanként max 2) | kártya + cím + gomb elég; a többi zaj |
+| Kattintásmélység a főoldaltól | ≤ 3 | > 3: P2 −3 `nav.deep` | 3 kattintásos ökölszabály (gyakorlati cél) |
+| Árva oldal (semmi nem linkel rá) | 0 | fő oldal: P2 −4 · CMS: P3 −2 `nav.orphan` | keresőből sem erős, látogató nem találja |
+| Csak menüből és láblécből elérhető fő oldal | 0 | P3 −1 `nav.menu-only` | a látogatók többsége a tartalomban kattint |
+
+**Webhelyszintű** (a kapu összesítőjében; a P1 minden oldal kapuját megállítja):
+hibás belső cél P1 `nav.site-broken-links` · átirányító belső cél P2 `nav.site-redirect-links` · árva oldalak P2 `nav.site-orphans` ·
+menücsoport > 7 P2 `nav.menu-groups` · menücsoportban > 9 elem P3 `nav.menu-items` · lábléc > 50 link P3 `nav.footer-links`.
+A meglévő oldalszintű linkszabályok (hibás/átirányított link, azonos felirat más célra, általános gombfelirat) változatlanok a „Linkek” területen.

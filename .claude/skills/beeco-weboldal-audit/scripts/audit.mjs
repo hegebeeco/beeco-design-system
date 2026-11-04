@@ -6,6 +6,7 @@
 //   v2: [--sitemap <origin> [--limit N] [--concurrency 2]] [--history [fájl.jsonl]] [--trend [trend.html]] [--consistency|--no-consistency]
 //        [--field clarity.json] [--search kereses.json] [--webflow webflow.json] [--consent [--consent-pages N]] [--graph] [--cache] [--full] [--facts tenyek.json]
 //   v3: [--fast] (nézetméret-mátrix, böngészők, módok kihagyása) · [--gate|--no-gate] (élesítési kapu, kilépési kód 3 ha FAIL) · kilépés: 0 rendben, 1 használati hiba, 2 P0 (--no-gate), 3 kapu FAIL
+//   v3.1: kép-mélyellenőrzés (lib-images), CrUX terepi adat + Clarity-viselkedés (lib-realdata; CRUX_API_KEY / CLARITY_API_TOKEN / --clarity-file), harmadik fél költsége CPU-profilerrel (lib-thirdparty; --no-trace kihagyja), weboldal-lábnyom
 //       Új dimenziók: Mérés és marketing-analitika (measure), UX és felhasználói út (ux); QA-kör: lib-qa.mjs (mátrix, böngészők, módok, axe, billentyűzet, 404)
 //
 // Csak olvas: nem küld űrlapot, nem kattint küldő gombra. A sender.net kéréseit blokkolja a képernyőképes
@@ -32,6 +33,10 @@ import { measureTracking, measureFindings, measureMd, eventMap, eventMapMd } fro
 import { uxExtract, uxFindings, uxMd, ctaConsistency, ctaConsistencyMd } from './lib-ux.mjs';
 import { qaMatrix, qaBrowsers, qaModes, qaKeyboardAxe, qa404, engines, qaFindings, qaMatrixFindings, qaBrowserFindings, qaModeFindings, qa404Findings, qaMd } from './lib-qa.mjs';
 import { loadExceptions, evaluateGate, gateMd, gateConsole } from './lib-gate.mjs';
+import { analyzeImages, imageFindings, imagesMd } from './lib-images.mjs';
+import { hostSummary, cpuByHost, mergeCpu, thirdPartyFindings, thirdPartyMd, carbonOf, carbonFindings, carbonSiteMd } from './lib-thirdparty.mjs';
+import { cruxForPage, cruxFindings, cruxMd, loadClarity, clarityFor, clarityFindings, clarityMd } from './lib-realdata.mjs';
+import { ensureNav, navPageFindings, navSiteFindings, navMd } from './lib-nav.mjs';
 
 const execFileP = promisify(execFile);
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -170,6 +175,17 @@ const RUBRIC = [
   ['visual', 'QA böngészők (webkit, firefox, ha telepítve): kilógás / JS-hiba / nincs H1 (nem telepített böngészőnél: „nem mérve”)', '−10, max −20 (P1) / −3 (P2) / −4 (P2), max −12'],
   ['visual', 'Konzol: JS-hiba / első fél JS-, CSS-, betűtípus-erőforrás 4xx-5xx / egyéb hibás válasz', '−3 (P2) / −6 / db, max −12 (P1) / −2, max −6 (P2)'],
   ['perf', 'QA lassú 4G (1,6 Mbit/s, 150 ms RTT, 4× CPU, 390 px): a hero (H1) > 4 s / > 8 s; LCP > 4 s / > 8 s', '−6 (P2) / −12 (P1, Vizuál) · −6 (P2) / −12 (P1)'],
+  // ---- v3.1: kép-mélyellenőrzés, terepi adat (CrUX), harmadik fél, Clarity-viselkedés, lábnyom
+  ['perf', 'Az LCP-elem `<img loading="lazy">` (a mért LCP-csomópont attribútuma; mobil 4× CPU és asztali nézet)', '−12 (P1) `perf.lcp-lazy`'],
+  ['visual', 'Túlméretes kép: természetes szélesség > 2 × (megjelenített CSS-szélesség × dpr) és > 50 kB', '−2 / kép, max −8 (P2) `visual.oversized-image|<fájl>`'],
+  ['visual', 'Tartalmi raszterkép width/height és CSS aspect-ratio nélkül, a magasság a képből adódik (CLS-kockázat)', '−0,5 / kép, max −4 (P3) `visual.img-no-dimensions`'],
+  ['perf', 'Képek összsúlya a legnagyobb nézeten > 1 MB', '−6 (P2) `perf.image-weight`'],
+  ['visual', 'Nagy (> 100 kB) JPEG/PNG kép (WebP/AVIF helyett)', '−1 / kép, max −4 (P3) `visual.legacy-format|<fájl>`'],
+  ['perf', 'Terepi adat (CrUX, mobil, p75; URL-szint, ennek hiányában origin-szint; `CRUX_API_KEY`): LCP > 2,5 s / > 4 s · INP > 200 / > 500 ms · CLS > 0,1 / > 0,25', 'javítandó −6 (P2) · rossz −15 (P1) metrikánként (origin-szintű adatnál egy lépéssel enyhébb: P3 / P2), összesen max −25 `perf.field-lcp|inp|cls`'],
+  ['perf', 'Harmadik fél gazda: > 150 kB vagy > 150 ms főszál-idő (mobil, 4× CPU, hozzájárulás előtt)', '−3 / gazda, max −9 (P2) `perf.third-party|<gazda>`'],
+  ['perf', 'Stripe-szkript betöltődik a /beebolt, /product, /checkout útvonalakon kívül', '−4 (P2) `perf.stripe-outside-shop`'],
+  ['perf', 'Weboldal-lábnyom > 0,5 g CO2e / megtekintés (Sustainable Web Design v4, első látogatás)', '−1 (P3) `perf.carbon`'],
+  ['ux', 'Clarity (`CLARITY_API_TOKEN` vagy `--clarity-file`, ≥ 30 munkamenet): dühös kattintás > 2 % · halott kattintás > 10 % · gyors visszalépés > 15 % · görgetési mélység < 30 % (hosszú oldalon)', '−4 / mutató, összesen max −12 (P2) `ux.clarity-rage|dead|quickback|scroll`'],
   ['x', 'Site-szint: a nem létező oldal nem 404-et ad / nincs benne főoldal-link, kapcsolat vagy keresés (sitemap mód vagy teljes futás)', 'nem pontoz: külön szakasz; P2'],
   ['x', 'CTA-következetesség oldalak között (azonos felirat, eltérő cél)', 'nem pontoz: külön szakasz; P3 (2 cél) / P2 (≥ 3)'],
   ['x', 'Élesítési kapu (`--gate`)', 'PASS, ha összpont ≥ 85, nincs P0, nincs nem engedélyezett P1 (reference/kivetelek.json); kilépési kód 3, ha bármely oldal FAIL'],
@@ -182,7 +198,7 @@ const EXTRA_DIM = { x: 'Önálló szakasz (nem pontozott)' };
 // ---------------------------------------------------------------- argumentumok
 const argv = process.argv.slice(2);
 const opt = { out: null, viewports: '390x844,1440x900', compare: null, reuse: true, external: true, rubric: false, wait: 1200,
-  consistency: null, sitemap: null, limit: 0, concurrency: 2, history: undefined, trend: undefined, field: null, search: null, webflow: null, consent: false, consentPages: 0, cache: false, graph: false, facts: null, full: false, fast: false, gate: null };
+  consistency: null, sitemap: null, limit: 0, concurrency: 2, history: undefined, trend: undefined, field: null, search: null, webflow: null, consent: false, consentPages: 0, cache: false, graph: false, facts: null, full: false, fast: false, gate: null, clarityFile: null, trace: true };
 const targets = [];
 const optVal = i => (i + 1 < argv.length && !argv[i + 1].startsWith('--') && !/^https?:\/\//.test(argv[i + 1]) ? argv[i + 1] : null);
 for (let i = 0; i < argv.length; i++) {
@@ -197,6 +213,11 @@ for (let i = 0; i < argv.length; i++) {
   else if (a === '--search') opt.search = argv[++i];
   else if (a === '--webflow') opt.webflow = argv[++i];
   else if (a === '--facts') opt.facts = argv[++i];
+  else if (a === '--clarity-file') opt.clarityFile = argv[++i];
+  else if (a === '--nav') opt.navFile = argv[++i];
+  else if (a === '--no-nav') opt.nav = false;
+  else if (a === '--nav-fresh') opt.navFresh = true;
+  else if (a === '--no-trace') opt.trace = false;
   else if (a === '--consent') opt.consent = true;
   else if (a === '--consent-pages') opt.consentPages = +argv[++i];
   else if (a === '--consistency') opt.consistency = true;
@@ -221,7 +242,7 @@ if (opt.rubric) {
   process.exit(0);
 }
 if ((!targets.length && !opt.sitemap) || !opt.out) {
-  console.error('Használat: node audit.mjs <url...> --out <mappa> [--viewports 390x844,1440x900] [--compare régi mappa|audit.json] [--no-reuse] [--skip-external]\n  v2: [--sitemap <origin> --limit N --concurrency 2] [--history [fájl]] [--trend [fájl]] [--field f.json] [--search f.json] [--webflow f.json] [--consent] [--cache] [--no-consistency] [--rubric]\n  v3: [--fast] [--gate|--no-gate]');
+  console.error('Használat: node audit.mjs <url...> --out <mappa> [--viewports 390x844,1440x900] [--compare régi mappa|audit.json] [--no-reuse] [--skip-external]\n  v2: [--sitemap <origin> --limit N --concurrency 2] [--history [fájl]] [--trend [fájl]] [--field f.json] [--search f.json] [--webflow f.json] [--consent] [--cache] [--no-consistency] [--rubric]\n  v3: [--fast] [--gate|--no-gate]\n  v3.1: [--clarity-file f.json] [--no-trace]  (env: CRUX_API_KEY, CLARITY_API_TOKEN)');
   process.exit(1);
 }
 if (opt.sitemap && !opt.full) opt.reuse = false; // teljes oldal módban a minosegkapu-szkriptek (~1 perc/oldal) alapból kimaradnak; --full bekapcsolja
@@ -272,6 +293,15 @@ const loadInput = (flag, f, loader) => { if (!f) return null; try { return loade
 const FIELD = loadInput('--field', opt.field, loadMap);
 const SEARCH = loadInput('--search', opt.search, loadMap);
 const WF = loadInput('--webflow', opt.webflow, loadWebflow);
+// v3.1: valós adatok. A kulcs/token csak környezeti változóból jön, és sehova nem kerül kiírásra vagy mentésre.
+const CACHE_DIR = join(SKILL_DIR, 'data/cache');
+const CRUX_KEY = process.env.CRUX_API_KEY || '';
+const CRUX_ORIGINS = new Map();
+const CLARITY = await loadClarity({ file: opt.clarityFile ? resolve(opt.clarityFile) : null, token: process.env.CLARITY_API_TOKEN || '', cacheDir: CACHE_DIR });
+if (opt.clarityFile && CLARITY.note) { console.error(`A --clarity-file nem olvasható: ${CLARITY.note}`); process.exit(1); }
+// kötelező navigációs ellenőrzés (bejárás + gomb/link-szabályok + kattintásteszt); --no-nav esetén a kapu FAIL (nav.missing)
+const NAV = opt.nav === false ? { error: 'kikapcsolva (--no-nav)' } : ensureNav(opt.sitemap ? new URL(opt.sitemap).origin : new URL(targets[0]).origin, { skillDir: SKILL_DIR, file: opt.navFile ? resolve(opt.navFile) : null, maxAgeH: opt.navFresh ? 0 : 24 });
+if (NAV.error) console.error('A navigációs ellenőrzés nem futott le: ' + NAV.error);
 let SITEMAP = null;
 if (opt.sitemap) {
   SITEMAP = await fetchSitemap(opt.sitemap, opt.limit);
@@ -375,7 +405,9 @@ function extract(cfg) {
   // ---- 3. fejlécek
   X.h1 = X.headings.filter(h => h.level === 1);
   // ---- képek
-  X.images = [...document.images].filter(i => !i.closest('svg')).map(i => { const r = i.getBoundingClientRect(); return { src: i.currentSrc || i.src, alt: i.hasAttribute('alt') ? i.alt : null, vis: vis(i), w: i.naturalWidth, h: i.naturalHeight, dw: Math.round(r.width), broken: i.complete && i.naturalWidth === 0 && !!(i.currentSrc || i.src) }; });
+  X.images = [...document.images].filter(i => !i.closest('svg')).map(i => { const r = i.getBoundingClientRect(); return { src: i.currentSrc || i.src, alt: i.hasAttribute('alt') ? i.alt : null, vis: vis(i), w: i.naturalWidth, h: i.naturalHeight, dw: Math.round(r.width), broken: i.complete && i.naturalWidth === 0 && !!(i.currentSrc || i.src),
+    loading: i.getAttribute('loading') || '', fp: i.getAttribute('fetchpriority') || '', wa: i.hasAttribute('width') && i.hasAttribute('height'), ar: getComputedStyle(i).aspectRatio || 'auto', pos: getComputedStyle(i).position, dh: Math.round(r.height), top: Math.round(r.top), dpr: window.devicePixelRatio || 1,
+    zone: i.closest('nav,.w-nav,footer,[class*="cky"],[class*="sender"],[class*="trustindex"],[class*="lablec"]') ? 'chrome' : 'main' }; });
   // ---- 6. SEO
   const jl = [...document.querySelectorAll('script[type="application/ld+json"]')].map(s => { try { const j = JSON.parse(s.textContent); const arr = j['@graph'] ? j['@graph'] : Array.isArray(j) ? j : [j]; return arr.map(x => x['@type']).flat().filter(Boolean); } catch { return ['HIBÁS']; } }).flat();
   X.seo = {
@@ -445,8 +477,10 @@ async function trackNet(ctx, page, throttle = 0) {
   return { reqs, cdp, ok: !!cdp };
 }
 const INIT = () => {
-  window.__m = { lcp: 0, lcpEl: '', cls: 0, long: [] };
-  try { new PerformanceObserver(l => { for (const e of l.getEntries()) { window.__m.lcp = e.startTime; window.__m.lcpEl = (e.element ? e.element.tagName.toLowerCase() + '.' + String(e.element.className || '').slice(0, 40) : e.url || '').slice(0, 90); } }).observe({ type: 'largest-contentful-paint', buffered: true }); } catch {}
+  window.__m = { lcp: 0, lcpEl: '', cls: 0, long: [], lcpInfo: null };
+  // a tényleges LCP-csomópont adatai (attribútumok, nem osztálynév): loading, fetchpriority, forrás
+  const lcpNode = e => { try { const el = e.element; const o = { tag: el ? el.tagName.toLowerCase() : '', url: String(e.url || '').slice(0, 200), size: Math.round(e.size || 0) }; if (el && o.tag === 'img') { o.loading = el.getAttribute('loading') || ''; o.fp = el.getAttribute('fetchpriority') || ''; o.src = String(el.currentSrc || el.src || '').slice(0, 200); o.nw = el.naturalWidth; o.rw = Math.round(el.getBoundingClientRect().width); } return o; } catch { return null; } };
+  try { new PerformanceObserver(l => { for (const e of l.getEntries()) { window.__m.lcp = e.startTime; window.__m.lcpEl = (e.element ? e.element.tagName.toLowerCase() + '.' + String(e.element.className || '').slice(0, 40) : e.url || '').slice(0, 90); window.__m.lcpInfo = lcpNode(e); } }).observe({ type: 'largest-contentful-paint', buffered: true }); } catch {}
   try { new PerformanceObserver(l => { for (const e of l.getEntries()) if (!e.hadRecentInput) window.__m.cls += e.value; }).observe({ type: 'layout-shift', buffered: true }); } catch {}
   try { new PerformanceObserver(l => { for (const e of l.getEntries()) window.__m.long.push(e.duration); }).observe({ type: 'longtask', buffered: true }); } catch {}
 };
@@ -483,13 +517,16 @@ async function measurePage(browser, url) {
       const hosts = {}; for (const r of reqs) { try { const hn = new URL(r.url).hostname; hosts[hn] = (hosts[hn] || 0) + 1; } catch {} }
       const third = Object.entries(hosts).filter(([hn]) => !FIRST_PARTY.test(hn)).sort((a, b) => b[1] - a[1]);
       const long = nav.m.long; const tbt = Math.round(long.reduce((s, d) => s + Math.max(0, d - 50), 0));
-      P.perf = { throttle: net.ok ? '4× CPU' : 'nincs lassítás (CDP nem elérhető)', lcpMs: Math.round(nav.m.lcp), lcpEl: nav.m.lcpEl, fcpMs: nav.fcp, ttfbMs: nav.ttfb, loadMs: nav.load, tbtMs: tbt, longTasks: long.length, transferKB: Math.round(reqs.reduce((s, r) => s + r.bytes, 0) / 1024), requests: reqs.length, thirdPartyHosts: third.map(([hn, n]) => `${hn} (${n})`), heaviest: reqs.sort((a, b) => b.bytes - a.bytes).slice(0, 5).map(r => `${r.url.split('/').pop().split('?')[0].slice(0, 50)} ${Math.round(r.bytes / 1024)} kB`) };
+      P.perf = { throttle: net.ok ? '4× CPU' : 'nincs lassítás (CDP nem elérhető)', lcpMs: Math.round(nav.m.lcp), lcpEl: nav.m.lcpEl, lcpInfo: nav.m.lcpInfo || null, fcpMs: nav.fcp, ttfbMs: nav.ttfb, loadMs: nav.load, tbtMs: tbt, longTasks: long.length, transferKB: Math.round(reqs.reduce((s, r) => s + r.bytes, 0) / 1024), requests: reqs.length, thirdPartyHosts: third.map(([hn, n]) => `${hn} (${n})`), heaviest: reqs.sort((a, b) => b.bytes - a.bytes).slice(0, 5).map(r => `${r.url.split('/').pop().split('?')[0].slice(0, 50)} ${Math.round(r.bytes / 1024)} kB`) };
+      P.perf.thirdParty = hostSummary(reqs, hn => FIRST_PARTY.test(hn));
       P.trackerHosts = Object.keys(hosts).filter(hn => TRACKER.test(hn));
       const cookies = await ctx.cookies();
       P.cookies = [...new Set([...cookies.map(c => c.name), ...nav.cookieJs.split(';').map(s => s.split('=')[0].trim()).filter(Boolean)])];
       P.banner = await page.evaluate(() => !!document.querySelector('.cky-consent-container,.cky-banner,.cky-modal,[class*="cookie-consent"],[class*="cookie-banner"],#CybotCookiebotDialog,.cc-window,#onetrust-banner-sdk,[id*="cookie-law"],[class*="cookieyes"]'));
     }
     await ctx.close();
+    // A/2) harmadik fél főszál-ideje: külön betöltés CPU-profilerrel (hogy ne torzítsa az LCP/TBT-mérést); --no-trace kihagyja
+    if (!P.fatal && opt.trace && P.perf) { const cpu = await cpuByHost(browser, url, { vp: MOBILE_VP, isFirst: hn => FIRST_PARTY.test(hn) }); mergeCpu(P.perf.thirdParty, cpu); }
   });
   if (P.fatal) return P;
 
@@ -508,6 +545,7 @@ async function measurePage(browser, url) {
     page.on('response', r => { if (r.status() >= 400 && !/sender\.net|challenges\.cloudflare\.com/i.test(r.url())) cFail.push({ url: r.url().replace(/[?#].*$/, '').slice(0, 110), status: r.status(), type: r.request().resourceType() }); });
     try { await page.goto(url, { waitUntil: 'load', timeout: 60000 }); } catch (e) { P.warnings.push(`${key}: betöltési hiba: ${String(e.message).slice(0, 100)}`); await ctx.close(); continue; }
     await page.waitForTimeout(opt.wait);
+    const lcp0 = await page.evaluate(() => (window.__m ? { ms: Math.round(window.__m.lcp), info: window.__m.lcpInfo } : null)).catch(() => null); // az LCP a görgetés előtt (a görgetés lusta képeket tölt, és új LCP-jelöltet adhat)
     await scrollAll(page, h);
     const X = await page.evaluate(extract, cfgX);
     let U = null; try { U = await page.evaluate(uxExtract, {}); } catch (e) { P.warnings.push(`${key}: UX-mérés hiba: ${String(e.message).slice(0, 80)}`); }
@@ -521,7 +559,7 @@ async function measurePage(browser, url) {
       await page.evaluate(() => scrollTo(0, 0));
       for (let i = 0; i < 8; i++) { await page.keyboard.press('Tab'); focus.push(await page.evaluate(() => { const a = document.activeElement; if (!a || a === document.body) return null; const cs = getComputedStyle(a); const ow = parseFloat(cs.outlineWidth) || 0; return { el: a.tagName.toLowerCase() + '.' + [...a.classList].slice(0, 1).join('.'), ring: (cs.outlineStyle !== 'none' && ow > 0) || (cs.boxShadow && cs.boxShadow !== 'none') }; })); }
     } catch {}
-    P.vp[key] = { mobile, X, U, net: { errors: [...new Set(cErr)].slice(0, 8), failed: cFail.slice(0, 12) }, cls, imgReqs: [...net.reqs.values()].filter(r => /^image\//.test(r.mime) || r.type === 'Image'), focus: focus.filter(Boolean) };
+    P.vp[key] = { mobile, X, U, net: { errors: [...new Set(cErr)].slice(0, 8), failed: cFail.slice(0, 12) }, cls, lcp0, xferKB: Math.round([...net.reqs.values()].reduce((s, r) => s + (r.bytes || 0), 0) / 1024), imgReqs: [...net.reqs.values()].filter(r => /^image\//.test(r.mime) || r.type === 'Image'), focus: focus.filter(Boolean) };
     await ctx.close();
   }
   // C) v3: mérés (CTA-szimuláció, védett környezet) + billentyűzet + axe, majd a QA-kör (--fast nélkül: mátrix, böngészők, módok)
@@ -744,6 +782,13 @@ async function scorePage(P) {
   if (pf.thirdPartyHosts.length > 6) add('perf', 'P3', 'perf.third-party', `${pf.thirdPartyHosts.length} harmadik fél gazdagép (cél ≤ 6)`, pf.thirdPartyHosts.slice(0, 8), 'Minden harmadik fél lassít és adatvédelmi teher is; hagyd el, ami nem hoz üzleti értéket.', Math.min(10, 2 * (pf.thirdPartyHosts.length - 6)));
   if (X.headSyncScripts.length) add('perf', 'P3', 'perf.render-blocking', `${X.headSyncScripts.length} renderelést blokkoló szkript a <head>-ben`, X.headSyncScripts.map(s => s.split('/').slice(2, 4).join('/')), 'Tedd defer/async-ra, vagy a body végére (Webflow: Custom Code → Before </body>).', Math.min(8, 2 * X.headSyncScripts.length));
 
+  // ---- 5/b. v3.1: kép-mélyellenőrzés, harmadik fél, lábnyom, terepi adat (CrUX)
+  P.images = analyzeImages(P); imageFindings(P, P.images, add);
+  thirdPartyFindings(P, add);
+  P.carbon = carbonOf(P); carbonFindings(P, add);
+  navPageFindings(NAV, pageUrl.pathname, add);
+  cruxFindings(P.crux, add);
+
   // ---- 6. SEO
   const S = X.seo; const isEn = /^\/en(\/|$)/.test(pageUrl.pathname);
   if (!S.title) add('seo', 'P1', 'seo.title-missing', 'Hiányzik a title', '', 'Page settings → SEO → Title tag.', 20);
@@ -798,6 +843,8 @@ async function scorePage(P) {
   }
   if (P.consent) consentFindings(P.consent, add, have);
   P.field = lookup(FIELD, P.url) || undefined; fieldFindings(P.field, add);
+  P.clarity = clarityFor(CLARITY, P.finalUrl || P.url) || undefined;
+  const probe = P.measure && P.measure.probe; clarityFindings(P.clarity, add, { long: !!(probe && probe.vh && probe.height / probe.vh >= 3) });
   P.search = lookup(SEARCH, P.url) || undefined;
   if (SEARCH) searchFindings(P.search, { indexable: P.status < 400 && !/noindex/i.test((P.xRobots || '') + ' ' + X.seo.robots), gscComplete: !!SEARCH.meta._gsc_complete, hasGsc: [...SEARCH.byPath.values()].some(v => v.gsc) }, add);
   P.webflow = lookup(WF, P.url) || undefined;
@@ -854,8 +901,9 @@ function renderReport(pages, compare, meta, extra = {}) {
   top.forEach((f, i) => L.push(`| ${i + 1} | ${f.sev} | ${f.page} | ${DIMNAME[f.dim]} | ${cell(f.title)} | ${cell(f.fix)} | −${f.impact} |${withField ? ` ${sessOf[f.page] ?? '–'} | ${f.prio} |` : ''}`));
   if (!top.length) L.push(`| | | | | Nincs automatikus lelet | | |${withField ? ' | |' : ''}`);
   L.push('', '_A „hatás” azt mutatja, hány ponttal csökkenti a lelet az oldal összpontszámát (levonás × a terület súlya)._' + (withField ? ' _A „prioritás” = hatás × (0,25 + 0,75 × az oldal valós munkamenetei / a legtöbb munkamenet): a sok látogatót érintő hiba kerül előre._' : ''), '');
-  L.push(...fieldMd(pages), ...searchMd(pages, extra.searchT), ...(extra.consistency !== undefined ? consistencyMd(extra.consistency) : []), ...graphMd(extra.graph));
+  L.push(...fieldMd(pages), ...cruxMd(pages, CRUX_KEY ? '' : 'Nincs terepi adat: nincs kulcs (CRUX_API_KEY környezeti változó). A labor-mérés érvényes, a valós látogatói INP/LCP/CLS nem ellenőrizhető. Nincs levonás.'), ...clarityMd(pages, CLARITY), ...carbonSiteMd(pages), ...searchMd(pages, extra.searchT), ...(extra.consistency !== undefined ? consistencyMd(extra.consistency) : []), ...graphMd(extra.graph));
   L.push(...eventMapMd(extra.eventMap, pages.filter(p => !p.fatal).length), ...(extra.ctaCons ? ctaConsistencyMd(extra.ctaCons) : []));
+  L.push(...navMd(extra.nav));
   if (extra.site && extra.site.notFound) { const n = extra.site.notFound; L.push('## Site-szintű ellenőrzések (nem pontoz)', '', `- 404-oldal: ${n.url} → HTTP ${n.status ?? '–'}${n.page ? ` · főoldal-link: ${n.page.home ? 'van' : n.page.homeText ? 'a „' + n.page.homeText.text + '” gomb ide mutat: ' + n.page.homeText.path : 'NINCS'} · kapcsolat: ${n.page.contact ? 'van' : 'NINCS'} · keresés: ${n.page.search ? 'van' : 'nincs'} · menü: ${n.page.nav ? 'van' : 'nincs'}` : ''}${n.error ? ' · hiba: ' + n.error : ''}`); for (const f of extra.site.findings || []) L.push(`  - ${f.sev}: ${f.title}${f.fix ? ' – ' + f.fix : ''}`); L.push(''); }
   for (const p of pages) {
     L.push(`---`, '', `## ${p.url}`, '');
@@ -873,7 +921,10 @@ function renderReport(pages, compare, meta, extra = {}) {
       `- Süti betöltéskor (interakció nélkül): ${p.cookieSummary.all.join(', ') || 'nincs'} · hozzájárulási sáv: ${p.cookieSummary.banner ? 'van' : 'nincs'}`);
     if (p.field) L.push(`- Valós felhasználók (Clarity): LCP ${p.field.lcp_ms != null ? (p.field.lcp_ms / 1000).toFixed(2) + ' s' : '–'} · INP ${p.field.inp_ms ?? '–'} ms · CLS ${p.field.cls ?? '–'} · dühös/halott kattintás ${p.field.rage_clicks ?? '–'}/${p.field.dead_clicks ?? '–'} · görgetés ${p.field.scroll_depth_pct ?? '–'} % · ${p.field.sessions ?? '–'} munkamenet`);
     if (p.search) { const g = p.search.gsc || {}, a = p.search.ga4 || {}; L.push(`- Keresés/forgalom: GSC ${g.clicks ?? '–'} kattintás / ${g.impressions ?? '–'} megjelenés${g.position != null ? `, poz. ${(+g.position).toFixed(1)}` : ''} · GA4 ${a.sessions ?? '–'} munkamenet${p.search.prev?.ga4?.sessions != null ? ` (előző: ${p.search.prev.ga4.sessions})` : ''}${p.search.bing ? ` · Bing ${p.search.bing.clicks ?? '–'}/${p.search.bing.impressions ?? '–'}` : ''}`); }
+    if (p.carbon) L.push(`- Weboldal-lábnyom: **${p.carbon.g.toFixed(3).replace('.', ',')} g CO2e / megtekintés** (${p.carbon.rating} sáv, ${(p.carbon.kb / 1024).toFixed(2)} MB, ${p.carbon.viewport} nézet, első látogatás; ${p.carbon.model})`);
+    if (p.crux && p.crux.level) L.push(`- Terepi adat (CrUX, ${p.crux.level === 'url' ? 'URL' : 'origin'}-szint, mobil, p75): LCP ${p.crux.lcp != null ? (p.crux.lcp / 1000).toFixed(2) + ' s' : '–'} · INP ${p.crux.inp ?? '–'} ms · CLS ${p.crux.cls ?? '–'}`);
     L.push('');
+    L.push('', ...imagesMd(p.images), ...thirdPartyMd(p));
     L.push(...consentMd(p.consent), ...webflowMd(p));
     L.push(...measureMd(p), ...uxMd(p), ...qaMd(p, ''));
     if (p.warnings.length) L.push('**Figyelmeztetések az eszköztől:** ' + p.warnings.map(cell).join(' · '), '');
@@ -889,7 +940,16 @@ function renderReport(pages, compare, meta, extra = {}) {
 const fmtD = d => (d > 0 ? `+${d}` : d === 0 ? '±0' : `${d}`);
 
 // ---------------------------------------------------------------- futtatás
-const browser = await chromium.launch();
+// a böngésző egy hosszú (sitemap) futás közben összeomolhat: ilyenkor újraindítjuk, és az oldalt egyszer újramérjük
+let browser = await chromium.launch();
+async function liveBrowser(force = false) {
+  if (force || !browser.isConnected()) {
+    // a régit késleltetve zárjuk, hogy a párhuzamos szál éppen futó mérését ne vágjuk el
+    const old = browser; browser = await chromium.launch(); console.log('  ↻ a böngésző újraindult');
+    setTimeout(() => old.close().catch(() => {}), 120000).unref();
+  }
+  return browser;
+}
 const pages = new Array(targets.length);
 const consentLimit = opt.consentPages > 0 ? opt.consentPages : opt.sitemap ? 3 : Infinity;
 await pool(targets.map((u, i) => [u, i]), opt.concurrency, async ([url, i]) => {
@@ -897,10 +957,16 @@ await pool(targets.map((u, i) => [u, i]), opt.concurrency, async ([url, i]) => {
   try {
     let P = null; const mfile = join(OUT, slugOf(url), 'measure.json');
     if (opt.cache && existsSync(mfile)) { try { P = JSON.parse(readFileSync(mfile, 'utf8')); P.warnings = [...(P.warnings || []), 'A mérés a --cache kapcsolóval a korábbi futásból jött (nem friss).']; } catch { P = null; } }
-    if (!P) { P = await measurePage(browser, url); if (!P.fatal) writeFileSync(mfile, JSON.stringify(P)); }
+    if (!P) {
+      P = await measurePage(await liveBrowser(), url);
+      // a böngésző összeomláskor még „élőnek” látszhat, ezért az újramérés mindig friss böngészővel megy
+      if (P.fatal && /has been closed|Target closed|browser has disconnected/i.test(P.fatal)) P = await measurePage(await liveBrowser(true), url);
+      if (!P.fatal) writeFileSync(mfile, JSON.stringify(P));
+    }
     if (P.fatal) { P.scores = Object.fromEntries(DIMS.map(([k]) => [k, 0])); P.total = 0; P.band = 'D'; P.findings = []; console.log(`  ✗ nem tölthető be: ${P.fatal}`); }
     else {
-      if (opt.consent && i < consentLimit) P.consent = await consentTest(browser, P.finalUrl || url, { isThird: h => !FIRST_PARTY.test(h) });
+      if (opt.consent && i < consentLimit) P.consent = await consentTest(await liveBrowser(), P.finalUrl || url, { isThird: h => !FIRST_PARTY.test(h) });
+      P.crux = (await cruxForPage(P.finalUrl || url, { key: CRUX_KEY, cacheDir: CACHE_DIR, originCache: CRUX_ORIGINS })) || undefined;
       await scorePage(P);
       console.log(`  ${P.slug}: ${P.total}/100 (${P.band}) · ${DIMS.map(([k]) => `${k} ${P.scores[k]}`).join(' · ')} · ${P.findings.length} lelet`);
     }
@@ -964,6 +1030,7 @@ if (opt.compare) {
 }
 // ---- élesítési kapu
 const gateOn = opt.gate !== false && targets.length >= 1;
+site.findings = [...(site.findings || []), ...navSiteFindings(NAV)];
 const gate = gateOn ? evaluateGate(pages, loadExceptions(join(SKILL_DIR, 'reference/kivetelek.json')), { site: site.findings }) : null;
 if (ENGS_P) { try { const e = await ENGS_P; for (const v of Object.values(e)) if (v.available) await v.browser.close(); } catch {} }
 await browser.close();
@@ -980,11 +1047,15 @@ const trend = trendLines(prevEntry, entry);
 let trendFile = null;
 if (opt.trend !== undefined) { trendFile = opt.trend === true ? join(OUT, 'trend.html') : resolve(opt.trend); const r = writeTrend(readHistory(histFile), trendFile, { historyFile: histFile }); console.log(`Trend: ${trendFile} (${r.runs} futás)`); }
 
+const cpages = pages.filter(p => p.carbon && !p.fatal);
+const carbonSummary = cpages.length ? { model: 'Sustainable Web Design v4', gPerGB: 148.2, pages: cpages.length, avgG: +(cpages.reduce((s, p) => s + p.carbon.g, 0) / cpages.length).toFixed(3), maxG: Math.max(...cpages.map(p => p.carbon.g)) } : null;
 const meta = { when: new Date().toISOString().replace('T', ' ').slice(0, 16) + ' UTC', viewports: opt.viewports };
 const slim = pages.map(p => { const { vp, linkSource, ...rest } = p; return { ...rest, vp: Object.fromEntries(Object.entries(vp || {}).map(([k, v]) => [k, { mobile: v.mobile, cls: v.cls, focus: v.focus, overflow: v.X.overflow, imageCount: v.X.images.length, net: v.net }])) }; });
 writeFileSync(join(OUT, 'audit.json'), JSON.stringify({ tool: 'beeco-weboldal-audit', version: VERSION, generated: new Date().toISOString(), viewports: opt.viewports, weights: WEIGHT, pages: slim, compare,
-  consistency, graph, search: searchT, history: entry, trendFile, gate, measureMap: evMap, ctaConsistency: ctaCons, site, options: { fast: opt.fast, gate: gateOn, concurrency: opt.concurrency }, inputs: { field: opt.field ? FIELD.count : null, search: opt.search ? SEARCH.count : null, webflow: opt.webflow ? { pages: WF.count, siteId: WF.siteId, collectedAt: WF.collectedAt } : null, sitemap: SITEMAP ? { origin: opt.sitemap, total: SITEMAP.total, crawled: SITEMAP.urls.length } : null } }, null, 2));
-writeFileSync(join(OUT, 'report.md'), renderReport(pages, compare, meta, { consistency: consistency ?? undefined, graph, searchT, trend, gate, eventMap: evMap, ctaCons, site }));
+  consistency, graph, search: searchT, history: entry, trendFile, gate, measureMap: evMap, ctaConsistency: ctaCons, site, options: { fast: opt.fast, gate: gateOn, concurrency: opt.concurrency }, inputs: { field: opt.field ? FIELD.count : null, search: opt.search ? SEARCH.count : null, webflow: opt.webflow ? { pages: WF.count, siteId: WF.siteId, collectedAt: WF.collectedAt } : null, sitemap: SITEMAP ? { origin: opt.sitemap, total: SITEMAP.total, crawled: SITEMAP.urls.length } : null,
+    crux: CRUX_KEY ? { pagesWithData: pages.filter(p => p.crux && p.crux.level).length } : 'nincs kulcs', clarity: CLARITY.source ? { source: CLARITY.source, pages: CLARITY.byPath.size } : CLARITY.note, trace: opt.trace },
+  carbon: carbonSummary }, null, 2));
+writeFileSync(join(OUT, 'report.md'), renderReport(pages, compare, meta, { consistency: consistency ?? undefined, graph, searchT, trend, gate, eventMap: evMap, ctaCons, site, nav: NAV }));
 console.log(`\nKész: ${join(OUT, 'report.md')}\n      ${join(OUT, 'audit.json')}`);
 console.log(`Futási idő oldalanként: ${pages.filter(p => p.runtimeSec != null).map(p => `${p.slug} ${p.runtimeSec} mp`).join(' · ') || '–'}`);
 const blockedAll = pages.reduce((s, p) => s + Object.values(p.measure?.blocked || {}).reduce((a, n) => a + (+n || 0), 0) + (p.qa?.matrix?.blocked || 0) + (p.qa?.modes?.blocked || 0), 0);

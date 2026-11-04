@@ -51,6 +51,20 @@ Korlátok: a süti-teszt headlessben, nem EU-IP-ről eltérhet egy valódi láto
 - **QA-kör** (a leletek a megfelelő dimenzióba mennek, a jelentésben pass/fail mátrix): nézetméret-mátrix 320–1920 px + **kontaktlap** (`kontakt-<oldal>.png`), böngészők (chromium; webkit/firefox csak ha telepítve, különben „nem mérve”), módok, axe-core (critical/serious → P1), Tab × 40 billentyűzet-folyam, 404-oldal (sitemap mód), konzol/hálózat. `--compare` esetén a jelentés tetején **„Új hibák az előző futás óta”**.
 - Új `audit.json` mezők: `pages[].measure|qa`, `gate`, `measureMap`, `ctaConsistency`, `site` (a v2 mezők változatlanok; a `weights` az újak szerint). Régi `--compare` fájl új dimenzió nélkül is összevethető.
 
+## v3.1: kép-mélység, terepi adat, harmadik fél, Clarity-viselkedés, lábnyom (részletek és küszöbök: `reference/pontozas.md`, „v3.1” szakasz)
+| Mit mér | Kulcsok | Megjegyzés |
+|---|---|---|
+| **Képek**: lusta LCP-kép, túlméretes kép, hiányzó width/height, képek összsúlya, régi formátum; oldalankénti képtábla (top 8) | `perf.lcp-lazy` (P1), `visual.oversized-image\|fájl`, `visual.img-no-dimensions`, `perf.image-weight`, `visual.legacy-format\|fájl` | Az LCP-csomópont tényleges `loading` attribútumát nézi (nem osztálynevet). Javítás Webflowban: kép → Loading: Eager + fetchpriority = high |
+| **Terepi adat** (Chrome UX Report): valós LCP/INP/CLS p75, mobil | `perf.field-lcp`, `perf.field-inp`, `perf.field-cls` (rossz P1, javítandó P2) | `CRUX_API_KEY` környezeti változó; URL-szint, ennek hiányában origin-szint (a jelentés jelzi). Kulcs/adat nélkül tájékoztató sor, levonás nélkül. 24 órás gyorsítótár: `data/cache/` |
+| **Harmadik fél költsége**: gazdánként kB, kérés, főszál-ms; top 6 tábla | `perf.third-party\|gazda` (> 150 kB vagy > 150 ms, P2), `perf.stripe-outside-shop` (P2) | A főszál-idő külön, 4× lassított betöltésből jön (CPU-profiler); `--no-trace` kihagyja |
+| **Clarity-viselkedés**: dühös/halott kattintás, gyors visszalépés, görgetési mélység | `ux.clarity-rage\|dead\|quickback\|scroll` (P2) | `CLARITY_API_TOKEN` (Data Export API, 1 hívás/futás, 24 órás gyorsítótár) vagy `--clarity-file`. ≥ 30 munkamenet kell oldalanként |
+| **Weboldal-lábnyom**: g CO2e / megtekintés, A+–F sáv | `perf.carbon` (P3, csak ha > 0,5 g) | Sustainable Web Design v4, első látogatás; becslés, nem hitelesített mérés |
+
+- **Környezeti változók** (soha nem kerülnek fájlba, naplóba vagy jelentésbe): `CRUX_API_KEY`, `CLARITY_API_TOKEN` (és a már meglévő `BING_WEBMASTER_API_KEY`).
+- **Új kapcsolók**: `--clarity-file <json>` (egyszerű alak: `{ "<url vagy útvonal>": { "sessions": 120, "rageClicks": 3, "deadClicks": 14, "quickBacks": 9, "scrollDepth": 41 } }`; a három kattintás-mutató a munkamenetek **száma**, vagy `…Pct` néven %-ban; `scrollDepth` átlag %-ban; az API válaszának tömbje is jó) · `--no-trace` (a harmadik fél főszál-idő mérését kihagyja, ~10–15 mp/oldal megtakarítás).
+- **Új `audit.json` mezők**: `pages[].images`, `pages[].crux`, `pages[].clarity`, `pages[].carbon`, `pages[].perf.thirdParty|lcpInfo`, `carbon` (site-összegzés), `inputs.crux|clarity|trace`. A meglévők változatlanok.
+- **Nem mér**: valós INP laborban (csak a CrUX-ból), az iframe-ek (pl. reCAPTCHA) főszál-idejét (a bájtjukat igen), hozzájárulás utáni harmadik fél költséget, CSS-háttérképek renderelt méretét.
+
 **Élesítési kapu: minden kitett oldal (élesre kerülő vagy élő) csak akkor mehet élesbe / maradhat, ha átmegy a kapun; a FAIL listát Kristófnak meg kell mutatni az élesítési kérés előtt.** Kivételt (`kivetelek.json`) csak Kristóf döntésére, indokkal és lejárati dátummal veszel fel; P0 és a 85-ös küszöb nem kivételezhető.
 
 ## A kör
@@ -86,6 +100,15 @@ Súlyosság: **P0** az oldal nem teljesíti a célját (nem elérhető, noindex)
 - Nem mér: belépett/űrlap-küldés utáni állapotot, valódi telefont és hálózatot, képernyőolvasót, a szöveg tartalmi igazságát, jogi megfelelést, azt hogy a GA4/Clarity ténylegesen megkapja-e az eseményt (a küldés tiltva: élesítés után nézd DebugView-ban), a GA4 szerveroldali beállításait, a nem telepített webkit/firefox motorokat („nem mérve”).
 
 ## Fájlok
-- `scripts/audit.mjs` (belépési pont) · `lib-consistency.mjs`, `lib-site.mjs` (sitemap, gráf, előzmény), `trend.mjs`, `consent.mjs`, `visual-diff.mjs`, `lib-inputs.mjs` (field/search/webflow) · v3: `lib-measure.mjs` (mérés, védett környezet), `lib-ux.mjs`, `lib-qa.mjs`, `lib-gate.mjs` · `webflow-collect.md`
+- `scripts/audit.mjs` (belépési pont) · `lib-consistency.mjs`, `lib-site.mjs` (sitemap, gráf, előzmény), `trend.mjs`, `consent.mjs`, `visual-diff.mjs`, `lib-inputs.mjs` (field/search/webflow) · v3: `lib-measure.mjs` (mérés, védett környezet), `lib-ux.mjs`, `lib-qa.mjs`, `lib-gate.mjs` · v3.1: `lib-images.mjs`, `lib-thirdparty.mjs` (harmadik fél + lábnyom), `lib-realdata.mjs` (CrUX + Clarity) · `webflow-collect.md`
 - `reference/`: `pontozas.md`, `kezi-lista.md`, `tiltolista.json`, `tenyek.json`, `bigquery.md`, `v3-meres-ux-qa.md`, `kivetelek.json` (kapu-kivételek)
-- `data/` (gitignore-olt): `history.jsonl`
+- `data/` (gitignore-olt): `history.jsonl`, `cache/` (CrUX és Clarity válaszok, 24 óra)
+
+## Kötelező navigációs ellenőrzés (2026-11-04)
+Minden futás része, a kapu nélküle FAIL (`nav.missing`). A mérő magától lefuttatja (≈ 5–8 perc a teljes webhelyre, utána 24 órán át gyorsítótárból):
+1. `scripts/nav-crawl.py` – a sitemap minden oldalának linkjei területenként (menü / lábléc / tartalom), gombok, kimenő linkek, a menü szerkezete;
+2. `scripts/nav-analyze.py` – kattintásmélység, árva oldalak, látogatói utak legrövidebb útja, gomb- és link-szabályok;
+3. `scripts/nav-journeys.mjs` – **valódi kattintásteszt**: a `reference/nav-utak.json` minden útját asztalon és telefonon (hamburgermenüvel, lassú 4G) végigkattintja, és méri, hogy jó oldalra érkezik-e, hány mozdulat kell, és mennyi idő alatt jelenik meg a céloldal.
+Kapcsolók: `--nav-fresh` (újrafuttatás), `--nav <nav-adat.json>` (kész eredmény), `--no-nav` (csak fejlesztéshez; a kapu ekkor FAIL).
+Szükséges: `python3`, Playwright (a mérő többi részéhez is). Határértékek és források: `reference/pontozas.md` → Navigáció.
+Az eredmény a kapu-artifact „Navigáció” fülén is megjelenik (látogatói utak, térkép, gomb- és link-táblázat).
