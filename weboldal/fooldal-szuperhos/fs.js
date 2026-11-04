@@ -84,17 +84,8 @@ d.documentElement.removeAttribute('data-theme');
 
 /* ---------- díszítő svg-k (domb, hurok, szaggatott vonalak) ---------- */
 function svgElem(html) { const t = d.createElement('div'); t.innerHTML = html; return t.firstElementChild; }
-const DOMB = '<svg class="fs-domb" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C 200 6, 380 8, 560 32 S 900 60, 1100 26 S 1340 6, 1440 30 V70 H0Z" style="fill:var(--domb-h)"/><path d="M0 56 C 240 30, 420 54, 640 48 S 1000 28, 1200 50 S 1380 62, 1440 54 V70 H0Z" style="fill:var(--domb-e)"/></svg>';
-['.fs-hero', '.fs-raj', '.fs-utak', '.fs-gyik'].forEach(s => { const sz = $(s, oldal); if (sz) sz.appendChild(svgElem(DOMB)); });
-/* matrica-szél: ferde, kézzel vágott él fehér peremmel; a szalagon (natív elem) mini idézet. Váltakozva lejt és emelkedik. */
-const MATRICA = [[24, 29.6, 28.8, 38.5, 39.7, 51.4, 52.1, 61.9, 61.6, 71.3, 76], [76, 74.4, 65.2, 63.5, 56.3, 54.6, 45.9, 42.1, 32.4, 30.7, 24]], MX = [0, 70, 150, 260, 340, 470, 560, 690, 780, 890, 1000];
-$$('.fs-szalag-idezet', oldal).forEach((sz, i) => {
-  const sec = sz.closest('section'); if (!sec) return; const Y = MATRICA[i % 2], ut = dy => 'M' + MX.map((x, k) => x + ' ' + (Y[k] + dy)).join(' L') + ' V100 H0Z';
-  sec.classList.add('fs-d'); if (i % 2) sz.classList.add('fs-bal');
-  sec.appendChild(svgElem('<svg class="fs-matrica-el" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true"><path d="' + ut(0) + '" style="fill:var(--d-perem)"/><path d="' + ut(9) + '" style="fill:var(--d-kov)"/></svg>'));
-});
+/* a domb, a matricaél és a kaptár-hurok 2026-11-04-én kikerült: a CSS rejtette őket (display:none), csak felesleges munka volt; a domb natív DS · Domb komponens */
 const kaptar = $('.fs-kaptar-szin', oldal);
-if (kaptar) kaptar.insertBefore(svgElem('<svg class="fs-hurok" viewBox="0 0 400 520" preserveAspectRatio="none" aria-hidden="true"><path d="M40 40 C 160 0, 240 90, 200 140 C 160 190, 110 130, 160 110 C 220 90, 360 160, 340 260 C 320 360, 60 330, 70 420 C 80 500, 300 520, 360 470" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="7 8"/></svg>'), kaptar.firstChild);
 const lepesek = $('.fs-lepesek', oldal);
 let utVonal = null;
 if (lepesek) { utVonal = svgElem('<svg class="fs-lepes-vonal" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true"><path d="M30 30 C 160 -10, 240 70, 360 30 S 560 -10, 660 30 S 860 70, 980 30"/></svg>'); lepesek.insertBefore(utVonal, lepesek.firstChild); }
@@ -522,102 +513,6 @@ await szunet();
   }, 2400);
 })();
 
-await szunet();
-/* =====================================================
-   Kinek szól: B2C (lábnyom), B2G (polgármester), B2B (vállalkozás)
-   ===================================================== */
-(function () {
-  const test = $('.fs-kviz-test', oldal), bub = $('.fs-buborek', oldal), hely = $('.fs-kviz-mehhely', oldal);
-  if (!test || !bub || !hely) return;
-  const helyKep = $('img', hely); if (helyKep) helyKep.remove();
-  const host = d.createElement('div'); host.className = 'fs-meh'; host.setAttribute('aria-hidden', 'true'); hely.appendChild(host);
-  bub.setAttribute('aria-live', 'polite');
-  const km = new Meh(host, { arc: 'kivancsi', s: 1 });
-  const REAK = [['ujjongo', 'Szuper, ez nagyon ökos!'], ['vidam', 'Jó úton jársz!'], ['meleg', 'Semmi gond, ebben tudunk segíteni.']];
-  const UTAK = {
-    b2c: { koszon: 'Szia! Segítek kideríteni, miben vagy már ökohős.', lab: 'Játékos előszűrés, nem a valódi kalkulátor.',
-      kerdes: [
-        { ter: 'Közlekedés', k: 'Hogyan jársz leggyakrabban?', v: [['Autóval', 'auto', 2], ['Tömegközlekedéssel', 'busz', 1], ['Biciklivel vagy gyalog', 'bicaj', 0]] },
-        { ter: 'Étkezés', k: 'Milyen gyakran eszel húst?', v: [['Szinte minden nap', 'hus', 2], ['Hetente párszor', 'tal', 1], ['Ritkán vagy soha', 'level', 0]] },
-        { ter: 'Ruhák', k: 'Mi lesz a megunt ruháiddal?', v: [['Kidobom', 'kuka', 2], ['Elajándékozom', 'ajandek', 1], ['Cserélem vagy javítom', 'csere', 0]] }],
-      reakcio: v => REAK[v],
-      eredmeny(vs) {
-        const LEP = { 'Közlekedés': ['Nézz körül a közelben!', 'A Zöld térképen megmutatjuk a zöld helyeket és programokat gyalog- vagy bringatávon.'], 'Étkezés': ['Egyél szezonálisan!', 'Mi terem most? Szezonális alapanyagok és növényi receptek az appban.'], 'Ruhák': ['Cserélj, ne vegyél!', 'Csere-bere programok a Kaptárnaptárban, és kuponok zöld partnerektől.'] };
-        const min = Math.min(...vs), max = Math.max(...vs), mind = max === 0;
-        const eros = this.kerdes[vs.indexOf(min)].ter, lp = mind ? ['Gyűjts nektárt!', 'Minden ökos lépésedért nektár jár az appban, amit jutalmakra válthatsz.'] : LEP[this.kerdes[vs.lastIndexOf(max)].ter];
-        return { arc: 'buszke', bub: mind ? 'Igazi ökohős vagy!' : 'Megvan, merre repülünk tovább!', cim: 'Ebben már ökohős vagy', kod: mind ? 'mind' : this.kerdes[vs.lastIndexOf(max)].ter,
-          sorok: [['Erősséged', mind ? 'Mindhárom terület' : eros, ''], ['Következő lépés', lp[0], lp[1]]], kiemelt: 1, cta: 'Töltsd le az appot', letolt: true, kep: true, lab: 'A pontos számot az app kalkulátora adja.' };
-      } },
-    b2g: { koszon: 'Üdv! Már 15 önkormányzattal dolgozunk. Nézzük, mit tehetünk nálatok.', javaslat: true,
-      kerdes: [
-        { k: 'Mi a legfontosabb célotok?', v: [['A lakók szemléletformálása', 'hir', 'szemlelet'], ['A helyi zöld programok láthatósága', 'nap', 'lathato'], ['Közös önkéntes akció', 'csepp', 'akcio']] },
-        { k: 'Hol érjük el a lakókat?', v: [['Az appban', 'lab', 'app'], ['Helyi rendezvényen', 'raj', 'esemeny'], ['Mindkettőn', 'cel', 'mind']] }],
-      reakcio: () => ['figyelmes', 'Értem, ez jó irány.'],
-      eredmeny(vs) {
-        const CEL = { szemlelet: ['Lakossági zöld csomag', 'Helyi tippek és hírek a lakóknak a napi ökosságban, a lábnyomkalkulátorral együtt.'], lathato: ['A település a Zöld térképen', 'A zöld helyek a térképre, a programok a Kaptárnaptárba kerülnek.'], akcio: ['Közös kampány', 'Az Önkéntes vízadás mintájára, ahol 2025-ben 7 000 fa kapott inni: a lakók az appból jelentkeznek, a részvétel mérhető.'] };
-        const HOL = { app: 'Az appban 25.000+ letöltő közül érjük el a helyieket.', esemeny: 'Helyi rendezvényre visszük a programjainkat, például Klímafreskót vagy csere-berét.', mind: 'Az appban és helyi rendezvényen is jelen vagyunk, így a kettő erősíti egymást.' };
-        return { arc: 'vidam', bub: 'Ebből jó közös projekt lehet!', cim: 'A javaslatunk a településnek', kod: vs[0], telepulesek: true,
-          sorok: [['Javaslat', CEL[vs[0]][0], CEL[vs[0]][1]], ['Elérés', 'Így érjük el a lakókat', HOL[vs[1]]]], kiemelt: 0, cta: 'Egyeztessünk', href: '/kapcsolat', lab: 'Szakmai partnerünk az Élhető Települések Országos Szövetsége.' };
-      } },
-    b2b: { koszon: 'Szia! Nézzük, hogyan találnak meg a zöld vásárlók.',
-      kerdes: [
-        { k: 'Milyen a vállalkozásod?', v: [['Zöld kisvállalkozás, bolt, szolgáltató', 'bolt', 'kkv'], ['Nagyvállalat', 'ceg', 'nagy']] },
-        { k: 'Mi a legfontosabb célod?', v: [['Új vásárlók', 'kupon', 'vevo'], ['A munkatársak bevonása', 'raj', 'csapat'], ['Márkaépítés, ESG', 'cel', 'marka']] }],
-      reakcio: () => ['figyelmes', 'Rendben, nézzük tovább!'],
-      eredmeny(vs) {
-        let r;
-        if (vs[1] === 'vevo') r = ['Partnerprogram', 'Kerülj be a beeco appba: megjelenés, kuponfüzet és analitika. A Zümi csomagban már mindent megkapsz az első kuponhoz.', 'Kerülj fel az appba', '/szolgaltatas/partner'];
-        else if (vs[1] === 'csapat') r = ['Zöld programok', 'Klímafreskó, ökos kvíz, workshopok és csere-bere a munkatársaknak.', 'Kérj ajánlatot', '/szolgaltatas/zold-esemeny-szervezes'];
-        else r = ['Marketing és ESG', 'Közös kampány, mint az őszi CsicsergŐsz, és ESG-tanácsadás.', 'Beszéljünk', '/szolgaltatas/szolgaltatasaink'];
-        if (vs[0] === 'kkv' && vs[1] !== 'vevo') r[1] += ' Kisvállalkozásként a partnerprogrammal is indulhatsz.';
-        return { arc: 'ujjongo', bub: 'Ez nektek való!', cim: 'Ezzel indulnék', kod: vs.join('-'), sorok: [['Javaslat', r[0], r[1]], vs[1] === 'vevo' ? ['Mennyi idő', 'Három lépés', 'Jelentkezés, beállítás, élesítés.'] : ['Következő lépés', 'Írj nekünk', 'Elmondod, mit szeretnél, és összerakjuk a programot.']], kiemelt: 0, cta: r[2], href: r[3], lab: '' };
-      } }
-  };
-  const KULCSOK = ['b2c', 'b2g', 'b2b'];
-  let ut = 'b2c', lepes = 0, valaszok = [];
-  const U = () => UTAK[ut];
-  const labak = (n, kesz) => Array.from({ length: n }, (_, i) => '<svg class="' + (i < kesz ? 'fs-kesz' : '') + '" aria-hidden="true"><use href="#fs-i-lab"/></svg>').join('');
-  const labjegy = () => U().javaslat ? '<span class="fs-javaslat-jel">Új ajánlat, jóváhagyásra vár</span> ' : '';
-  function kerdes() {
-    const q = U().kerdes[lepes], n = U().kerdes.length;
-    test.innerHTML = '<div class="fs-kviz-halad">' + labak(n, lepes) + '<span>' + (lepes + 1) + '. kérdés a ' + n + '-ból</span></div><h3 tabindex="-1" class="fs-kviz-kerdes">' + q.k + '</h3><div class="fs-valaszok">' + q.v.map((v, i) => '<button type="button" class="fs-valasz" aria-pressed="false" data-i="' + i + '">' + ikon(v[1], 'fs-vik') + v[0] + '</button>').join('') + '</div>' +
-      '<div class="fs-kviz-lab"><span>' + labjegy() + (U().lab || '') + '</span>' + (lepes ? '<button type="button" class="fs-kviz-vissza">Vissza</button>' : '') + '</div>';
-    $$('.fs-valasz', test).forEach(b => b.addEventListener('click', () => valaszol(+b.dataset.i, b)));
-    const vb = $('.fs-kviz-vissza', test); if (vb) vb.addEventListener('click', () => { lepes--; valaszok.pop(); km.arc('figyelmes'); bub.textContent = 'Rendben, nézzük újra.'; kerdes(); $('.fs-kviz-kerdes', test).focus(); });
-  }
-  function valaszol(i, b) {
-    if (test.dataset.zar) return; test.dataset.zar = '1';
-    $$('.fs-valasz', test).forEach(x => x.setAttribute('aria-pressed', x === b));
-    const ert = U().kerdes[lepes].v[i][2]; valaszok[lepes] = ert;
-    mer('kviz_valasz', { ut: ut, kerdes: lepes + 1, valasz: String(ert) });
-    const r = U().reakcio(ert); km.arc(r[0]); bub.textContent = r[1]; if (r[0] === 'ujjongo') km.ugrik();
-    setTimeout(() => { delete test.dataset.zar; lepes++; if (lepes < U().kerdes.length) { km.arc('figyelmes'); kerdes(); $('.fs-kviz-kerdes', test).focus(); } else eredmeny(); }, kevesMozgas() ? 250 : 900);
-  }
-  function eredmeny() {
-    const e = U().eredmeny(valaszok), n = U().kerdes.length;
-    mer('kviz_kesz', { ut: ut, eredmeny: e.kod });
-    km.arc(e.arc); km.ugrik(); bub.textContent = e.bub;
-    const kepSrc = (kepek[0] || {}).src || '';
-    test.innerHTML = '<div class="fs-kviz-halad">' + labak(n, n) + '<span>Kész!</span></div>' +
-      '<div class="fs-eredmeny' + (e.kep ? '' : ' fs-eredmeny--kep-nelkul') + '"><div><h3 tabindex="-1" class="fs-kviz-kerdes">' + e.cim + '</h3>' +
-      e.sorok.map((s, i) => '<div class="fs-eredmeny-sor' + (i === e.kiemelt ? ' fs-eredmeny-sor--lepes' : '') + '"><div class="fs-cimke">' + s[0] + '</div><b>' + s[1] + '</b>' + (s[2] ? '<p>' + s[2] + '</p>' : '') + '</div>').join('') +
-      (e.telepulesek ? '<div class="fs-telepulesek"><span class="fs-telepules">címer</span><span class="fs-telepules">címer</span><span class="fs-telepules">címer</span><span class="fs-telepules">címer</span><span class="fs-minta-jel">Ide jön 4–5 partnertelepülés címere, engedéllyel</span></div>' : '') +
-      '<a class="fs-gomb fs-kviz-cta" href="' + (e.href || '#letoltes') + '">' + e.cta + '</a></div>' +
-      (e.kep && kepSrc ? '<img src="' + kepSrc + '" alt="A beeco Lábnyomkalkulátor képernyője" width="140" height="252">' : '') + '</div>' +
-      '<div class="fs-kviz-lab"><span>' + labjegy() + (e.lab || '') + '</span><button type="button" class="fs-kviz-ujra">Újrakezdem</button></div>';
-    const cta = $('.fs-kviz-cta', test);
-    if (e.letolt) okosLetoltes(cta, 'kviz'); else cta.addEventListener('click', () => mer('kviz_cta', { ut: ut, cta: e.cta }));
-    $('.fs-kviz-ujra', test).addEventListener('click', () => { indul(); $('.fs-kviz-kerdes', test).focus(); });
-    $('.fs-kviz-kerdes', test).focus({ preventScroll: true });
-  }
-  function indul() { lepes = 0; valaszok = []; km.arc('kivancsi'); bub.textContent = U().koszon; kerdes(); }
-  const ug = $$('.fs-utgomb', oldal);
-  const csoport = $('.fs-utvalaszto', oldal); if (csoport) { csoport.setAttribute('role', 'group'); csoport.setAttribute('aria-label', 'Ki vagy?'); }
-  ug.forEach((b, i) => { b.setAttribute('aria-pressed', i === 0); gombbaAlakit(b, () => { ug.forEach(x => x.setAttribute('aria-pressed', x === b)); ut = KULCSOK[i] || 'b2c'; mer('ut_valasztas', { ut: ut }); indul(); km.ugrik(); }); });
-  ciklusok.push(() => { const w = km.host.offsetWidth; if (w && km.w !== w) km.w = w; km.cel(km.w / 2, km.w / 2, 1); });
-  km.w = km.host.offsetWidth || 150; km.hely(km.w / 2, km.w / 2, 1);
-  indul();
-})();
 
 /* indulás */
 frissit();
