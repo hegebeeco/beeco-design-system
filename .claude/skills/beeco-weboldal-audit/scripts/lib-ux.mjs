@@ -32,20 +32,22 @@ export function uxExtract(cfg) {
   // ---- CTA-k (a gomb-szerű elemek)
   const GEN = /gomb|button|btn|cta|w-button/i;
   const SOCIAL = /^(www\.)?(facebook|instagram|linkedin|tiktok|youtube|x|twitter|threads|pinterest)\.com$/;
-  const ctaEls = [...document.querySelectorAll('a[href],button,input[type=submit]')].filter(e => vis(e) && !e.closest('[class*="cky"],[class*="cookie"],.w-dropdown-list,[class*="sender"]') && !/w-nav-button|w-dropdown-toggle|w-tab-link|w-slider/.test(e.className || '') && !/ugrás a tartalomra|skip to/i.test(tx(e)) && !(e.tagName === 'A' && SOCIAL.test(e.hostname))).map(e => {
+  const ctaEls = [...document.querySelectorAll('a[href],button,input[type=submit]')].filter(e => vis(e) && !e.closest('[class*="cky"],[class*="cookie"],.w-dropdown-list,[class*="sender"],.fs-meres-gomb,.fs-naplo') && !/w-nav-button|w-dropdown-toggle|w-tab-link|w-slider/.test(e.className || '') && !/ugrás a tartalomra|skip to/i.test(tx(e)) && !(e.tagName === 'A' && SOCIAL.test(e.hostname))).map(e => {
     const cs = getComputedStyle(e), r = e.getBoundingClientRect(), t = (e.value || tx(e) || e.getAttribute('aria-label') || '').trim();
     const bgm = cs.backgroundColor.match(/rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?\)/);
     const solid = !!bgm && (bgm[4] === undefined || +bgm[4] > 0.1) && !(+bgm[1] > 235 && +bgm[2] > 235 && +bgm[3] > 235); // kitöltött: nem átlátszó és nem fehér (a fehér + keret = másodlagos)
-    const like = GEN.test(e.className || '') || [...e.attributes].some(a => /^data-[a-z0-9]+-cta$/.test(a.name)) || (solid && parseFloat(cs.borderRadius) > 0 && t.length > 1 && t.length <= 40 && r.height >= 32);
+    // áruház-jelvény (Google Play / App Store): letöltő gomb, a jelvény képe a kitöltés; a kettő együtt egy cselekvés
+    const store = /(^|\.)(play\.google\.com|apps\.apple\.com)$/.test(e.tagName === 'A' ? e.hostname : '');
+    const like = GEN.test(e.className || '') || store || [...e.attributes].some(a => /^data-[a-z0-9]+-cta$/.test(a.name)) || (solid && parseFloat(cs.borderRadius) > 0 && t.length > 1 && t.length <= 40 && r.height >= 32);
     let pos = 'static'; for (let n = e; n && n !== document.documentElement; n = n.parentElement) { const p = getComputedStyle(n).position; if (p === 'fixed' || p === 'sticky') { pos = p; break; } }
-    return { el: e, like, solid, text: t, words: wc(mask(t)), href: e.getAttribute('href') || '', fold: inFold(e), cy: r.top + r.height / 2, pos, zone: e.closest('footer,[class*="lablec"]') ? 'footer' : e.closest('nav,.w-nav,[class*="menu-"]') ? 'nav' : 'main', bg: cs.backgroundColor, rad: cs.borderRadius, fs: cs.fontSize };
+    return { el: e, like, solid: solid || store, store, text: t, words: wc(mask(t)), href: e.getAttribute('href') || '', fold: inFold(e), cy: r.top + r.height / 2, pos, zone: e.closest('footer,[class*="lablec"]') ? 'footer' : e.closest('nav,.w-nav,[class*="menu-"]') ? 'nav' : 'main', bg: cs.backgroundColor, rad: cs.borderRadius, fs: cs.fontSize };
   }).filter(c => c.like);
 
   // ---- 1. első benyomás
   const h1 = [...document.querySelectorAll('h1')].find(h => vis(h) && !h.closest(ZONE));
   const vp = body.find(b => b.fold && !b.head && !b.link && b.words >= 8 && b.fs >= 13);
   // a szöveglinkek (ds-szoveglink, aláhúzott link) harmadlagos utak, nem számítanak a hero gombjai közé
-  const heroCtas = ctaEls.filter(c => c.fold && c.zone === 'main' && !/(^|\s)(ds-szoveglink|w-inline-link)(\s|$)/.test(c.el.className || ''));
+  const heroCtas = ctaEls.filter(c => c.fold && c.zone === 'main' && !/(^|\s)(ds-szoveglink|w-inline-link)(\s|$)/.test(c.el.className || '')).filter((c, i, a) => !c.store || a.findIndex(x => x.store) === i);
   let visual = false, visualWhat = '';
   for (const im of document.querySelectorAll('img,svg,video,canvas,picture,lottie-player,[data-animation-type="lottie"]')) {
     if (im.closest(ZONE) || !vis(im)) continue; const r = im.getBoundingClientRect();
@@ -57,7 +59,7 @@ export function uxExtract(cfg) {
   U.hero = { ctas: heroCtas.map(c => ({ text: mask(c.text).slice(0, 50), solid: c.solid, words: c.words })), solids: heroCtas.filter(c => c.solid).length };
   const VERB = /^(kér|tölt|néz|próbál|ind[ií]t?|csatlakoz|ismer|foglal|fedez|olvas|tudj|regisztr|jelentkez|lép|kezd|kapj|kapok|ajánl|beszél|[ií]rj|[ií]rok|hívj|hívok|nyisd|nyitom|játsz|segít|támogat|válassz|választ|számol|számít|szerez|vedd|veszek|terv[ez]|találd|oszd|küld|mutat|menj|mehet|rendel|vásárol|add\b|adj\b|keres|csinál|nézz|lássuk|kipróbál|letölt|ellenőriz|nyerj|nyerd|vegy[ée]l|oldd|figyelj|egyeztes|beszéljünk|gyere|jöjj|készít|szervez|hozd|hozz|mondd|mondj|kérdez|építs|válts|tedd|csekkold|kóstolj|indulj|ugorj|térj|fizess|állítsd|kapcsold|nyomd|húzd|fedezz|ismerkedj)\p{L}*$/iu;
   const verbOk = t => { const toks = (t.toLowerCase().match(/[\p{L}]+/gu) || []); return toks.some(w => VERB.test(w) || /\p{L}{3,}(j|jék|sd|zd|ld|rd|jünk|junk|szd|dd)$/u.test(w)); };
-  U.ctaLabels = [...new Map(ctaEls.filter(c => c.zone !== 'footer' && c.text.length > 1).map(c => [c.text.toLowerCase(), { text: mask(c.text).slice(0, 50), words: c.words, verb: verbOk(c.text), zone: c.zone }])).values()].slice(0, 60);
+  U.ctaLabels = [...new Map(ctaEls.filter(c => c.zone !== 'footer' && !c.store && c.text.length > 1).map(c => [c.text.toLowerCase(), { text: mask(c.text).slice(0, 50), words: c.words, verb: verbOk(c.text), zone: c.zone }])).values()].slice(0, 60);
   U.ctaPairs = ctaEls.filter(c => c.zone !== 'footer' && c.href && c.text.length > 1 && !c.href.startsWith('mailto:') && !c.href.startsWith('tel:')).map(c => { let d = ''; try { const u = new URL(c.el.href); d = (u.hostname.replace(/^www\./, '') + u.pathname.replace(/\/$/, '') + u.hash); } catch { d = c.href; } return { text: mask(c.text).toLowerCase().slice(0, 50), dest: d.slice(0, 100) }; }).slice(0, 80);
   const sigs = new Map(); for (const c of ctaEls.filter(c => c.solid && c.zone === 'main')) sigs.set(`${c.bg}|${c.rad}|${c.fs}`, (sigs.get(`${c.bg}|${c.rad}|${c.fs}`) || 0) + 1);
   U.buttonStyles = { variants: sigs.size, list: [...sigs.entries()].slice(0, 6).map(([k, n]) => `${k} ×${n}`) };
