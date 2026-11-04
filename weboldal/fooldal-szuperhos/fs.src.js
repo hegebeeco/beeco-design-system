@@ -324,7 +324,7 @@ ciklusok.push(function (dt, ts) {
     if (k) {
       kaland = k; meh.host.classList.remove('fs-rejt'); meh.cel(k.p[0], k.p[1], k.s); meh.iranyKell = k.ir;
       const uj = k.hol + k.i; if (uj !== kalandElozo) { kalandElozo = uj; if (k.hol === 'ut' && k.i >= 6) meh.ugrik(); }
-      meh.arc(k.hol === 'ut' ? UT_ARC[k.i] : MIERT_ARC[k.i]); meh.kellek(k.hol === 'ut' ? UT_KELLEK[k.i] : null);
+      meh.arc(k.hol === 'ut' ? UT_ARC[k.i] : MIERT_ARC[k.i]); meh.kellek(k.hol === 'ut' ? UT_KELLEK[k.i] : MIERT_KELLEK[k.i]);
       return;
     }
     kalandElozo = ''; meh.iranyKell = 0;
@@ -335,15 +335,17 @@ ciklusok.push(function (dt, ts) {
 });
 
 /* ---------- kaland (2026-11-02, Kristóf): a méhecske végigrepüli a „Miért a beeco?” kártyáit és az App útja 8 lépését ----------
-   1 telefon, 2 számológép, 3 felvillanó villanykörte, 4 térképész sapka, 5 kuponok, 6 barátok csatlakoznak,
-   7 egyikük serleget kap, 8 balra érkeznek: „Ez te is lehetsz, a barátaiddal!” Csökkentett mozgásnál a helyükre ugranak. */
+   Miért a beeco? (2026-11-04): hamarabb érkezik, és sorban végiglépi a 3 csempét: 1 felvillanó villanykörte a feje fölött,
+   2 telefon (az app), 3 serleg.
+   App útja: 1 telefon, 2 számológép, 3 felvillanó villanykörte, 4 térképész sapka, 5 kuponok, 6 barátok csatlakoznak,
+   7 egyikük serleget kap, 8 balra érkeznek (buborék nélkül, 2026-11-04). Csökkentett mozgásnál a helyükre ugranak. */
 const miertKartyak = $$('#miert .fs-lepes', oldal), utLepesek = $$('.fs-u-lepes', oldal);
 const UT_KELLEK = ['telefon', 'szamologep', 'villanykorte', 'sapka', 'kuponok', null, null, null];
 const UT_ARC = ['vidam', 'figyelmes', 'meglepett', 'kivancsi', 'ujjongo', 'meleg', 'ujjongo', 'vidam'];
 const MIERT_ARC = ['figyelmes', 'kivancsi', 'ujjongo'];
-const buborek = d.createElement('div'); buborek.className = 'fs-buborek'; buborek.textContent = 'Ez te is lehetsz, a barátaiddal!'; reteg.appendChild(buborek);
+const MIERT_KELLEK = ['villanykorte', 'telefon', 'serleg'];
 let kaland = null, kalandElozo = '';
-function lathato(lista) { if (!lista.length) return false; const a = lista[0].getBoundingClientRect(), z = lista[lista.length - 1].getBoundingClientRect(); return a.top < innerHeight * 0.7 && z.bottom > innerHeight * 0.3; }
+function lathato(lista, fent, lent) { if (!lista.length) return false; const a = lista[0].getBoundingClientRect(), z = lista[lista.length - 1].getBoundingClientRect(); return a.top < innerHeight * (fent || 0.7) && z.bottom > innerHeight * (lent || 0.3); }
 function kozel(lista) {
   let best = 0, bd = 1e9;
   lista.forEach((el, i) => { const r = el.getBoundingClientRect(), c = Math.abs(r.top + Math.min(r.height, 240) / 2 - innerHeight * 0.45); if (c < bd) { bd = c; best = i; } });
@@ -360,9 +362,10 @@ function kalandCel() {
     // a barátok a középvonaltól kifelé sorakoznak (mobilon a kártya teteje mentén balra)
     return { hol: 'ut', i: i, p: p, s: mob ? 0.5 : 0.62, ir: ir, kifele: mob || i === utLepesek.length - 1 || !bal ? -1 : 1 };
   }
-  if (lathato(miertKartyak)) {
+  // a Miért-csempékhez már akkor odarepül, amikor az első csempe a képernyő aljára ér, és a görgetéssel sorban végiglépi őket
+  if (lathato(miertKartyak, 0.95, 0.2)) {
     const r0 = miertKartyak[0].getBoundingClientRect(), egySor = miertKartyak.length > 1 && Math.abs(miertKartyak[1].getBoundingClientRect().top - r0.top) < 4;
-    const i = egySor ? clamp(Math.floor(clamp((innerHeight * 0.8 - r0.top) / (innerHeight * 0.55), 0, 0.999) * miertKartyak.length), 0, miertKartyak.length - 1) : kozel(miertKartyak);
+    const i = egySor ? clamp(Math.floor(clamp((innerHeight * 0.95 - r0.top) / (innerHeight * 0.75), 0, 0.999) * miertKartyak.length), 0, miertKartyak.length - 1) : kozel(miertKartyak);
     return { hol: 'miert', i: i, p: relHely(miertKartyak[i], 0.86, -0.06), s: mob ? 0.46 : 0.5, ir: -1, kifele: -1 };
   }
   return null;
@@ -375,7 +378,7 @@ function barat(i) {
 ciklusok.unshift(function () { kaland = null; });
 ciklusok.push(function () {
   if (!kaland) meh.kellek(null);
-  const ut = kaland && kaland.hol === 'ut', vele = ut && kaland.i >= 5, vege = ut && kaland.i === utLepesek.length - 1;
+  const ut = kaland && kaland.hol === 'ut', vele = ut && kaland.i >= 5;
   BARAT.forEach(([fx, fy, arc], i) => {
     if (!vele && !baratok[i]) return;
     const m = barat(i), w = meh.w * meh.t.s;
@@ -387,9 +390,6 @@ ciklusok.push(function () {
       if (kaland.i === 6 && !m.ugrott) { m.ugrott = true; m.ugrik(); } else if (kaland.i !== 6) m.ugrott = false;
     } else if (m.latszik) { m.latszik = false; m.host.classList.add('fs-rejt'); m.kellek(null); }
   });
-  const lat = vege && meh.tav() < 40;
-  buborek.classList.toggle('fs-lat', lat);
-  if (lat) { const bw = buborek.offsetWidth, x = clamp(meh.p.x - bw * 0.35, 8, reteg.offsetWidth - bw - 8); buborek.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + (meh.p.y - meh.w * meh.p.s * 0.5 - buborek.offsetHeight - 12).toFixed(1) + 'px,0)'; buborek.style.setProperty('--fs-csucs', clamp(meh.p.x - x - 7, 16, bw - 30).toFixed(0) + 'px'); }
 });
 if (kaptar) { const heroIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { heroIO.disconnect(); turaIndit(); } }), { threshold: .5 }); heroIO.observe(kaptar); }
 

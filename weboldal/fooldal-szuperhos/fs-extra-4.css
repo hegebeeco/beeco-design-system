@@ -1,7 +1,4 @@
-/* fs-extra-4 (2026-11-02): ami natívan nem fejezhető ki (@keyframes, JS-állapot [aria-pressed]). A 4. HTML Embedbe kézzel kerül (nincs a build.mjs-ben),
-   a Webflow-oldalon: Főoldal Szuperhős (draft), az első három CSS-embed után.
-   A hero elrendezése (telefon középen, 3-3 funkció két oldalt) natív Webflow-stílus: .fs-kaptar-szin, .fs-app-kepek, .fs-funk.fs-f-1…6.
-   A QR-kód az eredeti DOWNLOAD_BLOCK méretében marad (Kristóf kérése, 2026-10-30): nincs felülírás. */
+/* fs-extra-4: ami natívan nem fejezhető ki (@keyframes, JS-állapot). Forrás: DS-repó weboldal/fooldal-szuperhos/fs-extra-4.css. */
 @keyframes fs-gorog{0%{transform:translateY(0);opacity:1}70%{transform:translateY(12px);opacity:0}100%{opacity:0}}
 @keyframes fs-nyil{0%,100%{transform:translateY(0) rotate(45deg);opacity:.4}50%{transform:translateY(4px) rotate(45deg);opacity:1}}
 @keyframes fs-mutat{0%,100%{translate:0 0}50%{translate:4px 0}}
@@ -10,21 +7,23 @@
 .fs-oldal .fs-funk[aria-pressed="true"]::after{content:"";position:absolute;top:22px;left:calc(100% + 4px);width:24px;height:24px;background:var(--_beeco-ds---bc-ink);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12h15M12 5l7 7-7 7'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12h15M12 5l7 7-7 7'/%3E%3C/svg%3E") center/contain no-repeat;animation:fs-mutat 1.6s ease-in-out infinite;pointer-events:none;z-index:4}
 .fs-oldal :is(.fs-f-4,.fs-f-5,.fs-f-6)[aria-pressed="true"]::after{left:auto;right:calc(100% + 4px);transform:scaleX(-1);animation-name:fs-mutat-bal}
 @media screen and (max-width:767px){.fs-oldal .fs-funk[aria-pressed="true"]::after{top:15px;width:18px;height:18px;left:calc(100% - 2px)}.fs-oldal :is(.fs-f-4,.fs-f-5,.fs-f-6)[aria-pressed="true"]::after{left:auto;right:calc(100% - 2px)}}
-/* az App útja záró letöltés-blokkja: a gombok balra igazodnak, mint a szöveg */
-.fs-oldal .fs-u-zaro .download_block,.fs-oldal .fs-u-zaro .download_block>div,.fs-oldal .fs-u-zaro .footer_download{margin:0;justify-content:flex-start;align-items:flex-start}
+/* 2026-11-04 (Kristóf): a funkció-gombócok közelebb a telefonhoz (24 px köz), ezért a nyíl kisebb; a felirat a „Zöld életmód app” szalag mintájára fekete, a kiválasztott sárga */
+@media screen and (min-width:768px){.fs-oldal .fs-funk[aria-pressed="true"]::after{top:25px;width:18px;height:18px;left:calc(100% + 3px)}.fs-oldal :is(.fs-f-4,.fs-f-5,.fs-f-6)[aria-pressed="true"]::after{left:auto;right:calc(100% + 3px)}}
+.fs-oldal .fs-funk[aria-pressed="true"] .fs-nev{background-color:var(--_beeco-ds---bc-accent);color:var(--_beeco-ds---bc-on-accent)}
+/* 2026-11-04 (Kristóf): az App útja zárója rövid, középre zárt letöltő blokk QR-ral, app-kép nélkül */
+.fs-oldal .fs-u-zaro .download_block{justify-content:center;align-items:center;margin-left:auto;margin-right:auto}
 /* ragadós letöltő sáv (JS építi): 360 px alatt egy sorban marad a „4,6 ★” */
 @media (max-width:360px){.fs-oldal .fs-ragados{gap:8px;padding-left:12px;padding-right:12px}.fs-oldal .fs-ragados p{white-space:nowrap}.fs-oldal .fs-ragados .fs-gomb{font-size:14px;padding:10px 10px 6px}}
 /* 2026-11-02: a jobb oldali lábnyom-navigáció egyelőre nem kell (Kristóf); visibility, hogy a JS mérései ne törjenek el */
 .fs-oldal .fs-sin,.fs-oldal .fs-sin *{visibility:hidden!important;pointer-events:none!important}
 /* egyszerű elválasztó: csak a natív ::after domb marad, a JS rétegzett dombjai és tépett élei nem */
 .fs-oldal .fs-domb,.fs-oldal .fs-matrica-el,.fs-oldal .fs-hurok{display:none!important}
-/* 2026-11-02: az idézetmatricák kikerültek, így nem kell nekik hely; QR csak a heróban és az oldal alján */
+/* 2026-11-02: az idézetmatricák kikerültek, így nem kell nekik hely */
 .fs-oldal .fs-d{padding-bottom:104px}
-.fs-oldal .fs-u-zaro .img_qr{display:none}
 @media (prefers-reduced-motion:reduce){.fs-gorgess-pont::after,.fs-gorgess-nyil,.fs-oldal .fs-funk::after{animation:none!important}}
 /* 2026-11-02: a következő lap domb-elválasztója (56 px) ne lógjon rá a tartalomra */
 .fs-oldal section.fs-beebolt,.fs-oldal section.fs-gyik,.fs-oldal section.fs-rolunk{padding-bottom:120px}
-/* méhecske-kaland: buborék a 8. lépésnél, felvillanó villanykörte a 3.-nál (a JS építi, a rétegben ül) */
+/* méhecske-kaland: felvillanó villanykörte (a JS építi, a rétegben ül); a 8. lépés buborékja 2026-11-04 óta nem jelenik meg */
 .fs-oldal .fs-buborek{position:absolute;left:0;top:0;z-index:6;max-width:220px;padding:10px 14px 8px;background:var(--_beeco-ds---bc-surface);color:var(--_beeco-ds---bc-ink);border:2px solid var(--_beeco-ds---bc-ink);border-radius:12px 4px;box-shadow:4px 4px 0 var(--_beeco-ds---bc-ink);font-weight:700;font-size:16px;line-height:1.3;opacity:0;transition:opacity .2s ease-out;pointer-events:none}
 .fs-oldal .fs-buborek.fs-lat{opacity:1}
 .fs-oldal .fs-buborek::after{content:"";position:absolute;left:var(--fs-csucs,30%);bottom:-9px;width:14px;height:14px;background:inherit;border-right:2px solid var(--_beeco-ds---bc-ink);border-bottom:2px solid var(--_beeco-ds---bc-ink);transform:rotate(45deg)}
@@ -32,7 +31,7 @@
 .fs-oldal .fs-kv-feny{animation:fs-villan 1.4s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.fs-oldal .fs-kv-feny{animation:none;opacity:.5}}
 /* 2026-11-02 (Kristóf: „egységesíts”): a főoldal is a DS-mércét követi: gombsarok 14/4 px, 3 px kemény árnyék, szürke lead,
-   a hero-cím a DS cím-l lépcsőjén (48 px; a 64 px-es cím-xl a háromhasábos heróban 4 sorra törne, és a letöltőgombok a hajtás alá csúsznának) */
+   a hero-cím a DS cím-l lépcsőjén (48 px; a 64 px-es cím-xl a háromhasábos heróban 4 sorra törne, és a letöltőgombok a hajtás alá csússznának) */
 .fs-oldal .fs-hero-cim{font-size:clamp(36px,4vw,48px)}
 .fs-oldal .fs-gomb{border-radius:14px 4px;box-shadow:3px 3px 0 var(--_beeco-ds---bc-ink)}
 @media (hover:hover) and (pointer:fine){.fs-oldal .fs-gomb:hover{transform:translate(-1px,-2px);box-shadow:4px 5px 0 var(--_beeco-ds---bc-ink)}}

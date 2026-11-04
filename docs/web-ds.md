@@ -68,6 +68,8 @@ python3 weboldal/web-ds/katalogus.py --check                                 # a
 | `DOWNLOAD_BLOCK` | `53f370d6…` | Letöltés-blokk, Link 1 és Link 2 prop (alapérték: kanonikus áruházlink). |
 | `DS · Ajánlatkérés` | `18b953bc-5dbc-c820-52fc-b872c83459cb` | B2B-ajánlatkérő szekció natív űrlappal (`#ajanlatkeres`). Minden B2B- és eseményoldal alján. A legördülők opcióit és a helyőrzőket csak a Designerben lehet beállítani (az API nem tudja). A beküldésnél a Webflow rögzíti az oldal címét. |
 | `DS · Céges ajánlatok` | `4a8cf67e-8a4c-11c0-c7b0-d9ee058d623c` | A hét B2B-ajánlat és az egyedi csomag kártyái. Ár vagy link csak itt változik. |
+| `DS · Domb` | `ad993b5e-bdbd-a8e3-169e-0fbe16aaf0a7` | Lágy domb-elválasztó két különböző színű szekció között (Kristóf kérése, 2026-11-04: „minden oldalra ezt”). A **felső** szekció utolsó gyermeke (append); a `Variant` prop (`e9e738d0…`) a **következő** szekció színe: Krém (alap), Fehér, Halványzöld, Vaj, Zöld, Sötét. Osztály: `ds-domb` (56 px, mobilon 40 px, `0 -6px 14px -4px` árnyék, sötétnél erősebb). Azonos színű szekciók közé és a lábléc fölé nem kell; komponens-gyökerű vagy `overflow: hidden` felső szekcióba nem tehető. A főoldal saját `::after` dombjai ugyanezekkel az értékekkel készültek. |
+| `DS · GYIK tovább` | `3c90afc8-1d53-ebc7-228a-020a939b8640` | „Nem találtad a választ?” + gomb a /gyik oldalra; a GYIK-blokk bal oszlopának alján. |
 
 ## 5. Oldalak (teszt-URL, mind draft-jelöltek)
 
@@ -113,7 +115,18 @@ a végleges és a draft címek listája a `weboldal/b2b/ki/oldalterkep.json`-ban
 - A whtml egy hívásban legfeljebb 5 akciót fogad.
 - A Designerben Kristóf is dolgozik. Ha váratlan értéket látsz, kérdezz, ne állítsd vissza.
 
-## 7. Döntésre vár
+## 7. Egységes minták
+
+- **GYIK-blokk (2026-11-04, Kristóf: „a meglévő designra építsünk”):** a főoldal eredeti GYIK-mintája lett az egységes forma minden
+  GYIK-szekcióban: `ds-burok > ds-gyik-racs` (bal 0,75 fr, jobb 1,25 fr, 48 px köz; ≤ 991 px egy oszlop) →
+  bal: `ds-gyik-fej` (sticky, `top: 96px`: `ds-szalag`, `h2.ds-cim2`, témához igazított `p.ds-lead`, `DS · GYIK tovább`),
+  jobb: `ds-kerdesek` → natív `details.ds-kerdes` + `summary.ds-kerdes-k` (kérdés) + `.ds-kerdes-v` (válasz, natív linkekkel).
+  A sárga kör + plusz ikon a `ds-kerdes-k::after`; a böngésző saját nyila és a nyitott állapot forgatása (+ → ×) a
+  webhely fejkódjában van (`<style id="beeco-ds-gyik">`), mert attribútum-szelektort a Webflow natívan nem tud.
+  A FAQPage strukturált adat az oldalak fejkódjában statikus, a jelölés cseréje nem érinti.
+- **Elválasztó:** `DS · Domb` (4. pont), két eltérő színű szekció között mindig ez.
+
+## 8. Döntésre vár
 
 - **`ds-` és `bc-` átfedés.** A [weboldal.md 2.](weboldal.md) szerint a Webflow DS-osztályai `bc-` nevűek, és új osztály csak
   DS-elemhez jöhet. A `ds-` sorozat a natív oldalépítéshez készült, és részben átfed velük:
