@@ -6,13 +6,15 @@
    a sötét/világos kapcsolót és a mérést (dataLayer).
    Építés: node weboldal/fooldal-szuperhos/build.mjs  →  fs.js (+ embed/*.css)
    ============================================================ */
-(function () {
+(async function () {
 'use strict';
 if (window.__fsFut) return; window.__fsFut = true;
 const d = document, $ = (s, r) => (r || d).querySelector(s), $$ = (s, r) => Array.from((r || d).querySelectorAll(s));
 const oldal = $('.fs-oldal'); if (!oldal) return;
 const RM = matchMedia('(prefers-reduced-motion: reduce)'), kevesMozgas = () => RM.matches;
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+/* a szakaszok között átadjuk a vezérlést a böngészőnek (2026-11-04): így nincs egyetlen hosszú, a kattintást és a görgetést blokkoló feladat */
+const szunet = () => (window.scheduler && scheduler.yield) ? scheduler.yield() : new Promise(r => setTimeout(r, 0));
 const gorget = el => el && el.scrollIntoView({ behavior: kevesMozgas() ? 'auto' : 'smooth', block: 'start' });
 const NS = 'http://www.w3.org/2000/svg';
 const ikon = (n, cls) => '<svg class="' + (cls || '') + '" aria-hidden="true" focusable="false"><use href="#fs-i-' + n + '"/></svg>';
@@ -210,6 +212,7 @@ function keret(ts) {
 function indit() { if (!fut) { fut = true; utolso = performance.now(); requestAnimationFrame(keret); } }
 d.addEventListener('visibilitychange', () => { if (!d.hidden) indit(); });
 
+await szunet();
 /* ---------- ragadós letöltősáv (mobil) ---------- */
 const ragados = d.createElement('div'); ragados.className = 'fs-ragados'; ragados.setAttribute('aria-hidden', 'true');
 ragados.innerHTML = ikon('lab', 'fs-lab') + '<p><b>beeco app</b>Ingyenes, 4,6 ★</p><a class="fs-gomb fs-okos-letoltes" href="#letoltes" tabindex="-1">Töltsd le az appot</a>';
@@ -393,6 +396,7 @@ ciklusok.push(function () {
 });
 if (kaptar) { const heroIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { heroIO.disconnect(); turaIndit(); } }), { threshold: .5 }); heroIO.observe(kaptar); }
 
+await szunet();
 /* =====================================================
    Közösség: „Beállok a rajba”, felpörgő nagy számok
    ===================================================== */
@@ -417,6 +421,7 @@ if (kaptar) { const heroIO = new IntersectionObserver(es => es.forEach(e => { if
   });
 })();
 
+await szunet();
 /* =====================================================
    Végtelen sávok: vélemények, sajtó (a tartalom duplikálva; szüneteltethető)
    ===================================================== */
@@ -473,6 +478,7 @@ function vegtelen(el, seb, cimke, gombFelirat) {
 vegtelen($('.fs-sajto .fs-logosor', oldal), 40, 'Írtak rólunk');
 vegtelen($('.fs-partner-racs', oldal), 40, 'Szakmai partnereink');
 
+await szunet();
 /* =====================================================
    Csapat-slider: görgethető képsor, nyilak, pontok, lassú automata lapozás
    ===================================================== */
@@ -496,6 +502,7 @@ vegtelen($('.fs-partner-racs', oldal), 40, 'Szakmai partnereink');
   jelol(); auto();
 })();
 
+await szunet();
 /* =====================================================
    Záró: egymás után beúszó kérdések
    ===================================================== */
@@ -514,6 +521,7 @@ vegtelen($('.fs-partner-racs', oldal), 40, 'Szakmai partnereink');
   }, 2400);
 })();
 
+await szunet();
 /* =====================================================
    Kinek szól: B2C (lábnyom), B2G (polgármester), B2B (vállalkozás)
    ===================================================== */
