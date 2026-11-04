@@ -112,3 +112,14 @@ Minden futás része, a kapu nélküle FAIL (`nav.missing`). A mérő magától 
 Kapcsolók: `--nav-fresh` (újrafuttatás), `--nav <nav-adat.json>` (kész eredmény), `--no-nav` (csak fejlesztéshez; a kapu ekkor FAIL).
 Szükséges: `python3`, Playwright (a mérő többi részéhez is). Határértékek és források: `reference/pontozas.md` → Navigáció.
 Az eredmény a kapu-artifact „Navigáció” fülén is megjelenik (látogatói utak, térkép, gomb- és link-táblázat).
+
+## Mérés-ellenőrző: eseménytérkép és consent-kör (2026-11-04)
+A mérési terv (`reference/meresi-terv.json`: oldalanként esemény, kiváltó művelet, kötelező paraméterek) gépi ellenőrzése; az audit `measure` dimenziója csak a lefedettséget méri, ez azt, hogy az esemény **tényleg megérkezik-e a megszakított GA4-kérésben**, jó névvel, paraméterekkel, egyszer.
+```bash
+export NODE_PATH=$HOME/CLAUDE/beeco-ds-fooldal/node_modules
+node ~/.claude/skills/beeco-weboldal-audit/scripts/meres-ellenor.mjs --env live|staging|<origin> [--page fooldal,kapcsolat] [--out <mappa>] [--slow]
+```
+- Állapotok: ✓ megjött és jó · ⚠ megjött, de hibás (hiányzó paraméter, dupla, nincs gcs, csak dataLayer) · ✗ az elem megvan, de nem jött esemény (vagy hibás a consent-jel) · – nem tesztelhető (űrlapküldés, áruházi navigáció, `--slow`). Kilépési kód 3, ha van ✗.
+- **Consent-kör (alapból be, `--no-consent` kikapcsolja):** 7 egymás utáni friss betöltés; az első GA4-kérésen (page_view) kell `gcs` (`G100` = tiltva), különben ✗ `consent.gcs-missing`. Ha a `gtag('config')` a consent előtt fut, de a minta szerencsés volt, ⚠ `consent.config-first`. Elutasítás/elfogadás után a `gcs` G100/G111 kell legyen. Ok: a Webflow saját `gtag('config','G-6KVDRD0YQF')` sora és a GTM Google tagje versenyez a CookieYes consent-jével. `--simulate-fix`: önteszt, a config sor nélkül tölti be az oldalt (csak a mérő böngészőjében).
+- Csak olvas, mint a lib-measure: a GA4-kérés üres 204-et kap (a Google-höz nem jut el), minden nem-GET kérés és navigáció megszakad, űrlap nem megy el. A gtag ~5 mp-ig gyűjt, ezért minden művelet után `pagehide`-ot váltunk ki, hogy a kérés azonnal látszódjon.
+- Új esemény a tervbe: `reference/meresi-terv.json`, utána futtasd élesen és stagingen is. Fájlok: `scripts/meres-ellenor.mjs` (CLI), `scripts/lib-meres-ellenor.mjs` (mérő), `reference/meresi-terv.json`.
