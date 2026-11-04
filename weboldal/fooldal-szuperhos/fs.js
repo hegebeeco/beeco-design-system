@@ -437,8 +437,9 @@ function vegtelen(el, seb, cimke, gombFelirat) {
   el.addEventListener('touchend', () => { szunet = 0; tart(2500); }, { passive: true });
   el.addEventListener('focusin', () => { szunet = Infinity; }); el.addEventListener('focusout', () => { szunet = 0; tart(400); });
   el.addEventListener('wheel', () => tart(1500), { passive: true });
-  el.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' || e.button !== 0) return; huz = { x: e.clientX, s: el.scrollLeft, mozgott: false }; el.classList.add('fs-huz'); });
-  addEventListener('pointermove', e => { if (!huz) return; const dx = e.clientX - huz.x; if (Math.abs(dx) > 4) huz.mozgott = true; if (huz.mozgott) { e.preventDefault(); el.scrollLeft = huz.s - dx; } });
+  el.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' || e.button !== 0) return; huz = { x: e.clientX, s: el.scrollLeft, mozgott: false }; });
+  addEventListener('pointermove', e => { if (!huz) return; const dx = e.clientX - huz.x; if (!huz.mozgott && Math.abs(dx) > 4) { huz.mozgott = true; el.classList.add('fs-huz'); } if (huz.mozgott) { e.preventDefault(); el.scrollLeft = huz.s - dx; } });
+  // az fs-huz (linkek pointer-events:none) csak tényleges húzáskor kerül fel, így a sima egérkattintás eljut a logó linkjéig
   addEventListener('pointerup', () => { if (!huz) return; el.classList.remove('fs-huz');
     if (huz.mozgott) { const blokk = ev => { ev.preventDefault(); ev.stopPropagation(); el.removeEventListener('click', blokk, true); }; el.addEventListener('click', blokk, true); setTimeout(() => el.removeEventListener('click', blokk, true), 50); mer('sav_huzas', { sav: cimke }); }
     huz = null; tart(1200); });
@@ -465,8 +466,8 @@ function vegtelen(el, seb, cimke, gombFelirat) {
   if (!el) return;
   el.classList.add('fs-kezi'); el.setAttribute('tabindex', '0'); el.setAttribute('role', 'region'); el.setAttribute('aria-label', cimke + ' (vízszintesen görgethető)');
   let huz = null;
-  el.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' || e.button !== 0) return; huz = { x: e.clientX, s: el.scrollLeft, mozgott: false }; el.classList.add('fs-huz'); });
-  addEventListener('pointermove', e => { if (!huz) return; const dx = e.clientX - huz.x; if (Math.abs(dx) > 4) huz.mozgott = true; if (huz.mozgott) { e.preventDefault(); el.scrollLeft = huz.s - dx; } });
+  el.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' || e.button !== 0) return; huz = { x: e.clientX, s: el.scrollLeft, mozgott: false }; });
+  addEventListener('pointermove', e => { if (!huz) return; const dx = e.clientX - huz.x; if (!huz.mozgott && Math.abs(dx) > 4) { huz.mozgott = true; el.classList.add('fs-huz'); } if (huz.mozgott) { e.preventDefault(); el.scrollLeft = huz.s - dx; } });
   addEventListener('pointerup', () => { if (!huz) return; el.classList.remove('fs-huz'); if (huz.mozgott) mer('sav_huzas', { sav: cimke }); huz = null; });
   el.addEventListener('dragstart', e => e.preventDefault());
 })($('.fs-velemenyek', oldal), 'Vélemények');
