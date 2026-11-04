@@ -222,7 +222,19 @@ export async function qaModes(browser, url, lock = { run: (ex, fn) => fn() }) {
         const btn = page.locator('.w-nav-button:visible, .menu-hamb:visible, .w-dropdown-toggle[aria-expanded]:visible, [class*="hamb"]:visible, [class*="menu-button"]:visible').first();
         if (await btn.count()) { await btn.click({ timeout: 3000 }).catch(() => {}); await page.waitForTimeout(500); navUsable = await page.evaluate(() => [...document.querySelectorAll('nav a[href],.w-nav a[href]')].some(a => { const r = a.getBoundingClientRect(); return r.width > 4 && r.height > 4; })); via = 'menügomb után'; } else via = 'se menülink, se menügomb';
       }
-      return { overflow: o, navUsable, via };
+      // szándékosan egyszerűsített fejléc (landing, pl. /letoltes): asztalon sincs menü, csak főoldal-link → nagyításnál nem vész el semmi
+      let landingHeader = false;
+      if (!navUsable) {
+        const homeTop = await page.evaluate(() => [...document.querySelectorAll('a[href]')].some(a => { const r = a.getBoundingClientRect(); let u; try { u = new URL(a.href); } catch { return false; } return u.host === location.host && u.pathname === '/' && r.top < 140 && r.width > 4 && (a.innerText || '').trim().length > 2; }));
+        if (homeTop) {
+          const wide = await ctx.newPage(); await wide.setViewportSize({ width: 1440, height: 900 });
+          await wide.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 }).catch(() => {}); await wide.waitForTimeout(1200);
+          const deskMenu = await wide.evaluate(() => [...document.querySelectorAll('nav a[href],.w-nav a[href],.w-dropdown-toggle,.menu-hamb,.w-nav-button')].filter(a => { const r = a.getBoundingClientRect(); return r.width > 4 && r.height > 4 && getComputedStyle(a).visibility !== 'hidden'; }).length).catch(() => 1);
+          await wide.close().catch(() => {});
+          if (!deskMenu) { landingHeader = true; via = 'egyszerűsített fejléc: asztalon sincs menü, a főoldal-link nagyítva is látható'; }
+        }
+      }
+      return { overflow: o, navUsable, via, landingHeader };
     } finally { await ctx.close(); }
   });
   await run('nojs', async () => {
@@ -352,7 +364,7 @@ export function qaFindings(Q, add, have, { baselineSeen = true } = {}) {
     if (K.lost >= 5) add('visual', 'P3', 'visual.focus-lost', `A fókusz ${K.lost}× a dokumentumra esett vissza Tab közben`, '', 'Nézd meg a rejtett elemeket és a tabindex-eket.', 2);
   }
   const E = Q.enter;
-  if (E && E.found && !E.activated) add('ux', 'P2', 'ux.keyboard-enter', `Enter a hero-CTA-n („${E.text}”) nem aktiválja a gombot`, `href: ${E.href}`, 'A CTA legyen valódi <a>/<button>; ne div kattintás-figyelővel.', 5);
+  if (E && E.found && !E.activated && !E.scrolled) add('ux', 'P2', 'ux.keyboard-enter', `Enter a hero-CTA-n („${E.text}”) nem aktiválja a gombot`, `href: ${E.href}`, 'A CTA legyen valódi <a>/<button>; ne div kattintás-figyelővel.', 5);
   else if (E && E.found && E.hash && E.activated && !E.scrolled) add('ux', 'P3', 'ux.keyboard-anchor', `A horgony-CTA („${E.text}”) Enterre nem görget / nem mozgatja a fókuszt`, `href: ${E.href}`, 'Ellenőrizd a horgony célját és a fókusz-áthelyezést.', 2);
   if (Q.dialog && Q.dialog.found && Q.dialog.closedByEsc === false) add('ux', 'P2', 'ux.modal-esc', `A felugró réteg Esc-re nem záródik: ${Q.dialog.desc.join(', ')}`, '', 'Esc zárja a felugró réteget, és a fókusz térjen vissza a nyitó elemre.', 5);
 }
@@ -393,7 +405,8 @@ export function qaModeFindings(M, add, have) {
   const r = M.reduced; if (r && !r.error && r.ratio != null && r.ratio < 0.9) add('visual', 'P1', 'visual.reduced-motion-hidden', `Csökkentett mozgásnál a látható szöveg ${Math.round(r.ratio * 100)} %-ra csökken a normálhoz képest: rejtve maradó tartalom`, `${r.visLen} vs. normál`, 'A mozgás-kikapcsolás ne hagyjon rejtve (opacity: 0) tartalmat: @media (prefers-reduced-motion: reduce) { [data-w-id] { opacity: 1 !important; transform: none !important } }.', 12);
   const z = M.zoom200; if (z && !z.error) {
     if (z.overflow > 0) add('visual', 'P1', 'visual.zoom-overflow', `200 %-os nagyításnál vízszintes görgetés (${z.overflow} px): WCAG 1.4.4/1.4.10`, '720 px-es CSS-viewport, 2× képpont-sűrűség', 'Az elrendezés töredezzen egy oszlopra; nincs fix szélesség.', 10);
-    if (!z.navUsable) add('ux', 'P1', 'ux.zoom-nav', `200 %-os nagyításnál a navigáció nem használható (${z.via})`, '', 'A menü legyen elérhető hamburger-gombbal is, és nyíljon meg.', 10);
+    if (!z.navUsable && z.landingHeader) add('ux', 'P3', 'ux.zoom-nav-landing', `Egyszerűsített fejléc menü nélkül (${z.via})`, '', 'Rendben, ha a landing szándékosan csak főoldal-linket és egy fő gombot kínál; a többi oldalra a láblécből is el lehessen jutni.', 1);
+    else if (!z.navUsable) add('ux', 'P1', 'ux.zoom-nav', `200 %-os nagyításnál a navigáció nem használható (${z.via})`, '', 'A menü legyen elérhető hamburger-gombbal is, és nyíljon meg.', 10);
   }
   const n = M.nojs; if (n && !n.error && n.ratio != null) {
     if (n.ratio < 0.6) add('visual', 'P1', 'visual.nojs-content', `JavaScript nélkül a látható szöveg a normál ${Math.round(n.ratio * 100)} %-a (< 60 %)`, `H1 látszik: ${n.h1Visible ? 'igen' : 'NEM'}`, 'A tartalom ne függjön a JS-től (Webflow-interakciók kezdőállapota ne rejtse el; <noscript> tartalék).', 14);

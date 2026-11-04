@@ -156,7 +156,7 @@ function pageProbe() {
     const wfTrack = /w-form-done/.test(code) && /(gtag|dataLayer)/.test(code) && /MutationObserver/.test(code);
     const attrHook = !!f.querySelector('[data-b2b-cta],[data-kk-cta]') && /submit/.test(code);
     // a közös beeco mérőszkriptek (külön fájlként töltődnek, ezért a beágyazott kódban nem látszanak) a küldést is mérik
-    const sharedHook = srcs.some(s => /beeco(kkmeres|ajanlatkeres)/i.test(s));
+    const sharedHook = srcs.some(s => /beeco(kkmeres|ajanlatkeres)/i.test(s)) || (f.id === 'ajanlatkeres-urlap' && srcs.some(s => /\/kozos\/ajanlatkeres\.js/i.test(s))); // a jsDelivr-ről töltött DS-változat neve: …/weboldal/kozos/ajanlatkeres.js
     const tracked = hit || wfTrack || attrHook || sharedHook || (generic && !names.length);
     return { id: f.id || '', name: f.getAttribute('data-name') || f.getAttribute('name') || '', lead, visible: r.width > 0 && r.height > 0, tracked, evidence: hit ? 'submit-figyelő hivatkozik az űrlapra' : sharedHook ? 'közös beeco mérőszkript (beecokkmeres / beecoajanlatkeres)' : wfTrack ? 'Webflow siker-megfigyelő + gtag' : attrHook ? 'data-*-cta a gombon + szkript' : generic ? 'általános submit-figyelő mérőhívással' : 'nincs egyedi küldés-mérési horog a kódban' };
   });
@@ -271,7 +271,10 @@ export async function measureTracking(browser, url, { fast = false, qaKeyboard =
         if (/^chrome-error:/.test(page.url()) || (new URL(page.url()).pathname !== new URL(url).pathname)) { st.escaped++; await g.open(); await page.evaluate(ctaEnumerate); }
         await page.evaluate(i => { const el = document.querySelector(`[data-mx-i="${i}"]`); if (el) el.scrollIntoView({ block: 'center' }); window.__mx.scan(); }, c.i);
         await page.waitForTimeout(220);
-        const pos = await page.evaluate(i => { const el = document.querySelector(`[data-mx-i="${i}"]`); if (!el) return null; const r = el.getBoundingClientRect(); const x = r.left + r.width / 2, y = r.top + r.height / 2; const top = document.elementFromPoint(x, y); return { ok: !!top && (top === el || el.contains(top)), x, y, inView: y > 0 && y < innerHeight }; }, c.i);
+        const where = i => { const el = document.querySelector(`[data-mx-i="${i}"]`); if (!el) return null; const r = el.getBoundingClientRect(); const x = r.left + r.width / 2, y = r.top + r.height / 2; const top = document.elementFromPoint(x, y); return { ok: !!top && (top === el || el.contains(top)), x, y, inView: y > 0 && y < innerHeight }; };
+        let pos = await page.evaluate(where, c.i);
+        // mozgó sáv (logószalag): a valódi látogató rámutat, a sáv megáll; csak utána kattint
+        if (pos && pos.ok && pos.inView) { await page.mouse.move(pos.x, pos.y); await page.waitForTimeout(180); pos = await page.evaluate(where, c.i) || pos; }
         if (!pos) { M.cta.items.push({ ...c, skipped: 'eltűnt' }); continue; }
         const t1 = Date.now();
         if (pos.ok && pos.inView) await page.mouse.click(pos.x, pos.y); else await page.evaluate(i => { const el = document.querySelector(`[data-mx-i="${i}"]`); el && el.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); }, c.i);

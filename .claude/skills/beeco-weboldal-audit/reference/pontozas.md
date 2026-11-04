@@ -62,6 +62,9 @@ Egy oldal PASS, ha **összpont ≥ 85**, **nincs P0**, és **nincs P1** – kiv�
 | Vizuál és UX (10 %) | Kép > 300 kB | −3 / db, max −15 (P2) |
 | Vizuál és UX (10 %) | Nem WebP/AVIF/SVG kép (> 8 kB) | −1 / db, max −8 (P3) |
 | Vizuál és UX (10 %) | Kép alt attribútum nélkül (látható) | −2 / db, max −10 (P2) |
+| Vizuál és UX (10 %) | **Kötelező alt (2026-11-04):** linkben egyedül álló kép üres alttal (`visual.img-link-no-name`) | −2 / db, max −10 (**P1**, a kaput megállítja) |
+| Vizuál és UX (10 %) | Semmitmondó alt: „Company logo”, „kép”, fájlnév (`visual.img-generic-alt`) | −2 / db, max −8 (P2) |
+| Vizuál és UX (10 %) | Nagy (≥ 280×160) fotó díszképnek jelölve, nem linkben (`visual.img-big-decorative`) | −1 / db, max −3 (P3, kézi átnézésre) |
 | Vizuál és UX (10 %) | Fókuszkeret nem látszik (Tab-bal 8 elem, ≥ 50 % keret nélkül) | −8 (P2) |
 | Teljesítmény (10 %) | LCP (mobil, 4× CPU-lassítás): > 2,5 s / > 4 s | −10 (P2) / −25 (P1) |
 | Teljesítmény (10 %) | Hosszú feladatok összege (TBT-közelítés): > 200 ms / > 600 ms | −8 / −18 (P2) |
@@ -125,6 +128,7 @@ Egy oldal PASS, ha **összpont ≥ 85**, **nincs P0**, és **nincs P1** – kiv�
 | UX és felhasználói út (10 %) | Főnévi stílus B2B oldalon (≥ 8 -ás/-és szó / 100 szó) | −2 (P3) |
 | UX és felhasználói út (10 %) | Mobil törzsszöveg < 16 px / asztali sorhossz > 90 karakter / nincs hüvelykujjal elérhető CTA mobilon | −5 vagy −2 (P2/P3) · −2 (P3) · −3 (P3) |
 | UX és felhasználói út (10 %) | QA: Enter a hero-CTA-n nem aktivál / felugró réteg és mobil menü Esc-re nem záródik / mobil menü nem nyit / 200 %-os nagyításnál a menü nem használható | −5 (P2) / −5, −2 / −6 (P2) / −10 (P1) |
+| UX és felhasználói út (10 %) | Szándékosan egyszerűsített fejléc (landing): asztalon sincs menü, a felső főoldal-link nagyítva is látható (`ux.zoom-nav-landing`, 2026-11-04) | −1 (P3, nem P1) |
 | Vizuál és UX (10 %) | QA nézetméret-mátrix (320/390/768/1024/1440/1920): vízszintes kilógás (ha a ui_audit nem jelezte) / kivágott szöveg / takaró rögzített elemek / érintési cél < 24 px | −15 (P1) / −3 nézetenként, max −9 (P2) / −4 (P2) / −3 / db, max −9 (P1) |
 | Vizuál és UX (10 %) | QA axe-core (WCAG 2.x A/AA): critical+serious / moderate / minor (a ui_audit leleteivel deduplikálva) | −5 / szabály, max −20 (P1) · −2, max −8 (P2) · −0,5, max −3 (P3) |
 | Vizuál és UX (10 %) | QA billentyűzet (Tab ×40): csapda / a fókusz > 25 %-nál nem látszik | −10 (P1) / −6 (P2) |
