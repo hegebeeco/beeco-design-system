@@ -3,7 +3,8 @@
    - a régi GYIK-lenyílók (.gyik_item .home-faq-top: /gyik, /letoltes és a régi oldalak) billentyűzettel is nyílnak,
      képernyőolvasónak gombként, nyitott/zárt állapottal; a Csatlakozz oldalon ezt a kk.js végzi, ott nem fut;
    - sötét, jól látható fókuszgyűrű az űrlapmezőkön (a sárga gyűrű krém alapon kb. 1,5:1 volt);
-   - a felső hírsáv bezáró X-e billentyűzettel is működik (1.1.0). */
+   - a felső hírsáv bezáró X-e billentyűzettel is működik (1.1.0);
+   - az ugrólink a sütisáv gombja elé kerül vissza, így tényleg az első fókuszálható elem (1.2.0). */
 (function () {
   'use strict';
   var FOCUS = 'var(--_beeco-ds---bc-focus, #2656d9)';
@@ -22,7 +23,8 @@
   }
 
   function skipLink() {
-    if (document.querySelector('.beeco-ugras')) return;
+    var meglevo = document.querySelector('.beeco-ugras');
+    if (meglevo) { if (document.body.firstChild !== meglevo) document.body.insertBefore(meglevo, document.body.firstChild); return; }
     var target = document.querySelector('main, [role=main], body > section, section');
     if (!target) return;
     if (!target.id) target.id = 'tartalom';
@@ -61,5 +63,12 @@
   }
 
   function init() { style(); skipLink(); faq(); topBarClose(); }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+  // a sütisáv (CookieYes) később a body elejére szúrja a saját gombját: az ugrólink maradjon az első fókuszálható elem (1.2.0)
+  function elsoMarad() {
+    if (!('MutationObserver' in window)) return;
+    var mo = new MutationObserver(function () { var a = document.querySelector('.beeco-ugras'); if (a && document.body.firstChild !== a) document.body.insertBefore(a, document.body.firstChild); });
+    mo.observe(document.body, { childList: true });
+    setTimeout(function () { mo.disconnect(); }, 15000);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { init(); elsoMarad(); }); else { init(); elsoMarad(); }
 })();
