@@ -3,7 +3,10 @@
    a dataLayer-objektum csak egy későbbi GTM-nek szól (a gtag a sima objektumot nem továbbítja).
    Kattintás: EGY ablakszintű, capture fázisú figyelő. Ok: a site-szintű Trustindex a horgonykattintást megállítja és
    150 ms múlva újrakattint; az ugyanarra az elemre 600 ms-on belül jövő második kattintást nem számoljuk.
-   scroll_depth: a site-kód (beeco 5/5) már küldi 25/50/75/90-nél, itt nem küldjük újra. */
+   scroll_depth: a site-kód (beeco 5/5) már küldi 25/50/75/90-nél, itt nem küldjük újra.
+   2026-11-04: a lábléc-kódban defer NÉLKÜL kell betölteni, a site-szintű horgonykezelő (beecohorgony) előtt: az a horgonylinkeken
+   stopImmediatePropagation-t hív, és ha ez a figyelő később regisztrál, a campaign_activity_select / primary_cta_click el sem indul.
+   GYIK: az oldalon már a DS · GYIK lenyíló (details.ds-kerdes) van, a régi .gyik_item helyett a megnyitást (toggle) mérjük. */
 (function(){
   var d=document, mobil=matchMedia('(max-width:767px)').matches, ua=navigator.userAgent;
   var ios=/iPhone|iPad|iPod/i.test(ua), android=/Android/i.test(ua);
@@ -26,5 +29,7 @@
     if(a=t.closest(SOCIAL)){kuld('campaign_social_click',{platform:(a.hostname||'').replace('www.',''),placement:'sziget'});return;}
     if(a=t.closest('.gyik_item')){kuld('campaign_faq_expand',{question_id:'q'+(gyik.indexOf(a)+1)});}
   },true);
+  var kerdes=[].slice.call(d.querySelectorAll('details.ds-kerdes'));
+  d.addEventListener('toggle',function(e){var k=e.target;if(!k||!k.matches||!k.matches('details.ds-kerdes')||!k.open)return;kuld('campaign_faq_expand',{question_id:'q'+(kerdes.indexOf(k)+1)});},true);
   var f=d.querySelector('form[id^="wf-form"]'); if(f) f.addEventListener('submit',function(){kuld('campaign_newsletter_click',{placement:'sziget'});});
 })();

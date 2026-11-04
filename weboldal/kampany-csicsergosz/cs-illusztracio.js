@@ -433,6 +433,10 @@
           await be.finished;
         } else { await repul(zm, zw + 90, -80); }
         zm.style.visibility = 'hidden';
+        /* mérés (Levi eseménye): a záró jelenet lefutott; a cs-kampany.js régi jelenete ezt küldte, az itteni változat eddig nem */
+        var meres = { done: true };
+        if (typeof w.gtag === 'function') w.gtag('event', 'campaign_bird_scene', meres);
+        (w.dataLayer = w.dataLayer || []).push(Object.assign({ event: 'campaign_bird_scene' }, meres));
       };
       /* akkor indul, amikor a letöltés gomb már látszik (különben a leszállás a képernyőn kívül történne) */
       var figyelt = zGomb() || zaro;
