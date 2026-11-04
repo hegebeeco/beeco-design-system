@@ -1,0 +1,17 @@
+{
+  "_info": "Az élesítési kapu (--gate) engedélyezett P1-kivételei. Csak Kristóf döntésével vehető fel; minden kivételnek legyen indoka és lejárati dátuma. A P0 nem kivételezhető, és a 85 pontos küszöb sem. Üres lista = nincs kivétel.",
+  "_alak": {
+    "path": "/szolgaltatas/cegeknek | * | /blog/*",
+    "key": "a lelet kulcsa (a jelentés audit.json-jában a findings[].key); előtagra is illik: 'measure.cta-silent' minden CTA-ra",
+    "ok_reason": "miért elfogadható (ki döntött, mikor)",
+    "until": "ÉÉÉÉ-HH-NN"
+  },
+  "kivetelek": [
+    {
+      "path": "*",
+      "key": "measure.consent-default-missing",
+      "ok_reason": "Kristóf döntése 2026-11-04: a CookieYes él, a Google Consent Mode v2 kapcsolót Levi kapcsolja be a CookieYes-felületen; addig a hiányzó alapértelmezést nem tekintjük buktatónak.",
+      "until": "2026-11-18"
+    }
+  ]
+}

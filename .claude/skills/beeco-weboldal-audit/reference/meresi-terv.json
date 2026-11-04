@@ -1,0 +1,568 @@
+{
+  "_leiras": "A beeco.hu GA4-mérési terve, géppel ellenőrizhető alakban (scripts/meres-ellenor.mjs). Egy sor = egy esemény: melyik művelet váltsa ki (action), mi legyen a neve (event), mely paraméterek kötelezőek (params), milyen értéket várunk (values: regex), legfeljebb hányszor menjen ki egy művelettől (maxCalls, alap 1). auto:false = nem automatizálható (valódi küldés vagy áruházi navigáció), a reason mondja meg, miért. slow:true = csak --slow kapcsolóval fut. required:true = ha az elem hiányzik az oldalról, ✗ (különben – ). Forrás: a webhelyszintű lábléckód (beeco 1/5–5/5, tartalmi mérés), kapcs.js, ajanlatkeres.js, fs.js, cs-meres.js, cs-kampany.js. Új esemény felvétele: ide, és futtasd a meres-ellenor.mjs-t élesen és staging ellen is.",
+  "version": 1,
+  "ga4": {
+    "measurementId": "G-6KVDRD0YQF",
+    "gtm": "GTM-WTG5C93C"
+  },
+  "consent": {
+    "loads": 7,
+    "page": "/",
+    "gcsPattern": "^G1[01][01]$"
+  },
+  "pages": [
+    {
+      "id": "fooldal",
+      "path": "/",
+      "events": [
+        {
+          "key": "fooldal.page_view",
+          "event": "page_view",
+          "action": {
+            "type": "load"
+          },
+          "maxCalls": 1,
+          "note": "a consent-kör gcs-ellenőrzése külön fut"
+        },
+        {
+          "key": "fooldal.scroll_depth",
+          "event": "scroll_depth",
+          "action": {
+            "type": "scroll",
+            "steps": [
+              30,
+              55,
+              80,
+              95
+            ]
+          },
+          "params": [
+            "percent",
+            "page_type"
+          ],
+          "maxCalls": 4,
+          "note": "25/50/75/90 % küszöb: négy esemény várható"
+        },
+        {
+          "key": "fooldal.download_cta_click",
+          "event": "download_cta_click",
+          "action": {
+            "type": "click",
+            "selector": "a.button_main[href=\"/letoltes\"]"
+          },
+          "params": [
+            "link_text",
+            "block",
+            "cta_medium",
+            "cta_campaign",
+            "page_type"
+          ],
+          "required": true
+        },
+        {
+          "key": "fooldal.app_store_click",
+          "event": "app_store_click",
+          "action": {
+            "type": "click",
+            "selector": "a[data-beeco-attr]"
+          },
+          "params": [
+            "store",
+            "campaign",
+            "page_path",
+            "link_text"
+          ],
+          "required": true
+        },
+        {
+          "key": "fooldal.social_click",
+          "event": "social_click",
+          "action": {
+            "type": "click",
+            "selector": ".lablec-social-link"
+          },
+          "params": [
+            "method",
+            "network",
+            "link_text",
+            "block"
+          ],
+          "required": true
+        },
+        {
+          "key": "fooldal.menu_click",
+          "event": "menu_click",
+          "action": {
+            "type": "click",
+            "selector": "nav a[href=\"/kuponok\"]"
+          },
+          "params": [
+            "link_url",
+            "link_text",
+            "block"
+          ],
+          "required": true
+        },
+        {
+          "key": "fooldal.anchor_click",
+          "event": "anchor_click",
+          "action": {
+            "type": "click",
+            "selector": ".fs-utgomb"
+          },
+          "params": [
+            "anchor",
+            "link_text",
+            "block"
+          ],
+          "required": true
+        },
+        {
+          "key": "fooldal.most_fut",
+          "event": "beeco_most_fut_kattintas",
+          "action": {
+            "type": "click",
+            "selector": ".fs-most-fut"
+          },
+          "params": [
+            "oldal",
+            "ertek"
+          ]
+        },
+        {
+          "key": "fooldal.logo",
+          "event": "beeco_logo_kattintas",
+          "action": {
+            "type": "click",
+            "selector": ".fs-logo-csempe"
+          },
+          "params": [
+            "oldal",
+            "ertek"
+          ]
+        },
+        {
+          "key": "fooldal.beebolt_termek",
+          "event": "beeco_beebolt_kattintas",
+          "action": {
+            "type": "click",
+            "selector": ".fs-beebolt .fs-termek"
+          },
+          "params": [
+            "oldal",
+            "ertek"
+          ]
+        },
+        {
+          "key": "fooldal.csapat_csatlakozas",
+          "event": "beeco_csapat_csatlakozas",
+          "action": {
+            "type": "click",
+            "selector": ".fs-csapat-gomb"
+          },
+          "params": [
+            "oldal"
+          ]
+        },
+        {
+          "key": "fooldal.allomas",
+          "event": "beeco_allomas_kattintas",
+          "action": {
+            "type": "click",
+            "selector": ".fs-allomas",
+            "nth": 2
+          },
+          "params": [
+            "oldal",
+            "allomas"
+          ]
+        },
+        {
+          "key": "fooldal.funkcio_valasztas",
+          "event": "beeco_funkcio_valasztas",
+          "action": {
+            "type": "click",
+            "selector": ".fs-funk",
+            "nth": 2
+          },
+          "params": [
+            "oldal",
+            "funkcio"
+          ]
+        },
+        {
+          "key": "fooldal.raj_csatlakozas",
+          "event": "beeco_raj_csatlakozas",
+          "action": {
+            "type": "click",
+            "selector": ".fs-csatlakoz"
+          },
+          "params": [
+            "oldal"
+          ],
+          "note": "az első kattintás; a második a letöltés-gombot méri"
+        },
+        {
+          "key": "fooldal.raj_letoltes",
+          "event": "beeco_letoltes_gomb",
+          "action": {
+            "type": "click",
+            "selector": ".fs-csatlakoz"
+          },
+          "params": [
+            "oldal",
+            "hely",
+            "platform"
+          ],
+          "values": {
+            "hely": "^raj$",
+            "platform": "^asztal$"
+          },
+          "note": "a második kattintás ugyanarra a gombra (asztalon görget, nem navigál)"
+        },
+        {
+          "key": "fooldal.csapat_slider",
+          "event": "beeco_csapat_slider",
+          "action": {
+            "type": "click",
+            "selector": ".fs-slider-gomb",
+            "nth": 1
+          },
+          "params": [
+            "oldal",
+            "kep"
+          ]
+        },
+        {
+          "key": "fooldal.engaged_read_60s",
+          "event": "engaged_read_60s",
+          "action": {
+            "type": "wait",
+            "ms": 66000
+          },
+          "slow": true,
+          "reason": "60 mp aktív olvasás kell",
+          "params": [
+            "page_type"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kapcsolat",
+      "path": "/kapcsolat",
+      "events": [
+        {
+          "key": "kapcsolat.page_view",
+          "event": "page_view",
+          "action": {
+            "type": "load"
+          }
+        },
+        {
+          "key": "kapcsolat.contact_email",
+          "event": "contact_click",
+          "action": {
+            "type": "click",
+            "selector": "a[href^=\"mailto:\"]"
+          },
+          "params": [
+            "method",
+            "link_text",
+            "block",
+            "page_type"
+          ],
+          "values": {
+            "method": "email|mail"
+          },
+          "required": true
+        },
+        {
+          "key": "kapcsolat.contact_phone",
+          "event": "contact_click",
+          "action": {
+            "type": "click",
+            "selector": "a[href^=\"tel:\"]"
+          },
+          "params": [
+            "method",
+            "link_text",
+            "block",
+            "page_type"
+          ],
+          "values": {
+            "method": "phone|tel"
+          },
+          "required": true
+        },
+        {
+          "key": "kapcsolat.social_click",
+          "event": "social_click",
+          "action": {
+            "type": "click",
+            "selector": ".ds-kovesd-ikon"
+          },
+          "params": [
+            "method",
+            "network",
+            "link_text",
+            "block"
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "csicsergosz",
+      "path": "/kampanyok/csicsergosz",
+      "events": [
+        {
+          "key": "csics.page_view",
+          "event": "page_view",
+          "action": {
+            "type": "load"
+          }
+        },
+        {
+          "key": "csics.landing_view",
+          "event": "campaign_landing_view",
+          "action": {
+            "type": "load"
+          },
+          "params": [
+            "source",
+            "medium",
+            "campaign",
+            "device"
+          ]
+        },
+        {
+          "key": "csics.bird_scene",
+          "event": "campaign_bird_scene",
+          "action": {
+            "type": "scroll",
+            "steps": [
+              70,
+              85,
+              92,
+              96,
+              100,
+              100,
+              100,
+              100
+            ],
+            "stepWait": 1400
+          },
+          "params": [
+            "done"
+          ],
+          "required": false,
+          "note": "2026-11-04 óta a cs-illusztracio.js küldi (c57e3900), amikor a záró jelenet madara a letöltés-gomb után elrepül (~8 mp a gomb megjelenése után); csökkentett mozgásnál a jelenet és az esemény is kimarad"
+        },
+        {
+          "key": "csics.activity_select",
+          "event": "campaign_activity_select",
+          "action": {
+            "type": "click",
+            "selector": "a[data-cs-activity]"
+          },
+          "params": [
+            "activity_type",
+            "target_anchor"
+          ],
+          "required": true,
+          "note": "a cs-meres.js-nek defer nélkül, a beecohorgony előtt kell futnia (c57e3900 óta így van)"
+        },
+        {
+          "key": "csics.primary_cta",
+          "event": "campaign_primary_cta_click",
+          "action": {
+            "type": "click",
+            "selector": "a[data-cs-event=\"primary_cta\"]"
+          },
+          "params": [
+            "placement",
+            "destination",
+            "platform"
+          ],
+          "required": true,
+          "note": "a cs-meres.js-nek defer nélkül, a beecohorgony előtt kell futnia (c57e3900 óta így van)"
+        },
+        {
+          "key": "csics.social_click",
+          "event": "campaign_social_click",
+          "action": {
+            "type": "click",
+            "selector": "a.cs_belyeg_link"
+          },
+          "params": [
+            "platform",
+            "placement"
+          ],
+          "required": true
+        },
+        {
+          "key": "csics.faq_expand",
+          "event": "campaign_faq_expand",
+          "action": {
+            "type": "click",
+            "selector": "details.ds-kerdes summary",
+            "nth": 1
+          },
+          "params": [
+            "question_id"
+          ],
+          "required": true,
+          "note": "2026-11-04 óta a cs-meres.js a details.ds-kerdes toggle eseményét méri (a régi .gyik_item helyett)"
+        },
+        {
+          "key": "csics.audience_select",
+          "event": "campaign_audience_select",
+          "action": {
+            "type": "click",
+            "selector": ".cs_kinek_gomb",
+            "nth": 1
+          },
+          "params": [
+            "audience"
+          ],
+          "required": true
+        },
+        {
+          "key": "csics.join_click",
+          "event": "campaign_join_click",
+          "action": {
+            "type": "click",
+            "selector": "a[data-cs-csatlakozas]"
+          },
+          "params": [
+            "audience",
+            "channel"
+          ],
+          "required": true
+        },
+        {
+          "key": "csics.newsletter",
+          "event": "campaign_newsletter_click",
+          "auto": false,
+          "reason": "a küldés (submit) eseményén indul; űrlapot az ellenőrző soha nem küld"
+        }
+      ]
+    },
+    {
+      "id": "cegeknek",
+      "path": "/szolgaltatas/cegeknek",
+      "events": [
+        {
+          "key": "cegeknek.page_view",
+          "event": "page_view",
+          "action": {
+            "type": "load"
+          }
+        },
+        {
+          "key": "cegeknek.generate_lead",
+          "event": "generate_lead",
+          "action": {
+            "type": "simulate-done",
+            "selector": "#ajanlatkeres-urlap"
+          },
+          "params": [
+            "b2b_termek",
+            "b2b_oldal"
+          ],
+          "required": true,
+          "note": "a Webflow „köszönjük” blokkja JS-ből jelenik meg, űrlapküldés nélkül"
+        },
+        {
+          "key": "cegeknek.b2b_urlap",
+          "event": "b2b_urlap",
+          "auto": false,
+          "reason": "a beküldési kísérletet méri: csak valódi küldésnél jön; élesítés után GA4 DebugView-ban nézd"
+        }
+      ]
+    },
+    {
+      "id": "hulladek",
+      "path": "/hulladekok/mobiltelefon",
+      "events": [
+        {
+          "key": "hulladek.page_view",
+          "event": "page_view",
+          "action": {
+            "type": "load"
+          }
+        },
+        {
+          "key": "hulladek.block_hol_adhatod_le",
+          "event": "content_block_view",
+          "action": {
+            "type": "view",
+            "selector": "h2[data-beeco-track=\"hol_adhatod_le\"]"
+          },
+          "params": [
+            "block"
+          ],
+          "values": {
+            "block": "^hol_adhatod_le$"
+          },
+          "required": true
+        },
+        {
+          "key": "hulladek.block_gyik",
+          "event": "content_block_view",
+          "action": {
+            "type": "view",
+            "selector": "h2:has-text(\"Gyakran felmerülő kérdések\")"
+          },
+          "params": [
+            "block"
+          ],
+          "values": {
+            "block": "^gyik$"
+          },
+          "required": true,
+          "note": "2026-11-04 óta a lábléckód (beeco 5/5) a „Gyakran felmerülő kérdések” címet is felismeri"
+        },
+        {
+          "key": "hulladek.download_cta_click",
+          "event": "download_cta_click",
+          "action": {
+            "type": "click",
+            "selector": "a.button_main[href^=\"/letoltes?utm\"]"
+          },
+          "params": [
+            "link_text",
+            "block",
+            "cta_medium",
+            "cta_campaign",
+            "page_type"
+          ],
+          "values": {
+            "cta_medium": "^hulladek_oldal$",
+            "cta_campaign": "^hol_adhatod_le$"
+          },
+          "required": true
+        },
+        {
+          "key": "hulladek.internal_link_click",
+          "event": "internal_link_click",
+          "action": {
+            "type": "click",
+            "selector": ".hol_lista a[href^=\"/\"]"
+          },
+          "params": [
+            "link_url",
+            "link_text",
+            "block",
+            "page_type"
+          ],
+          "values": {
+            "block": "^hol_adhatod_le$"
+          },
+          "required": true
+        }
+      ]
+    }
+  ]
+}

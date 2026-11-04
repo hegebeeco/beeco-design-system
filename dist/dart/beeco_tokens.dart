@@ -45,12 +45,13 @@ abstract final class BeecoPalette {
   static const nightLine = Color(0xFFB6C4A3);
   static const poppy = Color(0xFFEF6A60);
   static const honeyNight = Color(0xFF5C4A12);
+  static const honeyInk = Color(0xFF8A6A00);
   static const rankBronze = Color(0xFFEFC2A6);
 }
 
 /// Termékbőr szín-szerepei (világos / sötét).
 class BeecoRoles {
-  const BeecoRoles({required this.bg, required this.surface, required this.surface2, required this.surfaceAccent, required this.ink, required this.inkSoft, required this.inkMuted, required this.line, required this.lineSoft, required this.accent, required this.accentPress, this.accentSoft = BeecoPalette.honeySoft, required this.onAccent, required this.shadow, required this.focus, required this.success, required this.successBg, required this.successInk, required this.danger, required this.dangerBg, required this.dangerInk, required this.warning, required this.warningBg, required this.warningInk, required this.info, required this.infoBg, required this.infoInk, required this.highlight, required this.scrim, this.focusOnAccent = BeecoPalette.focus});
+  const BeecoRoles({required this.bg, required this.surface, required this.surface2, required this.surfaceAccent, required this.ink, required this.inkSoft, required this.inkMuted, required this.line, required this.lineSoft, required this.accent, required this.accentPress, this.accentSoft = BeecoPalette.honeySoft, required this.onAccent, required this.shadow, required this.focus, required this.success, required this.successBg, required this.successInk, required this.danger, required this.dangerBg, required this.dangerInk, required this.warning, required this.warningBg, required this.warningInk, required this.info, required this.infoBg, required this.infoInk, required this.highlight, required this.scrim, this.focusOnAccent = BeecoPalette.focus, this.surfaceDeep = BeecoPalette.olive, this.surfaceDeeper = BeecoPalette.night, this.onDeep = BeecoPalette.sage, this.lineDeep = BeecoPalette.oliveSoft, this.accentInk = BeecoPalette.honeyInk, this.surfacePaper = BeecoPalette.paper});
   final Color bg;
   final Color surface;
   final Color surface2;
@@ -81,6 +82,12 @@ class BeecoRoles {
   final Color highlight;
   final Color scrim;
   final Color focusOnAccent;
+  final Color surfaceDeep;
+  final Color surfaceDeeper;
+  final Color onDeep;
+  final Color lineDeep;
+  final Color accentInk;
+  final Color surfacePaper;
   static const light = BeecoRoles(
     bg: BeecoPalette.cream,
     surface: BeecoPalette.white,
@@ -112,6 +119,12 @@ class BeecoRoles {
     highlight: BeecoPalette.blossom,
     scrim: BeecoPalette.black,
     focusOnAccent: BeecoPalette.focus,
+    surfaceDeep: BeecoPalette.olive,
+    surfaceDeeper: BeecoPalette.night,
+    onDeep: BeecoPalette.sage,
+    lineDeep: BeecoPalette.oliveSoft,
+    accentInk: BeecoPalette.honeyInk,
+    surfacePaper: BeecoPalette.paper,
   );
   static const dark = BeecoRoles(
     bg: BeecoPalette.night,
@@ -144,6 +157,12 @@ class BeecoRoles {
     highlight: BeecoPalette.blossom,
     scrim: BeecoPalette.black,
     focusOnAccent: BeecoPalette.black,
+    surfaceDeep: BeecoPalette.olive,
+    surfaceDeeper: BeecoPalette.night,
+    onDeep: BeecoPalette.sage,
+    lineDeep: BeecoPalette.oliveSoft,
+    accentInk: BeecoPalette.honey,
+    surfacePaper: BeecoPalette.nightSurface,
   );
 }
 

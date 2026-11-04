@@ -68,6 +68,8 @@ python3 weboldal/web-ds/katalogus.py --check                                 # a
 | `DOWNLOAD_BLOCK` | `53f370d6…` | Letöltés-blokk, Link 1 és Link 2 prop (alapérték: kanonikus áruházlink). |
 | `DS · Ajánlatkérés` | `18b953bc-5dbc-c820-52fc-b872c83459cb` | B2B-ajánlatkérő szekció natív űrlappal (`#ajanlatkeres`). Minden B2B- és eseményoldal alján. A legördülők opcióit és a helyőrzőket csak a Designerben lehet beállítani (az API nem tudja). A beküldésnél a Webflow rögzíti az oldal címét. |
 | `DS · Céges ajánlatok` | `4a8cf67e-8a4c-11c0-c7b0-d9ee058d623c` | A hét B2B-ajánlat és az egyedi csomag kártyái. Ár vagy link csak itt változik. |
+| `DS · Utak` | `cb9fa756-68f8-f437-f703-a87c224a7b00` | A sales-rendszer öt útja (HR, ESG, marketing, zöld bolt és KKV, önkormányzat). Minden sales-aloldal alján; „Mutat” kapcsolók rejtik a saját kártyát. |
+| `AppLépés` (minta, `fs-u-*` osztályok) | – (egyelőre osztályminta, nem komponens) | Váltakozó bal/jobb sor az app útjához: szövegkártya + számozott állomás + nagy app-képernyő. Sor: `fs-u-lepes` + `fs-u-bal` vagy `fs-u-jobb` (+ `fs-u-solo`, ha nincs képernyő); fázis-címke: `fs-u-fazis`; kitöltő vonal: `fs-u-ut`. Mobilon (≤ 767 px) egymás alatt, az út balra kerül. Animáció: IX3 görgetés (sor oldalról, út kitelik), csökkentett mozgásnál a végállapot. Nektár-jelzés egyelőre nincs (Kristóf, 2026-10-30). Komponenssé csomagolás: a bal/jobb irányhoz variáns kell, ezért a Designer-ellenőrzés után. |
 
 ## 5. Oldalak (teszt-URL, mind draft-jelöltek)
 
@@ -113,7 +115,26 @@ a végleges és a draft címek listája a `weboldal/b2b/ki/oldalterkep.json`-ban
 - A whtml egy hívásban legfeljebb 5 akciót fogad.
 - A Designerben Kristóf is dolgozik. Ha váratlan értéket látsz, kérdezz, ne állítsd vissza.
 
-## 7. Döntésre vár
+## 7. Egységes alapelemek (2026-11-02, Kristóf jóváhagyásával)
+
+A Szuperhős landing és a Web DS (`ds-`) ugyanarra a mércére került, változóra kötve. Új oldal ezeket használja.
+
+| Elem | Szabály | Webflow (Web DS) | Landing (`fs-`) |
+|---|---|---|---|
+| Szalagcím | tinta háttér, krém betű, Lalezar `bc-fs-m`, −2°, matrica-vágás; szekciónként egy. Sötét háttéren sárga változat | `ds-szalag` (+ `ds-szalag-vilagos` sötéten) | `fs-szalag` (+ `fs-szalag-mez` sötéten) |
+| Szekciócím (H2) | `cim-l` (48 / tablet 40 / mobil 30 px, a Tipográfia-módok szerint) | `ds-cim2` | `fs-cim2`, `fs-u-cim`, `fs-lp-cim` |
+| Nyitócím (H1) | `cim-xl` | `ds-cim1` | `fs-hero-cim` |
+| Alcím (H3) | `cim-m` (blokkcím) vagy `cim-s` (kártyacím) | `ds-cim3` = `cim-s` | `fo-ereje-cim`, `fs-velemeny-cim` = `cim-m` |
+| Bevezető | `szoveg-l` (20 / 18 / 16 px) | `ds-lead` | `fs-lead`, `fs-szekcio-lead`, `fs-u-lead`, `fs-lp-lead`, `fs-alcim` |
+| Kártyaszöveg | `szoveg-m` (16 px), normál vastagság | – | pl. `fs-ut-szoveg` |
+| Kártya | 2 px `bc-line` keret (`bc-bw-base`), sarok `bc-r-l` / `bc-r-s` / `bc-r-l` / `bc-r-s`, 4 px kemény árnyék | `ds-kartya` | `fs-kartya` (+ `fs-lepes`, `fs-velemeny`, `fs-termek`), `fs-u-torzs`, `fs-utgomb`, `fs-h-miert`, `fs-kerdes` |
+| Elválasztó | egy réteg domb, `::after`, a következő szekció színe, felfelé eső lágy árnyék (`0 -6px 14px -4px`, 16 % / sötéten 30 %) | – | minden `fs-` szekció |
+
+A `ds-szalag` sötét háttéren 7 helyen kapta meg a `ds-szalag-vilagos` combót (hub: Víziónk, Bizonyíték; Önkormányzatoknak,
+beeco@work, Locsolóraj, Zöld céges programok, Partnerprogram: Bizonyíték). Új sötét szekcióban (`ds-hatter-sotet`) a címke
+mindig ezt a combót kapja.
+
+## 8. Döntésre vár
 
 - **`ds-` és `bc-` átfedés.** A [weboldal.md 2.](weboldal.md) szerint a Webflow DS-osztályai `bc-` nevűek, és új osztály csak
   DS-elemhez jöhet. A `ds-` sorozat a natív oldalépítéshez készült, és részben átfed velük:
@@ -138,6 +159,5 @@ a végleges és a draft címek listája a `weboldal/b2b/ki/oldalterkep.json`-ban
 - **Névütközés a játék-kittel:** a kit (`web/`, játékok) is `ds-` előtagot használ; két név egyezik: `ds-chip` és `ds-lead`.
   Futásidőben nem ütköznek (a beeco.hu nem tölti be a kit CSS-ét), de egy közös előtag-döntés (például `web-`)
   a `bc-` takarítással együtt érdemes.
-- **Hat változó csak a Webflow-ban él:** `bc-accent-ink`, `bc-raj-bg`, `bc-on-olive`, `bc-vaj`, `bc-domb`, `bc-paper`
-  (értékük a katalógusban). A `tokens/` forrásba fel kell venni őket, különben a `webflow-build` nem tud róluk.
+- ~~Hat változó csak a Webflow-ban él~~ **Megoldva (2026-10-30):** mind a 13 csak-Webflow változó a DS-ben van; hat szerep lett belőlük, a többi alias ([weboldal.md 1.](weboldal.md)). A `bc-accent-ink` ugyanazon a néven maradt.
 - **A GYIK** most nyitott kártyák (`ds-ketto` + `ds-kartya`). A harmonika (`bc-acc`) akkor jön, ha a Webflow-ba átvisszük.

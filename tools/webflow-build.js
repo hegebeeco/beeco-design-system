@@ -53,11 +53,35 @@ for (const [k, v] of Object.entries(T.space)) meret(`bc-sp-${k}`, v);
 for (const [k, v] of Object.entries(T.fontSize)) meret(`bc-fs-${k}`, v);
 meret('bc-tap', 44);   // a legkisebb érintési felület – a Designerben is kéznél kell legyen
 
+// 5. Régi, csak-Webflow nevek (2026-10-30): a tartalmuk ma egy DS-szerepre mutat. A változók MEGMARADNAK (a meglévő
+//    osztályok használják őket), de a Webflow-ban aliasok: a szerep a forrás, az alias csak átmeneti név.
+//    Új munkához a szerepet használd, ne az aliast. Ha egy alias már sehol sem kell, a Designerben törölhető.
+const aliasok = [
+  ['bc-olive', 'bc-surface-deep'], ['bc-lablec-zold', 'bc-surface-deep'], ['bc-raj-bg', 'bc-surface-deep'],
+  ['bc-olive-deep', 'bc-surface-deeper'],
+  ['bc-on-olive', 'bc-on-deep'], ['bc-domb', 'bc-on-deep'],
+  ['bc-olive-soft', 'bc-line-deep'],
+  ['bc-paper', 'bc-surface-paper'], ['bc-krem', 'bc-bg'], ['bc-vaj', 'bc-surface-accent'], ['bc-raj-line', 'bc-line'], ['bc-d-perem', 'bc-surface'],
+].map(([nev, cel]) => ({ nev, tipus: 'Color', alias: cel }));
+
+// 6. Reszponzív tipó: a „Tipográfia” kollekció (Webflow-módok: Base mode = lg, Tablet = md, Mobil fekvő = sm, Mobil = alap)
+const MOD_LEPCSO = [['Mobil', 0], ['Mobil fekvő', 1], ['Tablet', 2], ['Base mode', 3]];   // [mód, a DS-lépcső indexe]
+const tipografia = {
+  kollekcio: 'Tipográfia',
+  modok: ['Base mode', 'Tablet', 'Mobil fekvő', 'Mobil'],
+  valtozok: Object.entries(T.typeScale.scale).map(([ds, t]) => ({
+    nev: t.webflow, ds, tipus: 'Size',
+    ertekek: Object.fromEntries(MOD_LEPCSO.map(([mod, i]) => [mod, { value: t.sizes[i], unit: 'px' }])),
+  })),
+};
+
 const ki = {
-  _readme: 'GENERÁLT (tools/webflow-build.js) – kézzel ne szerkeszd. Ez a Webflow „beeco DS” változó-kollekció teljes tartalma. A `sotet` mező a kollekció „Sötét” módjának értéke (null = nincs külön sötét érték).',
+  _readme: 'GENERÁLT (tools/webflow-build.js) – kézzel ne szerkeszd. Ez a Webflow „beeco DS” változó-kollekció teljes tartalma. A `sotet` mező a kollekció „Sötét” módjának értéke (null = nincs külön sötét érték). `aliasok`: régi nevek, amelyek ma egy szerepre mutatnak. `tipografia`: a „Tipográfia” kollekció (reszponzív betűméretek, módonként).',
   kollekcio: 'beeco DS',
   modok: ['Base mode', 'Sötét'],
   valtozok,
+  aliasok,
+  tipografia,
 };
 
 // A web-ellenőrzőnek: mi számít megengedett értéknek egy élő oldalon.
@@ -66,7 +90,7 @@ const paletta = {
   szinek: [...new Set([...Object.values(T.color).map((c) => c.toUpperCase()), ...valtozok.filter((v) => v.tipus === 'Color').flatMap((v) => [v.ertek, v.sotet]).filter(Boolean)])].sort(),
   sarok: [...new Set(Object.values(T.termek.radius))].sort((a, b) => a - b),
   keret: [...new Set(Object.values(T.termek.border))].sort((a, b) => a - b),
-  betuMeret: Object.values(T.fontSize).sort((a, b) => a - b),
+  betuMeret: [...new Set([...Object.values(T.fontSize), ...Object.values(T.typeScale.scale).flatMap((t) => t.sizes)])].sort((a, b) => a - b),
   betuCsalad: { display: T.font.display[0], body: T.font.body[0] },
   betuVastagsag: Object.values(T.fontWeight),
   // A termékbőrben az árnyék kemény és átlós (elmosás 0). EGYETLEN kivétel a --bc-shadow-soft,

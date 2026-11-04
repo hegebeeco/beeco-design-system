@@ -252,6 +252,46 @@
       "voice": "gyors, kérdező",
       "exitWhen": ["nincs sajtókapcsolat vagy forrás"],
       "weight": 0.02
+    },
+    {
+      "id": "marketing-lead",
+      "group": "b2b",
+      "name": "Réka, 34",
+      "label": "Marketing- és márkamenedzser (nagyvállalat)",
+      "source": "B2B koncepció – vevőtípusok (Marketing és márka), 2026-10-30 felvéve Kristóf kérésére; kitalált, általános profil",
+      "summary": "500 fős cég márkamenedzsere. Hiteles zöld üzenetet és megmutatható eredményt keres, kerüli a zöldmosás-kockázatot.",
+      "goal": "Megtudni, mit mondhat és mutathat meg a cége nyilvánosan a programról hitelesen, és hogyan kezdhetnének.",
+      "device": { "type": "mobile", "viewport": [390, 844], "network": "4g" },
+      "arrival": { "channel": "linkedin", "utm": "utm_source=linkedin&utm_medium=social", "intent": "kollégától kapott linket telefonon nyitotta meg" },
+      "knowledge": { "digital": 5, "topic": 3 },
+      "patience": { "seconds": 150, "actions": 14 },
+      "readingWpm": 270,
+      "behaviours": ["referenciát és kommunikálható eredményt keres", "képet és idézhető mondatot keres", "ajánlatkérő űrlapot keres"],
+      "objections": ["Mit állíthatunk jogszerűen?", "Van róla kép és történet, amit megmutathatunk?"],
+      "decisionCriteria": ["hitelesség", "megmutatható eredmény", "jogi biztonság", "könnyű indulás"],
+      "voice": "gyors, márka-érzékeny",
+      "exitWhen": ["nincs kommunikálható eredmény vagy referencia"],
+      "weight": 0.03
+    },
+    {
+      "id": "hr-lead-mobile",
+      "group": "b2b",
+      "name": "Andrea, 45 (telefonon)",
+      "label": "HR-vezető",
+      "source": "hr-lead mobil változata, 2026-10-30 (Kristóf: mobilt mindig tesztelni)",
+      "summary": "300 fős cég HR-vezetője. Csapatépítő programot keres, ami értelmes és kommunikálható.",
+      "goal": "Megtudni, milyen céges programot kínál a beeco, mennyiért, és hogyan kérhet ajánlatot.",
+      "device": { "type": "mobile", "viewport": [390, 844], "network": "4g" },
+      "arrival": { "channel": "search", "utm": "", "intent": "zöld csapatépítőt keresett" },
+      "knowledge": { "digital": 4, "topic": 2 },
+      "patience": { "seconds": 180, "actions": 18 },
+      "readingWpm": 260,
+      "behaviours": ["árat és menetet keres", "referenciát és logókat néz", "ajánlatkérő űrlapot keres"],
+      "objections": ["Mennyibe kerül?", "Mennyi időt vesz el a munkából?"],
+      "decisionCriteria": ["ár", "referencia", "könnyű szervezés", "mérhető eredmény"],
+      "voice": "üzleties, tárgyszerű",
+      "exitWhen": ["nincs ár vagy ajánlatkérési út"],
+      "weight": 0.02
     }
   ]
 }

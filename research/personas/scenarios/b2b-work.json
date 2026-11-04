@@ -1,0 +1,136 @@
+{
+ "_about": "beeco@work oldal – feladatkönyvtár (2026-10-30). Tesztdomain; a belső linkek a végleges címre mutatnak (404), ezért a feladatok az oldalon belül zárulnak.",
+ "page": "beeco@work",
+ "url": "https://beeco-weboldal.webflow.io/szolgaltatas/beeco-at-work-draft",
+ "allowedHosts": [
+  "beeco-weboldal.webflow.io",
+  "www.beeco.hu",
+  "beeco.hu"
+ ],
+ "firstRound": [
+  {
+   "persona": "hr-lead",
+   "scenarios": [
+    "five-second",
+    "hr-engage",
+    "price"
+   ]
+  },
+  {
+   "persona": "hr-lead-mobile",
+   "scenarios": [
+    "request-demo"
+   ]
+  },
+  {
+   "persona": "esg-manager",
+   "scenarios": [
+    "five-second",
+    "esg-data",
+    "pilot-status"
+   ]
+  },
+  {
+   "persona": "marketing-lead",
+   "scenarios": [
+    "five-second",
+    "marketing-claims",
+    "request-demo"
+   ]
+  }
+ ],
+ "scenarios": [
+  {
+   "id": "five-second",
+   "title": "5 másodperces teszt",
+   "mode": "fiveSecond",
+   "task": "Nézd meg az oldal első képernyőjét 5 másodpercig, görgetés nélkül. Utána mondd el: mi ez, kinek szól, és mit kellene tenned?",
+   "budget": {
+    "seconds": 5,
+    "actions": 1
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "A válaszból kiderül: (1) munkahelyi zöld program a csapatnak a beeco appban, (2) kihívások/csapatverseny és mérés, (3) konkrét következő lépés (bemutatót kér vagy megnézi a működést). 3/3 = siker, 2/3 = részben."
+   }
+  },
+  {
+   "id": "hr-engage",
+   "title": "Mit kapna a csapatom, és mennyi munka ez nekem?",
+   "task": "Egy kb. 200 fős cég HR-vezetőjeként tudd meg, mit kapna a csapatod ettől a programtól, és mennyi munkát jelent ez neked.",
+   "budget": {
+    "seconds": 180,
+    "actions": 16
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "A válaszban szerepel: csapatverseny/kihívások és közös lábnyom, a kollégáknak az app ingyenes, a HR-től egy kapcsolattartó kell, az indulásban és a riportban a beeco segít. A válasz egyezik az oldal tartalmával."
+   }
+  },
+  {
+   "id": "price",
+   "title": "Mennyibe kerülhet?",
+   "task": "Tudd meg, nagyjából mennyibe kerülne a kezdés, és hogyan épül fel az ár.",
+   "budget": {
+    "seconds": 150,
+    "actions": 14
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "Megtalálta a létrát (céges csapat 250 000 / 490 000 Ft + ÁFA, pilot egyedi, éves előfizetés implementációs díj + sávos fejdíj) és a GYIK-ot, és helyesen mondja el, mitől függ az ár."
+   }
+  },
+  {
+   "id": "esg-data",
+   "title": "Mit adhat az ESG-jelentéshez?",
+   "task": "ESG-felelősként tudd meg, milyen adatot adhat ez a program a jelentésedhez, és mit nem ígér.",
+   "budget": {
+    "seconds": 180,
+    "actions": 16
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "Megtalálta az Adat és ESG szekciót vagy a GYIK-ot, és helyesen mondja el: csak összesített adat (legalább 8 fős csoport), kiegészítő bizonyíték a részvételről, CO2-megtakarítást nem ígérnek, az adat nem auditált, megfelelést nem ígérnek."
+   }
+  },
+  {
+   "id": "pilot-status",
+   "title": "Van már ilyen ügyfelük?",
+   "task": "Tudd meg, vannak-e már ügyfeleik ezzel a programmal, és milyen állapotban van a termék.",
+   "budget": {
+    "seconds": 150,
+    "actions": 14
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "Helyesen állítja, hogy a beeco@work pilot-partnereket keres, céges csapatok a Vízadásban már részt vettek; nem állít kitalált ügyfeleket. Ha nem találja meg a GYIK-ot, részben."
+   }
+  },
+  {
+   "id": "marketing-claims",
+   "title": "Mit mutathatunk meg nyilvánosan?",
+   "task": "Márkamenedzserként tudd meg, mit mondhatna és mutathatna meg a cég nyilvánosan erről a programról, és van-e ehhez bizonyíték vagy minta.",
+   "budget": {
+    "seconds": 180,
+    "actions": 16
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "Megtalálta az eredmény-összesítőt/Hatásjelentés-mintát és a számokat, és megmondja, mit lehet hitelesen állítani. Ha az oldal nem ad kommunikálható mondatokat vagy képet, az külön lelet."
+   }
+  },
+  {
+   "id": "request-demo",
+   "title": "Bemutatót kérek",
+   "task": "Szeretnél bemutatót kérni. Jutsz el az űrlaphoz, és mondd el, mit kell kitöltened. (Az űrlapot NE küldd el.)",
+   "budget": {
+    "seconds": 150,
+    "actions": 12
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "Eljutott az űrlaphoz, és fel tudja sorolni a kötelező mezőket. Mobilon az űrlap mezői teljes szélességűek és kitölthetők; a legördülők tartalma (sablonszöveg) külön lelet."
+   }
+  }
+ ]
+}

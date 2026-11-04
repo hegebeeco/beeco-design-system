@@ -44,6 +44,12 @@ module.exports = {
       "highlight": "rgb(var(--bc-highlight-rgb) / <alpha-value>)",
       "scrim": "rgb(var(--bc-scrim-rgb) / <alpha-value>)",
       "focus-on-accent": "rgb(var(--bc-focus-on-accent-rgb) / <alpha-value>)",
+      "surface-deep": "rgb(var(--bc-surface-deep-rgb) / <alpha-value>)",
+      "surface-deeper": "rgb(var(--bc-surface-deeper-rgb) / <alpha-value>)",
+      "on-deep": "rgb(var(--bc-on-deep-rgb) / <alpha-value>)",
+      "line-deep": "rgb(var(--bc-line-deep-rgb) / <alpha-value>)",
+      "accent-ink": "rgb(var(--bc-accent-ink-rgb) / <alpha-value>)",
+      "surface-paper": "rgb(var(--bc-surface-paper-rgb) / <alpha-value>)",
       "c": {
         "honey": "rgb(var(--bc-honey-rgb) / <alpha-value>)",
         "honey-deep": "rgb(var(--bc-honey-deep-rgb) / <alpha-value>)",
@@ -86,6 +92,7 @@ module.exports = {
         "night-line": "rgb(var(--bc-night-line-rgb) / <alpha-value>)",
         "poppy": "rgb(var(--bc-poppy-rgb) / <alpha-value>)",
         "honey-night": "rgb(var(--bc-honey-night-rgb) / <alpha-value>)",
+        "honey-ink": "rgb(var(--bc-honey-ink-rgb) / <alpha-value>)",
         "rank-bronze": "rgb(var(--bc-rank-bronze-rgb) / <alpha-value>)"
       }
     },
