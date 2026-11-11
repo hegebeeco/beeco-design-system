@@ -9,7 +9,9 @@ Indoklás és lépések: [`docs/javaslatok/28-egy-grafikai-forras.md`](../docs/j
 
 ## Mi van benne most (1. lépés)
 
-[`katalogus.json`](katalogus.json): 108 tétel.
+Két rész, együtt 838 tétel:
+- [`katalogus.json`](katalogus.json) – **kézzel gondozott** (130): méhek, madarak, Csicsergősz-díszletek, logó. Ezt szerkeszd.
+- [`gen/`](gen/) – **generált** (708): `art.json` (619 kódmatrica), `ikonok.json` (55 ikon), `jelek.json` (34 kétszínű jel). Forrásuk a saját metaadatuk; ne szerkeszd kézzel: `node tools/grafika-build.js` (az `npm run build` is futtatja).
 
 | Család | Darab | Mi |
 |---|---|---|
@@ -19,11 +21,15 @@ Indoklás és lépések: [`docs/javaslatok/28-egy-grafikai-forras.md`](../docs/j
 | `bird-madarka` | 4 | „madárkák” (sokszög stílus) |
 | `bird-robin` | 5 | a vörösbegy pózai (kampány-weboldal, infografika) |
 | `bird-species` | 7 | a Madárgyár renderjei a brandbookban |
+| `scene` | 19 | Csicsergősz-díszletek (borító, dombok, etető, itató, odú, hurok) |
+| `pictogram` | 3 | Csicsergősz-piktogramok (élőhely, rovarok, vadvirág) |
 | `logo` | 2 | logó, világos és sötét |
+| `art` | 619 | kódból rajzolt matricák (`web/js/art/`), generált |
+| `icon` | 55 | a közös vonalas ikonok (`termek/ikonok/`), generált |
+| `sticker` | 34 | a közös kétszínű jelek (`termek/jelek/`, a Flutter-DS-sel bájtra azonos), generált |
 
 Fájl nem mozdult, és semmi nincs átnevezve: a tételek a meglévő fájlokra mutatnak.
-Még nincs benne: a Flutter-DS 7 nem méh illusztrációja (`sign-*`, `onboarding-*`, `swarm`), a 34 Figma-jel, a Csicsergősz díszletei.
-- **2. lépés:** a 619 kódmatrica (`art`) és az 55 ikon (`icon`), a meglévő metaadatukból generálva.
+Még nincs benne: a Flutter-DS 7 nem méh illusztrációja (`sign-*`, `onboarding-*`, `swarm`) és a 3D-modellek.
 - **4. lépés:** a nagy felbontású mesterek a Figmából, a `master` mezőbe.
 
 ## Egy tétel
@@ -39,7 +45,7 @@ Még nincs benne: a Flutter-DS 7 nem méh illusztrációja (`sign-*`, `onboardin
 
 | Mező | Szabály |
 |---|---|
-| `id` | a rajzot írja le, angolul, kebab-case; **soha nem változik**. Méhnél az app vizuális neve (`bee-<app-név>`), mert az egyezik a Flutter-DS-sel és a backenddel; madárnál az infografika neve (`bird-robin-sing`); Madárgyár-rendernél `bird-render-<faj>` |
+| `id` | a rajzot írja le, angolul, kebab-case; **soha nem változik**. Méhnél az app vizuális neve (`bee-<app-név>`), mert az egyezik a Flutter-DS-sel és a backenddel; madárnál az infografika neve (`bird-robin-sing`); Madárgyár-rendernél `bird-render-<faj>`. **Kivétel a generált családoknál:** az id a meglévő, befagyasztott kulcsból jön (`art-` + ART-név, `icon-` + ikonfájl, `sticker-` + jelnév) – ezek már API-k, ezért nem fordítjuk le |
 | `family` | `bee` · `bee-role` · `gabee` · `bird-madarka` · `bird-robin` · `bird-species` · `sticker` · `icon` · `art` · `ill` · `logo` |
 | `hu`, `en` | a név; ebből lesz az alt-szöveg és a Flutter `semanticLabel` |
 | `roles` | a `tokens/hangnem.json` szerepei, amelyek ezt a képet használják (az őr ellenőrzi) |
@@ -47,9 +53,10 @@ Még nincs benne: a Flutter-DS 7 nem méh illusztrációja (`sign-*`, `onboardin
 | `license` | `beeco-marka` · `nyilvanos` · `harmadik-fel` · `mi-generalt` (MI-kép csak jelölve, Kristóf 2026-10-26) |
 | `origin.kind` | `illusztrator` · `figma` · `kod` · `madargyar` · `mi` |
 | `style` | ahol ugyanaz a figura két stílusban van: `barna-csik` (hivatalos) / `fekete-csik` (régi) |
-| `aliases` | a régi nevek fogyasztónként. `web` = fájl ebben a repóban (az őr megnézi, hogy létezik). `app` = a mobilapp `assets/images/` alatti neve. `flutter` = a Flutter-DS manifest-neve (logónál az asset-útvonala). `apiKey` = a backend profilkép-értéke (**szerződés, nem változhat**, a befagyasztott lista: [`api-kulcsok.json`](api-kulcsok.json)). `sprite`, `infografika`. Minden alias egyetlen név; a további előfordulások a `note`-ban |
+| `aliases` | a régi nevek fogyasztónként. `web` = fájl ebben a repóban (az őr megnézi, hogy létezik). `app` = a mobilapp `assets/images/` alatti neve. `flutter` = a Flutter-DS manifest-neve (logónál, ikonnál, jelnél a csomag-beli fájlútvonal). `art` = az ART-matrica neve (`ART`, `pic()`), `react` = az `Ic*` export. `apiKey` = a backend profilkép-értéke (**szerződés, nem változhat**, a befagyasztott lista: [`api-kulcsok.json`](api-kulcsok.json)). `sprite`, `infografika`. Minden alias egyetlen név; a további előfordulások a `note`-ban |
 | `outputs` | mely generátor adja ki: `flutter` · `web` · `infografika` · `figma` · `webflow` |
 | `status` | `aktiv` · `kivezetendo` (szerepben már nem használjuk) · `csak-api` |
+| `emoji` | csak matricánál: az emoji-aliasok listája (a játékok emojival is hívhatják) |
 | `note` | szabad megjegyzés |
 
 ## Döntések, amiket a katalógus már tükröz (Kristóf, 2026-10-26)

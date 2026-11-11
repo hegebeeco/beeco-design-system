@@ -1,0 +1,1215 @@
+{
+ "_readme": "GENERÁLT FÁJL – ne szerkeszd kézzel: node tools/grafika-build.js (forrás: termek/ikonok/ikonok.json). Mezők: grafika/README.md.",
+ "items": [
+  {
+   "id": "icon-add",
+   "family": "icon",
+   "hu": "Plusz: új elem létrehozása, hozzáadás",
+   "en": "Add",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/add.svg",
+    "react": "IcNew",
+    "flutter": "icons/add.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-arrow-down",
+   "family": "icon",
+   "hu": "Lefelé mutató nyíl: az érték csökkent",
+   "en": "Arrow down",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/arrow-down.svg",
+    "react": "IcArrowDown",
+    "flutter": "icons/arrow-down.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-arrow-up",
+   "family": "icon",
+   "hu": "Felfelé mutató nyíl: az érték nőtt",
+   "en": "Arrow up",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/arrow-up.svg",
+    "react": "IcArrowUp",
+    "flutter": "icons/arrow-up.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-back",
+   "family": "icon",
+   "hu": "Nyíl a sor eleje felé: vissza (jobbról balra író nyelven tükrözendő)",
+   "en": "Back",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/back.svg",
+    "react": "IcLeft",
+    "flutter": "icons/back.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-bee",
+   "family": "icon",
+   "hu": "Méhecske: a hiányzó profilkép helyettesítője (kétszínű piktogram: méz test, papír szárnyak, fekete vonal)",
+   "en": "Bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/bee.svg",
+    "react": "IcBee",
+    "flutter": "icons/bee.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-bell",
+   "family": "icon",
+   "hu": "Harang: értesítések",
+   "en": "Bell",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/bell.svg",
+    "react": "IcBell",
+    "flutter": "icons/bell.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-bookmark",
+   "family": "icon",
+   "hu": "Könyvjelző: mentés későbbre",
+   "en": "Bookmark",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/bookmark.svg",
+    "react": "IcBookmark",
+    "flutter": "icons/bookmark.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-calendar",
+   "family": "icon",
+   "hu": "Naptár: dátum, esemény",
+   "en": "Calendar",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/calendar.svg",
+    "react": "IcCalendar",
+    "flutter": "icons/calendar.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-camera",
+   "family": "icon",
+   "hu": "Fényképezőgép: fotó készítése",
+   "en": "Camera",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/camera.svg",
+    "react": "IcCamera",
+    "flutter": "icons/camera.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-check",
+   "family": "icon",
+   "hu": "Pipa: kész, kijelölt, mentve",
+   "en": "Check",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/check.svg",
+    "react": "IcOk",
+    "flutter": "icons/check.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-chevron-down",
+   "family": "icon",
+   "hu": "Lefelé nyíl: lenyitás, legördülő",
+   "en": "Chevron down",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/chevron-down.svg",
+    "react": "IcChevronDown",
+    "flutter": "icons/chevron-down.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-chevron-left",
+   "family": "icon",
+   "hu": "Balra nyíl: előző (tükrözendő)",
+   "en": "Chevron left",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/chevron-left.svg",
+    "react": "IcChevronLeft",
+    "flutter": "icons/chevron-left.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-chevron-right",
+   "family": "icon",
+   "hu": "Jobbra nyíl: következő, sor megnyitása (tükrözendő)",
+   "en": "Chevron right",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/chevron-right.svg",
+    "react": "IcChevronRight",
+    "flutter": "icons/chevron-right.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-chevron-up",
+   "family": "icon",
+   "hu": "Felfelé nyíl: összecsukás, görgetés fel",
+   "en": "Chevron up",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/chevron-up.svg",
+    "react": "IcChevronUp",
+    "flutter": "icons/chevron-up.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-clear",
+   "family": "icon",
+   "hu": "Körbe zárt kereszt: mező törlése",
+   "en": "Clear",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/clear.svg",
+    "react": "IcClear",
+    "flutter": "icons/clear.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-clock",
+   "family": "icon",
+   "hu": "Óra: idő, nyitvatartás",
+   "en": "Clock",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/clock.svg",
+    "react": "IcClock",
+    "flutter": "icons/clock.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-close",
+   "family": "icon",
+   "hu": "Kereszt: bezárás, elvetés, eltávolítás",
+   "en": "Close",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/close.svg",
+    "react": "IcX",
+    "flutter": "icons/close.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-compass",
+   "family": "icon",
+   "hu": "Iránytű: a térkép visszafordítása északra",
+   "en": "Compass",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/compass.svg",
+    "react": "IcCompass",
+    "flutter": "icons/compass.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-delete",
+   "family": "icon",
+   "hu": "Kuka: törlés",
+   "en": "Delete",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/delete.svg",
+    "react": "IcTrash",
+    "flutter": "icons/delete.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-edit",
+   "family": "icon",
+   "hu": "Ceruza: szerkesztés",
+   "en": "Edit",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/edit.svg",
+    "react": "IcEdit",
+    "flutter": "icons/edit.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-error",
+   "family": "icon",
+   "hu": "Kör felkiáltójellel: hiba, valami nem sikerült",
+   "en": "Error",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/error.svg",
+    "react": "IcError",
+    "flutter": "icons/error.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-external-link",
+   "family": "icon",
+   "hu": "Doboz kilépő nyíllal: az appon kívül nyílik meg",
+   "en": "External link",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/external-link.svg",
+    "react": "IcExternalLink",
+    "flutter": "icons/external-link.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-eye-off",
+   "family": "icon",
+   "hu": "Áthúzott szem: elrejtés, rejtett",
+   "en": "Eye off",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/eye-off.svg",
+    "react": "IcEyeOff",
+    "flutter": "icons/eye-off.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-eye",
+   "family": "icon",
+   "hu": "Nyitott szem: megjelenítés, megnyitás, megtekintés",
+   "en": "Eye",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/eye.svg",
+    "react": "IcOpen",
+    "flutter": "icons/eye.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-favorite",
+   "family": "icon",
+   "hu": "Szív: kedvenc, tetszik",
+   "en": "Favorite",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/favorite.svg",
+    "react": "IcFavorite",
+    "flutter": "icons/favorite.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-filter",
+   "family": "icon",
+   "hu": "Tölcsér: szűrés",
+   "en": "Filter",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/filter.svg",
+    "react": "IcFilter",
+    "flutter": "icons/filter.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-flag",
+   "family": "icon",
+   "hu": "Zászló rúdon: jelentés, megjelölés",
+   "en": "Flag",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/flag.svg",
+    "react": "IcFlag",
+    "flutter": "icons/flag.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-forward",
+   "family": "icon",
+   "hu": "Nyíl a sor vége felé: tovább (tükrözendő)",
+   "en": "Forward",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/forward.svg",
+    "react": "IcRight",
+    "flutter": "icons/forward.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-home",
+   "family": "icon",
+   "hu": "Ház: a kezdőképernyő",
+   "en": "Home",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/home.svg",
+    "react": "IcHome",
+    "flutter": "icons/home.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-image",
+   "family": "icon",
+   "hu": "Képkeret hegyekkel: fotó, kép kiválasztása",
+   "en": "Image",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/image.svg",
+    "react": "IcImage",
+    "flutter": "icons/image.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-info",
+   "family": "icon",
+   "hu": "Kör i betűvel: tájékoztatás",
+   "en": "Info",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/info.svg",
+    "react": "IcInfo",
+    "flutter": "icons/info.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-layers",
+   "family": "icon",
+   "hu": "Egymásra rakott rétegek: a térképrétegek kiválasztása",
+   "en": "Layers",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/layers.svg",
+    "react": "IcLayers",
+    "flutter": "icons/layers.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-locate",
+   "family": "icon",
+   "hu": "Célkereszt: saját pozíció, a térkép ráközpontosítása",
+   "en": "Locate",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/locate.svg",
+    "react": "IcLocate",
+    "flutter": "icons/locate.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-location",
+   "family": "icon",
+   "hu": "Térképtű: hely",
+   "en": "Location",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/location.svg",
+    "react": "IcLocation",
+    "flutter": "icons/location.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-lock",
+   "family": "icon",
+   "hu": "Lakat: zárolt, még nem elérhető",
+   "en": "Lock",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/lock.svg",
+    "react": "IcLock",
+    "flutter": "icons/lock.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-mail",
+   "family": "icon",
+   "hu": "Boríték: e-mail",
+   "en": "Mail",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/mail.svg",
+    "react": "IcMail",
+    "flutter": "icons/mail.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-map",
+   "family": "icon",
+   "hu": "Hajtogatott térkép: térkép nézet",
+   "en": "Map",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/map.svg",
+    "react": "IcMap",
+    "flutter": "icons/map.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-menu",
+   "family": "icon",
+   "hu": "Három vonal: menü",
+   "en": "Menu",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/menu.svg",
+    "react": "IcMenu",
+    "flutter": "icons/menu.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-minus",
+   "family": "icon",
+   "hu": "Mínusz: elvétel, csökkentés",
+   "en": "Minus",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/minus.svg",
+    "react": "IcMinus",
+    "flutter": "icons/minus.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-more",
+   "family": "icon",
+   "hu": "Három pont: további műveletek",
+   "en": "More",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/more.svg",
+    "react": "IcMore",
+    "flutter": "icons/more.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-nectar",
+   "family": "icon",
+   "hu": "Nektárcsepp: a beeco pénzneme (kétszínű piktogram: méz kitöltés, fekete vonal)",
+   "en": "Nectar",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/nectar.svg",
+    "react": "IcNectar",
+    "flutter": "icons/nectar.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-phone",
+   "family": "icon",
+   "hu": "Telefonkagyló: telefonszám, hívás",
+   "en": "Phone",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/phone.svg",
+    "react": "IcPhone",
+    "flutter": "icons/phone.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-refresh",
+   "family": "icon",
+   "hu": "Környíl: újratöltés, újrapróbálás",
+   "en": "Refresh",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/refresh.svg",
+    "react": "IcRefresh",
+    "flutter": "icons/refresh.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-save",
+   "family": "icon",
+   "hu": "Mentés (hajlékonylemez)",
+   "en": "Save",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/save.svg",
+    "react": "IcSave",
+    "flutter": "icons/save.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-search",
+   "family": "icon",
+   "hu": "Nagyító: keresés",
+   "en": "Search",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/search.svg",
+    "react": "IcSearch",
+    "flutter": "icons/search.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-settings",
+   "family": "icon",
+   "hu": "Fogaskerék: beállítások",
+   "en": "Settings",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/settings.svg",
+    "react": "IcSettings",
+    "flutter": "icons/settings.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-share",
+   "family": "icon",
+   "hu": "Doboz felfelé nyíllal: megosztás",
+   "en": "Share",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/share.svg",
+    "react": "IcShare",
+    "flutter": "icons/share.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-sort",
+   "family": "icon",
+   "hu": "Két ellentétes nyíl: rendezés",
+   "en": "Sort",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/sort.svg",
+    "react": "IcSort",
+    "flutter": "icons/sort.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-star-filled",
+   "family": "icon",
+   "hu": "Kitöltött csillag: megadott értékelés (kétszínű piktogram: méz kitöltés, fekete vonal); az üres párja a star.svg",
+   "en": "Star filled",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/star-filled.svg",
+    "react": "IcStarFilled",
+    "flutter": "icons/star-filled.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-star",
+   "family": "icon",
+   "hu": "Csillag: értékelés, kiemelés",
+   "en": "Star",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/star.svg",
+    "react": "IcStar",
+    "flutter": "icons/star.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-upload",
+   "family": "icon",
+   "hu": "Tálca felfelé nyíllal: feltöltés",
+   "en": "Upload",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/upload.svg",
+    "react": "IcUpload",
+    "flutter": "icons/upload.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-user",
+   "family": "icon",
+   "hu": "Fej és váll: profil, személy",
+   "en": "User",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/user.svg",
+    "react": "IcUser",
+    "flutter": "icons/user.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-warning",
+   "family": "icon",
+   "hu": "Háromszög felkiáltójellel: figyelmeztetés",
+   "en": "Warning",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/warning.svg",
+    "react": "IcWarning",
+    "flutter": "icons/warning.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-web",
+   "family": "icon",
+   "hu": "Földgömb: weboldal",
+   "en": "Web",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/web.svg",
+    "react": "IcWeb",
+    "flutter": "icons/web.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "icon-wifi-off",
+   "family": "icon",
+   "hu": "Áthúzott Wi-Fi-ívek: nincs kapcsolat",
+   "en": "Wifi off",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "termek/ikonok/ikonok.json"
+   },
+   "aliases": {
+    "web": "termek/ikonok/wifi-off.svg",
+    "react": "IcWifiOff",
+    "flutter": "icons/wifi-off.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv"
+  }
+ ]
+}

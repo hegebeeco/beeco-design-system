@@ -1,5 +1,5 @@
 {
- "_readme": "A beeco grafikai katalógusa (Javaslat 28, 1. lépés, Kristóf döntése 2026-10-26: a mester a publikus DS). Egy tétel = egy rajz. Az id soha nem változik; a régi nevek az aliases-ban élnek, a fogyasztóknál nem kell átnevezni. Mezők és szabályok: grafika/README.md. Őr: tests/check-grafika.js. A kódból rajzolt matricák (ART, 619) és az 55 ikon a 2. lépésben jönnek.",
+ "_readme": "A beeco grafikai katalógusa (Javaslat 28, 1. lépés, Kristóf döntése 2026-10-26: a mester a publikus DS). Egy tétel = egy rajz. Az id soha nem változik; a régi nevek az aliases-ban élnek, a fogyasztóknál nem kell átnevezni. Mezők és szabályok: grafika/README.md. Őr: tests/check-grafika.js. Ez a kézzel gondozott rész (méhek, madarak, díszletek, logó). A matricák (ART), az ikonok és a kétszínű jelek a grafika/gen/ alatt vannak, generálva: node tools/grafika-build.js.",
  "version": 1,
  "items": [
   {
@@ -2434,6 +2434,448 @@
     "flutter"
    ],
    "status": "aktiv"
+  },
+  {
+   "id": "scene-cover-hill",
+   "family": "scene",
+   "hu": "Borító – domb",
+   "en": "Cover hill",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/bor_domb.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-cover-tree-left",
+   "family": "scene",
+   "hu": "Borító – bal oldali fa",
+   "en": "Cover tree, left",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/bor_fa_bal.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-cover-tree-right",
+   "family": "scene",
+   "hu": "Borító – jobb oldali fa",
+   "en": "Cover tree, right",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/bor_fa_jobb.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-hill-photo-wall",
+   "family": "scene",
+   "hu": "Domb – fotófal szakasz",
+   "en": "Hill, photo wall section",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/domb_fotofal.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-hill-care",
+   "family": "scene",
+   "hu": "Domb – gondoskodás szakasz",
+   "en": "Hill, care section",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/domb_gond.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-hill-faq",
+   "family": "scene",
+   "hu": "Domb – GYIK szakasz",
+   "en": "Hill, FAQ section",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/domb_gyik.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-hill-howto",
+   "family": "scene",
+   "hu": "Domb – hogyan szakasz",
+   "en": "Hill, how-to section",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/domb_howto.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-hill-footer",
+   "family": "scene",
+   "hu": "Domb – lábléc",
+   "en": "Hill, footer",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/domb_lab.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-hill-why",
+   "family": "scene",
+   "hu": "Domb – miért szakasz",
+   "en": "Hill, why section",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/domb_miert.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-hill-what",
+   "family": "scene",
+   "hu": "Domb – mit szakasz",
+   "en": "Hill, what section",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/domb_mit.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-hill-partner",
+   "family": "scene",
+   "hu": "Domb – partner szakasz",
+   "en": "Hill, partner section",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/domb_partner.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-hill-help",
+   "family": "scene",
+   "hu": "Domb – segíts szakasz",
+   "en": "Hill, help section",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/domb_segits.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-hill-closing",
+   "family": "scene",
+   "hu": "Domb – záró szakasz",
+   "en": "Hill, closing section",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/domb_zaro.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-feeder",
+   "family": "scene",
+   "hu": "Etető",
+   "en": "Bird feeder",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/eteto.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-tree-yellow",
+   "family": "scene",
+   "hu": "Sárga fa",
+   "en": "Yellow tree",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/fa_sarga.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-loop-bird",
+   "family": "scene",
+   "hu": "Hurok – madár",
+   "en": "Loop, bird",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/hurok_madar.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-loop-bee",
+   "family": "scene",
+   "hu": "Hurok – méh",
+   "en": "Loop, bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/hurok_meh.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-waterer",
+   "family": "scene",
+   "hu": "Itató",
+   "en": "Bird waterer",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/itato.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "scene-nest-box",
+   "family": "scene",
+   "hu": "Odú",
+   "en": "Nest box",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/odu.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "pictogram-habitat",
+   "family": "pictogram",
+   "hu": "Élőhely piktogram",
+   "en": "Habitat pictogram",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/pikto_elohely.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv"
+  },
+  {
+   "id": "pictogram-insects",
+   "family": "pictogram",
+   "hu": "Rovarok piktogram",
+   "en": "Insects pictogram",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/pikto_rovarok.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "note": "A sajat/pikto-rovarok.svg ugyanennek a jelnek a saját rajzú változata."
+  },
+  {
+   "id": "pictogram-wildflower",
+   "family": "pictogram",
+   "hu": "Vadvirág piktogram",
+   "en": "Wildflower pictogram",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "illusztrator",
+    "author": "Csicsergősz-illusztrátor",
+    "source": "weboldal/kampany-csicsergosz/illusztracio/agi/"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-csicsergosz/illusztracio/statikus/pikto_vadvirag.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "note": "A sajat/pikto-vadvirag.svg ugyanennek a jelnek a saját rajzú változata."
   }
  ]
 }

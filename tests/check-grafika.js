@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /* ============================================================
    check-grafika – a grafikai katalógus (grafika/katalogus.json, Javaslat 28) őre
+   - a grafika/gen/ (matricák, ikonok, jelek; tools/grafika-build.js) friss, és a kézi katalógussal együtt töltődik be;
    - minden tételnek van id-je (kebab-case, egyedi), családja, hu és en neve, licence, eredete, állapota;
    - a web-alias (a repóban lévő fájl) létezik, és egy fájl csak egy tételhez tartozik;
    - az apiKey (az app profilkép-enumja, backend-szerződés) egyedi, és pontosan a grafika/api-kulcsok.json befagyasztott listája:
@@ -10,6 +11,7 @@
    - ha van infografika-generátor (tools/infografika/src/figures.js), a figurái a katalógusban vannak, és nem tiltottak
      (ha a fájl megvan, de egy figurát sem talál benne, az is hiba: valószínűleg megváltozott a formátuma).
    ============================================================ */
+const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const ROOT = path.join(__dirname, '..');
@@ -17,18 +19,22 @@ const rd = f => fs.readFileSync(path.join(ROOT, f), 'utf8');
 const hibak = [];
 const hiba = m => hibak.push(m);
 
-const FAMILIES = ['bee', 'bee-role', 'gabee', 'bird-madarka', 'bird-robin', 'bird-species', 'sticker', 'icon', 'art', 'ill', 'logo'];
+const FAMILIES = ['bee', 'bee-role', 'gabee', 'bird-madarka', 'bird-robin', 'bird-species', 'scene', 'pictogram', 'sticker', 'icon', 'art', 'ill', 'logo'];
 const LICENSES = ['beeco-marka', 'nyilvanos', 'harmadik-fel', 'mi-generalt'];
 const ORIGINS = ['illusztrator', 'figma', 'kod', 'madargyar', 'mi'];
 const STATUSES = ['aktiv', 'kivezetendo', 'csak-api'];
 const OUTPUTS = ['flutter', 'web', 'infografika', 'figma', 'webflow'];
 
-const items = JSON.parse(rd('grafika/katalogus.json')).items || [];
+try { execFileSync('node', [path.join(ROOT, 'tools/grafika-build.js'), '--check'], { encoding: 'utf8' }); }
+catch (e) { hiba((e.stdout || '').trim() || 'a tools/grafika-build.js --check nem futott le'); }
+const GEN = fs.existsSync(path.join(ROOT, 'grafika/gen')) ? fs.readdirSync(path.join(ROOT, 'grafika/gen')).filter(f => f.endsWith('.json')).sort() : [];
+const items = [rd('grafika/katalogus.json'), ...GEN.map(f => rd('grafika/gen/' + f))].flatMap(t => JSON.parse(t).items || []);
 if (!items.length) hiba('grafika/katalogus.json: nincs egy tétel sem');
 
 const byId = new Map();
 const byWeb = new Map();
 const byApi = new Map();
+const byArt = new Map();
 for (const it of items) {
   const id = it.id || '(id nélkül)';
   if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(id)) hiba(`${id}: az id kisbetűs kebab-case legyen`);
@@ -53,6 +59,11 @@ for (const it of items) {
     if (byApi.has(a.apiKey)) hiba(`${id}: az apiKey ${a.apiKey} már a(z) ${byApi.get(a.apiKey)} tételé`);
     byApi.set(a.apiKey, id);
   }
+  if (a.art) {
+    if (byArt.has(a.art)) hiba(`${id}: az ART-név ${a.art} már a(z) ${byArt.get(a.art)} tételé`);
+    byArt.set(a.art, id);
+  }
+  if (it.emoji && !Array.isArray(it.emoji)) hiba(`${id}: az emoji mező lista`);
   if (it.forbidden && (it.outputs || []).length) hiba(`${id}: tiltott tételnek nem lehet kimenete`);
   if (it.forbidden && (it.roles || []).length) hiba(`${id}: tiltott tételnek nem lehet szerepe`);
 }
