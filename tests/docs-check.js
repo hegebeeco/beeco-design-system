@@ -24,7 +24,7 @@ const SZIGORU = process.argv.includes('--szigoru');
 const ONKENTES_UT = ['marka-pozicio', 'marka-hang', 'logo', 'szin', 'tipografia', 'meh-illusztracio', 'letoltesek'];
 const hibak = [], figy = [];
 // laza módban csak ezek buktatnak (a feladat szerint: üres oldal, törött link; + az átirányítás célja)
-const SULYOS = /üres vagy majdnem üres|törött link|nem létező horgony|átirányítás célja nem létezik|nincs megépítve/;
+const SULYOS = /üres vagy majdnem üres|törött link|nem létező horgony|átirányítás célja nem létezik|nincs megépítve|görgethető táblázat burka|\.bb-tabla a \.bb-tabla-burok|nincs „Vissza a tetejére”|„Korrigálandó” blokk látható felirata/;
 const hiba = m => (LAZA && !SULYOS.test(m) ? figy : hibak).push(m);
 const OLDALAK = [['brand', 'docs-site/brand'], ['ds', 'docs-site/ds']];
 const json = f => JSON.parse(fs.readFileSync(path.join(ROOT, f), 'utf8'));
@@ -77,7 +77,7 @@ for (const [nev, forras] of OLDALAK) {
     if (nev === 'brand') { const m = sz.match(/bőr/i); if (m) hiba(`${hol}: a Brand Bookban „termék-stílus” / „játék-stílus” a szó, nem „bőr” („…${sz.slice(Math.max(0, m.index - 40), m.index + 40)}…”)`); }
     // az önkéntes fejlesztő hétoldalas útja: mindegyik oldal tetején legyen „Röviden” (docs-site/brand/index.json: hetoldalas-ut)
     if (nev === 'brand' && ONKENTES_UT.includes(path.basename(p, '.html')) && !/class="bb-roviden"/.test(h)) hiba(`${hol}: az önkéntes úton lévő oldalról hiányzik a „Röviden” doboz`);
-    hianyDb[nev] += (h.match(/<span class="bc-badge is-muted">Hiányzik|\sdata-mezo="/g) || []).length;
+    hianyDb[nev] += (h.match(/<span class="bc-badge is-muted(?: bb-jelveny-ism)?">Hiányzik|\sdata-mezo="/g) || []).length;
     for (const m of h.matchAll(/<img\b[^>]*>/g)) {
       if (!/\salt="/.test(m[0])) hiba(`${hol}: kép alt nélkül: ${m[0].slice(0, 80)}`);
       if (!/\sloading="lazy"/.test(m[0]) && !/bb-hero-kep/.test(m[0])) hiba(`${hol}: kép loading="lazy" nélkül: ${m[0].slice(0, 80)}`);
@@ -86,6 +86,11 @@ for (const [nev, forras] of OLDALAK) {
     for (const m of h.matchAll(/href="([^"]+)" rel="(?:prev|next)"/g)) if (tervezett.includes(m[1])) hiba(`${hol}: a láncban tervezett oldal: ${m[1]}`);
     for (const m of h.matchAll(/aria-(?:controls|labelledby|describedby)="([^"]+)"/g)) for (const id of m[1].split(/\s+/)) if (!idkOf(p).has(id)) hiba(`${hol}: ARIA-hivatkozás nem létező id-re: ${id}`);
     if (/href="(?:brand|ds):/.test(h)) hiba(`${hol}: feloldatlan brand:/ds: link`);
+    // görgethető táblázat: külső .bb-tabla-burok (görgetés-jelzés) + billentyűzettel elérhető, nevesített régió
+    for (const m of h.matchAll(/<div class="bc-table-wrap bb-tabla[^"]*"([^>]*)>/g)) if (!/\stabindex="0"/.test(m[1]) || !/\srole="region"/.test(m[1]) || !/\saria-label="[^"]+"/.test(m[1])) hiba(`${hol}: a görgethető táblázat burka nem elérhető régió (tabindex=0, role=region, aria-label kell)`);
+    if ((h.match(/class="bc-table-wrap bb-tabla/g) || []).length !== (h.match(/class="bb-tabla-burok"/g) || []).length) hiba(`${hol}: .bb-tabla a .bb-tabla-burok nélkül (nincs görgetés-jelzés)`);
+    if (f !== 'belepes.html' && !/<p class="bb-tetejere"><a href="#tartalom">/.test(h)) hiba(`${hol}: nincs „Vissza a tetejére” link`);
+    if (/Korrigálandó – vázlat/.test(h)) hiba(`${hol}: a „Korrigálandó” blokk látható felirata „Helyőrző szöveg” kell legyen`);
   }
   // linkek és horgonyok: a fő oldalakon és a minta-, képernyő-, sablon-oldalakon is (a kimenetben a repo/ tükör kivételével)
   for (const p of bejar(dir).filter(f => f.endsWith('.html') && !f.includes(`${path.sep}repo${path.sep}`))) {

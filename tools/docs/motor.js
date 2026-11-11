@@ -7,7 +7,9 @@
                    – a sorrend adja a „következő oldal” láncot; tervezett = a cél-struktúra még meg nem írt oldala
                      (a menüben szürke „hamarosan”, nem kattintható; nincs a keresőben és a láncban)
                    – gyerekek: a 3. szint (pl. Komponensek → kategória → elem); a menüben lenyíló
-     <slug>.json   { id, cim, alcim, csoport, statusz: stabil|béta|elavult|vázlat, blokkok: [...], modositva?, tipus? }
+     <slug>.json   { id, cim, alcim, csoport, statusz: stabil|béta|elavult|vázlat, blokkok: [...], modositva?, tipus?, felelos?, jovahagyva? }
+                   – felelos? (szöveg) és jovahagyva? (ÉÉÉÉ-HH-NN) OPCIONÁLIS: ha megvan, az oldalfej meta-sorában jelenik meg
+                     („Felelős: …”, „Jóváhagyva: 2026. október 26.”); ha nincs, a kimenet nem változik. Hibás dátum = építési hiba.
    Generált oldal: a cfg.navAtalakit által beszúrt bejegyzés (generalt: 'komponens' | 'kategoria') – nincs saját JSON-ja.
    Oldalak közti link: [szöveg](brand:<slug>) / (ds:<slug>) – helyben ../brand/, ../ds/; élesen DOCS_BRAND_URL / DOCS_DS_URL.
    Szám a szövegben: {{szam:<kulcs>}} – az adatból (cfg.szamok), nem kézzel.
@@ -45,6 +47,9 @@ function masikAlap(cfg) {
   return cfg.masik.alap;
 }
 
+/** Kereső: egy tétel (oldal-bevezető, szakasz) legfeljebb ennyi karakternyi szövege kerül az indexbe (a találatban csak az első ~160 látszik). */
+const KERESO_MAX = 4000;
+const KERESO_LATSZIK = 160;
 /** A szakasz táblázatainak cellaszövege (kereshető, de a találatban nem látszik): token- és értéktáblák is megtalálhatók legyenek. */
 const tablaSzoveg = h => (/<table/.test(h) ? [...h.matchAll(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/g)].map(c => strip(c[1])).join(' ').slice(0, 700) : '');
 /** A generátorok gyűjtője: CSS-szabály, fájl, másolás, repo-tükör, tesztlap – a kimenet törlése után íródik ki. */
@@ -130,6 +135,8 @@ function build(cfg) {
     if (o.csoport !== n.csoport.id) hibak.push(`${forras}: a csoport („${o.csoport}”) nem egyezik a nav.json-nal („${n.csoport.id}”)`);
     if (!STATUSZOK.includes(o.statusz)) hibak.push(`${forras}: a statusz ${STATUSZOK.join('|')} legyen (most: ${o.statusz})`);
     if (!o.cim) hibak.push(`${forras}: hiányzik a cim`);
+    if (o.felelos !== undefined && (typeof o.felelos !== 'string' || !o.felelos.trim())) hibak.push(`${forras}: a felelos nem üres szöveg legyen`);
+    if (o.jovahagyva !== undefined && !(typeof o.jovahagyva === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(o.jovahagyva) && !Number.isNaN(Date.parse(o.jovahagyva + 'T12:00:00Z')) && new Date(o.jovahagyva + 'T12:00:00Z').toISOString().slice(0, 10) === o.jovahagyva)) hibak.push(`${forras}: a jovahagyva ÉÉÉÉ-HH-NN alakú, létező nap legyen (most: ${JSON.stringify(o.jovahagyva)})`);
     const ctx = B.kornyezet(n.slug, hibak, cfg.gen || {});
     ctx.cfg = cfg; ctx.oldalAdat = o; ctx.nav = nav; ctx.masikUrl = masikUrl; ctx.ki = ki; ctx.navKategoriaOf = navKategoriaOf;
     let torzs, extraForras = [], kulcsszavak = '', kereso = [], nincsToc = false;
@@ -145,13 +152,18 @@ function build(cfg) {
     const toc = nincsToc ? [] : [...torzs.matchAll(/<h([23])[^>]*\sid="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>/g)].map(m => ({ szint: +m[1], id: m[2], cim: strip(m[3]) }));
     const file = `${n.slug}.html`;
     const csoportCim = szuloOf[n.slug] ? `${n.csoport.cim} › ${szuloOf[n.slug].cim}` : n.csoport.cim;
-    index.push({ u: file, c: o.cim, h: '', g: csoportCim, x: strip(o.alcim || '').slice(0, 160), k: [kulcsszavak, o.kulcsszavak].filter(Boolean).join(' ') });
+    // az oldal-bevezető (az első h2/h3 előtti rész: lead, „Röviden” blokk, bevezető bekezdések) is kereshető – eddig egyik szakaszba sem tartozott
+    const elsoCimsor = torzs.search(/<h[23][\s>]/);
+    const bevezeto = strip(String(elsoCimsor < 0 ? torzs : torzs.slice(0, elsoCimsor)).replace(/<span class="bb-dd-jel"[^>]*>[^<]*<\/span>/g, '')).slice(0, KERESO_MAX);
+    index.push({ u: file, c: o.cim, h: '', g: csoportCim, x: strip(o.alcim || '').slice(0, KERESO_LATSZIK), k: [kulcsszavak, o.kulcsszavak, bevezeto].filter(Boolean).join(' ') });
     // h2/h3 szakaszok; a h3 a szülő h2 nevével („Védőtér › Legkisebb méret”), hogy a találatnál látsszon a szakasz
     let h2 = '';
     for (const m of torzs.matchAll(/<h([23])[^>]*\sid="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>([\s\S]*?)(?=<h[23][\s>]|$)/g)) {
       const cim = strip(m[3]);
       if (m[1] === '2') h2 = cim;
-      index.push({ u: `${file}#${m[2]}`, c: o.cim, h: m[1] === '3' && h2 ? `${h2} › ${cim}` : cim, g: csoportCim, x: strip(m[4].replace(/<span class="bb-dd-jel"[^>]*>[^<]*<\/span>/g, '')).slice(0, 160), k: tablaSzoveg(m[4]) });
+      const szoveg = strip(m[4].replace(/<span class="bb-dd-jel"[^>]*>[^<]*<\/span>/g, ''));
+      // x = a találatban látszó kezdet; k = a többi szöveg (kereshető, de nem látszik); a táblázat-cellák csak akkor kerülnek külön be, ha a szöveg már nem fér el
+      index.push({ u: `${file}#${m[2]}`, c: o.cim, h: m[1] === '3' && h2 ? `${h2} › ${cim}` : cim, g: csoportCim, x: szoveg.slice(0, KERESO_LATSZIK), k: [szoveg.slice(KERESO_LATSZIK, KERESO_MAX), szoveg.length > KERESO_MAX ? tablaSzoveg(m[4]) : ''].filter(Boolean).join(' ') });
     }
     for (const t of kereso) index.push({ u: `${file}#${t.id}`, c: o.cim, h: t.h, g: csoportCim, x: String(t.x).slice(0, 220), k: t.k || '' });
     kesz.push({ n, o, file, torzs, toc, datum, datumForras, forras: vanJson ? forras : (extraForras[0] || ''), extraForras: vanJson ? extraForras : extraForras.slice(1), elozo: lanc[i - 1], kov: lanc[i + 1] });
@@ -185,8 +197,10 @@ function build(cfg) {
     return `<nav class="bb-nav" id="bb-nav" aria-label="${esc(cfg.nev)} – tartalom"><div class="bb-nav-fej"><span class="bb-nav-cim">${esc(cfg.nev)}</span><button type="button" class="bc-btn is-ghost is-icon bb-menu-zar" aria-label="Menü bezárása" data-menu-zar>${ic('x')}</button></div><ul class="bb-nav-lista" role="list">${csop}</ul><p class="bb-nav-lab"><a class="bb-nav-masik" href="${esc(masikUrl)}">${esc(cfg.masik.nev)}${ic('kulso')}<span class="bc-sr"> (másik oldal)</span></a>${kilep}<span>DS v${esc(VERSION)}</span></p></nav>`;
   }
   const tocLista = toc => `<ul role="list">${toc.map(t => `<li class="is-h${t.szint}"><a href="#${esc(t.id)}">${esc(t.cim)}</a></li>`).join('')}</ul>`;
-  function oldal({ slug, cim, leiras, torzs, toc = [], csoport, datum, datumForras, forras, extraForras = [], elozo, kov, statusz, keresoOldal, hos }) {
-    const fejBelso = `${csoport ? `<p class="bb-csoport">${esc(csoport)}</p>` : ''}<h1>${inl(cim)}</h1>${leiras ? `<p class="bb-lead">${inl(leiras)}</p>` : ''}${statusz ? `<p class="bb-oldal-meta">${B.statuszJelveny(statusz)}</p>` : ''}`;
+  function oldal({ slug, cim, leiras, torzs, toc = [], csoport, datum, datumForras, forras, extraForras = [], elozo, kov, statusz, keresoOldal, hos, felelos, jovahagyva }) {
+    // meta-sor: státusz-jelvény · Felelős · Jóváhagyva (a két utóbbi opcionális; nélkülük a kimenet a régi)
+    const metaTetelek = (statusz ? B.statuszJelveny(statusz) : '') + (felelos ? `<span class="bb-meta-tetel">Felelős: <strong>${esc(felelos)}</strong></span>` : '') + (jovahagyva ? `<span class="bb-meta-tetel">Jóváhagyva: <time datetime="${esc(jovahagyva)}">${esc(A.huDatum(jovahagyva))}</time></span>` : '');
+    const fejBelso = `${csoport ? `<p class="bb-csoport">${esc(csoport)}</p>` : ''}<h1>${inl(cim)}</h1>${leiras ? `<p class="bb-lead">${inl(leiras)}</p>` : ''}${metaTetelek ? `<p class="bb-oldal-meta">${metaTetelek}</p>` : ''}`;
     const fej = hos ? `<header class="bb-oldalfej bb-hero bc-honeycomb"><div>${fejBelso}</div>${hos.kep ? `<img class="bb-hero-kep" src="assets/brand/${esc(hos.kep)}.webp" alt="" width="160" height="160">` : ''}</header>` : `<header class="bb-oldalfej">${fejBelso}</header>`;
     const tocVan = toc.length >= 2;
     const szerk = forras ? `<a href="${REPO_URL}/edit/main/${esc(forras)}" rel="noopener">${ic('szerk')}Szerkeszd GitHubon</a>${extraForras.length ? ` <span class="bb-lab-halk">(adat: ${extraForras.map(f => `<a href="${REPO_URL}/blob/main/${esc(f)}" rel="noopener"><code>${esc(f)}</code></a>`).join(', ')})</span>` : ''}` : '';
@@ -229,6 +243,7 @@ ${tocVan ? `<details class="bb-toc-mobil"><summary>Ezen az oldalon</summary>${to
 ${torzs}
 </article>
 ${keresoOldal ? '' : lancHtml}
+<p class="bb-tetejere"><a href="#tartalom">${ic('fel')}Vissza a tetejére</a></p>
 <footer class="bb-lab">
 ${datum ? `<p>Utoljára módosítva: <time datetime="${esc(datum)}">${esc(A.huDatum(datum))}</time>${datumForras === 'build' ? ' <span class="bb-lab-halk">(építés dátuma – a forrás még nincs commitolva)</span>' : ''}</p>` : ''}
 ${szerk ? `<p>${szerk}</p>` : ''}
@@ -278,7 +293,7 @@ ${tocVan ? `<aside class="bb-toc" aria-labelledby="bb-toc-cim"><p class="bb-toc-
   fs.mkdirSync(path.join(OUT, 'assets'), { recursive: true });
   const html = {};
   for (const k of kesz) html[k.file] = oldal({ slug: k.n.slug, cim: k.o.cim, leiras: k.o.alcim, torzs: k.torzs, toc: k.toc, csoport: k.n.slug === 'index' ? '' : (szuloOf[k.n.slug] ? `${k.n.csoport.cim} · ${szuloOf[k.n.slug].cim}` : k.n.csoport.cim),
-    datum: k.datum, datumForras: k.datumForras, forras: k.forras, extraForras: k.extraForras, elozo: k.elozo, kov: k.kov, statusz: k.o.statusz, hos: k.o.hos });
+    datum: k.datum, datumForras: k.datumForras, forras: k.forras, extraForras: k.extraForras, elozo: k.elozo, kov: k.kov, statusz: k.o.statusz, hos: k.o.hos, felelos: k.o.felelos, jovahagyva: k.o.jovahagyva });
   html['kereses.html'] = oldal({ slug: 'kereses', cim: 'Keresés', leiras: `Keresés a ${cfg.nev} oldalain.`, keresoOldal: true,
     torzs: `<p class="bb-kereses-allapot" data-kereses-allapot aria-live="polite">Írd be fent, mit keresel – például ${cfg.keresoPelda.replace(/^Keresés: /, '').replace(/…$/, '').split(', ').map(s => `<em>${esc(s)}</em>`).join(', ')}.</p><noscript><p>A kereséshez JavaScript kell. A menüből minden oldal elérhető.</p></noscript><div class="bb-kereses-lista" data-kereses-lista></div>` });
   html['404.html'] = oldal({ slug: '404', cim: 'Nincs ilyen oldal', leiras: 'Ezt az oldalt nem találjuk. Indulj a kezdőlapról, vagy keress fent.', keresoOldal: true,

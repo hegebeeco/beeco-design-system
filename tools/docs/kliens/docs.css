@@ -90,9 +90,17 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
 .bb-toc .is-h3 a, .bb-toc-mobil .is-h3 a { padding-left: var(--bc-sp-5); }
 .bb-toc a[aria-current="true"], .bb-toc-mobil a[aria-current="true"] { color: var(--bc-ink); font-weight: var(--bc-fw-semibold); border-left-color: var(--bc-accent); }
 @media (hover: hover) and (pointer: fine) { .bb-toc a:hover { color: var(--bc-ink); text-decoration: underline; } }
-.bb-toc-mobil { display: none; margin: 0 0 var(--bc-sp-5); background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); }
-.bb-toc-mobil > summary { display: flex; align-items: center; min-height: var(--bc-tap); padding: 0 var(--bc-sp-4); font-weight: var(--bc-fw-bold); cursor: pointer; }
-.bb-toc-mobil > ul { margin: 0 var(--bc-sp-4) var(--bc-sp-3); }
+/* Mobil jegyzék: nyitható doboz (nyíl), görgetéskor a fejléc alatt marad (a valódi fejlécmagasságot a docs.js adja: --bb-fej-valos) */
+.bb-toc-mobil { display: none; position: sticky; top: var(--bb-fej-valos, var(--bb-fej-h)); z-index: var(--bc-z-sticky); margin: 0 0 var(--bc-sp-5);
+  max-height: calc(100dvh - var(--bb-fej-valos, var(--bb-fej-h)) - var(--bc-sp-3)); overflow-y: auto; overscroll-behavior: contain;
+  background: var(--bc-surface); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-m); box-shadow: var(--bc-shadow-soft); }
+.bb-toc-mobil > summary { display: flex; align-items: center; justify-content: space-between; gap: var(--bc-sp-3); min-height: var(--bc-tap); padding: 0 var(--bc-sp-4); font-weight: var(--bc-fw-bold); cursor: pointer; list-style: none; }
+.bb-toc-mobil > summary::-webkit-details-marker { display: none; }
+.bb-toc-mobil > summary::after { content: ""; flex: none; width: 10px; height: 10px; margin: -4px 4px 0 0; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(45deg); transition: transform var(--bc-t-fast) var(--bc-ease-out); }
+.bb-toc-mobil[open] > summary::after { margin-top: 4px; transform: rotate(-135deg); }
+.bb-toc-mobil[open] > summary { border-bottom: var(--bc-bw-hair) solid var(--bc-line); }
+.bb-toc-mobil > ul { margin: var(--bc-sp-2) var(--bc-sp-4) var(--bc-sp-3); }
 
 /* ---- oldalfej, szöveg ---- */
 .bb-oldalfej { margin-bottom: var(--bc-sp-6); }
@@ -101,6 +109,8 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
 .is-ds .bb-oldalfej h1 { font-size: var(--bc-fs-2xl); }
 .bb-lead { margin: 0 0 var(--bc-sp-3); font-size: var(--bc-fs-l); line-height: var(--bc-lh-snug); color: var(--bc-ink-soft); max-width: 40em; }
 .bb-oldal-meta { display: flex; flex-wrap: wrap; gap: var(--bc-sp-2); align-items: center; margin: var(--bc-sp-3) 0 0; }
+.bb-meta-tetel { font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
+.bb-meta-tetel strong { font-weight: var(--bc-fw-semibold); color: var(--bc-ink); }
 .bb-cikk h2 { margin: var(--bc-sp-7) 0 var(--bc-sp-3); }
 .bb-cikk h3 { margin: var(--bc-sp-6) 0 var(--bc-sp-2); }
 .bb-cikk h4 { margin: 0; }
@@ -121,6 +131,8 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
 .bb-blokk.is-javaslat, .bb-blokk.is-korrigalando { border-left-color: var(--bc-warning); }
 .bb-blokk.is-tilos { border-left-color: var(--bc-danger); }
 .bb-blokk.is-hianyzik { border-style: dashed; border-left-style: solid; border-left-color: var(--bc-line-soft); background: transparent; box-shadow: none; }
+/* az egymás utáni azonos jelvény 4. és további példánya: kisebb, kontúros (a szöveg marad, csak a hangsúly csökken) */
+.bc-badge.bb-jelveny-ism { min-height: 0; padding-inline: var(--bc-sp-2); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-semibold); color: var(--bc-ink-soft); background: transparent; border: var(--bc-bw-hair) solid var(--bc-line); }
 .bb-forras { margin-top: var(--bc-sp-3); font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
 .bb-forras summary { display: inline-flex; align-items: center; min-height: var(--bc-tap); min-width: var(--bc-tap); cursor: pointer; font-weight: var(--bc-fw-semibold); }
 .bb-forras ul { margin: 0; padding-left: var(--bc-sp-5); }
@@ -128,6 +140,13 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
   color: var(--bc-ink-soft); border: var(--bc-bw-base) dashed var(--bc-line-soft); border-radius: var(--bc-r-m); }
 
 /* ---- táblák ---- */
+/* Táblázat-burok: a görgethető .bb-tabla (billentyűzettel elérhető régió) körül; a szélén halványodó árnyék jelzi a további tartalmat */
+.bb-tabla-burok { position: relative; isolation: isolate; margin: var(--bc-sp-4) 0; }
+.bb-tabla-burok > .bb-tabla { margin: 0; }
+.bb-tabla-burok::before, .bb-tabla-burok::after { content: ""; position: absolute; top: var(--bc-bw-base); bottom: var(--bc-bw-base); z-index: var(--bc-z-sticky); width: 2rem; opacity: 0; pointer-events: none; transition: opacity var(--bc-t-fast) var(--bc-ease-out); }
+.bb-tabla-burok::before { left: var(--bc-bw-base); border-radius: calc(var(--bc-r-m) - 2px) 0 0 calc(var(--bc-r-m) - 2px); background: linear-gradient(to right, color-mix(in srgb, var(--bc-ink) 30%, transparent), transparent); }
+.bb-tabla-burok::after { right: var(--bc-bw-base); border-radius: 0 calc(var(--bc-r-m) - 2px) calc(var(--bc-r-m) - 2px) 0; background: linear-gradient(to left, color-mix(in srgb, var(--bc-ink) 30%, transparent), transparent); }
+.bb-tabla-burok.is-balra::before, .bb-tabla-burok.is-jobbra::after { opacity: 1; }
 .bb-tabla { margin: var(--bc-sp-4) 0; }
 .bb-tabla tbody th { color: var(--bc-ink); background: var(--bc-surface-2); white-space: normal; vertical-align: top; text-align: left; }
 .bb-tabla thead th { white-space: normal; }
@@ -173,6 +192,21 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
 .bb-logo.is-sotet code { background: var(--bc-night-surface); color: var(--bc-cream); }
 .bb-dd-vizual .bb-logo { padding: var(--bc-sp-4); border: 0; }
 .bb-logo-ok, .bb-logo-hiba { width: 10rem; max-width: 100%; height: auto; }
+/* Hatszög-jelvény (Kristóf döntése, 2026-10-26): sötét háttéren a SZÍNES logó fehér, szabályos hatszögben áll.
+   <span class="bb-logo-jelveny"><img class="bb-logo-ok" src="assets/brand/logo.webp" alt="…"></span>
+   Változók (nincsenek előre beállítva: bármelyik szülőn – akár :root-on – vagy magán a jelvényen megadhatók; az alap a zárójelben):
+     --bb-jelveny-logo       a logó szélessége (alap: 10rem)
+     --bb-jelveny-arany      a hatszög szélessége a logóéhoz képest (alap: 1.4 – a 160 × 98-as logó lapos tetejű hatszögben legalább 1.35-nél fér el egészben)
+     --bb-hatszog-csucsos    0 = lapos tetejű (alap) · 1 = csúcsos tetejű (Ági megerősítésére vár; lásd a jelentést)
+     --bb-jelveny-hatter     a hatszög színe (alap: fehér)
+   A logó a hatszög méretéhez igazodik (a szélességének 1/arány része), ezért bármilyen méretnél középen és egészben látszik;
+   a hatszög a szülő szélességénél nem lesz szélesebb (max-width: 100%). */
+.bb-logo-jelveny { --_logo: var(--bb-jelveny-logo, 10rem); --_arany: var(--bb-jelveny-arany, 1.4); --_p: var(--bb-hatszog-csucsos, 0);
+  display: grid; place-items: center; box-sizing: border-box; flex: none; width: calc(var(--_logo) * var(--_arany)); max-width: 100%;
+  aspect-ratio: calc(1 / (0.866 + 0.2887 * var(--_p))); background: var(--bb-jelveny-hatter, var(--bc-white));
+  clip-path: polygon(calc(25% + 25% * var(--_p)) 0, calc(75% + 25% * var(--_p)) calc(25% * var(--_p)), 100% calc(50% + 25% * var(--_p)),
+    calc(75% - 25% * var(--_p)) 100%, calc(25% - 25% * var(--_p)) calc(100% - 25% * var(--_p)), 0 calc(50% - 25% * var(--_p))); }
+.bb-logo .bb-logo-jelveny img, .bb-logo-jelveny > img { width: calc(100% / var(--_arany)); max-width: none; height: auto; }
 .bb-logo-hiba.is-nyujtott { transform: scaleX(1.6); }
 .bb-logo-hiba.is-szinezett { filter: hue-rotate(160deg) saturate(2); }
 .bb-logo-hiba.is-arnyekos { filter: drop-shadow(6px 6px 4px color-mix(in srgb, var(--bc-black) 55%, transparent)); }
@@ -246,6 +280,8 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
 .bb-lanc-irany { display: flex; align-items: center; gap: var(--bc-sp-1); font-size: var(--bc-fs-s); color: var(--bc-ink-soft); }
 .bb-lanc-irany .bb-ic { width: 16px; height: 16px; }
 .bb-lanc-cim { font-family: var(--bc-font-display); font-size: var(--bc-fs-l); line-height: var(--bc-lh-tight); }
+.bb-tetejere { max-width: var(--bb-olvas); margin: var(--bc-sp-6) 0 0; }
+.bb-tetejere a { display: inline-flex; align-items: center; gap: var(--bc-sp-2); min-height: var(--bc-tap); padding-right: var(--bc-sp-2); font-weight: var(--bc-fw-semibold); }
 .bb-lab { max-width: var(--bb-olvas); margin-top: var(--bc-sp-6); padding-top: var(--bc-sp-4); border-top: var(--bc-bw-hair) solid var(--bc-line-soft); font-size: var(--bc-fs-s); }
 .bb-lab p { margin: 0 0 var(--bc-sp-2); }
 .bb-lab a { display: inline-flex; align-items: center; gap: var(--bc-sp-1); min-height: var(--bc-tap); }
@@ -290,7 +326,8 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
 
 /* ---- Röviden · Mérnököknek ---- */
 .bb-ut { flex: none; display: inline-flex; align-items: center; justify-content: center; min-width: 1.5rem; height: 1.5rem; padding: 0 var(--bc-sp-1); font-size: var(--bc-fs-xs); font-weight: var(--bc-fw-bold); color: var(--bc-ink); background: var(--bc-surface-accent); border: var(--bc-bw-hair) solid var(--bc-line); border-radius: var(--bc-r-pill); }
-.is-brand .bb-sw-t code { display: none; }
+/* Brand Book: a színcsempén a HEX-kód látszik (a CSS-token neve a mérnököknek való, ott rejtve) */
+.is-brand .bb-sw-token { display: none; }
 
 .bb-roviden { margin: 0 0 var(--bc-sp-6); padding: var(--bc-sp-4) var(--bc-sp-5); background: var(--bc-surface-accent); border: var(--bc-bw-base) solid var(--bc-line); border-radius: var(--bc-r-l); }
 .bb-roviden-cim { margin: 0 0 var(--bc-sp-2); font-family: var(--bc-font-display); font-size: var(--bc-fs-l); }
@@ -316,6 +353,8 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
   .bb-test.has-toc { grid-template-columns: var(--bb-nav-w) minmax(0, 1fr); }
   .bb-toc { display: none; }
   .bb-toc-mobil { display: block; }
+  /* a ragadós jegyzék (44 px) alá ne csússzon a horgony-cél */
+  html:has(.bb-toc-mobil) { scroll-padding-top: calc(var(--bb-fej-valos, var(--bb-fej-h)) + var(--bc-tap) + var(--bc-sp-4)); }
 }
 @media (max-width: 900px) {
   :root { --bb-fej-h: 60px; }
@@ -355,7 +394,7 @@ mark { color: var(--bc-on-accent); background: var(--bc-accent); border-radius: 
   .bb-blokk { padding: var(--bc-sp-3) var(--bc-sp-4); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .js .bb-nav, .js .bb-nav.is-open, .bb-nav-nyil, .bb-lanc-elem, .bb-ful { transition: none; }
+  .js .bb-nav, .js .bb-nav.is-open, .bb-nav-nyil, .bb-lanc-elem, .bb-ful, .bb-toc-mobil > summary::after, .bb-tabla-burok::before, .bb-tabla-burok::after { transition: none; }
 }
 @media print {
   .bb-fejlec, .bb-nav, .bb-toc, .bb-toc-mobil, .bb-lanc, .bb-fulsor { display: none; }

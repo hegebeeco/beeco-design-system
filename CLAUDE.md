@@ -34,6 +34,7 @@ A játékok külön tárolókban élnek (első: `~/CLAUDE/beeco-szelektalj`, él
 * Az új motor a repóból ezt olvassa: `brandbook/elemek/` (komponens-adatok), `brandbook/feluletek/*.json` (a hat felület profilja), `brandbook/illusztraciok/`, `brandbook/sablonok/`, `brandbook/kepernyok/` (a `.js`/`.html` a `tools/brandbook-kepernyok.js` kimenete), `brandbook/css/{minta,kepernyo,jatekminta}.css`, `brandbook/js/minta.js`. A régi `tools/brandbook-build.js`, a `brandbook/tartalom/` és a `bb.css` kikerült (a git-előzményben megvan; a régi fejezet → új oldal megfeleltetés: `docs-site/leltar.json`).
 * A felületek mért értékei helyben: `node tools/brandbook-felmeres.js --forras ~/CLAUDE` (csak olvas, eltérést jelez; írás: `--ir`; a kézi szövegekhez nem nyúl).
 * Jelszókapu (csak a Brand Book): `netlify/edge-functions/brand/kapu-brand.js`, a logikát a `netlify/edge-functions/kapu.js` adja (azt a kapu-brand importálja, ne töröld); a jelszó és a titok CSAK a Netlify környezeti változóiban (`BRANDBOOK_JELSZO`, `BRANDBOOK_TITOK`).
+* Oldal-szintű opcionális mezők (a `tools/docs/motor.js` fejléc-kommentje a hiteles leírás): `modositva`, `kulcsszavak`, `hos`, `tipus`, `felelos` (szöveg → „Felelős: …” az oldalfej meta-sorában), `jovahagyva` (ÉÉÉÉ-HH-NN → „Jóváhagyva: <dátum>”).
 * Tartalomszabály: tény csak forrással (`hivatalos`/`szabaly` blokk), Claude-javaslat `javaslat` blokkban („Jóváhagyásra vár”), ismeretlen → `hianyzik`.
   A repó nyilvános: magánszemély elérhetősége, belső szerződéses adat nem kerülhet bele. Teszt: `npm run docs:test` (`tests/docs-check.js`).
 

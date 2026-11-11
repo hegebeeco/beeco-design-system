@@ -77,6 +77,7 @@ const IC = {
   vissza: '<path d="M19 12H5M11 6l-6 6 6 6"/>',
   kulso: '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
   le: '<path d="m6 9 6 6 6-6"/>',
+  fel: '<path d="M12 19V5M6 11l6-6 6 6"/>',
   szerk: '<path d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/>',
   masol: '<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>',
   letolt: '<path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>',
