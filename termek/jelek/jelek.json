@@ -204,6 +204,48 @@
    "nev": "pik-trash-bin",
    "leiras": "Kuka",
    "forras": "figma:APP_PROD DS 2.0, pik-trash-bin"
+  },
+  {
+   "fajl": "market.svg",
+   "nev": "market",
+   "leiras": "Piac: árusbódé csíkos napellenzővel és gyümölccsel",
+   "forras": "kod:beeco-ds-flutter tool/draw_event_stickers.py (0.21.0), helyettes a Figma-rajzig",
+   "allapot": "placeholder"
+  },
+  {
+   "fajl": "protest.svg",
+   "nev": "protest",
+   "leiras": "Tüntetés: jelmondat-tábla felkiáltójellel",
+   "forras": "kod:beeco-ds-flutter tool/draw_event_stickers.py (0.21.0), helyettes a Figma-rajzig",
+   "allapot": "placeholder"
+  },
+  {
+   "fajl": "grant.svg",
+   "nev": "grant",
+   "leiras": "Pályázat: dokumentum csillagos pecséttel",
+   "forras": "kod:beeco-ds-flutter tool/draw_event_stickers.py (0.21.0), helyettes a Figma-rajzig",
+   "allapot": "placeholder"
+  },
+  {
+   "fajl": "petition.svg",
+   "nev": "petition",
+   "leiras": "Petíció: aláírólap felírótáblán, pipált sorokkal",
+   "forras": "kod:beeco-ds-flutter tool/draw_event_stickers.py (0.21.0), helyettes a Figma-rajzig",
+   "allapot": "placeholder"
+  },
+  {
+   "fajl": "job.svg",
+   "nev": "job",
+   "leiras": "Állás: aktatáska",
+   "forras": "kod:beeco-ds-flutter tool/draw_event_stickers.py (0.21.0), helyettes a Figma-rajzig",
+   "allapot": "placeholder"
+  },
+  {
+   "fajl": "research.svg",
+   "nev": "research",
+   "leiras": "Kutatás: nagyító oszlopdiagrammal",
+   "forras": "kod:beeco-ds-flutter tool/draw_event_stickers.py (0.21.0), helyettes a Figma-rajzig",
+   "allapot": "placeholder"
   }
  ],
  "regi_nevek": {

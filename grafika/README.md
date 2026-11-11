@@ -9,9 +9,9 @@ Indoklás és lépések: [`docs/javaslatok/28-egy-grafikai-forras.md`](../docs/j
 
 ## Mi van benne most (1. lépés)
 
-Két rész, együtt 838 tétel:
-- [`katalogus.json`](katalogus.json) – **kézzel gondozott** (130): méhek, madarak, Csicsergősz-díszletek, logó. Ezt szerkeszd.
-- [`gen/`](gen/) – **generált** (708): `art.json` (619 kódmatrica), `ikonok.json` (55 ikon), `jelek.json` (34 kétszínű jel). Forrásuk a saját metaadatuk; ne szerkeszd kézzel: `node tools/grafika-build.js` (az `npm run build` is futtatja).
+Két rész, együtt 891 tétel:
+- [`katalogus.json`](katalogus.json) – **kézzel gondozott** (177): méhek, madarak, Csicsergősz-díszletek, logó, a Flutter-DS téma-képei és illusztrációi, a Vízadás 2027 képei. Ezt szerkeszd.
+- [`gen/`](gen/) – **generált** (708): `art.json` (619 kódmatrica), `ikonok.json` (55 ikon), `jelek.json` (40 kétszínű jel). Forrásuk a saját metaadatuk; ne szerkeszd kézzel: `node tools/grafika-build.js` (az `npm run build` is futtatja).
 
 | Család | Darab | Mi |
 |---|---|---|
@@ -21,15 +21,16 @@ Két rész, együtt 838 tétel:
 | `bird-madarka` | 4 | „madárkák” (sokszög stílus) |
 | `bird-robin` | 5 | a vörösbegy pózai (kampány-weboldal, infografika) |
 | `bird-species` | 7 | a Madárgyár renderjei a brandbookban |
-| `scene` | 19 | Csicsergősz-díszletek (borító, dombok, etető, itató, odú, hurok) |
-| `pictogram` | 3 | Csicsergősz-piktogramok (élőhely, rovarok, vadvirág) |
-| `logo` | 2 | logó, világos és sötét |
+| `scene` | 29 | Csicsergősz-díszletek (borító, dombok, etető, itató, odú, hurok) + 10 Vízadás 2027 díszlet (fák, város, minta) |
+| `pictogram` | 6 | Csicsergősz-piktogramok (élőhely, rovarok, vadvirág) + Vízadás (kút, kupa, pecsét) |
+| `logo` | 4 | logó, világos és sötét; Vízadás-logó fehér és kék |
+| `ill` | 32 | a Flutter-DS 0.22 téma-képei (21: 6 téma-méh, 6 téma-piktogram, 9 egyenérték-jel; `grafika/tema/`), a Flutter-DS 7 illusztrációja (`grafika/ill/`, helyettes), 4 Vízadás-méh |
 | `art` | 619 | kódból rajzolt matricák (`web/js/art/`), generált |
 | `icon` | 55 | a közös vonalas ikonok (`termek/ikonok/`), generált |
-| `sticker` | 34 | a közös kétszínű jelek (`termek/jelek/`, a Flutter-DS-sel bájtra azonos), generált |
+| `sticker` | 40 | a közös kétszínű jelek (`termek/jelek/`, a Flutter-DS-sel bájtra azonos), generált; ebből 6 kódból rajzolt helyettes (esemény-kategóriák) |
 
 Fájl nem mozdult, és semmi nincs átnevezve: a tételek a meglévő fájlokra mutatnak.
-Még nincs benne: a Flutter-DS 7 nem méh illusztrációja (`sign-*`, `onboarding-*`, `swarm`) és a 3D-modellek.
+Még nincs benne: a 3D-modellek és a POI-piktogramok. A rajzra váró helyettesek listája: `kepernyo-tervek/qa/ds_check/LEGENERALANDO.md` (beeco-app-tree).
 
 ## Nagy felbontású mesterek
 
@@ -58,13 +59,14 @@ A [`mester/`](mester/) mappában 55 méh van SVG-ként (54 tiszta vektor; a `bee
 | `roles` | a `tokens/hangnem.json` szerepei, amelyek ezt a képet használják (az őr ellenőrzi) |
 | `forbidden` | tiltott kép (ma: a mérges méh). Nincs szerepe, nincs kimenete |
 | `license` | `beeco-marka` · `nyilvanos` · `harmadik-fel` · `mi-generalt` (MI-kép csak jelölve, Kristóf 2026-10-26) |
-| `origin.kind` | `illusztrator` · `figma` · `kod` · `madargyar` · `mi` |
+| `origin.kind` | `illusztrator` · `figma` · `kod` · `madargyar` · `mi` · `sajat` (beeco saját rajza, Kristóf 2026-11-11; ha a rajzoló nincs igazolva, az `author` ezt írja) |
 | `style` | ahol ugyanaz a figura két stílusban van: `barna-csik` (hivatalos) / `fekete-csik` (régi) |
 | `aliases` | a régi nevek fogyasztónként. `web` = fájl ebben a repóban (az őr megnézi, hogy létezik). `app` = a mobilapp `assets/images/` alatti neve. `flutter` = a Flutter-DS manifest-neve (logónál, ikonnál, jelnél a csomag-beli fájlútvonal). `art` = az ART-matrica neve (`ART`, `pic()`), `react` = az `Ic*` export. `apiKey` = a backend profilkép-értéke (**szerződés, nem változhat**, a befagyasztott lista: [`api-kulcsok.json`](api-kulcsok.json)). `sprite`, `infografika`. Minden alias egyetlen név; a további előfordulások a `note`-ban |
 | `outputs` | mely generátor adja ki: `flutter` · `web` · `infografika` · `figma` · `webflow` |
-| `status` | `aktiv` · `kivezetendo` (szerepben már nem használjuk) · `csak-api` |
+| `status` | `aktiv` · `kivezetendo` (szerepben már nem használjuk) · `csak-api` · `placeholder` (helyettes: kódból rajzolt vagy mester nélküli kép, rajzra vár) |
 | `emoji` | csak matricánál: az emoji-aliasok listája (a játékok emojival is hívhatják) |
 | `note` | szabad megjegyzés |
+| `set`, `group`, `topic`, `dp`, `files` | a Flutter-DS-ből átvett képeknél: készlet, csoport, a Flutter `BeecoTopic`-érték, tervezési méret dp-ben, és a fájlok sűrűségenként (`density`, `web`, `flutter`, `bytes`, `sha256`): a két oldal bájtra azonos |
 
 ## Döntések, amiket a katalógus már tükröz (Kristóf, 2026-10-26)
 

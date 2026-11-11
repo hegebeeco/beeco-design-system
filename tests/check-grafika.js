@@ -23,8 +23,8 @@ const hiba = m => hibak.push(m);
 
 const FAMILIES = ['bee', 'bee-role', 'gabee', 'bird-madarka', 'bird-robin', 'bird-species', 'scene', 'pictogram', 'sticker', 'icon', 'art', 'ill', 'logo'];
 const LICENSES = ['beeco-marka', 'nyilvanos', 'harmadik-fel', 'mi-generalt'];
-const ORIGINS = ['illusztrator', 'figma', 'kod', 'madargyar', 'mi'];
-const STATUSES = ['aktiv', 'kivezetendo', 'csak-api'];
+const ORIGINS = ['illusztrator', 'figma', 'kod', 'madargyar', 'mi', 'sajat'];
+const STATUSES = ['aktiv', 'kivezetendo', 'csak-api', 'placeholder'];
 const OUTPUTS = ['flutter', 'web', 'infografika', 'figma', 'webflow'];
 
 try { execFileSync('node', [path.join(ROOT, 'tools/grafika-build.js'), '--check'], { encoding: 'utf8' }); }

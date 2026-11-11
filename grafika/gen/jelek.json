@@ -714,6 +714,132 @@
     "flutter"
    ],
    "status": "aktiv"
+  },
+  {
+   "id": "sticker-market",
+   "family": "sticker",
+   "hu": "Piac: árusbódé csíkos napellenzővel és gyümölccsel",
+   "en": "Market",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "kod:beeco-ds-flutter tool/draw_event_stickers.py (0.21.0), helyettes a Figma-rajzig"
+   },
+   "aliases": {
+    "web": "termek/jelek/market.svg",
+    "flutter": "stickers/market.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "placeholder"
+  },
+  {
+   "id": "sticker-protest",
+   "family": "sticker",
+   "hu": "Tüntetés: jelmondat-tábla felkiáltójellel",
+   "en": "Protest",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "kod:beeco-ds-flutter tool/draw_event_stickers.py (0.21.0), helyettes a Figma-rajzig"
+   },
+   "aliases": {
+    "web": "termek/jelek/protest.svg",
+    "flutter": "stickers/protest.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "placeholder"
+  },
+  {
+   "id": "sticker-grant",
+   "family": "sticker",
+   "hu": "Pályázat: dokumentum csillagos pecséttel",
+   "en": "Grant",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "kod:beeco-ds-flutter tool/draw_event_stickers.py (0.21.0), helyettes a Figma-rajzig"
+   },
+   "aliases": {
+    "web": "termek/jelek/grant.svg",
+    "flutter": "stickers/grant.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "placeholder"
+  },
+  {
+   "id": "sticker-petition",
+   "family": "sticker",
+   "hu": "Petíció: aláírólap felírótáblán, pipált sorokkal",
+   "en": "Petition",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "kod:beeco-ds-flutter tool/draw_event_stickers.py (0.21.0), helyettes a Figma-rajzig"
+   },
+   "aliases": {
+    "web": "termek/jelek/petition.svg",
+    "flutter": "stickers/petition.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "placeholder"
+  },
+  {
+   "id": "sticker-job",
+   "family": "sticker",
+   "hu": "Állás: aktatáska",
+   "en": "Job",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "kod:beeco-ds-flutter tool/draw_event_stickers.py (0.21.0), helyettes a Figma-rajzig"
+   },
+   "aliases": {
+    "web": "termek/jelek/job.svg",
+    "flutter": "stickers/job.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "placeholder"
+  },
+  {
+   "id": "sticker-research",
+   "family": "sticker",
+   "hu": "Kutatás: nagyító oszlopdiagrammal",
+   "en": "Research",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "kod",
+    "source": "kod:beeco-ds-flutter tool/draw_event_stickers.py (0.21.0), helyettes a Figma-rajzig"
+   },
+   "aliases": {
+    "web": "termek/jelek/research.svg",
+    "flutter": "stickers/research.svg"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "placeholder"
   }
  ]
 }
