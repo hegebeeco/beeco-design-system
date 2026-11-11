@@ -2876,6 +2876,1873 @@
    ],
    "status": "aktiv",
    "note": "A sajat/pikto-vadvirag.svg ugyanennek a jelnek a saját rajzú változata."
+  },
+  {
+   "id": "topic-bee-food",
+   "family": "ill",
+   "hu": "Étkezés – téma-méh",
+   "en": "Food topic bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/bee_food.webp",
+    "app": "footprint/meal_bee",
+    "flutter": "assets/topic/bee_food.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "topic-bee",
+   "dp": [
+    102,
+    110
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/bee_food.webp",
+     "flutter": "assets/topic/bee_food.webp",
+     "bytes": 4526,
+     "sha256": "e058bb878b304f9df5ba22f6b8a344d9ed7c19a8fccdbe9cba118c5b6a8042c9"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/bee_food.webp",
+     "flutter": "assets/topic/2.0x/bee_food.webp",
+     "bytes": 8494,
+     "sha256": "48220230107ca1bbab30e69321a3eb8cab0ccdf464673a998cc73d4aea5f8122"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/bee_food.webp",
+     "flutter": "assets/topic/3.0x/bee_food.webp",
+     "bytes": 12364,
+     "sha256": "0fce64cc1530483a8925afad6f7aa7e468d9150049165480aacc644ff5f4084d"
+    }
+   ],
+   "topic": "food",
+   "note": "BeecoTopic.food / BeecoTopicBee. Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "topic-icon-food",
+   "family": "ill",
+   "hu": "Étkezés – téma-piktogram",
+   "en": "Food topic pictogram",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/icon_food.webp",
+    "app": "footprint/detailed_food_icon",
+    "flutter": "assets/topic/icon_food.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "topic-icon",
+   "dp": [
+    32,
+    33
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/icon_food.webp",
+     "flutter": "assets/topic/icon_food.webp",
+     "bytes": 322,
+     "sha256": "7c3974a2d631496f2b1c47e01e222a3dd208a4cd797cc295738e60835cebf820"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/icon_food.webp",
+     "flutter": "assets/topic/2.0x/icon_food.webp",
+     "bytes": 642,
+     "sha256": "66d0d2faa238538ccb7d21882eab373d9c93ae5a75b4269f4d754be902e4a15e"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/icon_food.webp",
+     "flutter": "assets/topic/3.0x/icon_food.webp",
+     "bytes": 918,
+     "sha256": "2aa4383831359db1e069d1b83346250928db5ed090ab3737dc2229757493e771"
+    }
+   ],
+   "topic": "food",
+   "note": "BeecoTopic.food / BeecoTopicIcon; fekete körvonal, fehér belső, a DS ink/surface színre festi. Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "topic-bee-consumption",
+   "family": "ill",
+   "hu": "Fogyasztás – téma-méh",
+   "en": "Consumption topic bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/bee_consumption.webp",
+    "app": "footprint/shopping_bee",
+    "flutter": "assets/topic/bee_consumption.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "topic-bee",
+   "dp": [
+    139,
+    117
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/bee_consumption.webp",
+     "flutter": "assets/topic/bee_consumption.webp",
+     "bytes": 6104,
+     "sha256": "7a5466f73195ec2d49de034c912756ea0aadf12280b0320d4c5611b59f9e9eae"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/bee_consumption.webp",
+     "flutter": "assets/topic/2.0x/bee_consumption.webp",
+     "bytes": 11282,
+     "sha256": "c6e547d29910085f77780fa8769c1d895b841a626469df558457feb431c2b59f"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/bee_consumption.webp",
+     "flutter": "assets/topic/3.0x/bee_consumption.webp",
+     "bytes": 16032,
+     "sha256": "d3d38dcdccb7d12d62e66b2c4bc1fe3d5e008c336ca351882feabba28f967341"
+    }
+   ],
+   "topic": "consumption",
+   "note": "BeecoTopic.consumption / BeecoTopicBee. Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "topic-icon-consumption",
+   "family": "ill",
+   "hu": "Fogyasztás – téma-piktogram",
+   "en": "Consumption topic pictogram",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/icon_consumption.webp",
+    "app": "footprint/detailed_consumption_icon",
+    "flutter": "assets/topic/icon_consumption.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "topic-icon",
+   "dp": [
+    44,
+    44
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/icon_consumption.webp",
+     "flutter": "assets/topic/icon_consumption.webp",
+     "bytes": 458,
+     "sha256": "d3dee8c7aa74613c58cd4f4908d8c951a926b67fcf639f6b4013b15f53b8b37a"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/icon_consumption.webp",
+     "flutter": "assets/topic/2.0x/icon_consumption.webp",
+     "bytes": 812,
+     "sha256": "cd04b409a9cbc1653d1e35ecd48bf42ae4133ca60685a520fbf071979f801e43"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/icon_consumption.webp",
+     "flutter": "assets/topic/3.0x/icon_consumption.webp",
+     "bytes": 1164,
+     "sha256": "006afa5e55e03221f366a0b869aef51e1bd9f0135b9568622957b6fc3c125a5c"
+    }
+   ],
+   "topic": "consumption",
+   "note": "BeecoTopic.consumption / BeecoTopicIcon; fekete körvonal, fehér belső, a DS ink/surface színre festi. Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "topic-bee-home",
+   "family": "ill",
+   "hu": "Otthon – téma-méh",
+   "en": "Home topic bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/bee_home.webp",
+    "app": "footprint/home_energy_bee",
+    "flutter": "assets/topic/bee_home.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "topic-bee",
+   "dp": [
+    125,
+    104
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/bee_home.webp",
+     "flutter": "assets/topic/bee_home.webp",
+     "bytes": 4452,
+     "sha256": "a937582bb2159aef6e59b0126af9b9c54c790e415dd28a7f76e4927b78da2baf"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/bee_home.webp",
+     "flutter": "assets/topic/2.0x/bee_home.webp",
+     "bytes": 8182,
+     "sha256": "c7982192fb5c166531272561d419d5088a5ef9d9f44cf7fc47fbb43e1693dfb8"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/bee_home.webp",
+     "flutter": "assets/topic/3.0x/bee_home.webp",
+     "bytes": 11628,
+     "sha256": "06413d57d3e13621b1ce5479d84d03522314c38d163e9b68bce1157d11f21dfb"
+    }
+   ],
+   "topic": "home",
+   "note": "BeecoTopic.home / BeecoTopicBee. Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "topic-icon-home",
+   "family": "ill",
+   "hu": "Otthon – téma-piktogram",
+   "en": "Home topic pictogram",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/icon_home.webp",
+    "app": "footprint/detailed_home_icon",
+    "flutter": "assets/topic/icon_home.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "topic-icon",
+   "dp": [
+    32,
+    32
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/icon_home.webp",
+     "flutter": "assets/topic/icon_home.webp",
+     "bytes": 386,
+     "sha256": "cd075c12f45e0d8f25355abb592f1bd61d4481f26fed4afa249b76393bff63f3"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/icon_home.webp",
+     "flutter": "assets/topic/2.0x/icon_home.webp",
+     "bytes": 682,
+     "sha256": "c82f4d2084fbf136487cd821cfa24e9f3271c28512254f42694c07842f09d3b3"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/icon_home.webp",
+     "flutter": "assets/topic/3.0x/icon_home.webp",
+     "bytes": 980,
+     "sha256": "a8895a915c95c844bf7175e51dfe2b5c0b6c3cf450d0ac979be2da06ce17359a"
+    }
+   ],
+   "topic": "home",
+   "note": "BeecoTopic.home / BeecoTopicIcon; fekete körvonal, fehér belső, a DS ink/surface színre festi. Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "topic-bee-transport",
+   "family": "ill",
+   "hu": "Közlekedés – téma-méh",
+   "en": "Transport topic bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/bee_transport.webp",
+    "app": "footprint/travel_bee",
+    "flutter": "assets/topic/bee_transport.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "topic-bee",
+   "dp": [
+    96,
+    132
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/bee_transport.webp",
+     "flutter": "assets/topic/bee_transport.webp",
+     "bytes": 5848,
+     "sha256": "f96640a4e51225e69f2d42278d9c64ae48074c99a1402cf31258a898a5ec00be"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/bee_transport.webp",
+     "flutter": "assets/topic/2.0x/bee_transport.webp",
+     "bytes": 11188,
+     "sha256": "f67fe6a7191838ec152bc8e577042e7522d1c2d51b0f3ea45a39a718a6c8af14"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/bee_transport.webp",
+     "flutter": "assets/topic/3.0x/bee_transport.webp",
+     "bytes": 16396,
+     "sha256": "b42f92147094a3afd7923b3bb2552ca72620884634a49cac6db6da03e619ce81"
+    }
+   ],
+   "topic": "transport",
+   "note": "BeecoTopic.transport / BeecoTopicBee. Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "topic-icon-transport",
+   "family": "ill",
+   "hu": "Közlekedés – téma-piktogram",
+   "en": "Transport topic pictogram",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/icon_transport.webp",
+    "app": "footprint/detailed_transport_icon",
+    "flutter": "assets/topic/icon_transport.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "topic-icon",
+   "dp": [
+    32,
+    33
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/icon_transport.webp",
+     "flutter": "assets/topic/icon_transport.webp",
+     "bytes": 438,
+     "sha256": "8dbda51132ef3c35e7ae1ff2748b0d96e27a751c27fb872f383306bc7c59867a"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/icon_transport.webp",
+     "flutter": "assets/topic/2.0x/icon_transport.webp",
+     "bytes": 842,
+     "sha256": "0b1c61aace792da465cc60432c5189a171b17c6d1776222afbe4abf6e97422d7"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/icon_transport.webp",
+     "flutter": "assets/topic/3.0x/icon_transport.webp",
+     "bytes": 1210,
+     "sha256": "bc684b8296b954e171afbd5f7e1f7c1c7706005b77b969c5597ef92327ac7281"
+    }
+   ],
+   "topic": "transport",
+   "note": "BeecoTopic.transport / BeecoTopicIcon; fekete körvonal, fehér belső, a DS ink/surface színre festi. Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "topic-bee-waste",
+   "family": "ill",
+   "hu": "Hulladék – téma-méh",
+   "en": "Waste topic bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/bee_waste.webp",
+    "app": "footprint/waste_bee",
+    "flutter": "assets/topic/bee_waste.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "topic-bee",
+   "dp": [
+    150,
+    150
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/bee_waste.webp",
+     "flutter": "assets/topic/bee_waste.webp",
+     "bytes": 4718,
+     "sha256": "94ca9041dc6e3cbeb827898dc35d2f5a042d0bb78a1565141378c213281b9d27"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/bee_waste.webp",
+     "flutter": "assets/topic/2.0x/bee_waste.webp",
+     "bytes": 9222,
+     "sha256": "5d8fae16e079bc830448e8137d0d438a4f710507dae10751244fd1cd87ee412f"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/bee_waste.webp",
+     "flutter": "assets/topic/3.0x/bee_waste.webp",
+     "bytes": 13212,
+     "sha256": "610439aa389bf4d605679d78341b862488fe4c091d58e71fe242a5e386033584"
+    }
+   ],
+   "topic": "waste",
+   "note": "BeecoTopic.waste / BeecoTopicBee. Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "topic-icon-waste",
+   "family": "ill",
+   "hu": "Hulladék – téma-piktogram",
+   "en": "Waste topic pictogram",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/icon_waste.webp",
+    "app": "footprint/trash",
+    "flutter": "assets/topic/icon_waste.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "topic-icon",
+   "dp": [
+    59,
+    60
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/icon_waste.webp",
+     "flutter": "assets/topic/icon_waste.webp",
+     "bytes": 674,
+     "sha256": "3c45523109e76bb19cd3172b02d9f83e8e9dc77928d09e77af33a7db9ea5a26f"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/icon_waste.webp",
+     "flutter": "assets/topic/2.0x/icon_waste.webp",
+     "bytes": 1232,
+     "sha256": "bb92d1bbbfc723390d447aef4050f77aab4535271cc91dc607f154ee46290b7f"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/icon_waste.webp",
+     "flutter": "assets/topic/3.0x/icon_waste.webp",
+     "bytes": 1830,
+     "sha256": "d01064b374a99c271059eb253c8a6bd7a4602f8d297e4e876fa0591b8e4cb0a6"
+    }
+   ],
+   "topic": "waste",
+   "note": "BeecoTopic.waste / BeecoTopicIcon; fekete körvonal, fehér belső, a DS ink/surface színre festi. Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "topic-bee-digital",
+   "family": "ill",
+   "hu": "Digitális élet – téma-méh",
+   "en": "Digital life topic bee",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/bee_digital.webp",
+    "app": "footprint/digital_bee",
+    "flutter": "assets/topic/bee_digital.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "topic-bee",
+   "dp": [
+    145,
+    103
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/bee_digital.webp",
+     "flutter": "assets/topic/bee_digital.webp",
+     "bytes": 4652,
+     "sha256": "6519a53282fe8e148d5fced47ae15f1eee9d243f700dbec9c7279abb1e1042ae"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/bee_digital.webp",
+     "flutter": "assets/topic/2.0x/bee_digital.webp",
+     "bytes": 8866,
+     "sha256": "38bff661c9dbf2323912d676424cca06f526392ac17facb17f36d3f381ee2fa0"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/bee_digital.webp",
+     "flutter": "assets/topic/3.0x/bee_digital.webp",
+     "bytes": 12752,
+     "sha256": "c268fc5be97992419049fc2ea09f8409af1f42957c49b22129c42aa53b82fee4"
+    }
+   ],
+   "topic": "digital",
+   "note": "BeecoTopic.digital / BeecoTopicBee. Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "topic-icon-digital",
+   "family": "ill",
+   "hu": "Digitális élet – téma-piktogram",
+   "en": "Digital life topic pictogram",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/icon_digital.webp",
+    "app": "footprint/detailed_digital_icon",
+    "flutter": "assets/topic/icon_digital.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "topic-icon",
+   "dp": [
+    42,
+    38
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/icon_digital.webp",
+     "flutter": "assets/topic/icon_digital.webp",
+     "bytes": 558,
+     "sha256": "ddb88269082f37fa79ca0942602de1e4905df4f746b856977edc54c7b3227351"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/icon_digital.webp",
+     "flutter": "assets/topic/2.0x/icon_digital.webp",
+     "bytes": 1144,
+     "sha256": "b6133d1632ca1096c77d43cf61b525088284632ca61ac13ac10e7b9b4e3e2da7"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/icon_digital.webp",
+     "flutter": "assets/topic/3.0x/icon_digital.webp",
+     "bytes": 1648,
+     "sha256": "7bca99390f5ed8050622f8e7fba3db880d093c4e71b2870fda28ef2f954ed202"
+    }
+   ],
+   "topic": "digital",
+   "note": "BeecoTopic.digital / BeecoTopicIcon; fekete körvonal, fehér belső, a DS ink/surface színre festi. Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "equivalence-car",
+   "family": "ill",
+   "hu": "Autó (egyenérték-jel)",
+   "en": "Car (equivalence)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/eq_car.webp",
+    "app": "footprint_car",
+    "flutter": "assets/topic/eq_car.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "equivalence",
+   "dp": [
+    66,
+    66
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/eq_car.webp",
+     "flutter": "assets/topic/eq_car.webp",
+     "bytes": 468,
+     "sha256": "0516fcc5adb24df46b5290e6107b7030cdb1383ccd5e1062c481ea37e28b6182"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/eq_car.webp",
+     "flutter": "assets/topic/2.0x/eq_car.webp",
+     "bytes": 716,
+     "sha256": "143820bb7bf31a06bf513641f2bee2cd973c8cd02f1867b0e3c5b43c5cc2d8e8"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/eq_car.webp",
+     "flutter": "assets/topic/3.0x/eq_car.webp",
+     "bytes": 986,
+     "sha256": "b99acc68cd7d2050e68f9dc8d1ec1c6dad1636fc3ba02e524cf9553603171232"
+    }
+   ],
+   "note": "BeecoEquivalence.car / BeecoEquivalenceIcon; egyszínű maszk (successInk). Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "equivalence-forest",
+   "family": "ill",
+   "hu": "Erdő (egyenérték-jel)",
+   "en": "Forest (equivalence)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/eq_forest.webp",
+    "app": "footprint_forest",
+    "flutter": "assets/topic/eq_forest.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "equivalence",
+   "dp": [
+    99,
+    66
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/eq_forest.webp",
+     "flutter": "assets/topic/eq_forest.webp",
+     "bytes": 902,
+     "sha256": "9e3c247e5d728223cfe50021abd422822b1dc73ad8c8c0035dacf0df6ae4ce08"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/eq_forest.webp",
+     "flutter": "assets/topic/2.0x/eq_forest.webp",
+     "bytes": 1676,
+     "sha256": "454fc9db236ec763bab0a500772a4d3f98a224dc2256fc9540e162fc56783c25"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/eq_forest.webp",
+     "flutter": "assets/topic/3.0x/eq_forest.webp",
+     "bytes": 2458,
+     "sha256": "ee535d2fc54d9accc0126014a046aed05770add374cbe0d6d0ec12244461d0c4"
+    }
+   ],
+   "note": "BeecoEquivalence.forest / BeecoEquivalenceIcon; egyszínű maszk (successInk). Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "equivalence-streaming",
+   "family": "ill",
+   "hu": "Filmnézés (streaming) (egyenérték-jel)",
+   "en": "Streaming (equivalence)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/eq_streaming.webp",
+    "app": "footprint_movie",
+    "flutter": "assets/topic/eq_streaming.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "equivalence",
+   "dp": [
+    66,
+    66
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/eq_streaming.webp",
+     "flutter": "assets/topic/eq_streaming.webp",
+     "bytes": 352,
+     "sha256": "0449cb57af0c024af86976d2420da4c915a7c3aadce294298cc355636d8c5b06"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/eq_streaming.webp",
+     "flutter": "assets/topic/2.0x/eq_streaming.webp",
+     "bytes": 570,
+     "sha256": "656e2f7cdd3df0fdd1f24a1143f64fd3663acbdf2941491e21f1b6775ea08024"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/eq_streaming.webp",
+     "flutter": "assets/topic/3.0x/eq_streaming.webp",
+     "bytes": 816,
+     "sha256": "b03dedc5141edfad4fbedc8b5f8c531c73137f4a240f7dc58e0625a9a7a3f3c8"
+    }
+   ],
+   "note": "BeecoEquivalence.streaming / BeecoEquivalenceIcon; egyszínű maszk (successInk). Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "equivalence-elephant",
+   "family": "ill",
+   "hu": "Elefánt (egyenérték-jel)",
+   "en": "Elephant (equivalence)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/eq_elephant.webp",
+    "app": "footprint/elephant",
+    "flutter": "assets/topic/eq_elephant.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "equivalence",
+   "dp": [
+    72,
+    58
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/eq_elephant.webp",
+     "flutter": "assets/topic/eq_elephant.webp",
+     "bytes": 692,
+     "sha256": "f1469b6ea761f266aeab99ebce324a799913f1757d25596f5a68396c19d85bb5"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/eq_elephant.webp",
+     "flutter": "assets/topic/2.0x/eq_elephant.webp",
+     "bytes": 1252,
+     "sha256": "1b0ec0c197114cab774c58f1cd24eeff5a97c8f20d30a4888cd155fc168bcd93"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/eq_elephant.webp",
+     "flutter": "assets/topic/3.0x/eq_elephant.webp",
+     "bytes": 1818,
+     "sha256": "12864e8001278570331a726a2edc070105060b72b27d441ccacb0418a6d9bafd"
+    }
+   ],
+   "note": "BeecoEquivalence.elephant / BeecoEquivalenceIcon; egyszínű maszk (successInk). Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "equivalence-human",
+   "family": "ill",
+   "hu": "Ember (egyenérték-jel)",
+   "en": "Person (equivalence)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/eq_human.webp",
+    "app": "footprint/human",
+    "flutter": "assets/topic/eq_human.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "equivalence",
+   "dp": [
+    37,
+    64
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/eq_human.webp",
+     "flutter": "assets/topic/eq_human.webp",
+     "bytes": 658,
+     "sha256": "070f2a48d0c466c4a88cf1bc7169776de25e0868251a31599dc0910991dc396d"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/eq_human.webp",
+     "flutter": "assets/topic/2.0x/eq_human.webp",
+     "bytes": 1240,
+     "sha256": "44c1fa60db5266dda641462852f40b872bf10522586f1a39edfdbf18b255790c"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/eq_human.webp",
+     "flutter": "assets/topic/3.0x/eq_human.webp",
+     "bytes": 1786,
+     "sha256": "73cb1fc4fddb0ada8054ab0fdda0890b8621186b38bbf653890e2e23de1a9c22"
+    }
+   ],
+   "note": "BeecoEquivalence.human / BeecoEquivalenceIcon; egyszínű maszk (successInk). Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "equivalence-bike",
+   "family": "ill",
+   "hu": "Kerékpár (egyenérték-jel)",
+   "en": "Bike (equivalence)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/eq_bike.webp",
+    "app": "footprint/bike",
+    "flutter": "assets/topic/eq_bike.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "equivalence",
+   "dp": [
+    65,
+    36
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/eq_bike.webp",
+     "flutter": "assets/topic/eq_bike.webp",
+     "bytes": 646,
+     "sha256": "6091f14a965b88e8e5a68e63fe428a834b55b18c015091652da1cf1e3fedb38d"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/eq_bike.webp",
+     "flutter": "assets/topic/2.0x/eq_bike.webp",
+     "bytes": 1150,
+     "sha256": "ed5de381665855e974cb1871bd4ea043533234846b61b3f2da174a338e0440aa"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/eq_bike.webp",
+     "flutter": "assets/topic/3.0x/eq_bike.webp",
+     "bytes": 1678,
+     "sha256": "e4d2f5d384f75e602428fe72ddd1dc4b6b4ee631f24e659409f46809bddc93c5"
+    }
+   ],
+   "note": "BeecoEquivalence.bike / BeecoEquivalenceIcon; egyszínű maszk (successInk). Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "equivalence-bathtub",
+   "family": "ill",
+   "hu": "Fürdőkád (egyenérték-jel)",
+   "en": "Bathtub (equivalence)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/eq_bathtub.webp",
+    "app": "footprint/bath_tube",
+    "flutter": "assets/topic/eq_bathtub.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "equivalence",
+   "dp": [
+    92,
+    47
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/eq_bathtub.webp",
+     "flutter": "assets/topic/eq_bathtub.webp",
+     "bytes": 634,
+     "sha256": "fd353f70470e20a96f19cee3246b23e3b7d45e51e2ed260b4378c26ffd0aa407"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/eq_bathtub.webp",
+     "flutter": "assets/topic/2.0x/eq_bathtub.webp",
+     "bytes": 1114,
+     "sha256": "8708abfc2a1bcd3c91a893a15b149aba7bbe8b5e4fd0de3faabd1cac43ad7239"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/eq_bathtub.webp",
+     "flutter": "assets/topic/3.0x/eq_bathtub.webp",
+     "bytes": 1590,
+     "sha256": "563eb9e16879dc87f18a2f5e2141c2ff2778445b8330fc0e0013d3e14039614c"
+    }
+   ],
+   "note": "BeecoEquivalence.bathtub / BeecoEquivalenceIcon; egyszínű maszk (successInk). Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "equivalence-watering-can",
+   "family": "ill",
+   "hu": "Locsolókanna (egyenérték-jel)",
+   "en": "Watering can (equivalence)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/eq_watering_can.webp",
+    "app": "footprint/watering_can",
+    "flutter": "assets/topic/eq_watering_can.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "equivalence",
+   "dp": [
+    71,
+    51
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/eq_watering_can.webp",
+     "flutter": "assets/topic/eq_watering_can.webp",
+     "bytes": 714,
+     "sha256": "5f76e7ad12dbe63f1558857a9cf67daf52ce5bf93a19491121b74c97c86593d4"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/eq_watering_can.webp",
+     "flutter": "assets/topic/2.0x/eq_watering_can.webp",
+     "bytes": 1340,
+     "sha256": "643cb693c510abe6d20c61128beb23772547c189c61aed276ff7dfc78cd3579d"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/eq_watering_can.webp",
+     "flutter": "assets/topic/3.0x/eq_watering_can.webp",
+     "bytes": 1956,
+     "sha256": "12fa664c1d92d2bf2a304b16531c18c8795f88a01a4f9f24d8e933e592dcd0f6"
+    }
+   ],
+   "note": "BeecoEquivalence.wateringCan / BeecoEquivalenceIcon; egyszínű maszk (successInk). Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "equivalence-strawberry",
+   "family": "ill",
+   "hu": "Eper (egyenérték-jel)",
+   "en": "Strawberry (equivalence)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/tema/eq_strawberry.webp",
+    "app": "footprint/strawberry",
+    "flutter": "assets/topic/eq_strawberry.webp"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "aktiv",
+   "set": "topic",
+   "group": "equivalence",
+   "dp": [
+    45,
+    60
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/tema/eq_strawberry.webp",
+     "flutter": "assets/topic/eq_strawberry.webp",
+     "bytes": 814,
+     "sha256": "2f303b1bf75613067f22dba61835427d75e9362b4282efdd908dbed18c73323e"
+    },
+    {
+     "density": 2,
+     "web": "grafika/tema/2.0x/eq_strawberry.webp",
+     "flutter": "assets/topic/2.0x/eq_strawberry.webp",
+     "bytes": 1484,
+     "sha256": "8767acaf9ce606b7d802141e59b097767b3cafa62cc74e55a6cbe99d82a4619c"
+    },
+    {
+     "density": 3,
+     "web": "grafika/tema/3.0x/eq_strawberry.webp",
+     "flutter": "assets/topic/3.0x/eq_strawberry.webp",
+     "bytes": 2182,
+     "sha256": "07bfb5ee3c5b8a5c14a777b64c36933906b7229e633c64c0929f8e119710a500"
+    }
+   ],
+   "note": "BeecoEquivalence.strawberry / BeecoEquivalenceIcon; egyszínű maszk (successInk). Az app lábnyom-kalkulátorának képe (Bence vette fel 2026-03/04; a PNG Figma-export). A Flutter-DS 0.22 veszteségmentes WebP-vé alakította (tool/import_topic_assets.py); ugyanezek a fájlok a grafika/tema/ alatt. Kristóf 2026-11-11: saját rajz."
+  },
+  {
+   "id": "ill-sign-map",
+   "family": "ill",
+   "hu": "Térkép: Magyarország körvonala jelölővel",
+   "en": "Map sign",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/ill/sign_map.webp",
+    "flutter": "sign-map",
+    "app": "regflow/map"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "placeholder",
+   "set": "flutter-ill",
+   "group": "sign",
+   "dp": [
+    57,
+    54
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/ill/sign_map.webp",
+     "flutter": "assets/illustrations/sign_map.webp",
+     "bytes": 680,
+     "sha256": "560ff1aba0b32aae146973a22c24f7d1505479065ddde12c8115d4b1728265d9"
+    },
+    {
+     "density": 2,
+     "web": "grafika/ill/2.0x/sign_map.webp",
+     "flutter": "assets/illustrations/2.0x/sign_map.webp",
+     "bytes": 1282,
+     "sha256": "13e7e18721f3563acac7ecd823dfff022d94e1b0fcf00ac555bc5e82f63165cc"
+    },
+    {
+     "density": 3,
+     "web": "grafika/ill/3.0x/sign_map.webp",
+     "flutter": "assets/illustrations/3.0x/sign_map.webp",
+     "bytes": 1884,
+     "sha256": "75f5d9b7d42fc68a8a831e175c62740e8e45ece7f3161cba5326d32322e8022d"
+    }
+   ],
+   "note": "Helyettes (Kristóf 2026-11-11, K5): a Flutter-DS illusztrációja (forrás: assets/images/regflow/map.png), nagy felbontású vagy vektoros mester nélkül; lásd kepernyo-tervek/qa/ds_check/LEGENERALANDO.md."
+  },
+  {
+   "id": "ill-sign-coupons",
+   "family": "ill",
+   "hu": "Kupon százalékjellel",
+   "en": "Coupons sign",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/ill/sign_coupons.webp",
+    "flutter": "sign-coupons",
+    "app": "regflow/coupons"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "placeholder",
+   "set": "flutter-ill",
+   "group": "sign",
+   "dp": [
+    53,
+    62
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/ill/sign_coupons.webp",
+     "flutter": "assets/illustrations/sign_coupons.webp",
+     "bytes": 734,
+     "sha256": "c3218a6b660297f804867f369ae037f915a2929c450873393459aa9aae8b9bdf"
+    },
+    {
+     "density": 2,
+     "web": "grafika/ill/2.0x/sign_coupons.webp",
+     "flutter": "assets/illustrations/2.0x/sign_coupons.webp",
+     "bytes": 1394,
+     "sha256": "842fb61a91c903987b585f5158b8009320254f3078dcb31673cb8ec3bef484e6"
+    },
+    {
+     "density": 3,
+     "web": "grafika/ill/3.0x/sign_coupons.webp",
+     "flutter": "assets/illustrations/3.0x/sign_coupons.webp",
+     "bytes": 2040,
+     "sha256": "c9b1a28a72df4f199ec5715c28428f5bb4a8e1e96e8384ac273828cbac104317"
+    }
+   ],
+   "note": "Helyettes (Kristóf 2026-11-11, K5): a Flutter-DS illusztrációja (forrás: assets/images/regflow/coupons.png), nagy felbontású vagy vektoros mester nélkül; lásd kepernyo-tervek/qa/ds_check/LEGENERALANDO.md."
+  },
+  {
+   "id": "ill-sign-calendar",
+   "family": "ill",
+   "hu": "Naptár",
+   "en": "Calendar sign",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/ill/sign_calendar.webp",
+    "flutter": "sign-calendar",
+    "app": "regflow/calendar"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "placeholder",
+   "set": "flutter-ill",
+   "group": "sign",
+   "dp": [
+    42,
+    45
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/ill/sign_calendar.webp",
+     "flutter": "assets/illustrations/sign_calendar.webp",
+     "bytes": 438,
+     "sha256": "db45f4786dfc34668463490a26f919ac1eaba502bb59903a40aff8f0de904ec2"
+    },
+    {
+     "density": 2,
+     "web": "grafika/ill/2.0x/sign_calendar.webp",
+     "flutter": "assets/illustrations/2.0x/sign_calendar.webp",
+     "bytes": 714,
+     "sha256": "3f9ba83dea89764ed44748f1b1c01b26fd5f2222791beb52b457cc466cef973d"
+    },
+    {
+     "density": 3,
+     "web": "grafika/ill/3.0x/sign_calendar.webp",
+     "flutter": "assets/illustrations/3.0x/sign_calendar.webp",
+     "bytes": 912,
+     "sha256": "6b63e4512fa6d05ac44239e9789a758cef7e23decb78dd1a6d55c184138d88a7"
+    }
+   ],
+   "note": "Helyettes (Kristóf 2026-11-11, K5): a Flutter-DS illusztrációja (forrás: assets/images/regflow/calendar.png), nagy felbontású vagy vektoros mester nélkül; lásd kepernyo-tervek/qa/ds_check/LEGENERALANDO.md."
+  },
+  {
+   "id": "ill-sign-events",
+   "family": "ill",
+   "hu": "Események: naptár",
+   "en": "Events sign",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/ill/sign_events.webp",
+    "flutter": "sign-events",
+    "app": "welcome_events"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "placeholder",
+   "set": "flutter-ill",
+   "group": "sign",
+   "dp": [
+    50,
+    50
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/ill/sign_events.webp",
+     "flutter": "assets/illustrations/sign_events.webp",
+     "bytes": 472,
+     "sha256": "88a32b63696586ffb65e502c25dd7147bf82254422d16277316c57eea4797504"
+    },
+    {
+     "density": 2,
+     "web": "grafika/ill/2.0x/sign_events.webp",
+     "flutter": "assets/illustrations/2.0x/sign_events.webp",
+     "bytes": 728,
+     "sha256": "bc1d01923d027e1f597c7d7d84214944ca18640b032ed688a0931770fa1b0545"
+    },
+    {
+     "density": 3,
+     "web": "grafika/ill/3.0x/sign_events.webp",
+     "flutter": "assets/illustrations/3.0x/sign_events.webp",
+     "bytes": 990,
+     "sha256": "bc5e50ccbb59b6dbc0db1b00f520e5ccca3360d0d07bb09e7880fd6a03f7bfae"
+    }
+   ],
+   "note": "Helyettes (Kristóf 2026-11-11, K5): a Flutter-DS illusztrációja (forrás: assets/images/welcome_events.png), nagy felbontású vagy vektoros mester nélkül; lásd kepernyo-tervek/qa/ds_check/LEGENERALANDO.md."
+  },
+  {
+   "id": "ill-swarm",
+   "family": "ill",
+   "hu": "Raj: négy méh együtt (fekete jel, fehér matrica-kerettel)",
+   "en": "Swarm sign",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)",
+    "figma": "APP_PROD, DS 2.0, RAJ (svg/RAJ-swarm.svg)"
+   },
+   "aliases": {
+    "web": "grafika/ill/swarm.webp",
+    "flutter": "swarm"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "placeholder",
+   "set": "flutter-ill",
+   "group": "sign",
+   "dp": [
+    82,
+    72
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/ill/swarm.webp",
+     "flutter": "assets/illustrations/swarm.webp",
+     "bytes": 1928,
+     "sha256": "ea79bf036c70201be6807489ddef74ef367525f5c90c9a384aa77eec7a968b19"
+    },
+    {
+     "density": 2,
+     "web": "grafika/ill/2.0x/swarm.webp",
+     "flutter": "assets/illustrations/2.0x/swarm.webp",
+     "bytes": 4030,
+     "sha256": "44a3c07533e4036fbbce5518401e40c90eed6f86ed9959b09fa1015146ec063d"
+    },
+    {
+     "density": 3,
+     "web": "grafika/ill/3.0x/swarm.webp",
+     "flutter": "assets/illustrations/3.0x/swarm.webp",
+     "bytes": 6232,
+     "sha256": "fb6ca44e07904cf9055284b015a855738b327f59b9aea33b40d150859475f084"
+    }
+   ],
+   "note": "Helyettes (Kristóf 2026-11-11, K5): a Flutter-DS illusztrációja (forrás: figma:APP_PROD DQpJNVpXLDsnCZ9CknN9HT, DS 2.0, RAJ (svg/RAJ-swarm.svg, 42 KB vector, rendered to WebP 1x/2x/3x: 82 x 72 dp, 1.9 / 4.0 / 6.2 KB)), nagy felbontású vagy vektoros mester nélkül; lásd kepernyo-tervek/qa/ds_check/LEGENERALANDO.md."
+  },
+  {
+   "id": "ill-onboarding-watering",
+   "family": "ill",
+   "hu": "A vízadás kampány: locsolókanna és három fa a méhsejtben",
+   "en": "Onboarding: watering",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/ill/onboarding_watering.webp",
+    "flutter": "onboarding-watering",
+    "app": "onboarding/first"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "placeholder",
+   "set": "flutter-ill",
+   "group": "onboarding",
+   "dp": [
+    323,
+    344
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/ill/onboarding_watering.webp",
+     "flutter": "assets/illustrations/onboarding_watering.webp",
+     "bytes": 22680,
+     "sha256": "92584bdf11fcbf3e9ea885d219f216aff0d45c108a74c9288ac11e4ad30ac974"
+    },
+    {
+     "density": 2,
+     "web": "grafika/ill/2.0x/onboarding_watering.webp",
+     "flutter": "assets/illustrations/2.0x/onboarding_watering.webp",
+     "bytes": 53822,
+     "sha256": "9ba2cfde9e2ce1917b0319f2c4abd3ae6ea55ca5a75c1a5cbbadf6b01bf8206e"
+    },
+    {
+     "density": 3,
+     "web": "grafika/ill/3.0x/onboarding_watering.webp",
+     "flutter": "assets/illustrations/3.0x/onboarding_watering.webp",
+     "bytes": 92732,
+     "sha256": "82ad9028cb90930c242be1f417309fad2d7bd0feba892bac1a15db9b58228551"
+    }
+   ],
+   "note": "Helyettes (Kristóf 2026-11-11, K5): a Flutter-DS illusztrációja (forrás: assets/images/onboarding/first.png), nagy felbontású vagy vektoros mester nélkül; lásd kepernyo-tervek/qa/ds_check/LEGENERALANDO.md."
+  },
+  {
+   "id": "ill-onboarding-nectar",
+   "family": "ill",
+   "hu": "A nektár: egy csepp a méhsejtben",
+   "en": "Onboarding: nectar",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "grafika/ill/onboarding_nectar.webp",
+    "flutter": "onboarding-nectar",
+    "app": "onboarding/seventh"
+   },
+   "outputs": [
+    "web",
+    "flutter"
+   ],
+   "status": "placeholder",
+   "set": "flutter-ill",
+   "group": "onboarding",
+   "dp": [
+    347,
+    320
+   ],
+   "files": [
+    {
+     "density": 1,
+     "web": "grafika/ill/onboarding_nectar.webp",
+     "flutter": "assets/illustrations/onboarding_nectar.webp",
+     "bytes": 8222,
+     "sha256": "767b3766d6de77d429913dda75248fa4ccf69ccf426bc7394a2af17ce48be973"
+    },
+    {
+     "density": 2,
+     "web": "grafika/ill/2.0x/onboarding_nectar.webp",
+     "flutter": "assets/illustrations/2.0x/onboarding_nectar.webp",
+     "bytes": 18382,
+     "sha256": "6a4e548dbae29fb6b8c01fe7228b48a6205b2bff8979220f393d0b1c4d2c684c"
+    },
+    {
+     "density": 3,
+     "web": "grafika/ill/3.0x/onboarding_nectar.webp",
+     "flutter": "assets/illustrations/3.0x/onboarding_nectar.webp",
+     "bytes": 29720,
+     "sha256": "0a35ead3ba739c5d597eef33dc72ecc28e460a6c48b6a19a7a6b6964f53115a8"
+    }
+   ],
+   "note": "Helyettes (Kristóf 2026-11-11, K5): a Flutter-DS illusztrációja (forrás: assets/images/onboarding/seventh.png), nagy felbontású vagy vektoros mester nélkül; lásd kepernyo-tervek/qa/ds_check/LEGENERALANDO.md."
+  },
+  {
+   "id": "vizadas-zigzag",
+   "family": "scene",
+   "hu": "Cikcakk-sáv",
+   "en": "Zigzag band",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-cikcakk.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-tree",
+   "family": "scene",
+   "hu": "Fa",
+   "en": "Tree",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-fa.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-tree-red",
+   "family": "scene",
+   "hu": "Fa, piros",
+   "en": "Tree, red",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-fa-piros.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-tree-yellow",
+   "family": "scene",
+   "hu": "Fa, sárga",
+   "en": "Tree, yellow",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-fa-sarga.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-tree-green",
+   "family": "scene",
+   "hu": "Fa, zöld",
+   "en": "Tree, green",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-fa-zold.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-cup",
+   "family": "pictogram",
+   "hu": "Kupa",
+   "en": "Cup",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-kupa.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-well",
+   "family": "pictogram",
+   "hu": "Kút",
+   "en": "Well",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-kut.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-logo-white",
+   "family": "logo",
+   "hu": "Vízadás logó, fehér",
+   "en": "Vízadás logo, white",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-logo-feher.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-logo-blue",
+   "family": "logo",
+   "hu": "Vízadás logó, kék",
+   "en": "Vízadás logo, blue",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-logo-kek.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-bee-friendly",
+   "family": "ill",
+   "hu": "Barátságos méh (Vízadás)",
+   "en": "Friendly bee (Vízadás)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-meh-baratsagos.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-bee-watering-can",
+   "family": "ill",
+   "hu": "Kannás méh (Vízadás)",
+   "en": "Bee with watering can (Vízadás)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-meh-kannas.webp"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-bee-kind",
+   "family": "ill",
+   "hu": "Kedves méh (Vízadás)",
+   "en": "Kind bee (Vízadás)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-meh-kedves.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-bee-surprised",
+   "family": "ill",
+   "hu": "Meglepett méh (Vízadás)",
+   "en": "Surprised bee (Vízadás)",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-meh-meglepett.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-pattern",
+   "family": "scene",
+   "hu": "Minta",
+   "en": "Pattern",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-minta.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-pattern-white",
+   "family": "scene",
+   "hu": "Minta, fehér",
+   "en": "Pattern, white",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-minta-feher.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-seal",
+   "family": "pictogram",
+   "hu": "Pecsét",
+   "en": "Seal",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-pecset.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-city-white-ground",
+   "family": "scene",
+   "hu": "Város fehér talajjal",
+   "en": "City, white ground",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-varos-feher-talaj.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-city-small",
+   "family": "scene",
+   "hu": "Város, kicsi",
+   "en": "City, small",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-varos-kicsi.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
+  },
+  {
+   "id": "vizadas-city-wide",
+   "family": "scene",
+   "hu": "Város, széles",
+   "en": "City, wide",
+   "forbidden": false,
+   "license": "beeco-marka",
+   "origin": {
+    "kind": "sajat",
+    "author": "beeco (saját rajz; a rajzoló nem ellenőrzött)"
+   },
+   "aliases": {
+    "web": "weboldal/kampany-vizadas-2027/kep/ov-varos-szeles.svg"
+   },
+   "outputs": [
+    "web"
+   ],
+   "status": "aktiv",
+   "set": "vizadas-2027",
+   "note": "A Vízadás 2027 kampányoldal képe. Kristóf 2026-11-11 (K6): nem MI-kép, saját rajz; a rajzoló ellenőrzendő."
   }
  ]
 }

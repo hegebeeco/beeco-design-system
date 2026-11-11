@@ -43,9 +43,9 @@ function jelek() {
   return JSON.parse(rd('termek/jelek/jelek.json')).jelek.map(j => ({
     id: 'sticker-' + j.nev, family: 'sticker', hu: j.leiras, en: emberi(j.nev.replace(/^pik-/, '')),
     forbidden: false, license: 'beeco-marka',
-    origin: { kind: 'figma', source: j.forras },
+    origin: { kind: /^kod:/.test(j.forras) ? 'kod' : 'figma', source: j.forras },
     aliases: { web: 'termek/jelek/' + j.fajl, flutter: 'stickers/' + j.fajl },
-    outputs: ['web', 'flutter'], status: 'aktiv',
+    outputs: ['web', 'flutter'], status: j.allapot || 'aktiv',
   }));
 }
 
