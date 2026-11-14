@@ -252,7 +252,23 @@ Az ikon levélzöld hatszögben a kacsintó méhecske: 32 px-en ez adta a legjob
   Az r128-as toon anyag nem ismeri a `flatShading`-et – ne kapcsold be (figyelmeztetés-áradat).
 * Táblák és címkék: `DS.signCanvas(szöveg)` / `DS.pillCanvas(szöveg)` – méz alap, olívakeret, Lalezar, a szöveg
   méretét méri és illeszti. Anyaga `transparent:true` (lekerekített sarok).
-* Tilos: fotórealista textúra, erős tükröződés, tiszta fekete, a régi citromsárga.
+* Tilos: fotórealista textúra (kivétel: a bútor, lásd 6/b), erős tükröződés, tiszta fekete, a régi citromsárga.
+
+### 6/b. Egységes 3D-arculat: „egységes, de tapintható” (Kristóf döntése, 2026-11-14)
+A beeco 3D-játékok közös iránya. Alapja az Anna kertje arculati terve (`beeco-anna-kertje/docs/arculat-terv.md`, 2026-11-03):
+fő minta az **Alba** (ustwo games), a tárgyak kezelésében a **Botany Manor**, a fényben a **Tiny Glade**. Az első alkalmazása
+a Fenntartható otthonom (`beeco-szelektalj-energia`, `?stilus=egyseges`, `docs/okoshaz-arculat-terv.md`): Kristóf az első,
+csupa tömör színű próbát elvetette (FORDULAT), a második mellett döntött: „nagyon tetszik, azzal megyünk tovább”.
+1. **Az anyagot forma adja, nem festett minta.** A burkolat egyenként lerakott, vékony blokkokból épül: csempe valódi fugával
+   (a fuga az alapszín ~74%-a), parketta eltolt deszkasorokban, deszkánként 3 tónussal. A blokkok a többi statikus elemmel egy
+   rajzolási hívásba vonódnak össze (`hazMergeStatic`). Ugyanígy jöhet a tégla, a térkő, a tetőcserép és a lábazat.
+   Közös kód: `hazBlokk(true)` a ház-motorban (`haz-tex.js`, `haz-epites.js`, `haz-fodem.js`), alapból kikapcsolva.
+2. **A fotós textúra a bútoron marad** (CC0, pl. Poly Haven: kanapé, fotel, polc, asztal, szék). A hétköznapi, felismerhető
+   tárgyat a fotós anyag adja; a forrás és a licenc a játék modell-jegyzékébe kerül. A falon, padlón, tetőn nincs fotós textúra.
+3. **Ami nem anyag, az tömör szín:** festett fal, vakolat, mennyezet, tapéta – letört élekkel (B szint) és kontúrral.
+4. **Papírszemcse és színszűrő nélkül**, enyhe meleg fénnyel.
+5. **Költség:** a blokkos burkolat kevesebb rajzolási hívást, de kb. +20–25% háromszöget hoz (Otthon, 2026-11-14:
+   konyha 115 → 140 ezer). A teljesítményt valódi telefonon kell mérni (cél: közepes telefonon legalább 30 kép/s).
 
 ## 7. Szöveg és hangnem
 

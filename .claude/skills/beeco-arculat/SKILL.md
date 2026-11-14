@@ -42,6 +42,8 @@ A teljes szabálykönyv: `docs/arculat.md`. Élő bemutató: `web/arculat.html`.
 - **Felugró panel:** `role="dialog"` + `aria-modal="true"`, a bezáró gombon `data-ds-close` – a `ds.js` őre intézi a Tab/Esc/fókuszt.
 - **3D:** színek `DS.world`-ből, kültéri fény `DS.light.outdoor`, táblák `DS.signCanvas` / `DS.pillCanvas`;
   low-poly, cel-árnyalás; `flatShading` a toon anyagon tilos (r128).
+- **3D-arculat (Kristóf, 2026-11-14): „egységes, de tapintható”** – `docs/arculat.md` 6/b: az anyagot forma adja (csempe, parketta
+  blokkokból, fugával), a fotós textúra csak a bútoron maradhat, minden más tömör szín letört éllel és kontúrral, szemcse és szűrő nélkül.
 - **Kevés szöveg:** képernyőnként egy mondat, a többi `ds-details`-ben. Tegeződő, bátorító hangnem; szám csak forrással.
 - **Hozzáférhetőség:** szín mellé mindig ikon is; koppintási felület ≥ 44 px (`--tap`); fókuszkeret marad.
 - **Betöltés:** a `fonts` → `tokens` → `ds` a modulok CSS-e ELŐTT töltődik; a modul CSS-e erre épít.
