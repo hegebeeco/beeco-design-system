@@ -8,7 +8,8 @@ const beecoHang = (function(){
   const ls = (k, d) => { try{ const v = localStorage.getItem(k); return v == null ? d : v; }catch(e){ return d; } };
   const lsSet = (k, v) => { try{ localStorage.setItem(k, v); }catch(e){} };
   let AC = null, timer = null, idx = 0;
-  const S = { muted:ls('beeco_muted', '0') === '1', music:ls('beeco_music', '1') !== '0', haptic:ls('beeco_haptic', '1') !== '0' };
+  const S = { muted:ls('beeco_muted', '1') !== '0',                     // alapból néma (2026-11-15) – csak kifejezett bekapcsolásra szól
+              music:ls('beeco_music', '1') !== '0', haptic:ls('beeco_haptic', '1') !== '0' };
   const audio = () => { if(!AC){ try{ AC = new (window.AudioContext || window.webkitAudioContext)(); }catch(e){} } if(AC && AC.state === 'suspended') AC.resume(); return AC; };
   function beep(freq, dur, type, vol){ if(S.muted) return; const a = audio(); if(!a) return; const o = a.createOscillator(), g = a.createGain();
     o.type = type || 'sine'; o.frequency.value = freq; g.gain.value = vol || 0.06; o.connect(g); g.connect(a.destination);
