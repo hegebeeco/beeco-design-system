@@ -76,7 +76,7 @@ Kockázat: a meglévő oldalakon a kézzel épített szekció komponensre cseré
 |---|---|
 | `DS · Szekciófej`, `DS · Gomb`, `DS · App letöltés`, `DS · GYIK` | kész, a `/beecopedia` oldalon kipróbálva a tesztoldalon (asztal + mobil, `ds-lint` 0); azonosítók és propok: web-ds.md 9. fejezet |
 | Csoportnevek: minden DS-komponens a „Web DS” csoportban | kész (9 komponens átsorolva) |
-| A négy komponens kiterjesztése a többi `ds-` oldalra | folyamatban: `/app/kuponok` és `/app/zold-esemenynaptar` (app letöltés + GYIK), kisokos (app letöltés) kész, előtte–utána összevetéssel; a kisokos GYIK-je marad, amíg a `DS · GYIK` nem kap domb-helyet; a többi oldal hátravan |
+| A négy komponens kiterjesztése a többi `ds-` oldalra | `DS · GYIK`: 18 oldalon kész (Beecopédia, Kuponok, Eseménynaptár, kisokos, `/cegeknek`, 12 szolgáltatásoldal, Csatlakozz), előtte–utána összevetéssel; kimaradt a `/szolgaltatas/klimafresko`, mert a GYIK-szekciójában egy ragadós ajánlatkérő link és egy beágyazott kód is van. `DS · App letöltés`: 4 oldalon kész. A `DS · Szekciófej` és a `DS · Gomb` egyelőre csak a Beecopédián él; új oldalon kötelező, a meglévőkön az újrahúzáskor cserélődik. |
 | `DS · Logósor` összevonás, térköz-komponensek kivezetése, morzsa és letöltés-blokk csere | hátravan |
 | `DS · Nyitó`, `DS · Kártyarács`, `DS · Lépések`, `DS · Fotósor`, `DS · Cikk-kártya` | hátravan |
 | Használaton kívüli komponensek törlése | kész (Kristóf döntése, 2026-11-21): 14 törölve, 0 példánnyal; négy megmaradt: `NAVBAR_REGI_BACKUP`, `NAVBAR_MEGA`, `ROLUNK_ERTEKEK`, `CSAPAT_FOTOSLIDER`. Ellenőrzés: 14 kulcsoldal szerkezete a törlés előtt és után azonos. |
