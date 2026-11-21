@@ -30,7 +30,13 @@
 4. **Morzsamenü:** 18 kézi morzsa → `DS · Morzsamenü`.
 5. **Csúszkák pöttyei:** a natív Webflow-csúszkák elmosott árnyékú pöttyei → lapos fekete/fehér pötty.
 
-**Javasolt sorrend:** B1 → B2 → A → B3 → B4 → B5.
+**Javasolt sorrend:** B1 → B2 → A → B3 → B4 → B5. **Kristóf: „mehet” (2026-11-22).**
+
+Állapot (2026-11-22):
+- B1 kész a valódi eltéréseken: a mérés szerint a címek nagy része már a DS-méreten van (H2 48 px, H3 24 px). A négy CMS-sablon (zöld térkép, okos pont, partner, ökoirányító) 32 px-es főcíme és szekciócíme 48 px lett (`ds-cim-fo` kombó). Hátravan (élesítés után): kb. 100 közepes cím a régi oldalakon, oldalanként.
+- B2 kész: recept- és zöldségsablon fotója DS-fotó (keret, dőlés, csík); zöld térkép, partner képe keretes, 0 px. A blogsablon képosztálya általános (`img`), kimaradt.
+- A kész: `DS · Appképernyő` a partnersablonon (kupon → térkép → naptár). További helyek (Kuponok, Eseménynaptár, Térkép, Letöltés) élesítés után.
+- B3 (letöltésblokk) élesítés utánra: a mérés szerint a látogató számára már egységes (R6 rendben), a csere csak karbantartást könnyít.
 
 ## 5. Nyitva (Kristóf döntése kell)
 - Lábnyomkalkulátor: egy „X” című, félkész szekció (a címke kimaradt) – törölni vagy kitölteni?
