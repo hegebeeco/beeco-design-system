@@ -2,6 +2,9 @@
    beeco TERMÉKBŐR – rétegek és navigáció (Javaslat 03, jóváhagyva 2026-10-01)
    Ablak, megerősítés, oldalpanel, gomb-felirat, menü, fülek, lenyitható, oldalfej, morzsamenü, értesítés, alkalmazás-váz.
    Réteg-sorrend: --bc-z-sticky < header < drawer < overlay < modal < popover < toast < tooltip.
+   Ki melyik szinten ül: drawer = oldalpanel (Drawer: függöny + panel) és a keskeny képernyős oldalsáv; overlay = az ablakok
+   függönye (Modal, ConfirmDialog – így a Drawerből nyitott ablak mindig a panel FÖLÖTT van); modal = a teljes képernyős
+   nézők (Lightbox, StageDialog); popover = lenyíló lista, menü. Azonos szinten a később nyitott (később a DOM-ban) kerül felülre.
    Mozgás: megjelenés 200 ms ease-out, eltűnés 120 ms; fiók 400 ms ease-drawer; csökkentett mozgásnál azonnali (bc-base.css).
    ============================================================ */
 
@@ -32,8 +35,11 @@
 }
 
 /* ---- Oldalpanel (Drawer): jobbról, 480 px; 600 px alatt teljes képernyő ---- */
-.bc-scrim.is-drawer { display: block; padding: 0; }
-.bc-drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: var(--bc-z-modal); display: flex; flex-direction: column;
+.bc-scrim.is-drawer { display: block; padding: 0; z-index: var(--bc-z-drawer); }
+/* A panel és a függönye a „drawer” szinten ül (DOM-ban a függöny az első, a panel kerül fölé). Az ablak (Modal, ConfirmDialog –
+   a függönye az „overlay” szinten) így mindig a nyitott panel fölött van: a panel részletlapjáról nyitott ablak és a
+   „Elveted a módosításokat?” kérdés sem kerülhet mögé. (Régen a panel a „modal” szinten ült, az ablak-függöny alatt.) */
+.bc-drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: var(--bc-z-drawer); display: flex; flex-direction: column;
   width: min(480px, 100vw); color: var(--bc-ink); background: var(--bc-surface); border-left: var(--bc-bw-base) solid var(--bc-line); box-shadow: var(--bc-shadow-l); }
 .bc-drawer.is-wide { width: min(640px, 100vw); }
 .bc-drawer[data-state="open"] { animation: bc-drawer-in var(--bc-t-slow) var(--bc-ease-drawer); }

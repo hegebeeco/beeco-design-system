@@ -7,6 +7,21 @@ export default async function ({ page, t }) {
     ok((await page.locator('[role=option]').first().innerText()).includes('kávézó'), 'nem találta');
     await page.keyboard.press('Enter'); ok((await out('egy')).includes('t5'), await out('egy'));
   });
+  await t('opciók akadálymentes neve: minden role=option elemnek van neve, és az a látható felirat (kiemeléssel, ✓-val, „+ Új” opcióval is)', async () => {
+    // Az akadálymentességi fa (képernyőolvasó, böngészőügynök) nem mindig rakja össze a nevet a kiemelés (<mark>) által szétvágott tartalomból:
+    // az opciónak ezért kimondott neve (aria-label) van. A név a látható felirat (WCAG 2.5.3); a „✓” és az „+ Új” jele nem része.
+    const neve = (sel) => page.locator(sel).evaluateAll((els) => els.map((e) => ({ name: e.getAttribute('aria-label'), text: (e.innerText || '').replace(/^[✓+\s]+/, '').trim(), jelolt: e.querySelectorAll('mark').length })));
+    const i = c('combo-tobb').locator('input'); await i.click(); await i.pressSequentially('k'); // „k”: kiemelés + „Új: „k”” opció; a „kávézó” kijelölt (✓)
+    const tobb = await neve('[role=option]'); ok(tobb.length >= 3, `kevés opció: ${JSON.stringify(tobb)}`);
+    ok(tobb.some((o) => o.jelolt), 'a próba nem bizonyít semmit: nincs kiemelt (<mark>) opció');
+    for (const o of tobb) ok(o.name && o.name === o.text, `az opció neve („${o.name}”) nem a látható felirat („${o.text}”)`);
+    ok((await page.getByRole('option', { name: 'kávézó', exact: true }).count()) === 1, 'a „kávézó” opció név szerint nem érhető el');
+    ok((await page.getByRole('option', { name: 'Új: „k”', exact: true }).count()) === 1, 'az „Új” opció név szerint nem érhető el');
+    await page.keyboard.press('Escape');
+    const e = c('combo-egy').locator('input'); await e.click(); await e.fill(''); await e.pressSequentially('kave'); // ékezet nélküli keresés: a kiemelés „kavé” hosszú
+    const egy = await neve('[role=option]'); ok(egy.length > 0 && egy.every((o) => o.name && o.name === o.text), `egyesnél: ${JSON.stringify(egy)}`);
+    await page.keyboard.press('Escape');
+  });
   await t('többes: max. 5 után a többi tiltott, a számláló 5/5', async () => {
     const i = c('combo-tobb').locator('input'); await i.click(); await i.pressSequentially('bérl'); await page.keyboard.press('Enter');
     ok((await c('combo-tobb').locator('.bc-count').innerText()).startsWith('5/5'), await c('combo-tobb').locator('.bc-count').innerText());

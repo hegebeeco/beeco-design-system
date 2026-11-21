@@ -9,6 +9,13 @@ export default async function ({ page, t: t0 }) {
   const active = () => page.evaluate(() => { const e = document.activeElement; return { tag: e?.tagName, text: (e?.textContent || '').trim(), open: e?.getAttribute('data-open'), inDialog: Boolean(e?.closest('[role=dialog],[role=alertdialog]')) }; });
   const dialogs = () => page.locator('[role=dialog]:visible, [role=alertdialog]:visible').count();
   const out = (id) => page.locator(`[data-out="${id}"]`).innerText();
+  // Melyik elem van felül az (x, y) ponton: a legfelső elem vagy valamelyik őse illik a szelektorra? (a takarást az „isVisible” nem látja)
+  // A Radix a nem legfelső réteg elemeire pointer-events: none-t tesz, és az elementFromPoint átlát az ilyenen – a mérés idejére mindent
+  // „kattinthatóvá” teszünk, így a valódi festési (z-index) sorrendet kapjuk, nem azt, hova menne a kattintás.
+  const topIs = (x, y, sel) => page.evaluate(({ x, y, sel }) => {
+    const st = document.createElement('style'); st.textContent = '*, *::before, *::after { pointer-events: auto !important; }'; document.head.append(st);
+    try { return !!document.elementFromPoint(x, y)?.closest(sel); } finally { st.remove(); }
+  }, { x, y, sel });
 
   await t('ablak: Enterrel nyílik, a fókusz az első mezőn, Tab bent marad, Esc zár, a fókusz visszatér', async () => {
     await opener('alap').focus(); await page.keyboard.press('Enter');
@@ -80,6 +87,30 @@ export default async function ({ page, t: t0 }) {
     await opener('drawer-0').click(); await page.getByRole('dialog').waitFor(); await page.keyboard.press('Escape');
     await until(async () => (await dialogs()) === 0, 'Esc nem zárta be'); await until(async () => !page.url().includes('reszlet'), `az URL maradt: ${page.url()}`);
     await until(async () => (await active()).open === 'drawer-0', 'a fókusz nem tért vissza');
+  });
+  await t('oldalpanel → ablak: az ablak és a függönye a panel FÖLÖTT van (nem kerül mögé), a háttérre kattintás nem éri el a panelt', async () => {
+    // A „látszik” (isVisible) nem elég: a takart elem is „látszik”. Azt mérjük, melyik elem van felül az adott ponton (elementFromPoint).
+    await opener('drawer-ablak').click(); await page.locator('.bc-drawer').waitFor(); await page.waitForTimeout(500);
+    await page.locator('[data-open="drawer-ablak-belso"]').click(); await page.locator('.bc-modal').waitFor(); await page.waitForTimeout(350);
+    const db = await page.locator('.bc-drawer').boundingBox(), mb = await page.locator('.bc-modal').boundingBox();
+    ok(mb.x + mb.width - 8 > db.x, `a próba nem bizonyít semmit: az ablak és a panel nem fed át (ablak ${JSON.stringify(mb)}, panel ${JSON.stringify(db)})`);
+    ok(await topIs(mb.x + mb.width - 8, mb.y + mb.height / 2, '.bc-modal'), 'az ablak a panel mögé került (az átfedésben a panel van felül)');
+    ok(await topIs(db.x + db.width - 12, db.y + db.height - 12, '.bc-scrim:not(.is-drawer)'), 'az ablak függönye a panel alatt van – a panel kattintható maradt');
+    await page.locator('.bc-modal').getByRole('button', { name: 'Mentés' }).click(); // az igazi kattintás is elbukna, ha takarva lenne
+    await until(async () => (await page.locator('.bc-modal').count()) === 0, 'az ablak nem zárt be a Mentés után');
+    ok((await out('log')).includes('kupon-sablon mentve'), await out('log')); ok(await page.locator('.bc-drawer').isVisible(), 'a panel is bezárt');
+  });
+  await t('oldalpanel mentetlen változással: az „Elveted…?” kérdés a panel FÖLÖTT van, „Folytatom” a panelben hagy', async () => {
+    await opener('drawer-ablak').click(); await page.locator('.bc-drawer').waitFor(); await page.waitForTimeout(500); // az előző eset után a keret bezárta a panelt
+    const mezo = page.locator('.bc-drawer input'); await mezo.pressSequentially(' új');
+    await page.keyboard.press('Escape'); const q = page.getByRole('alertdialog'); await q.waitFor(); await page.waitForTimeout(350);
+    const db = await page.locator('.bc-drawer').boundingBox(), qb = await q.boundingBox();
+    ok(qb.x + qb.width - 8 > db.x, `a próba nem bizonyít semmit: a kérdés és a panel nem fed át (kérdés ${JSON.stringify(qb)}, panel ${JSON.stringify(db)})`);
+    ok(await topIs(qb.x + qb.width - 8, qb.y + qb.height / 2, '[role=alertdialog]'), 'a kérdés a panel mögé került');
+    await q.getByRole('button', { name: 'Folytatom a szerkesztést' }).click(); await q.waitFor({ state: 'detached' });
+    ok((await mezo.inputValue()).includes(' új'), 'elveszett a módosítás'); ok(await page.locator('.bc-drawer').isVisible(), 'a panel bezárt'); // (a kurzor a mező elején áll, ezért includes)
+    await page.keyboard.press('Escape'); await q.waitFor(); await q.getByRole('button', { name: 'Elvetés' }).click();
+    await until(async () => (await page.locator('.bc-drawer').count()) === 0, 'az Elvetés nem zárta be a panelt');
   });
   await t('oldalpanel telefonon (390 px): teljes képernyő, a gombsor látszik', async () => {
     await page.setViewportSize({ width: 390, height: 844 });

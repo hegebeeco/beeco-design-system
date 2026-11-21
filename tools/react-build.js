@@ -39,8 +39,12 @@ async function main() {
   const pages = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith('.tsx') && !f.startsWith('_')).sort() : []; // rendezve: a readdir sorrendje Linuxon nem az
   for (const p of pages) {
     if (csak && !csak.includes(p.replace(/\.tsx$/, ''))) continue;
+    // `// react-build: dev-react` a tesztlap elején: fejlesztői React-tel épül. A React StrictMode a hatásokat (effect) csak
+    // fejlesztői módban futtatja kétszer (felépít → lebont → újra felépít) – a termelési építés ezt nem mutatja, így az ilyen
+    // hibát (pl. a lebontáskor átállított jelző) csak így fogja meg a teszt. Csak ott kérd, ahol erre a hibára tesztelünk (nagyobb, lassabb fájl).
+    const devReact = /^\/\/ react-build: dev-react\b/m.test(fs.readFileSync(path.join(dir, p), 'utf8'));
     const r = await esbuild.build({ ...common, entryPoints: [path.join(dir, p)], outfile: path.join(ROOT, 'dist/tesztlapok', p.replace(/\.tsx$/, '.js')),
-      minify: true, define: { 'process.env.NODE_ENV': '"production"' } });
+      minify: true, define: { 'process.env.NODE_ENV': devReact ? '"development"' : '"production"' } });
     outputs.push(...r.outputFiles);
     const name = p.replace(/\.tsx$/, '');
     outputs.push({ path: path.join(ROOT, 'termek/tesztlapok', `${name}.html`), text:
