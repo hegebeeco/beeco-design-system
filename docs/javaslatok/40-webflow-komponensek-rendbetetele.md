@@ -79,7 +79,9 @@ Kockázat: a meglévő oldalakon a kézzel épített szekció komponensre cseré
 | A négy komponens kiterjesztése a többi `ds-` oldalra | `DS · GYIK`: 19 oldalon kész (Beecopédia, Kuponok, Eseménynaptár, kisokos, `/cegeknek`, 12 szolgáltatásoldal, Csatlakozz), előtte–utána összevetéssel; a `/szolgaltatas/klimafresko` is kész: a ragadós ajánlatkérő link és a hozzá tartozó kód a szekción kívülre került (Kristóf döntése), a működése változatlan. `DS · App letöltés`: 4 oldalon kész. A `DS · Szekciófej` és a `DS · Gomb` egyelőre csak a Beecopédián él; új oldalon kötelező, a meglévőkön az újrahúzáskor cserélődik. |
 | Logósor-összevonás | kész: a `DS · Velük dolgoztunk` négy változatot kapott (Vegyes, Nagyvállalatok, Önkormányzatok, Kuponpartnerek) és állítható címet; a Zöld programok, az Önkormányzatoknak és a Partner oldal már ezt használja, a 8 alap oldal változatlan (magasság, logók, sorrend ellenőrizve). A `DS · Szakmai partnerek` más felépítésű teljes szekció, külön marad. A Locsolóraj oldal sávja kézzel épített, más logókkal: Kristóf döntése szerint így marad. A régi `· Önkormányzatok` és `· Kuponpartnerek` komponens törölve (Kristóf döntése, 0 példány); a `· Nagyvállalatok` megmaradt, mert egy nem publikált oldalon még van példánya. |
 | Térköz-komponensek kivezetése, morzsa és letöltés-blokk csere | hátravan; a régi oldalak újrahúzásával együtt érdemes |
-| `DS · Nyitó`, `DS · Kártyarács`, `DS · Lépések`, `DS · Fotósor`, `DS · Cikk-kártya` | hátravan |
+| `DS · Lépések`, `DS · Kártya`, `DS · Kártyarács` | kész, kipróbálva a `/app/kuponok` (lépések) és a `/szolgaltatas/madarraj` (kártyák, rács) oldalon; az elrendezés asztalon, tableten és mobilon azonos az előzővel |
+| `DS · Fotósor`, `DS · Nyitó` | folyamatban |
+| `DS · Cikk-kártya` (CMS-listák) | hátravan; a listák bekötése az API-val korlátos |
 | Használaton kívüli komponensek törlése | kész (Kristóf döntése, 2026-11-21): 14 törölve, 0 példánnyal; négy megmaradt: `NAVBAR_REGI_BACKUP`, `NAVBAR_MEGA`, `ROLUNK_ERTEKEK`, `CSAPAT_FOTOSLIDER`. Ellenőrzés: 14 kulcsoldal szerkezete a törlés előtt és után azonos. |
 
 ## 7. Döntés (Kristóf tölti ki)

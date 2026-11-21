@@ -28,7 +28,11 @@ COMPONENTS = {  # placeholder name → Webflow component id
     'section-head': '96a96302-3999-4e1f-a655-23fc1d4aa55f',   # DS · Szekciófej (props: Címke, Cím, Bevezető)
     'button': 'ef6762a3-cbeb-9948-b80c-263095d2a4d0',         # DS · Gomb (variants: Elsődleges, Másodlagos)
     'app-download': '0951b307-2dd7-06cb-f1d9-b7da79410404',   # DS · App letöltés (slot: Domb)
-    'faq': '066156dc-911c-d3b8-e189-fad56e1e5c55'             # DS · GYIK (slot: Kérdések)
+    'faq': '066156dc-911c-d3b8-e189-fad56e1e5c55',            # DS · GYIK (slots: Kérdések, Domb)
+    'steps': 'abcb65a8-4709-5d8e-1787-b39649dadeb9',          # DS · Lépések (4 steps, the 4th can be hidden)
+    'card': '8821a69d-e2dc-6a62-2281-5f39eca5ae1d',           # DS · Kártya (static card)
+    'card-grid': '8d61b136-2043-8021-9275-ea119f69898e',      # DS · Kártyarács (slot: Kártyák; 2/3/4 columns)
+    'logo-strip': 'd90a6abf-dd67-c4e6-c073-775f80c2694a'      # DS · Velük dolgoztunk (4 audience variants)
 }
 APP_IMAGE = ('6afcc87f4177226d75adeb3d_beeco-app-telefon-650.webp', 'A beeco app kezdőképernyője telefonon, mellette a köpenyes méhecske és piktogramok.')
 YELLOW_PICTOGRAMS = {  # yellow splash only (docs/web-ds.md 2.); name → asset id of `fs-piko-<name>[-sarga].svg`
