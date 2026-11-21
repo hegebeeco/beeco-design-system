@@ -1,6 +1,7 @@
+// react-build: dev-react   (fejlesztői React: a StrictMode a hatásokat kétszer futtatja – a naptár „hónapváltás” hatása ettől hívott többet)
 import { useState } from 'react';
 import { MonthCalendar, OpeningHoursEditor, type CalEvent, type CalKind, type CalKindDef, type OpeningHours } from '../src/media';
-import { Case, Grid, mount } from './_keret';
+import { Case, Grid, HatasSzamlalo, mount } from './_keret';
 
 // Mintaadat: 2026. október tartalmai (címek kitaláltak, csak a megjelenítés próbájára)
 const EV: CalEvent[] = [
@@ -40,9 +41,10 @@ function Naptar({ id, events = EV, ...p }: { id: string; events?: CalEvent[] } &
   const [hidden, setHidden] = useState<CalKind[]>([]);
   const [nap, setNap] = useState('–');
   const [honap, setHonap] = useState('2026-10-01');
+  const [hivas, setHivas] = useState(0); // hányszor szólt a naptár a hónapváltásról (betöltéskor 0 kell legyen)
   return <><MonthCalendar events={events} initialDate="2026-10-01" hidden={hidden} onHiddenChange={setHidden}
-    onSelectDay={(iso, list) => setNap(`${iso} (${list.length})`)} onMonthChange={setHonap} {...p} />
-    <p className="tl-out" data-out={id}>nap: {nap} · hónap: {honap} · rejtve: {hidden.join(',') || 'semmi'}</p></>;
+    onSelectDay={(iso, list) => setNap(`${iso} (${list.length})`)} onMonthChange={(d) => { setHonap(d); setHivas((n) => n + 1); }} {...p} />
+    <p className="tl-out" data-out={id}>nap: {nap} · hónap: {honap} · hívások: {hivas} · rejtve: {hidden.join(',') || 'semmi'}</p></>;
 }
 
 const WEEK: OpeningHours = {
@@ -61,6 +63,7 @@ function Hours({ id, start, ...p }: { id: string; start: OpeningHours; disabled?
 function Oldal() {
   return (
     <>
+      <HatasSzamlalo />
       <Grid title="Havi naptár (7A)">
         <Case id="naptar" title="2026. október – sok tartalom egy napon, több napos, ismétlődő, hosszú cím, szűrő" wide><Naptar id="naptar" /></Case>
         <Case id="naptar-keskeny" title="Keskeny hely (telefon): pöttyös hónap + a nap listája"><div style={{ maxWidth: 360 }}><Naptar id="keskeny" /></div></Case>

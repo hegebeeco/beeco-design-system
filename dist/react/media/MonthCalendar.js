@@ -1,7 +1,7 @@
 /* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   MonthCalendar
-} from "../reszek/chunk-6ICOAP27.js";
+} from "../reszek/chunk-MDNHFCR6.js";
 import "../reszek/chunk-FD4J2FIR.js";
 import "../reszek/chunk-LAIICP7E.js";
 import "../reszek/chunk-YFTXXZ6K.js";

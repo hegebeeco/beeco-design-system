@@ -1,7 +1,7 @@
 /* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ProgressBar
-} from "./chunk-VX625S5W.js";
+} from "./chunk-5MR4IVAZ.js";
 import {
   KiegDialog
 } from "./chunk-HPFGI32X.js";

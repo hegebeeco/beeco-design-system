@@ -4,7 +4,7 @@ import {
   CommandPalette,
   commandHotkeyLabel,
   useCommandHotkey
-} from "../reszek/chunk-V3L6RMON.js";
+} from "../reszek/chunk-L7XEMVFY.js";
 import "../reszek/chunk-VG3FL4WD.js";
 import "../reszek/chunk-B4QYJ2CO.js";
 import "../reszek/chunk-NKCUUFGK.js";

@@ -122,7 +122,9 @@ export function Combobox(props: ComboboxProps) {
                     const isSel = selected.includes(o.value);
                     const blocked = o.disabled || (full && !isSel);
                     return (
-                      <div key={o.value} id={`${listId}-${i}`} role="option" aria-selected={isSel} aria-disabled={blocked || undefined}
+                      // aria-label: az opció neve a látható felirat – a kiemelés (<mark>) szétszabdalja a szöveget, és nem minden
+                      // akadálymentességi fa (képernyőolvasó, böngészőügynök) rakja össze a tartalomból megbízhatóan
+                      <div key={o.value} id={`${listId}-${i}`} role="option" aria-label={o.label} aria-selected={isSel} aria-disabled={blocked || undefined}
                         data-active={i === active} className="bc-option" onMouseDown={(e) => e.preventDefault()} onMouseEnter={() => setActive(i)} onClick={() => pick(i)}>
                         {multi && <span className="bc-ck" aria-hidden="true">{isSel ? '✓' : ''}</span>}
                         <span>{highlight(o.label, query)}</span>
@@ -130,7 +132,7 @@ export function Combobox(props: ComboboxProps) {
                     );
                   })}
                   {canCreate && (
-                    <div id={`${listId}-${shown.length}`} role="option" aria-selected={false} data-active={active === shown.length} className="bc-option is-create"
+                    <div id={`${listId}-${shown.length}`} role="option" aria-label={`Új: „${q}”`} aria-selected={false} data-active={active === shown.length} className="bc-option is-create"
                       onMouseDown={(e) => e.preventDefault()} onMouseEnter={() => setActive(shown.length)} onClick={() => void create()}>
                       + Új: „{q}”
                     </div>

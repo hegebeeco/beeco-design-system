@@ -159,27 +159,33 @@ function CommandPalette({
       /* @__PURE__ */ jsx("div", { role: "presentation", id: `${listId}-g-${g.id}`, className: "bc-cmdk-group-title", children: g.label }),
       g.items.map((it) => {
         const i = n++;
-        return /* @__PURE__ */ jsxs(
-          "div",
-          {
-            id: optId(i),
-            role: "option",
-            "aria-selected": i === act,
-            "aria-disabled": it.disabled || void 0,
-            "data-active": i === act,
-            className: "bc-option bc-cmdk-item",
-            onMouseDown: (e) => e.preventDefault(),
-            onMouseMove: () => {
-              if (i !== act && !it.disabled) setActive(i);
+        return (
+          // aria-label: a sor neve a címke (a kiemelés <mark>-ja szétvágja a szöveget, és nem minden akadálymentességi fa rakja össze
+          // megbízhatóan); a leírás („Partner”, „POI”) aria-describedby-ban marad – a képernyőolvasó felolvassa, a név mégis rövid
+          /* @__PURE__ */ jsxs(
+            "div",
+            {
+              id: optId(i),
+              role: "option",
+              "aria-label": it.label,
+              "aria-describedby": it.description ? `${optId(i)}-d` : void 0,
+              "aria-selected": i === act,
+              "aria-disabled": it.disabled || void 0,
+              "data-active": i === act,
+              className: "bc-option bc-cmdk-item",
+              onMouseDown: (e) => e.preventDefault(),
+              onMouseMove: () => {
+                if (i !== act && !it.disabled) setActive(i);
+              },
+              onClick: (e) => pick(it, e.metaKey || e.ctrlKey),
+              children: [
+                it.icon && /* @__PURE__ */ jsx("span", { className: "bc-cmdk-icon", "aria-hidden": "true", children: it.icon }),
+                /* @__PURE__ */ jsx("span", { className: "bc-cmdk-label", children: highlight && !short ? /* @__PURE__ */ jsx(Marked, { text: it.label, q }) : it.label }),
+                it.description && /* @__PURE__ */ jsx("span", { className: "bc-cmdk-desc", id: `${optId(i)}-d`, children: it.description })
+              ]
             },
-            onClick: (e) => pick(it, e.metaKey || e.ctrlKey),
-            children: [
-              it.icon && /* @__PURE__ */ jsx("span", { className: "bc-cmdk-icon", "aria-hidden": "true", children: it.icon }),
-              /* @__PURE__ */ jsx("span", { className: "bc-cmdk-label", children: highlight && !short ? /* @__PURE__ */ jsx(Marked, { text: it.label, q }) : it.label }),
-              it.description && /* @__PURE__ */ jsx("span", { className: "bc-cmdk-desc", children: it.description })
-            ]
-          },
-          it.id
+            it.id
+          )
         );
       })
     ] }, g.id)) }),

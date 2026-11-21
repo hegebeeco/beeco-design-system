@@ -1,13 +1,13 @@
 /* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ReviewReject
-} from "./chunk-THGOYHKM.js";
+} from "./chunk-C2PHULQC.js";
 import {
   BeeMoment
 } from "./chunk-UA4AGC45.js";
 import {
   ProgressBar
-} from "./chunk-VX625S5W.js";
+} from "./chunk-5MR4IVAZ.js";
 import {
   UndoIcon
 } from "./chunk-CARXS6OD.js";
