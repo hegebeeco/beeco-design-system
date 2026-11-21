@@ -2,6 +2,12 @@
 
 Forrás: Kristóf koncepció-dokumentuma („beeco webjátékok – az első 5 prototípus”, 2026-09-18) + a beeco-szelektalj projekt tanulságai.
 
+## A folyamat
+Új játékot (és nagy átalakítást) fázisokban tervezünk, minden fázis végén Kristóf kapudöntésével:
+brief → koncepció → játékterv (GDD) → prototípus → vertical slice → gyártás → játékteszt → kiadás → utóélet.
+A fázisok, a szigorúsági szintek (kicsi / közepes / nagy) és a sablonok a `beeco-jatektervezes` skillben vannak
+(a kitben: `~/CLAUDE/beeco-jatek-kit/.claude/skills/beeco-jatektervezes/`). Ez a lap az elveket adja, a skill a lépéseket.
+
 ## A közös mondat
 **Ne azt kérdezzük a játékostól, hogy tudja-e a helyes választ. Adjunk neki egy rendszert, amibe belenyúlhat, majd mutassuk meg, mi változott.**
 
