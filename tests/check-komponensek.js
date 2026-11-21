@@ -11,6 +11,7 @@
 const fs = require('fs');
 const path = require('path');
 const http = require('http');
+const os = require('os');
 const { chromium } = require('playwright');
 const meres = require('../tools/komp/oldal-meres');
 
@@ -91,7 +92,7 @@ async function main() {
         if (tema === 'light' && fs.existsSync(tf)) {
           await page.emulateMedia({ reducedMotion: 'no-preference' }); await page.reload(); await page.waitForSelector('[data-case]'); await stabil(page);
           const { default: run } = await import(tf);
-          await run({ page, stabil: () => stabil(page), t: async (nev, fn) => { try { await fn(); forgato.push({ lap, nev, ok: true }); } catch (e) { forgato.push({ lap, nev, ok: false, hiba: e.message.split('\n')[0] }); } } });
+          await run({ page, stabil: () => stabil(page), t: async (nev, fn) => { try { await fn(); forgato.push({ lap, nev, ok: true }); } catch (e) { const [hiba, ...log] = e.message.split('\n'); forgato.push({ lap, nev, ok: false, hiba, log: log.filter((l) => l.trim()) }); } } });
         }
       }
       await ctx.close();
@@ -99,6 +100,13 @@ async function main() {
   }
   await browser.close(); srv.close();
   report(lapok, leletek, forgato);
+}
+
+// Időtúllépésnél a gép terhelését is kiírja: túlterhelt gépen (pl. több párhuzamos böngészős mérés) az időtúllépés nem a komponens hibája.
+function overloadNote(message) {
+  const load = os.loadavg()[0]; const cores = os.cpus().length;
+  if (!/Timeout \d+ms exceeded/.test(message) || load < cores * 2) return;
+  console.log(`  ! A gép túlterhelt (terhelés: ${load.toFixed(0)}, magok: ${cores}) – az időtúllépés ettől is lehet. Futtasd újra egyedül: npm run check:egy -- <lap>`);
 }
 
 function report(lapok, leletek, forgato) {
@@ -109,10 +117,12 @@ function report(lapok, leletek, forgato) {
   const db = (s) => lista.filter((l) => l.sulyos === s).length;
   console.log(`check-komponensek: ${lapok.length} tesztlap × ${NEZETEK.length} nézet × 2 mód`);
   console.log(`  forgatókönyv: ${forgato.filter((f) => f.ok).length}/${forgato.length} rendben`);
-  forgato.filter((f) => !f.ok).forEach((f) => console.log(`  ✗ ${f.lap}: ${f.nev} – ${f.hiba}`));
+  // A bukott próba teljes Playwright-naplója is kell (mire várt, mi takarta) – az első sorból az ok nem derül ki
+  forgato.filter((f) => !f.ok).forEach((f) => { console.log(`  ✗ ${f.lap}: ${f.nev} – ${f.hiba}`); f.log.slice(0, 16).forEach((l) => console.log(`      ${l}`)); });
+  overloadNote(forgato.filter((f) => !f.ok).map((f) => f.hiba).join('\n'));
   console.log(`  leletek: P0 ${db('P0')} · P1 ${db('P1')} · P2 ${db('P2')} · P3 ${db('P3')}`);
   for (const l of lista) console.log(`  [${l.sulyos}] ${l.kat} · ${l.lap} · ${l.mi}\n        hol: ${l.hol}\n        nézet: ${l.nezetek.length > 4 ? l.nezetek.length + ' nézetben' : l.nezetek.join(', ')}`);
   if (jsonOut) fs.writeFileSync(jsonOut, JSON.stringify({ forgato, leletek: lista }, null, 1));
   if (db('P0') || db('P1') || forgato.some((f) => !f.ok)) process.exit(1);
 }
-main().catch((e) => { console.error(e); process.exit(1); });
+main().catch((e) => { console.error(e); overloadNote(String(e && e.message)); process.exit(1); });
