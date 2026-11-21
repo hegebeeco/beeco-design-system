@@ -7,22 +7,21 @@
    "selector": ".card",
    "to": {
     "border-radius": "4px",
-    "box-shadow": "4px 4px 0 0 #000000",
+    "box-shadow": "none",
     "transition": "transform, box-shadow, background-color 160ms"
    },
    "hover": {
-    "box-shadow": "5px 5px 0 0 #000000",
-    "transform": "translate(-1px, -1px)"
+    "box-shadow": "4px 4px 0 0 #000000"
    },
    "active": {
-    "box-shadow": "1px 1px 0 0 #000000",
-    "transform": "translate(3px, 3px)"
+    "box-shadow": "1px 1px 0 0 #000000"
    },
    "from": {
     "border-radius": "24px 0 24px 0",
     "box-shadow": "none",
     "hover box-shadow": "6px 4px 5px 0 rgba(0,0,0,0.7)"
-   }
+   },
+   "note": "The class is used both on links and on plain boxes, so there is no resting shadow; the shadow appears on hover only."
   },
   {
    "selector": ".card._4col, .card._3col",
@@ -163,5 +162,225 @@
     "width": "(not set)"
    }
   }
- ]
+ ],
+ "round3": {
+  "note": "Third round (same day): legacy CMS template classes. One class change covers every page of the collection.",
+  "changes": [
+   {
+    "selector": ".chip, .chip_honap, .chip_tudnivalok, .category_chip",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "8px"
+    }
+   },
+   {
+    "selector": ".gf_link",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "999px"
+    }
+   },
+   {
+    "selector": ".card_img",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "12px 0 12px 0"
+    }
+   },
+   {
+    "selector": ".gyumi_text_blokk (+ ._3asblokk, .feher)",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "24px"
+    }
+   },
+   {
+    "selector": ".recept_text_blokk",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "24px"
+    }
+   },
+   {
+    "selector": ".text_blokk_withbackground",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "16px"
+    }
+   },
+   {
+    "selector": ".okos_tartalom_img",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "20px"
+    }
+   },
+   {
+    "selector": ".noveny_pikto, .small_pikto_50",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "8px"
+    }
+   },
+   {
+    "selector": ".beecopedia_pic",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "16px"
+    }
+   },
+   {
+    "selector": ".noveny_img_big",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "24px"
+    }
+   },
+   {
+    "selector": ".noveny_img",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "12px"
+    }
+   },
+   {
+    "selector": ".noveny_csempe",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "12px"
+    }
+   },
+   {
+    "selector": ".noveny_kartya",
+    "to": {
+     "border-radius": "4px",
+     "box-shadow": "none"
+    },
+    "from": {
+     "border-radius": "16px",
+     "box-shadow": "4px 4px 5px 0 rgba(0,0,0,0.4)"
+    }
+   },
+   {
+    "selector": ".img_gallery_box",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "24px"
+    }
+   },
+   {
+    "selector": ".gallery_img",
+    "to": {
+     "border-radius": "0",
+     "box-shadow": "none"
+    },
+    "from": {
+     "border-radius": "24px 0 24px 0",
+     "box-shadow": "4px 4px 5px 0 rgba(0,0,0,0.2)"
+    }
+   },
+   {
+    "selector": ".logo_img, .press_img",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "8px"
+    }
+   },
+   {
+    "selector": ".partner_le-r-s_blokk",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "24px"
+    }
+   },
+   {
+    "selector": ".sziget_blokk",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "32px"
+    }
+   },
+   {
+    "selector": ".kontributor_card",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "40px"
+    }
+   },
+   {
+    "selector": ".slider_img",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "20px"
+    }
+   },
+   {
+    "selector": ".home-faq-top",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "12px 4px 12px 4px"
+    }
+   },
+   {
+    "selector": ".main-button",
+    "to": {
+     "border-radius": "4px",
+     "hover": "5px 5px 0 0 #000000, translate(-1px,-1px)"
+    },
+    "from": {
+     "border-radius": "8px",
+     "hover": "4px 4px 0 0, translate(-4px,-4px) scale(1.05)"
+    }
+   },
+   {
+    "selector": ".main-button.huge",
+    "to": {
+     "border-radius": "4px",
+     "box-shadow": "4px 4px 0 0 #000000"
+    },
+    "from": {
+     "border-radius": "8px",
+     "box-shadow": "6px 6px 0 0"
+    }
+   }
+  ]
+ }
 }

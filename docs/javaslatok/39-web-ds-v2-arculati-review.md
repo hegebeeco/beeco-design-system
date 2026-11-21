@@ -30,7 +30,7 @@ A nem webes pontok (kupon-címke az appban, nektár-chip, a CsicsergŐsz appkép
 ## 2. Mit jelent ez a gyakorlatban
 - A közös `ds-` osztályok egy helyen változtak, ezért minden rájuk épülő oldal egyszerre lett egységes a tesztoldalon.
 - A régi, nem `ds-` oldalak (főoldal, blog, kampány, letöltés) oldalanként kerülnek át a sablonokra. Sorrend és mérés: web-ds.md 11. fejezet.
-- Mérés (`ds-lint`, 12 oldal a tesztoldalon): **1252 → 276 eltérés**; négy oldal 0-n (Beecopédia, Kuponok, Eseménynaptár, Hatásunk), a blog 130-ról 1-re. Oldalankénti tábla: web-ds.md 11. fejezet.
+- Mérés (`ds-lint`, 12 oldal a tesztoldalon): **1252 → 276 eltérés**; négy oldal 0-n (Beecopédia, Kuponok, Eseménynaptár, Hatásunk), a blog 130-ról 1-re. A teljes oldalas mérés (72 oldal): web-ds.md 11. fejezet. Oldalankénti tábla: web-ds.md 11. fejezet.
 - A közös letöltés-blokk (`DOWNLOAD_BLOCK`) áruház-gombjai kemény árnyékot kaptak, a QR-kód szögletes, árnyék nélküli.
 - Mentés a régi stílusokról: `~/CLAUDE/webflow-mentes/2026-11-21-web-ds/`. A változtatások listája: `weboldal/web-ds/migration/atoms_v2_plan.json`.
 

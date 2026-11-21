@@ -185,35 +185,45 @@ Gomb, chip, kártya és szekció ma osztály, nem komponens: a szabályt a köz�
 
 ## 11. A v2 átállás állapota (2026-11-21, tesztoldal)
 
-`ds-lint`, 12 oldal: **1252 → 276 eltérés.**
+**Teljes oldalas DS-check:** 72 oldal (52 statikus + a 10 CMS-gyűjtemény 2–2 mintája), `ds-lint`.
 
-| Oldal | Előtte | Utána | Ami maradt |
+| Mutató | Érték |
+|---|---|
+| Eltérés a 72 mért oldalon | **1359** (a harmadik kör előtt 1778) |
+| 0 eltérés | 11 oldal; legfeljebb 5 eltérés: 34 oldal |
+| CMS-oldalak (393 oldal, 10 sablon) | becslés: kb. 8200 → 2600 (gyűjteményenként 2 minta alapján) |
+| Teljesen `ds-` oldal | 30 a 72-ből |
+
+| Oldalcsoport | Oldal | Eltérés | A legnagyobb tételek |
 |---|---|---|---|
-| `/beecopedia` | 94 | 0 | – |
-| `/app/kuponok` | 52 | 0 | – |
-| `/app/zold-esemenynaptar` | 78 | 0 | – |
-| `/rolunk/hatasunk` | 91 | 0 | – |
-| `/beecopedia/blog` | 130 | 1 | egy hiányzó domb |
-| kisokos | 106 | 2 | egy hiányzó domb, egy kép |
-| `/app/letoltes` | 36 | 10 | az oldal saját CSS-e (kerek chip, régi gombforma), egy hiányzó domb |
-| `/szolgaltatas/cegeknek` | 148 | 12 | piktogramok sárga folt nélkül |
-| `/rolunk/rolunk` | 90 | 13 | piktogramok sárga folt nélkül |
-| `/szolgaltatas/partner` | 144 | 39 | az „Egy nap” beágyazott animáció saját osztályai |
-| `/kampanyok/csicsergosz` | 94 | 44 | kampányarculat (`cs-`), döntésre vár |
-| `/` (főoldal) | 189 | 155 | `fs-` osztályok, az átépítéssel együtt |
+| Kampányok | 6 | 545 | Madárkisokos 335, Vízadás 111, CsicsergŐsz 45, EWWR 36 |
+| App | 8 | 236 | GYIK 106, lábnyom-metodika 58, térkép 53 |
+| Főoldal | 1 | 155 | `fs-` osztályok |
+| Szolgáltatás | 17 | 156 | Partner 39, a többi 6–14 (piktogram foltszíne) |
+| Rólunk | 9 | 39 | Rólunk 13, Csatlakozz 12 |
+| Nyereményjáték, beebolt, /en | 4 | 67 | régi GYIK, webshop-elemek |
+| Beecopédia | 7 | 20 | szezonális étkezés 9 |
+| CMS-minták | 20 | 141 | termék 22, ökoirányító 9, recept 8, blogcikk 7 oldalanként |
+
+A 12 elsőként mért oldalon: 1252 → 276.
 
 Mi történt:
-1. **Első kör:** 68 stílusváltozás a közös `ds-` osztályokon (sarok, árnyék, keret, címke, logó), a `DOWNLOAD_BLOCK` gombjai és QR-kódja (`migration/atoms_v2_plan.json`).
-2. **Második kör:** a régi közös osztályok (`card` és változatai, `button_main`, `sub-heading`, `text_chip`, `blog_img_blokk`) ugyanarra a formára (`migration/legacy_v2_changes.json`). Ezek a régi oldalakon is érvényesek, nem csak a mérteken.
-3. A generátorok és a katalógus hozzáigazítva. Mentés a régi értékekről: `~/CLAUDE/webflow-mentes/2026-11-21-web-ds/`.
+1. **Első kör:** 68 stílusváltozás a közös `ds-` osztályokon, a `DOWNLOAD_BLOCK` gombjai és QR-kódja (`migration/atoms_v2_plan.json`).
+2. **Második kör:** a régi közös osztályok (`card` és változatai, `button_main`, `sub-heading`, `text_chip`, `blog_img_blokk`).
+3. **Harmadik kör:** a CMS-sablonok régi osztályai (chipek, szövegdobozok, képek, `main-button`); egy osztály egy egész gyűjteményt javít. A 2–3. kör listája: `migration/legacy_v2_changes.json`.
+4. A régi `card` osztály linkként és sima dobozként is él, ezért alapállapotban nincs árnyéka, csak rámutatásra.
+5. Mentés a régi értékekről: `~/CLAUDE/webflow-mentes/2026-11-21-web-ds/`.
+
+Újramérés: `node weboldal/web-ds/teszt/ds-lint.cjs <URL-ek> --json ki.json`; az URL-lista a `sitemap.xml`-ből jön (statikus oldalak + gyűjteményenként két minta).
 
 Következő körök:
-1. **Főoldal:** az átépítés a 6. fejezet főoldal-sablonjára, `fs-` → `ds-`.
-2. **Piktogramok:** a B2B- és a Rólunk-oldalon fehér foltos piktogram van. A Javaslat 35 (fehér folt a B2B-oldalakon) és a „sárga foltos mindenhol” szabály ütközik, Kristóf dönt.
-3. **Partner „Egy nap” animáció:** a beágyazott CSS igazítása.
-4. **Letöltés:** az oldal saját CSS-ének cseréje közös osztályokra.
-5. **Kampányoldal:** a döntés után.
-6. **Hiányzó dombok** a blogon, a kisokoson és a letöltésen; **galéria nagyítása** szkript-bővítéssel.
+1. **Komponensek rendbetétele:** összevonás és kilenc új komponens, [Javaslat 40](javaslatok/40-webflow-komponensek-rendbetetele.md) (jóváhagyásra vár).
+2. **Főoldal:** az átépítés a 6. fejezet főoldal-sablonjára, `fs-` → `ds-`.
+3. **App GYIK és nyereményjáték:** a régi `home-faq-*` cseréje a GYIK-sablonra.
+4. **Piktogramok:** a Javaslat 35 (fehér folt a B2B-oldalakon) és a „sárga foltos mindenhol” szabály ütközik, Kristóf dönt.
+5. **Kampányoldalak** (`cs-`, `ov-`): a döntés után.
+6. **Partner „Egy nap” animáció, letöltés-oldal:** a beágyazott CSS igazítása.
+7. **Hiányzó dombok** a régi `dia_*` szekciók között (80 hely); **galéria nagyítása**.
 
 ## 12. Irány: profibb, érthetőbb, több letöltés, jobb SEO
 

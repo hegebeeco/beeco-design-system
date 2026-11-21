@@ -46,5 +46,6 @@ mindig a **fájlnevet** írd, ne csak a számot. Új lap mindig egyedi számot k
 | 30 | [`30-szolgaltatas-szemleltetes.md`](30-szolgaltatas-szemleltetes.md) | Szolgáltatásoldalak szemléltetése: történet (gond–megoldás–haszon), appképek, natív képcsúszka | jóváhagyva (2026-11-04), próba: beeco@work |
 | 38 | [`38-kompakt-tipusblokk.md`](38-kompakt-tipusblokk.md) | Kompakt tartalomtípus-blokk: kép a sarokban piktogrammal, chipek a képen (`ds-szekcio-tomor`, `ds-foto-szeles`, `ds-foto-piko`, `ds-foto-chipek`, `ds-app-kep`) | jóváhagyásra vár; stagingen: beecopedia |
 | 39 | [`39-web-ds-v2-arculati-review.md`](39-web-ds-v2-arculati-review.md) | Web DS v2: az arculati review webes pontjai (4 px sarok, árnyék csak kattinthatón, két gomb, fekete címke, keret nélküli logó, vaj hátterű címke) + `ds-lint` | jóváhagyásra vár (2026-11-21), stagingen |
+| 40 | [`40-webflow-komponensek-rendbetetele.md`](40-webflow-komponensek-rendbetetele.md) | Webflow-komponensek rendbetétele: összevonás (logósor, térköz, morzsa), kilenc új komponens (Nyitó, Szekciófej, GYIK, App letöltés, Gomb …), takarítás; DS-check 72 oldalon | javaslat (2026-11-21) |
 
-Új lap: másold a `_sablon.md`-t `40-<rovid-nev>.md` néven, és vedd fel ebbe a táblázatba.
+Új lap: másold a `_sablon.md`-t `41-<rovid-nev>.md` néven, és vedd fel ebbe a táblázatba.
