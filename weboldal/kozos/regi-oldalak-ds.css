@@ -1,0 +1,131 @@
+/* beeco régi stílusú oldalak DS-bőre (2026-11-02, élesítés előtti audit, UI-szakasz):
+   /gyik, /letoltes, /kapcsolat, /beebolt (és a webshop-sablonok), /kuponok, /zold-esemenynaptar, /terkep. Az oldal fejkódja tölti be, csak ott.
+   A régi site-osztályokat (dia_*, headline*, main_text, button_main, tab_button, gyik_item, input_field, text_chip…)
+   az új oldalak ds- elemeinek kinézetére hozza: DS-szekcióháttér, Lalezar címskála a Tipográfia-változókból,
+   DS-gomb (4 px sarok, 48 px, 4 px kemény árnyék), keretes GYIK-sorok, 48 px-es mezők, 44 px-es érintési felület.
+   A fejléc (menu-*) és a lábléc (lablec-*) komponenst nem érinti. Ugyanez a minta a Csatlakozz oldalon: csatlakozz/kk-ds.css. 
+   Web DS v2 (2026-11-21, Javaslat 39): 4 px sarok mindenhol, kemény árnyék csak kattintható elemen (4 px), kerek chip és fül helyett 4 px. */
+:root{
+  --rd-ink:var(--_beeco-ds---bc-ink,#000);
+  --rd-soft:var(--_beeco-ds---bc-ink-soft,#505050);
+  --rd-bg:var(--_beeco-ds---bc-bg,#fff8e7);
+  --rd-surface:var(--_beeco-ds---bc-surface,#fff);
+  --rd-s2:var(--_beeco-ds---bc-surface-2,#f0f3ec);
+  --rd-vaj:var(--_beeco-ds---bc-vaj,#feeebb);
+  --rd-acc:var(--_beeco-ds---bc-accent,#fecf39);
+  --rd-line:var(--_beeco-ds---bc-line,#000);
+  --rd-r:var(--_beeco-ds---bc-r-s,4px);
+  --rd-display:Lalezar,"Arial Rounded MT Bold",system-ui,sans-serif;
+  --rd-ease:cubic-bezier(.23,1,.32,1)
+}
+
+/* ---- szekcióháttér: a régi áttetsző zöld/sárga/kék helyett DS-színek ---- */
+section.dia_zold,div.dia_zold{background-color:var(--rd-s2)}
+section.dia_sarga,div.dia_sarga{background-color:var(--rd-vaj)}
+section.dia_kek,div.dia_kek{background-color:var(--rd-bg)}
+section.dia_feher,div.dia_feher,section.gyik{background-color:var(--rd-surface)}
+
+/* ---- címek és szöveg ---- */
+.huge-heading,section .headline1{font-family:var(--rd-display);font-size:var(--_tipográfia---cim-xl,64px);font-weight:400;line-height:1.14;text-wrap:balance;color:var(--rd-ink)}
+section .headline2,.gyik_blokk>h2:not(.main_text){font-family:var(--rd-display);font-size:var(--_tipográfia---cim-l,48px);font-weight:400;line-height:1.08;text-wrap:balance;color:var(--rd-ink)}
+.gyik_blokk>h2:not(.main_text){font-size:var(--_tipográfia---cim-m,32px)}
+section .headline3,section .main_heading{font-family:var(--rd-display);font-size:var(--_tipográfia---cim-s,24px);font-weight:400;line-height:1.1;color:var(--rd-ink)}
+section .main_text,section .main-text{color:var(--rd-soft);line-height:1.55}
+
+/* ---- gombok (ds-gomb) ---- */
+section .button_main,section .button_sec,section .button_terc,form .button_main,form .main-button,a.w-commerce-commercecartopenlink.button_main{min-height:48px;padding:13px 22px 10px;border:2px solid var(--rd-line);border-radius:var(--_beeco-ds---bc-r-s,4px);background-color:var(--rd-acc);color:var(--rd-ink);font-family:var(--rd-display);font-size:19px;font-weight:400;line-height:1;text-decoration:none;box-shadow:4px 4px 0 0 var(--rd-line);display:inline-flex;align-items:center;justify-content:center;transition:transform 160ms var(--rd-ease),box-shadow 160ms var(--rd-ease)}
+section .button_sec,section .button_terc{background-color:var(--rd-surface)}
+@media (hover:hover) and (pointer:fine){
+  section .button_main:hover,section .button_sec:hover,section .button_terc:hover,form .button_main:hover,form .main-button:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 0 var(--rd-line);color:var(--rd-ink)}
+}
+section .button_main:active,section .button_sec:active,form .button_main:active{transform:translate(3px,3px);box-shadow:1px 1px 0 0 var(--rd-line)}
+
+/* ---- számcímkék (ds-chip): a fehér szöveg zöldön 3,9:1 volt ---- */
+.text_chip,.text_chip.zold{padding:7px 12px 6px;border:2px solid var(--rd-line);border-radius:var(--_beeco-ds---bc-r-s,4px);background-color:var(--rd-surface);color:var(--rd-ink)}
+.text_chip .main-text,.text_chip .main_text,.text_chip div,.text_chip .main-text.mid.feh-r,.text_chip.zold .main-text.mid.feh-r{color:var(--rd-ink);font-size:14px;font-weight:700;line-height:1.2}
+
+/* ---- GYIK: fülek és lenyílók ---- */
+.tab_button{min-height:44px;display:inline-flex;align-items:center;padding:8px 16px;border:2px solid var(--rd-line);border-radius:var(--_beeco-ds---bc-r-s,4px);background-color:var(--rd-surface);color:var(--rd-ink);font-weight:800}
+.w-tab-menu:has(> .tab_button){display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.tab_button.w--current,.w-tab-link.tab_button.w--current{border:2px solid var(--rd-line);border-radius:var(--_beeco-ds---bc-r-s,4px);background-color:var(--rd-acc);color:var(--rd-ink)}
+.gyik_item .home-faq-top{min-height:56px;border:2px solid var(--rd-line);border-radius:var(--rd-r);background-color:var(--rd-surface);color:var(--rd-ink)}
+.gyik_item .home-faq-text a,.home-faq-text a{color:var(--rd-ink);font-weight:800;text-decoration:underline;display:inline-flex;align-items:center;min-height:44px}
+
+/* a lenyíló sor fejléce a gomb (billentyűzettel is, lásd kozos/akadalymentes.js), nem az egész doboz */
+.gyik_item{cursor:auto}
+.gyik_item .home-faq-top{cursor:pointer}
+/* közösségi ikonok: 44 px-es érintési felület */
+.brix---icon-square-36px{min-width:44px;min-height:44px}
+
+/* ---- kártyák és fotók ---- */
+section .card,section .r-lunk_textblokk{border:2px solid var(--rd-line);border-radius:var(--rd-r);box-shadow:none;overflow:hidden}
+/* Web DS v2: árnyék csak a kattintható (link) kártyán */
+section a.card{box-shadow:4px 4px 0 0 var(--rd-line)}
+
+/* ---- logósor: 44 px-es érintési felület ---- */
+.t-mogat-_link{min-height:44px}
+
+/* ---- űrlap (Kapcsolat): DS-mezők ---- */
+.input_field{min-height:48px;border:2px solid var(--rd-line);border-radius:var(--_beeco-ds---bc-r-s,4px);background-color:var(--rd-surface);color:var(--rd-ink);font-size:16px}
+textarea.input_field{min-height:120px}
+
+/* ---- csúszkapöttyök: 12 px-es pötty, 44 px-es érintési felület ---- */
+.w-slider .w-slider-nav .w-slider-dot,.w-slider .w-slider-nav.w-shadow>div,.w-slider .w-slider-nav.w-round>div{width:44px;height:44px;margin:0;padding:16px;box-sizing:border-box;background-clip:content-box;background-color:var(--_beeco-ds---bc-ink-muted,#676767);box-shadow:none}
+.w-slider .w-slider-nav .w-slider-dot.w-active{background-color:var(--rd-ink)}
+.w-slider-nav{display:flex;flex-wrap:wrap;justify-content:center;height:auto}
+/* a brix-csúszkák pöttysora a dia aljára volt téve, és a kártya címét takarta: a csúszka alá kerül */
+.brix---slider-wrapper{margin-bottom:52px}
+.brix---slider-wrapper > .w-slider-nav{top:100%;bottom:auto;padding-top:4px}
+/* ≤991 px-en a nyilak a csúszka alatt ülnek (ott ők a navigáció), a pöttysor rájuk csúszna */
+@media (max-width:991px){.brix---slider-wrapper{margin-bottom:100px}.brix---slider-wrapper > .w-slider-nav{display:none}}
+@media (max-width:767px){.brix---slider-wrapper{margin-bottom:84px}}
+
+/* ---- Kuponok, Eseménynaptár, Térkép (2026-11-02 este, Kristóf: „tedd rá a DS-bőrt”) ---- */
+/* kategóriaszűrő (Kuponok, Finsweet-lista): ds-chip; a kiválasztott sárga (a fehér szöveg zöldön 3,94:1 volt).
+   A rádiógomb eddig display:none volt (billentyűzettel elérhetetlen): most láthatatlan, de fókuszálható. */
+.radio-button-field{position:relative;display:inline-flex;align-items:center;gap:6px;min-height:44px;margin:0;padding:8px 14px 6px;border:2px solid var(--rd-line);border-radius:var(--_beeco-ds---bc-r-s,4px);background-color:var(--rd-surface);color:var(--rd-ink);cursor:pointer}
+.radio-button-field .w-form-label,.radio-button-field .text-block-86{margin:0;color:var(--rd-ink);font-size:15px;font-weight:700;line-height:1.2}
+.radio-button-field .text-block-86{font-weight:400}
+/* a „Mind” összesítője (fs-list-element="items-count") a többi számlálóhoz hasonlóan zárójelben: „Mind (49)” */
+.radio-button-field [fs-list-element="items-count"]::before{content:"("}
+.radio-button-field [fs-list-element="items-count"]::after{content:")"}
+.radio-button-field.is-list-active{background-color:var(--rd-acc)}
+.radio-button-field .radio_button_circle.hide{display:block!important;position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.radio-button-field:focus-within{outline:3px solid var(--_beeco-ds---bc-focus,#2656d9);outline-offset:2px}
+.keres-_inputfield{min-height:48px;padding:10px 14px;border:2px solid var(--rd-line);border-radius:var(--_beeco-ds---bc-r-s,4px);background-color:var(--rd-surface);color:var(--rd-ink);font-size:16px}
+/* Térkép: kategóriacsempék és a beágyazott térkép DS-sarokkal */
+.card_negyzet{border:2px solid var(--rd-line);border-radius:var(--rd-r);background-color:var(--rd-surface);box-shadow:4px 4px 0 0 var(--rd-line);overflow:hidden;transition:transform 160ms var(--rd-ease),box-shadow 160ms var(--rd-ease)}
+@media (hover:hover) and (pointer:fine){.card_negyzet:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 0 var(--rd-line)}}
+.t-rk-p_box{border:2px solid var(--rd-line);border-radius:var(--rd-r);overflow:hidden}
+@media (max-width:767px){
+  .kategoria_blokk{gap:12px;justify-content:center}
+  .card_negyzet{width:calc(50% - 6px);max-width:200px;height:auto;aspect-ratio:1/1;margin:0}
+}
+/* szekción kívüli (div-konténeres) gombok és a hírsáv gombja is 44 px; a hírsáv X-e 44 px-es érintési felületet kap,
+   és csak az X mutat kattinthatónak (a billentyűzetes gombot a kozos/akadalymentes.js adja) */
+.alap-blokk .hero_column_content .button_main,.brix---top-bar-close-icon .button_main{min-height:44px;display:inline-flex;align-items:center}
+.brix---top-bar-close-icon{cursor:auto}
+.brix---top-bar-close-icon .brix---icon-small-hover{box-sizing:content-box;padding:12px;margin:-12px;cursor:pointer}
+/* Eseménynaptár: üres (kép nélküli) partnerlink ne legyen név nélküli fókuszpont */
+.t-mogat-_link:empty{display:none}
+
+/* ---- teljesítmény (2026-11-02 esti mérés) ----
+   /letoltes: a telefonkép (lustán tölt) helyét előre lefoglaljuk, mobilon 300 px-es ugrás volt (CLS 0,31);
+   /gyik, /kapcsolat: a hajtás feletti blokk ne várja meg a beúszó interakciót (mobil LCP ~10 s volt). */
+.image-181{aspect-ratio:500/672;height:auto}
+@media (max-width:767px){.div-block-312{align-self:stretch}} /* mobilon a doboz a tartalomhoz zsugorodott, így a 60%-os kép 0 széles volt betöltésig */
+.div-block-77,.irodabal,.zenj_nek-nk.contact-us{opacity:1!important}
+
+/* ---- mobil ---- */
+/* beebolt: a fix kosárgomb telefonon rácsúszott a „‹ főoldal” linkre (320 és 390 px) → tömörebb gomb */
+@media (max-width:479px){
+  a.w-commerce-commercecartopenlink.button_main{padding:11px 12px 8px;font-size:16px}
+}
+@media (max-width:767px){
+  .huge-heading,section .headline1{font-size:40px}
+  section .headline2{font-size:32px}
+  .gyik_blokk>h2:not(.main_text){font-size:26px}
+}
+@media (prefers-reduced-motion:reduce){
+  section .button_main,section .button_sec,section .button_terc,form .button_main,.card_negyzet{transition:none}
+}
