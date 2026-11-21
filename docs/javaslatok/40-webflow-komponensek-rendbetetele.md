@@ -76,7 +76,7 @@ Kockázat: a meglévő oldalakon a kézzel épített szekció komponensre cseré
 |---|---|
 | `DS · Szekciófej`, `DS · Gomb`, `DS · App letöltés`, `DS · GYIK` | kész, a `/beecopedia` oldalon kipróbálva a tesztoldalon (asztal + mobil, `ds-lint` 0); azonosítók és propok: web-ds.md 9. fejezet |
 | Csoportnevek: minden DS-komponens a „Web DS” csoportban | kész (9 komponens átsorolva) |
-| A négy komponens kiterjesztése a többi `ds-` oldalra | hátravan (oldalanként, képernyőkép-összevetéssel) |
+| A négy komponens kiterjesztése a többi `ds-` oldalra | folyamatban: `/app/kuponok` és `/app/zold-esemenynaptar` (app letöltés + GYIK), kisokos (app letöltés) kész, előtte–utána összevetéssel; a kisokos GYIK-je marad, amíg a `DS · GYIK` nem kap domb-helyet; a többi oldal hátravan |
 | `DS · Logósor` összevonás, térköz-komponensek kivezetése, morzsa és letöltés-blokk csere | hátravan |
 | `DS · Nyitó`, `DS · Kártyarács`, `DS · Lépések`, `DS · Fotósor`, `DS · Cikk-kártya` | hátravan |
 | 18 használaton kívüli komponens törlése | a végén; a friss lista megerősítése után (a `NAVBAR_REGI_BACKUP` leírása szerint biztonsági másolat) |
