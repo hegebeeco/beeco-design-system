@@ -44,5 +44,7 @@ mindig a **fájlnevet** írd, ne csak a számot. Új lap mindig egyedi számot k
 | 28 | [`28-egy-grafikai-forras.md`](28-egy-grafikai-forras.md) | Egy grafikai forrás, sok kimenet: grafikai katalógus (`grafika/katalogus.json`), a méhek, madarak, logó egységes azonosítója, LICENSE | jóváhagyva (A változat, 2026-10-26); 1. lépés: katalógus + őr |
 | 29 | [`29-jatekos-weboldal-elemek.md`](29-jatekos-weboldal-elemek.md) | Játékos Web DS-elemek: domb, polaroid, piktogramkör, tájképes hero, lebegő méh, idővonal-út (natív osztály + közös CSS a pszeudoelemekre) | jóváhagyva elvben (A, 2026-11-03) |
 | 30 | [`30-szolgaltatas-szemleltetes.md`](30-szolgaltatas-szemleltetes.md) | Szolgáltatásoldalak szemléltetése: történet (gond–megoldás–haszon), appképek, natív képcsúszka | jóváhagyva (2026-11-04), próba: beeco@work |
+| 38 | [`38-kompakt-tipusblokk.md`](38-kompakt-tipusblokk.md) | Kompakt tartalomtípus-blokk: kép a sarokban piktogrammal, chipek a képen (`ds-szekcio-tomor`, `ds-foto-szeles`, `ds-foto-piko`, `ds-foto-chipek`, `ds-app-kep`) | jóváhagyásra vár; stagingen: beecopedia |
+| 39 | [`39-web-ds-v2-arculati-review.md`](39-web-ds-v2-arculati-review.md) | Web DS v2: az arculati review webes pontjai (4 px sarok, árnyék csak kattinthatón, két gomb, fekete címke, keret nélküli logó, vaj hátterű címke) + `ds-lint` | jóváhagyásra vár (2026-11-21), stagingen |
 
-Új lap: másold a `_sablon.md`-t `31-<rovid-nev>.md` néven, és vedd fel ebbe a táblázatba.
+Új lap: másold a `_sablon.md`-t `40-<rovid-nev>.md` néven, és vedd fel ebbe a táblázatba.

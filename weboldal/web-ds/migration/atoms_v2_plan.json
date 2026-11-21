@@ -1,0 +1,1875 @@
+[
+ {
+  "label": "ds-ut",
+  "update_style": {
+   "style_name": "ds-ut",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "4px 4px 0 0 #000000"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-ut:hover",
+  "update_style": {
+   "style_name": "ds-ut",
+   "properties": [
+    {
+     "property_name": "transform",
+     "property_value": "translate(-1px,-1px)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "5px 5px 0 0 #000000"
+    }
+   ],
+   "pseudo": "hover"
+  }
+ },
+ {
+  "label": "ds-ut:active",
+  "update_style": {
+   "style_name": "ds-ut",
+   "properties": [
+    {
+     "property_name": "transform",
+     "property_value": "translate(3px,3px)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "1px 1px 0 0 #000000"
+    }
+   ],
+   "pseudo": "active"
+  }
+ },
+ {
+  "label": "ds-cikk",
+  "update_style": {
+   "style_name": "ds-cikk",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "4px 4px 0 0 #000000"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-cikk:hover",
+  "update_style": {
+   "style_name": "ds-cikk",
+   "properties": [
+    {
+     "property_name": "transform",
+     "property_value": "translate(-1px,-1px)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "5px 5px 0 0 #000000"
+    }
+   ],
+   "pseudo": "hover"
+  }
+ },
+ {
+  "label": "ds-cikk:active",
+  "update_style": {
+   "style_name": "ds-cikk",
+   "properties": [
+    {
+     "property_name": "transform",
+     "property_value": "translate(3px,3px)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "1px 1px 0 0 #000000"
+    }
+   ],
+   "pseudo": "active"
+  }
+ },
+ {
+  "label": "ds-tovabb-kartya",
+  "update_style": {
+   "style_name": "ds-tovabb-kartya",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "4px 4px 0 0 #000000"
+    },
+    {
+     "property_name": "border-top-width",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "border-right-width",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "border-bottom-width",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "border-left-width",
+     "property_value": "2px"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-tovabb-kartya:hover",
+  "update_style": {
+   "style_name": "ds-tovabb-kartya",
+   "properties": [
+    {
+     "property_name": "transform",
+     "property_value": "translate(-1px,-1px)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "5px 5px 0 0 #000000"
+    }
+   ],
+   "pseudo": "hover"
+  }
+ },
+ {
+  "label": "ds-tovabb-kartya:active",
+  "update_style": {
+   "style_name": "ds-tovabb-kartya",
+   "properties": [
+    {
+     "property_name": "transform",
+     "property_value": "translate(3px,3px)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "1px 1px 0 0 #000000"
+    }
+   ],
+   "pseudo": "active"
+  }
+ },
+ {
+  "label": "ds-short",
+  "update_style": {
+   "style_name": "ds-short",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "4px 4px 0 0 #000000"
+    },
+    {
+     "property_name": "border-top-width",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "border-right-width",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "border-bottom-width",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "border-left-width",
+     "property_value": "2px"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-videokeret",
+  "update_style": {
+   "style_name": "ds-videokeret",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "4px 4px 0 0 #000000"
+    },
+    {
+     "property_name": "border-top-width",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "border-right-width",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "border-bottom-width",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "border-left-width",
+     "property_value": "2px"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-valaszto-elem",
+  "update_style": {
+   "style_name": "ds-valaszto-elem",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "4px 4px 0 0 #000000"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-valaszto-elem:hover",
+  "update_style": {
+   "style_name": "ds-valaszto-elem",
+   "properties": [
+    {
+     "property_name": "transform",
+     "property_value": "translate(-1px,-1px)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "5px 5px 0 0 #000000"
+    }
+   ],
+   "pseudo": "hover"
+  }
+ },
+ {
+  "label": "ds-valaszto-elem:active",
+  "update_style": {
+   "style_name": "ds-valaszto-elem",
+   "properties": [
+    {
+     "property_name": "transform",
+     "property_value": "translate(3px,3px)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "1px 1px 0 0 #000000"
+    }
+   ],
+   "pseudo": "active"
+  }
+ },
+ {
+  "label": "ds-fotosor-gomb",
+  "update_style": {
+   "style_name": "ds-fotosor-gomb",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "2px 2px 0 0 #000000"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-fotosor-gomb:hover",
+  "update_style": {
+   "style_name": "ds-fotosor-gomb",
+   "properties": [
+    {
+     "property_name": "transform",
+     "property_value": "translate(-1px,-1px)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "3px 3px 0 0 #000000"
+    }
+   ],
+   "pseudo": "hover"
+  }
+ },
+ {
+  "label": "ds-kerdes",
+  "update_style": {
+   "style_name": "ds-kerdes",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "2px 2px 0 0 #000000"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-tartalom-link",
+  "update_style": {
+   "style_name": "ds-tartalom-link",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "2px 2px 0 0 #000000"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-tartalom-link:hover",
+  "update_style": {
+   "style_name": "ds-tartalom-link",
+   "properties": [
+    {
+     "property_name": "transform",
+     "property_value": "translate(-1px,-1px)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "3px 3px 0 0 #000000"
+    }
+   ],
+   "pseudo": "hover"
+  }
+ },
+ {
+  "label": "ds-kartya",
+  "update_style": {
+   "style_name": "ds-kartya",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-csomag",
+  "update_style": {
+   "style_name": "ds-csomag",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-dij",
+  "update_style": {
+   "style_name": "ds-dij",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-eset",
+  "update_style": {
+   "style_name": "ds-eset",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-eset-eredmeny",
+  "update_style": {
+   "style_name": "ds-eset-eredmeny",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-grafikon",
+  "update_style": {
+   "style_name": "ds-grafikon",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-jelentes",
+  "update_style": {
+   "style_name": "ds-jelentes",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-idezet",
+  "update_style": {
+   "style_name": "ds-idezet",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-allitas",
+  "update_style": {
+   "style_name": "ds-allitas",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-megjegyzes",
+  "update_style": {
+   "style_name": "ds-megjegyzes",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-level",
+  "update_style": {
+   "style_name": "ds-level",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-raj",
+  "update_style": {
+   "style_name": "ds-raj",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-urlap-doboz",
+  "update_style": {
+   "style_name": "ds-urlap-doboz",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-urlap-uzenet",
+  "update_style": {
+   "style_name": "ds-urlap-uzenet",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-szam-csoport",
+  "update_style": {
+   "style_name": "ds-szam-csoport",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-szam.ds-szam-sotet",
+  "update_style": {
+   "style_name": "ds-szam-sotet",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ],
+   "parent_style_names": [
+    "ds-szam"
+   ],
+   "remove_properties": [
+    "border-radius"
+   ]
+  }
+ },
+ {
+  "label": "ds-sziget",
+  "update_style": {
+   "style_name": "ds-sziget",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-burok.ds-sziget",
+  "update_style": {
+   "style_name": "ds-sziget",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ],
+   "parent_style_names": [
+    "ds-burok"
+   ]
+  }
+ },
+ {
+  "label": "ds-cetli",
+  "update_style": {
+   "style_name": "ds-cetli",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-kepsor",
+  "update_style": {
+   "style_name": "ds-kepsor",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-bemenet",
+  "update_style": {
+   "style_name": "ds-bemenet",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-chip.ds-chip-sarga",
+  "update_style": {
+   "style_name": "ds-chip-sarga",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ],
+   "parent_style_names": [
+    "ds-chip"
+   ],
+   "remove_properties": [
+    "border-radius"
+   ]
+  }
+ },
+ {
+  "label": "ds-ajanlat-ful",
+  "update_style": {
+   "style_name": "ds-ajanlat-ful",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-pipa",
+  "update_style": {
+   "style_name": "ds-pipa",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "var(--_beeco-ds---bc-r-s)"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-foto",
+  "update_style": {
+   "style_name": "ds-foto",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    },
+    {
+     "property_name": "border-top-width",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "border-right-width",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "border-bottom-width",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "border-left-width",
+     "property_value": "2px"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-alapito-kep",
+  "update_style": {
+   "style_name": "ds-alapito-kep",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    },
+    {
+     "property_name": "border",
+     "property_value": "2px solid #000000"
+    }
+   ],
+   "remove_properties": [
+    "border-radius"
+   ]
+  }
+ },
+ {
+  "label": "ds-csapat-kep",
+  "update_style": {
+   "style_name": "ds-csapat-kep",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    },
+    {
+     "property_name": "border",
+     "property_value": "2px solid #000000"
+    }
+   ],
+   "remove_properties": [
+    "border-radius"
+   ]
+  }
+ },
+ {
+  "label": "ds-ember-foto",
+  "update_style": {
+   "style_name": "ds-ember-foto",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    },
+    {
+     "property_name": "border-top-width",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "border-right-width",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "border-bottom-width",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "border-left-width",
+     "property_value": "2px"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-hero-dia",
+  "update_style": {
+   "style_name": "ds-hero-dia",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    },
+    {
+     "property_name": "border",
+     "property_value": "2px solid #000000"
+    }
+   ],
+   "remove_properties": [
+    "border-radius"
+   ]
+  }
+ },
+ {
+  "label": "ds-qr",
+  "update_style": {
+   "style_name": "ds-qr",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    },
+    {
+     "property_name": "border",
+     "property_value": "2px solid #000000"
+    }
+   ],
+   "remove_properties": [
+    "border-radius"
+   ]
+  }
+ },
+ {
+  "label": "ds-ref-kep",
+  "update_style": {
+   "style_name": "ds-ref-kep",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-sav",
+  "update_style": {
+   "style_name": "ds-sav",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-sav-kiemelt",
+  "update_style": {
+   "style_name": "ds-sav-kiemelt",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    },
+    {
+     "property_name": "border",
+     "property_value": "2px solid #000000"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-ido-szam-1",
+  "update_style": {
+   "style_name": "ds-ido-szam-1",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-tovabb-nyil",
+  "update_style": {
+   "style_name": "ds-tovabb-nyil",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-foto.ds-ido-foto.ds-polaroid",
+  "update_style": {
+   "style_name": "ds-polaroid",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ],
+   "parent_style_names": [
+    "ds-foto",
+    "ds-ido-foto"
+   ]
+  }
+ },
+ {
+  "label": "ds-fotosor-csik",
+  "update_style": {
+   "style_name": "ds-fotosor-csik",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-logo",
+  "update_style": {
+   "style_name": "ds-logo",
+   "properties": [
+    {
+     "property_name": "border-top-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-top-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-right-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "border-bottom-left-radius",
+     "property_value": "0px"
+    },
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-kartya@small",
+  "update_style": {
+   "style_name": "ds-kartya",
+   "properties": [
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ],
+   "breakpoint_id": "small"
+  }
+ },
+ {
+  "label": "ds-csomag@small",
+  "update_style": {
+   "style_name": "ds-csomag",
+   "properties": [
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ],
+   "breakpoint_id": "small"
+  }
+ },
+ {
+  "label": "ds-foto.ds-ido-foto.ds-polaroid@small",
+  "update_style": {
+   "style_name": "ds-polaroid",
+   "properties": [
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    }
+   ],
+   "parent_style_names": [
+    "ds-foto",
+    "ds-ido-foto"
+   ],
+   "breakpoint_id": "small"
+  }
+ },
+ {
+  "label": "ds-csomag-kiemelt",
+  "update_style": {
+   "style_name": "ds-csomag-kiemelt",
+   "properties": [
+    {
+     "property_name": "box-shadow",
+     "property_value": "none"
+    },
+    {
+     "property_name": "transform",
+     "property_value": "none"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-logo",
+  "update_style": {
+   "style_name": "ds-logo",
+   "properties": [
+    {
+     "property_name": "border-top-style",
+     "property_value": "none"
+    },
+    {
+     "property_name": "border-right-style",
+     "property_value": "none"
+    },
+    {
+     "property_name": "border-bottom-style",
+     "property_value": "none"
+    },
+    {
+     "property_name": "border-left-style",
+     "property_value": "none"
+    },
+    {
+     "property_name": "background-color",
+     "property_value": "transparent"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-logo-kep",
+  "update_style": {
+   "style_name": "ds-logo-kep",
+   "properties": [
+    {
+     "property_name": "filter",
+     "property_value": "grayscale(100%)"
+    },
+    {
+     "property_name": "mix-blend-mode",
+     "property_value": "multiply"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-szalag",
+  "update_style": {
+   "style_name": "ds-szalag",
+   "properties": [
+    {
+     "property_name": "transform",
+     "property_value": "none"
+    },
+    {
+     "property_name": "clip-path",
+     "property_value": "none"
+    },
+    {
+     "property_name": "color",
+     "property_value": "#ffffff"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-cikk-forras",
+  "update_style": {
+   "style_name": "ds-cikk-forras",
+   "properties": [
+    {
+     "property_name": "color",
+     "property_value": "var(--_beeco-ds---bc-ink)"
+    },
+    {
+     "property_name": "background-color",
+     "property_value": "var(--_beeco-ds---bc-vaj)"
+    },
+    {
+     "property_name": "padding-top",
+     "property_value": "3px"
+    },
+    {
+     "property_name": "padding-right",
+     "property_value": "8px"
+    },
+    {
+     "property_name": "padding-bottom",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "padding-left",
+     "property_value": "8px"
+    },
+    {
+     "property_name": "align-self",
+     "property_value": "flex-start"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-ut-ar",
+  "update_style": {
+   "style_name": "ds-ut-ar",
+   "properties": [
+    {
+     "property_name": "color",
+     "property_value": "var(--_beeco-ds---bc-ink)"
+    },
+    {
+     "property_name": "background-color",
+     "property_value": "var(--_beeco-ds---bc-vaj)"
+    },
+    {
+     "property_name": "padding-top",
+     "property_value": "3px"
+    },
+    {
+     "property_name": "padding-right",
+     "property_value": "8px"
+    },
+    {
+     "property_name": "padding-bottom",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "padding-left",
+     "property_value": "8px"
+    },
+    {
+     "property_name": "align-self",
+     "property_value": "flex-start"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-ido-ho",
+  "update_style": {
+   "style_name": "ds-ido-ho",
+   "properties": [
+    {
+     "property_name": "color",
+     "property_value": "var(--_beeco-ds---bc-ink)"
+    },
+    {
+     "property_name": "background-color",
+     "property_value": "var(--_beeco-ds---bc-vaj)"
+    },
+    {
+     "property_name": "padding-top",
+     "property_value": "3px"
+    },
+    {
+     "property_name": "padding-right",
+     "property_value": "8px"
+    },
+    {
+     "property_name": "padding-bottom",
+     "property_value": "2px"
+    },
+    {
+     "property_name": "padding-left",
+     "property_value": "8px"
+    },
+    {
+     "property_name": "align-self",
+     "property_value": "flex-start"
+    }
+   ]
+  }
+ },
+ {
+  "label": "ds-gomb:focus-visible",
+  "update_style": {
+   "style_name": "ds-gomb",
+   "properties": [
+    {
+     "property_name": "outline-color",
+     "property_value": "var(--_beeco-ds---bc-focus)"
+    },
+    {
+     "property_name": "outline-style",
+     "property_value": "solid"
+    },
+    {
+     "property_name": "outline-width",
+     "property_value": "3px"
+    },
+    {
+     "property_name": "outline-offset",
+     "property_value": "3px"
+    }
+   ],
+   "pseudo": "focus-visible"
+  }
+ }
+]
