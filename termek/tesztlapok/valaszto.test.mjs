@@ -10,16 +10,23 @@ export default async function ({ page, t }) {
   await t('opciók akadálymentes neve: minden role=option elemnek van neve, és az a látható felirat (kiemeléssel, ✓-val, „+ Új” opcióval is)', async () => {
     // Az akadálymentességi fa (képernyőolvasó, böngészőügynök) nem mindig rakja össze a nevet a kiemelés (<mark>) által szétvágott tartalomból:
     // az opciónak ezért kimondott neve (aria-label) van. A név a látható felirat (WCAG 2.5.3); a „✓” és az „+ Új” jele nem része.
-    const neve = (sel) => page.locator(sel).evaluateAll((els) => els.map((e) => ({ name: e.getAttribute('aria-label'), text: (e.innerText || '').replace(/^[✓+\s]+/, '').trim(), jelolt: e.querySelectorAll('mark').length })));
+    // Mindig az ÉPP nyitott lista opcióit mérjük (aria-controls): egy előző lista záródó példánya (kilépő animáció) nem keveredhet bele.
+    const lista = async (input) => { const id = await input.getAttribute('aria-controls'); const lb = page.locator(`[id="${id}"]`); await lb.waitFor(); return lb; };
+    const neve = (lb) => lb.locator('[role=option]').evaluateAll((els) => els.map((e) => ({ name: e.getAttribute('aria-label'), text: (e.innerText || '').replace(/^[✓+\s]+/, '').trim(), jelolt: e.querySelectorAll('mark').length })));
+    const egyDarab = async (lb, nev) => { // a név szerinti keresés újrapróbálja a pillanatnyi állapotot; hibánál kiírja, mit látott
+      let n = -1; for (let k = 0; k < 20 && n !== 1; k++) { n = await lb.getByRole('option', { name: nev, exact: true }).count(); if (n !== 1) await page.waitForTimeout(50); }
+      ok(n === 1, `a „${nev}” opció név szerint ${n} db (egy kell): ${JSON.stringify(await neve(lb))}`);
+    };
     const i = c('combo-tobb').locator('input'); await i.click(); await i.pressSequentially('k'); // „k”: kiemelés + „Új: „k”” opció; a „kávézó” kijelölt (✓)
-    const tobb = await neve('[role=option]'); ok(tobb.length >= 3, `kevés opció: ${JSON.stringify(tobb)}`);
+    const lb = await lista(i); await lb.locator('[role=option]').first().waitFor();
+    const tobb = await neve(lb); ok(tobb.length >= 3, `kevés opció: ${JSON.stringify(tobb)}`);
     ok(tobb.some((o) => o.jelolt), 'a próba nem bizonyít semmit: nincs kiemelt (<mark>) opció');
     for (const o of tobb) ok(o.name && o.name === o.text, `az opció neve („${o.name}”) nem a látható felirat („${o.text}”)`);
-    ok((await page.getByRole('option', { name: 'kávézó', exact: true }).count()) === 1, 'a „kávézó” opció név szerint nem érhető el');
-    ok((await page.getByRole('option', { name: 'Új: „k”', exact: true }).count()) === 1, 'az „Új” opció név szerint nem érhető el');
+    await egyDarab(lb, 'kávézó'); await egyDarab(lb, 'Új: „k”');
     await page.keyboard.press('Escape');
     const e = c('combo-egy').locator('input'); await e.click(); await e.fill(''); await e.pressSequentially('kave'); // ékezet nélküli keresés: a kiemelés „kavé” hosszú
-    const egy = await neve('[role=option]'); ok(egy.length > 0 && egy.every((o) => o.name && o.name === o.text), `egyesnél: ${JSON.stringify(egy)}`);
+    const lb2 = await lista(e); await lb2.locator('[role=option]').first().waitFor();
+    const egy = await neve(lb2); ok(egy.length > 0 && egy.every((o) => o.name && o.name === o.text), `egyesnél: ${JSON.stringify(egy)}`);
     await page.keyboard.press('Escape');
   });
   await t('többes: max. 5 után a többi tiltott, a számláló 5/5', async () => {
