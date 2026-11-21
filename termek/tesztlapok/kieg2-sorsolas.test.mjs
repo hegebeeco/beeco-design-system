@@ -6,6 +6,11 @@ export default async function ({ page, t, stabil = async () => {} }) {
   const c = (id) => page.locator(`[data-case="${id}"]`);
   const out = (id) => page.locator(`[data-out="${id}"]`).innerText();
 
+  await t('StrictMode-próba érvényes: a hatás kétszer futott (fejlesztői React), a sorsolás ennek ellenére lefut', async () => {
+    // A lap fejlesztői React-tel épül (react-build: dev-react), a keret StrictMode-ot használ. Ha a hatás 1×: ez a lap nem bizonyít StrictMode-ot.
+    const futas = await page.evaluate(() => window.__hatasFutas);
+    ok(futas === 2, `nem fut kétszer a hatás (${futas}×) – a tesztlapnak fejlesztői React + StrictMode kell (react-build: dev-react)`);
+  });
   await t('résztvevők száma látszik', async () => { ok((await c('sorsolas').locator('.bc-draw-count').innerText()).replace(/\s+/g, ' ').includes('24 résztvevő'), 'nincs szám'); });
   await t('sorsolás: méhsejt-felfedés, nyertes ≤ 2,5 s alatt, fókusz a nevén, dupla kattintás nem húz kétszer', async () => {
     const b = c('sorsolas').getByRole('button', { name: 'Sorsolás' });

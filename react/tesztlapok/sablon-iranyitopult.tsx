@@ -1,3 +1,4 @@
+// react-build: dev-react   (fejlesztői React: a StrictMode a hatásokat kétszer futtatja – a szám-felpörgés ettől függött el)
 // Tesztlap – Dashboard (06c): analitika mintaadattal; állapotok: ?allapot=toltes|ures|hiba|tiltott
 // MINTAADAT: minden szám kitalált, csak a sablon kipróbálására.
 import { useState } from 'react';
@@ -6,6 +7,7 @@ import {
   type ChartData, type DashboardStat, type DateRange,
 } from '../src';
 import { allapot, mountSablon, wait } from './_sablon-keret';
+import { HatasSzamlalo } from './_keret';
 import { hibajegyek, kategoriak, kuponHetente, ures } from './_adat-minta';
 
 const ALLAPOTOK: Array<[string, string]> = [['toltes', 'Töltés'], ['ures', 'Nincs adat'], ['hiba', 'Hiba'], ['tiltott', 'Nincs jogosultság'], ['csakvezerlo', 'Eszközsor szöveg nélkül']];
@@ -70,4 +72,4 @@ function Oldal() {
   );
 }
 
-mountSablon('sablon-iranyitopult', 'Irányítópult (Dashboard)', ALLAPOTOK, <Oldal />);
+mountSablon('sablon-iranyitopult', 'Irányítópult (Dashboard)', ALLAPOTOK, <><HatasSzamlalo /><Oldal /></>);

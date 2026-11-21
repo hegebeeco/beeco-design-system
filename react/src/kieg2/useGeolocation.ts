@@ -27,7 +27,9 @@ export const accuracyText = (m: number) => (m < 1000 ? `±${formatHu(Math.round(
 export function useGeolocation(timeoutMs = 10_000) {
   const [state, setState] = useState<GeoState>({ status: 'idle' });
   const alive = useRef(true);
-  useEffect(() => () => { alive.current = false; }, []);
+  // React StrictMode (fejlesztői mód) a hatást kétszer futtatja: felépít → lebont → újra felépít, a ref értéke közben megmarad.
+  // Ezért a „él” jelzőt a felépítéskor VISSZA kell állítani – különben az újrafelépítés után minden válasz elvész, és a gomb töltő állapotban ragad.
+  useEffect(() => { alive.current = true; return () => { alive.current = false; }; }, []);
 
   const locate = useCallback((onFound?: (p: LatLng) => void) => {
     if (typeof navigator === 'undefined' || !navigator.geolocation) { setState({ status: 'unavailable', message: MSG.unsupported }); return; }

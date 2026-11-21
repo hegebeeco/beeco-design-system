@@ -18,14 +18,19 @@ function useReducedMotion() {
 }
 function useCountUp(value, ms = 600) {
   const reduce = useReducedMotion();
-  const first = useRef(true);
+  const origin = useRef(null);
   const [anim, setAnim] = useState(reduce ? null : 0);
   useEffect(() => {
-    if (reduce || !first.current) {
+    if (reduce) {
       setAnim(null);
       return;
     }
-    first.current = false;
+    origin.current ?? (origin.current = { value, ms, moved: false });
+    if (origin.current.value !== value || origin.current.ms !== ms) origin.current.moved = true;
+    if (origin.current.moved) {
+      setAnim(null);
+      return;
+    }
     const t0 = performance.now();
     let raf = 0;
     const step = (t) => {

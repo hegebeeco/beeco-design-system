@@ -21,5 +21,6 @@ export type DrawerProps = {
  * Drawer / oldalpanel (organizmus, Javaslat 03 – 3A): egy elem részletei és rövid szerkesztése a lista mellett.
  * Jobbról csúszik be (400 ms ease-drawer, csökkentett mozgásnál azonnal), a lista a helyén marad.
  * Hosszú űrlap → külön oldal (a panel alján „Teljes oldal”). Radix Dialog: fókuszcsapda, Esc, portál, görgetés-zár.
+ * Réteg: a panelről nyitott ablak (Modal, ConfirmDialog) és a mentetlen változásról kérdező ablak mindig a panel FÖLÖTT van.
  */
 export declare function Drawer({ open, onOpenChange, title, description, size, footer, busy, dirty, initialFocus, closeLabel, className, children }: DrawerProps): import("react").JSX.Element;
