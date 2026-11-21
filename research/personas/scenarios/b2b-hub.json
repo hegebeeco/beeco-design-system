@@ -1,0 +1,142 @@
+{
+ "_about": "B2B-hub (Cégeknek és településeknek) – feladatkönyvtár. A hub tesztoldalon (webflow.io) fut; az aloldalakra mutató belső linkek a végleges címre mutatnak, ezért 404-et adnak, amíg a -draft végződések nem kerülnek le. A feladatok ezért a hubon belül zárulnak.",
+ "page": "B2B-hub: Cégeknek és településeknek",
+ "url": "https://beeco-weboldal.webflow.io/szolgaltatas/cegeknek-draft",
+ "allowedHosts": [
+  "beeco-weboldal.webflow.io",
+  "www.beeco.hu",
+  "beeco.hu"
+ ],
+ "firstRound": [
+  {
+   "persona": "hr-lead",
+   "scenarios": [
+    "five-second",
+    "value-prop",
+    "price",
+    "request-quote"
+   ]
+  },
+  {
+   "persona": "esg-manager",
+   "scenarios": [
+    "five-second",
+    "find-my-path",
+    "numbers-proof",
+    "who-are-they"
+   ],
+   "lens": "keyboard-only"
+  },
+  {
+   "persona": "municipal-officer",
+   "scenarios": [
+    "find-my-path",
+    "price",
+    "request-quote"
+   ]
+  },
+  {
+   "persona": "journalist",
+   "scenarios": [
+    "five-second",
+    "numbers-proof",
+    "who-are-they"
+   ],
+   "lens": "slow-network"
+  }
+ ],
+ "scenarios": [
+  {
+   "id": "five-second",
+   "title": "5 másodperces teszt",
+   "mode": "fiveSecond",
+   "task": "Nézd meg az oldal első képernyőjét 5 másodpercig, görgetés nélkül. Utána mondd el: mi ez, kinek szól, és mit kellene tenned?",
+   "budget": {
+    "seconds": 5,
+    "actions": 1
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "A válaszból kiderül: (1) cégeknek és településeknek szóló zöld programok/szolgáltatás a beecótól, (2) hogy a tetteket mérik és igazolható eredményt adnak, (3) van egy konkrét következő lépés (ajánlatkérés vagy a saját út kiválasztása). 3/3 = siker, 2/3 = részben."
+   }
+  },
+  {
+   "id": "value-prop",
+   "title": "Mit kapok a beecótól?",
+   "task": "Tudd meg, mit nyújt a beeco egy kb. 120 fős cégnek, és fogalmazd meg két mondatban, miért érné meg a cégednek.",
+   "budget": {
+    "seconds": 180,
+    "actions": 15
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "A két mondat tartalmazza az értékajánlat lényegét: a csapat közösen cselekszik (elköteleződés), a tettek mérhetők/igazoltak (Hatásjelentés), és igazolható állítások születnek a kommunikációhoz. A válasz a hub tartalmával egyezik, nem találgat."
+   }
+  },
+  {
+   "id": "find-my-path",
+   "title": "Melyik ajánlat nekem való?",
+   "task": "Találd meg, melyik ajánlat vagy út való a te helyzetedhez (a szerepedhez tartozó célra), és mondd el, mit ígér neked.",
+   "budget": {
+    "seconds": 180,
+    "actions": 15
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "A perszóna a saját szerepéhez illő útra/ajánlatra jutott (HR: zöld programok vagy beeco@work; ESG: beeco@work és Hatásjelentés; önkormányzat: települési csomag/Vízadás), és helyesen mondja el, mit ígér az oldal."
+   }
+  },
+  {
+   "id": "price",
+   "title": "Mennyibe kerül?",
+   "task": "Tudd meg, nagyjából mennyibe kerülne a számodra való megoldás, és mitől függ az ár.",
+   "budget": {
+    "seconds": 150,
+    "actions": 12
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "Megtalálta az árszinteket vagy az árra vonatkozó információt (Ft-tól, szintek, mitől függ), és meg tudja mondani a nagyságrendet. Ha nem talál árat, azt külön lelet: nincs ár/nem egyértelmű."
+   }
+  },
+  {
+   "id": "numbers-proof",
+   "title": "Bizonyíték és számok",
+   "task": "Gyűjts három konkrét számot az oldalról, amit egy beszámolóban használnál, és írd le, honnan származnak.",
+   "budget": {
+    "seconds": 180,
+    "actions": 15
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "Három, az oldalon szereplő szám forrásmegjelöléssel (pl. 15 partner-önkormányzat, 1 millió+ liter, 2 200+ vízadó), a forrást is helyesen megnevezve. Kitalált szám = sikertelen."
+   }
+  },
+  {
+   "id": "who-are-they",
+   "title": "Kik ezek, és mit akarnak?",
+   "task": "Tudd meg, ki áll a beeco mögött, mi a céljuk és mi a víziójuk, és mondd el, megbízható-e szerinted.",
+   "budget": {
+    "seconds": 180,
+    "actions": 15
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "Megtalálta a Rólunk részt (cél, alapértékek, vízió) és a csapatot, a válasz egyezik az oldal szövegével, és indokolt bizalmi ítéletet hoz."
+   }
+  },
+  {
+   "id": "request-quote",
+   "title": "Ajánlatot kérek",
+   "task": "Szeretnél ajánlatot kérni. Jutsz el az ajánlatkérő űrlaphoz, és mondd el, mit kell kitöltened. (Az űrlapot NE küldd el.)",
+   "budget": {
+    "seconds": 150,
+    "actions": 12
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "Eljutott az ajánlatkérő űrlaphoz, és fel tudja sorolni a kötelező mezőket. Ha nem találja meg vagy nem érti, mit kell kitölteni: részben vagy sikertelen."
+   }
+  }
+ ]
+}

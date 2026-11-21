@@ -85,12 +85,20 @@ function buildCss() {
   for (const [n, v] of nemRejtett(termek.icon)) L.push(`  --bc-icon-${n}: ${px(v)};`);
   L.push(`  --bc-hover-mix: ${termek.state.hoverMix}%; --bc-disabled-opacity: ${termek.state.disabledOpacity};`);
   for (const [n, t] of nemRejtett(termek.textStyle)) L.push(`  --bc-text-${n}: ${textFont(t)}; --bc-text-${n}-ls: var(--bc-ls-${t.letterSpacing});`);
+  { const ts = termek.typeScale; L.push('', '  /* Reszponzív betűméret – mobile first: az alap a telefon, a lépcsők lent (@media min-width) */');
+    for (const [n, t] of nemRejtett(ts.scale)) L.push(`  --bc-type-${n}: ${px(t.sizes[0])};`); }
   L.push('', '  /* 2. TERMÉKBŐR – szín-szerepek, világos */', '  color-scheme: light;');
   L.push(roleBlock(termek.color.light, 'light'), '}', '');
   L.push('/* Sötét mód: <html data-theme="dark"> vagy <html class="dark"> (Tailwind), rendszer szerint: data-theme="auto" */');
   L.push(':root[data-theme="dark"], :root.dark {', '  color-scheme: dark;', roleBlock(termek.color.dark, 'dark'), '}');
   L.push('@media (prefers-color-scheme: dark) {', '  :root[data-theme="auto"] {', '    color-scheme: dark;');
   L.push(roleBlock(termek.color.dark, 'dark').replace(/^/gm, '  '), '  }', '}', '');
+  { const ts = termek.typeScale; L.push('/* Reszponzív betűméret – lépcsők (a töréspontok: breakpoint tokenek) */');
+    ts.steps.slice(1).forEach((step, i) => {
+      const vals = nemRejtett(ts.scale).filter(([, t]) => t.sizes[i + 1] !== t.sizes[i]).map(([n, t]) => `--bc-type-${n}: ${px(t.sizes[i + 1])};`);
+      if (vals.length) L.push(`@media (min-width: ${px(termek.breakpoint[step])}) { :root { ${vals.join(' ')} } }`);
+    });
+    L.push(''); }
   return L.join('\n');
 }
 
@@ -241,7 +249,7 @@ function buildDart() {
   L.push('/// Termékbőr szín-szerepei (világos / sötét).', 'class BeecoRoles {');
   const roles = Object.keys(termek.color.light);
   // 1.54.0-tól jött szerepek nem kötelezők (alapérték: a világos primitív) – így a saját BeecoRoles(...) példány nem törik
-  const UJ_SZEREP = new Set(['focus-on-accent', 'accent-soft']);
+  const UJ_SZEREP = new Set(['focus-on-accent', 'accent-soft', 'surface-deep', 'surface-deeper', 'on-deep', 'line-deep', 'accent-ink', 'surface-paper']);
   L.push(`  const BeecoRoles({${roles.map(r => UJ_SZEREP.has(r) ? `this.${camel(r)} = BeecoPalette.${camel(termek.color.light[r])}` : `required this.${camel(r)}`).join(', ')}});`);
   roles.forEach(r => L.push(`  final Color ${camel(r)};`));
   ['light', 'dark'].forEach(m => {
@@ -283,7 +291,9 @@ function buildJson() {
   return JSON.stringify({ version: VERSION, color: core.color, termek: { light: res('light'), dark: res('dark'), radius: termek.radius, border: termek.border, shadow: termek.shadow }, font: core.font, fontWeight: core.fontWeight, fontSize: core.fontSize, space: core.space, duration: core.duration, easing: core.easing, data: { ...core.data, categorical },
     // 1.54.0 (Javaslat 26) – a régi kulcsok változatlanok, ezek újak
     letterSpacing: Object.fromEntries(nemRejtett(core.letterSpacing)), focusRing: Object.fromEntries(nemRejtett(termek.focusRing)), icon: Object.fromEntries(nemRejtett(termek.icon)),
-    state: Object.fromEntries(nemRejtett(termek.state)), shadowSoftMobile: Object.fromEntries(nemRejtett(termek.shadowSoftMobile)), breakpoint: Object.fromEntries(nemRejtett(termek.breakpoint)), textStyle: Object.fromEntries(nemRejtett(termek.textStyle)) }, null, 2) + '\n';
+    state: Object.fromEntries(nemRejtett(termek.state)), shadowSoftMobile: Object.fromEntries(nemRejtett(termek.shadowSoftMobile)), breakpoint: Object.fromEntries(nemRejtett(termek.breakpoint)), textStyle: Object.fromEntries(nemRejtett(termek.textStyle)),
+    // 1.58.0 – reszponzív betűméret-lépcső (mobile first)
+    typeScale: { steps: termek.typeScale.steps, scale: Object.fromEntries(nemRejtett(termek.typeScale.scale)) } }, null, 2) + '\n';
 }
 
 // Szerepek ellenőrzése: minden szerep létező primitívre mutasson (különben a build megáll)

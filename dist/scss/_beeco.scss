@@ -31,6 +31,12 @@ $bc-info-ink: var(--bc-info-ink);
 $bc-highlight: var(--bc-highlight);
 $bc-scrim: var(--bc-scrim);
 $bc-focus-on-accent: var(--bc-focus-on-accent);
+$bc-surface-deep: var(--bc-surface-deep);
+$bc-surface-deeper: var(--bc-surface-deeper);
+$bc-on-deep: var(--bc-on-deep);
+$bc-line-deep: var(--bc-line-deep);
+$bc-accent-ink: var(--bc-accent-ink);
+$bc-surface-paper: var(--bc-surface-paper);
 
 // Primitívek – csak adatvizualizációhoz és kivételhez
 $bc-c-honey: var(--bc-honey);
@@ -74,6 +80,7 @@ $bc-c-night-surface: var(--bc-night-surface);
 $bc-c-night-line: var(--bc-night-line);
 $bc-c-poppy: var(--bc-poppy);
 $bc-c-honey-night: var(--bc-honey-night);
+$bc-c-honey-ink: var(--bc-honey-ink);
 $bc-c-rank-bronze: var(--bc-rank-bronze);
 
 // Hex (fordítási idejű) – csak színfüggvényhez és régi kód áthidalásához; sötét módban nem vált!
@@ -118,6 +125,7 @@ $bc-hex-night-surface: #353F25;
 $bc-hex-night-line: #B6C4A3;
 $bc-hex-poppy: #EF6A60;
 $bc-hex-honey-night: #5C4A12;
+$bc-hex-honey-ink: #8A6A00;
 $bc-hex-rank-bronze: #EFC2A6;
 $bc-hex-role-bg: #FFF8E7;
 $bc-hex-role-surface: #FFFFFF;
@@ -149,6 +157,12 @@ $bc-hex-role-info-ink: #003E74;
 $bc-hex-role-highlight: #F5B4C7;
 $bc-hex-role-scrim: #000000;
 $bc-hex-role-focus-on-accent: #2656D9;
+$bc-hex-role-surface-deep: #2F371E;
+$bc-hex-role-surface-deeper: #1F2615;
+$bc-hex-role-on-deep: #D3DDBB;
+$bc-hex-role-line-deep: #596B39;
+$bc-hex-role-accent-ink: #8A6A00;
+$bc-hex-role-surface-paper: #FFFDF6;
 
 $bc-font-display: var(--bc-font-display);
 $bc-font-body: var(--bc-font-body);

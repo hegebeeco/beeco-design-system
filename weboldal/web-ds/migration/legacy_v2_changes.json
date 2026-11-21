@@ -1,0 +1,386 @@
+{
+ "date": "2026-11-21",
+ "scope": "staging only (beeco-weboldal.webflow.io)",
+ "note": "Second round: legacy (non ds-) shared classes aligned with Web DS v2. Old values: local backup, not in the repository.",
+ "changes": [
+  {
+   "selector": ".card",
+   "to": {
+    "border-radius": "4px",
+    "box-shadow": "none",
+    "transition": "transform, box-shadow, background-color 160ms"
+   },
+   "hover": {
+    "box-shadow": "4px 4px 0 0 #000000"
+   },
+   "active": {
+    "box-shadow": "1px 1px 0 0 #000000"
+   },
+   "from": {
+    "border-radius": "24px 0 24px 0",
+    "box-shadow": "none",
+    "hover box-shadow": "6px 4px 5px 0 rgba(0,0,0,0.7)"
+   },
+   "note": "The class is used both on links and on plain boxes, so there is no resting shadow; the shadow appears on hover only."
+  },
+  {
+   "selector": ".card._4col, .card._3col",
+   "to": {
+    "box-shadow": "4px 4px 0 0 #000000"
+   },
+   "from": {
+    "box-shadow": "3px 3px 0 0 black"
+   }
+  },
+  {
+   "selector": ".blog_img_blokk",
+   "to": {
+    "border-radius": "0"
+   },
+   "from": {
+    "border-radius": "10px"
+   }
+  },
+  {
+   "selector": ".card_img_full",
+   "to": {
+    "border-radius": "0"
+   },
+   "from": {
+    "border-radius": "14px 0 14px 14px"
+   }
+  },
+  {
+   "selector": ".sub-heading",
+   "to": {
+    "border-radius": "0"
+   },
+   "from": {
+    "border-radius": "12px 12px 12px 20px"
+   }
+  },
+  {
+   "selector": ".sub-heading.mid",
+   "to": {
+    "border-radius": "0"
+   },
+   "from": {
+    "border-radius": "10px"
+   }
+  },
+  {
+   "selector": ".button_main",
+   "to": {
+    "border-radius": "4px",
+    "box-shadow": "4px 4px 0 0 #000000",
+    "transition": "transform, box-shadow 160ms"
+   },
+   "hover": {
+    "box-shadow": "5px 5px 0 0 #000000",
+    "transform": "translate(-1px, -1px)"
+   },
+   "active": {
+    "box-shadow": "1px 1px 0 0 #000000",
+    "transform": "translate(3px, 3px)"
+   },
+   "from": {
+    "border-radius": "8px",
+    "hover": "8px 8px 5px 0 rgba(0,0,0,0.4), scale(1.05)"
+   }
+  },
+  {
+   "selector": ".button_main.big",
+   "to": {
+    "box-shadow": "4px 4px 0 0 #000000",
+    "hover box-shadow": "5px 5px 0 0 #000000"
+   },
+   "from": {
+    "box-shadow": "8px 8px 5px 0 rgba(0,0,0,0.6)",
+    "hover box-shadow": "12px 12px 5px 0 rgba(0,0,0,0.2)"
+   }
+  },
+  {
+   "selector": ".text_chip",
+   "to": {
+    "border-radius": "4px"
+   },
+   "from": {
+    "border-radius": "8px"
+   }
+  },
+  {
+   "selector": ".image-143",
+   "to": {
+    "border-radius": "0"
+   },
+   "from": {
+    "border-radius": "variable (12px)"
+   }
+  },
+  {
+   "selector": ".ds-gomb._w-button",
+   "to": {
+    "border-radius": "4px",
+    "box-shadow": "4px 4px 0 0 #000000"
+   },
+   "from": {
+    "border-radius": "14px 4px 14px 4px",
+    "box-shadow": "3px 3px 0 0 #000000"
+   }
+  },
+  {
+   "selector": ".download_img",
+   "to": {
+    "box-shadow": "4px 4px 0 0 #000000",
+    "hover": "translate(-1px,-1px), .big: 5px 5px 0 0 #000000"
+   },
+   "from": {
+    "box-shadow": "4px 4px 1px 0 black",
+    "hover": "scale(1.05), .big: 6px 6px 1px 0 black"
+   }
+  },
+  {
+   "selector": ".img_qr",
+   "to": {
+    "border-radius": "0",
+    "box-shadow": "none",
+    "border": "2px solid #000000"
+   },
+   "from": {
+    "border-radius": "12px",
+    "box-shadow": "8px 8px 0 0 black",
+    "border": "none"
+   }
+  },
+  {
+   "selector": ".ds-ut-ar, .ds-ido-ho, .ds-cikk-forras",
+   "to": {
+    "width": "fit-content",
+    "max-width": "100%"
+   },
+   "from": {
+    "width": "(not set)"
+   }
+  }
+ ],
+ "round3": {
+  "note": "Third round (same day): legacy CMS template classes. One class change covers every page of the collection.",
+  "changes": [
+   {
+    "selector": ".chip, .chip_honap, .chip_tudnivalok, .category_chip",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "8px"
+    }
+   },
+   {
+    "selector": ".gf_link",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "999px"
+    }
+   },
+   {
+    "selector": ".card_img",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "12px 0 12px 0"
+    }
+   },
+   {
+    "selector": ".gyumi_text_blokk (+ ._3asblokk, .feher)",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "24px"
+    }
+   },
+   {
+    "selector": ".recept_text_blokk",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "24px"
+    }
+   },
+   {
+    "selector": ".text_blokk_withbackground",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "16px"
+    }
+   },
+   {
+    "selector": ".okos_tartalom_img",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "20px"
+    }
+   },
+   {
+    "selector": ".noveny_pikto, .small_pikto_50",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "8px"
+    }
+   },
+   {
+    "selector": ".beecopedia_pic",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "16px"
+    }
+   },
+   {
+    "selector": ".noveny_img_big",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "24px"
+    }
+   },
+   {
+    "selector": ".noveny_img",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "12px"
+    }
+   },
+   {
+    "selector": ".noveny_csempe",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "12px"
+    }
+   },
+   {
+    "selector": ".noveny_kartya",
+    "to": {
+     "border-radius": "4px",
+     "box-shadow": "none"
+    },
+    "from": {
+     "border-radius": "16px",
+     "box-shadow": "4px 4px 5px 0 rgba(0,0,0,0.4)"
+    }
+   },
+   {
+    "selector": ".img_gallery_box",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "24px"
+    }
+   },
+   {
+    "selector": ".gallery_img",
+    "to": {
+     "border-radius": "0",
+     "box-shadow": "none"
+    },
+    "from": {
+     "border-radius": "24px 0 24px 0",
+     "box-shadow": "4px 4px 5px 0 rgba(0,0,0,0.2)"
+    }
+   },
+   {
+    "selector": ".logo_img, .press_img",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "8px"
+    }
+   },
+   {
+    "selector": ".partner_le-r-s_blokk",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "24px"
+    }
+   },
+   {
+    "selector": ".sziget_blokk",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "32px"
+    }
+   },
+   {
+    "selector": ".kontributor_card",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "40px"
+    }
+   },
+   {
+    "selector": ".slider_img",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "20px"
+    }
+   },
+   {
+    "selector": ".home-faq-top",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "12px 4px 12px 4px"
+    }
+   },
+   {
+    "selector": ".main-button",
+    "to": {
+     "border-radius": "4px",
+     "hover": "5px 5px 0 0 #000000, translate(-1px,-1px)"
+    },
+    "from": {
+     "border-radius": "8px",
+     "hover": "4px 4px 0 0, translate(-4px,-4px) scale(1.05)"
+    }
+   },
+   {
+    "selector": ".main-button.huge",
+    "to": {
+     "border-radius": "4px",
+     "box-shadow": "4px 4px 0 0 #000000"
+    },
+    "from": {
+     "border-radius": "8px",
+     "box-shadow": "6px 6px 0 0"
+    }
+   }
+  ]
+ }
+}

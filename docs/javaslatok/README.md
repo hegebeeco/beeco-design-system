@@ -7,7 +7,7 @@ Sablon: [`_sablon.md`](_sablon.md).
 (CHANGELOG, tokenek, tesztek) rájuk mutatnak. A **10, 11 és 12 kétszer szerepel** (⚠ alább): ezeknél hivatkozáskor
 mindig a **fájlnevet** írd, ne csak a számot. Új lap mindig egyedi számot kap.
 
-**A következő szabad szám: 28.**
+**A következő szabad szám: 30.**
 
 | Szám | Fájl | Tárgy | Állapot (a lap fejléce szerint) |
 |---|---|---|---|
@@ -42,5 +42,10 @@ mindig a **fájlnevet** írd, ne csak a számot. Új lap mindig egyedi számot k
 | 26 | [`26-szabaly-feloldasok.md`](26-szabaly-feloldasok.md) | Szabály-feloldások: ellentmondások és hiányzó tokenek | eldöntve, 1.54.0-ban kiadva |
 | 27 | [`27-mobil-visszairas.md`](27-mobil-visszairas.md) | Mobil visszaírás: közös ikonkészlet (42, az 1.56.0-ban 55), halvány méz (`accent-soft`), bronz rangszín, mobil puha árnyék, sötét állapot-skála | jóváhagyva, 1.55.0-ban kiadva (ikonok bővítése: 1.56.0) |
 | 28 | [`28-egy-grafikai-forras.md`](28-egy-grafikai-forras.md) | Egy grafikai forrás, sok kimenet: grafikai katalógus (`grafika/katalogus.json`), a méhek, madarak, logó egységes azonosítója, LICENSE | jóváhagyva (A változat, 2026-10-26); 1. lépés: katalógus + őr |
+| 29 | [`29-jatekos-weboldal-elemek.md`](29-jatekos-weboldal-elemek.md) | Játékos Web DS-elemek: domb, polaroid, piktogramkör, tájképes hero, lebegő méh, idővonal-út (natív osztály + közös CSS a pszeudoelemekre) | jóváhagyva elvben (A, 2026-11-03) |
+| 30 | [`30-szolgaltatas-szemleltetes.md`](30-szolgaltatas-szemleltetes.md) | Szolgáltatásoldalak szemléltetése: történet (gond–megoldás–haszon), appképek, natív képcsúszka | jóváhagyva (2026-11-04), próba: beeco@work |
+| 38 | [`38-kompakt-tipusblokk.md`](38-kompakt-tipusblokk.md) | Kompakt tartalomtípus-blokk: kép a sarokban piktogrammal, chipek a képen (`ds-szekcio-tomor`, `ds-foto-szeles`, `ds-foto-piko`, `ds-foto-chipek`, `ds-app-kep`) | jóváhagyásra vár; stagingen: beecopedia |
+| 39 | [`39-web-ds-v2-arculati-review.md`](39-web-ds-v2-arculati-review.md) | Web DS v2: az arculati review webes pontjai (4 px sarok, árnyék csak kattinthatón, két gomb, fekete címke, keret nélküli logó, vaj hátterű címke) + `ds-lint` | jóváhagyásra vár (2026-11-21), stagingen |
+| 40 | [`40-webflow-komponensek-rendbetetele.md`](40-webflow-komponensek-rendbetetele.md) | Webflow-komponensek rendbetétele: összevonás (logósor, térköz, morzsa), kilenc új komponens (Nyitó, Szekciófej, GYIK, App letöltés, Gomb …), takarítás; DS-check 72 oldalon | jóváhagyva (2026-11-21), megvalósítás folyamatban |
 
-Új lap: másold a `_sablon.md`-t `29-<rovid-nev>.md` néven, és vedd fel ebbe a táblázatba.
+Új lap: másold a `_sablon.md`-t `41-<rovid-nev>.md` néven, és vedd fel ebbe a táblázatba.

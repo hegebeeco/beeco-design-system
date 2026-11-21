@@ -31,7 +31,13 @@
       "info-ink": "navy",
       "highlight": "blossom",
       "scrim": "black",
-      "focus-on-accent": "focus"
+      "focus-on-accent": "focus",
+      "surface-deep": "olive",
+      "surface-deeper": "night",
+      "on-deep": "sage",
+      "line-deep": "olive-soft",
+      "accent-ink": "honey-ink",
+      "surface-paper": "paper"
     },
     "dark": {
       "bg": "night",
@@ -63,7 +69,13 @@
       "info-ink": "ice",
       "highlight": "blossom",
       "scrim": "black",
-      "focus-on-accent": "black"
+      "focus-on-accent": "black",
+      "surface-deep": "olive",
+      "surface-deeper": "night",
+      "on-deep": "sage",
+      "line-deep": "olive-soft",
+      "accent-ink": "honey",
+      "surface-paper": "night-surface"
     }
   },
   "radius": {
@@ -223,6 +235,31 @@
       "line",
       "accent-soft",
       3
+    ],
+    [
+      "on-deep",
+      "surface-deep",
+      4.5
+    ],
+    [
+      "on-deep",
+      "surface-deeper",
+      4.5
+    ],
+    [
+      "accent-ink",
+      "bg",
+      4.5
+    ],
+    [
+      "accent-ink",
+      "surface",
+      4.5
+    ],
+    [
+      "ink",
+      "surface-paper",
+      4.5
     ]
   ],
   "shadowSoft": {
@@ -326,6 +363,57 @@
       "weight": "regular",
       "lineHeight": "normal",
       "letterSpacing": "normal"
+    }
+  },
+  "typeScale": {
+    "_readme": "Reszponzív betűméret-lépcső MOBILRA TERVEZVE (mobile first, 2026-10-30, Kristóf döntése: egy közös tipó a DS-ben és a weboldalon). A sizes négy elemű: [alap (< sm), sm, md, lg] px – az alap a telefon, felfelé nő; a lépcsők a breakpoint tokenek (sm 600, md 900, lg 1200) min-width szerint váltanak. CSS: --bc-type-<név> (a :root-ban a mobil érték, @media (min-width) felülírja). A mai webes értékek változatlanok (a Webflow „Tipográfia” gyűjtemény mai tartalmából rögzítve), csak a forrás vált: innen jön. Webflow: a `webflow` mező a „Tipográfia” gyűjtemény változóneve; a lépcsők módjai: alap = Mobil, sm = Mobil fekvő, md = Tablet, lg = Base mode. A Webflow saját töréspontjai (479 / 767 / 991) mások, mint a DS-é (600 / 900 / 1200), és nem állíthatók – a négy lépcső ugyanaz, az átváltási szélesség eltér. A termék szövegstílusai (textStyle) és a core.fontSize érintetlenek: az app és az admin fix méretet használ. Szabály: törzsszöveg legalább 16 px a telefonon (alap), semmi nem kisebb a core.minTextSize-nál, és a méret felfelé nem csökkenhet.",
+    "steps": [
+      "base",
+      "sm",
+      "md",
+      "lg"
+    ],
+    "scale": {
+      "display": {
+        "sizes": [36, 40, 48, 64],
+        "webflow": "cim-xl"
+      },
+      "title-1": {
+        "sizes": [30, 36, 40, 48],
+        "webflow": "cim-l"
+      },
+      "title-2": {
+        "sizes": [24, 28, 30, 32],
+        "webflow": "cim-m"
+      },
+      "title-3": {
+        "sizes": [20, 22, 22, 24],
+        "webflow": "cim-s"
+      },
+      "lead": {
+        "sizes": [16, 18, 18, 20],
+        "webflow": "szoveg-l"
+      },
+      "article": {
+        "sizes": [16, 17, 18, 18],
+        "webflow": "szoveg-cikk"
+      },
+      "body": {
+        "sizes": [16, 16, 16, 16],
+        "webflow": "szoveg-m"
+      },
+      "body-s": {
+        "sizes": [14, 14, 14, 14],
+        "webflow": "szoveg-s"
+      },
+      "caption": {
+        "sizes": [12, 12, 12, 12],
+        "webflow": "szoveg-xs"
+      },
+      "icon": {
+        "sizes": [22, 22, 24, 26],
+        "webflow": "ikon"
+      }
     }
   }
 }

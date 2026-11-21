@@ -13,6 +13,7 @@ with contextlib.redirect_stdout(io.StringIO()):
     import gen_ds as G  # a Rólunk-, Hatás-, Csapat- és /en-oldalak: ezek osztályai már léteznek a Webflow-ban
 e, V, T, M, S, X, DISP, EASE, B4, R4, P4 = G.e, G.V, G.T, G.M, G.S, G.X, G.DISP, G.EASE, G.B4, G.R4, G.P4
 fej, foto, kartya3, ut, pk = G.fej, G.foto, G.kartya3, G.ut, G.pk
+RS, R0 = G.RS, G.R0
 
 SZAM = json.load(open(os.path.join(D, 'szamok.json')))
 def N(k, mezo='ertek'):
@@ -29,10 +30,10 @@ for nev in ('A', 'B', 'C', 'E'):
 B2B_CSS = {
  T: {
   '.ds-negy': 'display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:22px;row-gap:22px',
-  '.ds-ut-ar': f'color:{V("bc-accent-ink")};font-size:14px;font-weight:800;line-height:1.3',
+  '.ds-ut-ar': f'color:{V("bc-ink")};background:{V("bc-vaj")};padding:3px 8px 2px;align-self:flex-start;width:fit-content;max-width:100%;font-size:14px;font-weight:800;line-height:1.3',  # Web DS v2: label, not coloured text
   '.ds-csomagok': 'display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:22px;row-gap:22px;align-items:stretch',
-  '.ds-csomag': f'display:flex;flex-direction:column;align-items:flex-start;row-gap:12px;{P4("28px", "26px", "28px", "26px")}{B4("2px", "solid", "#000000")}{R4("18px", "6px")}background-color:{V("bc-surface")};box-shadow:4px 4px 0 0 #000000;color:{V("bc-ink")}',
-  '.ds-csomag-kiemelt': f'background-color:{V("bc-accent")};box-shadow:6px 6px 0 0 #000000;transform:translate(0px,-8px)',
+  '.ds-csomag': f'display:flex;flex-direction:column;align-items:flex-start;row-gap:12px;{P4("28px", "26px", "28px", "26px")}{B4("2px", "solid", "#000000")}{RS}background-color:{V("bc-surface")};box-shadow:none;color:{V("bc-ink")}',
+  '.ds-csomag-kiemelt': f'background-color:{V("bc-accent")};box-shadow:none;transform:none',
   '.ds-csomag-ar': f'font-family:{DISP};font-size:30px;line-height:1.05',
   '.ds-csomag-lista': 'display:flex;flex-direction:column;row-gap:8px;margin-top:4px;margin-bottom:0px;padding-left:0px;list-style-type:none;font-size:16px;line-height:1.5',
   '.ds-csomag-elem': 'display:grid;grid-template-columns:22px minmax(0,1fr);column-gap:6px',
@@ -40,22 +41,22 @@ B2B_CSS = {
   '.ds-lepesek': 'display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:22px;row-gap:28px',
   '.ds-lepes': 'display:flex;flex-direction:column;align-items:flex-start;row-gap:10px',
   '.ds-lepes-szam': f'display:flex;align-items:center;justify-content:center;width:52px;height:52px;{R4("999px", "999px")}background-color:#000000;color:{V("bc-accent")};font-family:{DISP};font-size:26px;line-height:1',
-  '.ds-eset': f'display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,0.8fr);column-gap:28px;row-gap:24px;{P4("28px", "28px", "28px", "28px")}{B4("2px", "solid", "#000000")}{R4("20px", "6px")}background-color:{V("bc-surface")};box-shadow:6px 6px 0 0 #000000',
+  '.ds-eset': f'display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,0.8fr);column-gap:28px;row-gap:24px;{P4("28px", "28px", "28px", "28px")}{B4("2px", "solid", "#000000")}{RS}background-color:{V("bc-surface")};box-shadow:none',
   '.ds-eset-resz': 'display:flex;flex-direction:column;row-gap:8px',
-  '.ds-eset-eredmeny': f'display:flex;flex-direction:column;row-gap:14px;{P4("22px", "22px", "22px", "22px")}{R4("16px", "5px")}background-color:#000000;color:#ffffff',
-  '.ds-jelentes': f'display:flex;flex-direction:column;row-gap:16px;{P4("28px", "28px", "28px", "28px")}{B4("2px", "solid", "#000000")}{R4("18px", "6px")}background-color:{V("bc-paper")};box-shadow:6px 6px 0 0 #000000;transform:rotate(0.6deg)',
+  '.ds-eset-eredmeny': f'display:flex;flex-direction:column;row-gap:14px;{P4("22px", "22px", "22px", "22px")}{RS}background-color:#000000;color:#ffffff',
+  '.ds-jelentes': f'display:flex;flex-direction:column;row-gap:16px;{P4("28px", "28px", "28px", "28px")}{B4("2px", "solid", "#000000")}{RS}background-color:{V("bc-paper")};box-shadow:none;transform:rotate(0.6deg)',
   '.ds-jelentes-fej': 'display:flex;flex-direction:column;row-gap:4px;padding-bottom:14px;border-bottom-style:dashed;border-bottom-width:2px;border-bottom-color:#000000',
   '.ds-jelentes-szamok': 'display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px;row-gap:14px',
   '.ds-jelentes-szam': f'display:flex;flex-direction:column;row-gap:2px;{P4("12px", "14px", "12px", "14px")}border-left-style:solid;border-left-width:4px;border-left-color:{V("bc-accent")};background-color:{V("bc-surface")}',
   '.ds-jelentes-ertek': f'font-family:{DISP};font-size:32px;line-height:1',
-  '.ds-allitas': f'{P4("12px", "14px", "12px", "14px")}{B4("2px", "solid", "#000000")}{R4("12px", "4px")}background-color:{V("bc-surface-2")};font-size:15px;line-height:1.5',
+  '.ds-allitas': f'{P4("12px", "14px", "12px", "14px")}{B4("2px", "solid", "#000000")}{RS}background-color:{V("bc-surface-2")};font-size:15px;line-height:1.5',
   '.ds-allitas-kerul': f'border-top-style:dashed;border-right-style:dashed;border-bottom-style:dashed;border-left-style:dashed;background-color:{V("bc-surface")};color:{V("bc-ink-soft")}',
-  '.ds-urlap-doboz': f'width:100%;max-width:820px;margin-left:auto;margin-right:auto;{P4("32px", "32px", "32px", "32px")}{B4("2px", "solid", "#000000")}{R4("20px", "6px")}background-color:{V("bc-surface")};box-shadow:6px 6px 0 0 #000000;text-align:left',
+  '.ds-urlap-doboz': f'width:100%;max-width:820px;margin-left:auto;margin-right:auto;{P4("32px", "32px", "32px", "32px")}{B4("2px", "solid", "#000000")}{RS}background-color:{V("bc-surface")};box-shadow:none;text-align:left',
   '.ds-urlap': 'display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px;row-gap:18px',
   '.ds-mezo': 'display:flex;flex-direction:column;row-gap:6px',
   '.ds-mezo-teljes': 'grid-column-start:span 2;grid-column-end:span 2',
   '.ds-cimke': f'margin-bottom:0px;color:{V("bc-ink")};font-size:14px;font-weight:800;line-height:1.3',
-  '.ds-bemenet': f'width:100%;min-height:48px;margin-bottom:0px;{P4("12px", "14px", "12px", "14px")}{B4("2px", "solid", "#000000")}{R4("12px", "4px")}background-color:#ffffff;color:{V("bc-ink")};font-size:16px;line-height:1.4',
+  '.ds-bemenet': f'width:100%;min-height:48px;margin-bottom:0px;{P4("12px", "14px", "12px", "14px")}{B4("2px", "solid", "#000000")}{RS}background-color:#ffffff;color:{V("bc-ink")};font-size:16px;line-height:1.4',
   '.ds-bemenet:focus': f'border-top-color:#000000;border-right-color:#000000;border-bottom-color:#000000;border-left-color:#000000;box-shadow:0 0 0 3px {V("bc-accent")};outline-style:none',
   '.ds-szovegdoboz': 'min-height:120px',
   '.ds-jelolo': f'display:flex;align-items:flex-start;column-gap:10px;min-height:44px;margin-bottom:0px;padding-left:0px;color:{V("bc-ink-soft")};font-size:14.5px;line-height:1.5',
@@ -63,7 +64,7 @@ B2B_CSS = {
   '.ds-ut-ar.ds-tinta': f'color:{V("bc-ink")}',  # sárga (kiemelt) kártyán a mézsárga tinta 3,4:1 lenne
   '.ds-grafikon-felirat.ds-tinta': f'color:{V("bc-ink")}',
   '.ds-grafikon-felirat.ds-forras-sotet': f'color:{V("bc-on-olive")}',  # fekete eredménydobozban
-  '.ds-urlap-uzenet': f'{P4("18px", "20px", "18px", "20px")}{B4("2px", "solid", "#000000")}{R4("14px", "4px")}background-color:{V("bc-surface-2")};color:{V("bc-ink")};font-size:16px;line-height:1.5',
+  '.ds-urlap-uzenet': f'{P4("18px", "20px", "18px", "20px")}{B4("2px", "solid", "#000000")}{RS}background-color:{V("bc-surface-2")};color:{V("bc-ink")};font-size:16px;line-height:1.5',
  },
  M: {
   '.ds-negy': 'grid-template-columns:repeat(2,minmax(0,1fr))',

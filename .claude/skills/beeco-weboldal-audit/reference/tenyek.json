@@ -1,0 +1,23 @@
+{
+  "_info": "Jóváhagyott tények a beeco-weboldal-audit ellentmondás-keresőjéhez (--consistency). Kristóf jóváhagyta: 2026-11-03. Ha egy szám változik, ITT frissítsd először, aztán az oldalakat. Egy tény: topic (a lib-consistency.mjs témái: letoltes, partner, onkormanyzat, vizado, liter, fa, ember, raj, esemeny, ent:<díj>:year|place|month, newsletter:freq), ertek, year (null = évszám nélküli állítás), ctx (regex: a mondatnak tartalmaznia kell), ujsag: nincs. A repó nyilvános: személyes adat nem kerülhet ide.",
+  "jovahagyta": "Kristóf",
+  "datum": "2026-11-03",
+  "tenyek": [
+    { "id": "csapat-ember", "topic": "ember", "ertek": 23, "year": null, "ctx": "csapat|beeconaut", "leiras": "A csapat 23 ember" },
+    { "id": "csapat-raj", "topic": "raj", "ertek": 9, "year": null, "ctx": "csapat|raj", "leiras": "A csapat 9 rajban dolgozik" },
+    { "id": "vizadas-2026-vizado", "ctx": "vízadás|önkéntes|országos", "topic": "vizado", "ertek": 2200, "plus": true, "year": 2026, "leiras": "2026 Önkéntes Vízadás: 2 200+ vízadó" },
+    { "id": "vizadas-2026-liter", "ctx": "vízadás|önkéntes|országos", "topic": "liter", "ertek": 1000000, "plus": true, "year": 2026, "leiras": "2026 Önkéntes Vízadás: 1 000 000+ liter" },
+    { "id": "vizadas-2026-fa", "ctx": "vízadás|önkéntes|országos", "topic": "fa", "ertek": 7500, "plus": true, "year": 2026, "leiras": "2026 Önkéntes Vízadás: 7 500+ fa" },
+    { "id": "vizadas-2026-onkormanyzat", "ctx": "vízadás|önkéntes|országos", "topic": "onkormanyzat", "ertek": 15, "year": 2026, "leiras": "2026 Önkéntes Vízadás: 15 önkormányzat" },
+    { "id": "vizadas-2025-fa", "ctx": "vízadás|önkéntes|országos", "topic": "fa", "ertek": 7000, "year": 2025, "leiras": "2025: 7 000 fa" },
+    { "id": "vizadas-2025-liter", "ctx": "vízadás|önkéntes|országos", "topic": "liter", "ertek": 400000, "year": 2025, "leiras": "2025: 400 000 liter" },
+    { "id": "letoltes", "topic": "letoltes", "ertek": 25000, "plus": true, "year": null, "leiras": "25.000+ letöltés" },
+    { "id": "kuponos-partner", "topic": "partner", "ertek": 35, "plus": true, "year": null, "ctx": "kupon", "qual": "kupon", "leiras": "35+ kuponos partner" },
+    { "id": "one-dij-ev", "topic": "ent:one-digitalis-dij:year", "ertek": 2025, "leiras": "ONE Digitális Díj: 2025" },
+    { "id": "one-dij-hely", "topic": "ent:one-digitalis-dij:place", "ertek": 1, "leiras": "ONE Digitális Díj 2025: 1. hely" },
+    { "id": "f6s-hely", "topic": "ent:f6s:place", "ertek": 2, "leiras": "F6S: 2. hely" },
+    { "id": "f6s-ev", "topic": "ent:f6s:year", "ertek": 2025, "leiras": "F6S: 2025" },
+    { "id": "f6s-honap", "topic": "ent:f6s:month", "ertek": "április", "leiras": "F6S: 2025 április" },
+    { "id": "hirlevel", "topic": "newsletter:freq", "ertek": "kéthetente", "ctx": "beeújság", "leiras": "A beeújság hírlevél kéthetente jelenik meg" }
+  ]
+}

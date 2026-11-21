@@ -1,0 +1,38 @@
+{
+  "_info": "A beeco-weboldal-audit tartalmi tiltólistája. Bővítsd bátran: új elírás = új sor az \"elirasok\" listában. Egyezés: szóhatáros, kis-nagybetű mindegy (kivéve, ha \"nagybetuErzekeny\": true).",
+  "elirasok": [
+    { "rossz": "alkalmzás", "jo": "alkalmazás", "sulyossag": "P1" },
+    { "rossz": "mósodítani", "jo": "módosítani", "sulyossag": "P1" },
+    { "rossz": "Júniusól", "jo": "júniustól", "sulyossag": "P1" },
+    { "rossz": "kiemelet", "jo": "kiemelt", "sulyossag": "P1" },
+    { "rossz": "Beeco", "jo": "beeco", "nagybetuErzekeny": true, "sulyossag": "P3", "megjegyzes": "A márkanév kisbetűs; mondat elején is. Ha szándékos, hagyd." },
+    { "rossz": "lábnyom kalkulátor", "jo": "lábnyomkalkulátor", "sulyossag": "P2" },
+    { "rossz": "Két hetente", "jo": "kéthetente", "sulyossag": "P2" },
+    { "rossz": "hulladék gyűjtés", "jo": "hulladékgyűjtés", "sulyossag": "P2" },
+    { "rossz": "nyeremény játék", "jo": "nyereményjáték", "sulyossag": "P2" },
+    { "rossz": "ökológia lábnyom", "jo": "ökológiai lábnyom", "sulyossag": "P2" },
+    { "rossz": "szelektív gyüjtés", "jo": "szelektív gyűjtés", "sulyossag": "P2" },
+    { "rossz": "fenntarthatóság tanácsadás", "jo": "fenntarthatósági tanácsadás", "sulyossag": "P2" }
+  ],
+  "altalanosCimkek": [
+    "kattints ide", "katt ide", "tovább", "részletek", "button", "bővebben", "itt", "olvass tovább",
+    "link", "read more", "click here", "learn more", "több", "megnézem", "submit"
+  ],
+  "placeholderPontos": [
+    "heading", "button", "subheading", "text", "link", "title", "name", "description", "subtitle", "label", "tagline"
+  ],
+  "placeholderRegex": [
+    { "minta": "\\blorem\\b|\\bipsum\\b|example text|szöveg helye|placeholder text|lorem ipsum", "sulyossag": "P1" },
+    { "minta": "kidolgozás alatt|hamarosan érkezik|work in progress|\\bTODO\\b|\\bTBD\\b|\\bXXX\\b", "sulyossag": "P1" }
+  ],
+  "angolWebflowAlapertelmezett": [
+    "Thank you! Your submission has been received!",
+    "Oops! Something went wrong while submitting the form.",
+    "Please wait..."
+  ],
+  "felsofok": {
+    "_info": "Forrás nélküli felsőfok/egyediség-állítás. Az „első” csak akkor gyanús, ha a mondatban piac/ország/magyar/hazai jellegű szó is van.",
+    "mindig": ["legnagyobb", "legszebb", "legjobb", "leghatékonyabb", "legegyszerűbb", "egyetlen", "egyedüli", "#1", "number one", "példa nélküli", "nincs párja"],
+    "elsoKontextus": "magyar|hazai|piac|ország|világ|európa|platform|alkalmaz|szolgáltat|app\\b"
+  }
+}

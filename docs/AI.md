@@ -31,7 +31,7 @@
 
 ## Tokenek (termékbőr)
 
-- **Szín-szerepek** (`--bc-<szerep>`, Tailwind `bg-/text-/border-<szerep>`, sötét módban maguktól váltanak): `bg` `surface` `surface-2` `surface-accent` `ink` `ink-soft` `ink-muted` `line` `line-soft` `accent` `accent-press` `accent-soft` `on-accent` `shadow` `focus` `success` `success-bg` `success-ink` `danger` `danger-bg` `danger-ink` `warning` `warning-bg` `warning-ink` `info` `info-bg` `info-ink` `highlight` `scrim` `focus-on-accent`.
+- **Szín-szerepek** (`--bc-<szerep>`, Tailwind `bg-/text-/border-<szerep>`, sötét módban maguktól váltanak): `bg` `surface` `surface-2` `surface-accent` `ink` `ink-soft` `ink-muted` `line` `line-soft` `accent` `accent-press` `accent-soft` `on-accent` `shadow` `focus` `success` `success-bg` `success-ink` `danger` `danger-bg` `danger-ink` `warning` `warning-bg` `warning-ink` `info` `info-bg` `info-ink` `highlight` `scrim` `focus-on-accent` `surface-deep` `surface-deeper` `on-deep` `line-deep` `accent-ink` `surface-paper`.
 - Világos → sötét: bg cream→night · surface white→night-surface · ink black→cream · line black→night-line · accent honey→honey · on-accent black→black.
 - Betű `--bc-fs-*`: xs 12 · s 14 · m 16 · l 20 · xl 26 · 2xl 34 · 3xl 46 px; vastagság `--bc-fw-*`: regular, semibold, bold.
 - Térköz `--bc-sp-*`: 1=4 2=8 3=12 4=16 5=24 6=32 7=48 8=64 px · sarok `--bc-r-*`: xs=2 s=4 m=8 l=12 pill=999 · keret `--bc-bw-*`: hair, base.
