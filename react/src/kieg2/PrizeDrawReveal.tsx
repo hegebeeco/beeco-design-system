@@ -47,7 +47,9 @@ export function PrizeDrawReveal({ prize, participants, draw, onDrawn, onReroll, 
   const [animated, setAnimated] = useState(false);
   const alive = useRef(true);
   const heading = useRef<HTMLHeadingElement>(null);
-  useEffect(() => () => { alive.current = false; }, []);
+  // StrictMode (fejlesztői mód): felépít → lebont → újra felépít, a ref értéke megmarad – ezért felépítéskor vissza kell állítani „élő”-re
+  // (különben a felfedés az első lépésnél kilép, és a sorsolás nem hoz nyertest; élesben a hatás egyszer fut, ott működött).
+  useEffect(() => { alive.current = true; return () => { alive.current = false; }; }, []);
 
   const last = log[log.length - 1];
   const used = new Set(excludePrevious ? log.map((r) => r.winner.id) : []);

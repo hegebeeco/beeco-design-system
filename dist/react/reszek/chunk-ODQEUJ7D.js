@@ -160,24 +160,29 @@ function Combobox(props) {
           !loading && !loadError && shown.map((o, i) => {
             const isSel = selected.includes(o.value);
             const blocked = o.disabled || full && !isSel;
-            return /* @__PURE__ */ jsxs(
-              "div",
-              {
-                id: `${listId}-${i}`,
-                role: "option",
-                "aria-selected": isSel,
-                "aria-disabled": blocked || void 0,
-                "data-active": i === active,
-                className: "bc-option",
-                onMouseDown: (e) => e.preventDefault(),
-                onMouseEnter: () => setActive(i),
-                onClick: () => pick(i),
-                children: [
-                  multi && /* @__PURE__ */ jsx("span", { className: "bc-ck", "aria-hidden": "true", children: isSel ? "\u2713" : "" }),
-                  /* @__PURE__ */ jsx("span", { children: highlight(o.label, query) })
-                ]
-              },
-              o.value
+            return (
+              // aria-label: az opció neve a látható felirat – a kiemelés (<mark>) szétszabdalja a szöveget, és nem minden
+              // akadálymentességi fa (képernyőolvasó, böngészőügynök) rakja össze a tartalomból megbízhatóan
+              /* @__PURE__ */ jsxs(
+                "div",
+                {
+                  id: `${listId}-${i}`,
+                  role: "option",
+                  "aria-label": o.label,
+                  "aria-selected": isSel,
+                  "aria-disabled": blocked || void 0,
+                  "data-active": i === active,
+                  className: "bc-option",
+                  onMouseDown: (e) => e.preventDefault(),
+                  onMouseEnter: () => setActive(i),
+                  onClick: () => pick(i),
+                  children: [
+                    multi && /* @__PURE__ */ jsx("span", { className: "bc-ck", "aria-hidden": "true", children: isSel ? "\u2713" : "" }),
+                    /* @__PURE__ */ jsx("span", { children: highlight(o.label, query) })
+                  ]
+                },
+                o.value
+              )
             );
           }),
           canCreate && /* @__PURE__ */ jsxs(
@@ -185,6 +190,7 @@ function Combobox(props) {
             {
               id: `${listId}-${shown.length}`,
               role: "option",
+              "aria-label": `\xDAj: \u201E${q}\u201D`,
               "aria-selected": false,
               "data-active": active === shown.length,
               className: "bc-option is-create",

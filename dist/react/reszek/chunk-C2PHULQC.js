@@ -1,7 +1,7 @@
 /* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   shake
-} from "./chunk-VX625S5W.js";
+} from "./chunk-5MR4IVAZ.js";
 import {
   RadioGroup
 } from "./chunk-5O2SIOOQ.js";

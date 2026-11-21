@@ -1,7 +1,7 @@
 /* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   Combobox
-} from "./chunk-DCMYY444.js";
+} from "./chunk-ODQEUJ7D.js";
 
 // react/src/kieg2/AddressSearch.tsx
 import { useEffect, useMemo, useRef, useState } from "react";

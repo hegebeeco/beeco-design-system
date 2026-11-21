@@ -8,6 +8,10 @@ export default async function ({ page, t }) {
 
   await t('első megjelenés: a szám felpörög (közben kisebb), a végén a valódi érték', async () => {
     await page.reload(); await page.waitForSelector('.bc-stat-value');
+    // A lap fejlesztői React-tel épül (react-build: dev-react), a keret StrictMode-ot használ: a hatás 2× fut (felépít → lebont → újra felépít),
+    // és a felpörgésnek ezt is túl kell élnie. Ha a hatás 1×: a próba nem bizonyít StrictMode-ot.
+    const futas = await page.evaluate(() => window.__hatasFutas);
+    ok(futas === 2, `nem fut kétszer a hatás (${futas}×) – a tesztlapnak fejlesztői React + StrictMode kell (react-build: dev-react)`);
     const korai = await val('Beváltott kuponok'); ok(korai !== null && korai < 1046, `nem pörgött: ${korai}`);
     await until(async () => (await val('Beváltott kuponok')) === 1046, 'nem érte el a végértéket');
   });

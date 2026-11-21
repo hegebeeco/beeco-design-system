@@ -1,8 +1,8 @@
 /* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   CompareMerge
-} from "../reszek/chunk-5SYGZVQQ.js";
-import "../reszek/chunk-VX625S5W.js";
+} from "../reszek/chunk-CJI6SYT2.js";
+import "../reszek/chunk-5MR4IVAZ.js";
 import "../reszek/chunk-HPFGI32X.js";
 import "../reszek/chunk-ITQUDLZT.js";
 import "../reszek/chunk-OI4YENZ6.js";

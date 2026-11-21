@@ -1,10 +1,10 @@
 /* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   AudienceBuilder
-} from "../reszek/chunk-VP3P2PKQ.js";
+} from "../reszek/chunk-FDPJSPGQ.js";
 import "../reszek/chunk-LAIYCZ4R.js";
 import "../reszek/chunk-X3CBV3RK.js";
-import "../reszek/chunk-VX625S5W.js";
+import "../reszek/chunk-5MR4IVAZ.js";
 import "../reszek/chunk-CARXS6OD.js";
 import "../reszek/chunk-PQDYV5I5.js";
 import "../reszek/chunk-DWEUIJ2R.js";

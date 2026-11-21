@@ -20,7 +20,7 @@ import "../reszek/chunk-XELF2VC2.js";
 import "../reszek/chunk-CBDZNT5J.js";
 import {
   MonthCalendar
-} from "../reszek/chunk-6ICOAP27.js";
+} from "../reszek/chunk-MDNHFCR6.js";
 import "../reszek/chunk-FD4J2FIR.js";
 import {
   CAL_KINDS,

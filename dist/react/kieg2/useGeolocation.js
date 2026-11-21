@@ -2,7 +2,7 @@
 import {
   accuracyText,
   useGeolocation
-} from "../reszek/chunk-OFNITHEU.js";
+} from "../reszek/chunk-QGZHPMTC.js";
 import "../reszek/chunk-ODKPT4AU.js";
 export {
   accuracyText,

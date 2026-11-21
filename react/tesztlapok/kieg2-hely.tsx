@@ -1,8 +1,9 @@
+// react-build: dev-react   (fejlesztői React: a StrictMode a hatásokat kétszer futtatja – a „Jelenlegi helyem” ettől függött el, lásd az „élő jelző” próbát)
 import { useState, type KeyboardEvent, type MouseEvent } from 'react';
 import { HU_BOUNDS, LocationPicker, type LocationPickerProps, type AddressHit, type LatLng, type LocationMapProps, type LocationSource } from '../src/kieg2';
 import { formatLatLng } from '../src/kieg2/geo';
 import { norm } from '../src/pickers/normalize';
-import { Case, Grid, mount } from './_keret';
+import { Case, Grid, HatasSzamlalo, mount } from './_keret';
 
 /** Mintaadat: kitalált címek kerek koordinátákkal – a kereső hálózat nélkül, a böngészőben szűr */
 const CIMEK: AddressHit[] = [
@@ -66,6 +67,7 @@ function Pelda({ id, start = null, map = true, search = fakeSearch, ...rest }: {
 
 mount('Kiegészítők – helyválasztó', 'LocationPicker (06b/13): térkép-tű, címkereső (Combobox) és koordináta-mezők egymást frissítik; tartomány-igazítás, Magyarországon kívüli figyelmeztetés, jelenlegi hely. Minden cím mintaadat.', (
   <>
+    <HatasSzamlalo />
     <Grid title="Alap és források">
       <Case id="hely" title="Üres → keresés / térkép / gépelés / jelenlegi helyem" wide><Pelda id="hely" /></Case>
       <Case id="hely-mini" title="Térkép nélkül: vázlatos mini-térkép, kitöltve" wide><Pelda id="hely-mini" map={false} start={{ lat: 47.4979, lng: 19.0402 }} /></Case>

@@ -1,8 +1,8 @@
 /* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   ReviewReject
-} from "../reszek/chunk-THGOYHKM.js";
-import "../reszek/chunk-VX625S5W.js";
+} from "../reszek/chunk-C2PHULQC.js";
+import "../reszek/chunk-5MR4IVAZ.js";
 import "../reszek/chunk-5O2SIOOQ.js";
 import "../reszek/chunk-2YIVZILC.js";
 import "../reszek/chunk-RTB453YE.js";

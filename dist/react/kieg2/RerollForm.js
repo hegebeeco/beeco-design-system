@@ -1,8 +1,8 @@
 /* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   RerollForm
-} from "../reszek/chunk-HMOG55IZ.js";
-import "../reszek/chunk-VX625S5W.js";
+} from "../reszek/chunk-Y5QURYJE.js";
+import "../reszek/chunk-5MR4IVAZ.js";
 import "../reszek/chunk-2YIVZILC.js";
 import "../reszek/chunk-RTB453YE.js";
 import "../reszek/chunk-TRQYNXV6.js";

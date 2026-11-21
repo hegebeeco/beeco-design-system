@@ -31,6 +31,17 @@ export default async function ({ page, t }) {
     await page.keyboard.press('Enter'); await dlg.waitFor({ state: 'detached' });
     ok((await out('valasztott')).includes('Méhecske-kert') && !(await out('valasztott')).includes('új lapon'), await out('valasztott'));
   });
+  await t('opciók akadálymentes neve: minden sor neve a címke (kiemeléssel is), a leírás aria-describedby-ban', async () => {
+    // Az akadálymentességi fa (képernyőolvasó, böngészőügynök) nem mindig rakja össze a nevet a kiemelés (<mark>) által szétvágott tartalomból.
+    await nyit(); await input().fill('mé'); await dlg.getByRole('group', { name: 'Partnerek' }).waitFor();
+    const sorok = await dlg.locator('[role=option]').evaluateAll((els) => els.map((e) => ({
+      name: e.getAttribute('aria-label'), label: e.querySelector('.bc-cmdk-label')?.textContent ?? '', jelolt: e.querySelectorAll('mark').length,
+      leiras: e.querySelector('.bc-cmdk-desc')?.textContent ?? '', mutat: e.getAttribute('aria-describedby') && document.getElementById(e.getAttribute('aria-describedby'))?.textContent })));
+    ok(sorok.length >= 3, `kevés sor: ${JSON.stringify(sorok)}`); ok(sorok.some((s) => s.jelolt), 'a próba nem bizonyít semmit: nincs kiemelt (<mark>) sor');
+    for (const s of sorok) { ok(s.name && s.name === s.label, `a sor neve („${s.name}”) nem a címke („${s.label}”)`); ok(!s.leiras || s.mutat === s.leiras, `a leírás („${s.leiras}”) nincs hozzákötve (${s.mutat})`); }
+    ok((await dlg.getByRole('option', { name: 'Méhes Kávézó', exact: true }).count()) === 1, 'a „Méhes Kávézó” sor név szerint nem érhető el');
+    await page.keyboard.press('Escape'); await dlg.waitFor({ state: 'detached' });
+  });
   await t('Ctrl+Enter: új lapon – a paletta nyitva marad; egérrel rámutatás kiemel, kattintás választ', async () => {
     await nyit(); await input().fill('kávé'); await dlg.getByRole('option').first().waitFor();
     await page.keyboard.press('Control+Enter'); ok((await out('valasztott')).includes('(új lapon)'), await out('valasztott'));
