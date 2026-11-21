@@ -19,6 +19,17 @@ export default async function ({ page, t }) {
   await t('több napos esemény a hónap határán át (szept. 28. – okt. 3.) minden napon látszik', async () => {
     for (const d of ['2026-09-28', '2026-09-30', '2026-10-03']) ok((await day('naptar', d).innerText()).includes('Fenntarthatósági'), d);
   });
+  await t('StrictMode: betöltéskor a naptár nem szól „hónapváltásról” (0 hívás), PageDown után pontosan 1', async () => {
+    // A lap fejlesztői React-tel épül (react-build: dev-react), a keret StrictMode-ot használ: a hatás 2× fut. Ha 1×, a próba nem bizonyít semmit.
+    const futas = await page.evaluate(() => window.__hatasFutas);
+    ok(futas === 2, `nem fut kétszer a hatás (${futas}×) – a tesztlapnak fejlesztői React + StrictMode kell (react-build: dev-react)`);
+    ok((await out('naptar')).includes('hívások: 0'), `betöltéskor szólt a hónapváltásról: ${await out('naptar')}`);
+    await day('naptar', '2026-10-01').focus(); await page.keyboard.press('PageDown');
+    await until(async () => (await out('naptar')).includes('hónap: 2026-11-01'), 'a hónapváltás nem jutott el a projekthez');
+    ok((await out('naptar')).includes('hívások: 1'), `nem pontosan 1 hívás: ${await out('naptar')}`);
+    await page.keyboard.press('PageUp'); await until(async () => (await c('naptar').locator('.bc-mcal-title').innerText()).includes('október'), 'nem október');
+    await until(async () => (await out('naptar')).includes('hívások: 2'), `PageUp után nem 2 hívás: ${await out('naptar')}`);
+  });
   await t('billentyűzet: → ↓ lép, Home/End a hét széle, Enter kiválaszt', async () => {
     await day('naptar', '2026-10-01').focus();
     await page.keyboard.press('ArrowRight'); ok((await focused()) === '2026-10-02', await focused());

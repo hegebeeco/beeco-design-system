@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { StrictMode, type ReactNode } from 'react';
+import { StrictMode, useEffect, type ReactNode } from 'react';
 
 /** Tesztlap-keret: cím, leírás, esetek rácsa. A téma a rendszert követi (data-theme="auto"), a futtató sötétre is kapcsolja. */
 export function mount(title: string, intro: string, body: ReactNode) {
@@ -37,4 +37,13 @@ export function Grid({ title, children }: { title: string; children: ReactNode }
       <div className="tl-grid">{children}</div>
     </>
   );
+}
+
+/**
+ * Őr a StrictMode-os próbákhoz (a tesztlap első sora: `// react-build: dev-react`): a hatás fejlesztői React + StrictMode alatt KÉTSZER fut
+ * (felépít → lebont → újra felépít). A forgatókönyv ezt ellenőrzi (`window.__hatasFutas === 2`); ha egyszer fut, a próba nem bizonyít semmit.
+ */
+export function HatasSzamlalo() {
+  useEffect(() => { const w = window as unknown as { __hatasFutas?: number }; w.__hatasFutas = (w.__hatasFutas ?? 0) + 1; }, []);
+  return null;
 }

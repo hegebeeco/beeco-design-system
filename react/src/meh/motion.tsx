@@ -11,12 +11,16 @@ export function useReducedMotion() {
 /** Szám-felpörgés: első megjelenéskor 600 ms alatt (ease-out), később érték-váltáskor azonnal (késés nélkül). Csökkentett mozgásnál azonnal. */
 export function useCountUp(value: number, ms = 600) {
   const reduce = useReducedMotion();
-  const first = useRef(true);
+  // Az első pörgés alapja: melyik értékre és hosszra indult. Amíg a bemenet ugyanez, a pörgés (újra)indul – így a StrictMode (fejlesztői mód)
+  // felépít → lebont → újra felépít menete sem nyeli el: a lebontás megszakítja, az újrafelépítés újraindítja. Más érték vagy hossz = „moved”: onnantól azonnal.
+  const origin = useRef<{ value: number; ms: number; moved: boolean } | null>(null);
   // Csak az első pörgés alatt van saját állapot; utána mindig a valódi érték jön vissza, egy képkocka késés nélkül
   const [anim, setAnim] = useState<number | null>(reduce ? null : 0);
   useEffect(() => {
-    if (reduce || !first.current) { setAnim(null); return; }
-    first.current = false;
+    if (reduce) { setAnim(null); return; }
+    origin.current ??= { value, ms, moved: false };
+    if (origin.current.value !== value || origin.current.ms !== ms) origin.current.moved = true;
+    if (origin.current.moved) { setAnim(null); return; }
     const t0 = performance.now(); let raf = 0;
     const step = (t: number) => { const k = Math.min(1, (t - t0) / ms); setAnim(k < 1 ? value * (1 - Math.pow(1 - k, 3)) : null); if (k < 1) raf = requestAnimationFrame(step); };
     raf = requestAnimationFrame(step);

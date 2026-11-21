@@ -61,8 +61,10 @@ export function MonthCalendar<K extends string = CalKind>({ events, initialDate,
   const title = `${f.getFullYear()}. ${MONTHS[f.getMonth()]}`;
   const monthCount = days.filter((d) => fromIso(d).getMonth() === f.getMonth()).reduce((n, d) => n + (byDay.get(d)?.length ?? 0), 0);
 
-  const first = useRef(true);
-  useEffect(() => { if (first.current) { first.current = false; return; } onMonthChange?.(`${focus.slice(0, 7)}-01`); }, [monthKey]); // eslint-disable-line react-hooks/exhaustive-deps
+  // Csak tényleges hónapváltásnál szólunk a projektnek. Az utolsó hónapot jegyezzük (nem „első futás”-jelzőt): a StrictMode (fejlesztői mód)
+  // felépít → lebont → újra felépít menete így nem hív betöltéskor feleslegesen.
+  const lastMonth = useRef(monthKey);
+  useEffect(() => { if (lastMonth.current === monthKey) return; lastMonth.current = monthKey; onMonthChange?.(`${focus.slice(0, 7)}-01`); }, [monthKey]); // eslint-disable-line react-hooks/exhaustive-deps
   // Billentyűzettel mozgatott nap kapja a fókuszt (egérnél nem ugrik)
   useEffect(() => { if (moved.current) { grid.current?.querySelector<HTMLButtonElement>(`[data-iso="${focus}"]`)?.focus({ preventScroll: true }); moved.current = false; } }, [focus]);
 

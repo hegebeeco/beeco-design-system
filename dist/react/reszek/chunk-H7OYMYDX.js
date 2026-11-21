@@ -2,7 +2,7 @@
 import {
   DrawSpinner,
   WinnerCard
-} from "./chunk-FQIZ56JU.js";
+} from "./chunk-EXR32B2G.js";
 import {
   REVEAL_STEPS,
   cryptoIndex,
@@ -12,7 +12,7 @@ import {
 } from "./chunk-4U5AAVWT.js";
 import {
   RerollForm
-} from "./chunk-HMOG55IZ.js";
+} from "./chunk-Y5QURYJE.js";
 import {
   BeeMoment
 } from "./chunk-UA4AGC45.js";
@@ -20,7 +20,7 @@ import {
   HexLoader,
   celebrate,
   useReducedMotion
-} from "./chunk-VX625S5W.js";
+} from "./chunk-5MR4IVAZ.js";
 import {
   formatHu
 } from "./chunk-ODKPT4AU.js";
@@ -44,8 +44,11 @@ function PrizeDrawReveal({ prize, participants, draw, onDrawn, onReroll, exclude
   const [animated, setAnimated] = useState(false);
   const alive = useRef(true);
   const heading = useRef(null);
-  useEffect(() => () => {
-    alive.current = false;
+  useEffect(() => {
+    alive.current = true;
+    return () => {
+      alive.current = false;
+    };
   }, []);
   const last = log[log.length - 1];
   const used = new Set(excludePrevious ? log.map((r) => r.winner.id) : []);
