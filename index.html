@@ -10,7 +10,8 @@
 <style>
   .wrap { max-width: 960px; margin: 0 auto; padding: var(--bc-sp-6) var(--bc-sp-4) var(--bc-sp-8); }
   .hero { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bc-sp-4); margin-bottom: var(--bc-sp-6); }
-  .hero img { width: 120px; height: auto; }
+  .hero .bc-logo { --_h: 73px; } /* 120 px széles, mint eddig; a .bc-logo a témával magától vált (logo.webp ↔ logo-sotet.webp) */
+  .hero-theme { margin-inline-start: auto; }
   .hero h1 { margin: 0; font-size: var(--bc-fs-3xl); }
   .grid { display: grid; gap: var(--bc-sp-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
   .grid a.bc-card { display: flex; flex-direction: column; gap: var(--bc-sp-2); }
@@ -21,8 +22,9 @@
 <body>
 <main class="wrap">
   <header class="hero">
-    <img src="web/assets/brand/logo.webp" alt="beeco">
+    <span class="bc-logo" role="img" aria-label="beeco"></span>
     <div><h1>Design system</h1><p class="bc-muted" style="margin:0">Egy forrás – közös atomok, két bőr. <span id="ver"></span></p></div>
+    <button class="bc-btn is-secondary hero-theme" id="theme" type="button"><span id="theme-ic" aria-hidden="true"></span><span id="theme-label">Sötét mód</span></button>
   </header>
   <div class="grid">
     <a class="bc-card is-interactive" href="termek/bemutato.html"><h2 class="bc-card-title" style="margin:0">Termékbőr</h2><p>App, admin, partner, web – színszerepek, betűk, elemek, világos és sötét mód.</p></a>
@@ -49,7 +51,21 @@
     <li><a href="https://github.com/hegebeeco/beeco-design-system/blob/main/docs/app-atallas.md">Flutter app átállás</a> (Bencének)</li>
   </ul>
 </main>
-<script>fetch('termek/tesztlapok/lista.json').then(r => r.json()).then(l => { const g = document.getElementById('tesztlapok'); for (const t of l) { const a = document.createElement('a'); a.className = 'bc-card is-flat is-interactive'; a.href = 'termek/tesztlapok/' + t.nev + '.html'; const h = document.createElement('h3'); h.className = 'bc-card-title'; h.style.margin = '0'; h.textContent = t.cim; const p = document.createElement('p'); p.textContent = t.leiras; a.append(h, p); g.append(a); } }).catch(() => {});
+<script>
+  // Téma: alapból a rendszert követi (data-theme="auto"); a gomb kifejezetten világosra/sötétre vált (mint a termek/bemutato.html-ben).
+  // A felirat és a piktogram azt mutatja, AMIRE vált (a DS ThemeToggle mintája): világosban „Sötét mód” + hold, sötétben „Világos mód” + nap.
+  (() => {
+    const SVG = (d) => '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>';
+    const MOON = SVG('<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>');
+    const SUN = SVG('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>');
+    const mq = matchMedia('(prefers-color-scheme: dark)');
+    const isDark = () => { const t = document.documentElement.dataset.theme; return t === 'dark' || (t === 'auto' && mq.matches); };
+    const ic = document.getElementById('theme-ic'), txt = document.getElementById('theme-label');
+    const label = () => { const d = isDark(); ic.innerHTML = d ? SUN : MOON; txt.textContent = d ? 'Világos mód' : 'Sötét mód'; };
+    document.getElementById('theme').addEventListener('click', () => { document.documentElement.dataset.theme = isDark() ? 'light' : 'dark'; label(); });
+    mq.addEventListener('change', label); label();
+  })();
+fetch('termek/tesztlapok/lista.json').then(r => r.json()).then(l => { const g = document.getElementById('tesztlapok'); for (const t of l) { const a = document.createElement('a'); a.className = 'bc-card is-flat is-interactive'; a.href = 'termek/tesztlapok/' + t.nev + '.html'; const h = document.createElement('h3'); h.className = 'bc-card-title'; h.style.margin = '0'; h.textContent = t.cim; const p = document.createElement('p'); p.textContent = t.leiras; a.append(h, p); g.append(a); } }).catch(() => {});
 fetch('dist/tokens.json').then(r => r.json()).then(t => { document.getElementById('ver').textContent = 'v' + t.version; }).catch(() => {});</script>
 </body>
 </html>
