@@ -473,5 +473,90 @@
    "/app/labnyom-szamitasi-metodika: self-contained embedded calculator with its own CSS",
    "EWWR campaign page: div.ds-tovabb-kartya and the black-and-white pictograms are campaign decisions"
   ]
+ },
+ "round5": {
+  "date": "2026-11-21",
+  "note": "Owner decisions of 2026-11-21 (Javaslat 41): divider always, label on every section, white-splash pictograms, campaigns on the common form, legacy pastel backgrounds to DS colours, polaroid tape on DS photos. Staging only.",
+  "legacy_backgrounds": [
+   {
+    "selector": ".dia_kek",
+    "from": "hsla(205.5,100%,82.9%,.4)",
+    "to": "var(--_beeco-ds---bc-surface-2)"
+   },
+   {
+    "selector": ".dia_zold",
+    "from": "rgba(110,137,71,.3); border-bottom 4px dashed",
+    "to": "var(--_beeco-ds---bc-success-bg); no border"
+   },
+   {
+    "selector": ".dia_sarga",
+    "from": "hsla(45.7,99%,61%,.3); border-bottom 4px dashed",
+    "to": "var(--_beeco-ds---bc-surface-accent); no border"
+   },
+   {
+    "selector": ".dia_feher",
+    "from": "transparent",
+    "to": "var(--_beeco-ds---bc-bg)"
+   }
+  ],
+  "new_classes": [
+   {
+    "selector": ".ds-domb-sor",
+    "to": "in-flow divider row (relative, 56px, margin-top 40px, align-self stretch) holding a DS · Domb in legacy sections"
+   }
+  ],
+  "photo_tape": {
+   "selectors": [
+    ".ds-foto.ds-fotosor-elem::before",
+    ".ds-foto.ds-hero-foto::before",
+    ".ds-foto.ds-hogyan-foto::before",
+    ".ds-foto.ds-ido-foto.ds-polaroid::before"
+   ],
+   "to": "72x22 px rgba(254,207,57,.88) tape at top centre, combos get overflow visible; .ds-fotosor-sor padding-top 6→16px with margin-top −6→−16px so the tape is not clipped"
+  },
+  "legacy_classes": [
+   {
+    "selector": ".tortenet_blokk",
+    "from": "24px",
+    "to": "4px"
+   },
+   {
+    "selector": ".nyerem-nyj-t-k_blokk",
+    "from": "16px",
+    "to": "4px"
+   },
+   {
+    "selector": ".timeline_image-wrapper",
+    "from": "12px",
+    "to": "0"
+   },
+   {
+    "selector": ".icon, .icon-2",
+    "from": "10px",
+    "to": "4px"
+   }
+  ],
+  "campaigns": {
+   "csicsergosz": "about 60 cs-/cs_ classes in Webflow (cards/buttons/chips 4px, photos/bars/labels 0, shadows only on clickable, 4px in the campaign brown) + embed cs-ds-v2.css; backup: ~/CLAUDE/webflow-mentes/2026-11-21-web-ds/kampany-cs-ki-elotte.json",
+   "vizadas": "embed ov-ds-v2.css (4th embed): --r-k 4px, shadows only on clickable, hill-shaped ::after dividers in the next section colour",
+   "nyeremenyjatek": "page head: nyeremenyjatek-ds-v2.css (Vízadás colours on dia_kek/dia_green_ov, hill dividers) + 6 labels",
+   "ewwr": "page head: three asymmetric radii → 4px, div.ds-tovabb-kartya without shadow, slider shapes; backup ewwr-fejkod-elotte.html"
+  },
+  "pictograms": {
+   "swapped": 19,
+   "pages": [
+    "/beecopedia",
+    "/rolunk/hatasunk",
+    "/rolunk/kapcsolat",
+    "/en"
+   ],
+   "new_assets": {
+    "fs-piko-kesvilla-feher.svg": "6b020239d4b6e1c44643a61f",
+    "fs-piko-haz-feher.svg": "6b020239a227073b42774bf2",
+    "fs-piko-katt-feher.svg": "6b020239d9ac20985f5948c7",
+    "fs-piko-alma-feher.svg": "6b02023970415378330cb8c2"
+   },
+   "method": "the #FECF39 splash of the source SVG (weboldal/fooldal-szuperhos/piko/) replaced by #FFFFFF, as in Javaslat 35"
+  }
  }
 }

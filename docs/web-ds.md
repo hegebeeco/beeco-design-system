@@ -32,22 +32,25 @@ A [weboldal.md](weboldal.md) (tokenek → Webflow-változók, publikálási szab
 | Árnyék (R2) | Csak kattintható elemen, kemény, elmosás nélkül, fekete. Két fajta: **nagy** `4px 4px 0 0` (gomb, kattintható kártya) és **kicsi** `2px 2px 0 0` (kis vezérlő). Rámutatásra 1 px-t emelkedik (5, illetve 3 px), lenyomva lesüllyed (1 px). Telefonon a kártyaárnyék elmarad. |
 | Keret | 2 px (`bc-bw-base`), `bc-line`. Nem kattintható kártya: keret van, árnyék nincs. |
 | Gomb (R3) | Két gomb: elsődleges (`ds-gomb`, méz) és másodlagos (`ds-gomb ds-masod`, fehér). A harmadik szint a szöveglink (`ds-szoveglink`). Szekciónként legfeljebb egy elsődleges. |
-| Elválasztó (R4) | Két eltérő hátterű szekció között mindig `DS · Domb`, a **következő** szekció színével. |
+| Elválasztó (R4) | Két eltérő hátterű szekció között mindig domb, a **következő** szekció színével: `DS · Domb` (a `ds-szekcio` végén; régi szekcióban a `ds-domb-sor` sorban). Kampányoldalon a kampány saját dombja is megfelel (CsicsergŐsz `cs-domb`, Vízadás: a szekció `::after` eleme dombformában). Azonos hátterű szekciók közé nem kell. (Kristóf, 2026-11-21: „elválasztó a szekciók között mindig legyen”.) |
 | GYIK (R5) | Mindig a GYIK-sablon (`ds-gyik`, natív `details`), FAQPage JSON-LD-vel. |
 | App-CTA (R6) | Lakossági oldal alján: appkép + QR-kód + két áruház-gomb (`DOWNLOAD_BLOCK`). |
 | Kép (R7) | Nem jelenhet meg a saját méreténél nagyobban, nem torzulhat, van `alt`-ja (díszkép: `alt=""`). WebP; arány 4:3, 16:9 vagy 9:16. Saját fotó, nem AI-kép. |
 | Kiemelés (R8) | `ds-kiemel` (méz háttér) csak 30 karakternél hosszabb címben, címenként egyszer. Szövegszínnel nem emelünk ki. |
 | Szövegszín (R9) | Tinta, halvány tinta, fehér (sötéten). Barna vagy színes betű nincs: ami kiemelt adat (ár, forrás, év), az vaj hátterű **címke**. |
 | Logó (R10) | Keret és háttér nélkül, szürkeárnyalatosan (`ds-logo`, `ds-logo-kep`). |
-| Piktogram (R11) | Sárga foltos változat; fekete-fehér csak az EWWR-oldalon. Ikon mellett mindig felirat. |
-| Háttér | Fehér, krém, halványzöld váltakozik. Vaj csak a nyitóban, sötét oldalanként legfeljebb egyszer. |
-| Szekciócímke | `ds-szalag`: fekete alap, fehér betű, egyenes, ikon és körvonal nélkül. Szekciónként egy. |
+| Piktogram (R11) | **Fehér flekken fekete piktogram** (`fs-piko-<név>-feher.svg`, ill. az eleve fehér foltos SVG) minden oldalon, a kampányoldalakon is (Kristóf, 2026-11-21; a korábbi „sárga foltos” szabály megszűnt). Az EWWR-oldal fekete-fehér szűrője ezzel összhangban van. Ikon mellett mindig felirat. |
+| Háttér | Fehér, krém, halványzöld váltakozik. Vaj csak a nyitóban, sötét oldalanként legfeljebb egyszer. A régi pasztell osztályok DS-színt kaptak (2026-11-21): `dia_zold` → zöld (`bc-success-bg`), `dia_sarga` → vaj (`bc-surface-accent`), `dia_kek` → halványzöld (`bc-surface-2`), `dia_feher` → krém (`bc-bg`); a szaggatott alsó vonal helyett domb. |
+| Fotó | `ds-foto`: fehér keret, fekete feliratsáv, enyhe dőlés; a fotósorban, a nyitóban, a „hogyan dolgozunk” képeken és az idővonalon a tetején **sárga ragasztócsík** (polaroid-hatás, a Vízadás-galériából; Kristóf, 2026-11-21). |
+| Szekciócímke (R12) | Minden H2-es tartalmi szekció **címkével kezdődik**, közvetlenül a cím fölött (Kristóf, 2026-11-21). `ds-szalag`: fekete alap, fehér betű, egyenes; sötét szekcióban `ds-szalag ds-szalag-vilagos` (sárga). Kampányoldalon a kampány saját címkéje (CsicsergŐsz `cs_kicker`, Vízadás `ov-szalag`). Szöveg: 1–3 szavas kategória, nem a cím ismétlése. Szekciónként egy. |
 | Szövegillesztés | Címkén, chipen, gombon legalább 16 karakter férjen egy sorba a legszűkebb nézetben (320 px). Ha nem fér: egy lépcsővel kisebb betű → két sor → rövidebb szöveg, ebben a sorrendben. |
 | Mozgás | Visszajelzés ≤ 300 ms, `ease-out`. Automatikusan mozgó nyitó nincs. Csökkentett mozgásnál a végállapot látszik. |
 | Betű | Lalezar csak cím, szám, gomb, címke; Open Sans minden más. Méretek a Tipográfia-változókból. |
 | Hozzáférhetőség | Érintési felület ≥ 44 px, kontraszt ≥ 4,5:1, látható fókusz (`bc-focus`, 3 px), billentyűzettel bejárható. |
 
 Kivétel: az áruház-jelvény kész képként érkező gomb, a képbe rajzolt sarka marad (a lint ismeri).
+
+**Kampányoldalak** (CsicsergŐsz, Madárkisokos, Vízadás, EWWR; Kristóf döntése, 2026-11-21): a saját szín, betű és rajz marad, a forma közös (sarok, árnyék, domb, címke, piktogram). A kampány CSS-ét egy-egy kis felülíró blokk igazítja: `weboldal/kampany-csicsergosz/cs-ds-v2.css`, `weboldal/kampany-vizadas-2027/ov-ds-v2.css`, `…/nyeremenyjatek-ds-v2.css`; az EWWR-é az oldal fejkódjában. Szándékosan maradó rajzelemek: CsicsergŐsz hullám, felhő, könyvlap; Vízadás pecsét és a hero városképes átmenete.
 
 ## 3. Atomok
 
@@ -202,8 +205,8 @@ A lint a fejlécet és a láblécet külön számolja („keret”), a tartalom 
 
 | Mutató | Érték |
 |---|---|
-| Eltérés a 72 mért oldalon | **1040** (a harmadik kör előtt 1778, utána 1359, a régi oldalak stíluslapja után 1180) |
-| 0 eltérés | 12 oldal; legfeljebb 5 eltérés: 45 oldal |
+| Eltérés a 72 mért oldalon | **386** (2026-11-21 este, a Javaslat 41 szabályaival: R11 fehér folt, R12 címke, R4 a domb színét is nézi). Útja: 1778 → 1359 → 1180 → 1040 → 386. A maradék 40%-a a főoldal (153, másik munkamenet). |
+| 0 eltérés | 18 oldal; legfeljebb 5 eltérés: 62 oldal |
 | CMS-oldalak (393 oldal, 10 sablon) | becslés: kb. 8200 → 1000 (gyűjteményenként 2 minta alapján: a 20 mintán 141 → 55) |
 | Teljesen `ds-` oldal | 30 a 72-ből |
 
@@ -227,7 +230,8 @@ Mi történt:
 4. A régi `card` osztály linkként és sima dobozként is él, ezért alapállapotban nincs árnyéka, csak rámutatásra.
 5. **Régi oldalak stíluslapja:** a GYIK, a Letöltés, a Térkép, a beebolt és a webshop termék- és kategóriasablonja a fejkódból külön stíluslapot tölt be (`weboldal/kozos/regi-oldalak-ds.css`, commit-azonosítóval rögzítve a jsDelivr-címben). A v2 változata ezen az ágon él (`083e3817`), a hat fejkód erre mutat. A fájl eredetije a `fooldal-szuperhos-tema` ágon van: a két ág összefésülésekor a v2 változat marad. Ha a fájl változik, a hat fejkódban a commit-azonosítót is át kell írni.
 6. **Negyedik kör:** a maradék régi osztályok (`home-faq-content`, `gyik_blokk`, `brix---icon-square-36px`, `card_img.flex`, `nyeremeny-k-p`, `shop_product_img`) és a Partner-oldal „Egy nap” blokkja (a második kódbeágyazás írja felül a formát; a telefon- és laptoprajz illusztráció, az marad). Lista: `migration/legacy_v2_changes.json` (`round4`).
-7. Mentés a régi értékekről: `~/CLAUDE/webflow-mentes/2026-11-21-web-ds/`.
+7. **Ötödik kör (Javaslat 41, Kristóf döntései):** domb minden eltérő hátterű szekcióhatáron (kb. 100 új domb), címke minden H2-es szekció tetején (kb. 90), fehér flekkes piktogram (20 csere, 4 új SVG: `weboldal/web-ds/piko-feher/`), a régi pasztell hátterek DS-színen, a kampányoldalak a közös formán (`cs-ds-v2.css`, `ov-ds-v2.css`, `nyeremenyjatek-ds-v2.css`, EWWR fejkód), ragasztócsík a DS-fotókon. Közös komponensbe került címke: `beecopedia_Ajanlo` („Beecopédia”), `APP_FEATURE_BLOKK` („Az app”, 14 példány). Lista: `migration/legacy_v2_changes.json` (`round5`).
+8. Mentés a régi értékekről: `~/CLAUDE/webflow-mentes/2026-11-21-web-ds/`.
 
 Újramérés: `node weboldal/web-ds/teszt/ds-lint.cjs <URL-ek> --json ki.json`; az URL-lista a `sitemap.xml`-ből jön (statikus oldalak + gyűjteményenként két minta).
 

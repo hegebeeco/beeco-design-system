@@ -31,3 +31,6 @@ Mérés: `ov_cta_kattintas` (`data-ov-cta` = hely), `ov_qr_erkezes`, `ov_eredmen
 
 ## Építés
 `node build.mjs` → `embed/*.min.css`, `ov.js`; `python3 ov-jeloles.py [szekció…]` → `ov_szekciok.json` (whtml-hez).
+
+## Web DS v2 (2026-11-21)
+- `ov-ds-v2.css` → `embed/ov-ds-v2.min.css`: a 4. embed az oldal tetején (az ov-1…3 után). Formaszabályok (4 px sarok, árnyék csak kattinthatón, fotó 0 px) és a szekcióhatár dombként, mindig a következő szekció színében (`--kov`). Kristóf döntése: a kampány saját színei maradnak, a forma közös.

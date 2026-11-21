@@ -1,0 +1,25 @@
+/* Vízadás-nyereményjáték (/nyeremenyjatek/onkentes-vizadas-nyeremenyjatek) – Web DS v2, 2026-11-21.
+   Kristóf döntése: a kampányoldalak saját színei maradnak, a forma közös (domb a szekciók között,
+   címke minden szekció tetején). Az oldal régi dia_* szekciókra épül; a közös dia_kek osztály
+   2026-11-21 óta DS-halványzöld, ezért itt a Vízadás égkékjét kapja vissza (#DCF1FF), a dia_green_ov
+   pedig a Vízadás mentáját (#D4F4EA). A domb a szekció ::after eleme (a flex oszlop végén, a tartalom alatt),
+   mindig a KÖVETKEZŐ szekció színében (--kov). Hely: az oldal fejkódja (Webflow → Page settings → Custom code). */
+html body .dia_kek { background-color: #DCF1FF; }
+html body .dia_green_ov { background-color: #D4F4EA; }
+html body #tartalom { --kov: #D4F4EA; }
+html body #hogyan { --kov: #DCF1FF; }
+html body #nevezes { --kov: #0A0AF2; }
+html body #UGC_verseny { --kov: #DCF1FF; }
+html body #nyeremeny { --kov: #0A0AF2; }
+html body #nyeremeny + .dia_kek_ov { --kov: #64C4FF; }
+html body #tartalom::after, html body #hogyan::after, html body #nevezes::after,
+html body #UGC_verseny::after, html body #nyeremeny::after, html body #nyeremeny + .dia_kek_ov::after {
+  content: ""; display: block; align-self: stretch; flex: none; width: 100%;
+  height: 56px; margin-top: 40px; margin-bottom: -1px;
+  background: var(--kov); border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  box-shadow: 0 -6px 14px -4px rgba(0,0,0,.16);
+}
+@media (max-width: 767px) {
+  html body #tartalom::after, html body #hogyan::after, html body #nevezes::after,
+  html body #UGC_verseny::after, html body #nyeremeny::after, html body #nyeremeny + .dia_kek_ov::after { height: 40px; }
+}

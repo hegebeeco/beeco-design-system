@@ -3,7 +3,8 @@
    Usage: node weboldal/web-ds/teszt/ds-lint.cjs <url> [<url> …] [--json out.json] [--strict]
    Reads only; never submits forms. Exit code 1 with --strict when any page has a violation.
    Rules (ids match the doc): R1 radius · R2 shadow · R3 button variants · R4 section divider · R5 FAQ template
-   R6 app CTA · R7 images · R8 highlight · R9 text colours · R10 logo container · R11 pictogram splash */
+   R6 app CTA · R7 images · R8 highlight · R9 text colours · R10 logo container · R11 pictogram splash
+   R12 section label (2026-11-21: every content section with an H2 starts with a label) */
 const { chromium } = require(process.env.PLAYWRIGHT_UT || 'playwright');
 
 const args = process.argv.slice(2);
@@ -20,7 +21,7 @@ function measure() {
   const cls = el => (el.className && el.className.toString ? el.className.toString() : '').split(/\s+/).filter(c => c && !/^w-/.test(c)).slice(0, 2).join('.') || el.tagName.toLowerCase();
   const visible = el => { const r = el.getBoundingClientRect(); const cs = getComputedStyle(el); return r.width > 4 && r.height > 4 && cs.visibility !== 'hidden' && cs.display !== 'none' && cs.opacity !== '0'; };
   const zone = el => (el.closest(CHROME) ? 'keret' : 'tartalom');
-  const out = { R1: [], R2: [], R3: {}, R4: [], R5: [], R6: [], R7: [], R8: [], R9: {}, R10: [], R11: [], stats: {} };
+  const out = { R1: [], R2: [], R3: {}, R4: [], R5: [], R6: [], R7: [], R8: [], R9: {}, R10: [], R11: [], R12: [], stats: {} };
   const push = (rule, el, why) => out[rule].push({ z: zone(el), c: cls(el), why });
   const all = [...document.body.querySelectorAll('*')].filter(el => visible(el) && !el.closest('.beeco-ugras') && el.getBoundingClientRect().right > 0);
 
@@ -61,11 +62,19 @@ function measure() {
   }
 
   // R4 divider between sections of different background
-  const sections = [...document.querySelectorAll('body > section, body > .ds-szekcio, main > section')].filter(visible);
+  // top-level sections: every <section> or .ds-szekcio that is not inside another one (Webflow wraps pages in divs)
+  // legacy pages build sections as divs with a dia_* background class, so those count too
+  const SEC = 'section, .ds-szekcio, [class*="dia_"]';
+  const sections = [...document.querySelectorAll(SEC)].filter(s => visible(s) && !s.closest(CHROME) && !s.parentElement.closest(SEC));
   const bg = el => { let e = el; while (e && getComputedStyle(e).backgroundColor === 'rgba(0, 0, 0, 0)') e = e.parentElement; return e ? getComputedStyle(e).backgroundColor : ''; };
-  sections.forEach((s, i) => { const n = sections[i + 1]; if (!n) return; const hasDomb = !!s.querySelector(':scope > .ds-domb, :scope > div:not([class]) > .ds-domb'); // the second form: divider placed in a component slot
+  sections.forEach((s, i) => { const n = sections[i + 1]; if (!n) return; const dombEl = s.querySelector(':scope > .ds-domb, :scope > div:not([class]) > .ds-domb, :scope > .ds-domb-sor > .ds-domb'); const ownDomb = !!n.querySelector(':scope > [class*="domb"]:not(.ds-domb-sor)'); // a campaign's own hill at the top of the next section (e.g. CsicsergŐsz cs-domb)
+    const pa = getComputedStyle(s, '::after'); const pseudoDomb = pa.content !== 'none' && parseFloat(pa.height) >= 30 && pa.borderTopLeftRadius !== '0px'; // a campaign hill drawn as the section's ::after (Vízadás)
+    if (pseudoDomb && bg(s) !== bg(n) && pa.backgroundColor !== bg(n)) out.R4.push({ z: 'tartalom', c: (s.id || cls(s)) + ' → ' + (n.id || cls(n)), why: 'a domb színe nem a következő szekcióé' });
+    const hasDomb = !!dombEl || ownDomb || pseudoDomb;
+    if (dombEl && bg(s) !== bg(n) && getComputedStyle(dombEl).backgroundColor !== bg(n)) out.R4.push({ z: 'tartalom', c: (s.id || cls(s)) + ' → ' + (n.id || cls(n)), why: 'a domb színe nem a következő szekcióé' }); // 2nd form: divider in a component slot; 3rd: in-flow divider row on legacy sections
     if (bg(s) !== bg(n) && !hasDomb) out.R4.push({ z: 'tartalom', c: (s.id || cls(s)) + ' → ' + (n.id || cls(n)), why: 'eltérő háttér, nincs domb' });
-    if (bg(s) === bg(n) && hasDomb) out.R4.push({ z: 'tartalom', c: (s.id || cls(s)) + ' → ' + (n.id || cls(n)), why: 'azonos háttér, fölösleges domb' }); });
+    // a divider between two sections of the same background is allowed (2026-11-21: „elválasztó a szekciók között mindig legyen”) – it shows as a soft shadow arc
+  });
   out.stats.sections = sections.length; out.stats.backgrounds = [...new Set(sections.map(bg))].length;
 
   // R5 FAQ template
@@ -93,8 +102,14 @@ function measure() {
   // R8 highlight only in headings longer than 30 characters
   document.querySelectorAll('h1 .ds-kiemel, h2 .ds-kiemel, h3 .ds-kiemel').forEach(k => { const h = k.closest('h1,h2,h3'); const t = h.textContent.trim(); if (t.length <= 30) out.R8.push({ z: zone(h), c: t, why: 'kiemelés ' + t.length + ' karakteres címben' }); });
 
-  // R11 pictogram splash: yellow outside the EWWR page
-  if (!/ewwr/i.test(location.pathname)) document.querySelectorAll('img[src*="fs-piko-"]').forEach(i => { const n = (i.src.match(/fs-piko-([a-z]+)(-[a-z]+)?\.svg/) || []); if (visible(i) && !i.closest(CHROME) && (n[2] === '-feher' || (WHITE_SPLASH.includes(n[1]) && n[2] !== '-sarga'))) out.R11.push({ z: 'tartalom', c: n[1] + (n[2] || ''), why: 'fehér foltos piktogram' }); });
+  // R11 pictogram splash: black drawing on a white splash everywhere (Kristóf, 2026-11-21; it replaced the yellow-splash rule).
+  // A pictogram shown through a black-and-white filter (the EWWR campaign page) already reads as black on white, so it is exempt.
+  document.querySelectorAll('img[src*="fs-piko-"]').forEach(i => { const n = (i.src.match(/fs-piko-([a-z]+)(-[a-z]+)?\.svg/) || []); if (visible(i) && !i.closest(CHROME) && !/grayscale\(1\)/.test(getComputedStyle(i).filter) && (n[2] === '-sarga' || (!WHITE_SPLASH.includes(n[1]) && n[2] !== '-feher'))) out.R11.push({ z: 'tartalom', c: n[1] + (n[2] || ''), why: 'sárga foltos piktogram' }); });
+
+  // R12 section label: a content section with an H2 starts with a label (ds-szalag or a campaign's own *szalag / *cimke / *kicker / *eyebrow); the hero (H1) is exempt
+  sections.forEach(s => { if (s.querySelector('h1')) return; const h2 = [...s.querySelectorAll('h2')].find(visible); if (!h2) return;
+    const label = [...s.querySelectorAll('[class*="szalag"], [class*="cimke"], [class*="kicker"], [class*="eyebrow"]')].find(e => e.tagName !== 'LABEL' && !(e.closest('form') && /cimke/.test(e.className)) && visible(e) && (e.compareDocumentPosition(h2) & Node.DOCUMENT_POSITION_FOLLOWING));
+    if (!label) out.R12.push({ z: 'tartalom', c: s.id || cls(s), why: 'nincs címke: „' + h2.textContent.trim().replace(/\s+/g, ' ').slice(0, 40) + '”' }); });
 
   out.stats.textColours = Object.keys(out.R9).length;
   return out;
@@ -115,12 +130,12 @@ function measure() {
     const count = (rule, z) => m[rule].filter(v => !z || v.z === z).length;
     const buttons = Object.values(m.R3);
     const row = { url, R1: count('R1', 'tartalom'), R2: count('R2', 'tartalom'), R3: buttons.filter(b => b.z === 'tartalom').length, R3keret: buttons.filter(b => b.z === 'keret').length,
-      R4: count('R4'), R5: count('R5'), R6: count('R6'), R7: count('R7', 'tartalom'), R8: count('R8'), R9: m.stats.textColours, R10: count('R10'), R11: count('R11'), keret: count('R1', 'keret') + count('R2', 'keret'), detail: m };
-    row.violations = row.R1 + row.R2 + Math.max(0, row.R3 - 2) + row.R4 + row.R5 + row.R6 + row.R7 + row.R8 + row.R10 + row.R11;
+      R4: count('R4'), R5: count('R5'), R6: count('R6'), R7: count('R7', 'tartalom'), R8: count('R8'), R9: m.stats.textColours, R10: count('R10'), R11: count('R11'), R12: count('R12'), keret: count('R1', 'keret') + count('R2', 'keret'), detail: m };
+    row.violations = row.R1 + row.R2 + Math.max(0, row.R3 - 2) + row.R4 + row.R5 + row.R6 + row.R7 + row.R8 + row.R10 + row.R11 + row.R12;
     report.push(row);
-    console.log(`\n${url}\n  eltérés: ${row.violations} | R1 lekerekítés ${row.R1} · R2 árnyék ${row.R2} · R3 gombfajta ${row.R3} (keretben ${row.R3keret}) · R4 domb ${row.R4} · R5 GYIK ${row.R5} · R6 app-CTA ${row.R6} · R7 kép ${row.R7} · R8 kiemelés ${row.R8} · R9 szövegszín ${row.R9} · R10 logó ${row.R10} · R11 piktogram ${row.R11} · fejléc+lábléc ${row.keret}`);
+    console.log(`\n${url}\n  eltérés: ${row.violations} | R1 lekerekítés ${row.R1} · R2 árnyék ${row.R2} · R3 gombfajta ${row.R3} (keretben ${row.R3keret}) · R4 domb ${row.R4} · R5 GYIK ${row.R5} · R6 app-CTA ${row.R6} · R7 kép ${row.R7} · R8 kiemelés ${row.R8} · R9 szövegszín ${row.R9} · R10 logó ${row.R10} · R11 piktogram ${row.R11} · R12 címke ${row.R12} · fejléc+lábléc ${row.keret}`);
     const top = rule => { const g = {}; m[rule].filter(v => v.z === 'tartalom').forEach(v => { const k = v.c + ' (' + v.why + ')'; g[k] = (g[k] || 0) + 1; }); return Object.entries(g).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([k, n]) => `${n}× ${k}`).join('; '); };
-    for (const rule of ['R1', 'R2', 'R4', 'R5', 'R6', 'R7', 'R8', 'R10', 'R11']) if (m[rule].some(v => v.z === 'tartalom')) console.log(`  ${rule}: ${top(rule)}`);
+    for (const rule of ['R1', 'R2', 'R4', 'R5', 'R6', 'R7', 'R8', 'R10', 'R11', 'R12']) if (m[rule].some(v => v.z === 'tartalom')) console.log(`  ${rule}: ${top(rule)}`);
     if (buttons.length > 2) console.log('  R3: ' + buttons.map(b => `${b.n}× ${b.c} „${b.t}” [${b.z}]`).join('; '));
   }
   await browser.close();
