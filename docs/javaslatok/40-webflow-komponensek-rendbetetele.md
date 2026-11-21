@@ -81,7 +81,8 @@ Kockázat: a meglévő oldalakon a kézzel épített szekció komponensre cseré
 | Térköz-komponensek kivezetése, morzsa és letöltés-blokk csere | hátravan; a régi oldalak újrahúzásával együtt érdemes |
 | `DS · Lépések`, `DS · Kártya`, `DS · Kártyarács` | kész, kipróbálva a `/app/kuponok` (lépések) és a `/szolgaltatas/madarraj` (kártyák, rács) oldalon; az elrendezés asztalon, tableten és mobilon azonos az előzővel |
 | `DS · Fotósor`, `DS · Nyitó` | kész, kipróbálva a `/cegeknek` (fotósor, a lapozás működik) és a `/beecopedia` (nyitó) oldalon; szöveg, kép, link és elrendezés azonos az előzővel. A Nyitó Fehér és Krém változata, valamint a Morzsa hely még nincs oldalon kipróbálva. |
-| `DS · Cikk-kártya` (CMS-listák) | hátravan; a listák bekötése az API-val korlátos |
+| `DS · Cikk-kártya` | kész, kipróbálva a `/rolunk/hatasunk` két kártyáján. A CMS-listákba (blog, ökos tartalom, a `/beecopedia` listái) a bekötés Designer-lépés: a propokat a gyűjtemény mezőire, a linket az aktuális elem oldalára kell kötni. |
+| **Összegzés** | a 3. pont mind a kilenc új komponense elkészült (a Kártyarács mellé külön `DS · Kártya` is). Hátravan: a komponensek kiterjesztése a többi oldalra az újrahúzásukkor, a térköz-komponensek, a morzsa és a régi letöltés-blokkok cseréje. |
 | Használaton kívüli komponensek törlése | kész (Kristóf döntése, 2026-11-21): 14 törölve, 0 példánnyal; négy megmaradt: `NAVBAR_REGI_BACKUP`, `NAVBAR_MEGA`, `ROLUNK_ERTEKEK`, `CSAPAT_FOTOSLIDER`. Ellenőrzés: 14 kulcsoldal szerkezete a törlés előtt és után azonos. |
 
 ## 7. Döntés (Kristóf tölti ki)
