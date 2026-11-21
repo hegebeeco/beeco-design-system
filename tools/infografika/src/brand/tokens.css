@@ -1,0 +1,24 @@
+/*
+ * beeco infografika – márkatokenek. EZ AZ EGYETLEN HELY, ahol a poszter színei élnek.
+ * Jelenleg a 2025-ös nyomtatott „Ökos tisztaság” infografikából mintavételezve.
+ * TODO: a beeco design system (BeecoRoles) szerepeire kötni – lásd CLAUDE.md, „Nyitott döntések”.
+ * A diagramszeletek palettája (--pal-a…f) is itt van; a JS kiolvassa (col() a util.js-ben),
+ * mert az SVG-be és a PNG-exportba konkrét szín kell, nem CSS-változó.
+ */
+.poster{
+  --g:#5F8844;
+  --g-light:#81A46A;
+  --g-dark:#3A4C2A;
+  --g-deep:#2C3A1F;
+  --y:#FBCA2F;
+  --y-soft:#FCEA98;
+  --w:#FFFFFF;
+  --k:#14180F;
+  /* szeletpaletta: a sárga, b fehér, c krém, d világoszöld, e zöld, f szürkés */
+  --pal-a:#FBCA2F;
+  --pal-b:#FFFFFF;
+  --pal-c:#FCEA98;
+  --pal-d:#C9DBB4;
+  --pal-e:#81A46A;
+  --pal-f:#B9BCA8;
+}

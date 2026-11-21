@@ -1,0 +1,88 @@
+/* ---------- Új diagramtípusok ---------- */
+.poster .legend.hide{display:none}
+/* Fánk */
+.poster .donutwrap{position:relative;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;height:100%}
+.poster .donut{position:relative}
+.poster .donut svg{display:block;width:100%;height:100%}
+.poster .dcenter{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--w);pointer-events:none}
+.poster .dcenter b{font:800 var(--dbig)/1 "Bricolage Grotesque",sans-serif;color:var(--y)}
+.poster .dcenter span{font:900 var(--dsmall)/1.15 Nunito,sans-serif;max-width:60%;margin-top:6px}
+.poster .dico{position:absolute;transform:translate(-50%,-50%);width:var(--dicos);height:var(--dicos);border-radius:50%;background:var(--w);
+  border:3px solid var(--k);display:flex;align-items:center;justify-content:center;font-size:calc(var(--dicos) * .55);line-height:1}
+.poster .plist{display:flex;flex-direction:column;gap:var(--pgap);color:var(--w)}
+.poster .pitem{display:grid;grid-template-columns:30px 1fr auto;gap:14px;align-items:center}
+.poster .pitem i{width:30px;height:30px;border:3px solid var(--k);display:block}
+.poster .pitem b{font:900 var(--pfs)/1.1 Nunito,sans-serif}
+.poster .pitem em{font:800 var(--pvfs)/1 "Bricolage Grotesque",sans-serif;font-style:normal;color:var(--y-soft)}
+.poster .pitem.hl b{color:var(--y)}
+.poster .pitem.hl em{color:var(--y)}
+/* Mozaik (treemap) */
+.poster .tm{position:relative;width:100%;height:100%}
+.poster .tsh{position:absolute;background:var(--k)}
+.poster .tc{position:absolute;border:3px solid var(--k);overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8px;color:var(--k)}
+.poster .tc .te{font-size:var(--tes);line-height:1}
+.poster .tc b{font:900 var(--tfs)/1.08 Nunito,sans-serif;margin-top:8px}
+.poster .tc em{font:800 var(--tvfs)/1 "Bricolage Grotesque",sans-serif;font-style:normal;margin-top:6px}
+.poster .tc.sm b{display:none}.poster .tc.xs b,.poster .tc.xs em{display:none}
+.poster .tmlegend{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:20px;color:var(--w);font:800 19px/1.2 Nunito,sans-serif}
+.poster .tmlegend span{display:inline-flex;gap:8px;align-items:center}
+.poster .tmlegend i{width:22px;height:22px;border:3px solid var(--k);display:inline-block}
+.poster .tmbox{display:flex;flex-direction:column;height:100%}
+.poster .tmarea{position:relative;flex:1;min-height:0}
+/* Összehasonlítás */
+.poster .cmp{position:relative;display:grid;grid-template-columns:1fr 1fr;height:100%}
+.poster .cmp .divider{position:absolute;left:50%;top:0;bottom:0;border-left:3px dashed rgba(252,234,152,.45)}
+.poster .ccol{position:relative;display:flex;flex-direction:column;align-items:center;padding:0 26px;min-height:0}
+.poster .ccol h3{margin:0;color:var(--w);font:900 var(--cfs)/1.12 Nunito,sans-serif;text-align:center}
+.poster .ccol .cnote{margin-top:8px;color:var(--y-soft);font:700 20px/1.25 Nunito,sans-serif;text-align:center;font-style:italic}
+.poster .cstack{flex:1;width:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;min-height:0}
+.poster .cico{width:var(--cicos);height:var(--cicos);border-radius:50%;background:var(--w);border:3px solid var(--k);display:flex;align-items:center;justify-content:center;
+  font-size:calc(var(--cicos) * .55);line-height:1;margin-bottom:-14px;position:relative;z-index:2}
+.poster .cout{color:var(--w);text-align:center;margin-bottom:10px}
+.poster .cbarw{position:relative;width:62%}
+.poster .cbarsh{position:absolute;left:8px;top:8px;right:-8px;bottom:-8px;background:var(--k)}
+.poster .cbar{position:relative;border:3px solid var(--k);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--k)}
+.poster .cbar.a{background:var(--y)}.poster .cbar.b{background:var(--w)}
+.poster .cval b{display:block;font:800 var(--cvfs)/1 "Bricolage Grotesque",sans-serif}
+.poster .cval span{display:block;font:900 22px/1.2 Nunito,sans-serif;margin-top:6px}
+.poster .ratio{position:absolute;left:50%;top:var(--rtop);transform:translate(-50%,-50%) rotate(-3deg);z-index:3}
+.poster .ratio .face{background:var(--y);border:3px solid var(--k);padding:10px 18px;font:900 26px/1.1 Nunito,sans-serif;text-align:center;white-space:nowrap}
+.poster .ratio .face b{display:block;font:800 40px/1 "Bricolage Grotesque",sans-serif}
+
+/* Nagy szám + egyenérték */
+.poster .bs{display:flex;flex-direction:column;justify-content:center;height:100%;gap:26px}
+.poster .bs-main{display:flex;align-items:center;gap:34px}
+.poster .bs-ico{flex:0 0 auto;width:var(--bsico);height:var(--bsico);border-radius:50%;background:var(--w);border:4px solid var(--k);
+  display:flex;align-items:center;justify-content:center;font-size:calc(var(--bsico) * .56);line-height:1}
+.poster .bs-num b{display:block;font:800 var(--bsfs)/.9 "Bricolage Grotesque",sans-serif;color:var(--y);letter-spacing:-.02em}
+.poster .bs-num span{display:block;font:900 40px/1.1 Nunito,sans-serif;color:var(--y-soft);margin-top:8px}
+.poster .bs-lab{color:var(--w);font:900 30px/1.2 Nunito,sans-serif;margin-top:10px;max-width:560px}
+.poster .bs-eqh{color:var(--y-soft);font:900 26px/1 Nunito,sans-serif;font-style:italic}
+.poster .bs-cards{display:grid;grid-template-columns:repeat(var(--bsn),1fr);gap:30px}
+.poster .bs-card .face{background:var(--y-soft);border:3px solid var(--k);padding:20px 22px;display:flex;align-items:center;gap:18px;min-height:150px}
+.poster .bs-card .e{font-size:56px;line-height:1}
+.poster .bs-card b{display:block;font:800 52px/1 "Bricolage Grotesque",sans-serif}
+.poster .bs-card span{display:block;font:900 21px/1.2 Nunito,sans-serif;margin-top:6px}
+/* Ikonrács */
+.poster .ig{display:grid;grid-template-columns:auto 1fr;gap:44px;align-items:center;height:100%}
+.poster .igg{display:grid;grid-template-columns:repeat(var(--igc),1fr);gap:var(--iggap)}
+.poster .igc{aspect-ratio:1;border:2px solid var(--k);display:flex;align-items:center;justify-content:center;line-height:1;font-size:var(--igfs)}
+.poster .igc.rest{background:transparent;border:2px solid rgba(252,234,152,.35)}
+.poster .igc.rest span{opacity:.35}
+.poster .iglist{display:flex;flex-direction:column;gap:30px;color:var(--w)}
+.poster .iglist > div{display:grid;grid-template-columns:34px 1fr;gap:16px;align-items:start}
+.poster .iglist i{width:34px;height:34px;border:3px solid var(--k);display:block;margin-top:10px}
+.poster .iglist b{display:block;font:800 72px/1 "Bricolage Grotesque",sans-serif;color:var(--y)}
+.poster .iglist > div.rest b{color:var(--y-soft)}
+.poster .iglist span{display:block;font:900 25px/1.2 Nunito,sans-serif;margin-top:6px}
+/* Pontskála */
+.poster .ds{position:relative;display:flex;flex-direction:column;height:100%}
+.poster .dsrows{position:relative;flex:1;display:flex;flex-direction:column;justify-content:space-around;min-height:0}
+.poster .dsr{display:grid;grid-template-columns:var(--labw) 1fr;align-items:center;height:var(--dsh)}
+.poster .dsr .lab{color:var(--w);font:900 var(--dsfs)/1.1 Nunito,sans-serif;padding-right:18px;text-align:right}
+.poster .dstr{position:relative;height:100%}
+.poster .dsl{position:absolute;left:0;top:50%;height:5px;transform:translateY(-50%);background:var(--y-soft);opacity:.55}
+.poster .dsd{position:absolute;top:50%;width:var(--dsd);height:var(--dsd);transform:translate(-50%,-50%);border-radius:50%;border:3px solid var(--k);
+  display:flex;align-items:center;justify-content:center;font-size:calc(var(--dsd) * .58);line-height:1;z-index:1}
+.poster .dsv{position:absolute;top:50%;transform:translateY(-50%);color:var(--w);font:800 var(--dsfs)/1 "Bricolage Grotesque",sans-serif;white-space:nowrap}
+.poster .dsv.left{transform:translate(-100%,-50%);color:var(--k)}

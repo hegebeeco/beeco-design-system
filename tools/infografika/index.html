@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>beeco infografika-generátor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link rel="stylesheet" href="src/styles/ui.css">
+<link rel="stylesheet" href="src/brand/tokens.css">
+<link rel="stylesheet" href="src/styles/poster.css">
+<link rel="stylesheet" href="src/styles/charts.css">
+</head>
+<body>
+<div class="app">
+  <aside class="panel">
+    <h2>beeco infografika-generátor</h2>
+    <p class="lead">Válassz típust, írd át a szöveget és a számokat – az infografika azonnal frissül.</p>
+
+    <div class="row2">
+      <div><label for="f-preset">Minta betöltése</label>
+        <select id="f-preset">
+          <option value="">Válassz…</option>
+          <option value="drawdown">Rangsor: életmód vs. technológia</option>
+          <option value="esoerdo">Mozaik: miért irtjuk az esőerdőt?</option>
+          <option value="etrend">Fánk: az EU-s étrend kibocsátása</option>
+          <option value="teszta">Összehasonlítás: tészta</option>
+          <option value="tej">Összehasonlítás: foci-Eb vs. tej</option>
+          <option value="farmer">Nagy szám: egy farmer vízigénye</option>
+          <option value="pazarlas">Ikonrács: az élelmiszer harmada</option>
+          <option value="letra">Pontskála: 1 kg étel lábnyoma</option>
+        </select>
+      </div>
+      <div><label for="f-type">Típus</label>
+        <select id="f-type">
+          <option value="bar">Rangsor (oszlop)</option>
+          <option value="donut">Arány – fánk</option>
+          <option value="treemap">Arány – mozaik</option>
+          <option value="compare">Összehasonlítás (A vs. B)</option>
+          <option value="bigstat">Nagy szám + egyenérték</option>
+          <option value="icongrid">Ikonrács (10×10)</option>
+          <option value="dotscale">Pontskála (létra)</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="f-title">Cím</label>
+    <input type="text" id="f-title">
+    <div class="hint">A *csillagok közé* tett szó zöld kiemelést kap.</div>
+
+    <label for="f-sub">Alcím (mit mérünk, mikor)</label>
+    <input type="text" id="f-sub">
+
+    <div class="row2 only-bar">
+      <div><label for="f-ca">Sárga kategória</label><input type="text" id="f-ca"></div>
+      <div><label for="f-cb">Fehér kategória</label><input type="text" id="f-cb"></div>
+    </div>
+
+    <div class="only-donut">
+      <label for="f-center">A fánk közepe</label>
+      <input type="text" id="f-center">
+      <div class="hint">Nagy szám | rövid felirat – pl. 83% | hús és tejtermék</div>
+    </div>
+
+    <div class="row2">
+      <div class="not-compare not-bigstat"><label for="f-unit">Mértékegység</label><input type="text" id="f-unit"></div>
+      <div><label for="f-fmt">Formátum</label>
+        <select id="f-fmt">
+          <option value="f45">4:5 – 1080×1350 (feed)</option>
+          <option value="f11">1:1 – 1080×1080</option>
+          <option value="f916">9:16 – 1080×1920 (story)</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="f-data">Adatok – soronként egy elem</label>
+    <textarea id="f-data" spellcheck="false"></textarea>
+    <div class="hint" id="data-hint"></div>
+    <div class="errors" id="errors" role="alert"></div>
+    <label class="check only-bar only-dot"><input type="checkbox" id="f-sort"> Rendezés érték szerint (csökkenő)</label>
+    <label class="check only-dot"><input type="checkbox" id="f-log"> Logaritmikus skála (ha 100× különbség is van)</label>
+
+    <div class="row2">
+      <div><label for="f-kind">Figura</label>
+        <select id="f-kind">
+          <option value="bee">Méh</option>
+          <option value="bird">Madár</option>
+        </select>
+      </div>
+      <div><label for="f-figure" id="l-figure">Méh hangulata</label><select id="f-figure"></select></div>
+    </div>
+    <div class="hint">Madaras témához (Csicsergősz, madárbarát kert) válassz madarat.</div>
+
+    <label for="f-bubble" id="l-bubble">A méh buboréka</label>
+    <input type="text" id="f-bubble">
+
+    <label for="f-src">Forrás (kötelező!)</label>
+    <input type="text" id="f-src">
+
+    <div class="actions">
+      <button id="btn-png">Mentés PNG-be</button>
+      <button id="btn-json" class="secondary">Adatok másolása</button>
+    </div>
+    <div id="status" aria-live="polite"></div>
+  </aside>
+
+  <main class="stage" id="stage">
+    <div class="scaler" id="scaler">
+      <div class="poster f45" id="poster">
+        <div class="bgshape" style="width:620px;height:620px;right:-260px;top:340px"></div>
+        <div class="bgshape" style="width:420px;height:420px;left:-200px;top:-120px"></div>
+        <svg class="flight" id="flight" viewBox="0 0 1080 1350" preserveAspectRatio="none">
+          <path id="flightpath" d="" fill="none" stroke="#14180F" stroke-width="4" stroke-dasharray="14 12" stroke-linecap="round"/>
+        </svg>
+        <div class="inner">
+          <div class="head">
+            <div class="titlebox nb" style="--o:14px;--sc:var(--g-dark)"><div class="sh"></div><h1 class="face" id="p-title"></h1></div>
+            <div class="logo nb" style="--o:12px;--sc:var(--g-dark)"><div class="sh"></div><div class="face"><img alt="beeco – beezz a rajban!" src="assets/logo.webp"></div></div>
+          </div>
+          <div class="subtag nb" style="--o:8px;--sc:var(--g-dark)"><div class="sh"></div><div class="face" id="p-sub"></div></div>
+          <section class="chart nb" style="--o:16px;--sc:var(--g-deep)">
+            <div class="sh"></div>
+            <div class="chartbody">
+              <div class="legend" id="p-legend"></div>
+              <div class="grid" id="p-grid"></div>
+            </div>
+          </section>
+          <div class="foot">
+            <img class="bee" id="p-figure" alt="" src="../../web/assets/brand/bee-super.webp">
+            <div class="bubble nb" id="p-bubblewrap" style="--o:6px;--sc:var(--k)"><div class="sh"></div><div class="tail"></div><div class="face" id="p-bubble"></div></div>
+            <div class="meta"><div class="src" id="p-src"></div><span class="handle">@beeco</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="src/presets.js"></script>
+<script src="src/config.js"></script>
+<script src="src/figures.js"></script>
+<script src="src/core/state.js"></script>
+<script src="src/core/util.js"></script>
+<script src="src/types/bar.js"></script>
+<script src="src/types/donut.js"></script>
+<script src="src/types/treemap.js"></script>
+<script src="src/types/compare.js"></script>
+<script src="src/types/bigstat.js"></script>
+<script src="src/types/icongrid.js"></script>
+<script src="src/types/dotscale.js"></script>
+<script src="src/core/render.js"></script>
+<script src="src/core/export.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>

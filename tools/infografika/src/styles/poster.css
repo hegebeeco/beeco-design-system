@@ -1,0 +1,73 @@
+/* A poszter elrendezése. Színt NE írj ide közvetlenül – a tokens.css változóit használd. */
+/* ---------- A poszter: fix beeco márkaszínek ---------- */
+/* Az árnyékok külön rétegek (nem box-shadow), így a PNG-export pontosan ugyanazt adja. */
+.poster .nb{position:relative}
+.poster .sh{position:absolute;left:var(--o);top:var(--o);right:calc(var(--o) * -1);bottom:calc(var(--o) * -1);background:var(--sc)}
+.poster .face{position:relative}
+.poster{
+  position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--g);
+  font-family:Nunito,sans-serif;color:var(--k);
+}
+.poster.f11{height:1080px}.poster.f916{height:1920px}
+.poster .bgshape{position:absolute;background:var(--g-light);opacity:.35;transform:rotate(-8deg)}
+.poster .flight{position:absolute;inset:0;pointer-events:none}
+.poster .inner{position:relative;height:100%;display:flex;flex-direction:column;padding:64px 64px 0}
+
+.poster .head{position:relative;display:flex;align-items:flex-start;gap:24px;min-height:220px}
+.poster .titlebox{position:relative;flex:1;transform:rotate(-1.6deg);margin-top:18px}
+.poster h1{position:relative;margin:0;background:var(--w);padding:26px 34px 28px;
+  font:800 66px/1.02 "Bricolage Grotesque",sans-serif;letter-spacing:-.015em}
+.poster h1 .hl{color:var(--g)}
+.poster .logo{flex:0 0 216px;height:200px;transform:rotate(4deg);margin-top:-20px}
+.poster .logo .face{height:100%;background:var(--y);display:flex;align-items:center;justify-content:center}
+.poster .logo img{width:172px;height:auto;display:block}
+
+.poster .subtag{align-self:flex-start;margin:36px 0 0 22px;transform:rotate(1.2deg);max-width:80%}
+.poster .subtag .face{background:var(--y);padding:12px 22px;font:900 26px/1.15 Nunito,sans-serif}
+
+.poster .chart{position:relative;flex:1;margin:44px 0 0;display:flex;flex-direction:column;min-height:0}
+.poster .chartbody{position:relative;flex:1;background:var(--g-dark);padding:30px 40px 34px;display:flex;flex-direction:column;min-height:0}
+.poster .legend{display:flex;gap:22px;flex-wrap:wrap;color:var(--w);font:800 22px/1 Nunito,sans-serif;margin-bottom:22px}
+.poster .legend span{display:inline-flex;align-items:center;gap:10px}
+.poster .legend i{width:26px;height:26px;border:3px solid var(--k);display:inline-block}
+.poster .grid{position:relative;flex:1;display:flex;flex-direction:column;min-height:0}
+.poster .axis{display:grid;grid-template-columns:var(--labw) 1fr;color:var(--y-soft);font:800 18px/1 Nunito,sans-serif;height:30px}
+.poster .ticks{position:relative}
+.poster .ticks span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.poster .ticks span.first{transform:none}
+.poster .rows{position:relative;flex:1;display:flex;flex-direction:column;justify-content:space-around;min-height:0}
+.poster .gl{position:absolute;top:0;bottom:0;border-left:2px dashed rgba(252,234,152,.28)}
+.poster .gl.zero{border-left:3px solid var(--y-soft);opacity:.9}
+.poster .r{display:grid;grid-template-columns:var(--labw) 1fr;align-items:center;gap:0}
+.poster .lab{color:var(--w);padding-right:22px}
+.poster .lab b{display:block;font:900 var(--lfs)/1.08 Nunito,sans-serif}
+.poster .rank{display:inline-block;margin-top:8px;background:var(--y-soft);color:var(--k);font:900 17px/1 Nunito,sans-serif;padding:6px 10px;border:2px solid var(--k)}
+.poster .rank.top{background:var(--y)}
+.poster .track{position:relative;height:var(--barh)}
+.poster .bar{position:absolute;left:0;top:0;bottom:0;border:3px solid var(--k)}
+.poster .barsh{position:absolute;left:7px;top:7px;height:100%;background:var(--k)}
+.poster .bar.a{background:var(--y)}.poster .bar.b{background:var(--w)}
+.poster .val{position:absolute;top:50%;transform:translateY(-50%);font:900 var(--vfs)/1 "Bricolage Grotesque",sans-serif;white-space:nowrap}
+.poster .val.in{right:16px;color:var(--k)}
+.poster .bar.hasico .val.in{right:calc(var(--icos) * .5 + 14px)}
+.poster .val.out{color:var(--w)}
+.poster .ico{position:absolute;top:50%;width:var(--icos);height:var(--icos);transform:translate(-50%,-50%);border-radius:50%;
+  background:var(--w);border:3px solid var(--k);display:flex;align-items:center;justify-content:center;font-size:calc(var(--icos) * .55);line-height:1}
+
+.poster .foot{position:relative;height:250px;display:flex;align-items:flex-end;gap:20px;padding-bottom:40px}
+.poster .bee{position:absolute;left:-34px;bottom:14px;width:300px;height:auto} /* a méretet a renderFigure() írja ki */
+.poster .bubble{position:relative;margin-left:calc(var(--figw,300px) - 30px);margin-bottom:72px;max-width:330px}
+.poster .bubble .face{background:var(--w);border:3px solid var(--k);padding:14px 20px;font:900 25px/1.15 Nunito,sans-serif}
+.poster .bubble .tail{position:absolute;left:-30px;bottom:18px;width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-right:30px solid var(--k)}
+.poster .meta{margin-left:auto;text-align:right;color:var(--y-soft);max-width:400px}
+.poster .src{font:700 16px/1.35 Nunito,sans-serif;opacity:.95;overflow-wrap:anywhere}
+.poster .handle{display:inline-block;margin-top:12px;background:var(--k);color:var(--w);font:900 26px/1 Nunito,sans-serif;padding:10px 16px}
+.poster.f11 .head{min-height:190px}.poster.f11 h1{font-size:56px;padding:20px 28px 22px}
+.poster.f11 .logo{flex-basis:180px;height:166px}.poster.f11 .logo img{width:144px}
+.poster.f11 .subtag{margin-top:26px}.poster.f11 .subtag .face{font-size:22px}.poster.f11 .chart{margin-top:30px}
+.poster.f11 .foot{height:200px;padding-bottom:30px}
+.poster.f11 .bubble{margin-bottom:60px}.poster.f11 .bubble .face{font-size:22px}
+.poster.f916 .inner{padding-top:110px}.poster.f916 h1{font-size:74px}
+.poster.f916 .foot{height:330px;padding-bottom:90px}.poster.f916 .bee{bottom:60px}
+.poster.f916 .bubble{margin-bottom:64px}
+
