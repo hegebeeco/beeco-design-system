@@ -382,5 +382,96 @@
     }
    }
   ]
+ },
+ "round4": {
+  "note": "Fourth round (same day): the separate skin stylesheet of the legacy pages and the remaining legacy classes. Staging only.",
+  "skin": {
+   "file": "weboldal/kozos/regi-oldalak-ds.css",
+   "pinned_commit": "083e3817",
+   "previous_commit": "29fe947a",
+   "pages": [
+    "/app/gyik",
+    "/app/letoltes",
+    "/app/terkep",
+    "/beebolt",
+    "product template",
+    "category template"
+   ],
+   "changes": "radius token 4px; buttons 4px 4px 0 0 shadow with the v2 hover and active states; pill shapes (text_chip, tab_button, radio) 4px; inputs 4px; .card and .r-lunk_textblokk without resting shadow, a.card with the 4px shadow"
+  },
+  "changes": [
+   {
+    "selector": ".home-faq-content.radius-regular",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "12px"
+    }
+   },
+   {
+    "selector": ".gyik_blokk",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "16px"
+    }
+   },
+   {
+    "selector": ".brix---icon-square-36px",
+    "to": {
+     "border-radius": "4px"
+    },
+    "from": {
+     "border-radius": "8px (tiny: 6px)"
+    }
+   },
+   {
+    "selector": ".card_img.flex",
+    "to": {
+     "border-radius": "inherits 0 from .card_img"
+    },
+    "from": {
+     "border-top-left-radius": "12px",
+     "border-bottom-right-radius": "12px"
+    }
+   },
+   {
+    "selector": ".nyeremeny-k-p",
+    "to": {
+     "border-radius": "0"
+    },
+    "from": {
+     "border-radius": "8px"
+    }
+   },
+   {
+    "selector": ".shop_product_img",
+    "to": {
+     "box-shadow": "4px 4px 0 0 #000"
+    },
+    "from": {
+     "box-shadow": "6px 6px 0 0 #000"
+    },
+    "note": "The image is a lightbox link, so it keeps the clickable shadow."
+   },
+   {
+    "selector": "/szolgaltatas/partner – second code embed (.nap-* overrides)",
+    "to": {
+     "border-radius": "4px on .nap-lepes, .nap-lepes b, .nap-gomb, .nap-sor, .nap-doksi, .nap-urlap i, .nap-terkep",
+     "box-shadow": "none on the active step; 2px 2px on the mock button"
+    },
+    "from": {
+     "border-radius": "asymmetric 10–14px / 4px",
+     "box-shadow": "3px 3px on the active step and the mock button"
+    },
+    "note": "The phone and laptop drawing (.nap-tel, .nap-talp) keeps its own shape: it is an illustration."
+   }
+  ],
+  "not_changed": [
+   "/app/labnyom-szamitasi-metodika: self-contained embedded calculator with its own CSS",
+   "EWWR campaign page: div.ds-tovabb-kartya and the black-and-white pictograms are campaign decisions"
+  ]
  }
 }

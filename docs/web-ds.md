@@ -202,21 +202,21 @@ A lint a fejlécet és a láblécet külön számolja („keret”), a tartalom 
 
 | Mutató | Érték |
 |---|---|
-| Eltérés a 72 mért oldalon | **1359** (a harmadik kör előtt 1778) |
-| 0 eltérés | 11 oldal; legfeljebb 5 eltérés: 34 oldal |
-| CMS-oldalak (393 oldal, 10 sablon) | becslés: kb. 8200 → 2600 (gyűjteményenként 2 minta alapján) |
+| Eltérés a 72 mért oldalon | **1040** (a harmadik kör előtt 1778, utána 1359, a régi oldalak stíluslapja után 1180) |
+| 0 eltérés | 12 oldal; legfeljebb 5 eltérés: 45 oldal |
+| CMS-oldalak (393 oldal, 10 sablon) | becslés: kb. 8200 → 1000 (gyűjteményenként 2 minta alapján: a 20 mintán 141 → 55) |
 | Teljesen `ds-` oldal | 30 a 72-ből |
 
 | Oldalcsoport | Oldal | Eltérés | A legnagyobb tételek |
 |---|---|---|---|
-| Kampányok | 6 | 545 | Madárkisokos 335, Vízadás 111, CsicsergŐsz 45, EWWR 36 |
-| App | 8 | 236 | GYIK 106, lábnyom-metodika 58, térkép 53 |
+| Kampányok | 6 | 544 | Madárkisokos 335, Vízadás 111, CsicsergŐsz 44, EWWR 36 |
 | Főoldal | 1 | 155 | `fs-` osztályok |
-| Szolgáltatás | 17 | 156 | Partner 39, a többi 6–14 (piktogram foltszíne) |
-| Rólunk | 9 | 39 | Rólunk 13, Csatlakozz 12 |
-| Nyereményjáték, beebolt, /en | 4 | 67 | régi GYIK, webshop-elemek |
+| Szolgáltatás | 17 | 124 | 6–14 oldalanként (piktogram foltszíne); Partner 39 → 7 |
+| App | 8 | 78 | lábnyom-metodika 58 (saját beágyazott kalkulátor); GYIK 106 → 0, térkép 53 → 7 |
+| Rólunk | 9 | 37 | Rólunk 13, Csatlakozz 12 |
+| Nyereményjáték, beebolt, /en | 4 | 27 | nyereményjáték 14, /en 9, beebolt 3 |
 | Beecopédia | 7 | 20 | szezonális étkezés 9 |
-| CMS-minták | 20 | 141 | termék 22, ökoirányító 9, recept 8, blogcikk 7 oldalanként |
+| CMS-minták | 20 | 55 | termék 6, a többi legfeljebb 5 oldalanként |
 
 A 12 elsőként mért oldalon: 1252 → 276.
 
@@ -225,17 +225,19 @@ Mi történt:
 2. **Második kör:** a régi közös osztályok (`card` és változatai, `button_main`, `sub-heading`, `text_chip`, `blog_img_blokk`).
 3. **Harmadik kör:** a CMS-sablonok régi osztályai (chipek, szövegdobozok, képek, `main-button`); egy osztály egy egész gyűjteményt javít. A 2–3. kör listája: `migration/legacy_v2_changes.json`.
 4. A régi `card` osztály linkként és sima dobozként is él, ezért alapállapotban nincs árnyéka, csak rámutatásra.
-5. Mentés a régi értékekről: `~/CLAUDE/webflow-mentes/2026-11-21-web-ds/`.
+5. **Régi oldalak stíluslapja:** a GYIK, a Letöltés, a Térkép, a beebolt és a webshop termék- és kategóriasablonja a fejkódból külön stíluslapot tölt be (`weboldal/kozos/regi-oldalak-ds.css`, commit-azonosítóval rögzítve a jsDelivr-címben). A v2 változata ezen az ágon él (`083e3817`), a hat fejkód erre mutat. A fájl eredetije a `fooldal-szuperhos-tema` ágon van: a két ág összefésülésekor a v2 változat marad. Ha a fájl változik, a hat fejkódban a commit-azonosítót is át kell írni.
+6. **Negyedik kör:** a maradék régi osztályok (`home-faq-content`, `gyik_blokk`, `brix---icon-square-36px`, `card_img.flex`, `nyeremeny-k-p`, `shop_product_img`) és a Partner-oldal „Egy nap” blokkja (a második kódbeágyazás írja felül a formát; a telefon- és laptoprajz illusztráció, az marad). Lista: `migration/legacy_v2_changes.json` (`round4`).
+7. Mentés a régi értékekről: `~/CLAUDE/webflow-mentes/2026-11-21-web-ds/`.
 
 Újramérés: `node weboldal/web-ds/teszt/ds-lint.cjs <URL-ek> --json ki.json`; az URL-lista a `sitemap.xml`-ből jön (statikus oldalak + gyűjteményenként két minta).
 
 Következő körök:
 1. **Komponensek rendbetétele** ([Javaslat 40](javaslatok/40-webflow-komponensek-rendbetetele.md), jóváhagyva 2026-11-21): kész a `DS · Szekciófej`, `DS · Gomb`, `DS · App letöltés`, `DS · GYIK` (a `/beecopedia` oldalon élesben kipróbálva) és a csoportnevek egységesítése („Web DS”). Hátravan: a négy komponens kiterjesztése a többi `ds-` oldalra, a `DS · Logósor` összevonás, a térköz-komponensek kivezetése, a Nyitó, a Kártyarács, a Lépések, a Fotósor és a Cikk-kártya. A 14 használaton kívüli komponens törölve (négy megtartva: `NAVBAR_REGI_BACKUP`, `NAVBAR_MEGA`, `ROLUNK_ERTEKEK`, `CSAPAT_FOTOSLIDER`).
 2. **Főoldal:** az átépítés a 6. fejezet főoldal-sablonjára, `fs-` → `ds-`.
-3. **App GYIK és nyereményjáték:** a régi `home-faq-*` cseréje a GYIK-sablonra.
+3. **App GYIK és nyereményjáték:** a forma már v2 (az app GYIK 0 eltérés); a régi `home-faq-*` szerkezet cseréje a `DS · GYIK` komponensre az oldalak újrahúzásakor.
 4. **Piktogramok:** a Javaslat 35 (fehér folt a B2B-oldalakon) és a „sárga foltos mindenhol” szabály ütközik, Kristóf dönt.
 5. **Kampányoldalak** (`cs-`, `ov-`): a döntés után.
-6. **Partner „Egy nap” animáció, letöltés-oldal:** a beágyazott CSS igazítása.
+6. **Lábnyom-metodika:** önálló beágyazott kalkulátor saját CSS-sel (58 eltérés), külön átnézést kér. (A Partner „Egy nap” blokkja és a letöltés-oldal kész.)
 7. **Hiányzó dombok** a régi `dia_*` szekciók között (80 hely); **galéria nagyítása**.
 
 ## 12. Irány: profibb, érthetőbb, több letöltés, jobb SEO
