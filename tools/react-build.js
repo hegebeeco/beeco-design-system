@@ -15,6 +15,7 @@ const esbuild = require('esbuild');
 const ROOT = path.join(__dirname, '..');
 const check = process.argv.includes('--check');
 // --csak lap1,lap2: csak ezeket a tesztlapokat építi (a projekteknek szóló dist/react-ot és a tsc-t kihagyja) – az egy-komponenses körhöz (npm run check:egy)
+const devMind = process.argv.includes('--dev-react');
 const csak = process.argv.includes('--csak') ? process.argv[process.argv.indexOf('--csak') + 1].split(',') : null;
 // Verzió/dátum SZÁNDÉKOSAN nincs a fejlécben: így egy verzióemelés nem írja át a dist/ több száz fájlját (docs/ai-munkamod.md 2.)
 const banner = `/* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */`;
@@ -42,7 +43,8 @@ async function main() {
     // `// react-build: dev-react` a tesztlap elején: fejlesztői React-tel épül. A React StrictMode a hatásokat (effect) csak
     // fejlesztői módban futtatja kétszer (felépít → lebont → újra felépít) – a termelési építés ezt nem mutatja, így az ilyen
     // hibát (pl. a lebontáskor átállított jelző) csak így fogja meg a teszt. Csak ott kérd, ahol erre a hibára tesztelünk (nagyobb, lassabb fájl).
-    const devReact = /^\/\/ react-build: dev-react\b/m.test(fs.readFileSync(path.join(dir, p), 'utf8'));
+    // --dev-react (kapcsoló): MINDEN tesztlapot fejlesztői React-tel épít – átvilágításhoz (StrictMode-hibák, fejlesztői figyelmeztetések); a kimenet nem a commitolt állapot.
+    const devReact = devMind || /^\/\/ react-build: dev-react\b/m.test(fs.readFileSync(path.join(dir, p), 'utf8'));
     const r = await esbuild.build({ ...common, entryPoints: [path.join(dir, p)], outfile: path.join(ROOT, 'dist/tesztlapok', p.replace(/\.tsx$/, '.js')),
       minify: true, define: { 'process.env.NODE_ENV': devReact ? '"development"' : '"production"' } });
     outputs.push(...r.outputFiles);

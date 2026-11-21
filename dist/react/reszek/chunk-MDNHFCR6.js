@@ -54,12 +54,10 @@ function MonthCalendar({ events, initialDate, onMonthChange, onSelectDay, maxPer
   const today = todayIso();
   const title = `${f.getFullYear()}. ${MONTHS[f.getMonth()]}`;
   const monthCount = days.filter((d) => fromIso(d).getMonth() === f.getMonth()).reduce((n, d) => n + (byDay.get(d)?.length ?? 0), 0);
-  const first = useRef(true);
+  const lastMonth = useRef(monthKey);
   useEffect(() => {
-    if (first.current) {
-      first.current = false;
-      return;
-    }
+    if (lastMonth.current === monthKey) return;
+    lastMonth.current = monthKey;
     onMonthChange?.(`${focus.slice(0, 7)}-01`);
   }, [monthKey]);
   useEffect(() => {

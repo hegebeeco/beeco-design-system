@@ -167,13 +167,16 @@ export function CommandPalette({
             {g.items.map((it) => {
               const i = n++;
               return (
-                <div key={it.id} id={optId(i)} role="option" aria-selected={i === act} aria-disabled={it.disabled || undefined} data-active={i === act}
+                // aria-label: a sor neve a címke (a kiemelés <mark>-ja szétvágja a szöveget, és nem minden akadálymentességi fa rakja össze
+                // megbízhatóan); a leírás („Partner”, „POI”) aria-describedby-ban marad – a képernyőolvasó felolvassa, a név mégis rövid
+                <div key={it.id} id={optId(i)} role="option" aria-label={it.label} aria-describedby={it.description ? `${optId(i)}-d` : undefined}
+                  aria-selected={i === act} aria-disabled={it.disabled || undefined} data-active={i === act}
                   className="bc-option bc-cmdk-item"
                   onMouseDown={(e) => e.preventDefault()} onMouseMove={() => { if (i !== act && !it.disabled) setActive(i); }}
                   onClick={(e: MouseEvent) => pick(it, e.metaKey || e.ctrlKey)}>
                   {it.icon && <span className="bc-cmdk-icon" aria-hidden="true">{it.icon}</span>}
                   <span className="bc-cmdk-label">{highlight && !short ? <Marked text={it.label} q={q} /> : it.label}</span>
-                  {it.description && <span className="bc-cmdk-desc">{it.description}</span>}
+                  {it.description && <span className="bc-cmdk-desc" id={`${optId(i)}-d`}>{it.description}</span>}
                 </div>
               );
             })}

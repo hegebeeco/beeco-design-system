@@ -44,7 +44,7 @@ import {
   CommandPalette,
   commandHotkeyLabel,
   useCommandHotkey
-} from "../reszek/chunk-V3L6RMON.js";
+} from "../reszek/chunk-L7XEMVFY.js";
 import {
   Drawer
 } from "../reszek/chunk-IDQQR2LJ.js";
