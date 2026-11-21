@@ -57,7 +57,7 @@ Ezek formája a három körben már egységes lett; a nevek összevonása oldala
 
 ## 4. Takarítás
 
-- **18 használaton kívüli komponens** (0 példány): öt régi fejléc, három régi lábléc, két logósáv, `TESTIMONIAL_FRESKO`, `TÉRKÉP CSEMPE`, `KUPON CSEMPE`, `ESEMÉNYNAPTAR_BLOKK`, `OKOS_TIPP_CARD`, `ROLUNK_ERTEKEK`, `CSAPAT_FOTOSLIDER`, `DS · Kövesd a rajt`. Törlés csak jóváhagyással.
+- **18 használaton kívüli komponens** (0 példány; ebből 14 törölve, 4 megtartva, lásd 6. pont): öt régi fejléc, három régi lábléc, két logósáv, `TESTIMONIAL_FRESKO`, `TÉRKÉP CSEMPE`, `KUPON CSEMPE`, `ESEMÉNYNAPTAR_BLOKK`, `OKOS_TIPP_CARD`, `ROLUNK_ERTEKEK`, `CSAPAT_FOTOSLIDER`, `DS · Kövesd a rajt`. Törlés csak jóváhagyással.
 - **Hat egy példányos régi komponens** (Csapat, Együttműködések, Versenyek, MÉDIA_BLOKK, ROLUNK_VIZIO, kapcsolat sziget): a régi Rólunk-oldalakhoz tartoznak, azok cseréjével megszűnhetnek.
 - **157 egyoldalas `ds-` osztály:** átnézés, melyik valódi egyedi elem, és melyik váltható közös osztályra.
 
@@ -79,11 +79,11 @@ Kockázat: a meglévő oldalakon a kézzel épített szekció komponensre cseré
 | A négy komponens kiterjesztése a többi `ds-` oldalra | folyamatban: `/app/kuponok` és `/app/zold-esemenynaptar` (app letöltés + GYIK), kisokos (app letöltés) kész, előtte–utána összevetéssel; a kisokos GYIK-je marad, amíg a `DS · GYIK` nem kap domb-helyet; a többi oldal hátravan |
 | `DS · Logósor` összevonás, térköz-komponensek kivezetése, morzsa és letöltés-blokk csere | hátravan |
 | `DS · Nyitó`, `DS · Kártyarács`, `DS · Lépések`, `DS · Fotósor`, `DS · Cikk-kártya` | hátravan |
-| 18 használaton kívüli komponens törlése | a végén; a friss lista megerősítése után (a `NAVBAR_REGI_BACKUP` leírása szerint biztonsági másolat) |
+| Használaton kívüli komponensek törlése | kész (Kristóf döntése, 2026-11-21): 14 törölve, 0 példánnyal; négy megmaradt: `NAVBAR_REGI_BACKUP`, `NAVBAR_MEGA`, `ROLUNK_ERTEKEK`, `CSAPAT_FOTOSLIDER`. Ellenőrzés: 14 kulcsoldal szerkezete a törlés előtt és után azonos. |
 
 ## 7. Döntés (Kristóf tölti ki)
 1. Jóváhagyod a 3. pont új komponenseit? (Akár csak az 5. pont első lépését.)
 2. Mehet a 2. pont összevonása?
 3. Törölhető a 18 használaton kívüli komponens, vagy előbb archív mappába kerüljenek?
 
-- Dátum: 2026-11-21 · Jóváhagyva: 1. igen, 2. igen, 3. igen (Kristóf). A törlés a végén történik, a friss lista megerősítése után, mert nem vonható vissza.
+- Dátum: 2026-11-21 · Jóváhagyva: 1. igen, 2. igen, 3. igen (Kristóf). Törlés: „a négy maradjon, a többi mehet” (Kristóf, 2026-11-21).

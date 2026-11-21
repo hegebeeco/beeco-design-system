@@ -223,7 +223,7 @@ Mi történt:
 Újramérés: `node weboldal/web-ds/teszt/ds-lint.cjs <URL-ek> --json ki.json`; az URL-lista a `sitemap.xml`-ből jön (statikus oldalak + gyűjteményenként két minta).
 
 Következő körök:
-1. **Komponensek rendbetétele** ([Javaslat 40](javaslatok/40-webflow-komponensek-rendbetetele.md), jóváhagyva 2026-11-21): kész a `DS · Szekciófej`, `DS · Gomb`, `DS · App letöltés`, `DS · GYIK` (a `/beecopedia` oldalon élesben kipróbálva) és a csoportnevek egységesítése („Web DS”). Hátravan: a négy komponens kiterjesztése a többi `ds-` oldalra, a `DS · Logósor` összevonás, a térköz-komponensek kivezetése, a Nyitó, a Kártyarács, a Lépések, a Fotósor és a Cikk-kártya, végül a 18 használaton kívüli komponens törlése.
+1. **Komponensek rendbetétele** ([Javaslat 40](javaslatok/40-webflow-komponensek-rendbetetele.md), jóváhagyva 2026-11-21): kész a `DS · Szekciófej`, `DS · Gomb`, `DS · App letöltés`, `DS · GYIK` (a `/beecopedia` oldalon élesben kipróbálva) és a csoportnevek egységesítése („Web DS”). Hátravan: a négy komponens kiterjesztése a többi `ds-` oldalra, a `DS · Logósor` összevonás, a térköz-komponensek kivezetése, a Nyitó, a Kártyarács, a Lépések, a Fotósor és a Cikk-kártya. A 14 használaton kívüli komponens törölve (négy megtartva: `NAVBAR_REGI_BACKUP`, `NAVBAR_MEGA`, `ROLUNK_ERTEKEK`, `CSAPAT_FOTOSLIDER`).
 2. **Főoldal:** az átépítés a 6. fejezet főoldal-sablonjára, `fs-` → `ds-`.
 3. **App GYIK és nyereményjáték:** a régi `home-faq-*` cseréje a GYIK-sablonra.
 4. **Piktogramok:** a Javaslat 35 (fehér folt a B2B-oldalakon) és a „sárga foltos mindenhol” szabály ütközik, Kristóf dönt.
