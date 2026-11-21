@@ -32,7 +32,9 @@ COMPONENTS = {  # placeholder name → Webflow component id
     'steps': 'abcb65a8-4709-5d8e-1787-b39649dadeb9',          # DS · Lépések (4 steps, the 4th can be hidden)
     'card': '8821a69d-e2dc-6a62-2281-5f39eca5ae1d',           # DS · Kártya (static card)
     'card-grid': '8d61b136-2043-8021-9275-ea119f69898e',      # DS · Kártyarács (slot: Kártyák; 2/3/4 columns)
-    'logo-strip': 'd90a6abf-dd67-c4e6-c073-775f80c2694a'      # DS · Velük dolgoztunk (4 audience variants)
+    'logo-strip': 'd90a6abf-dd67-c4e6-c073-775f80c2694a',     # DS · Velük dolgoztunk (4 audience variants)
+    'hero': '9b682fa3-0643-33e3-1edf-18ffc1adbfae',           # DS · Nyitó (slots: Morzsa, Cím, Gombok, Chipek, Kép, Domb)
+    'gallery': '655da44b-36dc-9130-48cb-d80d6f1c9953'         # DS · Fotósor (slot: Képek)
 }
 APP_IMAGE = ('6afcc87f4177226d75adeb3d_beeco-app-telefon-650.webp', 'A beeco app kezdőképernyője telefonon, mellette a köpenyes méhecske és piktogramok.')
 YELLOW_PICTOGRAMS = {  # yellow splash only (docs/web-ds.md 2.); name → asset id of `fs-piko-<name>[-sarga].svg`
