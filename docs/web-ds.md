@@ -185,7 +185,7 @@ Gomb, chip, kártya és szekció ma osztály, nem komponens: a szabályt a köz�
 
 ## 11. A v2 átállás állapota (2026-11-21, tesztoldal)
 
-`ds-lint`, 12 oldal: **1252 → 430 eltérés.**
+`ds-lint`, 12 oldal: **1252 → 276 eltérés.**
 
 | Oldal | Előtte | Utána | Ami maradt |
 |---|---|---|---|
@@ -193,24 +193,27 @@ Gomb, chip, kártya és szekció ma osztály, nem komponens: a szabályt a köz�
 | `/app/kuponok` | 52 | 0 | – |
 | `/app/zold-esemenynaptar` | 78 | 0 | – |
 | `/rolunk/hatasunk` | 91 | 0 | – |
+| `/beecopedia/blog` | 130 | 1 | egy hiányzó domb |
+| kisokos | 106 | 2 | egy hiányzó domb, egy kép |
+| `/app/letoltes` | 36 | 10 | az oldal saját CSS-e (kerek chip, régi gombforma), egy hiányzó domb |
 | `/szolgaltatas/cegeknek` | 148 | 12 | piktogramok sárga folt nélkül |
-| `/rolunk/rolunk` | 90 | 14 | piktogramok, egy régi gomb |
-| `/app/letoltes` | 36 | 12 | régi osztályok (`text_chip`, `sub-heading`, `button_main`) |
-| kisokos | 106 | 18 | régi kártyák (`card`, `sub-heading`) |
+| `/rolunk/rolunk` | 90 | 13 | piktogramok sárga folt nélkül |
 | `/szolgaltatas/partner` | 144 | 39 | az „Egy nap” beágyazott animáció saját osztályai |
-| `/kampanyok/csicsergosz` | 94 | 52 | kampányarculat (`cs-`), döntésre vár |
-| `/beecopedia/blog` | 130 | 128 | régi CMS-kártyák (`card`, `blog_img_blokk`) |
+| `/kampanyok/csicsergosz` | 94 | 44 | kampányarculat (`cs-`), döntésre vár |
 | `/` (főoldal) | 189 | 155 | `fs-` osztályok, az átépítéssel együtt |
 
-Mi történt: 68 stílusváltozás a közös `ds-` osztályokon (sarok, árnyék, keret, címke, logó), a `DOWNLOAD_BLOCK` jelvényei és QR-kódja, a generátorok és a katalógus hozzáigazítva. Mentés a régi értékekről: `~/CLAUDE/webflow-mentes/2026-11-21-web-ds/`.
+Mi történt:
+1. **Első kör:** 68 stílusváltozás a közös `ds-` osztályokon (sarok, árnyék, keret, címke, logó), a `DOWNLOAD_BLOCK` gombjai és QR-kódja (`migration/atoms_v2_plan.json`).
+2. **Második kör:** a régi közös osztályok (`card` és változatai, `button_main`, `sub-heading`, `text_chip`, `blog_img_blokk`) ugyanarra a formára (`migration/legacy_v2_changes.json`). Ezek a régi oldalakon is érvényesek, nem csak a mérteken.
+3. A generátorok és a katalógus hozzáigazítva. Mentés a régi értékekről: `~/CLAUDE/webflow-mentes/2026-11-21-web-ds/`.
 
-Következő körök, forgalom szerint:
+Következő körök:
 1. **Főoldal:** az átépítés a 6. fejezet főoldal-sablonjára, `fs-` → `ds-`.
-2. **Blog és CMS-sablonok:** a régi `card` család cseréje `ds-cikk` kártyára (egy sablon, sok oldal).
-3. **Letöltés és kisokos:** régi osztályok cseréje.
-4. **Piktogramok:** sárga foltos változat a hiányzó ikonokhoz, teljes ikon-átnézés.
+2. **Piktogramok:** a B2B- és a Rólunk-oldalon fehér foltos piktogram van. A Javaslat 35 (fehér folt a B2B-oldalakon) és a „sárga foltos mindenhol” szabály ütközik, Kristóf dönt.
+3. **Partner „Egy nap” animáció:** a beágyazott CSS igazítása.
+4. **Letöltés:** az oldal saját CSS-ének cseréje közös osztályokra.
 5. **Kampányoldal:** a döntés után.
-6. **Galéria nagyítása** (kattintásra nagy kép), szkript-bővítéssel.
+6. **Hiányzó dombok** a blogon, a kisokoson és a letöltésen; **galéria nagyítása** szkript-bővítéssel.
 
 ## 12. Irány: profibb, érthetőbb, több letöltés, jobb SEO
 
@@ -224,6 +227,7 @@ Következő körök, forgalom szerint:
 
 ## 13. Döntésre vár
 
+- **Piktogram foltszíne a B2B-oldalakon:** fehér (Javaslat 35) vagy sárga (az általános szabály)? A lint most a sárgát várja.
 - **Javaslat 39** öt pontja: a v2 szabályok jóváhagyása, szövegszín-kiemelés (javaslat: nem), a címke dőlése, státusz-chip színei, a CsicsergŐsz kampányoldal kivétele.
 - **A 2026-11-02-i kártyaforma** (aszimmetrikus sarok, árnyék minden kártyán) helyére a v2 lép; a `fs-` főoldal ezt még a régi formában viseli.
 - **`ds-` és `bc-` átfedés.** A [weboldal.md 2.](weboldal.md) szerint a Webflow DS-osztályai `bc-` nevűek, és új osztály csak

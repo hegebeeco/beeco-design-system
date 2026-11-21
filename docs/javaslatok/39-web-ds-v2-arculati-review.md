@@ -10,7 +10,7 @@
 | 1 | Sok a lekerekítés; kártya és gomb 4 px, máshol semmi; a lecsapott él nem kell | Kattintható elem és kártya: 4 px, minden sarkon. Díszítő elem (fotó, címke, sáv): 0 px. Kör csak ott, ahol a forma kör (profilkép, lépésszám) | kész a `ds-` osztályokon |
 | 2 | Árnyék csak kattinthatón, kemény, legfeljebb 2 fajta | Kicsi 2 px (kis vezérlő), nagy 4 px (gomb, kattintható kártya). Nem kattintható elemen nincs árnyék | kész a `ds-` osztályokon |
 | 3 | Kártyák szögletesebbek és szimmetrikusak | lásd 1.; keret mindenhol 2 px | kész |
-| 4 | Gombok egységesek (most 4 fajta) | Két gomb: elsődleges (méz) és másodlagos (fehér). Harmadik a szöveglink | `ds-gomb` kész; a régi gombok (`button_main`, `fs-gomb`, `main-button`, kampány) a következő körben |
+| 4 | Gombok egységesek (most 4 fajta) | Két gomb: elsődleges (méz) és másodlagos (fehér). Harmadik a szöveglink | `ds-gomb` és a régi `button_main` kész; `fs-gomb`, `main-button` és a kampánygombok a következő körben |
 | 5 | Szekciócímke: fekete alap, körvonal nélkül, fehér szöveg, ikon nélkül | `ds-szalag`: fekete, fehér betű, egyenes, vágás nélkül | kész |
 | 6 | A barna kártyaszöveg legyen címke háttérrel, ne betűszín | Barna szövegszín megszűnt; a három érintett elem vaj hátterű címke fekete betűvel | kész |
 | 7 | Partnerlogónak nem kell keret, legyen egyszínű | `ds-logo` keret és háttér nélkül, a logókép szürkeárnyalatos | kész |
@@ -30,7 +30,7 @@ A nem webes pontok (kupon-címke az appban, nektár-chip, a CsicsergŐsz appkép
 ## 2. Mit jelent ez a gyakorlatban
 - A közös `ds-` osztályok egy helyen változtak, ezért minden rájuk épülő oldal egyszerre lett egységes a tesztoldalon.
 - A régi, nem `ds-` oldalak (főoldal, blog, kampány, letöltés) oldalanként kerülnek át a sablonokra. Sorrend és mérés: web-ds.md 11. fejezet.
-- Mérés (`ds-lint`, 12 oldal a tesztoldalon): **1252 → 430 eltérés**; négy oldal 0-n (Beecopédia, Kuponok, Eseménynaptár, Hatásunk). Oldalankénti tábla: web-ds.md 11. fejezet.
+- Mérés (`ds-lint`, 12 oldal a tesztoldalon): **1252 → 276 eltérés**; négy oldal 0-n (Beecopédia, Kuponok, Eseménynaptár, Hatásunk), a blog 130-ról 1-re. Oldalankénti tábla: web-ds.md 11. fejezet.
 - A közös letöltés-blokk (`DOWNLOAD_BLOCK`) áruház-gombjai kemény árnyékot kaptak, a QR-kód szögletes, árnyék nélküli.
 - Mentés a régi stílusokról: `~/CLAUDE/webflow-mentes/2026-11-21-web-ds/`. A változtatások listája: `weboldal/web-ds/migration/atoms_v2_plan.json`.
 
