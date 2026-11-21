@@ -1,8 +1,8 @@
 /* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   TagPicker
-} from "../reszek/chunk-FPQBRD3Y.js";
-import "../reszek/chunk-DCMYY444.js";
+} from "../reszek/chunk-P654TDJH.js";
+import "../reszek/chunk-ODQEUJ7D.js";
 import "../reszek/chunk-2JAA3HEY.js";
 import "../reszek/chunk-B6IOV2EK.js";
 import "../reszek/chunk-MFUVLMMM.js";

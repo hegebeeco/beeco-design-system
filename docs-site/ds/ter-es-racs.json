@@ -101,6 +101,10 @@
       ]
     },
     {
+      "t": "p",
+      "x": "Ki melyik szinten ül: `z-drawer` = oldalpanel (Drawer: függöny és panel) és a keskeny képernyős oldalsáv; `z-overlay` = az ablakok függönye (Modal, ConfirmDialog); `z-modal` = a teljes képernyős nézők (Lightbox, StageDialog); `z-popover` = lenyíló lista és menü. Ezért az oldalpanelről nyitott ablak és az „Elveted a módosításokat?” kérdés mindig a panel fölött van. Azonos szinten a később nyitott réteg kerül felülre. Forrás: `termek/css/bc-reteg.css`."
+    },
+    {
       "t": "h2",
       "x": "Töréspontok",
       "id": "torespontok"

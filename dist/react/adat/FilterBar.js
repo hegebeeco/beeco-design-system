@@ -1,12 +1,12 @@
 /* beeco design system – GENERÁLT FÁJL (tools/react-build.js), forrás: react/ */
 import {
   FilterBar
-} from "../reszek/chunk-V7UDA5NY.js";
+} from "../reszek/chunk-L6KJQYA2.js";
 import "../reszek/chunk-CZEMGI7F.js";
 import "../reszek/chunk-OCOEHCOY.js";
 import "../reszek/chunk-5UB4PBZJ.js";
-import "../reszek/chunk-J54B2C7C.js";
-import "../reszek/chunk-DCMYY444.js";
+import "../reszek/chunk-NARHNJTX.js";
+import "../reszek/chunk-ODQEUJ7D.js";
 import "../reszek/chunk-2JAA3HEY.js";
 import "../reszek/chunk-B6IOV2EK.js";
 import "../reszek/chunk-MFUVLMMM.js";

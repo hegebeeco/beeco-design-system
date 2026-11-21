@@ -1,4 +1,5 @@
-import { useState, type KeyboardEvent, type MouseEvent } from 'react';
+// react-build: dev-react   (fejlesztői React: a StrictMode a hatásokat kétszer futtatja – a „Jelenlegi helyem” ettől függött el, lásd az „élő jelző” próbát)
+import { useEffect, useState, type KeyboardEvent, type MouseEvent } from 'react';
 import { HU_BOUNDS, LocationPicker, type LocationPickerProps, type AddressHit, type LatLng, type LocationMapProps, type LocationSource } from '../src/kieg2';
 import { formatLatLng } from '../src/kieg2/geo';
 import { norm } from '../src/pickers/normalize';
@@ -64,8 +65,15 @@ function Pelda({ id, start = null, map = true, search = fakeSearch, ...rest }: {
   );
 }
 
+/** Őr az „élő jelző” próbához: a hatás fejlesztői React + StrictMode alatt KÉTSZER fut; ha egyszer, a próba nem bizonyít semmit (a teszt ezt ellenőrzi). */
+function HatasSzamlalo() {
+  useEffect(() => { const w = window as unknown as { __hatasFutas?: number }; w.__hatasFutas = (w.__hatasFutas ?? 0) + 1; }, []);
+  return null;
+}
+
 mount('Kiegészítők – helyválasztó', 'LocationPicker (06b/13): térkép-tű, címkereső (Combobox) és koordináta-mezők egymást frissítik; tartomány-igazítás, Magyarországon kívüli figyelmeztetés, jelenlegi hely. Minden cím mintaadat.', (
   <>
+    <HatasSzamlalo />
     <Grid title="Alap és források">
       <Case id="hely" title="Üres → keresés / térkép / gépelés / jelenlegi helyem" wide><Pelda id="hely" /></Case>
       <Case id="hely-mini" title="Térkép nélkül: vázlatos mini-térkép, kitöltve" wide><Pelda id="hely-mini" map={false} start={{ lat: 47.4979, lng: 19.0402 }} /></Case>

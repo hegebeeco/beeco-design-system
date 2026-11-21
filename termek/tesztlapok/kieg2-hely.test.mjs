@@ -47,6 +47,19 @@ export default async function ({ page, t }) {
     const box2 = c('hely-kereso-tolt').getByRole('combobox'); await box2.click(); await box2.pressSequentially('pest');
     await page.locator('.bc-list-note', { hasText: 'Töltöm' }).waitFor({ timeout: 3000 }); await page.keyboard.press('Escape');
   });
+  await t('jelenlegi helyem StrictMode alatt: a hatás kétszer futott, a válasz mégsem vész el, a gomb nem ragad „Keresem…” állapotban', async () => {
+    // A lap fejlesztői React-tel épül (react-build: dev-react), a keret StrictMode-ot használ: a hatás 2× fut (felépít → lebont → újra felépít).
+    // Ha 1×: a próba nem bizonyít semmit, ezért itt bukik (különben egy termelési építés „zölden” átengedné a hibát).
+    const futas = await page.evaluate(() => window.__hatasFutas);
+    ok(futas === 2, `nem fut kétszer a hatás (${futas}×) – a tesztlapnak fejlesztői React + StrictMode kell (react-build: dev-react)`);
+    await page.context().grantPermissions(['geolocation']); await page.context().setGeolocation({ latitude: 47.53, longitude: 21.63, accuracy: 35 }); // ugyanaz, mint a következő esetben: a böngésző 60 s-ig gyorsítótárazza a helyet (maximumAge)
+    const gomb = c('hely-mini').getByRole('button', { name: /Jelenlegi helyem|Keresem a helyed/ });
+    await gomb.click();
+    await c('hely-mini').locator('.bc-loc-geo .bc-notice').waitFor({ timeout: 5000 }); // ha a válasz elveszett, ez időtúllépéssel bukik
+    ok((await gomb.innerText()).includes('Jelenlegi helyem'), `a gomb töltő állapotban ragadt: „${await gomb.innerText()}”`);
+    ok((await gomb.getAttribute('aria-busy')) !== 'true', 'a gomb aria-busy maradt');
+    const o = await out('hely-mini'); ok(o.startsWith('47,53 · 21,63') && o.includes('geo'), o);
+  });
   await t('jelenlegi helyem: engedve → pont + pontosság', async () => {
     await page.context().grantPermissions(['geolocation']); await page.context().setGeolocation({ latitude: 47.53, longitude: 21.63, accuracy: 35 });
     await c('hely').getByRole('button', { name: 'Jelenlegi helyem' }).click();

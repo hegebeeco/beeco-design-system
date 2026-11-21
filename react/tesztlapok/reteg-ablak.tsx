@@ -105,8 +105,29 @@ function Oldal() {
             {Array.from({ length: 20 }, (_, i) => bekezdes(i))}
           </Drawer>
         </Case>
+        <Case id="drawer-ablak" title="Ablak az oldalpanelről: a panel FÖLÖTT nyílik; mentetlennél a kérdés is felül van">
+          <Nyito id="drawer-ablak" label="Partner részletei">{(o, s) => <PanelAblakkal open={o} setOpen={s} setLog={setLog} />}</Nyito>
+        </Case>
       </Grid>
     </>
+  );
+}
+
+/** Az oldalpanel részletlapjáról nyitott ablak (Modal) és az „Elveted a módosításokat?” kérdés (ConfirmDialog) mindig a panel fölött van (réteg-sorrend: drawer < overlay) */
+function PanelAblakkal({ open, setOpen, setLog }: { open: boolean; setOpen: (o: boolean) => void; setLog: (s: string) => void }) {
+  const [nev, setNev] = useState('Méhes Kávézó');
+  const [ablak, setAblak] = useState(false);
+  const dirty = nev !== 'Méhes Kávézó';
+  return (
+    <Drawer open={open} onOpenChange={(o) => { setOpen(o); if (!o) setNev('Méhes Kávézó'); }} dirty={dirty} title="Méhes Kávézó" description="Partner · mintaadat"
+      footer={<><ModalCancel>Bezárás</ModalCancel><Button icon={<IcSave />} onClick={() => setOpen(false)}>Mentés</Button></>}>
+      <TextField label="Partner neve" help="Így jelenik meg az appban a partner kártyáján." maxLength={60} value={nev} onChange={(e) => setNev(e.target.value)} />
+      <p><Button variant="secondary" data-open="drawer-ablak-belso" onClick={() => setAblak(true)}>Kupon-sablon szerkesztése</Button></p>
+      <Modal open={ablak} onOpenChange={setAblak} title="Kupon-sablon" description="Az oldalpanelről nyitott ablak."
+        footer={<><ModalCancel /><Button icon={<IcSave />} onClick={() => { setLog('kupon-sablon mentve'); setAblak(false); }}>Mentés</Button></>}>
+        <p>Ez az ablak az oldalpanel fölött van: a háttérre kattintás nem éri el a panelt.</p>
+      </Modal>
+    </Drawer>
   );
 }
 

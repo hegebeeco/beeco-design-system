@@ -15,8 +15,11 @@ var accuracyText = (m) => m < 1e3 ? `\xB1${formatHu(Math.round(m), 0)} m` : `\xB
 function useGeolocation(timeoutMs = 1e4) {
   const [state, setState] = useState({ status: "idle" });
   const alive = useRef(true);
-  useEffect(() => () => {
-    alive.current = false;
+  useEffect(() => {
+    alive.current = true;
+    return () => {
+      alive.current = false;
+    };
   }, []);
   const locate = useCallback((onFound) => {
     if (typeof navigator === "undefined" || !navigator.geolocation) {
