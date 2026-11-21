@@ -147,7 +147,7 @@ A lint a fejlécet és a láblécet külön számolja („keret”), a tartalom 
 
 | Komponens | Azonosító | Variánsok és propok |
 |---|---|---|
-| `DS · Szekciófej` | `96a96302-3999-4e1f-a655-23fc1d4aa55f` | Címke + H2 + bevezető. Propok: Címke, Cím, Bevezető (szöveg), Címke látszik, Bevezető látszik (kapcsoló). Javaslat 40. |
+| `DS · Szekciófej` | `96a96302-3999-4e1f-a655-23fc1d4aa55f` | Címke + H2 + bevezető. Propok: Címke, Cím, Bevezető (szöveg), Címke látszik, Bevezető látszik (kapcsoló). Változat: Világos háttér (alap), Sötét háttér (méz címke, fehér cím; sötét szekcióba). Javaslat 40. |
 | `DS · Gomb` | `ef6762a3-cbeb-9948-b80c-263095d2a4d0` | Változat: Elsődleges (alap, méz) és Másodlagos (fehér). Propok: Felirat, Link, Mérési címke (`data-app-cta`). Javaslat 40. |
 | `DS · App letöltés` | `0951b307-2dd7-06cb-f1d9-b7da79410404` | Teljes app-CTA szekció (`#app`): címke, cím, szöveg, `DOWNLOAD_BLOCK`, appkép. Propok: Címke, Cím, Szöveg (az alapérték a jóváhagyott szöveg). Változat: Halványzöld (alap), Fehér, Krém. „Domb” hely: ide kerül a következő szekció színének megfelelő `DS · Domb`. Javaslat 40. |
 | `DS · GYIK` | `066156dc-911c-d3b8-e189-fad56e1e5c55` | Teljes GYIK-szekció (`#gyik`): címke, cím, bevezető, `DS · GYIK tovább`. Propok: Címke, Cím, Bevezető (szöveg), Címke látszik, Bevezető látszik (kapcsoló). Változat: Fehér (alap), Krém, Halványzöld. „Kérdések” hely: ide kerülnek az oldal kérdései (`details.ds-kerdes`); a hely maga a lista (`ds-kerdesek`), nincs külön burok. „Domb” hely: elválasztó a szekció végén, ha más színű szekció következik. A FAQPage JSON-LD az oldal beállításaiban marad. Javaslat 40. |
