@@ -63,7 +63,7 @@ function measure() {
   // R4 divider between sections of different background
   const sections = [...document.querySelectorAll('body > section, body > .ds-szekcio, main > section')].filter(visible);
   const bg = el => { let e = el; while (e && getComputedStyle(e).backgroundColor === 'rgba(0, 0, 0, 0)') e = e.parentElement; return e ? getComputedStyle(e).backgroundColor : ''; };
-  sections.forEach((s, i) => { const n = sections[i + 1]; if (!n) return; const hasDomb = !!s.querySelector(':scope > .ds-domb');
+  sections.forEach((s, i) => { const n = sections[i + 1]; if (!n) return; const hasDomb = !!s.querySelector(':scope > .ds-domb, :scope > div:not([class]) > .ds-domb'); // the second form: divider placed in a component slot
     if (bg(s) !== bg(n) && !hasDomb) out.R4.push({ z: 'tartalom', c: (s.id || cls(s)) + ' → ' + (n.id || cls(n)), why: 'eltérő háttér, nincs domb' });
     if (bg(s) === bg(n) && hasDomb) out.R4.push({ z: 'tartalom', c: (s.id || cls(s)) + ' → ' + (n.id || cls(n)), why: 'azonos háttér, fölösleges domb' }); });
   out.stats.sections = sections.length; out.stats.backgrounds = [...new Set(sections.map(bg))].length;

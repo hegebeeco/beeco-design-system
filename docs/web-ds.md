@@ -92,8 +92,8 @@ Minden organizmus egy szekció (`ds-szekcio` + háttérosztály, benne `ds-burok
 | Kártyarács | `card_grid()` | szekciófej + 2–4 oszlop kártya | ajánlatok, előnyök, témák |
 | Lépések | `steps()` | szekciófej + 3–4 lépés | „Így működik” |
 | CMS-lista | `cms_list()` | szekciófej + natív Collection List helye + „mind” link | blog, kuponok, események |
-| App-CTA | `app_cta()` | H2, szöveg, `DOWNLOAD_BLOCK` (két áruház-gomb + QR), appkép | lakossági oldal alja |
-| GYIK | `faq()` | szekciófej + kérdések + `DS · GYIK tovább` | minden oldal vége |
+| App-CTA | `DS · App letöltés` komponens (`app_cta()` a generátorban) | címke, H2, szöveg, `DOWNLOAD_BLOCK` (két áruház-gomb + QR), appkép | lakossági oldal alja |
+| GYIK | `DS · GYIK` komponens (`faq()` a generátorban) | címke, H2, bevezető, kérdések, `DS · GYIK tovább` | minden oldal vége |
 | Ajánlatkérés | `DS · Ajánlatkérés` komponens | natív űrlap | B2B-oldal alja (az app-CTA helyett) |
 | Bizonyítéksáv | `DS · Számok`, logósor | számok forrással, partnerlogók | a fő gomb közelében |
 
@@ -147,6 +147,10 @@ A lint a fejlécet és a láblécet külön számolja („keret”), a tartalom 
 
 | Komponens | Azonosító | Variánsok és propok |
 |---|---|---|
+| `DS · Szekciófej` | `96a96302-3999-4e1f-a655-23fc1d4aa55f` | Címke + H2 + bevezető. Propok: Címke, Cím, Bevezető (szöveg), Címke látszik, Bevezető látszik (kapcsoló). Javaslat 40. |
+| `DS · Gomb` | `ef6762a3-cbeb-9948-b80c-263095d2a4d0` | Változat: Elsődleges (alap, méz) és Másodlagos (fehér). Propok: Felirat, Link, Mérési címke (`data-app-cta`). Javaslat 40. |
+| `DS · App letöltés` | `0951b307-2dd7-06cb-f1d9-b7da79410404` | Teljes app-CTA szekció (`#app`): címke, cím, szöveg, `DOWNLOAD_BLOCK`, appkép. Propok: Címke, Cím, Szöveg (az alapérték a jóváhagyott szöveg). Változat: Halványzöld (alap), Fehér, Krém. „Domb” hely: ide kerül a következő szekció színének megfelelő `DS · Domb`. Javaslat 40. |
+| `DS · GYIK` | `066156dc-911c-d3b8-e189-fad56e1e5c55` | Teljes GYIK-szekció (`#gyik`): címke, cím, bevezető, `DS · GYIK tovább`. Propok: Címke, Cím, Bevezető. „Kérdések” hely: ide kerülnek az oldal kérdései (`details.ds-kerdes`); a hely maga a lista (`ds-kerdesek`), nincs külön burok. A FAQPage JSON-LD az oldal beállításaiban marad. Javaslat 40. |
 | `DS · Domb` (elválasztó) | `ad993b5e-bdbd-a8e3-169e-0fbe16aaf0a7` | Variáns = a következő szekció színe: Krém (alap), Fehér, Halványzöld, Vaj, Zöld, Sötét. Az azonosítók az `organisms.py`-ban. |
 | `DS · GYIK tovább` | `3c90afc8-1d53-ebc7-228a-020a939b8640` | A GYIK-szekció záró linkje. |
 | `DS · Fotósor vezérlő` | `e3bff70b-4460-0ea0-f7e9-8598064ff13a` | Előző, következő, számláló, sáv; a `.ds-fotosor` végére. |
@@ -163,7 +167,9 @@ A lint a fejlécet és a láblécet külön számolja („keret”), a tartalom 
 | `DS · Utak` | `cb9fa756-68f8-f437-f703-a87c224a7b00` | A sales-rendszer öt útja (HR, ESG, marketing, zöld bolt és KKV, önkormányzat). Minden sales-aloldal alján; „Mutat” kapcsolók rejtik a saját kártyát. |
 | `AppLépés` (minta, `fs-u-*` osztályok) | – (egyelőre osztályminta, nem komponens) | Váltakozó bal/jobb sor az app útjához: szövegkártya + számozott állomás + nagy app-képernyő. Sor: `fs-u-lepes` + `fs-u-bal` vagy `fs-u-jobb` (+ `fs-u-solo`, ha nincs képernyő); fázis-címke: `fs-u-fazis`; kitöltő vonal: `fs-u-ut`. Mobilon (≤ 767 px) egymás alatt, az út balra kerül. Animáció: IX3 görgetés (sor oldalról, út kitelik), csökkentett mozgásnál a végállapot. Nektár-jelzés egyelőre nincs (Kristóf, 2026-10-30). Komponenssé csomagolás: a bal/jobb irányhoz variáns kell, ezért a Designer-ellenőrzés után. |
 
-Gomb, chip, kártya és szekció ma osztály, nem komponens: a szabályt a közös osztály tartja egyben.
+Új oldalon a szekciófej, a gomb, az app-CTA és a GYIK komponensből jön; a meglévő oldalak kézzel épített változatai az újrahúzáskor cserélődnek (első példa: `/beecopedia`). Chip, kártya és szekció továbbra is osztály.
+
+**Komponens helyének (slot) feltöltése az API-val:** `data_component_builder` → `insert_in_slot` (komponens vagy elem). Meglévő elemet úgy lehet helyre mozgatni, hogy előbb egy ideiglenes elem kerül a helyre, a meglévők `move_element`-tel elé kerülnek, majd az ideiglenes törlődik. A helybe tett `DS · Domb` egy osztály nélküli burokba kerül; a lint ezt ismeri.
 
 ## 10. Buktatók (élesben derültek ki)
 
@@ -217,7 +223,7 @@ Mi történt:
 Újramérés: `node weboldal/web-ds/teszt/ds-lint.cjs <URL-ek> --json ki.json`; az URL-lista a `sitemap.xml`-ből jön (statikus oldalak + gyűjteményenként két minta).
 
 Következő körök:
-1. **Komponensek rendbetétele:** összevonás és kilenc új komponens, [Javaslat 40](javaslatok/40-webflow-komponensek-rendbetetele.md) (jóváhagyásra vár).
+1. **Komponensek rendbetétele** ([Javaslat 40](javaslatok/40-webflow-komponensek-rendbetetele.md), jóváhagyva 2026-11-21): kész a `DS · Szekciófej`, `DS · Gomb`, `DS · App letöltés`, `DS · GYIK` (a `/beecopedia` oldalon élesben kipróbálva) és a csoportnevek egységesítése („Web DS”). Hátravan: a négy komponens kiterjesztése a többi `ds-` oldalra, a `DS · Logósor` összevonás, a térköz-komponensek kivezetése, a Nyitó, a Kártyarács, a Lépések, a Fotósor és a Cikk-kártya, végül a 18 használaton kívüli komponens törlése.
 2. **Főoldal:** az átépítés a 6. fejezet főoldal-sablonjára, `fs-` → `ds-`.
 3. **App GYIK és nyereményjáték:** a régi `home-faq-*` cseréje a GYIK-sablonra.
 4. **Piktogramok:** a Javaslat 35 (fehér folt a B2B-oldalakon) és a „sárga foltos mindenhol” szabály ütközik, Kristóf dönt.

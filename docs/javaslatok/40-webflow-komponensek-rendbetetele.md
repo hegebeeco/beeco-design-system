@@ -1,6 +1,6 @@
 # Javaslat 40 – Webflow-komponensek rendbetétele: összevonás és új komponensek
 
-*Állapot: **javaslat** (Kristóf kérésére készült DS-check alapján, 2026-11-21) · készítette: Claude.*
+*Állapot: **jóváhagyva** (Kristóf, 2026-11-21: mindhárom pontra igen) · a DS-check alapján készítette: Claude.*
 *Mérés: `ds-lint` 72 oldalon a tesztoldalon (52 statikus oldal + a 10 CMS-gyűjtemény 2–2 mintája), a Webflow komponensleltára (53 komponens) és az oldalak szerkezeti átvizsgálása.*
 
 ## 1. Hol tartunk
@@ -70,9 +70,20 @@ Ezek formája a három körben már egységes lett; a nevek összevonása oldala
 
 Kockázat: a meglévő oldalakon a kézzel épített szekció komponensre cserélése oldalanként történik, képernyőkép-összevetéssel; a tartalom nem változik.
 
-## 6. Döntés (Kristóf tölti ki)
+## 6. Megvalósítás állapota (2026-11-21)
+
+| Lépés | Állapot |
+|---|---|
+| `DS · Szekciófej`, `DS · Gomb`, `DS · App letöltés`, `DS · GYIK` | kész, a `/beecopedia` oldalon kipróbálva a tesztoldalon (asztal + mobil, `ds-lint` 0); azonosítók és propok: web-ds.md 9. fejezet |
+| Csoportnevek: minden DS-komponens a „Web DS” csoportban | kész (9 komponens átsorolva) |
+| A négy komponens kiterjesztése a többi `ds-` oldalra | hátravan (oldalanként, képernyőkép-összevetéssel) |
+| `DS · Logósor` összevonás, térköz-komponensek kivezetése, morzsa és letöltés-blokk csere | hátravan |
+| `DS · Nyitó`, `DS · Kártyarács`, `DS · Lépések`, `DS · Fotósor`, `DS · Cikk-kártya` | hátravan |
+| 18 használaton kívüli komponens törlése | a végén; a friss lista megerősítése után (a `NAVBAR_REGI_BACKUP` leírása szerint biztonsági másolat) |
+
+## 7. Döntés (Kristóf tölti ki)
 1. Jóváhagyod a 3. pont új komponenseit? (Akár csak az 5. pont első lépését.)
 2. Mehet a 2. pont összevonása?
 3. Törölhető a 18 használaton kívüli komponens, vagy előbb archív mappába kerüljenek?
 
-- Dátum: · Jóváhagyva / módosítás:
+- Dátum: 2026-11-21 · Jóváhagyva: 1. igen, 2. igen, 3. igen (Kristóf). A törlés a végén történik, a friss lista megerősítése után, mert nem vonható vissza.
