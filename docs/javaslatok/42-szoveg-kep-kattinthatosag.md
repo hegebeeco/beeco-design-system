@@ -50,7 +50,7 @@
 | # | Kérés | Javasolt megoldás |
 |---|---|---|
 | F1 | Logósáv egységesítése | keret nélkül, monokróm logók (`filter: grayscale(1)` vagy fekete SVG), egységes magasság; a link marad |
-| F2 | Az „Írtak rólunk” és a „Szakmai partnereink” kerüljön lejjebb az oldalon | a záró CTA elé, a GYIK után vagy elé (a sorrendet Kristóf hagyja jóvá) |
+| F2 | Az „Írtak rólunk” és a „Szakmai partnereink” kerüljön lejjebb az oldalon | **a záró letöltési felhívás elé** (Kristóf Claude-ra bízta, 2026-11-22: a bizalomépítő elem közvetlenül a döntés előtt hat a legjobban) |
 | F3 | „Ők már használják”: négyszöges, árnyék nélkül | 0 px sarok, nincs árnyék (nem kattintható) |
 | F4 | „Miért beeco”: árnyék nélkül, mert lépések | `DS · Lépések` (2. pont): szám, vonal, doboz nélkül |
 | F5 | Az app útja: talán szövegdoboz sem kell | a szöveg doboz nélkül, a vonal és a piktogram vezeti a szemet |
@@ -58,6 +58,7 @@
 | F7 | A gombok DS-gombok legyenek (Letöltés, „Beszállok a rajba”) | `DS · Gomb`, illetve `DS · App letöltés` |
 | F8 | A közösségfotó legyen DS-elem | `DS · Közösségfotó` (3.2) |
 | F9 | Piktogram fehér flekken fekete | R11 szerint |
+| F10 | Új, DS-hű hero-grafika mockup-animációval (Kristóf kérése 2026-11-22) | három változat prototípusa: https://claude.ai/artifact/Q78mLtB13aKnEY6VwtFhVA (A: funkcióválasztó – javasolt, B: telefonlegyező, C: zöldülő táj); Kristóf választ |
 
 ## 5. Sorrend (élesítés után)
 1. Mérő bővítése (címskála, igazítás, lekerekítés a nem kattinthatón, mockup-háttér). Utána mérés a 72 oldalon.
@@ -71,7 +72,6 @@
 6. Ellenőrzés: ds-lint, audit, független Opus-ellenőrzés, élesítési csomag.
 
 ## 6. Nyitott kérdések
-- F2: hová kerüljön pontosan az „Írtak rólunk” és a „Szakmai partnereink”?
 - Szabad-e a 4 px-es „kártya” sarok nem kattintható kártyán, vagy ott is 0 px legyen? A mobilos DS-döntés (2026-11-22, Ráncfelvarrás) szerint a kártya 4 px; a Rólunk blokkokra Kristóf 0 px-et kért.
 
 ## 7. Döntés (Kristóf tölti ki)
