@@ -36,6 +36,8 @@
 - B1 kész a valódi eltéréseken: a mérés szerint a címek nagy része már a DS-méreten van (H2 48 px, H3 24 px). A négy CMS-sablon (zöld térkép, okos pont, partner, ökoirányító) 32 px-es főcíme és szekciócíme 48 px lett (`ds-cim-fo` kombó). Hátravan (élesítés után): kb. 100 közepes cím a régi oldalakon, oldalanként.
 - B2 kész: recept- és zöldségsablon fotója DS-fotó (keret, dőlés, csík); zöld térkép, partner képe keretes, 0 px. A blogsablon képosztálya általános (`img`), kimaradt.
 - A kész: `DS · Appképernyő` a partnersablonon (kupon → térkép → naptár). További helyek (Kuponok, Eseménynaptár, Térkép, Letöltés) élesítés után.
+- Éjszakai kör (2026-11-22, Kristóf: „mehetnek”): B1 kb. 100 további cím (H1/H2 48 px, H3 24 px; mobilon 30/20); B4 13 morzsa a `DS · Morzsamenü`-re (ökoirányító-sablon kimaradt); B5 lapos csúszkapöttyök minden natív csúszkán; A: új telefon-mockupok a legfrissebb képernyőkből a Térkép-heróban (Appképernyő), a Letöltés oldalon, az Eseménynaptár hero-csúszkájában és a partnersablonban.
+- Nyitva a címskálánál: kb. 45 kis alcím H2/H3 címkével (20–32 px, kártya jellegű) – a helyes javítás a címkeszint (H4/p), nem a méret; Kristóf döntése.
 - B3 (letöltésblokk) élesítés utánra: a mérés szerint a látogató számára már egységes (R6 rendben), a csere csak karbantartást könnyít.
 
 ## 5. Nyitva (Kristóf döntése kell)
