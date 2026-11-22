@@ -58,7 +58,7 @@
 | F7 | A gombok DS-gombok legyenek (Letöltés, „Beszállok a rajba”) | `DS · Gomb`, illetve `DS · App letöltés` |
 | F8 | A közösségfotó legyen DS-elem | `DS · Közösségfotó` (3.2) |
 | F9 | Piktogram fehér flekken fekete | R11 szerint |
-| F10 | Új, DS-hű hero-grafika mockup-animációval (Kristóf kérése 2026-11-22) | három változat prototípusa: https://claude.ai/artifact/Q78mLtB13aKnEY6VwtFhVA (A: funkcióválasztó – javasolt, B: telefonlegyező, C: zöldülő táj); Kristóf választ |
+| F10 | Új, DS-hű hero-grafika mockup-animációval (Kristóf kérése 2026-11-22; cél: letöltés, továbbgörgetés, a haszon megértése) | prototípus: https://claude.ai/artifact/Q78mLtB13aKnEY6VwtFhVA. 2. kör („haszon-hero”): haszonra épülő cím, egy fő letöltésgomb az értékelésekkel, három váltható haszon (spórolás, kisebb lábnyom, zöld helyek) a 2026-11-18-i képernyőkkel, szünet gomb, a hajtás alól kilátszó következő szekció és lefelé vezető méh-nyomvonal. A szövegek javaslatok (Levi dönt). Az 1. kör három változata (funkcióválasztó, telefonlegyező, zöldülő táj) az artifact előző verziójában. Kristóf jóváhagyására vár. |
 
 ## 5. Sorrend (élesítés után)
 1. Mérő bővítése (címskála, igazítás, lekerekítés a nem kattinthatón, mockup-háttér). Utána mérés a 72 oldalon.
