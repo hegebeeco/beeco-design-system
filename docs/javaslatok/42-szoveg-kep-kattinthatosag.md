@@ -31,6 +31,8 @@
 | Kattinthatóság | kattinthatón 4 px kemény árnyék és 4 px sarok; nem kattinthatón **nincs árnyék és nincs lekerekítés** (0 px) | R3 bővítés: a lekerekítést is nézi |
 | Lépések | nem kattintható lépéssor: nagy fekete szám, vékony fekete vonal a lépések között, doboz és árnyék nélkül (`DS · Lépések`) | – |
 | Piktogram | fehér flekken fekete | R11 (már él) |
+| Méhecske iránya | a méhecske (matrica, illusztráció) mindig a tartalom vagy a képernyő közepe felé néz, kifelé soha (Kristóf, 2026-11-22) | kézi ellenőrzés |
+| Matrica-árnyék (**javaslat, Kristóf válaszára vár**) | nem kattintható matricán elmosás nélküli, 2–3 px-es, 20%-os fekete árnyék a forma mentén; fekete kemény árnyék (kattinthatóság jele) és lágy árnyék nincs; a mockup árnyék nélkül áll | – |
 
 ## 3. Új DS-elemek (képpel, jóváhagyásra)
 1. **`DS · Csapat-csúszka`** (organizmus):
