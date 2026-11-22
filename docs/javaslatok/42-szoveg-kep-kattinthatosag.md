@@ -32,7 +32,7 @@
 | Lépések | nem kattintható lépéssor: nagy fekete szám, vékony fekete vonal a lépések között, doboz és árnyék nélkül (`DS · Lépések`) | – |
 | Piktogram | fehér flekken fekete | R11 (már él) |
 | Méhecske iránya | a méhecske (matrica, illusztráció) mindig a tartalom vagy a képernyő közepe felé néz, kifelé soha (Kristóf, 2026-11-22) | kézi ellenőrzés |
-| Matrica-árnyék (**javaslat, Kristóf válaszára vár**) | nem kattintható matricán elmosás nélküli, 2–3 px-es, 20%-os fekete árnyék a forma mentén; fekete kemény árnyék (kattinthatóság jele) és lágy árnyék nincs; a mockup árnyék nélkül áll | – |
+| Matrica-árnyék (Kristóf a szálat lezárta, 2026-11-22) | nem kattintható matricán elmosás nélküli, 2–3 px-es, 20%-os fekete árnyék a forma mentén; fekete kemény árnyék (kattinthatóság jele) és lágy árnyék nincs; a mockup árnyék nélkül áll | – |
 
 ## 3. Új DS-elemek (képpel, jóváhagyásra)
 1. **`DS · Csapat-csúszka`** (organizmus):
@@ -60,7 +60,7 @@
 | F7 | A gombok DS-gombok legyenek (Letöltés, „Beszállok a rajba”) | `DS · Gomb`, illetve `DS · App letöltés` |
 | F8 | A közösségfotó legyen DS-elem | `DS · Közösségfotó` (3.2) |
 | F9 | Piktogram fehér flekken fekete | R11 szerint |
-| F10 | Új, DS-hű hero-grafika mockup-animációval (Kristóf kérése 2026-11-22; cél: letöltés, továbbgörgetés, a haszon megértése) | prototípus: https://claude.ai/artifact/Q78mLtB13aKnEY6VwtFhVA. 2. kör („haszon-hero”): haszonra épülő cím, egy fő letöltésgomb az értékelésekkel, három váltható haszon (spórolás, kisebb lábnyom, zöld helyek) a 2026-11-18-i képernyőkkel, szünet gomb, a hajtás alól kilátszó következő szekció és lefelé vezető méh-nyomvonal. A szövegek javaslatok (Levi dönt). Az 1. kör három változata (funkcióválasztó, telefonlegyező, zöldülő táj) az artifact előző verziójában. Kristóf jóváhagyására vár. |
+| F10 | Új, DS-hű hero-grafika mockup-animációval (Kristóf kérése 2026-11-22; cél: letöltés, továbbgörgetés, a haszon megértése) | prototípus: https://claude.ai/artifact/Q78mLtB13aKnEY6VwtFhVA. 2. kör („haszon-hero”): haszonra épülő cím, egy fő letöltésgomb az értékelésekkel, három váltható haszon (spórolás, kisebb lábnyom, zöld helyek) a 2026-11-18-i képernyőkkel, szünet gomb, a hajtás alól kilátszó következő szekció és lefelé vezető méh-nyomvonal. A szövegek javaslatok (Levi dönt). Az 1. kör három változata (funkcióválasztó, telefonlegyező, zöldülő táj) az artifact előző verziójában. Kristóf visszajelzései alapján (2026-11-22, „nagyon jó irány”): a három haszongomb röviden a mockup alatt, alatta „és méh sok más...” szöveges gomb; áruházlogó a gombokon; a funkció piktogramja a telefon címkéjén; új, animált navbar lenyíló menükkel; **a fa/ház/táj háttér kikerült (a csapat leszavazta)**, helyette halvány méhsejt-minta, fehér flekk a mockup mögött és lebegő hatszögek. |
 
 ## 5. Sorrend (élesítés után)
 1. Mérő bővítése (címskála, igazítás, lekerekítés a nem kattinthatón, mockup-háttér). Utána mérés a 72 oldalon.
