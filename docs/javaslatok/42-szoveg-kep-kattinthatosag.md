@@ -61,13 +61,14 @@
 
 ## 5. Sorrend (élesítés után)
 1. Mérő bővítése (címskála, igazítás, lekerekítés a nem kattinthatón, mockup-háttér). Utána mérés a 72 oldalon.
-2. Osztályszintű javítások:
+2. Címsorból bekezdés: kb. 19 szemöldökcímke (`sub-heading`, 20 px) és a leíró `main_text` mondatok, amelyek H2 címkét viselnek (lábnyom-metodika, kalkulátor, letöltés, térkép, szezonális növények). A Térkép oldal H1-e 24 px-es, ez a címskála szerint 48 legyen.
+3. Osztályszintű javítások:
    - nem kattintható dobozokon 0 px sarok és nincs árnyék (Rólunk 3 blokk és a többi);
    - balra zárás;
    - mockupok háttér nélkül.
-3. `DS · Csapat-csúszka` a Csapat oldalon. Előtte képes változat jóváhagyásra.
-4. `DS · Számsor` és `DS · Közösségfotó` a főoldali munkamenettel közösen.
-5. Ellenőrzés: ds-lint, audit, független Opus-ellenőrzés, élesítési csomag.
+4. `DS · Csapat-csúszka` a Csapat oldalon. Előtte képes változat jóváhagyásra.
+5. `DS · Számsor` és `DS · Közösségfotó` a főoldali munkamenettel közösen.
+6. Ellenőrzés: ds-lint, audit, független Opus-ellenőrzés, élesítési csomag.
 
 ## 6. Nyitott kérdések
 - F2: hová kerüljön pontosan az „Írtak rólunk” és a „Szakmai partnereink”?
