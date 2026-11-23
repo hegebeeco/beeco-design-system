@@ -34,6 +34,12 @@
 | 9 | Méh (lebegő szuperhős) | csak a főoldalon | `DS · Méh` díszelem, a többi oldalon mozgás nélkül |
 | 10 | Főoldal | `fo-` osztályok + 3 CSS-embed | natív osztályok/komponensek; a beágyazott CSS csak a mozgásra marad |
 
+## Kampányoldal: CsicsergŐsz (Kristóf kérése, 2026-11-23)
+A grafikák és a tartalom maradnak, a forma a főoldalé, a fekete helyett kakaó. Kész a tesztcímen: döntött kakaó címke
+minden szekción, árnyékos domb, döntött árnyékos telefon fehér flekkel és funkciócímkével (Madártérkép, Madár album,
+CsicsergŐsz), a közös DS-elemek kakaó kerete. Részletek: `weboldal/kampany-csicsergosz/README.md`.
+Az új főoldal (`/fooldal-uj`) kint van a tesztcímen (nem piszkozat, `noindex`); az átállás Kristóf kattintása.
+
 ## Biztonsági szabály a szakaszokra
 A közös elemek minden oldalon egyszerre változnak. Egy éles publikálás a félkész szakaszt is kivinné, ezért
 élesíteni csak akkor szabad, ha Claude egy szakaszt „kész, ellenőrizve” jelzéssel átadott.

@@ -18,3 +18,4 @@ A 4. embed a 2026-10-13-i javításokat tartalmazza külön, hogy az első háro
 | 5. | `../cs-levelke.css` (Levélke hírlevél-blokk) | `cs-levelke.min.css` |
 | 6. | `../cs-kartya.css` (Matrica kártyacsalád, 9-szeletes keret szűrő nélkül; generálja: `../cs-kartya.gen.mjs`) | `cs-kartya.min.css` |
 | 7. | `../cs-ds-v2.css` (Web DS v2 formaszabályok a kampányoldalakon: 4 px sarok, árnyék csak kattinthatón; 2026-11-21) | `cs-ds-v2.min.css` |
+| 7/b | `../cs-ds-v3.css` (a főoldal formája: a közös DS-elemek fekete kerete és árnyéka kakaó; 2026-11-23) – **a 7. embed végére fűzve**, ugyanabban a blokkban | `cs-ds-v3.min.css` |
