@@ -85,6 +85,7 @@ Ugyanazon a linken, a hero alatt: https://claude.ai/artifact/Q78mLtB13aKnEY6VwtF
 - Megépítve a `/fooldal-uj` piszkozat-oldalon (a mostani főoldal másolata, natív Webflow-elemek `fo-` osztályokkal). Forrás és átállási lépések: `weboldal/fooldal-2026-11/OLVASS.md`.
 - Ellenőrizve a tesztcímen: működés, billentyűzet, csökkentett mozgás, 1440–320 px, minőségkapu, független Opus-ellenőrzés (javítva: LCP-kép, díszképek altja, szünet az összes mozgásra, `<main>`). Audit: 68 (a `noindex` miatt; a mostani főoldal 79).
 - Hátra: az átállás (Kristóf: noindex törlése, Set as Home, régi oldal piszkozatba, 301, éles publikálás); utána mérési terv (`meresi-terv-fooldal.json`) és audit élesben; a C navbar a többi oldalra.
+- Második kör (Kristóf, 2026-11-23): összegző letöltés-szekció a Jutalom után (Kristóf szövege, két nyelvtani igazítással: „unokáinknak”, és a mondat címre + bevezetőre bontva), funkciócímke + piktogram a lépések telefonjain (a gombot követi), árnyékos domb (DS-szabály: `docs/web-ds.md` R4), a menü lenyílója külön dobozban, a nyíl nyitáskor megfordul. Tesztcímen mérve, utána vissza piszkozatba.
 - Döntésre vár: a csapat arculati review-ja (Javaslat 39, 5. és 13. pont) egyenes címkét és mozgás nélküli herót kér, az új főoldalon döntött címke és animált hero van (Kristóf kérésére).
 
 ## 5. Sorrend (élesítés után)

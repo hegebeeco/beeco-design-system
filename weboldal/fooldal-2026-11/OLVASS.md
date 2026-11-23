@@ -2,6 +2,7 @@
 
 Kristóf döntése (2026-11-23): a jóváhagyott prototípus (Javaslat 42, 4/b) váltja a mostani főoldalt.
 Cím: „Éljünk ökosabban, együtt, olcsóbban!”; navbar: C · lebegő sáv (előbb csak ezen az oldalon); a beebolt-szekció marad.
+Kristóf második köre (2026-11-23): összegző letöltés-szekció a Jutalom után („Légy te a ma ökohőse!”, `#osszegzes`), funkciócímke a lépések telefonjain, árnyékos domb, a menü lenyílója külön dobozban.
 
 ## Felépítés (ugyanaz a minta, mint a `fooldal-szuperhos` esetén)
 - **Webflow-oldal:** `Főoldal 2026-11 (teszt)`, `/fooldal-uj`, page `6b042dd5984a222f9ffd949d` (a főoldal másolata).
@@ -27,6 +28,8 @@ A `teszt.html` a valódi Webflow-kimenet közelítése (a navbar és a GYIK hely
 - A képekről elvész az `id`, a `loading` és a `fetchpriority`; a díszképek a médiatár alt szövegét kapják.
   Ezért: az LCP-kép (`#kepek img.fo-be`) attribútumait `set_attributes`-szal kell beállítani, a díszképek altját üresre.
 - A site `body`-ja középre igazító flex oszlop: a `.fo` burkolónak `width:100%` kell (`fo-extra.css`).
+- A generált stílusosztályok (`fo-x1`…) már rajta vannak a Webflow-elemeken: a számozást a `stilusok.json` rögzíti, új inline stílus a következő szabad számot kapja. A fájlt ne töröld, különben az új szekció átszámozza a meglévőket.
+- Új szekció vagy elem a Webflow-ban: a `szekciok.json` megfelelő `html` + `css` (csonkok) részét kell beszúrni (`data_whtml_builder`), a díszképek altját utána üresre állítani.
 
 ## Átállás (Kristóf kattint a Designerben, utána Claude ellenőriz)
 1. A `/fooldal-uj` oldal fejléckódjából törölni a `noindex` sort (a megjegyzéssel együtt). **Enélkül a főoldal kiesik a Google-ből.**
