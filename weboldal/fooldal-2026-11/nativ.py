@@ -111,6 +111,21 @@ def main():
     css = re.sub(r'/\*.*?\*/', '', css, flags=re.S)
     stat = json.load(open(sys.argv[1]))
     stilusok, kivett = {}, []
+    # a sorrend számít: ha egy töréspontos (@container/@media) szabály KORÁBBAN állítja ugyanazt a tulajdonság-családot
+    # ugyanarra a kijelölőre, a régi CSS-ben a későbbi alapszabály felülírta. Natívan (a site CSS-ben, előrébb) ez megfordulna,
+    # ezért ezek a deklarációk az embedben is maradnak (megtartott = natív ÉS embed), a kinézet változatlan.
+    def csalad(k):
+        k = {'row-gap': 'gap', 'column-gap': 'gap', 'top': 'inset', 'right': 'inset', 'bottom': 'inset', 'left': 'inset'}.get(k, k)
+        return k.split('-')[0] if k.split('-')[0] in ('padding', 'margin', 'border', 'grid', 'font', 'flex', 'overflow', 'gap', 'inset') else k
+    korabbi = {}
+    for ctx, sel, body in szabalyok(css):
+        if ctx:
+            for k, v in deklaraciok(body): korabbi.setdefault(sel, set()).add(csalad(k))
+        else:
+            korabbi.setdefault(('fent', sel), set())
+            for k, v in deklaraciok(body):
+                if csalad(k) in korabbi.get(sel, set()): korabbi[('fent', sel)].add(k)
+    megtartott = []
     for ctx, sel, body in szabalyok(css):
         if ctx: continue
         if ',' in sel: continue
@@ -125,10 +140,11 @@ def main():
             r = kibont(k, v)
             if not r: continue
             stilusok.setdefault(kulcs, {}).update(r)
-            kivett.append([sel, k])
-    out = {'stilusok': [{'osztaly': o, 'pseudo': p, 'tulajdonsagok': t} for (o, p), t in stilusok.items()], 'kivett': kivett}
+            if k in korabbi.get(('fent', sel), set()): megtartott.append([sel, k])
+            else: kivett.append([sel, k])
+    out = {'stilusok': [{'osztaly': o, 'pseudo': p, 'tulajdonsagok': t} for (o, p), t in stilusok.items()], 'kivett': kivett, 'megtartott': megtartott}
     json.dump(out, open(os.path.join(D, 'nativ.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-    print(len(out['stilusok']), 'stílus,', len(kivett), 'deklaráció natívra')
+    print(len(out['stilusok']), 'stílus,', len(kivett), 'deklaráció natívra,', len(megtartott), 'az embedben is marad:', megtartott)
 
 if __name__ == '__main__':
     main()

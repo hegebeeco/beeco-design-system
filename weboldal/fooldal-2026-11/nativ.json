@@ -2546,31 +2546,11 @@
   ],
   [
    ".fo-velemenyek",
-   "padding"
-  ],
-  [
-   ".fo-velemenyek",
-   "display"
-  ],
-  [
-   ".fo-velemenyek",
-   "grid-template-columns"
-  ],
-  [
-   ".fo-velemenyek",
-   "gap"
-  ],
-  [
-   ".fo-fotok",
-   "display"
-  ],
-  [
-   ".fo-fotok",
    "grid-template-columns"
   ],
   [
    ".fo-fotok",
-   "gap"
+   "display"
   ],
   [
    ".fo-fotok",
@@ -2635,10 +2615,6 @@
   [
    ".fo-utak",
    "display"
-  ],
-  [
-   ".fo-utak",
-   "grid-template-columns"
   ],
   [
    ".fo-utak",
@@ -2845,14 +2821,6 @@
    "transform"
   ],
   [
-   ".fo-fotok",
-   "grid-template-columns"
-  ],
-  [
-   ".fo-fotok",
-   "gap"
-  ],
-  [
    ".fo-polaroid",
    "display"
   ],
@@ -2923,26 +2891,6 @@
   [
    ".fo-ngomb",
    "font"
-  ],
-  [
-   ".fo-velemenyek",
-   "display"
-  ],
-  [
-   ".fo-velemenyek",
-   "gap"
-  ],
-  [
-   ".fo-velemenyek",
-   "overflow-x"
-  ],
-  [
-   ".fo-velemenyek",
-   "scroll-snap-type"
-  ],
-  [
-   ".fo-velemenyek",
-   "padding"
   ],
   [
    ".fo-velemenyek",
@@ -3195,10 +3143,6 @@
   [
    ".fo-bn-gomb::after",
    "font"
-  ],
-  [
-   ".fo-utak",
-   "grid-template-columns"
   ],
   [
    ".fo-szamok",
@@ -3567,6 +3511,64 @@
   [
    ".fo-bolt-fej",
    "margin-bottom"
+  ]
+ ],
+ "megtartott": [
+  [
+   ".fo-velemenyek",
+   "padding"
+  ],
+  [
+   ".fo-velemenyek",
+   "display"
+  ],
+  [
+   ".fo-velemenyek",
+   "gap"
+  ],
+  [
+   ".fo-fotok",
+   "grid-template-columns"
+  ],
+  [
+   ".fo-fotok",
+   "gap"
+  ],
+  [
+   ".fo-utak",
+   "grid-template-columns"
+  ],
+  [
+   ".fo-fotok",
+   "grid-template-columns"
+  ],
+  [
+   ".fo-fotok",
+   "gap"
+  ],
+  [
+   ".fo-velemenyek",
+   "display"
+  ],
+  [
+   ".fo-velemenyek",
+   "gap"
+  ],
+  [
+   ".fo-velemenyek",
+   "overflow-x"
+  ],
+  [
+   ".fo-velemenyek",
+   "scroll-snap-type"
+  ],
+  [
+   ".fo-velemenyek",
+   "padding"
+  ],
+  [
+   ".fo-utak",
+   "grid-template-columns"
   ]
  ]
 }
