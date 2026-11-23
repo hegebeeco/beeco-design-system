@@ -1,0 +1,944 @@
+<title>Főoldali hero-változatok</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&family=Open+Sans:wght@400;600;700&display=swap">
+<style>
+/* Layout: toolbar, then one live hero inside a container-query frame (desktop or phone width) with the top of the next section peeking under a fold marker; below it the reasoning. Single light look: it previews the beeco.hu website skin. */
+:root{--bg:#FFF8E7;--surface:#FFFFFF;--ink:#000;--soft:#505050;--accent:#FECF39;--accent-ink:#8A6A00;--zold:#E3ECCD;--vaj:#FEEEBB;--piros:#B3261E;--lap:#E9E6DC;
+--display:"Lalezar",system-ui,sans-serif;--text:"Open Sans",system-ui,sans-serif;--ease:cubic-bezier(.23,1,.32,1);color-scheme:light}
+*{box-sizing:border-box}
+body{background:var(--lap);color:var(--ink);font:400 16px/1.55 var(--text);margin:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 56px}
+.wrap{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.fej h1{font:400 clamp(26px,4vw,36px)/1.1 var(--display);margin:0}
+.fej p{margin:4px 0 0;color:var(--soft);max-width:78ch}
+.eszk{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.eszk button{font:700 14px/1 var(--text);min-height:44px;padding:0 16px;border:2px solid var(--ink);border-radius:4px;background:var(--surface);color:var(--ink);cursor:pointer;box-shadow:3px 3px 0 var(--ink);transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.eszk button[aria-pressed="true"]{background:var(--ink);color:var(--surface);transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+
+/* ---------- the frame that stands for the browser window ---------- */
+.keret{container-type:inline-size;container-name:keret;position:relative;margin:0 auto;width:100%;max-width:1280px;transition:max-width .3s var(--ease);border:2px solid var(--ink);overflow:clip;background:var(--bg)}
+.keret.telefon{max-width:390px}
+.hajtas{position:absolute;left:0;right:0;top:900px;z-index:9;border-top:2px dashed var(--piros);pointer-events:none}
+.hajtas span{position:absolute;right:8px;top:4px;background:var(--piros);color:#fff;font:700 11px/1 var(--text);padding:5px 7px}
+.keret.telefon .hajtas{top:760px}
+.keret.nincs-hajtas .hajtas{display:none}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:var(--bg);isolation:isolate}
+.hatter{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.sejt{position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%238A6A00' stroke-opacity='.2' stroke-width='2'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%238A6A00' stroke-opacity='.2' stroke-width='2'/%3E%3C/svg%3E") 0 0/56px 100px;-webkit-mask-image:radial-gradient(ellipse 52% 78% at 76% 44%,#000 25%,transparent 78%);mask-image:radial-gradient(ellipse 52% 78% at 76% 44%,#000 25%,transparent 78%)}
+.hx{position:absolute;aspect-ratio:1/1.1547;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);animation:uszik 7s ease-in-out infinite alternate}
+.hx1{left:52%;top:7%;width:44px;background:var(--accent)}
+.hx2{left:95%;top:30%;width:56px;background:var(--zold);animation-duration:9s;animation-delay:-3s}
+.hx3{left:57%;top:47%;width:30px;background:#fff;animation-duration:8s;animation-delay:-5s}
+.hx4{left:93.5%;top:74%;width:34px;background:var(--accent);animation-duration:10s;animation-delay:-2s}
+.hx5{left:3%;top:78%;width:48px;background:var(--zold);animation-duration:9s;animation-delay:-6s}
+.hx6{left:1.5%;top:6%;width:26px;background:#fff;animation-duration:8s;animation-delay:-1s}
+@keyframes uszik{from{transform:translateY(0) rotate(0)}to{transform:translateY(-12px) rotate(8deg)}}
+.szin::before{content:"";position:absolute;left:50%;top:26px;width:430px;height:430px;margin-left:-215px;z-index:0;background:#fff;clip-path:polygon(25% 3%,75% 0,100% 48%,77% 97%,22% 100%,0 52%);transform:rotate(-8deg)}
+.nyom{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;clip-path:inset(0 0 100% 0);animation:rajzol .9s var(--ease) .3s forwards}
+@keyframes rajzol{to{clip-path:inset(0)}}
+.domb{position:absolute;left:0;right:0;bottom:-1px;height:56px;z-index:1;background:var(--surface);border-radius:50% 50% 0 0/100% 100% 0 0}
+.racs{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:32px;align-items:start;max-width:1200px;margin:0 auto;padding:24px 56px 84px}
+.szoveg{display:flex;flex-direction:column;gap:18px;min-width:0;align-self:center}
+.szalag{align-self:flex-start;background:var(--ink);color:#fff;font:700 13px/1 var(--text);padding:8px 10px;transform:rotate(-2deg)}
+.hero h2{font:400 clamp(34px,5cqi,60px)/1.06 var(--display);margin:0;text-wrap:balance}
+.hero h2 mark{background:var(--accent);color:inherit;padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.lead{font-size:18px;line-height:1.5;color:#1c1c1c;margin:0;max-width:54ch}
+.cta{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.bolt{display:flex;flex-direction:column;gap:10px}
+.gomb{display:flex;align-items:center;gap:10px;min-height:48px;width:212px;padding:0 12px;background:var(--accent);color:#000;text-decoration:none;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000;font:400 22px/1 var(--display);transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.gomb small{display:block;font:700 11px/1.1 var(--text)}
+.gomb .logo{width:26px;height:26px;flex:none;transform-origin:50% 60%;animation:billen 7s var(--ease) 2s infinite}
+.bolt .gomb:nth-child(2) .logo{animation-delay:5.5s}
+.egygomb .logo{width:22px;height:22px}.egygomb .logo+.logo{animation-delay:2.4s;margin-right:4px}
+@keyframes billen{0%,88%,100%{transform:none}91%{transform:rotate(-12deg) scale(1.12)}94%{transform:rotate(9deg) scale(1.12)}97%{transform:rotate(-4deg) scale(1.04)}}
+.gomb:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
+@media (hover:hover) and (pointer:fine){.gomb:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000}}
+.egygomb{display:none}
+.qr{width:106px;height:106px;border:2px solid #000;background:#fff;padding:5px;flex:none}
+.qr img{width:100%;height:100%;display:block}
+.bizalom{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0;padding:0;list-style:none;font:600 14px/1.3 var(--text)}
+.bizalom b{font:400 19px/1 var(--display);margin-right:4px}
+.bizalom .csillag{color:var(--accent-ink);margin-right:3px}
+/* benefit selector: looks like the app's own segmented control (active = black) */
+.haszon{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.hb{position:relative;overflow:hidden;display:flex;justify-content:center;gap:8px;align-items:center;text-align:left;min-height:48px;padding:5px 8px 8px;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;cursor:pointer;font:inherit;transition:transform .15s var(--ease),box-shadow .15s var(--ease),background-color .2s var(--ease),color .2s var(--ease)}
+.hb b{display:block;font:400 20px/1.1 var(--display)}
+.hb .le{display:block;font:400 14px/1.3 var(--text)}
+.hb .rov{display:block;font:400 17px/1.1 var(--display)}.hb .le,.hb .hossz{display:none}
+.hb[aria-pressed="true"]{background:#000;color:#fff;transform:translate(2px,2px);box-shadow:0 0 0 #000}
+.hb[aria-pressed="true"] b{color:var(--accent)}
+@media (hover:hover) and (pointer:fine){.hb:not([aria-pressed="true"]):hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #000}}
+.flekk{position:relative;width:28px;height:28px;flex:none;display:grid;place-items:center}
+.flekk::before{content:"";position:absolute;inset:0;background:#fff;clip-path:polygon(25% 3%,75% 0,100% 48%,77% 97%,22% 100%,0 52%)}
+.flekk img{position:relative;width:60%;height:60%;object-fit:contain}
+.sav{position:absolute;left:0;bottom:0;width:100%;height:4px;background:var(--accent);transform:scaleX(0);transform-origin:left}
+.hb[aria-pressed="true"] .sav{animation:halad 5s linear forwards}
+@keyframes halad{to{transform:scaleX(1)}}
+.hero.kezi .sav{animation:none}
+.hero.all .sav,.hero.all .meh,.keret:has(.hero.all) .meh2,.keret:has(.hero.all) .meh3,.hero.all .hx,.hero.all .gomb .logo,.hero:has(.vizual:hover) .sav{animation-play-state:paused}
+/* visual */
+.vizual{min-width:0;display:flex;flex-direction:column}.szin{position:relative;height:520px}
+.tel{position:absolute;left:50%;top:0;width:246px;margin-left:-123px;z-index:3}
+.kepek{position:relative}
+.kepek img{position:absolute;inset:0;width:100%;display:block;opacity:0;transition:opacity .45s var(--ease)}
+.kepek img.be{opacity:1;position:relative}
+.cimke{position:absolute;left:50%;top:438px;z-index:4;transform:translateX(-50%) rotate(-4deg);background:#000;color:#fff;display:grid;grid-template-columns:auto auto;gap:12px;align-items:center;justify-content:center;text-align:left;padding:8px 18px 6px 12px;min-width:236px;white-space:nowrap;transition:opacity .2s var(--ease)}
+.cimke b{display:block;font:400 34px/1 var(--display);text-transform:uppercase;letter-spacing:.01em}
+.cimke .cz{display:block;font:400 17px/1.15 var(--display)}
+.cimke.valt{opacity:0}
+.cimke-ik{width:48px;height:48px;transform:rotate(4deg)}
+.cimke-ik img{width:62%;height:62%}
+.meh{position:absolute;left:calc(50% + 60px);top:-8px;width:150px;z-index:5;transform:scaleX(-1);filter:drop-shadow(-2px 3px 0 rgba(0,0,0,.2));animation:lebeg 4s ease-in-out infinite alternate}
+@keyframes lebeg{from{translate:0 0}to{translate:0 8px}}
+.szunet{position:absolute;right:0;bottom:8px;z-index:6;width:44px;height:44px;border:2px solid #000;border-radius:4px;background:#fff;box-shadow:2px 2px 0 #000;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.szunet::before{content:"";width:12px;height:14px;border-left:4px solid #000;border-right:4px solid #000}
+.szunet[aria-pressed="true"]::before{width:0;height:0;border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent #000;margin-left:3px}
+/* scroll cue straddling the section edge */
+.tovabb{position:absolute;left:0;right:0;bottom:22px;z-index:4;margin-inline:auto;width:max-content;display:flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;background:#fff;color:#000;text-decoration:none;font:700 15px/1 var(--text);border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.tovabb::after{content:"↓";font-weight:700;animation:le 1.6s var(--ease) infinite}
+@keyframes le{0%,60%,100%{transform:none}30%{transform:translateY(4px)}}
+.tovabb:active{transform:translate(2px,2px);box-shadow:0 0 0 #000}
+/* next section stub */
+.kov{background:var(--surface);padding:8px 56px 44px;scroll-margin-top:64px}
+.kov-b{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.kov h3{font:400 clamp(26px,3.4cqi,40px)/1.08 var(--display);margin:0}
+.lepesek{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.lepesek li{border-top:3px dotted #000;padding-top:12px;min-width:0}
+.lepesek .sz{font:400 46px/1 var(--display)}
+.lepesek b{display:block;font:400 22px/1.1 var(--display);margin:2px 0 4px}
+.lepesek p{margin:0;font-size:15px;color:#1c1c1c}
+.megj{font-size:12px;color:var(--soft);margin:6px 0 0}
+/* phone width */
+@container (max-width:760px){
+ .racs{grid-template-columns:1fr;gap:18px;padding:24px 18px 96px}
+ .szoveg{gap:14px}
+ .hero h2{font-size:33px}
+ .lead{font-size:16px}.lead .hosszu{display:none}
+ .bolt,.qr{display:none}
+ .egygomb{display:flex;width:100%;justify-content:center;min-height:54px;font-size:24px}
+ .cta{flex-direction:column;align-items:stretch;gap:6px}
+ .apro{display:block;text-align:center;font:600 13px/1.3 var(--text);color:var(--soft)}
+ .bizalom{justify-content:center}
+ .hb{text-align:center;padding:6px 4px 8px}
+ .hb .flekk{display:none}.hb .rov{font-size:16px}
+ .szoveg{align-self:auto;gap:14px}
+ .szin{height:440px}.szin::before{width:330px;height:330px;margin-left:-165px;top:30px}
+ .sejt{-webkit-mask-image:radial-gradient(ellipse 80% 34% at 50% 66%,#000 25%,transparent 80%);mask-image:radial-gradient(ellipse 80% 34% at 50% 66%,#000 25%,transparent 80%)}
+ .hx1{left:84%;top:2%;width:30px}.hx2{left:88%;top:52%;width:36px}.hx3{left:4%;top:50%;width:22px}.hx4{left:5%;top:78%;width:26px}.hx5,.hx6{display:none}
+ .tel{width:206px;margin-left:-103px}
+ .cimke-ik{width:40px;height:40px}
+ .cimke{top:364px;min-width:200px}.cimke b{font-size:27px}.cimke .cz{font-size:15px}.cimke{gap:10px;padding:7px 14px 5px 10px}
+ .meh{width:104px;left:calc(50% + 62px);top:-14px}
+ .nyom{display:none}
+ .kov{padding:16px 18px 32px}
+ .lepesek{grid-template-columns:1fr;gap:16px}
+}
+@container (min-width:761px){.apro{display:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.nm-e{opacity:1;transform:none}.nyom{clip-path:none}.szunet,.kszunet{display:none}}
+
+/* ---------- navbar ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:2px solid #000}
+.nav-b{max-width:1200px;margin:0 auto;height:72px;padding:0 56px;display:flex;align-items:center;gap:14px;transition:height .25s var(--ease)}
+.nav.kompakt .nav-b{height:58px}
+.nav-b>*{animation:navbe .5s var(--ease) backwards}
+.nav-b>*:nth-child(2){animation-delay:.05s}.nav-b>*:nth-child(3){animation-delay:.1s}.nav-b>*:nth-child(4){animation-delay:.15s}.nav-b>*:nth-child(5){animation-delay:.2s}.nav-b>*:nth-child(6){animation-delay:.2s}
+@keyframes navbe{from{opacity:0;transform:translateY(-8px)}}
+.nav-logo{display:flex;align-items:center;flex:none;min-height:44px}
+.nav-logo img{height:34px;width:auto;display:block;transition:height .25s var(--ease),transform .25s var(--ease)}
+.nav.kompakt .nav-logo img{height:28px}
+@media (hover:hover) and (pointer:fine){.nav-logo:hover img{transform:rotate(-3deg) scale(1.05)}}
+.nav-most{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 10px;background:#fff;color:#000;text-decoration:none;font:600 13px/1 var(--text);border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;white-space:nowrap;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.nav-most b{font-weight:700}
+.nav-most .pont{width:10px;height:10px;border-radius:50%;background:var(--piros);animation:pulzal 1.4s var(--ease) 3}
+@keyframes pulzal{0%,100%{transform:none;opacity:1}50%{transform:scale(1.6);opacity:.45}}
+.nav-menu{display:flex;gap:2px;margin-left:auto}
+.nm{position:relative;flex:none}
+.nm-g{position:relative;display:flex;align-items:center;gap:6px;min-height:44px;padding:0 10px;white-space:nowrap;background:none;border:0;cursor:pointer;color:#000;font:700 15px/1 var(--text)}
+.nm-g::after{content:"";position:absolute;left:10px;right:10px;bottom:7px;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .2s var(--ease)}
+.nm.nyit .nm-g::after{transform:scaleX(1)}
+@media (hover:hover) and (pointer:fine){.nm-g:hover::after{transform:scaleX(1)}}
+.nm-g svg{width:10px;height:7px;flex:none;transition:transform .2s var(--ease)}
+.nm.nyit .nm-g svg{transform:rotate(180deg)}
+.nm-p{position:absolute;top:calc(100% + 12px);left:-12px;width:540px;display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:10px;background:var(--bg);border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s var(--ease),transform .18s var(--ease),visibility 0s .18s}
+.nm-p::before{content:"";position:absolute;left:0;right:0;top:-16px;height:16px}
+.nm:nth-last-child(-n+2) .nm-p{left:auto;right:-12px}
+.nm.nyit .nm-p{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.nm-e{display:grid;grid-template-columns:36px minmax(0,1fr);gap:10px;align-items:center;padding:8px;min-height:52px;color:#000;text-decoration:none;border-radius:4px;opacity:0;transform:translateY(4px);transition:opacity .2s var(--ease),transform .2s var(--ease),background-color .15s var(--ease)}
+.nm.nyit .nm-e{opacity:1;transform:none;transition-delay:calc(var(--i)*25ms),calc(var(--i)*25ms),0s}
+.nm-e b{display:block;font:400 18px/1.1 var(--display)}
+.nm-e .l{display:block;font:400 13px/1.3 var(--text);color:var(--soft)}
+.nm-e .flekk{width:36px;height:36px}
+.nm-e .uj{display:inline-block;margin-left:6px;background:#000;color:#fff;font:700 10px/1 var(--text);padding:3px 5px;vertical-align:middle;transform:rotate(-3deg)}
+@media (hover:hover) and (pointer:fine){.nm-e:hover{background:#fff}}
+.nav-bolt,.nav-cta{display:flex;align-items:center;min-height:44px;padding:0 14px;background:#fff;color:#000;text-decoration:none;font:400 19px/1 var(--display);border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;white-space:nowrap;transition:transform .15s var(--ease),box-shadow .15s var(--ease),background-color .25s var(--ease)}
+.nav-cta{font-size:21px;box-shadow:3px 3px 0 #000}
+.nav.lent .nav-cta{background:var(--accent);animation:figyel .5s var(--ease)}
+@keyframes figyel{0%{transform:none}40%{transform:rotate(-3deg) scale(1.08)}70%{transform:rotate(2deg) scale(1.04)}100%{transform:none}}
+.nav-bolt:active,.nav-cta:active,.nav-most:active,.nav-ham:active{transform:translate(2px,2px);box-shadow:0 0 0 #000}
+@media (hover:hover) and (pointer:fine){.nav-bolt:hover,.nav-cta:hover,.nav-most:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #000}}
+.nav-ham{display:none;position:relative;flex:none;width:44px;height:44px;padding:0;background:#fff;border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;cursor:pointer;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.nav-ham span,.nav-ham span::before,.nav-ham span::after{position:absolute;left:50%;width:20px;height:3px;margin-left:-10px;background:#000;transition:transform .25s var(--ease),opacity .15s var(--ease)}
+.nav-ham span{top:50%;margin-top:-1.5px}
+.nav-ham span::before,.nav-ham span::after{content:"";left:0;margin-left:0}
+.nav-ham span::before{top:-7px}.nav-ham span::after{top:7px}
+.nav.menu-nyit .nav-ham span{background:transparent}
+.nav.menu-nyit .nav-ham span::before{transform:translateY(7px) rotate(45deg)}
+.nav.menu-nyit .nav-ham span::after{transform:translateY(-7px) rotate(-45deg)}
+.mobilmenu{display:none}
+.mm-g{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:52px;padding:0 18px;background:none;border:0;border-bottom:1px solid #0002;cursor:pointer;color:#000;font:400 22px/1 var(--display);text-align:left}
+.mm-g svg{width:12px;height:8px;transition:transform .2s var(--ease)}
+.mm-g[aria-expanded="true"] svg{transform:rotate(180deg)}
+.mm-l{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease)}
+.mm-g[aria-expanded="true"]+.mm-l{grid-template-rows:1fr}
+.mm-l>div{overflow:hidden;min-height:0;background:#fff}
+.mm-l a{display:flex;align-items:center;min-height:44px;padding:0 18px 0 30px;color:#000;text-decoration:none;font:600 15px/1.2 var(--text);border-bottom:1px solid #0001}
+.mm-also{display:flex;gap:10px;padding:14px 18px 18px}
+.mm-also a{flex:1;justify-content:center;white-space:nowrap}.mm-also .gomb{flex:2;min-height:44px;font-size:19px}
+@container (max-width:1180px){.nav-most{display:none}}
+@container (max-width:1020px){.nav-bolt{display:none}.nav-b{padding:0 24px}}
+@container (max-width:900px){
+ .nav-menu{display:none}.nav-ham{display:block}.nav-cta{margin-left:auto}
+ .nav-b,.nav.kompakt .nav-b{height:60px;padding:0 14px;gap:10px}
+ .nav-logo img,.nav.kompakt .nav-logo img{height:28px}
+ .mobilmenu{display:grid;grid-template-rows:0fr;position:absolute;left:0;right:0;top:100%;background:var(--bg);transition:grid-template-rows .35s var(--ease);visibility:hidden}
+ .mobilmenu>div{overflow:hidden;min-height:0}
+ .nav.menu-nyit .mobilmenu{grid-template-rows:1fr;visibility:visible;border-bottom:2px solid #000;box-shadow:0 4px 0 #000}
+}
+/* text button under the benefit buttons */
+.tobb{align-self:center;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 8px;margin-top:2px;color:#000;font:400 19px/1 var(--display);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em;text-decoration-color:var(--accent-ink)}
+.tobb::after{content:"→";font-family:var(--text);font-weight:700;transition:transform .2s var(--ease)}
+@media (hover:hover) and (pointer:fine){.tobb:hover{text-decoration-thickness:3px}.tobb:hover::after{transform:translateX(4px)}}
+
+/* ---------- page sections ---------- */
+.szk{position:relative;background:var(--h,#fff);padding:28px 56px 112px}
+.szk-b{max-width:1200px;margin:0 auto}
+.szk .domb{background:var(--kov,#fff)}
+#kov{scroll-margin-top:64px}
+.szf{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:26px}
+.szk h3{font:400 clamp(30px,3.8cqi,48px)/1.1 var(--display);margin:0;text-wrap:balance;max-width:22ch}
+.szk .bev{font-size:17px;line-height:1.5;margin:0;max-width:58ch}
+.szalag.vil{background:var(--accent);color:#000}
+.ketto{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center}
+.ketto.ford .kep{order:-1}
+.ketto .szf{margin-bottom:18px}
+.kep{position:relative;height:500px}
+.kep::before{content:"";position:absolute;left:50%;top:40px;width:400px;height:400px;margin-left:-200px;background:#fff;clip-path:polygon(25% 3%,75% 0,100% 48%,77% 97%,22% 100%,0 52%);transform:rotate(-8deg)}
+.ford .kep::before{transform:rotate(172deg)}
+.kep>img.t{position:absolute;left:50%;top:0;width:236px;margin-left:-118px;display:block}
+.pontok{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:12px}
+.pontok li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:center;font-size:15px;line-height:1.4}
+.pontok b{display:block;font:400 20px/1.15 var(--display)}
+.idezet{margin:0 0 20px;padding:2px 0 2px 16px;border-left:4px solid #000;font-size:16px;max-width:52ch}
+.idezet cite{display:block;margin-top:4px;font:700 13px/1.3 var(--text);font-style:normal}
+.sor{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.gm{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;background:#fff;color:#000;text-decoration:none;font:400 19px/1 var(--display);border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.gm:active{transform:translate(2px,2px);box-shadow:0 0 0 #000}
+@media (hover:hover) and (pointer:fine){.gm:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #000}}
+.szl{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:inherit;font:700 15px/1.2 var(--text);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em}
+.szl::after{content:"→";transition:transform .2s var(--ease)}
+@media (hover:hover) and (pointer:fine){.szl:hover::after{transform:translateX(4px)}}
+/* footprint: short vs detailed switch */
+.valto{display:inline-grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.valto button{min-height:44px;padding:0 14px;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;cursor:pointer;font:400 18px/1 var(--display);white-space:nowrap;transition:transform .15s var(--ease),box-shadow .15s var(--ease),background-color .2s var(--ease)}
+.valto button[aria-pressed="true"]{background:#000;color:var(--accent);transform:translate(2px,2px);box-shadow:0 0 0 #000}
+.valto-sz{margin:0 0 16px;font-size:16px;min-height:3em;max-width:52ch}
+.jelek{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-wrap:wrap;gap:8px 20px}
+.jelek li{display:flex;align-items:center;gap:8px;font:400 19px/1 var(--display)}
+.jelek .flekk{width:34px;height:34px}
+.varosok{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.varosok a{display:flex;align-items:center;min-height:44px;padding:0 12px;background:#fff;color:#000;text-decoration:none;font:700 14px/1 var(--text);border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.varosok a:active{transform:translate(2px,2px);box-shadow:0 0 0 #000}
+/* numbers */
+.szam{color:#fff}
+.szam .bev{color:#fffd}
+.szamok{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px 24px}
+.szamok b{display:block;font:400 clamp(34px,4.4cqi,58px)/1 var(--display);color:var(--accent);font-variant-numeric:tabular-nums}
+.szamok li>span:last-child{display:block}.szamok li>span:last-child>span{display:block;margin-top:4px;font:600 15px/1.3 var(--text)}
+.forras{margin:22px 0 0;font-size:13px;color:#fffb}
+/* reviews: square, no shadow (not clickable) */
+.velemenyek{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.velemenyek li{display:flex;flex-direction:column;gap:8px;padding:16px;background:#fff;border:2px solid #000}
+.velemenyek .cs{color:var(--accent-ink);letter-spacing:2px;font-size:15px}
+.velemenyek blockquote{margin:0;font-size:16px;line-height:1.45}
+.velemenyek cite{margin-top:auto;font:700 13px/1.3 var(--text);font-style:normal}
+/* community photos */
+.fotok{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;margin:8px 0 30px}
+.polaroid{position:relative;margin:0;padding:8px 8px 6px;background:#fff;border:2px solid #000;transform:rotate(var(--d,-2deg))}
+.polaroid::before{content:"";position:absolute;left:50%;top:-11px;width:72px;height:22px;margin-left:-36px;background:rgba(254,207,57,.88);transform:rotate(-3deg)}
+.polaroid img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.polaroid figcaption{padding-top:6px;text-align:center;font:400 18px/1.2 var(--display)}
+.kamp{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:14px;align-items:center;max-width:760px;padding:14px 16px;background:#fff;color:#000;text-decoration:none;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.kamp .flekk{width:52px;height:52px;background:none}.kamp .flekk::before{background:var(--bg)}
+.kamp b{display:block;font:400 22px/1.1 var(--display)}
+.kamp .l{font-size:15px}
+.kamp .ny,.ut .ny{font:700 15px/1 var(--text);white-space:nowrap}
+.kamp:active,.ut:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
+@media (hover:hover) and (pointer:fine){.kamp:hover,.ut:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000}}
+.utak{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.ut{display:flex;flex-direction:column;gap:8px;padding:16px;background:#fff;color:#000;text-decoration:none;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.ut .flekk{width:44px;height:44px;background:none}
+.ut .flekk::before{background:var(--bg)}
+.ut b{font:400 22px/1.1 var(--display)}
+.ut .l{font-size:15px;line-height:1.4}
+.ut .ny{margin-top:auto;padding-top:6px}
+/* logos: monochrome, no frames */
+.logocim{margin:0 0 10px;font:400 20px/1.1 var(--display)}
+.logosor{list-style:none;margin:0 0 26px;padding:0;display:flex;flex-wrap:wrap;gap:10px 34px;align-items:center}
+.logosor a{display:flex;align-items:center;min-height:48px}
+.logosor img{display:block;height:38px;width:auto;max-width:150px;object-fit:contain;filter:grayscale(1) contrast(1.05);mix-blend-mode:multiply;opacity:.78;transition:filter .2s var(--ease),opacity .2s var(--ease)}
+@media (hover:hover) and (pointer:fine){.logosor a:hover img{filter:none;opacity:1}}
+.logosor a:focus-visible img{filter:none;opacity:1}
+/* FAQ */
+.gyik{display:grid;gap:10px;max-width:820px}
+.gyik details{background:#fff;border:2px solid #000;border-radius:4px;box-shadow:3px 3px 0 #000}
+.gyik summary{position:relative;display:flex;align-items:center;min-height:52px;padding:10px 52px 10px 16px;cursor:pointer;list-style:none;font:400 20px/1.2 var(--display)}
+.gyik summary::-webkit-details-marker{display:none}
+.gyik summary::after{content:"+";position:absolute;right:18px;top:50%;margin-top:-14px;font:700 26px/1 var(--text);transition:transform .2s var(--ease)}
+.gyik details[open] summary::after{transform:rotate(45deg)}
+.gyik details p{margin:0;padding:0 16px 16px;font-size:16px;max-width:66ch}
+.gyik summary:focus-visible{outline:3px solid #000;outline-offset:3px}
+/* closing */
+.zaro .sejt{-webkit-mask-image:radial-gradient(ellipse 50% 80% at 76% 50%,#000 25%,transparent 78%);mask-image:radial-gradient(ellipse 50% 80% at 76% 50%,#000 25%,transparent 78%)}
+.kerdesek{list-style:none;margin:0 0 4px;padding:0;display:flex;flex-wrap:wrap;gap:10px 12px}
+.kerdesek li{background:#000;color:#fff;font:400 17px/1 var(--display);padding:8px 10px 5px;transform:rotate(var(--d,-2deg))}
+.zaro .kep .meh2{position:absolute;left:calc(50% + 70px);top:6px;width:140px;transform:scaleX(-1);filter:drop-shadow(-2px 3px 0 rgba(0,0,0,.2));animation:lebeg 4s ease-in-out infinite alternate}
+.lablec{background:#000;color:#fff;padding:22px 56px;font:600 13px/1.4 var(--text)}
+/* nav: scroll progress */
+.halad{position:absolute;left:0;right:0;bottom:-2px;height:4px;background:var(--accent);transform:scaleX(0);transform-origin:left;pointer-events:none}
+@container (max-width:1000px){.utak{grid-template-columns:repeat(2,minmax(0,1fr))}.fotok{grid-template-columns:repeat(2,minmax(0,1fr))}.szamok{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container (max-width:760px){
+ .szk{padding:20px 18px 92px}
+ .szf{margin-bottom:18px}
+ .ketto{grid-template-columns:1fr;gap:20px}
+ .ketto.ford .kep{order:0}
+ .kep{height:420px}.kep::before{width:320px;height:320px;margin-left:-160px;top:36px}
+ .kep>img.t{width:196px;margin-left:-98px}
+ .velemenyek{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;margin-right:-18px;padding-right:18px}
+ .velemenyek li{flex:0 0 82%;scroll-snap-align:start}
+ .fotok{gap:16px}
+ .kamp{grid-template-columns:44px minmax(0,1fr)}.kamp .ny{grid-column:2}.kamp .flekk{width:44px;height:44px}
+ .utak{grid-template-columns:1fr}
+ .logosor{gap:6px 22px}.logosor img{height:30px;max-width:110px}
+ .zaro .kep .meh2{width:100px;left:calc(50% + 56px)}
+ .lablec{padding:18px}
+}
+
+/* ---------- navbar alternatives (desktop widths only; phones share one bar) ---------- */
+.eszk-c{font:700 14px/1 var(--text)}
+.navle{margin:0;padding:12px 16px;background:var(--surface);border:2px solid var(--ink);font-size:15px;max-width:none}
+.navle b{font-weight:700}
+.nm-k,.nav-felso{display:none}
+@container (min-width:901px){
+ /* B: mega menu */
+ .nav[data-nv="B"] .nav-b{position:relative}
+ .nav[data-nv="B"] .nm{position:static}
+ .nav[data-nv="B"] .nm-p{left:56px;right:56px;width:auto;top:calc(100% + 4px);grid-template-columns:repeat(3,minmax(0,1fr)) 270px;gap:4px 8px;padding:16px}
+ .nav[data-nv="B"] .nm-p::before{top:-22px;height:22px}
+ .nav[data-nv="B"] .nm-k{grid-column:4;grid-row:1/span 2;display:flex;flex-direction:column;gap:8px;justify-content:space-between;align-items:flex-start;padding:14px;min-height:124px;background:#fff;color:#000;text-decoration:none;border:2px solid #000;border-radius:4px;box-shadow:3px 3px 0 #000;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+ .nm-k b{font:400 22px/1.1 var(--display)}
+ .nm-k .l{font-size:14px;line-height:1.35}
+ .nm-k .ny{font:700 14px/1 var(--text)}
+ .nm-k .qrk{display:flex;gap:12px;align-items:center}
+ .nm-k .qrk img{width:72px;height:72px;border:2px solid #000;padding:3px;background:#fff}
+ .nm-k:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
+ /* C: floating bar */
+ .nav[data-nv="C"]{background:transparent;border-bottom:0;padding:10px 24px 0}
+ .nav[data-nv="C"] .nav-b{max-width:1150px;height:60px;padding:0 14px;background:#fff;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000}
+ .nav[data-nv="C"].kompakt .nav-b{height:54px}
+ .nav[data-nv="C"] .nav-most{display:none}
+ .nav[data-nv="C"] .halad{top:0;bottom:auto}
+ .nav[data-nv="C"] .nm-p{top:calc(100% + 16px)}
+ .nav[data-nv="C"] .nm-p::before{top:-20px;height:20px}
+ /* D: two rows with an audience strip */
+ .nav[data-nv="D"] .nav-felso{display:grid;grid-template-rows:1fr;background:#000;color:#fff;transition:grid-template-rows .25s var(--ease)}
+ .nav[data-nv="D"].kompakt .nav-felso{grid-template-rows:0fr}
+ .nav-felso-k{overflow:hidden;min-height:0}
+ .nav-felso-b{max-width:1200px;margin:0 auto;padding:0 56px;display:flex;align-items:center;gap:2px}
+ .nf{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 12px;color:#fff;text-decoration:none;font:600 13px/1 var(--text);white-space:nowrap}
+ .nf.akt{background:var(--accent);color:#000;font-weight:700}
+ .nf .pont{width:9px;height:9px;border-radius:50%;background:var(--accent)}
+ .nf-jobb{margin-left:auto;display:flex}
+ .nf:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+ .nav[data-nv="D"] .nav-most,.nav[data-nv="D"] .nav-bolt,.nav[data-nv="D"] .nm:nth-child(4){display:none}
+ .nav[data-nv="D"] .nav-cta{margin-left:14px}
+}
+@container (min-width:901px){@media (hover:hover) and (pointer:fine){.nf:not(.akt):hover{text-decoration:underline;text-underline-offset:.25em}.nm-k:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #000}}}
+
+/* ---------- understanding → action → reward: function switcher ---------- */
+.lepesek a{color:inherit;text-decoration:none;display:block}
+.fv{display:grid;gap:10px;margin:0 0 18px;max-width:560px}
+.fvb{position:relative;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:center;text-align:left;min-height:56px;padding:8px 12px;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;cursor:pointer;font:inherit;transition:transform .15s var(--ease),box-shadow .15s var(--ease),background-color .2s var(--ease),color .2s var(--ease)}
+.fvb b{display:block;font:400 20px/1.15 var(--display)}
+.fvb .le{display:block;font:400 14px/1.35 var(--text)}
+.fvb[aria-pressed="true"]{background:#000;color:#fff;transform:translate(2px,2px);box-shadow:0 0 0 #000}
+.fvb[aria-pressed="true"] b{color:var(--accent)}
+@media (hover:hover) and (pointer:fine){.fvb:not([aria-pressed="true"]):hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #000}}
+.kep>img.t.tv{opacity:0;transition:opacity .35s var(--ease)}
+.kep>img.t.tv.be{opacity:1}
+.megj-sor{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:center;margin:0 0 18px;font-size:15px;max-width:560px}
+.megj-sor a{color:inherit;font-weight:700}
+.lepszam{display:inline-grid;place-items:center;width:26px;height:26px;margin-right:6px;background:var(--accent);color:#000;font:400 17px/1 var(--display);transform:rotate(2deg)}
+/* numbers: pictograms, honeycomb, entrance */
+.szam .hatter .sejt{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%23fff' stroke-opacity='.09' stroke-width='2'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%23fff' stroke-opacity='.09' stroke-width='2'/%3E%3C/svg%3E");-webkit-mask-image:linear-gradient(100deg,transparent 30%,#000 90%);mask-image:linear-gradient(100deg,transparent 30%,#000 90%)}
+.szam .szk-b{position:relative}
+.szam .meh3{position:absolute;right:0;top:-6px;width:150px;transform:scaleX(-1);filter:drop-shadow(-2px 3px 0 rgba(0,0,0,.35));animation:lebeg 4s ease-in-out infinite alternate}
+.szamok li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:14px;align-items:center}
+.szamok .flekk{width:56px;height:56px;transform:rotate(var(--r,-4deg))}
+.szamok li:nth-child(even) .flekk{--r:5deg}
+.szamok.var li{opacity:0}
+.szamok.lat li{animation:szambe .5s var(--ease) backwards;animation-delay:calc(var(--i)*70ms)}
+.szamok.lat .flekk{animation:pikobe .55s var(--ease) backwards;animation-delay:calc(var(--i)*70ms + 80ms)}
+@keyframes szambe{from{opacity:0;transform:translateY(14px)}}
+@keyframes pikobe{from{transform:scale(.4) rotate(-30deg)}}
+@container (max-width:760px){.fvb{min-height:52px}.szam .meh3{width:92px;top:-4px}.szamok li{grid-template-columns:44px minmax(0,1fr);gap:10px}.szamok .flekk{width:44px;height:44px}}
+
+/* ---------- photos: 8 clickable polaroids + viewer ---------- */
+.fotok{grid-template-columns:repeat(4,minmax(0,1fr));gap:26px 22px}
+button.polaroid{display:block;width:100%;font:inherit;color:inherit;text-align:left;cursor:zoom-in;box-shadow:3px 3px 0 #000;transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+button.polaroid figcaption,button.polaroid .fc{display:block;padding-top:6px;text-align:center;font:400 18px/1.2 var(--display)}
+button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(2px,2px);box-shadow:1px 1px 0 #000}
+@media (hover:hover) and (pointer:fine){button.polaroid:hover{transform:rotate(0deg) scale(1.03);box-shadow:5px 5px 0 #000;z-index:2}}
+.nezo{width:min(1000px,calc(100vw - 24px));max-height:calc(100vh - 24px);padding:0;border:2px solid #000;border-radius:4px;background:#fff;color:#000;box-shadow:6px 6px 0 #000;overflow:hidden}
+.nezo::backdrop{background:rgba(0,0,0,.72)}
+.nezo[open]{animation:nezobe .2s var(--ease)}
+@keyframes nezobe{from{opacity:0;transform:scale(.96)}}
+.nezo-kep{display:block;width:100%;max-height:calc(100vh - 150px);object-fit:contain;background:#111}
+.nezo-lab{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:10px 12px}
+.nezo-lab b{font:400 20px/1.2 var(--display)}
+.nezo-lab .hol{font:700 13px/1 var(--text);color:var(--soft);font-variant-numeric:tabular-nums}
+.ngomb{display:grid;place-items:center;width:44px;height:44px;padding:0;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;cursor:pointer;font:700 20px/1 var(--text);transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.ngomb:active{transform:translate(2px,2px);box-shadow:0 0 0 #000}
+.nezo-zar{position:absolute;right:10px;top:10px;z-index:2}
+/* reviews: one scrolling row */
+.velemenyek{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 2px 14px;scrollbar-width:thin;scrollbar-color:#000 transparent}
+.velemenyek li{flex:0 0 340px;scroll-snap-align:start}
+.velemenyek:focus-visible{outline:3px solid #000;outline-offset:4px}
+.vel-fej{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.vel-nyil{display:flex;gap:8px;margin-bottom:26px}
+@container (max-width:760px){.fotok{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px}.velemenyek li{flex:0 0 82%}.vel-nyil{display:none}.nezo-lab{grid-template-columns:minmax(0,1fr) auto auto}.nezo-lab .hol{display:none}}
+@media (prefers-reduced-motion:reduce){.velemenyek{scroll-behavior:auto}}
+
+/* ---------- notes under the frame ---------- */
+.ket{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.ket>*{min-width:0}
+.panel{background:var(--surface);border:2px solid var(--ink);padding:16px 20px}
+.panel h2{font:400 24px/1.1 var(--display);margin:0 0 8px}
+.panel ol,.panel ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;max-width:72ch}
+.panel b{font-weight:700}
+
+/* ---------- campaign banner right under the hero ---------- */
+.bansav{position:relative;z-index:3;background:#fff;padding:2px 56px 6px}
+.banner{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px 26px;align-items:center;max-width:1200px;margin:0 auto;padding:14px 20px 14px 148px;background:var(--vaj);color:#000;text-decoration:none;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.banner:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
+.bn-meh{position:absolute;left:16px;bottom:6px;width:116px;height:auto;filter:drop-shadow(2px 3px 0 rgba(0,0,0,.2));transition:transform .2s var(--ease)}
+.bn-logo{display:block;height:64px;width:auto}
+.bn-sz{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0}
+.bn-most{display:inline-flex;align-items:center;gap:7px;background:#000;color:#fff;font:700 12px/1 var(--text);letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;transform:rotate(-2deg)}
+.bn-most .pont{width:9px;height:9px;border-radius:50%;background:var(--accent);animation:pulzal 1.4s var(--ease) 3}
+.bn-sz .l{font-size:16px;line-height:1.4;max-width:54ch}
+.bn-gomb{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;background:#000;color:#fff;font:400 19px/1 var(--display);border-radius:4px;white-space:nowrap}
+.bn-gomb::after{content:"→";font:700 16px/1 var(--text);transition:transform .2s var(--ease)}
+@media (hover:hover) and (pointer:fine){.banner:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000}.banner:hover .bn-meh{transform:translateY(-4px) rotate(-4deg)}.banner:hover .bn-gomb::after{transform:translateX(4px)}}
+@container (max-width:1000px){.banner{grid-template-columns:auto minmax(0,1fr);padding-left:132px}.bn-gomb{grid-column:1/-1;justify-self:start}.bn-meh{width:100px;bottom:auto;top:-22px}}
+@container (max-width:760px){
+ .bansav{padding:0 18px 4px}
+ .banner{grid-template-columns:64px minmax(0,1fr);gap:10px 12px;padding:12px 14px 14px}
+ .bn-meh{position:static;width:64px}
+ .bn-logo{height:46px}
+ .bn-sz{grid-column:1/-1}
+ .bn-gomb{justify-self:stretch;justify-content:center}
+}
+/* next steps: three cards */
+.utak{grid-template-columns:repeat(3,minmax(0,1fr))}
+@container (max-width:1000px){.utak{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@container (max-width:760px){.utak{grid-template-columns:1fr}}
+
+/* ---------- 2026-11-23 round: nine comments ---------- */
+/* numbers: smaller */
+.szamok b{font-size:clamp(26px,3cqi,40px)}
+.szamok{gap:26px 24px}
+.szamok li{grid-template-columns:48px minmax(0,1fr);gap:12px}
+.szamok .flekk{width:48px;height:48px}
+/* step number box: tilted like the label */
+.lepszam{transform:rotate(-7deg)}
+/* closing: compact store buttons of equal size */
+.zaro .bolt{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:max-content;max-width:100%}
+.zaro .bolt .gomb{width:auto;min-height:48px;padding:0 16px;justify-content:center;font-size:20px;white-space:nowrap}
+.zaro .bolt .gomb .logo{width:22px;height:22px}
+/* closing: tilted phone with a sticker-like shadow */
+.zaro .kep>img.t{transform:rotate(6deg);filter:drop-shadow(9px 10px 0 rgba(0,0,0,.2))}
+/* closing: the four questions roll one after another, top to bottom */
+.kerd-sor{display:flex;align-items:center;gap:6px;width:100%;max-width:560px}
+.kszunet{flex:none;order:-1;margin-left:-8px;display:none;place-items:center;width:44px;height:44px;padding:0;background:none;border:0;cursor:pointer}
+.kszunet::before{content:"";box-sizing:border-box;width:30px;height:30px;border:2px solid #000;border-radius:4px;background:#fff;box-shadow:2px 2px 0 #000}
+.kszunet::after{content:"";position:absolute;left:50%;top:50%;box-sizing:border-box;width:10px;height:11px;margin:-5.5px 0 0 -5px;border-left:3px solid #000;border-right:3px solid #000}
+.kszunet[aria-pressed="true"]::after{width:0;height:0;margin:-6px 0 0 -3px;border-style:solid;border-width:6px 0 6px 9px;border-color:transparent transparent transparent #000}
+.kszunet{position:relative}
+.kszunet:focus-visible{outline:3px solid #000;outline-offset:-4px}
+@media (prefers-reduced-motion:no-preference){
+ .kszunet{display:grid}
+ .kerdesek.gor{position:relative;flex:1 1 auto;display:block;height:50px;margin:0;overflow:hidden}
+ .kerdesek.gor li{position:absolute;left:6px;top:9px;max-width:calc(100% - 12px);font-size:22px;padding:9px 12px 6px;opacity:0;animation:gordul 11.2s var(--ease) infinite;animation-delay:calc(var(--k)*2.8s)}
+ .kerdesek.gor:hover li{animation-play-state:paused}
+}
+@keyframes gordul{0%{opacity:0;translate:0 -130%}3.6%,25%{opacity:1;translate:0 0}28.6%,100%{opacity:0;translate:0 130%}}
+@container (max-width:760px){
+ .zaro .bolt{display:none}
+ .szamok b{font-size:22px;white-space:nowrap}
+ .szamok{gap:22px 14px}
+ .szamok li{grid-template-columns:40px minmax(0,1fr);gap:9px}
+ .szamok .flekk{width:40px;height:40px}
+ .szamok li>span:last-child>span{font-size:14px;hyphens:auto;overflow-wrap:break-word}
+ .kerdesek.gor{height:74px}
+ .kerdesek.gor li{font-size:19px;line-height:1.15;top:8px}
+ .zaro .kep>img.t{filter:drop-shadow(7px 8px 0 rgba(0,0,0,.2))}
+}
+/* FAQ: the form of the current home page (DS · GYIK) */
+.gyik-racs{display:grid;grid-template-columns:minmax(0,.6fr) minmax(0,1fr);gap:32px 48px;align-items:start}
+.gyik-fej{position:sticky;top:96px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.gyik-fej .lead{margin:0;font-size:20px;line-height:1.55;color:var(--soft)}
+.gyik-tovabb{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-top:26px}
+.gyik-tovabb p{margin:0;color:var(--soft)}
+.gyik{display:grid;gap:12px;max-width:none}
+.gyik details{background:#fff;border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000}
+.gyik summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 16px 12px 20px;font:700 16px/1.35 var(--text)}
+.gyik summary::after{content:"";position:static;flex:none;width:30px;height:30px;margin:0;border:1px solid #000;border-radius:50%;background:linear-gradient(#000,#000) 50% 50%/12px 2px no-repeat,linear-gradient(#000,#000) 50% 50%/2px 12px no-repeat,var(--accent);transition:transform .2s var(--ease)}
+.gyik details[open] summary::after{transform:rotate(45deg)}
+.gyik details p{padding:0 20px 18px;font-size:16px;line-height:1.6;color:var(--soft);max-width:60ch}
+@container (max-width:900px){.gyik-racs{grid-template-columns:1fr}.gyik-fej{position:static}.gyik-fej .lead{font-size:17px}.gyik-tovabb{margin-top:6px}}
+/* logo rows: one row first, the rest opens on demand */
+.logosor:not(.nyitva) li:nth-child(n+6):not(.logo-gomb){display:none}
+.logo-gomb{margin:0}
+.logotobb{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;background:#fff;color:#000;font:700 14px/1 var(--text);border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;cursor:pointer;white-space:nowrap;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.logotobb::after{content:"";width:8px;height:8px;border-right:2px solid #000;border-bottom:2px solid #000;transform:translateY(-2px) rotate(45deg);transition:transform .2s var(--ease)}
+.logotobb[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
+.logotobb:active{transform:translate(2px,2px);box-shadow:0 0 0 #000}
+@media (hover:hover) and (pointer:fine){.logotobb:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #000}}
+.logosor.nyitva li:nth-child(n+6):not(.logo-gomb){animation:szambe .3s var(--ease) backwards}
+@container (max-width:760px){.logosor:not(.nyitva) li:nth-child(n+4):not(.logo-gomb){display:none}.logosor.nyitva li:nth-child(n+4):not(.logo-gomb){animation:szambe .3s var(--ease) backwards}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.koz-alul{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center}
+.koz-alul p{margin:0;font-size:17px;line-height:1.5;max-width:44ch}
+.fotok{margin-bottom:34px}
+
+/* ---------- chosen navbar C: yellow CTA with a nudge, hide on scroll down ---------- */
+.nav[data-nv="C"]{transition:transform .3s var(--ease)}
+.nav[data-nv="C"].rejt{transform:translateY(calc(-100% - 14px))}
+.nav[data-nv="C"] .nav-cta{background:var(--accent);animation:biccent 7s var(--ease) 3s infinite;transform-origin:50% 70%}
+.nav[data-nv="C"] .nav-cta:hover,.nav[data-nv="C"] .nav-cta:focus-visible{animation:none}
+@keyframes biccent{0%,86%,100%{transform:none}89%{transform:rotate(-5deg) scale(1.06)}92%{transform:rotate(4deg) scale(1.06)}95%{transform:rotate(-2deg) scale(1.02)}}
+.keret:has(.hero.all) .nav-cta{animation-play-state:paused}
+/* ---------- beebolt ---------- */
+.termekek{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;max-width:780px}
+.termek{display:flex;flex-direction:column;gap:6px;padding:12px 12px 16px;background:#fff;color:#000;text-decoration:none;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.termek img{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:var(--bg);margin-bottom:6px}
+.termek b{font:400 21px/1.15 var(--display)}
+.termek .ar{font:700 15px/1 var(--text);font-variant-numeric:tabular-nums}
+.termek:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
+@media (hover:hover) and (pointer:fine){.termek:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000}}
+.bolt-fej{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 28px;flex-wrap:wrap;margin-bottom:26px}
+.bolt-fej .szf{margin-bottom:0}
+@container (max-width:760px){.termekek{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.termek{padding:8px 8px 10px}.termek b{font-size:16px}.termek .ar{font-size:13px}}
+@container (max-width:420px){.termekek{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin-right:-18px;padding:2px 18px 10px 2px}.termek{flex:0 0 62%;scroll-snap-align:start}}
+</style>
+
+<div class="wrap">
+<div class="fej">
+<h1>Főoldal: hero és a teljes oldal</h1>
+<p>A teljes főoldal terve egy ívben: a hero ígér, alatta minden szekció egy kérdésre válaszol, és mind a letöltés felé visz. A képernyők a 2026-11-18-i tervek (mintaadat), a számok, a vélemények, a logók és a GYIK a mostani főoldalról valók. A piros vonal azt mutatja, meddig lát a látogató görgetés nélkül.</p>
+</div>
+<div class="eszk" role="group" aria-label="Nézet és szöveg">
+<button type="button" id="nezet" aria-pressed="false">Telefonos nézet</button>
+<button type="button" id="cimvalto" aria-pressed="true">Javasolt cím</button>
+<button type="button" id="hajtasvalto" aria-pressed="true">Hajtásvonal</button>
+</div>
+<div class="eszk" role="group" aria-label="Navbar-változat">
+<span class="eszk-c">Navbar:</span>
+<button type="button" data-nv="A" aria-pressed="false">A · Lenyíló</button>
+<button type="button" data-nv="B" aria-pressed="false">B · Mega menü</button>
+<button type="button" data-nv="C" aria-pressed="true">C · Lebegő sáv (választva)</button>
+<button type="button" data-nv="D" aria-pressed="false">D · Kétsoros</button>
+</div>
+<p class="navle" id="navle"></p>
+
+<div class="keret" id="keret">
+<div class="hajtas" aria-hidden="true"><span id="hajtasfelirat">eddig látszik görgetés nélkül (1440 × 900)</span></div>
+<header class="nav" id="nav" data-nv="A">
+<div class="nav-felso"><div class="nav-felso-k"><div class="nav-felso-b">
+<a class="nf akt" href="https://www.beeco.hu/" target="_blank" rel="noopener" aria-current="page">Magánszemélyeknek</a><a class="nf" href="https://www.beeco.hu/szolgaltatas/cegeknek" target="_blank" rel="noopener">Cégeknek</a><a class="nf" href="https://www.beeco.hu/szolgaltatas/onkormanyzatoknak" target="_blank" rel="noopener">Önkormányzatoknak</a><a class="nf" href="https://www.beeco.hu/szolgaltatas/partner" target="_blank" rel="noopener">Zöld vállalkozásoknak</a>
+<span class="nf-jobb"><a class="nf" href="https://www.beeco.hu/kampanyok/csicsergosz" target="_blank" rel="noopener"><span class="pont" aria-hidden="true"></span>Most fut: CsicsergŐsz</a><a class="nf" href="https://www.beeco.hu/beebolt" target="_blank" rel="noopener">beebolt</a></span>
+</div></div></div>
+<div class="nav-b">
+<a class="nav-logo" href="https://www.beeco.hu/" target="_blank" rel="noopener" aria-label="beeco főoldal"><img src="a/logo.svg" alt="beeco"></a>
+<a class="nav-most" href="https://www.beeco.hu/kampanyok/csicsergosz" target="_blank" rel="noopener"><span class="pont" aria-hidden="true"></span><span>Most fut: <b>CsicsergŐsz</b></span></a>
+<nav class="nav-menu" id="navmenu" aria-label="Fő menü"></nav>
+<a class="nav-bolt" href="https://www.beeco.hu/beebolt" target="_blank" rel="noopener">beebolt</a>
+<a class="nav-cta" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener">Töltsd le!</a>
+<button type="button" class="nav-ham" id="ham" aria-expanded="false" aria-controls="mobilmenu" aria-label="Menü megnyitása"><span></span></button>
+</div>
+<span class="halad" id="halad" aria-hidden="true"></span>
+<div class="mobilmenu" id="mobilmenu"><div id="mobilmenu-b"></div></div>
+</header>
+<div id="navor" aria-hidden="true" style="height:1px;margin-bottom:-1px"></div>
+<section class="hero" id="hero" aria-label="Hero előnézet">
+<div class="hatter" aria-hidden="true"><span class="sejt"></span><span class="hx hx1"></span><span class="hx hx2"></span><span class="hx hx3"></span><span class="hx hx4"></span><span class="hx hx5"></span><span class="hx hx6"></span></div>
+<svg class="nyom" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M 86 13 C 96 30, 95 60, 88 78 S 66 91, 50 93" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 12" vector-effect="non-scaling-stroke" opacity=".6"/></svg>
+<div class="racs">
+<div class="szoveg">
+<span class="szalag">Ingyenes zöld életmód app</span>
+<h2 id="cim">Éljünk ökosabban, <mark>együtt, olcsóbban!</mark></h2>
+<p class="lead">A beeco appban kiszámolod a lábnyomod, kuponokkal vásárolsz a zöld boltokban, és megtalálod a közeli programokat.<span class="hosszu"> Minden lépésedért nektár jár.</span></p>
+<div class="cta">
+<div class="bolt">
+<a class="gomb" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener"><svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg><span><small>Szerezd meg:</small>Google Play</span></a>
+<a class="gomb" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener"><svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><span><small>Letölthető az</small>App Store-ból</span></a>
+</div>
+<div class="qr"><img src="a/qr.png" alt="QR-kód a beeco app letöltéséhez"></div>
+<a class="gomb egygomb" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener"><svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>Letöltöm az appot</a>
+<span class="apro">Ingyenes · iPhone-ra és Androidra</span>
+</div>
+<ul class="bizalom" aria-label="Értékelések">
+<li><span class="csillag" aria-hidden="true">★</span><b>4,6</b>App Store</li>
+<li><span class="csillag" aria-hidden="true">★</span><b>4,2</b>Google Play</li>
+<li><b>25.000+</b>letöltés</li>
+</ul>
+</div>
+
+<div class="vizual">
+<div class="szin">
+<div class="tel"><div class="kepek" id="kepek">
+<img class="be" src="a/tel-kupon.webp" alt="A beeco app kuponjai: hamarosan lejáró és kiemelt kedvezmények helyi zöld partnerektől">
+<img src="a/tel-labnyom.webp" alt="A beeco app lábnyomkalkulátora: karbon-, víz- és hulladéklábnyom témánként" aria-hidden="true">
+<img src="a/tel-terkep.webp" alt="A beeco app zöld térképe: zöld helyek, események és gyűjtőpontok a közelben" aria-hidden="true">
+</div></div>
+<div class="cimke" id="cimke"><span class="flekk cimke-ik"><img id="cimkeik" src="a/piko-kupon.svg" alt=""></span><span><b id="cimke1">Kuponok</b><span class="cz" id="cimke2">helyi zöld partnerektől</span></span></div>
+<img class="meh" src="a/meh.webp" alt="">
+<button type="button" class="szunet" id="szunet" aria-pressed="false" aria-label="A váltás megállítása"></button>
+</div>
+<div class="haszon" role="group" aria-label="Mit ad az app?">
+<button type="button" class="hb" aria-pressed="true" data-i="0"><span class="flekk"><img src="a/piko-kupon.svg" alt=""></span><span><b><span class="hossz">Spórolsz</span><span class="rov">Spórolsz</span></b><span class="le">Kuponok a közeli boltokból és szolgáltatóktól.</span></span><span class="sav"></span></button>
+<button type="button" class="hb" aria-pressed="false" data-i="1"><span class="flekk"><img src="a/piko-lab.svg" alt=""></span><span><b><span class="hossz">Csökken a lábnyomod</span><span class="rov">Kisebb lábnyom</span></b><span class="le">Kiszámolod, aztán apránként faragsz belőle.</span></span><span class="sav"></span></button>
+<button type="button" class="hb" aria-pressed="false" data-i="2"><span class="flekk"><img src="a/piko-terkep.svg" alt=""></span><span><b><span class="hossz">Megtalálod, ami zöld</span><span class="rov">Zöld helyek</span></b><span class="le">Boltok, javítók és programok egy térképen.</span></span><span class="sav"></span></button>
+</div>
+<a class="tobb" href="#kov">és méh sok más...</a>
+</div>
+</div>
+<div class="domb" aria-hidden="true"></div>
+<a class="tovabb" href="#kov">Nézd meg, hogyan működik</a>
+</section>
+
+<aside class="bansav" id="most-fut" aria-label="Most futó kampány">
+<a class="banner" href="https://www.beeco.hu/kampanyok/csicsergosz" target="_blank" rel="noopener">
+<img class="bn-meh" src="a/cs-meh-tavcso.webp" alt="" width="431" height="401">
+<img class="bn-logo" src="a/cs-logo.png" alt="CsicsergŐsz, powered by E.ON" width="1000" height="331">
+<span class="bn-sz"><span class="bn-most"><span class="pont"></span>Most fut</span><span class="l">Ismerd meg a körülötted élő madarakat, és segíts nekik felelősen itatással, etetéssel, odúval.</span></span>
+<span class="bn-gomb">Megnézem</span>
+</a>
+</aside>
+
+<section class="szk" id="kov" style="--h:#fff" aria-labelledby="c-lepes"><div class="szk-b">
+<div class="szf"><span class="szalag">Így működik</span><h3 id="c-lepes">Három lépés, és már zümmögsz is</h3></div>
+<ol class="lepesek">
+<li><a href="#megertes"><span class="sz">1</span><b>Megértés</b><p>Számold ki a lábnyomod: nézd meg, miben vagy erős, és min érdemes javítani.</p></a></li>
+<li><a href="#cselekves"><span class="sz">2</span><b>Cselekvés</b><p>Megmutatjuk a következő lépést, és hogy hol teheted meg a közeledben.</p></a></li>
+<li><a href="#jutalom"><span class="sz">3</span><b>Jutalom</b><p>Minden apró lépésedért nektár jár, és egy közösség tovább motivál.</p></a></li>
+</ol></div><div class="domb" style="--kov:#F0F3EC" aria-hidden="true"></div></section>
+<section class="szk" id="megertes" style="--h:#F0F3EC;scroll-margin-top:64px" aria-labelledby="c-meg"><div class="szk-b ketto">
+<div>
+<div class="szf"><span class="szalag"><span class="lepszam">1</span>Megértés</span><h3 id="c-meg">Tudd meg, hol tartasz</h3>
+<p class="bev">Egy egyszerű kérdőív az életmódodról. A rövid része 3 perc, a részletes legalább 15, és bármikor folytathatod.</p></div>
+<div class="fv" role="group" aria-label="Megértés: funkciók">
+<button type="button" class="fvb" aria-pressed="true" data-k="0"><span class="flekk"><img src="a/piko-lab.svg" alt=""></span><span><b>Lábnyomkalkulátor</b><span class="le">Megmutatja a karbon-, a víz- és a hulladéklábnyomod, és azt is, min érdemes javítani.</span></span></button>
+<button type="button" class="fvb" aria-pressed="false" data-k="1"><span class="flekk"><img src="a/piko-otlet.svg" alt=""></span><span><b>Rád szabott következő lépés</b><span class="le">A kezdőlapon az app mindig ajánl egy lépést, amivel továbbmehetsz.</span></span></button>
+</div>
+<div class="sor"><a class="gm" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener">Letöltöm az appot</a><a class="szl" href="https://www.beeco.hu/app/labnyom-szamitasi-metodika" target="_blank" rel="noopener">Így számolunk</a></div>
+</div>
+<div class="kep"><img class="t tv be" src="a/tel-labnyom.webp" alt="A beeco app lábnyomkalkulátora: karbon-, víz- és hulladéklábnyom témánként" loading="lazy"><img class="t tv" src="a/tel-kezdolap.webp" alt="A beeco app kezdőlapja: nektár, havi helyezés és az ajánlott következő lépés" loading="lazy" aria-hidden="true"></div>
+</div><div class="domb" style="--kov:#FFF8E7" aria-hidden="true"></div></section>
+<section class="szk" id="cselekves" style="--h:#FFF8E7;scroll-margin-top:64px" aria-labelledby="c-csel"><div class="szk-b ketto ford">
+<div>
+<div class="szf"><span class="szalag"><span class="lepszam">2</span>Cselekvés</span><h3 id="c-csel">Megmutatjuk, hol teheted meg a közeledben</h3>
+<p class="bev">A következő lépéshez helyet és alkalmat is adunk: 23.000+ zöld pont a térképen, havonta 100+ zöld program.</p></div>
+<div class="fv" role="group" aria-label="Cselekvés: funkciók">
+<button type="button" class="fvb" aria-pressed="true" data-k="0"><span class="flekk"><img src="a/piko-terkep.svg" alt=""></span><span><b>Zöld térkép</b><span class="le">Boltok, javítók, szelektív gyűjtők és ökos pontok.</span></span></button>
+<button type="button" class="fvb" aria-pressed="false" data-k="1"><span class="flekk"><img src="a/piko-naptar.svg" alt=""></span><span><b>Kaptárnaptár</b><span class="le">Vásár, csere-bere, képzés és más zöld programok.</span></span></button>
+<button type="button" class="fvb" aria-pressed="false" data-k="2"><span class="flekk"><img src="a/piko-kupon.svg" alt=""></span><span><b>Kuponfüzet</b><span class="le">Kedvezmények zöld partnerektől, QR-kóddal.</span></span></button>
+</div>
+<div class="sor"><a class="gm" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener">Letöltöm az appot</a><a class="szl" href="https://www.beeco.hu/zold-terkep/magyarorszag" target="_blank" rel="noopener">Zöld térkép városonként</a></div>
+</div>
+<div class="kep"><img class="t tv be" src="a/tel-terkep.webp" alt="A beeco app zöld térképe: zöld helyek, események és gyűjtőpontok a közelben" loading="lazy"><img class="t tv" src="a/tel-esemeny.webp" alt="A beeco app eseménynaptára: közeli zöld programok listában és térképen" loading="lazy" aria-hidden="true"><img class="t tv" src="a/tel-kupon.webp" alt="A beeco app kuponjai: hamarosan lejáró és kiemelt kedvezmények" loading="lazy" aria-hidden="true"></div>
+</div><div class="domb" style="--kov:#E3ECCD" aria-hidden="true"></div></section>
+<section class="szk" id="jutalom" style="--h:#E3ECCD;scroll-margin-top:64px" aria-labelledby="c-jut"><div class="szk-b ketto">
+<div>
+<div class="szf"><span class="szalag"><span class="lepszam">3</span>Jutalom</span><h3 id="c-jut">Minden lépésedért nektár jár</h3>
+<p class="bev">A nektárral megmutatjuk, hogy minden kis lépés számít. Gyűjtsd jutalmakért és exkluzív kuponokért!</p></div>
+<div class="fv" role="group" aria-label="Jutalom: funkciók">
+<button type="button" class="fvb" aria-pressed="true" data-k="0"><span class="flekk"><img src="a/piko-csepp.svg" alt=""></span><span><b>Nektár</b><span class="le">A profilodon látod, mennyit gyűjtöttél, és miért kaptad.</span></span></button>
+<button type="button" class="fvb" aria-pressed="false" data-k="1"><span class="flekk"><img src="a/piko-kupa.svg" alt=""></span><span><b>Ranglista</b><span class="le">Megnézheted, hol tartasz a többiekhez képest.</span></span></button>
+<button type="button" class="fvb" aria-pressed="false" data-k="2"><span class="flekk"><img src="a/piko-raj.svg" alt=""></span><span><b>Rajok</b><span class="le">Egy közösség, amelyben nem vagy egyedül.</span></span></button>
+</div>
+<div class="sor"><a class="gm" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener">Letöltöm az appot</a><a class="szl" href="https://www.beeco.hu/app/gyik" target="_blank" rel="noopener">Mire jó a nektár?</a></div>
+</div>
+<div class="kep"><img class="t tv be" src="a/tel-profil.webp" alt="A beeco app profilja: gyűjtött nektár, sikerek és a nektárnapló" loading="lazy"><img class="t tv" src="a/tel-verseny.webp" alt="A beeco app versenye: nektárgyűjtő ranglista" loading="lazy" aria-hidden="true"><img class="t tv" src="a/tel-rajok.webp" alt="A beeco app rajai: a saját raj és a közeli közösségek" loading="lazy" aria-hidden="true"></div>
+</div><div class="domb" style="--kov:#2F371E" aria-hidden="true"></div></section>
+<section class="szk szam" id="szamok" style="--h:#2F371E" aria-labelledby="c-szam">
+<div class="hatter" aria-hidden="true"><span class="sejt"></span></div>
+<div class="szk-b">
+<img class="meh3" src="a/meh.webp" alt="" loading="lazy">
+<div class="szf"><span class="szalag vil">Együtt</span><h3 id="c-szam">A közösség ereje számokban</h3>
+<p class="bev">Apró lépésekből közös hatás lesz. Ennyit tettünk már együtt:</p></div>
+<ul class="szamok" id="szamlista" lang="hu">
+<li style="--i:0"><span class="flekk"><img src="a/piko-telefon.svg" alt=""></span><span><b data-n="25000" data-u="+">25.000+</b><span>letöltés</span></span></li><li style="--i:1"><span class="flekk"><img src="a/piko-telepules.svg" alt=""></span><span><b data-n="15" data-u="">15</b><span>partner önkormányzat</span></span></li><li style="--i:2"><span class="flekk"><img src="a/piko-naptar.svg" alt=""></span><span><b data-n="100" data-u="+">100+</b><span>zöld esemény havonta</span></span></li><li style="--i:3"><span class="flekk"><img src="a/piko-raj.svg" alt=""></span><span><b data-n="12" data-u="">12</b><span>szakmai partner</span></span></li><li style="--i:4"><span class="flekk"><img src="a/piko-terkep.svg" alt=""></span><span><b data-n="23000" data-u="+">23.000+</b><span>zöld pont a térképen</span></span></li><li style="--i:5"><span class="flekk"><img src="a/piko-fa.svg" alt=""></span><span><b data-n="7500" data-u="+">7.500+</b><span>fiatal fa kapott inni 2026-ban</span></span></li><li style="--i:6"><span class="flekk"><img src="a/piko-csepp.svg" alt=""></span><span><b>1 millió+</b><span>liter víz a fáknak 2026-ban</span></span></li><li style="--i:7"><span class="flekk"><img src="a/piko-kanna.svg" alt=""></span><span><b data-n="2200" data-u="+">2.200+</b><span>önkéntes vízadó 2026-ban</span></span></li>
+</ul>
+<p class="forras">A vízadás adatai: záró közlemény, 2026. október. A többi szám a mostani főoldalról származik.</p>
+</div><div class="domb" style="--kov:#fff" aria-hidden="true"></div></section>
+<section class="szk" id="velemenyek" style="--h:#fff" aria-labelledby="c-vel"><div class="szk-b">
+<div class="vel-fej"><div class="szf"><span class="szalag">Vélemények</span><h3 id="c-vel">Ők már használják</h3>
+<p class="bev">4,6 csillag az App Store-ban, 4,2 a Google Playen.</p></div>
+<div class="vel-nyil"><button type="button" class="ngomb" id="velbal" aria-label="Előző vélemények">‹</button><button type="button" class="ngomb" id="veljobb" aria-label="További vélemények">›</button></div></div>
+<ul class="velemenyek" id="vellista" tabindex="0" aria-label="Vélemények, vízszintesen görgethető">
+<li><span class="cs" aria-label="5 csillag az 5-ből">★★★★★</span><blockquote>„A legjobb dolog, amire okostelefont 2026-ban használni lehet. Építi az emberi közösséget és a természeti környezetet.”</blockquote><cite>gazdagergo, App Store</cite></li><li><span class="cs" aria-label="5 csillag az 5-ből">★★★★★</span><blockquote>„Nagyon kreatív app, összehoz minket, emellett jobbá teszi a környezetet, a programok miatt is csak jobb.”</blockquote><cite>Kriki21, App Store</cite></li><li><span class="cs" aria-label="5 csillag az 5-ből">★★★★★</span><blockquote>„Igazi kis oázis a klímaszorongós mindennapok sivatagában :)”</blockquote><cite>holladri01, App Store</cite></li><li><span class="cs" aria-label="5 csillag az 5-ből">★★★★★</span><blockquote>„...egyre több és több ökos funkció érhető el az appban, a »zöld események« funkció a kedvencem, már számos klassz kezdeményezést innen ismertem meg!”</blockquote><cite>nillucska, App Store</cite></li><li><span class="cs" aria-label="5 csillag az 5-ből">★★★★★</span><blockquote>„Rendkívül hasznos és áldásos! Ezer hála annak aki kitalálta és azoknak akik megcsinálták és azoknak akik üzemeltetik!”</blockquote><cite>Sasadligeti Fák Őrzői, App Store</cite></li><li><span class="cs" aria-label="5 csillag az 5-ből">★★★★★</span><blockquote>„Szuper kezdeményezés, remélem egyre többen csatlakoznak!”</blockquote><cite>Bandaminta, App Store</cite></li>
+</ul>
+</div><div class="domb" style="--kov:#FFF8E7" aria-hidden="true"></div></section>
+<section class="szk" id="kozosseg" style="--h:#FFF8E7" aria-labelledby="c-koz"><div class="szk-b">
+<div class="szf"><span class="szalag">Közösség</span><h3 id="c-koz" style="max-width:26ch">Egy méh nem csinál csodát, de egy egész raj felvirágoztatja a környezetét!</h3>
+<p class="bev">Apró lépésekkel csökkentjük a tehetetlenség érzését, és támogatjuk egymást. Ne csüggedj, nem vagy egyedül!</p></div>
+<div class="fotok" id="fotok">
+<button type="button" class="polaroid" style="--d:-2deg" data-i="0" aria-label="Zöld programokon: kép megnyitása nagyban"><img src="a/foto-0.webp" alt="Két önkéntes háttal, „bee the change” feliratú beeco pólóban egy szabadtéri eseményen" loading="lazy"><span class="fc">Zöld programokon</span></button><button type="button" class="polaroid" style="--d:1.5deg" data-i="1" aria-label="Közös túrán: kép megnyitása nagyban"><img src="a/foto-1.webp" alt="Tizenhárom fiatal túrázó egy kilátóponton, mögöttük zöld hegyek" loading="lazy"><span class="fc">Közös túrán</span></button><button type="button" class="polaroid" style="--d:-1deg" data-i="2" aria-label="Csere-berén: kép megnyitása nagyban"><img src="a/foto-2.webp" alt="Emberek ruhákat válogatnak egy szabadtéri csere-bere vásáron" loading="lazy"><span class="fc">Csere-berén</span></button><button type="button" class="polaroid" style="--d:2deg" data-i="3" aria-label="Műhelyeken: kép megnyitása nagyban"><img src="a/foto-3.webp" alt="Tizenegy ember egy asztal körül egy kreatív műhelyen" loading="lazy"><span class="fc">Műhelyeken</span></button><button type="button" class="polaroid" style="--d:1.5deg" data-i="4" aria-label="A raj együtt: kép megnyitása nagyban"><img src="a/foto-4.webp" alt="A beeco 29 fős csapata bézs pólóban, középen egy méhjelmezes taggal" loading="lazy"><span class="fc">A raj együtt</span></button><button type="button" class="polaroid" style="--d:-2deg" data-i="5" aria-label="Díjátadón: kép megnyitása nagyban"><img src="a/foto-5.webp" alt="A csapat a ONE Digitális Díj 2025 átadóján" loading="lazy"><span class="fc">Díjátadón</span></button><button type="button" class="polaroid" style="--d:2deg" data-i="6" aria-label="Mosolyogva: kép megnyitása nagyban"><img src="a/foto-6.webp" alt="Tizenkét mosolygó csapattag egy asztal mögött, rajta fotók és egy horgolt méhecske" loading="lazy"><span class="fc">Mosolyogva</span></button><button type="button" class="polaroid" style="--d:-1.5deg" data-i="7" aria-label="Egy asztalnál: kép megnyitása nagyban"><img src="a/foto-7.webp" alt="Tízfős csapat egy nagy asztal mögött, rajta képek és jegyzetek" loading="lazy"><span class="fc">Egy asztalnál</span></button>
+</div>
+<div class="koz-alul"><p>Kik állnak a beeco mögött, honnan indultunk, és hogyan szállhatsz be önkéntesként?</p><div class="sor"><a class="gm" href="https://www.beeco.hu/rolunk/csapatunk" target="_blank" rel="noopener">Ismerd meg a csapatunk</a><a class="szl" href="https://www.beeco.hu/rolunk/tortenetunk" target="_blank" rel="noopener">Történetünk</a><a class="szl" href="https://www.beeco.hu/rolunk/csatlakozz" target="_blank" rel="noopener">Önkéntes lehetőségek</a></div></div>
+</div><div class="domb" style="--kov:#F0F3EC" aria-hidden="true"></div></section>
+<section class="szk" id="merre" style="--h:#F0F3EC" aria-labelledby="c-merre"><div class="szk-b">
+<div class="szf"><span class="szalag">Merre tovább?</span><h3 id="c-merre" style="max-width:26ch">A településednek, a cégednek és a boltodnak is szól</h3></div>
+<div class="utak">
+<a class="ut" href="https://www.beeco.hu/szolgaltatas/onkormanyzatoknak" target="_blank" rel="noopener"><span class="flekk "><img src="a/piko-telepules.svg" alt=""></span><b>Önkormányzatnál dolgozom</b><span class="l">Már 15 önkormányzat dolgozik velünk.</span><span class="ny">Önkormányzati program →</span></a><a class="ut" href="https://www.beeco.hu/szolgaltatas/cegeknek" target="_blank" rel="noopener"><span class="flekk "><img src="a/piko-taska.svg" alt=""></span><b>Cégnél dolgozom</b><span class="l">Csapatprogramok és zöld marketing nagyobb cégeknek.</span><span class="ny">Céges programok →</span></a><a class="ut" href="https://www.beeco.hu/szolgaltatas/partner" target="_blank" rel="noopener"><span class="flekk "><img src="a/piko-kupon.svg" alt=""></span><b>Légy a partnerünk!</b><span class="l">Zöld boltod vagy szolgáltatásod van? Kerülj fel a zöld térképre, és hozz új vásárlókat kuponnal.</span><span class="ny">Partnerprogram →</span></a>
+</div>
+</div><div class="domb" style="--kov:#FFF8E7" aria-hidden="true"></div></section>
+<section class="szk" id="beebolt" style="--h:#FFF8E7" aria-labelledby="c-bolt"><div class="szk-b">
+<div class="bolt-fej"><div class="szf"><span class="szalag">beebolt</span><h3 id="c-bolt">Támogasd ökosságokkal a munkánkat!</h3>
+<p class="bev">Fenntartható, edukatív és cuki termékek. Minden vásárlással az app fejlesztését támogatod.</p></div>
+<a class="gm" href="https://www.beeco.hu/beebolt" target="_blank" rel="noopener">Irány a beebolt</a></div>
+<div class="termekek">
+<a class="termek" href="https://www.beeco.hu/beebolt" target="_blank" rel="noopener"><img src="a/bolt-0.webp" alt="Kék beeco póló „Locsoljunk együtt!” felirattal" loading="lazy"><b>Locsoljunk együtt! póló</b><span class="ar">5 990 Ft</span></a>
+<a class="termek" href="https://www.beeco.hu/beebolt" target="_blank" rel="noopener"><img src="a/bolt-1.webp" alt="Kék beeco férfi trikó" loading="lazy"><b>Locsoló trikó, férfi</b><span class="ar">5 490 Ft</span></a>
+<a class="termek" href="https://www.beeco.hu/beebolt" target="_blank" rel="noopener"><img src="a/bolt-2.webp" alt="Színes, méhecskés nyomtatott infografika" loading="lazy"><b>Nyomtatott infografika</b><span class="ar">4 900 Ft</span></a>
+</div>
+</div><div class="domb" style="--kov:#fff" aria-hidden="true"></div></section>
+<section class="szk" id="partnerek" style="--h:#fff" aria-labelledby="c-logo"><div class="szk-b">
+<div class="szf"><span class="szalag">Akik mellettünk állnak</span><h3 id="c-logo">Írtak rólunk, és velünk dolgoznak</h3></div>
+<p class="logocim">Írtak rólunk</p>
+<ul class="logosor" id="logo-sajto"><li><a href="https://www.beeco.hu/rolunk/hatasunk" target="_blank" rel="noopener"><img src="a/logo-0.webp" alt="Telex" loading="lazy"></a></li><li><a href="https://www.beeco.hu/rolunk/hatasunk" target="_blank" rel="noopener"><img src="a/logo-1.webp" alt="Trade magazin" loading="lazy"></a></li><li><a href="https://www.beeco.hu/rolunk/hatasunk" target="_blank" rel="noopener"><img src="a/logo-2.webp" alt="Zöld Hang podcast" loading="lazy"></a></li><li><a href="https://www.beeco.hu/rolunk/hatasunk" target="_blank" rel="noopener"><img src="a/logo-3.webp" alt="Startuponline" loading="lazy"></a></li><li><a href="https://www.beeco.hu/rolunk/hatasunk" target="_blank" rel="noopener"><img src="a/logo-4.webp" alt="Daily News Hungary" loading="lazy"></a></li><li><a href="https://www.beeco.hu/rolunk/hatasunk" target="_blank" rel="noopener"><img src="a/logo-5.webp" alt="Pannon Egyetem GTK podcast" loading="lazy"></a></li><li><a href="https://www.beeco.hu/rolunk/hatasunk" target="_blank" rel="noopener"><img src="a/logo-7.webp" alt="Minner" loading="lazy"></a></li><li class="logo-gomb" hidden><button type="button" class="logotobb" aria-expanded="false" aria-controls="logo-sajto"></button></li></ul>
+<p class="logocim">Szakmai partnereink</p>
+<ul class="logosor" id="logo-szakmai" style="margin-bottom:0"><li><a href="https://www.bme.hu/fenntarthatosag" target="_blank" rel="noopener"><img src="a/logo-6.webp" alt="BME" loading="lazy"></a></li><li><a href="https://uni-pannon.hu/" target="_blank" rel="noopener"><img src="a/logo-8.webp" alt="Pannon Egyetem" loading="lazy"></a></li><li><a href="https://www.beeco.hu/online-okoiranytu/erdoszeretet-szovetseg" target="_blank" rel="noopener"><img src="a/logo-9.webp" alt="Erdőszeretet Szövetség" loading="lazy"></a></li><li><a href="https://www.elhetotelepulesek.hu/" target="_blank" rel="noopener"><img src="a/logo-10.webp" alt="Élhető Települések Országos Szövetsége" loading="lazy"></a></li><li><a href="https://www.tatk.elte.hu/" target="_blank" rel="noopener"><img src="a/logo-11.webp" alt="ELTE TáTK" loading="lazy"></a></li><li><a href="https://www.uni-corvinus.hu/?lang=en" target="_blank" rel="noopener"><img src="a/logo-12.webp" alt="Budapesti Corvinus Egyetem" loading="lazy"></a></li><li><a href="https://www.gasztrohos.hu/" target="_blank" rel="noopener"><img src="a/logo-13.webp" alt="Felelős Gasztrohős" loading="lazy"></a></li><li><a href="https://tudatosvasarlo.hu/" target="_blank" rel="noopener"><img src="a/logo-14.webp" alt="Tudatos Vásárlók Egyesülete" loading="lazy"></a></li><li><a href="https://www.beeco.hu/online-okoiranytu/10-millio-fa" target="_blank" rel="noopener"><img src="a/logo-15.webp" alt="10 millió fa" loading="lazy"></a></li><li><a href="https://www.beeco.hu/online-okoiranytu/humusz-szovetseg" target="_blank" rel="noopener"><img src="a/logo-16.webp" alt="Humusz Szövetség" loading="lazy"></a></li><li><a href="https://maveg.hu/uj/" target="_blank" rel="noopener"><img src="a/logo-17.webp" alt="MAVEG Magyar Vegán Egyesület" loading="lazy"></a></li><li><a href="https://i-dest.com/" target="_blank" rel="noopener"><img src="a/logo-18.webp" alt="I-DEST" loading="lazy"></a></li><li class="logo-gomb" hidden><button type="button" class="logotobb" aria-expanded="false" aria-controls="logo-szakmai"></button></li></ul>
+</div><div class="domb" style="--kov:#FFF8E7" aria-hidden="true"></div></section>
+<section class="szk" id="gyik" style="--h:#FFF8E7" aria-labelledby="c-gyik"><div class="szk-b">
+<div class="gyik-racs">
+<div class="gyik-fej"><span class="szalag">GYIK</span><h3 id="c-gyik">Gyakori kérdések</h3>
+<p class="lead">Mennyibe kerül, mit mér a lábnyomkalkulátor, és mire jó a nektár? Itt röviden megtalálod, amit az első letöltés előtt a legtöbben kérdeznek.</p>
+<div class="gyik-tovabb"><p>Nincs itt a válasz?</p><a class="gm" href="https://www.beeco.hu/app/gyik" target="_blank" rel="noopener">Az összes kérdés ›</a></div></div>
+<div class="gyik">
+<details><summary>Ingyenes a beeco app?</summary><p>A beeco letöltése ingyenes, és minden funkcióhoz hozzáférsz.</p></details><details><summary>Mi az a lábnyomkalkulátor, és mennyi idő kitölteni?</summary><p>Egy egyszerű kérdőív az életmódodról: segít megérteni az otthonod, az étkezésed és a közlekedésed környezeti hatását. A rövid része 3 perc, és becsült képet ad. A részletes legalább 15 perc, és bármikor folytathatod.</p></details><details><summary>Mit kapok a végén?</summary><p>Megmutatjuk a víz-, karbon- és hulladéklábnyomodat. De nem hagyunk csüggedni: egyből azt is megmutatjuk, mit tehetsz a csökkentésért, rád szabva.</p></details><details><summary>Mire jó a Nektár?</summary><p>A Nektár egy jutalmazó rendszer, amellyel megmutatjuk, hogy minden kis lépés számít. Gyűjtsd a nektárt a beeco appban jutalmakért és exkluzív kuponokért!</p></details><details><summary>Hogyan működik a kuponbeváltás?</summary><p>Az appban aktiválod a kupont, a partnernél felmutatod a QR-kódot, és megkapod a kedvezményed. Közben nektárt is gyűjtesz.</p></details><details><summary>Mi alapján kerülnek tartalmak az appba?</summary><p>Képzelj el egy fenntartható 2050-et. Ez a zöld világ sokoldalú, így a hozzá kapcsolódó vállalkozások, helyek és események is. Szakértő csapatunk folyamatosan frissíti az értékelési rendszerünket, ez alapján kerül be egy tartalom.</p></details>
+</div>
+</div>
+</div><div class="domb" style="--kov:#FEEEBB" aria-hidden="true"></div></section>
+<section class="szk zaro" id="letoltes" style="--h:#FEEEBB;padding-bottom:56px" aria-labelledby="c-zaro">
+<div class="hatter" aria-hidden="true"><span class="sejt"></span></div>
+<div class="szk-b ketto" style="position:relative">
+<div>
+<div class="szf"><span class="szalag">Töltsd le</span>
+<div class="kerd-sor"><ul class="kerdesek gor" id="kerdesek" aria-label="Mit szeretnél?"><li style="--d:-2deg;--k:0">Tisztább levegőt?</li><li style="--d:1.5deg;--k:1">Kevesebb szemetet az utcádon?</li><li style="--d:-1deg;--k:2">Több fát a városodba?</li><li style="--d:2deg;--k:3">Egy közösséget, ahol nem vagy egyedül?</li></ul><button type="button" class="kszunet" id="kszunet" aria-pressed="false" aria-label="A váltakozó kérdések megállítása"></button></div>
+<h3 id="c-zaro">Légy te a változás, amit a világban látni szeretnél!</h3>
+<p class="bev">Töltsd le az appot, és nézd meg, mi legyen a következő lépésed.</p></div>
+<div class="cta">
+<div class="bolt">
+<a class="gomb" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener"><svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg><span><span class="sr">Letöltés: </span>Google Play</span></a>
+<a class="gomb" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener"><svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><span><span class="sr">Letöltés: </span>App Store</span></a>
+</div>
+<div class="qr"><img src="a/qr.png" alt="QR-kód a beeco app letöltéséhez" loading="lazy"></div>
+<a class="gomb egygomb" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener"><svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>Letöltöm az appot</a>
+<span class="apro">Ingyenes · iPhone-ra és Androidra</span>
+</div>
+</div>
+<div class="kep"><img class="t" src="a/tel-kezdolap.webp" alt="A beeco app kezdőlapja: nektár, havi helyezés és a következő ökos lépés" loading="lazy"><img class="meh2" src="a/meh.webp" alt="" loading="lazy"></div>
+</div></section>
+<dialog class="nezo" id="nezo" aria-label="Fényképnézegető">
+<button type="button" class="ngomb nezo-zar" id="nezozar" aria-label="Bezárás">✕</button>
+<img class="nezo-kep" id="nezokep" src="" alt="">
+<div class="nezo-lab"><span class="hol" id="nezohol"></span><b id="nezocim"></b><button type="button" class="ngomb" id="nezobal" aria-label="Előző kép">‹</button><button type="button" class="ngomb" id="nezojobb" aria-label="Következő kép">›</button></div>
+</dialog>
+<div class="lablec">Itt következik a meglévő lábléc (változatlan).</div>
+</div>
+
+<div class="ket">
+<section class="panel" aria-labelledby="miert">
+<h2 id="miert">Az oldal íve</h2>
+<ol>
+<li><b>Hero:</b> az ígéret és a letöltés.</li>
+<li><b>Kampánysáv:</b> a most futó kampány bannere közvetlenül a hero alatt, hogy mindenki rátaláljon. Ha épp nincs kampány, a sáv nem látszik.</li>
+<li><b>Így működik:</b> megértés, cselekvés, jutalom, három rövid lépésben.</li>
+<li><b>Megértés, cselekvés, jutalom:</b> három szekció a három lépéshez. Mindegyikben kiválaszthatod a funkciót, és a telefon azt a képernyőt mutatja.</li>
+<li><b>Bizonyíték:</b> a közösség számai forrással, utána hat valódi vélemény egy görgethető sorban.</li>
+<li><b>Közösség:</b> nyolc döntött fotó ragasztócsíkkal, kattintásra képnézegető nyílik.</li>
+<li><b>Merre tovább:</b> önkormányzat, cég és „Légy a partnerünk” (a kuponpartnerség külön a céges ajánlattól). A Rólunk és a beebolt a menüben maradt.</li>
+<li><b>beebolt:</b> három termék a mostani főoldalról, a bolt gombjával (Kristóf kérése: maradjon).</li>
+<li><b>Logók, GYIK, záró felhívás:</b> a logósorok egy sort mutatnak, a többi lenyitható; a GYIK a mostani főoldal formáját követi. a bizalom és a kifogások közvetlenül a döntés előtt, a végén újra a letöltés.</li>
+</ol>
+</section>
+<section class="panel" aria-labelledby="nyitott">
+<h2 id="nyitott">Nyitott pontok</h2>
+<ul>
+<li><b>Szöveg:</b> a cím és a szövegek javaslatok. A főoldal szövegéről Levi dönt; a „Javasolt cím” gombbal összevetheted a mostanival.</li>
+<li><b>Mintaadat:</b> a képernyőkön szereplő számok (pl. −20%, 7,4 t) a tervek mintaadatai, nem ígéretek. A grafikán kívül nem állítunk számot.</li>
+<li><b>Áruházgomb:</b> élesben telefonon a készülék áruházába visz (ezt a főoldal szkriptje már tudja).</li>
+<li><b>Kimaradt a mostani oldalról:</b> a „Miért a beeco?” szöveg, az app nyolclépéses útja és a csapat idővonala. Ezek helyett áll a három lépés és a három haszon; a csapat a Rólunk oldalon él tovább.</li>
+<li><b>Mérés:</b> a haszonváltó és a „hogyan működik” gomb külön eseményt kap, hogy lássuk, melyik haszon érdekli a látogatót.</li>
+</ul>
+</section>
+</div>
+</div>
+
+<script>
+(function(){
+var H=[['Kuponok','helyi zöld partnerektől','kupon'],['Lábnyom','kiszámolod és csökkented','lab'],['Zöld térkép','boltok, javítók, programok','terkep']];
+var hero=document.getElementById('hero'),hb=document.querySelectorAll('.hb'),kep=document.querySelectorAll('#kepek img'),cimke=document.getElementById('cimke'),i0=0;
+function allit(i){i0=i;hb.forEach(function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});kep.forEach(function(im,j){im.classList.toggle('be',j===i);if(j===i)im.removeAttribute('aria-hidden');else im.setAttribute('aria-hidden','true')});
+ cimke.classList.add('valt');setTimeout(function(){document.getElementById('cimke1').textContent=H[i][0];document.getElementById('cimke2').textContent=H[i][1];document.getElementById('cimkeik').src='a/piko-'+H[i][2]+'.svg';cimke.classList.remove('valt')},180)}
+hb.forEach(function(b){b.addEventListener('click',function(){hero.classList.add('kezi');allit(+b.dataset.i)});
+ b.querySelector('.sav').addEventListener('animationend',function(){if(!hero.classList.contains('kezi'))allit((i0+1)%3)})});
+var sz=document.getElementById('szunet');sz.addEventListener('click',function(){var p=hero.classList.toggle('all');sz.setAttribute('aria-pressed',p?'true':'false');sz.setAttribute('aria-label',p?'A váltás folytatása':'A váltás megállítása')});
+var keret=document.getElementById('keret');
+document.getElementById('nezet').addEventListener('click',function(){var t=keret.classList.toggle('telefon');this.setAttribute('aria-pressed',t?'true':'false');document.getElementById('hajtasfelirat').textContent=t?'eddig látszik görgetés nélkül (390 × 844)':'eddig látszik görgetés nélkül (1440 × 900)'});
+document.getElementById('hajtasvalto').addEventListener('click',function(){var n=keret.classList.toggle('nincs-hajtas');this.setAttribute('aria-pressed',n?'false':'true')});
+var cim=document.getElementById('cim'),JAV=cim.innerHTML,MOST='Megmutatjuk az utat egy fenntartható jövő felé!';
+document.getElementById('cimvalto').addEventListener('click',function(){var j=this.getAttribute('aria-pressed')==='true';this.setAttribute('aria-pressed',j?'false':'true');this.textContent=j?'Mostani cím':'Javasolt cím';if(j)cim.textContent=MOST;else cim.innerHTML=JAV});
+})();
+</script>
+
+<script>
+(function(){
+var B='https://www.beeco.hu';
+var MENU=[
+ {n:'Az app',e:[['Letöltés','iPhone-ra és Androidra, ingyen.','/app/letoltes','telefon'],['Lábnyomkalkulátor','Számold ki, hol tartasz.','/app/labnyomkalkulator','lab'],['Zöld térkép','Zöld helyek a közeledben.','/app/terkep','terkep'],['Kuponok','Kedvezmények zöld partnerektől.','/app/kuponok','kupon'],['Eseménynaptár','Programok a környékeden.','/app/zold-esemenynaptar','naptar'],['GYIK','Válasz a gyakori kérdésekre.','/app/gyik','otlet']]},
+ {n:'Tudás',e:[['beecopédia','Ökos tudás egy helyen.','/beecopedia','konyv'],['Blog','Friss cikkek és tippek.','/beecopedia/blog','olvas'],['Szezonális étkezés','Mi terem most?','/beecopedia/szezonalis-etkezes','alma'],['Szemétcsökkentő kisokos','Hova dobjam?','/beecopedia/szemet-csokkento-kisokos','kuka'],['Zöld címkék','Mit jelentenek a jelölések?','/beecopedia/zold-cimkek','doboz'],['Greenfluencerek','Akiket érdemes követni.','/beecopedia/greenfluencerek','sziv']]},
+ {n:'Kampányok',e:[['CsicsergŐsz','Segítsük együtt a madarakat.','/kampanyok/csicsergosz','madarpont','Most fut'],['Önkéntes vízadás','Öntözzük meg a fiatal fákat.','/kampanyok/onkentes-vizadas','kanna'],['Összes kampány','Az eddigi zümmögéseink.','/kampanyok','kupa']]},
+ {n:'Szolgáltatások',e:[['Cégeknek','Zöld programok és csapatnapok.','/szolgaltatas/cegeknek','taska'],['Önkormányzatoknak','Programok a lakosok bevonására.','/szolgaltatas/onkormanyzatoknak','telepules'],['Zöld vállalkozásoknak','Partnerprogram boltoknak, szolgáltatóknak.','/szolgaltatas/partner','haz'],['beeco@work','Fenntarthatósági program a csapatnak.','/szolgaltatas/beeco-at-work','raj']]},
+ {n:'Rólunk',e:[['Rólunk','Kik vagyunk, és miért csináljuk.','/rolunk/rolunk','sziv'],['Csapatunk','A raj tagjai.','/rolunk/csapatunk','raj'],['Hatásunk','Amit együtt elértünk.','/rolunk/hatasunk','fa'],['Történetünk','Az első lépésektől máig.','/rolunk/tortenetunk','olvas'],['Csatlakozz','Önkéntesként vagy kollégaként.','/rolunk/csatlakozz','katt'],['Kapcsolat','Írj nekünk.','/rolunk/kapcsolat','posta']]}
+];
+var CARET='<svg viewBox="0 0 10 7" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+var nav=document.getElementById('nav'),menu=document.getElementById('navmenu'),mm=document.getElementById('mobilmenu-b');
+function el(t,c,h){var x=document.createElement(t);if(c)x.className=c;if(h!=null)x.innerHTML=h;return x}
+MENU.forEach(function(m,k){
+ var w=el('div','nm'),g=el('button','nm-g',m.n+CARET),p=el('div','nm-p');g.type='button';g.setAttribute('aria-expanded','false');g.setAttribute('aria-controls','nmp'+k);p.id='nmp'+k;
+ m.e.forEach(function(e,i){var a=el('a','nm-e','<span class="flekk"><img src="a/piko-'+e[3]+'.svg" alt=""></span><span><b>'+e[0]+(e[4]?'<span class="uj">'+e[4]+'</span>':'')+'</b><span class="l">'+e[1]+'</span></span>');a.href=B+e[2];a.target='_blank';a.rel='noopener';a.style.setProperty('--i',i);p.appendChild(a)});
+ w.appendChild(g);w.appendChild(p);menu.appendChild(w);
+ var t;function nyit(v){clearTimeout(t);document.querySelectorAll('.nm.nyit').forEach(function(o){if(o!==w){o.classList.remove('nyit');o.firstChild.setAttribute('aria-expanded','false')}});w.classList.toggle('nyit',v);g.setAttribute('aria-expanded',v?'true':'false')}
+ g.addEventListener('click',function(){nyit(!w.classList.contains('nyit'))});
+ if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){w.addEventListener('mouseenter',function(){clearTimeout(t);t=setTimeout(function(){nyit(true)},70)});w.addEventListener('mouseleave',function(){clearTimeout(t);t=setTimeout(function(){nyit(false)},180)})}
+ w.addEventListener('keydown',function(e){if(e.key==='Escape'&&w.classList.contains('nyit')){nyit(false);g.focus()}});
+ w.addEventListener('focusout',function(e){if(!w.contains(e.relatedTarget))nyit(false)});
+ // phone accordion
+ var mg=el('button','mm-g','<span>'+m.n+'</span>'+CARET),ml=el('div','mm-l'),mi=el('div');mg.type='button';mg.setAttribute('aria-expanded','false');
+ m.e.forEach(function(e){var a=el('a',null,e[0]);a.href=B+e[2];a.target='_blank';a.rel='noopener';a.tabIndex=-1;mi.appendChild(a)});
+ ml.appendChild(mi);mm.appendChild(mg);mm.appendChild(ml);
+ mg.addEventListener('click',function(){var v=mg.getAttribute('aria-expanded')!=='true';mm.querySelectorAll('.mm-g').forEach(function(o){o.setAttribute('aria-expanded','false');o.nextSibling.querySelectorAll('a').forEach(function(a){a.tabIndex=-1})});mg.setAttribute('aria-expanded',v?'true':'false');mi.querySelectorAll('a').forEach(function(a){a.tabIndex=v?0:-1})});
+});
+var also=el('div','mm-also','<a class="nav-bolt" style="display:flex" href="'+B+'/beebolt" target="_blank" rel="noopener">beebolt</a><a class="gomb" style="width:auto" href="'+B+'/app/letoltes" target="_blank" rel="noopener">Letöltöm az appot</a>');mm.appendChild(also);
+document.addEventListener('click',function(e){if(!e.target.closest('.nm'))document.querySelectorAll('.nm.nyit').forEach(function(o){o.classList.remove('nyit');o.firstChild.setAttribute('aria-expanded','false')})});
+var ham=document.getElementById('ham');
+ham.addEventListener('click',function(){var v=nav.classList.toggle('menu-nyit');ham.setAttribute('aria-expanded',v?'true':'false');ham.setAttribute('aria-label',v?'Menü bezárása':'Menü megnyitása')});
+nav.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('menu-nyit')){ham.click();ham.focus()}});
+// compact bar once the page is scrolled; the nav CTA turns yellow when the hero's own download buttons are out of view
+if('IntersectionObserver' in window){
+ new IntersectionObserver(function(x){nav.classList.toggle('kompakt',!x[0].isIntersecting&&x[0].boundingClientRect.top<80)},{rootMargin:'-80px 0px 0px 0px'}).observe(document.getElementById('navor'));
+ new IntersectionObserver(function(x){nav.classList.toggle('lent',!x[0].isIntersecting&&x[0].boundingClientRect.top<80)},{rootMargin:'-64px 0px 0px 0px'}).observe(document.querySelector('.cta'));
+}
+})();
+</script>
+
+<script>
+(function(){
+// footprint switch
+var SZ=['Három perc alatt becsült képet kapsz az otthonod, az étkezésed és a közlekedésed hatásáról.','A részletes kérdőív legalább 15 perc, és bármikor folytathatod. Pontosabb képet ad.'];
+var vb=document.querySelectorAll('.valto button');vb.forEach(function(b){b.addEventListener('click',function(){vb.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});document.getElementById('valtosz').textContent=SZ[+b.dataset.v]})});
+// numbers count up once, when they scroll into view
+var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function fmt(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.')}
+if(!rm&&'IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;io.unobserve(e.target);var el=e.target,n=+el.dataset.n,u=el.dataset.u,t0=performance.now();
+ (function lep(t){var k=Math.min(1,(t-t0)/900);k=1-Math.pow(1-k,3);el.textContent=fmt(n*k)+u;if(k<1)requestAnimationFrame(lep)})(t0)})},{threshold:.6});
+ document.querySelectorAll('.szamok b[data-n]').forEach(function(b){io.observe(b)})}
+// scroll progress on the nav
+var keret=document.getElementById('keret'),h=document.getElementById('halad'),fut=false;
+function frissit(){fut=false;var r=keret.getBoundingClientRect(),max=r.height-window.innerHeight;var k=max>0?Math.min(1,Math.max(0,-r.top/max)):0;h.style.transform='scaleX('+k+')'}
+window.addEventListener('scroll',function(){if(!fut){fut=true;requestAnimationFrame(frissit)}},{passive:true});frissit();
+})();
+</script>
+
+<script>
+(function(){
+var B='https://www.beeco.hu',nav=document.getElementById('nav');
+// highlight card of each mega-menu panel (shown only in variant B)
+var K=[['Töltsd le','Ingyenes, iPhone-ra és Androidra','Letöltöm az appot','/app/letoltes',1],['Tudás','Ökos tudás egy helyen: a beecopédia','Belenézek','/beecopedia'],['Most fut','CsicsergŐsz: segítsük együtt a madarakat','Megnézem','/kampanyok/csicsergosz'],['Cégeknek','Zöld programok és csapatnapok','Céges programok','/szolgaltatas/cegeknek'],['Közösség','Csatlakozz a rajhoz önkéntesként','Beszállok a rajba','/rolunk/csatlakozz']];
+K.forEach(function(k,i){var p=document.getElementById('nmp'+i);if(!p)return;var a=document.createElement('a');a.className='nm-k';a.href=B+k[3];a.target='_blank';a.rel='noopener';
+ a.innerHTML='<span class="szalag">'+k[0]+'</span>'+(k[4]?'<span class="qrk"><img src="a/qr.png" alt="QR-kód a letöltéshez"><b>'+k[1]+'</b></span>':'<b>'+k[1]+'</b>')+'<span class="ny">'+k[2]+' →</span>';p.appendChild(a)});
+var LE={A:'<b>A · Lenyíló panelek.</b> A mostani menü szerkezete, piktogramos sorokkal. Webflow-ban natív Navbar és Dropdown elemekből épül, a meglévő menü bővítésével. Ez a legkisebb munka és a legkisebb kockázat, ezért ezt javaslom elsőnek.',
+ B:'<b>B · Mega menü.</b> Minden menüpont teljes szélességű panelt nyit: balra a linkek három oszlopban, jobbra egy kiemelt kártya (az appnál QR-kód és letöltés, a kampányoknál a most futó kampány). Natív Dropdown teljes szélességű listával megépíthető, a megtartott NAVBAR_MEGA komponens jó alap hozzá. Akkor éri meg, ha a kiemelt kártyákat rendszeresen frissítjük.',
+ C:'<b>C · Lebegő sáv – Kristóf választása (2026-11-23).</b> A „Töltsd le!” gomb mindig sárga, és pár másodpercenként egy aprót biccent. Lefelé görgetve a sáv elbújik, felfelé görgetve visszajön. Előbb csak az új főoldalon fut, utána a többi oldalon. Ugyanaz a menü, de a sáv keretes dobozként lebeg a tartalom fölött, kemény árnyékkal; a folyamatjelző a képernyő tetejére kerül. Webflow-ban csak a sáv stílusa és a ragadás távolsága más. A legmodernebb hatású, de a hero tetejéből elvesz egy keveset, és a „Most fut” jelző kimarad belőle.',
+ D:'<b>D · Kétsoros, célcsoportsávval.</b> Felül fekete sáv: Magánszemélyeknek, Cégeknek, Önkormányzatoknak, Zöld vállalkozásoknak, jobbra a most futó kampány és a beebolt. Alatta a főmenü rövidebb (a Szolgáltatások kikerül belőle). Görgetésre a felső sáv eltűnik. Két natív Navbar-sorból megépíthető. Akkor a legjobb, ha a céges és önkormányzati látogató gyors eligazítása kiemelt cél.'};
+var nb=document.querySelectorAll('[data-nv]:not(#nav)'),le=document.getElementById('navle');
+function setN(v){nav.dataset.nv=v;nb.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.nv===v?'true':'false')});le.innerHTML=LE[v];document.querySelectorAll('.nm.nyit').forEach(function(o){o.classList.remove('nyit');o.firstChild.setAttribute('aria-expanded','false')})}
+nb.forEach(function(b){b.addEventListener('click',function(){setN(b.dataset.nv)})});setN('C');
+})();
+</script>
+
+<script>
+(function(){
+// function switchers: the pressed row decides which screen the phone shows
+document.querySelectorAll('.fv').forEach(function(fv){var kep=fv.closest('.ketto').querySelectorAll('.kep img.tv'),bs=fv.querySelectorAll('.fvb');
+ bs.forEach(function(b){b.addEventListener('click',function(){var k=+b.dataset.k;bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});kep.forEach(function(im,n){im.classList.toggle('be',n===k);if(n===k)im.removeAttribute('aria-hidden');else im.setAttribute('aria-hidden','true')})})})});
+// numbers: rows and pictograms arrive when the list scrolls into view
+var l=document.getElementById('szamlista');
+if(l&&'IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&l.getBoundingClientRect().top>window.innerHeight){l.classList.add('var');
+ new IntersectionObserver(function(e,o){if(e[0].isIntersecting){o.disconnect();l.classList.remove('var');l.classList.add('lat')}},{threshold:.25}).observe(l)}
+})();
+</script>
+
+<script>
+(function(){
+// photo viewer
+var d=document.getElementById('nezo'),kep=document.getElementById('nezokep'),cim=document.getElementById('nezocim'),hol=document.getElementById('nezohol'),gombok=[].slice.call(document.querySelectorAll('#fotok .polaroid')),i=0,honnan=null;
+function mutat(k){i=(k+gombok.length)%gombok.length;var g=gombok[i],im=g.querySelector('img');kep.src=im.getAttribute('src').replace('.webp','-nagy.webp');kep.alt=im.alt;cim.textContent=g.querySelector('.fc').textContent;hol.textContent=(i+1)+' / '+gombok.length}
+gombok.forEach(function(g,k){g.addEventListener('click',function(){honnan=g;mutat(k);if(d.showModal)d.showModal();else d.setAttribute('open','')})});
+document.getElementById('nezobal').addEventListener('click',function(){mutat(i-1)});
+document.getElementById('nezojobb').addEventListener('click',function(){mutat(i+1)});
+document.getElementById('nezozar').addEventListener('click',function(){d.close()});
+d.addEventListener('click',function(e){if(e.target===d)d.close()});
+d.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')mutat(i-1);if(e.key==='ArrowRight')mutat(i+1)});
+d.addEventListener('close',function(){if(honnan)honnan.focus()});
+// reviews: arrows scroll the row by one card
+var l=document.getElementById('vellista');function lep(n){var li=l.querySelector('li');l.scrollBy({left:n*(li.offsetWidth+16),behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}
+document.getElementById('velbal').addEventListener('click',function(){lep(-1)});document.getElementById('veljobb').addEventListener('click',function(){lep(1)});
+})();
+</script>
+<script>
+/* rolling questions: the pause button shows all four at rest */
+(function(){var l=document.getElementById('kerdesek'),b=document.getElementById('kszunet');if(!l||!b)return;
+b.addEventListener('click',function(){var all=l.classList.toggle('gor')===false;b.setAttribute('aria-pressed',all?'true':'false');b.setAttribute('aria-label',all?'A kérdések váltakozásának folytatása':'A váltakozó kérdések megállítása')})})();
+/* logo rows: show one row, open the rest on demand */
+(function(){[].forEach.call(document.querySelectorAll('.logosor'),function(ul){var li=ul.querySelector('.logo-gomb');if(!li)return;var b=li.querySelector('button');
+ function rejtett(){var n=0;[].forEach.call(ul.children,function(c){if(c!==li&&getComputedStyle(c).display==='none')n++});return n}
+ function frissit(){var nyitva=ul.classList.contains('nyitva');if(!nyitva){var n=rejtett();li.hidden=n===0;b.textContent='+'+n+' további'}else{b.textContent='Kevesebb'}b.setAttribute('aria-expanded',nyitva?'true':'false')}
+ b.addEventListener('click',function(){ul.classList.toggle('nyitva');frissit()});
+ frissit();if('ResizeObserver' in window)new ResizeObserver(function(){if(!ul.classList.contains('nyitva'))frissit()}).observe(ul)})})();
+</script>
+<script>
+(function(){var nav=document.getElementById('nav'),y=window.scrollY,rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+window.addEventListener('scroll',function(){var n=window.scrollY,d=n-y;if(Math.abs(d)<6)return;
+ var nyitva=nav.querySelector('.nm.nyit,[aria-expanded="true"]')||nav.contains(document.activeElement);
+ if(nav.dataset.nv==='C'&&d>0&&n>160&&!nyitva)nav.classList.add('rejt');else if(d<0||n<=160)nav.classList.remove('rejt');y=n},{passive:true});
+nav.addEventListener('focusin',function(){nav.classList.remove('rejt')});})();
+</script>
+
+

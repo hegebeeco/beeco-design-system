@@ -1,0 +1,13 @@
+/* ---------- navbar „C · lebegő sáv” (Kristóf döntése, 2026-11-23) ----------
+   Csak azon az oldalon él, ahol az új főoldal (.fo) van: a site többi oldalának menüje változatlan.
+   A „Töltsd le!” gomb sárga, és pár másodpercenként biccent; lefelé görgetve a sáv elbújik (fo.js: .fo-rejt). */
+body:has(.fo) .menu{background:transparent;border-bottom:0;padding:10px 24px 0;pointer-events:none;transition:transform .3s cubic-bezier(.23,1,.32,1)}
+body:has(.fo) .menu-sav{pointer-events:auto;max-width:1150px;background:#fff;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000}
+body:has(.fo) .menu.fo-rejt{transform:translateY(calc(-100% - 16px))}
+body:has(.fo) .menu-most{display:none}
+body:has(.fo) .menu .button_main{background-color:#FECF39;transform-origin:50% 70%;animation:biccent 7s cubic-bezier(.23,1,.32,1) 3s infinite}
+body:has(.fo) .menu .button_main:hover,body:has(.fo) .menu .button_main:focus-visible{animation:none}
+@media (max-width:767px){body:has(.fo) .menu{padding:8px 10px 0}}
+@media (prefers-reduced-motion:reduce){body:has(.fo) .menu{transition:none}body:has(.fo) .menu .button_main{animation:none}}
+/* a kilógó díszek (méh, hatszögek) ne okozzanak vízszintes görgetést; a clip nem tör el ragadós elemet */
+.fo{overflow-x:clip}
