@@ -77,6 +77,7 @@ Ugyanazon a linken, a hero alatt: https://claude.ai/artifact/Q78mLtB13aKnEY6VwtF
   - a Megértésből kikerült a beecopédia-sor, a Cselekvésből a városgombok;
   - a GYIK a mostani főoldal formáját követi (`DS · GYIK`: balra ragadó fejléc „Az összes kérdés” gombbal, jobbra a kérdések sárga körös pluszjellel);
   - a logósorok lenyithatók: egy sor látszik, a „+N további” gomb nyitja a többit (10–20 logóra tervezve);
+  - a közösség-szekcióban az „Ismerd meg a csapatunk” gomb a fotók alatt áll, rövid szöveggel és két linkkel (Történetünk, Önkéntes lehetőségek);
   - a záró szekcióban a két áruházgomb minimális és egyforma méretű, a telefon döntött és matrica-árnyékot kap, a négy kérdés felülről lefelé gördülve váltja egymást (szünet gombbal; csökkentett mozgásnál mind a négy áll).
 
 ## 5. Sorrend (élesítés után)
