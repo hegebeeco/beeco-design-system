@@ -32,13 +32,22 @@
 | 7 | Logósáv | **kész** | site-szkript `beecoLogosor` 1.0.0 (`weboldal/kozos/logosor/`): 5 (telefonon 3) logó után „+N további”, gomb: `ds-logo-tobb` |
 | 8 | Képnézegető | **kész** | site-szkript `beecoKepnezo` 1.0.0 (`weboldal/kozos/kepnezo/`): `dialog`, nyilak, Esc, felirat az alt szövegből; kinézet natív osztályokon (`ds-nezo*`) |
 | 9 | Méh (lebegő szuperhős) | **kész** | `DS · Méh` komponens (`ds-meh`, mozgás nélkül); első helye: /rolunk „Mit tegyünk együtt?” |
-| 10 | Főoldal | **részben** | a duplikált menü-CSS kikerült (fo-3 embed); a `fo.js` menürésze a forrásban törölve, a jsDelivr-hivatkozás frissítése a következő pushkor. A főoldal oldal-specifikus elrendezése marad `fo-` osztályokon és embedeken (kb. 40 KB CSS) – a teljes natívra írás külön munka |
+| 10 | Főoldal | **kész** | 79 `fo-` osztály egyszerű szabályai natív Webflow-stílusok (`nativ.py`, `nativ.json`); az embedekben (2 db, 28 KB) csak a mozgás, a töréspontok, az összetett kijelölők és 14 sorrendérzékeny deklaráció maradt. Ellenőrzés: 630 elem, 1440/768/390 px, 0 stíluseltérés. A menü-duplikáció kikerült (fo.js@dbf9f4e4) |
 
 ## Kampányoldal: CsicsergŐsz (Kristóf kérése, 2026-11-23)
 A grafikák és a tartalom maradnak, a forma a főoldalé, a fekete helyett kakaó. Kész a tesztcímen: a meglévő szekciócímkék (Levi szövegei) döntött kakaó DS-címkeként
 (egy elakadt animáció eddig elrejtette őket, az MME-fejléccel együtt), kakaó kampánygombok, árnyékos domb, döntött árnyékos telefon fehér flekkel és funkciócímkével (Madártérkép, Madár album,
 CsicsergŐsz), a közös DS-elemek kakaó kerete. Részletek: `weboldal/kampany-csicsergosz/README.md`.
 Az új főoldal (`/fooldal-uj`) kint van a tesztcímen (nem piszkozat, `noindex`); az átállás Kristóf kattintása.
+
+## Élesítés előtti kapu (2026-11-23, tesztcím, 8 oldal)
+Formálisan egyik oldal sem ment át. Okok:
+- A CookieYes nem fut a webflow.io-címen: „nincs sütisáv / hozzájárulás-kezelő” (P1) minden oldalon, a pontszám emiatt 85 alatt. Élesítés után a beeco.hu-n kell ellenőrizni (`--kor eles-utan`, `meres-ellenor.mjs --env live`).
+- `/fooldal-uj` noindex (P0): szándékos az átállásig.
+- Rólunk és Cégeknek LCP: élesben is ~4 s, nem a mai változás okozza.
+- Térkép: 404 a `maps.prod.beeco.hu` ikonra (régi, a térkép-embedből).
+- K04: a menü a `/cegeknek` hubra mutat, a mérő a `/szolgaltatas/cegeknek` címet keresi (a kapu beállítása).
+Jelentés: scratchpad `audit-2026-11-23/report.md` és `audit-cs/`.
 
 ## Biztonsági szabály a szakaszokra
 A közös elemek minden oldalon egyszerre változnak. Egy éles publikálás a félkész szakaszt is kivinné, ezért
