@@ -83,12 +83,13 @@
 
   /* ---------- funkcióváltók (Megértés, Cselekvés, Jutalom): a gomb dönti el, mit mutat a telefon ---------- */
   $$('.fo-fv', oldal).forEach(function (fv) {
-    var blokk = fv.closest('.fo-ketto'), kep = blokk ? $$('.fo-kep img.fo-tv', blokk) : [], bs = $$('.fo-fvb', fv);
+    var blokk = fv.closest('.fo-ketto'), kep = blokk ? $$('.fo-kep img.fo-tv', blokk) : [], lab = blokk ? $$('.fo-kep .fo-kc', blokk) : [], bs = $$('.fo-fvb', fv);
     bs.forEach(function (b) {
       b.addEventListener('click', function () {
         var k = +b.getAttribute('data-k');
         bs.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
         kep.forEach(function (im, n) { im.classList.toggle('fo-be', n === k); if (n === k) im.removeAttribute('aria-hidden'); else im.setAttribute('aria-hidden', 'true'); });
+        lab.forEach(function (l, n) { l.classList.toggle('fo-be', n === k); }); // the label on the phone follows the button
         mer('funkcio_valasztas', { funkcio: ($('strong', b) || b).textContent.trim(), hely: helyNev(b) });
       });
     });

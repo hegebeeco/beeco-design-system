@@ -24,3 +24,13 @@ body:has(.fo) .menu .button_main:hover,body:has(.fo) .menu .button_main:focus-vi
 .fo.fo-all-mind *,.fo.fo-all-mind *::before,.fo.fo-all-mind *::after{animation-play-state:paused!important}
 body:has(.fo.fo-all-mind) .menu .button_main{animation:none}
 .fo .fo-tovabb::after{animation-iteration-count:3}
+/* navbar C, lenyíló (Kristóf, 2026-11-23): a tervben látott külön doboz – a sáv alatt rés, saját keret, sarok és árnyék;
+   a lefelé mutató nyíl nyitáskor megfordul. Csak asztali szélességen (a telefonos menü a site sajátja). */
+@media (min-width:992px){
+body:has(.fo) .menu .menu-panel{top:calc(100% + 14px);left:0;right:0;padding:16px;background:#FFF8E7;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000}
+body:has(.fo) .menu .menu-panel::before{content:"";position:absolute;left:0;right:0;top:-18px;height:18px}
+body:has(.fo) .menu .menu-nyil{transition:transform .2s cubic-bezier(.23,1,.32,1),margin .2s cubic-bezier(.23,1,.32,1)}
+body:has(.fo) .menu .menu-gomb.w--open .menu-nyil{transform:rotate(225deg);margin-top:4px}
+body:has(.fo) .menu .menu-gomb.w--open{background-color:var(--_beeco-ds---bc-vaj,#FEEEBB)}
+}
+@media (prefers-reduced-motion:reduce){body:has(.fo) .menu .menu-nyil{transition:none}}

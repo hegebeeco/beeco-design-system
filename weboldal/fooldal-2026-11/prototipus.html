@@ -39,7 +39,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset
 .szin::before{content:"";position:absolute;left:50%;top:26px;width:430px;height:430px;margin-left:-215px;z-index:0;background:#fff;clip-path:polygon(25% 3%,75% 0,100% 48%,77% 97%,22% 100%,0 52%);transform:rotate(-8deg)}
 .nyom{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;clip-path:inset(0 0 100% 0);animation:rajzol .9s var(--ease) .3s forwards}
 @keyframes rajzol{to{clip-path:inset(0)}}
-.domb{position:absolute;left:0;right:0;bottom:-1px;height:56px;z-index:1;background:var(--surface);border-radius:50% 50% 0 0/100% 100% 0 0}
+.domb{position:absolute;left:0;right:0;bottom:-1px;height:56px;z-index:1;background:var(--surface);border-radius:50% 50% 0 0/100% 100% 0 0;box-shadow:0 -6px 14px -4px rgba(0,0,0,.16)}
 .racs{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:32px;align-items:start;max-width:1200px;margin:0 auto;padding:24px 56px 84px}
 .szoveg{display:flex;flex-direction:column;gap:18px;min-width:0;align-self:center}
 .szalag{align-self:flex-start;background:var(--ink);color:#fff;font:700 13px/1 var(--text);padding:8px 10px;transform:rotate(-2deg)}
@@ -78,7 +78,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset
 .hb[aria-pressed="true"] .sav{animation:halad 5s linear forwards}
 @keyframes halad{to{transform:scaleX(1)}}
 .hero.kezi .sav{animation:none}
-.hero.all .sav,.hero.all .meh,.keret:has(.hero.all) .meh2,.keret:has(.hero.all) .meh3,.hero.all .hx,.hero.all .gomb .logo,.hero:has(.vizual:hover) .sav{animation-play-state:paused}
+.hero.all .sav,.hero.all .meh,.keret:has(.hero.all) .meh2,.keret:has(.hero.all) .meh3,.keret:has(.hero.all) .meh4,.hero.all .hx,.hero.all .gomb .logo,.hero:has(.vizual:hover) .sav{animation-play-state:paused}
 /* visual */
 .vizual{min-width:0;display:flex;flex-direction:column}.szin{position:relative;height:520px}
 .tel{position:absolute;left:50%;top:0;width:246px;margin-left:-123px;z-index:3}
@@ -465,9 +465,9 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(2px,2px);box-s
 /* step number box: tilted like the label */
 .lepszam{transform:rotate(-7deg)}
 /* closing: compact store buttons of equal size */
-.zaro .bolt{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:max-content;max-width:100%}
-.zaro .bolt .gomb{width:auto;min-height:48px;padding:0 16px;justify-content:center;font-size:20px;white-space:nowrap}
-.zaro .bolt .gomb .logo{width:22px;height:22px}
+.zaro .bolt,.ossz .bolt{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:max-content;max-width:100%}
+.zaro .bolt .gomb,.ossz .bolt .gomb{width:auto;min-height:48px;padding:0 16px;justify-content:center;font-size:20px;white-space:nowrap}
+.zaro .bolt .gomb .logo,.ossz .bolt .gomb .logo{width:22px;height:22px}
 /* closing: tilted phone with a sticker-like shadow */
 .zaro .kep>img.t{transform:rotate(6deg);filter:drop-shadow(9px 10px 0 rgba(0,0,0,.2))}
 /* closing: the four questions roll one after another, top to bottom */
@@ -486,7 +486,7 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(2px,2px);box-s
 }
 @keyframes gordul{0%{opacity:0;translate:0 -130%}3.6%,25%{opacity:1;translate:0 0}28.6%,100%{opacity:0;translate:0 130%}}
 @container (max-width:760px){
- .zaro .bolt{display:none}
+ .zaro .bolt,.ossz .bolt{display:none}
  .szamok b{font-size:22px;white-space:nowrap}
  .szamok{gap:22px 14px}
  .szamok li{grid-template-columns:40px minmax(0,1fr);gap:9px}
@@ -495,6 +495,26 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(2px,2px);box-s
  .kerdesek.gor{height:74px}
  .kerdesek.gor li{font-size:19px;line-height:1.15;top:8px}
  .zaro .kep>img.t{filter:drop-shadow(7px 8px 0 rgba(0,0,0,.2))}
+}
+/* steps 1–3: a function label at the bottom of the phone, like in the hero; it follows the pressed button */
+.kep>.kc{top:404px;min-width:212px;gap:10px;padding:7px 15px 5px 10px;opacity:0;pointer-events:none}
+.kep>.kc.be{opacity:1}
+.kep>.kc b{font-size:28px}.kep>.kc .cz{font-size:15px}
+.kep>.kc .cimke-ik{width:40px;height:40px}
+.ford .kep>.kc{transform:translateX(-50%) rotate(3deg)}.ford .kep>.kc .cimke-ik{transform:rotate(-3deg)}
+/* summary after the three steps: learn, move, keep at it – then download */
+.lanc{list-style:none;margin:0 0 22px;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;font:400 22px/1 var(--display)}
+.lanc li{display:flex;align-items:center;gap:8px}
+.lanc li+li::before{content:"→";font:700 18px/1 var(--text);margin-right:2px}
+.lanc .lepszam{margin-right:0}
+.ossz .kep{height:400px}
+.ossz .kep::before{top:20px}
+.ossz .kep .meh4{position:absolute;left:50%;top:40px;width:300px;margin-left:-150px;transform:scaleX(-1);filter:drop-shadow(-3px 4px 0 rgba(0,0,0,.2));animation:lebeg 4s ease-in-out infinite alternate}
+@container (max-width:760px){
+ .kep>.kc{top:338px;min-width:190px}.kep>.kc b{font-size:24px}.kep>.kc .cz{font-size:14px}.kep>.kc .cimke-ik{width:36px;height:36px}
+ .lanc{flex-direction:column;align-items:flex-start;font-size:20px}.lanc li+li::before{content:none}
+ .ossz .kep{height:260px}.ossz .kep::before{width:240px;height:240px;margin-left:-120px;top:10px}
+ .ossz .kep .meh4{width:190px;margin-left:-95px;top:24px}
 }
 /* FAQ: the form of the current home page (DS · GYIK) */
 .gyik-racs{display:grid;grid-template-columns:minmax(0,.6fr) minmax(0,1fr);gap:32px 48px;align-items:start}
@@ -656,7 +676,7 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(2px,2px);box-s
 </div>
 <div class="sor"><a class="gm" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener">Letöltöm az appot</a><a class="szl" href="https://www.beeco.hu/app/labnyom-szamitasi-metodika" target="_blank" rel="noopener">Így számolunk</a></div>
 </div>
-<div class="kep"><img class="t tv be" src="a/tel-labnyom.webp" alt="A beeco app lábnyomkalkulátora: karbon-, víz- és hulladéklábnyom témánként" loading="lazy"><img class="t tv" src="a/tel-kezdolap.webp" alt="A beeco app kezdőlapja: nektár, havi helyezés és az ajánlott következő lépés" loading="lazy" aria-hidden="true"></div>
+<div class="kep"><img class="t tv be" src="a/tel-labnyom.webp" alt="A beeco app lábnyomkalkulátora: karbon-, víz- és hulladéklábnyom témánként" loading="lazy"><img class="t tv" src="a/tel-kezdolap.webp" alt="A beeco app kezdőlapja: nektár, havi helyezés és az ajánlott következő lépés" loading="lazy" aria-hidden="true"><div class="cimke kc be" aria-hidden="true"><span class="flekk cimke-ik"><img src="a/piko-lab.svg" alt=""></span><span><b>Lábnyom</b><span class="cz">karbon, víz, hulladék</span></span></div><div class="cimke kc" aria-hidden="true"><span class="flekk cimke-ik"><img src="a/piko-otlet.svg" alt=""></span><span><b>Következő lépés</b><span class="cz">rád szabva, mindig</span></span></div></div>
 </div><div class="domb" style="--kov:#FFF8E7" aria-hidden="true"></div></section>
 <section class="szk" id="cselekves" style="--h:#FFF8E7;scroll-margin-top:64px" aria-labelledby="c-csel"><div class="szk-b ketto ford">
 <div>
@@ -669,7 +689,7 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(2px,2px);box-s
 </div>
 <div class="sor"><a class="gm" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener">Letöltöm az appot</a><a class="szl" href="https://www.beeco.hu/zold-terkep/magyarorszag" target="_blank" rel="noopener">Zöld térkép városonként</a></div>
 </div>
-<div class="kep"><img class="t tv be" src="a/tel-terkep.webp" alt="A beeco app zöld térképe: zöld helyek, események és gyűjtőpontok a közelben" loading="lazy"><img class="t tv" src="a/tel-esemeny.webp" alt="A beeco app eseménynaptára: közeli zöld programok listában és térképen" loading="lazy" aria-hidden="true"><img class="t tv" src="a/tel-kupon.webp" alt="A beeco app kuponjai: hamarosan lejáró és kiemelt kedvezmények" loading="lazy" aria-hidden="true"></div>
+<div class="kep"><img class="t tv be" src="a/tel-terkep.webp" alt="A beeco app zöld térképe: zöld helyek, események és gyűjtőpontok a közelben" loading="lazy"><img class="t tv" src="a/tel-esemeny.webp" alt="A beeco app eseménynaptára: közeli zöld programok listában és térképen" loading="lazy" aria-hidden="true"><img class="t tv" src="a/tel-kupon.webp" alt="A beeco app kuponjai: hamarosan lejáró és kiemelt kedvezmények" loading="lazy" aria-hidden="true"><div class="cimke kc be" aria-hidden="true"><span class="flekk cimke-ik"><img src="a/piko-terkep.svg" alt=""></span><span><b>Zöld térkép</b><span class="cz">23.000+ zöld pont</span></span></div><div class="cimke kc" aria-hidden="true"><span class="flekk cimke-ik"><img src="a/piko-naptar.svg" alt=""></span><span><b>Kaptárnaptár</b><span class="cz">100+ program havonta</span></span></div><div class="cimke kc" aria-hidden="true"><span class="flekk cimke-ik"><img src="a/piko-kupon.svg" alt=""></span><span><b>Kuponfüzet</b><span class="cz">zöld partnerektől</span></span></div></div>
 </div><div class="domb" style="--kov:#E3ECCD" aria-hidden="true"></div></section>
 <section class="szk" id="jutalom" style="--h:#E3ECCD;scroll-margin-top:64px" aria-labelledby="c-jut"><div class="szk-b ketto">
 <div>
@@ -682,7 +702,24 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(2px,2px);box-s
 </div>
 <div class="sor"><a class="gm" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener">Letöltöm az appot</a><a class="szl" href="https://www.beeco.hu/app/gyik" target="_blank" rel="noopener">Mire jó a nektár?</a></div>
 </div>
-<div class="kep"><img class="t tv be" src="a/tel-profil.webp" alt="A beeco app profilja: gyűjtött nektár, sikerek és a nektárnapló" loading="lazy"><img class="t tv" src="a/tel-verseny.webp" alt="A beeco app versenye: nektárgyűjtő ranglista" loading="lazy" aria-hidden="true"><img class="t tv" src="a/tel-rajok.webp" alt="A beeco app rajai: a saját raj és a közeli közösségek" loading="lazy" aria-hidden="true"></div>
+<div class="kep"><img class="t tv be" src="a/tel-profil.webp" alt="A beeco app profilja: gyűjtött nektár, sikerek és a nektárnapló" loading="lazy"><img class="t tv" src="a/tel-verseny.webp" alt="A beeco app versenye: nektárgyűjtő ranglista" loading="lazy" aria-hidden="true"><img class="t tv" src="a/tel-rajok.webp" alt="A beeco app rajai: a saját raj és a közeli közösségek" loading="lazy" aria-hidden="true"><div class="cimke kc be" aria-hidden="true"><span class="flekk cimke-ik"><img src="a/piko-csepp.svg" alt=""></span><span><b>Nektár</b><span class="cz">minden lépésedért</span></span></div><div class="cimke kc" aria-hidden="true"><span class="flekk cimke-ik"><img src="a/piko-kupa.svg" alt=""></span><span><b>Ranglista</b><span class="cz">hol tartasz?</span></span></div><div class="cimke kc" aria-hidden="true"><span class="flekk cimke-ik"><img src="a/piko-raj.svg" alt=""></span><span><b>Rajok</b><span class="cz">nem vagy egyedül</span></span></div></div>
+</div><div class="domb" style="--kov:#FFF8E7" aria-hidden="true"></div></section>
+<section class="szk ossz" id="osszegzes" style="--h:#FFF8E7" aria-labelledby="c-ossz"><div class="szk-b ketto">
+<div>
+<div class="szf"><span class="szalag">Együtt megy</span><h3 id="c-ossz">Légy te a ma ökohőse!</h3>
+<p class="bev">Ha együtt tanulunk, megmozdulunk, és a jutalmak miatt tovább csináljuk, akkor együtt zöldebb jövőt építhetünk magunknak és az unokáinknak is. Ebben segít a beeco: töltsd le!</p></div>
+<ol class="lanc" aria-label="A három lépés röviden"><li><span class="lepszam">1</span>Tanulunk</li><li><span class="lepszam">2</span>Megmozdulunk</li><li><span class="lepszam">3</span>Kitartunk</li></ol>
+<div class="cta">
+<div class="bolt">
+<a class="gomb" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener"><svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg><span><span class="sr">Letöltés: </span>Google Play</span></a>
+<a class="gomb" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener"><svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><span><span class="sr">Letöltés: </span>App Store</span></a>
+</div>
+<div class="qr"><img src="a/qr.png" alt="QR-kód a beeco app letöltéséhez" loading="lazy"></div>
+<a class="gomb egygomb" href="https://www.beeco.hu/app/letoltes" target="_blank" rel="noopener"><svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>Letöltöm az appot</a>
+<span class="apro">Ingyenes · iPhone-ra és Androidra</span>
+</div>
+</div>
+<div class="kep"><img class="meh4" src="a/meh.webp" alt="" loading="lazy"></div>
 </div><div class="domb" style="--kov:#2F371E" aria-hidden="true"></div></section>
 <section class="szk szam" id="szamok" style="--h:#2F371E" aria-labelledby="c-szam">
 <div class="hatter" aria-hidden="true"><span class="sejt"></span></div>
@@ -896,8 +933,8 @@ nb.forEach(function(b){b.addEventListener('click',function(){setN(b.dataset.nv)}
 <script>
 (function(){
 // function switchers: the pressed row decides which screen the phone shows
-document.querySelectorAll('.fv').forEach(function(fv){var kep=fv.closest('.ketto').querySelectorAll('.kep img.tv'),bs=fv.querySelectorAll('.fvb');
- bs.forEach(function(b){b.addEventListener('click',function(){var k=+b.dataset.k;bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});kep.forEach(function(im,n){im.classList.toggle('be',n===k);if(n===k)im.removeAttribute('aria-hidden');else im.setAttribute('aria-hidden','true')})})})});
+document.querySelectorAll('.fv').forEach(function(fv){var kep=fv.closest('.ketto').querySelectorAll('.kep img.tv'),lab=fv.closest('.ketto').querySelectorAll('.kep .kc'),bs=fv.querySelectorAll('.fvb');
+ bs.forEach(function(b){b.addEventListener('click',function(){var k=+b.dataset.k;bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});kep.forEach(function(im,n){im.classList.toggle('be',n===k);if(n===k)im.removeAttribute('aria-hidden');else im.setAttribute('aria-hidden','true')});lab.forEach(function(l,n){l.classList.toggle('be',n===k)})})})});
 // numbers: rows and pictograms arrive when the list scrolls into view
 var l=document.getElementById('szamlista');
 if(l&&'IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&l.getBoundingClientRect().top>window.innerHeight){l.classList.add('var');

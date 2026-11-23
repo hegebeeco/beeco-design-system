@@ -176,7 +176,11 @@ for b, _ in blokkok:
     m = re.search(r'id="([^"]+)"', b)
     nevek.append(m.group(1))
 
-stilus_wf, stilus_t = {}, {}
+# the generated style classes (fo-x1…) are already on the Webflow elements: the numbering is kept in stilusok.json,
+# a new inline style gets the next free number, so adding a section never renumbers the existing ones
+SP = os.path.join(D, 'stilusok.json')
+regi = json.load(open(SP, encoding='utf-8')) if os.path.exists(SP) else {}
+stilus_wf, stilus_t = dict(regi), dict(regi)
 # class stubs: the whtml builder keeps a class only if CSS for it arrives with the markup (the property is inert)
 def csonkok(h):
     out = []
@@ -192,6 +196,7 @@ for x in wf:
     x['css'] = csonkok(x['html'])
 teszt = [jeloles(b, 'teszt', stilus_t) for b, _ in blokkok]
 assert stilus_wf == stilus_t
+json.dump(stilus_wf, open(SP, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
 # the hero phone image loads first: eager + high priority
 for lst in (wf,):
     lst[0]['html'] = lst[0]['html'].replace('<img class="fo-be" src=', '<img class="fo-be" loading="eager" fetchpriority="high" src=', 1)

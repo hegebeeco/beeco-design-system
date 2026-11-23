@@ -24,7 +24,7 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-szin::before{content:"";position:absolute;left:50%;top:26px;width:430px;height:430px;margin-left:-215px;z-index:0;background:#fff;clip-path:polygon(25% 3%,75% 0,100% 48%,77% 97%,22% 100%,0 52%);transform:rotate(-8deg)}
 .fo-nyom{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;clip-path:inset(0 0 100% 0);animation:rajzol .9s var(--ease) .3s forwards}
 @keyframes rajzol{to{clip-path:inset(0)}}
-.fo-domb{position:absolute;left:0;right:0;bottom:-1px;height:56px;z-index:1;background:var(--surface);border-radius:50% 50% 0 0/100% 100% 0 0}
+.fo-domb{position:absolute;left:0;right:0;bottom:-1px;height:56px;z-index:1;background:var(--surface);border-radius:50% 50% 0 0/100% 100% 0 0;box-shadow:0 -6px 14px -4px rgba(0,0,0,.16)}
 .fo-racs{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:32px;align-items:start;max-width:1200px;margin:0 auto;padding:24px 56px 84px}
 .fo-szoveg{display:flex;flex-direction:column;gap:18px;min-width:0;align-self:center}
 .fo-szalag{align-self:flex-start;background:var(--ink);color:#fff;font:700 13px/1 var(--text);padding:8px 10px;transform:rotate(-2deg)}
@@ -64,7 +64,7 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-hb[aria-pressed="true"] .fo-sav{animation:halad 5s linear forwards}
 @keyframes halad{to{transform:scaleX(1)}}
 .fo-hero.fo-kezi .fo-sav{animation:none}
-.fo-hero.fo-all .fo-sav,.fo-hero.fo-all .fo-meh,.fo:has(.fo-hero.fo-all) .fo-meh2,.fo:has(.fo-hero.fo-all) .fo-meh3,.fo-hero.fo-all .fo-hx,.fo-hero.fo-all .fo-gomb .fo-logo,.fo-hero:has(.fo-vizual:hover) .fo-sav{animation-play-state:paused}
+.fo-hero.fo-all .fo-sav,.fo-hero.fo-all .fo-meh,.fo:has(.fo-hero.fo-all) .fo-meh2,.fo:has(.fo-hero.fo-all) .fo-meh3,.fo:has(.fo-hero.fo-all) .fo-meh4,.fo-hero.fo-all .fo-hx,.fo-hero.fo-all .fo-gomb .fo-logo,.fo-hero:has(.fo-vizual:hover) .fo-sav{animation-play-state:paused}
 .fo-vizual{min-width:0;display:flex;flex-direction:column}
 .fo-szin{position:relative;height:520px}
 .fo-tel{position:absolute;left:50%;top:0;width:246px;margin-left:-123px;z-index:3}
@@ -321,9 +321,9 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-szamok li{grid-template-columns:48px minmax(0,1fr);gap:12px}
 .fo-szamok .fo-flekk{width:48px;height:48px}
 .fo-lepszam{transform:rotate(-7deg)}
-.fo-zaro .fo-bolt{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:max-content;max-width:100%}
-.fo-zaro .fo-bolt .fo-gomb{width:auto;min-height:48px;padding:0 16px;justify-content:center;font-size:20px;white-space:nowrap}
-.fo-zaro .fo-bolt .fo-gomb .fo-logo{width:22px;height:22px}
+.fo-zaro .fo-bolt,.fo-ossz .fo-bolt{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:max-content;max-width:100%}
+.fo-zaro .fo-bolt .fo-gomb,.fo-ossz .fo-bolt .fo-gomb{width:auto;min-height:48px;padding:0 16px;justify-content:center;font-size:20px;white-space:nowrap}
+.fo-zaro .fo-bolt .fo-gomb .fo-logo,.fo-ossz .fo-bolt .fo-gomb .fo-logo{width:22px;height:22px}
 .fo-zaro .fo-kep>img.fo-t{transform:rotate(6deg);filter:drop-shadow(9px 10px 0 rgba(0,0,0,.2))}
 .fo-kerd-sor{display:flex;align-items:center;gap:6px;width:100%;max-width:560px}
 .fo-kszunet{flex:none;order:-1;margin-left:-8px;display:none;place-items:center;width:44px;height:44px;padding:0;background:none;border:0;cursor:pointer}
@@ -337,7 +337,7 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-kerdesek.fo-gor li{position:absolute;left:6px;top:9px;max-width:calc(100% - 12px);font-size:22px;padding:9px 12px 6px;opacity:0;animation:gordul 11.2s var(--ease) infinite;animation-delay:calc(var(--k)*2.8s)}
 .fo-kerdesek.fo-gor:hover li{animation-play-state:paused}}
 @keyframes gordul{0%{opacity:0;translate:0 -130%}3.6%,25%{opacity:1;translate:0 0}28.6%,100%{opacity:0;translate:0 130%}}
-@container (max-width:760px){.fo-zaro .fo-bolt{display:none}
+@container (max-width:760px){.fo-zaro .fo-bolt,.fo-ossz .fo-bolt{display:none}
 .fo-szamok strong{font-size:22px;white-space:nowrap}
 .fo-szamok{gap:22px 14px}
 .fo-szamok li{grid-template-columns:40px minmax(0,1fr);gap:9px}
@@ -346,6 +346,29 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-kerdesek.fo-gor{height:74px}
 .fo-kerdesek.fo-gor li{font-size:19px;line-height:1.15;top:8px}
 .fo-zaro .fo-kep>img.fo-t{filter:drop-shadow(7px 8px 0 rgba(0,0,0,.2))}}
+.fo-kep>.fo-kc{top:404px;min-width:212px;gap:10px;padding:7px 15px 5px 10px;opacity:0;pointer-events:none}
+.fo-kep>.fo-kc.fo-be{opacity:1}
+.fo-kep>.fo-kc strong{font-size:28px}
+.fo-kep>.fo-kc .fo-cz{font-size:15px}
+.fo-kep>.fo-kc .fo-cimke-ik{width:40px;height:40px}
+.fo-ford .fo-kep>.fo-kc{transform:translateX(-50%) rotate(3deg)}
+.fo-ford .fo-kep>.fo-kc .fo-cimke-ik{transform:rotate(-3deg)}
+.fo-lanc{list-style:none;margin:0 0 22px;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;font:400 22px/1 var(--display)}
+.fo-lanc li{display:flex;align-items:center;gap:8px}
+.fo-lanc li+li::before{content:"→";font:700 18px/1 var(--text);margin-right:2px}
+.fo-lanc .fo-lepszam{margin-right:0}
+.fo-ossz .fo-kep{height:400px}
+.fo-ossz .fo-kep::before{top:20px}
+.fo-ossz .fo-kep .fo-meh4{position:absolute;left:50%;top:40px;width:300px;margin-left:-150px;transform:scaleX(-1);filter:drop-shadow(-3px 4px 0 rgba(0,0,0,.2));animation:lebeg 4s ease-in-out infinite alternate}
+@container (max-width:760px){.fo-kep>.fo-kc{top:338px;min-width:190px}
+.fo-kep>.fo-kc strong{font-size:24px}
+.fo-kep>.fo-kc .fo-cz{font-size:14px}
+.fo-kep>.fo-kc .fo-cimke-ik{width:36px;height:36px}
+.fo-lanc{flex-direction:column;align-items:flex-start;font-size:20px}
+.fo-lanc li+li::before{content:none}
+.fo-ossz .fo-kep{height:260px}
+.fo-ossz .fo-kep::before{width:240px;height:240px;margin-left:-120px;top:10px}
+.fo-ossz .fo-kep .fo-meh4{width:190px;margin-left:-95px;top:24px}}
 .fo-logosor:not(.fo-nyitva) li:nth-child(n+6):not(.fo-logo-gomb){display:none}
 .fo-logo-gomb{margin:0}
 .fo-logotobb{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;background:#fff;color:#000;font:700 14px/1 var(--text);border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;cursor:pointer;white-space:nowrap;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
@@ -433,3 +456,12 @@ body:has(.fo) .menu .button_main:hover,body:has(.fo) .menu .button_main:focus-vi
 .fo.fo-all-mind *,.fo.fo-all-mind *::before,.fo.fo-all-mind *::after{animation-play-state:paused!important}
 body:has(.fo.fo-all-mind) .menu .button_main{animation:none}
 .fo .fo-tovabb::after{animation-iteration-count:3}
+
+@media (min-width:992px){
+body:has(.fo) .menu .menu-panel{top:calc(100% + 14px);left:0;right:0;padding:16px;background:#FFF8E7;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000}
+body:has(.fo) .menu .menu-panel::before{content:"";position:absolute;left:0;right:0;top:-18px;height:18px}
+body:has(.fo) .menu .menu-nyil{transition:transform .2s cubic-bezier(.23,1,.32,1),margin .2s cubic-bezier(.23,1,.32,1)}
+body:has(.fo) .menu .menu-gomb.w--open .menu-nyil{transform:rotate(225deg);margin-top:4px}
+body:has(.fo) .menu .menu-gomb.w--open{background-color:var(--_beeco-ds---bc-vaj,#FEEEBB)}
+}
+@media (prefers-reduced-motion:reduce){body:has(.fo) .menu .menu-nyil{transition:none}}
