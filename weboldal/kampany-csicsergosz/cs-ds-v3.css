@@ -14,3 +14,5 @@ html body .img_qr{border-color:#6B3B16}
 html body #gyik .ds-gomb:hover,html body #videok .ds-short:hover{box-shadow:5px 5px 0 #6B3B16}
 html body .download_img:hover{box-shadow:5px 5px 0 #6B3B16}}
 html body #gyik .ds-gomb:active{box-shadow:1px 1px 0 #6B3B16}
+/* A szekciócímkék kibontó animációja elakadt (a cs-kibont-lat nem kerül fel), ezért a címke állandóan nyitva. */
+html.cs-be-on body section .cs_kicker.cs-kibont{clip-path:polygon(0 8%,100% 0,98% 100%,2% 92%)}
