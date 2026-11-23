@@ -68,6 +68,8 @@ Ugyanazon a linken, a hero alatt: https://claude.ai/artifact/Q78mLtB13aKnEY6VwtF
 - Tartalom: a számok, a vélemények, a logók, a fotók és a GYIK a mostani főoldalról valók; az új szövegek javaslatok (Levi dönt), a szövegellenőrző 0 találatot ad rájuk.
 - Kimaradt a mostani oldalról: a „Miért a beeco?” szöveg, az app nyolclépéses útja, a csapat idővonala (a Rólunk oldalon él tovább).
 - Navbar: görgetési folyamatjelző sáv; a letöltőgomb akkor sárga, amikor a hero gombjai nem látszanak.
+- Navbar-változatok a prototípusban (Kristóf kérése 2026-11-23, választásra vár): A lenyíló panelek (javasolt, a meglévő menü bővítése), B mega menü kiemelt kártyával (`NAVBAR_MEGA` alapon), C lebegő sáv, D kétsoros célcsoportsávval. Mind natív Webflow Navbar és Dropdown elemekből építhető; telefonon közös a hamburgeres menü.
+- A telefon fekete címkéjén a funkció piktogramja a címen belül, a szöveg előtt áll (Kristóf, 2026-11-23).
 
 ## 5. Sorrend (élesítés után)
 1. Mérő bővítése (címskála, igazítás, lekerekítés a nem kattinthatón, mockup-háttér). Utána mérés a 72 oldalon.
