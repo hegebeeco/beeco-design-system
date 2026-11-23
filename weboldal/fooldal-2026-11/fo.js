@@ -49,7 +49,7 @@
       setTimeout(function () {
         $('#cimke1', cimke).textContent = H[i][0];
         $('#cimke2', cimke).textContent = H[i][1];
-        var ik = $('img', hb[i]); if (ik) $('#cimkeik', cimke).src = ik.src;
+        var ik = $('img', hb[i]), cel = $('.fo-cimke-ik img', cimke); if (ik && cel) cel.src = ik.src; // Webflow drops the id on images
         cimke.classList.remove('fo-valt');
       }, 180);
     };
