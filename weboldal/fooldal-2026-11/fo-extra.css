@@ -28,9 +28,10 @@ body:has(.fo.fo-all-mind) .menu .button_main{animation:none}
    a lefelé mutató nyíl nyitáskor megfordul. Csak asztali szélességen (a telefonos menü a site sajátja). */
 @media (min-width:992px){
 body:has(.fo) .menu .menu-panel{top:calc(100% + 14px);left:0;right:0;padding:16px;background:#FFF8E7;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000}
-body:has(.fo) .menu .menu-panel::before{content:"";position:absolute;left:0;right:0;top:-18px;height:18px}
 body:has(.fo) .menu .menu-nyil{transition:transform .2s cubic-bezier(.23,1,.32,1),margin .2s cubic-bezier(.23,1,.32,1)}
 body:has(.fo) .menu .menu-gomb.w--open .menu-nyil{transform:rotate(225deg);margin-top:4px}
 body:has(.fo) .menu .menu-gomb.w--open{background-color:var(--_beeco-ds---bc-vaj,#FEEEBB)}
 }
 @media (prefers-reduced-motion:reduce){body:has(.fo) .menu .menu-nyil{transition:none}}
+/* R4: a sötét domb erősebb árnyékot vet (30 %), mint a DS · Domb sötét változata */
+.fo .fo-domb.fo-x8{box-shadow:0 -6px 14px -4px rgba(0,0,0,.3)}

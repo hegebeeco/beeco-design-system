@@ -507,12 +507,14 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(2px,2px);box-s
 .lanc li{display:flex;align-items:center;gap:8px}
 .lanc li+li::before{content:"→";font:700 18px/1 var(--text);margin-right:2px}
 .lanc .lepszam{margin-right:0}
+/* narrow text column (two-column layout up to ~1000px, then phones): one step per row, no arrows */
+@container (max-width:1000px){.lanc{flex-direction:column;align-items:flex-start}.lanc li+li::before{content:none}}
 .ossz .kep{height:400px}
 .ossz .kep::before{top:20px}
 .ossz .kep .meh4{position:absolute;left:50%;top:40px;width:300px;margin-left:-150px;transform:scaleX(-1);filter:drop-shadow(-3px 4px 0 rgba(0,0,0,.2));animation:lebeg 4s ease-in-out infinite alternate}
 @container (max-width:760px){
  .kep>.kc{top:338px;min-width:190px}.kep>.kc b{font-size:24px}.kep>.kc .cz{font-size:14px}.kep>.kc .cimke-ik{width:36px;height:36px}
- .lanc{flex-direction:column;align-items:flex-start;font-size:20px}.lanc li+li::before{content:none}
+ .lanc{font-size:20px}
  .ossz .kep{height:260px}.ossz .kep::before{width:240px;height:240px;margin-left:-120px;top:10px}
  .ossz .kep .meh4{width:190px;margin-left:-95px;top:24px}
 }
