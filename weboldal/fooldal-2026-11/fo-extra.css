@@ -20,3 +20,7 @@ body:has(.fo) .menu .button_main:hover,body:has(.fo) .menu .button_main:focus-vi
 .fo #partnerek .fo-domb{display:none}
 /* a natív GYIK alsó íve a záró szekció vajsárgájába fusson, ne krémszínbe */
 .fo #gyik .ds-domb{background:#FEEEBB}
+/* WCAG 2.2.2 (független ellenőrzés, 2026-11-23): bármelyik szünet gomb megállítja az oldal ismétlődő mozgását, a navbar gombjáét is; a lefelé mutató nyíl csak háromszor mozdul */
+.fo.fo-all-mind *,.fo.fo-all-mind *::before,.fo.fo-all-mind *::after{animation-play-state:paused!important}
+body:has(.fo.fo-all-mind) .menu .button_main{animation:none}
+.fo .fo-tovabb::after{animation-iteration-count:3}

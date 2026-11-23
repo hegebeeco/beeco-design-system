@@ -13,7 +13,10 @@
 
   /* ---------- mérés: ugyanaz a dataLayer-forma, mint a régi főoldalon (beeco_* események) ---------- */
   w.dataLayer = w.dataLayer || [];
-  function mer(esemeny, adat) { w.dataLayer.push(Object.assign({ event: 'beeco_' + esemeny }, adat || {})); }
+  function mer(esemeny, adat) { w.dataLayer.push(Object.assign({ event: 'beeco_' + esemeny, oldal: 'fooldal' }, adat || {})); }
+  // WCAG 2.2.2: either pause button stops every repeating motion on the page (CSS: .fo.fo-all-mind)
+  var allok = {};
+  function mindAll(kulcs, all) { allok[kulcs] = all; oldal.classList.toggle('fo-all-mind', Object.keys(allok).some(function (k) { return allok[k]; })); }
   function kattMer(sel, esemeny, ertek) {
     $$(sel, oldal).forEach(function (a) { a.addEventListener('click', function () { mer(esemeny, ertek ? { ertek: ertek(a) } : {}); }); });
   }
@@ -64,7 +67,7 @@
       sz.setAttribute('aria-pressed', 'false');
       sz.addEventListener('click', function () {
         var p = hero.classList.toggle('fo-all');
-        oldal.classList.toggle('fo-all-mind', p);
+        mindAll('hero', p);
         sz.setAttribute('aria-pressed', p ? 'true' : 'false');
         sz.setAttribute('aria-label', p ? 'A váltás folytatása' : 'A váltás megállítása');
       });
@@ -149,6 +152,9 @@
     dlg.addEventListener('close', function () { if (honnan) honnan.focus(); });
   }
 
+  /* ---------- logólinkek neve a logó alt szövegéből (a mérés és a felolvasó is ezt kapja) ---------- */
+  $$('.fo-logosor li:not(.fo-logo-gomb) a', oldal).forEach(function (a) { var im = $('img', a); if (im && im.alt && !a.getAttribute('aria-label')) a.setAttribute('aria-label', im.alt); });
+
   /* ---------- logósorok: egy sor látszik, a többi gombra nyílik ---------- */
   $$('.fo-logosor', oldal).forEach(function (ul) {
     var li = $('.fo-logo-gomb', ul); if (!li) return;
@@ -170,6 +176,7 @@
     kb.setAttribute('aria-pressed', 'false');
     kb.addEventListener('click', function () {
       var all = kl.classList.toggle('fo-gor') === false;
+      mindAll('kerdes', all);
       kb.setAttribute('aria-pressed', all ? 'true' : 'false');
       kb.setAttribute('aria-label', all ? 'A kérdések váltakozásának folytatása' : 'A váltakozó kérdések megállítása');
     });

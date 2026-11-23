@@ -21,3 +21,18 @@ Cím: „Éljünk ökosabban, együtt, olcsóbban!”; navbar: C · lebegő sáv
 python3 epit.py                 # fo.css, embed/, szekciok.json, teszt.html (helyi próbaoldal, nem commitoljuk)
 ```
 A `teszt.html` a valódi Webflow-kimenet közelítése (a navbar és a GYIK helyén egyszerű helyettesítő).
+
+## Webflow-csapdák (2026-11-23)
+- A whtml-beszúrás csak CSS-csonkkal tartja meg az osztályt (`szekciok.json` `css` mezője, `{--fo:1}`).
+- A képekről elvész az `id`, a `loading` és a `fetchpriority`; a díszképek a médiatár alt szövegét kapják.
+  Ezért: az LCP-kép (`#kepek img.fo-be`) attribútumait `set_attributes`-szal kell beállítani, a díszképek altját üresre.
+- A site `body`-ja középre igazító flex oszlop: a `.fo` burkolónak `width:100%` kell (`fo-extra.css`).
+
+## Átállás (Kristóf kattint a Designerben, utána Claude ellenőriz)
+1. A `/fooldal-uj` oldal fejléckódjából törölni a `noindex` sort (a megjegyzéssel együtt). **Enélkül a főoldal kiesik a Google-ből.**
+2. Page settings → *Set as Home page* az új oldalon.
+3. A régi főoldal: új slug (pl. `fooldal-regi`) és piszkozat, hogy ne legyen duplikált tartalom és FAQ JSON-LD.
+4. 301: `/fooldal-uj` → `/` (Site settings → Publishing).
+5. Éles publikálás (Kristóf).
+6. Claude: `meresi-terv-fooldal.json` a `meresi-terv.json` fooldal-sora helyére, `meres-ellenor.mjs` és audit a beeco.hu-n, GA4/Clarity ellenőrzés.
+Nyitott site-szintű döntés: a letöltésmérés (5/5-ös szkript) csak a `/letoltes` címet ismeri, a főoldal `/app/letoltes`-re mutat (a régi is).

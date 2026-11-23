@@ -1,0 +1,220 @@
+{
+ "id": "fooldal",
+ "path": "/",
+ "events": [
+  {
+   "key": "fooldal.page_view",
+   "event": "page_view",
+   "action": {
+    "type": "load"
+   },
+   "maxCalls": 1,
+   "note": "a consent-kör gcs-ellenőrzése külön fut"
+  },
+  {
+   "key": "fooldal.scroll_depth",
+   "event": "scroll_depth",
+   "action": {
+    "type": "scroll",
+    "steps": [
+     30,
+     55,
+     80,
+     95
+    ]
+   },
+   "params": [
+    "percent",
+    "page_type"
+   ],
+   "maxCalls": 4,
+   "note": "25/50/75/90 % küszöb: négy esemény várható"
+  },
+  {
+   "key": "fooldal.download_cta_click",
+   "event": "download_cta_click",
+   "action": {
+    "type": "click",
+    "selector": "a.fo-gm[href=\"/app/letoltes\"]"
+   },
+   "params": [
+    "link_text",
+    "block",
+    "cta_medium",
+    "cta_campaign",
+    "page_type"
+   ],
+   "required": true,
+   "note": "A site 5/5-ös szkriptje jelenleg csak a /letoltes címet ismeri fel; a főoldal (régi és új) /app/letoltes-re mutat. Site-szintű javítás kell: (/app)?/letoltes (tulajdonosi döntés). Addig ez a sor nem teljesül."
+  },
+  {
+   "key": "fooldal.app_store_click",
+   "event": "app_store_click",
+   "action": {
+    "type": "click",
+    "selector": "a[data-beeco-attr]"
+   },
+   "params": [
+    "store",
+    "campaign",
+    "page_path",
+    "link_text"
+   ],
+   "required": true
+  },
+  {
+   "key": "fooldal.social_click",
+   "event": "social_click",
+   "action": {
+    "type": "click",
+    "selector": ".lablec-social-link"
+   },
+   "params": [
+    "method",
+    "network",
+    "link_text",
+    "block"
+   ],
+   "required": true
+  },
+  {
+   "key": "fooldal.menu_click",
+   "event": "menu_click",
+   "action": {
+    "type": "click",
+    "selector": "nav a[href=\"/kuponok\"]"
+   },
+   "params": [
+    "link_url",
+    "link_text",
+    "block"
+   ],
+   "required": true
+  },
+  {
+   "key": "fooldal.anchor_click",
+   "event": "anchor_click",
+   "action": {
+    "type": "click",
+    "selector": "a.fo-tovabb[href=\"#kov\"]"
+   },
+   "params": [
+    "anchor",
+    "link_text",
+    "block"
+   ],
+   "required": true
+  },
+  {
+   "key": "fooldal.most_fut",
+   "event": "beeco_most_fut_kattintas",
+   "action": {
+    "type": "click",
+    "selector": ".fo-banner"
+   },
+   "params": [
+    "oldal",
+    "ertek"
+   ]
+  },
+  {
+   "key": "fooldal.logo",
+   "event": "beeco_logo_kattintas",
+   "action": {
+    "type": "click",
+    "selector": ".fo-logosor li:not(.fo-logo-gomb) a"
+   },
+   "params": [
+    "oldal",
+    "ertek"
+   ]
+  },
+  {
+   "key": "fooldal.beebolt_termek",
+   "event": "beeco_beebolt_kattintas",
+   "action": {
+    "type": "click",
+    "selector": ".fo-termek"
+   },
+   "params": [
+    "oldal",
+    "ertek"
+   ]
+  },
+  {
+   "key": "fooldal.csapat_csatlakozas",
+   "event": "beeco_csapat_csatlakozas",
+   "action": {
+    "type": "click",
+    "selector": ".fo-koz-alul a.fo-gm"
+   },
+   "params": [
+    "oldal"
+   ]
+  },
+  {
+   "key": "fooldal.allomas",
+   "event": "beeco_allomas_kattintas",
+   "action": {
+    "type": "click",
+    "selector": ".fo-lepesek a",
+    "nth": 2
+   },
+   "params": [
+    "oldal",
+    "allomas"
+   ]
+  },
+  {
+   "key": "fooldal.funkcio_valasztas",
+   "event": "beeco_funkcio_valasztas",
+   "action": {
+    "type": "click",
+    "selector": ".fo-fvb",
+    "nth": 2
+   },
+   "params": [
+    "oldal",
+    "funkcio"
+   ]
+  },
+  {
+   "key": "fooldal.engaged_read_60s",
+   "event": "engaged_read_60s",
+   "action": {
+    "type": "wait",
+    "ms": 66000
+   },
+   "slow": true,
+   "reason": "60 mp aktív olvasás kell",
+   "params": [
+    "page_type"
+   ]
+  },
+  {
+   "key": "fooldal.ut_valasztas",
+   "event": "beeco_ut_valasztas",
+   "action": {
+    "type": "click",
+    "selector": ".fo-ut"
+   },
+   "params": [
+    "oldal",
+    "ertek"
+   ]
+  },
+  {
+   "key": "fooldal.foto_nezo",
+   "event": "beeco_foto_nezo",
+   "action": {
+    "type": "click",
+    "selector": "#fotok .fo-polaroid"
+   },
+   "params": [
+    "oldal",
+    "kep"
+   ]
+  }
+ ],
+ "_megjegyzes": "Az új főoldal (2026-11) mérési sora. A „Set as Home page” után kell a meresi-terv.json fooldal-sora helyére tenni, és a meres-ellenor.mjs-t újrafuttatni. Kimaradt (nincs párja az új oldalon): raj_csatlakozas, raj_letoltes, csapat_slider; a GYIK-nyitás és a QR-megjelenés eddig sem volt a tervben."
+}

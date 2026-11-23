@@ -429,3 +429,7 @@ body:has(.fo) .menu .button_main:hover,body:has(.fo) .menu .button_main:focus-vi
 .fo #partnerek .fo-domb{display:none}
 
 .fo #gyik .ds-domb{background:#FEEEBB}
+
+.fo.fo-all-mind *,.fo.fo-all-mind *::before,.fo.fo-all-mind *::after{animation-play-state:paused!important}
+body:has(.fo.fo-all-mind) .menu .button_main{animation:none}
+.fo .fo-tovabb::after{animation-iteration-count:3}
