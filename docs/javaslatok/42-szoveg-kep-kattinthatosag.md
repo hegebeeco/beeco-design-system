@@ -71,6 +71,13 @@ Ugyanazon a linken, a hero alatt: https://claude.ai/artifact/Q78mLtB13aKnEY6VwtF
 - Navbar-változatok a prototípusban (Kristóf kérése 2026-11-23, választásra vár): A lenyíló panelek (javasolt, a meglévő menü bővítése), B mega menü kiemelt kártyával (`NAVBAR_MEGA` alapon), C lebegő sáv, D kétsoros célcsoportsávval. Mind natív Webflow Navbar és Dropdown elemekből építhető; telefonon közös a hamburgeres menü.
 - Piktogram: csak fekete-fehér (a sárga részek is fehérek), a flekk közepén (Kristóf, 2026-11-23).
 - A telefon fekete címkéjén a funkció piktogramja a címen belül, a szöveg előtt áll (Kristóf, 2026-11-23).
+- Kristóf további kérései a prototípuson (2026-11-23), mind beépítve:
+  - a számsor számai kisebbek (asztalon 40 px, telefonon 22 px);
+  - a szekciócímke számdoboza is ferde;
+  - a Megértésből kikerült a beecopédia-sor, a Cselekvésből a városgombok;
+  - a GYIK a mostani főoldal formáját követi (`DS · GYIK`: balra ragadó fejléc „Az összes kérdés” gombbal, jobbra a kérdések sárga körös pluszjellel);
+  - a logósorok lenyithatók: egy sor látszik, a „+N további” gomb nyitja a többit (10–20 logóra tervezve);
+  - a záró szekcióban a két áruházgomb minimális és egyforma méretű, a telefon döntött és matrica-árnyékot kap, a négy kérdés felülről lefelé gördülve váltja egymást (szünet gombbal; csökkentett mozgásnál mind a négy áll).
 
 ## 5. Sorrend (élesítés után)
 1. Mérő bővítése (címskála, igazítás, lekerekítés a nem kattinthatón, mockup-háttér). Utána mérés a 72 oldalon.
@@ -84,6 +91,7 @@ Ugyanazon a linken, a hero alatt: https://claude.ai/artifact/Q78mLtB13aKnEY6VwtF
 6. Ellenőrzés: ds-lint, audit, független Opus-ellenőrzés, élesítési csomag.
 
 ## 6. Nyitott kérdések
+- Mockup-árnyék: a szabály szerint a mockup árnyék nélküli, a záró szekció döntött telefonjára Kristóf árnyékot kért (2026-11-23). Javaslat: egyenes mockup árnyék nélkül, döntött mockup matrica-árnyékkal. Döntésre vár.
 - Szabad-e a 4 px-es „kártya” sarok nem kattintható kártyán, vagy ott is 0 px legyen? A mobilos DS-döntés (2026-11-22, Ráncfelvarrás) szerint a kártya 4 px; a Rólunk blokkokra Kristóf 0 px-et kért.
 
 ## 7. Döntés (Kristóf tölti ki)
