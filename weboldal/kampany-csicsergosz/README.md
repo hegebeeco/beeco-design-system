@@ -112,7 +112,9 @@ Natív Webflow-osztályok, a Designerben hangolhatók:
 
 | Elem | Osztály |
 |---|---|
-| Szekciócímke | `ds-szalag` + `cs-kakao` (döntött, kakaó); középre igazított szekcióban + `cs-kozep` |
+| Szekciócímke | a meglévő `cs_kicker` (Levi szövegei) a `cs2-kicker` / `cs2-vilagos` kombón: döntött, Lalezar, kakaó; a Videók és a GYIK `ds-szalag` + `cs-kakao`. A kibontó animáció elakadt (a címkék láthatatlanok voltak), ezért a `cs-ds-v3.css` állandóan nyitva tartja |
+| Kampánygombok | `cs2-button-main(-2,-3)`, `cs2-button-sec`: kakaó keret és árnyék (hover/lenyomva is) |
+| Hero-funkciócímke | `cs-funkcio` + `cs-fent`: tableten/telefonon a telefon tetején, hogy ne takarja a méhecskét |
 | Domb árnyéka | `cs-domb` (`filter: drop-shadow`) |
 | Telefon | `cs_mockup_telefon` (4° dőlés, kemény kakaó árnyék), mögötte `cs-flekk` (fehér flekk) |
 | Funkciócímke | `cs-funkcio` > `cs-funkcio-ik` (fehér flekk) > `cs-funkcio-kep` + `cs-funkcio-cim` / `cs-funkcio-al` |

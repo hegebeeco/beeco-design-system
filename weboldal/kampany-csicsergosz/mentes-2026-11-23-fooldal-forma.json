@@ -9,6 +9,7 @@
     "videok szalag": {"osztalyok": ["ds-szalag"]},
     "gyik szalag": {"osztalyok": ["ds-szalag"]}
   },
+  "kombok_elotte": {"cs2-kicker": "inline-block, 14px, nagybetű, 0.08em, padding .55em 1em .4em, forgatás nélkül", "cs2-vilagos": "ugyanaz, középre", "cs2-button-main/-2/-3, cs2-button-sec": "fekete keret (BUTTON_MAIN/SEC), árnyék 4px 4px 0 #000"},
   "uj_elemek": "Minden új elem osztálya cs-cimke-*, cs-funkcio*, cs-flekk vagy ds-szalag + cs-kakao: ezek törlésével az oldal visszaáll.",
   "uj_embed": "cs-ds-v3 (embed/cs-ds-v3.min.css): törölhető."
 }

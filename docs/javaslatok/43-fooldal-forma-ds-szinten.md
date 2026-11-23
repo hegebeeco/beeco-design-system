@@ -35,8 +35,8 @@
 | 10 | Főoldal | `fo-` osztályok + 3 CSS-embed | natív osztályok/komponensek; a beágyazott CSS csak a mozgásra marad |
 
 ## Kampányoldal: CsicsergŐsz (Kristóf kérése, 2026-11-23)
-A grafikák és a tartalom maradnak, a forma a főoldalé, a fekete helyett kakaó. Kész a tesztcímen: döntött kakaó címke
-minden szekción, árnyékos domb, döntött árnyékos telefon fehér flekkel és funkciócímkével (Madártérkép, Madár album,
+A grafikák és a tartalom maradnak, a forma a főoldalé, a fekete helyett kakaó. Kész a tesztcímen: a meglévő szekciócímkék (Levi szövegei) döntött kakaó DS-címkeként
+(egy elakadt animáció eddig elrejtette őket, az MME-fejléccel együtt), kakaó kampánygombok, árnyékos domb, döntött árnyékos telefon fehér flekkel és funkciócímkével (Madártérkép, Madár album,
 CsicsergŐsz), a közös DS-elemek kakaó kerete. Részletek: `weboldal/kampany-csicsergosz/README.md`.
 Az új főoldal (`/fooldal-uj`) kint van a tesztcímen (nem piszkozat, `noindex`); az átállás Kristóf kattintása.
 
