@@ -207,7 +207,44 @@ css_src = re.sub(r'/\*.*?\*/', '', css_src, flags=re.S)
 css = ALAP + css_tr(parse(css_src))
 css += '\n' + '\n'.join('.fo .fo-%s{%s}' % (k, v) for v, k in stilus_wf.items())
 css += '\n' + re.sub(r'/\*.*?\*/', '', open(os.path.join(D, 'fo-extra.css'), encoding='utf-8').read(), flags=re.S)
-open(os.path.join(D, 'fo.css'), 'w', encoding='utf-8').write('/* GENERÁLT – forrás: prototipus.html + fo-extra.css; építés: python3 epit.py */\n' + css)
+open(os.path.join(D, 'fo-teljes.css'), 'w', encoding='utf-8').write(css)  # a nativ.py bemenete
+
+# Javaslat 43, 10. elem: a natív Webflow-stílusba vitt deklarációk (nativ.json, a nativ.py állítja elő) kimaradnak
+# a beágyazott CSS-ből, különben a Designerben állított értéket az embed felülírná.
+NATIV = json.load(open(os.path.join(D, 'nativ.json'), encoding='utf-8')) if os.path.exists(os.path.join(D, 'nativ.json')) else {'stilusok': [], 'kivett': []}
+KIVETT = {(a, b) for a, b in NATIV['kivett']}
+
+def nativ_kivesz(css):
+    out, i, n = [], 0, len(css)
+    while i < n:
+        j = css.find('{', i)
+        if j < 0:
+            out.append(css[i:]); break
+        sel = css[i:j].strip(); d = 1; k = j + 1
+        while d:
+            d += {'{': 1, '}': -1}.get(css[k], 0); k += 1
+        body = css[j + 1:k - 1]
+        if sel.startswith('@'):
+            out.append('%s{%s}' % (sel, body))
+        else:
+            dek, buf, mely = [], '', 0
+            for ch in body + ';':
+                mely += {'(': 1, ')': -1}.get(ch, 0)
+                if ch == ';' and mely == 0:
+                    if ':' in buf and (sel, buf.split(':', 1)[0].strip()) not in KIVETT:
+                        dek.append(buf.strip())
+                    buf = ''
+                else:
+                    buf += ch
+            if dek:
+                out.append('%s{%s}' % (sel, ';'.join(dek)))
+        i = k
+    return '\n'.join(out)
+
+css = nativ_kivesz(css)
+nativ_css = '\n'.join('.%s%s{%s}' % (s['osztaly'], ('::' + s['pseudo']) if s['pseudo'] else '', ';'.join('%s:%s' % kv for kv in s['tulajdonsagok'].items())) for s in NATIV['stilusok'])
+open(os.path.join(D, 'nativ.css'), 'w', encoding='utf-8').write('/* GENERÁLT a nativ.json-ból: ezek a Webflow-ban natív stílusok, csak a helyi tesztoldalhoz */\n' + nativ_css)
+open(os.path.join(D, 'fo.css'), 'w', encoding='utf-8').write('/* GENERÁLT – forrás: prototipus.html + fo-extra.css, a natív stílusok (nativ.json) nélkül; építés: python3 epit.py */\n' + css)
 
 # minify + split on top-level blocks into ≤ 15 000 character embeds
 mini = re.sub(r'\s*\n\s*', '', css)
@@ -240,7 +277,7 @@ fej = ('<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="v
        '.menu-sav{display:flex;align-items:center;gap:14px;max-width:1320px;margin:0 auto;min-height:72px;padding:10px 24px}.menu-logo-kep{height:34px}'
        '.button_main{margin-left:auto;display:flex;align-items:center;min-height:44px;padding:0 14px;background:#FECF39;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000;font:400 22px/1 Lalezar,sans-serif;text-decoration:none}'
        '.main_body{margin-top:70px}.gyik-hely{padding:60px 24px;text-align:center;background:#fff;font-weight:700}</style>'
-       + ''.join(open(os.path.join(D, 'embed', 'fo-%d.html' % (i + 1)), encoding='utf-8').read() for i in range(len(darab))) +
+       + '<style>' + nativ_css + '</style>' + ''.join(open(os.path.join(D, 'embed', 'fo-%d.html' % (i + 1)), encoding='utf-8').read() for i in range(len(darab))) +
        '</head><body class="main_body"><div class="menu"><div class="menu-sav"><a href="/" class="menu-logo"><img class="menu-logo-kep" src="%s655512ff22c587d4c7112378_linear%%20logo.svg" alt="beeco főoldal"></a>'
        '<a href="/app/letoltes" class="button_main w-button">Töltsd le!</a></div></div><div class="fo">' % CDN)
 gyik_i = nevek.index('partnerek') + 1

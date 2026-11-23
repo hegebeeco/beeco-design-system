@@ -39,3 +39,10 @@ A `teszt.html` a valódi Webflow-kimenet közelítése (a navbar és a GYIK hely
 5. Éles publikálás (Kristóf).
 6. Claude: `meresi-terv-fooldal.json` a `meresi-terv.json` fooldal-sora helyére, `meres-ellenor.mjs` és audit a beeco.hu-n, GA4/Clarity ellenőrzés.
 Nyitott site-szintű döntés: a letöltésmérés (5/5-ös szkript) csak a `/letoltes` címet ismeri, a főoldal `/app/letoltes`-re mutat (a régi is).
+
+## Natív Webflow-stílusok (Javaslat 43, 10. elem, 2026-11-23)
+- Az egyszerű, egyosztályos szabályok (79 osztály, 530 deklaráció) **natív Webflow-stílusok**: a Designerben hangolhatók.
+  A beágyazott CSS (2 embed, a 3. üres) a mozgást, a töréspontokat (`@container`), az összetett kijelölőket és a szkriptből létrejövő elemeket tartja.
+- Menete: `python3 epit.py` → `fo-teljes.css`; `python3 nativ.py <osztály-statisztika.json>` → `nativ.json` (mi natív); újra `python3 epit.py` → az embedek már nélküle.
+  A `nativ.json` változásakor a Webflow-stílusokat is frissíteni kell (`data_style_tool update_style`), különben eltérés lesz.
+- **Ha a Designerben módosítasz egy `fo-` osztályt**, az a forrásban (prototipus.html) nem változik: a következő `epit.py`-futás nem írja felül (a natív deklarációk kimaradnak az embedből), de a prototípus és az oldal eltérhet.
