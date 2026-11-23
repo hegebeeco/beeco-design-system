@@ -24,15 +24,15 @@
 | # | Elem | Most | Cél |
 |---|---|---|---|
 | 1 | Menü (C lebegő sáv, külön dobozos lenyíló, biccentő „Töltsd le!”, lefelé elbújik) | **kész a tesztcímen** | natív: `menu`, `menu-sav`, `menu-panel`, `menu-lista`, `menu-most`, combo `menu.menu-rejt`; site-szkript `beecoMenuSav` 1.0.0 (`weboldal/kozos/navigacio/menu-sav.js`) |
-| 2 | Domb-elválasztó árnyékkal | `DS · Domb` már árnyékos (R4) | ellenőrizni minden változatot; kampány-dombok külön kérdés |
-| 3 | Letöltés-blokk (egyforma áruházgombok, QR, telefonon egy gomb) | `DOWNLOAD_BLOCK`, `DS · App letöltés` régi formában | a főoldal formája a komponensben |
-| 4 | Telefon-mockup + funkciócímke | `DS · Appképernyő` címke nélkül | döntött, árnyékos telefon; döntött fekete címke piktogrammal; a címke a képpel vált |
-| 5 | Címke (szalag) | `ds-szalag` | a főoldal döntött fekete címkéje |
-| 6 | Hátterek | `ds-hatter-*` | + hatszögmintás háttér és fehér flekk a kép mögött (új osztályok) |
-| 7 | Logósáv | `DS · Velük dolgoztunk`, `DS · Szakmai partnerek` | lenyitható sor („+N további”) |
-| 8 | Képnézegető | csak a főoldalon (JS) | `DS · Képnézegető`: `dialog`, nyilak, Esc, a `ds-foto`/fotósor képeire |
-| 9 | Méh (lebegő szuperhős) | csak a főoldalon | `DS · Méh` díszelem, a többi oldalon mozgás nélkül |
-| 10 | Főoldal | `fo-` osztályok + 3 CSS-embed | natív osztályok/komponensek; a beágyazott CSS csak a mozgásra marad |
+| 2 | Domb-elválasztó árnyékkal | **kész** | `DS · Domb` árnyékos (R4); CsicsergŐsz `cs-domb` kakaó árnyékkal. Vízadás: nyitott |
+| 3 | Letöltés-blokk (egyforma áruházgombok, QR, telefonon egy gomb) | **kész** | `DOWNLOAD_BLOCK`: asztalon 2 áruházgomb (4 px sarok) + QR, ≤767 px-en egy gomb (`dl-egygomb`, /app/letoltes); változat „Áruházgombok telefonon is”. A kézzel épített blokkok (pl. Letöltés oldal) változatlanok |
+| 4 | Telefon-mockup + funkciócímke | **kész** | `ds-appkepernyo` 4° dőlés, kemény árnyék, fehér flekk (::before); új `ds-funkcio*` osztálycsalád és a komponensben Funkciócímke-kapcsoló + propok (név, alcím, piktogram). A címke nem vált a képpel (statikus); ahol a képernyőkép már tartalmaz címkét (Térkép), kikapcsolva |
+| 5 | Címke (szalag) | **kész** | `ds-szalag` −2°; kampányszínhez kombó (`cs-kakao`) |
+| 6 | Hátterek | **kész** | `ds-sejt` (hatszögminta, maszkkal) a DS · App letöltés szekcióban; `ds-flekk` (fehér flekk) |
+| 7 | Logósáv | **kész** | site-szkript `beecoLogosor` 1.0.0 (`weboldal/kozos/logosor/`): 5 (telefonon 3) logó után „+N további”, gomb: `ds-logo-tobb` |
+| 8 | Képnézegető | **kész** | site-szkript `beecoKepnezo` 1.0.0 (`weboldal/kozos/kepnezo/`): `dialog`, nyilak, Esc, felirat az alt szövegből; kinézet natív osztályokon (`ds-nezo*`) |
+| 9 | Méh (lebegő szuperhős) | **kész** | `DS · Méh` komponens (`ds-meh`, mozgás nélkül); első helye: /rolunk „Mit tegyünk együtt?” |
+| 10 | Főoldal | **részben** | a duplikált menü-CSS kikerült (fo-3 embed); a `fo.js` menürésze a forrásban törölve, a jsDelivr-hivatkozás frissítése a következő pushkor. A főoldal oldal-specifikus elrendezése marad `fo-` osztályokon és embedeken (kb. 40 KB CSS) – a teljes natívra írás külön munka |
 
 ## Kampányoldal: CsicsergŐsz (Kristóf kérése, 2026-11-23)
 A grafikák és a tartalom maradnak, a forma a főoldalé, a fekete helyett kakaó. Kész a tesztcímen: a meglévő szekciócímkék (Levi szövegei) döntött kakaó DS-címkeként

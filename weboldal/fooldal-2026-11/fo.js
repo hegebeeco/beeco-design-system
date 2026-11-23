@@ -1,7 +1,7 @@
 /* beeco.hu új főoldal (2026-11) – az oldal viselkedése. Forrás: weboldal/fooldal-2026-11/fo.js (nyilvános repó),
    jsDelivr-ről töltődik, commit-SHA-ra rögzítve. A jelölés natív Webflow-elem (.fo- osztályok), lásd epit.py.
    Tartalom: gombszerep a <a data-fo-gomb> elemeken, hero-váltó, funkcióváltók, számsor, vélemény-léptető,
-   képnézegető, lenyitható logósorok, váltakozó kérdések, a navbar elbújása görgetéskor, mérés (dataLayer). */
+   képnézegető, lenyitható logósorok, váltakozó kérdések, mérés (dataLayer). */
 (function () {
   'use strict';
   var d = document, w = window;
@@ -191,18 +191,5 @@
   kattMer('.fo-koz-alul a', 'csapat_csatlakozas', function (a) { return a.textContent.trim(); });
   kattMer('.fo-ut', 'ut_valasztas', function (a) { return ($('strong', a) || {}).textContent || ''; });
 
-  /* ---------- navbar (C · lebegő sáv): lefelé görgetve elbújik, felfelé visszajön ---------- */
-  var menu = d.querySelector('.menu');
-  if (menu) {
-    var y = w.scrollY;
-    w.addEventListener('scroll', function () {
-      var n = w.scrollY, dd = n - y;
-      if (Math.abs(dd) < 6) return;
-      var nyitva = menu.querySelector('.w--open') || menu.contains(d.activeElement);
-      if (dd > 0 && n > 160 && !nyitva) menu.classList.add('fo-rejt');
-      else if (dd < 0 || n <= 160) menu.classList.remove('fo-rejt');
-      y = n;
-    }, { passive: true });
-    menu.addEventListener('focusin', function () { menu.classList.remove('fo-rejt'); });
-  }
+  /* a navbar elbújását 2026-11-23 óta a site-szintű beecoMenuSav szkript végzi (Javaslat 43) */
 })();
