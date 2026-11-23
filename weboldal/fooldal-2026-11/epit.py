@@ -177,7 +177,19 @@ for b, _ in blokkok:
     nevek.append(m.group(1))
 
 stilus_wf, stilus_t = {}, {}
+# class stubs: the whtml builder keeps a class only if CSS for it arrives with the markup (the property is inert)
+def csonkok(h):
+    out = []
+    for cl in re.findall(r'class="([^"]+)"', h):
+        t = cl.split()
+        out.append('.' + t[0] + '{--fo:1}')
+        if len(t) > 1:
+            out.append('.' + '.'.join(t) + '{--fo:1}')
+    return ''.join(dict.fromkeys(out))
+
 wf = [{'nev': n, 'html': jeloles(b, 'wf', stilus_wf)} for n, (b, _) in zip(nevek, blokkok)]
+for x in wf:
+    x['css'] = csonkok(x['html'])
 teszt = [jeloles(b, 'teszt', stilus_t) for b, _ in blokkok]
 assert stilus_wf == stilus_t
 # the hero phone image loads first: eager + high priority
@@ -219,7 +231,7 @@ json.dump(wf, open(os.path.join(D, 'szekciok.json'), 'w', encoding='utf-8'), ens
 # local test page: the page's real header/footer are replaced by simple stand-ins; GYIK is a placeholder
 fej = ('<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
        '<title>Főoldal 2026-11 – helyi teszt</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&family=Open+Sans:wght@400;600;700&display=swap">'
-       '<style>body{margin:0;background:#FFF8E7;font-family:"Open Sans",sans-serif}.menu{position:fixed;top:0;left:0;right:0;z-index:1000;background:#fff;border-bottom:2px solid #000}'
+       '<style>body{margin:0;display:flex;flex-direction:column;align-items:center;background:#FFF8E7;font-family:"Open Sans",sans-serif}.menu{position:fixed;top:0;left:0;right:0;z-index:1000;background:#fff;border-bottom:2px solid #000}'
        '.menu-sav{display:flex;align-items:center;gap:14px;max-width:1320px;margin:0 auto;min-height:72px;padding:10px 24px}.menu-logo-kep{height:34px}'
        '.button_main{margin-left:auto;display:flex;align-items:center;min-height:44px;padding:0 14px;background:#FECF39;color:#000;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000;font:400 22px/1 Lalezar,sans-serif;text-decoration:none}'
        '.main_body{margin-top:70px}.gyik-hely{padding:60px 24px;text-align:center;background:#fff;font-weight:700}</style>'

@@ -10,4 +10,13 @@ body:has(.fo) .menu .button_main:hover,body:has(.fo) .menu .button_main:focus-vi
 @media (max-width:767px){body:has(.fo) .menu{padding:8px 10px 0}}
 @media (prefers-reduced-motion:reduce){body:has(.fo) .menu{transition:none}body:has(.fo) .menu .button_main{animation:none}}
 /* a kilógó díszek (méh, hatszögek) ne okozzanak vízszintes görgetést; a clip nem tör el ragadós elemet */
-.fo{overflow-x:clip}
+.fo{overflow-x:clip;width:100%;align-self:stretch}
+/* a site body-ja középre igazító rugalmas oszlop; a container-type miatt a .fo-nak nincs saját szélessége, ezért kifeszítjük */
+/* illesztés a valódi Webflow-oldalhoz (2026-11-23, tesztcímen mérve) */
+/* a Webflow levágja a span eleji szóközt: „programokat.Minden” helyett szóköz kell */
+.fo .fo-lead .fo-hosszu::before{content:" "}
+/* a natív GYIK fehér, saját felső térközzel: a logósor alatt nem kell domb és nagy alsó térköz */
+.fo #partnerek{padding-bottom:28px}
+.fo #partnerek .fo-domb{display:none}
+/* a natív GYIK alsó íve a záró szekció vajsárgájába fusson, ne krémszínbe */
+.fo #gyik .ds-domb{background:#FEEEBB}

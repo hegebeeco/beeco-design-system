@@ -177,7 +177,7 @@
 
   /* ---------- oldalspecifikus kattintásmérés (a régi főoldal eseménynevei) ---------- */
   kattMer('.fo-banner', 'most_fut_kattintas', function () { return 'csicsergosz'; });
-  kattMer('.fo-logosor a', 'logo_kattintas', function (a) { return ($('img', a) || {}).alt || ''; });
+  kattMer('.fo-logosor li:not(.fo-logo-gomb) a', 'logo_kattintas', function (a) { return ($('img', a) || {}).alt || ''; });
   kattMer('.fo-termek', 'beebolt_kattintas', function (a) { return ($('strong', a) || {}).textContent || ''; });
   kattMer('#beebolt .fo-gm', 'beebolt_kattintas', function () { return 'gomb'; });
   kattMer('.fo-koz-alul a', 'csapat_csatlakozas', function (a) { return a.textContent.trim(); });
