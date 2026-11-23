@@ -80,6 +80,13 @@ Ugyanazon a linken, a hero alatt: https://claude.ai/artifact/Q78mLtB13aKnEY6VwtF
   - a közösség-szekcióban az „Ismerd meg a csapatunk” gomb a fotók alatt áll, rövid szöveggel és két linkkel (Történetünk, Önkéntes lehetőségek);
   - a záró szekcióban a két áruházgomb minimális és egyforma méretű, a telefon döntött és matrica-árnyékot kap, a négy kérdés felülről lefelé gördülve váltja egymást (szünet gombbal; csökkentett mozgásnál mind a négy áll).
 
+## 4/c. Az új főoldal Webflow-ban (2026-11-23)
+- Kristóf döntései: cím „Éljünk ökosabban, együtt, olcsóbban!”; navbar **C · lebegő sáv** (sárga, néha biccentő „Töltsd le!”, lefelé görgetve elbújik), előbb csak a főoldalon; a beebolt-szekció marad.
+- Megépítve a `/fooldal-uj` piszkozat-oldalon (a mostani főoldal másolata, natív Webflow-elemek `fo-` osztályokkal). Forrás és átállási lépések: `weboldal/fooldal-2026-11/OLVASS.md`.
+- Ellenőrizve a tesztcímen: működés, billentyűzet, csökkentett mozgás, 1440–320 px, minőségkapu, független Opus-ellenőrzés (javítva: LCP-kép, díszképek altja, szünet az összes mozgásra, `<main>`). Audit: 68 (a `noindex` miatt; a mostani főoldal 79).
+- Hátra: az átállás (Kristóf: noindex törlése, Set as Home, régi oldal piszkozatba, 301, éles publikálás); utána mérési terv (`meresi-terv-fooldal.json`) és audit élesben; a C navbar a többi oldalra.
+- Döntésre vár: a csapat arculati review-ja (Javaslat 39, 5. és 13. pont) egyenes címkét és mozgás nélküli herót kér, az új főoldalon döntött címke és animált hero van (Kristóf kérésére).
+
 ## 5. Sorrend (élesítés után)
 1. Mérő bővítése (címskála, igazítás, lekerekítés a nem kattinthatón, mockup-háttér). Utána mérés a 72 oldalon.
 2. Címsorból bekezdés: kb. 19 szemöldökcímke (`sub-heading`, 20 px) és a leíró `main_text` mondatok, amelyek H2 címkét viselnek (lábnyom-metodika, kalkulátor, letöltés, térkép, szezonális növények). A Térkép oldal H1-e 24 px-es, ez a címskála szerint 48 legyen.
