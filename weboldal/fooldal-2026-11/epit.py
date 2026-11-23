@@ -89,12 +89,15 @@ def css_tr(nodes):
     out = []
     for t in nodes:
         if t[0] == 'raw':
-            out.append(t[1])
+            if not re.match(r'@keyframes (navbe|figyel)\b', t[1]):
+                out.append(t[1])
         elif t[0] == 'at':
             inner = css_tr(t[2])
             if inner:
                 out.append(t[1] + '{' + inner + '}')
         else:
+            if t[1].strip() in ('.keret', '.fej h1', '.fej p') or re.search(r'@keyframes (navbe|figyel)\b', t[1]):
+                continue
             s = sel_tr(t[1])
             if not s:
                 continue
@@ -156,7 +159,7 @@ def jeloles(h, cel, stilus):
             return tag
         tag = tag.replace(s.group(0), '')
         if ' class="' in tag:
-            return tag.replace(' class="', ' class="%s ' % s.group(1), 1)
+            return re.sub(r' class="([^"]*)"', lambda c: ' class="%s %s"' % (c.group(1), s.group(1)), tag, count=1)
         return tag[:-1] + ' class="%s">' % s.group(1)
     h = re.sub(r'<[a-z][^>]*data-fo-st="[^"]+"[^>]*>', osszevon, h)
     h = re.sub(r'class="([^"]*)"', lambda m: 'class="%s"' % ' '.join('fo-' + c for c in m.group(1).split()), h)
@@ -186,7 +189,7 @@ css_src = '\n'.join(re.findall(r'<style>(.*?)</style>', P, flags=re.S))
 css_src = re.sub(r'/\*.*?\*/', '', css_src, flags=re.S)
 css = ALAP + css_tr(parse(css_src))
 css += '\n' + '\n'.join('.fo .fo-%s{%s}' % (k, v) for v, k in stilus_wf.items())
-css += '\n' + open(os.path.join(D, 'fo-extra.css'), encoding='utf-8').read()
+css += '\n' + re.sub(r'/\*.*?\*/', '', open(os.path.join(D, 'fo-extra.css'), encoding='utf-8').read(), flags=re.S)
 open(os.path.join(D, 'fo.css'), 'w', encoding='utf-8').write('/* GENERÁLT – forrás: prototipus.html + fo-extra.css; építés: python3 epit.py */\n' + css)
 
 # minify + split on top-level blocks into ≤ 15 000 character embeds

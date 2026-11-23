@@ -10,7 +10,6 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo{--bg:var(--_beeco-ds---bc-bg,#FFF8E7);--surface:var(--_beeco-ds---bc-surface,#FFFFFF);--ink:#000;--soft:var(--_beeco-ds---bc-ink-soft,#505050);--accent:var(--_beeco-ds---bc-accent,#FECF39);--accent-ink:var(--_beeco-ds---bc-accent-ink,#8A6A00);--zold:#E3ECCD;--vaj:#FEEEBB;--piros:#B3261E;--display:"Lalezar","Arial Rounded MT Bold",system-ui,sans-serif;--text:"Open Sans","Segoe UI",system-ui,sans-serif;--ease:cubic-bezier(.23,1,.32,1);color-scheme:light;container-type:inline-size;display:block;font:400 16px/1.55 var(--text);color:var(--ink);text-align:left}
 .fo *{box-sizing:border-box}
 .fo a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
-.fo{--bg:var(--_beeco-ds---bc-bg,#FFF8E7);--surface:var(--_beeco-ds---bc-surface,#FFFFFF);--ink:#000;--soft:var(--_beeco-ds---bc-ink-soft,#505050);--accent:var(--_beeco-ds---bc-accent,#FECF39);--accent-ink:var(--_beeco-ds---bc-accent-ink,#8A6A00);--zold:#E3ECCD;--vaj:#FEEEBB;--piros:#B3261E;--display:"Lalezar","Arial Rounded MT Bold",system-ui,sans-serif;--text:"Open Sans","Segoe UI",system-ui,sans-serif;--ease:cubic-bezier(.23,1,.32,1);color-scheme:light;container-type:inline-size;display:block;font:400 16px/1.55 var(--text);color:var(--ink);text-align:left}
 .fo-hero{position:relative;background:var(--bg);isolation:isolate}
 .fo-hatter{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .fo-sejt{position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%238A6A00' stroke-opacity='.2' stroke-width='2'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%238A6A00' stroke-opacity='.2' stroke-width='2'/%3E%3C/svg%3E") 0 0/56px 100px;-webkit-mask-image:radial-gradient(ellipse 52% 78% at 76% 44%,#000 25%,transparent 78%);mask-image:radial-gradient(ellipse 52% 78% at 76% 44%,#000 25%,transparent 78%)}
@@ -132,9 +131,7 @@ html body :where(.fo) :where(strong){font-weight:700}
 @media (prefers-reduced-motion:reduce){.fo *,.fo *::before,.fo *::after{animation:none!important;transition:none!important}
 .fo-nyom{clip-path:none}
 .fo-szunet,.fo-kszunet{display:none}}
-@keyframes navbe{from{opacity:0;transform:translateY(-8px)}}
 @keyframes pulzal{0%,100%{transform:none;opacity:1}50%{transform:scale(1.6);opacity:.45}}
-@keyframes figyel{0%{transform:none}40%{transform:rotate(-3deg) scale(1.08)}70%{transform:rotate(2deg) scale(1.04)}100%{transform:none}}
 .fo-tobb{align-self:center;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 8px;margin-top:2px;color:#000;font:400 19px/1 var(--display);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em;text-decoration-color:var(--accent-ink)}
 .fo-tobb::after{content:"→";font-family:var(--text);font-weight:700;transition:transform .2s var(--ease)}
 @media (hover:hover) and (pointer:fine){.fo-tobb:hover{text-decoration-thickness:3px}
@@ -412,9 +409,7 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo .fo-x31{--d:1.5deg;--k:1}
 .fo .fo-x32{--d:-1deg;--k:2}
 .fo .fo-x33{--d:2deg;--k:3}
-/* ---------- navbar „C · lebegő sáv” (Kristóf döntése, 2026-11-23) ----------
-   Csak azon az oldalon él, ahol az új főoldal (.fo) van: a site többi oldalának menüje változatlan.
-   A „Töltsd le!” gomb sárga, és pár másodpercenként biccent; lefelé görgetve a sáv elbújik (fo.js: .fo-rejt). */
+
 body:has(.fo) .menu{background:transparent;border-bottom:0;padding:10px 24px 0;pointer-events:none;transition:transform .3s cubic-bezier(.23,1,.32,1)}
 body:has(.fo) .menu-sav{pointer-events:auto;max-width:1150px;background:#fff;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000}
 body:has(.fo) .menu.fo-rejt{transform:translateY(calc(-100% - 16px))}
@@ -423,5 +418,5 @@ body:has(.fo) .menu .button_main{background-color:#FECF39;transform-origin:50% 7
 body:has(.fo) .menu .button_main:hover,body:has(.fo) .menu .button_main:focus-visible{animation:none}
 @media (max-width:767px){body:has(.fo) .menu{padding:8px 10px 0}}
 @media (prefers-reduced-motion:reduce){body:has(.fo) .menu{transition:none}body:has(.fo) .menu .button_main{animation:none}}
-/* a kilógó díszek (méh, hatszögek) ne okozzanak vízszintes görgetést; a clip nem tör el ragadós elemet */
+
 .fo{overflow-x:clip}
