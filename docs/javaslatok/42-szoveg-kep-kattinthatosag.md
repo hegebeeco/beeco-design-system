@@ -62,6 +62,13 @@
 | F9 | Piktogram fehér flekken fekete | R11 szerint |
 | F10 | Új, DS-hű hero-grafika mockup-animációval (Kristóf kérése 2026-11-22; cél: letöltés, továbbgörgetés, a haszon megértése) | prototípus: https://claude.ai/artifact/Q78mLtB13aKnEY6VwtFhVA. 2. kör („haszon-hero”): haszonra épülő cím, egy fő letöltésgomb az értékelésekkel, három váltható haszon (spórolás, kisebb lábnyom, zöld helyek) a 2026-11-18-i képernyőkkel, szünet gomb, a hajtás alól kilátszó következő szekció és lefelé vezető méh-nyomvonal. A szövegek javaslatok (Levi dönt). Az 1. kör három változata (funkcióválasztó, telefonlegyező, zöldülő táj) az artifact előző verziójában. Kristóf visszajelzései alapján (2026-11-22, „nagyon jó irány”): a három haszongomb röviden a mockup alatt, alatta „és méh sok más...” szöveges gomb; áruházlogó a gombokon; a funkció piktogramja a telefon címkéjén; új, animált navbar lenyíló menükkel; **a fa/ház/táj háttér kikerült (a csapat leszavazta)**, helyette halvány méhsejt-minta, fehér flekk a mockup mögött és lebegő hatszögek. |
 
+## 4/b. A teljes főoldal terve (prototípus, Kristóf kérése 2026-11-23)
+Ugyanazon a linken, a hero alatt: https://claude.ai/artifact/Q78mLtB13aKnEY6VwtFhVA. Az oldal íve:
+1. Hero (ígéret, letöltés) → 2. Így működik (három lépés, doboz nélkül) → 3–5. a három haszon kibontva (Spórolsz, Kisebb lábnyom, Zöld helyek; mockup fehér flekken, valódi vélemény, letöltőgomb) → 6. A közösség ereje számokban (`DS · Számsor`, sötét háttér, forrással) → 7. Ők már használják (négyszögletes, árnyék nélküli véleménykártyák) → 8. Közösség (döntött fotók ragasztócsíkkal, a most futó kampány) → 9. Merre tovább (önkormányzat, cég, rólunk, beebolt) → 10. Írtak rólunk és szakmai partnerek (monokróm, keret nélkül) → 11. GYIK → 12. Záró letöltés.
+- Tartalom: a számok, a vélemények, a logók, a fotók és a GYIK a mostani főoldalról valók; az új szövegek javaslatok (Levi dönt), a szövegellenőrző 0 találatot ad rájuk.
+- Kimaradt a mostani oldalról: a „Miért a beeco?” szöveg, az app nyolclépéses útja, a csapat idővonala (a Rólunk oldalon él tovább).
+- Navbar: görgetési folyamatjelző sáv; a letöltőgomb akkor sárga, amikor a hero gombjai nem látszanak.
+
 ## 5. Sorrend (élesítés után)
 1. Mérő bővítése (címskála, igazítás, lekerekítés a nem kattinthatón, mockup-háttér). Utána mérés a 72 oldalon.
 2. Címsorból bekezdés: kb. 19 szemöldökcímke (`sub-heading`, 20 px) és a leíró `main_text` mondatok, amelyek H2 címkét viselnek (lábnyom-metodika, kalkulátor, letöltés, térkép, szezonális növények). A Térkép oldal H1-e 24 px-es, ez a címskála szerint 48 legyen.
