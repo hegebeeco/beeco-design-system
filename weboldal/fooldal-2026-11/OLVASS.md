@@ -52,8 +52,10 @@ Nyitott site-szintű döntés: a letöltésmérés (5/5-ös szkript) csak a `/le
 |---|---|---|---|
 | Mai főoldal (beeco.hu) | 1,7–2,0 s | 1,9–2,0 s | 1513 KB |
 | Új főoldal, előtöltés nélkül | 1,8 s | 4,5 s | 1282 KB |
-| Új főoldal, CSP + hero-előtöltés (**ez van fent**) | 1,7 s | 2,9 s | 1282 KB |
+| Új főoldal, CSP + hero-előtöltés | 1,7 s | 2,9 s | 1282 KB |
+| Új főoldal, + újratömörített hero- és banner-kép (**ez van fent**) | 1,9 s | 2,3 s | 1256 KB |
 | Új főoldal, CSP nélkül + előtöltés | 2,7 s | 2,7 s | 1578 KB |
-Az LCP-elem a hero telefonképe (`fo-tel-kupon.webp`, 56 KB); a régi hero SVG volt. A fejkód `meta CSP` sora kikapcsolja az előtöltő olvasót,
-ezért kell a kézi `<link rel="preload">`. Asztalon nincs különbség (0,3–0,4 s). Továbbjutás: kisebb/AVIF hero-kép (becslés: −0,3–0,5 s).
+Az LCP-elem a hero telefonképe: `fo-tel-kupon-v2.webp` (480 px, WebP q62, 42 KB; a régi `fo-tel-kupon.webp` 56 KB volt, szemre azonos). A banner-méh `fo-bn-meh-tavcso-200.webp` (200 px, 10 KB; 64 px-en látszik, a régi 431 px-es 22 KB volt). A régi hero SVG volt. A fejkód `meta CSP` sora kikapcsolja az előtöltő olvasót,
+ezért kell a kézi `<link rel="preload">`. Asztalon nincs különbség (0,3–0,4 s). A maradék késés oka site-szintű (minden oldalt érint, ezért Kristóf döntése): a közös Webflow-CSS 655 KB (tömörítve 110 KB), ezt a
+Style Manager „Clean up” csökkenti; a fejben szinkron `webfont.js` a Google Open Sans-t tölti, holott a saját `OpenSans-Var.woff2` is fent van (kettős betűforrás).
 A tesztcímen a CookieYes nem fut, ezért ott a `gtag.js` (180 KB) hozzájárulás nélkül is betöltődik: nyers mérésnél ezt ki kell szűrni.
