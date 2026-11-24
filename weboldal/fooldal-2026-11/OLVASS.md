@@ -46,3 +46,14 @@ Nyitott site-szintű döntés: a letöltésmérés (5/5-ös szkript) csak a `/le
 - Menete: `python3 epit.py` → `fo-teljes.css`; `python3 nativ.py <osztály-statisztika.json>` → `nativ.json` (mi natív); újra `python3 epit.py` → az embedek már nélküle.
   A `nativ.json` változásakor a Webflow-stílusokat is frissíteni kell (`data_style_tool update_style`), különben eltérés lesz.
 - **Ha a Designerben módosítasz egy `fo-` osztályt**, az a forrásban (prototipus.html) nem változik: a következő `epit.py`-futás nem írja felül (a natív deklarációk kimaradnak az embedből), de a prototípus és az oldal eltérhet.
+
+## Teljesítmény (mérve 2026-11-24, Playwright, telefon: lassított 4G + 4× CPU, medián; a Google-címkék mindkét oldalon kiszűrve)
+| Változat | FCP | LCP | Letöltés |
+|---|---|---|---|
+| Mai főoldal (beeco.hu) | 1,7–2,0 s | 1,9–2,0 s | 1513 KB |
+| Új főoldal, előtöltés nélkül | 1,8 s | 4,5 s | 1282 KB |
+| Új főoldal, CSP + hero-előtöltés (**ez van fent**) | 1,7 s | 2,9 s | 1282 KB |
+| Új főoldal, CSP nélkül + előtöltés | 2,7 s | 2,7 s | 1578 KB |
+Az LCP-elem a hero telefonképe (`fo-tel-kupon.webp`, 56 KB); a régi hero SVG volt. A fejkód `meta CSP` sora kikapcsolja az előtöltő olvasót,
+ezért kell a kézi `<link rel="preload">`. Asztalon nincs különbség (0,3–0,4 s). Továbbjutás: kisebb/AVIF hero-kép (becslés: −0,3–0,5 s).
+A tesztcímen a CookieYes nem fut, ezért ott a `gtag.js` (180 KB) hozzájárulás nélkül is betöltődik: nyers mérésnél ezt ki kell szűrni.
