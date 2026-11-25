@@ -431,6 +431,11 @@ html:has(.fo),body:has(.fo){background-color:#F0F3EC}
 .fo .fo-hero .fo-szunet::before{opacity:0}
 .fo .fo-hero .fo-szunet:focus-visible{outline:3px solid #000;outline-offset:4px}
 .fo .fo-hero .fo-szunet:focus-visible::before,.fo .fo-hero .fo-szunet[aria-pressed="true"]::before{opacity:1}
+.fo-lepesek li:nth-child(1) .fo-lep-meh{aspect-ratio:359/226}
+.fo-lepesek li:nth-child(2) .fo-lep-meh{aspect-ratio:306/241}
+.fo-lepesek li:nth-child(3) .fo-lep-meh{aspect-ratio:343/273}
+.fo-zaro .fo-kerdes-meh{aspect-ratio:222/231}
+.fo a.fo-gm{min-height:46px}
 .fo-rv{opacity:0;transform:translateY(40px) scale(.98)}
 .fo-rv-be{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--rv-d,0ms)}
 @media (prefers-reduced-motion:reduce){.fo-rv{opacity:1;transform:none}}

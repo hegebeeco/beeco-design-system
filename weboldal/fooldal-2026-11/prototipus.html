@@ -652,6 +652,10 @@ html:has(.keret),body:has(.keret){background-color:#F0F3EC}
 .keret .hero .szunet::before{opacity:0}
 .keret .hero .szunet:focus-visible{outline:3px solid #000;outline-offset:4px}
 .keret .hero .szunet:focus-visible::before,.keret .hero .szunet[aria-pressed="true"]::before{opacity:1}
+/* audit (2026-11-25): a méhes képek helye betöltés előtt is foglalt (Webflow a képen nem enged width/height-et); a gombok legalább 44 px magasak */
+.lepesek li:nth-child(1) .lep-meh{aspect-ratio:359/226}.lepesek li:nth-child(2) .lep-meh{aspect-ratio:306/241}.lepesek li:nth-child(3) .lep-meh{aspect-ratio:343/273}
+.zaro .kerdes-meh{aspect-ratio:222/231}
+.keret a.gm{min-height:46px}
 /* görgetésre beúszó tartalom (fo.js teszi fel, csak mozgással; ami betöltéskor már látszik, az nem úszik) */
 .rv{opacity:0;transform:translateY(40px) scale(.98)}
 .rv-be{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--rv-d,0ms)}
