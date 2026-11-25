@@ -32,7 +32,7 @@ A `teszt.html` a valódi Webflow-kimenet közelítése (a navbar és a GYIK hely
 - Új szekció vagy elem a Webflow-ban: a `szekciok.json` megfelelő `html` + `css` (csonkok) részét kell beszúrni (`data_whtml_builder`), a díszképek altját utána üresre állítani.
 
 ## Átállás (Kristóf kattint a Designerben, utána Claude ellenőriz)
-1. A `/fooldal-uj` oldal fejléckódjából törölni a `noindex` sort (a megjegyzéssel együtt). **Enélkül a főoldal kiesik a Google-ből.**
+1. A `/fooldal-uj` oldal fejléckódjából törölni a `noindex` sort (a megjegyzéssel együtt). **Enélkül a főoldal kiesik a Google-ből.** ✓ 2026-11-25 (Ági és Nóra jóváhagyta; az oldal neve „Főoldal”; SEO, OG és JSON-LD azonos a régivel).
 2. Page settings → *Set as Home page* az új oldalon.
 3. A régi főoldal: új slug (pl. `fooldal-regi`) és piszkozat, hogy ne legyen duplikált tartalom és FAQ JSON-LD.
 4. 301: `/fooldal-uj` → `/` (Site settings → Publishing).
