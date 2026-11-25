@@ -348,20 +348,59 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-szalag .fo-lepszam{width:auto;height:auto;margin-right:10px;background:none;color:#fff;font:400 30px/.8 var(--display);transform:none}
 .fo-fvb .fo-flekk{width:40px;height:40px}
 .fo-fvb .fo-flekk::before{display:none}
-.fo-fvb .fo-flekk img{width:100%;height:100%}
+.fo-fvb .fo-flekk img{width:40px;height:40px;max-width:none;object-fit:contain}
 .fo-fvb[aria-pressed="true"] .fo-flekk img{filter:invert(1)}
-.fo-hero h1 .fo-kiemel{padding:0 .12em;background:linear-gradient(transparent .2em,var(--accent) .2em)}
+.fo-hero h1 .fo-kiemel{padding:0 .12em;background:linear-gradient(transparent .3em,var(--accent) .3em)}
 .fo-hero .fo-tovabb{flex-direction:column;gap:0;padding:0;min-width:64px;min-height:64px;justify-content:center;border:0;background:none;box-shadow:none;font-size:0}
 .fo-hero .fo-tovabb::before{content:"";width:46px;height:46px;background:url(https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/6b0430665eff18b82adffa66_fo-meh-hos.webp) center/contain no-repeat}
 .fo-hero .fo-tovabb::after{font:700 26px/1 var(--text);margin-top:-6px}
 #partnerek .fo-szk-b{text-align:center}
 #partnerek .fo-szf{align-items:center}
 #partnerek .fo-logosor{justify-content:center}
+#partnerek .fo-szalag{align-self:center}
 @container (min-width:901px){#beebolt .fo-szk-b{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,8fr);gap:20px 48px;align-items:center}
 #beebolt .fo-bolt-fej{grid-column:1;grid-row:1/span 2;margin:0}
 #beebolt .fo-termekek{grid-column:2;max-width:none}
 #beebolt .fo-szk-b>.fo-gm{grid-column:2;justify-self:end}}
 #beebolt .fo-szk-b>.fo-gm{justify-self:start;margin-top:4px}
+.fo-kor{position:relative}
+.fo-kor .fo-lepesek a{margin:0 -10px;padding:8px 10px;border-radius:4px;animation:kiemel 12s linear infinite}
+.fo-kor .fo-lepesek li:nth-child(2) a{animation-delay:4s}
+.fo-kor .fo-lepesek li:nth-child(3) a{animation-delay:8s}
+.fo-kor-kozep{margin:18px 0 0;font:400 24px/1.15 var(--display);text-wrap:balance}
+@keyframes kiemel{0%,14%{background-color:var(--accent)}20%,92%{background-color:var(--kor-al,transparent)}100%{background-color:var(--accent)}}
+@keyframes korbe{from{offset-distance:0%}to{offset-distance:100%}}
+@container (min-width:761px){.fo-kor{width:640px;max-width:100%;height:480px;margin:8px auto 0}
+.fo-kor::before{content:"";position:absolute;left:120px;top:90px;width:400px;height:400px;box-sizing:border-box;border:3px dotted #000;border-radius:50%}
+.fo-kor::after{content:"";position:absolute;left:0;top:0;z-index:1;width:58px;height:58px;background:url(https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/6b0430665eff18b82adffa66_fo-meh-hos.webp) center/contain no-repeat;offset-path:path("M 320 90 A 200 200 0 0 1 320 490 A 200 200 0 0 1 320 90");offset-rotate:0deg;animation:korbe 12s linear infinite;pointer-events:none}
+.fo-kor .fo-lepesek{position:absolute;inset:0;display:block;margin:0}
+.fo-kor .fo-lepesek li{position:absolute;z-index:2;width:220px;border:0;padding:0;transform:translate(-50%,-50%)}
+.fo-kor .fo-lepesek li:nth-child(1){left:320px;top:90px}
+.fo-kor .fo-lepesek li:nth-child(2){left:493px;top:390px}
+.fo-kor .fo-lepesek li:nth-child(3){left:147px;top:390px}
+.fo-kor .fo-lepesek a{--kor-al:#fff;margin:0;padding:12px 14px;background:#fff;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
+.fo-kor .fo-lepesek .fo-sz{font-size:34px}
+.fo-kor .fo-lepesek p{font-size:14px}
+.fo-kor-kozep{position:absolute;left:50%;top:270px;width:200px;margin:0 0 0 -100px;transform:translateY(-50%);text-align:center;font-size:26px}
+.fo-kor:hover .fo-lepesek a,.fo-kor:hover::after{animation-play-state:paused}}
+@media (hover:hover) and (pointer:fine){.fo-kor .fo-lepesek a:hover{transform:translate(4px,4px);box-shadow:0 0 0 #000}}
+.fo-ossz .fo-kep .fo-mock{position:absolute;left:50%;top:8px;z-index:1;width:190px;margin-left:-95px;transform:perspective(1200px) rotateY(-18deg) rotateX(6deg) rotate(5deg);filter:drop-shadow(14px 16px 0 rgba(0,0,0,.22));animation:lebeg 4s ease-in-out infinite alternate}
+.fo-ossz .fo-kep>span{position:absolute;z-index:2;width:64px;height:64px;display:grid;place-items:center;filter:drop-shadow(3px 3px 0 #000);animation:lebeg 3.5s ease-in-out infinite alternate}
+.fo-ossz .fo-kep>span::before{content:"";position:absolute;inset:0;background:#fff;clip-path:polygon(25% 3%,75% 0,100% 48%,77% 97%,22% 100%,0 52%)}
+.fo-ossz .fo-kep>span img{position:relative;width:56%;height:56%;object-fit:contain}
+.fo-mi1{left:calc(50% - 185px);top:36px;transform:rotate(-8deg)}
+.fo-mi2{left:calc(50% + 115px);top:14px;transform:rotate(7deg);animation-delay:-1.2s}
+.fo-mi3{left:calc(50% - 200px);top:236px;transform:rotate(5deg);animation-delay:-2.1s}
+.fo-mi4{left:calc(50% + 130px);top:250px;transform:rotate(-6deg);animation-delay:-.6s}
+.fo:has(.fo-hero.fo-all) .fo-mock,.fo:has(.fo-hero.fo-all) .fo-ossz .fo-kep>span{animation-play-state:paused}
+@container (max-width:760px){.fo-ossz .fo-kep .fo-mock{width:120px;margin-left:-60px}
+.fo-ossz .fo-kep>span{width:46px;height:46px}
+.fo-mi1{left:calc(50% - 130px);top:20px}
+.fo-mi2{left:calc(50% + 78px);top:8px}
+.fo-mi3{left:calc(50% - 136px);top:150px}
+.fo-mi4{left:calc(50% + 86px);top:160px}}
+.fo-ut-kep{display:block;width:calc(100% + 32px);max-width:none;margin:-16px -16px 0;aspect-ratio:16/9;object-fit:cover;border-bottom:2px solid #000}
+.fo-ut .fo-flekk{position:relative;z-index:1;margin-top:-32px}
 .fo .fo-x1{--h:#fff}
 .fo .fo-x2{--kov:#F0F3EC}
 .fo .fo-x3{--h:#F0F3EC;scroll-margin-top:64px}
@@ -404,4 +443,9 @@ html body :where(.fo) :where(strong){font-weight:700}
 body:has(.fo.fo-all-mind) .menu .button_main{animation:none}
 .fo .fo-tovabb::after{animation-iteration-count:3}
 .fo .fo-domb.fo-x8{box-shadow:0 -6px 14px -4px rgba(0,0,0,.3)}
+.fo a:where([class*="fo-"]:not(.fo-tobb,.fo-szl,[aria-pressed="true"])):hover{color:#000;font-family:var(--text);font-weight:400;text-decoration:none}
+.fo a:where([class*="fo-"][aria-pressed="true"]):hover{font-family:var(--text);font-weight:400;text-decoration:none}
+.fo a:is(.fo-gomb,.fo-gm):hover{font-family:var(--display)}
+.fo a.fo-tobb:hover{font-family:var(--display)}
+.fo a.fo-tovabb:hover,.fo a.fo-ngomb:hover,.fo a.fo-logotobb:hover{font-weight:700}
 
