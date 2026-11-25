@@ -628,20 +628,22 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(4px,4px);box-s
 .lep-meh{display:block;width:96px;height:auto;margin:8px 0 0 auto;pointer-events:none}
 @container (min-width:761px){
 .kor .lepesek .lep-meh{position:absolute;right:-26px;top:-58px;width:84px;margin:0}
+.kor .lepesek li:nth-child(3) .lep-meh{right:auto;left:-26px}
 }
 @container (min-width:1000px){
 .kor .lepesek .lep-meh{top:50%;width:150px;transform:translateY(-50%)}
-.kor .lepesek li:nth-child(1) .lep-meh,.kor .lepesek li:nth-child(3) .lep-meh{right:calc(100% + 14px)}
+.kor .lepesek li:nth-child(1) .lep-meh,.kor .lepesek li:nth-child(3) .lep-meh{left:auto;right:calc(100% + 14px)}
 .kor .lepesek li:nth-child(2) .lep-meh{right:auto;left:calc(100% + 14px)}
 }
 /* „Kérdésed van?” blokk a lábléc fölött */
 .kerdes{padding-top:12px;padding-bottom:64px}
-.kerdes-b{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px 28px;align-items:center;max-width:960px;padding:20px 28px;background:#F0F3EC;border:2px solid #000;border-radius:4px}
+.kerdes-b{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px 28px;align-items:center;padding:20px 28px;background:#F0F3EC;border:2px solid #000;border-radius:4px}
 .kerdes-meh{width:96px;height:auto}
 .kerdes-c{margin:0 0 6px;font:400 clamp(26px,3cqi,34px)/1.1 var(--display);text-wrap:balance}
 .kerdes-p{margin:0;font-size:17px;line-height:1.45;max-width:52ch}
 .kerdes-gomb{white-space:nowrap}
 @container (max-width:760px){.kerdes-b{grid-template-columns:64px minmax(0,1fr);padding:16px}.kerdes-meh{width:64px}.kerdes-gomb{grid-column:1/-1;justify-self:start}}
+@container (max-width:480px){.kerdes-b{grid-template-columns:minmax(0,1fr)}}
 /* görgetésre beúszó tartalom (fo.js teszi fel, csak mozgással; ami betöltéskor már látszik, az nem úszik) */
 .rv{opacity:0;transform:translateY(28px)}
 .rv-be{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--rv-d,0ms)}

@@ -413,12 +413,13 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-vel-fej .fo-szf{flex:1 1 auto;min-width:0}
 .fo-vel-nyil{flex:none}
 .fo-lep-meh{display:block;width:96px;height:auto;margin:8px 0 0 auto;pointer-events:none}
-@container (min-width:761px){.fo-kor .fo-lepesek .fo-lep-meh{position:absolute;right:-26px;top:-58px;width:84px;margin:0}}
+@container (min-width:761px){.fo-kor .fo-lepesek .fo-lep-meh{position:absolute;right:-26px;top:-58px;width:84px;margin:0}
+.fo-kor .fo-lepesek li:nth-child(3) .fo-lep-meh{right:auto;left:-26px}}
 @container (min-width:1000px){.fo-kor .fo-lepesek .fo-lep-meh{top:50%;width:150px;transform:translateY(-50%)}
-.fo-kor .fo-lepesek li:nth-child(1) .fo-lep-meh,.fo-kor .fo-lepesek li:nth-child(3) .fo-lep-meh{right:calc(100% + 14px)}
+.fo-kor .fo-lepesek li:nth-child(1) .fo-lep-meh,.fo-kor .fo-lepesek li:nth-child(3) .fo-lep-meh{left:auto;right:calc(100% + 14px)}
 .fo-kor .fo-lepesek li:nth-child(2) .fo-lep-meh{right:auto;left:calc(100% + 14px)}}
 .fo-kerdes{padding-top:12px;padding-bottom:64px}
-.fo-kerdes-b{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px 28px;align-items:center;max-width:960px;padding:20px 28px;background:#F0F3EC;border:2px solid #000;border-radius:4px}
+.fo-kerdes-b{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px 28px;align-items:center;padding:20px 28px;background:#F0F3EC;border:2px solid #000;border-radius:4px}
 .fo-kerdes-meh{width:96px;height:auto}
 .fo-kerdes-c{margin:0 0 6px;font:400 clamp(26px,3cqi,34px)/1.1 var(--display);text-wrap:balance}
 .fo-kerdes-p{margin:0;font-size:17px;line-height:1.45;max-width:52ch}
@@ -426,6 +427,7 @@ html body :where(.fo) :where(strong){font-weight:700}
 @container (max-width:760px){.fo-kerdes-b{grid-template-columns:64px minmax(0,1fr);padding:16px}
 .fo-kerdes-meh{width:64px}
 .fo-kerdes-gomb{grid-column:1/-1;justify-self:start}}
+@container (max-width:480px){.fo-kerdes-b{grid-template-columns:minmax(0,1fr)}}
 .fo-rv{opacity:0;transform:translateY(28px)}
 .fo-rv-be{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--rv-d,0ms)}
 @media (prefers-reduced-motion:reduce){.fo-rv{opacity:1;transform:none}}
