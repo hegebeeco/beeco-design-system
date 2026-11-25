@@ -612,11 +612,11 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(4px,4px);box-s
 /* Kristóf: kép a három „Merre tovább?” csempén */
 .ut-kep{display:block;width:calc(100% + 32px);max-width:none;margin:-16px -16px 0;aspect-ratio:16/9;object-fit:cover;border-bottom:2px solid #000}
 .ut .flekk{position:relative;z-index:1;margin-top:-32px}
-/* Kristóf, 2026-11-25 délután. Kevesebb háttérszín: fehér, világoszöld (#F0F3EC), a számoknál sötétzöld, a zárón vaj; a partnerek, a GYIK és a kérdés-blokk fehér. A krém és a zsályazöld kimarad. */
+/* Kristóf, 2026-11-25 délután. Kevesebb háttérszín: fehér, világoszöld (#F0F3EC), a számoknál sötétzöld, a beeboltnál és a zárón vaj; a partnerek, a GYIK és a kérdés-blokk fehér. A krém és a zsályazöld kimarad. */
 .keret .hero{background:#F0F3EC}
-#cselekves,#osszegzes,#kozosseg,#beebolt{--h:#fff}
+#cselekves,#osszegzes,#kozosseg{--h:#fff}
 #jutalom,#velemenyek{--h:#F0F3EC}
-#megertes .domb,#jutalom .domb,#velemenyek .domb,#merre .domb{--kov:#fff}
+#megertes .domb,#jutalom .domb,#velemenyek .domb{--kov:#fff}
 #cselekves .domb,#szamok .domb{--kov:#F0F3EC}
 /* piktogramok: halványsárga flekk a fehér helyett; a „Merre tovább?” csempéin főszín-sárga */
 .keret .flekk::before,.keret .ossz .kep>span::before{background:var(--vaj)}
@@ -635,18 +635,22 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(4px,4px);box-s
 .kor .lepesek li:nth-child(1) .lep-meh,.kor .lepesek li:nth-child(3) .lep-meh{left:auto;right:calc(100% + 14px)}
 .kor .lepesek li:nth-child(2) .lep-meh{right:auto;left:calc(100% + 14px)}
 }
-/* „Kérdésed van?” blokk a lábléc fölött */
-.kerdes{padding-top:12px;padding-bottom:64px}
-.kerdes-b{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px 28px;align-items:center;padding:20px 28px;background:#F0F3EC;border:2px solid #000;border-radius:4px}
-.kerdes-meh{width:96px;height:auto}
-.kerdes-c{margin:0 0 6px;font:400 clamp(26px,3cqi,34px)/1.1 var(--display);text-wrap:balance}
-.kerdes-p{margin:0;font-size:17px;line-height:1.45;max-width:52ch}
-.kerdes-gomb{white-space:nowrap}
-@container (max-width:760px){.kerdes-b{grid-template-columns:64px minmax(0,1fr);padding:16px}.kerdes-meh{width:64px}.kerdes-gomb{grid-column:1/-1;justify-self:start}}
-@container (max-width:480px){.kerdes-b{grid-template-columns:minmax(0,1fr)}}
+/* „Kérdésed van?” kis sziget a záró telefon alatt (Kristóf, 2026-11-25: nem kell külön szekció) */
+.zaro .kerdes-sziget{grid-column:2;justify-self:center;display:flex;align-items:center;gap:12px;width:max-content;max-width:100%;margin-top:-12px;padding:8px 10px 8px 8px;background:#fff;border:2px solid #000;border-radius:4px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.zaro .kerdes-meh{width:52px;height:auto}
+.zaro .kerdes-c{margin:0;font:400 22px/1.1 var(--display)}
+.zaro .kerdes-gomb{white-space:nowrap}
+@container (max-width:760px){.zaro .kerdes-sziget{grid-column:auto;justify-self:start;margin-top:0}}
+.zaro .kep::before{display:none}
+/* a navbar mögötti sáv ugyanolyan színű, mint a hero; a beebolt halványsárga */
+html:has(.keret),body:has(.keret){background-color:#F0F3EC}
+#beebolt{--h:var(--vaj)}
+#merre .domb{--kov:var(--vaj)}
+/* hero: a szünet gomb csak billentyűzetes fókuszra látszik (WCAG 2.2.2); egérrel a telefonra állva, koppintással is megáll */
+.keret .hero .szunet:not(:focus-visible){width:1px;height:1px;padding:0;border:0;box-shadow:none;overflow:hidden;clip-path:inset(50%)}
 /* görgetésre beúszó tartalom (fo.js teszi fel, csak mozgással; ami betöltéskor már látszik, az nem úszik) */
-.rv{opacity:0;transform:translateY(28px)}
-.rv-be{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--rv-d,0ms)}
+.rv{opacity:0;transform:translateY(40px) scale(.98)}
+.rv-be{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--rv-d,0ms)}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
 </style>
 

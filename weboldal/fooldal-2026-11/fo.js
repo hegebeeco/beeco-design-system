@@ -65,8 +65,14 @@
     if (rm) hero.classList.add('fo-kezi');
     // 2026-11-25: the benefit buttons were removed (Kristóf), so a timer drives the rotation; it respects the pause button and reduced motion
     if (!hb.length && kepek.length > 1 && !rm) {
+      // the rotation also rests while the pointer is over the phone or the focus is in the hero (Kristóf removed the visible pause button)
+      var pihen = false, tel = kepek[0].parentNode;
+      tel.addEventListener('mouseenter', function () { pihen = true; });
+      tel.addEventListener('mouseleave', function () { pihen = false; });
+      hero.addEventListener('focusin', function () { pihen = true; });
+      hero.addEventListener('focusout', function () { pihen = false; });
       w.setInterval(function () {
-        if (!hero.classList.contains('fo-all') && d.visibilityState === 'visible') allit((i0 + 1) % kepek.length);
+        if (!pihen && !hero.classList.contains('fo-all') && d.visibilityState === 'visible') allit((i0 + 1) % kepek.length);
       }, 6000);
     }
     var sz = $('#szunet', hero);
@@ -78,6 +84,8 @@
         sz.setAttribute('aria-pressed', p ? 'true' : 'false');
         sz.setAttribute('aria-label', p ? 'A váltás folytatása' : 'A váltás megállítása');
       });
+      // a tap on the phone does the same as the (visually hidden) pause button
+      if (kepek.length) kepek[0].parentNode.addEventListener('click', function () { sz.click(); });
     }
     // dotted bee trail (decorative)
     var ns = 'http://www.w3.org/2000/svg', svg = d.createElementNS(ns, 'svg'), path = d.createElementNS(ns, 'path');
@@ -198,7 +206,7 @@
   kattMer('.fo-koz-alul a', 'csapat_csatlakozas', function (a) { return a.textContent.trim(); });
   kattMer('.fo-ut', 'ut_valasztas', function (a) { return ($('strong', a) || {}).textContent || ''; });
 
-  /* ---------- görgetésre beúszó tartalom (Kristóf, 2026-11-25): szakaszonként sorban, 70 ms-os lépcsővel ----------
+  /* ---------- görgetésre beúszó tartalom (Kristóf, 2026-11-25): szakaszonként, elemenként sorban, 90 ms-os lépcsővel ----------
      Csak mozgással; ami betöltéskor már látszik, az nem úszik; a saját mozgású vagy elhelyezett elemekhez nem nyúl.
      A beúszás végén az osztályok lekerülnek, így a hover és a többi átmenet a megszokott. */
   if (!rm && 'IntersectionObserver' in w) {
@@ -218,12 +226,14 @@
       if (!b) return;
       var c = [];
       [].slice.call(b.children).forEach(function (el) {
-        if (el.matches('ul,ol') && !el.matches('.fo-velemenyek') && el.children.length <= 8) c = c.concat([].slice.call(el.children));
+        var lista = function (x) { return x.matches('ul,ol') && !x.matches('.fo-velemenyek') && x.children.length <= 8; };
+        if (lista(el)) c = c.concat([].slice.call(el.children));
+        else if (!el.className && el.children.length > 1) [].slice.call(el.children).forEach(function (x) { if (lista(x)) c = c.concat([].slice.call(x.children)); else c.push(x); });
         else c.push(el);
       });
       c.filter(rvJo).forEach(function (el, i) {
         if (el.getBoundingClientRect().top < w.innerHeight) return;
-        el.style.setProperty('--rv-d', Math.min(i, 5) * 70 + 'ms');
+        el.style.setProperty('--rv-d', Math.min(i, 6) * 90 + 'ms');
         el.classList.add('fo-rv');
         el.addEventListener('transitionend', function vege(ev) {
           if (ev.target !== el || ev.propertyName !== 'opacity') return;
