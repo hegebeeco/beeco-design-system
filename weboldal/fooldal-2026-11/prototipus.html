@@ -50,12 +50,12 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset
 .bolt{display:flex;flex-direction:column;gap:10px}
 .gomb{display:flex;align-items:center;gap:10px;min-height:48px;width:212px;padding:0 12px;background:var(--accent);color:#000;text-decoration:none;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000;font:400 22px/1 var(--display);transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
 .gomb small{display:block;font:700 11px/1.1 var(--text)}
-.gomb .logo{width:26px;height:26px;flex:none;transform-origin:50% 60%;animation:billen 7s var(--ease) 2s infinite}
+.gomb .logo{width:26px;height:26px;flex:none}
 .bolt .gomb:nth-child(2) .logo{animation-delay:5.5s}
 .egygomb .logo{width:22px;height:22px}.egygomb .logo+.logo{animation-delay:2.4s;margin-right:4px}
 @keyframes billen{0%,88%,100%{transform:none}91%{transform:rotate(-12deg) scale(1.12)}94%{transform:rotate(9deg) scale(1.12)}97%{transform:rotate(-4deg) scale(1.04)}}
-.gomb:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
-@media (hover:hover) and (pointer:fine){.gomb:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000}}
+.gomb:active{transform:translate(4px,4px);box-shadow:0 0 0 #000}
+@media (hover:hover) and (pointer:fine){.gomb:hover{transform:translate(4px,4px);box-shadow:0 0 0 #000}}
 .egygomb{display:none}
 .qr{width:106px;height:106px;border:2px solid #000;background:#fff;padding:5px;flex:none}
 .qr img{width:100%;height:100%;display:block}
@@ -70,7 +70,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset
 .hb .rov{display:block;font:400 17px/1.1 var(--display)}.hb .le,.hb .hossz{display:none}
 .hb[aria-pressed="true"]{background:#000;color:#fff;transform:translate(2px,2px);box-shadow:0 0 0 #000}
 .hb[aria-pressed="true"] b{color:var(--accent)}
-@media (hover:hover) and (pointer:fine){.hb:not([aria-pressed="true"]):hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #000}}
+@media (hover:hover) and (pointer:fine){.hb:not([aria-pressed="true"]):hover{transform:translate(2px,2px);box-shadow:0 0 0 #000}}
 .flekk{position:relative;width:28px;height:28px;flex:none;display:grid;place-items:center}
 .flekk::before{content:"";position:absolute;inset:0;background:#fff;clip-path:polygon(25% 3%,75% 0,100% 48%,77% 97%,22% 100%,0 52%)}
 .flekk img{position:relative;width:60%;height:60%;object-fit:contain}
@@ -149,7 +149,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset
 .nav-logo{display:flex;align-items:center;flex:none;min-height:44px}
 .nav-logo img{height:34px;width:auto;display:block;transition:height .25s var(--ease),transform .25s var(--ease)}
 .nav.kompakt .nav-logo img{height:28px}
-@media (hover:hover) and (pointer:fine){.nav-logo:hover img{transform:rotate(-3deg) scale(1.05)}}
+
 .nav-most{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 10px;background:#fff;color:#000;text-decoration:none;font:600 13px/1 var(--text);border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;white-space:nowrap;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
 .nav-most b{font-weight:700}
 .nav-most .pont{width:10px;height:10px;border-radius:50%;background:var(--piros);animation:pulzal 1.4s var(--ease) 3}
@@ -178,7 +178,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset
 .nav.lent .nav-cta{background:var(--accent);animation:figyel .5s var(--ease)}
 @keyframes figyel{0%{transform:none}40%{transform:rotate(-3deg) scale(1.08)}70%{transform:rotate(2deg) scale(1.04)}100%{transform:none}}
 .nav-bolt:active,.nav-cta:active,.nav-most:active,.nav-ham:active{transform:translate(2px,2px);box-shadow:0 0 0 #000}
-@media (hover:hover) and (pointer:fine){.nav-bolt:hover,.nav-cta:hover,.nav-most:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #000}}
+@media (hover:hover) and (pointer:fine){.nav-bolt:hover,.nav-cta:hover,.nav-most:hover{transform:translate(3px,3px);box-shadow:0 0 0 #000}}
 .nav-ham{display:none;position:relative;flex:none;width:44px;height:44px;padding:0;background:#fff;border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;cursor:pointer;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
 .nav-ham span,.nav-ham span::before,.nav-ham span::after{position:absolute;left:50%;width:20px;height:3px;margin-left:-10px;background:#000;transition:transform .25s var(--ease),opacity .15s var(--ease)}
 .nav-ham span{top:50%;margin-top:-1.5px}
@@ -210,7 +210,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset
 /* text button under the benefit buttons */
 .tobb{align-self:center;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 8px;margin-top:2px;color:#000;font:400 19px/1 var(--display);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em;text-decoration-color:var(--accent-ink)}
 .tobb::after{content:"→";font-family:var(--text);font-weight:700;transition:transform .2s var(--ease)}
-@media (hover:hover) and (pointer:fine){.tobb:hover{text-decoration-thickness:3px}.tobb:hover::after{transform:translateX(4px)}}
+@media (hover:hover) and (pointer:fine){.tobb:hover{text-decoration-thickness:3px}}
 
 /* ---------- page sections ---------- */
 .szk{position:relative;background:var(--h,#fff);padding:28px 56px 112px}
@@ -236,10 +236,10 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset
 .sor{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
 .gm{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;background:#fff;color:#000;text-decoration:none;font:400 19px/1 var(--display);border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
 .gm:active{transform:translate(2px,2px);box-shadow:0 0 0 #000}
-@media (hover:hover) and (pointer:fine){.gm:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #000}}
+@media (hover:hover) and (pointer:fine){.gm:hover{transform:translate(2px,2px);box-shadow:0 0 0 #000}}
 .szl{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:inherit;font:700 15px/1.2 var(--text);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em}
 .szl::after{content:"→";transition:transform .2s var(--ease)}
-@media (hover:hover) and (pointer:fine){.szl:hover::after{transform:translateX(4px)}}
+
 /* footprint: short vs detailed switch */
 .valto{display:inline-grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
 .valto button{min-height:44px;padding:0 14px;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;cursor:pointer;font:400 18px/1 var(--display);white-space:nowrap;transition:transform .15s var(--ease),box-shadow .15s var(--ease),background-color .2s var(--ease)}
@@ -275,8 +275,8 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset
 .kamp b{display:block;font:400 22px/1.1 var(--display)}
 .kamp .l{font-size:15px}
 .kamp .ny,.ut .ny{font:700 15px/1 var(--text);white-space:nowrap}
-.kamp:active,.ut:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
-@media (hover:hover) and (pointer:fine){.kamp:hover,.ut:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000}}
+.kamp:active,.ut:active{transform:translate(4px,4px);box-shadow:0 0 0 #000}
+@media (hover:hover) and (pointer:fine){.kamp:hover,.ut:hover{transform:translate(4px,4px);box-shadow:0 0 0 #000}}
 .utak{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
 .ut{display:flex;flex-direction:column;gap:8px;padding:16px;background:#fff;color:#000;text-decoration:none;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
 .ut .flekk{width:44px;height:44px;background:none}
@@ -365,7 +365,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset
  .nav[data-nv="D"] .nav-most,.nav[data-nv="D"] .nav-bolt,.nav[data-nv="D"] .nm:nth-child(4){display:none}
  .nav[data-nv="D"] .nav-cta{margin-left:14px}
 }
-@container (min-width:901px){@media (hover:hover) and (pointer:fine){.nf:not(.akt):hover{text-decoration:underline;text-underline-offset:.25em}.nm-k:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #000}}}
+@container (min-width:901px){@media (hover:hover) and (pointer:fine){.nf:not(.akt):hover{text-decoration:underline;text-underline-offset:.25em}.nm-k:hover{transform:translate(3px,3px);box-shadow:0 0 0 #000}}}
 
 /* ---------- understanding → action → reward: function switcher ---------- */
 .lepesek a{color:inherit;text-decoration:none;display:block}
@@ -375,7 +375,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset
 .fvb .le{display:block;font:400 14px/1.35 var(--text)}
 .fvb[aria-pressed="true"]{background:#000;color:#fff;transform:translate(2px,2px);box-shadow:0 0 0 #000}
 .fvb[aria-pressed="true"] b{color:var(--accent)}
-@media (hover:hover) and (pointer:fine){.fvb:not([aria-pressed="true"]):hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #000}}
+@media (hover:hover) and (pointer:fine){.fvb:not([aria-pressed="true"]):hover{transform:translate(2px,2px);box-shadow:0 0 0 #000}}
 .kep>img.t.tv{opacity:0;transition:opacity .35s var(--ease)}
 .kep>img.t.tv.be{opacity:1}
 .megj-sor{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:center;margin:0 0 18px;font-size:15px;max-width:560px}
@@ -399,8 +399,8 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset
 .fotok{grid-template-columns:repeat(4,minmax(0,1fr));gap:26px 22px}
 button.polaroid{display:block;width:100%;font:inherit;color:inherit;text-align:left;cursor:zoom-in;box-shadow:3px 3px 0 #000;transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
 button.polaroid figcaption,button.polaroid .fc{display:block;padding-top:6px;text-align:center;font:400 18px/1.2 var(--display)}
-button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(2px,2px);box-shadow:1px 1px 0 #000}
-@media (hover:hover) and (pointer:fine){button.polaroid:hover{transform:rotate(0deg) scale(1.03);box-shadow:5px 5px 0 #000;z-index:2}}
+button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(4px,4px);box-shadow:0 0 0 #000}
+@media (hover:hover) and (pointer:fine){button.polaroid:hover{transform:rotate(var(--d,-2deg)) translate(4px,4px);box-shadow:0 0 0 #000}}
 .nezo{width:min(1000px,calc(100vw - 24px));max-height:calc(100vh - 24px);padding:0;border:2px solid #000;border-radius:4px;background:#fff;color:#000;box-shadow:6px 6px 0 #000;overflow:hidden}
 .nezo::backdrop{background:rgba(0,0,0,.72)}
 .nezo[open]{animation:nezobe .2s var(--ease)}
@@ -432,7 +432,7 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(2px,2px);box-s
 /* ---------- campaign banner right under the hero ---------- */
 .bansav{position:relative;z-index:3;background:#fff;padding:2px 56px 6px}
 .banner{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px 26px;align-items:center;max-width:1200px;margin:0 auto;padding:14px 20px 14px 148px;background:var(--vaj);color:#000;text-decoration:none;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
-.banner:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
+.banner:active{transform:translate(4px,4px);box-shadow:0 0 0 #000}
 .bn-meh{position:absolute;left:16px;bottom:6px;width:116px;height:auto;filter:drop-shadow(2px 3px 0 rgba(0,0,0,.2));transition:transform .2s var(--ease)}
 .bn-logo{display:block;height:64px;width:auto}
 .bn-sz{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0}
@@ -441,7 +441,7 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(2px,2px);box-s
 .bn-sz .l{font-size:16px;line-height:1.4;max-width:54ch}
 .bn-gomb{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;background:#000;color:#fff;font:400 19px/1 var(--display);border-radius:4px;white-space:nowrap}
 .bn-gomb::after{content:"→";font:700 16px/1 var(--text);transition:transform .2s var(--ease)}
-@media (hover:hover) and (pointer:fine){.banner:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000}.banner:hover .bn-meh{transform:translateY(-4px) rotate(-4deg)}.banner:hover .bn-gomb::after{transform:translateX(4px)}}
+@media (hover:hover) and (pointer:fine){.banner:hover{transform:translate(4px,4px);box-shadow:0 0 0 #000}}
 @container (max-width:1000px){.banner{grid-template-columns:auto minmax(0,1fr);padding-left:132px}.bn-gomb{grid-column:1/-1;justify-self:start}.bn-meh{width:100px;bottom:auto;top:-22px}}
 @container (max-width:760px){
  .bansav{padding:0 18px 4px}
@@ -465,9 +465,6 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(2px,2px);box-s
 /* step number box: tilted like the label */
 .lepszam{transform:rotate(-7deg)}
 /* closing: compact store buttons of equal size */
-.zaro .bolt,.ossz .bolt{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:max-content;max-width:100%}
-.zaro .bolt .gomb,.ossz .bolt .gomb{width:auto;min-height:48px;padding:0 16px;justify-content:center;font-size:20px;white-space:nowrap}
-.zaro .bolt .gomb .logo,.ossz .bolt .gomb .logo{width:22px;height:22px}
 /* closing: tilted phone with a sticker-like shadow */
 .zaro .kep>img.t{transform:rotate(6deg);filter:drop-shadow(9px 10px 0 rgba(0,0,0,.2))}
 /* closing: the four questions roll one after another, top to bottom */
@@ -538,7 +535,7 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(2px,2px);box-s
 .logotobb::after{content:"";width:8px;height:8px;border-right:2px solid #000;border-bottom:2px solid #000;transform:translateY(-2px) rotate(45deg);transition:transform .2s var(--ease)}
 .logotobb[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
 .logotobb:active{transform:translate(2px,2px);box-shadow:0 0 0 #000}
-@media (hover:hover) and (pointer:fine){.logotobb:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #000}}
+@media (hover:hover) and (pointer:fine){.logotobb:hover{transform:translate(2px,2px);box-shadow:0 0 0 #000}}
 .logosor.nyitva li:nth-child(n+6):not(.logo-gomb){animation:szambe .3s var(--ease) backwards}
 @container (max-width:760px){.logosor:not(.nyitva) li:nth-child(n+4):not(.logo-gomb){display:none}.logosor.nyitva li:nth-child(n+4):not(.logo-gomb){animation:szambe .3s var(--ease) backwards}}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
@@ -559,12 +556,24 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(2px,2px);box-s
 .termek img{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:var(--bg);margin-bottom:6px}
 .termek b{font:400 21px/1.15 var(--display)}
 .termek .ar{font:700 15px/1 var(--text);font-variant-numeric:tabular-nums}
-.termek:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
-@media (hover:hover) and (pointer:fine){.termek:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000}}
+.termek:active{transform:translate(4px,4px);box-shadow:0 0 0 #000}
+@media (hover:hover) and (pointer:fine){.termek:hover{transform:translate(4px,4px);box-shadow:0 0 0 #000}}
 .bolt-fej{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 28px;flex-wrap:wrap;margin-bottom:26px}
 .bolt-fej .szf{margin-bottom:0}
 @container (max-width:760px){.termekek{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.termek{padding:8px 8px 10px}.termek b{font-size:16px}.termek .ar{font-size:13px}}
 @container (max-width:420px){.termekek{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin-right:-18px;padding:2px 18px 10px 2px}.termek{flex:0 0 62%;scroll-snap-align:start}}
+
+/* 2026-11-25 Kristóf és Nóra kommentjei */
+.szalag .lepszam{width:auto;height:auto;margin-right:10px;background:none;color:#fff;font:400 30px/.8 var(--display);transform:none}
+.fvb .flekk{width:40px;height:40px}.fvb .flekk::before{display:none}.fvb .flekk img{width:100%;height:100%}
+.fvb[aria-pressed="true"] .flekk img{filter:invert(1)}
+.hero h2 mark{padding:0 .12em;background:linear-gradient(transparent .2em,var(--accent) .2em)}
+.hero .tovabb{flex-direction:column;gap:0;padding:0;min-width:64px;min-height:64px;justify-content:center;border:0;background:none;box-shadow:none;font-size:0}
+.hero .tovabb::before{content:"";width:46px;height:46px;background:url(https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/6b0430665eff18b82adffa66_fo-meh-hos.webp) center/contain no-repeat}
+.hero .tovabb::after{font:700 26px/1 var(--text);margin-top:-6px}
+#partnerek .szk-b{text-align:center}#partnerek .szf{align-items:center}#partnerek .logosor{justify-content:center}
+@container (min-width:901px){#beebolt .szk-b{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,8fr);gap:20px 48px;align-items:center}#beebolt .bolt-fej{grid-column:1;grid-row:1/span 2;margin:0}#beebolt .termekek{grid-column:2;max-width:none}#beebolt .szk-b>.gm{grid-column:2;justify-self:end}}
+#beebolt .szk-b>.gm{justify-self:start;margin-top:4px}
 </style>
 
 <div class="wrap">

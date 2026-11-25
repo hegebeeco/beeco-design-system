@@ -26,13 +26,13 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-hero h1 .fo-kiemel{background:var(--accent);color:inherit;padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .fo-gomb{transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
 .fo-gomb .fo-kicsi{display:block;font:700 11px/1.1 var(--text)}
-.fo-gomb .fo-logo{width:26px;height:26px;flex:none;transform-origin:50% 60%;animation:billen 7s var(--ease) 2s infinite}
+.fo-gomb .fo-logo{width:26px;height:26px;flex:none}
 .fo-bolt .fo-gomb:nth-child(2) .fo-logo{animation-delay:5.5s}
 .fo-egygomb .fo-logo{width:22px;height:22px}
 .fo-egygomb .fo-logo+.fo-logo{animation-delay:2.4s;margin-right:4px}
 @keyframes billen{0%,88%,100%{transform:none}91%{transform:rotate(-12deg) scale(1.12)}94%{transform:rotate(9deg) scale(1.12)}97%{transform:rotate(-4deg) scale(1.04)}}
-.fo-gomb:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
-@media (hover:hover) and (pointer:fine){.fo-gomb:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000}}
+.fo-gomb:active{transform:translate(4px,4px);box-shadow:0 0 0 #000}
+@media (hover:hover) and (pointer:fine){.fo-gomb:hover{transform:translate(4px,4px);box-shadow:0 0 0 #000}}
 .fo-egygomb{display:none}
 .fo-qr img{width:100%;height:100%;display:block}
 .fo-bizalom{list-style:none}
@@ -45,7 +45,7 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-hb .fo-le,.fo-hb .fo-hossz{display:none}
 .fo-hb[aria-pressed="true"]{background:#000;color:#fff;transform:translate(2px,2px);box-shadow:0 0 0 #000}
 .fo-hb[aria-pressed="true"] strong{color:var(--accent)}
-@media (hover:hover) and (pointer:fine){.fo-hb:not([aria-pressed="true"]):hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #000}}
+@media (hover:hover) and (pointer:fine){.fo-hb:not([aria-pressed="true"]):hover{transform:translate(2px,2px);box-shadow:0 0 0 #000}}
 .fo-flekk::before{content:""}
 .fo-flekk img{position:relative;width:60%;height:60%;object-fit:contain}
 .fo-hb[aria-pressed="true"] .fo-sav{animation:halad 5s linear forwards}
@@ -115,8 +115,7 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-szunet,.fo-kszunet{display:none}}
 @keyframes pulzal{0%,100%{transform:none;opacity:1}50%{transform:scale(1.6);opacity:.45}}
 .fo-tobb::after{content:"→";transition:transform .2s var(--ease)}
-@media (hover:hover) and (pointer:fine){.fo-tobb:hover{text-decoration-thickness:3px}
-.fo-tobb:hover::after{transform:translateX(4px)}}
+@media (hover:hover) and (pointer:fine){.fo-tobb:hover{text-decoration-thickness:3px}}
 .fo-szk .fo-domb{background:var(--kov,#fff)}
 #kov{scroll-margin-top:64px}
 .fo-szk h2{font:400 clamp(30px,3.8cqi,48px)/1.1 var(--display);margin:0;text-wrap:balance;max-width:22ch}
@@ -135,9 +134,8 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-idezet .fo-ki{display:block;margin-top:4px;font:700 13px/1.3 var(--text);font-style:normal}
 .fo-gm{transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
 .fo-gm:active{transform:translate(2px,2px);box-shadow:0 0 0 #000}
-@media (hover:hover) and (pointer:fine){.fo-gm:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #000}}
+@media (hover:hover) and (pointer:fine){.fo-gm:hover{transform:translate(2px,2px);box-shadow:0 0 0 #000}}
 .fo-szl::after{content:"→";transition:transform .2s var(--ease)}
-@media (hover:hover) and (pointer:fine){.fo-szl:hover::after{transform:translateX(4px)}}
 .fo-valto{display:inline-grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
 .fo-valto a{min-height:44px;padding:0 14px;background:#fff;color:#000;border:2px solid #000;border-radius:4px;box-shadow:2px 2px 0 #000;cursor:pointer;font:400 18px/1 var(--display);white-space:nowrap;transition:transform .15s var(--ease),box-shadow .15s var(--ease),background-color .2s var(--ease)}
 .fo-valto a[aria-pressed="true"]{background:#000;color:var(--accent);transform:translate(2px,2px);box-shadow:0 0 0 #000}
@@ -169,8 +167,8 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-kamp strong{display:block;font:400 22px/1.1 var(--display)}
 .fo-kamp .fo-l{font-size:15px}
 .fo-kamp .fo-ny,.fo-ut .fo-ny{font:700 15px/1 var(--text);white-space:nowrap}
-.fo-kamp:active,.fo-ut:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
-@media (hover:hover) and (pointer:fine){.fo-kamp:hover,.fo-ut:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000}}
+.fo-kamp:active,.fo-ut:active{transform:translate(4px,4px);box-shadow:0 0 0 #000}
+@media (hover:hover) and (pointer:fine){.fo-kamp:hover,.fo-ut:hover{transform:translate(4px,4px);box-shadow:0 0 0 #000}}
 .fo-utak{grid-template-columns:repeat(4,minmax(0,1fr))}
 .fo-ut{transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
 .fo-ut .fo-flekk{width:44px;height:44px;background:none}
@@ -213,7 +211,7 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-fvb .fo-le{display:block;font:400 14px/1.35 var(--text)}
 .fo-fvb[aria-pressed="true"]{background:#000;color:#fff;transform:translate(2px,2px);box-shadow:0 0 0 #000}
 .fo-fvb[aria-pressed="true"] strong{color:var(--accent)}
-@media (hover:hover) and (pointer:fine){.fo-fvb:not([aria-pressed="true"]):hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #000}}
+@media (hover:hover) and (pointer:fine){.fo-fvb:not([aria-pressed="true"]):hover{transform:translate(2px,2px);box-shadow:0 0 0 #000}}
 .fo-kep>img.fo-t.fo-tv{opacity:0;transition:opacity .35s var(--ease)}
 .fo-kep>img.fo-t.fo-tv.fo-be{opacity:1}
 .fo-megj-sor{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:center;margin:0 0 18px;font-size:15px;max-width:560px}
@@ -236,8 +234,8 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-fotok{grid-template-columns:repeat(4,minmax(0,1fr));gap:26px 22px}
 .fo-polaroid{font:inherit;transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
 .fo-polaroid figcaption,.fo-polaroid .fo-fc{display:block;padding-top:6px;text-align:center;font:400 18px/1.2 var(--display)}
-.fo-polaroid:active{transform:rotate(var(--d,-2deg)) translate(2px,2px);box-shadow:1px 1px 0 #000}
-@media (hover:hover) and (pointer:fine){.fo-polaroid:hover{transform:rotate(0deg) scale(1.03);box-shadow:5px 5px 0 #000;z-index:2}}
+.fo-polaroid:active{transform:rotate(var(--d,-2deg)) translate(4px,4px);box-shadow:0 0 0 #000}
+@media (hover:hover) and (pointer:fine){.fo-polaroid:hover{transform:rotate(var(--d,-2deg)) translate(4px,4px);box-shadow:0 0 0 #000}}
 .fo-nezo{width:min(1000px,calc(100vw - 24px));max-height:calc(100vh - 24px);padding:0;border:2px solid #000;border-radius:4px;background:#fff;color:#000;box-shadow:6px 6px 0 #000;overflow:hidden}
 .fo-nezo::backdrop{background:rgba(0,0,0,.72)}
 .fo-nezo[open]{animation:nezobe .2s var(--ease)}
@@ -259,14 +257,12 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-nezo-lab .fo-hol{display:none}}
 @media (prefers-reduced-motion:reduce){.fo-velemenyek{scroll-behavior:auto}}
 .fo-banner{transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
-.fo-banner:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
+.fo-banner:active{transform:translate(4px,4px);box-shadow:0 0 0 #000}
 .fo-bn-meh{transition:transform .2s var(--ease)}
 .fo-bn-most .fo-pont{width:9px;height:9px;border-radius:50%;background:var(--accent);animation:pulzal 1.4s var(--ease) 3}
 .fo-bn-sz .fo-l{font-size:16px;line-height:1.4;max-width:54ch}
 .fo-bn-gomb::after{content:"→";transition:transform .2s var(--ease)}
-@media (hover:hover) and (pointer:fine){.fo-banner:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000}
-.fo-banner:hover .fo-bn-meh{transform:translateY(-4px) rotate(-4deg)}
-.fo-banner:hover .fo-bn-gomb::after{transform:translateX(4px)}}
+@media (hover:hover) and (pointer:fine){.fo-banner:hover{transform:translate(4px,4px);box-shadow:0 0 0 #000}}
 @container (max-width:1000px){.fo-banner{grid-template-columns:auto minmax(0,1fr);padding-left:132px}
 .fo-bn-gomb{grid-column:1/-1;justify-self:start}
 .fo-bn-meh{width:100px;bottom:auto;top:-22px}}
@@ -282,9 +278,6 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-szamok strong{font-size:clamp(26px,3cqi,40px)}
 .fo-szamok li{grid-template-columns:48px minmax(0,1fr);gap:12px}
 .fo-szamok .fo-flekk{width:48px;height:48px}
-.fo-zaro .fo-bolt,.fo-ossz .fo-bolt{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:max-content;max-width:100%}
-.fo-zaro .fo-bolt .fo-gomb,.fo-ossz .fo-bolt .fo-gomb{width:auto;min-height:48px;padding:0 16px;justify-content:center;font-size:20px;white-space:nowrap}
-.fo-zaro .fo-bolt .fo-gomb .fo-logo,.fo-ossz .fo-bolt .fo-gomb .fo-logo{width:22px;height:22px}
 .fo-zaro .fo-kep>img.fo-t{transform:rotate(6deg);filter:drop-shadow(9px 10px 0 rgba(0,0,0,.2))}
 .fo-kszunet::before{content:""}
 .fo-kszunet::after{content:""}
@@ -333,7 +326,7 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-logotobb::after{content:"";transition:transform .2s var(--ease)}
 .fo-logotobb[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
 .fo-logotobb:active{transform:translate(2px,2px);box-shadow:0 0 0 #000}
-@media (hover:hover) and (pointer:fine){.fo-logotobb:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #000}}
+@media (hover:hover) and (pointer:fine){.fo-logotobb:hover{transform:translate(2px,2px);box-shadow:0 0 0 #000}}
 .fo-logosor.fo-nyitva li:nth-child(n+6):not(.fo-logo-gomb){animation:szambe .3s var(--ease) backwards}
 @container (max-width:760px){.fo-logosor:not(.fo-nyitva) li:nth-child(n+4):not(.fo-logo-gomb){display:none}
 .fo-logosor.fo-nyitva li:nth-child(n+4):not(.fo-logo-gomb){animation:szambe .3s var(--ease) backwards}}
@@ -343,8 +336,8 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-termek img{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:var(--bg);margin-bottom:6px}
 .fo-termek strong{font:400 21px/1.15 var(--display)}
 .fo-termek .fo-ar{font:700 15px/1 var(--text);font-variant-numeric:tabular-nums}
-.fo-termek:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
-@media (hover:hover) and (pointer:fine){.fo-termek:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000}}
+.fo-termek:active{transform:translate(4px,4px);box-shadow:0 0 0 #000}
+@media (hover:hover) and (pointer:fine){.fo-termek:hover{transform:translate(4px,4px);box-shadow:0 0 0 #000}}
 .fo-bolt-fej .fo-szf{margin-bottom:0}
 @container (max-width:760px){.fo-termekek{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .fo-termek{padding:8px 8px 10px}
@@ -352,6 +345,23 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-termek .fo-ar{font-size:13px}}
 @container (max-width:420px){.fo-termekek{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin-right:-18px;padding:2px 18px 10px 2px}
 .fo-termek{flex:0 0 62%;scroll-snap-align:start}}
+.fo-szalag .fo-lepszam{width:auto;height:auto;margin-right:10px;background:none;color:#fff;font:400 30px/.8 var(--display);transform:none}
+.fo-fvb .fo-flekk{width:40px;height:40px}
+.fo-fvb .fo-flekk::before{display:none}
+.fo-fvb .fo-flekk img{width:100%;height:100%}
+.fo-fvb[aria-pressed="true"] .fo-flekk img{filter:invert(1)}
+.fo-hero h1 .fo-kiemel{padding:0 .12em;background:linear-gradient(transparent .2em,var(--accent) .2em)}
+.fo-hero .fo-tovabb{flex-direction:column;gap:0;padding:0;min-width:64px;min-height:64px;justify-content:center;border:0;background:none;box-shadow:none;font-size:0}
+.fo-hero .fo-tovabb::before{content:"";width:46px;height:46px;background:url(https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/6b0430665eff18b82adffa66_fo-meh-hos.webp) center/contain no-repeat}
+.fo-hero .fo-tovabb::after{font:700 26px/1 var(--text);margin-top:-6px}
+#partnerek .fo-szk-b{text-align:center}
+#partnerek .fo-szf{align-items:center}
+#partnerek .fo-logosor{justify-content:center}
+@container (min-width:901px){#beebolt .fo-szk-b{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,8fr);gap:20px 48px;align-items:center}
+#beebolt .fo-bolt-fej{grid-column:1;grid-row:1/span 2;margin:0}
+#beebolt .fo-termekek{grid-column:2;max-width:none}
+#beebolt .fo-szk-b>.fo-gm{grid-column:2;justify-self:end}}
+#beebolt .fo-szk-b>.fo-gm{justify-self:start;margin-top:4px}
 .fo .fo-x1{--h:#fff}
 .fo .fo-x2{--kov:#F0F3EC}
 .fo .fo-x3{--h:#F0F3EC;scroll-margin-top:64px}

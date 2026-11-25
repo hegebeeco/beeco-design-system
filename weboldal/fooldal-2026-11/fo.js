@@ -43,6 +43,7 @@
     var hb = $$('.fo-hb', hero), kepek = $$('#kepek img', hero), cimke = $('#cimke', hero);
     var H = [['Kuponok', 'helyi zöld partnerektől'], ['Lábnyom', 'kiszámolod és csökkented'], ['Zöld térkép', 'boltok, javítók, programok']];
     var KULCS = ['sporolas', 'labnyom', 'zold_helyek'], i0 = 0;
+    var IK = ['6acdcf7d13f43306a9e990ce_fs-piko-kupon.svg', '6acdcf5d31a1079e200f1faa_fs-piko-lab.svg', '6acdcfb146bae73bbde923f6_fs-piko-terkep.svg'].map(function (f) { return 'https://cdn.prod.website-files.com/648ebb1f9ae84f3d530e2f2d/' + f; });
     var allit = function (i) {
       i0 = i;
       hb.forEach(function (b, j) { b.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
@@ -52,7 +53,7 @@
       setTimeout(function () {
         $('#cimke1', cimke).textContent = H[i][0];
         $('#cimke2', cimke).textContent = H[i][1];
-        var ik = $('img', hb[i]), cel = $('.fo-cimke-ik img', cimke); if (ik && cel) cel.src = ik.src; // Webflow drops the id on images
+        var ik = hb[i] && $('img', hb[i]), cel = $('.fo-cimke-ik img', cimke); if (cel) cel.src = ik ? ik.src : IK[i]; // Webflow drops the id on images
         cimke.classList.remove('fo-valt');
       }, 180);
     };
@@ -62,6 +63,12 @@
       if (sav) sav.addEventListener('animationend', function () { if (!hero.classList.contains('fo-kezi')) allit((i0 + 1) % hb.length); });
     });
     if (rm) hero.classList.add('fo-kezi');
+    // 2026-11-25: the benefit buttons were removed (Kristóf), so a timer drives the rotation; it respects the pause button and reduced motion
+    if (!hb.length && kepek.length > 1 && !rm) {
+      w.setInterval(function () {
+        if (!hero.classList.contains('fo-all') && d.visibilityState === 'visible') allit((i0 + 1) % kepek.length);
+      }, 6000);
+    }
     var sz = $('#szunet', hero);
     if (sz) {
       sz.setAttribute('aria-pressed', 'false');
