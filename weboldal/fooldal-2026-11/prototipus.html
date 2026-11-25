@@ -656,6 +656,18 @@ html:has(.keret),body:has(.keret){background-color:#F0F3EC}
 .lepesek li:nth-child(1) .lep-meh{aspect-ratio:359/226}.lepesek li:nth-child(2) .lep-meh{aspect-ratio:306/241}.lepesek li:nth-child(3) .lep-meh{aspect-ratio:343/273}
 .zaro .kerdes-meh{aspect-ratio:222/231}
 .keret a.gm{min-height:46px}
+/* Ági és Nóra (2026-11-25): valósághű 3D telefonképek (Blender-render), dőlés nélkül, puha árnyékkal; nincs fehér hatszög a telefon mögött és kockás (sejt) háttér; a funkciócímke a telefon alatt */
+.keret .szin::before,.keret .kep::before{display:none}
+.keret .sejt{display:none}
+.keret .kep>img.t,.keret .kepek img,.keret .ossz .kep .mock{filter:drop-shadow(0 16px 22px rgba(0,0,0,.18))}
+.keret .zaro .kep>img.t,.keret .ossz .kep .mock{transform:none}
+.keret .szin{height:600px}
+.keret .cimke{top:528px}
+.keret .kep{height:575px}
+.keret .kep>.kc{top:506px}
+.keret .ossz .kep{height:400px}
+.keret .zaro .kep{height:595px}
+@container (max-width:760px){.keret .szin{height:515px}.keret .cimke{top:444px}.keret .kep{height:490px}.keret .kep>.kc{top:420px}.keret .ossz .kep{height:260px}.keret .zaro .kep{height:430px}}
 /* görgetésre beúszó tartalom (fo.js teszi fel, csak mozgással; ami betöltéskor már látszik, az nem úszik) */
 .rv{opacity:0;transform:translateY(40px) scale(.98)}
 .rv-be{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--rv-d,0ms)}

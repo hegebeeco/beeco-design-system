@@ -436,6 +436,22 @@ html:has(.fo),body:has(.fo){background-color:#F0F3EC}
 .fo-lepesek li:nth-child(3) .fo-lep-meh{aspect-ratio:343/273}
 .fo-zaro .fo-kerdes-meh{aspect-ratio:222/231}
 .fo a.fo-gm{min-height:46px}
+.fo .fo-szin::before,.fo .fo-kep::before{display:none}
+.fo .fo-sejt{display:none}
+.fo .fo-kep>img.fo-t,.fo .fo-kepek img,.fo .fo-ossz .fo-kep .fo-mock{filter:drop-shadow(0 16px 22px rgba(0,0,0,.18))}
+.fo .fo-zaro .fo-kep>img.fo-t,.fo .fo-ossz .fo-kep .fo-mock{transform:none}
+.fo .fo-szin{height:600px}
+.fo .fo-cimke{top:528px}
+.fo .fo-kep{height:575px}
+.fo .fo-kep>.fo-kc{top:506px}
+.fo .fo-ossz .fo-kep{height:400px}
+.fo .fo-zaro .fo-kep{height:595px}
+@container (max-width:760px){.fo .fo-szin{height:515px}
+.fo .fo-cimke{top:444px}
+.fo .fo-kep{height:490px}
+.fo .fo-kep>.fo-kc{top:420px}
+.fo .fo-ossz .fo-kep{height:260px}
+.fo .fo-zaro .fo-kep{height:430px}}
 .fo-rv{opacity:0;transform:translateY(40px) scale(.98)}
 .fo-rv-be{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--rv-d,0ms)}
 @media (prefers-reduced-motion:reduce){.fo-rv{opacity:1;transform:none}}
