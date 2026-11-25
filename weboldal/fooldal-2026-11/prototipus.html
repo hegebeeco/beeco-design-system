@@ -612,6 +612,40 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(4px,4px);box-s
 /* Kristóf: kép a három „Merre tovább?” csempén */
 .ut-kep{display:block;width:calc(100% + 32px);max-width:none;margin:-16px -16px 0;aspect-ratio:16/9;object-fit:cover;border-bottom:2px solid #000}
 .ut .flekk{position:relative;z-index:1;margin-top:-32px}
+/* Kristóf, 2026-11-25 délután. Kevesebb háttérszín: fehér, világoszöld (#F0F3EC), a számoknál sötétzöld, a zárón vaj; a partnerek, a GYIK és a kérdés-blokk fehér. A krém és a zsályazöld kimarad. */
+.keret .hero{background:#F0F3EC}
+#cselekves,#osszegzes,#kozosseg,#beebolt{--h:#fff}
+#jutalom,#velemenyek{--h:#F0F3EC}
+#megertes .domb,#jutalom .domb,#velemenyek .domb,#merre .domb{--kov:#fff}
+#cselekves .domb,#szamok .domb{--kov:#F0F3EC}
+/* piktogramok: halványsárga flekk a fehér helyett; a „Merre tovább?” csempéin főszín-sárga */
+.keret .flekk::before,.keret .ossz .kep>span::before{background:var(--vaj)}
+.keret .ut .flekk::before{background:var(--accent)}
+.keret .kamp .flekk::before{background:#fff}
+/* vélemények: a lapozó nyilak a „4,6 csillag…” sorral egy vonalban, jobb felül, nem törnek külön sorba */
+.keret .vel-fej{flex-wrap:nowrap}.vel-fej .szf{flex:1 1 auto;min-width:0}.vel-nyil{flex:none}
+/* a három lépés méhecskéi: kérdő méh lábnyommal, mozgó méh kuponnal, méhraj serleggel */
+.lep-meh{display:block;width:96px;height:auto;margin:8px 0 0 auto;pointer-events:none}
+@container (min-width:761px){
+.kor .lepesek .lep-meh{position:absolute;right:-26px;top:-58px;width:84px;margin:0}
+}
+@container (min-width:1000px){
+.kor .lepesek .lep-meh{top:50%;width:150px;transform:translateY(-50%)}
+.kor .lepesek li:nth-child(1) .lep-meh,.kor .lepesek li:nth-child(3) .lep-meh{right:calc(100% + 14px)}
+.kor .lepesek li:nth-child(2) .lep-meh{right:auto;left:calc(100% + 14px)}
+}
+/* „Kérdésed van?” blokk a lábléc fölött */
+.kerdes{padding-top:12px;padding-bottom:64px}
+.kerdes-b{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px 28px;align-items:center;max-width:960px;padding:20px 28px;background:#F0F3EC;border:2px solid #000;border-radius:4px}
+.kerdes-meh{width:96px;height:auto}
+.kerdes-c{margin:0 0 6px;font:400 clamp(26px,3cqi,34px)/1.1 var(--display);text-wrap:balance}
+.kerdes-p{margin:0;font-size:17px;line-height:1.45;max-width:52ch}
+.kerdes-gomb{white-space:nowrap}
+@container (max-width:760px){.kerdes-b{grid-template-columns:64px minmax(0,1fr);padding:16px}.kerdes-meh{width:64px}.kerdes-gomb{grid-column:1/-1;justify-self:start}}
+/* görgetésre beúszó tartalom (fo.js teszi fel, csak mozgással; ami betöltéskor már látszik, az nem úszik) */
+.rv{opacity:0;transform:translateY(28px)}
+.rv-be{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--rv-d,0ms)}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
 </style>
 
 <div class="wrap">

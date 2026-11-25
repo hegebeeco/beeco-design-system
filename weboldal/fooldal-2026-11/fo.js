@@ -198,5 +198,43 @@
   kattMer('.fo-koz-alul a', 'csapat_csatlakozas', function (a) { return a.textContent.trim(); });
   kattMer('.fo-ut', 'ut_valasztas', function (a) { return ($('strong', a) || {}).textContent || ''; });
 
+  /* ---------- görgetésre beúszó tartalom (Kristóf, 2026-11-25): szakaszonként sorban, 70 ms-os lépcsővel ----------
+     Csak mozgással; ami betöltéskor már látszik, az nem úszik; a saját mozgású vagy elhelyezett elemekhez nem nyúl.
+     A beúszás végén az osztályok lekerülnek, így a hover és a többi átmenet a megszokott. */
+  if (!rm && 'IntersectionObserver' in w) {
+    var rvJo = function (el) {
+      var cs = w.getComputedStyle(el);
+      return el.offsetHeight > 0 && cs.transform === 'none' && cs.animationName === 'none' && cs.position !== 'absolute' && cs.position !== 'fixed' && cs.opacity === '1';
+    };
+    var rvIo = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        rvIo.unobserve(e.target);
+        e.target.classList.add('fo-rv-be');
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    $$('.fo > section:not(.fo-hero), .fo > aside', d).forEach(function (s) {
+      var b = $('.fo-szk-b', s) || s.firstElementChild;
+      if (!b) return;
+      var c = [];
+      [].slice.call(b.children).forEach(function (el) {
+        if (el.matches('ul,ol') && !el.matches('.fo-velemenyek') && el.children.length <= 8) c = c.concat([].slice.call(el.children));
+        else c.push(el);
+      });
+      c.filter(rvJo).forEach(function (el, i) {
+        if (el.getBoundingClientRect().top < w.innerHeight) return;
+        el.style.setProperty('--rv-d', Math.min(i, 5) * 70 + 'ms');
+        el.classList.add('fo-rv');
+        el.addEventListener('transitionend', function vege(ev) {
+          if (ev.target !== el || ev.propertyName !== 'opacity') return;
+          el.removeEventListener('transitionend', vege);
+          el.classList.remove('fo-rv', 'fo-rv-be');
+          el.style.removeProperty('--rv-d');
+        });
+        rvIo.observe(el);
+      });
+    });
+  }
+
   /* a navbar elbújását 2026-11-23 óta a site-szintű beecoMenuSav szkript végzi (Javaslat 43) */
 })();
