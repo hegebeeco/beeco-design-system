@@ -427,7 +427,10 @@ html body :where(.fo) :where(strong){font-weight:700}
 html:has(.fo),body:has(.fo){background-color:#F0F3EC}
 #beebolt{--h:var(--vaj)}
 #merre .fo-domb{--kov:var(--vaj)}
-.fo .fo-hero .fo-szunet:not(:focus-visible){width:1px;height:1px;padding:0;border:0;box-shadow:none;overflow:hidden;clip-path:inset(50%)}
+.fo .fo-hero .fo-szunet{top:0;left:0;right:auto;bottom:auto;z-index:8;width:100%;height:100%;background:transparent;border:0;box-shadow:none;transform:none}
+.fo .fo-hero .fo-szunet::before{opacity:0}
+.fo .fo-hero .fo-szunet:focus-visible{outline:3px solid #000;outline-offset:4px}
+.fo .fo-hero .fo-szunet:focus-visible::before,.fo .fo-hero .fo-szunet[aria-pressed="true"]::before{opacity:1}
 .fo-rv{opacity:0;transform:translateY(40px) scale(.98)}
 .fo-rv-be{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--rv-d,0ms)}
 @media (prefers-reduced-motion:reduce){.fo-rv{opacity:1;transform:none}}

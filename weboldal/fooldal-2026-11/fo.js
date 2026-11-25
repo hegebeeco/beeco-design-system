@@ -65,8 +65,9 @@
     if (rm) hero.classList.add('fo-kezi');
     // 2026-11-25: the benefit buttons were removed (Kristóf), so a timer drives the rotation; it respects the pause button and reduced motion
     if (!hb.length && kepek.length > 1 && !rm) {
-      // the rotation also rests while the pointer is over the phone or the focus is in the hero (Kristóf removed the visible pause button)
-      var pihen = false, tel = kepek[0].parentNode;
+      // the rotation also rests while the pointer is over the phone or the focus is in the hero (Kristóf removed the visible pause button;
+      // the button now lies invisibly over the phone, so a tap on the phone pauses or restarts the rotation)
+      var pihen = false, sz0 = $('#szunet', hero), tel = sz0 ? sz0.parentNode : kepek[0].parentNode;
       tel.addEventListener('mouseenter', function () { pihen = true; });
       tel.addEventListener('mouseleave', function () { pihen = false; });
       hero.addEventListener('focusin', function () { pihen = true; });
@@ -84,8 +85,6 @@
         sz.setAttribute('aria-pressed', p ? 'true' : 'false');
         sz.setAttribute('aria-label', p ? 'A váltás folytatása' : 'A váltás megállítása');
       });
-      // a tap on the phone does the same as the (visually hidden) pause button
-      if (kepek.length) kepek[0].parentNode.addEventListener('click', function () { sz.click(); });
     }
     // dotted bee trail (decorative)
     var ns = 'http://www.w3.org/2000/svg', svg = d.createElementNS(ns, 'svg'), path = d.createElementNS(ns, 'path');

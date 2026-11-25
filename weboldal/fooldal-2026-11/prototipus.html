@@ -646,8 +646,12 @@ button.polaroid:active{transform:rotate(var(--d,-2deg)) translate(4px,4px);box-s
 html:has(.keret),body:has(.keret){background-color:#F0F3EC}
 #beebolt{--h:var(--vaj)}
 #merre .domb{--kov:var(--vaj)}
-/* hero: a szünet gomb csak billentyűzetes fókuszra látszik (WCAG 2.2.2); egérrel a telefonra állva, koppintással is megáll */
-.keret .hero .szunet:not(:focus-visible){width:1px;height:1px;padding:0;border:0;box-shadow:none;overflow:hidden;clip-path:inset(50%)}
+/* hero: a szünet gomb láthatatlanul a telefon fölött fekszik (nagy érintési felület, WCAG 2.2.2 és 2.5.8):
+   koppintásra megáll/indul a váltás, egérrel ráállva szünetel, billentyűzetes fókusznál keret és ikon látszik */
+.keret .hero .szunet{top:0;left:0;right:auto;bottom:auto;z-index:8;width:100%;height:100%;background:transparent;border:0;box-shadow:none;transform:none}
+.keret .hero .szunet::before{opacity:0}
+.keret .hero .szunet:focus-visible{outline:3px solid #000;outline-offset:4px}
+.keret .hero .szunet:focus-visible::before,.keret .hero .szunet[aria-pressed="true"]::before{opacity:1}
 /* görgetésre beúszó tartalom (fo.js teszi fel, csak mozgással; ami betöltéskor már látszik, az nem úszik) */
 .rv{opacity:0;transform:translateY(40px) scale(.98)}
 .rv-be{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--rv-d,0ms)}
