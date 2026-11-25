@@ -34,6 +34,14 @@
 | 9 | Méh (lebegő szuperhős) | **kész** | `DS · Méh` komponens (`ds-meh`, mozgás nélkül); első helye: /rolunk „Mit tegyünk együtt?” |
 | 10 | Főoldal | **kész** | 79 `fo-` osztály egyszerű szabályai natív Webflow-stílusok (`nativ.py`, `nativ.json`); az embedekben (2 db, 28 KB) csak a mozgás, a töréspontok, az összetett kijelölők és 14 sorrendérzékeny deklaráció maradt. Ellenőrzés: 630 elem, 1440/768/390 px, 0 stíluseltérés. A menü-duplikáció kikerült (fo.js@dbf9f4e4) |
 
+## A `fo-` osztálycsalád hivatalosan DS (Kristóf döntése, 2026-11-25)
+- A főoldal `fo-` osztályai a web DS része (a `ds-`, `fs-`, `cs-`, `bc-`, `menu-` mellett); a weboldal-audit DS-szabálya ezt ismeri (`audit.mjs`, `cfgX.ds`).
+- A főoldalon minden szöveges elem nevesített `fo-` osztályt kapott (82 elem, a Designerben hangolható):
+  `fo-focim` (H1), `fo-cim` (szekciócím), `fo-nev` (funkciónév), `fo-szam-ertek` és `fo-szam-cimke` (számsor), `fo-lepes-cim` és `fo-lepes-szoveg` (három lépés),
+  `fo-gomb-szoveg` (áruházgomb felirata), `fo-bizalom-elem` és `fo-bizalom-szam` (értékelések a hero alatt), `fo-lanc-elem` (Tanulunk → Kitartunk),
+  `fo-velemeny-szoveg` (vélemények), `fo-ut-cim` (Merre tovább? csempék), `fo-termek-nev` (beebolt), `fo-kerdes-elem` (záró kérdések).
+  Az új osztályok üresek: a kinézetet továbbra is a meglévő `fo-` szabályok adják, a Designerben itt lehet felülírni.
+
 ## Kampányoldal: CsicsergŐsz (Kristóf kérése, 2026-11-23)
 A grafikák és a tartalom maradnak, a forma a főoldalé, a fekete helyett kakaó. Kész a tesztcímen: a meglévő szekciócímkék (Levi szövegei) döntött kakaó DS-címkeként
 (egy elakadt animáció eddig elrejtette őket, az MME-fejléccel együtt), kakaó kampánygombok, árnyékos domb, döntött árnyékos telefon fehér flekkel és funkciócímkével (Madártérkép, Madár album,

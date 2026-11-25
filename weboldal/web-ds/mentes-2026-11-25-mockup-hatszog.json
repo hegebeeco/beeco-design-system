@@ -1,0 +1,9 @@
+{
+  "_leiras": "Mentés a 2026-11-25-i DS-változás előttről (Ági és Nóra visszajelzése, Kristóf döntése: a sejt-háttér és a fehér hatszög mindenhol kikerül, a telefon-mockup nem dől, a funkciócímke a mockup alá kerül). Visszaállításhoz ezeket az értékeket kell visszaírni (data_style_tool update_style).",
+  "ds-sejt": {"display": "(nem volt beállítva)"},
+  "ds-appkepernyo": {"transform": "rotate(4deg)", "margin-bottom": "(nem volt beállítva)"},
+  "ds-appkepernyo::before": {"position": "absolute", "left": "-14%", "top": "10%", "z-index": "-1", "width": "128%", "aspect-ratio": "1 / 1", "background-color": "#ffffff", "transform": "rotate(-12deg)", "content": "\"\"", "clip-path": "polygon(25% 3%, 75% 0%, 100% 48%, 77% 97%, 22% 100%, 0% 52%)"},
+  "ds-appkepernyo-kep": {"filter": "drop-shadow(9px 10px 0px rgba(0, 0, 0, 0.2))"},
+  "ds-flekk": {"display": "(nem volt beállítva)"},
+  "ds-funkcio": {"bottom": "12%", "top": "(nem volt beállítva)", "transform": "translateX(-50%) rotate(-4deg)"}
+}
