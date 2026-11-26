@@ -381,7 +381,7 @@ html body :where(.fo) :where(strong){font-weight:700}
 .fo-kor .fo-lepesek a{--kor-al:#fff;margin:0;padding:12px 14px;background:#fff;border:2px solid #000;border-radius:4px;box-shadow:4px 4px 0 #000;transition:transform .15s var(--ease),box-shadow .15s var(--ease)}
 .fo-kor .fo-lepesek .fo-sz{font-size:34px}
 .fo-kor .fo-lepesek p{font-size:14px}
-.fo-kor-kozep{position:absolute;left:50%;top:270px;width:200px;margin:0 0 0 -100px;transform:translateY(-50%);text-align:center;font-size:26px}
+.fo-kor-kozep{position:absolute;left:50%;top:246px;width:190px;margin:0 0 0 -95px;transform:translateY(-50%);text-align:center;font-size:26px}
 .fo-kor:hover .fo-lepesek a,.fo-kor:hover::after{animation-play-state:paused}}
 @media (hover:hover) and (pointer:fine){.fo-kor .fo-lepesek a:hover{transform:translate(4px,4px);box-shadow:0 0 0 #000}}
 .fo-ossz .fo-kep .fo-mock{position:absolute;left:50%;top:8px;z-index:1;width:190px;margin-left:-95px;transform:perspective(1200px) rotateY(-18deg) rotateX(6deg) rotate(5deg);filter:drop-shadow(14px 16px 0 rgba(0,0,0,.22));animation:lebeg 4s ease-in-out infinite alternate}
