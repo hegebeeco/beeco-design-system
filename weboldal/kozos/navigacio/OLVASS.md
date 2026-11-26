@@ -7,6 +7,13 @@ Webflow-komponensek (Designer, NAVIGÁCIÓ csoport):
 | `NAVBAR_OT_AJTO` | alap (teljes menü) · **Egyszerű** (logó + „‹ beeco.hu főoldal” + Töltsd le!) | `embed-bn.html` |
 | `LABLEC_ZARO` | alap (jelenet + Levélke-hírlevél + linksorok) · **Egyszerű** (fekete alsó sáv: logó, 4 link, közösségi, jogi) | `embed-bl.html` |
 
+## 2026-11-26: „Főoldal” láblécvariáns és álló logó (Kristóf kérése)
+- `LABLEC_ZARO` új variánsa: **Főoldal** (`991eb6fe-437e-df06-6fb7-9deb0befb15b`), natív variánsstílusokkal (a Designerben hangolható).
+  A „Légy te a változás” felhívás és a méh rejtve (a főoldal záró szekciója már ezt mondja); a beeújság széles, vízszintes kártya (4 px sarok, kemény árnyék, nem dől);
+  a linkcsoportok oszlopokban (`lablec-burok`: `repeat(auto-fit, minmax(150px, 1fr))`, asztalon 6, telefonon 2 oszlop), szaggatott elválasztók nélkül; árnyékos domb.
+  Az új főoldal (`/fooldal-uj`) ezt a variánst használja; a többi oldal változatlan.
+- `NAVBAR_OT_AJTO`: a vízszintes logó helyett az eredeti, álló beeco logó (márkakönyv `logo.webp`, sárga „eco”; asset `beeco-logo-nav.webp`), `menu-logo-kep` 44 px (tablet 40, kis telefon 36). Minden oldalon változik.
+
 ## Fájlok
 - `bn-bl.css`: forrás-CSS, olvasható formában. Az `.bn-egyszeru` / `.bl-egyszeru` módosítók a helyi próbához kellenek.
 - `bn.js`: menü-viselkedés (panelek, Esc, kívül kattintás, hamburger, `menu_csoport` / `menu_kattintas` dataLayer-esemény, aktuális oldal jelölése).
