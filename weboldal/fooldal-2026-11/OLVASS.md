@@ -1,0 +1,71 @@
+# beeco.hu új főoldal (2026-11)
+
+Kristóf döntése (2026-11-23): a jóváhagyott prototípus (Javaslat 42, 4/b) váltja a mostani főoldalt.
+Cím: „Éljünk ökosabban, együtt, olcsóbban!”; navbar: C · lebegő sáv (előbb csak ezen az oldalon); a beebolt-szekció marad.
+Kristóf második köre (2026-11-23): összegző letöltés-szekció a Jutalom után („Légy te a ma ökohőse!”, `#osszegzes`), funkciócímke a lépések telefonjain, árnyékos domb, a menü lenyílója külön dobozban.
+
+## Felépítés (ugyanaz a minta, mint a `fooldal-szuperhos` esetén)
+- **Webflow-oldal:** `Főoldal 2026-11 (teszt)`, `/fooldal-uj`, page `6b042dd5984a222f9ffd949d` (a főoldal másolata).
+  Az átállás: a Designerben *Page settings → Set as Home page* (Kristóf kattint), utána a régi főoldal piszkozat.
+- **Jelölés:** natív Webflow-elemek, `fo-` osztályokkal, a `.fo` burkolóban. Forrás: `szekciok.json` (az `epit.py` állítja elő
+  a `prototipus.html`-ből). A GYIK a meglévő natív DS-szekció (`#gyik`), nem innen jön.
+- **CSS:** `embed/fo-N.html` → az oldal tetején lévő HTML Embedek (`data_element_settings_tool`, kulcs `code`).
+  Kézi kiegészítés: `fo-extra.css` (navbar C, `body:has(.fo)`-hoz kötve, így a többi oldalt nem érinti).
+- **JS:** `fo.js` a jsDelivr-ről, commit-SHA-ra rögzítve, az oldal láblécében. Mérés: `beeco_*` dataLayer-események
+  (funkcio_valasztas, allomas_kattintas, most_fut_kattintas, logo_kattintas, beebolt_kattintas, csapat_csatlakozas,
+  ut_valasztas, foto_nezo); az áruház-, horgony- és belső linkeket a site-szintű szkript méri.
+- **Képek:** `eszkozok.json` (prototípus-fájlnév → Webflow-médiatár fájl). Új feltöltések a „02 Oldalak / Főoldal” mappában:
+  `fo-tel-*` (2026-11-18-i appképernyők), `fo-meh-hos.webp`, `fo-bolt-*.svg`.
+
+## Építés és ellenőrzés
+```
+python3 epit.py                 # fo.css, embed/, szekciok.json, teszt.html (helyi próbaoldal, nem commitoljuk)
+```
+A `teszt.html` a valódi Webflow-kimenet közelítése (a navbar és a GYIK helyén egyszerű helyettesítő).
+
+## Webflow-csapdák (2026-11-23)
+- A whtml-beszúrás csak CSS-csonkkal tartja meg az osztályt (`szekciok.json` `css` mezője, `{--fo:1}`).
+- A képekről elvész az `id`, a `loading` és a `fetchpriority`; a díszképek a médiatár alt szövegét kapják.
+  Ezért: az LCP-kép (`#kepek img.fo-be`) attribútumait `set_attributes`-szal kell beállítani, a díszképek altját üresre.
+- A site `body`-ja középre igazító flex oszlop: a `.fo` burkolónak `width:100%` kell (`fo-extra.css`).
+- A generált stílusosztályok (`fo-x1`…) már rajta vannak a Webflow-elemeken: a számozást a `stilusok.json` rögzíti, új inline stílus a következő szabad számot kapja. A fájlt ne töröld, különben az új szekció átszámozza a meglévőket.
+- Új szekció vagy elem a Webflow-ban: a `szekciok.json` megfelelő `html` + `css` (csonkok) részét kell beszúrni (`data_whtml_builder`), a díszképek altját utána üresre állítani.
+
+## Átállás (Kristóf kattint a Designerben, utána Claude ellenőriz)
+1. A `/fooldal-uj` oldal fejléckódjából törölni a `noindex` sort (a megjegyzéssel együtt). **Enélkül a főoldal kiesik a Google-ből.** ✓ 2026-11-25 (Ági és Nóra jóváhagyta; az oldal neve „Főoldal”; SEO, OG és JSON-LD azonos a régivel).
+2. Page settings → *Set as Home page* az új oldalon.
+3. A régi főoldal: új slug (pl. `fooldal-regi`) és piszkozat, hogy ne legyen duplikált tartalom és FAQ JSON-LD.
+4. 301: `/fooldal-uj` → `/` (Site settings → Publishing).
+5. Éles publikálás (Kristóf).
+6. Claude: `meresi-terv-fooldal.json` a `meresi-terv.json` fooldal-sora helyére, `meres-ellenor.mjs` és audit a beeco.hu-n, GA4/Clarity ellenőrzés.
+Nyitott site-szintű döntés: a letöltésmérés (5/5-ös szkript) csak a `/letoltes` címet ismeri, a főoldal `/app/letoltes`-re mutat (a régi is).
+
+## Natív Webflow-stílusok (Javaslat 43, 10. elem, 2026-11-23)
+- Az egyszerű, egyosztályos szabályok (79 osztály, 530 deklaráció) **natív Webflow-stílusok**: a Designerben hangolhatók.
+  A beágyazott CSS (2 embed, a 3. üres) a mozgást, a töréspontokat (`@container`), az összetett kijelölőket és a szkriptből létrejövő elemeket tartja.
+- Menete: `python3 epit.py` → `fo-teljes.css`; `python3 nativ.py <osztály-statisztika.json>` → `nativ.json` (mi natív); újra `python3 epit.py` → az embedek már nélküle.
+  A `nativ.json` változásakor a Webflow-stílusokat is frissíteni kell (`data_style_tool update_style`), különben eltérés lesz.
+- **Ha a Designerben módosítasz egy `fo-` osztályt**, az a forrásban (prototipus.html) nem változik: a következő `epit.py`-futás nem írja felül (a natív deklarációk kimaradnak az embedből), de a prototípus és az oldal eltérhet.
+
+## Teljesítmény (mérve 2026-11-24, Playwright, telefon: lassított 4G + 4× CPU, medián; a Google-címkék mindkét oldalon kiszűrve)
+| Változat | FCP | LCP | Letöltés |
+|---|---|---|---|
+| Mai főoldal (beeco.hu) | 1,7–2,0 s | 1,9–2,0 s | 1513 KB |
+| Új főoldal, előtöltés nélkül | 1,8 s | 4,5 s | 1282 KB |
+| Új főoldal, CSP + hero-előtöltés | 1,7 s | 2,9 s | 1282 KB |
+| Új főoldal, + újratömörített hero- és banner-kép (**ez van fent**) | 1,9 s | 2,3 s | 1256 KB |
+| Új főoldal, CSP nélkül + előtöltés | 2,7 s | 2,7 s | 1578 KB |
+Az LCP-elem a hero telefonképe: `fo-tel-kupon-v2.webp` (480 px, WebP q62, 42 KB; a régi `fo-tel-kupon.webp` 56 KB volt, szemre azonos). A banner-méh `fo-bn-meh-tavcso-200.webp` (200 px, 10 KB; 64 px-en látszik, a régi 431 px-es 22 KB volt). A régi hero SVG volt. A fejkód `meta CSP` sora kikapcsolja az előtöltő olvasót,
+ezért kell a kézi `<link rel="preload">`. Asztalon nincs különbség (0,3–0,4 s). A maradék késés oka site-szintű (minden oldalt érint, ezért Kristóf döntése): a közös Webflow-CSS 655 KB (tömörítve 110 KB), ezt a
+Style Manager „Clean up” csökkenti; a fejben szinkron `webfont.js` a Google Open Sans-t tölti, holott a saját `OpenSans-Var.woff2` is fent van (kettős betűforrás).
+A tesztcímen a CookieYes nem fut, ezért ott a `gtag.js` (180 KB) hozzájárulás nélkül is betöltődik: nyers mérésnél ezt ki kell szűrni.
+
+## Kristóf és Nóra kommentjei (2026-11-25, tesztcím)
+- **Hover (Web DS):** a 3D-s gomb és csempe hoverre benyomódik és síkba kerül (`translate` = árnyékeltolás, árnyék 0). Natívan: BUTTON_MAIN, BUTTON_SEC, MAIN BUTTON, ds-gomb (+ w-button kombó), ds-tovabb-kartya, ds-cikk, ds-ut, ds-tartalom-link, ds-fotosor-gomb, cs2-button-*, menu-bolt, menu-cta. A főoldal `fo-` gombjai a beágyazott CSS-ben.
+- **A zöld, aláhúzott hover oka** a site „All Links” tag-stílusa (hover: zöld, Open Sans 700, aláhúzás); az API nem éri el. **Kristóf teendője a Designerben:** All Links → Hover állapot → szín, betű, aláhúzás törlése (minden töréspontnál). A sima szöveges link zöld aláhúzását ezután a `beecoSzoveglink` site-szkript (1.0.0) viszi; a főoldalon addig a `fo-extra.css` semlegesíti.
+- Menü: a lenyíló csempék hovere csak háttérszín, a „Töltsd le!” gomb 18 px (`menu-letolt` kombó), a beebolt gomb hoverre benyomódik.
+- Főoldal: hero-gombsor és záró stop gomb törölve (a hero képváltását a `fo.js` időzítője viszi, a szünet gomb marad); lefelé nyíl méhvel; alsó letöltés-blokkok = hero; lépésszám fehér, nagy; funkcióikon flekk nélkül, aktívan inverz; partnerek középen; beebolt két oszlop; „Aktív kampány”; a három lépés körben (méh `offset-path`-on, 12 s, kiemelés szinkronban; mobilon lista); döntött telefon-mockup piktogramokkal; kép a három „Merre tovább?” csempén (jóváhagyott stock: Unsplash, Zoshua Colah, fortytwo, Bohdan Kadun).
+- **3. kör (2026-11-25 délután):** háttér csak fehér, világoszöld (#F0F3EC), sötétzöld (számok) és vaj (záró); a krém és a zsályazöld kimaradt (szakaszonkénti `--h`/`--kov` felülírás a 3. embedben). Piktogram-flekk vaj a fehér helyett, a „Merre tovább?” csempéin főszín-sárga. A három lépésnél méhecske-kép (`fo-lep-meh-1..3.webp`: a mobilapp méhei + lábnyom, kupon, serleg piktogram; ideiglenes összeállítás, illusztrátori rajz a Figmában jöhet helyette). „Kérdésed van? Írj nekünk!” blokk (`#kerdes`, a lábléc fölött, → /kapcsolat). Görgetésre beúszó tartalom (`fo.js`, `fo-rv`; csökkentett mozgásnál nincs). A vélemény-nyilak nem törnek külön sorba.
+- **5. kör (2026-11-26, Ági és Nóra):** valósághű 3D telefonképek (Blender, `mockup/render_phone.py` mintájára: a képernyőkép az üveg, kerekített fémtest, puha fény; jobbra álló telefon balra néz, `fo-tel3d-<képernyő>-j|b.webp`), dőlés és fehér hatszög nélkül, puha árnyékkal; a funkciócímke a telefon alatt; nincs kockás (sejt) háttér. DS-szinten is: `ds-sejt`, `ds-flekk`, `ds-appkepernyo::before` rejtve, `ds-appkepernyo` nem dől, `ds-funkcio` a telefon alá került (mentés: `weboldal/web-ds/mentes-2026-11-25-mockup-hatszog.json`). A `fo-` osztálycsalád hivatalosan DS; 82 szöveg nevesített `fo-` osztályt kapott (lista: Javaslat 43).
+  Csapda: a whtml-beszúrás meglévő osztály CSS-csonkjával új stílust hoz létre (`fo-domb-1`); utána `set_style`-lal vissza kell állítani.
+- A HTML-változások natívan a Webflow-ban vannak (a `prototipus.html` szerkezete itt eltér); a CSS forrása továbbra is a prototípus + `fo-extra.css` → 3 embed (`fo-3` = a 3. HTML Embed).

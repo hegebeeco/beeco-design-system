@@ -1,0 +1,16 @@
+{
+  "_leiras": "A kötelező kattintásteszt látogatói útjai (nav-journeys.mjs). Új kulcsoldal = új sor. target: a cél oldal útvonala.",
+  "utak": [
+    { "who": "Magánszemély", "goal": "Le szeretném tölteni az appot", "target": "/letoltes" },
+    { "who": "Magánszemély", "goal": "Hova dobjam a PET-palackot?", "target": "/hulladekok/pet-palack" },
+    { "who": "Magánszemély", "goal": "Kuponokat keresek ökos boltokhoz", "target": "/kuponok" },
+    { "who": "Magánszemély", "goal": "Zöld programot keresek a közelben", "target": "/zold-esemenynaptar" },
+    { "who": "Magánszemély", "goal": "Szezonális receptet keresek", "target": "/receptek/almakompot" },
+    { "who": "Önkéntes", "goal": "Csatlakoznék a csapathoz", "target": "/csatlakozz" },
+    { "who": "HR-vezető", "goal": "Munkahelyi zöld programot keresek", "target": "/szolgaltatas/beeco-at-work" },
+    { "who": "Cégvezető", "goal": "Céges csapatnapot szerveznék", "target": "/szolgaltatas/zold-esemeny-szervezes" },
+    { "who": "Polgármester", "goal": "Lakossági faöntözést indítanék", "target": "/szolgaltatas/onkormanyzatoknak" },
+    { "who": "Zöld vállalkozás", "goal": "Felkerülnék a zöld térképre", "target": "/szolgaltatas/partner" },
+    { "who": "Újságíró", "goal": "Kapcsolatot keresek", "target": "/kapcsolat" }
+  ]
+}

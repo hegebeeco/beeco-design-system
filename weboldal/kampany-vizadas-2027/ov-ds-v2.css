@@ -1,0 +1,65 @@
+/* Önkéntes vízadás – Web DS v2 formaszabályok (Kristóf döntése, 2026-11-21).
+   A kampány színei, betűi, rajzai maradnak; a forma közös a beeco.hu többi oldalával:
+   kattintható elem 4 px sarok + kemény 4 px árnyék (rámutatásra 5 px), nem kattintható elemen
+   nincs árnyék, fotó és sáv 0 px. Külön embed az ov-1…3 után (OLVASS.md); a `html body`
+   előtag csak az erősebb kijelölés miatt kell. */
+html body .ov-oldal { --r-k: 4px; }
+html body .ov-oldal .ov-gomb { border-radius: 4px; }
+@media (hover:hover) and (pointer:fine) { html body .ov-oldal .ov-gomb:hover { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 #000; } }
+html body .ov-oldal .ov-allapot,
+html body .ov-oldal .ov-chip,
+html body .ov-oldal .ov-jatek,
+html body .ov-oldal .ov-idezet,
+html body .ov-oldal .ov-logo-csempe,
+html body .ov-oldal .ov-kerdes,
+html body .ov-oldal .ov-meres-gomb,
+html body .ov-oldal .ov-naplo,
+html body .ov-oldal .ov-berlin,
+html body .ov-oldal .ov-bolt { border-radius: 4px; }
+html body .ov-oldal img.ov-qr-kep,
+html body .ov-oldal .ov-jatek-sav { border-radius: 0; }
+html body .ov-oldal .ov-bolt { box-shadow: 4px 4px 0 var(--navy); }
+html body .ov-oldal .ov-kartya { box-shadow: 4px 4px 0 var(--navy); }
+html body .ov-oldal .ov-kartya:hover { box-shadow: 5px 5px 0 var(--navy); }
+html body .ov-oldal .ov-teny,
+html body .ov-oldal .ov-cimer-keret,
+html body .ov-oldal .ov-cimer:hover .ov-cimer-keret,
+html body .ov-oldal .ov-idezet,
+html body .ov-oldal .ov-foto,
+html body .ov-oldal .ov-hero .ov-foto,
+html body .ov-oldal .ov-ido-lepes,
+html body .ov-oldal .ov-ido-kiemelt,
+html body .ov-oldal .ov-grafikon,
+html body .ov-oldal .ov-nyeres-kartya,
+html body .ov-oldal .ov-polaroid { box-shadow: none; }
+
+/* Domb a szekciók között (Kristóf döntése, 2026-11-21): a kampány fűrészfogas határa helyett
+   ugyanaz a dombforma, mint a DS · Domb, mindig a KÖVETKEZŐ szekció színében (--kov).
+   A sorrend 2026-11-21-i állapota szerint; ha a szekciók sorrendje változik, a --kov értékeket is igazítani kell. */
+html body .ov-oldal .ov-kepek { --kov: var(--navy); }
+html body .ov-oldal .ov-eredmeny { --kov: var(--egkek-h); }
+html body .ov-oldal .ov-hos { --kov: var(--feher); }
+html body .ov-oldal .ov-jovo { --kov: var(--kek); }
+html body .ov-oldal .ov-addig { --kov: var(--menta); }
+html body .ov-oldal .ov-partner { --kov: var(--feher); }
+html body .ov-oldal .ov-onk { --kov: var(--menta); }
+html body .ov-oldal .ov-miert { --kov: var(--feher); }
+html body .ov-oldal .ds-szekcio#gyik { --kov: var(--egkek); position: relative; }
+html body .ov-oldal .ov-kepek::after,
+html body .ov-oldal .ov-eredmeny::after,
+html body .ov-oldal .ov-hos::after,
+html body .ov-oldal .ov-jovo::after,
+html body .ov-oldal .ov-addig::after,
+html body .ov-oldal .ov-partner::after,
+html body .ov-oldal .ov-onk::after,
+html body .ov-oldal .ov-miert::after,
+html body .ov-oldal .ds-szekcio#gyik::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; z-index: 2; pointer-events: none;
+  height: 56px; background: var(--kov); border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  box-shadow: 0 -6px 14px -4px rgba(0,0,0,.16);
+}
+@media (max-width: 767px) {
+  html body .ov-oldal .ov-kepek::after, html body .ov-oldal .ov-eredmeny::after, html body .ov-oldal .ov-hos::after,
+  html body .ov-oldal .ov-jovo::after, html body .ov-oldal .ov-addig::after, html body .ov-oldal .ov-partner::after,
+  html body .ov-oldal .ov-onk::after, html body .ov-oldal .ov-miert::after, html body .ov-oldal .ds-szekcio#gyik::after { height: 40px; }
+}

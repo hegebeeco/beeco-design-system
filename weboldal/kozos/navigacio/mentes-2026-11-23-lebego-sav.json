@@ -1,0 +1,11 @@
+{
+  "_leiras": "A natív menüstílusok értékei a lebegő sáv (C) DS-szintű bevezetése ELŐTT (2026-11-23, Webflow API-ból olvasva). Visszaállításhoz ezeket kell visszaírni; a menu-rejt combo és a beecoMenuSav site-szkript új.",
+  "menu": {"main": {"border-bottom": "2px solid var(--fekete)", "background-color": "var(--fehér)", "padding": "nincs megadva", "pointer-events": "nincs megadva", "transition": "nincs megadva"}},
+  "menu-sav": {"main": {"max-width": "1320px", "background-color": "nincs megadva", "border": "nincs", "border-radius": "nincs", "box-shadow": "nincs", "pointer-events": "nincs megadva"}},
+  "menu-most": {"main": {"display": "flex"}},
+  "menu-panel": {
+    "main": {"top": "100%", "left": "16px", "right": "16px", "padding": "18px", "border-top-width": "0px", "border-bottom-left-radius": "16px", "border-bottom-right-radius": "16px", "border-top-left-radius": "nincs", "border-top-right-radius": "nincs", "background-color": "var(--_beeco-ds---bc-surface)", "box-shadow": "5px 5px 0 0 #000000"},
+    "medium": {"position": "static", "padding": "8px 10px 10px", "border-top": "2px dashed #E0D8C2", "border-right/bottom/left-width": "0px", "border-bottom-left-radius": "0px", "border-bottom-right-radius": "0px", "box-shadow": "none"}
+  },
+  "button_main": {"main": {"background-color": "var(--sárga) #fecf39", "megjegyzes": "nem változik; a biccentés a site-szkript CSS-éből jön"}}
+}

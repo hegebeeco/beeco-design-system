@@ -1,0 +1,15 @@
+{
+  "leiras": "CsicsergŐsz: a főoldal formája (Javaslat 43) előtti állapot, visszaállításhoz. 2026-11-23.",
+  "oldal": "/kampanyok/csicsergosz (page 6ad09c29e9ef90da22dce85e)",
+  "stilusok": {
+    "cs-domb": {"pointer-events": "none"},
+    "cs_mockup_telefon": {"position": "relative", "z-index": "1", "display": "block", "width": "60%", "height": "auto", "margin-left": "32%", "aspect-ratio": "456 / 876"}
+  },
+  "elemek": {
+    "videok szalag": {"osztalyok": ["ds-szalag"]},
+    "gyik szalag": {"osztalyok": ["ds-szalag"]}
+  },
+  "kombok_elotte": {"cs2-kicker": "inline-block, 14px, nagybetű, 0.08em, padding .55em 1em .4em, forgatás nélkül", "cs2-vilagos": "ugyanaz, középre", "cs2-button-main/-2/-3, cs2-button-sec": "fekete keret (BUTTON_MAIN/SEC), árnyék 4px 4px 0 #000"},
+  "uj_elemek": "Minden új elem osztálya cs-cimke-*, cs-funkcio*, cs-flekk vagy ds-szalag + cs-kakao: ezek törlésével az oldal visszaáll.",
+  "uj_embed": "cs-ds-v3 (embed/cs-ds-v3.min.css): törölhető."
+}

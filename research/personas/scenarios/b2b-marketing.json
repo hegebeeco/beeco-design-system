@@ -1,0 +1,62 @@
+{
+ "_about": "Zöld marketing oldal – feladatkönyvtár (2026-10-30), marketing perszónával mobilon.",
+ "page": "Zöld marketing",
+ "url": "https://beeco-weboldal.webflow.io/szolgaltatas/zold-marketing-draft",
+ "allowedHosts": [
+  "beeco-weboldal.webflow.io",
+  "www.beeco.hu",
+  "beeco.hu"
+ ],
+ "firstRound": [
+  {
+   "persona": "marketing-lead",
+   "scenarios": [
+    "five-second",
+    "claims",
+    "request-quote"
+   ]
+  }
+ ],
+ "scenarios": [
+  {
+   "id": "five-second",
+   "title": "5 másodperces teszt",
+   "mode": "fiveSecond",
+   "task": "Nézd meg az oldal első képernyőjét 5 másodpercig, görgetés nélkül. Utána mondd el: mi ez, kinek szól, és mit kellene tenned?",
+   "budget": {
+    "seconds": 5,
+    "actions": 1
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "A válaszból kiderül: (1) zöld marketing szolgáltatás fenntartható márkáknak, (2) igazolt állításokra épül, (3) van következő lépés (ajánlatkérés). 3/3 = siker, 2/3 = részben."
+   }
+  },
+  {
+   "id": "claims",
+   "title": "Mit állíthatunk jogszerűen?",
+   "task": "Márkamenedzserként tudd meg, hogyan segítenek abban, hogy a cég zöld üzenete hiteles és jogszerű legyen, és mit kapnál tőlük.",
+   "budget": {
+    "seconds": 180,
+    "actions": 16
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "Megtalálta a szolgáltatás tartalmát (stratégia, tartalom, igazolt állítások, szabályozási háttér) és helyesen összefoglalja. Ha a jogi háttérre vagy a mintára nem talál választ, az lelet."
+   }
+  },
+  {
+   "id": "request-quote",
+   "title": "Ajánlatot kérek",
+   "task": "Szeretnél ajánlatot kérni. Jutsz el az űrlaphoz, és mondd el, mit kell kitöltened. (Az űrlapot NE küldd el.)",
+   "budget": {
+    "seconds": 150,
+    "actions": 12
+   },
+   "success": {
+    "type": "judge",
+    "rubric": "Eljutott az űrlaphoz mobilon, a mezők teljes szélességűek és kitölthetők, fel tudja sorolni a kötelező mezőket."
+   }
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{
+  "leiras": "Javaslat 43, 2-10. elem: a módosítás előtti értékek (2026-11-23), visszaállításhoz.",
+  "stilusok": {
+    "ds-szalag": {"transform": "none"},
+    "ds-appkepernyo": {"position": "relative", "display": "block", "width": "300px", "max-width": "100%", "margin": "0 auto", "flex": "0 0 auto", "aspect-ratio": "5 / 8", "transform": null, "filter": null},
+    "download_IMG": {"border-radius": "8px", "box-shadow": "4px 4px 0 0 #000000", "max-width": "200px"},
+    "IMG_QR": {"tiny": {"display": "none"}},
+    "DOWNLOAD_BLOCK": {"display": "flex", "gap": "24px", "tiny": {"width": "100%"}}
+  },
+  "komponensek": {
+    "DOWNLOAD_BLOCK": "53f370d6-0097-8392-41d7-af795dfd8cb0: Div Block 237 (2 áruházkép-link) + IMG_QR; új elemek: mobilos egy gomb",
+    "DS · Appképernyő": "261bf2bf-7e1c-2ca2-72f9-5f28aef3814a: 3 kép + embed; új elem: funkciócímke (propokkal)",
+    "DS · App letöltés": "0951b307-2dd7-06cb-f1d9-b7da79410404"
+  },
+  "atnevezes": {"cs-funkcio*": "ds-funkcio*", "cs-flekk": "ds-flekk"}
+}

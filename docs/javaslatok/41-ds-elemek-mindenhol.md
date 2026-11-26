@@ -1,0 +1,49 @@
+# Javaslat 41 – DS-elemek mindenhol: domb, címke, piktogram, polaroid, appképernyő
+
+*Állapot: **részben jóváhagyva** (Kristóf kérése és döntései, 2026-11-21) · készítette: Claude.*
+
+## 1. Igény (Kristóf, 2026-11-21)
+„A DS-elemeket tedd be, ahol nem használjuk őket”: elválasztó, appképernyős animáció, a sárga ragasztócsíkos „valódi fénykép” galéria (többször használni), árnyék csak kattinthatón, elválasztó mindig a szekciók között, egységes piktogram (fehér flekken fekete), a szekció tetején mindig címke. Plusz: más gyors egységesítési ötlet.
+
+## 2. Döntések (Kristóf, 2026-11-21)
+| Kérdés | Döntés |
+|---|---|
+| Szekciócímke színe | **fekete mindenhol** (`ds-szalag`), sötét szekcióban sárga (`ds-szalag-vilagos`) |
+| Kampányoldalak | **igazodnak** a formaszabályokhoz (árnyék, sarok, domb, piktogram, címke); a saját színük, betűjük, rajzaik maradnak |
+| Régi pasztell hátterek | DS-színre: zöld → zöld (`bc-success-bg`), sárga → vaj, **kék → halványzöld**; szaggatott vonal helyett domb |
+| Piktogram | fehér flekken fekete, minden oldalon (a „sárga foltos” szabály megszűnt) |
+
+## 3. Elkészült (tesztoldal)
+- Mérő: `ds-lint` R11 megfordítva (sárga folt = eltérés), új R12 (címke nélküli szekció), R4 felismeri a régi `dia_*` szekciókat, a domb színét és a kampányok saját dombját.
+- Piktogram: 19 sárga foltos csere (Beecopédia, Hatásunk, Kapcsolat, /en); 4 új fehér változat (kés-villa, ház, katt, alma).
+- Domb és címke: régi oldalakon `ds-domb-sor` + `DS · Domb`, címke a cím fölött; 17 oldal és 8 CMS-sablon (Sonnet-ágens), plusz a kampányoldalak. Mérés a 72 oldalon: 1040 → **386** eltérés; R4 (domb) 116 → 3, R12 (címke) 92 → 5, R11 (piktogram) 36 → 8 (a maradék a főoldalon).
+- Kampányok: CsicsergŐsz és Madárkisokos kb. 60 `cs-` osztály v2 formára + `cs-ds-v2.css`; Vízadás `ov-ds-v2.css` (sarok, árnyék, domb a fűrészfog helyett); nyereményjáték kampányszínekkel és dombbal; EWWR fejkód.
+- **Polaroid-csík** (a Vízadás-galéria sárga ragasztócsíkja) a DS-fotókon: fotósor, nyitófotó, „hogyan dolgozunk” képek, idővonal (`ds-foto` kombók `::before` eleme). Egy helyen állítható, minden oldalon megjelenik.
+
+## 4. Javaslat – jóváhagyásra vár
+**A) `DS · Appképernyő` (új komponens).** Telefonkeret (`ds-kep-telefon`) + 2–3 appképernyő lassú áttűnéssel (≤ 900 ms, csökkentett mozgásnál álló első kép), a főoldali `fs-app-kep` minta alapján. Helyek: Kuponok, Eseménynaptár, Térkép, Letöltés, Partner, Madárraj, Önkormányzatoknak. Kell hozzá: melyik oldalon melyik képernyők (valódi appképek).
+
+**B) Gyors egységesítések (osztályszinten, sok oldalt egyszerre javítanak):**
+1. **Címskála:** a régi címosztályok (`main_heading`, `headline1–3`, `H1`; 600+ elem) a `ds-cim1–3` méretére és sorközére. A legnagyobb látható nyereség, kockázata kicsi.
+2. **Fotók a CMS-sablonokban** (recept, blog, ökoirányító, zöldség): a kép `ds-foto` keretet kap (fehér keret, felirat, csík), így a több száz CMS-oldal is a Partner/Csapat-oldal képi nyelvén szól.
+3. **App letöltés blokk:** a 13 kézzel épített letöltés-szakasz cseréje `DS · App letöltés`-re (egységes QR + áruházgombok + appkép, mérési címkével).
+4. **Morzsamenü:** 18 kézi morzsa → `DS · Morzsamenü`.
+5. **Csúszkák pöttyei:** a natív Webflow-csúszkák elmosott árnyékú pöttyei → lapos fekete/fehér pötty.
+
+**Javasolt sorrend:** B1 → B2 → A → B3 → B4 → B5. **Kristóf: „mehet” (2026-11-22).**
+
+Állapot (2026-11-22):
+- B1 kész a valódi eltéréseken: a mérés szerint a címek nagy része már a DS-méreten van (H2 48 px, H3 24 px). A négy CMS-sablon (zöld térkép, okos pont, partner, ökoirányító) 32 px-es főcíme és szekciócíme 48 px lett (`ds-cim-fo` kombó). Hátravan (élesítés után): kb. 100 közepes cím a régi oldalakon, oldalanként.
+- B2 kész: recept- és zöldségsablon fotója DS-fotó (keret, dőlés, csík); zöld térkép, partner képe keretes, 0 px. A blogsablon képosztálya általános (`img`), kimaradt.
+- A kész: `DS · Appképernyő` a partnersablonon (kupon → térkép → naptár). További helyek (Kuponok, Eseménynaptár, Térkép, Letöltés) élesítés után.
+- Éjszakai kör (2026-11-22, Kristóf: „mehetnek”): B1 kb. 100 további cím (H1/H2 48 px, H3 24 px; mobilon 30/20); B4 13 morzsa a `DS · Morzsamenü`-re (ökoirányító-sablon kimaradt); B5 lapos csúszkapöttyök minden natív csúszkán; A: új telefon-mockupok a legfrissebb képernyőkből a Térkép-heróban (Appképernyő), a Letöltés oldalon, az Eseménynaptár hero-csúszkájában és a partnersablonban.
+- Nyitva a címskálánál: kb. 45 kis alcím H2/H3 címkével (20–32 px, kártya jellegű) – a helyes javítás a címkeszint (H4/p), nem a méret; Kristóf döntése.
+- B3 (letöltésblokk) élesítés utánra: a mérés szerint a látogató számára már egységes (R6 rendben), a csere csak karbantartást könnyít.
+
+## 5. Nyitva (Kristóf döntése kell)
+- Lábnyomkalkulátor: egy „X” című, félkész szekció (a címke kimaradt) – törölni vagy kitölteni?
+- Új címkék szövegei (kb. 90, pl. „Az első év”, „Ajánlás”, „Visszajelzés”): Levi átnézheti; lista: ágens-jelentés és a Webflow.
+
+## 6. Döntés (Kristóf tölti ki)
+- A) Appképernyő-komponens: igen / nem / módosítással
+- B) sorrend: …

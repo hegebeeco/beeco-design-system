@@ -1,0 +1,107 @@
+# Javaslat 42 – Egységes szöveg- és képrend, kattinthatóság, három új webes DS-elem
+
+*Állapot: **irány jóváhagyva** (Kristóf kérése, 2026-11-22), a részletek és az új elemek képei jóváhagyásra várnak · készítette: Claude · dátum: 2026-11-22*
+
+Ütemezés (Kristóf döntése, 2026-11-22): a 2026-11-22 esti élesítéssel a Javaslat 41 állapota megy ki. Ez a javaslat **utána** kerül a tesztoldalra, és a következő élesítéssel megy ki.
+
+## 1. Igény (Kristóf, 2026-11-22)
+- A szövegek mérete, helye és hierarchiája minden oldalon egységes legyen.
+- **Képek, két stílus:**
+  - a fénykép enyhén döntve, fotós kinézettel áll (mint a landing oldalakon);
+  - az app- és webapp-mockup külön stílus, háttér nélkül.
+- Ami kattintható, az kemény árnyékot kap; ami nem, az nem.
+- A morzsa mindig az oldal bal felső részén áll; a szövegek többsége balra zárt.
+- A piktogram mindig fehér flekken fekete (nem sárga; ez 2026-11-21 óta szabály).
+- **Rólunk:** a 3 nem kattintható blokk se árnyékot, se lekerekítést ne kapjon.
+- **Csapat:**
+  - a gomb DS-alapú legyen;
+  - a csúszka (balra tartalom, jobbra kép) DS-elem legyen;
+  - a fénykép ne legyen lekerekítve;
+  - a léptetők szögletesek legyenek, egy mini blokkban a jobb–bal gombbal és a pöttyökkel, a fotó alján középen, 20 px-re lelógva.
+- **Főoldal:** a közösségfotós megoldás legyen DS-elem, és máshol is használjuk. A többi főoldali kérés a 4. pontban van.
+
+## 2. Szabályok (DS-szint, minden webes oldalra)
+| Terület | Szabály | Mérés (ds-lint) |
+|---|---|---|
+| Címskála | H1 és H2: `cim-l` (48 px, mobilon 30), H3: `cim-s` (24, mobilon 20), egy H1 oldalanként; a kártyacím H3, a címke H4 vagy bekezdés | új szabály: eltérés > 2 px |
+| Igazítás | törzsszöveg, cím, lista balra zárt; középre csak a rövid CTA-sor és a hero alatti chipsor állhat | új szabály: középre zárt bekezdés > 2 sor |
+| Morzsa | `DS · Morzsamenü`, a tartalom bal felső sarkában, a H1 fölött | R-morzsa: helye és sorrendje |
+| Fénykép | `ds-foto` keret: fehér keret, −1…−2° dőlés, sárga ragasztócsík (`::before`) | R-foto |
+| Mockup | telefonkeretes app- vagy webapp-kép, **háttér, keret és árnyék nélkül** (`ds-appkep`, `DS · Appképernyő`) | R-mockup: nincs háttér |
+| Kattinthatóság | kattinthatón 4 px kemény árnyék és 4 px sarok; nem kattinthatón **nincs árnyék és nincs lekerekítés** (0 px) | R3 bővítés: a lekerekítést is nézi |
+| Lépések | nem kattintható lépéssor: nagy fekete szám, vékony fekete vonal a lépések között, doboz és árnyék nélkül (`DS · Lépések`) | – |
+| Piktogram | fehér flekken fekete | R11 (már él) |
+| Méhecske iránya | a méhecske (matrica, illusztráció) mindig a tartalom vagy a képernyő közepe felé néz, kifelé soha (Kristóf, 2026-11-22) | kézi ellenőrzés |
+| Matrica-árnyék (Kristóf a szálat lezárta, 2026-11-22) | nem kattintható matricán elmosás nélküli, 2–3 px-es, 20%-os fekete árnyék a forma mentén; fekete kemény árnyék (kattinthatóság jele) és lágy árnyék nincs; a mockup árnyék nélkül áll | – |
+
+## 3. Új DS-elemek (képpel, jóváhagyásra)
+1. **`DS · Csapat-csúszka`** (organizmus):
+   - Balra tartalom (címke, H2, szöveg, `DS · Gomb`), jobbra fénykép 0 px sarokkal.
+   - Vezérlő mini blokk: fehér alap, 2 px fekete keret, 4 px kemény árnyék. Benne balra a négyzetes ‹, középen a pöttyök, jobbra a négyzetes ›.
+   - A vezérlő a fotó alján középen áll, 20 px-re lelóg.
+   - A meglévő `CSAPAT_FOTOSLIDER` komponensből készül; az nem törölhető, csak továbbépíthető.
+2. **`DS · Közösségfotó`** (molekula): a főoldali közösség-szekció fotós megoldása önálló elemként, máshol is használható. A pontos formát a főoldali változatról veszem le.
+3. **`DS · Számsor`** („A közösség ereje számokban”, molekula):
+   - 3–4 nagy szám (Lalezar) felirattal és forrással;
+   - fehér flekkes piktogrammal;
+   - doboz és árnyék nélkül, mert nem kattintható.
+
+## 4. Főoldal – átadó lista a főoldali munkamenetnek
+(Kristóf döntése: a főoldalt a főoldali munkamenet módosítja. Ág: `fooldal-szuperhos-tema`, anyag: `weboldal/fooldal-szuperhos/`, Webflow-oldal: `/`.)
+
+| # | Kérés | Javasolt megoldás |
+|---|---|---|
+| F1 | Logósáv egységesítése | keret nélkül, monokróm logók (`filter: grayscale(1)` vagy fekete SVG), egységes magasság; a link marad |
+| F2 | Az „Írtak rólunk” és a „Szakmai partnereink” kerüljön lejjebb az oldalon | **a záró letöltési felhívás elé** (Kristóf Claude-ra bízta, 2026-11-22: a bizalomépítő elem közvetlenül a döntés előtt hat a legjobban) |
+| F3 | „Ők már használják”: négyszöges, árnyék nélkül | 0 px sarok, nincs árnyék (nem kattintható) |
+| F4 | „Miért beeco”: árnyék nélkül, mert lépések | `DS · Lépések` (2. pont): szám, vonal, doboz nélkül |
+| F5 | Az app útja: talán szövegdoboz sem kell | a szöveg doboz nélkül, a vonal és a piktogram vezeti a szemet |
+| F6 | „A közösség ereje számokban” vizuális átdolgozása, komponens | `DS · Számsor` (3.3) |
+| F7 | A gombok DS-gombok legyenek (Letöltés, „Beszállok a rajba”) | `DS · Gomb`, illetve `DS · App letöltés` |
+| F8 | A közösségfotó legyen DS-elem | `DS · Közösségfotó` (3.2) |
+| F9 | Piktogram fehér flekken fekete | R11 szerint |
+| F10 | Új, DS-hű hero-grafika mockup-animációval (Kristóf kérése 2026-11-22; cél: letöltés, továbbgörgetés, a haszon megértése) | prototípus: https://claude.ai/artifact/Q78mLtB13aKnEY6VwtFhVA. 2. kör („haszon-hero”): haszonra épülő cím, egy fő letöltésgomb az értékelésekkel, három váltható haszon (spórolás, kisebb lábnyom, zöld helyek) a 2026-11-18-i képernyőkkel, szünet gomb, a hajtás alól kilátszó következő szekció és lefelé vezető méh-nyomvonal. A szövegek javaslatok (Levi dönt). Az 1. kör három változata (funkcióválasztó, telefonlegyező, zöldülő táj) az artifact előző verziójában. Kristóf visszajelzései alapján (2026-11-22, „nagyon jó irány”): a három haszongomb röviden a mockup alatt, alatta „és méh sok más...” szöveges gomb; áruházlogó a gombokon; a funkció piktogramja a telefon címkéjén; új, animált navbar lenyíló menükkel; **a fa/ház/táj háttér kikerült (a csapat leszavazta)**, helyette halvány méhsejt-minta, fehér flekk a mockup mögött és lebegő hatszögek. |
+
+## 4/b. A teljes főoldal terve (prototípus, Kristóf kérése 2026-11-23)
+Ugyanazon a linken, a hero alatt: https://claude.ai/artifact/Q78mLtB13aKnEY6VwtFhVA. Az oldal íve:
+1. Hero (ígéret, letöltés) → 1/b. **Kampánysáv** (Kristóf, 2026-11-23): a most futó kampány kattintható bannere közvetlenül a hero alatt (kampánylogó, méh-matrica, „Most fut” címke, gomb; ha nincs futó kampány, nem látszik) → 2. Így működik (Megértés, Cselekvés, Jutalom; doboz nélkül) → 3–5. **Megértés, Cselekvés, Jutalom** szekciók (Kristóf, 2026-11-23): mindegyikben funkciógombok váltják a telefon képernyőjét (Lábnyomkalkulátor, következő lépés · Zöld térkép, Kaptárnaptár, Kuponfüzet · Nektár, Ranglista, Rajok), véleményidézet nélkül → 6. A közösség ereje számokban (`DS · Számsor`, sötét háttér, forrással; fehér flekkes piktogram minden számnál, beúszó sorok és felpörgő számok) → 7. Ők már használják (négyszögletes, árnyék nélküli véleménykártyák egy görgethető sorban) → 8. Közösség (nyolc döntött, kattintható fotó ragasztócsíkkal és képnézegetővel – ez a `DS · Közösségfotó` terve; „Ismerd meg a csapatunk” gomb) → 9. Merre tovább (három kártya: önkormányzat, cég, „Légy a partnerünk”; a kuponpartnerség külön a nagyvállalati ajánlattól – Kristóf, 2026-11-23; a Rólunk és a beebolt a menüben marad) → 10. Írtak rólunk és szakmai partnerek (monokróm, keret nélkül) → 11. GYIK → 12. Záró letöltés.
+- Tartalom: a számok, a vélemények, a logók, a fotók és a GYIK a mostani főoldalról valók; az új szövegek javaslatok (Levi dönt), a szövegellenőrző 0 találatot ad rájuk.
+- Kimaradt a mostani oldalról: a „Miért a beeco?” szöveg, az app nyolclépéses útja, a csapat idővonala (a Rólunk oldalon él tovább).
+- Navbar: görgetési folyamatjelző sáv; a letöltőgomb akkor sárga, amikor a hero gombjai nem látszanak.
+- Navbar-változatok a prototípusban (Kristóf kérése 2026-11-23, választásra vár): A lenyíló panelek (javasolt, a meglévő menü bővítése), B mega menü kiemelt kártyával (`NAVBAR_MEGA` alapon), C lebegő sáv, D kétsoros célcsoportsávval. Mind natív Webflow Navbar és Dropdown elemekből építhető; telefonon közös a hamburgeres menü.
+- Piktogram: csak fekete-fehér (a sárga részek is fehérek), a flekk közepén (Kristóf, 2026-11-23).
+- A telefon fekete címkéjén a funkció piktogramja a címen belül, a szöveg előtt áll (Kristóf, 2026-11-23).
+- Kristóf további kérései a prototípuson (2026-11-23), mind beépítve:
+  - a számsor számai kisebbek (asztalon 40 px, telefonon 22 px);
+  - a szekciócímke számdoboza is ferde;
+  - a Megértésből kikerült a beecopédia-sor, a Cselekvésből a városgombok;
+  - a GYIK a mostani főoldal formáját követi (`DS · GYIK`: balra ragadó fejléc „Az összes kérdés” gombbal, jobbra a kérdések sárga körös pluszjellel);
+  - a logósorok lenyithatók: egy sor látszik, a „+N további” gomb nyitja a többit (10–20 logóra tervezve);
+  - a közösség-szekcióban az „Ismerd meg a csapatunk” gomb a fotók alatt áll, rövid szöveggel és két linkkel (Történetünk, Önkéntes lehetőségek);
+  - a záró szekcióban a két áruházgomb minimális és egyforma méretű, a telefon döntött és matrica-árnyékot kap, a négy kérdés felülről lefelé gördülve váltja egymást (szünet gombbal; csökkentett mozgásnál mind a négy áll).
+
+## 4/c. Az új főoldal Webflow-ban (2026-11-23)
+- Kristóf döntései: cím „Éljünk ökosabban, együtt, olcsóbban!”; navbar **C · lebegő sáv** (sárga, néha biccentő „Töltsd le!”, lefelé görgetve elbújik), előbb csak a főoldalon; a beebolt-szekció marad.
+- Megépítve a `/fooldal-uj` piszkozat-oldalon (a mostani főoldal másolata, natív Webflow-elemek `fo-` osztályokkal). Forrás és átállási lépések: `weboldal/fooldal-2026-11/OLVASS.md`.
+- Ellenőrizve a tesztcímen: működés, billentyűzet, csökkentett mozgás, 1440–320 px, minőségkapu, független Opus-ellenőrzés (javítva: LCP-kép, díszképek altja, szünet az összes mozgásra, `<main>`). Audit: 68 (a `noindex` miatt; a mostani főoldal 79).
+- Hátra: az átállás (Kristóf: noindex törlése, Set as Home, régi oldal piszkozatba, 301, éles publikálás); utána mérési terv (`meresi-terv-fooldal.json`) és audit élesben; a C navbar a többi oldalra.
+- Második kör (Kristóf, 2026-11-23): összegző letöltés-szekció a Jutalom után (Kristóf szövege, két nyelvtani igazítással: „unokáinknak”, és a mondat címre + bevezetőre bontva), funkciócímke + piktogram a lépések telefonjain (a gombot követi), árnyékos domb (DS-szabály: `docs/web-ds.md` R4), a menü lenyílója külön dobozban, a nyíl nyitáskor megfordul. Tesztcímen mérve, utána vissza piszkozatba.
+- Döntésre vár: a csapat arculati review-ja (Javaslat 39, 5. és 13. pont) egyenes címkét és mozgás nélküli herót kér, az új főoldalon döntött címke és animált hero van (Kristóf kérésére).
+
+## 5. Sorrend (élesítés után)
+1. Mérő bővítése (címskála, igazítás, lekerekítés a nem kattinthatón, mockup-háttér). Utána mérés a 72 oldalon.
+2. Címsorból bekezdés: kb. 19 szemöldökcímke (`sub-heading`, 20 px) és a leíró `main_text` mondatok, amelyek H2 címkét viselnek (lábnyom-metodika, kalkulátor, letöltés, térkép, szezonális növények). A Térkép oldal H1-e 24 px-es, ez a címskála szerint 48 legyen.
+3. Osztályszintű javítások:
+   - nem kattintható dobozokon 0 px sarok és nincs árnyék (Rólunk 3 blokk és a többi);
+   - balra zárás;
+   - mockupok háttér nélkül.
+4. `DS · Csapat-csúszka` a Csapat oldalon. Előtte képes változat jóváhagyásra.
+5. `DS · Számsor` és `DS · Közösségfotó` a főoldali munkamenettel közösen.
+6. Ellenőrzés: ds-lint, audit, független Opus-ellenőrzés, élesítési csomag.
+
+## 6. Nyitott kérdések
+- Mockup-árnyék: a szabály szerint a mockup árnyék nélküli, a záró szekció döntött telefonjára Kristóf árnyékot kért (2026-11-23). Javaslat: egyenes mockup árnyék nélkül, döntött mockup matrica-árnyékkal. Döntésre vár.
+- Szabad-e a 4 px-es „kártya” sarok nem kattintható kártyán, vagy ott is 0 px legyen? A mobilos DS-döntés (2026-11-22, Ráncfelvarrás) szerint a kártya 4 px; a Rólunk blokkokra Kristóf 0 px-et kért.
+
+## 7. Döntés (Kristóf tölti ki)
+- Dátum: …

@@ -1,0 +1,19 @@
+/* CsicsergŐsz – Web DS v2 formaszabályok (Kristóf döntése, 2026-11-21):
+   a kampány saját színei és betűi maradnak, a forma közös:
+   kattintható elem 4 px sarok + kemény árnyék (4 px), nem kattintható elemen nincs árnyék,
+   fotó, sáv, címke 0 px. Ez a 7. embed (embed/OLVASS.md); a Webflow-osztályok nagy részét
+   közvetlenül a Designerben/API-n állítottuk át, ide csak a beágyazott CSS-ben élő szabályok
+   felülírása került. A kijelölők elé tett `html body` csak azért kell, hogy erősebb legyen
+   a korábbi embedeknél. */
+html body .cs-ragados { border-radius: 4px; }
+html body .cs_belyeg_link { box-shadow: 4px 4px 0 var(--cs-c-kakao, #6B3B16); }
+html body .cs_belyeg_link:hover { box-shadow: 5px 5px 0 var(--cs-c-kakao, #6B3B16); }
+html body .cs_levelke { border-radius: 4px; }
+html body .cs_folyamat_ui { box-shadow: none; }
+html body .cs-kamera_vaku { border-radius: 0; }
+html body .cs-ki-mutat { border-radius: 4px; box-shadow: 4px 4px 0 #6B3B16; }
+html body .cs-ki-mutat:hover { box-shadow: 5px 5px 0 #6B3B16; }
+html body .cs-ki-posz-gomb { border-radius: 4px; box-shadow: 4px 4px 0 #6B3B16; }
+html body .cs-ki-epit-gomb { border-radius: 4px; }
+html body .cs-ki-epit-gomb.cs-ki-epit-jatek { box-shadow: 4px 4px 0 #6B3B16; }
+html body .cs-ki-kartya.is-gyujtve { box-shadow: none; }

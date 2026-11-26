@@ -105,3 +105,19 @@ a jsDelivr-címek helyi fájlra irányításával, majd push az ágra és jsDeli
 | `cs-kampany.js` | fülek, süvöltő, hero-madarak, szállingózó madarak, záró jelenet, interaktív háttér, ragadós letöltősáv |
 | `cs-raj.js` / `.css` | országos számok, számláló, közös cél, verseny minitérképpel, fotófal |
 | `cs-terkep.json` | Budapest kerületei (OSM, ODbL) és Magyarország körvonala (Natural Earth), egyszerűsített SVG-útvonalak |
+
+## A főoldal formája (Javaslat 43, 2026-11-23)
+Kristóf kérése: a grafikák és a tartalom maradnak, a forma a főoldalé, CsicsergŐsz-színekkel (fekete helyett kakaó).
+Natív Webflow-osztályok, a Designerben hangolhatók:
+
+| Elem | Osztály |
+|---|---|
+| Szekciócímke | a meglévő `cs_kicker` (Levi szövegei) a `cs2-kicker` / `cs2-vilagos` kombón: döntött, Lalezar, kakaó; a Videók és a GYIK `ds-szalag` + `cs-kakao`. A kibontó animáció elakadt (a címkék láthatatlanok voltak), ezért a `cs-ds-v3.css` állandóan nyitva tartja |
+| Kampánygombok | `cs2-button-main(-2,-3)`, `cs2-button-sec`: kakaó keret és árnyék (hover/lenyomva is) |
+| Hero-funkciócímke | `cs-funkcio` + `cs-fent`: tableten/telefonon a telefon tetején, hogy ne takarja a méhecskét |
+| Domb árnyéka | `cs-domb` (`filter: drop-shadow`) |
+| Telefon | `cs_mockup_telefon` (4° dőlés, kemény kakaó árnyék), mögötte `cs-flekk` (fehér flekk) |
+| Funkciócímke | `cs-funkcio` > `cs-funkcio-ik` (fehér flekk) > `cs-funkcio-kep` + `cs-funkcio-cim` / `cs-funkcio-al` |
+
+A közös DS-elemek (GYIK, videók, áruházgombok, QR) fekete kerete és árnyéka oldalszinten kakaó: `cs-ds-v3.css`, a 7. embed végén.
+Visszaállítás: `mentes-2026-11-23-fooldal-forma.json`.

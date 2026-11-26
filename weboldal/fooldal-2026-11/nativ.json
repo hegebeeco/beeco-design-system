@@ -1,0 +1,3574 @@
+{
+ "stilusok": [
+  {
+   "osztaly": "fo-hero",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "relative",
+    "background-color": "var(--bg)",
+    "isolation": "isolate"
+   }
+  },
+  {
+   "osztaly": "fo-hatter",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "top": "0",
+    "right": "0",
+    "bottom": "0",
+    "left": "0",
+    "z-index": "0",
+    "overflow-x": "hidden",
+    "overflow-y": "hidden",
+    "pointer-events": "none"
+   }
+  },
+  {
+   "osztaly": "fo-sejt",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "top": "0",
+    "right": "0",
+    "bottom": "0",
+    "left": "0",
+    "mask-image": "radial-gradient(ellipse 52% 78% at 76% 44%,#000 25%,transparent 78%)"
+   }
+  },
+  {
+   "osztaly": "fo-hx",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "aspect-ratio": "1/1.1547",
+    "clip-path": "polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"
+   }
+  },
+  {
+   "osztaly": "fo-szin",
+   "pseudo": "before",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "left": "50%",
+    "top": "26px",
+    "width": "430px",
+    "height": "430px",
+    "margin-left": "-215px",
+    "z-index": "0",
+    "background-color": "#fff",
+    "clip-path": "polygon(25% 3%,75% 0,100% 48%,77% 97%,22% 100%,0 52%)",
+    "transform": "rotate(-8deg)"
+   }
+  },
+  {
+   "osztaly": "fo-domb",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "left": "0",
+    "right": "0",
+    "bottom": "-1px",
+    "height": "56px",
+    "z-index": "1",
+    "background-color": "var(--surface)",
+    "box-shadow": "0 -6px 14px -4px rgba(0,0,0,.16)"
+   }
+  },
+  {
+   "osztaly": "fo-racs",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "relative",
+    "z-index": "2",
+    "display": "grid",
+    "grid-template-columns": "minmax(0,1.1fr) minmax(0,.9fr)",
+    "row-gap": "32px",
+    "column-gap": "32px",
+    "align-items": "start",
+    "max-width": "1200px",
+    "margin-top": "0",
+    "margin-right": "auto",
+    "margin-bottom": "0",
+    "margin-left": "auto",
+    "padding-top": "24px",
+    "padding-right": "56px",
+    "padding-bottom": "84px",
+    "padding-left": "56px"
+   }
+  },
+  {
+   "osztaly": "fo-szoveg",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "flex",
+    "flex-direction": "column",
+    "row-gap": "18px",
+    "column-gap": "18px",
+    "min-width": "0",
+    "align-self": "center"
+   }
+  },
+  {
+   "osztaly": "fo-szalag",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "align-self": "flex-start",
+    "background-color": "var(--ink)",
+    "color": "#fff",
+    "font-weight": "700",
+    "font-size": "13px",
+    "font-family": "var(--text)",
+    "line-height": "1",
+    "padding-top": "8px",
+    "padding-right": "10px",
+    "padding-bottom": "8px",
+    "padding-left": "10px",
+    "transform": "rotate(-2deg)"
+   }
+  },
+  {
+   "osztaly": "fo-lead",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "font-size": "18px",
+    "line-height": "1.5",
+    "color": "#1c1c1c",
+    "margin-top": "0",
+    "margin-right": "0",
+    "margin-bottom": "0",
+    "margin-left": "0",
+    "max-width": "54ch"
+   }
+  },
+  {
+   "osztaly": "fo-cta",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "flex",
+    "row-gap": "16px",
+    "column-gap": "16px",
+    "align-items": "center",
+    "flex-wrap": "wrap"
+   }
+  },
+  {
+   "osztaly": "fo-bolt",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "flex",
+    "flex-direction": "column",
+    "row-gap": "10px",
+    "column-gap": "10px"
+   }
+  },
+  {
+   "osztaly": "fo-gomb",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "flex",
+    "align-items": "center",
+    "row-gap": "10px",
+    "column-gap": "10px",
+    "min-height": "48px",
+    "width": "212px",
+    "padding-top": "0",
+    "padding-right": "12px",
+    "padding-bottom": "0",
+    "padding-left": "12px",
+    "background-color": "var(--accent)",
+    "color": "#000",
+    "text-decoration-line": "none",
+    "border-top-width": "2px",
+    "border-top-style": "solid",
+    "border-top-color": "#000",
+    "border-right-width": "2px",
+    "border-right-style": "solid",
+    "border-right-color": "#000",
+    "border-bottom-width": "2px",
+    "border-bottom-style": "solid",
+    "border-bottom-color": "#000",
+    "border-left-width": "2px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "border-top-left-radius": "4px",
+    "border-top-right-radius": "4px",
+    "border-bottom-right-radius": "4px",
+    "border-bottom-left-radius": "4px",
+    "box-shadow": "4px 4px 0 #000",
+    "font-weight": "400",
+    "font-size": "22px",
+    "font-family": "var(--display)",
+    "line-height": "1"
+   }
+  },
+  {
+   "osztaly": "fo-qr",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "width": "106px",
+    "height": "106px",
+    "border-top-width": "2px",
+    "border-top-style": "solid",
+    "border-top-color": "#000",
+    "border-right-width": "2px",
+    "border-right-style": "solid",
+    "border-right-color": "#000",
+    "border-bottom-width": "2px",
+    "border-bottom-style": "solid",
+    "border-bottom-color": "#000",
+    "border-left-width": "2px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "background-color": "#fff",
+    "padding-top": "5px",
+    "padding-right": "5px",
+    "padding-bottom": "5px",
+    "padding-left": "5px",
+    "flex-grow": "0",
+    "flex-shrink": "0",
+    "flex-basis": "auto"
+   }
+  },
+  {
+   "osztaly": "fo-bizalom",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "flex",
+    "flex-wrap": "wrap",
+    "row-gap": "6px",
+    "column-gap": "18px",
+    "margin-top": "0",
+    "margin-right": "0",
+    "margin-bottom": "0",
+    "margin-left": "0",
+    "padding-top": "0",
+    "padding-right": "0",
+    "padding-bottom": "0",
+    "padding-left": "0",
+    "font-weight": "600",
+    "font-size": "14px",
+    "font-family": "var(--text)",
+    "line-height": "1.3"
+   }
+  },
+  {
+   "osztaly": "fo-haszon",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "grid",
+    "grid-template-columns": "repeat(3,minmax(0,1fr))",
+    "row-gap": "8px",
+    "column-gap": "8px",
+    "margin-top": "14px"
+   }
+  },
+  {
+   "osztaly": "fo-hb",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "relative",
+    "overflow-x": "hidden",
+    "overflow-y": "hidden",
+    "display": "flex",
+    "justify-content": "center",
+    "row-gap": "8px",
+    "column-gap": "8px",
+    "align-items": "center",
+    "text-align": "left",
+    "min-height": "48px",
+    "padding-top": "5px",
+    "padding-right": "8px",
+    "padding-bottom": "8px",
+    "padding-left": "8px",
+    "background-color": "#fff",
+    "color": "#000",
+    "border-top-width": "2px",
+    "border-top-style": "solid",
+    "border-top-color": "#000",
+    "border-right-width": "2px",
+    "border-right-style": "solid",
+    "border-right-color": "#000",
+    "border-bottom-width": "2px",
+    "border-bottom-style": "solid",
+    "border-bottom-color": "#000",
+    "border-left-width": "2px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "border-top-left-radius": "4px",
+    "border-top-right-radius": "4px",
+    "border-bottom-right-radius": "4px",
+    "border-bottom-left-radius": "4px",
+    "box-shadow": "2px 2px 0 #000",
+    "cursor": "pointer"
+   }
+  },
+  {
+   "osztaly": "fo-flekk",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "relative",
+    "width": "28px",
+    "height": "28px",
+    "flex-grow": "0",
+    "flex-shrink": "0",
+    "flex-basis": "auto",
+    "display": "grid",
+    "align-items": "center",
+    "justify-items": "center"
+   }
+  },
+  {
+   "osztaly": "fo-flekk",
+   "pseudo": "before",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "top": "0",
+    "right": "0",
+    "bottom": "0",
+    "left": "0",
+    "background-color": "#fff",
+    "clip-path": "polygon(25% 3%,75% 0,100% 48%,77% 97%,22% 100%,0 52%)"
+   }
+  },
+  {
+   "osztaly": "fo-sav",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "left": "0",
+    "bottom": "0",
+    "width": "100%",
+    "height": "4px",
+    "background-color": "var(--accent)",
+    "transform": "scaleX(0)",
+    "transform-origin": "left"
+   }
+  },
+  {
+   "osztaly": "fo-vizual",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "min-width": "0",
+    "display": "flex",
+    "flex-direction": "column"
+   }
+  },
+  {
+   "osztaly": "fo-szin",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "relative",
+    "height": "520px"
+   }
+  },
+  {
+   "osztaly": "fo-tel",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "left": "50%",
+    "top": "0",
+    "width": "246px",
+    "margin-left": "-123px",
+    "z-index": "3"
+   }
+  },
+  {
+   "osztaly": "fo-kepek",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "relative"
+   }
+  },
+  {
+   "osztaly": "fo-cimke",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "left": "50%",
+    "top": "438px",
+    "z-index": "4",
+    "transform": "translateX(-50%) rotate(-4deg)",
+    "background-color": "#000",
+    "color": "#fff",
+    "display": "grid",
+    "grid-template-columns": "auto auto",
+    "row-gap": "12px",
+    "column-gap": "12px",
+    "align-items": "center",
+    "justify-content": "center",
+    "text-align": "left",
+    "padding-top": "8px",
+    "padding-right": "18px",
+    "padding-bottom": "6px",
+    "padding-left": "12px",
+    "min-width": "236px",
+    "white-space": "nowrap"
+   }
+  },
+  {
+   "osztaly": "fo-meh",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "left": "calc(50% + 60px)",
+    "top": "-8px",
+    "width": "150px",
+    "z-index": "5",
+    "transform": "scaleX(-1)",
+    "filter": "drop-shadow(-2px 3px 0 rgba(0,0,0,.2))"
+   }
+  },
+  {
+   "osztaly": "fo-szunet",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "right": "0",
+    "bottom": "8px",
+    "z-index": "6",
+    "width": "44px",
+    "height": "44px",
+    "border-top-width": "2px",
+    "border-top-style": "solid",
+    "border-top-color": "#000",
+    "border-right-width": "2px",
+    "border-right-style": "solid",
+    "border-right-color": "#000",
+    "border-bottom-width": "2px",
+    "border-bottom-style": "solid",
+    "border-bottom-color": "#000",
+    "border-left-width": "2px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "border-top-left-radius": "4px",
+    "border-top-right-radius": "4px",
+    "border-bottom-right-radius": "4px",
+    "border-bottom-left-radius": "4px",
+    "background-color": "#fff",
+    "box-shadow": "2px 2px 0 #000",
+    "cursor": "pointer",
+    "display": "flex",
+    "align-items": "center",
+    "justify-content": "center"
+   }
+  },
+  {
+   "osztaly": "fo-szunet",
+   "pseudo": "before",
+   "tulajdonsagok": {
+    "width": "12px",
+    "height": "14px",
+    "border-left-width": "4px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "border-right-width": "4px",
+    "border-right-style": "solid",
+    "border-right-color": "#000"
+   }
+  },
+  {
+   "osztaly": "fo-tovabb",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "left": "0",
+    "right": "0",
+    "bottom": "22px",
+    "z-index": "4",
+    "margin-inline": "auto",
+    "width": "max-content",
+    "display": "flex",
+    "align-items": "center",
+    "row-gap": "8px",
+    "column-gap": "8px",
+    "min-height": "44px",
+    "padding-top": "0",
+    "padding-right": "16px",
+    "padding-bottom": "0",
+    "padding-left": "16px",
+    "background-color": "#fff",
+    "color": "#000",
+    "text-decoration-line": "none",
+    "font-weight": "700",
+    "font-size": "15px",
+    "font-family": "var(--text)",
+    "line-height": "1",
+    "border-top-width": "2px",
+    "border-top-style": "solid",
+    "border-top-color": "#000",
+    "border-right-width": "2px",
+    "border-right-style": "solid",
+    "border-right-color": "#000",
+    "border-bottom-width": "2px",
+    "border-bottom-style": "solid",
+    "border-bottom-color": "#000",
+    "border-left-width": "2px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "border-top-left-radius": "4px",
+    "border-top-right-radius": "4px",
+    "border-bottom-right-radius": "4px",
+    "border-bottom-left-radius": "4px",
+    "box-shadow": "2px 2px 0 #000"
+   }
+  },
+  {
+   "osztaly": "fo-tovabb",
+   "pseudo": "after",
+   "tulajdonsagok": {
+    "font-weight": "700"
+   }
+  },
+  {
+   "osztaly": "fo-lepesek",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "margin-top": "6px",
+    "margin-right": "0",
+    "margin-bottom": "0",
+    "margin-left": "0",
+    "padding-top": "0",
+    "padding-right": "0",
+    "padding-bottom": "0",
+    "padding-left": "0",
+    "display": "grid",
+    "grid-template-columns": "repeat(3,minmax(0,1fr))",
+    "row-gap": "28px",
+    "column-gap": "28px"
+   }
+  },
+  {
+   "osztaly": "fo-tobb",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "align-self": "center",
+    "display": "inline-flex",
+    "align-items": "center",
+    "row-gap": "6px",
+    "column-gap": "6px",
+    "min-height": "44px",
+    "padding-top": "0",
+    "padding-right": "8px",
+    "padding-bottom": "0",
+    "padding-left": "8px",
+    "margin-top": "2px",
+    "color": "#000",
+    "font-weight": "400",
+    "font-size": "19px",
+    "font-family": "var(--display)",
+    "line-height": "1",
+    "text-decoration-line": "underline",
+    "text-decoration-thickness": "2px",
+    "text-underline-offset": ".2em",
+    "text-decoration-color": "var(--accent-ink)"
+   }
+  },
+  {
+   "osztaly": "fo-tobb",
+   "pseudo": "after",
+   "tulajdonsagok": {
+    "font-family": "var(--text)",
+    "font-weight": "700"
+   }
+  },
+  {
+   "osztaly": "fo-szk",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "relative",
+    "background-color": "var(--h,#fff)",
+    "padding-top": "28px",
+    "padding-right": "56px",
+    "padding-bottom": "112px",
+    "padding-left": "56px"
+   }
+  },
+  {
+   "osztaly": "fo-szk-b",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "max-width": "1200px",
+    "margin-top": "0",
+    "margin-right": "auto",
+    "margin-bottom": "0",
+    "margin-left": "auto"
+   }
+  },
+  {
+   "osztaly": "fo-szf",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "flex",
+    "flex-direction": "column",
+    "align-items": "flex-start",
+    "row-gap": "12px",
+    "column-gap": "12px",
+    "margin-bottom": "26px"
+   }
+  },
+  {
+   "osztaly": "fo-kep",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "relative",
+    "height": "500px"
+   }
+  },
+  {
+   "osztaly": "fo-kep",
+   "pseudo": "before",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "left": "50%",
+    "top": "40px",
+    "width": "400px",
+    "height": "400px",
+    "margin-left": "-200px",
+    "background-color": "#fff",
+    "clip-path": "polygon(25% 3%,75% 0,100% 48%,77% 97%,22% 100%,0 52%)",
+    "transform": "rotate(-8deg)"
+   }
+  },
+  {
+   "osztaly": "fo-sor",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "flex",
+    "flex-wrap": "wrap",
+    "row-gap": "8px",
+    "column-gap": "18px",
+    "align-items": "center"
+   }
+  },
+  {
+   "osztaly": "fo-gm",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "inline-flex",
+    "align-items": "center",
+    "row-gap": "8px",
+    "column-gap": "8px",
+    "min-height": "44px",
+    "padding-top": "0",
+    "padding-right": "16px",
+    "padding-bottom": "0",
+    "padding-left": "16px",
+    "background-color": "#fff",
+    "color": "#000",
+    "text-decoration-line": "none",
+    "font-weight": "400",
+    "font-size": "19px",
+    "font-family": "var(--display)",
+    "line-height": "1",
+    "border-top-width": "2px",
+    "border-top-style": "solid",
+    "border-top-color": "#000",
+    "border-right-width": "2px",
+    "border-right-style": "solid",
+    "border-right-color": "#000",
+    "border-bottom-width": "2px",
+    "border-bottom-style": "solid",
+    "border-bottom-color": "#000",
+    "border-left-width": "2px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "border-top-left-radius": "4px",
+    "border-top-right-radius": "4px",
+    "border-bottom-right-radius": "4px",
+    "border-bottom-left-radius": "4px",
+    "box-shadow": "2px 2px 0 #000"
+   }
+  },
+  {
+   "osztaly": "fo-szl",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "inline-flex",
+    "align-items": "center",
+    "row-gap": "6px",
+    "column-gap": "6px",
+    "min-height": "44px",
+    "color": "inherit",
+    "font-weight": "700",
+    "font-size": "15px",
+    "font-family": "var(--text)",
+    "line-height": "1.2",
+    "text-decoration-line": "underline",
+    "text-decoration-thickness": "2px",
+    "text-underline-offset": ".2em"
+   }
+  },
+  {
+   "osztaly": "fo-szamok",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "margin-top": "0",
+    "margin-right": "0",
+    "margin-bottom": "0",
+    "margin-left": "0",
+    "padding-top": "0",
+    "padding-right": "0",
+    "padding-bottom": "0",
+    "padding-left": "0",
+    "display": "grid",
+    "grid-template-columns": "repeat(4,minmax(0,1fr))",
+    "row-gap": "26px",
+    "column-gap": "24px"
+   }
+  },
+  {
+   "osztaly": "fo-forras",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "margin-top": "22px",
+    "margin-right": "0",
+    "margin-bottom": "0",
+    "margin-left": "0",
+    "font-size": "13px",
+    "color": "#fffb"
+   }
+  },
+  {
+   "osztaly": "fo-velemenyek",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "margin-top": "0",
+    "margin-right": "0",
+    "margin-bottom": "0",
+    "margin-left": "0",
+    "padding-top": "2px",
+    "padding-right": "2px",
+    "padding-bottom": "14px",
+    "padding-left": "2px",
+    "display": "flex",
+    "grid-template-columns": "repeat(3,minmax(0,1fr))",
+    "row-gap": "16px",
+    "column-gap": "16px",
+    "overflow-x": "auto",
+    "scroll-snap-type": "x proximity",
+    "scrollbar-width": "thin",
+    "scrollbar-color": "#000 transparent"
+   }
+  },
+  {
+   "osztaly": "fo-fotok",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "grid",
+    "grid-template-columns": "repeat(4,minmax(0,1fr))",
+    "row-gap": "26px",
+    "column-gap": "22px",
+    "margin-top": "8px",
+    "margin-right": "0",
+    "margin-bottom": "34px",
+    "margin-left": "0"
+   }
+  },
+  {
+   "osztaly": "fo-polaroid",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "relative",
+    "margin-top": "0",
+    "margin-right": "0",
+    "margin-bottom": "0",
+    "margin-left": "0",
+    "padding-top": "8px",
+    "padding-right": "8px",
+    "padding-bottom": "6px",
+    "padding-left": "8px",
+    "background-color": "#fff",
+    "border-top-width": "2px",
+    "border-top-style": "solid",
+    "border-top-color": "#000",
+    "border-right-width": "2px",
+    "border-right-style": "solid",
+    "border-right-color": "#000",
+    "border-bottom-width": "2px",
+    "border-bottom-style": "solid",
+    "border-bottom-color": "#000",
+    "border-left-width": "2px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "transform": "rotate(var(--d,-2deg))",
+    "display": "block",
+    "width": "100%",
+    "color": "inherit",
+    "text-align": "left",
+    "cursor": "zoom-in",
+    "box-shadow": "3px 3px 0 #000"
+   }
+  },
+  {
+   "osztaly": "fo-polaroid",
+   "pseudo": "before",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "left": "50%",
+    "top": "-11px",
+    "width": "72px",
+    "height": "22px",
+    "margin-left": "-36px",
+    "background-color": "rgba(254,207,57,.88)",
+    "transform": "rotate(-3deg)"
+   }
+  },
+  {
+   "osztaly": "fo-utak",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "grid",
+    "grid-template-columns": "repeat(3,minmax(0,1fr))",
+    "row-gap": "18px",
+    "column-gap": "18px"
+   }
+  },
+  {
+   "osztaly": "fo-ut",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "flex",
+    "flex-direction": "column",
+    "row-gap": "8px",
+    "column-gap": "8px",
+    "padding-top": "16px",
+    "padding-right": "16px",
+    "padding-bottom": "16px",
+    "padding-left": "16px",
+    "background-color": "#fff",
+    "color": "#000",
+    "text-decoration-line": "none",
+    "border-top-width": "2px",
+    "border-top-style": "solid",
+    "border-top-color": "#000",
+    "border-right-width": "2px",
+    "border-right-style": "solid",
+    "border-right-color": "#000",
+    "border-bottom-width": "2px",
+    "border-bottom-style": "solid",
+    "border-bottom-color": "#000",
+    "border-left-width": "2px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "border-top-left-radius": "4px",
+    "border-top-right-radius": "4px",
+    "border-bottom-right-radius": "4px",
+    "border-bottom-left-radius": "4px",
+    "box-shadow": "4px 4px 0 #000"
+   }
+  },
+  {
+   "osztaly": "fo-logocim",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "margin-top": "0",
+    "margin-right": "0",
+    "margin-bottom": "10px",
+    "margin-left": "0",
+    "font-weight": "400",
+    "font-size": "20px",
+    "font-family": "var(--display)",
+    "line-height": "1.1"
+   }
+  },
+  {
+   "osztaly": "fo-logosor",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "margin-top": "0",
+    "margin-right": "0",
+    "margin-bottom": "26px",
+    "margin-left": "0",
+    "padding-top": "0",
+    "padding-right": "0",
+    "padding-bottom": "0",
+    "padding-left": "0",
+    "display": "flex",
+    "flex-wrap": "wrap",
+    "row-gap": "10px",
+    "column-gap": "34px",
+    "align-items": "center"
+   }
+  },
+  {
+   "osztaly": "fo-kerdesek",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "margin-top": "0",
+    "margin-right": "0",
+    "margin-bottom": "4px",
+    "margin-left": "0",
+    "padding-top": "0",
+    "padding-right": "0",
+    "padding-bottom": "0",
+    "padding-left": "0",
+    "display": "flex",
+    "flex-wrap": "wrap",
+    "row-gap": "10px",
+    "column-gap": "12px"
+   }
+  },
+  {
+   "osztaly": "fo-fv",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "grid",
+    "row-gap": "10px",
+    "column-gap": "10px",
+    "margin-top": "0",
+    "margin-right": "0",
+    "margin-bottom": "18px",
+    "margin-left": "0",
+    "max-width": "560px"
+   }
+  },
+  {
+   "osztaly": "fo-fvb",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "relative",
+    "display": "grid",
+    "grid-template-columns": "40px minmax(0,1fr)",
+    "row-gap": "12px",
+    "column-gap": "12px",
+    "align-items": "center",
+    "text-align": "left",
+    "min-height": "56px",
+    "padding-top": "8px",
+    "padding-right": "12px",
+    "padding-bottom": "8px",
+    "padding-left": "12px",
+    "background-color": "#fff",
+    "color": "#000",
+    "border-top-width": "2px",
+    "border-top-style": "solid",
+    "border-top-color": "#000",
+    "border-right-width": "2px",
+    "border-right-style": "solid",
+    "border-right-color": "#000",
+    "border-bottom-width": "2px",
+    "border-bottom-style": "solid",
+    "border-bottom-color": "#000",
+    "border-left-width": "2px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "border-top-left-radius": "4px",
+    "border-top-right-radius": "4px",
+    "border-bottom-right-radius": "4px",
+    "border-bottom-left-radius": "4px",
+    "box-shadow": "2px 2px 0 #000",
+    "cursor": "pointer"
+   }
+  },
+  {
+   "osztaly": "fo-lepszam",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "inline-grid",
+    "align-items": "center",
+    "justify-items": "center",
+    "width": "26px",
+    "height": "26px",
+    "margin-right": "6px",
+    "background-color": "var(--accent)",
+    "color": "#000",
+    "font-weight": "400",
+    "font-size": "17px",
+    "font-family": "var(--display)",
+    "line-height": "1",
+    "transform": "rotate(-7deg)"
+   }
+  },
+  {
+   "osztaly": "fo-ngomb",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "grid",
+    "align-items": "center",
+    "justify-items": "center",
+    "width": "44px",
+    "height": "44px",
+    "padding-top": "0",
+    "padding-right": "0",
+    "padding-bottom": "0",
+    "padding-left": "0",
+    "background-color": "#fff",
+    "color": "#000",
+    "border-top-width": "2px",
+    "border-top-style": "solid",
+    "border-top-color": "#000",
+    "border-right-width": "2px",
+    "border-right-style": "solid",
+    "border-right-color": "#000",
+    "border-bottom-width": "2px",
+    "border-bottom-style": "solid",
+    "border-bottom-color": "#000",
+    "border-left-width": "2px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "border-top-left-radius": "4px",
+    "border-top-right-radius": "4px",
+    "border-bottom-right-radius": "4px",
+    "border-bottom-left-radius": "4px",
+    "box-shadow": "2px 2px 0 #000",
+    "cursor": "pointer",
+    "font-weight": "700",
+    "font-size": "20px",
+    "font-family": "var(--text)",
+    "line-height": "1"
+   }
+  },
+  {
+   "osztaly": "fo-vel-fej",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "flex",
+    "justify-content": "space-between",
+    "align-items": "flex-end",
+    "row-gap": "16px",
+    "column-gap": "16px",
+    "flex-wrap": "wrap"
+   }
+  },
+  {
+   "osztaly": "fo-vel-nyil",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "flex",
+    "row-gap": "8px",
+    "column-gap": "8px",
+    "margin-bottom": "26px"
+   }
+  },
+  {
+   "osztaly": "fo-bansav",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "relative",
+    "z-index": "3",
+    "background-color": "#fff",
+    "padding-top": "2px",
+    "padding-right": "56px",
+    "padding-bottom": "6px",
+    "padding-left": "56px"
+   }
+  },
+  {
+   "osztaly": "fo-banner",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "relative",
+    "display": "grid",
+    "grid-template-columns": "auto minmax(0,1fr) auto",
+    "row-gap": "8px",
+    "column-gap": "26px",
+    "align-items": "center",
+    "max-width": "1200px",
+    "margin-top": "0",
+    "margin-right": "auto",
+    "margin-bottom": "0",
+    "margin-left": "auto",
+    "padding-top": "14px",
+    "padding-right": "20px",
+    "padding-bottom": "14px",
+    "padding-left": "148px",
+    "background-color": "var(--vaj)",
+    "color": "#000",
+    "text-decoration-line": "none",
+    "border-top-width": "2px",
+    "border-top-style": "solid",
+    "border-top-color": "#000",
+    "border-right-width": "2px",
+    "border-right-style": "solid",
+    "border-right-color": "#000",
+    "border-bottom-width": "2px",
+    "border-bottom-style": "solid",
+    "border-bottom-color": "#000",
+    "border-left-width": "2px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "border-top-left-radius": "4px",
+    "border-top-right-radius": "4px",
+    "border-bottom-right-radius": "4px",
+    "border-bottom-left-radius": "4px",
+    "box-shadow": "4px 4px 0 #000"
+   }
+  },
+  {
+   "osztaly": "fo-bn-meh",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "left": "16px",
+    "bottom": "6px",
+    "width": "116px",
+    "height": "auto",
+    "filter": "drop-shadow(2px 3px 0 rgba(0,0,0,.2))"
+   }
+  },
+  {
+   "osztaly": "fo-bn-logo",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "block",
+    "height": "64px",
+    "width": "auto"
+   }
+  },
+  {
+   "osztaly": "fo-bn-sz",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "flex",
+    "flex-direction": "column",
+    "align-items": "flex-start",
+    "row-gap": "7px",
+    "column-gap": "7px",
+    "min-width": "0"
+   }
+  },
+  {
+   "osztaly": "fo-bn-most",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "inline-flex",
+    "align-items": "center",
+    "row-gap": "7px",
+    "column-gap": "7px",
+    "background-color": "#000",
+    "color": "#fff",
+    "font-weight": "700",
+    "font-size": "12px",
+    "font-family": "var(--text)",
+    "line-height": "1",
+    "letter-spacing": ".06em",
+    "text-transform": "uppercase",
+    "padding-top": "6px",
+    "padding-right": "9px",
+    "padding-bottom": "6px",
+    "padding-left": "9px",
+    "transform": "rotate(-2deg)"
+   }
+  },
+  {
+   "osztaly": "fo-bn-gomb",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "inline-flex",
+    "align-items": "center",
+    "row-gap": "8px",
+    "column-gap": "8px",
+    "min-height": "44px",
+    "padding-top": "0",
+    "padding-right": "18px",
+    "padding-bottom": "0",
+    "padding-left": "18px",
+    "background-color": "#000",
+    "color": "#fff",
+    "font-weight": "400",
+    "font-size": "19px",
+    "font-family": "var(--display)",
+    "line-height": "1",
+    "border-top-left-radius": "4px",
+    "border-top-right-radius": "4px",
+    "border-bottom-right-radius": "4px",
+    "border-bottom-left-radius": "4px",
+    "white-space": "nowrap"
+   }
+  },
+  {
+   "osztaly": "fo-bn-gomb",
+   "pseudo": "after",
+   "tulajdonsagok": {
+    "font-weight": "700",
+    "font-size": "16px",
+    "font-family": "var(--text)",
+    "line-height": "1"
+   }
+  },
+  {
+   "osztaly": "fo-kerd-sor",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "flex",
+    "align-items": "center",
+    "row-gap": "6px",
+    "column-gap": "6px",
+    "width": "100%",
+    "max-width": "560px"
+   }
+  },
+  {
+   "osztaly": "fo-kszunet",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "flex-grow": "0",
+    "flex-shrink": "0",
+    "flex-basis": "auto",
+    "order": "-1",
+    "margin-left": "-8px",
+    "display": "none",
+    "align-items": "center",
+    "justify-items": "center",
+    "width": "44px",
+    "height": "44px",
+    "padding-top": "0",
+    "padding-right": "0",
+    "padding-bottom": "0",
+    "padding-left": "0",
+    "background-color": "transparent",
+    "border-top-style": "none",
+    "border-right-style": "none",
+    "border-bottom-style": "none",
+    "border-left-style": "none",
+    "cursor": "pointer",
+    "position": "relative"
+   }
+  },
+  {
+   "osztaly": "fo-kszunet",
+   "pseudo": "before",
+   "tulajdonsagok": {
+    "box-sizing": "border-box",
+    "width": "30px",
+    "height": "30px",
+    "border-top-width": "2px",
+    "border-top-style": "solid",
+    "border-top-color": "#000",
+    "border-right-width": "2px",
+    "border-right-style": "solid",
+    "border-right-color": "#000",
+    "border-bottom-width": "2px",
+    "border-bottom-style": "solid",
+    "border-bottom-color": "#000",
+    "border-left-width": "2px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "border-top-left-radius": "4px",
+    "border-top-right-radius": "4px",
+    "border-bottom-right-radius": "4px",
+    "border-bottom-left-radius": "4px",
+    "background-color": "#fff",
+    "box-shadow": "2px 2px 0 #000"
+   }
+  },
+  {
+   "osztaly": "fo-kszunet",
+   "pseudo": "after",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "left": "50%",
+    "top": "50%",
+    "box-sizing": "border-box",
+    "width": "10px",
+    "height": "11px",
+    "margin-top": "-5.5px",
+    "margin-right": "0",
+    "margin-bottom": "0",
+    "margin-left": "-5px",
+    "border-left-width": "3px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "border-right-width": "3px",
+    "border-right-style": "solid",
+    "border-right-color": "#000"
+   }
+  },
+  {
+   "osztaly": "fo-lanc",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "margin-top": "0",
+    "margin-right": "0",
+    "margin-bottom": "22px",
+    "margin-left": "0",
+    "padding-top": "0",
+    "padding-right": "0",
+    "padding-bottom": "0",
+    "padding-left": "0",
+    "display": "flex",
+    "flex-wrap": "wrap",
+    "align-items": "center",
+    "row-gap": "8px",
+    "column-gap": "10px",
+    "font-weight": "400",
+    "font-size": "22px",
+    "font-family": "var(--display)",
+    "line-height": "1"
+   }
+  },
+  {
+   "osztaly": "fo-logo-gomb",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "margin-top": "0",
+    "margin-right": "0",
+    "margin-bottom": "0",
+    "margin-left": "0"
+   }
+  },
+  {
+   "osztaly": "fo-logotobb",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "inline-flex",
+    "align-items": "center",
+    "row-gap": "6px",
+    "column-gap": "6px",
+    "min-height": "44px",
+    "padding-top": "0",
+    "padding-right": "14px",
+    "padding-bottom": "0",
+    "padding-left": "14px",
+    "background-color": "#fff",
+    "color": "#000",
+    "font-weight": "700",
+    "font-size": "14px",
+    "font-family": "var(--text)",
+    "line-height": "1",
+    "border-top-width": "2px",
+    "border-top-style": "solid",
+    "border-top-color": "#000",
+    "border-right-width": "2px",
+    "border-right-style": "solid",
+    "border-right-color": "#000",
+    "border-bottom-width": "2px",
+    "border-bottom-style": "solid",
+    "border-bottom-color": "#000",
+    "border-left-width": "2px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "border-top-left-radius": "4px",
+    "border-top-right-radius": "4px",
+    "border-bottom-right-radius": "4px",
+    "border-bottom-left-radius": "4px",
+    "box-shadow": "2px 2px 0 #000",
+    "cursor": "pointer",
+    "white-space": "nowrap"
+   }
+  },
+  {
+   "osztaly": "fo-logotobb",
+   "pseudo": "after",
+   "tulajdonsagok": {
+    "width": "8px",
+    "height": "8px",
+    "border-right-width": "2px",
+    "border-right-style": "solid",
+    "border-right-color": "#000",
+    "border-bottom-width": "2px",
+    "border-bottom-style": "solid",
+    "border-bottom-color": "#000",
+    "transform": "translateY(-2px) rotate(45deg)"
+   }
+  },
+  {
+   "osztaly": "fo-sr",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "position": "absolute",
+    "width": "1px",
+    "height": "1px",
+    "overflow-x": "hidden",
+    "overflow-y": "hidden",
+    "clip-path": "inset(50%)",
+    "white-space": "nowrap"
+   }
+  },
+  {
+   "osztaly": "fo-koz-alul",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "flex",
+    "flex-wrap": "wrap",
+    "row-gap": "12px",
+    "column-gap": "28px",
+    "align-items": "center"
+   }
+  },
+  {
+   "osztaly": "fo-termekek",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "grid",
+    "grid-template-columns": "repeat(3,minmax(0,1fr))",
+    "row-gap": "22px",
+    "column-gap": "22px",
+    "max-width": "780px"
+   }
+  },
+  {
+   "osztaly": "fo-termek",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "flex",
+    "flex-direction": "column",
+    "row-gap": "6px",
+    "column-gap": "6px",
+    "padding-top": "12px",
+    "padding-right": "12px",
+    "padding-bottom": "16px",
+    "padding-left": "12px",
+    "background-color": "#fff",
+    "color": "#000",
+    "text-decoration-line": "none",
+    "border-top-width": "2px",
+    "border-top-style": "solid",
+    "border-top-color": "#000",
+    "border-right-width": "2px",
+    "border-right-style": "solid",
+    "border-right-color": "#000",
+    "border-bottom-width": "2px",
+    "border-bottom-style": "solid",
+    "border-bottom-color": "#000",
+    "border-left-width": "2px",
+    "border-left-style": "solid",
+    "border-left-color": "#000",
+    "border-top-left-radius": "4px",
+    "border-top-right-radius": "4px",
+    "border-bottom-right-radius": "4px",
+    "border-bottom-left-radius": "4px",
+    "box-shadow": "4px 4px 0 #000"
+   }
+  },
+  {
+   "osztaly": "fo-bolt-fej",
+   "pseudo": "",
+   "tulajdonsagok": {
+    "display": "flex",
+    "justify-content": "space-between",
+    "align-items": "flex-end",
+    "row-gap": "16px",
+    "column-gap": "28px",
+    "flex-wrap": "wrap",
+    "margin-bottom": "26px"
+   }
+  }
+ ],
+ "kivett": [
+  [
+   ".fo-hero",
+   "position"
+  ],
+  [
+   ".fo-hero",
+   "background"
+  ],
+  [
+   ".fo-hero",
+   "isolation"
+  ],
+  [
+   ".fo-hatter",
+   "position"
+  ],
+  [
+   ".fo-hatter",
+   "inset"
+  ],
+  [
+   ".fo-hatter",
+   "z-index"
+  ],
+  [
+   ".fo-hatter",
+   "overflow"
+  ],
+  [
+   ".fo-hatter",
+   "pointer-events"
+  ],
+  [
+   ".fo-sejt",
+   "position"
+  ],
+  [
+   ".fo-sejt",
+   "inset"
+  ],
+  [
+   ".fo-sejt",
+   "mask-image"
+  ],
+  [
+   ".fo-hx",
+   "position"
+  ],
+  [
+   ".fo-hx",
+   "aspect-ratio"
+  ],
+  [
+   ".fo-hx",
+   "clip-path"
+  ],
+  [
+   ".fo-szin::before",
+   "position"
+  ],
+  [
+   ".fo-szin::before",
+   "left"
+  ],
+  [
+   ".fo-szin::before",
+   "top"
+  ],
+  [
+   ".fo-szin::before",
+   "width"
+  ],
+  [
+   ".fo-szin::before",
+   "height"
+  ],
+  [
+   ".fo-szin::before",
+   "margin-left"
+  ],
+  [
+   ".fo-szin::before",
+   "z-index"
+  ],
+  [
+   ".fo-szin::before",
+   "background"
+  ],
+  [
+   ".fo-szin::before",
+   "clip-path"
+  ],
+  [
+   ".fo-szin::before",
+   "transform"
+  ],
+  [
+   ".fo-domb",
+   "position"
+  ],
+  [
+   ".fo-domb",
+   "left"
+  ],
+  [
+   ".fo-domb",
+   "right"
+  ],
+  [
+   ".fo-domb",
+   "bottom"
+  ],
+  [
+   ".fo-domb",
+   "height"
+  ],
+  [
+   ".fo-domb",
+   "z-index"
+  ],
+  [
+   ".fo-domb",
+   "background"
+  ],
+  [
+   ".fo-domb",
+   "box-shadow"
+  ],
+  [
+   ".fo-racs",
+   "position"
+  ],
+  [
+   ".fo-racs",
+   "z-index"
+  ],
+  [
+   ".fo-racs",
+   "display"
+  ],
+  [
+   ".fo-racs",
+   "grid-template-columns"
+  ],
+  [
+   ".fo-racs",
+   "gap"
+  ],
+  [
+   ".fo-racs",
+   "align-items"
+  ],
+  [
+   ".fo-racs",
+   "max-width"
+  ],
+  [
+   ".fo-racs",
+   "margin"
+  ],
+  [
+   ".fo-racs",
+   "padding"
+  ],
+  [
+   ".fo-szoveg",
+   "display"
+  ],
+  [
+   ".fo-szoveg",
+   "flex-direction"
+  ],
+  [
+   ".fo-szoveg",
+   "gap"
+  ],
+  [
+   ".fo-szoveg",
+   "min-width"
+  ],
+  [
+   ".fo-szoveg",
+   "align-self"
+  ],
+  [
+   ".fo-szalag",
+   "align-self"
+  ],
+  [
+   ".fo-szalag",
+   "background"
+  ],
+  [
+   ".fo-szalag",
+   "color"
+  ],
+  [
+   ".fo-szalag",
+   "font"
+  ],
+  [
+   ".fo-szalag",
+   "padding"
+  ],
+  [
+   ".fo-szalag",
+   "transform"
+  ],
+  [
+   ".fo-lead",
+   "font-size"
+  ],
+  [
+   ".fo-lead",
+   "line-height"
+  ],
+  [
+   ".fo-lead",
+   "color"
+  ],
+  [
+   ".fo-lead",
+   "margin"
+  ],
+  [
+   ".fo-lead",
+   "max-width"
+  ],
+  [
+   ".fo-cta",
+   "display"
+  ],
+  [
+   ".fo-cta",
+   "gap"
+  ],
+  [
+   ".fo-cta",
+   "align-items"
+  ],
+  [
+   ".fo-cta",
+   "flex-wrap"
+  ],
+  [
+   ".fo-bolt",
+   "display"
+  ],
+  [
+   ".fo-bolt",
+   "flex-direction"
+  ],
+  [
+   ".fo-bolt",
+   "gap"
+  ],
+  [
+   ".fo-gomb",
+   "display"
+  ],
+  [
+   ".fo-gomb",
+   "align-items"
+  ],
+  [
+   ".fo-gomb",
+   "gap"
+  ],
+  [
+   ".fo-gomb",
+   "min-height"
+  ],
+  [
+   ".fo-gomb",
+   "width"
+  ],
+  [
+   ".fo-gomb",
+   "padding"
+  ],
+  [
+   ".fo-gomb",
+   "background"
+  ],
+  [
+   ".fo-gomb",
+   "color"
+  ],
+  [
+   ".fo-gomb",
+   "text-decoration"
+  ],
+  [
+   ".fo-gomb",
+   "border"
+  ],
+  [
+   ".fo-gomb",
+   "border-radius"
+  ],
+  [
+   ".fo-gomb",
+   "box-shadow"
+  ],
+  [
+   ".fo-gomb",
+   "font"
+  ],
+  [
+   ".fo-qr",
+   "width"
+  ],
+  [
+   ".fo-qr",
+   "height"
+  ],
+  [
+   ".fo-qr",
+   "border"
+  ],
+  [
+   ".fo-qr",
+   "background"
+  ],
+  [
+   ".fo-qr",
+   "padding"
+  ],
+  [
+   ".fo-qr",
+   "flex"
+  ],
+  [
+   ".fo-bizalom",
+   "display"
+  ],
+  [
+   ".fo-bizalom",
+   "flex-wrap"
+  ],
+  [
+   ".fo-bizalom",
+   "gap"
+  ],
+  [
+   ".fo-bizalom",
+   "margin"
+  ],
+  [
+   ".fo-bizalom",
+   "padding"
+  ],
+  [
+   ".fo-bizalom",
+   "font"
+  ],
+  [
+   ".fo-haszon",
+   "display"
+  ],
+  [
+   ".fo-haszon",
+   "grid-template-columns"
+  ],
+  [
+   ".fo-haszon",
+   "gap"
+  ],
+  [
+   ".fo-haszon",
+   "margin-top"
+  ],
+  [
+   ".fo-hb",
+   "position"
+  ],
+  [
+   ".fo-hb",
+   "overflow"
+  ],
+  [
+   ".fo-hb",
+   "display"
+  ],
+  [
+   ".fo-hb",
+   "justify-content"
+  ],
+  [
+   ".fo-hb",
+   "gap"
+  ],
+  [
+   ".fo-hb",
+   "align-items"
+  ],
+  [
+   ".fo-hb",
+   "text-align"
+  ],
+  [
+   ".fo-hb",
+   "min-height"
+  ],
+  [
+   ".fo-hb",
+   "padding"
+  ],
+  [
+   ".fo-hb",
+   "background"
+  ],
+  [
+   ".fo-hb",
+   "color"
+  ],
+  [
+   ".fo-hb",
+   "border"
+  ],
+  [
+   ".fo-hb",
+   "border-radius"
+  ],
+  [
+   ".fo-hb",
+   "box-shadow"
+  ],
+  [
+   ".fo-hb",
+   "cursor"
+  ],
+  [
+   ".fo-flekk",
+   "position"
+  ],
+  [
+   ".fo-flekk",
+   "width"
+  ],
+  [
+   ".fo-flekk",
+   "height"
+  ],
+  [
+   ".fo-flekk",
+   "flex"
+  ],
+  [
+   ".fo-flekk",
+   "display"
+  ],
+  [
+   ".fo-flekk",
+   "place-items"
+  ],
+  [
+   ".fo-flekk::before",
+   "position"
+  ],
+  [
+   ".fo-flekk::before",
+   "inset"
+  ],
+  [
+   ".fo-flekk::before",
+   "background"
+  ],
+  [
+   ".fo-flekk::before",
+   "clip-path"
+  ],
+  [
+   ".fo-sav",
+   "position"
+  ],
+  [
+   ".fo-sav",
+   "left"
+  ],
+  [
+   ".fo-sav",
+   "bottom"
+  ],
+  [
+   ".fo-sav",
+   "width"
+  ],
+  [
+   ".fo-sav",
+   "height"
+  ],
+  [
+   ".fo-sav",
+   "background"
+  ],
+  [
+   ".fo-sav",
+   "transform"
+  ],
+  [
+   ".fo-sav",
+   "transform-origin"
+  ],
+  [
+   ".fo-vizual",
+   "min-width"
+  ],
+  [
+   ".fo-vizual",
+   "display"
+  ],
+  [
+   ".fo-vizual",
+   "flex-direction"
+  ],
+  [
+   ".fo-szin",
+   "position"
+  ],
+  [
+   ".fo-szin",
+   "height"
+  ],
+  [
+   ".fo-tel",
+   "position"
+  ],
+  [
+   ".fo-tel",
+   "left"
+  ],
+  [
+   ".fo-tel",
+   "top"
+  ],
+  [
+   ".fo-tel",
+   "width"
+  ],
+  [
+   ".fo-tel",
+   "margin-left"
+  ],
+  [
+   ".fo-tel",
+   "z-index"
+  ],
+  [
+   ".fo-kepek",
+   "position"
+  ],
+  [
+   ".fo-cimke",
+   "position"
+  ],
+  [
+   ".fo-cimke",
+   "left"
+  ],
+  [
+   ".fo-cimke",
+   "top"
+  ],
+  [
+   ".fo-cimke",
+   "z-index"
+  ],
+  [
+   ".fo-cimke",
+   "transform"
+  ],
+  [
+   ".fo-cimke",
+   "background"
+  ],
+  [
+   ".fo-cimke",
+   "color"
+  ],
+  [
+   ".fo-cimke",
+   "display"
+  ],
+  [
+   ".fo-cimke",
+   "grid-template-columns"
+  ],
+  [
+   ".fo-cimke",
+   "gap"
+  ],
+  [
+   ".fo-cimke",
+   "align-items"
+  ],
+  [
+   ".fo-cimke",
+   "justify-content"
+  ],
+  [
+   ".fo-cimke",
+   "text-align"
+  ],
+  [
+   ".fo-cimke",
+   "padding"
+  ],
+  [
+   ".fo-cimke",
+   "min-width"
+  ],
+  [
+   ".fo-cimke",
+   "white-space"
+  ],
+  [
+   ".fo-meh",
+   "position"
+  ],
+  [
+   ".fo-meh",
+   "left"
+  ],
+  [
+   ".fo-meh",
+   "top"
+  ],
+  [
+   ".fo-meh",
+   "width"
+  ],
+  [
+   ".fo-meh",
+   "z-index"
+  ],
+  [
+   ".fo-meh",
+   "transform"
+  ],
+  [
+   ".fo-meh",
+   "filter"
+  ],
+  [
+   ".fo-szunet",
+   "position"
+  ],
+  [
+   ".fo-szunet",
+   "right"
+  ],
+  [
+   ".fo-szunet",
+   "bottom"
+  ],
+  [
+   ".fo-szunet",
+   "z-index"
+  ],
+  [
+   ".fo-szunet",
+   "width"
+  ],
+  [
+   ".fo-szunet",
+   "height"
+  ],
+  [
+   ".fo-szunet",
+   "border"
+  ],
+  [
+   ".fo-szunet",
+   "border-radius"
+  ],
+  [
+   ".fo-szunet",
+   "background"
+  ],
+  [
+   ".fo-szunet",
+   "box-shadow"
+  ],
+  [
+   ".fo-szunet",
+   "cursor"
+  ],
+  [
+   ".fo-szunet",
+   "display"
+  ],
+  [
+   ".fo-szunet",
+   "align-items"
+  ],
+  [
+   ".fo-szunet",
+   "justify-content"
+  ],
+  [
+   ".fo-szunet::before",
+   "width"
+  ],
+  [
+   ".fo-szunet::before",
+   "height"
+  ],
+  [
+   ".fo-szunet::before",
+   "border-left"
+  ],
+  [
+   ".fo-szunet::before",
+   "border-right"
+  ],
+  [
+   ".fo-tovabb",
+   "position"
+  ],
+  [
+   ".fo-tovabb",
+   "left"
+  ],
+  [
+   ".fo-tovabb",
+   "right"
+  ],
+  [
+   ".fo-tovabb",
+   "bottom"
+  ],
+  [
+   ".fo-tovabb",
+   "z-index"
+  ],
+  [
+   ".fo-tovabb",
+   "margin-inline"
+  ],
+  [
+   ".fo-tovabb",
+   "width"
+  ],
+  [
+   ".fo-tovabb",
+   "display"
+  ],
+  [
+   ".fo-tovabb",
+   "align-items"
+  ],
+  [
+   ".fo-tovabb",
+   "gap"
+  ],
+  [
+   ".fo-tovabb",
+   "min-height"
+  ],
+  [
+   ".fo-tovabb",
+   "padding"
+  ],
+  [
+   ".fo-tovabb",
+   "background"
+  ],
+  [
+   ".fo-tovabb",
+   "color"
+  ],
+  [
+   ".fo-tovabb",
+   "text-decoration"
+  ],
+  [
+   ".fo-tovabb",
+   "font"
+  ],
+  [
+   ".fo-tovabb",
+   "border"
+  ],
+  [
+   ".fo-tovabb",
+   "border-radius"
+  ],
+  [
+   ".fo-tovabb",
+   "box-shadow"
+  ],
+  [
+   ".fo-tovabb::after",
+   "font-weight"
+  ],
+  [
+   ".fo-lepesek",
+   "margin"
+  ],
+  [
+   ".fo-lepesek",
+   "padding"
+  ],
+  [
+   ".fo-lepesek",
+   "display"
+  ],
+  [
+   ".fo-lepesek",
+   "grid-template-columns"
+  ],
+  [
+   ".fo-lepesek",
+   "gap"
+  ],
+  [
+   ".fo-tobb",
+   "align-self"
+  ],
+  [
+   ".fo-tobb",
+   "display"
+  ],
+  [
+   ".fo-tobb",
+   "align-items"
+  ],
+  [
+   ".fo-tobb",
+   "gap"
+  ],
+  [
+   ".fo-tobb",
+   "min-height"
+  ],
+  [
+   ".fo-tobb",
+   "padding"
+  ],
+  [
+   ".fo-tobb",
+   "margin-top"
+  ],
+  [
+   ".fo-tobb",
+   "color"
+  ],
+  [
+   ".fo-tobb",
+   "font"
+  ],
+  [
+   ".fo-tobb",
+   "text-decoration"
+  ],
+  [
+   ".fo-tobb",
+   "text-decoration-thickness"
+  ],
+  [
+   ".fo-tobb",
+   "text-underline-offset"
+  ],
+  [
+   ".fo-tobb",
+   "text-decoration-color"
+  ],
+  [
+   ".fo-tobb::after",
+   "font-family"
+  ],
+  [
+   ".fo-tobb::after",
+   "font-weight"
+  ],
+  [
+   ".fo-szk",
+   "position"
+  ],
+  [
+   ".fo-szk",
+   "background"
+  ],
+  [
+   ".fo-szk",
+   "padding"
+  ],
+  [
+   ".fo-szk-b",
+   "max-width"
+  ],
+  [
+   ".fo-szk-b",
+   "margin"
+  ],
+  [
+   ".fo-szf",
+   "display"
+  ],
+  [
+   ".fo-szf",
+   "flex-direction"
+  ],
+  [
+   ".fo-szf",
+   "align-items"
+  ],
+  [
+   ".fo-szf",
+   "gap"
+  ],
+  [
+   ".fo-szf",
+   "margin-bottom"
+  ],
+  [
+   ".fo-kep",
+   "position"
+  ],
+  [
+   ".fo-kep",
+   "height"
+  ],
+  [
+   ".fo-kep::before",
+   "position"
+  ],
+  [
+   ".fo-kep::before",
+   "left"
+  ],
+  [
+   ".fo-kep::before",
+   "top"
+  ],
+  [
+   ".fo-kep::before",
+   "width"
+  ],
+  [
+   ".fo-kep::before",
+   "height"
+  ],
+  [
+   ".fo-kep::before",
+   "margin-left"
+  ],
+  [
+   ".fo-kep::before",
+   "background"
+  ],
+  [
+   ".fo-kep::before",
+   "clip-path"
+  ],
+  [
+   ".fo-kep::before",
+   "transform"
+  ],
+  [
+   ".fo-sor",
+   "display"
+  ],
+  [
+   ".fo-sor",
+   "flex-wrap"
+  ],
+  [
+   ".fo-sor",
+   "gap"
+  ],
+  [
+   ".fo-sor",
+   "align-items"
+  ],
+  [
+   ".fo-gm",
+   "display"
+  ],
+  [
+   ".fo-gm",
+   "align-items"
+  ],
+  [
+   ".fo-gm",
+   "gap"
+  ],
+  [
+   ".fo-gm",
+   "min-height"
+  ],
+  [
+   ".fo-gm",
+   "padding"
+  ],
+  [
+   ".fo-gm",
+   "background"
+  ],
+  [
+   ".fo-gm",
+   "color"
+  ],
+  [
+   ".fo-gm",
+   "text-decoration"
+  ],
+  [
+   ".fo-gm",
+   "font"
+  ],
+  [
+   ".fo-gm",
+   "border"
+  ],
+  [
+   ".fo-gm",
+   "border-radius"
+  ],
+  [
+   ".fo-gm",
+   "box-shadow"
+  ],
+  [
+   ".fo-szl",
+   "display"
+  ],
+  [
+   ".fo-szl",
+   "align-items"
+  ],
+  [
+   ".fo-szl",
+   "gap"
+  ],
+  [
+   ".fo-szl",
+   "min-height"
+  ],
+  [
+   ".fo-szl",
+   "color"
+  ],
+  [
+   ".fo-szl",
+   "font"
+  ],
+  [
+   ".fo-szl",
+   "text-decoration"
+  ],
+  [
+   ".fo-szl",
+   "text-decoration-thickness"
+  ],
+  [
+   ".fo-szl",
+   "text-underline-offset"
+  ],
+  [
+   ".fo-szamok",
+   "margin"
+  ],
+  [
+   ".fo-szamok",
+   "padding"
+  ],
+  [
+   ".fo-szamok",
+   "display"
+  ],
+  [
+   ".fo-szamok",
+   "grid-template-columns"
+  ],
+  [
+   ".fo-szamok",
+   "gap"
+  ],
+  [
+   ".fo-forras",
+   "margin"
+  ],
+  [
+   ".fo-forras",
+   "font-size"
+  ],
+  [
+   ".fo-forras",
+   "color"
+  ],
+  [
+   ".fo-velemenyek",
+   "margin"
+  ],
+  [
+   ".fo-velemenyek",
+   "grid-template-columns"
+  ],
+  [
+   ".fo-fotok",
+   "display"
+  ],
+  [
+   ".fo-fotok",
+   "margin"
+  ],
+  [
+   ".fo-polaroid",
+   "position"
+  ],
+  [
+   ".fo-polaroid",
+   "margin"
+  ],
+  [
+   ".fo-polaroid",
+   "padding"
+  ],
+  [
+   ".fo-polaroid",
+   "background"
+  ],
+  [
+   ".fo-polaroid",
+   "border"
+  ],
+  [
+   ".fo-polaroid",
+   "transform"
+  ],
+  [
+   ".fo-polaroid::before",
+   "position"
+  ],
+  [
+   ".fo-polaroid::before",
+   "left"
+  ],
+  [
+   ".fo-polaroid::before",
+   "top"
+  ],
+  [
+   ".fo-polaroid::before",
+   "width"
+  ],
+  [
+   ".fo-polaroid::before",
+   "height"
+  ],
+  [
+   ".fo-polaroid::before",
+   "margin-left"
+  ],
+  [
+   ".fo-polaroid::before",
+   "background"
+  ],
+  [
+   ".fo-polaroid::before",
+   "transform"
+  ],
+  [
+   ".fo-utak",
+   "display"
+  ],
+  [
+   ".fo-utak",
+   "gap"
+  ],
+  [
+   ".fo-ut",
+   "display"
+  ],
+  [
+   ".fo-ut",
+   "flex-direction"
+  ],
+  [
+   ".fo-ut",
+   "gap"
+  ],
+  [
+   ".fo-ut",
+   "padding"
+  ],
+  [
+   ".fo-ut",
+   "background"
+  ],
+  [
+   ".fo-ut",
+   "color"
+  ],
+  [
+   ".fo-ut",
+   "text-decoration"
+  ],
+  [
+   ".fo-ut",
+   "border"
+  ],
+  [
+   ".fo-ut",
+   "border-radius"
+  ],
+  [
+   ".fo-ut",
+   "box-shadow"
+  ],
+  [
+   ".fo-logocim",
+   "margin"
+  ],
+  [
+   ".fo-logocim",
+   "font"
+  ],
+  [
+   ".fo-logosor",
+   "margin"
+  ],
+  [
+   ".fo-logosor",
+   "padding"
+  ],
+  [
+   ".fo-logosor",
+   "display"
+  ],
+  [
+   ".fo-logosor",
+   "flex-wrap"
+  ],
+  [
+   ".fo-logosor",
+   "gap"
+  ],
+  [
+   ".fo-logosor",
+   "align-items"
+  ],
+  [
+   ".fo-kerdesek",
+   "margin"
+  ],
+  [
+   ".fo-kerdesek",
+   "padding"
+  ],
+  [
+   ".fo-kerdesek",
+   "display"
+  ],
+  [
+   ".fo-kerdesek",
+   "flex-wrap"
+  ],
+  [
+   ".fo-kerdesek",
+   "gap"
+  ],
+  [
+   ".fo-fv",
+   "display"
+  ],
+  [
+   ".fo-fv",
+   "gap"
+  ],
+  [
+   ".fo-fv",
+   "margin"
+  ],
+  [
+   ".fo-fv",
+   "max-width"
+  ],
+  [
+   ".fo-fvb",
+   "position"
+  ],
+  [
+   ".fo-fvb",
+   "display"
+  ],
+  [
+   ".fo-fvb",
+   "grid-template-columns"
+  ],
+  [
+   ".fo-fvb",
+   "gap"
+  ],
+  [
+   ".fo-fvb",
+   "align-items"
+  ],
+  [
+   ".fo-fvb",
+   "text-align"
+  ],
+  [
+   ".fo-fvb",
+   "min-height"
+  ],
+  [
+   ".fo-fvb",
+   "padding"
+  ],
+  [
+   ".fo-fvb",
+   "background"
+  ],
+  [
+   ".fo-fvb",
+   "color"
+  ],
+  [
+   ".fo-fvb",
+   "border"
+  ],
+  [
+   ".fo-fvb",
+   "border-radius"
+  ],
+  [
+   ".fo-fvb",
+   "box-shadow"
+  ],
+  [
+   ".fo-fvb",
+   "cursor"
+  ],
+  [
+   ".fo-lepszam",
+   "display"
+  ],
+  [
+   ".fo-lepszam",
+   "place-items"
+  ],
+  [
+   ".fo-lepszam",
+   "width"
+  ],
+  [
+   ".fo-lepszam",
+   "height"
+  ],
+  [
+   ".fo-lepszam",
+   "margin-right"
+  ],
+  [
+   ".fo-lepszam",
+   "background"
+  ],
+  [
+   ".fo-lepszam",
+   "color"
+  ],
+  [
+   ".fo-lepszam",
+   "font"
+  ],
+  [
+   ".fo-lepszam",
+   "transform"
+  ],
+  [
+   ".fo-polaroid",
+   "display"
+  ],
+  [
+   ".fo-polaroid",
+   "width"
+  ],
+  [
+   ".fo-polaroid",
+   "color"
+  ],
+  [
+   ".fo-polaroid",
+   "text-align"
+  ],
+  [
+   ".fo-polaroid",
+   "cursor"
+  ],
+  [
+   ".fo-polaroid",
+   "box-shadow"
+  ],
+  [
+   ".fo-ngomb",
+   "display"
+  ],
+  [
+   ".fo-ngomb",
+   "place-items"
+  ],
+  [
+   ".fo-ngomb",
+   "width"
+  ],
+  [
+   ".fo-ngomb",
+   "height"
+  ],
+  [
+   ".fo-ngomb",
+   "padding"
+  ],
+  [
+   ".fo-ngomb",
+   "background"
+  ],
+  [
+   ".fo-ngomb",
+   "color"
+  ],
+  [
+   ".fo-ngomb",
+   "border"
+  ],
+  [
+   ".fo-ngomb",
+   "border-radius"
+  ],
+  [
+   ".fo-ngomb",
+   "box-shadow"
+  ],
+  [
+   ".fo-ngomb",
+   "cursor"
+  ],
+  [
+   ".fo-ngomb",
+   "font"
+  ],
+  [
+   ".fo-velemenyek",
+   "scrollbar-width"
+  ],
+  [
+   ".fo-velemenyek",
+   "scrollbar-color"
+  ],
+  [
+   ".fo-vel-fej",
+   "display"
+  ],
+  [
+   ".fo-vel-fej",
+   "justify-content"
+  ],
+  [
+   ".fo-vel-fej",
+   "align-items"
+  ],
+  [
+   ".fo-vel-fej",
+   "gap"
+  ],
+  [
+   ".fo-vel-fej",
+   "flex-wrap"
+  ],
+  [
+   ".fo-vel-nyil",
+   "display"
+  ],
+  [
+   ".fo-vel-nyil",
+   "gap"
+  ],
+  [
+   ".fo-vel-nyil",
+   "margin-bottom"
+  ],
+  [
+   ".fo-bansav",
+   "position"
+  ],
+  [
+   ".fo-bansav",
+   "z-index"
+  ],
+  [
+   ".fo-bansav",
+   "background"
+  ],
+  [
+   ".fo-bansav",
+   "padding"
+  ],
+  [
+   ".fo-banner",
+   "position"
+  ],
+  [
+   ".fo-banner",
+   "display"
+  ],
+  [
+   ".fo-banner",
+   "grid-template-columns"
+  ],
+  [
+   ".fo-banner",
+   "gap"
+  ],
+  [
+   ".fo-banner",
+   "align-items"
+  ],
+  [
+   ".fo-banner",
+   "max-width"
+  ],
+  [
+   ".fo-banner",
+   "margin"
+  ],
+  [
+   ".fo-banner",
+   "padding"
+  ],
+  [
+   ".fo-banner",
+   "background"
+  ],
+  [
+   ".fo-banner",
+   "color"
+  ],
+  [
+   ".fo-banner",
+   "text-decoration"
+  ],
+  [
+   ".fo-banner",
+   "border"
+  ],
+  [
+   ".fo-banner",
+   "border-radius"
+  ],
+  [
+   ".fo-banner",
+   "box-shadow"
+  ],
+  [
+   ".fo-bn-meh",
+   "position"
+  ],
+  [
+   ".fo-bn-meh",
+   "left"
+  ],
+  [
+   ".fo-bn-meh",
+   "bottom"
+  ],
+  [
+   ".fo-bn-meh",
+   "width"
+  ],
+  [
+   ".fo-bn-meh",
+   "height"
+  ],
+  [
+   ".fo-bn-meh",
+   "filter"
+  ],
+  [
+   ".fo-bn-logo",
+   "display"
+  ],
+  [
+   ".fo-bn-logo",
+   "height"
+  ],
+  [
+   ".fo-bn-logo",
+   "width"
+  ],
+  [
+   ".fo-bn-sz",
+   "display"
+  ],
+  [
+   ".fo-bn-sz",
+   "flex-direction"
+  ],
+  [
+   ".fo-bn-sz",
+   "align-items"
+  ],
+  [
+   ".fo-bn-sz",
+   "gap"
+  ],
+  [
+   ".fo-bn-sz",
+   "min-width"
+  ],
+  [
+   ".fo-bn-most",
+   "display"
+  ],
+  [
+   ".fo-bn-most",
+   "align-items"
+  ],
+  [
+   ".fo-bn-most",
+   "gap"
+  ],
+  [
+   ".fo-bn-most",
+   "background"
+  ],
+  [
+   ".fo-bn-most",
+   "color"
+  ],
+  [
+   ".fo-bn-most",
+   "font"
+  ],
+  [
+   ".fo-bn-most",
+   "letter-spacing"
+  ],
+  [
+   ".fo-bn-most",
+   "text-transform"
+  ],
+  [
+   ".fo-bn-most",
+   "padding"
+  ],
+  [
+   ".fo-bn-most",
+   "transform"
+  ],
+  [
+   ".fo-bn-gomb",
+   "display"
+  ],
+  [
+   ".fo-bn-gomb",
+   "align-items"
+  ],
+  [
+   ".fo-bn-gomb",
+   "gap"
+  ],
+  [
+   ".fo-bn-gomb",
+   "min-height"
+  ],
+  [
+   ".fo-bn-gomb",
+   "padding"
+  ],
+  [
+   ".fo-bn-gomb",
+   "background"
+  ],
+  [
+   ".fo-bn-gomb",
+   "color"
+  ],
+  [
+   ".fo-bn-gomb",
+   "font"
+  ],
+  [
+   ".fo-bn-gomb",
+   "border-radius"
+  ],
+  [
+   ".fo-bn-gomb",
+   "white-space"
+  ],
+  [
+   ".fo-bn-gomb::after",
+   "font"
+  ],
+  [
+   ".fo-szamok",
+   "gap"
+  ],
+  [
+   ".fo-lepszam",
+   "transform"
+  ],
+  [
+   ".fo-kerd-sor",
+   "display"
+  ],
+  [
+   ".fo-kerd-sor",
+   "align-items"
+  ],
+  [
+   ".fo-kerd-sor",
+   "gap"
+  ],
+  [
+   ".fo-kerd-sor",
+   "width"
+  ],
+  [
+   ".fo-kerd-sor",
+   "max-width"
+  ],
+  [
+   ".fo-kszunet",
+   "flex"
+  ],
+  [
+   ".fo-kszunet",
+   "order"
+  ],
+  [
+   ".fo-kszunet",
+   "margin-left"
+  ],
+  [
+   ".fo-kszunet",
+   "display"
+  ],
+  [
+   ".fo-kszunet",
+   "place-items"
+  ],
+  [
+   ".fo-kszunet",
+   "width"
+  ],
+  [
+   ".fo-kszunet",
+   "height"
+  ],
+  [
+   ".fo-kszunet",
+   "padding"
+  ],
+  [
+   ".fo-kszunet",
+   "background"
+  ],
+  [
+   ".fo-kszunet",
+   "border"
+  ],
+  [
+   ".fo-kszunet",
+   "cursor"
+  ],
+  [
+   ".fo-kszunet::before",
+   "box-sizing"
+  ],
+  [
+   ".fo-kszunet::before",
+   "width"
+  ],
+  [
+   ".fo-kszunet::before",
+   "height"
+  ],
+  [
+   ".fo-kszunet::before",
+   "border"
+  ],
+  [
+   ".fo-kszunet::before",
+   "border-radius"
+  ],
+  [
+   ".fo-kszunet::before",
+   "background"
+  ],
+  [
+   ".fo-kszunet::before",
+   "box-shadow"
+  ],
+  [
+   ".fo-kszunet::after",
+   "position"
+  ],
+  [
+   ".fo-kszunet::after",
+   "left"
+  ],
+  [
+   ".fo-kszunet::after",
+   "top"
+  ],
+  [
+   ".fo-kszunet::after",
+   "box-sizing"
+  ],
+  [
+   ".fo-kszunet::after",
+   "width"
+  ],
+  [
+   ".fo-kszunet::after",
+   "height"
+  ],
+  [
+   ".fo-kszunet::after",
+   "margin"
+  ],
+  [
+   ".fo-kszunet::after",
+   "border-left"
+  ],
+  [
+   ".fo-kszunet::after",
+   "border-right"
+  ],
+  [
+   ".fo-kszunet",
+   "position"
+  ],
+  [
+   ".fo-lanc",
+   "margin"
+  ],
+  [
+   ".fo-lanc",
+   "padding"
+  ],
+  [
+   ".fo-lanc",
+   "display"
+  ],
+  [
+   ".fo-lanc",
+   "flex-wrap"
+  ],
+  [
+   ".fo-lanc",
+   "align-items"
+  ],
+  [
+   ".fo-lanc",
+   "gap"
+  ],
+  [
+   ".fo-lanc",
+   "font"
+  ],
+  [
+   ".fo-logo-gomb",
+   "margin"
+  ],
+  [
+   ".fo-logotobb",
+   "display"
+  ],
+  [
+   ".fo-logotobb",
+   "align-items"
+  ],
+  [
+   ".fo-logotobb",
+   "gap"
+  ],
+  [
+   ".fo-logotobb",
+   "min-height"
+  ],
+  [
+   ".fo-logotobb",
+   "padding"
+  ],
+  [
+   ".fo-logotobb",
+   "background"
+  ],
+  [
+   ".fo-logotobb",
+   "color"
+  ],
+  [
+   ".fo-logotobb",
+   "font"
+  ],
+  [
+   ".fo-logotobb",
+   "border"
+  ],
+  [
+   ".fo-logotobb",
+   "border-radius"
+  ],
+  [
+   ".fo-logotobb",
+   "box-shadow"
+  ],
+  [
+   ".fo-logotobb",
+   "cursor"
+  ],
+  [
+   ".fo-logotobb",
+   "white-space"
+  ],
+  [
+   ".fo-logotobb::after",
+   "width"
+  ],
+  [
+   ".fo-logotobb::after",
+   "height"
+  ],
+  [
+   ".fo-logotobb::after",
+   "border-right"
+  ],
+  [
+   ".fo-logotobb::after",
+   "border-bottom"
+  ],
+  [
+   ".fo-logotobb::after",
+   "transform"
+  ],
+  [
+   ".fo-sr",
+   "position"
+  ],
+  [
+   ".fo-sr",
+   "width"
+  ],
+  [
+   ".fo-sr",
+   "height"
+  ],
+  [
+   ".fo-sr",
+   "overflow"
+  ],
+  [
+   ".fo-sr",
+   "clip-path"
+  ],
+  [
+   ".fo-sr",
+   "white-space"
+  ],
+  [
+   ".fo-koz-alul",
+   "display"
+  ],
+  [
+   ".fo-koz-alul",
+   "flex-wrap"
+  ],
+  [
+   ".fo-koz-alul",
+   "gap"
+  ],
+  [
+   ".fo-koz-alul",
+   "align-items"
+  ],
+  [
+   ".fo-fotok",
+   "margin-bottom"
+  ],
+  [
+   ".fo-termekek",
+   "display"
+  ],
+  [
+   ".fo-termekek",
+   "grid-template-columns"
+  ],
+  [
+   ".fo-termekek",
+   "gap"
+  ],
+  [
+   ".fo-termekek",
+   "max-width"
+  ],
+  [
+   ".fo-termek",
+   "display"
+  ],
+  [
+   ".fo-termek",
+   "flex-direction"
+  ],
+  [
+   ".fo-termek",
+   "gap"
+  ],
+  [
+   ".fo-termek",
+   "padding"
+  ],
+  [
+   ".fo-termek",
+   "background"
+  ],
+  [
+   ".fo-termek",
+   "color"
+  ],
+  [
+   ".fo-termek",
+   "text-decoration"
+  ],
+  [
+   ".fo-termek",
+   "border"
+  ],
+  [
+   ".fo-termek",
+   "border-radius"
+  ],
+  [
+   ".fo-termek",
+   "box-shadow"
+  ],
+  [
+   ".fo-bolt-fej",
+   "display"
+  ],
+  [
+   ".fo-bolt-fej",
+   "justify-content"
+  ],
+  [
+   ".fo-bolt-fej",
+   "align-items"
+  ],
+  [
+   ".fo-bolt-fej",
+   "gap"
+  ],
+  [
+   ".fo-bolt-fej",
+   "flex-wrap"
+  ],
+  [
+   ".fo-bolt-fej",
+   "margin-bottom"
+  ]
+ ],
+ "megtartott": [
+  [
+   ".fo-velemenyek",
+   "padding"
+  ],
+  [
+   ".fo-velemenyek",
+   "display"
+  ],
+  [
+   ".fo-velemenyek",
+   "gap"
+  ],
+  [
+   ".fo-fotok",
+   "grid-template-columns"
+  ],
+  [
+   ".fo-fotok",
+   "gap"
+  ],
+  [
+   ".fo-utak",
+   "grid-template-columns"
+  ],
+  [
+   ".fo-fotok",
+   "grid-template-columns"
+  ],
+  [
+   ".fo-fotok",
+   "gap"
+  ],
+  [
+   ".fo-velemenyek",
+   "display"
+  ],
+  [
+   ".fo-velemenyek",
+   "gap"
+  ],
+  [
+   ".fo-velemenyek",
+   "overflow-x"
+  ],
+  [
+   ".fo-velemenyek",
+   "scroll-snap-type"
+  ],
+  [
+   ".fo-velemenyek",
+   "padding"
+  ],
+  [
+   ".fo-utak",
+   "grid-template-columns"
+  ]
+ ]
+}

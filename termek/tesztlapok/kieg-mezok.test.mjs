@@ -98,20 +98,38 @@ export default async function ({ page, t }) {
     ok((await f.inputValue()) === 'BEECO-OSZ-10', 'rossz érték');
     ok(await f.evaluate((e) => e === document.activeElement && e.selectionEnd - e.selectionStart === e.value.length), 'nincs kijelölve');
   });
+  // A letöltés-próbák a lap időzítőit maguk léptetik (page.clock). A minták valós időzítővel futnak (150 ms-os lépések, 600 ms),
+  // ezért terhelt gépen a próba lemaradt a köztes állapotokról (készül, haladás, „Megszakítás” gomb) – 2026-11-21.
+  await page.clock.install(); await page.clock.pauseAt(Date.now() + 1000);
   await t('letöltés: kész → készül (haladás) → letöltve (méret)', async () => {
     const box = c('dl-siker').locator('.bc-download');
-    const dl = page.waitForEvent('download', { timeout: 5000 });
+    const files = []; const onDownload = (d) => files.push(d); page.on('download', onDownload);
     await box.getByRole('button').first().click();
     ok((await box.getAttribute('data-state')) === 'busy', 'nem készül');
+    ok((await box.locator('[role=progressbar]').count()) === 0, 'haladásjelző az első jelzés előtt');
+    await page.clock.runFor(150); // a minta első lépése
     await until(async () => (await box.locator('[role=progressbar]').count()) > 0, 'nincs haladásjelző');
-    await box.getByRole('button').first().click(); // dupla kattintás: nem indít újat
-    ok((await (await dl).suggestedFilename()) === 'partnerek-2026-10-01.csv', 'rossz fájlnév');
+    ok((await box.locator('.bc-download-meta').innerText()).includes('20%'), await box.locator('.bc-download-meta').innerText());
+    // Kétszer nem indítható – egérrel (force: a készülő gomb aria-disabled, a sima click() megvárná a letöltés VÉGÉT, és akkor
+    // második letöltést indítana) és billentyűzettel sem (a fókusz a gombon marad, az Enter eléri a kezelőt).
+    const still20 = async () => (await box.getAttribute('data-state')) === 'busy' && (await box.locator('.bc-download-meta').innerText()).includes('20%');
+    await box.getByRole('button').first().click({ force: true });
+    ok(await still20(), 'a második kattintás újraindította');
+    await box.getByRole('button').first().press('Enter');
+    ok(await still20(), 'az Enter újraindította');
+    await page.clock.runFor(600); // a maradék négy lépés
     await until(async () => (await box.getAttribute('data-state')) === 'done', 'nem lett kész');
+    await until(() => files.length > 0, 'nem indult letöltés', 5000);
+    page.off('download', onDownload);
+    ok(files.length === 1, `${files.length} letöltés indult (várt: 1)`);
+    ok(files[0].suggestedFilename() === 'partnerek-2026-10-01.csv', 'rossz fájlnév');
     ok(/Letöltve: partnerek-2026-10-01\.csv · [\d,]+ KB/.test(await box.locator('.bc-download-meta').innerText()), await box.locator('.bc-download-meta').innerText());
   });
   await t('letöltés: hiba → „Újra” gomb + szöveges hiba', async () => {
     const box = c('dl-hiba').locator('.bc-download');
     await box.getByRole('button').click();
+    ok((await box.getAttribute('data-state')) === 'busy', 'nem készül');
+    await page.clock.runFor(400);
     await until(async () => (await box.getAttribute('data-state')) === 'error', 'nem lett hiba');
     ok((await box.locator('.bc-error').innerText()).includes('próbáld újra'), 'nincs teendő a hibában');
     ok((await box.getByRole('button').innerText()).includes('Újra'), 'nincs Újra');
@@ -121,5 +139,8 @@ export default async function ({ page, t }) {
     await box.getByRole('button').first().click(); await box.getByRole('button', { name: 'Megszakítás' }).click();
     ok((await box.getAttribute('data-state')) === 'idle', 'nem állt meg');
     ok((await box.locator('.bc-download-meta').innerText()).includes('megszakítottad'), 'nincs jelzés');
+    await page.clock.runFor(600); // a megszakított minta közben elkészülne – nem fejezheti be a letöltést
+    ok((await box.getAttribute('data-state')) === 'idle', 'a megszakított letöltés mégis befejeződött');
   });
+  await page.clock.resume();
 }
